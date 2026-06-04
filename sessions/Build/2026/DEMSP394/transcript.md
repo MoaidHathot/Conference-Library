@@ -1,0 +1,700 @@
+**[00:00:00]** Good afternoon everyone.
+**[00:00:01]** Welcome to Microsoft Build.
+**[00:00:03]** Welcome to cross-platform modern.net with Uno Platform at enterprise scale
+**[00:00:09]** with AI assisted workflows.
+**[00:00:11]** We are your hosts for the next 25 minutes.
+**[00:00:14]** I am Sam Basu, Developer Advocate over at Uno Platform
+**[00:00:17]** and with me I have.
+**[00:00:18]** Colin Whitlatch, I'm the CTO of Kahua and we're here,
+**[00:00:20]** we're long time partners with ITO and we're extremely excited
+**[00:00:23]** about what you're here to see today because it's just
+**[00:00:26]** an evolution of what you guys have built.
+**[00:00:28]** Yeah.
+**[00:00:29]** So we are doing this together strategically as Uno platform.
+**[00:00:32]** We are the makers of the platform and Colin and
+**[00:00:35]** Kahu are our biggest customers.
+**[00:00:36]** They're pushing the platform and the tools to get what
+**[00:00:39]** they need out of their enterprise realities.
+**[00:00:41]** So we are here to share how we see the
+**[00:00:43]** evolution of developer tooling across agentic workflows as we go
+**[00:00:47]** into the future, some big announcements to you know make.
+**[00:00:50]** So let's let's get into it.
+**[00:00:52]** So first thing is, as we look at how we
+**[00:00:54]** build software, we have some broad buckets, right?
+**[00:00:57]** We could do the traditional code centric where we are
+**[00:01:00]** in our IDs all day and we are manually writing
+**[00:01:03]** code and testing things.
+**[00:01:05]** Maybe you want some more visual stuff.
+**[00:01:06]** So if you have, you know, drag and drop tools,
+**[00:01:09]** maybe you can iterate on your UI a little bit
+**[00:01:11]** quicker.
+**[00:01:11]** We got hot reload that can sync things back.
+**[00:01:14]** But you know, AI is dramatically changing how we build
+**[00:01:17]** software and the fundamentals still matter, as you can see,
+**[00:01:21]** will bring a lot of context so that your AI
+**[00:01:23]** agents and you fall into a pit of success, right?
+**[00:01:26]** So you know, it's a full scale, it's a spectrum.
+**[00:01:28]** And hopefully you'll see that as we go from left
+**[00:01:31]** to right, your tooling, your developer productivity get much, much
+**[00:01:35]** better with agentic workflows.
+**[00:01:36]** Yep.
+**[00:01:37]** And one thing to add is we're going to show
+**[00:01:38]** you a lot.
+**[00:01:38]** It's going to be fast with 25 minutes here.
+**[00:01:41]** One important thing, we love AI Mart company that has
+**[00:01:45]** over 100 developers.
+**[00:01:46]** We've gone from writing code by hand.
+**[00:01:49]** Six months ago we actually were still all traditional development.
+**[00:01:52]** We now zero code written by by humans.
+**[00:01:55]** It's all AI driven.
+**[00:01:56]** We're orchestrators.
+**[00:01:57]** That's the big thing for everyone to learn here.
+**[00:01:59]** But one thing that I want everybody to focus on
+**[00:02:00]** here as we go forward is we love the design
+**[00:02:02]** tools that are out there.
+**[00:02:03]** Things like, you know, there's Copilot, there's claw design, love
+**[00:02:06]** Figma.
+**[00:02:07]** What you're going to see here, it is the full
+**[00:02:09]** stack.
+**[00:02:09]** So we're not just showing you something where it's just
+**[00:02:11]** a bit of thing like you got to go Polish
+**[00:02:12]** it off later.
+**[00:02:13]** You're going to be some real live running code.
+**[00:02:15]** Yeah, let's get into it.
+**[00:02:17]** So more on that we see the spectrum.
+**[00:02:19]** I think most of you are in the same boat.
+**[00:02:21]** We have done a lot of surveys where majority of
+**[00:02:23]** us are adopting AI.
+**[00:02:25]** We are doing so cautiously.
+**[00:02:27]** You know, you might still have some people who are
+**[00:02:29]** hesitant, but more and more of us are going to
+**[00:02:31]** the AI forward, the innovators.
+**[00:02:33]** Maybe you're doing multi agent orchestration, you're using MCP tools,
+**[00:02:36]** you're using skills.
+**[00:02:37]** So the more we cater to the, you know, AI
+**[00:02:39]** forward people, the better it is for the whole stack.
+**[00:02:42]** But the idea here is no matter where you are
+**[00:02:44]** in the spectrum, we should have tooling ready for you
+**[00:02:47]** to be productive right now.
+**[00:02:48]** No matter how good your AI tools, the fundamentals matter.
+**[00:02:52]** Otherwise it's vaporware, right?
+**[00:02:53]** So this is our fundamental it's a foundational open source
+**[00:02:56]** stack that's suitable platform, been around for a long, long
+**[00:02:59]** time.
+**[00:03:00]** It gives you a cross-platform way to build.net apps.
+**[00:03:02]** So from a single shared code base, I get to
+**[00:03:05]** build an app that runs on iOS, Android, web through
+**[00:03:07]** web assembly, browsers, Windows, Mac OS, Linux, all the things.
+**[00:03:11]** And I have lots and lots of tools to be
+**[00:03:13]** productive, but we want to take that a little bit
+**[00:03:15]** more.
+**[00:03:16]** This is Uno Platform Studio.
+**[00:03:17]** This is a collection of AI and design tools meant
+**[00:03:20]** to augment your productivity.
+**[00:03:22]** So the first thing is hot design.
+**[00:03:24]** Maybe you want a runtime visual designer.
+**[00:03:26]** So as your app is running, we give you a
+**[00:03:28]** pause button.
+**[00:03:28]** You have a nice surface area to tweak on your
+**[00:03:31]** app UI with hot reload.
+**[00:03:32]** We sync it back to your ID with your code.
+**[00:03:35]** Maybe you're using Figma or Pencil, any of those design
+**[00:03:38]** tools we can bring over your design, you know, nice
+**[00:03:41]** pipeline into actual functional code for your for your apps.
+**[00:03:45]** And if you're using AI, we want AI to have
+**[00:03:47]** context, right?
+**[00:03:48]** Context is everything.
+**[00:03:49]** So our MCP tools bring the context of, you know,
+**[00:03:52]** the grounding that you need for docs, so latest docs.
+**[00:03:55]** And then for those of you who build web apps,
+**[00:03:58]** you might be familiar with Playwright.
+**[00:04:00]** So this is essentially playwrightfor.net apps, right?
+**[00:04:02]** So AI has eyes and hands.
+**[00:04:04]** So we can have the agents look at your app,
+**[00:04:07]** interact with it, click on things, you know, type in
+**[00:04:10]** text.
+**[00:04:10]** So you have a full way to validate what the
+**[00:04:12]** UI, what the AI is building.
+**[00:04:14]** So that's where we stand today and we are, you
+**[00:04:17]** know, that's a full vertical integrated stack.
+**[00:04:19]** And I think Colin, you folks use this a lot.
+**[00:04:21]** So start wherever you are, any OS, any ID, you
+**[00:04:24]** get started with the MCP tools, super easy to get
+**[00:04:27]** set up.
+**[00:04:27]** And as you develop, you have all the tools to
+**[00:04:29]** be productive all the way to CICD and deployment pipelines.
+**[00:04:32]** And you folks, you know do enterprise apps with this?
+**[00:04:35]** Yes, we do.
+**[00:04:35]** And we, you know, we have an enterprise platform and
+**[00:04:37]** there's a whole lot of apps under that umbrella.
+**[00:04:40]** And I will say you're exactly right.
+**[00:04:41]** There are a lot of entry points into this and
+**[00:04:43]** you can start, you know, you can be AI first
+**[00:04:45]** in terms of getting things things going, but you can
+**[00:04:47]** still do your traditional approaches.
+**[00:04:48]** You can do database first.
+**[00:04:50]** You can just go out and just do a little
+**[00:04:51]** rapid prototyping, any type of model waterfall if you'd like.
+**[00:04:54]** It's all you can start anywhere here.
+**[00:04:55]** And I was saying, you know, this, this is somewhat
+**[00:04:57]** in a way linear, maybe vertical and horizontal.
+**[00:04:59]** It's a very big circle for us.
+**[00:05:01]** There's any aspect you can jump into and get started
+**[00:05:03]** with it.
+**[00:05:03]** Yeah.
+**[00:05:04]** So it is a rich stack as we stand today,
+**[00:05:06]** but let's look ahead at the future.
+**[00:05:08]** Our teams have been super busy for the last, you
+**[00:05:11]** know, several months and we are super, super excited to
+**[00:05:14]** present to you Uno Platform Studio 3.0.
+**[00:05:16]** This is the evolution of everything that we have talked
+**[00:05:19]** about into the agentic future with skills, with plugins, with
+**[00:05:22]** all the AI and design tools that you need to
+**[00:05:24]** be really, really productive.
+**[00:05:26]** So there are a lot of things in here.
+**[00:05:27]** Let's get into it.
+**[00:05:28]** First is a specialized agent that knows exactly how to
+**[00:05:32]** build Uno Platform apps really, really well.
+**[00:05:35]** And it's, you know, backed by skills because agents, they
+**[00:05:37]** need skills to be, you know, falling into a bit
+**[00:05:40]** of success.
+**[00:05:40]** We do that like 60 plus skills.
+**[00:05:42]** We have MCP tools, so the agents can be looking
+**[00:05:45]** at docs, they can validate the UI that you're building.
+**[00:05:47]** So your agentic loops work very efficiently.
+**[00:05:50]** Now, cross-platform net, it's not easy because you have to
+**[00:05:53]** depend on those SDKS, iOS, Android, Windows and Mac.
+**[00:05:57]** So there is some setup, but we are here taking
+**[00:05:59]** away all of the barrier to entry.
+**[00:06:01]** There is literally nothing to install because we are launching
+**[00:06:04]** Uno Platform Studio app.
+**[00:06:05]** This is an app that runs seamlessly on desktop, web
+**[00:06:08]** and mobile.
+**[00:06:09]** So you could literally go to your browser and this
+**[00:06:12]** is not vibe coding.
+**[00:06:12]** We are going to spinupafull.net app for you in the
+**[00:06:15]** browser.
+**[00:06:16]** We are going to visually see the app being built.
+**[00:06:18]** You can tweak your app UI.
+**[00:06:20]** Once you're happy, you export and you drop down into
+**[00:06:23]** your ID or CLI.
+**[00:06:23]** So really, you know, easy to get started and you
+**[00:06:26]** know, jumping in for a full cross platform.net experience, right.
+**[00:06:30]** So that's that's it in another in a nutshell.
+**[00:06:32]** Enough talk.
+**[00:06:33]** Let's.
+**[00:06:33]** Straight.
+**[00:06:33]** So I think it's up for a second.
+**[00:06:34]** One quick thing is, you know, it's with, you know,
+**[00:06:37]** platform and you really build it once.
+**[00:06:38]** It runs everywhere, desktop, web and mobile.
+**[00:06:40]** Been that way for quite some time, quite powerful.
+**[00:06:43]** Love it because we only write these things once.
+**[00:06:45]** There is no having to go and build.
+**[00:06:46]** It's on an entirely new platform.
+**[00:06:48]** I have to duplicate code.
+**[00:06:49]** What you're about to see here is literally kind of
+**[00:06:51]** the inverse here.
+**[00:06:51]** We're running and buildingafull.net app with just straight from the
+**[00:06:54]** browser.
+**[00:06:56]** All right, so I'm looking at platform dot Uno here.
+**[00:06:58]** That's our website.
+**[00:06:59]** As you can see, we have a text box right
+**[00:07:01]** up front to say, tell us what you want to
+**[00:07:03]** build, right?
+**[00:07:04]** So compared to other tools like lovable, bold or anything
+**[00:07:07]** else, this is spinning up a full on net cross-platform
+**[00:07:09]** app right there in your browser with an agent that's
+**[00:07:12]** very comfortable.
+**[00:07:14]** So this is where it starts out.
+**[00:07:16]** It's just a prompt.
+**[00:07:16]** I'm going to copy over and just type in a
+**[00:07:18]** text here.
+**[00:07:19]** Let's just build a, you know, weather app.
+**[00:07:21]** And again, it's AI, so it's non deterministic.
+**[00:07:23]** We'll let it spin for a little bit.
+**[00:07:24]** It's, you know, getting into planning mode.
+**[00:07:27]** Let's block my calls.
+**[00:07:29]** I am in no disturb mode anyways, so while it's
+**[00:07:31]** building, we're going to switch over to some apps that
+**[00:07:34]** I have built already.
+**[00:07:35]** So there's a gallery you can start with a prompt
+**[00:07:37]** or you can just start with one of these apps
+**[00:07:39]** that are built.
+**[00:07:40]** This one here is a coffee app and you can
+**[00:07:42]** see what it does out of the gate is I
+**[00:07:44]** can see what my app looks like in light mode
+**[00:07:46]** and dark mode, right?
+**[00:07:47]** I can see what my app is going to look
+**[00:07:49]** like on on a mobile form factor, slightly bigger tablet
+**[00:07:52]** form factor and so on so I can really visualize
+**[00:07:55]** what my app is doing.
+**[00:07:56]** I still have my agent here at all times to
+**[00:07:58]** tweak app UI.
+**[00:07:59]** I can ask you to make some changes on the
+**[00:08:01]** left hand side.
+**[00:08:02]** Here are a couple of interesting things.
+**[00:08:03]** If I go into design mode now, I'm actually looking
+**[00:08:06]** at hot design, which is where I can tweak and
+**[00:08:08]** iterate on app UI.
+**[00:08:10]** I can select anything in here and I can see
+**[00:08:12]** the actual visual tree where my app UI is being
+**[00:08:15]** rendered.
+**[00:08:15]** I have all of the UI that I can drag
+**[00:08:17]** and drop and I can change up all of the
+**[00:08:19]** properties.
+**[00:08:20]** It's, you know, all working live in the browser for
+**[00:08:23]** you, right?
+**[00:08:23]** So again, just to look at what this might look
+**[00:08:26]** like, I can go down to previews, which are individual
+**[00:08:28]** elements of your app kind of disconnected.
+**[00:08:31]** But in design mode, you can see how they're looking
+**[00:08:33]** at across responsive breakpoints, you know, across different states.
+**[00:08:37]** What do they look like with or without data binding.
+**[00:08:39]** There are some system design, you know, UI as well.
+**[00:08:42]** But if you go back to the app, you know,
+**[00:08:44]** you can try out your app fully interactive right in
+**[00:08:46]** the browser.
+**[00:08:47]** Here's another app.
+**[00:08:48]** This is actually a CRM app, again, done from a
+**[00:08:50]** simple prompt.
+**[00:08:51]** Here I can go into interactive mode and you can
+**[00:08:53]** see as I'm, you know, looking around my app, it
+**[00:08:56]** shows me all the things as if my app is,
+**[00:08:58]** you know, working and it is a real app fully
+**[00:09:00]** loaded up through web assembly in the browser.
+**[00:09:02]** Here's some live charts, data visualization, here's some, you know,
+**[00:09:06]** custom mapping solutions.
+**[00:09:07]** So full on enterprise apps.
+**[00:09:09]** Once I'm ready, once I have spun this, you know,
+**[00:09:11]** spun this enough, I can hit export and at that
+**[00:09:14]** point it just drops you down into either GitHub or
+**[00:09:16]** local and then you can go from there, right?
+**[00:09:18]** So what we are trying to do here is really
+**[00:09:20]** enable how quickly you can start up here.
+**[00:09:23]** Here is kind of where we see the future.
+**[00:09:25]** I don't have the time to show you this live,
+**[00:09:28]** but you can have multiple sessions where I might be
+**[00:09:30]** on my web, he might be on a mobile device,
+**[00:09:32]** and I can still make UI tweaks and push it
+**[00:09:35]** through.
+**[00:09:35]** Hot reload to all of the sessions that are looking
+**[00:09:37]** at the same thing and each one is loading up
+**[00:09:40]** the app live in real time.
+**[00:09:42]** So that's how we get started.
+**[00:09:43]** This one is still spinning.
+**[00:09:45]** It's actually building the app.
+**[00:09:46]** We'll come back to it, but let's just say you
+**[00:09:48]** are ready with this right and you want to drop
+**[00:09:50]** into your actual dev environment.
+**[00:09:51]** So let's take a look at what that looks like.
+**[00:09:53]** So here I am in Visual Studio Code right here
+**[00:09:55]** is where again the tooling shines the same tools that
+**[00:09:58]** we use from the web.
+**[00:09:59]** What you can see here are a couple of MCP
+**[00:10:01]** servers that are wired up because it knows that it's
+**[00:10:04]** an Uno platform app.
+**[00:10:05]** There is a new plugin.
+**[00:10:06]** The plugin brings in 60 plus skills on exactly how
+**[00:10:09]** the agent can build Uno platform apps and again, just
+**[00:10:13]** more modular guidance and instructions.
+**[00:10:15]** So the agent does the right thing.
+**[00:10:17]** This one here is like a chef's app and this
+**[00:10:19]** is Visual Studio Code, so it recognizes all the places
+**[00:10:22]** where my app can run.
+**[00:10:23]** I'm going to quickly run this here on my desktop.
+**[00:10:27]** So let's do a quick run here.
+**[00:10:29]** It's going to do a build.
+**[00:10:30]** Net 10 is our desktop runtime and it's going to
+**[00:10:33]** do a build here and outcomes the desktop application, right?
+**[00:10:36]** So this is my app and it's running here.
+**[00:10:38]** I'm going to skip past a couple of things here
+**[00:10:40]** to get to the main screen.
+**[00:10:41]** So it's a recipes app, you know, it's busy, it's
+**[00:10:44]** got quite a few views, view models, it's data-driven.
+**[00:10:47]** What you what you see here is up here, we
+**[00:10:49]** do notice hot reload and hot design wired up.
+**[00:10:52]** So again, we are giving you the same tools.
+**[00:10:54]** Now it's in desktop, you have the same things in
+**[00:10:56]** mobile here.
+**[00:10:57]** I can step down and I have the same interface.
+**[00:10:59]** I can interactively, you know, work on my app or
+**[00:11:01]** I can go into design mode and at which point
+**[00:11:04]** I can really zoom in and look at individual items
+**[00:11:06]** and I can, you know, zoom in further here.
+**[00:11:08]** Let's go into this particular collection view.
+**[00:11:11]** I can go all the way down to the template
+**[00:11:13]** view.
+**[00:11:14]** I can go all the way down to the individual
+**[00:11:16]** data items that are bound to my template.
+**[00:11:18]** And you can see this is live data.
+**[00:11:20]** So we are working with something very live in production,
+**[00:11:23]** right?
+**[00:11:24]** And at any point I can click in and I'm
+**[00:11:25]** out of the hot design mode.
+**[00:11:26]** One more thing to show is if I go in
+**[00:11:28]** here in interactive mode, in enterprise, apps are often complicated.
+**[00:11:32]** You have a wizard, you have, you know, steps you
+**[00:11:35]** have to go through here I can just tap and
+**[00:11:37]** I can use the app as if I'm using this
+**[00:11:39]** on desktop or mobile.
+**[00:11:41]** Let's just go into this mode here.
+**[00:11:42]** Let's say I want to change up this thing.
+**[00:11:44]** My CTO calls, he wants to make a small change,
+**[00:11:46]** right?
+**[00:11:47]** So here I can go back into design mode and
+**[00:11:49]** I can actually highlight that.
+**[00:11:51]** Let's go further in.
+**[00:11:52]** That's the chart and what you can see here is
+**[00:11:54]** these are some brushes that we are painting it with.
+**[00:11:56]** Let's change this up to a different color.
+**[00:11:59]** As you can see, it immediately repaints because this is
+**[00:12:01]** hot design.
+**[00:12:02]** It realizes that I've made a change.
+**[00:12:04]** So it shows me the change right here.
+**[00:12:06]** And if I go back to my IDE, I happen
+**[00:12:08]** to know that was the recipe pages detail page, and
+**[00:12:10]** that's the chart control.
+**[00:12:12]** You can see the protein brush color has changed, right?
+**[00:12:14]** So whatever I do in my design surface comes right
+**[00:12:16]** back to my code, right?
+**[00:12:17]** So that's a nice experience.
+**[00:12:19]** Now let me close this out.
+**[00:12:21]** One more thing I want to show you here.
+**[00:12:22]** Let's go into my GitHub Copilot or any agent that
+**[00:12:25]** you want.
+**[00:12:26]** I can do cloud code here as well.
+**[00:12:28]** What's nice here is if I open this up, you
+**[00:12:30]** can see that this is a Uno platform project.
+**[00:12:32]** So it wires up these things for me.
+**[00:12:34]** So my agents are always grounded in the best practices
+**[00:12:38]** of how to initialize and what are the ways to
+**[00:12:40]** build, you know, Uno platform app.
+**[00:12:42]** It can do documentation, search and fetch.
+**[00:12:45]** So it always does the right thing.
+**[00:12:46]** And then these are my app interactivity controls.
+**[00:12:49]** So I can do click, I can do screenshot, I
+**[00:12:51]** can do this is how AI keeps working in a
+**[00:12:54]** loop until it gets it right.
+**[00:12:56]** So This is why these tools are so important.
+**[00:12:58]** So as an example here, I can I never have
+**[00:13:00]** to leave my ID if I'm in a depth flow.
+**[00:13:02]** Here we are asking like this is a reactive pattern
+**[00:13:05]** like Mvux, but just, you know, this is C# and
+**[00:13:08]** XAML.
+**[00:13:08]** So I can do MVVM or I can do MV
+**[00:13:10]** UX.
+**[00:13:10]** So when I ask like, tell me about this, this
+**[00:13:12]** is where you can see it actually goes in and
+**[00:13:15]** tries to, you know, do documentation searches and fetches and
+**[00:13:17]** gives me a summary of exactly what to expect.
+**[00:13:20]** So both you and the AI agent is always grounded
+**[00:13:23]** in the docs.
+**[00:13:24]** Makes sense.
+**[00:13:25]** Now a little bit more here, let's go a little
+**[00:13:27]** bit more interactive.
+**[00:13:28]** I'm going to close this out entirely, right?
+**[00:13:31]** And we are back into the mode where we are
+**[00:13:33]** doing terminal command line everything, right?
+**[00:13:36]** It's headless and it's super, super fast.
+**[00:13:38]** So this is the same app that I'm looking at
+**[00:13:40]** now.
+**[00:13:41]** I'm going to pull up GitHub Copilot.
+**[00:13:43]** This is the exact same chat experience that you have
+**[00:13:45]** inside of Visual Studio or VS Code.
+**[00:13:47]** I'm going to make it maybe a little bit bigger.
+**[00:13:49]** So this is GitHub Copilot.
+**[00:13:50]** I can resume here in my VS Code or Visual
+**[00:13:53]** Studio or Writer.
+**[00:13:54]** So wherever it works here, if I go into MCPS,
+**[00:13:57]** you'll notice that it's using the same exact MCP tools
+**[00:14:00]** that I showed you from my ID.
+**[00:14:02]** So again here as well, the agent is grounded in
+**[00:14:05]** docs and it has those app interactivity tools.
+**[00:14:08]** If I now go in and say give me all
+**[00:14:10]** the skills that you have, there are 60 plus skills
+**[00:14:13]** in here that are just released as of today.
+**[00:14:15]** This is a big push for us getting into UNA
+**[00:14:18]** platform Studio 3.0.
+**[00:14:19]** If you want to do navigation, if you want to
+**[00:14:22]** do material toolkit or anything theming wise, we have lots
+**[00:14:25]** and lots of skills here that again helps the agent
+**[00:14:28]** do the right thing.
+**[00:14:29]** So let's do one quick, you know, test here.
+**[00:14:32]** What if I say, let's launch the app on desktop
+**[00:14:36]** here you're going to see the AI.
+**[00:14:39]** This is the AI.
+**[00:14:40]** It's non deterministic.
+**[00:14:41]** So it's going to try to figure out, oh, thisisa.net
+**[00:14:43]** project, it's going to read the CS project and try
+**[00:14:46]** to figure out how to launch this because it I
+**[00:14:48]** did not give it anything.
+**[00:14:49]** So it's working away over slow Wi-Fi.
+**[00:14:52]** So while it's doing that, let me see if our
+**[00:14:55]** this thing finished.
+**[00:14:56]** So this the weather app that I started out here,
+**[00:14:59]** it's fully done, took about four minutes.
+**[00:15:01]** We are, you know, making this shorter and shorter, but
+**[00:15:03]** this is a fully immersive weather app done completely in
+**[00:15:06]** your browser and I can hit export and drop it
+**[00:15:08]** down into Visual Studio, right?
+**[00:15:10]** And again, this app from the get go is it's
+**[00:15:13]** light mode and dark mode.
+**[00:15:14]** It's interactive.
+**[00:15:15]** So I can see what it looks like across bigger
+**[00:15:18]** or smaller form factors.
+**[00:15:19]** Let's go look at the biggest form factor here.
+**[00:15:21]** Look, I mean, it looks nice, right?
+**[00:15:23]** So all of this done with just a single prompt,
+**[00:15:26]** right?
+**[00:15:26]** And here as well, I can drop into design, I
+**[00:15:28]** can change up things if I don't like something.
+**[00:15:30]** I can drop into previews and look at how things
+**[00:15:33]** are looking at an individual UI element level.
+**[00:15:36]** OK, so we have 8 minutes left in here, this
+**[00:15:39]** one here.
+**[00:15:40]** It's getting to work here.
+**[00:15:41]** GitHub Copilot is starting to figure it out.
+**[00:15:43]** It's gotten the runtime and now it's invoking app start,
+**[00:15:46]** which is our way of, you know, an MCP tool.
+**[00:15:48]** So it launches the app, right?
+**[00:15:49]** So same exact app that I saw from my ID.
+**[00:15:53]** Now it's in here and it's done programmatically.
+**[00:15:55]** So let's get past a few things here.
+**[00:15:56]** Again, we are back to the screen.
+**[00:15:58]** So notice how little I'm giving the agent.
+**[00:16:00]** So the agent takes screenshot after screenshot trying to make
+**[00:16:03]** sure it's doing the right thing.
+**[00:16:04]** So if I say let's click on avocado toast, right,
+**[00:16:08]** just a UI element, I'm not giving it anything.
+**[00:16:12]** So it has to figure out what exactly is the
+**[00:16:14]** user wanting to do?
+**[00:16:15]** Is it a clickable thing?
+**[00:16:16]** Is it a button?
+**[00:16:17]** Is it, is it an item in a feed view,
+**[00:16:19]** right?
+**[00:16:20]** It will do all of it.
+**[00:16:21]** It's actually going to go through the visual tree of
+**[00:16:24]** figuring out what the app UI looks like and then
+**[00:16:26]** it, you know, actually clicks on the thing.
+**[00:16:28]** So think of this in terms of your testing scenarios,
+**[00:16:31]** your UI testing, your integration testing.
+**[00:16:34]** You can automate all of this with the right MCP
+**[00:16:37]** tools, right?
+**[00:16:37]** So again, it's trying to figure out all the things
+**[00:16:40]** it's doing the searches and trying to figure out what
+**[00:16:42]** exactly did I mean.
+**[00:16:44]** So we'll give it another second here.
+**[00:16:45]** We have 7 minutes.
+**[00:16:46]** Colin, do you?
+**[00:16:47]** Want to add some.
+**[00:16:47]** I'm just going to add one thing to point out
+**[00:16:49]** is again, it's powered by MCP, so you can call
+**[00:16:51]** it with your own MCP servers, you can call externally.
+**[00:16:54]** And also, you know, this is using GPT 5 mini,
+**[00:16:56]** so you can pick which model you like.
+**[00:16:58]** It's not particularly any certain 1.
+**[00:16:59]** Is that like it's the same thing we all do
+**[00:17:01]** out here?
+**[00:17:01]** I think the term now is token maxing, which I
+**[00:17:03]** think with the cost certainly going up, you don't want
+**[00:17:05]** to do that.
+**[00:17:06]** It doesn't need a whole lot to get started.
+**[00:17:08]** And one thing you move rapidly that I want to
+**[00:17:09]** point out, you see hot design and hot reload on
+**[00:17:11]** there.
+**[00:17:12]** I will tell you this.
+**[00:17:12]** For those who have teenagers, you've probably realized that the
+**[00:17:14]** worst technical crime you could commit is taking away their
+**[00:17:16]** Internet.
+**[00:17:17]** And then for developers, it's taking away their hot design
+**[00:17:19]** and hot reload.
+**[00:17:20]** But you have it here.
+**[00:17:21]** Every time you make a change anywhere across the spectrum,
+**[00:17:24]** whether it's in the console GUI, it's going to be
+**[00:17:26]** reflected immediately.
+**[00:17:27]** Yeah.
+**[00:17:28]** So it's actually figured out and it's, you know, doing
+**[00:17:31]** a pointer click and eventually it'll click.
+**[00:17:33]** So for the sake of time, let's let's let's go
+**[00:17:35]** back to where we started, right?
+**[00:17:37]** So just a quick recap of all the things we
+**[00:17:40]** showed you.
+**[00:17:41]** Is this still working?
+**[00:17:42]** There you go.
+**[00:17:43]** So Uno platform 3 dot O has some key building
+**[00:17:45]** blocks in it.
+**[00:17:46]** First up is a specialized agent that has skills that
+**[00:17:50]** has MCP tools at its disposal.
+**[00:17:52]** So AI does the right thing.
+**[00:17:54]** We are shipping previews, so you get to build and,
+**[00:17:57]** you know, preview and validate UI components in isolation across
+**[00:18:01]** responsive boundaries, across data context States and themes.
+**[00:18:05]** We have snippets.
+**[00:18:06]** I didn't get to show you that that's a building
+**[00:18:08]** block for your app UI.
+**[00:18:09]** So you can quickly iterate on UI.
+**[00:18:11]** You can drag and drop and customize.
+**[00:18:12]** And then we are shipping skills and plugins that you
+**[00:18:15]** can use from GitHub Copilot, codecs, cloud code, any agent
+**[00:18:18]** that you want, right?
+**[00:18:19]** So a lot of things built into one, but the
+**[00:18:21]** idea here is you can start anywhere.
+**[00:18:23]** We are, you know, taking it with the various to
+**[00:18:25]** entry.
+**[00:18:26]** Kahua has had a lot of success.
+**[00:18:27]** So you go.
+**[00:18:28]** Yes, absolutely.
+**[00:18:29]** You know, run short on time already, but I will
+**[00:18:31]** say you, you know, for our platform itself, we build
+**[00:18:34]** this very large just really ecosystem of things where you
+**[00:18:37]** can come and build with our own canvas creator.
+**[00:18:40]** Come see us over the other building.
+**[00:18:41]** By the way, you'll hear at the end here definitely
+**[00:18:43]** show you a whole lot more.
+**[00:18:44]** But to a couple things I want to just touch
+**[00:18:46]** on here is everything you saw that runs.
+**[00:18:47]** You can build what we build like we you guys
+**[00:18:49]** power all of our rendering, all of our display and
+**[00:18:52]** it is really run once or you build the ones
+**[00:18:54]** that runs everywhere and a couple things that are on
+**[00:18:57]** here on this particular one next slide.
+**[00:18:59]** Yes, what we've been getting into is you'll see Lidar
+**[00:19:02]** up there.
+**[00:19:02]** One of my favorite things to do it's, it's not
+**[00:19:04]** only is it just a cool trick to show demos,
+**[00:19:06]** but it's actually extremely powerful because it shows what can
+**[00:19:09]** be done.
+**[00:19:10]** You can start with these apps that we build, but
+**[00:19:12]** you're literally from the web and say I want to
+**[00:19:14]** build out a component, literally transition to Visual Studio Code
+**[00:19:16]** and use our own components.
+**[00:19:17]** And you can instantly start using iPhone 16 or iPhone
+**[00:19:20]** Pros and also the iPad Pros and actually take 3D
+**[00:19:23]** mesh modeling out there.
+**[00:19:25]** It's very cool and we use it internally for one
+**[00:19:26]** of our applications to do inspections like building inspections.
+**[00:19:29]** You can actually scan rooms and look for safety violations
+**[00:19:31]** and the like.
+**[00:19:32]** And another thing we also are doing now 360 photo
+**[00:19:34]** capture that's we use it because we're in the construction
+**[00:19:37]** space for a significant amount of our business.
+**[00:19:39]** And that one is across the board.
+**[00:19:41]** There's a 30-40 year projects that are out there.
+**[00:19:43]** So the owners of that want to be able to
+**[00:19:45]** actually see things from the beginning through construction, walk around
+**[00:19:48]** and do things, such stuff that we power and use
+**[00:19:50]** with what you've just seen today.
+**[00:19:52]** We're not going to talk too much about SKIA today.
+**[00:19:55]** However, I will say a lot of exciting things on
+**[00:19:56]** that front, even though it's been out for about 20
+**[00:19:58]** years, that is powering everything you see here.
+**[00:20:00]** A ton of visuals all brought to you by the
+**[00:20:02]** new platform.
+**[00:20:04]** All right, so I think what we are trying to
+**[00:20:07]** say here is humans and AI need to work in
+**[00:20:10]** a loop.
+**[00:20:10]** We're all in this together.
+**[00:20:12]** We don't want to hold up either one, right?
+**[00:20:14]** So the human needs to go.
+**[00:20:15]** Maybe you start with the prompt, maybe you have a
+**[00:20:18]** detailed spec file, but you need to hand it off
+**[00:20:21]** to AI to say go do your thing.
+**[00:20:23]** And at that point, AI needs to have all the
+**[00:20:25]** right tools to be able to successfully build what you're
+**[00:20:27]** asking and also verify that verification loop is super important.
+**[00:20:31]** This is where AI can, you know, gather what it
+**[00:20:33]** needs to build, plan, generate the code, and then verified.
+**[00:20:36]** That's where the MCPS and the previews come in.
+**[00:20:39]** It's going to go on in a loop until it
+**[00:20:41]** thinks it's gotten it right.
+**[00:20:43]** And you can see all of this coming live into
+**[00:20:45]** your environment through hot reload.
+**[00:20:47]** So keep the browser open.
+**[00:20:48]** You're going to see the agent, you know, fill in
+**[00:20:50]** stuff as it gets things done and then you get
+**[00:20:52]** to see how it's looking.
+**[00:20:53]** If you need to tweak, go into hot design, tweak
+**[00:20:56]** a little bit and then let it fly again, right?
+**[00:20:58]** So it's a loop where neither of us want to
+**[00:21:00]** be held back.
+**[00:21:01]** Just, you know, fly as quickly as we have all
+**[00:21:03]** possible and then you move on to the next thing.
+**[00:21:05]** AI builds the rest of your app, so human and
+**[00:21:07]** AI working together.
+**[00:21:09]** So back to where we started about building software, right?
+**[00:21:12]** I think hopefully you can see that we are all
+**[00:21:14]** over in the spectrum together.
+**[00:21:16]** No one company or one developer does exclusively one thing.
+**[00:21:20]** I'm in code a lot, but I'm also using agents
+**[00:21:22]** a lot, right?
+**[00:21:23]** So it's a mix.
+**[00:21:24]** So here with AI and design tools, hopefully what you
+**[00:21:27]** can see is no matter where you are on the
+**[00:21:29]** spectrum, you have one text stack that has tooling for
+**[00:21:31]** you to make you productive and comfortable using a combination
+**[00:21:34]** of all of these tools.
+**[00:21:35]** And that's what you folks are using at Queja.
+**[00:21:37]** Yep, 1000% because we're always looking for ways to reduce
+**[00:21:40]** the overhead or really just with those Bootstrap and getting
+**[00:21:43]** started.
+**[00:21:44]** Now you just go to a web page to get
+**[00:21:46]** started, but it also the deliverables in the day.
+**[00:21:48]** By the way, what you get from this is still
+**[00:21:49]** the same artifacts you just mentioned a second ago.
+**[00:21:51]** It's you're you're you're building the applications, but you're really
+**[00:21:55]** still building XAML, still building C# not doing anything different.
+**[00:21:58]** So all your, you know, the foundations of computer science,
+**[00:22:00]** they're still exactly the same.
+**[00:22:02]** It's just we've removed a lot.
+**[00:22:03]** You know, AI is a huge, you know, way to
+**[00:22:05]** make that happen, but it's really the tooling you provided
+**[00:22:08]** and those things that you've talked about like the MCP
+**[00:22:10]** servers being able to instantly get to things and now
+**[00:22:12]** do away with trying to have some other interface that
+**[00:22:14]** you want to do to control the UI.
+**[00:22:16]** But again, that's what we use it for because it
+**[00:22:18]** greatly simplifies what we do.
+**[00:22:20]** We still have all the human loop.
+**[00:22:21]** It's very big thing for it's a big thing for
+**[00:22:23]** for everyone, especially for us.
+**[00:22:25]** Everything needs to be perfect, needs to work the same
+**[00:22:27]** way.
+**[00:22:27]** So we still get that, you know, we didn't show
+**[00:22:29]** any integrations with GitHub, but that is there.
+**[00:22:31]** But again, as you get the chance to look at
+**[00:22:32]** things, you know, either approve or decline, reject, pull request,
+**[00:22:35]** still can do that every day, OK.
+**[00:22:37]** But again, that is what we're using it for.
+**[00:22:38]** So this just makes it easier for us to build
+**[00:22:40]** software.
+**[00:22:41]** Yeah, so the fundamentals matter, you know, more than it
+**[00:22:44]** ever has.
+**[00:22:44]** It always has, but AI increases our speed.
+**[00:22:47]** But the context about how you build and verify what
+**[00:22:50]** you're building absolutely matters.
+**[00:22:52]** So that's where we are at with Luna Platform, Luna
+**[00:22:54]** Platform Studio.
+**[00:22:54]** We are really running out of time here, but hopefully
+**[00:22:57]** what you see here is a no friction way to
+**[00:23:00]** get started with crossplatform.net.
+**[00:23:02]** With Luna Platform, start in the web, start on the
+**[00:23:04]** desktop, start on the mobile phone.
+**[00:23:06]** We can you know, iteratively work on design together in
+**[00:23:09]** multiple, you know, stacks.
+**[00:23:11]** So try things out.
+**[00:23:12]** That's all we are asking.
+**[00:23:14]** Come and see us.
+**[00:23:14]** We are up in across another pavilion at a booth
+**[00:23:17]** all day for two days.
+**[00:23:18]** So come and talk to us.
+**[00:23:19]** We'd love to show you more, but most importantly, try
+**[00:23:21]** things out.
+**[00:23:22]** Yep, awesome.
+**[00:23:23]** I will say if anybody is a fan of old
+**[00:23:24]** classic arcade games, come see us at the booth.
+**[00:23:26]** We'll show you how.
+**[00:23:27]** Hawaiian themed arcade games.
+**[00:23:30]** Alright, so thank you folks for spending your time with
+**[00:23:32]** us.
+**[00:23:33]** Thank you so much.

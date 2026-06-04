@@ -1,0 +1,4040 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.7790945768356323
+
+00:00:00.040 --> 00:00:04.141
+Everyone, I am Abhimanyu, I have with me Aditi and
+
+NOTE Confidence: 0.7790945768356323
+
+00:00:04.223 --> 00:00:04.879
+Shobhit.
+
+NOTE Confidence: 0.8613002300262451
+
+00:00:05.440 --> 00:00:09.385
+And today we'll be talking about resiliency and the new
+
+NOTE Confidence: 0.8613002300262451
+
+00:00:09.457 --> 00:00:13.833
+agent capabilities that will help end users discover the gaps
+
+NOTE Confidence: 0.8613002300262451
+
+00:00:13.905 --> 00:00:16.560
+in resiliency and also mitigate them.
+
+NOTE Confidence: 0.9522995948791504
+
+00:00:18.160 --> 00:00:22.140
+So when we talk about resiliency, we are really talking
+
+NOTE Confidence: 0.9522995948791504
+
+00:00:22.212 --> 00:00:26.916
+about designing systems that continue to operate even when things
+
+NOTE Confidence: 0.9522995948791504
+
+00:00:26.988 --> 00:00:27.639
+go wrong.
+
+NOTE Confidence: 0.9019861817359924
+
+00:00:27.840 --> 00:00:31.108
+And in the real world, failures are not an exception,
+
+NOTE Confidence: 0.9019861817359924
+
+00:00:31.170 --> 00:00:32.280
+they are expected.
+
+NOTE Confidence: 0.9145592451095581
+
+00:00:33.720 --> 00:00:35.640
+These failures can happen at different levels.
+
+NOTE Confidence: 0.8320336937904358
+
+00:00:35.960 --> 00:00:40.064
+For example, an availability zone can go down, a regional
+
+NOTE Confidence: 0.8320336937904358
+
+00:00:40.136 --> 00:00:43.160
+outage can happen, there can be data loss.
+
+NOTE Confidence: 0.8094483613967896
+
+00:00:44.560 --> 00:00:49.359
+So Azure provides various primitives like availability zones, region repairs,
+
+NOTE Confidence: 0.8094483613967896
+
+00:00:49.422 --> 00:00:53.411
+region pairing, Geo replication, backup to help you handle these
+
+NOTE Confidence: 0.8094483613967896
+
+00:00:53.474 --> 00:00:54.159
+situations.
+
+NOTE Confidence: 0.9093465209007263
+
+00:00:54.720 --> 00:00:59.019
+So when you combine all of these capabilities across zones,
+
+NOTE Confidence: 0.9093465209007263
+
+00:00:59.092 --> 00:01:03.975
+region repairs, disaster recovery, strong backup, you truly get end
+
+NOTE Confidence: 0.9093465209007263
+
+00:01:04.048 --> 00:01:05.359
+to end resiliency.
+
+NOTE Confidence: 0.9201671481132507
+
+00:01:06.760 --> 00:01:08.780
+So at the end of the day, the goal is
+
+NOTE Confidence: 0.9201671481132507
+
+00:01:08.835 --> 00:01:09.600
+simple, right?
+
+NOTE Confidence: 0.9047808647155762
+
+00:01:10.120 --> 00:01:14.544
+Minimize downtime, prevent data loss and recover quickly when failures
+
+NOTE Confidence: 0.9047808647155762
+
+00:01:14.607 --> 00:01:15.240
+do happen.
+
+NOTE Confidence: 0.9578232169151306
+
+00:01:18.120 --> 00:01:22.614
+So when we talk about resiliency, we talk about 3
+
+NOTE Confidence: 0.9578232169151306
+
+00:01:22.706 --> 00:01:23.440
+pillars.
+
+NOTE Confidence: 0.9096047282218933
+
+00:01:24.080 --> 00:01:33.040
+One infrastructure, two, data resiliency and three, cyber resiliency infrastructure.
+
+NOTE Confidence: 0.8770456314086914
+
+00:01:33.040 --> 00:01:37.486
+When we talk about that, it's basically ensuring that your
+
+NOTE Confidence: 0.8770456314086914
+
+00:01:37.563 --> 00:01:41.320
+hardware failures, issues or data center outages.
+
+NOTE Confidence: 0.8125341534614563
+
+00:01:41.320 --> 00:01:43.680
+We're able to withstand those unforeseen events.
+
+NOTE Confidence: 0.9099355340003967
+
+00:01:44.080 --> 00:01:48.125
+We're also able to account for planned retirements like service
+
+NOTE Confidence: 0.9099355340003967
+
+00:01:48.189 --> 00:01:48.960
+retirements.
+
+NOTE Confidence: 0.7908111810684204
+
+00:01:48.960 --> 00:01:51.014
+Let's say a particular skew is going down in a
+
+NOTE Confidence: 0.7908111810684204
+
+00:01:51.059 --> 00:01:51.640
+month's time.
+
+NOTE Confidence: 0.9391741156578064
+
+00:01:53.200 --> 00:01:55.680
+So this pillar is all about designing for.
+
+NOTE Confidence: 0.8922212719917297
+
+00:01:56.040 --> 00:01:56.800
+Sorry about that.
+
+NOTE Confidence: 0.8971718549728394
+
+00:02:03.260 --> 00:02:05.348
+So this pillar is all about designing systems to handle
+
+NOTE Confidence: 0.8971718549728394
+
+00:02:05.386 --> 00:02:06.260
+those kind of failures.
+
+NOTE Confidence: 0.8064534068107605
+
+00:02:07.860 --> 00:02:12.900
+Then you have data resiliency, basically maintaining data integrity, availability,
+
+NOTE Confidence: 0.8064534068107605
+
+00:02:12.961 --> 00:02:15.420
+recovery, recovery ability at all times.
+
+NOTE Confidence: 0.9293243885040283
+
+00:02:15.780 --> 00:02:19.542
+It's making sure that your critical data has a certain
+
+NOTE Confidence: 0.9293243885040283
+
+00:02:19.612 --> 00:02:22.608
+RPO and RTO and we are able to recover from
+
+NOTE Confidence: 0.9293243885040283
+
+00:02:22.678 --> 00:02:24.419
+any failures that happen.
+
+NOTE Confidence: 0.9545577764511108
+
+00:02:26.080 --> 00:02:28.580
+Azure Backup is one such example that allows us to
+
+NOTE Confidence: 0.9545577764511108
+
+00:02:28.630 --> 00:02:29.480
+do that in Azure.
+
+NOTE Confidence: 0.8714950084686279
+
+00:02:30.280 --> 00:02:33.911
+And finally, cyber resiliency, even the best of defenses that
+
+NOTE Confidence: 0.8714950084686279
+
+00:02:33.971 --> 00:02:37.305
+we have on our IT systems, cyber attacks like ransomware
+
+NOTE Confidence: 0.8714950084686279
+
+00:02:37.364 --> 00:02:37.960
+do happen.
+
+NOTE Confidence: 0.9190964698791504
+
+00:02:38.560 --> 00:02:41.332
+So how do we make sure that, you know, we
+
+NOTE Confidence: 0.9190964698791504
+
+00:02:41.399 --> 00:02:46.065
+have immutable backups, we have isolated recovery environments and we
+
+NOTE Confidence: 0.9190964698791504
+
+00:02:46.133 --> 00:02:49.919
+are able to recover from attacks when attackers come and
+
+NOTE Confidence: 0.9190964698791504
+
+00:02:49.987 --> 00:02:52.759
+strike our data systems and environments.
+
+NOTE Confidence: 0.8866426944732666
+
+00:02:55.720 --> 00:02:59.064
+So moving on, when we talk about resiliency, there is
+
+NOTE Confidence: 0.8866426944732666
+
+00:02:59.128 --> 00:03:01.400
+a certain life cycle that we follow.
+
+NOTE Confidence: 0.9541305899620056
+
+00:03:02.560 --> 00:03:05.134
+So the first thing that we do is we have
+
+NOTE Confidence: 0.9541305899620056
+
+00:03:05.199 --> 00:03:08.160
+the start resiliency essentially from day one.
+
+NOTE Confidence: 0.9184922575950623
+
+00:03:08.160 --> 00:03:12.280
+How does Azure help end users to remain resilient?
+
+NOTE Confidence: 0.8936057090759277
+
+00:03:12.440 --> 00:03:17.022
+You have availability zones, region pairs, the best of architecture
+
+NOTE Confidence: 0.8936057090759277
+
+00:03:17.091 --> 00:03:20.511
+best practices that we have out there, and we have
+
+NOTE Confidence: 0.8936057090759277
+
+00:03:20.579 --> 00:03:24.683
+tools like the resiliency agent in Azure Copilot and advisor
+
+NOTE Confidence: 0.8936057090759277
+
+00:03:24.752 --> 00:03:28.856
+tools using Azure MCP that will help build applications that
+
+NOTE Confidence: 0.8936057090759277
+
+00:03:28.924 --> 00:03:30.839
+are resilient from day zero.
+
+NOTE Confidence: 0.8870503902435303
+
+00:03:32.800 --> 00:03:35.992
+Second, when we talk about get resilient now, as our
+
+NOTE Confidence: 0.8870503902435303
+
+00:03:36.053 --> 00:03:40.719
+workloads evolve in Azure, we already have existing brownfield applications.
+
+NOTE Confidence: 0.854109525680542
+
+00:03:41.160 --> 00:03:44.713
+How do we new services get added, new databases get
+
+NOTE Confidence: 0.854109525680542
+
+00:03:44.783 --> 00:03:47.639
+added, new systems, these systems evolve.
+
+NOTE Confidence: 0.9265876412391663
+
+00:03:48.600 --> 00:03:51.293
+How do we make sure that our systems we know
+
+NOTE Confidence: 0.9265876412391663
+
+00:03:51.354 --> 00:03:53.864
+the gaps that are out there and how do we
+
+NOTE Confidence: 0.9265876412391663
+
+00:03:53.925 --> 00:03:55.640
+get them to being resilient.
+
+NOTE Confidence: 0.9209694266319275
+
+00:03:56.080 --> 00:04:00.663
+So that is all about getting resilient and capabilities like
+
+NOTE Confidence: 0.9209694266319275
+
+00:04:00.740 --> 00:04:05.400
+resiliency agent backup tools via Azure MCP server will allow
+
+NOTE Confidence: 0.9209694266319275
+
+00:04:05.476 --> 00:04:10.213
+us to proactively assign resiliency goals, figure out the gaps
+
+NOTE Confidence: 0.9209694266319275
+
+00:04:10.290 --> 00:04:12.199
+and go and mitigate them.
+
+NOTE Confidence: 0.9172177314758301
+
+00:04:13.880 --> 00:04:17.729
+And we also have capabilities like Azure Advisor, AI powered
+
+NOTE Confidence: 0.9172177314758301
+
+00:04:17.793 --> 00:04:20.359
+experiences in a real world application.
+
+NOTE Confidence: 0.8036935329437256
+
+00:04:20.360 --> 00:04:22.240
+We'll have tons of recommendations.
+
+NOTE Confidence: 0.9572230577468872
+
+00:04:22.440 --> 00:04:24.160
+So how do we really prioritize them?
+
+NOTE Confidence: 0.9203189611434937
+
+00:04:24.360 --> 00:04:25.800
+What is important, what is not?
+
+NOTE Confidence: 0.9083417057991028
+
+00:04:25.800 --> 00:04:28.440
+So that's where this particular capability comes in.
+
+NOTE Confidence: 0.9007479548454285
+
+00:04:29.360 --> 00:04:32.320
+And then finally, we have the stay resilient phase.
+
+NOTE Confidence: 0.8652706742286682
+
+00:04:32.680 --> 00:04:36.425
+Resiliency is not a one time setup, it's an ongoing
+
+NOTE Confidence: 0.8652706742286682
+
+00:04:36.499 --> 00:04:37.160
+exercise.
+
+NOTE Confidence: 0.8519667387008667
+
+00:04:37.520 --> 00:04:44.161
+So capabilities like resiliency drills, recovery plans, service health, Azure
+
+NOTE Confidence: 0.8519667387008667
+
+00:04:44.247 --> 00:04:49.250
+Advisor will soon help you detect, monitor such things and
+
+NOTE Confidence: 0.8519667387008667
+
+00:04:49.336 --> 00:04:51.320
+keep us stay resilient.
+
+NOTE Confidence: 0.8604471683502197
+
+00:04:53.080 --> 00:04:56.330
+So overall, if you think about resiliency, it's not just
+
+NOTE Confidence: 0.8604471683502197
+
+00:04:56.388 --> 00:04:57.840
+about surviving failures.
+
+NOTE Confidence: 0.9379353523254395
+
+00:04:58.240 --> 00:05:03.044
+It's about building systems that continuously adapt, learn and improve
+
+NOTE Confidence: 0.9379353523254395
+
+00:05:03.113 --> 00:05:03.800
+over time.
+
+NOTE Confidence: 0.9242778420448303
+
+00:05:08.640 --> 00:05:11.678
+Now at Ignite last year, if some of you are
+
+NOTE Confidence: 0.9242778420448303
+
+00:05:11.748 --> 00:05:16.835
+aware, we basically significantly expanded the scope and capabilities of
+
+NOTE Confidence: 0.9242778420448303
+
+00:05:16.906 --> 00:05:21.075
+our existing Azure Business Continuity Center and we put in
+
+NOTE Confidence: 0.9242778420448303
+
+00:05:21.145 --> 00:05:23.759
+something called resiliency in Azure.
+
+NOTE Confidence: 0.9048974514007568
+
+00:05:25.720 --> 00:05:29.568
+Azure Resiliency is a unified solution that brings all of
+
+NOTE Confidence: 0.9048974514007568
+
+00:05:29.636 --> 00:05:33.822
+these capabilities across infra, data, cyber in a single place
+
+NOTE Confidence: 0.9048974514007568
+
+00:05:33.889 --> 00:05:37.400
+that brings all the high impact risks that you have,
+
+NOTE Confidence: 0.9048974514007568
+
+00:05:37.468 --> 00:05:42.127
+simplifies remediation and enables proactive planning all in a single
+
+NOTE Confidence: 0.9048974514007568
+
+00:05:42.194 --> 00:05:42.600
+place.
+
+NOTE Confidence: 0.9060686230659485
+
+00:05:46.279 --> 00:05:50.283
+Now another concept that was introduced at that time was
+
+NOTE Confidence: 0.9060686230659485
+
+00:05:50.354 --> 00:05:52.999
+we look at we have tons of resources.
+
+NOTE Confidence: 0.7474196553230286
+
+00:05:53.440 --> 00:05:58.382
+How do we, let's say we have an applications, our
+
+NOTE Confidence: 0.7474196553230286
+
+00:05:58.483 --> 00:06:00.400
+Ask HR application.
+
+NOTE Confidence: 0.9474749565124512
+
+00:06:00.800 --> 00:06:02.880
+We do not look at individual resources alone.
+
+NOTE Confidence: 0.8386923670768738
+
+00:06:03.080 --> 00:06:04.961
+What we look need to look at the sum of
+
+NOTE Confidence: 0.8386923670768738
+
+00:06:05.009 --> 00:06:07.614
+all which is an application that yes, are we resilient
+
+NOTE Confidence: 0.8386923670768738
+
+00:06:07.662 --> 00:06:08.000
+or not.
+
+NOTE Confidence: 0.8076950311660767
+
+00:06:08.560 --> 00:06:11.089
+The entire application has to be resilient and not the
+
+NOTE Confidence: 0.8076950311660767
+
+00:06:11.136 --> 00:06:12.120
+individual resources.
+
+NOTE Confidence: 0.9567778706550598
+
+00:06:12.560 --> 00:06:15.410
+So we are bringing that capability where we start looking
+
+NOTE Confidence: 0.9567778706550598
+
+00:06:15.460 --> 00:06:17.160
+at things at an application level.
+
+NOTE Confidence: 0.9142073392868042
+
+00:06:20.720 --> 00:06:24.307
+So basically we are shifting the business continuity planning away
+
+NOTE Confidence: 0.9142073392868042
+
+00:06:24.361 --> 00:06:27.839
+from a resource level planning to an application level planning.
+
+NOTE Confidence: 0.9630178809165955
+
+00:06:28.120 --> 00:06:30.720
+And that is something that we do using service groups.
+
+NOTE Confidence: 0.8228158354759216
+
+00:06:33.760 --> 00:06:37.178
+And finally bringing all of like what I spoke about
+
+NOTE Confidence: 0.8228158354759216
+
+00:06:37.245 --> 00:06:41.936
+earlier, bringing all of them together, the resiliency experiences you
+
+NOTE Confidence: 0.8228158354759216
+
+00:06:42.003 --> 00:06:46.829
+can manage and strengthen your resiliency using Azure Portal, PowerShell
+
+NOTE Confidence: 0.8228158354759216
+
+00:06:46.896 --> 00:06:51.721
+CLI and Azure copilot, bringing intelligent guidance remediation at each
+
+NOTE Confidence: 0.8228158354759216
+
+00:06:51.788 --> 00:06:56.480
+step directly into your developer workflows, including GitHub copilot.
+
+NOTE Confidence: 0.7164679765701294
+
+00:06:59.480 --> 00:07:00.040
+All right.
+
+NOTE Confidence: 0.8979039192199707
+
+00:07:00.760 --> 00:07:04.169
+So with this, to bring all of this together and
+
+NOTE Confidence: 0.8979039192199707
+
+00:07:04.242 --> 00:07:08.305
+taking the first step, we announce the public preview of
+
+NOTE Confidence: 0.8979039192199707
+
+00:07:08.377 --> 00:07:11.280
+Azure Infrastructure Resiliency Manager.
+
+NOTE Confidence: 0.9220952987670898
+
+00:07:12.040 --> 00:07:16.822
+This will allow customers to manage the zonal resiliency using
+
+NOTE Confidence: 0.9220952987670898
+
+00:07:16.900 --> 00:07:18.520
+various capabilities.
+
+NOTE Confidence: 0.894538402557373
+
+00:07:18.520 --> 00:07:21.264
+Like let's say I have an application, how do I
+
+NOTE Confidence: 0.894538402557373
+
+00:07:21.324 --> 00:07:24.844
+make sure that all my resources, my entire application, the
+
+NOTE Confidence: 0.894538402557373
+
+00:07:24.903 --> 00:07:27.349
+goal that I have that it needs to be only
+
+NOTE Confidence: 0.894538402557373
+
+00:07:27.409 --> 00:07:29.080
+resilient, How do I do that?
+
+NOTE Confidence: 0.9352959990501404
+
+00:07:29.200 --> 00:07:33.522
+So we have something called goals now in Azure under
+
+NOTE Confidence: 0.9352959990501404
+
+00:07:33.605 --> 00:07:34.519
+resiliency.
+
+NOTE Confidence: 0.9208254218101501
+
+00:07:35.400 --> 00:07:38.589
+We also have recommendations powered by advisor to help you
+
+NOTE Confidence: 0.9208254218101501
+
+00:07:38.643 --> 00:07:39.400
+get resilient.
+
+NOTE Confidence: 0.8719247579574585
+
+00:07:41.360 --> 00:07:44.761
+Finally, when you look at other capabilities, let's say you
+
+NOTE Confidence: 0.8719247579574585
+
+00:07:44.818 --> 00:07:47.240
+have configured something to be resilient.
+
+NOTE Confidence: 0.9492518305778503
+
+00:07:48.200 --> 00:07:50.835
+Now in a real life situation, when an actual outage
+
+NOTE Confidence: 0.9492518305778503
+
+00:07:50.887 --> 00:07:52.799
+happens, how do you really test them?
+
+NOTE Confidence: 0.8574841618537903
+
+00:07:53.360 --> 00:07:56.911
+So we are introducing resiliency drills where you can actually
+
+NOTE Confidence: 0.8574841618537903
+
+00:07:56.968 --> 00:07:57.999
+simulate failures.
+
+NOTE Confidence: 0.8853600025177002
+
+00:07:58.240 --> 00:08:02.062
+You can simulate that a particular zone goes down, and
+
+NOTE Confidence: 0.8853600025177002
+
+00:08:02.133 --> 00:08:05.531
+this is powered by Chaos Studio, and you will be
+
+NOTE Confidence: 0.8853600025177002
+
+00:08:05.601 --> 00:08:09.920
+able to help simulate and test your app's resiliency posture.
+
+NOTE Confidence: 0.9250022768974304
+
+00:08:11.480 --> 00:08:15.011
+And finally, when an actual outage happens, there are tons
+
+NOTE Confidence: 0.9250022768974304
+
+00:08:15.072 --> 00:08:16.959
+of resources in an application.
+
+NOTE Confidence: 0.8602485656738281
+
+00:08:17.600 --> 00:08:19.834
+You have to failover a DB, you have to failover
+
+NOTE Confidence: 0.8602485656738281
+
+00:08:19.882 --> 00:08:20.120
+a VM.
+
+NOTE Confidence: 0.8173903822898865
+
+00:08:20.640 --> 00:08:23.179
+There are interdependencies in order in which things have to
+
+NOTE Confidence: 0.8173903822898865
+
+00:08:23.221 --> 00:08:23.559
+be done.
+
+NOTE Confidence: 0.9613264203071594
+
+00:08:23.800 --> 00:08:24.960
+So how do you solve for them?
+
+NOTE Confidence: 0.9411515593528748
+
+00:08:25.520 --> 00:08:27.520
+So that is where recovery plans come in.
+
+NOTE Confidence: 0.9233610033988953
+
+00:08:28.080 --> 00:08:30.954
+It will allow you to create a workflow in order
+
+NOTE Confidence: 0.9233610033988953
+
+00:08:31.015 --> 00:08:34.439
+of how the various resources would need to be recovered.
+
+NOTE Confidence: 0.9390865564346313
+
+00:08:36.760 --> 00:08:38.684
+So feel free to please go ahead and try out
+
+NOTE Confidence: 0.9390865564346313
+
+00:08:38.728 --> 00:08:39.399
+the experience.
+
+NOTE Confidence: 0.7934377789497375
+
+00:08:39.400 --> 00:08:40.680
+It's in public preview.
+
+NOTE Confidence: 0.9345583915710449
+
+00:08:42.040 --> 00:08:44.960
+That's the vision and what's new at a high level.
+
+NOTE Confidence: 0.9114781618118286
+
+00:08:45.240 --> 00:08:48.284
+So let's get into the specifics of these new zonal
+
+NOTE Confidence: 0.9114781618118286
+
+00:08:48.345 --> 00:08:52.119
+resiliency experiences, which form a big part of the solution.
+
+NOTE Confidence: 0.9326883554458618
+
+00:08:55.960 --> 00:08:58.703
+OK, so let's start with the first step of the
+
+NOTE Confidence: 0.9326883554458618
+
+00:08:58.764 --> 00:09:02.240
+resiliency journey, which is essentially start resilient.
+
+NOTE Confidence: 0.8600951433181763
+
+00:09:04.000 --> 00:09:10.720
+Traditionally, building resilient applications require deep expertise.
+
+NOTE Confidence: 0.8971894979476929
+
+00:09:10.720 --> 00:09:14.595
+They need to understand which properties and resource needs to
+
+NOTE Confidence: 0.8971894979476929
+
+00:09:14.657 --> 00:09:17.470
+be enabled, what does it do, what does it not
+
+NOTE Confidence: 0.8971894979476929
+
+00:09:17.532 --> 00:09:17.720
+do?
+
+NOTE Confidence: 0.8629394173622131
+
+00:09:18.320 --> 00:09:21.196
+And resiliency often becomes an afterthought that you build the
+
+NOTE Confidence: 0.8629394173622131
+
+00:09:21.242 --> 00:09:23.799
+application and then you realize I have to be resilient.
+
+NOTE Confidence: 0.7196369171142578
+
+00:09:25.640 --> 00:09:28.476
+So with the resiliency agent and Azure copilot, we are
+
+NOTE Confidence: 0.7196369171142578
+
+00:09:28.529 --> 00:09:30.000
+fundamentally changing that.
+
+NOTE Confidence: 0.8030804395675659
+
+00:09:30.000 --> 00:09:34.687
+We are bringing intelligence, we are bringing a guided experience
+
+NOTE Confidence: 0.8030804395675659
+
+00:09:34.759 --> 00:09:39.518
+where using natural language, whether an application consists of a
+
+NOTE Confidence: 0.8030804395675659
+
+00:09:39.590 --> 00:09:43.340
+web app, a VM, a Postgres database, you express your
+
+NOTE Confidence: 0.8030804395675659
+
+00:09:43.412 --> 00:09:48.100
+architecture intent and we the agent basically would convert that
+
+NOTE Confidence: 0.8030804395675659
+
+00:09:48.172 --> 00:09:52.715
+into resilience only resilient templates just by looking at the
+
+NOTE Confidence: 0.8030804395675659
+
+00:09:52.787 --> 00:09:55.600
+intent that you have put into the chat.
+
+NOTE Confidence: 0.826963484287262
+
+00:09:57.840 --> 00:10:00.720
+So let's move on to a demo of Start Resilient.
+
+NOTE Confidence: 0.7583596110343933
+
+00:10:03.000 --> 00:10:05.560
+Let's say I am a cloud DevOps engineer.
+
+NOTE Confidence: 0.8353196382522583
+
+00:10:05.559 --> 00:10:08.735
+I have been tasked to create a new application which
+
+NOTE Confidence: 0.8353196382522583
+
+00:10:08.796 --> 00:10:12.643
+is Java payroll, which essentially is an application that would
+
+NOTE Confidence: 0.8353196382522583
+
+00:10:12.704 --> 00:10:16.001
+consist of something like a computer, let's say a VMSS
+
+NOTE Confidence: 0.8353196382522583
+
+00:10:16.062 --> 00:10:19.360
+and it consists of something like a Postgres database.
+
+NOTE Confidence: 0.8268153071403503
+
+00:10:19.840 --> 00:10:22.280
+So how do I make its only resilient?
+
+NOTE Confidence: 0.921421229839325
+
+00:10:25.400 --> 00:10:28.471
+So I am in Azure portal, I go to resiliency,
+
+NOTE Confidence: 0.921421229839325
+
+00:10:28.541 --> 00:10:31.474
+I click on copilot on the top, it opens up
+
+NOTE Confidence: 0.921421229839325
+
+00:10:31.543 --> 00:10:33.079
+the chat on the right.
+
+NOTE Confidence: 0.9464550018310547
+
+00:10:34.559 --> 00:10:37.998
+I will expand the chat on the right into a
+
+NOTE Confidence: 0.9464550018310547
+
+00:10:38.080 --> 00:10:39.799
+full chat experience.
+
+NOTE Confidence: 0.8457575440406799
+
+00:10:40.480 --> 00:10:43.035
+And what I will do is I will put in
+
+NOTE Confidence: 0.8457575440406799
+
+00:10:43.108 --> 00:10:47.853
+a prompt that basically says create this only resilient templates
+
+NOTE Confidence: 0.8457575440406799
+
+00:10:47.926 --> 00:10:51.576
+for me with my application sitting in East US into
+
+NOTE Confidence: 0.8457575440406799
+
+00:10:51.649 --> 00:10:53.839
+this resource group Java apps.
+
+NOTE Confidence: 0.8599223494529724
+
+00:10:54.360 --> 00:10:56.800
+I need a VMSS with five instances.
+
+NOTE Confidence: 0.8038623332977295
+
+00:10:57.120 --> 00:11:00.525
+I need a Postgres flexible server, and finally all my
+
+NOTE Confidence: 0.8038623332977295
+
+00:11:00.590 --> 00:11:04.253
+connection strings, the passwords all need to come from a
+
+NOTE Confidence: 0.8038623332977295
+
+00:11:04.317 --> 00:11:04.960
+key vault.
+
+NOTE Confidence: 0.9320024251937866
+
+00:11:05.720 --> 00:11:08.504
+And one other requirement that I would probably put on
+
+NOTE Confidence: 0.9320024251937866
+
+00:11:08.556 --> 00:11:11.392
+the agent is please create a modular structure of Bicep
+
+NOTE Confidence: 0.9320024251937866
+
+00:11:11.444 --> 00:11:11.960
+templates.
+
+NOTE Confidence: 0.884245753288269
+
+00:11:13.760 --> 00:11:17.560
+Now the agent would process this, it will figure out
+
+NOTE Confidence: 0.884245753288269
+
+00:11:17.633 --> 00:11:21.361
+what the various Azure services that it maps to and
+
+NOTE Confidence: 0.884245753288269
+
+00:11:21.434 --> 00:11:23.919
+what makes them is only resilient.
+
+NOTE Confidence: 0.7871004343032837
+
+00:11:24.480 --> 00:11:28.575
+And the agent finally responds back saying that yeah, you
+
+NOTE Confidence: 0.7871004343032837
+
+00:11:28.646 --> 00:11:31.880
+we have identified there are three resources.
+
+NOTE Confidence: 0.7594786882400513
+
+00:11:31.880 --> 00:11:33.480
+There is a virtual machine skill set.
+
+NOTE Confidence: 0.837814450263977
+
+00:11:33.920 --> 00:11:36.735
+And if you look at the zonal resiliency support column,
+
+NOTE Confidence: 0.837814450263977
+
+00:11:36.786 --> 00:11:39.141
+it tells you how this resource can be made, is
+
+NOTE Confidence: 0.837814450263977
+
+00:11:39.192 --> 00:11:39.959
+only resilient.
+
+NOTE Confidence: 0.6765449047088623
+
+00:11:41.000 --> 00:11:44.920
+Similarly, it shares insights for Postgres database and Key Vault.
+
+NOTE Confidence: 0.8910673260688782
+
+00:11:45.200 --> 00:11:49.959
+Like for example the Postgres database, it basically talks about
+
+NOTE Confidence: 0.8910673260688782
+
+00:11:50.033 --> 00:11:53.603
+that the tier of the Postgres database has to be
+
+NOTE Confidence: 0.8910673260688782
+
+00:11:53.677 --> 00:11:55.759
+general or memory optimized.
+
+NOTE Confidence: 0.7706955075263977
+
+00:11:56.480 --> 00:11:59.403
+And similarly for Key Vault, it just needs to be
+
+NOTE Confidence: 0.7706955075263977
+
+00:11:59.464 --> 00:12:01.839
+in availability zone, supported region.
+
+NOTE Confidence: 0.9147297143936157
+
+00:12:02.520 --> 00:12:04.479
+And since we also had a requirement of East US
+
+NOTE Confidence: 0.9147297143936157
+
+00:12:04.522 --> 00:12:06.439
+that this application needs to come up there.
+
+NOTE Confidence: 0.8248223066329956
+
+00:12:07.240 --> 00:12:10.910
+It also shares an insight that E US does support
+
+NOTE Confidence: 0.8248223066329956
+
+00:12:10.986 --> 00:12:15.880
+zone zone redundancy as in it supports Azure Availability Zones.
+
+NOTE Confidence: 0.9673560261726379
+
+00:12:17.200 --> 00:12:20.344
+As we move forward into the chat response that comes
+
+NOTE Confidence: 0.9673560261726379
+
+00:12:20.404 --> 00:12:23.125
+from the agent, we also see what's next as in
+
+NOTE Confidence: 0.9673560261726379
+
+00:12:23.186 --> 00:12:24.999
+what the customer can do next.
+
+NOTE Confidence: 0.8828350901603699
+
+00:12:25.559 --> 00:12:28.458
+And before that, let's click on a detailed report that
+
+NOTE Confidence: 0.8828350901603699
+
+00:12:28.511 --> 00:12:31.410
+the agent has created for us to for better consumption
+
+NOTE Confidence: 0.8828350901603699
+
+00:12:31.463 --> 00:12:34.039
+and explaining what are the top recommendations.
+
+NOTE Confidence: 0.9052663445472717
+
+00:12:35.679 --> 00:12:38.031
+So you see on the top, it creates an overview
+
+NOTE Confidence: 0.9052663445472717
+
+00:12:38.083 --> 00:12:40.434
+of why you need to be only resilient, what is
+
+NOTE Confidence: 0.9052663445472717
+
+00:12:40.487 --> 00:12:41.480
+the impact of that?
+
+NOTE Confidence: 0.8681939840316772
+
+00:12:42.000 --> 00:12:45.714
+And as you move further down in the experience and
+
+NOTE Confidence: 0.8681939840316772
+
+00:12:45.788 --> 00:12:49.577
+the report that the agent has created, you also see
+
+NOTE Confidence: 0.8681939840316772
+
+00:12:49.651 --> 00:12:53.662
+recommendations at a per resource type level as in why
+
+NOTE Confidence: 0.8681939840316772
+
+00:12:53.737 --> 00:12:56.782
+what you need to do for let's say VMSS in
+
+NOTE Confidence: 0.8681939840316772
+
+00:12:56.857 --> 00:12:57.599
+this case.
+
+NOTE Confidence: 0.8500818014144897
+
+00:12:58.560 --> 00:13:00.960
+And you'll see multiple sections here.
+
+NOTE Confidence: 0.9336212277412415
+
+00:13:02.080 --> 00:13:05.367
+The first section on the top essentially talks about the
+
+NOTE Confidence: 0.9336212277412415
+
+00:13:05.425 --> 00:13:06.599
+top recommendations.
+
+NOTE Confidence: 0.8870701789855957
+
+00:13:07.040 --> 00:13:11.510
+For example, you will see that the VMSS, the guidance
+
+NOTE Confidence: 0.8870701789855957
+
+00:13:11.594 --> 00:13:15.642
+is that you need to spread the instances of VMSS
+
+NOTE Confidence: 0.8870701789855957
+
+00:13:15.727 --> 00:13:17.919
+across availability zones.
+
+NOTE Confidence: 0.817546010017395
+
+00:13:18.280 --> 00:13:21.247
+You also need to make sure that your disks are
+
+NOTE Confidence: 0.817546010017395
+
+00:13:21.312 --> 00:13:22.280
+only resilient.
+
+NOTE Confidence: 0.8538012504577637
+
+00:13:22.600 --> 00:13:25.178
+So to make sure that the VMSS as a whole
+
+NOTE Confidence: 0.8538012504577637
+
+00:13:25.243 --> 00:13:29.240
+is only resilient and also shares towards the bottom alternate
+
+NOTE Confidence: 0.8538012504577637
+
+00:13:29.304 --> 00:13:32.850
+recommendations through ASR how you can make it is only
+
+NOTE Confidence: 0.8538012504577637
+
+00:13:32.915 --> 00:13:33.559
+resilient.
+
+NOTE Confidence: 0.872001588344574
+
+00:13:34.520 --> 00:13:39.106
+Similarly for Postgres database it shares similar set of recommendations
+
+NOTE Confidence: 0.872001588344574
+
+00:13:39.170 --> 00:13:41.400
+and for Key Vault it does the same.
+
+NOTE Confidence: 0.9303606152534485
+
+00:13:42.160 --> 00:13:45.231
+And towards the bottom if you notice there are some
+
+NOTE Confidence: 0.9303606152534485
+
+00:13:45.292 --> 00:13:49.267
+cross cutting considerations and a summary checklist that you need
+
+NOTE Confidence: 0.9303606152534485
+
+00:13:49.327 --> 00:13:52.520
+to make sure that your application is only resilient.
+
+NOTE Confidence: 0.9191874861717224
+
+00:13:53.600 --> 00:13:56.917
+Now let's quickly hit the suggested prompt which is to
+
+NOTE Confidence: 0.9191874861717224
+
+00:13:56.978 --> 00:13:58.759
+generate the bicep templates.
+
+NOTE Confidence: 0.8845619559288025
+
+00:13:59.480 --> 00:14:03.811
+As I hit that, it will create or share a
+
+NOTE Confidence: 0.8845619559288025
+
+00:14:03.919 --> 00:14:05.759
+bunch of details.
+
+NOTE Confidence: 0.9189562797546387
+
+00:14:06.240 --> 00:14:08.040
+Let's look at those details.
+
+NOTE Confidence: 0.7737095952033997
+
+00:14:08.559 --> 00:14:12.337
+It basically shares that have created about these many bicep
+
+NOTE Confidence: 0.7737095952033997
+
+00:14:12.400 --> 00:14:15.359
+files as a main dot bicep which is the starting
+
+NOTE Confidence: 0.7737095952033997
+
+00:14:15.422 --> 00:14:15.799
+point.
+
+NOTE Confidence: 0.8276177048683167
+
+00:14:16.160 --> 00:14:18.916
+And then there's a bicep file as per our requirement
+
+NOTE Confidence: 0.8276177048683167
+
+00:14:18.969 --> 00:14:22.097
+earlier that you know you should create a modular structure
+
+NOTE Confidence: 0.8276177048683167
+
+00:14:22.151 --> 00:14:25.119
+for each resource type like identity network, key vault.
+
+NOTE Confidence: 0.86812824010849
+
+00:14:25.400 --> 00:14:28.601
+It has created that along with it, the agent also
+
+NOTE Confidence: 0.86812824010849
+
+00:14:28.667 --> 00:14:32.456
+shares deployment instructions, as in how do you use these
+
+NOTE Confidence: 0.86812824010849
+
+00:14:32.522 --> 00:14:36.377
+Bicep templates that have been created to deploy your Zonly
+
+NOTE Confidence: 0.86812824010849
+
+00:14:36.442 --> 00:14:37.880
+resilient application.
+
+NOTE Confidence: 0.9136197566986084
+
+00:14:39.880 --> 00:14:43.929
+Other than that, basically the crux of this entire response
+
+NOTE Confidence: 0.9136197566986084
+
+00:14:43.997 --> 00:14:46.399
+was creating those bicep templates.
+
+NOTE Confidence: 0.8798842430114746
+
+00:14:46.880 --> 00:14:50.612
+You can click on the attachment at the bottom and
+
+NOTE Confidence: 0.8798842430114746
+
+00:14:50.688 --> 00:14:54.116
+let's expand this and see there is a main not
+
+NOTE Confidence: 0.8798842430114746
+
+00:14:54.192 --> 00:14:57.240
+bicep that's been created along with it.
+
+NOTE Confidence: 0.9118133783340454
+
+00:14:57.240 --> 00:15:00.000
+All the bicep files that were there are all attached
+
+NOTE Confidence: 0.9118133783340454
+
+00:15:00.053 --> 00:15:02.495
+in the tabs, as you can see highlighted on the
+
+NOTE Confidence: 0.9118133783340454
+
+00:15:02.548 --> 00:15:02.920
+screen.
+
+NOTE Confidence: 0.8772299885749817
+
+00:15:05.840 --> 00:15:08.160
+Other than this, the parameters are Jason file.
+
+NOTE Confidence: 0.8718988299369812
+
+00:15:08.160 --> 00:15:11.766
+There's a parameters file which is again attached towards the
+
+NOTE Confidence: 0.8718988299369812
+
+00:15:11.826 --> 00:15:12.239
+bottom.
+
+NOTE Confidence: 0.897305965423584
+
+00:15:12.360 --> 00:15:15.640
+You can see that as you move through the recording.
+
+NOTE Confidence: 0.8735281825065613
+
+00:15:16.080 --> 00:15:20.680
+And finally, you also see something at the top, which
+
+NOTE Confidence: 0.8735281825065613
+
+00:15:20.767 --> 00:15:25.976
+is capabilities like you can download these Bicep files into
+
+NOTE Confidence: 0.8735281825065613
+
+00:15:26.062 --> 00:15:28.320
+your VS Code web directly.
+
+NOTE Confidence: 0.9481911659240723
+
+00:15:28.720 --> 00:15:29.800
+You can interact with it.
+
+NOTE Confidence: 0.9037729501724243
+
+00:15:30.240 --> 00:15:32.959
+For this demo, I will go ahead and create a
+
+NOTE Confidence: 0.9037729501724243
+
+00:15:33.022 --> 00:15:37.070
+pull request directly working with the resiliency agent in Azure
+
+NOTE Confidence: 0.9037729501724243
+
+00:15:37.134 --> 00:15:37.639
+Copilot.
+
+NOTE Confidence: 0.826917290687561
+
+00:15:38.360 --> 00:15:41.722
+I have logged into my Azure Copilot GitHub, sorry, and
+
+NOTE Confidence: 0.826917290687561
+
+00:15:41.784 --> 00:15:43.839
+I've chosen the right repository.
+
+NOTE Confidence: 0.8993401527404785
+
+00:15:44.160 --> 00:15:46.973
+I choose the branch that I need to check this
+
+NOTE Confidence: 0.8993401527404785
+
+00:15:47.036 --> 00:15:49.600
+into and finally hit update pull request.
+
+NOTE Confidence: 0.8559758067131042
+
+00:15:50.400 --> 00:15:53.381
+I already had a pull request on this earlier and
+
+NOTE Confidence: 0.8559758067131042
+
+00:15:53.443 --> 00:15:56.486
+it goes ahead and checks those in and will create
+
+NOTE Confidence: 0.8559758067131042
+
+00:15:56.548 --> 00:15:57.480
+a pull request.
+
+NOTE Confidence: 0.8960510492324829
+
+00:15:57.720 --> 00:16:01.389
+So let me hit review pull request and yeah, you
+
+NOTE Confidence: 0.8960510492324829
+
+00:16:01.467 --> 00:16:05.527
+are in GitHub seeing that code that has been checked
+
+NOTE Confidence: 0.8960510492324829
+
+00:16:05.605 --> 00:16:05.839
+in.
+
+NOTE Confidence: 0.9019436240196228
+
+00:16:06.200 --> 00:16:09.505
+So we started with an intent, We described what we
+
+NOTE Confidence: 0.9019436240196228
+
+00:16:09.571 --> 00:16:14.132
+wanted in resiliency agent without going into some other application,
+
+NOTE Confidence: 0.9019436240196228
+
+00:16:14.198 --> 00:16:17.702
+Oregon code editor and we have checked in and created
+
+NOTE Confidence: 0.9019436240196228
+
+00:16:17.768 --> 00:16:18.759
+a pull request.
+
+NOTE Confidence: 0.8071803450584412
+
+00:16:26.840 --> 00:16:30.898
+All right, just saw how you can use resiliency agent
+
+NOTE Confidence: 0.8071803450584412
+
+00:16:30.976 --> 00:16:35.035
+to go ahead and start green and generate new zonally
+
+NOTE Confidence: 0.8071803450584412
+
+00:16:35.113 --> 00:16:40.420
+resilient infrastructure as code files from scratch, all from within
+
+NOTE Confidence: 0.8071803450584412
+
+00:16:40.498 --> 00:16:42.840
+Azure Copilot in Azure portal.
+
+NOTE Confidence: 0.9437960982322693
+
+00:16:43.520 --> 00:16:46.224
+However, I'm sure a lot of you live in your
+
+NOTE Confidence: 0.9437960982322693
+
+00:16:46.287 --> 00:16:49.873
+code editors and not always are you starting from scratch
+
+NOTE Confidence: 0.9437960982322693
+
+00:16:49.936 --> 00:16:51.320
+for your applications.
+
+NOTE Confidence: 0.7835826277732849
+
+00:16:51.320 --> 00:16:55.336
+You may have infrastructure as code, applications infrastructure as code
+
+NOTE Confidence: 0.7835826277732849
+
+00:16:55.392 --> 00:16:58.515
+already available and you may have been updating it over
+
+NOTE Confidence: 0.7835826277732849
+
+00:16:58.571 --> 00:16:59.520
+a period of time.
+
+NOTE Confidence: 0.9518702030181885
+
+00:17:00.160 --> 00:17:03.204
+So how do you make sure that the applications that
+
+NOTE Confidence: 0.9518702030181885
+
+00:17:03.265 --> 00:17:06.371
+you are shipping are resilient from day one and all
+
+NOTE Confidence: 0.9518702030181885
+
+00:17:06.432 --> 00:17:09.842
+the drifts that have accumulated over the period of time
+
+NOTE Confidence: 0.9518702030181885
+
+00:17:09.903 --> 00:17:12.400
+get addressed before the next deployment?
+
+NOTE Confidence: 0.8605963587760925
+
+00:17:13.080 --> 00:17:16.332
+Now that's where Azure Advisors tool in the Azure MCP
+
+NOTE Confidence: 0.8605963587760925
+
+00:17:16.393 --> 00:17:17.559
+comes into picture.
+
+NOTE Confidence: 0.9413480162620544
+
+00:17:18.280 --> 00:17:21.735
+Simply go ahead and configure Azure MCP in the AI
+
+NOTE Confidence: 0.9413480162620544
+
+00:17:21.805 --> 00:17:25.119
+coding agent of your choice and you're all set.
+
+NOTE Confidence: 0.8516581654548645
+
+00:17:26.080 --> 00:17:30.844
+Whether you're using templates that are, whether they are Terraform
+
+NOTE Confidence: 0.8516581654548645
+
+00:17:30.915 --> 00:17:34.826
+or ARM templates, simply using a single prompt, you can
+
+NOTE Confidence: 0.8516581654548645
+
+00:17:34.897 --> 00:17:39.448
+actually go ahead and scan your entire infrastructure code files
+
+NOTE Confidence: 0.8516581654548645
+
+00:17:39.520 --> 00:17:42.720
+against the advisor's recommendation catalog.
+
+NOTE Confidence: 0.9172154068946838
+
+00:17:43.640 --> 00:17:47.283
+It basically goes ahead and surfaces all the reliability risks,
+
+NOTE Confidence: 0.9172154068946838
+
+00:17:47.341 --> 00:17:50.984
+not just the zonal resiliency risks, but also other reliability
+
+NOTE Confidence: 0.9172154068946838
+
+00:17:51.042 --> 00:17:54.396
+risks like retiring skews, as well as any other monitoring
+
+NOTE Confidence: 0.9172154068946838
+
+00:17:54.454 --> 00:17:57.056
+gaps and any other risks that you may have in
+
+NOTE Confidence: 0.9172154068946838
+
+00:17:57.114 --> 00:17:58.039
+one single pass.
+
+NOTE Confidence: 0.9593868851661682
+
+00:17:58.400 --> 00:18:00.591
+You do not need to go ahead and scan it
+
+NOTE Confidence: 0.9593868851661682
+
+00:18:00.648 --> 00:18:02.840
+for each and every category separately.
+
+NOTE Confidence: 0.8942221403121948
+
+00:18:04.040 --> 00:18:05.600
+Also doesn't stop there.
+
+NOTE Confidence: 0.9475332498550415
+
+00:18:05.680 --> 00:18:09.000
+It actually goes ahead and fixes all the issues that
+
+NOTE Confidence: 0.9475332498550415
+
+00:18:09.064 --> 00:18:12.384
+it identified and all the changes that are there are
+
+NOTE Confidence: 0.9475332498550415
+
+00:18:12.448 --> 00:18:15.513
+available for you in line to go ahead and review
+
+NOTE Confidence: 0.9475332498550415
+
+00:18:15.577 --> 00:18:16.279
+and accept.
+
+NOTE Confidence: 0.8321429491043091
+
+00:18:16.600 --> 00:18:19.400
+So that way nothing broken ever ships.
+
+NOTE Confidence: 0.9402573108673096
+
+00:18:19.680 --> 00:18:22.800
+And all of this without ever leaving your code editor.
+
+NOTE Confidence: 0.9138889908790588
+
+00:18:23.520 --> 00:18:27.685
+You can go from gaps identified to fix committed in
+
+NOTE Confidence: 0.9138889908790588
+
+00:18:27.766 --> 00:18:29.400
+a matter of minutes.
+
+NOTE Confidence: 0.9573677778244019
+
+00:18:29.960 --> 00:18:35.064
+Your code and your infrastructure is resilient even before it
+
+NOTE Confidence: 0.9573677778244019
+
+00:18:35.148 --> 00:18:36.320
+touches Azure.
+
+NOTE Confidence: 0.9512225985527039
+
+00:18:36.720 --> 00:18:38.440
+So that means you start green.
+
+NOTE Confidence: 0.9676460027694702
+
+00:18:38.520 --> 00:18:40.640
+You do not go ahead and fix it later.
+
+NOTE Confidence: 0.9350835084915161
+
+00:18:41.160 --> 00:18:42.400
+So let's see it in action.
+
+NOTE Confidence: 0.8785480260848999
+
+00:18:42.400 --> 00:18:45.781
+All right, so let's say I'm a developer working on
+
+NOTE Confidence: 0.8785480260848999
+
+00:18:45.849 --> 00:18:50.448
+the Zava Commerce app containing resources like virtual machines and
+
+NOTE Confidence: 0.8785480260848999
+
+00:18:50.515 --> 00:18:54.776
+container registries, and we already have the ARM templates for
+
+NOTE Confidence: 0.8785480260848999
+
+00:18:54.844 --> 00:18:56.400
+those already authored.
+
+NOTE Confidence: 0.9526041746139526
+
+00:18:57.040 --> 00:19:00.031
+Now, as time passed, my system grew and a lot
+
+NOTE Confidence: 0.9526041746139526
+
+00:19:00.097 --> 00:19:01.559
+of drifts accumulated.
+
+NOTE Confidence: 0.9693529605865479
+
+00:19:02.040 --> 00:19:04.640
+Now I see that my configurations have gone stale.
+
+NOTE Confidence: 0.8356637358665466
+
+00:19:05.360 --> 00:19:06.880
+My skews have fallen behind.
+
+NOTE Confidence: 0.9289846420288086
+
+00:19:07.240 --> 00:19:09.964
+Now there are a lot of resiliency gaps that are
+
+NOTE Confidence: 0.9289846420288086
+
+00:19:10.022 --> 00:19:12.514
+existing in my code which is hard for me to
+
+NOTE Confidence: 0.9289846420288086
+
+00:19:12.572 --> 00:19:12.920
+catch.
+
+NOTE Confidence: 0.9510070085525513
+
+00:19:13.359 --> 00:19:15.316
+Now how do I make sure that what I am
+
+NOTE Confidence: 0.9510070085525513
+
+00:19:15.369 --> 00:19:17.959
+shipping is resilient before the next deployment?
+
+NOTE Confidence: 0.971813440322876
+
+00:19:18.440 --> 00:19:19.120
+Let me show you.
+
+NOTE Confidence: 0.9078186750411987
+
+00:19:19.119 --> 00:19:22.565
+All right, so I have here my VS Code open
+
+NOTE Confidence: 0.9078186750411987
+
+00:19:22.649 --> 00:19:27.355
+and within this I have already gone ahead and configured
+
+NOTE Confidence: 0.9078186750411987
+
+00:19:27.439 --> 00:19:29.120
+my Azure MCP server.
+
+NOTE Confidence: 0.9225848317146301
+
+00:19:29.840 --> 00:19:32.068
+You can do this in any code editor of your
+
+NOTE Confidence: 0.9225848317146301
+
+00:19:32.121 --> 00:19:35.039
+choice, whether it is cloud cursor, whatever it is that
+
+NOTE Confidence: 0.9225848317146301
+
+00:19:35.092 --> 00:19:37.480
+you use as part of your day-to-day workflows.
+
+NOTE Confidence: 0.8855671286582947
+
+00:19:38.160 --> 00:19:41.057
+Now in here I've gone ahead and opened up the
+
+NOTE Confidence: 0.8855671286582947
+
+00:19:41.121 --> 00:19:44.277
+ARM templates for my Java commerce app, one for a
+
+NOTE Confidence: 0.8855671286582947
+
+00:19:44.341 --> 00:19:48.076
+virtual machine and the other one for a container register
+
+NOTE Confidence: 0.8855671286582947
+
+00:19:48.140 --> 00:19:48.719
+registry.
+
+NOTE Confidence: 0.8832119107246399
+
+00:19:49.680 --> 00:19:52.116
+Now I'll go ahead and open up the GitHub Copilot
+
+NOTE Confidence: 0.8832119107246399
+
+00:19:52.166 --> 00:19:54.399
+and in that I'm basically going to ask it to
+
+NOTE Confidence: 0.8832119107246399
+
+00:19:54.450 --> 00:19:57.191
+go ahead and check for reliability issues and go ahead
+
+NOTE Confidence: 0.8832119107246399
+
+00:19:57.241 --> 00:19:57.800
+and fix it.
+
+NOTE Confidence: 0.9481097459793091
+
+00:19:59.160 --> 00:20:01.997
+Now behind the scenes it calls on the Azure Advisor
+
+NOTE Confidence: 0.9481097459793091
+
+00:20:02.053 --> 00:20:05.224
+tools which goes and scans my infrastructure files to see
+
+NOTE Confidence: 0.9481097459793091
+
+00:20:05.280 --> 00:20:07.840
+if there is anything that needs to be changed.
+
+NOTE Confidence: 0.9736194014549255
+
+00:20:08.480 --> 00:20:11.000
+Now I see here that it has found two issues.
+
+NOTE Confidence: 0.8902831673622131
+
+00:20:11.480 --> 00:20:14.606
+It has seen that my container registry that I'm using
+
+NOTE Confidence: 0.8902831673622131
+
+00:20:14.665 --> 00:20:17.497
+is of basic SKU and it actually recommends me to
+
+NOTE Confidence: 0.8902831673622131
+
+00:20:17.556 --> 00:20:20.210
+go ahead and upgrade that to a premium SKU so
+
+NOTE Confidence: 0.8902831673622131
+
+00:20:20.269 --> 00:20:23.809
+that I can go ahead and unlock Geo replication, availability
+
+NOTE Confidence: 0.8902831673622131
+
+00:20:23.868 --> 00:20:25.519
+zones and private endpoints.
+
+NOTE Confidence: 0.9624011516571045
+
+00:20:26.320 --> 00:20:27.320
+Now if you see the 1st.
+
+NOTE Confidence: 0.9257580637931824
+
+00:20:27.880 --> 00:20:30.800
+Issue that it has identified here, That's an interesting 1.
+
+NOTE Confidence: 0.9189069271087646
+
+00:20:31.200 --> 00:20:34.340
+You see that it has identified that the virtual machine
+
+NOTE Confidence: 0.9189069271087646
+
+00:20:34.397 --> 00:20:36.966
+that I am using is actually using an F series
+
+NOTE Confidence: 0.9189069271087646
+
+00:20:37.023 --> 00:20:38.279
+that is retiring soon.
+
+NOTE Confidence: 0.9602904319763184
+
+00:20:38.960 --> 00:20:41.379
+Now if this change were to go out as it
+
+NOTE Confidence: 0.9602904319763184
+
+00:20:41.441 --> 00:20:44.544
+is, it would have been very expensive and hard for
+
+NOTE Confidence: 0.9602904319763184
+
+00:20:44.606 --> 00:20:46.839
+me to fix later on after it deploys.
+
+NOTE Confidence: 0.947297215461731
+
+00:20:47.560 --> 00:20:51.051
+Now this just doesn't go and identify the issues for
+
+NOTE Confidence: 0.947297215461731
+
+00:20:51.118 --> 00:20:51.320
+me.
+
+NOTE Confidence: 0.958771288394928
+
+00:20:51.720 --> 00:20:54.643
+The flow actually goes ahead and goes to fix those
+
+NOTE Confidence: 0.958771288394928
+
+00:20:54.701 --> 00:20:55.520
+issues for me.
+
+NOTE Confidence: 0.8373525142669678
+
+00:20:56.080 --> 00:21:04.880
+So let's see see it doing that now.
+
+NOTE Confidence: 0.9297186136245728
+
+00:21:04.880 --> 00:21:07.953
+As you can see, it has gone ahead and upgraded
+
+NOTE Confidence: 0.9297186136245728
+
+00:21:08.020 --> 00:21:11.762
+my container registry from the basic to the premium skew
+
+NOTE Confidence: 0.9297186136245728
+
+00:21:11.829 --> 00:21:15.303
+as well as it has recommended a replacement skew for
+
+NOTE Confidence: 0.9297186136245728
+
+00:21:15.370 --> 00:21:16.640
+my virtual machine.
+
+NOTE Confidence: 0.9536943435668945
+
+00:21:18.040 --> 00:21:21.999
+Both of these issues identified as well as fixed in
+
+NOTE Confidence: 0.9536943435668945
+
+00:21:22.077 --> 00:21:23.319
+one single pass.
+
+NOTE Confidence: 0.7010857462882996
+
+00:21:26.120 --> 00:21:27.400
+Sorry about that.
+
+NOTE Confidence: 0.9056750535964966
+
+00:21:37.520 --> 00:21:40.572
+All right, basically, you can actually go back and see
+
+NOTE Confidence: 0.9056750535964966
+
+00:21:40.629 --> 00:21:43.399
+all the code changes in line and you can actually
+
+NOTE Confidence: 0.9056750535964966
+
+00:21:43.456 --> 00:21:46.056
+review those to see whether or not you want to
+
+NOTE Confidence: 0.9056750535964966
+
+00:21:46.113 --> 00:21:47.640
+keep them or not keep them.
+
+NOTE Confidence: 0.9550778269767761
+
+00:21:47.640 --> 00:21:50.030
+So you also get the opportunity to review those and
+
+NOTE Confidence: 0.9550778269767761
+
+00:21:50.077 --> 00:21:52.280
+only keep the changes that makes sense for you.
+
+NOTE Confidence: 0.90758216381073
+
+00:21:52.720 --> 00:21:55.540
+So All in all, using a single prompt, you are
+
+NOTE Confidence: 0.90758216381073
+
+00:21:55.603 --> 00:21:58.674
+able to actually go ahead and scan for all issues
+
+NOTE Confidence: 0.90758216381073
+
+00:21:58.737 --> 00:22:00.680
+across the infrastructure code.
+
+NOTE Confidence: 0.9487939476966858
+
+00:22:01.320 --> 00:22:03.932
+You can go ahead and address them all in one
+
+NOTE Confidence: 0.9487939476966858
+
+00:22:03.991 --> 00:22:07.137
+pass without ever getting out of your code editor and
+
+NOTE Confidence: 0.9487939476966858
+
+00:22:07.197 --> 00:22:08.800
+in a matter of few minutes.
+
+NOTE Confidence: 0.9427171945571899
+
+00:22:09.280 --> 00:22:11.928
+Now with that, we are concluding the first phase of
+
+NOTE Confidence: 0.9427171945571899
+
+00:22:11.979 --> 00:22:14.679
+the resiliency journey, which is to start resilient.
+
+NOTE Confidence: 0.9349221587181091
+
+00:22:15.000 --> 00:22:18.114
+Now let's move to the next stage of building and
+
+NOTE Confidence: 0.9349221587181091
+
+00:22:18.179 --> 00:22:20.319
+operating resilient applications.
+
+NOTE Confidence: 0.7035984992980957
+
+00:22:25.810 --> 00:22:26.010
+Yeah.
+
+NOTE Confidence: 0.9547140598297119
+
+00:22:26.210 --> 00:22:28.900
+So now we talk about the next stage that is
+
+NOTE Confidence: 0.9547140598297119
+
+00:22:28.963 --> 00:22:30.090
+getting resilient.
+
+NOTE Confidence: 0.9553853273391724
+
+00:22:30.480 --> 00:22:33.856
+We all have applications already hosted on Azure and now
+
+NOTE Confidence: 0.9553853273391724
+
+00:22:33.916 --> 00:22:37.413
+how do we ensure that the applications already hosted they
+
+NOTE Confidence: 0.9553853273391724
+
+00:22:37.473 --> 00:22:38.799
+are resilient as well.
+
+NOTE Confidence: 0.8175854682922363
+
+00:22:39.200 --> 00:22:42.600
+Let us get started now.
+
+NOTE Confidence: 0.8850336670875549
+
+00:22:42.640 --> 00:22:45.316
+If you recall, we had talked about the three pillars,
+
+NOTE Confidence: 0.8850336670875549
+
+00:22:45.367 --> 00:22:46.680
+the infra, data and cyber.
+
+NOTE Confidence: 0.9531348943710327
+
+00:22:47.520 --> 00:22:50.110
+We are going to talk about how do we make
+
+NOTE Confidence: 0.9531348943710327
+
+00:22:50.174 --> 00:22:55.040
+brownfield applications already deployed on Azure zonally resilient For this.
+
+NOTE Confidence: 0.9272987246513367
+
+00:22:55.400 --> 00:22:57.969
+What we are going to do is that we are
+
+NOTE Confidence: 0.9272987246513367
+
+00:22:58.037 --> 00:23:01.688
+going to have a service groups which would contain the
+
+NOTE Confidence: 0.9272987246513367
+
+00:23:01.756 --> 00:23:03.919
+resources within an application.
+
+NOTE Confidence: 0.875752866268158
+
+00:23:03.960 --> 00:23:07.190
+We are going to analyze that what is the posture
+
+NOTE Confidence: 0.875752866268158
+
+00:23:07.258 --> 00:23:11.095
+of the resources within the service group itself and then
+
+NOTE Confidence: 0.875752866268158
+
+00:23:11.162 --> 00:23:14.460
+via the resiliency agent we are going to make the
+
+NOTE Confidence: 0.875752866268158
+
+00:23:14.527 --> 00:23:16.479
+application zonily resilient.
+
+NOTE Confidence: 0.9492340087890625
+
+00:23:17.160 --> 00:23:19.180
+We all know that if we want to do this
+
+NOTE Confidence: 0.9492340087890625
+
+00:23:19.233 --> 00:23:21.359
+manually, it is complex and time taking.
+
+NOTE Confidence: 0.818254828453064
+
+00:23:24.760 --> 00:23:27.241
+In this demo, we will look at a Java Ask
+
+NOTE Confidence: 0.818254828453064
+
+00:23:27.303 --> 00:23:30.778
+HR application which has a virtual machine and a Postgre
+
+NOTE Confidence: 0.818254828453064
+
+00:23:30.840 --> 00:23:32.639
+SQL Flexible server database.
+
+NOTE Confidence: 0.8580073118209839
+
+00:23:33.240 --> 00:23:35.692
+We are going to check the posture and then make
+
+NOTE Confidence: 0.8580073118209839
+
+00:23:35.744 --> 00:23:36.840
+it is only resilient.
+
+NOTE Confidence: 0.8777821063995361
+
+00:23:37.840 --> 00:23:38.800
+Let us get started.
+
+NOTE Confidence: 0.9004865288734436
+
+00:23:43.440 --> 00:23:47.280
+We go to Azure Portal, navigate to the resiliency blade.
+
+NOTE Confidence: 0.9603208899497986
+
+00:23:47.640 --> 00:23:50.440
+The starting point is creating a service group.
+
+NOTE Confidence: 0.8968725800514221
+
+00:23:51.160 --> 00:23:53.854
+We create a service group with the help of Azure
+
+NOTE Confidence: 0.8968725800514221
+
+00:23:53.910 --> 00:23:54.360
+Copilot.
+
+NOTE Confidence: 0.9132376909255981
+
+00:23:55.760 --> 00:24:00.261
+The chat is initialized and we will be creating a
+
+NOTE Confidence: 0.9132376909255981
+
+00:24:00.353 --> 00:24:01.640
+service group.
+
+NOTE Confidence: 0.8719789981842041
+
+00:24:01.680 --> 00:24:05.121
+Now for creating a service group, either you can give
+
+NOTE Confidence: 0.8719789981842041
+
+00:24:05.186 --> 00:24:08.823
+the resource IDs or use criterias like a resource Group,
+
+NOTE Confidence: 0.8719789981842041
+
+00:24:08.888 --> 00:24:12.719
+A subscription or a particular tag to help Copilot identify
+
+NOTE Confidence: 0.8719789981842041
+
+00:24:12.784 --> 00:24:15.901
+what are what are the resources that you want as
+
+NOTE Confidence: 0.8719789981842041
+
+00:24:15.966 --> 00:24:17.720
+part of your service group.
+
+NOTE Confidence: 0.9289681315422058
+
+00:24:18.840 --> 00:24:21.209
+As you can see, it has also given us an
+
+NOTE Confidence: 0.9289681315422058
+
+00:24:21.270 --> 00:24:24.005
+example as well that how do we need to create
+
+NOTE Confidence: 0.9289681315422058
+
+00:24:24.066 --> 00:24:25.159
+the service group.
+
+NOTE Confidence: 0.968238890171051
+
+00:24:25.920 --> 00:24:27.320
+We are going to use the prompt.
+
+NOTE Confidence: 0.862446665763855
+
+00:24:27.920 --> 00:24:30.788
+We will use the tag Zava Ask HR application give
+
+NOTE Confidence: 0.862446665763855
+
+00:24:30.847 --> 00:24:33.596
+it the name of the service group as well which
+
+NOTE Confidence: 0.862446665763855
+
+00:24:33.656 --> 00:24:36.464
+we want to create the name of the service group
+
+NOTE Confidence: 0.862446665763855
+
+00:24:36.524 --> 00:24:37.599
+being Zava Ask HR.
+
+NOTE Confidence: 0.8687924146652222
+
+00:24:39.280 --> 00:24:41.759
+With the tag we run an Arg query as you
+
+NOTE Confidence: 0.8687924146652222
+
+00:24:41.822 --> 00:24:42.839
+see highlighted.
+
+NOTE Confidence: 0.8903942108154297
+
+00:24:43.200 --> 00:24:47.281
+It has discovered two resources, one a virtual machine, another
+
+NOTE Confidence: 0.8903942108154297
+
+00:24:47.346 --> 00:24:51.040
+1A PostgreSQL flexible server which matches our criteria.
+
+NOTE Confidence: 0.9711683392524719
+
+00:24:54.760 --> 00:24:57.280
+We will now be creating a service group.
+
+NOTE Confidence: 0.9167201519012451
+
+00:24:57.880 --> 00:25:02.280
+We use the prompt and we create the service group.
+
+NOTE Confidence: 0.8777770400047302
+
+00:25:05.520 --> 00:25:07.589
+In this demo we have used a VM and a
+
+NOTE Confidence: 0.8777770400047302
+
+00:25:07.647 --> 00:25:09.199
+PostgreSQL flexible server.
+
+NOTE Confidence: 0.7710049152374268
+
+00:25:09.200 --> 00:25:11.746
+You can use an AKS cluster with a Cosmos DB
+
+NOTE Confidence: 0.7710049152374268
+
+00:25:11.806 --> 00:25:12.279
+as well.
+
+NOTE Confidence: 0.9080697894096375
+
+00:25:13.119 --> 00:25:15.862
+As you can see in the service group we have
+
+NOTE Confidence: 0.9080697894096375
+
+00:25:15.926 --> 00:25:19.880
+added the virtual machine and the Postgre SQL Flexible server.
+
+NOTE Confidence: 0.9266909956932068
+
+00:25:20.840 --> 00:25:24.505
+We would definitely want to verify if these two resources
+
+NOTE Confidence: 0.9266909956932068
+
+00:25:24.570 --> 00:25:27.399
+have been added to the service group or not.
+
+NOTE Confidence: 0.9279950857162476
+
+00:25:27.760 --> 00:25:31.916
+We click on the link, we navigate to the service
+
+NOTE Confidence: 0.9279950857162476
+
+00:25:32.002 --> 00:25:36.159
+group blade, we go to the members blade and here
+
+NOTE Confidence: 0.9279950857162476
+
+00:25:36.245 --> 00:25:40.575
+we can see that both the resources have been added
+
+NOTE Confidence: 0.9279950857162476
+
+00:25:40.661 --> 00:25:42.480
+to the service group.
+
+NOTE Confidence: 0.8598743081092834
+
+00:25:42.480 --> 00:25:45.640
+That is one VM and one PostgreSQL flexible server.
+
+NOTE Confidence: 0.973120927810669
+
+00:25:50.560 --> 00:25:52.960
+Now we will be going back to the chat.
+
+NOTE Confidence: 0.9086379408836365
+
+00:25:54.880 --> 00:25:57.893
+Now we are going to assign a zonal resiliency goal
+
+NOTE Confidence: 0.9086379408836365
+
+00:25:57.953 --> 00:25:59.280
+to this service group.
+
+NOTE Confidence: 0.9102951884269714
+
+00:26:01.200 --> 00:26:06.092
+In this process, what it does, it first of all
+
+NOTE Confidence: 0.9102951884269714
+
+00:26:06.198 --> 00:26:10.240
+checks to assign this resiliency goal.
+
+NOTE Confidence: 0.9570086598396301
+
+00:26:10.640 --> 00:26:12.040
+It has submitted a request.
+
+NOTE Confidence: 0.9541459083557129
+
+00:26:12.080 --> 00:26:14.678
+It might take a few minutes to assign the goal
+
+NOTE Confidence: 0.9541459083557129
+
+00:26:14.735 --> 00:26:17.559
+to the service group as you can see highlighted in
+
+NOTE Confidence: 0.9541459083557129
+
+00:26:17.616 --> 00:26:18.519
+the chat itself.
+
+NOTE Confidence: 0.9201618432998657
+
+00:26:21.040 --> 00:26:23.600
+Once the request has been submitted, after some time we
+
+NOTE Confidence: 0.9201618432998657
+
+00:26:23.647 --> 00:26:25.789
+are going to check if the goal was assigned to
+
+NOTE Confidence: 0.9201618432998657
+
+00:26:25.835 --> 00:26:26.999
+the service group or not.
+
+NOTE Confidence: 0.9031663537025452
+
+00:26:27.000 --> 00:26:30.594
+We check the status of the request and it tells
+
+NOTE Confidence: 0.9031663537025452
+
+00:26:30.670 --> 00:26:34.111
+us that now the goal has been assigned to the
+
+NOTE Confidence: 0.9031663537025452
+
+00:26:34.188 --> 00:26:38.623
+service group that we had created previously, the Java Ask
+
+NOTE Confidence: 0.9031663537025452
+
+00:26:38.699 --> 00:26:39.999
+Hour application.
+
+NOTE Confidence: 0.9343920350074768
+
+00:26:42.080 --> 00:26:44.733
+Now as you can see we are going to check
+
+NOTE Confidence: 0.9343920350074768
+
+00:26:44.799 --> 00:26:48.515
+the posture if the resources within the service group as
+
+NOTE Confidence: 0.9343920350074768
+
+00:26:48.581 --> 00:26:52.429
+itself, are they aligned with the goal of zonal resiliency
+
+NOTE Confidence: 0.9343920350074768
+
+00:26:52.495 --> 00:26:52.959
+or not.
+
+NOTE Confidence: 0.9014853239059448
+
+00:26:53.240 --> 00:26:54.240
+We check the posture.
+
+NOTE Confidence: 0.7765176296234131
+
+00:26:54.240 --> 00:26:57.458
+So this would check the posture of the virtual machine
+
+NOTE Confidence: 0.7765176296234131
+
+00:26:57.518 --> 00:27:00.200
+and the POST QQ SQL Flexible server database.
+
+NOTE Confidence: 0.899813711643219
+
+00:27:02.200 --> 00:27:07.784
+It tells me that both the resources within the service
+
+NOTE Confidence: 0.899813711643219
+
+00:27:07.887 --> 00:27:13.058
+group, they are not only resilient, we can also go
+
+NOTE Confidence: 0.899813711643219
+
+00:27:13.161 --> 00:27:18.745
+and check the posture report as well and also download
+
+NOTE Confidence: 0.899813711643219
+
+00:27:18.849 --> 00:27:20.090
+it as a PDF.
+
+NOTE Confidence: 0.9252969622612
+
+00:27:23.970 --> 00:27:27.471
+We come back to the chat and that is where
+
+NOTE Confidence: 0.9252969622612
+
+00:27:27.555 --> 00:27:29.889
+we run a prerequisite check.
+
+NOTE Confidence: 0.9012942910194397
+
+00:27:30.880 --> 00:27:34.114
+This is going to check for the resources within the
+
+NOTE Confidence: 0.9012942910194397
+
+00:27:34.177 --> 00:27:37.412
+service group if it can make a zonally resilient or
+
+NOTE Confidence: 0.9012942910194397
+
+00:27:37.475 --> 00:27:40.520
+not and surface any blockers that it might face.
+
+NOTE Confidence: 0.9029644131660461
+
+00:27:41.280 --> 00:27:43.925
+It tells me that it can enable HA for both
+
+NOTE Confidence: 0.9029644131660461
+
+00:27:43.988 --> 00:27:47.200
+the VM and the PostgreSQL Flexible server database.
+
+NOTE Confidence: 0.87689208984375
+
+00:27:51.080 --> 00:27:55.096
+In this demo, we would be making the PostgreSQL Flexible
+
+NOTE Confidence: 0.87689208984375
+
+00:27:55.168 --> 00:27:57.320
+Server database as HA enabled.
+
+NOTE Confidence: 0.8986160755157471
+
+00:27:58.000 --> 00:28:01.360
+This is where the agent comes into the picture.
+
+NOTE Confidence: 0.846741795539856
+
+00:28:01.840 --> 00:28:05.565
+It is going to enable HA configuration on the Postgre
+
+NOTE Confidence: 0.846741795539856
+
+00:28:05.635 --> 00:28:09.641
+SQL Flexible Server database which is part of the service
+
+NOTE Confidence: 0.846741795539856
+
+00:28:09.712 --> 00:28:11.680
+group and voila, it is done.
+
+NOTE Confidence: 0.8191189765930176
+
+00:28:12.520 --> 00:28:16.160
+The Postgre SQL Flexible server database is now zonally resilient.
+
+NOTE Confidence: 0.91349858045578
+
+00:28:16.720 --> 00:28:20.871
+So the brownfield application that you had, you have been
+
+NOTE Confidence: 0.91349858045578
+
+00:28:20.944 --> 00:28:24.877
+able to make it zonally resilient within a few minutes
+
+NOTE Confidence: 0.91349858045578
+
+00:28:24.950 --> 00:28:26.480
+by just a few clicks.
+
+NOTE Confidence: 0.9247409105300903
+
+00:28:32.680 --> 00:28:35.607
+Now we move on to the other two pillars, that
+
+NOTE Confidence: 0.9247409105300903
+
+00:28:35.672 --> 00:28:38.080
+is the data and the cyber resiliency.
+
+NOTE Confidence: 0.8009317517280579
+
+00:28:39.000 --> 00:28:41.682
+Let us say that you have the same application that
+
+NOTE Confidence: 0.8009317517280579
+
+00:28:41.736 --> 00:28:43.399
+is the Zava Ask HR application.
+
+NOTE Confidence: 0.9119629859924316
+
+00:28:44.240 --> 00:28:47.897
+It is now zonally resilient, but is it compliant on
+
+NOTE Confidence: 0.9119629859924316
+
+00:28:47.968 --> 00:28:50.119
+the other two pillars as well?
+
+NOTE Confidence: 0.8250156044960022
+
+00:28:50.120 --> 00:28:52.640
+Is your application data and cyber resilient as well?
+
+NOTE Confidence: 0.9312828183174133
+
+00:28:53.120 --> 00:28:55.738
+This is where the Azure MCP Server within the VS
+
+NOTE Confidence: 0.9312828183174133
+
+00:28:55.792 --> 00:28:57.319
+Code comes into the picture.
+
+NOTE Confidence: 0.8453713655471802
+
+00:28:58.640 --> 00:29:02.396
+It helps you configure vaulted backups and configure protection for
+
+NOTE Confidence: 0.8453713655471802
+
+00:29:02.452 --> 00:29:05.480
+your Post Q SQL Flexible Server database to protect it
+
+NOTE Confidence: 0.8453713655471802
+
+00:29:05.536 --> 00:29:09.125
+against any ransomware attacks and also for compliance with long
+
+NOTE Confidence: 0.8453713655471802
+
+00:29:09.181 --> 00:29:11.479
+term retention of backups up to 10 years.
+
+NOTE Confidence: 0.9515395164489746
+
+00:29:15.120 --> 00:29:16.440
+Now let us go to the demo.
+
+NOTE Confidence: 0.8213413953781128
+
+00:29:16.600 --> 00:29:20.219
+In this demo we would be creating vaulted backups for
+
+NOTE Confidence: 0.8213413953781128
+
+00:29:20.287 --> 00:29:23.497
+the Post Q SQL Flexible Server in VS Code using
+
+NOTE Confidence: 0.8213413953781128
+
+00:29:23.565 --> 00:29:24.999
+the Azure MCP server.
+
+NOTE Confidence: 0.8334817886352539
+
+00:29:31.320 --> 00:29:32.600
+We launch VS Code.
+
+NOTE Confidence: 0.9544812440872192
+
+00:29:33.000 --> 00:29:36.212
+We check if the Azure MCP server extension is installed
+
+NOTE Confidence: 0.9544812440872192
+
+00:29:36.271 --> 00:29:36.679
+or not.
+
+NOTE Confidence: 0.9611373543739319
+
+00:29:37.440 --> 00:29:38.200
+It is there.
+
+NOTE Confidence: 0.9208457469940186
+
+00:29:39.120 --> 00:29:41.518
+Then we move on to check if the MCP dot
+
+NOTE Confidence: 0.9208457469940186
+
+00:29:41.580 --> 00:29:44.839
+Jason file is configured with the correct parameters.
+
+NOTE Confidence: 0.9080400466918945
+
+00:29:45.280 --> 00:29:46.640
+We quickly glance through it.
+
+NOTE Confidence: 0.9716851711273193
+
+00:29:47.200 --> 00:29:48.160
+This looks good.
+
+NOTE Confidence: 0.9651826024055481
+
+00:29:52.080 --> 00:29:54.560
+And then we initiate the chat and get started.
+
+NOTE Confidence: 0.8995722532272339
+
+00:30:01.480 --> 00:30:03.893
+In the chat we are going to check that for
+
+NOTE Confidence: 0.8995722532272339
+
+00:30:03.950 --> 00:30:05.560
+our Java Ask HR application.
+
+NOTE Confidence: 0.9102579951286316
+
+00:30:06.280 --> 00:30:09.879
+Is there any Before that we do need to start
+
+NOTE Confidence: 0.9102579951286316
+
+00:30:09.961 --> 00:30:11.679
+the Azure MCP server.
+
+NOTE Confidence: 0.9531731605529785
+
+00:30:13.160 --> 00:30:15.280
+The Azure MCP server would be started.
+
+NOTE Confidence: 0.7276849746704102
+
+00:30:23.480 --> 00:30:23.720
+Yeah.
+
+NOTE Confidence: 0.9545938372612
+
+00:30:24.320 --> 00:30:27.000
+So the Azure MCP server is now started.
+
+NOTE Confidence: 0.8282499313354492
+
+00:30:35.400 --> 00:30:38.214
+We check if for our Java Ask HR application if
+
+NOTE Confidence: 0.8282499313354492
+
+00:30:38.275 --> 00:30:42.435
+there is an unprotected PostgreSQL Flexible server database which is
+
+NOTE Confidence: 0.8282499313354492
+
+00:30:42.496 --> 00:30:44.759
+not being protected via Azure Backup.
+
+NOTE Confidence: 0.9579031467437744
+
+00:30:45.400 --> 00:30:46.720
+We send it as a prompt.
+
+NOTE Confidence: 0.8411238193511963
+
+00:30:47.040 --> 00:30:49.463
+It runs an Arg query to check if there are
+
+NOTE Confidence: 0.8411238193511963
+
+00:30:49.521 --> 00:30:53.098
+Postgre SQL flexible servers which are not protected via Azure
+
+NOTE Confidence: 0.8411238193511963
+
+00:30:53.156 --> 00:30:53.559
+Backup.
+
+NOTE Confidence: 0.8558421730995178
+
+00:30:54.720 --> 00:30:57.720
+The query is run.
+
+NOTE Confidence: 0.8080909252166748
+
+00:30:57.880 --> 00:31:01.524
+It returns that we have the Java Ask HRDB which
+
+NOTE Confidence: 0.8080909252166748
+
+00:31:01.601 --> 00:31:02.920
+is not protected.
+
+NOTE Confidence: 0.9578099250793457
+
+00:31:03.320 --> 00:31:06.309
+It also gives me the resource group name and the
+
+NOTE Confidence: 0.9578099250793457
+
+00:31:06.371 --> 00:31:08.800
+location where the instance is located.
+
+NOTE Confidence: 0.8947968482971191
+
+00:31:10.000 --> 00:31:12.698
+Now in the chat itself I give it the command
+
+NOTE Confidence: 0.8947968482971191
+
+00:31:12.759 --> 00:31:16.071
+or the prompt to configure protection for the Java ask
+
+NOTE Confidence: 0.8947968482971191
+
+00:31:16.133 --> 00:31:16.439
+HRDB.
+
+NOTE Confidence: 0.8472957015037537
+
+00:31:18.760 --> 00:31:21.431
+For configuring backups you need a backup vault and the
+
+NOTE Confidence: 0.8472957015037537
+
+00:31:21.480 --> 00:31:22.160
+backup policy.
+
+NOTE Confidence: 0.8983476161956787
+
+00:31:22.160 --> 00:31:26.993
+In the same region as the PostgreSQL flexible server, it
+
+NOTE Confidence: 0.8983476161956787
+
+00:31:27.080 --> 00:31:32.000
+finds a backup vault and a backup policy already present.
+
+NOTE Confidence: 0.923915684223175
+
+00:31:32.000 --> 00:31:36.105
+In the region itself, it creates A protected item to
+
+NOTE Confidence: 0.923915684223175
+
+00:31:36.184 --> 00:31:41.080
+protect the Postgre SQL Flexible Server database that we have.
+
+NOTE Confidence: 0.861518383026123
+
+00:31:42.320 --> 00:31:45.493
+It uses the existing Xava Vault and the Postgre SQL
+
+NOTE Confidence: 0.861518383026123
+
+00:31:45.555 --> 00:31:46.800
+Daily backup policy.
+
+NOTE Confidence: 0.959426999092102
+
+00:31:47.280 --> 00:31:49.960
+It gives a name to the protected item as well.
+
+NOTE Confidence: 0.9758279323577881
+
+00:31:50.560 --> 00:31:52.000
+You can see the name on the screen.
+
+NOTE Confidence: 0.9026024341583252
+
+00:31:57.950 --> 00:32:00.794
+We would now want to verify if the protected item
+
+NOTE Confidence: 0.9026024341583252
+
+00:32:00.852 --> 00:32:03.755
+was created successfully, so we are going to run a
+
+NOTE Confidence: 0.9026024341583252
+
+00:32:03.813 --> 00:32:04.510
+quick check.
+
+NOTE Confidence: 0.8171234726905823
+
+00:32:08.270 --> 00:32:10.430
+It runs an Arg query once again.
+
+NOTE Confidence: 0.8457903861999512
+
+00:32:15.520 --> 00:32:19.663
+And it confirms that the protected item was created successfully
+
+NOTE Confidence: 0.8457903861999512
+
+00:32:19.728 --> 00:32:23.160
+and our Postgre SQL flexible server is now protected.
+
+NOTE Confidence: 0.4997037947177887
+
+00:32:35.530 --> 00:32:35.930
+Right.
+
+NOTE Confidence: 0.888650119304657
+
+00:32:36.370 --> 00:32:39.957
+So early in the session, we saw how Resiliency Agent
+
+NOTE Confidence: 0.888650119304657
+
+00:32:40.026 --> 00:32:43.476
+helped you go ahead and create a service group for
+
+NOTE Confidence: 0.888650119304657
+
+00:32:43.545 --> 00:32:47.064
+the Ask HR app, define a zonal resiliency goal, and
+
+NOTE Confidence: 0.888650119304657
+
+00:32:47.133 --> 00:32:49.410
+then address the identified gaps.
+
+NOTE Confidence: 0.9197171330451965
+
+00:32:50.000 --> 00:32:53.424
+Now, in real world, your application can have hundreds of
+
+NOTE Confidence: 0.9197171330451965
+
+00:32:53.484 --> 00:32:57.329
+reliability gaps, and these consist of not just zonal resiliency
+
+NOTE Confidence: 0.9197171330451965
+
+00:32:57.389 --> 00:33:00.934
+gaps, but also other gaps like for example, retiring skews,
+
+NOTE Confidence: 0.9197171330451965
+
+00:33:00.994 --> 00:33:03.938
+as well as monitoring gaps, all of which put your
+
+NOTE Confidence: 0.9197171330451965
+
+00:33:03.998 --> 00:33:05.199
+application at risk.
+
+NOTE Confidence: 0.9139479398727417
+
+00:33:05.880 --> 00:33:09.322
+Now the hard part isn't only knowing that something needs
+
+NOTE Confidence: 0.9139479398727417
+
+00:33:09.382 --> 00:33:12.704
+to change, it is actually also knowing what exactly you
+
+NOTE Confidence: 0.9139479398727417
+
+00:33:12.764 --> 00:33:15.844
+need to prioritize first so that you can reduce the
+
+NOTE Confidence: 0.9139479398727417
+
+00:33:15.905 --> 00:33:18.199
+risk of all of these reliability gaps.
+
+NOTE Confidence: 0.8920033574104309
+
+00:33:18.640 --> 00:33:22.325
+Now this is where Azure Advisor AI powered Experience comes
+
+NOTE Confidence: 0.8920033574104309
+
+00:33:22.387 --> 00:33:23.200
+into picture.
+
+NOTE Confidence: 0.9314917922019958
+
+00:33:23.800 --> 00:33:28.174
+It uses intelligent AI powered prioritization logic to help build
+
+NOTE Confidence: 0.9314917922019958
+
+00:33:28.241 --> 00:33:31.808
+a custom personalized action plan for you so that you
+
+NOTE Confidence: 0.9314917922019958
+
+00:33:31.875 --> 00:33:33.759
+can run with it immediately.
+
+NOTE Confidence: 0.9349140524864197
+
+00:33:34.480 --> 00:33:39.234
+It uses AI to intelligently rank recommendations using real signals
+
+NOTE Confidence: 0.9349140524864197
+
+00:33:39.305 --> 00:33:43.989
+like blast radius, criticality, upcoming deadlines, as well as the
+
+NOTE Confidence: 0.9349140524864197
+
+00:33:44.060 --> 00:33:47.679
+cost implications of taking a change in so that you
+
+NOTE Confidence: 0.9349140524864197
+
+00:33:47.750 --> 00:33:50.802
+can have a list of top end action items you
+
+NOTE Confidence: 0.9349140524864197
+
+00:33:50.873 --> 00:33:54.279
+can start with based on criticality and urgency.
+
+NOTE Confidence: 0.9670848250389099
+
+00:33:55.040 --> 00:33:57.697
+Now for each of those action items, you can also
+
+NOTE Confidence: 0.9670848250389099
+
+00:33:57.752 --> 00:34:01.075
+go ahead and track the completion progress rate, which means
+
+NOTE Confidence: 0.9670848250389099
+
+00:34:01.130 --> 00:34:04.009
+you know exactly what has been completed and what is
+
+NOTE Confidence: 0.9670848250389099
+
+00:34:04.064 --> 00:34:04.839
+still exposed.
+
+NOTE Confidence: 0.9407444596290588
+
+00:34:05.840 --> 00:34:09.221
+You can also go ahead and actually download the custom
+
+NOTE Confidence: 0.9407444596290588
+
+00:34:09.284 --> 00:34:12.415
+action plan for each of the workflows and for each
+
+NOTE Confidence: 0.9407444596290588
+
+00:34:12.478 --> 00:34:15.233
+of those it will exactly tell you what it is
+
+NOTE Confidence: 0.9407444596290588
+
+00:34:15.296 --> 00:34:17.738
+that you need to do in the next 30 days
+
+NOTE Confidence: 0.9407444596290588
+
+00:34:17.801 --> 00:34:19.680
+versus what can come in later.
+
+NOTE Confidence: 0.9643778204917908
+
+00:34:19.960 --> 00:34:22.870
+So you can basically work with your teams and track
+
+NOTE Confidence: 0.9643778204917908
+
+00:34:22.927 --> 00:34:24.639
+how the work needs to be done.
+
+NOTE Confidence: 0.9587216377258301
+
+00:34:25.120 --> 00:34:28.819
+And finally landing soon we have the AI powered resource
+
+NOTE Confidence: 0.9587216377258301
+
+00:34:28.885 --> 00:34:32.915
+level prioritization which will actually take this all even a
+
+NOTE Confidence: 0.9587216377258301
+
+00:34:32.981 --> 00:34:33.839
+step further.
+
+NOTE Confidence: 0.9252627491950989
+
+00:34:34.440 --> 00:34:38.515
+For each of the recommendation advisor will rank specifically which
+
+NOTE Confidence: 0.9252627491950989
+
+00:34:38.576 --> 00:34:41.738
+resources you need to start your fix with because we
+
+NOTE Confidence: 0.9252627491950989
+
+00:34:41.799 --> 00:34:45.570
+know that typically for every application you have hundreds of
+
+NOTE Confidence: 0.9252627491950989
+
+00:34:45.631 --> 00:34:46.239
+resources.
+
+NOTE Confidence: 0.9401364326477051
+
+00:34:46.640 --> 00:34:50.040
+This will take into account live signals from your environment.
+
+NOTE Confidence: 0.8612027168273926
+
+00:34:50.320 --> 00:34:52.871
+So basically if you have an HA goal set up
+
+NOTE Confidence: 0.8612027168273926
+
+00:34:52.932 --> 00:34:56.943
+for your application, Oregon, if a particular resource is impacted
+
+NOTE Confidence: 0.8612027168273926
+
+00:34:57.003 --> 00:35:00.284
+by an active service health event or for example, even
+
+NOTE Confidence: 0.8612027168273926
+
+00:35:00.345 --> 00:35:03.079
+if there is a prod or a non prod distinction.
+
+NOTE Confidence: 0.9282287955284119
+
+00:35:03.360 --> 00:35:05.547
+All of these are factors that will be taken in
+
+NOTE Confidence: 0.9282287955284119
+
+00:35:05.595 --> 00:35:08.448
+to basically help you prioritize which are the instances you
+
+NOTE Confidence: 0.9282287955284119
+
+00:35:08.496 --> 00:35:09.400
+need to start with.
+
+NOTE Confidence: 0.9247182607650757
+
+00:35:09.920 --> 00:35:12.397
+So not only would you now know which are the
+
+NOTE Confidence: 0.9247182607650757
+
+00:35:12.454 --> 00:35:15.663
+issue types you need to prioritize, you also know exactly
+
+NOTE Confidence: 0.9247182607650757
+
+00:35:15.720 --> 00:35:18.873
+which resources within those issue types you need to get
+
+NOTE Confidence: 0.9247182607650757
+
+00:35:18.930 --> 00:35:20.000
+started with first.
+
+NOTE Confidence: 0.9499059319496155
+
+00:35:20.600 --> 00:35:22.000
+Now let's see this in action.
+
+NOTE Confidence: 0.7374707460403442
+
+00:35:28.239 --> 00:35:31.214
+All right, let's go back to our Java Ask HR
+
+NOTE Confidence: 0.7374707460403442
+
+00:35:31.283 --> 00:35:31.559
+app.
+
+NOTE Confidence: 0.8424010276794434
+
+00:35:32.239 --> 00:35:35.897
+Now some time has passed and the application that started
+
+NOTE Confidence: 0.8424010276794434
+
+00:35:35.961 --> 00:35:39.746
+off with the virtual machine and Postgresstb has grown into
+
+NOTE Confidence: 0.8424010276794434
+
+00:35:39.810 --> 00:35:43.083
+an internal HR chat port which runs on app services
+
+NOTE Confidence: 0.8424010276794434
+
+00:35:43.147 --> 00:35:46.675
+with storage accounts, Cosmos DB, Redis Cache and a lot
+
+NOTE Confidence: 0.8424010276794434
+
+00:35:46.740 --> 00:35:48.279
+of other Azure services.
+
+NOTE Confidence: 0.869158923625946
+
+00:35:48.920 --> 00:35:52.710
+It has also taken dependency on another application called Sava
+
+NOTE Confidence: 0.869158923625946
+
+00:35:52.771 --> 00:35:55.839
+People which serves up the people and the org data.
+
+NOTE Confidence: 0.9625679850578308
+
+00:35:56.680 --> 00:35:59.511
+Now let's say I am the developer who is tasked
+
+NOTE Confidence: 0.9625679850578308
+
+00:35:59.573 --> 00:36:03.820
+with overseeing the reliability of this entire application and making
+
+NOTE Confidence: 0.9625679850578308
+
+00:36:03.882 --> 00:36:05.359
+sure it doesn't go down.
+
+NOTE Confidence: 0.9361608028411865
+
+00:36:06.000 --> 00:36:09.098
+Now when I open up Advisor, I'm suddenly flooded with
+
+NOTE Confidence: 0.9361608028411865
+
+00:36:09.156 --> 00:36:12.839
+hundreds of recommendations across both of these subscriptions.
+
+NOTE Confidence: 0.9537230730056763
+
+00:36:13.360 --> 00:36:16.144
+I don't know where to start, so luckily I can
+
+NOTE Confidence: 0.9537230730056763
+
+00:36:16.206 --> 00:36:19.671
+go ahead and use the Azure Advisor AI powered experience
+
+NOTE Confidence: 0.9537230730056763
+
+00:36:19.733 --> 00:36:23.198
+to get a personalized prioritized action plan that I can
+
+NOTE Confidence: 0.9537230730056763
+
+00:36:23.260 --> 00:36:24.560
+run with immediately.
+
+NOTE Confidence: 0.972417414188385
+
+00:36:25.400 --> 00:36:26.960
+Let me show you how I can do that.
+
+NOTE Confidence: 0.9276145100593567
+
+00:36:28.400 --> 00:36:30.914
+So the first thing I do is open up Advisor
+
+NOTE Confidence: 0.9276145100593567
+
+00:36:30.974 --> 00:36:34.027
+and within the overview blade, now I see that there
+
+NOTE Confidence: 0.9276145100593567
+
+00:36:34.087 --> 00:36:37.200
+is a new Azure Advisor AI powered widget that lights
+
+NOTE Confidence: 0.9276145100593567
+
+00:36:37.260 --> 00:36:37.440
+up.
+
+NOTE Confidence: 0.9599865674972534
+
+00:36:38.040 --> 00:36:40.040
+Clicking on that starts the workflow.
+
+NOTE Confidence: 0.909656286239624
+
+00:36:40.600 --> 00:36:42.440
+First, I need to select a subscription.
+
+NOTE Confidence: 0.8469272255897522
+
+00:36:42.640 --> 00:36:44.920
+I go ahead and select the Java Ask HR app
+
+NOTE Confidence: 0.8469272255897522
+
+00:36:44.976 --> 00:36:46.199
+and then hit continue.
+
+NOTE Confidence: 0.9630755186080933
+
+00:36:46.800 --> 00:36:48.801
+Next, I need to tell it what it is that
+
+NOTE Confidence: 0.9630755186080933
+
+00:36:48.852 --> 00:36:49.519
+I want to do.
+
+NOTE Confidence: 0.944012463092804
+
+00:36:49.880 --> 00:36:51.942
+I want to improve the reliability, so I will go
+
+NOTE Confidence: 0.944012463092804
+
+00:36:51.986 --> 00:36:53.040
+ahead and click on that.
+
+NOTE Confidence: 0.9575809240341187
+
+00:36:59.840 --> 00:37:05.800
+Now I can, sorry about that.
+
+NOTE Confidence: 0.9700160026550293
+
+00:37:06.840 --> 00:37:08.040
+Let's get started again.
+
+NOTE Confidence: 0.9066940546035767
+
+00:37:08.440 --> 00:37:11.694
+All right, so we have the new Azure Advisor AI
+
+NOTE Confidence: 0.9066940546035767
+
+00:37:11.765 --> 00:37:15.797
+powered widget that has lighted up under the Overview tab
+
+NOTE Confidence: 0.9066940546035767
+
+00:37:15.868 --> 00:37:19.759
+in Advisor, you can go ahead and select a subscription.
+
+NOTE Confidence: 0.8317989706993103
+
+00:37:19.760 --> 00:37:22.274
+To begin with, we start with the Java Ask HR
+
+NOTE Confidence: 0.8317989706993103
+
+00:37:22.331 --> 00:37:22.560
+app.
+
+NOTE Confidence: 0.8846107721328735
+
+00:37:23.440 --> 00:37:25.640
+Next, you can go ahead and provide it the prompt.
+
+NOTE Confidence: 0.9332205057144165
+
+00:37:25.640 --> 00:37:27.400
+So we want to improve the reliability.
+
+NOTE Confidence: 0.9635840058326721
+
+00:37:27.400 --> 00:37:29.720
+So we will go ahead and select that particular prompt.
+
+NOTE Confidence: 0.9632084369659424
+
+00:37:38.170 --> 00:37:41.250
+I can select additional subscriptions and resource groups.
+
+NOTE Confidence: 0.9561452269554138
+
+00:37:41.450 --> 00:37:43.985
+Since I have dependency on the People app, I'll go
+
+NOTE Confidence: 0.9561452269554138
+
+00:37:44.035 --> 00:37:46.266
+select that and then I'll ask it to go ahead
+
+NOTE Confidence: 0.9561452269554138
+
+00:37:46.317 --> 00:37:48.649
+and fetch all the reliability recommendations.
+
+NOTE Confidence: 0.815742015838623
+
+00:37:50.330 --> 00:37:53.967
+Now Advisor scans both of these recommendations, both of these
+
+NOTE Confidence: 0.815742015838623
+
+00:37:54.026 --> 00:37:56.490
+subscriptions, and gives me back a result.
+
+NOTE Confidence: 0.9675836563110352
+
+00:37:57.840 --> 00:37:59.640
+Now this is where things get interesting.
+
+NOTE Confidence: 0.9687311053276062
+
+00:38:00.440 --> 00:38:03.197
+As you can see, now, instead of giving me hundreds
+
+NOTE Confidence: 0.9687311053276062
+
+00:38:03.252 --> 00:38:06.946
+of recommendations, it has come back with just five recommendations
+
+NOTE Confidence: 0.9687311053276062
+
+00:38:07.002 --> 00:38:08.160
+I need to start with.
+
+NOTE Confidence: 0.9516387581825256
+
+00:38:08.719 --> 00:38:11.683
+And for each it is showing me exactly the active
+
+NOTE Confidence: 0.9516387581825256
+
+00:38:11.745 --> 00:38:15.819
+resources that need to be addressed, the exact completion progress
+
+NOTE Confidence: 0.9516387581825256
+
+00:38:15.881 --> 00:38:19.770
+rate, the potential benefits of going ahead and addressing this
+
+NOTE Confidence: 0.9516387581825256
+
+00:38:19.832 --> 00:38:22.240
+issue, and the most important, the why.
+
+NOTE Confidence: 0.9354526996612549
+
+00:38:22.520 --> 00:38:26.502
+Why this particular recommendation has been prioritized where it is
+
+NOTE Confidence: 0.9354526996612549
+
+00:38:26.562 --> 00:38:26.800
+now?
+
+NOTE Confidence: 0.962189257144928
+
+00:38:26.800 --> 00:38:29.320
+Let's start with this first recommendation on the top here.
+
+NOTE Confidence: 0.9665390253067017
+
+00:38:29.920 --> 00:38:32.602
+As you can see, the number one recommendation that is
+
+NOTE Confidence: 0.9665390253067017
+
+00:38:32.652 --> 00:38:35.739
+showing up here is a service retirement recommendation for my
+
+NOTE Confidence: 0.9665390253067017
+
+00:38:35.790 --> 00:38:36.600
+storage account.
+
+NOTE Confidence: 0.8522989749908447
+
+00:38:36.960 --> 00:38:40.056
+It is telling me that I'm going to lose support
+
+NOTE Confidence: 0.8522989749908447
+
+00:38:40.122 --> 00:38:41.439
+in the next 30 days.
+
+NOTE Confidence: 0.9641658067703247
+
+00:38:41.880 --> 00:38:44.747
+Now, this is the biggest reliability gap for my entire
+
+NOTE Confidence: 0.9641658067703247
+
+00:38:44.800 --> 00:38:47.508
+application and I need to go ahead and address this
+
+NOTE Confidence: 0.9641658067703247
+
+00:38:47.561 --> 00:38:47.880
+first.
+
+NOTE Confidence: 0.961279034614563
+
+00:38:48.360 --> 00:38:51.241
+Now this hard deadline puts it at the top of
+
+NOTE Confidence: 0.961279034614563
+
+00:38:51.307 --> 00:38:54.319
+the risks that I need to go ahead and address.
+
+NOTE Confidence: 0.9620140194892883
+
+00:38:55.560 --> 00:38:58.547
+Now let's take a look at the next two recommendations
+
+NOTE Confidence: 0.9620140194892883
+
+00:38:58.603 --> 00:38:59.279
+in the list.
+
+NOTE Confidence: 0.9533159732818604
+
+00:39:00.760 --> 00:39:04.120
+I see that both of these are zonal resiliency recommendations.
+
+NOTE Confidence: 0.8942769765853882
+
+00:39:04.640 --> 00:39:08.052
+My Cosmos DB has no zone redundancy and so a
+
+NOTE Confidence: 0.8942769765853882
+
+00:39:08.129 --> 00:39:12.239
+single zone failure can take out my entire data tier.
+
+NOTE Confidence: 0.95630943775177
+
+00:39:12.960 --> 00:39:15.417
+Now as you can see, it is ranking above my
+
+NOTE Confidence: 0.95630943775177
+
+00:39:15.475 --> 00:39:17.640
+other zone resiliency recommendation.
+
+NOTE Confidence: 0.9135607481002808
+
+00:39:18.040 --> 00:39:21.479
+The reason for that is because if my Cosmos DB
+
+NOTE Confidence: 0.9135607481002808
+
+00:39:21.554 --> 00:39:25.666
+goes down, my entire primary data tier goes down, which
+
+NOTE Confidence: 0.9135607481002808
+
+00:39:25.741 --> 00:39:29.480
+is a wider blast radius than losing a cache layer.
+
+NOTE Confidence: 0.9354876279830933
+
+00:39:29.920 --> 00:39:33.114
+So as you can see, this isn't just some generic
+
+NOTE Confidence: 0.9354876279830933
+
+00:39:33.182 --> 00:39:36.784
+guidance, it is ranked for my environment based on my
+
+NOTE Confidence: 0.9354876279830933
+
+00:39:36.852 --> 00:39:38.960
+data and all the other context.
+
+NOTE Confidence: 0.9330596327781677
+
+00:39:39.880 --> 00:39:42.944
+Now let's go ahead and click on that first Service
+
+NOTE Confidence: 0.9330596327781677
+
+00:39:43.006 --> 00:39:44.600
+retirement recommendation.
+
+NOTE Confidence: 0.9507850408554077
+
+00:39:48.080 --> 00:39:50.680
+This opens up the recommendation details page.
+
+NOTE Confidence: 0.9374759197235107
+
+00:39:55.160 --> 00:39:57.764
+Now I can use this details page to actually get
+
+NOTE Confidence: 0.9374759197235107
+
+00:39:57.819 --> 00:40:00.480
+additional information about the recommendation.
+
+NOTE Confidence: 0.9594496488571167
+
+00:40:00.640 --> 00:40:01.880
+What is it about?
+
+NOTE Confidence: 0.9662261009216309
+
+00:40:01.920 --> 00:40:03.480
+When does my support end?
+
+NOTE Confidence: 0.9612748622894287
+
+00:40:03.960 --> 00:40:07.019
+How do I go ahead and access the remediation steps,
+
+NOTE Confidence: 0.9612748622894287
+
+00:40:07.079 --> 00:40:10.019
+as well as exactly which are the set of resources
+
+NOTE Confidence: 0.9612748622894287
+
+00:40:10.079 --> 00:40:11.159
+that are impacted?
+
+NOTE Confidence: 0.9681107997894287
+
+00:40:11.800 --> 00:40:14.892
+So everything that I need to act is available for
+
+NOTE Confidence: 0.9681107997894287
+
+00:40:14.955 --> 00:40:17.479
+me in one single place that I can go to.
+
+NOTE Confidence: 0.959876537322998
+
+00:40:18.680 --> 00:40:27.691
+Now let's go back to the main list at the
+
+NOTE Confidence: 0.959876537322998
+
+00:40:27.911 --> 00:40:29.449
+bottom.
+
+NOTE Confidence: 0.939692497253418
+
+00:40:29.450 --> 00:40:32.123
+Here you see that there's an action plan, and it's
+
+NOTE Confidence: 0.939692497253418
+
+00:40:32.176 --> 00:40:34.690
+broken down into the short, mid, and long term.
+
+NOTE Confidence: 0.9677679538726807
+
+00:40:35.210 --> 00:40:37.418
+So I know exactly what I need to tackle in
+
+NOTE Confidence: 0.9677679538726807
+
+00:40:37.471 --> 00:40:39.732
+the next 30 days, what needs to come in the
+
+NOTE Confidence: 0.9677679538726807
+
+00:40:39.785 --> 00:40:42.729
+next three months, and then what can come in afterwards.
+
+NOTE Confidence: 0.88727867603302
+
+00:40:44.690 --> 00:40:47.964
+Now I can go ahead and actually export this entire
+
+NOTE Confidence: 0.88727867603302
+
+00:40:48.030 --> 00:40:51.043
+prioritized list either as a Word talk or as a
+
+NOTE Confidence: 0.88727867603302
+
+00:40:51.108 --> 00:40:53.859
+PDF talk and share it with my team so that
+
+NOTE Confidence: 0.88727867603302
+
+00:40:53.925 --> 00:40:57.199
+I can go ahead and coordinate remediation offline.
+
+NOTE Confidence: 0.9393264651298523
+
+00:40:57.960 --> 00:41:01.133
+Now soon Advisor will actually be able to go further
+
+NOTE Confidence: 0.9393264651298523
+
+00:41:01.194 --> 00:41:03.940
+and you will be able to generate all of these
+
+NOTE Confidence: 0.9393264651298523
+
+00:41:04.001 --> 00:41:06.930
+action items as work items in your own work item
+
+NOTE Confidence: 0.9393264651298523
+
+00:41:06.991 --> 00:41:07.479
+systems.
+
+NOTE Confidence: 0.9474013447761536
+
+00:41:07.840 --> 00:41:10.854
+So whether you're working out of Jira or ServiceNow, you
+
+NOTE Confidence: 0.9474013447761536
+
+00:41:10.908 --> 00:41:13.815
+would be able to create work items directly into those
+
+NOTE Confidence: 0.9474013447761536
+
+00:41:13.869 --> 00:41:16.291
+systems and be able to assign it to people in
+
+NOTE Confidence: 0.9474013447761536
+
+00:41:16.345 --> 00:41:18.714
+your team so that they can go ahead and take
+
+NOTE Confidence: 0.9474013447761536
+
+00:41:18.767 --> 00:41:19.359
+it forward.
+
+NOTE Confidence: 0.9671804904937744
+
+00:41:20.800 --> 00:41:22.320
+Now let's go back to the workflow.
+
+NOTE Confidence: 0.9423494338989258
+
+00:41:23.160 --> 00:41:25.723
+Let me go ahead and drill down into that Cosmos
+
+NOTE Confidence: 0.9423494338989258
+
+00:41:25.778 --> 00:41:26.759
+DB recommendation.
+
+NOTE Confidence: 0.9566344618797302
+
+00:41:40.360 --> 00:41:43.031
+Now, as you can see here, advisor is showing me
+
+NOTE Confidence: 0.9566344618797302
+
+00:41:43.088 --> 00:41:46.214
+the specific list of resources that are affected that I
+
+NOTE Confidence: 0.9566344618797302
+
+00:41:46.271 --> 00:41:47.919
+need to go ahead and address.
+
+NOTE Confidence: 0.9641575217247009
+
+00:41:48.560 --> 00:41:53.164
+Now today you see the full list of impacted resources,
+
+NOTE Confidence: 0.9641575217247009
+
+00:41:53.249 --> 00:41:57.597
+but landing soon, this list is actually going to be
+
+NOTE Confidence: 0.9641575217247009
+
+00:41:57.683 --> 00:42:01.519
+individually ranked in the order of priority.
+
+NOTE Confidence: 0.9583783149719238
+
+00:42:02.080 --> 00:42:04.813
+So we understand that for customers, it is hard to
+
+NOTE Confidence: 0.9583783149719238
+
+00:42:04.868 --> 00:42:07.985
+be able to prioritize amongst a large number of resources
+
+NOTE Confidence: 0.9583783149719238
+
+00:42:08.039 --> 00:42:09.680
+that make up your application.
+
+NOTE Confidence: 0.9465654492378235
+
+00:42:10.080 --> 00:42:12.934
+So now we will be leveraging those live signals from
+
+NOTE Confidence: 0.9465654492378235
+
+00:42:12.989 --> 00:42:16.007
+your environment to tell you exactly which ones are the
+
+NOTE Confidence: 0.9465654492378235
+
+00:42:16.062 --> 00:42:18.971
+ones that you need to prioritize first to reduce your
+
+NOTE Confidence: 0.9465654492378235
+
+00:42:19.026 --> 00:42:19.959
+risk the maximum.
+
+NOTE Confidence: 0.29459044337272644
+
+00:42:20.840 --> 00:42:21.280
+Alright.
+
+NOTE Confidence: 0.932966947555542
+
+00:42:21.280 --> 00:42:23.806
+So to wrap up in under 2 minutes, we went
+
+NOTE Confidence: 0.932966947555542
+
+00:42:23.868 --> 00:42:27.812
+from hundreds of recommendations that you would typically see to
+
+NOTE Confidence: 0.932966947555542
+
+00:42:27.874 --> 00:42:31.387
+list of top five recommendations that you can get started
+
+NOTE Confidence: 0.932966947555542
+
+00:42:31.449 --> 00:42:34.530
+with along with an action plan that is specific to
+
+NOTE Confidence: 0.932966947555542
+
+00:42:34.592 --> 00:42:35.640
+your environment.
+
+NOTE Confidence: 0.955123245716095
+
+00:42:36.360 --> 00:42:39.353
+We are going ahead and actually going to be refining
+
+NOTE Confidence: 0.955123245716095
+
+00:42:39.410 --> 00:42:41.079
+this experience even further.
+
+NOTE Confidence: 0.8700595498085022
+
+00:42:41.760 --> 00:42:44.578
+Also, we are going to be bringing the resiliency flows
+
+NOTE Confidence: 0.8700595498085022
+
+00:42:44.630 --> 00:42:47.239
+as well as the advisor flows more closer together.
+
+NOTE Confidence: 0.9069899916648865
+
+00:42:47.239 --> 00:42:49.725
+So you are able to manage the end to end
+
+NOTE Confidence: 0.9069899916648865
+
+00:42:49.787 --> 00:42:53.079
+resiliency for your application in one seamless flow.
+
+NOTE Confidence: 0.9312187433242798
+
+00:42:53.880 --> 00:42:57.111
+And now with that, I'm very happy to announce that
+
+NOTE Confidence: 0.9312187433242798
+
+00:42:57.176 --> 00:43:00.990
+this experience is starting limited preview today and we do
+
+NOTE Confidence: 0.9312187433242798
+
+00:43:01.054 --> 00:43:02.800
+have a few spots available.
+
+NOTE Confidence: 0.9323969483375549
+
+00:43:03.200 --> 00:43:05.177
+So if you would like to sign up, please meet
+
+NOTE Confidence: 0.9323969483375549
+
+00:43:05.222 --> 00:43:07.200
+us after the session and we can help you get
+
+NOTE Confidence: 0.9323969483375549
+
+00:43:07.245 --> 00:43:07.560
+set up.
+
+NOTE Confidence: 0.9644437432289124
+
+00:43:08.560 --> 00:43:10.898
+Now let's move on to the next phase of our
+
+NOTE Confidence: 0.9644437432289124
+
+00:43:10.954 --> 00:43:11.399
+journey.
+
+NOTE Confidence: 0.9032692313194275
+
+00:43:14.520 --> 00:43:17.854
+Alright, so in this session we went through the start
+
+NOTE Confidence: 0.9032692313194275
+
+00:43:17.917 --> 00:43:21.440
+and the get resiliency phases of the resiliency journey.
+
+NOTE Confidence: 0.9129490256309509
+
+00:43:22.040 --> 00:43:24.821
+Now the last part of the journey, which is extremely
+
+NOTE Confidence: 0.9129490256309509
+
+00:43:24.874 --> 00:43:26.799
+important step is to stay resilient.
+
+NOTE Confidence: 0.9498008489608765
+
+00:43:27.520 --> 00:43:30.540
+A critical part of staying resilient is to make sure
+
+NOTE Confidence: 0.9498008489608765
+
+00:43:30.598 --> 00:43:33.967
+you're validating that the resilience is what you think it
+
+NOTE Confidence: 0.9498008489608765
+
+00:43:34.025 --> 00:43:34.200
+is.
+
+NOTE Confidence: 0.8890817165374756
+
+00:43:34.720 --> 00:43:38.920
+And this is where Azure Chaos Studio Workspaces comes in.
+
+NOTE Confidence: 0.8942696452140808
+
+00:43:39.880 --> 00:43:44.122
+Every Azure customer believes that they are resilient until and
+
+NOTE Confidence: 0.8942696452140808
+
+00:43:44.189 --> 00:43:48.498
+unless an availability zone goes down, your AI workload silently
+
+NOTE Confidence: 0.8942696452140808
+
+00:43:48.566 --> 00:43:52.000
+degrade, or a throttling cascades down to take out.
+
+NOTE Confidence: 0.7958840131759644
+
+00:43:52.120 --> 00:43:54.040
+Checkout during Black Friday.
+
+NOTE Confidence: 0.9025200605392456
+
+00:43:54.920 --> 00:43:58.523
+Today at Build, we are happy to announce the launch
+
+NOTE Confidence: 0.9025200605392456
+
+00:43:58.594 --> 00:44:02.479
+of Chaos Studio Workspaces in Public Review on June 11.
+
+NOTE Confidence: 0.8723470568656921
+
+00:44:03.320 --> 00:44:07.089
+It is a complete reimagining of the experience with application
+
+NOTE Confidence: 0.8723470568656921
+
+00:44:07.149 --> 00:44:10.799
+centric workspaces, new scenarios, and a new agentic service.
+
+NOTE Confidence: 0.947991132736206
+
+00:44:11.280 --> 00:44:14.582
+Now you can go ahead and rehearse all the outages
+
+NOTE Confidence: 0.947991132736206
+
+00:44:14.649 --> 00:44:16.200
+that you actually fear.
+
+NOTE Confidence: 0.9571492075920105
+
+00:44:17.320 --> 00:44:20.441
+Now with that, we are towards the end of our
+
+NOTE Confidence: 0.9571492075920105
+
+00:44:20.512 --> 00:44:21.080
+session.
+
+NOTE Confidence: 0.922879159450531
+
+00:44:21.440 --> 00:44:24.216
+Thank you for joining us today, and we'd now love
+
+NOTE Confidence: 0.922879159450531
+
+00:44:24.273 --> 00:44:25.520
+to open it up for Q&A.
+

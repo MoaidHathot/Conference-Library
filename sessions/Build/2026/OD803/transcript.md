@@ -1,0 +1,1061 @@
+**[00:00:00]** GERALD VERSLUIS: Hello and welcome to this session
+**[00:00:01]** about taking your AI to the edge with.NET MAUI.
+**[00:00:05]** My name is Gerald and I work here at Microsoft
+**[00:00:07]** on the.NET team, specifically on the.NET MAUI team.
+**[00:00:10]** And in this session, we're going to see what the current state
+**[00:00:13]** of MAUI is in.NET 10, what we've been building,
+**[00:00:15]** what to expect from.NET 11, but also how we as a team became
+**[00:00:20]** so much more productive with the use of Copilot,
+**[00:00:23]** how you can be more productive building your.NET MAUI apps
+**[00:00:26]** with the tools that we're putting out there,
+**[00:00:28]** and how you can deliver that value to your end customer.
+**[00:00:32]** So let's dig in.
+**[00:00:34]** For a quick reminder, quick refresher for the people
+**[00:00:36]** who might be new seeing this,
+**[00:00:38]** what is this.NET MAUI thing again?
+**[00:00:40]** .NET MAUI stands for.NET Multiplatform App UI,
+**[00:00:44]** and that is our offering
+**[00:00:46]** to build cross-platform amazing looking apps on iOS, Android,
+**[00:00:51]** Windows, and macOS through C Sharp and.NET.
+**[00:00:54]** So we have single project, single code base.
+**[00:00:57]** So you just have a single project to launch all of these,
+**[00:01:00]** to reach all of these projects, all of these platforms,
+**[00:01:03]** which is really, really amazing.
+**[00:01:04]** It all maps to native controls and native styling
+**[00:01:07]** on the platform exactly as you would expect on the platform
+**[00:01:10]** that you're running on.
+**[00:01:11]** It feels and looks exactly as it's supposed to be
+**[00:01:14]** on the operating system, on the device that you're running on.
+**[00:01:18]** We have, like, all kinds of devices, APIs you can reach
+**[00:01:21]** with that unified C Sharp and.NET layer.
+**[00:01:24]** You can get the geolocation, you can get the flashlights,
+**[00:01:27]** you can get the file system, all these kinds of things,
+**[00:01:29]** all built in, and lots and lots of controls already.
+**[00:01:33]** So everything you need to build cross-platform apps
+**[00:01:36]** that are useful for everyone.
+**[00:01:40]** Then we also have something that is called Blazor Hybrid.
+**[00:01:43]** And with that, you can take your existing Blazor offering,
+**[00:01:47]** your existing Blazor application,
+**[00:01:49]** put that in a Blazor Hybrid WebView, and then package
+**[00:01:52]** that as a mobile app and put that in the stores,
+**[00:01:55]** have that little icon on the screen, without having to lose
+**[00:01:58]** or reinvent anything, because you can just take your existing
+**[00:02:01]** Blazor app, or if you just have this one very specific Blazor
+**[00:02:04]** control that you have, that you've created, and you want
+**[00:02:07]** to reuse that in your.NET MAUI app,
+**[00:02:09]** you can absolutely do that as well.
+**[00:02:11]** The choice is yours.
+**[00:02:12]** We have options for everyone.
+**[00:02:14]** You can make your full app a hybrid application with Blazor.
+**[00:02:17]** You can just have this little part
+**[00:02:19]** of your application be a little Blazor Hybrid application,
+**[00:02:22]** and the rest is fully native,
+**[00:02:24]** and it will integrate seamlessly.
+**[00:02:25]** You will not be able to tell the difference.
+**[00:02:27]** And if you want to take it even a step further,
+**[00:02:29]** and you maybe have like a React Native, an Angular,
+**[00:02:32]** or some other JavaScript application,
+**[00:02:35]** we have something for that as well.
+**[00:02:36]** We have the hybrid WebView there too.
+**[00:02:39]** So lots and lots of options for everyone,
+**[00:02:41]** depending on where you are in your development lifecycle,
+**[00:02:46]** what you want to do there.
+**[00:02:47]** So the.NET ecosystem has this rich choice for every developer,
+**[00:02:53]** for every audience, right?
+**[00:02:54]** If you want to go for reach, then you probably want to go
+**[00:02:57]** with Blazor, like Blazor in the web browser.
+**[00:02:59]** Everything that runs a web browser,
+**[00:03:00]** you can take your Blazor app there.
+**[00:03:02]** If you want to full power the native power on actual devices,
+**[00:03:06]** then you probably want to stick with.NET MAUI,
+**[00:03:09]** where you can do all of that.
+**[00:03:10]** And you can kind of like come in between with Blazor
+**[00:03:14]** and.NET MAUI together, which is a very,
+**[00:03:16]** very powerful combination.
+**[00:03:17]** And you can reach all of these things
+**[00:03:19]** with your existing web development experience
+**[00:03:22]** and whatever you have there.
+**[00:03:24]** Also, customers love this.
+**[00:03:26]** Customers love building with our product.
+**[00:03:29]** We have had so many customer stories on our website.
+**[00:03:33]** The link will be down below.
+**[00:03:34]** And I just wanted to highlight this one,
+**[00:03:36]** which is an amazing one, Moti Me.
+**[00:03:38]** They're based in the UK,
+**[00:03:40]** and they have these amazing pediatric physiotherapy devices
+**[00:03:45]** to support kind of like their work with those pediatricians.
+**[00:03:49]** And that is powered with a.NET MAUI companion application,
+**[00:03:53]** which I personally love that our tech, our stuff is used
+**[00:03:57]** for stuff that actually, you know,
+**[00:03:59]** does something there out in the world.
+**[00:04:00]** Of course, all your applications are amazing
+**[00:04:03]** and doing something great out there in the world.
+**[00:04:05]** But these things, like the little helper things
+**[00:04:07]** for the medical space, I absolutely love those.
+**[00:04:10]** So go check out the full customer story on our website.
+**[00:04:13]** The link is down there below and will be
+**[00:04:15]** in the video resources here.
+**[00:04:18]** It is really, really amazing.
+**[00:04:21]** So I already said, like, hey, we have been, as a team,
+**[00:04:24]** as a.NET team at Microsoft, specifically the.NET MAUI team,
+**[00:04:28]** we have been changing the way we work drastically
+**[00:04:32]** in the last couple of months.
+**[00:04:33]** And it shows.
+**[00:04:34]** It shows, right?
+**[00:04:35]** We have incorporated Copilot and AI fully end-to-end
+**[00:04:40]** in our software development lifecycle, right?
+**[00:04:43]** So we now build with Copilot everywhere,
+**[00:04:46]** not just code generation, not just code generation
+**[00:04:48]** on our devices to write code faster, more code for.NET MAUI.
+**[00:04:52]** Absolutely not.
+**[00:04:53]** But also to reproduce the things that you might report
+**[00:04:57]** on the GitHub repository, right?
+**[00:04:59]** It's an open-source project.
+**[00:05:02]** So you can go there, you can report issues.
+**[00:05:04]** And sometimes, you know, it's hard to reproduce.
+**[00:05:07]** We always encourage you to reproduce it yourself.
+**[00:05:09]** But now we have a little helper that's called Copilot.
+**[00:05:12]** And we can just say, hey, can you try and reproduce this thing
+**[00:05:15]** that this customer is reporting and see
+**[00:05:17]** if we can work with that?
+**[00:05:19]** Of course, also testing, right?
+**[00:05:20]** If we have the reproduction thing, we can also test there.
+**[00:05:23]** So not just running the test, we have thousands and thousands
+**[00:05:27]** of UI tests on the.NET MAUI repository.
+**[00:05:31]** So you can imagine those take a little while to run.
+**[00:05:34]** Now we can be smarter with that.
+**[00:05:36]** We can say to Copilot, hey, figure out for the change
+**[00:05:38]** in this PR or this bug, what are the relevant UI tests?
+**[00:05:42]** Only run those and give us the results, right?
+**[00:05:44]** And it will just take -- well, it still takes a little bit
+**[00:05:47]** of time, but at least we don't have to spend time on it
+**[00:05:49]** to figure out which ones are the relevant ones here and wait
+**[00:05:53]** for the results, et cetera, et cetera.
+**[00:05:55]** We can all outsource that to Copilot.
+**[00:05:58]** Fix, of course, like code generation,
+**[00:05:59]** whenever there's a bug, we can say, hey, assign to Copilot
+**[00:06:02]** and it will go off and do things.
+**[00:06:04]** Review, we don't just code generate with it,
+**[00:06:07]** but we also have MAUI-aware reviewers.
+**[00:06:10]** So if you know a little bit about the MAUI product,
+**[00:06:13]** .NET MAUI is a super complex code base, right?
+**[00:06:15]** We have all kinds of APIs that are not native
+**[00:06:18]** to the.NET ecosystem from iOS, from Android coming in.
+**[00:06:23]** So we have lots of things to kind of like be aware of.
+**[00:06:25]** So early on, we started writing our MAUI-aware code reviewer,
+**[00:06:30]** and that is in our pipelines as well.
+**[00:06:32]** So that will look at a piece of code
+**[00:06:33]** and know a little bit beyond kind
+**[00:06:35]** of like the vanilla Copilot, if you will,
+**[00:06:37]** that is built into GitHub.
+**[00:06:39]** And it has a lot of MAUI expertise
+**[00:06:42]** so that it can tell us like, hey, look out for this,
+**[00:06:44]** look out for that, and that we have some confidence
+**[00:06:47]** about the reviews that are going on here.
+**[00:06:49]** Of course, like we're still checking in,
+**[00:06:51]** we're still the human in the loop,
+**[00:06:53]** but this Copilot reviewer has been a lot of help.
+**[00:06:56]** Same with verification and learning.
+**[00:06:58]** Whenever something good or bad happens to a PR,
+**[00:07:01]** we can point a Copilot custom agent to it and say like,
+**[00:07:04]** what can we learn from this PR?
+**[00:07:06]** What happened here?
+**[00:07:08]** And then we can take that learning into the next PR
+**[00:07:10]** and make sure that something doesn't happen again.
+**[00:07:13]** So we have been like fully end-to-end
+**[00:07:16]** into the agentic engineering right here,
+**[00:07:19]** all the way from like the things that are probably obvious,
+**[00:07:22]** writing code, reviewing code, testing code,
+**[00:07:24]** but why not take it a step further, right?
+**[00:07:26]** Why not also, whenever we merge a PR,
+**[00:07:29]** have a Copilot agentic workflow, look at that
+**[00:07:32]** and determine whether that needs a documentation update,
+**[00:07:35]** yes or no?
+**[00:07:36]** Would it need a blog post to highlight to people, right?
+**[00:07:39]** It will figure that out for us.
+**[00:07:40]** And not just that, it will also open an issue
+**[00:07:43]** and even draft a PR for the documentation update
+**[00:07:46]** and for that blog post.
+**[00:07:48]** So super, super helpful.
+**[00:07:49]** That allows us to go so much faster
+**[00:07:52]** and that shows up in the numbers.
+**[00:07:54]** Again, we're an open-source project,
+**[00:07:56]** so we love to do things out in the open.
+**[00:07:58]** All of this you can find on agenticengineers.net.
+**[00:08:01]** Definitely go there.
+**[00:08:02]** You can see per PR, on a PR basis,
+**[00:08:06]** on the.NET MAUI repositories, but also, of course,
+**[00:08:09]** our supporting products, Android and iOS, and then a bunch
+**[00:08:13]** of tools there as well, is code generated, is a PR authored
+**[00:08:18]** by Copilot, or is the reviewer,
+**[00:08:21]** the Copilot reviewer used for this PR?
+**[00:08:23]** And you can see, kind of like we started picking
+**[00:08:25]** up steam in November.
+**[00:08:27]** That is, at least for me, kind of like the turning point,
+**[00:08:29]** and I think for the rest of our team as well.
+**[00:08:31]** November, December, January, February, March, April.
+**[00:08:34]** April was like, you know, our high point so far.
+**[00:08:38]** And we have gone from 7% to 62% Copilot-authored merged PRs
+**[00:08:44]** in under a year, right?
+**[00:08:45]** It's crazy.
+**[00:08:46]** That allows us to bring value to you so much faster,
+**[00:08:49]** all the bug fixes, all the new functionality
+**[00:08:51]** that we didn't really get to before.
+**[00:08:54]** Now we have the tools to kind of like go there, do that much,
+**[00:08:58]** much faster, and produce all that extra value for you
+**[00:09:01]** so that we have this amazing product.
+**[00:09:05]** Go to that website.
+**[00:09:06]** There is lots of more data there.
+**[00:09:07]** And, you know, if you have any questions there,
+**[00:09:10]** we're also happy to chat always to share more
+**[00:09:13]** about our learnings there
+**[00:09:14]** because.NET MAUI is the community, right?
+**[00:09:17]** We have such a great community.
+**[00:09:19]** I was part of that community.
+**[00:09:20]** I'm still part of the community, I like to think at least.
+**[00:09:23]** And there is, besides the things that I've mentioned here,
+**[00:09:25]** so much that we do in the community.
+**[00:09:27]** We have, of course, our contributors over the years,
+**[00:09:30]** which has been super, super great.
+**[00:09:31]** Thank you so much from this place.
+**[00:09:33]** Not just in issues and PRs, but also for the samples, the docs,
+**[00:09:37]** and just the feedback that you give us, right?
+**[00:09:39]** Through the online channels, but also in in-person conferences.
+**[00:09:43]** We are out there.
+**[00:09:44]** Me, David Ortnow, Stefan from our team, and now Jacob
+**[00:09:48]** from our team, us out there on conferences.
+**[00:09:51]** And we love your feedback.
+**[00:09:52]** Please keep bringing that to us, the good and the bad,
+**[00:09:56]** because that's how we help shape the product
+**[00:09:57]** so that it is the product that you love to use.
+**[00:10:01]** Also, every first Thursday of every month,
+**[00:10:03]** we have the community stand-up online,
+**[00:10:05]** on YouTube, on the.NET channel.
+**[00:10:07]** So definitely go check that out, where we usually have a guest,
+**[00:10:10]** or we show off at least kind of like what happened
+**[00:10:12]** in the community, cool links, cool projects,
+**[00:10:15]** cool actual real-world applications, or some new thing
+**[00:10:17]** that we built ourselves that we think
+**[00:10:19]** that you should know about.
+**[00:10:21]** So go check that out if you haven't done that already.
+**[00:10:24]** Then the MAUI Days, we have dedicated MAUI events,
+**[00:10:28]** and that's really been taking off as well,
+**[00:10:29]** together with the AI hype.
+**[00:10:30]** I don't know if there's any correlation there,
+**[00:10:32]** but it's happening.
+**[00:10:34]** So this has been running for years, since the Xamarin Days,
+**[00:10:38]** and now it's the MAUI Days, of course.
+**[00:10:40]** In Cologne, we've done a whole bunch.
+**[00:10:42]** We did two now in London, which has been really great.
+**[00:10:45]** We have one coming up in Krakow, Poland,
+**[00:10:47]** and then probably Cologne, and wherever you want to go, right?
+**[00:10:51]** If you are someone who is like, I want a MAUI Day in my space,
+**[00:10:54]** let's talk, and we will figure something out.
+**[00:10:57]** It is run completely by the community,
+**[00:11:01]** but I'm definitely involved there as well, and always happy
+**[00:11:03]** to be there as a speaker.
+**[00:11:04]** So let's definitely meet there.
+**[00:11:07]** And speaking of amazing community initiatives,
+**[00:11:11]** the MAUIverse, like everything MAUI, go to MAUIverse.net.
+**[00:11:15]** There is a Discord server that you can join to talk to people
+**[00:11:18]** on our team, but also other people in the community
+**[00:11:21]** to help each other out, share cool things
+**[00:11:23]** that you've been building, all these amazing cool things
+**[00:11:26]** that are out there, tools, samples, libraries,
+**[00:11:29]** blog posts, everything is there.
+**[00:11:31]** So definitely go check that out.
+**[00:11:33]** And from here, I already did it a little bit.
+**[00:11:34]** Thank you.
+**[00:11:35]** Thank you so much, contributors, for everything
+**[00:11:38]** that you've been doing in all shape or form.
+**[00:11:41]** We really, really appreciate it.
+**[00:11:43]** It is kind of like easy to forget
+**[00:11:44]** in like the day-to-day business,
+**[00:11:46]** but we do really appreciate all the time and the effort
+**[00:11:49]** that you put into there.
+**[00:11:50]** And especially with like the new tools in the MAUIverse,
+**[00:11:53]** in the Discord server, it is so easy now to collaborate,
+**[00:11:56]** more easier now than ever, which we definitely also do.
+**[00:11:59]** So please keep doing that.
+**[00:12:01]** Then we have, of course, like our partners,
+**[00:12:04]** our component vendors, right?
+**[00:12:05]** All of the friends that build on top of.NET MAUI
+**[00:12:09]** with their own controls,
+**[00:12:10]** with their own little ecosystem, with own tooling.
+**[00:12:14]** So of course, go check those out if you have like a favorite
+**[00:12:17]** from maybe another part of the ecosystem in.NET.
+**[00:12:19]** These are the names that you want to check out if you want
+**[00:12:22]** to have some pre-built really amazing things.
+**[00:12:27]** Speaking of which, the partners that we have really help
+**[00:12:30]** where.NET MAUI can go.
+**[00:12:32]** Because in the past couple of months,
+**[00:12:34]** we have announced a couple of very cool collaborations
+**[00:12:38]** with some of our partners, some of our friends.
+**[00:12:40]** First of which is Syncfusion.
+**[00:12:42]** Maybe you've heard about that already.
+**[00:12:44]** We are working closely together with the Syncfusion team,
+**[00:12:47]** and they have been helping
+**[00:12:49]** out on the.NET MAUI code base directly with all kinds
+**[00:12:52]** of things, code fixes, testing across the suite, basically.
+**[00:12:56]** But they also, as part of that, created a.NET MAUI toolkit,
+**[00:13:00]** which is now at version 1.0.10 with 30-plus UI controls.
+**[00:13:06]** I think some of them came from like the paid Syncfusion suite,
+**[00:13:09]** now available to you for free.
+**[00:13:11]** Definitely go check that out, which are built
+**[00:13:14]** with high performance, with customization,
+**[00:13:16]** with accessibility in mind.
+**[00:13:19]** They will fit right into your.NET MAUI app.
+**[00:13:21]** So definitely go check that out.
+**[00:13:23]** And from this place, thank you so much, Syncfusion,
+**[00:13:25]** for being a great partner throughout years at this point.
+**[00:13:29]** So that's really great.
+**[00:13:30]** And also them, they have been speeding up as well, right?
+**[00:13:33]** They have seen, there is a blog post from recently
+**[00:13:36]** where they are sharing their numbers with how Copilot
+**[00:13:39]** and AI has increased their velocity.
+**[00:13:42]** So you can see, like, hey, 50% to 70% time reduction, right,
+**[00:13:46]** on the things that they are spending on,
+**[00:13:48]** trying to reproduce, trying to fix,
+**[00:13:49]** trying to do all these things.
+**[00:13:50]** So that they can get through two
+**[00:13:52]** to three more times more issues every week, more PRs,
+**[00:13:57]** and more first-time fixed rate, right?
+**[00:13:59]** So it's been amazing across the board, basically.
+**[00:14:02]** That is our message.
+**[00:14:04]** Then we also have Uno, right?
+**[00:14:06]** Uno has been partnering with us now on the SkiaSharp.
+**[00:14:10]** Mostly, like, we've been partnering on some more things,
+**[00:14:13]** but now a blog post came out for SkiaSharp,
+**[00:14:17]** which is also maintained at Microsoft.
+**[00:14:20]** But now Uno has stepped up and has invested
+**[00:14:24]** in taking it to the next step.
+**[00:14:26]** And I think with, like, the new major version update
+**[00:14:30]** in a while now.
+**[00:14:32]** So this has been really, really great.
+**[00:14:34]** And thank you, Uno, for doing that
+**[00:14:36]** and making this better for everyone.
+**[00:14:39]** But it doesn't stop there.
+**[00:14:40]** Oh, no, no, no.
+**[00:14:41]** The.NET ecosystem, in the.NET ecosystem, we're all friends.
+**[00:14:44]** So Avalonia also came up and said, hey,
+**[00:14:47]** what if we can embed.NET MAUI applications
+**[00:14:50]** in our Avalonia backend, and now we can bring MAUI to Linux
+**[00:14:54]** and the browser, right?
+**[00:14:55]** So Avalonia has been doing a great job there.
+**[00:14:57]** We've been collaborating with them.
+**[00:14:59]** They wrote a little blog post about how that went
+**[00:15:02]** and what's coming and how to get started with this.
+**[00:15:04]** So if this is something that is of interest to you,
+**[00:15:07]** then definitely go check this out.
+**[00:15:09]** Thank you so much, partners and friends, for working together
+**[00:15:13]** and making.NET the best ecosystem there is.
+**[00:15:17]** All right.
+**[00:15:18]** So what did we do for.NET MAUI 10, right?
+**[00:15:21]** We focused on a couple of things here, stable,
+**[00:15:23]** fast, simple, and modern.
+**[00:15:24]** That are kind of like the areas that we have been investing in,
+**[00:15:28]** that we have been focused on for.NET 10,
+**[00:15:30]** which has been released November 2025, right?
+**[00:15:33]** The new major version of.NET.
+**[00:15:35]** And these have been the area.
+**[00:15:36]** So quality, write quality is super important
+**[00:15:39]** for something like.NET MAUI.
+**[00:15:41]** You want to make sure that whenever you upgrade
+**[00:15:42]** that we do not break anything for you.
+**[00:15:45]** So the quality has been top of mind for us
+**[00:15:48]** and fixing more bugs than ever.
+**[00:15:50]** Performance, right?
+**[00:15:50]** We're going to -- we've continuously been focusing
+**[00:15:54]** on performance so that because mobile apps like end users are
+**[00:15:59]** like the most critical users there are, right?
+**[00:16:03]** If it doesn't start up fast enough, if it's like sluggish
+**[00:16:06]** or whatever, they will see, they will know,
+**[00:16:07]** they will let you know, right?
+**[00:16:08]** So performance is always top of mind of us.
+**[00:16:10]** We're always trying to figure out how to make that better.
+**[00:16:13]** Simplicity, it should be simple to use these APIs
+**[00:16:18]** so that you can implement new things.
+**[00:16:19]** And modern, right?
+**[00:16:21]** New Android versions, new iOS versions come out all the time.
+**[00:16:24]** So we want to make sure that we are using the modern APIs
+**[00:16:27]** so that you will see those show
+**[00:16:29]** up in your MAUI apps automatically as well.
+**[00:16:32]** Also, as part of that,
+**[00:16:33]** we've done a big investment in XAML, right?
+**[00:16:36]** So XAML, you know it probably if you've been working
+**[00:16:39]** with.NET MAUI or any other UI framework at Microsoft.
+**[00:16:43]** You can love it.
+**[00:16:43]** You can hate it.
+**[00:16:44]** But it is here to stay.
+**[00:16:46]** And we have done some major improvements there,
+**[00:16:49]** some major innovations to make it easier to work with that.
+**[00:16:53]** So we have introduced global namespaces
+**[00:16:55]** so that you can reduce
+**[00:16:57]** or completely eliminate the XMLNS declarations
+**[00:17:00]** in your project.
+**[00:17:01]** We'll see that on the next slide in a little bit.
+**[00:17:03]** Implicit namespace is in preview right now.
+**[00:17:06]** In.NET 10, if you've seen this announcement at.NET Conf
+**[00:17:10]** in November, then it said, hey, the language service
+**[00:17:15]** and the editor support is coming.
+**[00:17:16]** We have support now by this time.
+**[00:17:19]** So if you want to work with the implicit namespace,
+**[00:17:21]** go check it out.
+**[00:17:22]** And it should have support now in the editor.
+**[00:17:25]** Make sure, of course, that if you have any feedback
+**[00:17:27]** to report it back to us.
+**[00:17:28]** And source generation is really, really amazing
+**[00:17:31]** where all the XMLNS is taken
+**[00:17:33]** and through Roslyn is source generated
+**[00:17:36]** into actual C Sharp source, right?
+**[00:17:39]** Which has great performance benefits, but also makes it
+**[00:17:42]** so much easier to do other cool stuff.
+**[00:17:44]** So definitely go check that out.
+**[00:17:46]** For now, opt in into.NET 10,
+**[00:17:48]** but it will be the default in.NET 11.
+**[00:17:51]** So make sure to test it right now on your project.
+**[00:17:54]** Let us know the feedback so that we can make sure
+**[00:17:55]** that it's rock solid whenever we hit.NET 11.
+**[00:18:01]** So without global XMLNS, right, this is even still
+**[00:18:04]** like a small XMLNS -- sorry, XAML document, right?
+**[00:18:08]** But if you enable global XMLNS,
+**[00:18:11]** then you can just take all of this out, right?
+**[00:18:14]** It will become so much less verbose.
+**[00:18:16]** So this is something, if you ask me, really, really great
+**[00:18:19]** so that we can get rid of some XAML boilerplate code
+**[00:18:23]** that we don't really want to see anyway.
+**[00:18:25]** XAML source generation, I already mentioned it.
+**[00:18:27]** So it's an opt-in feature right now.
+**[00:18:29]** It will have faster debug and release performance just
+**[00:18:33]** out of the box, just by flipping one bit, and you don't have
+**[00:18:36]** to worry about anything.
+**[00:18:38]** And these numbers are even old, right?
+**[00:18:40]** So the way that you're using probably right now is XAML-C,
+**[00:18:43]** XAML compilation, which compiles it to intermediate language.
+**[00:18:46]** A little bit of a technical story.
+**[00:18:48]** But now with XAML source generation, it will be generated
+**[00:18:52]** to C Sharp code that you can actually read
+**[00:18:54]** and actually can debug.
+**[00:18:56]** With these results, like these numbers are not inflated,
+**[00:19:00]** pun intended, 1,000% faster inflation,
+**[00:19:03]** 99% less debug memory, faster on release, less app memory.
+**[00:19:07]** And you will have the biggest gain
+**[00:19:10]** in your debug builds, right?
+**[00:19:11]** They tend to be a little bit sluggish,
+**[00:19:12]** especially if you do it like on Android and have
+**[00:19:14]** like a collection view or whatever.
+**[00:19:16]** It will be like jittery and whatnot.
+**[00:19:18]** And then you do a release build and you're like, oh,
+**[00:19:20]** actually my performance issues are not that bad.
+**[00:19:22]** That is what is going to be fixed by this.
+**[00:19:25]** And the other kind of like thing that you probably notice is
+**[00:19:28]** that we would have differences in debug builds,
+**[00:19:30]** in release builds, where things would get trimmed or whatever.
+**[00:19:33]** That is going away entirely, right?
+**[00:19:34]** So whenever you release something to production,
+**[00:19:37]** you can be safe and assured
+**[00:19:39]** that it's the same version as the debug version.
+**[00:19:41]** And nothing suddenly breaks at runtime
+**[00:19:43]** because APIs have been taken
+**[00:19:45]** out in the optimization process, right?
+**[00:19:47]** So all good things to go around right here.
+**[00:19:50]** Enabling right now today is super easy.
+**[00:19:52]** Just have this one bit set MAUI XAML inflator
+**[00:19:56]** to source gen, flip that bit.
+**[00:19:57]** And then optionally, if you want to inspect the actual code
+**[00:20:01]** that is generated, you can do the emit compiler generated
+**[00:20:04]** files to true, and you will get all the details
+**[00:20:06]** in your favorite IDE, in this case, VS Code.
+**[00:20:10]** And you can see what is going on, what is generated.
+**[00:20:13]** Debug through there.
+**[00:20:14]** Do all the things.
+**[00:20:15]** Here you have a little overview of like what that looks like.
+**[00:20:18]** On the left, you can see XAML C
+**[00:20:19]** and we're doing the same operations at the same time.
+**[00:20:22]** And you can see XAML C is taking longer than with source gen
+**[00:20:26]** because source gen is flying all over,
+**[00:20:28]** hitting all those navigation paths and doing it much,
+**[00:20:31]** much faster on a Pixel 5 with Android 14.
+**[00:20:36]** Another big focus area for us was the SafeAreas, right?
+**[00:20:39]** iOS, I think, was first with like the notch
+**[00:20:42]** or the dynamic island, all these things.
+**[00:20:44]** And then at the bottom with the swiping gestures.
+**[00:20:46]** So you have little areas that you can't really use,
+**[00:20:49]** but your designers would really like you to use them
+**[00:20:51]** because it just looks so much nicer if something goes
+**[00:20:54]** under there and whatever.
+**[00:20:55]** And then Android, the devices also were there
+**[00:20:58]** with like little camera holes and also kind
+**[00:21:01]** of like the little islands or whatnot.
+**[00:21:03]** So there's lots of variations there right now.
+**[00:21:05]** So it was time for us to have a unified API rethought
+**[00:21:09]** where we can handle all of these scenarios better, right?
+**[00:21:12]** So this is kind of like the thing that I was talking about,
+**[00:21:15]** kind of like the status bar, I would say, roughly.
+**[00:21:18]** And then down there with, I don't know how to call
+**[00:21:20]** that area, but swiping from the bottom.
+**[00:21:22]** Those are the areas that are kind of like problematic.
+**[00:21:24]** It doesn't look great if you have like white
+**[00:21:26]** or black boxes right there,
+**[00:21:28]** but also you can't really put any interactions in there.
+**[00:21:30]** If there's a button behind the dynamic island,
+**[00:21:32]** that's not great too.
+**[00:21:33]** All kinds of problems, right?
+**[00:21:34]** Welcome to the world
+**[00:21:35]** of cross-platform mobile development.
+**[00:21:38]** So it was about time to introduce a unified-grade API
+**[00:21:42]** that will fix all this for you.
+**[00:21:44]** Introducing the SafeArea edges, right?
+**[00:21:47]** And you can set those to none, soft input.
+**[00:21:50]** You can set those to a couple of different values right here
+**[00:21:53]** to steer that behavior so that you can make it go under,
+**[00:21:56]** make it go not under, that it will reserve that space.
+**[00:22:00]** And you can set that on any content page or any layout
+**[00:22:04]** that you have so that you can set per kind of like layout
+**[00:22:06]** or whatever, if that should go over under or how
+**[00:22:10]** that should behave in your application.
+**[00:22:13]** And so you can achieve all the great-looking designs
+**[00:22:16]** from your app or the designer that you are working with.
+**[00:22:20]** Works on Android and iOS because those are the devices that kind
+**[00:22:23]** of like have these APIs and these form factors right now.
+**[00:22:26]** If something else will come up, we will, of course,
+**[00:22:28]** provide the implementation for that as well.
+**[00:22:31]** How to do that?
+**[00:22:32]** So here we have kind of like the default,
+**[00:22:34]** and it's a little bit hard to see maybe,
+**[00:22:35]** but there at the bottom of the screenshot,
+**[00:22:37]** you can see the little gray bar down there, which is kind
+**[00:22:40]** of like, hey, grid, SafeArea edges, none, scroll view,
+**[00:22:43]** SafeArea edges, none, and the content page 2, see,
+**[00:22:46]** and you can see the little area there
+**[00:22:49]** that doesn't really look great.
+**[00:22:51]** But now with the new APIs setting the SafeArea edges
+**[00:22:54]** to none, you can go under there, and whenever you then apply kind
+**[00:22:57]** of like the liquid glass, for example, on iOS,
+**[00:23:00]** it will go nicely under there, and it will show
+**[00:23:03]** up nicely in your application.
+**[00:23:04]** Doesn't it look beautiful?
+**[00:23:05]** I think it looks beautiful.
+**[00:23:07]** And here another example on Android where we kind
+**[00:23:09]** of like have the top space, right?
+**[00:23:11]** You can see the top space right there on the left screenshot
+**[00:23:14]** with the default behavior,
+**[00:23:16]** not-so-great-looking white bar there at the top.
+**[00:23:18]** But now with the new API SafeArea edges to none,
+**[00:23:22]** we can just draw under there, but keeping,
+**[00:23:26]** preserving the buttons down there from the navigation bar
+**[00:23:29]** so you can still tap on them, and they are still reachable
+**[00:23:32]** from your layout as well.
+**[00:23:34]** So all kinds of good things.
+**[00:23:36]** Android Material 3, while we're on Android anyway,
+**[00:23:41]** work is on the way to implement Material 3.
+**[00:23:44]** The first controls are already added in.NET MAUI 10
+**[00:23:47]** through service releases,
+**[00:23:48]** so we released the first major initial version
+**[00:23:51]** of.NET MAUI 10 in November.
+**[00:23:53]** But since then, roughly every month,
+**[00:23:55]** we are doing service releases with new fixes,
+**[00:23:58]** new features where we can, right?
+**[00:24:00]** We're not going to break you in any way,
+**[00:24:03]** especially whenever API changes.
+**[00:24:05]** But these Material 3, we can do an opt-in, again,
+**[00:24:08]** like one simple line in your CS Podge, use Material 3, and boom,
+**[00:24:12]** your Android application will be updated
+**[00:24:14]** to the Material 3 design where we can, right?
+**[00:24:18]** We have going through the controls
+**[00:24:21]** where we can update them.
+**[00:24:23]** So this is going on through the service releases,
+**[00:24:25]** but there are some bigger changes for some bigger layouts
+**[00:24:29]** or whatnot going on as well.
+**[00:24:31]** And those will be added to.NET 11,
+**[00:24:33]** so probably by the time.NET 11 comes,
+**[00:24:36]** that is where you will have the full Material 3 experience.
+**[00:24:39]** But I would definitely highly encourage you
+**[00:24:41]** to try it out today.
+**[00:24:43]** And again, let us know the feedback
+**[00:24:44]** so that we can make sure
+**[00:24:45]** that it's rock solid whenever we hit November,
+**[00:24:48]** and you can start using it in day one.
+**[00:24:53]** Service releases, I just mentioned it.
+**[00:24:55]** So Service Release 6 has been our biggest service release yet.
+**[00:24:59]** It has been 242 commits in one service release.
+**[00:25:04]** And service release 7 just kept that momentum going, right?
+**[00:25:07]** We just have more fixes, AI-existent fixes with tests,
+**[00:25:11]** with reviews helping us to go so much faster.
+**[00:25:15]** Quality, right?
+**[00:25:15]** Collection view, carousel view, handle the fixes, shell polish,
+**[00:25:20]** accessibility test coverage, right?
+**[00:25:21]** We are adding things across the board.
+**[00:25:24]** Modern APIs, I didn't even mention those.
+**[00:25:26]** The media picker, speaking of like modernization,
+**[00:25:30]** we were a little bit behind there with iOS, with Android.
+**[00:25:33]** There are new cool APIs there to do new things
+**[00:25:36]** with picking videos, picking images.
+**[00:25:38]** Now we have updated that in.NET MAUI 10,
+**[00:25:41]** and we're improving upon that every service release.
+**[00:25:44]** And then, of course, SafeAreas and Material 3 enablement.
+**[00:25:49]** The hybrid scenarios that I mentioned a little bit earlier,
+**[00:25:51]** there are cool new things in there as well.
+**[00:25:53]** For JavaScript interop, sending messages through the bridge,
+**[00:25:56]** right, from JavaScript to C Sharp and back.
+**[00:25:59]** Of course, tooling, right?
+**[00:26:00]** We have cool new tooling things coming up as well.
+**[00:26:04]** For Android, already.NET run support.
+**[00:26:06]** I'll get back to that in a little bit as well.
+**[00:26:08]** Design time build speedups, better VS and VS Code loops.
+**[00:26:12]** And if you've not seen our kind of like live property inspector
+**[00:26:17]** and live XAML preview in Visual Studio, definitely go check
+**[00:26:20]** that out because it's really, really amazing.
+**[00:26:22]** You can just launch your app through hot reload,
+**[00:26:24]** through XAML live preview.
+**[00:26:26]** You never have to stop your application.
+**[00:26:27]** You can just start building
+**[00:26:29]** and everything will show up in real time.
+**[00:26:32]** The XAML investments that I've just shown you, and, of course,
+**[00:26:34]** the platform improvements for Android, but also for iOS, are,
+**[00:26:40]** you know, continuously on our radar.
+**[00:26:42]** And, of course, like, again,
+**[00:26:44]** this is all AI assistant engineering,
+**[00:26:46]** which helps us take it from end to end, reproduce, fix, test,
+**[00:26:50]** write docs, do all the things there.
+**[00:26:53]** Hopefully, you have noticed and that we have really picked
+**[00:26:55]** up the steam, if you ask me,
+**[00:26:57]** by delivering great MAUI versions one after another.
+**[00:27:01]** So then, what is next?
+**[00:27:02]** What comes after this?
+**[00:27:03]** .NET 11, the next wave for.NET MAUI.
+**[00:27:06]** Well, this is a big one, and we tweeted this out.
+**[00:27:09]** I sent this out, and it's like one
+**[00:27:12]** of those not very glamorous things that are very visible,
+**[00:27:16]** but CoreCLR becomes the default runtime.
+**[00:27:19]** So that means we, until now, on iOS and Android and macOS,
+**[00:27:25]** we were still running on the Mono runtime, right?
+**[00:27:28]** And a couple of people, whenever we sent this out on the socials,
+**[00:27:31]** were like, oh, I thought Mono was already gone.
+**[00:27:35]** So I like to think that is because of how great
+**[00:27:38]** of a job we did, so that you didn't even notice.
+**[00:27:40]** But now, we will actually move to CoreCLR with iOS,
+**[00:27:44]** with Android, with Mercatalyst, also for.NET MAUI, and,
+**[00:27:47]** of course, the other platforms that I just mentioned,
+**[00:27:49]** if you use those directly, so that we have one runtime,
+**[00:27:52]** one actual runtime for all these things together with ASP.NET,
+**[00:27:56]** with Azure services, with other.NET workloads, so that,
+**[00:28:00]** you know, we will automatically kind
+**[00:28:02]** of like get the performance upgrades that.NET gets.
+**[00:28:06]** You can start using the diagnostics tools that are
+**[00:28:09]** out there,.NET Trace,.NET Counters are right now.
+**[00:28:12]** If you have not been looking into profiling your apps,
+**[00:28:15]** this is a great time to start doing so,
+**[00:28:17]** and other tools are being considered as well.
+**[00:28:19]** So make sure, let us know, again, feedback early on,
+**[00:28:23]** what is important to you, what you're seeing, what is working,
+**[00:28:26]** what is not working, so that we can fix that,
+**[00:28:28]** polish that up before.NET 11 goes GA in November,
+**[00:28:32]** and you will have the best experience from day one.
+**[00:28:35]** So that's going to be great.
+**[00:28:37]** If, for whatever reason, something does happen,
+**[00:28:40]** you can very easily opt out with a one-liner, but we expect this
+**[00:28:44]** to be a very smooth transition, and you will get only benefits.
+**[00:28:48]** There is, at this point in time, but again,
+**[00:28:51]** it still previews a little bigger.
+**[00:28:53]** I think your app size will increase by only a little bit,
+**[00:28:57]** but you will get other things in return, so it's kind
+**[00:28:59]** of like a little balance there, and we will work, of course,
+**[00:29:02]** on this implementation, if you will,
+**[00:29:04]** to make it even more optimized for you.
+**[00:29:07]** So I already mentioned it a little bit,
+**[00:29:09]** the.NET run support, so no more.NETbuild/Trun-Fnet 10.0,
+**[00:29:14]** Android, iOS, whatever, whatever.
+**[00:29:16]** Just do.NET run.
+**[00:29:18]** Boom. That's it.
+**[00:29:19]** We have interactive prompts right here to kind
+**[00:29:23]** of select the target framework.
+**[00:29:24]** If you just do.NET run, there are options
+**[00:29:26]** to specify the target framework immediately, of course,
+**[00:29:30]** but if you just do.NET run and don't specify anything,
+**[00:29:32]** it will ask you, like, hey, do you want to run Android or iOS,
+**[00:29:35]** or what do you want to do?
+**[00:29:36]** And on which device, right, you can see, like, hey,
+**[00:29:38]** the little menu coming up, you can switch
+**[00:29:40]** between the emulators, all the iOS emulators, pick one,
+**[00:29:43]** and it will start it up for you.
+**[00:29:46]** And this is what you probably will see a lot more also
+**[00:29:49]** in my slides after this, and also in the.NET ecosystem,
+**[00:29:53]** also in the world as a whole,
+**[00:29:55]** that you will get more CLI tools,
+**[00:29:57]** because CLI tools are super easy to invoke by Copilot,
+**[00:30:01]** and they're also super easy to kind of, like,
+**[00:30:03]** parse the output from, again, by Copilot.
+**[00:30:06]** So this is very agent-friendly, and I know there's a lot
+**[00:30:09]** of terminal fans out there as well.
+**[00:30:11]** So you know, if that's something that you like,
+**[00:30:14]** then you can just use this as the human pilot,
+**[00:30:16]** but also it will be much more efficient to use
+**[00:30:19]** with the Copilot, right?
+**[00:30:21]** So in line with this, we also have.NET Watch support,
+**[00:30:25]** and there you can have a hot reload
+**[00:30:28]** in a terminal implementation here as well.
+**[00:30:31]** So if you remember.NET Watch from other.NET workloads,
+**[00:30:34]** you can now just do.NET Watch.
+**[00:30:35]** It will start up on your Android emulator, on your iOS simulator,
+**[00:30:39]** and whenever you start making changes in the code here
+**[00:30:42]** in the background, that will be picked up automatically
+**[00:30:45]** in your running application in the running debug session.
+**[00:30:49]** And you can see the results right away and start working
+**[00:30:54]** with those again, which is also really great whenever Copilot
+**[00:30:57]** wants to kind of, like, verify things that it's working
+**[00:30:59]** on without having to stop and rebuild your entire application.
+**[00:31:03]** So lots and lots of cool things here from the tooling side,
+**[00:31:06]** but what are we doing also inside of the box for.NET MAUI?
+**[00:31:10]** Well, we are putting more pins on the map
+**[00:31:13]** for.NET MAUI 11, right?
+**[00:31:14]** So we have this maps control that is implemented
+**[00:31:17]** in.NET MAUI, and as.NET MAUI does, we translate everything
+**[00:31:22]** to what it's supposed to look like, what's supposed to work
+**[00:31:24]** on iOS, Android, Windows, MacOS, whatever the platform is
+**[00:31:28]** that you're running on, right?
+**[00:31:29]** So here you can see the iOS device that is using Apple Maps,
+**[00:31:34]** and this also works on Android,
+**[00:31:36]** and we now added pin clustering, right?
+**[00:31:38]** We have a map control that you can just put in there, XAML map.
+**[00:31:42]** On Android, it will be Google Maps.
+**[00:31:44]** On iOS, it will be Apple Maps.
+**[00:31:47]** And it was like basic functionality was there,
+**[00:31:49]** but we were missing some things,
+**[00:31:50]** and now we were finally able to add it.
+**[00:31:52]** So we have pin clustering, right?
+**[00:31:54]** So you can cluster a bunch of pins.
+**[00:31:56]** You can see the number seven there in the middle.
+**[00:31:58]** Those are seven pins, the Copilot lab, and six more.
+**[00:32:01]** So if you would zoom in, those would kind of like expand,
+**[00:32:04]** and you will see all the seven pins right there.
+**[00:32:06]** If you zoom out, you can group them together.
+**[00:32:07]** You can steer the grouping behavior.
+**[00:32:10]** You can say, hey, this is part of a group with a name,
+**[00:32:12]** and it will only group those together.
+**[00:32:15]** Custom pins, also, you know, right now you had
+**[00:32:17]** to do custom handlers, which was, you know,
+**[00:32:20]** it's easy to do in.NET MAUI.
+**[00:32:22]** But if you don't have to, that's great.
+**[00:32:24]** So custom pins is now just you specify an image source,
+**[00:32:27]** and boom, you have a custom pin.
+**[00:32:29]** You can see it down there with little callout sign right there
+**[00:32:32]** with Microsoft Commons.
+**[00:32:34]** That is a custom pin that has been implemented
+**[00:32:37]** through this new API.
+**[00:32:38]** With your interactions, you can do a map long press.
+**[00:32:41]** You can click on map elements,
+**[00:32:42]** so you can see the little polylines there, the circle
+**[00:32:44]** and whatever that shape is.
+**[00:32:46]** You can click on those
+**[00:32:47]** and actually execute some code depending on that click.
+**[00:32:52]** And then, of course, the clusters,
+**[00:32:53]** you can also tap on those.
+**[00:32:54]** More controls, those same elements that I just mentioned,
+**[00:32:57]** you can make them visible, yes or no.
+**[00:32:58]** You can play with the Z index, so you can put them on top
+**[00:33:01]** of each other and change the order.
+**[00:33:03]** And for Android specifically,
+**[00:33:05]** you have the little styling JSONs
+**[00:33:06]** that you can now just customize that styling
+**[00:33:10]** from your Android map.
+**[00:33:13]** Then other ways that.NET MAUI is going to be more amazing.
+**[00:33:16]** The first previews are out right now.
+**[00:33:18]** So again, I would love to encourage you to test those out.
+**[00:33:21]** Let us know the feedback so that we can fix the bugs that are
+**[00:33:24]** in there right now so that your transition will be smooth.
+**[00:33:28]** But here is a couple of other things that are coming
+**[00:33:30]** that are in preview right now.
+**[00:33:32]** Less XAML ceremony.
+**[00:33:33]** I already talked about that in source generation by default,
+**[00:33:36]** implicit namespaces by default.
+**[00:33:37]** Better compiled bindings diagnostics, right?
+**[00:33:39]** Those are always a little bit harder to track as well.
+**[00:33:42]** Diagnostics are going to be better.
+**[00:33:43]** Xcode support, which means writing code in your XAML.
+**[00:33:47]** Some people have requested that for a long, long time.
+**[00:33:50]** So definitely go check that out as well.
+**[00:33:52]** Built-in long press gesture recognizer.
+**[00:33:55]** We now have badges on shell tabs.
+**[00:33:57]** So on your kind of like your tab pages,
+**[00:33:59]** you can have little badge values just like the push notifications
+**[00:34:02]** on the app icons on the home screen.
+**[00:34:04]** Same thing for the toolbar item
+**[00:34:06]** and more implementation of more cool things.
+**[00:34:09]** Android-themed icons whenever you have the home screen set
+**[00:34:12]** to kind of like a monochrome styling that can be done
+**[00:34:15]** with your.NET MAUI app right now.
+**[00:34:17]** More permissions, trimmable CSS so that it will have less.
+**[00:34:22]** Your app size will go
+**[00:34:23]** down whenever something can be trimmed off
+**[00:34:25]** and lots of cool other things.
+**[00:34:28]** Now, lastly, putting the AI in MAUI.
+**[00:34:31]** There is a lot going on in the world right now.
+**[00:34:34]** So also, of course, in the MAUI world that has to do with AI.
+**[00:34:38]** But, you know, MAUI has always been 50% AI, right?
+**[00:34:41]** The letters are right there.
+**[00:34:42]** So you know, we were ahead of the game, I would like to think.
+**[00:34:45]** And together with that, we came up with a new initiative here,
+**[00:34:50]** which is MAUI Labs because things are going faster
+**[00:34:54]** than ever.
+**[00:34:55]** Right? And to keep up with that, we needed a vehicle to kind
+**[00:34:58]** of like release things faster as well with experiments.
+**[00:35:02]** So not everything might stick.
+**[00:35:03]** Most of it might.
+**[00:35:04]** Some others might not.
+**[00:35:05]** But this is a place where we are trying to come
+**[00:35:09]** up with some cool new things.
+**[00:35:10]** And of course, you're welcome to join in and try it out,
+**[00:35:12]** but also give us ideas or collaborate on them.
+**[00:35:15]** One of the things is DevFlow.
+**[00:35:17]** I'll get to that in a little bit, which is your companion
+**[00:35:20]** to make Copilot see your application and verify itself,
+**[00:35:25]** which will make it so much more effective while working with it.
+**[00:35:29]** The Essentials.ai, where you can, you know, again,
+**[00:35:32]** following the paradigm of.NET MAUI,
+**[00:35:34]** you can use the on-device AI services.
+**[00:35:37]** Apple Intelligence, Gemini on Android, SilicaPi, I don't know
+**[00:35:42]** if I pronounced it correctly, on Windows.
+**[00:35:45]** So you can use those there.
+**[00:35:46]** And of course, local models and also remote models.
+**[00:35:49]** So this is a great library that you will want
+**[00:35:52]** to have whenever you want to incorporate AI
+**[00:35:54]** in your application for your end user.
+**[00:35:57]** Then AI extensions, we're also looking into ways
+**[00:36:00]** to innovate the way that people navigate through the app.
+**[00:36:05]** If you look at mobile apps right now or just apps in general,
+**[00:36:09]** those apps are like very reactive, right?
+**[00:36:12]** You have to click on to do an actual action while it makes
+**[00:36:15]** much more sense to do it by intent.
+**[00:36:17]** And now with the LLMs, it is so much easier to kind
+**[00:36:20]** of like detect that intent and say, hey,
+**[00:36:23]** I want to do this thing.
+**[00:36:24]** And the app will figure out how to get there.
+**[00:36:27]** And you don't have to click a button
+**[00:36:28]** and then find the other menu and then click that button.
+**[00:36:30]** The app will know what you want to do.
+**[00:36:32]** It knows the application and it will take you there.
+**[00:36:35]** That is the AI extensions.
+**[00:36:36]** I'll have a little bit of a demo at the end right there as well.
+**[00:36:39]** And we go to more places.
+**[00:36:41]** Now, with the power of Copilot, we have the possibility to,
+**[00:36:45]** you know, do things that we didn't really have the time
+**[00:36:48]** or the priority before.
+**[00:36:50]** So we have added backends for Linux.
+**[00:36:53]** Yes, I can hear the world rejoice.
+**[00:36:55]** A backend for Linux that you can take your.NET MAUI apps also
+**[00:36:59]** to Linux natively running on wherever GDK4 runs.
+**[00:37:03]** MacOS, so not the Mac Catalyst one, but actual AppKit,
+**[00:37:06]** MacOS and WPF and maybe more to come.
+**[00:37:10]** Right. So we're adding more backends.
+**[00:37:12]** Go check those out as well.
+**[00:37:14]** So if we go back and zoom in on the DevFlow here a little bit,
+**[00:37:18]** go to that link down there at the bottom, aka.ms/MAUIDevFlow
+**[00:37:22]** and go check it out, which has a couple of things, right?
+**[00:37:25]** It uses the new.NET MAUI CLI.
+**[00:37:28]** We've created a CLI tool.
+**[00:37:29]** Yes, I already mentioned it.
+**[00:37:30]** You will see that come a lot.
+**[00:37:32]** And that has a DevFlow section in there as well,
+**[00:37:35]** but it can do much, much more things.
+**[00:37:37]** It can check your environment.
+**[00:37:39]** It can see if your emulators are there.
+**[00:37:41]** The Android SDK is set up.
+**[00:37:43]** Xcode is installed the right way,
+**[00:37:45]** but it can also steer DevFlow.
+**[00:37:48]** And with that, it can connect to a little agent application
+**[00:37:52]** that is inside of your MAUI app.
+**[00:37:53]** Of course, only at debug time, right?
+**[00:37:55]** We're not going to release to production with that.
+**[00:37:58]** But while in debug, you can inject a little HTTP server
+**[00:38:02]** inside of your application that can connect
+**[00:38:05]** to the DevFlow agent, to the CLI,
+**[00:38:07]** and you can inspect everything from inside of your app.
+**[00:38:10]** You can get the visual tree so that your agent
+**[00:38:14]** or you has all the information about the visual tree
+**[00:38:17]** that is currently on the screen, take a screenshot,
+**[00:38:20]** get sensor values, interact with the buttons, the elements
+**[00:38:25]** that are on there so that you can programmatically go
+**[00:38:27]** through your application, which is, again,
+**[00:38:30]** a very useful tool for you.
+**[00:38:32]** But also a very useful tool for Copilot whenever you tell it
+**[00:38:35]** to build an app, verify all the edge cases,
+**[00:38:38]** come up with test scenarios, and say, hey,
+**[00:38:40]** run through this thing autonomously, and it will.
+**[00:38:43]** It now knows how to do that.
+**[00:38:45]** Of course, that is also wrapped in an MCP server,
+**[00:38:48]** and that in turn will then also power the.NET MAUI
+**[00:38:52]** VS Code extension that can use all of these tools
+**[00:38:55]** and combine it with other tools that were already built
+**[00:38:57]** in to make this agentic engineering experience
+**[00:39:01]** for your.NET MAUI apps I would say the best in class, right?
+**[00:39:05]** So go check that out definitely,
+**[00:39:07]** because this is going to be a game changer.
+**[00:39:11]** Here you have a little demo, right?
+**[00:39:12]** On the left, we can see a Copilot CLI session going
+**[00:39:16]** on that said like, hey,
+**[00:39:17]** I want to build this to-do app right here,
+**[00:39:20]** and it's a little bit sped up,
+**[00:39:22]** but it goes through the to-do app right here.
+**[00:39:25]** And I think actually the app that you're looking
+**[00:39:26]** at right here is a Blazor Hybrid app.
+**[00:39:29]** It works for that as well.
+**[00:39:30]** It knows how to interact.
+**[00:39:31]** Like you can see the mouse moving,
+**[00:39:33]** but it's not actually interacting
+**[00:39:34]** with the iOS simulator that's going on right here.
+**[00:39:37]** This is all done by the Copilot CLI.
+**[00:39:40]** You can see a couple of tests have passed, right?
+**[00:39:42]** It goes through it.
+**[00:39:43]** It interacts with the dialogues itself.
+**[00:39:45]** It figures out where to click, what to do, what to test,
+**[00:39:48]** what the results should be, right?
+**[00:39:51]** All autonomously.
+**[00:39:52]** It's been really great.
+**[00:39:53]** Then we have Essentials.ai.
+**[00:39:55]** So you probably already know Microsoft.Extensions.ai.
+**[00:39:59]** Now we also have Microsoft.MAUI.Essentials.ai,
+**[00:40:04]** lots of AI there, which kind of like builds
+**[00:40:06]** on top Microsoft.Extensions.ai.
+**[00:40:08]** So that is already like your unified library,
+**[00:40:11]** your unified API to work with whatever AI model,
+**[00:40:16]** wherever it is, local, remote.
+**[00:40:18]** You don't have to change any code,
+**[00:40:19]** just plug it in and it will work.
+**[00:40:21]** Now with Essentials.ai, we're also building on top of that
+**[00:40:25]** and adding Apple Intelligence, Gemini Nano,
+**[00:40:28]** and Windows Copilot run the time through Phi Silica, right?
+**[00:40:33]** So you have all those models,
+**[00:40:34]** all those local machine AI providers that are coming
+**[00:40:39]** from all these vendors right here.
+**[00:40:42]** You can now just as easily use those through the Essentials.ai.
+**[00:40:46]** And of course, any other things that you want to do
+**[00:40:48]** on your mobile devices or all the platforms that you can reach
+**[00:40:52]** through.NET MAUI as well.
+**[00:40:54]** So we have built that.
+**[00:40:56]** Go check that one out as well and deliver that value
+**[00:40:59]** to your end users and make your applications AI-enabled
+**[00:41:05]** with the least amount of effort, right?
+**[00:41:07]** So the way that works is kind of like, hey,
+**[00:41:09]** you have this iChat client, iEmbedding generator,
+**[00:41:12]** just easily switch between the cloud.
+**[00:41:15]** So Azure OpenAI, Foundry, all those kinds of things,
+**[00:41:19]** or one of the other providers out there,
+**[00:41:22]** one of the AI models out there.
+**[00:41:24]** Here you have like the local or on-device, of course,
+**[00:41:27]** like ONNX is a great one there that you can use
+**[00:41:29]** on your devices as well.
+**[00:41:31]** And we now have also the platform native ones,
+**[00:41:34]** Apple Intelligence, Gemini Nano, and Windows Copilot runtime
+**[00:41:38]** with like zero config, OS managed, very tight integration
+**[00:41:42]** with the rest of the ecosystem.
+**[00:41:43]** So you can just use that in your applications.
+**[00:41:46]** Now, this is going to be like --
+**[00:41:48]** this is a big slide with lots of things on it.
+**[00:41:50]** Just for reference to kind of like see
+**[00:41:52]** where the different platforms are
+**[00:41:54]** with the support of different things.
+**[00:41:57]** So you can see like Apple pretty much has everything, right?
+**[00:42:01]** Single-turn chat, multi-turn conversation, system prompts,
+**[00:42:04]** all these kinds of things.
+**[00:42:05]** Android missing one or two, Windows missing one or two,
+**[00:42:07]** and then the features down there at the bottom.
+**[00:42:10]** I'm sure that, you know, everything,
+**[00:42:11]** all the vendors will probably implement all
+**[00:42:14]** of this at some point.
+**[00:42:15]** But right now, this is, again,
+**[00:42:16]** cross-platform development for you.
+**[00:42:18]** There are some things that might be missing on one platform
+**[00:42:21]** that are working on the other one.
+**[00:42:22]** So take that into account whenever you're building your
+**[00:42:25]** cross-platform applications.
+**[00:42:27]** Now, here's one amazing app, the Barista Notes app
+**[00:42:30]** by David Ortnow, which tracks his special shots
+**[00:42:34]** and gives AI-powered advice,
+**[00:42:36]** which is using Microsoft Extensions AI
+**[00:42:39]** and the Essential Thought AI
+**[00:42:41]** that you've just seen, basically.
+**[00:42:43]** So here you can see, again, also that intent kind
+**[00:42:45]** of like navigation is listening.
+**[00:42:47]** It will transcribe what it's hearing, how many cups
+**[00:42:50]** of coffee do I need to make for the people in this room,
+**[00:42:52]** and the application automatically knows to bring
+**[00:42:55]** up the camera because, you know,
+**[00:42:56]** we need to determine somehow how many people there are
+**[00:42:59]** in the room.
+**[00:43:00]** Takes a picture, and then from that sends that back
+**[00:43:02]** to the device, it will count the number of people on there,
+**[00:43:05]** and it will give back the result with, hey, this is how many cups
+**[00:43:09]** of coffee you need to make for all the people in the room here,
+**[00:43:12]** which is apparently 18 here for this picture.
+**[00:43:15]** All right, thank you so much.
+**[00:43:16]** And you can chat, you can go back and forth, in this case
+**[00:43:19]** with voice, that really intent incorporated thing right here
+**[00:43:24]** so that it knows how to go to a certain thing, which is enabled
+**[00:43:29]** with that AI extensions that I mentioned earlier, right?
+**[00:43:33]** So you can just put that little attribute on there and say, hey,
+**[00:43:36]** this is an AI tool called LogShot.
+**[00:43:39]** In this case, you know, it was a little bit
+**[00:43:40]** of a different use case than we've just seen.
+**[00:43:43]** And it knows for this C Sharp method that now it can go there
+**[00:43:47]** and it can reach it with AI and actually log a shot.
+**[00:43:50]** So if you would say like, hey, I want to log this coffee shot,
+**[00:43:54]** then it now knows to go through this method in C Sharp
+**[00:43:57]** and actually invoke that code and do it.
+**[00:43:59]** And AI can determine that all
+**[00:44:01]** by yourself inside of your application.
+**[00:44:03]** Now, the one thing before I will leave you to the rest
+**[00:44:06]** of Build is MAUI Sherpa, which is an amazing tool
+**[00:44:09]** that brings a lot of this together.
+**[00:44:11]** So you can see that same Barista Notes application.
+**[00:44:14]** You can see the visual tree being inspected right here,
+**[00:44:17]** just like you would expect
+**[00:44:18]** from like the maybe browser developer tools.
+**[00:44:21]** On the right, you can see a live property inspector, right?
+**[00:44:24]** So you can play around with the properties
+**[00:44:26]** that will then live update in your.NET MAUI application.
+**[00:44:29]** Inspect the network traffic right here, profiling, logs,
+**[00:44:34]** all the things that you would want to see
+**[00:44:36]** about your.NET MAUI application here
+**[00:44:38]** in one place with MAUI Sherpa.
+**[00:44:40]** And it does not stop there.
+**[00:44:41]** It doesn't only work for MAUI.
+**[00:44:43]** It probably does for this stuff.
+**[00:44:44]** Maybe it also does it for the other platforms.
+**[00:44:46]** I'm not entirely sure while talking about this,
+**[00:44:49]** but I know for sure what it does is also your certificate manages
+**[00:44:53]** for iOS and all those kinds of things for releasing,
+**[00:44:56]** inspecting your whole kind of like device setup
+**[00:44:59]** and the developer setup on your device
+**[00:45:02]** for all kinds of ecosystem, right?
+**[00:45:04]** So go check out this tool
+**[00:45:06]** for the best.NET MAUI development experience,
+**[00:45:10]** basically.
+**[00:45:11]** Go check out the link, go download the tool.
+**[00:45:13]** And actually, this is also then built with.NET MAUI itself
+**[00:45:16]** with the experimental backends
+**[00:45:18]** because this uses a beautiful macOS app kit UI.
+**[00:45:22]** It runs on Linux through the Linux platforms
+**[00:45:24]** that we added in the MAUI labs.
+**[00:45:26]** So it's kind of like full circle.
+**[00:45:28]** This has everything you need with MAUI, by MAUI,
+**[00:45:31]** through MAUI, MAUI everywhere.
+**[00:45:33]** So as a little reminder,
+**[00:45:35]** the release schedule is a little bit different
+**[00:45:37]** than what you might be used
+**[00:45:38]** to from other.NET projects or.NET in general.
+**[00:45:41]** .NET MAUI, basically what you remember is every.NET MAUI
+**[00:45:45]** version, every major.NET MAUI version has support
+**[00:45:47]** for 18 months period.
+**[00:45:49]** And then whenever a new major version comes out,
+**[00:45:52]** which is 12 months apart, then you have six months
+**[00:45:55]** until the last major version goes out of support, right?
+**[00:45:58]** Just because we have third-party tools, third-party SDKs
+**[00:46:01]** that we're building on top of.
+**[00:46:02]** So we have a little bit
+**[00:46:03]** of a different release schedule going on right here.
+**[00:46:07]** But of course, in November 2026,.NET 11 will come out with all
+**[00:46:11]** of the goodies that we've seen in this session right here.
+**[00:46:16]** So with that, build with agents, ship AI on-device,
+**[00:46:20]** native apps everywhere with.NET MAUI.
+**[00:46:23]** Thank you so much for joining, and enjoy the rest of Build.

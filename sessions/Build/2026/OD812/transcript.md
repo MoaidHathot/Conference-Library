@@ -1,0 +1,1187 @@
+**[00:00:03]** YITZHAK KESSELMAN: Hello, and thank you for joining us today.
+**[00:00:05]** My name is Yitzhak Kesselman, and I will talk with you today
+**[00:00:08]** about how you bring the data, the semantics,
+**[00:00:10]** the ontology behind the data to bring you to the power
+**[00:00:13]** to power your applications in there of AI.
+**[00:00:15]** And before we start, let's see a quick video
+**[00:00:17]** that demonstrates how the world today is changing
+**[00:00:20]** with data and AI.
+**[00:00:21]** And let's see it in action.
+**[00:00:23]** SPEAKER 1: Today's world moves faster
+**[00:00:25]** than most organizations can react.
+**[00:00:28]** Problems and opportunities appear in real time.
+**[00:00:31]** Signals pour in from every direction,
+**[00:00:34]** changing second by second.
+**[00:00:35]** The volume easily becomes overwhelming.
+**[00:00:38]** To stay ahead, your business needs to see itself not
+**[00:00:41]** as fragmented data, but as a unified living system,
+**[00:00:45]** one system that shows what's connected, what's changing,
+**[00:00:50]** and what every action will affect,
+**[00:00:52]** a system that lets your teams and AI think in the language
+**[00:00:55]** of your business, from the smallest detail
+**[00:00:58]** to the big picture, instantly, intuitively, and connected.
+**[00:01:04]** Together people and AI agents operate as one team,
+**[00:01:08]** not only spotting issues and opportunities,
+**[00:01:10]** but also understanding the full context and what to do.
+**[00:01:14]** AI agents continuously monitor and act when it makes sense.
+**[00:01:18]** They also recommend options and coordinate
+**[00:01:20]** in real time with their teammates.
+**[00:01:23]** Decisions become actions.
+**[00:01:25]** Actions ripple across the organization,
+**[00:01:27]** changing outcomes in the moment.
+**[00:01:30]** This is the modern business, people and AI operating
+**[00:01:33]** as one system in real time, turning unified data
+**[00:01:38]** into unified intelligence.
+**[00:01:39]** This is Microsoft Fabric.
+**[00:01:44]** YITZHAK KESSELMAN: As you've seen in video,
+**[00:01:45]** there's a difference between lagging and leading.
+**[00:01:48]** That's the present reality today of our businesses.
+**[00:01:50]** And then we see it across the board.
+**[00:01:52]** In this reality, our customers really want to move
+**[00:01:54]** from reactive and manual instead of looking of --
+**[00:01:57]** in reports to their works that are stale, hour or days old,
+**[00:02:01]** really to the proactive and autonomous.
+**[00:02:02]** We do software and agents that help them proactively
+**[00:02:06]** and autonomously find insights behind the data and to be able
+**[00:02:09]** to help them to operate their business.
+**[00:02:12]** Going back to the video of stadium operations,
+**[00:02:15]** the goal here is really to collect all those signals
+**[00:02:18]** across the different entities and ability
+**[00:02:20]** to collect the signals with the actions
+**[00:02:23]** and the instance behind it.
+**[00:02:24]** And speaking about running business operations,
+**[00:02:27]** we are speaking here about thousands of signals that need
+**[00:02:30]** to be connected across the business,
+**[00:02:31]** understand what it means to the old
+**[00:02:33]** and find really the signals that really matter.
+**[00:02:35]** And the goal here really is to drive the changes
+**[00:02:38]** of the outcome from a business.
+**[00:02:39]** We want to make sure that both humans
+**[00:02:41]** and agents can work together to drive the business operations.
+**[00:02:46]** If you are looking about operational foundation,
+**[00:02:48]** what it means from an architectural perspective,
+**[00:02:49]** the goal here is to have three layers of infrastructure.
+**[00:02:52]** The first is to have a unified data estates,
+**[00:02:55]** where it can bring all your data together across cloud
+**[00:02:58]** and on-prem batch and streaming into one place,
+**[00:03:00]** so you can really understand how your business operates
+**[00:03:03]** across the whole majority of the business.
+**[00:03:05]** And then you want to have engines that can reason
+**[00:03:07]** and understand all these data together.
+**[00:03:10]** And last but not least is the intelligence layer,
+**[00:03:12]** how you can find the reasoning
+**[00:03:13]** and the meaning behind all this data to power both human
+**[00:03:16]** and agents' decisions.
+**[00:03:19]** Our goal really, to connect all the data together,
+**[00:03:22]** streaming batch structured,
+**[00:03:25]** semi-structured answers together.
+**[00:03:27]** And that's the goal here is really to unify that.
+**[00:03:29]** And that's where Fabric came into place.
+**[00:03:31]** We're hearing from a lot of chief information officers,
+**[00:03:33]** "Hey, I want to be the chief information officer
+**[00:03:35]** and now the chief integration officer."
+**[00:03:38]** And that's what Fabric came to solve,
+**[00:03:40]** really unified data platform for the area of AI,
+**[00:03:43]** having the ability to bring all this data in and to be reflected
+**[00:03:46]** in OneLake, and on top of it,
+**[00:03:48]** different engines can work seamlessly on top
+**[00:03:50]** of all this data, from data factory, to analytics,
+**[00:03:53]** to power BI, and real-time intelligence.
+**[00:03:56]** And the algo here when speaking about operational foundation,
+**[00:03:59]** how we want to drive operations, we need to think
+**[00:04:01]** about those three layers, OneLake,
+**[00:04:04]** where it represents all the data across your organization,
+**[00:04:07]** real-time intelligence that allows you to reason
+**[00:04:09]** about the data, take actions and understand it, and IQ,
+**[00:04:12]** where you can create those semantic understanding behind
+**[00:04:15]** your analytic data and ontologies
+**[00:04:17]** to drive your business operations.
+**[00:04:19]** And those are the critical components to really make sure
+**[00:04:21]** that both humans and agents can work together.
+**[00:04:26]** And when we are speaking our goal of building agents,
+**[00:04:29]** our goal is make sure that we are building agents that are
+**[00:04:31]** as trusted and as productive as our best employees.
+**[00:04:35]** If we want to empower agents,
+**[00:04:36]** they need to make sure they have the same context
+**[00:04:38]** and the same understanding as we have.
+**[00:04:40]** So if we look at what access do I have,
+**[00:04:42]** what understanding do I have, I have access to my outlook,
+**[00:04:45]** to my teams, to my documents in the company,
+**[00:04:47]** but to also different operational systems
+**[00:04:49]** where I can see customers, production environments
+**[00:04:52]** and systems, and the same context is needed for agents
+**[00:04:55]** to be able to act, reason,
+**[00:04:57]** and take decisions the same way that I can do.
+**[00:05:00]** And this is the intelligence layer to power both humans'
+**[00:05:03]** and agents' ability
+**[00:05:04]** to understand all the organizational data together
+**[00:05:07]** with the document that created knowledge, but also the state
+**[00:05:10]** of the business what actions can I take.
+**[00:05:13]** And that's the Microsoft IQ layer from Microsoft,
+**[00:05:16]** the ability to unify all your enterprise data
+**[00:05:19]** and understanding into one layer.
+**[00:05:21]** Work IQ allows you to understand how your employees work,
+**[00:05:24]** Foundry IQ helps you
+**[00:05:26]** to understand your institutional knowledge of the documents
+**[00:05:28]** and procedures, and Fabric IQ allows you to help
+**[00:05:31]** to understand the state of the business but also
+**[00:05:33]** to help you to operate it.
+**[00:05:37]** So going back to the scenario for the stadium operations,
+**[00:05:41]** we need to make sure that we collect
+**[00:05:43]** and understand all this data across all the business.
+**[00:05:45]** And today we'll dive into Fabric IQ and go deeper into it
+**[00:05:49]** to understand how you can build it
+**[00:05:50]** and how you can query your business operations.
+**[00:05:52]** So let's dive into more Fabric IQ and what it means for you
+**[00:05:56]** if you're building software layers
+**[00:05:58]** that are important for you.
+**[00:06:00]** So it consists of three layers.
+**[00:06:01]** The first one is the unified, that I was telling you before,
+**[00:06:03]** the ability to connect all your structured and semi-structured,
+**[00:06:06]** unstructured data into one place.
+**[00:06:08]** On top of it, you have the business intelligence,
+**[00:06:10]** ability to use the semantic models
+**[00:06:12]** to present your analytic understanding of your business.
+**[00:06:15]** And the last layer is operational intelligence,
+**[00:06:16]** how we're taking all this together, all the data
+**[00:06:19]** across your organization, the analytical understanding,
+**[00:06:21]** but then you power it also with the reasoning and the extremes
+**[00:06:25]** of it and the events that happen in your business,
+**[00:06:27]** but also ability to act on this data.
+**[00:06:29]** And the last is ontologies in IQ
+**[00:06:31]** that really represents the ability to reason
+**[00:06:34]** and create this mutual brand of your business operations.
+**[00:06:37]** And that's what really powers both people and agents
+**[00:06:39]** to work together and really operate your business.
+**[00:06:42]** So let's dive in into the first layer.
+**[00:06:45]** And speaking about OneLake, OneLake is a critical part
+**[00:06:48]** of Microsoft Fabric, allows you to bring all this data
+**[00:06:51]** in across different sources from on-prem and cloud into one place
+**[00:06:55]** across Microsoft, and non-Microsoft ecosystems
+**[00:06:58]** across different sources.
+**[00:06:59]** And this data is brought in by means of a physical copy
+**[00:07:04]** or virtual as a shortcut where you can just point to the data.
+**[00:07:08]** But once you brought this data in, you can access all this data
+**[00:07:11]** across Microsoft systems so you can connect all this data
+**[00:07:14]** to Excel or other sources, but not only that,
+**[00:07:17]** you can access all this data through other source providers
+**[00:07:19]** that can access all this data in one.
+**[00:07:21]** And behind this data is the ability
+**[00:07:23]** that OneLake is using open format sources.
+**[00:07:25]** It's using Delta Parquet, where you can access all this data.
+**[00:07:28]** And the engines within Fabric are optimized
+**[00:07:30]** to really work seamlessly and very performant
+**[00:07:33]** on top of all this data.
+**[00:07:34]** An important part here is around governance and security.
+**[00:07:37]** OneLake provides a layer where you can have one security
+**[00:07:41]** across all the sources, so one you mirror or shortcut your data
+**[00:07:44]** into OneLake across your on-prem cloud or other data platforms.
+**[00:07:48]** Now all this data is being secured
+**[00:07:49]** and governed into one layer.
+**[00:07:51]** And that's an important embarkment speaking about data
+**[00:07:53]** in AI, making sure that you have the right governance
+**[00:07:55]** and security to work with all this data.
+**[00:07:59]** And we have an ability more than 170 different connectors
+**[00:08:02]** that allows you to bring all this data
+**[00:08:04]** across different sources, and that's a key part,
+**[00:08:06]** making sure that we enable this ability
+**[00:08:08]** to have a full unified view of your data across your business.
+**[00:08:14]** The second layer is around BI and semantic models.
+**[00:08:18]** So today there are more than 20 million semantic models
+**[00:08:20]** in your organizations where it represents how your analytical
+**[00:08:24]** understanding for business.
+**[00:08:25]** Those are used to rerun your day-to-day understanding
+**[00:08:28]** of the analytical side of the business.
+**[00:08:31]** And that allows it to really have a curated repository
+**[00:08:34]** for a business understanding, enable decisions
+**[00:08:37]** around analytical stuff.
+**[00:08:39]** And there are more than 35 million users
+**[00:08:40]** that use regularly monthly those semantic models
+**[00:08:43]** across their ecosystem.
+**[00:08:47]** And last, operational intelligence.
+**[00:08:50]** And with that, we'll dive into two aspects,
+**[00:08:51]** one is real-time intelligence
+**[00:08:53]** and the other one is ontologies in IQ.
+**[00:08:55]** And with that, I will hand over to Tessa
+**[00:08:58]** to tell you more about it.
+**[00:09:01]** TESSA KLOSTER: Thank you, Yitzhak.
+**[00:09:03]** So I'm going to talk a little bit about real-time intelligence
+**[00:09:05]** in Fabric, which really allows you to get access to all
+**[00:09:09]** of your streaming and event data, and we start
+**[00:09:11]** with all the different connectors that we support.
+**[00:09:12]** And you can see today that we support a wide range
+**[00:09:15]** of connector, both for Microsoft and cross-cloud,
+**[00:09:18]** and we're adding more and more every week.
+**[00:09:21]** But when we look at the full kind of capabilities
+**[00:09:24]** of real-time intelligence, we have these wide range of tools
+**[00:09:29]** in the toolbox that start from those connectors and that data
+**[00:09:32]** to make it very easy for you to access, but also allows you
+**[00:09:35]** to truly build an end-to-end solution.
+**[00:09:38]** We have capabilities directly in our streaming area.
+**[00:09:42]** We have a curated engine for analysis,
+**[00:09:45]** petabytes of data being able to query it in seconds.
+**[00:09:49]** We have the ability to model, and contextualize,
+**[00:09:51]** and understand the data, and then of course visualize it
+**[00:09:54]** in truly operational formats
+**[00:09:55]** so that you can see the data as it's coming in.
+**[00:09:58]** And last but not least, the ability to act
+**[00:10:00]** and understand the data within the rest of the system as well.
+**[00:10:05]** And each of these pillars have a detailed set of capabilities
+**[00:10:08]** to really ensure whatever you need
+**[00:10:10]** for your organization is possible.
+**[00:10:13]** And once again, we're improving each of these items every week
+**[00:10:17]** as we hear feedback from customers like you.
+**[00:10:21]** And the really important thing about real-time intelligence is
+**[00:10:24]** that it really isn't limited to just time.
+**[00:10:26]** Of course we do focus on the temporal aspect.
+**[00:10:28]** It's so important to understand the sequence of events
+**[00:10:32]** and how things change over time, but you also need to understand
+**[00:10:35]** where it happened, and also what is related,
+**[00:10:39]** and what could be impacted by these happenings
+**[00:10:42]** to really ensure that you have
+**[00:10:43]** that holistic understanding of operations.
+**[00:10:46]** So let's jump right in and see a demo.
+**[00:10:49]** Okay, we're going to start in the real-time hub,
+**[00:10:51]** which is that central location for all
+**[00:10:53]** of your streaming and event data.
+**[00:10:56]** And if you don't already have access to the data,
+**[00:10:58]** it's not already in the system, you can use that wide range
+**[00:11:00]** of connector, as a I mentioned,
+**[00:11:02]** to really easily bring in the data.
+**[00:11:04]** We're going to start building on that stadium scenario
+**[00:11:07]** by leveraging the new MQTT connector and being able
+**[00:11:11]** to bring in our Turnstile event.
+**[00:11:12]** So very easy to connect and actually bring
+**[00:11:15]** that data directly into my system.
+**[00:11:18]** You can see now that I'm in the event stream,
+**[00:11:19]** I can see the MQTT source and I can also bring
+**[00:11:22]** in other data sources, whether it's custom events
+**[00:11:25]** or other streaming sources, into that same stream.
+**[00:11:28]** And I can load them into a variety of destinations,
+**[00:11:31]** whether it's Eventhouse or Notebooks.
+**[00:11:32]** I'm actually going to open the notebook
+**[00:11:34]** and see a little bit more about what I'm doing here.
+**[00:11:36]** So I'm actually bringing in those events into the notebook
+**[00:11:39]** to do some additional processing to really help me understand
+**[00:11:42]** where I might have increase in a volume coming into the stadium,
+**[00:11:48]** something I might want to monitor and take an action on.
+**[00:11:52]** But more than doing the analysis, I'm actually going
+**[00:11:54]** to use our new business event capability.
+**[00:11:57]** So directly from this notebook I'm going
+**[00:11:59]** to actually emit a business event
+**[00:12:01]** when that congestion is detected.
+**[00:12:03]** And so going back into the real-time hub,
+**[00:12:06]** you can see the new business events capability.
+**[00:12:08]** I see that Turnstile congested event,
+**[00:12:10]** and right from this view I can actually set an alert
+**[00:12:13]** so that the team can be notified when that condition comes in.
+**[00:12:16]** So very powerful, not only providing access to all
+**[00:12:19]** of my organizational data,
+**[00:12:22]** but I can also have curated business events that can go
+**[00:12:24]** to the rest of the system.
+**[00:12:26]** So looking at this task flow, I can see all
+**[00:12:27]** of the different data kind of coming into my system.
+**[00:12:29]** I can see it landing directly in Eventhouse.
+**[00:12:32]** And I can go all the way into visualizing it directly
+**[00:12:34]** in our real-time dashboards.
+**[00:12:36]** So let's see that real-time dashboard
+**[00:12:38]** and I can see how the view
+**[00:12:39]** of our stadium operations is coming in,
+**[00:12:42]** and the team can monitor it in real time.
+**[00:12:46]** So on my real-time dashboard,
+**[00:12:47]** I can see all this different information.
+**[00:12:49]** I can see the data streaming in from that wide range of sources.
+**[00:12:53]** I can see things from other areas,
+**[00:12:55]** for example our security health.
+**[00:12:57]** And going specifically into this visual,
+**[00:13:00]** I'm seeing duplicate ticket scans.
+**[00:13:03]** And right from that visual, I can actually leverage Copilot
+**[00:13:06]** to help me understand it a bit more.
+**[00:13:07]** So I'm going to ask Copilot to help me visualize a breakdown
+**[00:13:09]** by ticket type for each of these entrances.
+**[00:13:12]** And so you can see here it actually broke down the view,
+**[00:13:15]** which is very helpful because I can see
+**[00:13:17]** in the VIP entrance I actually have Premium and VIP coming in,
+**[00:13:22]** and that has the highest duplicate ticket scans,
+**[00:13:25]** it's very concerning, and make this really easy
+**[00:13:27]** for my organization
+**[00:13:28]** to understand it from the dashboard.
+**[00:13:30]** I can refine the colorings directly of the chart
+**[00:13:34]** so now anybody who looks at this view can get that information.
+**[00:13:39]** We can also integrate the Rich 2 spatial capabilities directly
+**[00:13:42]** with all of this real-time and operational data.
+**[00:13:45]** And so if I think about the stadium, I think about all
+**[00:13:48]** of the traffic, the data, the people flowing in,
+**[00:13:51]** I can see the different hotspots and understand
+**[00:13:53]** which of the entry points might have congestion,
+**[00:13:58]** and also which things like concessions and the other pieces
+**[00:14:01]** around the stadium are going to be impacted
+**[00:14:03]** as that data comes in.
+**[00:14:05]** And so once again, from my operational dashboard,
+**[00:14:08]** I can directly set an alert.
+**[00:14:10]** And what this is going to do is
+**[00:14:12]** as the average wait time is increasing, I actually want
+**[00:14:16]** to be tracking it and not just setting an alert notification
+**[00:14:20]** for the team, I actually want to take an action.
+**[00:14:22]** And so here you can see we have a wide range of actions
+**[00:14:24]** and they're adding more and more for Activator every week.
+**[00:14:28]** In this case I'm actually going to run Notebook.
+**[00:14:30]** That's going to help with the load balancing
+**[00:14:33]** across our different areas.
+**[00:14:36]** And you could see I can provide specific parameters
+**[00:14:38]** that are coming in from the query as it's being run
+**[00:14:42]** and detected, and really helping to improve my operations
+**[00:14:46]** in a manual way still -- you'll see more on our autonomous way
+**[00:14:49]** in a bit, but really helping the team go directly
+**[00:14:53]** from event condition all the way into action as well.
+**[00:14:56]** That was a quick demo to really show you the
+**[00:14:58]** end-to-end capabilities.
+**[00:15:00]** And although we focused on the stadium operations today,
+**[00:15:02]** there's a wide range of customers
+**[00:15:04]** in all different industries and verticals, whether it's sports,
+**[00:15:09]** energy, airports, airlines, manufacturing, retail,
+**[00:15:14]** you name it, we have customers
+**[00:15:15]** that are improving their operations, their business,
+**[00:15:18]** leveraging real-time intelligence.
+**[00:15:22]** And one of the things we hear from these customers directly is
+**[00:15:24]** that there really is no AI without RTI.
+**[00:15:27]** Now, what does that mean?
+**[00:15:28]** It means that any AI solution, especially an agentic solution,
+**[00:15:33]** needs the highest volume granularity data it can get.
+**[00:15:36]** It needs it to be fresh, it needs it to be accurate,
+**[00:15:39]** and all of that is truly possible
+**[00:15:40]** with real-time intelligence.
+**[00:15:42]** And even though some
+**[00:15:43]** of the experiences I showed are very user-friendly,
+**[00:15:46]** it really is built on this planet scale infrastructure
+**[00:15:49]** for real-time data.
+**[00:15:50]** And I love showing this slide.
+**[00:15:51]** I joke every time we show it,
+**[00:15:52]** it gets a little bit more out of date.
+**[00:15:54]** But we're talking about over 600 trillion messages per month,
+**[00:15:59]** 14.3 exabytes of events and logs per month,
+**[00:16:03]** 7.8 billion real-time queries per day,
+**[00:16:05]** and five nines reliability across messaging.
+**[00:16:09]** So really amazing scale
+**[00:16:10]** for running these organizations and these businesses.
+**[00:16:14]** And one of the things that people can be concerned
+**[00:16:18]** about when we talk about data at that scale,
+**[00:16:20]** at that speed, is cost.
+**[00:16:22]** But really real-time intelligence is very competitive
+**[00:16:25]** when it comes to scale, performance, and cost.
+**[00:16:27]** You don't have to give any of them up.
+**[00:16:29]** So in a public benchmark that you can see from this slide,
+**[00:16:32]** comparing to Confluent and Snowflake,
+**[00:16:34]** you can see actually real-time intelligence was 12 times faster
+**[00:16:37]** and 37% more cost-effective for the different scenarios.
+**[00:16:40]** So definitely go take a look at the benchmark to learn more.
+**[00:16:43]** So as I mentioned, Fabric
+**[00:16:45]** and real-time intelligence are updating every single week,
+**[00:16:48]** so I'm just going to show you some quick updates
+**[00:16:51]** that we've done, especially leading up to Build.
+**[00:16:54]** So we have the GA of our SQL operator directing an event
+**[00:16:57]** stream allowing you to express custom business logic using SQL,
+**[00:17:00]** very, very powerful; support for Spark Structured Streaming
+**[00:17:04]** with Eventstream, so that ability
+**[00:17:06]** to actually stream process using Python and a rich connection
+**[00:17:10]** between Eventstream and the Spark Notebooks.
+**[00:17:13]** We have new capabilities
+**[00:17:15]** for building the event-driven applications with DeltaFlow,
+**[00:17:17]** making it very, very easy
+**[00:17:19]** to transform those Devisium fees directly
+**[00:17:21]** into analytics-ready events without you having
+**[00:17:24]** to customize it directly in the Eventstream.
+**[00:17:28]** We have the business events directly in the real-time hub.
+**[00:17:32]** As you saw on the demo,
+**[00:17:33]** the ability to publish these business events for anyone
+**[00:17:36]** within Fabric to subscribe to, whether it's
+**[00:17:38]** for analytics or action purposes.
+**[00:17:42]** We have the Copilot capabilities directly
+**[00:17:44]** in real-time intelligence, so not just being able
+**[00:17:47]** to visualize, really helping you understand
+**[00:17:49]** and explore your data directly in context.
+**[00:17:54]** We have a whole set of MCP and skills
+**[00:17:56]** for real-time intelligence, making it very easy to bring
+**[00:18:00]** that real-time directly to your agents.
+**[00:18:03]** So if you haven't tried this out,
+**[00:18:04]** go try it out today as well.
+**[00:18:07]** And last but not least, we have our geospatial visualization
+**[00:18:10]** in the map item directly within Fabric, is generally available
+**[00:18:15]** and ready for all of your geospatial needs, both real time
+**[00:18:20]** and can be used alongside all of the other pieces across Fabric.
+**[00:18:24]** So that was a quick whirlwind tour of all
+**[00:18:26]** of the different capabilities of real-time intelligence.
+**[00:18:28]** And I'll hand it back to Yitzhak to talk about IQ.
+**[00:18:32]** YITZHAK KESSELMAN: Thank you, Tessa.
+**[00:18:33]** And let's dive into more into Fabric IQ
+**[00:18:35]** and what it means for us.
+**[00:18:37]** So we're discussing how Fabric helps you to unify your data,
+**[00:18:40]** and we want to take it to the next level,
+**[00:18:41]** how we can use Fabric to really unify your business operations.
+**[00:18:45]** And going back to the scenario discussed at the beginning
+**[00:18:48]** about stadium operations, and we want to look deeper into that
+**[00:18:51]** to understand how we can use Fabric really
+**[00:18:53]** to drive the business operations.
+**[00:18:54]** And when we need to understand how you would do so.
+**[00:18:57]** So looking at the scenario specifically,
+**[00:18:59]** we want to understand what are the entities involved.
+**[00:19:01]** If you look, we have the stadium, the gates,
+**[00:19:03]** the food stands, the attendees.
+**[00:19:05]** All those entities are rich entities.
+**[00:19:07]** Of course they have properties and measures,
+**[00:19:09]** but they are much richer than that.
+**[00:19:10]** They have geospatial information,
+**[00:19:12]** like the location of the gate.
+**[00:19:14]** And they have time series data,
+**[00:19:15]** how many people going through the gate.
+**[00:19:17]** But you can also start to apply actions, for example,
+**[00:19:19]** assigning a crew or schedule a repair.
+**[00:19:22]** And all these entities are interconnected
+**[00:19:24]** by a business meaning, not just through a data key relationship,
+**[00:19:27]** but a relationship
+**[00:19:28]** that represents a business meaning for the business.
+**[00:19:31]** And because of that, we can start applying rules
+**[00:19:33]** and policies to really, for example, drive crowd management
+**[00:19:37]** or food safety for our business.
+**[00:19:39]** And the ultimate goal here is really to drive the objective
+**[00:19:42]** for the business, for example, satisfaction or profitability.
+**[00:19:47]** And that's how the business thinks about their operations,
+**[00:19:50]** they're thinking concepts of entities, properties,
+**[00:19:53]** what you want to achieve,
+**[00:19:54]** and what actions we can do to really achieve it.
+**[00:19:59]** But the reality today that we are working
+**[00:20:01]** with tables and schemas.
+**[00:20:02]** If you have questions, we are creating analytical reports
+**[00:20:05]** to really understand the data behind
+**[00:20:07]** and the meaning behind of it.
+**[00:20:08]** If we have more questions, we'll create another report.
+**[00:20:11]** And those analytical systems are separate
+**[00:20:13]** from operational systems.
+**[00:20:15]** An action that's been taken
+**[00:20:16]** on the operational side is not immediately reflected
+**[00:20:18]** on the analytical side.
+**[00:20:20]** And they are working in tandem so if you want
+**[00:20:22]** to understand something in your business, take an action
+**[00:20:24]** and see the feedback, they are not connected
+**[00:20:26]** to each other and it takes time.
+**[00:20:28]** If you zoom out and look at the bigger organization,
+**[00:20:31]** we have multiple teams working on multiple different datasets,
+**[00:20:34]** trying different operational systems,
+**[00:20:36]** and that creates a complex fragmented scenario.
+**[00:20:39]** So going back to the examples of the stadium operations,
+**[00:20:41]** if you will ask a simple question, for example,
+**[00:20:43]** what an active gate means to different teams,
+**[00:20:46]** it will give you different answers.
+**[00:20:48]** All those answers are correct in the context of the team,
+**[00:20:51]** but they are not correct and they could be confusing
+**[00:20:53]** in the context of the broader organization.
+**[00:20:55]** And that's what we are seeing when companies try
+**[00:20:57]** to run their business across all their data, they get a scenario
+**[00:21:01]** which is very fragmented.
+**[00:21:02]** They are reactive and they're slow taught.
+**[00:21:04]** An algo here really is really to connect the data to the meaning
+**[00:21:07]** and drive actions on top of it.
+**[00:21:11]** So algo here is really to collect all these data coming
+**[00:21:13]** from applications, from IoT devices, from the telemetry,
+**[00:21:17]** user behavior, et cetera,
+**[00:21:18]** and really empower our business operations, enabling our humans
+**[00:21:22]** and agents work together in tandem.
+**[00:21:24]** For the bigger cycle of data of collecting of these data,
+**[00:21:28]** observing, analyzing, and deciding, and ultimately acting
+**[00:21:31]** on top of all this data, we want to make sure
+**[00:21:33]** that we are doing it that we empower both our humans
+**[00:21:36]** and agents to working together and that the cycle
+**[00:21:38]** that all the variables are familiar with.
+**[00:21:40]** But the goal here is really
+**[00:21:41]** to provide this understanding of the context.
+**[00:21:44]** And in this case we need to have the semantic understanding what
+**[00:21:47]** all those signals and actions can mean.
+**[00:21:49]** And in this case, we want to make sure
+**[00:21:51]** that this semantic understanding is the semantic understanding
+**[00:21:53]** to really that powers our business.
+**[00:21:56]** And the goal here is really to use the semantic understanding
+**[00:21:58]** for our business and create this ontology
+**[00:22:00]** that to present the virtual brand of the business.
+**[00:22:02]** This represents all our entities,
+**[00:22:04]** how they're interconnected to each other, what their policies,
+**[00:22:07]** what rules and actions we can apply, and use this really
+**[00:22:10]** to power our business.
+**[00:22:11]** And this ontology is super critical
+**[00:22:13]** to really collect all their data,
+**[00:22:15]** all the operational system, the ability to drive actions both
+**[00:22:18]** for humans and agents.
+**[00:22:22]** And let's see this video
+**[00:22:23]** that represents the end-to-end scenario.
+**[00:22:26]** SPEAKER 2: Data is the fuel that powers AI,
+**[00:22:28]** but data alone is not enough.
+**[00:22:30]** AI needs an understanding of what the data means,
+**[00:22:33]** how things relate, and which actions turn insight
+**[00:22:36]** into impact.
+**[00:22:38]** Introducing Microsoft Fabric IQ, the semantic foundation
+**[00:22:42]** that unites data, business meaning,
+**[00:22:44]** and action into a single unified view of your organization.
+**[00:22:48]** Model your business using visual no-code tools, so the people
+**[00:22:51]** who know your company can adapt it as fast as it evolves.
+**[00:22:55]** Create entities over all your data in OneLake,
+**[00:22:58]** not only your analytical data and Power BI semantic models,
+**[00:23:01]** but also your operational, geospatial, and real-time data.
+**[00:23:06]** Navigate your business the way it actually runs, not by tables
+**[00:23:09]** and schemas, but by organizational concepts.
+**[00:23:12]** And ultimately, elevate your teams and your AI
+**[00:23:15]** to ask questions, reason, and act in the language
+**[00:23:18]** of your business, powered
+**[00:23:19]** by this live unified view of your organization.
+**[00:23:22]** Trigger actions in real time using rules
+**[00:23:25]** and empower AI operations agents to run your business,
+**[00:23:28]** because now they understand its live context.
+**[00:23:32]** Connect Fabric IQ seamlessly with Foundry IQ,
+**[00:23:35]** uniting your live business context
+**[00:23:36]** with the knowledge captured
+**[00:23:38]** in your documents and communications.
+**[00:23:40]** This combination from Microsoft gives developer-built agents
+**[00:23:43]** in Foundry unmatched context,
+**[00:23:46]** so they can make decisions you trust
+**[00:23:48]** and continuously optimize your operations
+**[00:23:50]** for superior outcomes.
+**[00:23:52]** From unified data to unified intelligence,
+**[00:23:55]** this is IQ in Microsoft Fabric.
+**[00:24:00]** YITZHAK KESSELMAN: So you saw the capabilities of ontologies
+**[00:24:02]** within Fabric IQ that allows you really
+**[00:24:04]** to create this virtual brand for a business
+**[00:24:06]** to drive your operations connecting all the data
+**[00:24:09]** to the meaning and creating this virtual brand
+**[00:24:11]** that has the ability to drive actions.
+**[00:24:13]** And with that, I want to show more
+**[00:24:15]** in depth how the product works, and I will call Tessa
+**[00:24:18]** to show us more in depth.
+**[00:24:19]** To you, Tessa.
+**[00:24:21]** TESSA KLOSTER: Okay, thank you, Yitzhak.
+**[00:24:22]** Now let's jump in and see how the product works.
+**[00:24:25]** So we'll start with ontology.
+**[00:24:27]** This is that brain of your business, as Yitzhak mentioned.
+**[00:24:31]** And I'll show you a little bit about how you both build it
+**[00:24:33]** and use it in just a minute.
+**[00:24:36]** We also have actions and rules directly in the ontology item,
+**[00:24:40]** so taking that same power I showed earlier about Activator,
+**[00:24:43]** but actually bringing it across the entire entity
+**[00:24:46]** in the relationships, not just the individual data pieces.
+**[00:24:50]** And last but not least, we'll talk more
+**[00:24:52]** about the graph analytics directly in Fabric IQ.
+**[00:24:55]** This is native graph capabilities within Fabric,
+**[00:24:58]** built on top of all of your data that's in OneLake,
+**[00:25:01]** so you don't need to have additional ETL in order
+**[00:25:05]** to take advantage of things like this relationship analysis
+**[00:25:09]** and more that you can do with Graph.
+**[00:25:11]** So let's start with creating the ontologies.
+**[00:25:13]** Now, this is a big part, of course, of the process,
+**[00:25:17]** but we want to make it as easy as possible
+**[00:25:19]** and also not just a one-time thing.
+**[00:25:21]** So we're going to build off of the different capabilities
+**[00:25:24]** and knowledge and information that you already have
+**[00:25:27]** within your organization and within Fabric.
+**[00:25:29]** So I'm going to start as I do with anything
+**[00:25:31]** in Fabric, by creating an item.
+**[00:25:33]** You're going to start by creating a new ontology item
+**[00:25:35]** and choosing which workspace it's going to live in.
+**[00:25:38]** That's also going to help with permissions and control.
+**[00:25:41]** And so you can see here I can start by importing
+**[00:25:44]** or I can start directly with Copilot.
+**[00:25:47]** And so with Copilot I am going to speak --
+**[00:25:50]** type in natural language, and I want to start
+**[00:25:53]** by creating this ontology, and it's going to suggest
+**[00:25:57]** that I leverage the information that I have
+**[00:25:59]** in my semantic models.
+**[00:26:01]** So you can see here I'm going
+**[00:26:01]** to choose a couple different semantic models
+**[00:26:04]** that have the right information and it has some
+**[00:26:06]** of those entities and relationships
+**[00:26:08]** for my stadium and security data.
+**[00:26:11]** And then now I'm going to give it a bit more information
+**[00:26:13]** about what I'm trying to accomplish.
+**[00:26:15]** So you can see here in natural language I provide let's create
+**[00:26:18]** a game day stadium operations ontology.
+**[00:26:20]** I'm going to specify some
+**[00:26:22]** of the specific concepts I want to have modeled.
+**[00:26:26]** And all of this is going to allow me to even specify things
+**[00:26:29]** like industry standards or other things
+**[00:26:32]** from across the organization and the web that it might want
+**[00:26:36]** to pull in and bring in into my ontology.
+**[00:26:39]** So now Copilot is doing a different reasoning.
+**[00:26:42]** It's giving me the different information, and just like that,
+**[00:26:45]** it's found different entity types, the properties,
+**[00:26:48]** data bindings, the relationships,
+**[00:26:50]** and it's put all this together for me directly in my ontology.
+**[00:26:53]** So I'm going to prove them all and go from the suggestions
+**[00:26:56]** that we have from Copilot directly
+**[00:26:58]** into my actual ontology that's being created.
+**[00:27:01]** You can see that I have all the different entities,
+**[00:27:03]** you can see the data that's bound to each
+**[00:27:06]** of these properties, and the other information
+**[00:27:09]** that's available.
+**[00:27:10]** And really easily from here, I can keep building on top of it.
+**[00:27:12]** I can add additional entity types and relationships.
+**[00:27:16]** I can go directly into one of the entity types, in this case,
+**[00:27:21]** it's "events" or "entrance", I can see how it's related
+**[00:27:24]** to these other entities and I can even add more data.
+**[00:27:28]** So I go and I chose my event host data.
+**[00:27:32]** So I want to bring in some of that real-time
+**[00:27:34]** in streaming data that you saw before.
+**[00:27:37]** I'm going to bind the actual precise timestamp directly
+**[00:27:40]** to these time series properties.
+**[00:27:42]** You can see that it's suggesting properties to bring in
+**[00:27:44]** and I can also add ones explicitly,
+**[00:27:47]** and now that data is brought directly alongside the existing
+**[00:27:51]** entity and the existing data that came from my semantic model
+**[00:27:54]** in really just a few clicks.
+**[00:27:56]** So as I mentioned, we can also build off further and add
+**[00:27:59]** in things like the rules and the actions directly
+**[00:28:02]** from the entity type.
+**[00:28:04]** And again, this is very powerful because it's not just
+**[00:28:06]** about the single data source, it's really about everything
+**[00:28:08]** that makes up the entity.
+**[00:28:10]** I can even connect things like my reports,
+**[00:28:12]** so I really have a unified review of all
+**[00:28:15]** of these important concepts and components
+**[00:28:19]** of my different business entities to make it very easy
+**[00:28:22]** for my organization to leverage it and use it more.
+**[00:28:25]** So speaking of using it more, let's actually see what it looks
+**[00:28:28]** like to leverage the ontology.
+**[00:28:30]** So I'm back in the ontology view.
+**[00:28:31]** This is where I was adding the entity types,
+**[00:28:34]** the relationships, the different data.
+**[00:28:36]** But I could actually go into the entity type overview itself
+**[00:28:39]** and get more information about what's going
+**[00:28:41]** on with this particular business entity right now.
+**[00:28:44]** So I'm still on the entrance entity
+**[00:28:46]** and I can see here the actual overview.
+**[00:28:49]** I can see things like the data as it's streaming
+**[00:28:52]** in about the queue length or the wait time in minutes.
+**[00:28:55]** Of course, they have the relationship graphs
+**[00:28:57]** that we'll talk to in a little bit more --
+**[00:28:59]** a little bit in a minute, but you can see actually the context
+**[00:29:03]** of the data that helps me understand what's going
+**[00:29:05]** on with the entrance.
+**[00:29:06]** You can see at the top there, I have eight different instances
+**[00:29:09]** of these entrances as well,
+**[00:29:11]** and I can see how the different instances kind
+**[00:29:13]** of the data is distributed over these different areas.
+**[00:29:18]** And I can select a particular instance and that's going
+**[00:29:21]** to give me a double click right into that view.
+**[00:29:23]** So in this case, I chose the north entrance.
+**[00:29:27]** You can see the different properties, like where it is,
+**[00:29:29]** and again, you could see all the different data views
+**[00:29:32]** that are narrowed in specifically to this item,
+**[00:29:34]** so very helpful to see this overview of the entity.
+**[00:29:38]** But we'll take it even further
+**[00:29:39]** and show you how the graph capabilities
+**[00:29:42]** in IQ also really powers this kind
+**[00:29:46]** of relationship and causal analysis.
+**[00:29:48]** We're very excited to announce
+**[00:29:50]** that graph is actually generally available,
+**[00:29:52]** and you can see how it takes the power of what you have
+**[00:29:55]** in your OneLake data and your ontology.
+**[00:29:57]** It really helps you understand all
+**[00:29:58]** of this different information together.
+**[00:30:00]** So let's see it in action.
+**[00:30:02]** So building on the view we saw before,
+**[00:30:04]** that north gate entrance looked like it needed --
+**[00:30:07]** we needed to understand a little bit more what's going on.
+**[00:30:09]** And so I can go directly from my ontology view or I can go right
+**[00:30:12]** into the graph item itself.
+**[00:30:14]** And here I'm using our visual no-code query builder
+**[00:30:19]** to actually build out a rich GQL query without ever having
+**[00:30:24]** to understand the right code.
+**[00:30:26]** So you can see I chose "entrance"
+**[00:30:27]** and it helped me build out the other related nodes,
+**[00:30:30]** the course segment, the seating section.
+**[00:30:32]** And I could even filter down to a particular view,
+**[00:30:35]** and just like that, I have very fast graph results coming in.
+**[00:30:38]** I can see these different entrances.
+**[00:30:40]** I can see the different areas that it's related to.
+**[00:30:44]** And so for example, I can use seating Section 204
+**[00:30:47]** as an example to really understand a bit more
+**[00:30:50]** about the implications of something happening at one
+**[00:30:53]** of these entrances and what it could do
+**[00:30:55]** to something like Section 204.
+**[00:30:57]** So see here, I've actually specified now a GQL query.
+**[00:31:02]** I'm trying to understand the different related areas
+**[00:31:04]** around 204 and the different entrances that are near it.
+**[00:31:09]** And I switched over to the query results in a list view instead
+**[00:31:13]** of in that diagram view to get a bigger --
+**[00:31:15]** better understanding of it.
+**[00:31:16]** Now I'm going to take a more interesting
+**[00:31:18]** and more rich query that's going to help me actually go
+**[00:31:22]** from the different area into the different gates that are related
+**[00:31:27]** and actually understand which of the concession stands
+**[00:31:31]** are involved.
+**[00:31:32]** And so for example, if we have a surge in one of the areas
+**[00:31:34]** or from one of the different gates, we really want
+**[00:31:37]** to understand which of these concessions need to be
+**[00:31:40]** on standby and make sure that they have enough staff
+**[00:31:43]** and actually enough supplies.
+**[00:31:45]** So I'm going to take one further hop and actually go all the way
+**[00:31:48]** into the warehouse so I can understand
+**[00:31:50]** which warehouses are helping to power which concession stands
+**[00:31:54]** that are by the entrances.
+**[00:31:56]** And you see this multi-hop analysis
+**[00:31:58]** to really understand the relationships
+**[00:32:00]** across my entire system is so, so powerful,
+**[00:32:03]** and it's all possible with the graph analytics capability
+**[00:32:07]** directly built into the ontology.
+**[00:32:10]** And that's not it.
+**[00:32:11]** We also have planning in Fabric IQ.
+**[00:32:14]** We announced this one at FABCON.
+**[00:32:17]** And this is where you can see over that same trusted data,
+**[00:32:19]** you can actually plan out, and understand, and run what
+**[00:32:22]** if scenarios, making it really powerful to enable the business
+**[00:32:25]** and the finance teams.
+**[00:32:27]** Okay, that was a quick overview of some
+**[00:32:28]** of the different capabilities in Fabric IQ,
+**[00:32:31]** and I'll hand it back over to you, Yitzhak.
+**[00:32:33]** YITZHAK KESSELMAN: So I'm super excited here
+**[00:32:35]** to have Dr. Werner from Siemens Healthineers to tell us
+**[00:32:39]** about how to use the product, how it changed their developers.
+**[00:32:42]** So Dr. Werner, can you tell us a bit
+**[00:32:44]** about yourself and the company?
+**[00:32:46]** DR. WERNER ZIRKEL: Yes, so first of all,
+**[00:32:47]** thanks for having me here.
+**[00:32:49]** It's really a pleasure.
+**[00:32:51]** So yeah, let me talk about Siemens Healthineers first.
+**[00:32:54]** Siemens Healthineers is a company
+**[00:32:56]** which sells medical products like CTs, MRIs,
+**[00:33:00]** angiography systems, ultrasound systems, and so on.
+**[00:33:04]** These systems are sold to the customer
+**[00:33:06]** and we are getting the data from that.
+**[00:33:09]** My job is to analyze the data and develop cloud solutions
+**[00:33:14]** to really make sure that we are doing a good customer
+**[00:33:18]** services job.
+**[00:33:19]** YITZHAK KESSELMAN: Thank you,
+**[00:33:19]** that sounds like super mission-critical
+**[00:33:21]** and super important for your users
+**[00:33:23]** that are using your data and your analytics.
+**[00:33:27]** So that's a bit about kind of the evolution,
+**[00:33:29]** how what you were using before, what you move to use now,
+**[00:33:33]** and how it changed kind of your day-to-day, the day-to-day
+**[00:33:37]** of your developers and also the end customers of that.
+**[00:33:40]** DR. WERNER ZIRKEL: So let's say in short summary,
+**[00:33:45]** I would say we are coming from plain old batch file processing
+**[00:33:49]** to more proactive service to something
+**[00:33:52]** like real-time streaming.
+**[00:33:54]** But let's start in the beginning.
+**[00:33:55]** So in the last 20 to 25 years,
+**[00:33:58]** we have been transferring files from the system.
+**[00:34:01]** That's log files or any kind of log file that we use --
+**[00:34:04]** need for customer services for analyzing data.
+**[00:34:08]** The three main use cases are predictive service,
+**[00:34:11]** which means we are trying to forecast failure
+**[00:34:15]** which is upcoming, which is really hard
+**[00:34:17]** if you just get a file once per day.
+**[00:34:20]** We are doing proactive services.
+**[00:34:21]** So there is already something happened on the system,
+**[00:34:24]** which is not good, we know it, the customer did not know it
+**[00:34:28]** or at least he did not realize that so far.
+**[00:34:30]** So we are trying to at least be prepared if the customer calls.
+**[00:34:34]** And the third one is reactive service,
+**[00:34:38]** which is really mission-critical in our case because we are --
+**[00:34:42]** and I am focusing on angiography.
+**[00:34:44]** That means we have a patient lying on the table
+**[00:34:48]** and the doctor needs to -- it just tells us,
+**[00:34:51]** "The system is not working.
+**[00:34:52]** What should I do?
+**[00:34:52]** Should I now relocate the patient?
+**[00:34:54]** I am in the middle of a treatment.
+**[00:34:57]** Should I relocate the patient or what should I do?"
+**[00:34:59]** And then you need to have the data at once, immediately,
+**[00:35:04]** and it needs to be analyzed immediately.
+**[00:35:07]** And here is a technology necessary that helps us.
+**[00:35:13]** YITZHAK KESSELMAN: And tell us a bit
+**[00:35:14]** about like what you were using in the past and not --
+**[00:35:16]** we're using now and how they change kind of --
+**[00:35:18]** DR. WERNER ZIRKEL: Yeah.
+**[00:35:19]** YITZHAK KESSELMAN: -- experience for your developers.
+**[00:35:20]** DR. WERNER ZIRKEL: In the past, we have been using,
+**[00:35:22]** let's say, other products, other databases, and --
+**[00:35:25]** or data scientists were really stuck
+**[00:35:28]** in building intermediate tables
+**[00:35:31]** and doing operations all the way.
+**[00:35:34]** We have been introducing Microsoft technology
+**[00:35:37]** that is the native stack, like Event Grid, Event Hubs,
+**[00:35:41]** and also Azure Data Explorer,
+**[00:35:43]** that changed dramatically the way it has been working.
+**[00:35:45]** Our data scientists now have time to really go for patterns
+**[00:35:51]** that are telling us what is actually wrong with the system,
+**[00:35:57]** and at the end, which are helping our customers
+**[00:36:00]** and which are helping the patient to make sure
+**[00:36:02]** that a system is running smoothly.
+**[00:36:05]** YITZHAK KESSELMAN: So thank you, Dr. Werner.
+**[00:36:06]** So you moved from a kind of something
+**[00:36:08]** that was a bit more bad, something a bit more streaming
+**[00:36:10]** into the cloud using Azure Plus services, but you also move now
+**[00:36:14]** to Fabric real-time intelligence.
+**[00:36:15]** So tell us a bit more how it changed kind of --
+**[00:36:18]** [inaudible]
+**[00:36:18]** -- the experience for your developers
+**[00:36:20]** and what was the impact on your end customers.
+**[00:36:23]** DR. WERNER ZIRKEL: I think for developers,
+**[00:36:24]** it's interesting in two ways.
+**[00:36:27]** So Fabric is like a natural success of --
+**[00:36:30]** for which we have been --
+**[00:36:31]** the technology we have been using before, but it has two --
+**[00:36:36]** impact on two aspects.
+**[00:36:37]** The first one is development.
+**[00:36:39]** So development speed increases really much
+**[00:36:43]** because all the things that you need to --
+**[00:36:46]** nitty-gritty details that will be taken over and automated.
+**[00:36:50]** That's number one.
+**[00:36:51]** Second one is operations.
+**[00:36:53]** We don't have the time to operate like VMs,
+**[00:36:56]** cluster service, what have you, so that has been taken over.
+**[00:37:00]** It's all automated so we have really decreased
+**[00:37:03]** in operational costs at the end.
+**[00:37:06]** YITZHAK KESSELMAN: Now, so that's exciting to hear.
+**[00:37:08]** That's exactly the goal, to make sure that developers focus
+**[00:37:10]** on the specific IP, their knowledge,
+**[00:37:13]** and they are not focusing on the plumbing or kind
+**[00:37:15]** of maintaining the system.
+**[00:37:16]** So happy to hear that it worked for you and your customers.
+**[00:37:19]** So what was kind of impact on all up on your business,
+**[00:37:22]** if you can share on your customers
+**[00:37:23]** that are now using Siemens Healthineers?
+**[00:37:27]** DR. WERNER ZIRKEL: I think we are coming now into this mode
+**[00:37:30]** where streaming is really like a commodity.
+**[00:37:34]** So our systems need to be able to stream data in real time,
+**[00:37:38]** so and this is a big increase that we can go with Fabric,
+**[00:37:42]** because it helps really to make sure
+**[00:37:45]** that reactive service finds --
+**[00:37:46]** hits the point exactly where we have a problem in the system,
+**[00:37:50]** we can order spare parts, if required,
+**[00:37:53]** and prevent downtimes for the customer.
+**[00:37:57]** So I think this will increase also
+**[00:37:59]** from a customer side, the benefit.
+**[00:38:03]** YITZHAK KESSELMAN: Oh, thank you so much, Dr. Werner.
+**[00:38:04]** It was a pleasure having you.
+**[00:38:05]** Thank you for joining me today.
+**[00:38:07]** DR. WERNER ZIRKEL: You're welcome.
+**[00:38:08]** YITZHAK KESSELMAN: So that was super exciting
+**[00:38:10]** to hear Dr. Werner share
+**[00:38:11]** about how the product team helps their customers,
+**[00:38:13]** but more how their developers are becoming more productive
+**[00:38:16]** and really able to focus on therapy
+**[00:38:18]** and their specific skills, and not on the plumbing.
+**[00:38:21]** So with that, let's focus
+**[00:38:22]** on the next thing what we're going to do.
+**[00:38:24]** In this case, we're going
+**[00:38:25]** to discuss how really Fabric IQ can enable both people
+**[00:38:27]** and agents to work with all this data we created.
+**[00:38:30]** And today everyone talks about AI,
+**[00:38:32]** but the question how we can apply it
+**[00:38:34]** to really generate real value in this case.
+**[00:38:36]** And speaking about AI, there are two aspects here,
+**[00:38:38]** one is the machine learning and the other one is LLMs,
+**[00:38:41]** large language models.
+**[00:38:42]** And the goal here is really to use where AI excels,
+**[00:38:45]** really finding the needle in the haystack and ability to reason
+**[00:38:48]** about it to really understand how we can use those signals
+**[00:38:51]** to help drive our operations for our business.
+**[00:38:54]** And that's where Fabric IQ creates the difference.
+**[00:38:56]** Today, as I mentioned before, we are working on tables
+**[00:38:59]** and schemas on the raw data,
+**[00:39:01]** without the context of the business.
+**[00:39:02]** And the goal here is really to power the agents to be grounded
+**[00:39:05]** on the real business context, the real ability
+**[00:39:07]** of what the business represents, all the actions, all the rules,
+**[00:39:10]** all the policies, that we really represent the virtual brain
+**[00:39:13]** of the business.
+**[00:39:14]** And if you look kind of at the spectrum of agents from no-code
+**[00:39:17]** to pro-code where developers build their own custom agents,
+**[00:39:20]** as you are, you want to make sure that those agents
+**[00:39:23]** that you build are grounded on the ontology in Fabric IQ
+**[00:39:26]** and powered by real-time intelligence, and to dive deep
+**[00:39:29]** into kind of what Microsoft tells us to do.
+**[00:39:31]** So all the integration from Microsoft Foundry,
+**[00:39:33]** Microsoft Copilot Studio, and out-of-the-box agent
+**[00:39:36]** from Microsoft Fabric are all grounded and integrated
+**[00:39:39]** on the ontologies in Fabric IQ.
+**[00:39:41]** So with that, I would like to invite Tessa to show you more
+**[00:39:43]** in depth how we -- you can use AI with ontologies.
+**[00:39:48]** TESSA KLOSTER: Thank you.
+**[00:39:48]** Okay, yes, let's go right in to show a demo about agents,
+**[00:39:53]** specifically the Operations Agent capabilities,
+**[00:39:56]** which as I mentioned before is actually generally available.
+**[00:39:59]** So let's see how it works.
+**[00:40:01]** So going right in, we're actually going to start --
+**[00:40:04]** if you remember before from the demos,
+**[00:40:05]** we showed how you can start to automate based off
+**[00:40:09]** of the custom data as it's streaming in or maybe
+**[00:40:12]** as you omit those business events.
+**[00:40:14]** But what I'm going to do here is actually start
+**[00:40:16]** by creating an anomaly detector.
+**[00:40:18]** And what this is going to do is leverage the same data
+**[00:40:22]** that I have in Eventhouse, but it's going to bring in the power
+**[00:40:25]** of data science, it's going to analyze and understand the data,
+**[00:40:30]** the different patterns that are existing in my data,
+**[00:40:33]** and it's going to recommend the best model
+**[00:40:35]** to detect anomalies on my data.
+**[00:40:38]** And so I'm not a data scientist,
+**[00:40:39]** but you can see here it leverages user-friendly
+**[00:40:42]** terminology, things like "fast outlier scanner,"
+**[00:40:45]** "core pattern finder."
+**[00:40:47]** And because I can see my data right alongside this
+**[00:40:50]** information, I can better understand what this model is
+**[00:40:53]** going to do and if it matches the anomalies that I understand
+**[00:40:57]** within my business data.
+**[00:40:58]** So very powerful, in just a few clicks, I can actually create
+**[00:41:02]** and publish this anomaly detector, and what it's going
+**[00:41:05]** to do is as the data's streaming in, as new media comes in,
+**[00:41:07]** it's going to run that same analysis
+**[00:41:09]** and actually emit an anomaly detector event
+**[00:41:13]** when something meets those conditions.
+**[00:41:16]** And so very powerful.
+**[00:41:17]** Again, you saw it before when I did this manually,
+**[00:41:20]** now we're fully automating it by also leveraging AI
+**[00:41:22]** to actually detect the anomalies themselves instead of me having
+**[00:41:26]** to write custom code in order to understand them.
+**[00:41:29]** I can even -- when I subscribe to the anomaly detector,
+**[00:41:32]** I can filter to specific values, and just like that,
+**[00:41:35]** once the alert's created, it can run alongside my team,
+**[00:41:38]** and alert, and then notify the team.
+**[00:41:40]** But we're going to take it even further, actually,
+**[00:41:42]** with the Operations Agent.
+**[00:41:44]** And what this is actually going to do is it's going to be able
+**[00:41:46]** to monitor and understand all of this different data,
+**[00:41:49]** the anomaly detector events, my event host data, my ontology.
+**[00:41:53]** It's going to do all of this in real time and actually be able
+**[00:41:56]** to monitor, and understand, and then most importantly,
+**[00:42:00]** act alongside my business.
+**[00:42:02]** So I'm going to start
+**[00:42:03]** by onboarding the agent is I would any team member
+**[00:42:06]** and give it the goals.
+**[00:42:07]** In this case, it's going to help ensure that our stock levels
+**[00:42:10]** for the concession stands are adequate.
+**[00:42:14]** I can provide them more detailed instructions,
+**[00:42:15]** as I would for any agent.
+**[00:42:17]** But the real power comes in when I connect it directly
+**[00:42:19]** to that same ontology.
+**[00:42:21]** So all of the business context, the entities, the relationships,
+**[00:42:25]** the actions that are already
+**[00:42:26]** in the ontology are automatically available
+**[00:42:29]** to this agent.
+**[00:42:30]** I can add custom actions as well, and just like that,
+**[00:42:33]** I've provided all this information
+**[00:42:34]** on the left-hand side, the goals, the instructions,
+**[00:42:37]** the knowledge from the ontology, and the custom actions
+**[00:42:40]** that we want for this particular case.
+**[00:42:42]** And just like that, I can generate the playbook.
+**[00:42:45]** Now, when I select "Generate the Playbook," what you're going
+**[00:42:47]** to see on the right-hand side is essentially the agent telling
+**[00:42:50]** back to us what it understood about all of this information.
+**[00:42:54]** So you can see here it found the different entities
+**[00:42:56]** that are relevant for the goals that we provided,
+**[00:42:58]** it sees the properties that are interesting and the rules
+**[00:43:02]** that it's not just going to monitor for,
+**[00:43:03]** but actually take actions on when the conditions are met.
+**[00:43:07]** So now that the Operations Agent is up and running,
+**[00:43:09]** it's alongside the rest of our team, actually directly
+**[00:43:12]** in our team's channel, and you can see, right,
+**[00:43:14]** that it already found a particular condition
+**[00:43:17]** that it's alerting on.
+**[00:43:19]** So in this case, it can see a specific concession has
+**[00:43:22]** low stock.
+**[00:43:23]** It's recommending an action to reorder,
+**[00:43:25]** but I can also take the option to investigate further.
+**[00:43:27]** And so in this case, the agent is going to go
+**[00:43:29]** that deeper level, do some root cause analysis
+**[00:43:31]** to really understand what led to this condition to really ensure
+**[00:43:37]** that the action it's suggesting is the best one.
+**[00:43:40]** In this case, it's still the right action
+**[00:43:41]** to reorder the stock, it's going to help --
+**[00:43:43]** ask me to confirm the different parameters, and just like that,
+**[00:43:46]** we automatically not just identified
+**[00:43:50]** and understood a particular issue,
+**[00:43:52]** actually took action to resolve it.
+**[00:43:54]** And so whenever we have these agents running,
+**[00:43:56]** it's very important to understand what's going on.
+**[00:43:59]** So we have the out-of-box activity log capabilities
+**[00:44:03]** that are going to show not just what happened,
+**[00:44:05]** it's going to see the -- what was run, what was executed,
+**[00:44:08]** what it did about it, the alert or the action it ended
+**[00:44:11]** up taking, to really help me build confidence in the agent,
+**[00:44:14]** but also refine it further
+**[00:44:15]** so that it's working the best alongside my business.
+**[00:44:19]** So that really showed some of the out-of-box capabilities
+**[00:44:21]** that we have for Operations Agent.
+**[00:44:23]** Really quickly, we have other capabilities
+**[00:44:25]** across the entire system.
+**[00:44:26]** You can build a RAG solution directly with Eventhouse.
+**[00:44:30]** I think I already mentioned,
+**[00:44:32]** we have the different anomaly detector capabilities.
+**[00:44:34]** So this is in public preview right now, very easy for you
+**[00:44:36]** to go and connect to your existing Eventhouse data.
+**[00:44:39]** Data agent is generally available in Fabric IQ as well,
+**[00:44:44]** so you can use this to use -- to ask natural language questions,
+**[00:44:48]** and then, of course,
+**[00:44:49]** the Operations Agent generally available in Fabric IQ.
+**[00:44:52]** So all of these different capabilities out of box
+**[00:44:54]** to make it very easy for you to leverage your data in Fabric.
+**[00:44:59]** You can also use Foundry to directly connect
+**[00:45:03]** to that same ontology, the same information across all
+**[00:45:07]** of your Fabric data estate
+**[00:45:09]** to build those custom agents as well.
+**[00:45:12]** So with that, I'll hand it back to Yitzhak.
+**[00:45:15]** YITZHAK KESSELMAN: Thank you, Tessa.
+**[00:45:16]** And I'm super excited also to share
+**[00:45:18]** with you how you can take it further,
+**[00:45:19]** how you can use all those signals
+**[00:45:22]** from the real world together with the ontology
+**[00:45:24]** to present the brain of the business, but also move it
+**[00:45:27]** to the physical world.
+**[00:45:27]** And that's where physical comes into place.
+**[00:45:30]** And I'm excited to share about our strategic partnership
+**[00:45:32]** with NVIDIA, where we combined all those capabilities together
+**[00:45:35]** to really help to drive and power physical AI.
+**[00:45:38]** So if we look at the examples of airport operations,
+**[00:45:41]** in this scenario, there are multiple entities,
+**[00:45:43]** there are robotic arms, there are conveyor belts,
+**[00:45:45]** baggage, cameras, et cetera.
+**[00:45:47]** And the question how we can collect all those signals,
+**[00:45:50]** analyze them, understand and act to them, both with humans
+**[00:45:53]** and agents, but also in the physical world,
+**[00:45:56]** how we can use Fabric real-time intelligence
+**[00:45:57]** to collect all those signals that are coming
+**[00:46:00]** in real time using Fabric IQ, using the ontology studio
+**[00:46:03]** to present the contextualized the visual grain
+**[00:46:05]** of these operations, using NVIDIA Omniverse
+**[00:46:08]** to create 3D visualization of the real world,
+**[00:46:11]** but also using simulations to really mimic
+**[00:46:13]** and create the physical simulation of the world.
+**[00:46:17]** And that's where it's all coming together,
+**[00:46:19]** a unified special context
+**[00:46:21]** where you're bringing together all the data into one place,
+**[00:46:24]** ability to drive the operations not only on the digital world
+**[00:46:27]** but also on the physical world.
+**[00:46:30]** And the solution here is in preview,
+**[00:46:33]** where you can connect all this data, all those streams of data
+**[00:46:36]** and embed it in the real-time dashboard using OpenUSD scenes
+**[00:46:40]** to integrate it with NVIDIA Omniverse libraries.
+**[00:46:43]** And this creates a 3D visualization where you can see
+**[00:46:45]** in real time how those end system operates,
+**[00:46:48]** but also the signals.
+**[00:46:49]** And it's a bidirectional cross-highlight capabilities.
+**[00:46:52]** And all of this is sparked by a unified operational picture
+**[00:46:56]** when you can drive operations for all their companies.
+**[00:46:58]** And that's where physical AI comes into life.
+**[00:47:01]** And we can see it in a real-time demo.
+**[00:47:04]** So let's see it in action.
+**[00:47:05]** [ Music ]
+**[00:47:06]** SPEAKER 3: Airports manage thousands of moving assets
+**[00:47:08]** in real time, but operations are still spread
+**[00:47:11]** across fragmented systems.
+**[00:47:13]** This makes it hard to see what's happening now
+**[00:47:16]** or what risks are coming next.
+**[00:47:19]** With Vanderlande's OpenAir Platform,
+**[00:47:21]** live operational data flows
+**[00:47:23]** into Microsoft's Fabric real-time intelligence,
+**[00:47:26]** creating digital twins built
+**[00:47:27]** over an ontology connecting flights, gates,
+**[00:47:31]** passengers, bags, and equipment.
+**[00:47:34]** Physically accurate 3D visualizations built
+**[00:47:36]** on NVIDIA Omniverse libraries provide the spatial context
+**[00:47:40]** to act fast while the Operations Agent
+**[00:47:42]** in Fabric monitors surfaces risks and recommends actions.
+**[00:47:47]** The result is a connected operational environment
+**[00:47:49]** where humans and AI work side by side.
+**[00:47:53]** The Operations Agent in Fabric alerts the operator
+**[00:47:56]** that a delayed inbound flight has been reassigned
+**[00:47:59]** to a new parking position.
+**[00:48:01]** With a tight connection window,
+**[00:48:02]** passengers must clear security quickly or miss their flights.
+**[00:48:07]** The agent recommends to prep the position immediately.
+**[00:48:10]** Using the 3D view, the operator identifies suitability
+**[00:48:14]** of nearby available vehicles.
+**[00:48:16]** With one click, work orders are approved
+**[00:48:18]** and ground teams dispatched.
+**[00:48:20]** A failing conveyor motor starts to slow baggage throughput.
+**[00:48:26]** The Operations Agent in Fabric flags the risk
+**[00:48:28]** and highlights the conveyer in 3D.
+**[00:48:31]** After verifying the risk, the operator approves a reroute
+**[00:48:34]** and a maintenance work order, keeping transfer bags
+**[00:48:37]** and connections on schedule.
+**[00:48:41]** Meanwhile inside the terminal,
+**[00:48:43]** the 3D view shows a heatmap highlighting congestion
+**[00:48:46]** at security checkpoint A. The Operations Agent recommends
+**[00:48:49]** opening lanes and rerouting passengers.
+**[00:48:52]** The operator stays in control, first verifying conditions,
+**[00:48:55]** and then approving the agent recommended actions,
+**[00:48:58]** dispatching staff to escort tight connection passengers
+**[00:49:01]** through a faster route and on to their gates.
+**[00:49:04]** [ Music ]
+**[00:49:09]** With Vanderlande's OpenAir Platform powered
+**[00:49:12]** by Microsoft Fabric Real-Time Intelligence,
+**[00:49:15]** Microsoft Fabric IQ, and NVIDIA Omniverse libraries,
+**[00:49:19]** airports gain an integrated real-time view
+**[00:49:21]** and spatial context with AI-driven operations,
+**[00:49:24]** helping teams detect risks earlier,
+**[00:49:26]** proactively take action, reduce disruptions,
+**[00:49:29]** and improve passenger experience.
+**[00:49:31]** [ Music ]
+**[00:49:45]** YITZHAK KESSELMAN: And as you saw, and this is the future
+**[00:49:47]** of data, the future of AI,
+**[00:49:49]** how use developers can use all those data, all those signals,
+**[00:49:52]** and really create a representation
+**[00:49:54]** of the physical world.
+**[00:49:55]** The team is working very hard on new capabilities based
+**[00:49:58]** on your inputs from our customers,
+**[00:49:59]** developers, and et cetera.
+**[00:50:00]** And you can see here quickly the roadmap that are upcoming,
+**[00:50:03]** the new capabilities that are just announced today at Build.
+**[00:50:06]** We are super excited about those,
+**[00:50:08]** specifically the GF Operations Agents, as Tessa was saying,
+**[00:50:11]** and many more capabilities.
+**[00:50:13]** But the team is continuing innovating
+**[00:50:14]** and there are more features coming literally every week
+**[00:50:16]** and every month.
+**[00:50:17]** So please use your ability to provide the feedback
+**[00:50:21]** for our team so we can build a better product.
+**[00:50:23]** The same applies for "Ontology in Fabric IQ."
+**[00:50:26]** It's announced as preview at Ignite,
+**[00:50:28]** but we're adding more new capabilities
+**[00:50:30]** and there are new capabilities coming.
+**[00:50:32]** And again, all these demos
+**[00:50:33]** that Tessa has shown can be using both APIs but also an MCP
+**[00:50:37]** that you can use using skills also
+**[00:50:40]** that you can create those ontologies.
+**[00:50:42]** And that's where you present what's Fabric IQ all about,
+**[00:50:44]** ability to bring all this data together, structured,
+**[00:50:47]** unstructured, semi-structured,
+**[00:50:48]** the ability to have the analytical standing behind all
+**[00:50:51]** this data and the ability to drive operations,
+**[00:50:53]** ability to connect all those streaming data together
+**[00:50:56]** with the (inaudible) data into one place
+**[00:50:58]** and creating this context for unified AI.
+**[00:51:00]** And that's what powers both people and agents to work
+**[00:51:03]** in reason and help to drive the business.
+**[00:51:05]** So if you want to get started, there is a real time
+**[00:51:09]** in the day workshop that you can use.
+**[00:51:11]** There are skills that you can use and learn.
+**[00:51:13]** And again, please use those, scan the QR codes,
+**[00:51:17]** and really start playing this ontology playground
+**[00:51:19]** when you can create your ontologies
+**[00:51:21]** within Fabric IQ today.
+**[00:51:24]** There are a ton of materials there to get started.
+**[00:51:26]** There are hands-on documentations,
+**[00:51:28]** there are skills, there are learning capabilities,
+**[00:51:31]** and there are a lot of capabilities
+**[00:51:32]** that we are shipping literally every week, every month,
+**[00:51:34]** so please follow us and provide your feedback to learn more
+**[00:51:37]** about Fabric and real-time intelligence,
+**[00:51:39]** and Fabric IQ specifically.
+**[00:51:43]** If you want to get started, we also have feature partners
+**[00:51:45]** that can help you accelerate it.
+**[00:51:47]** So here is the link to find the partners
+**[00:51:49]** that can help you get onboarded quickly.
+**[00:51:53]** There are more sessions at Build that I highly recommend you
+**[00:51:55]** to see, the session from Amir Netz
+**[00:51:57]** about the unified Fabric overview,
+**[00:51:59]** and a deep dive session from Tessa
+**[00:52:00]** about real-time intelligence.
+**[00:52:03]** And thank you for joining us.

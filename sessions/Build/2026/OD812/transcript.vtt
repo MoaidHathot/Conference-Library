@@ -1,0 +1,4547 @@
+WEBVTT
+
+00:00:03.690 --> 00:00:05.460
+YITZHAK KESSELMAN: Hello, and
+thank you for joining us today.
+
+00:00:05.460 --> 00:00:08.040
+My name is Yitzhak Kesselman,
+and I will talk with you today
+
+00:00:08.040 --> 00:00:10.560
+about how you bring the
+data, the semantics,
+
+00:00:10.560 --> 00:00:13.620
+the ontology behind the data
+to bring you to the power
+
+00:00:13.620 --> 00:00:15.780
+to power your applications
+in there of AI.
+
+00:00:15.780 --> 00:00:17.940
+And before we start,
+let's see a quick video
+
+00:00:17.940 --> 00:00:20.220
+that demonstrates how the
+world today is changing
+
+00:00:20.220 --> 00:00:21.570
+with data and AI.
+
+00:00:21.570 --> 00:00:23.850
+And let's see it in action.
+
+00:00:23.850 --> 00:00:25.440
+SPEAKER 1: Today's
+world moves faster
+
+00:00:25.440 --> 00:00:28.470
+than most organizations
+can react.
+
+00:00:28.470 --> 00:00:31.980
+Problems and opportunities
+appear in real time.
+
+00:00:31.980 --> 00:00:34.140
+Signals pour in from
+every direction,
+
+00:00:34.140 --> 00:00:35.940
+changing second by second.
+
+00:00:35.940 --> 00:00:38.610
+The volume easily
+becomes overwhelming.
+
+00:00:38.610 --> 00:00:41.340
+To stay ahead, your business
+needs to see itself not
+
+00:00:41.340 --> 00:00:45.960
+as fragmented data, but as
+a unified living system,
+
+00:00:45.960 --> 00:00:50.070
+one system that shows what's
+connected, what's changing,
+
+00:00:50.070 --> 00:00:52.500
+and what every
+action will affect,
+
+00:00:52.500 --> 00:00:55.740
+a system that lets your teams
+and AI think in the language
+
+00:00:55.740 --> 00:00:58.980
+of your business, from
+the smallest detail
+
+00:00:58.980 --> 00:01:04.230
+to the big picture, instantly,
+intuitively, and connected.
+
+00:01:04.230 --> 00:01:08.160
+Together people and AI
+agents operate as one team,
+
+00:01:08.160 --> 00:01:10.950
+not only spotting issues
+and opportunities,
+
+00:01:10.950 --> 00:01:14.250
+but also understanding the
+full context and what to do.
+
+00:01:14.250 --> 00:01:18.390
+AI agents continuously monitor
+and act when it makes sense.
+
+00:01:18.390 --> 00:01:20.700
+They also recommend
+options and coordinate
+
+00:01:20.700 --> 00:01:23.070
+in real time with
+their teammates.
+
+00:01:23.070 --> 00:01:25.110
+Decisions become actions.
+
+00:01:25.110 --> 00:01:27.900
+Actions ripple across
+the organization,
+
+00:01:27.900 --> 00:01:30.270
+changing outcomes in the moment.
+
+00:01:30.270 --> 00:01:33.630
+This is the modern business,
+people and AI operating
+
+00:01:33.630 --> 00:01:38.010
+as one system in real
+time, turning unified data
+
+00:01:38.010 --> 00:01:39.660
+into unified intelligence.
+
+00:01:39.660 --> 00:01:42.700
+This is Microsoft Fabric.
+
+00:01:44.760 --> 00:01:45.810
+YITZHAK KESSELMAN: As
+you've seen in video,
+
+00:01:45.810 --> 00:01:48.300
+there's a difference between
+lagging and leading.
+
+00:01:48.300 --> 00:01:50.670
+That's the present reality
+today of our businesses.
+
+00:01:50.670 --> 00:01:52.290
+And then we see it
+across the board.
+
+00:01:52.290 --> 00:01:54.840
+In this reality, our
+customers really want to move
+
+00:01:54.840 --> 00:01:57.270
+from reactive and manual
+instead of looking of --
+
+00:01:57.270 --> 00:02:01.110
+in reports to their works that
+are stale, hour or days old,
+
+00:02:01.110 --> 00:02:02.820
+really to the proactive
+and autonomous.
+
+00:02:02.820 --> 00:02:06.030
+We do software and agents
+that help them proactively
+
+00:02:06.030 --> 00:02:09.150
+and autonomously find insights
+behind the data and to be able
+
+00:02:09.150 --> 00:02:12.300
+to help them to operate
+their business.
+
+00:02:12.300 --> 00:02:15.570
+Going back to the video
+of stadium operations,
+
+00:02:15.570 --> 00:02:18.300
+the goal here is really to
+collect all those signals
+
+00:02:18.300 --> 00:02:20.910
+across the different
+entities and ability
+
+00:02:20.910 --> 00:02:23.340
+to collect the signals
+with the actions
+
+00:02:23.340 --> 00:02:24.930
+and the instance behind it.
+
+00:02:24.930 --> 00:02:27.090
+And speaking about running
+business operations,
+
+00:02:27.090 --> 00:02:30.030
+we are speaking here about
+thousands of signals that need
+
+00:02:30.030 --> 00:02:31.680
+to be connected
+across the business,
+
+00:02:31.680 --> 00:02:33.450
+understand what it
+means to the old
+
+00:02:33.450 --> 00:02:35.850
+and find really the signals
+that really matter.
+
+00:02:35.850 --> 00:02:38.070
+And the goal here really
+is to drive the changes
+
+00:02:38.070 --> 00:02:39.990
+of the outcome from a business.
+
+00:02:39.990 --> 00:02:41.610
+We want to make sure
+that both humans
+
+00:02:41.610 --> 00:02:46.110
+and agents can work together to
+drive the business operations.
+
+00:02:46.110 --> 00:02:48.060
+If you are looking about
+operational foundation,
+
+00:02:48.060 --> 00:02:49.920
+what it means from an
+architectural perspective,
+
+00:02:49.920 --> 00:02:52.980
+the goal here is to have three
+layers of infrastructure.
+
+00:02:52.980 --> 00:02:55.020
+The first is to have a
+unified data estates,
+
+00:02:55.020 --> 00:02:58.320
+where it can bring all your
+data together across cloud
+
+00:02:58.320 --> 00:03:00.960
+and on-prem batch and
+streaming into one place,
+
+00:03:00.960 --> 00:03:03.450
+so you can really understand
+how your business operates
+
+00:03:03.450 --> 00:03:05.910
+across the whole majority
+of the business.
+
+00:03:05.910 --> 00:03:07.950
+And then you want to have
+engines that can reason
+
+00:03:07.950 --> 00:03:10.110
+and understand all
+these data together.
+
+00:03:10.110 --> 00:03:12.420
+And last but not least is
+the intelligence layer,
+
+00:03:12.420 --> 00:03:13.920
+how you can find the reasoning
+
+00:03:13.920 --> 00:03:16.770
+and the meaning behind all
+this data to power both human
+
+00:03:16.770 --> 00:03:19.830
+and agents' decisions.
+
+00:03:19.830 --> 00:03:22.920
+Our goal really, to connect
+all the data together,
+
+00:03:22.920 --> 00:03:25.260
+streaming batch structured,
+
+00:03:25.260 --> 00:03:27.270
+semi-structured
+answers together.
+
+00:03:27.270 --> 00:03:29.370
+And that's the goal here
+is really to unify that.
+
+00:03:29.370 --> 00:03:31.020
+And that's where Fabric
+came into place.
+
+00:03:31.020 --> 00:03:33.840
+We're hearing from a lot of
+chief information officers,
+
+00:03:33.840 --> 00:03:35.820
+"Hey, I want to be the
+chief information officer
+
+00:03:35.820 --> 00:03:38.310
+and now the chief
+integration officer."
+
+00:03:38.310 --> 00:03:40.470
+And that's what
+Fabric came to solve,
+
+00:03:40.470 --> 00:03:43.560
+really unified data platform
+for the area of AI,
+
+00:03:43.560 --> 00:03:46.950
+having the ability to bring all
+this data in and to be reflected
+
+00:03:46.950 --> 00:03:48.210
+in OneLake, and on top of it,
+
+00:03:48.210 --> 00:03:50.370
+different engines can
+work seamlessly on top
+
+00:03:50.370 --> 00:03:53.400
+of all this data, from data
+factory, to analytics,
+
+00:03:53.400 --> 00:03:56.160
+to power BI, and
+real-time intelligence.
+
+00:03:56.160 --> 00:03:59.940
+And the algo here when speaking
+about operational foundation,
+
+00:03:59.940 --> 00:04:01.920
+how we want to drive
+operations, we need to think
+
+00:04:01.920 --> 00:04:04.170
+about those three
+layers, OneLake,
+
+00:04:04.170 --> 00:04:07.020
+where it represents all the
+data across your organization,
+
+00:04:07.020 --> 00:04:09.180
+real-time intelligence
+that allows you to reason
+
+00:04:09.180 --> 00:04:12.870
+about the data, take actions
+and understand it, and IQ,
+
+00:04:12.870 --> 00:04:15.960
+where you can create those
+semantic understanding behind
+
+00:04:15.960 --> 00:04:17.640
+your analytic data
+and ontologies
+
+00:04:17.640 --> 00:04:19.530
+to drive your
+business operations.
+
+00:04:19.530 --> 00:04:21.720
+And those are the critical
+components to really make sure
+
+00:04:21.720 --> 00:04:24.970
+that both humans and
+agents can work together.
+
+00:04:26.790 --> 00:04:29.190
+And when we are speaking our
+goal of building agents,
+
+00:04:29.190 --> 00:04:31.740
+our goal is make sure that we
+are building agents that are
+
+00:04:31.740 --> 00:04:35.480
+as trusted and as productive
+as our best employees.
+
+00:04:35.480 --> 00:04:36.770
+If we want to empower agents,
+
+00:04:36.770 --> 00:04:38.480
+they need to make sure
+they have the same context
+
+00:04:38.480 --> 00:04:40.820
+and the same
+understanding as we have.
+
+00:04:40.820 --> 00:04:42.920
+So if we look at what
+access do I have,
+
+00:04:42.920 --> 00:04:45.410
+what understanding do I have,
+I have access to my outlook,
+
+00:04:45.410 --> 00:04:47.690
+to my teams, to my
+documents in the company,
+
+00:04:47.690 --> 00:04:49.700
+but to also different
+operational systems
+
+00:04:49.700 --> 00:04:52.260
+where I can see customers,
+production environments
+
+00:04:52.260 --> 00:04:55.470
+and systems, and the same
+context is needed for agents
+
+00:04:55.470 --> 00:04:57.060
+to be able to act, reason,
+
+00:04:57.060 --> 00:05:00.330
+and take decisions the
+same way that I can do.
+
+00:05:00.330 --> 00:05:03.090
+And this is the intelligence
+layer to power both humans'
+
+00:05:03.090 --> 00:05:04.470
+and agents' ability
+
+00:05:04.470 --> 00:05:07.830
+to understand all the
+organizational data together
+
+00:05:07.830 --> 00:05:10.710
+with the document that created
+knowledge, but also the state
+
+00:05:10.710 --> 00:05:13.410
+of the business what
+actions can I take.
+
+00:05:13.410 --> 00:05:16.680
+And that's the Microsoft
+IQ layer from Microsoft,
+
+00:05:16.680 --> 00:05:19.650
+the ability to unify all
+your enterprise data
+
+00:05:19.650 --> 00:05:21.300
+and understanding
+into one layer.
+
+00:05:21.300 --> 00:05:24.960
+Work IQ allows you to understand
+how your employees work,
+
+00:05:24.960 --> 00:05:26.250
+Foundry IQ helps you
+
+00:05:26.250 --> 00:05:28.800
+to understand your institutional
+knowledge of the documents
+
+00:05:28.800 --> 00:05:31.710
+and procedures, and Fabric
+IQ allows you to help
+
+00:05:31.710 --> 00:05:33.600
+to understand the state
+of the business but also
+
+00:05:33.600 --> 00:05:35.950
+to help you to operate it.
+
+00:05:37.230 --> 00:05:41.550
+So going back to the scenario
+for the stadium operations,
+
+00:05:41.550 --> 00:05:43.050
+we need to make sure
+that we collect
+
+00:05:43.050 --> 00:05:45.660
+and understand all this data
+across all the business.
+
+00:05:45.660 --> 00:05:49.110
+And today we'll dive into
+Fabric IQ and go deeper into it
+
+00:05:49.110 --> 00:05:50.400
+to understand how
+you can build it
+
+00:05:50.400 --> 00:05:52.710
+and how you can query
+your business operations.
+
+00:05:52.710 --> 00:05:56.550
+So let's dive into more Fabric
+IQ and what it means for you
+
+00:05:56.550 --> 00:05:58.530
+if you're building
+software layers
+
+00:05:58.530 --> 00:06:00.060
+that are important for you.
+
+00:06:00.060 --> 00:06:01.440
+So it consists of three layers.
+
+00:06:01.440 --> 00:06:03.450
+The first one is the unified,
+that I was telling you before,
+
+00:06:03.450 --> 00:06:06.060
+the ability to connect all your
+structured and semi-structured,
+
+00:06:06.060 --> 00:06:08.760
+unstructured data
+into one place.
+
+00:06:08.760 --> 00:06:10.440
+On top of it, you have the
+business intelligence,
+
+00:06:10.440 --> 00:06:12.240
+ability to use the
+semantic models
+
+00:06:12.240 --> 00:06:15.090
+to present your analytic
+understanding of your business.
+
+00:06:15.090 --> 00:06:16.890
+And the last layer is
+operational intelligence,
+
+00:06:16.890 --> 00:06:19.560
+how we're taking all this
+together, all the data
+
+00:06:19.560 --> 00:06:21.930
+across your organization, the
+analytical understanding,
+
+00:06:21.930 --> 00:06:25.020
+but then you power it also with
+the reasoning and the extremes
+
+00:06:25.020 --> 00:06:27.330
+of it and the events that
+happen in your business,
+
+00:06:27.330 --> 00:06:29.820
+but also ability to
+act on this data.
+
+00:06:29.820 --> 00:06:31.440
+And the last is ontologies in IQ
+
+00:06:31.440 --> 00:06:34.230
+that really represents
+the ability to reason
+
+00:06:34.230 --> 00:06:37.200
+and create this mutual brand
+of your business operations.
+
+00:06:37.200 --> 00:06:39.570
+And that's what really powers
+both people and agents
+
+00:06:39.570 --> 00:06:42.210
+to work together and really
+operate your business.
+
+00:06:42.210 --> 00:06:45.420
+So let's dive in into
+the first layer.
+
+00:06:45.420 --> 00:06:48.750
+And speaking about OneLake,
+OneLake is a critical part
+
+00:06:48.750 --> 00:06:51.570
+of Microsoft Fabric, allows
+you to bring all this data
+
+00:06:51.570 --> 00:06:55.050
+in across different sources from
+on-prem and cloud into one place
+
+00:06:55.050 --> 00:06:58.530
+across Microsoft, and
+non-Microsoft ecosystems
+
+00:06:58.530 --> 00:06:59.700
+across different sources.
+
+00:06:59.700 --> 00:07:04.860
+And this data is brought in
+by means of a physical copy
+
+00:07:04.860 --> 00:07:08.220
+or virtual as a shortcut where
+you can just point to the data.
+
+00:07:08.220 --> 00:07:11.520
+But once you brought this data
+in, you can access all this data
+
+00:07:11.520 --> 00:07:14.370
+across Microsoft systems so
+you can connect all this data
+
+00:07:14.370 --> 00:07:17.040
+to Excel or other sources,
+but not only that,
+
+00:07:17.040 --> 00:07:19.470
+you can access all this data
+through other source providers
+
+00:07:19.470 --> 00:07:21.720
+that can access all
+this data in one.
+
+00:07:21.720 --> 00:07:23.160
+And behind this
+data is the ability
+
+00:07:23.160 --> 00:07:25.350
+that OneLake is using
+open format sources.
+
+00:07:25.350 --> 00:07:28.230
+It's using Delta Parquet, where
+you can access all this data.
+
+00:07:28.230 --> 00:07:30.570
+And the engines within
+Fabric are optimized
+
+00:07:30.570 --> 00:07:33.120
+to really work seamlessly
+and very performant
+
+00:07:33.120 --> 00:07:34.620
+on top of all this data.
+
+00:07:34.620 --> 00:07:37.650
+An important part here is
+around governance and security.
+
+00:07:37.650 --> 00:07:41.160
+OneLake provides a layer where
+you can have one security
+
+00:07:41.160 --> 00:07:44.520
+across all the sources, so one
+you mirror or shortcut your data
+
+00:07:44.520 --> 00:07:48.030
+into OneLake across your on-prem
+cloud or other data platforms.
+
+00:07:48.030 --> 00:07:49.680
+Now all this data
+is being secured
+
+00:07:49.680 --> 00:07:51.780
+and governed into one layer.
+
+00:07:51.780 --> 00:07:53.820
+And that's an important
+embarkment speaking about data
+
+00:07:53.820 --> 00:07:55.950
+in AI, making sure that you
+have the right governance
+
+00:07:55.950 --> 00:07:59.160
+and security to work
+with all this data.
+
+00:07:59.160 --> 00:08:02.160
+And we have an ability more
+than 170 different connectors
+
+00:08:02.160 --> 00:08:04.320
+that allows you to
+bring all this data
+
+00:08:04.320 --> 00:08:06.840
+across different sources,
+and that's a key part,
+
+00:08:06.840 --> 00:08:08.610
+making sure that we
+enable this ability
+
+00:08:08.610 --> 00:08:13.150
+to have a full unified view of
+your data across your business.
+
+00:08:14.730 --> 00:08:18.030
+The second layer is around
+BI and semantic models.
+
+00:08:18.030 --> 00:08:20.850
+So today there are more than
+20 million semantic models
+
+00:08:20.850 --> 00:08:24.360
+in your organizations where it
+represents how your analytical
+
+00:08:24.360 --> 00:08:25.710
+understanding for business.
+
+00:08:25.710 --> 00:08:28.740
+Those are used to rerun your
+day-to-day understanding
+
+00:08:28.740 --> 00:08:31.860
+of the analytical
+side of the business.
+
+00:08:31.860 --> 00:08:34.890
+And that allows it to really
+have a curated repository
+
+00:08:34.890 --> 00:08:37.640
+for a business understanding,
+enable decisions
+
+00:08:37.640 --> 00:08:39.020
+around analytical stuff.
+
+00:08:39.020 --> 00:08:40.880
+And there are more
+than 35 million users
+
+00:08:40.880 --> 00:08:43.580
+that use regularly monthly
+those semantic models
+
+00:08:43.580 --> 00:08:45.630
+across their ecosystem.
+
+00:08:47.670 --> 00:08:50.010
+And last, operational
+intelligence.
+
+00:08:50.010 --> 00:08:51.810
+And with that, we'll
+dive into two aspects,
+
+00:08:51.810 --> 00:08:53.070
+one is real-time intelligence
+
+00:08:53.070 --> 00:08:55.680
+and the other one is
+ontologies in IQ.
+
+00:08:55.680 --> 00:08:58.110
+And with that, I will
+hand over to Tessa
+
+00:08:58.110 --> 00:09:00.130
+to tell you more about it.
+
+00:09:01.590 --> 00:09:03.000
+TESSA KLOSTER:
+Thank you, Yitzhak.
+
+00:09:03.000 --> 00:09:05.850
+So I'm going to talk a little
+bit about real-time intelligence
+
+00:09:05.850 --> 00:09:09.330
+in Fabric, which really allows
+you to get access to all
+
+00:09:09.330 --> 00:09:11.250
+of your streaming and
+event data, and we start
+
+00:09:11.250 --> 00:09:12.990
+with all the different
+connectors that we support.
+
+00:09:12.990 --> 00:09:15.180
+And you can see today that
+we support a wide range
+
+00:09:15.180 --> 00:09:18.150
+of connector, both for
+Microsoft and cross-cloud,
+
+00:09:18.150 --> 00:09:21.680
+and we're adding more
+and more every week.
+
+00:09:21.680 --> 00:09:24.570
+But when we look at the
+full kind of capabilities
+
+00:09:24.570 --> 00:09:29.010
+of real-time intelligence, we
+have these wide range of tools
+
+00:09:29.010 --> 00:09:32.460
+in the toolbox that start from
+those connectors and that data
+
+00:09:32.460 --> 00:09:35.280
+to make it very easy for you
+to access, but also allows you
+
+00:09:35.280 --> 00:09:38.010
+to truly build an
+end-to-end solution.
+
+00:09:38.010 --> 00:09:42.300
+We have capabilities directly
+in our streaming area.
+
+00:09:42.300 --> 00:09:45.660
+We have a curated
+engine for analysis,
+
+00:09:45.660 --> 00:09:49.140
+petabytes of data being able
+to query it in seconds.
+
+00:09:49.140 --> 00:09:51.540
+We have the ability to
+model, and contextualize,
+
+00:09:51.540 --> 00:09:54.420
+and understand the data, and
+then of course visualize it
+
+00:09:54.420 --> 00:09:55.950
+in truly operational formats
+
+00:09:55.950 --> 00:09:58.380
+so that you can see the
+data as it's coming in.
+
+00:09:58.380 --> 00:10:00.450
+And last but not least,
+the ability to act
+
+00:10:00.450 --> 00:10:05.570
+and understand the data within
+the rest of the system as well.
+
+00:10:05.570 --> 00:10:08.900
+And each of these pillars have
+a detailed set of capabilities
+
+00:10:08.900 --> 00:10:10.610
+to really ensure
+whatever you need
+
+00:10:10.610 --> 00:10:13.400
+for your organization
+is possible.
+
+00:10:13.400 --> 00:10:17.510
+And once again, we're improving
+each of these items every week
+
+00:10:17.510 --> 00:10:21.600
+as we hear feedback from
+customers like you.
+
+00:10:21.600 --> 00:10:24.150
+And the really important thing
+about real-time intelligence is
+
+00:10:24.150 --> 00:10:26.220
+that it really isn't
+limited to just time.
+
+00:10:26.220 --> 00:10:28.800
+Of course we do focus
+on the temporal aspect.
+
+00:10:28.800 --> 00:10:32.100
+It's so important to understand
+the sequence of events
+
+00:10:32.100 --> 00:10:35.580
+and how things change over time,
+but you also need to understand
+
+00:10:35.580 --> 00:10:39.780
+where it happened, and
+also what is related,
+
+00:10:39.780 --> 00:10:42.390
+and what could be impacted
+by these happenings
+
+00:10:42.390 --> 00:10:43.500
+to really ensure that you have
+
+00:10:43.500 --> 00:10:46.550
+that holistic understanding
+of operations.
+
+00:10:46.550 --> 00:10:49.590
+So let's jump right
+in and see a demo.
+
+00:10:49.590 --> 00:10:51.480
+Okay, we're going to start
+in the real-time hub,
+
+00:10:51.480 --> 00:10:53.460
+which is that central
+location for all
+
+00:10:53.460 --> 00:10:56.370
+of your streaming
+and event data.
+
+00:10:56.370 --> 00:10:58.530
+And if you don't already
+have access to the data,
+
+00:10:58.530 --> 00:11:00.810
+it's not already in the system,
+you can use that wide range
+
+00:11:00.810 --> 00:11:02.100
+of connector, as a I mentioned,
+
+00:11:02.100 --> 00:11:04.560
+to really easily
+bring in the data.
+
+00:11:04.560 --> 00:11:07.920
+We're going to start building
+on that stadium scenario
+
+00:11:07.920 --> 00:11:11.100
+by leveraging the new MQTT
+connector and being able
+
+00:11:11.100 --> 00:11:12.870
+to bring in our Turnstile event.
+
+00:11:12.870 --> 00:11:15.990
+So very easy to connect
+and actually bring
+
+00:11:15.990 --> 00:11:18.210
+that data directly
+into my system.
+
+00:11:18.210 --> 00:11:19.890
+You can see now that I'm
+in the event stream,
+
+00:11:19.890 --> 00:11:22.500
+I can see the MQTT source
+and I can also bring
+
+00:11:22.500 --> 00:11:25.200
+in other data sources,
+whether it's custom events
+
+00:11:25.200 --> 00:11:28.740
+or other streaming sources,
+into that same stream.
+
+00:11:28.740 --> 00:11:31.020
+And I can load them into a
+variety of destinations,
+
+00:11:31.020 --> 00:11:32.940
+whether it's Eventhouse
+or Notebooks.
+
+00:11:32.940 --> 00:11:34.320
+I'm actually going
+to open the notebook
+
+00:11:34.320 --> 00:11:36.300
+and see a little bit more
+about what I'm doing here.
+
+00:11:36.300 --> 00:11:39.360
+So I'm actually bringing in
+those events into the notebook
+
+00:11:39.360 --> 00:11:42.390
+to do some additional processing
+to really help me understand
+
+00:11:42.390 --> 00:11:48.480
+where I might have increase in a
+volume coming into the stadium,
+
+00:11:48.480 --> 00:11:52.770
+something I might want to
+monitor and take an action on.
+
+00:11:52.770 --> 00:11:54.960
+But more than doing the
+analysis, I'm actually going
+
+00:11:54.960 --> 00:11:57.390
+to use our new business
+event capability.
+
+00:11:57.390 --> 00:11:59.100
+So directly from this
+notebook I'm going
+
+00:11:59.100 --> 00:12:01.140
+to actually emit
+a business event
+
+00:12:01.140 --> 00:12:03.960
+when that congestion
+is detected.
+
+00:12:03.960 --> 00:12:06.000
+And so going back into
+the real-time hub,
+
+00:12:06.000 --> 00:12:08.310
+you can see the new
+business events capability.
+
+00:12:08.310 --> 00:12:10.170
+I see that Turnstile
+congested event,
+
+00:12:10.170 --> 00:12:13.530
+and right from this view I
+can actually set an alert
+
+00:12:13.530 --> 00:12:16.860
+so that the team can be notified
+when that condition comes in.
+
+00:12:16.860 --> 00:12:19.950
+So very powerful, not only
+providing access to all
+
+00:12:19.950 --> 00:12:22.050
+of my organizational data,
+
+00:12:22.050 --> 00:12:24.630
+but I can also have curated
+business events that can go
+
+00:12:24.630 --> 00:12:26.100
+to the rest of the system.
+
+00:12:26.100 --> 00:12:27.810
+So looking at this task
+flow, I can see all
+
+00:12:27.810 --> 00:12:29.850
+of the different data kind
+of coming into my system.
+
+00:12:29.850 --> 00:12:32.070
+I can see it landing
+directly in Eventhouse.
+
+00:12:32.070 --> 00:12:34.590
+And I can go all the way
+into visualizing it directly
+
+00:12:34.590 --> 00:12:36.480
+in our real-time dashboards.
+
+00:12:36.480 --> 00:12:38.280
+So let's see that
+real-time dashboard
+
+00:12:38.280 --> 00:12:39.780
+and I can see how the view
+
+00:12:39.780 --> 00:12:42.090
+of our stadium
+operations is coming in,
+
+00:12:42.090 --> 00:12:46.440
+and the team can monitor
+it in real time.
+
+00:12:46.440 --> 00:12:47.790
+So on my real-time dashboard,
+
+00:12:47.790 --> 00:12:49.380
+I can see all this
+different information.
+
+00:12:49.380 --> 00:12:53.850
+I can see the data streaming in
+from that wide range of sources.
+
+00:12:53.850 --> 00:12:55.860
+I can see things
+from other areas,
+
+00:12:55.860 --> 00:12:57.660
+for example our security health.
+
+00:12:57.660 --> 00:13:00.480
+And going specifically
+into this visual,
+
+00:13:00.480 --> 00:13:03.690
+I'm seeing duplicate
+ticket scans.
+
+00:13:03.690 --> 00:13:06.120
+And right from that visual, I
+can actually leverage Copilot
+
+00:13:06.120 --> 00:13:07.590
+to help me understand
+it a bit more.
+
+00:13:07.590 --> 00:13:09.900
+So I'm going to ask Copilot to
+help me visualize a breakdown
+
+00:13:09.900 --> 00:13:12.510
+by ticket type for each
+of these entrances.
+
+00:13:12.510 --> 00:13:15.570
+And so you can see here it
+actually broke down the view,
+
+00:13:15.570 --> 00:13:17.610
+which is very helpful
+because I can see
+
+00:13:17.610 --> 00:13:22.200
+in the VIP entrance I actually
+have Premium and VIP coming in,
+
+00:13:22.200 --> 00:13:25.260
+and that has the highest
+duplicate ticket scans,
+
+00:13:25.260 --> 00:13:27.930
+it's very concerning, and
+make this really easy
+
+00:13:27.930 --> 00:13:28.800
+for my organization
+
+00:13:28.800 --> 00:13:30.480
+to understand it
+from the dashboard.
+
+00:13:30.480 --> 00:13:34.590
+I can refine the colorings
+directly of the chart
+
+00:13:34.590 --> 00:13:39.000
+so now anybody who looks at this
+view can get that information.
+
+00:13:39.000 --> 00:13:42.600
+We can also integrate the Rich
+2 spatial capabilities directly
+
+00:13:42.600 --> 00:13:45.240
+with all of this real-time
+and operational data.
+
+00:13:45.240 --> 00:13:48.630
+And so if I think about the
+stadium, I think about all
+
+00:13:48.630 --> 00:13:51.480
+of the traffic, the data,
+the people flowing in,
+
+00:13:51.480 --> 00:13:53.940
+I can see the different
+hotspots and understand
+
+00:13:53.940 --> 00:13:58.230
+which of the entry points
+might have congestion,
+
+00:13:58.230 --> 00:14:01.470
+and also which things like
+concessions and the other pieces
+
+00:14:01.470 --> 00:14:03.480
+around the stadium are
+going to be impacted
+
+00:14:03.480 --> 00:14:05.580
+as that data comes in.
+
+00:14:05.580 --> 00:14:08.100
+And so once again, from
+my operational dashboard,
+
+00:14:08.100 --> 00:14:10.350
+I can directly set an alert.
+
+00:14:10.350 --> 00:14:12.390
+And what this is going to do is
+
+00:14:12.390 --> 00:14:16.020
+as the average wait time is
+increasing, I actually want
+
+00:14:16.020 --> 00:14:20.010
+to be tracking it and not just
+setting an alert notification
+
+00:14:20.010 --> 00:14:22.050
+for the team, I actually
+want to take an action.
+
+00:14:22.050 --> 00:14:24.960
+And so here you can see we
+have a wide range of actions
+
+00:14:24.960 --> 00:14:28.350
+and they're adding more and
+more for Activator every week.
+
+00:14:28.350 --> 00:14:30.690
+In this case I'm actually
+going to run Notebook.
+
+00:14:30.690 --> 00:14:33.420
+That's going to help
+with the load balancing
+
+00:14:33.420 --> 00:14:36.390
+across our different areas.
+
+00:14:36.390 --> 00:14:38.670
+And you could see I can
+provide specific parameters
+
+00:14:38.670 --> 00:14:42.120
+that are coming in from the
+query as it's being run
+
+00:14:42.120 --> 00:14:46.920
+and detected, and really helping
+to improve my operations
+
+00:14:46.920 --> 00:14:49.920
+in a manual way still -- you'll
+see more on our autonomous way
+
+00:14:49.920 --> 00:14:53.310
+in a bit, but really helping
+the team go directly
+
+00:14:53.310 --> 00:14:56.850
+from event condition all the
+way into action as well.
+
+00:14:56.850 --> 00:14:58.410
+That was a quick demo
+to really show you the
+
+00:14:58.410 --> 00:15:00.000
+end-to-end capabilities.
+
+00:15:00.000 --> 00:15:02.820
+And although we focused on
+the stadium operations today,
+
+00:15:02.820 --> 00:15:04.770
+there's a wide
+range of customers
+
+00:15:04.770 --> 00:15:09.330
+in all different industries and
+verticals, whether it's sports,
+
+00:15:09.330 --> 00:15:14.370
+energy, airports, airlines,
+manufacturing, retail,
+
+00:15:14.370 --> 00:15:15.900
+you name it, we have customers
+
+00:15:15.900 --> 00:15:18.840
+that are improving their
+operations, their business,
+
+00:15:18.840 --> 00:15:22.110
+leveraging real-time
+intelligence.
+
+00:15:22.110 --> 00:15:24.810
+And one of the things we hear
+from these customers directly is
+
+00:15:24.810 --> 00:15:27.510
+that there really is
+no AI without RTI.
+
+00:15:27.510 --> 00:15:28.350
+Now, what does that mean?
+
+00:15:28.350 --> 00:15:33.480
+It means that any AI solution,
+especially an agentic solution,
+
+00:15:33.480 --> 00:15:36.840
+needs the highest volume
+granularity data it can get.
+
+00:15:36.840 --> 00:15:39.150
+It needs it to be fresh, it
+needs it to be accurate,
+
+00:15:39.150 --> 00:15:40.920
+and all of that
+is truly possible
+
+00:15:40.920 --> 00:15:42.270
+with real-time intelligence.
+
+00:15:42.270 --> 00:15:43.170
+And even though some
+
+00:15:43.170 --> 00:15:46.920
+of the experiences I showed
+are very user-friendly,
+
+00:15:46.920 --> 00:15:49.530
+it really is built on this
+planet scale infrastructure
+
+00:15:49.530 --> 00:15:50.490
+for real-time data.
+
+00:15:50.490 --> 00:15:51.570
+And I love showing this slide.
+
+00:15:51.570 --> 00:15:52.860
+I joke every time we show it,
+
+00:15:52.860 --> 00:15:54.480
+it gets a little bit
+more out of date.
+
+00:15:54.480 --> 00:15:59.220
+But we're talking about over 600
+trillion messages per month,
+
+00:15:59.220 --> 00:16:03.060
+14.3 exabytes of events
+and logs per month,
+
+00:16:03.060 --> 00:16:05.940
+7.8 billion real-time
+queries per day,
+
+00:16:05.940 --> 00:16:09.360
+and five nines reliability
+across messaging.
+
+00:16:09.360 --> 00:16:10.800
+So really amazing scale
+
+00:16:10.800 --> 00:16:14.760
+for running these organizations
+and these businesses.
+
+00:16:14.760 --> 00:16:18.330
+And one of the things that
+people can be concerned
+
+00:16:18.330 --> 00:16:20.190
+about when we talk about
+data at that scale,
+
+00:16:20.190 --> 00:16:22.680
+at that speed, is cost.
+
+00:16:22.680 --> 00:16:25.230
+But really real-time
+intelligence is very competitive
+
+00:16:25.230 --> 00:16:27.420
+when it comes to scale,
+performance, and cost.
+
+00:16:27.420 --> 00:16:29.700
+You don't have to
+give any of them up.
+
+00:16:29.700 --> 00:16:32.370
+So in a public benchmark that
+you can see from this slide,
+
+00:16:32.370 --> 00:16:34.410
+comparing to Confluent
+and Snowflake,
+
+00:16:34.410 --> 00:16:37.020
+you can see actually real-time
+intelligence was 12 times faster
+
+00:16:37.020 --> 00:16:40.050
+and 37% more cost-effective
+for the different scenarios.
+
+00:16:40.050 --> 00:16:43.530
+So definitely go take a look at
+the benchmark to learn more.
+
+00:16:43.530 --> 00:16:45.300
+So as I mentioned, Fabric
+
+00:16:45.300 --> 00:16:48.300
+and real-time intelligence are
+updating every single week,
+
+00:16:48.300 --> 00:16:51.330
+so I'm just going to show
+you some quick updates
+
+00:16:51.330 --> 00:16:54.120
+that we've done, especially
+leading up to Build.
+
+00:16:54.120 --> 00:16:57.300
+So we have the GA of our SQL
+operator directing an event
+
+00:16:57.300 --> 00:17:00.420
+stream allowing you to express
+custom business logic using SQL,
+
+00:17:00.420 --> 00:17:04.650
+very, very powerful; support
+for Spark Structured Streaming
+
+00:17:04.650 --> 00:17:06.540
+with Eventstream,
+so that ability
+
+00:17:06.540 --> 00:17:10.200
+to actually stream process using
+Python and a rich connection
+
+00:17:10.200 --> 00:17:13.230
+between Eventstream and
+the Spark Notebooks.
+
+00:17:13.230 --> 00:17:15.090
+We have new capabilities
+
+00:17:15.090 --> 00:17:17.580
+for building the event-driven
+applications with DeltaFlow,
+
+00:17:17.580 --> 00:17:19.560
+making it very, very easy
+
+00:17:19.560 --> 00:17:21.930
+to transform those
+Devisium fees directly
+
+00:17:21.930 --> 00:17:24.150
+into analytics-ready
+events without you having
+
+00:17:24.150 --> 00:17:27.430
+to customize it directly
+in the Eventstream.
+
+00:17:28.860 --> 00:17:32.100
+We have the business events
+directly in the real-time hub.
+
+00:17:32.100 --> 00:17:33.210
+As you saw on the demo,
+
+00:17:33.210 --> 00:17:36.390
+the ability to publish these
+business events for anyone
+
+00:17:36.390 --> 00:17:38.760
+within Fabric to subscribe
+to, whether it's
+
+00:17:38.760 --> 00:17:42.330
+for analytics or
+action purposes.
+
+00:17:42.330 --> 00:17:44.640
+We have the Copilot
+capabilities directly
+
+00:17:44.640 --> 00:17:47.640
+in real-time intelligence,
+so not just being able
+
+00:17:47.640 --> 00:17:49.650
+to visualize, really
+helping you understand
+
+00:17:49.650 --> 00:17:54.000
+and explore your data
+directly in context.
+
+00:17:54.000 --> 00:17:56.880
+We have a whole set
+of MCP and skills
+
+00:17:56.880 --> 00:18:00.360
+for real-time intelligence,
+making it very easy to bring
+
+00:18:00.360 --> 00:18:03.360
+that real-time directly
+to your agents.
+
+00:18:03.360 --> 00:18:04.440
+So if you haven't
+tried this out,
+
+00:18:04.440 --> 00:18:07.440
+go try it out today as well.
+
+00:18:07.440 --> 00:18:10.860
+And last but not least, we have
+our geospatial visualization
+
+00:18:10.860 --> 00:18:15.570
+in the map item directly within
+Fabric, is generally available
+
+00:18:15.570 --> 00:18:20.310
+and ready for all of your
+geospatial needs, both real time
+
+00:18:20.310 --> 00:18:24.290
+and can be used alongside all of
+the other pieces across Fabric.
+
+00:18:24.290 --> 00:18:26.270
+So that was a quick
+whirlwind tour of all
+
+00:18:26.270 --> 00:18:28.550
+of the different capabilities
+of real-time intelligence.
+
+00:18:28.550 --> 00:18:32.430
+And I'll hand it back to
+Yitzhak to talk about IQ.
+
+00:18:32.430 --> 00:18:33.600
+YITZHAK KESSELMAN:
+Thank you, Tessa.
+
+00:18:33.600 --> 00:18:35.640
+And let's dive into
+more into Fabric IQ
+
+00:18:35.640 --> 00:18:37.260
+and what it means for us.
+
+00:18:37.260 --> 00:18:40.200
+So we're discussing how Fabric
+helps you to unify your data,
+
+00:18:40.200 --> 00:18:41.880
+and we want to take
+it to the next level,
+
+00:18:41.880 --> 00:18:45.780
+how we can use Fabric to really
+unify your business operations.
+
+00:18:45.780 --> 00:18:48.120
+And going back to the scenario
+discussed at the beginning
+
+00:18:48.120 --> 00:18:51.450
+about stadium operations, and we
+want to look deeper into that
+
+00:18:51.450 --> 00:18:53.310
+to understand how we
+can use Fabric really
+
+00:18:53.310 --> 00:18:54.930
+to drive the
+business operations.
+
+00:18:54.930 --> 00:18:57.030
+And when we need to understand
+how you would do so.
+
+00:18:57.030 --> 00:18:59.070
+So looking at the
+scenario specifically,
+
+00:18:59.070 --> 00:19:01.740
+we want to understand what
+are the entities involved.
+
+00:19:01.740 --> 00:19:03.600
+If you look, we have
+the stadium, the gates,
+
+00:19:03.600 --> 00:19:05.310
+the food stands, the attendees.
+
+00:19:05.310 --> 00:19:07.140
+All those entities
+are rich entities.
+
+00:19:07.140 --> 00:19:09.060
+Of course they have
+properties and measures,
+
+00:19:09.060 --> 00:19:10.830
+but they are much
+richer than that.
+
+00:19:10.830 --> 00:19:12.360
+They have geospatial
+information,
+
+00:19:12.360 --> 00:19:14.040
+like the location of the gate.
+
+00:19:14.040 --> 00:19:15.720
+And they have time series data,
+
+00:19:15.720 --> 00:19:17.250
+how many people going
+through the gate.
+
+00:19:17.250 --> 00:19:19.740
+But you can also start to
+apply actions, for example,
+
+00:19:19.740 --> 00:19:22.140
+assigning a crew or
+schedule a repair.
+
+00:19:22.140 --> 00:19:24.150
+And all these entities
+are interconnected
+
+00:19:24.150 --> 00:19:27.480
+by a business meaning, not just
+through a data key relationship,
+
+00:19:27.480 --> 00:19:28.560
+but a relationship
+
+00:19:28.560 --> 00:19:31.320
+that represents a business
+meaning for the business.
+
+00:19:31.320 --> 00:19:33.660
+And because of that, we
+can start applying rules
+
+00:19:33.660 --> 00:19:37.920
+and policies to really, for
+example, drive crowd management
+
+00:19:37.920 --> 00:19:39.720
+or food safety for our business.
+
+00:19:39.720 --> 00:19:42.480
+And the ultimate goal here is
+really to drive the objective
+
+00:19:42.480 --> 00:19:47.010
+for the business, for example,
+satisfaction or profitability.
+
+00:19:47.010 --> 00:19:50.250
+And that's how the business
+thinks about their operations,
+
+00:19:50.250 --> 00:19:53.160
+they're thinking concepts
+of entities, properties,
+
+00:19:53.160 --> 00:19:54.360
+what you want to achieve,
+
+00:19:54.360 --> 00:19:58.000
+and what actions we can
+do to really achieve it.
+
+00:19:59.430 --> 00:20:01.080
+But the reality today
+that we are working
+
+00:20:01.080 --> 00:20:02.250
+with tables and schemas.
+
+00:20:02.250 --> 00:20:05.010
+If you have questions, we are
+creating analytical reports
+
+00:20:05.010 --> 00:20:07.200
+to really understand
+the data behind
+
+00:20:07.200 --> 00:20:08.910
+and the meaning behind of it.
+
+00:20:08.910 --> 00:20:11.630
+If we have more questions,
+we'll create another report.
+
+00:20:11.630 --> 00:20:13.580
+And those analytical
+systems are separate
+
+00:20:13.580 --> 00:20:15.200
+from operational systems.
+
+00:20:15.200 --> 00:20:16.550
+An action that's been taken
+
+00:20:16.550 --> 00:20:18.800
+on the operational side is
+not immediately reflected
+
+00:20:18.800 --> 00:20:20.120
+on the analytical side.
+
+00:20:20.120 --> 00:20:22.400
+And they are working in
+tandem so if you want
+
+00:20:22.400 --> 00:20:24.500
+to understand something in
+your business, take an action
+
+00:20:24.500 --> 00:20:26.600
+and see the feedback,
+they are not connected
+
+00:20:26.600 --> 00:20:28.710
+to each other and it takes time.
+
+00:20:28.710 --> 00:20:31.170
+If you zoom out and look at
+the bigger organization,
+
+00:20:31.170 --> 00:20:34.170
+we have multiple teams working
+on multiple different datasets,
+
+00:20:34.170 --> 00:20:36.150
+trying different
+operational systems,
+
+00:20:36.150 --> 00:20:39.300
+and that creates a complex
+fragmented scenario.
+
+00:20:39.300 --> 00:20:41.730
+So going back to the examples
+of the stadium operations,
+
+00:20:41.730 --> 00:20:43.740
+if you will ask a simple
+question, for example,
+
+00:20:43.740 --> 00:20:46.110
+what an active gate means
+to different teams,
+
+00:20:46.110 --> 00:20:48.120
+it will give you
+different answers.
+
+00:20:48.120 --> 00:20:51.330
+All those answers are correct
+in the context of the team,
+
+00:20:51.330 --> 00:20:53.550
+but they are not correct
+and they could be confusing
+
+00:20:53.550 --> 00:20:55.950
+in the context of the
+broader organization.
+
+00:20:55.950 --> 00:20:57.870
+And that's what we are
+seeing when companies try
+
+00:20:57.870 --> 00:21:01.200
+to run their business across all
+their data, they get a scenario
+
+00:21:01.200 --> 00:21:02.400
+which is very fragmented.
+
+00:21:02.400 --> 00:21:04.290
+They are reactive and
+they're slow taught.
+
+00:21:04.290 --> 00:21:07.920
+An algo here really is really to
+connect the data to the meaning
+
+00:21:07.920 --> 00:21:11.310
+and drive actions on top of it.
+
+00:21:11.310 --> 00:21:13.920
+So algo here is really to
+collect all these data coming
+
+00:21:13.920 --> 00:21:17.310
+from applications, from IoT
+devices, from the telemetry,
+
+00:21:17.310 --> 00:21:18.720
+user behavior, et cetera,
+
+00:21:18.720 --> 00:21:22.140
+and really empower our business
+operations, enabling our humans
+
+00:21:22.140 --> 00:21:24.780
+and agents work
+together in tandem.
+
+00:21:24.780 --> 00:21:28.020
+For the bigger cycle of data
+of collecting of these data,
+
+00:21:28.020 --> 00:21:31.170
+observing, analyzing, and
+deciding, and ultimately acting
+
+00:21:31.170 --> 00:21:33.450
+on top of all this data,
+we want to make sure
+
+00:21:33.450 --> 00:21:36.210
+that we are doing it that
+we empower both our humans
+
+00:21:36.210 --> 00:21:38.340
+and agents to working
+together and that the cycle
+
+00:21:38.340 --> 00:21:40.620
+that all the variables
+are familiar with.
+
+00:21:40.620 --> 00:21:41.580
+But the goal here is really
+
+00:21:41.580 --> 00:21:44.370
+to provide this understanding
+of the context.
+
+00:21:44.370 --> 00:21:47.070
+And in this case we need to have
+the semantic understanding what
+
+00:21:47.070 --> 00:21:49.620
+all those signals and
+actions can mean.
+
+00:21:49.620 --> 00:21:51.180
+And in this case, we
+want to make sure
+
+00:21:51.180 --> 00:21:53.820
+that this semantic understanding
+is the semantic understanding
+
+00:21:53.820 --> 00:21:56.220
+to really that
+powers our business.
+
+00:21:56.220 --> 00:21:58.950
+And the goal here is really to
+use the semantic understanding
+
+00:21:58.950 --> 00:22:00.600
+for our business and
+create this ontology
+
+00:22:00.600 --> 00:22:02.940
+that to present the virtual
+brand of the business.
+
+00:22:02.940 --> 00:22:04.560
+This represents
+all our entities,
+
+00:22:04.560 --> 00:22:07.560
+how they're interconnected to
+each other, what their policies,
+
+00:22:07.560 --> 00:22:10.290
+what rules and actions we can
+apply, and use this really
+
+00:22:10.290 --> 00:22:11.310
+to power our business.
+
+00:22:11.310 --> 00:22:13.590
+And this ontology
+is super critical
+
+00:22:13.590 --> 00:22:15.600
+to really collect
+all their data,
+
+00:22:15.600 --> 00:22:18.300
+all the operational system, the
+ability to drive actions both
+
+00:22:18.300 --> 00:22:20.710
+for humans and agents.
+
+00:22:22.440 --> 00:22:23.970
+And let's see this video
+
+00:22:23.970 --> 00:22:26.280
+that represents the
+end-to-end scenario.
+
+00:22:26.280 --> 00:22:28.440
+SPEAKER 2: Data is the
+fuel that powers AI,
+
+00:22:28.440 --> 00:22:30.630
+but data alone is not enough.
+
+00:22:30.630 --> 00:22:33.600
+AI needs an understanding
+of what the data means,
+
+00:22:33.600 --> 00:22:36.480
+how things relate, and
+which actions turn insight
+
+00:22:36.480 --> 00:22:38.370
+into impact.
+
+00:22:38.370 --> 00:22:42.030
+Introducing Microsoft Fabric
+IQ, the semantic foundation
+
+00:22:42.030 --> 00:22:44.220
+that unites data,
+business meaning,
+
+00:22:44.220 --> 00:22:48.150
+and action into a single unified
+view of your organization.
+
+00:22:48.150 --> 00:22:51.930
+Model your business using visual
+no-code tools, so the people
+
+00:22:51.930 --> 00:22:55.470
+who know your company can adapt
+it as fast as it evolves.
+
+00:22:55.470 --> 00:22:58.290
+Create entities over all
+your data in OneLake,
+
+00:22:58.290 --> 00:23:01.980
+not only your analytical data
+and Power BI semantic models,
+
+00:23:01.980 --> 00:23:06.300
+but also your operational,
+geospatial, and real-time data.
+
+00:23:06.300 --> 00:23:09.510
+Navigate your business the way
+it actually runs, not by tables
+
+00:23:09.510 --> 00:23:12.690
+and schemas, but by
+organizational concepts.
+
+00:23:12.690 --> 00:23:15.180
+And ultimately, elevate
+your teams and your AI
+
+00:23:15.180 --> 00:23:18.240
+to ask questions, reason,
+and act in the language
+
+00:23:18.240 --> 00:23:19.950
+of your business, powered
+
+00:23:19.950 --> 00:23:22.950
+by this live unified view
+of your organization.
+
+00:23:22.950 --> 00:23:25.470
+Trigger actions in
+real time using rules
+
+00:23:25.470 --> 00:23:28.860
+and empower AI operations
+agents to run your business,
+
+00:23:28.860 --> 00:23:32.010
+because now they understand
+its live context.
+
+00:23:32.010 --> 00:23:35.220
+Connect Fabric IQ
+seamlessly with Foundry IQ,
+
+00:23:35.220 --> 00:23:36.990
+uniting your live
+business context
+
+00:23:36.990 --> 00:23:38.070
+with the knowledge captured
+
+00:23:38.070 --> 00:23:40.680
+in your documents
+and communications.
+
+00:23:40.680 --> 00:23:43.800
+This combination from Microsoft
+gives developer-built agents
+
+00:23:43.800 --> 00:23:46.170
+in Foundry unmatched context,
+
+00:23:46.170 --> 00:23:48.120
+so they can make
+decisions you trust
+
+00:23:48.120 --> 00:23:50.400
+and continuously
+optimize your operations
+
+00:23:50.400 --> 00:23:52.800
+for superior outcomes.
+
+00:23:52.800 --> 00:23:55.620
+From unified data to
+unified intelligence,
+
+00:23:55.620 --> 00:23:59.230
+this is IQ in Microsoft Fabric.
+
+00:24:00.780 --> 00:24:02.730
+YITZHAK KESSELMAN: So you saw
+the capabilities of ontologies
+
+00:24:02.730 --> 00:24:04.560
+within Fabric IQ that
+allows you really
+
+00:24:04.560 --> 00:24:06.390
+to create this virtual
+brand for a business
+
+00:24:06.390 --> 00:24:09.090
+to drive your operations
+connecting all the data
+
+00:24:09.090 --> 00:24:11.700
+to the meaning and creating
+this virtual brand
+
+00:24:11.700 --> 00:24:13.680
+that has the ability
+to drive actions.
+
+00:24:13.680 --> 00:24:15.150
+And with that, I
+want to show more
+
+00:24:15.150 --> 00:24:18.000
+in depth how the product
+works, and I will call Tessa
+
+00:24:18.000 --> 00:24:19.620
+to show us more in depth.
+
+00:24:19.620 --> 00:24:21.720
+To you, Tessa.
+
+00:24:21.720 --> 00:24:22.920
+TESSA KLOSTER: Okay,
+thank you, Yitzhak.
+
+00:24:22.920 --> 00:24:25.890
+Now let's jump in and see
+how the product works.
+
+00:24:25.890 --> 00:24:27.810
+So we'll start with ontology.
+
+00:24:27.810 --> 00:24:31.080
+This is that brain of your
+business, as Yitzhak mentioned.
+
+00:24:31.080 --> 00:24:33.720
+And I'll show you a little bit
+about how you both build it
+
+00:24:33.720 --> 00:24:36.300
+and use it in just a minute.
+
+00:24:36.300 --> 00:24:40.770
+We also have actions and rules
+directly in the ontology item,
+
+00:24:40.770 --> 00:24:43.440
+so taking that same power I
+showed earlier about Activator,
+
+00:24:43.440 --> 00:24:46.050
+but actually bringing it
+across the entire entity
+
+00:24:46.050 --> 00:24:50.340
+in the relationships, not just
+the individual data pieces.
+
+00:24:50.340 --> 00:24:52.110
+And last but not
+least, we'll talk more
+
+00:24:52.110 --> 00:24:55.110
+about the graph analytics
+directly in Fabric IQ.
+
+00:24:55.110 --> 00:24:58.290
+This is native graph
+capabilities within Fabric,
+
+00:24:58.290 --> 00:25:01.800
+built on top of all of your
+data that's in OneLake,
+
+00:25:01.800 --> 00:25:05.310
+so you don't need to have
+additional ETL in order
+
+00:25:05.310 --> 00:25:09.270
+to take advantage of things
+like this relationship analysis
+
+00:25:09.270 --> 00:25:11.790
+and more that you
+can do with Graph.
+
+00:25:11.790 --> 00:25:13.740
+So let's start with
+creating the ontologies.
+
+00:25:13.740 --> 00:25:17.130
+Now, this is a big part,
+of course, of the process,
+
+00:25:17.130 --> 00:25:19.020
+but we want to make it
+as easy as possible
+
+00:25:19.020 --> 00:25:21.600
+and also not just
+a one-time thing.
+
+00:25:21.600 --> 00:25:24.180
+So we're going to build off
+of the different capabilities
+
+00:25:24.180 --> 00:25:27.120
+and knowledge and information
+that you already have
+
+00:25:27.120 --> 00:25:29.340
+within your organization
+and within Fabric.
+
+00:25:29.340 --> 00:25:31.530
+So I'm going to start
+as I do with anything
+
+00:25:31.530 --> 00:25:33.210
+in Fabric, by creating an item.
+
+00:25:33.210 --> 00:25:35.790
+You're going to start by
+creating a new ontology item
+
+00:25:35.790 --> 00:25:38.670
+and choosing which workspace
+it's going to live in.
+
+00:25:38.670 --> 00:25:41.370
+That's also going to help
+with permissions and control.
+
+00:25:41.370 --> 00:25:44.640
+And so you can see here
+I can start by importing
+
+00:25:44.640 --> 00:25:47.070
+or I can start
+directly with Copilot.
+
+00:25:47.070 --> 00:25:50.760
+And so with Copilot I
+am going to speak --
+
+00:25:50.760 --> 00:25:53.340
+type in natural language,
+and I want to start
+
+00:25:53.340 --> 00:25:57.660
+by creating this ontology,
+and it's going to suggest
+
+00:25:57.660 --> 00:25:59.490
+that I leverage the
+information that I have
+
+00:25:59.490 --> 00:26:01.050
+in my semantic models.
+
+00:26:01.050 --> 00:26:01.920
+So you can see here I'm going
+
+00:26:01.920 --> 00:26:04.080
+to choose a couple
+different semantic models
+
+00:26:04.080 --> 00:26:06.330
+that have the right
+information and it has some
+
+00:26:06.330 --> 00:26:08.940
+of those entities
+and relationships
+
+00:26:08.940 --> 00:26:11.340
+for my stadium and
+security data.
+
+00:26:11.340 --> 00:26:13.830
+And then now I'm going to give
+it a bit more information
+
+00:26:13.830 --> 00:26:15.690
+about what I'm trying
+to accomplish.
+
+00:26:15.690 --> 00:26:18.510
+So you can see here in natural
+language I provide let's create
+
+00:26:18.510 --> 00:26:20.970
+a game day stadium
+operations ontology.
+
+00:26:20.970 --> 00:26:22.410
+I'm going to specify some
+
+00:26:22.410 --> 00:26:26.310
+of the specific concepts
+I want to have modeled.
+
+00:26:26.310 --> 00:26:29.790
+And all of this is going to
+allow me to even specify things
+
+00:26:29.790 --> 00:26:32.310
+like industry standards
+or other things
+
+00:26:32.310 --> 00:26:36.030
+from across the organization
+and the web that it might want
+
+00:26:36.030 --> 00:26:39.660
+to pull in and bring
+in into my ontology.
+
+00:26:39.660 --> 00:26:42.450
+So now Copilot is doing
+a different reasoning.
+
+00:26:42.450 --> 00:26:45.090
+It's giving me the different
+information, and just like that,
+
+00:26:45.090 --> 00:26:48.270
+it's found different entity
+types, the properties,
+
+00:26:48.270 --> 00:26:50.190
+data bindings, the
+relationships,
+
+00:26:50.190 --> 00:26:53.850
+and it's put all this together
+for me directly in my ontology.
+
+00:26:53.850 --> 00:26:56.880
+So I'm going to prove them all
+and go from the suggestions
+
+00:26:56.880 --> 00:26:58.770
+that we have from
+Copilot directly
+
+00:26:58.770 --> 00:27:01.650
+into my actual ontology
+that's being created.
+
+00:27:01.650 --> 00:27:03.660
+You can see that I have all
+the different entities,
+
+00:27:03.660 --> 00:27:06.270
+you can see the data
+that's bound to each
+
+00:27:06.270 --> 00:27:09.000
+of these properties, and
+the other information
+
+00:27:09.000 --> 00:27:10.530
+that's available.
+
+00:27:10.530 --> 00:27:12.870
+And really easily from here, I
+can keep building on top of it.
+
+00:27:12.870 --> 00:27:16.230
+I can add additional entity
+types and relationships.
+
+00:27:16.230 --> 00:27:21.120
+I can go directly into one of
+the entity types, in this case,
+
+00:27:21.120 --> 00:27:24.360
+it's "events" or "entrance",
+I can see how it's related
+
+00:27:24.360 --> 00:27:28.680
+to these other entities and
+I can even add more data.
+
+00:27:28.680 --> 00:27:32.700
+So I go and I chose
+my event host data.
+
+00:27:32.700 --> 00:27:34.680
+So I want to bring in
+some of that real-time
+
+00:27:34.680 --> 00:27:37.110
+in streaming data
+that you saw before.
+
+00:27:37.110 --> 00:27:40.470
+I'm going to bind the actual
+precise timestamp directly
+
+00:27:40.470 --> 00:27:42.210
+to these time series properties.
+
+00:27:42.210 --> 00:27:44.550
+You can see that it's suggesting
+properties to bring in
+
+00:27:44.550 --> 00:27:47.370
+and I can also add
+ones explicitly,
+
+00:27:47.370 --> 00:27:51.450
+and now that data is brought
+directly alongside the existing
+
+00:27:51.450 --> 00:27:54.480
+entity and the existing data
+that came from my semantic model
+
+00:27:54.480 --> 00:27:56.730
+in really just a few clicks.
+
+00:27:56.730 --> 00:27:59.880
+So as I mentioned, we can also
+build off further and add
+
+00:27:59.880 --> 00:28:02.880
+in things like the rules
+and the actions directly
+
+00:28:02.880 --> 00:28:04.710
+from the entity type.
+
+00:28:04.710 --> 00:28:06.630
+And again, this is very
+powerful because it's not just
+
+00:28:06.630 --> 00:28:08.880
+about the single data source,
+it's really about everything
+
+00:28:08.880 --> 00:28:10.530
+that makes up the entity.
+
+00:28:10.530 --> 00:28:12.930
+I can even connect
+things like my reports,
+
+00:28:12.930 --> 00:28:15.780
+so I really have a
+unified review of all
+
+00:28:15.780 --> 00:28:19.230
+of these important
+concepts and components
+
+00:28:19.230 --> 00:28:22.620
+of my different business
+entities to make it very easy
+
+00:28:22.620 --> 00:28:25.890
+for my organization to
+leverage it and use it more.
+
+00:28:25.890 --> 00:28:28.380
+So speaking of using it more,
+let's actually see what it looks
+
+00:28:28.380 --> 00:28:30.060
+like to leverage the ontology.
+
+00:28:30.060 --> 00:28:31.830
+So I'm back in the
+ontology view.
+
+00:28:31.830 --> 00:28:34.770
+This is where I was
+adding the entity types,
+
+00:28:34.770 --> 00:28:36.510
+the relationships,
+the different data.
+
+00:28:36.510 --> 00:28:39.960
+But I could actually go into
+the entity type overview itself
+
+00:28:39.960 --> 00:28:41.760
+and get more information
+about what's going
+
+00:28:41.760 --> 00:28:44.910
+on with this particular
+business entity right now.
+
+00:28:44.910 --> 00:28:46.860
+So I'm still on the
+entrance entity
+
+00:28:46.860 --> 00:28:49.890
+and I can see here
+the actual overview.
+
+00:28:49.890 --> 00:28:52.800
+I can see things like the
+data as it's streaming
+
+00:28:52.800 --> 00:28:55.350
+in about the queue length or
+the wait time in minutes.
+
+00:28:55.350 --> 00:28:57.090
+Of course, they have
+the relationship graphs
+
+00:28:57.090 --> 00:28:59.730
+that we'll talk to in
+a little bit more --
+
+00:28:59.730 --> 00:29:03.210
+a little bit in a minute, but
+you can see actually the context
+
+00:29:03.210 --> 00:29:05.580
+of the data that helps me
+understand what's going
+
+00:29:05.580 --> 00:29:06.900
+on with the entrance.
+
+00:29:06.900 --> 00:29:09.750
+You can see at the top there, I
+have eight different instances
+
+00:29:09.750 --> 00:29:11.400
+of these entrances as well,
+
+00:29:11.400 --> 00:29:13.920
+and I can see how the
+different instances kind
+
+00:29:13.920 --> 00:29:18.900
+of the data is distributed
+over these different areas.
+
+00:29:18.900 --> 00:29:21.030
+And I can select a particular
+instance and that's going
+
+00:29:21.030 --> 00:29:23.640
+to give me a double click
+right into that view.
+
+00:29:23.640 --> 00:29:27.180
+So in this case, I chose
+the north entrance.
+
+00:29:27.180 --> 00:29:29.820
+You can see the different
+properties, like where it is,
+
+00:29:29.820 --> 00:29:32.550
+and again, you could see all
+the different data views
+
+00:29:32.550 --> 00:29:34.680
+that are narrowed in
+specifically to this item,
+
+00:29:34.680 --> 00:29:38.940
+so very helpful to see this
+overview of the entity.
+
+00:29:38.940 --> 00:29:39.960
+But we'll take it even further
+
+00:29:39.960 --> 00:29:42.420
+and show you how the
+graph capabilities
+
+00:29:42.420 --> 00:29:46.170
+in IQ also really
+powers this kind
+
+00:29:46.170 --> 00:29:48.870
+of relationship and
+causal analysis.
+
+00:29:48.870 --> 00:29:50.160
+We're very excited to announce
+
+00:29:50.160 --> 00:29:52.260
+that graph is actually
+generally available,
+
+00:29:52.260 --> 00:29:55.050
+and you can see how it takes
+the power of what you have
+
+00:29:55.050 --> 00:29:57.030
+in your OneLake data
+and your ontology.
+
+00:29:57.030 --> 00:29:58.620
+It really helps
+you understand all
+
+00:29:58.620 --> 00:30:00.660
+of this different
+information together.
+
+00:30:00.660 --> 00:30:02.340
+So let's see it in action.
+
+00:30:02.340 --> 00:30:04.740
+So building on the
+view we saw before,
+
+00:30:04.740 --> 00:30:07.110
+that north gate entrance
+looked like it needed --
+
+00:30:07.110 --> 00:30:09.510
+we needed to understand a little
+bit more what's going on.
+
+00:30:09.510 --> 00:30:12.690
+And so I can go directly from my
+ontology view or I can go right
+
+00:30:12.690 --> 00:30:14.760
+into the graph item itself.
+
+00:30:14.760 --> 00:30:19.530
+And here I'm using our
+visual no-code query builder
+
+00:30:19.530 --> 00:30:24.420
+to actually build out a rich
+GQL query without ever having
+
+00:30:24.420 --> 00:30:26.160
+to understand the right code.
+
+00:30:26.160 --> 00:30:27.480
+So you can see I
+chose "entrance"
+
+00:30:27.480 --> 00:30:30.420
+and it helped me build out
+the other related nodes,
+
+00:30:30.420 --> 00:30:32.580
+the course segment,
+the seating section.
+
+00:30:32.580 --> 00:30:35.370
+And I could even filter
+down to a particular view,
+
+00:30:35.370 --> 00:30:38.850
+and just like that, I have very
+fast graph results coming in.
+
+00:30:38.850 --> 00:30:40.980
+I can see these
+different entrances.
+
+00:30:40.980 --> 00:30:44.550
+I can see the different
+areas that it's related to.
+
+00:30:44.550 --> 00:30:47.850
+And so for example, I can
+use seating Section 204
+
+00:30:47.850 --> 00:30:50.010
+as an example to really
+understand a bit more
+
+00:30:50.010 --> 00:30:53.340
+about the implications of
+something happening at one
+
+00:30:53.340 --> 00:30:55.410
+of these entrances
+and what it could do
+
+00:30:55.410 --> 00:30:57.510
+to something like Section 204.
+
+00:30:57.510 --> 00:31:02.100
+So see here, I've actually
+specified now a GQL query.
+
+00:31:02.100 --> 00:31:04.740
+I'm trying to understand
+the different related areas
+
+00:31:04.740 --> 00:31:09.000
+around 204 and the different
+entrances that are near it.
+
+00:31:09.000 --> 00:31:13.050
+And I switched over to the query
+results in a list view instead
+
+00:31:13.050 --> 00:31:15.030
+of in that diagram view
+to get a bigger --
+
+00:31:15.030 --> 00:31:16.950
+better understanding of it.
+
+00:31:16.950 --> 00:31:18.780
+Now I'm going to take
+a more interesting
+
+00:31:18.780 --> 00:31:22.410
+and more rich query that's
+going to help me actually go
+
+00:31:22.410 --> 00:31:27.810
+from the different area into the
+different gates that are related
+
+00:31:27.810 --> 00:31:31.410
+and actually understand which
+of the concession stands
+
+00:31:31.410 --> 00:31:32.430
+are involved.
+
+00:31:32.430 --> 00:31:34.980
+And so for example, if we have
+a surge in one of the areas
+
+00:31:34.980 --> 00:31:37.890
+or from one of the different
+gates, we really want
+
+00:31:37.890 --> 00:31:40.920
+to understand which of these
+concessions need to be
+
+00:31:40.920 --> 00:31:43.980
+on standby and make sure
+that they have enough staff
+
+00:31:43.980 --> 00:31:45.780
+and actually enough supplies.
+
+00:31:45.780 --> 00:31:48.420
+So I'm going to take one further
+hop and actually go all the way
+
+00:31:48.420 --> 00:31:50.520
+into the warehouse
+so I can understand
+
+00:31:50.520 --> 00:31:54.810
+which warehouses are helping to
+power which concession stands
+
+00:31:54.810 --> 00:31:56.280
+that are by the entrances.
+
+00:31:56.280 --> 00:31:58.530
+And you see this
+multi-hop analysis
+
+00:31:58.530 --> 00:32:00.450
+to really understand
+the relationships
+
+00:32:00.450 --> 00:32:03.480
+across my entire system
+is so, so powerful,
+
+00:32:03.480 --> 00:32:07.020
+and it's all possible with the
+graph analytics capability
+
+00:32:07.020 --> 00:32:10.560
+directly built
+into the ontology.
+
+00:32:10.560 --> 00:32:11.490
+And that's not it.
+
+00:32:11.490 --> 00:32:14.040
+We also have planning
+in Fabric IQ.
+
+00:32:14.040 --> 00:32:17.250
+We announced this one at FABCON.
+
+00:32:17.250 --> 00:32:19.440
+And this is where you can see
+over that same trusted data,
+
+00:32:19.440 --> 00:32:22.680
+you can actually plan out,
+and understand, and run what
+
+00:32:22.680 --> 00:32:25.410
+if scenarios, making it really
+powerful to enable the business
+
+00:32:25.410 --> 00:32:27.060
+and the finance teams.
+
+00:32:27.060 --> 00:32:28.920
+Okay, that was a quick
+overview of some
+
+00:32:28.920 --> 00:32:31.050
+of the different
+capabilities in Fabric IQ,
+
+00:32:31.050 --> 00:32:33.870
+and I'll hand it back
+over to you, Yitzhak.
+
+00:32:33.870 --> 00:32:35.340
+YITZHAK KESSELMAN: So
+I'm super excited here
+
+00:32:35.340 --> 00:32:39.360
+to have Dr. Werner from Siemens
+Healthineers to tell us
+
+00:32:39.360 --> 00:32:42.270
+about how to use the product,
+how it changed their developers.
+
+00:32:42.270 --> 00:32:44.460
+So Dr. Werner, can
+you tell us a bit
+
+00:32:44.460 --> 00:32:46.410
+about yourself and the company?
+
+00:32:46.410 --> 00:32:47.910
+DR. WERNER ZIRKEL:
+Yes, so first of all,
+
+00:32:47.910 --> 00:32:49.500
+thanks for having me here.
+
+00:32:49.500 --> 00:32:51.660
+It's really a pleasure.
+
+00:32:51.660 --> 00:32:54.570
+So yeah, let me talk about
+Siemens Healthineers first.
+
+00:32:54.570 --> 00:32:56.520
+Siemens Healthineers
+is a company
+
+00:32:56.520 --> 00:33:00.870
+which sells medical
+products like CTs, MRIs,
+
+00:33:00.870 --> 00:33:04.980
+angiography systems,
+ultrasound systems, and so on.
+
+00:33:04.980 --> 00:33:06.660
+These systems are
+sold to the customer
+
+00:33:06.660 --> 00:33:09.210
+and we are getting
+the data from that.
+
+00:33:09.210 --> 00:33:14.280
+My job is to analyze the data
+and develop cloud solutions
+
+00:33:14.280 --> 00:33:18.090
+to really make sure that we
+are doing a good customer
+
+00:33:18.090 --> 00:33:19.260
+services job.
+
+00:33:19.260 --> 00:33:19.620
+YITZHAK KESSELMAN: Thank you,
+
+00:33:19.620 --> 00:33:21.930
+that sounds like super
+mission-critical
+
+00:33:21.930 --> 00:33:23.880
+and super important
+for your users
+
+00:33:23.880 --> 00:33:27.420
+that are using your data
+and your analytics.
+
+00:33:27.420 --> 00:33:29.310
+So that's a bit about
+kind of the evolution,
+
+00:33:29.310 --> 00:33:33.780
+how what you were using before,
+what you move to use now,
+
+00:33:33.780 --> 00:33:37.710
+and how it changed kind of your
+day-to-day, the day-to-day
+
+00:33:37.710 --> 00:33:40.980
+of your developers and also
+the end customers of that.
+
+00:33:40.980 --> 00:33:45.000
+DR. WERNER ZIRKEL: So let's
+say in short summary,
+
+00:33:45.000 --> 00:33:49.650
+I would say we are coming from
+plain old batch file processing
+
+00:33:49.650 --> 00:33:52.740
+to more proactive
+service to something
+
+00:33:52.740 --> 00:33:54.120
+like real-time streaming.
+
+00:33:54.120 --> 00:33:55.830
+But let's start
+in the beginning.
+
+00:33:55.830 --> 00:33:58.650
+So in the last 20 to 25 years,
+
+00:33:58.650 --> 00:34:01.260
+we have been transferring
+files from the system.
+
+00:34:01.260 --> 00:34:04.440
+That's log files or any kind
+of log file that we use --
+
+00:34:04.440 --> 00:34:08.670
+need for customer services
+for analyzing data.
+
+00:34:08.670 --> 00:34:11.970
+The three main use cases
+are predictive service,
+
+00:34:11.970 --> 00:34:15.000
+which means we are trying
+to forecast failure
+
+00:34:15.000 --> 00:34:17.700
+which is upcoming,
+which is really hard
+
+00:34:17.700 --> 00:34:20.190
+if you just get a
+file once per day.
+
+00:34:20.190 --> 00:34:21.840
+We are doing proactive services.
+
+00:34:21.840 --> 00:34:24.630
+So there is already something
+happened on the system,
+
+00:34:24.630 --> 00:34:28.050
+which is not good, we know it,
+the customer did not know it
+
+00:34:28.050 --> 00:34:30.990
+or at least he did not
+realize that so far.
+
+00:34:30.990 --> 00:34:34.980
+So we are trying to at least be
+prepared if the customer calls.
+
+00:34:34.980 --> 00:34:38.250
+And the third one is
+reactive service,
+
+00:34:38.250 --> 00:34:42.600
+which is really mission-critical
+in our case because we are --
+
+00:34:42.600 --> 00:34:44.820
+and I am focusing
+on angiography.
+
+00:34:44.820 --> 00:34:48.660
+That means we have a
+patient lying on the table
+
+00:34:48.660 --> 00:34:51.000
+and the doctor needs to
+-- it just tells us,
+
+00:34:51.000 --> 00:34:52.050
+"The system is not working.
+
+00:34:52.050 --> 00:34:52.680
+What should I do?
+
+00:34:52.680 --> 00:34:54.570
+Should I now relocate
+the patient?
+
+00:34:54.570 --> 00:34:57.090
+I am in the middle
+of a treatment.
+
+00:34:57.090 --> 00:34:59.610
+Should I relocate the patient
+or what should I do?"
+
+00:34:59.610 --> 00:35:04.050
+And then you need to have the
+data at once, immediately,
+
+00:35:04.050 --> 00:35:07.200
+and it needs to be
+analyzed immediately.
+
+00:35:07.200 --> 00:35:13.470
+And here is a technology
+necessary that helps us.
+
+00:35:13.470 --> 00:35:14.250
+YITZHAK KESSELMAN:
+And tell us a bit
+
+00:35:14.250 --> 00:35:16.500
+about like what you were
+using in the past and not --
+
+00:35:16.500 --> 00:35:18.990
+we're using now and how
+they change kind of --
+
+00:35:18.990 --> 00:35:19.040
+DR. WERNER ZIRKEL: Yeah.
+
+00:35:19.040 --> 00:35:20.720
+YITZHAK KESSELMAN: --
+experience for your developers.
+
+00:35:20.720 --> 00:35:22.640
+DR. WERNER ZIRKEL: In the
+past, we have been using,
+
+00:35:22.640 --> 00:35:25.340
+let's say, other products,
+other databases, and --
+
+00:35:25.340 --> 00:35:28.970
+or data scientists
+were really stuck
+
+00:35:28.970 --> 00:35:31.310
+in building intermediate tables
+
+00:35:31.310 --> 00:35:34.170
+and doing operations
+all the way.
+
+00:35:34.170 --> 00:35:37.830
+We have been introducing
+Microsoft technology
+
+00:35:37.830 --> 00:35:41.550
+that is the native stack,
+like Event Grid, Event Hubs,
+
+00:35:41.550 --> 00:35:43.200
+and also Azure Data Explorer,
+
+00:35:43.200 --> 00:35:45.930
+that changed dramatically
+the way it has been working.
+
+00:35:45.930 --> 00:35:51.480
+Our data scientists now have
+time to really go for patterns
+
+00:35:51.480 --> 00:35:57.240
+that are telling us what is
+actually wrong with the system,
+
+00:35:57.240 --> 00:36:00.450
+and at the end, which are
+helping our customers
+
+00:36:00.450 --> 00:36:02.970
+and which are helping
+the patient to make sure
+
+00:36:02.970 --> 00:36:05.100
+that a system is
+running smoothly.
+
+00:36:05.100 --> 00:36:06.270
+YITZHAK KESSELMAN: So
+thank you, Dr. Werner.
+
+00:36:06.270 --> 00:36:08.070
+So you moved from a
+kind of something
+
+00:36:08.070 --> 00:36:10.920
+that was a bit more bad,
+something a bit more streaming
+
+00:36:10.920 --> 00:36:14.460
+into the cloud using Azure Plus
+services, but you also move now
+
+00:36:14.460 --> 00:36:15.900
+to Fabric real-time
+intelligence.
+
+00:36:15.900 --> 00:36:18.990
+So tell us a bit more how
+it changed kind of --
+
+00:36:18.990 --> 00:36:18.991
+[inaudible]
+
+00:36:18.991 --> 00:36:20.400
+-- the experience
+for your developers
+
+00:36:20.400 --> 00:36:23.520
+and what was the impact
+on your end customers.
+
+00:36:23.520 --> 00:36:24.870
+DR. WERNER ZIRKEL: I
+think for developers,
+
+00:36:24.870 --> 00:36:27.210
+it's interesting in two ways.
+
+00:36:27.210 --> 00:36:30.180
+So Fabric is like a
+natural success of --
+
+00:36:30.180 --> 00:36:31.170
+for which we have been --
+
+00:36:31.170 --> 00:36:36.270
+the technology we have been
+using before, but it has two --
+
+00:36:36.270 --> 00:36:37.710
+impact on two aspects.
+
+00:36:37.710 --> 00:36:39.480
+The first one is development.
+
+00:36:39.480 --> 00:36:43.080
+So development speed
+increases really much
+
+00:36:43.080 --> 00:36:46.350
+because all the things
+that you need to --
+
+00:36:46.350 --> 00:36:50.490
+nitty-gritty details that will
+be taken over and automated.
+
+00:36:50.490 --> 00:36:51.240
+That's number one.
+
+00:36:51.240 --> 00:36:53.640
+Second one is operations.
+
+00:36:53.640 --> 00:36:56.760
+We don't have the time
+to operate like VMs,
+
+00:36:56.760 --> 00:37:00.840
+cluster service, what have you,
+so that has been taken over.
+
+00:37:00.840 --> 00:37:03.960
+It's all automated so we
+have really decreased
+
+00:37:03.960 --> 00:37:06.960
+in operational costs at the end.
+
+00:37:06.960 --> 00:37:08.550
+YITZHAK KESSELMAN: Now, so
+that's exciting to hear.
+
+00:37:08.550 --> 00:37:10.890
+That's exactly the goal, to
+make sure that developers focus
+
+00:37:10.890 --> 00:37:13.110
+on the specific IP,
+their knowledge,
+
+00:37:13.110 --> 00:37:15.720
+and they are not focusing
+on the plumbing or kind
+
+00:37:15.720 --> 00:37:16.770
+of maintaining the system.
+
+00:37:16.770 --> 00:37:19.470
+So happy to hear that it worked
+for you and your customers.
+
+00:37:19.470 --> 00:37:22.290
+So what was kind of impact
+on all up on your business,
+
+00:37:22.290 --> 00:37:23.730
+if you can share
+on your customers
+
+00:37:23.730 --> 00:37:27.360
+that are now using
+Siemens Healthineers?
+
+00:37:27.360 --> 00:37:30.120
+DR. WERNER ZIRKEL: I think we
+are coming now into this mode
+
+00:37:30.120 --> 00:37:34.110
+where streaming is
+really like a commodity.
+
+00:37:34.110 --> 00:37:38.070
+So our systems need to be able
+to stream data in real time,
+
+00:37:38.070 --> 00:37:42.390
+so and this is a big increase
+that we can go with Fabric,
+
+00:37:42.390 --> 00:37:45.120
+because it helps
+really to make sure
+
+00:37:45.120 --> 00:37:46.920
+that reactive service finds --
+
+00:37:46.920 --> 00:37:50.640
+hits the point exactly where we
+have a problem in the system,
+
+00:37:50.640 --> 00:37:53.070
+we can order spare
+parts, if required,
+
+00:37:53.070 --> 00:37:57.060
+and prevent downtimes
+for the customer.
+
+00:37:57.060 --> 00:37:59.580
+So I think this
+will increase also
+
+00:37:59.580 --> 00:38:03.300
+from a customer
+side, the benefit.
+
+00:38:03.300 --> 00:38:04.560
+YITZHAK KESSELMAN: Oh, thank
+you so much, Dr. Werner.
+
+00:38:04.560 --> 00:38:05.790
+It was a pleasure having you.
+
+00:38:05.790 --> 00:38:07.200
+Thank you for joining me today.
+
+00:38:07.200 --> 00:38:08.910
+DR. WERNER ZIRKEL:
+You're welcome.
+
+00:38:08.910 --> 00:38:10.260
+YITZHAK KESSELMAN: So
+that was super exciting
+
+00:38:10.260 --> 00:38:11.490
+to hear Dr. Werner share
+
+00:38:11.490 --> 00:38:13.560
+about how the product team
+helps their customers,
+
+00:38:13.560 --> 00:38:16.530
+but more how their developers
+are becoming more productive
+
+00:38:16.530 --> 00:38:18.270
+and really able to
+focus on therapy
+
+00:38:18.270 --> 00:38:21.450
+and their specific skills,
+and not on the plumbing.
+
+00:38:21.450 --> 00:38:22.650
+So with that, let's focus
+
+00:38:22.650 --> 00:38:24.450
+on the next thing what
+we're going to do.
+
+00:38:24.450 --> 00:38:25.200
+In this case, we're going
+
+00:38:25.200 --> 00:38:27.900
+to discuss how really Fabric
+IQ can enable both people
+
+00:38:27.900 --> 00:38:30.570
+and agents to work with
+all this data we created.
+
+00:38:30.570 --> 00:38:32.550
+And today everyone
+talks about AI,
+
+00:38:32.550 --> 00:38:34.230
+but the question
+how we can apply it
+
+00:38:34.230 --> 00:38:36.600
+to really generate real
+value in this case.
+
+00:38:36.600 --> 00:38:38.610
+And speaking about AI,
+there are two aspects here,
+
+00:38:38.610 --> 00:38:41.250
+one is the machine learning
+and the other one is LLMs,
+
+00:38:41.250 --> 00:38:42.840
+large language models.
+
+00:38:42.840 --> 00:38:45.780
+And the goal here is really
+to use where AI excels,
+
+00:38:45.780 --> 00:38:48.540
+really finding the needle in the
+haystack and ability to reason
+
+00:38:48.540 --> 00:38:51.420
+about it to really understand
+how we can use those signals
+
+00:38:51.420 --> 00:38:54.450
+to help drive our operations
+for our business.
+
+00:38:54.450 --> 00:38:56.790
+And that's where Fabric IQ
+creates the difference.
+
+00:38:56.790 --> 00:38:59.220
+Today, as I mentioned before,
+we are working on tables
+
+00:38:59.220 --> 00:39:01.110
+and schemas on the raw data,
+
+00:39:01.110 --> 00:39:02.670
+without the context
+of the business.
+
+00:39:02.670 --> 00:39:05.490
+And the goal here is really to
+power the agents to be grounded
+
+00:39:05.490 --> 00:39:07.740
+on the real business
+context, the real ability
+
+00:39:07.740 --> 00:39:10.650
+of what the business represents,
+all the actions, all the rules,
+
+00:39:10.650 --> 00:39:13.230
+all the policies, that we really
+represent the virtual brain
+
+00:39:13.230 --> 00:39:14.400
+of the business.
+
+00:39:14.400 --> 00:39:17.640
+And if you look kind of at the
+spectrum of agents from no-code
+
+00:39:17.640 --> 00:39:20.700
+to pro-code where developers
+build their own custom agents,
+
+00:39:20.700 --> 00:39:23.160
+as you are, you want to
+make sure that those agents
+
+00:39:23.160 --> 00:39:26.460
+that you build are grounded
+on the ontology in Fabric IQ
+
+00:39:26.460 --> 00:39:29.490
+and powered by real-time
+intelligence, and to dive deep
+
+00:39:29.490 --> 00:39:31.860
+into kind of what
+Microsoft tells us to do.
+
+00:39:31.860 --> 00:39:33.930
+So all the integration
+from Microsoft Foundry,
+
+00:39:33.930 --> 00:39:36.360
+Microsoft Copilot Studio,
+and out-of-the-box agent
+
+00:39:36.360 --> 00:39:39.000
+from Microsoft Fabric are
+all grounded and integrated
+
+00:39:39.000 --> 00:39:41.730
+on the ontologies in Fabric IQ.
+
+00:39:41.730 --> 00:39:43.710
+So with that, I would like to
+invite Tessa to show you more
+
+00:39:43.710 --> 00:39:48.450
+in depth how we -- you can
+use AI with ontologies.
+
+00:39:48.450 --> 00:39:48.990
+TESSA KLOSTER: Thank you.
+
+00:39:48.990 --> 00:39:53.220
+Okay, yes, let's go right in
+to show a demo about agents,
+
+00:39:53.220 --> 00:39:56.070
+specifically the Operations
+Agent capabilities,
+
+00:39:56.070 --> 00:39:59.280
+which as I mentioned before is
+actually generally available.
+
+00:39:59.280 --> 00:40:01.770
+So let's see how it works.
+
+00:40:01.770 --> 00:40:04.200
+So going right in, we're
+actually going to start --
+
+00:40:04.200 --> 00:40:05.850
+if you remember before
+from the demos,
+
+00:40:05.850 --> 00:40:09.210
+we showed how you can start
+to automate based off
+
+00:40:09.210 --> 00:40:12.360
+of the custom data as it's
+streaming in or maybe
+
+00:40:12.360 --> 00:40:14.640
+as you omit those
+business events.
+
+00:40:14.640 --> 00:40:16.350
+But what I'm going to do
+here is actually start
+
+00:40:16.350 --> 00:40:18.600
+by creating an anomaly detector.
+
+00:40:18.600 --> 00:40:22.290
+And what this is going to do
+is leverage the same data
+
+00:40:22.290 --> 00:40:25.860
+that I have in Eventhouse, but
+it's going to bring in the power
+
+00:40:25.860 --> 00:40:30.930
+of data science, it's going to
+analyze and understand the data,
+
+00:40:30.930 --> 00:40:33.270
+the different patterns that
+are existing in my data,
+
+00:40:33.270 --> 00:40:35.190
+and it's going to
+recommend the best model
+
+00:40:35.190 --> 00:40:38.010
+to detect anomalies on my data.
+
+00:40:38.010 --> 00:40:39.540
+And so I'm not a data scientist,
+
+00:40:39.540 --> 00:40:42.990
+but you can see here it
+leverages user-friendly
+
+00:40:42.990 --> 00:40:45.870
+terminology, things like
+"fast outlier scanner,"
+
+00:40:45.870 --> 00:40:47.580
+"core pattern finder."
+
+00:40:47.580 --> 00:40:50.100
+And because I can see my
+data right alongside this
+
+00:40:50.100 --> 00:40:53.580
+information, I can better
+understand what this model is
+
+00:40:53.580 --> 00:40:57.030
+going to do and if it matches
+the anomalies that I understand
+
+00:40:57.030 --> 00:40:58.890
+within my business data.
+
+00:40:58.890 --> 00:41:02.310
+So very powerful, in just a few
+clicks, I can actually create
+
+00:41:02.310 --> 00:41:05.280
+and publish this anomaly
+detector, and what it's going
+
+00:41:05.280 --> 00:41:07.950
+to do is as the data's streaming
+in, as new media comes in,
+
+00:41:07.950 --> 00:41:09.870
+it's going to run
+that same analysis
+
+00:41:09.870 --> 00:41:13.050
+and actually emit an
+anomaly detector event
+
+00:41:13.050 --> 00:41:16.860
+when something meets
+those conditions.
+
+00:41:16.860 --> 00:41:17.790
+And so very powerful.
+
+00:41:17.790 --> 00:41:20.040
+Again, you saw it before
+when I did this manually,
+
+00:41:20.040 --> 00:41:22.920
+now we're fully automating
+it by also leveraging AI
+
+00:41:22.920 --> 00:41:26.130
+to actually detect the anomalies
+themselves instead of me having
+
+00:41:26.130 --> 00:41:29.910
+to write custom code in
+order to understand them.
+
+00:41:29.910 --> 00:41:32.220
+I can even -- when I subscribe
+to the anomaly detector,
+
+00:41:32.220 --> 00:41:35.640
+I can filter to specific
+values, and just like that,
+
+00:41:35.640 --> 00:41:38.670
+once the alert's created, it
+can run alongside my team,
+
+00:41:38.670 --> 00:41:40.920
+and alert, and then
+notify the team.
+
+00:41:40.920 --> 00:41:42.660
+But we're going to take it
+even further, actually,
+
+00:41:42.660 --> 00:41:44.430
+with the Operations Agent.
+
+00:41:44.430 --> 00:41:46.700
+And what this is actually going
+to do is it's going to be able
+
+00:41:46.700 --> 00:41:49.310
+to monitor and understand
+all of this different data,
+
+00:41:49.310 --> 00:41:53.330
+the anomaly detector events, my
+event host data, my ontology.
+
+00:41:53.330 --> 00:41:56.690
+It's going to do all of this in
+real time and actually be able
+
+00:41:56.690 --> 00:42:00.050
+to monitor, and understand,
+and then most importantly,
+
+00:42:00.050 --> 00:42:02.630
+act alongside my business.
+
+00:42:02.630 --> 00:42:03.890
+So I'm going to start
+
+00:42:03.890 --> 00:42:06.770
+by onboarding the agent is
+I would any team member
+
+00:42:06.770 --> 00:42:07.970
+and give it the goals.
+
+00:42:07.970 --> 00:42:10.970
+In this case, it's going to help
+ensure that our stock levels
+
+00:42:10.970 --> 00:42:14.030
+for the concession
+stands are adequate.
+
+00:42:14.030 --> 00:42:15.900
+I can provide them more
+detailed instructions,
+
+00:42:15.900 --> 00:42:17.280
+as I would for any agent.
+
+00:42:17.280 --> 00:42:19.590
+But the real power comes in
+when I connect it directly
+
+00:42:19.590 --> 00:42:21.000
+to that same ontology.
+
+00:42:21.000 --> 00:42:25.020
+So all of the business context,
+the entities, the relationships,
+
+00:42:25.020 --> 00:42:26.340
+the actions that are already
+
+00:42:26.340 --> 00:42:29.130
+in the ontology are
+automatically available
+
+00:42:29.130 --> 00:42:30.240
+to this agent.
+
+00:42:30.240 --> 00:42:33.540
+I can add custom actions as
+well, and just like that,
+
+00:42:33.540 --> 00:42:34.980
+I've provided all
+this information
+
+00:42:34.980 --> 00:42:37.380
+on the left-hand side, the
+goals, the instructions,
+
+00:42:37.380 --> 00:42:40.470
+the knowledge from the ontology,
+and the custom actions
+
+00:42:40.470 --> 00:42:42.510
+that we want for this
+particular case.
+
+00:42:42.510 --> 00:42:45.210
+And just like that, I can
+generate the playbook.
+
+00:42:45.210 --> 00:42:47.010
+Now, when I select "Generate the
+Playbook," what you're going
+
+00:42:47.010 --> 00:42:50.750
+to see on the right-hand side is
+essentially the agent telling
+
+00:42:50.750 --> 00:42:54.230
+back to us what it understood
+about all of this information.
+
+00:42:54.230 --> 00:42:56.210
+So you can see here it found
+the different entities
+
+00:42:56.210 --> 00:42:58.820
+that are relevant for the
+goals that we provided,
+
+00:42:58.820 --> 00:43:02.150
+it sees the properties that
+are interesting and the rules
+
+00:43:02.150 --> 00:43:03.860
+that it's not just
+going to monitor for,
+
+00:43:03.860 --> 00:43:07.100
+but actually take actions on
+when the conditions are met.
+
+00:43:07.100 --> 00:43:09.620
+So now that the Operations
+Agent is up and running,
+
+00:43:09.620 --> 00:43:12.300
+it's alongside the rest of
+our team, actually directly
+
+00:43:12.300 --> 00:43:14.520
+in our team's channel,
+and you can see, right,
+
+00:43:14.520 --> 00:43:17.190
+that it already found
+a particular condition
+
+00:43:17.190 --> 00:43:19.050
+that it's alerting on.
+
+00:43:19.050 --> 00:43:22.320
+So in this case, it can see
+a specific concession has
+
+00:43:22.320 --> 00:43:23.280
+low stock.
+
+00:43:23.280 --> 00:43:25.110
+It's recommending an
+action to reorder,
+
+00:43:25.110 --> 00:43:27.960
+but I can also take the option
+to investigate further.
+
+00:43:27.960 --> 00:43:29.550
+And so in this case, the
+agent is going to go
+
+00:43:29.550 --> 00:43:31.920
+that deeper level, do
+some root cause analysis
+
+00:43:31.920 --> 00:43:37.380
+to really understand what led to
+this condition to really ensure
+
+00:43:37.380 --> 00:43:40.260
+that the action it's
+suggesting is the best one.
+
+00:43:40.260 --> 00:43:41.760
+In this case, it's
+still the right action
+
+00:43:41.760 --> 00:43:43.350
+to reorder the stock,
+it's going to help --
+
+00:43:43.350 --> 00:43:46.980
+ask me to confirm the different
+parameters, and just like that,
+
+00:43:46.980 --> 00:43:50.250
+we automatically
+not just identified
+
+00:43:50.250 --> 00:43:52.500
+and understood a
+particular issue,
+
+00:43:52.500 --> 00:43:54.690
+actually took action
+to resolve it.
+
+00:43:54.690 --> 00:43:56.430
+And so whenever we have
+these agents running,
+
+00:43:56.430 --> 00:43:59.310
+it's very important to
+understand what's going on.
+
+00:43:59.310 --> 00:44:03.030
+So we have the out-of-box
+activity log capabilities
+
+00:44:03.030 --> 00:44:05.250
+that are going to show
+not just what happened,
+
+00:44:05.250 --> 00:44:08.880
+it's going to see the -- what
+was run, what was executed,
+
+00:44:08.880 --> 00:44:11.400
+what it did about it, the
+alert or the action it ended
+
+00:44:11.400 --> 00:44:14.370
+up taking, to really help me
+build confidence in the agent,
+
+00:44:14.370 --> 00:44:15.570
+but also refine it further
+
+00:44:15.570 --> 00:44:19.080
+so that it's working the
+best alongside my business.
+
+00:44:19.080 --> 00:44:21.630
+So that really showed some of
+the out-of-box capabilities
+
+00:44:21.630 --> 00:44:23.970
+that we have for
+Operations Agent.
+
+00:44:23.970 --> 00:44:25.710
+Really quickly, we have
+other capabilities
+
+00:44:25.710 --> 00:44:26.910
+across the entire system.
+
+00:44:26.910 --> 00:44:30.720
+You can build a RAG solution
+directly with Eventhouse.
+
+00:44:30.720 --> 00:44:32.160
+I think I already mentioned,
+
+00:44:32.160 --> 00:44:34.380
+we have the different anomaly
+detector capabilities.
+
+00:44:34.380 --> 00:44:36.810
+So this is in public preview
+right now, very easy for you
+
+00:44:36.810 --> 00:44:39.750
+to go and connect to your
+existing Eventhouse data.
+
+00:44:39.750 --> 00:44:44.580
+Data agent is generally
+available in Fabric IQ as well,
+
+00:44:44.580 --> 00:44:48.300
+so you can use this to use -- to
+ask natural language questions,
+
+00:44:48.300 --> 00:44:49.050
+and then, of course,
+
+00:44:49.050 --> 00:44:52.320
+the Operations Agent generally
+available in Fabric IQ.
+
+00:44:52.320 --> 00:44:54.870
+So all of these different
+capabilities out of box
+
+00:44:54.870 --> 00:44:59.160
+to make it very easy for you to
+leverage your data in Fabric.
+
+00:44:59.160 --> 00:45:03.450
+You can also use Foundry
+to directly connect
+
+00:45:03.450 --> 00:45:07.140
+to that same ontology, the
+same information across all
+
+00:45:07.140 --> 00:45:09.720
+of your Fabric data estate
+
+00:45:09.720 --> 00:45:12.540
+to build those custom
+agents as well.
+
+00:45:12.540 --> 00:45:15.630
+So with that, I'll hand
+it back to Yitzhak.
+
+00:45:15.630 --> 00:45:16.860
+YITZHAK KESSELMAN:
+Thank you, Tessa.
+
+00:45:16.860 --> 00:45:18.480
+And I'm super excited
+also to share
+
+00:45:18.480 --> 00:45:19.830
+with you how you can
+take it further,
+
+00:45:19.830 --> 00:45:22.170
+how you can use
+all those signals
+
+00:45:22.170 --> 00:45:24.330
+from the real world
+together with the ontology
+
+00:45:24.330 --> 00:45:27.060
+to present the brain of the
+business, but also move it
+
+00:45:27.060 --> 00:45:27.960
+to the physical world.
+
+00:45:27.960 --> 00:45:30.450
+And that's where physical
+comes into place.
+
+00:45:30.450 --> 00:45:32.850
+And I'm excited to share about
+our strategic partnership
+
+00:45:32.850 --> 00:45:35.670
+with NVIDIA, where we combined
+all those capabilities together
+
+00:45:35.670 --> 00:45:38.790
+to really help to drive
+and power physical AI.
+
+00:45:38.790 --> 00:45:41.910
+So if we look at the examples
+of airport operations,
+
+00:45:41.910 --> 00:45:43.830
+in this scenario, there
+are multiple entities,
+
+00:45:43.830 --> 00:45:45.720
+there are robotic arms,
+there are conveyor belts,
+
+00:45:45.720 --> 00:45:47.370
+baggage, cameras, et cetera.
+
+00:45:47.370 --> 00:45:50.070
+And the question how we can
+collect all those signals,
+
+00:45:50.070 --> 00:45:53.880
+analyze them, understand and
+act to them, both with humans
+
+00:45:53.880 --> 00:45:56.100
+and agents, but also
+in the physical world,
+
+00:45:56.100 --> 00:45:57.990
+how we can use Fabric
+real-time intelligence
+
+00:45:57.990 --> 00:46:00.180
+to collect all those
+signals that are coming
+
+00:46:00.180 --> 00:46:03.840
+in real time using Fabric IQ,
+using the ontology studio
+
+00:46:03.840 --> 00:46:05.970
+to present the contextualized
+the visual grain
+
+00:46:05.970 --> 00:46:08.280
+of these operations,
+using NVIDIA Omniverse
+
+00:46:08.280 --> 00:46:11.310
+to create 3D visualization
+of the real world,
+
+00:46:11.310 --> 00:46:13.650
+but also using simulations
+to really mimic
+
+00:46:13.650 --> 00:46:17.250
+and create the physical
+simulation of the world.
+
+00:46:17.250 --> 00:46:19.500
+And that's where it's
+all coming together,
+
+00:46:19.500 --> 00:46:21.420
+a unified special context
+
+00:46:21.420 --> 00:46:24.600
+where you're bringing together
+all the data into one place,
+
+00:46:24.600 --> 00:46:27.660
+ability to drive the operations
+not only on the digital world
+
+00:46:27.660 --> 00:46:30.510
+but also on the physical world.
+
+00:46:30.510 --> 00:46:33.180
+And the solution
+here is in preview,
+
+00:46:33.180 --> 00:46:36.420
+where you can connect all this
+data, all those streams of data
+
+00:46:36.420 --> 00:46:40.350
+and embed it in the real-time
+dashboard using OpenUSD scenes
+
+00:46:40.350 --> 00:46:43.170
+to integrate it with NVIDIA
+Omniverse libraries.
+
+00:46:43.170 --> 00:46:45.690
+And this creates a 3D
+visualization where you can see
+
+00:46:45.690 --> 00:46:48.300
+in real time how those
+end system operates,
+
+00:46:48.300 --> 00:46:49.350
+but also the signals.
+
+00:46:49.350 --> 00:46:52.770
+And it's a bidirectional
+cross-highlight capabilities.
+
+00:46:52.770 --> 00:46:56.100
+And all of this is sparked by
+a unified operational picture
+
+00:46:56.100 --> 00:46:58.680
+when you can drive operations
+for all their companies.
+
+00:46:58.680 --> 00:47:01.170
+And that's where physical
+AI comes into life.
+
+00:47:01.170 --> 00:47:04.020
+And we can see it in
+a real-time demo.
+
+00:47:04.020 --> 00:47:05.020
+So let's see it in action.
+
+00:47:05.020 --> 00:47:06.770
+[ Music ]
+
+00:47:06.770 --> 00:47:08.930
+SPEAKER 3: Airports manage
+thousands of moving assets
+
+00:47:08.930 --> 00:47:11.810
+in real time, but
+operations are still spread
+
+00:47:11.810 --> 00:47:13.820
+across fragmented systems.
+
+00:47:13.820 --> 00:47:16.130
+This makes it hard to
+see what's happening now
+
+00:47:16.130 --> 00:47:19.290
+or what risks are coming next.
+
+00:47:19.290 --> 00:47:21.540
+With Vanderlande's
+OpenAir Platform,
+
+00:47:21.540 --> 00:47:23.310
+live operational data flows
+
+00:47:23.310 --> 00:47:26.250
+into Microsoft's Fabric
+real-time intelligence,
+
+00:47:26.250 --> 00:47:27.810
+creating digital twins built
+
+00:47:27.810 --> 00:47:31.140
+over an ontology
+connecting flights, gates,
+
+00:47:31.140 --> 00:47:34.020
+passengers, bags, and equipment.
+
+00:47:34.020 --> 00:47:36.720
+Physically accurate 3D
+visualizations built
+
+00:47:36.720 --> 00:47:40.140
+on NVIDIA Omniverse libraries
+provide the spatial context
+
+00:47:40.140 --> 00:47:42.690
+to act fast while
+the Operations Agent
+
+00:47:42.690 --> 00:47:47.310
+in Fabric monitors surfaces
+risks and recommends actions.
+
+00:47:47.310 --> 00:47:49.950
+The result is a connected
+operational environment
+
+00:47:49.950 --> 00:47:53.790
+where humans and AI
+work side by side.
+
+00:47:53.790 --> 00:47:56.760
+The Operations Agent in
+Fabric alerts the operator
+
+00:47:56.760 --> 00:47:59.580
+that a delayed inbound
+flight has been reassigned
+
+00:47:59.580 --> 00:48:01.200
+to a new parking position.
+
+00:48:01.200 --> 00:48:02.760
+With a tight connection window,
+
+00:48:02.760 --> 00:48:07.170
+passengers must clear security
+quickly or miss their flights.
+
+00:48:07.170 --> 00:48:10.350
+The agent recommends to prep
+the position immediately.
+
+00:48:10.350 --> 00:48:14.010
+Using the 3D view, the operator
+identifies suitability
+
+00:48:14.010 --> 00:48:16.110
+of nearby available vehicles.
+
+00:48:16.110 --> 00:48:18.750
+With one click, work
+orders are approved
+
+00:48:18.750 --> 00:48:20.370
+and ground teams dispatched.
+
+00:48:20.370 --> 00:48:26.220
+A failing conveyor motor starts
+to slow baggage throughput.
+
+00:48:26.220 --> 00:48:28.980
+The Operations Agent in
+Fabric flags the risk
+
+00:48:28.980 --> 00:48:31.590
+and highlights the
+conveyer in 3D.
+
+00:48:31.590 --> 00:48:34.770
+After verifying the risk, the
+operator approves a reroute
+
+00:48:34.770 --> 00:48:37.890
+and a maintenance work
+order, keeping transfer bags
+
+00:48:37.890 --> 00:48:41.250
+and connections on schedule.
+
+00:48:41.250 --> 00:48:43.050
+Meanwhile inside the terminal,
+
+00:48:43.050 --> 00:48:46.380
+the 3D view shows a heatmap
+highlighting congestion
+
+00:48:46.380 --> 00:48:49.650
+at security checkpoint A. The
+Operations Agent recommends
+
+00:48:49.650 --> 00:48:52.380
+opening lanes and
+rerouting passengers.
+
+00:48:52.380 --> 00:48:55.920
+The operator stays in control,
+first verifying conditions,
+
+00:48:55.920 --> 00:48:58.620
+and then approving the
+agent recommended actions,
+
+00:48:58.620 --> 00:49:01.680
+dispatching staff to escort
+tight connection passengers
+
+00:49:01.680 --> 00:49:04.520
+through a faster route
+and on to their gates.
+
+00:49:04.520 --> 00:49:09.470
+[ Music ]
+
+00:49:09.470 --> 00:49:12.290
+With Vanderlande's
+OpenAir Platform powered
+
+00:49:12.290 --> 00:49:15.020
+by Microsoft Fabric
+Real-Time Intelligence,
+
+00:49:15.020 --> 00:49:19.050
+Microsoft Fabric IQ, and
+NVIDIA Omniverse libraries,
+
+00:49:19.050 --> 00:49:21.540
+airports gain an
+integrated real-time view
+
+00:49:21.540 --> 00:49:24.210
+and spatial context with
+AI-driven operations,
+
+00:49:24.210 --> 00:49:26.460
+helping teams detect
+risks earlier,
+
+00:49:26.460 --> 00:49:29.520
+proactively take action,
+reduce disruptions,
+
+00:49:29.520 --> 00:49:31.520
+and improve passenger
+experience.
+
+00:49:31.520 --> 00:49:45.840
+[ Music ]
+
+00:49:45.840 --> 00:49:47.910
+YITZHAK KESSELMAN: And as you
+saw, and this is the future
+
+00:49:47.910 --> 00:49:49.200
+of data, the future of AI,
+
+00:49:49.200 --> 00:49:52.740
+how use developers can use all
+those data, all those signals,
+
+00:49:52.740 --> 00:49:54.390
+and really create
+a representation
+
+00:49:54.390 --> 00:49:55.860
+of the physical world.
+
+00:49:55.860 --> 00:49:58.080
+The team is working very hard
+on new capabilities based
+
+00:49:58.080 --> 00:49:59.910
+on your inputs from
+our customers,
+
+00:49:59.910 --> 00:50:00.960
+developers, and et cetera.
+
+00:50:00.960 --> 00:50:03.990
+And you can see here quickly
+the roadmap that are upcoming,
+
+00:50:03.990 --> 00:50:06.720
+the new capabilities that are
+just announced today at Build.
+
+00:50:06.720 --> 00:50:08.430
+We are super excited
+about those,
+
+00:50:08.430 --> 00:50:11.190
+specifically the GF Operations
+Agents, as Tessa was saying,
+
+00:50:11.190 --> 00:50:13.020
+and many more capabilities.
+
+00:50:13.020 --> 00:50:14.490
+But the team is
+continuing innovating
+
+00:50:14.490 --> 00:50:16.830
+and there are more features
+coming literally every week
+
+00:50:16.830 --> 00:50:17.460
+and every month.
+
+00:50:17.460 --> 00:50:21.270
+So please use your ability
+to provide the feedback
+
+00:50:21.270 --> 00:50:23.580
+for our team so we can
+build a better product.
+
+00:50:23.580 --> 00:50:26.430
+The same applies for
+"Ontology in Fabric IQ."
+
+00:50:26.430 --> 00:50:28.710
+It's announced as
+preview at Ignite,
+
+00:50:28.710 --> 00:50:30.750
+but we're adding more
+new capabilities
+
+00:50:30.750 --> 00:50:32.040
+and there are new
+capabilities coming.
+
+00:50:32.040 --> 00:50:33.240
+And again, all these demos
+
+00:50:33.240 --> 00:50:37.800
+that Tessa has shown can be
+using both APIs but also an MCP
+
+00:50:37.800 --> 00:50:40.020
+that you can use
+using skills also
+
+00:50:40.020 --> 00:50:42.840
+that you can create
+those ontologies.
+
+00:50:42.840 --> 00:50:44.940
+And that's where you present
+what's Fabric IQ all about,
+
+00:50:44.940 --> 00:50:47.670
+ability to bring all this
+data together, structured,
+
+00:50:47.670 --> 00:50:48.900
+unstructured, semi-structured,
+
+00:50:48.900 --> 00:50:51.210
+the ability to have the
+analytical standing behind all
+
+00:50:51.210 --> 00:50:53.670
+this data and the ability
+to drive operations,
+
+00:50:53.670 --> 00:50:56.160
+ability to connect all those
+streaming data together
+
+00:50:56.160 --> 00:50:58.080
+with the (inaudible)
+data into one place
+
+00:50:58.080 --> 00:51:00.690
+and creating this
+context for unified AI.
+
+00:51:00.690 --> 00:51:03.660
+And that's what powers both
+people and agents to work
+
+00:51:03.660 --> 00:51:05.850
+in reason and help to
+drive the business.
+
+00:51:05.850 --> 00:51:09.600
+So if you want to get
+started, there is a real time
+
+00:51:09.600 --> 00:51:11.400
+in the day workshop
+that you can use.
+
+00:51:11.400 --> 00:51:13.830
+There are skills that
+you can use and learn.
+
+00:51:13.830 --> 00:51:17.040
+And again, please use
+those, scan the QR codes,
+
+00:51:17.040 --> 00:51:19.290
+and really start playing
+this ontology playground
+
+00:51:19.290 --> 00:51:21.390
+when you can create
+your ontologies
+
+00:51:21.390 --> 00:51:24.540
+within Fabric IQ today.
+
+00:51:24.540 --> 00:51:26.730
+There are a ton of materials
+there to get started.
+
+00:51:26.730 --> 00:51:28.620
+There are hands-on
+documentations,
+
+00:51:28.620 --> 00:51:31.320
+there are skills, there
+are learning capabilities,
+
+00:51:31.320 --> 00:51:32.550
+and there are a lot
+of capabilities
+
+00:51:32.550 --> 00:51:34.680
+that we are shipping literally
+every week, every month,
+
+00:51:34.680 --> 00:51:37.470
+so please follow us and provide
+your feedback to learn more
+
+00:51:37.470 --> 00:51:39.600
+about Fabric and
+real-time intelligence,
+
+00:51:39.600 --> 00:51:42.070
+and Fabric IQ specifically.
+
+00:51:43.230 --> 00:51:45.510
+If you want to get started,
+we also have feature partners
+
+00:51:45.510 --> 00:51:47.160
+that can help you accelerate it.
+
+00:51:47.160 --> 00:51:49.590
+So here is the link
+to find the partners
+
+00:51:49.590 --> 00:51:53.430
+that can help you get
+onboarded quickly.
+
+00:51:53.430 --> 00:51:55.500
+There are more sessions at Build
+that I highly recommend you
+
+00:51:55.500 --> 00:51:57.030
+to see, the session
+from Amir Netz
+
+00:51:57.030 --> 00:51:59.280
+about the unified
+Fabric overview,
+
+00:51:59.280 --> 00:52:00.750
+and a deep dive
+session from Tessa
+
+00:52:00.750 --> 00:52:03.570
+about real-time intelligence.
+
+00:52:03.570 --> 00:52:06.100
+And thank you for joining us.

@@ -1,0 +1,2112 @@
+WEBVTT
+
+00:00:00.810 --> 00:00:02.100
+KLORIDA MIRAJ: Hey, everyone.
+
+00:00:02.100 --> 00:00:03.360
+Welcome to Build.
+
+00:00:03.360 --> 00:00:06.540
+I'm Klorida from the Windows
+Developer Platform team,
+
+00:00:06.540 --> 00:00:11.070
+and I'm here with Sakib from
+Windows Enterprise and Security.
+
+00:00:11.070 --> 00:00:12.000
+NAZMUS SAKIB: Hi.
+
+00:00:12.000 --> 00:00:13.530
+KLORIDA MIRAJ: Today
+we want to talk
+
+00:00:13.530 --> 00:00:16.530
+about how Windows can
+help developers build
+
+00:00:16.530 --> 00:00:18.780
+and run agents safely at scale.
+
+00:00:18.780 --> 00:00:22.500
+We are at a moment where
+agents are starting to feel
+
+00:00:22.500 --> 00:00:24.750
+like a new unit of software.
+
+00:00:24.750 --> 00:00:27.330
+They are not just
+answering questions.
+
+00:00:27.330 --> 00:00:31.020
+They can reason, use
+tools, remember context.
+
+00:00:31.020 --> 00:00:34.140
+And, increasingly, they're
+taking action in ways
+
+00:00:34.140 --> 00:00:37.140
+that feel more
+collaborative and alive.
+
+00:00:37.140 --> 00:00:41.460
+So the experience is starting
+to shift from asking software
+
+00:00:41.460 --> 00:00:45.810
+to do something for you to
+actually building with it
+
+00:00:45.810 --> 00:00:48.690
+and evolving it over time.
+
+00:00:48.690 --> 00:00:52.650
+That is why I love the
+Terrarium metaphor.
+
+00:00:52.650 --> 00:00:55.590
+It is not only about automation.
+
+00:00:55.590 --> 00:00:57.600
+It is about creativity,
+
+00:00:57.600 --> 00:01:01.680
+customization, and
+shared building.
+
+00:01:01.680 --> 00:01:04.380
+You start with something
+someone else built,
+
+00:01:04.380 --> 00:01:08.280
+you make it your own, and then
+you keep building together.
+
+00:01:08.280 --> 00:01:11.400
+And that matters because it
+changes what people expect
+
+00:01:11.400 --> 00:01:13.230
+from software.
+
+00:01:13.230 --> 00:01:16.740
+Instead of just consuming
+a finished product,
+
+00:01:16.740 --> 00:01:20.430
+people are increasingly
+shaping the experience.
+
+00:01:20.430 --> 00:01:23.190
+They're adapting it
+to their own world
+
+00:01:23.190 --> 00:01:26.160
+and sharing those changes
+back with each other.
+
+00:01:26.160 --> 00:01:29.730
+That is a much more
+participatory model and one
+
+00:01:29.730 --> 00:01:33.450
+that makes agents feel less
+like a feature and more
+
+00:01:33.450 --> 00:01:36.330
+like a medium for collaboration.
+
+00:01:36.330 --> 00:01:39.930
+So there's the real
+story behind this slide.
+
+00:01:39.930 --> 00:01:43.170
+Agent Terrarium here
+is a project a friend
+
+00:01:43.170 --> 00:01:46.380
+of mine, Alex Clarke, created.
+
+00:01:46.380 --> 00:01:49.200
+What he did is he built
+the initial world.
+
+00:01:49.200 --> 00:01:52.050
+He shared the GitHub
+repo with me,
+
+00:01:52.050 --> 00:01:55.740
+and what I did is I extended
+it with my own theme.
+
+00:01:55.740 --> 00:02:00.270
+You see here on the bottom right
+corner there is the Albanian
+
+00:02:00.270 --> 00:02:01.830
+mountains theme.
+
+00:02:01.830 --> 00:02:05.760
+And I also added Zana --
+this is an Albanian fairy --
+
+00:02:05.760 --> 00:02:07.230
+as an agent.
+
+00:02:07.230 --> 00:02:11.120
+Then I shared my version
+back, and now we both build
+
+00:02:11.120 --> 00:02:13.100
+on top of each other's work.
+
+00:02:13.100 --> 00:02:18.720
+It is fun, and it's also made
+our collaboration better.
+
+00:02:18.720 --> 00:02:22.830
+And that is where the
+platform matters.
+
+00:02:22.830 --> 00:02:27.840
+As agents become something
+that people can shape, extend,
+
+00:02:27.840 --> 00:02:31.020
+and collaborate with, the
+operating system has to do more
+
+00:02:31.020 --> 00:02:33.030
+than just host them, right?
+
+00:02:33.030 --> 00:02:35.220
+It has to remove the friction;
+
+00:02:35.220 --> 00:02:40.970
+and it has to also provide a
+safe, governable environment
+
+00:02:40.970 --> 00:02:45.650
+where people together can
+create and they can run
+
+00:02:45.650 --> 00:02:48.750
+and they can build
+things with confidence.
+
+00:02:48.750 --> 00:02:51.690
+That is why Windows
+matters here, right,
+
+00:02:51.690 --> 00:02:55.410
+and why we believe it is
+the best platform to run
+
+00:02:55.410 --> 00:02:57.510
+and build agents at scale.
+
+00:02:57.510 --> 00:03:01.260
+Now, that matters because
+customers are no longer just
+
+00:03:01.260 --> 00:03:04.590
+asking whether agents can
+do something impressive
+
+00:03:04.590 --> 00:03:06.510
+or something cool, right?
+
+00:03:06.510 --> 00:03:09.390
+They're asking whether
+those agents can be trusted
+
+00:03:09.390 --> 00:03:12.720
+in these real environments,
+on their actual machines
+
+00:03:12.720 --> 00:03:16.200
+that they're running, with
+real business data, right?
+
+00:03:16.200 --> 00:03:22.140
+So Windows has to answer these
+two questions at the same time.
+
+00:03:22.140 --> 00:03:25.740
+Can the agent be powerful;
+and, at the same time,
+
+00:03:25.740 --> 00:03:29.760
+can the platform still
+keep it governable?
+
+00:03:29.760 --> 00:03:34.860
+Let's start first with what
+makes agents different.
+
+00:03:34.860 --> 00:03:37.800
+So agents are non-deterministic.
+
+00:03:37.800 --> 00:03:38.850
+We know that.
+
+00:03:38.850 --> 00:03:43.050
+They operate on data that can
+itself contain instructions
+
+00:03:43.050 --> 00:03:45.690
+or some adversarial content.
+
+00:03:45.690 --> 00:03:50.280
+And they can act fast,
+at machine speed fast.
+
+00:03:50.280 --> 00:03:54.900
+That means that even a
+mistake or a bad inference
+
+00:03:54.900 --> 00:03:58.800
+or an attack can
+scale so much faster
+
+00:03:58.800 --> 00:04:03.150
+than in more traditional
+user-driven type of flows.
+
+00:04:03.150 --> 00:04:07.980
+The key shift is that this is no
+longer just a prompt-and-answer
+
+00:04:07.980 --> 00:04:09.330
+problem, right?
+
+00:04:09.330 --> 00:04:12.330
+It is an execution problem.
+
+00:04:12.330 --> 00:04:14.220
+Agents can read files.
+
+00:04:14.220 --> 00:04:15.750
+They can invoke tools.
+
+00:04:15.750 --> 00:04:17.610
+They can call services.
+
+00:04:17.610 --> 00:04:21.240
+They can modify entire
+environments, right?
+
+00:04:21.240 --> 00:04:24.390
+And that means that the risk
+is not just what the model
+
+00:04:24.390 --> 00:04:25.740
+is saying.
+
+00:04:25.740 --> 00:04:28.560
+The risk is where
+execution happens,
+
+00:04:28.560 --> 00:04:30.690
+what the agent can reach,
+
+00:04:30.690 --> 00:04:34.980
+and how much authority
+it inherits by default.
+
+00:04:34.980 --> 00:04:38.790
+Once you understand the risk
+model that I just explained,
+
+00:04:38.790 --> 00:04:42.840
+right, the first three
+needs are super clear:
+
+00:04:42.840 --> 00:04:48.630
+containment to limit the blast
+radius, detection and response
+
+00:04:48.630 --> 00:04:52.920
+to catch problems early, and
+then the agent identities
+
+00:04:52.920 --> 00:04:55.170
+that are distinct from
+humans so permissions
+
+00:04:55.170 --> 00:04:59.160
+and attribution
+remain meaningful.
+
+00:04:59.160 --> 00:05:02.430
+These are not abstract
+architecture ideas, right?
+
+00:05:02.430 --> 00:05:05.550
+They're what makes the
+difference between an agent
+
+00:05:05.550 --> 00:05:09.090
+that feels impressive
+in a demo and one
+
+00:05:09.090 --> 00:05:13.410
+that can actually be trusted
+in a real environment.
+
+00:05:13.410 --> 00:05:17.040
+Governance is the one that
+completes that model.
+
+00:05:17.040 --> 00:05:22.050
+Agents need to be manageable,
+discoverable, observable,
+
+00:05:22.050 --> 00:05:25.470
+and configurable in
+enterprise environments.
+
+00:05:25.470 --> 00:05:28.560
+These are not separate check
+boxes that you'll have
+
+00:05:28.560 --> 00:05:30.180
+to go and check, right?
+
+00:05:30.180 --> 00:05:34.770
+Together, containment,
+detection, identity,
+
+00:05:34.770 --> 00:05:37.350
+and governance form
+the foundation
+
+00:05:37.350 --> 00:05:41.010
+for trustworthy agentic systems.
+
+00:05:41.010 --> 00:05:41.580
+All right.
+
+00:05:41.580 --> 00:05:44.310
+It's time for me to
+hand it to Sakib.
+
+00:05:44.310 --> 00:05:46.980
+He's going to go through
+the containment details.
+
+00:05:46.980 --> 00:05:48.420
+NAZMUS SAKIB: Thanks, Klorida.
+
+00:05:48.420 --> 00:05:51.630
+Now that we framed the
+problem, let's get concrete
+
+00:05:51.630 --> 00:05:54.090
+about containment and the
+Windows building blocks
+
+00:05:54.090 --> 00:05:56.790
+that make safer agents possible.
+
+00:05:56.790 --> 00:06:00.930
+Containment is one of the most
+important ideas in this talk.
+
+00:06:00.930 --> 00:06:03.960
+If agent behavior is
+non-deterministic,
+
+00:06:03.960 --> 00:06:07.140
+then containment becomes
+the deterministic guardrail
+
+00:06:07.140 --> 00:06:08.520
+around it.
+
+00:06:08.520 --> 00:06:12.000
+The reason containment matters
+is simple: Agents should be able
+
+00:06:12.000 --> 00:06:16.110
+to do useful work without
+inheriting the full blast radius
+
+00:06:16.110 --> 00:06:18.060
+of the user's session.
+
+00:06:18.060 --> 00:06:20.670
+In both ordinary and
+adversarial cases,
+
+00:06:20.670 --> 00:06:23.340
+containment reduces
+the blast radius
+
+00:06:23.340 --> 00:06:26.940
+and constrains what a
+risky operation can touch.
+
+00:06:26.940 --> 00:06:28.020
+That is the shift
+
+00:06:28.020 --> 00:06:31.500
+from traditional software
+to agentic software.
+
+00:06:31.500 --> 00:06:33.840
+In traditional apps, a
+mistake is often bounded
+
+00:06:33.840 --> 00:06:35.400
+by the feature itself.
+
+00:06:35.400 --> 00:06:37.860
+With agents, the execution
+surface is larger
+
+00:06:37.860 --> 00:06:40.200
+because the system
+can read, act,
+
+00:06:40.200 --> 00:06:42.630
+and chain together
+multiple steps.
+
+00:06:42.630 --> 00:06:46.530
+Containment is how you keep that
+larger surface from turning
+
+00:06:46.530 --> 00:06:48.900
+into a larger blast radius.
+
+00:06:48.900 --> 00:06:51.840
+Given the importance of
+containment, we are excited
+
+00:06:51.840 --> 00:06:56.250
+to introduce the Microsoft
+Execution Containers SDK.
+
+00:06:56.250 --> 00:07:00.060
+This single SDK will allow
+applying containment policies
+
+00:07:00.060 --> 00:07:03.150
+on agents enforced by the OS.
+
+00:07:03.150 --> 00:07:06.420
+The MXC SDK will provide
+an abstraction layer
+
+00:07:06.420 --> 00:07:09.120
+across various
+isolation primitives
+
+00:07:09.120 --> 00:07:13.110
+that simplifies containing many
+different types of workloads.
+
+00:07:13.110 --> 00:07:15.390
+Microsoft execution
+containers are built
+
+00:07:15.390 --> 00:07:18.690
+around a composable
+sandbox model.
+
+00:07:18.690 --> 00:07:21.090
+The same policy and SDK can map
+
+00:07:21.090 --> 00:07:23.370
+to different isolation
+boundaries depending
+
+00:07:23.370 --> 00:07:26.400
+on the workload, so
+developers are not locked
+
+00:07:26.400 --> 00:07:28.350
+into one rigid container.
+
+00:07:28.350 --> 00:07:30.750
+Windows can apply the
+right isolation primitive
+
+00:07:30.750 --> 00:07:35.130
+for the task while preserving
+one coherent abstraction.
+
+00:07:35.130 --> 00:07:38.730
+Different agents and tools need
+different isolation levels.
+
+00:07:38.730 --> 00:07:42.000
+Our goal is simple: Let
+developers declare intent
+
+00:07:42.000 --> 00:07:45.570
+with policies, and let
+Windows enforce the
+
+00:07:45.570 --> 00:07:47.550
+appropriate boundary.
+
+00:07:47.550 --> 00:07:49.770
+What makes this
+model powerful is
+
+00:07:49.770 --> 00:07:52.020
+that it meets developers
+where they are.
+
+00:07:52.020 --> 00:07:54.870
+A Coding Agent, an
+interactive agent,
+
+00:07:54.870 --> 00:07:57.600
+and a cloud-managed agent do
+not all need the same boundary,
+
+00:07:57.600 --> 00:08:01.170
+but they do need one
+coherent trust story.
+
+00:08:01.170 --> 00:08:03.990
+That is what the composable
+sandbox gives you:
+
+00:08:03.990 --> 00:08:05.790
+flexibility in implementation
+
+00:08:05.790 --> 00:08:08.760
+without fragmentation
+in governance.
+
+00:08:08.760 --> 00:08:09.960
+For developers,
+
+00:08:09.960 --> 00:08:13.290
+the implementation story is
+practical and incremental.
+
+00:08:13.290 --> 00:08:15.450
+Think of a four-stage plan.
+
+00:08:15.450 --> 00:08:19.140
+First, plan by identifying the
+sensitive operations your agent
+
+00:08:19.140 --> 00:08:22.230
+needs to perform, especially
+ones that may be exposed
+
+00:08:22.230 --> 00:08:26.040
+to prompt injection risk
+or handle customer data.
+
+00:08:26.040 --> 00:08:28.200
+Then focus on design.
+
+00:08:28.200 --> 00:08:32.070
+Identify the model-driven parts
+so that they can be contained.
+
+00:08:32.070 --> 00:08:35.550
+With the design in hand, you
+can then move to implement.
+
+00:08:35.550 --> 00:08:39.900
+Contain the highest-risk
+operations with our MXC SDK.
+
+00:08:39.900 --> 00:08:43.320
+Finally, refine your solution
+by testing what is allowed
+
+00:08:43.320 --> 00:08:46.980
+and denied; and ensure that
+it meets your experience
+
+00:08:46.980 --> 00:08:48.780
+and security goals.
+
+00:08:48.780 --> 00:08:51.330
+Containment is not a bolt-on.
+
+00:08:51.330 --> 00:08:54.920
+It is a design tool for
+building safer agentic apps
+
+00:08:54.920 --> 00:08:56.360
+from the beginning.
+
+00:08:56.360 --> 00:08:58.940
+Containment should
+not add friction.
+
+00:08:58.940 --> 00:09:02.690
+A single SDK and policy
+model make it easier
+
+00:09:02.690 --> 00:09:05.340
+to adopt the right
+isolation level.
+
+00:09:05.340 --> 00:09:06.780
+KLORIDA MIRAJ: Thanks, Sakib.
+
+00:09:06.780 --> 00:09:10.320
+The composable sandbox is the
+big idea that you're going
+
+00:09:10.320 --> 00:09:13.680
+to see in the next several
+slides here with me.
+
+00:09:13.680 --> 00:09:17.490
+Windows is not giving
+developers one rigid container
+
+00:09:17.490 --> 00:09:21.630
+and asking them to force
+every workload into it.
+
+00:09:21.630 --> 00:09:24.810
+It's offering a spectrum
+of containment options
+
+00:09:24.810 --> 00:09:28.490
+so the boundary can match
+the risk of the task.
+
+00:09:28.490 --> 00:09:31.280
+It's the same
+overall trust model
+
+00:09:31.280 --> 00:09:34.250
+but different levels
+of isolation.
+
+00:09:34.250 --> 00:09:39.870
+This is where the story shifts
+from principle to architecture,
+
+00:09:39.870 --> 00:09:44.010
+and we are no longer just
+saying contain these agents.
+
+00:09:44.010 --> 00:09:48.030
+We're showing a practical,
+scalable execution model
+
+00:09:48.030 --> 00:09:50.760
+that can go from a tool
+call on the device
+
+00:09:50.760 --> 00:09:55.530
+to a broader agent workflow
+across client and cloud.
+
+00:09:55.530 --> 00:09:57.270
+So that breadth is one
+
+00:09:57.270 --> 00:10:02.220
+of the reasons Windows has a
+differentiated story here.
+
+00:10:02.220 --> 00:10:05.490
+And that is important
+because Windows can start
+
+00:10:05.490 --> 00:10:08.160
+with a lightweight
+local isolation; and,
+
+00:10:08.160 --> 00:10:12.180
+when that is not enough and
+then when moved all the way
+
+00:10:12.180 --> 00:10:14.790
+to the stronger boundaries
+when the workload
+
+00:10:14.790 --> 00:10:18.030
+or the enterprise
+requirement needs it.
+
+00:10:18.030 --> 00:10:22.020
+So we're rolling this initiative
+out on a monthly cadence
+
+00:10:22.020 --> 00:10:23.850
+with the developer community.
+
+00:10:23.850 --> 00:10:26.250
+Some of these capabilities
+are already showing
+
+00:10:26.250 --> 00:10:29.250
+up in Windows Insider
+builds, and there are more
+
+00:10:29.250 --> 00:10:31.650
+that are going to come
+later this month.
+
+00:10:31.650 --> 00:10:34.440
+And we'll keep building
+and learning together
+
+00:10:34.440 --> 00:10:36.830
+as the platform evolves.
+
+00:10:36.830 --> 00:10:40.220
+We're excited, and
+I know you are too.
+
+00:10:40.220 --> 00:10:42.260
+So let's dig a little bit deeper
+
+00:10:42.260 --> 00:10:44.900
+into the containment
+spectrum now.
+
+00:10:44.900 --> 00:10:47.940
+I'm going to start
+with a micro-VM.
+
+00:10:47.940 --> 00:10:52.560
+So at the stronger end of the
+spectrum is the micro-VM.
+
+00:10:52.560 --> 00:10:56.750
+This is the right fit when
+the workload is higher risk
+
+00:10:56.750 --> 00:11:02.030
+and it needs a clearly isolated
+space while still preserving the
+
+00:11:02.030 --> 00:11:06.180
+same overall agent experience.
+
+00:11:06.180 --> 00:11:10.590
+And the message is not to
+use this everywhere, right?
+
+00:11:10.590 --> 00:11:16.200
+It's to step up isolation when
+the workload calls for it.
+
+00:11:16.200 --> 00:11:19.560
+Micro-VMs are also
+about density.
+
+00:11:19.560 --> 00:11:23.010
+They provide a stronger
+separation without having
+
+00:11:23.010 --> 00:11:27.750
+to pay the full cost of a
+larger VM every single time
+
+00:11:27.750 --> 00:11:30.720
+that you're running your agent.
+
+00:11:30.720 --> 00:11:33.510
+I just explained the
+Hyperlight micro-VM,
+
+00:11:33.510 --> 00:11:35.610
+the execution
+primitive at the top
+
+00:11:35.610 --> 00:11:37.560
+of the agent containment stack.
+
+00:11:37.560 --> 00:11:40.170
+Let me show you what that
+looks like in practice.
+
+00:11:40.170 --> 00:11:43.050
+Imagine Maya, a freelance
+interior designer.
+
+00:11:43.050 --> 00:11:45.090
+She's been using
+GitHub Copilot CLI
+
+00:11:45.090 --> 00:11:46.770
+to manage her client projects,
+
+00:11:46.770 --> 00:11:49.200
+and her previous task
+has just wrapped up.
+
+00:11:49.200 --> 00:11:52.860
+She has three client PDFs with
+comments and review feedback
+
+00:11:52.860 --> 00:11:54.750
+that she needs to consolidate.
+
+00:11:54.750 --> 00:11:57.300
+Let's watch her ask
+Copilot for help.
+
+00:11:57.300 --> 00:11:59.730
+She types a natural
+language request:
+
+00:11:59.730 --> 00:12:02.700
+Pull the review comments
+from all three client PDFs,
+
+00:12:02.700 --> 00:12:06.150
+group them by theme, and produce
+a clean prioritized summary.
+
+00:12:06.150 --> 00:12:08.700
+No scripts to write,
+no tools to configure.
+
+00:12:08.700 --> 00:12:11.100
+It's just a plain-English ask.
+
+00:12:11.100 --> 00:12:13.500
+Copilot understands
+the task immediately,
+
+00:12:13.500 --> 00:12:15.510
+and it lays out its plan.
+
+00:12:15.510 --> 00:12:16.470
+Notice that it asks
+
+00:12:16.470 --> 00:12:19.080
+for permission before
+accessing Maya's files.
+
+00:12:19.080 --> 00:12:21.000
+The user stays in control.
+
+00:12:21.000 --> 00:12:24.060
+Maya grants access, and
+now Copilot gets to work.
+
+00:12:24.060 --> 00:12:26.370
+Behind the scenes, Copilot
+is figuring out how
+
+00:12:26.370 --> 00:12:28.920
+to extract annotations
+from those PDFs.
+
+00:12:28.920 --> 00:12:31.200
+It needs to run code
+to parse them, right?
+
+00:12:31.200 --> 00:12:35.610
+But here's the key question:
+Where does that code execute?
+
+00:12:35.610 --> 00:12:36.930
+There it is.
+
+00:12:36.930 --> 00:12:41.010
+Extract PDF annotations
+in Hyperlight micro-VM.
+
+00:12:41.010 --> 00:12:44.700
+Copilot chose to run this code
+inside a Hyperlight micro-VM,
+
+00:12:44.700 --> 00:12:47.580
+and I hope you didn't
+miss the wxc exe
+
+00:12:47.580 --> 00:12:49.260
+that appeared in Task Manager.
+
+00:12:49.260 --> 00:12:51.780
+That's the micro-VM
+host process.
+
+00:12:51.780 --> 00:12:54.330
+And, once the task is
+done, Copilot cleans
+
+00:12:54.330 --> 00:12:55.620
+up the temporary config; and,
+
+00:12:55.620 --> 00:12:57.420
+just like that, the
+micro-VM is gone.
+
+00:12:57.420 --> 00:12:59.610
+No traces left behind.
+
+00:12:59.610 --> 00:13:02.760
+But notice in the File
+Explorer there's a new file
+
+00:13:02.760 --> 00:13:05.910
+that has appeared:
+Client Feedback Summary.
+
+00:13:05.910 --> 00:13:08.430
+Copilot has delivered a
+well-organized summary,
+
+00:13:08.430 --> 00:13:11.310
+comments from all three
+client PDFs, grouped by theme
+
+00:13:11.310 --> 00:13:13.080
+and ranked by priority,
+
+00:13:13.080 --> 00:13:16.170
+all of this processed inside
+a Hyperlight micro-VM,
+
+00:13:16.170 --> 00:13:19.230
+hardware-level isolation
+with sub-second startup.
+
+00:13:19.230 --> 00:13:20.970
+That's the power of MXC,
+
+00:13:20.970 --> 00:13:24.810
+safe code execution that's
+fast enough to be invisible.
+
+00:13:24.810 --> 00:13:27.240
+Process isolation,
+on the other side,
+
+00:13:27.240 --> 00:13:31.020
+sits at this lighter-weight
+end of the spectrum.
+
+00:13:31.020 --> 00:13:33.600
+It is a strong fit
+for coding agents
+
+00:13:33.600 --> 00:13:36.810
+and focused tool
+execution scenarios
+
+00:13:36.810 --> 00:13:39.660
+where speed matters for you.
+
+00:13:39.660 --> 00:13:43.980
+So developers keep the familiar
+coding flow while Windows
+
+00:13:43.980 --> 00:13:46.620
+applies platform-level
+boundaries
+
+00:13:46.620 --> 00:13:49.890
+to the riskiest operations.
+
+00:13:49.890 --> 00:13:53.580
+This is especially important
+for developer scenarios
+
+00:13:53.580 --> 00:13:57.150
+because the inner loop
+needs to stay fast.
+
+00:13:57.150 --> 00:14:00.540
+If the smallest,
+riskiest operations,
+
+00:14:00.540 --> 00:14:04.080
+like running model-generated
+code, can be isolated
+
+00:14:04.080 --> 00:14:08.490
+at process level, then
+developers get a safety benefit
+
+00:14:08.490 --> 00:14:11.700
+without losing responsiveness.
+
+00:14:11.700 --> 00:14:14.760
+And that is how containment
+becomes something developers
+
+00:14:14.760 --> 00:14:18.330
+actually adopt rather than
+something that they need
+
+00:14:18.330 --> 00:14:22.050
+to avoid because it's
+slowing them down.
+
+00:14:22.050 --> 00:14:24.330
+Now let me pick up where
+I left off earlier
+
+00:14:24.330 --> 00:14:26.820
+and show you
+process-level isolation.
+
+00:14:26.820 --> 00:14:30.570
+I have GitHub Copilot CLI with
+an experimental feature enabled,
+
+00:14:30.570 --> 00:14:33.300
+so code is run in
+a process sandbox.
+
+00:14:33.300 --> 00:14:35.130
+Going back to Maya,
+it's late evening.
+
+00:14:35.130 --> 00:14:37.080
+And everyone has gone to bed,
+
+00:14:37.080 --> 00:14:39.270
+but she has a
+personal task to do.
+
+00:14:39.270 --> 00:14:41.670
+Her daughter Laura's
+birthday is coming up.
+
+00:14:41.670 --> 00:14:44.490
+Maya types "sandbox enabled"
+to turn on sandboxing.
+
+00:14:44.490 --> 00:14:47.880
+Now every tool execution
+Copilot runs will be contained
+
+00:14:47.880 --> 00:14:49.170
+in a sandbox.
+
+00:14:49.170 --> 00:14:52.650
+She then asks Copilot to make a
+birthday card using cat photos
+
+00:14:52.650 --> 00:14:54.510
+from a folder on her laptop.
+
+00:14:54.510 --> 00:14:57.990
+Again, just a natural language
+request: Pick the best images.
+
+00:14:57.990 --> 00:14:58.950
+Resize them.
+
+00:14:58.950 --> 00:14:59.850
+Combine them.
+
+00:14:59.850 --> 00:15:01.620
+Add a birthday message.
+
+00:15:01.620 --> 00:15:05.670
+Copilot understands and outlines
+its approach and requests access
+
+00:15:05.670 --> 00:15:07.650
+to the Laura pictures folder.
+
+00:15:07.650 --> 00:15:09.030
+Same consent flow.
+
+00:15:09.030 --> 00:15:12.360
+The user is always in
+the loop and in control.
+
+00:15:12.360 --> 00:15:14.130
+Maya grants access.
+
+00:15:14.130 --> 00:15:16.980
+And now here's the
+sandbox in action.
+
+00:15:16.980 --> 00:15:19.770
+You see that blue dot
+next to sandbox shell?
+
+00:15:19.770 --> 00:15:23.310
+That means this PowerShell code
+is executing inside a sandbox.
+
+00:15:23.310 --> 00:15:26.520
+The script is loading and
+manipulating Maya's cat photos,
+
+00:15:26.520 --> 00:15:28.920
+but it's doing so within
+a kernel-enforced
+
+00:15:28.920 --> 00:15:30.510
+sandbox boundary.
+
+00:15:30.510 --> 00:15:33.900
+It can only access what has
+been explicitly granted.
+
+00:15:33.900 --> 00:15:36.990
+And done. PowerShell
+code generated
+
+00:15:36.990 --> 00:15:39.660
+and executed all
+within the sandbox.
+
+00:15:39.660 --> 00:15:41.820
+Notice in the File
+Explorer Happy Birthday,
+
+00:15:41.820 --> 00:15:45.540
+Laura has appeared right
+alongside the source images.
+
+00:15:45.540 --> 00:15:47.160
+Let's see what it looks like.
+
+00:15:47.160 --> 00:15:49.050
+It's a custom birthday card
+
+00:15:49.050 --> 00:15:52.440
+with Maya's favorite cat
+photos arranged and captioned,
+
+00:15:52.440 --> 00:15:55.080
+all executed in a
+process sandbox.
+
+00:15:55.080 --> 00:15:57.420
+The code ran, the
+file was created,
+
+00:15:57.420 --> 00:16:00.960
+and at no point did the
+execution escape its boundary.
+
+00:16:00.960 --> 00:16:05.940
+This is MXC, Microsoft Execution
+Containers, composable sandboxes
+
+00:16:05.940 --> 00:16:08.100
+for running dynamically
+generated code
+
+00:16:08.100 --> 00:16:10.320
+with controlled isolation.
+
+00:16:10.320 --> 00:16:13.800
+We're moving on to
+Windows and Linux VM.
+
+00:16:13.800 --> 00:16:16.380
+A full VM gives
+broader separation
+
+00:16:16.380 --> 00:16:18.150
+and stronger assurance.
+
+00:16:18.150 --> 00:16:20.040
+This is the right
+fit for workloads
+
+00:16:20.040 --> 00:16:23.580
+that need a different
+kernel, complete isolation,
+
+00:16:23.580 --> 00:16:27.240
+and stronger guarantees,
+especially for high-assurance
+
+00:16:27.240 --> 00:16:30.810
+or more controlled
+enterprise scenarios.
+
+00:16:30.810 --> 00:16:33.990
+This is exactly where
+the message now shifts
+
+00:16:33.990 --> 00:16:37.200
+from efficiency to assurance.
+
+00:16:37.200 --> 00:16:41.160
+A full VM is the answer when
+the workload needs much more
+
+00:16:41.160 --> 00:16:43.830
+distance from the
+host environment,
+
+00:16:43.830 --> 00:16:46.860
+whether because the code
+is highly untrusted,
+
+00:16:46.860 --> 00:16:49.680
+the environment is
+maybe tightly managed,
+
+00:16:49.680 --> 00:16:54.600
+or the trust requirement is
+simply much, much higher.
+
+00:16:54.600 --> 00:16:57.300
+This slide shows how
+Windows is prepared
+
+00:16:57.300 --> 00:17:00.630
+for that higher-assurance end
+of the spectrum, too, right.
+
+00:17:00.630 --> 00:17:04.080
+For enterprise customers,
+this is where policy
+
+00:17:04.080 --> 00:17:09.180
+and assurance start to matter
+even more than convenience.
+
+00:17:09.180 --> 00:17:13.860
+A full VM gives organizations a
+boundary they already understand
+
+00:17:13.860 --> 00:17:15.420
+and one they can reason
+
+00:17:15.420 --> 00:17:19.380
+about when the workload
+is especially sensitive
+
+00:17:19.380 --> 00:17:22.980
+or if the cost of
+compromise is high.
+
+00:17:22.980 --> 00:17:27.480
+Cloud VMs extend containment
+beyond the local device.
+
+00:17:27.480 --> 00:17:31.770
+Now, in the enterprise, this
+can be a Windows 365-powered,
+
+00:17:31.770 --> 00:17:34.950
+giving the agent a cloud
+PC that is separate
+
+00:17:34.950 --> 00:17:38.910
+from the user's device,
+separate from its identity,
+
+00:17:38.910 --> 00:17:42.510
+separate from the user's
+kernel device and session.
+
+00:17:42.510 --> 00:17:45.990
+The agent runs remotely
+in a managed environment,
+
+00:17:45.990 --> 00:17:49.680
+not alongside the user
+on the same machine.
+
+00:17:49.680 --> 00:17:53.280
+And, because it is
+built on Windows 365,
+
+00:17:53.280 --> 00:17:56.700
+the environment comes with
+all the enterprise management
+
+00:17:56.700 --> 00:17:58.620
+that is built already in.
+
+00:17:58.620 --> 00:18:02.700
+Like security policies that
+can be provisioned up front,
+
+00:18:02.700 --> 00:18:06.810
+identity compliance can
+be managed centrally
+
+00:18:06.810 --> 00:18:10.100
+through Microsoft
+Entra ID and Intune.
+
+00:18:10.100 --> 00:18:12.980
+As you can see, this is
+the highest-assurance end
+
+00:18:12.980 --> 00:18:16.070
+of the spectrum and
+offers the strongest
+
+00:18:16.070 --> 00:18:17.690
+blast-radius reduction.
+
+00:18:17.690 --> 00:18:21.080
+If the agent is compromised,
+the impact is contained
+
+00:18:21.080 --> 00:18:25.490
+to a disposable cloud instance
+with no direct path back
+
+00:18:25.490 --> 00:18:27.900
+to the user's local device.
+
+00:18:27.900 --> 00:18:31.680
+So far, we focused on
+containment and its spectrum;
+
+00:18:31.680 --> 00:18:34.830
+and we showed you that Windows
+can support both developer
+
+00:18:34.830 --> 00:18:37.440
+productivity and the
+enterprise assurance
+
+00:18:37.440 --> 00:18:40.830
+by letting the boundary scale
+with the workload instead
+
+00:18:40.830 --> 00:18:43.880
+of forcing every scenario
+into the same model.
+
+00:18:43.880 --> 00:18:46.550
+But containment is only
+part of this picture.
+
+00:18:46.550 --> 00:18:49.070
+Let me hand it back to Sakib
+to cover the other side
+
+00:18:49.070 --> 00:18:52.470
+of the equation, how
+we detect, respond,
+
+00:18:52.470 --> 00:18:57.180
+and make the broader security
+ecosystem part of the story.
+
+00:18:57.180 --> 00:18:58.440
+NAZMUS SAKIB: Thanks, Klorida.
+
+00:18:58.440 --> 00:19:02.940
+Agents increasingly depend
+on tools, skills, services,
+
+00:19:02.940 --> 00:19:06.270
+and sometimes even other
+agents to complete a task.
+
+00:19:06.270 --> 00:19:09.270
+So developers and administrators
+need a clear view
+
+00:19:09.270 --> 00:19:12.510
+of what capabilities are
+present, what is enabled,
+
+00:19:12.510 --> 00:19:15.350
+what is allowed, and
+what is being used.
+
+00:19:15.350 --> 00:19:18.470
+Local capabilities discovery
+provides that source of truth
+
+00:19:18.470 --> 00:19:21.470
+and makes those actions
+admin-manageable.
+
+00:19:21.470 --> 00:19:24.710
+Capabilities discovery matters
+because, once agents compose
+
+00:19:24.710 --> 00:19:26.990
+with tools and services,
+
+00:19:26.990 --> 00:19:30.570
+the local environment becomes
+part of the trust model.
+
+00:19:30.570 --> 00:19:33.210
+With local capabilities
+discovery for agents,
+
+00:19:33.210 --> 00:19:36.990
+we can then complement the
+security provided by containers.
+
+00:19:36.990 --> 00:19:40.170
+One of the most powerful
+capabilities this adds is better
+
+00:19:40.170 --> 00:19:44.610
+detection and response; hooks
+before tool use, after tool use,
+
+00:19:44.610 --> 00:19:48.330
+and at prompt submission; create
+stable integration points
+
+00:19:48.330 --> 00:19:51.750
+for security products
+like Defender to inspect,
+
+00:19:51.750 --> 00:19:54.330
+evaluate, and respond.
+
+00:19:54.330 --> 00:19:58.080
+That consistent inspection
+is essential for customers
+
+00:19:58.080 --> 00:20:00.990
+in enterprise environments
+to mitigate risks
+
+00:20:00.990 --> 00:20:03.780
+like indirect prompt injection.
+
+00:20:03.780 --> 00:20:08.190
+Here, a developer asks their
+AI agent, GitHub Copilot,
+
+00:20:08.190 --> 00:20:10.950
+to investigate and fix an
+externally reported issue
+
+00:20:10.950 --> 00:20:12.540
+in their repo.
+
+00:20:12.540 --> 00:20:14.850
+At first glance, the
+issue looks routine.
+
+00:20:14.850 --> 00:20:15.990
+But hidden within one
+
+00:20:15.990 --> 00:20:21.120
+of its attachments is a
+prompt injection attack.
+
+00:20:21.120 --> 00:20:25.800
+GitHub Copilot gets to
+work on the user's behalf.
+
+00:20:25.800 --> 00:20:30.570
+It pulls in the issue and its
+attachments from the repository
+
+00:20:30.570 --> 00:20:33.610
+and begins analyzing
+the content.
+
+00:20:35.030 --> 00:20:42.470
+As the agent gets to work, but
+before the attack can take hold,
+
+00:20:42.470 --> 00:20:45.450
+Microsoft Defender can step in.
+
+00:20:45.450 --> 00:20:48.540
+It inspects the data flowing
+into the agent in real time,
+
+00:20:48.540 --> 00:20:51.600
+recognizes the prompt
+injection, and blocks it.
+
+00:20:51.600 --> 00:20:54.510
+The detection details, including
+the analyzed network prompt
+
+00:20:54.510 --> 00:20:58.540
+stream, are surfaced directly
+to the user in Windows.
+
+00:21:01.500 --> 00:21:04.080
+This protection isn't
+limited to GitHub Copilot.
+
+00:21:04.080 --> 00:21:06.210
+Agents built with
+frameworks like OpenClaw
+
+00:21:06.210 --> 00:21:08.820
+that expose tool-calling
+hooks are similarly covered.
+
+00:21:08.820 --> 00:21:10.740
+The same attack is
+attempted; and, once again,
+
+00:21:10.740 --> 00:21:14.010
+Defender detects and blocks it.
+
+00:21:14.010 --> 00:21:16.170
+For enterprises,
+these detections flow
+
+00:21:16.170 --> 00:21:17.880
+into the Microsoft
+Defender portal,
+
+00:21:17.880 --> 00:21:20.310
+providing full visibility
+into the attack
+
+00:21:20.310 --> 00:21:24.290
+and enabling critical
+SecOps workflows.
+
+00:21:24.290 --> 00:21:29.190
+Another core principle is
+that the agent is not you.
+
+00:21:29.190 --> 00:21:31.410
+If agents are going
+to do meaningful work
+
+00:21:31.410 --> 00:21:34.860
+in enterprise environments,
+we need a clear distinction
+
+00:21:34.860 --> 00:21:38.250
+between what the human did
+and what the agent did.
+
+00:21:38.250 --> 00:21:42.240
+Without that distinction,
+audit becomes ambiguous,
+
+00:21:42.240 --> 00:21:44.790
+permissions become
+harder to reason about,
+
+00:21:44.790 --> 00:21:47.940
+and accountability
+starts to blur.
+
+00:21:47.940 --> 00:21:51.150
+Identity matters because
+it shapes permissions
+
+00:21:51.150 --> 00:21:55.980
+and policy before the action
+happens, not just after.
+
+00:21:55.980 --> 00:21:57.540
+There are at least
+two useful methods
+
+00:21:57.540 --> 00:22:00.300
+to identify agents
+and their actions.
+
+00:22:00.300 --> 00:22:03.510
+Sometimes the right solution
+is where the agent acts
+
+00:22:03.510 --> 00:22:05.220
+on behalf of the user.
+
+00:22:05.220 --> 00:22:08.760
+The agent acts with the
+user's delegated context,
+
+00:22:08.760 --> 00:22:11.370
+but the action is
+still clearly marked
+
+00:22:11.370 --> 00:22:14.490
+and attributable
+as agent-driven.
+
+00:22:14.490 --> 00:22:16.050
+Increasingly, though,
+
+00:22:16.050 --> 00:22:21.150
+the stronger model is a unique
+agent identity, managed,
+
+00:22:21.150 --> 00:22:23.940
+permissioned, and
+governed independently
+
+00:22:23.940 --> 00:22:26.820
+with more precise
+least-privileged controls.
+
+00:22:26.820 --> 00:22:28.080
+How should we pick
+the best method
+
+00:22:28.080 --> 00:22:31.350
+to identify agents
+and their actions?
+
+00:22:31.350 --> 00:22:33.630
+The delegated path is best
+
+00:22:33.630 --> 00:22:36.750
+if you're using
+process-based isolation.
+
+00:22:36.750 --> 00:22:38.190
+Work that the agent does
+
+00:22:38.190 --> 00:22:41.880
+on a human user's behalf
+still gets a low-cost agent
+
+00:22:41.880 --> 00:22:44.100
+identification tag.
+
+00:22:44.100 --> 00:22:46.740
+This allows downstream
+systems like Entra
+
+00:22:46.740 --> 00:22:49.530
+to apply agentic risk controls.
+
+00:22:49.530 --> 00:22:52.770
+The contained Coding Agent
+process is a good example
+
+00:22:52.770 --> 00:22:55.140
+of using this model.
+
+00:22:55.140 --> 00:22:57.870
+If you can go beyond
+process-level isolation
+
+00:22:57.870 --> 00:23:00.750
+to session-based
+isolation, you can benefit
+
+00:23:00.750 --> 00:23:03.600
+from using distinct
+agent identities.
+
+00:23:03.600 --> 00:23:05.970
+Doing so will provide
+deep integration
+
+00:23:05.970 --> 00:23:08.520
+with the Entra Agent ID system
+
+00:23:08.520 --> 00:23:11.520
+that will provide
+comprehensive authentication
+
+00:23:11.520 --> 00:23:15.930
+and authorization support
+for agentic actions.
+
+00:23:15.930 --> 00:23:17.460
+Complex interactive agents
+
+00:23:17.460 --> 00:23:21.690
+like Claws are an ideal
+example of this use case.
+
+00:23:21.690 --> 00:23:26.400
+Let's see how the primitives
+we talked about come together.
+
+00:23:26.400 --> 00:23:29.730
+Earlier, we talked
+about the MXC SDK
+
+00:23:29.730 --> 00:23:32.070
+and how it can make
+containment of different types
+
+00:23:32.070 --> 00:23:35.010
+of apps and agents easier.
+
+00:23:35.010 --> 00:23:37.140
+In this example, we
+have a modified version
+
+00:23:37.140 --> 00:23:40.080
+of the open-source
+OpenClaw agent.
+
+00:23:40.080 --> 00:23:42.270
+Since OpenClaw is a
+sophisticated agent,
+
+00:23:42.270 --> 00:23:45.390
+session isolation is a much
+better fit for the collection
+
+00:23:45.390 --> 00:23:49.740
+of components it needs
+compared to process isolation.
+
+00:23:49.740 --> 00:23:53.220
+I've set up and started our
+MXC-integrated OpenClaw.
+
+00:23:53.220 --> 00:23:55.260
+The gateway was running earlier,
+
+00:23:55.260 --> 00:23:58.170
+and you just saw the
+OpenClaw dashboard.
+
+00:23:58.170 --> 00:24:02.520
+This should be familiar to
+anyone that has tried OpenClaw.
+
+00:24:02.520 --> 00:24:05.640
+Let's take one small
+look under the covers.
+
+00:24:05.640 --> 00:24:08.550
+In the Windows Task
+Manager's Users pane,
+
+00:24:08.550 --> 00:24:13.230
+you can see we have two users
+active on the system: me,
+
+00:24:13.230 --> 00:24:16.050
+of course; and my
+agent user account.
+
+00:24:16.050 --> 00:24:20.190
+OpenClaw's agent loop runs
+under the agent user account,
+
+00:24:20.190 --> 00:24:25.350
+and you can see its processes
+in the Task Manager.
+
+00:24:25.350 --> 00:24:27.000
+Apps I use, like the browser
+
+00:24:27.000 --> 00:24:31.800
+that hosts the OpenClaw
+dashboard, run under my account.
+
+00:24:31.800 --> 00:24:35.770
+Let's use the dashboard
+with our OpenClaw agent.
+
+00:24:37.140 --> 00:24:38.910
+First, I will ask OpenClaw
+
+00:24:38.910 --> 00:24:42.840
+to run the Windows
+identity utility whoami.
+
+00:24:42.840 --> 00:24:46.620
+I can see that this OpenClaw
+agent has its own user account
+
+00:24:46.620 --> 00:24:50.260
+in the Entra directory
+for the tenant.
+
+00:24:51.870 --> 00:24:52.620
+This is thanks
+
+00:24:52.620 --> 00:24:56.250
+to new provisioning capabilities
+introduced in Entra and Intune.
+
+00:24:56.250 --> 00:24:58.470
+When OpenClaw was
+set up and run,
+
+00:24:58.470 --> 00:25:00.690
+the agent session
+seamlessly logged
+
+00:25:00.690 --> 00:25:04.290
+in with the right Entra agent
+user account thanks to updates
+
+00:25:04.290 --> 00:25:07.140
+to the Windows identity stack.
+
+00:25:07.140 --> 00:25:09.000
+If you recall, the
+different session
+
+00:25:09.000 --> 00:25:12.210
+and user account gives
+us robust isolation.
+
+00:25:12.210 --> 00:25:17.010
+Here's a quick look at
+my Documents folder.
+
+00:25:17.010 --> 00:25:20.520
+If I ask OpenClaw to
+list what is there,
+
+00:25:20.520 --> 00:25:25.320
+it won't actually see
+my Documents folder.
+
+00:25:25.320 --> 00:25:29.580
+It will see what it has
+in its Documents folder,
+
+00:25:29.580 --> 00:25:34.750
+and it should return a result
+for a configuration script.
+
+00:25:40.590 --> 00:25:43.590
+And, if you look, my Documents
+folder has financial
+
+00:25:43.590 --> 00:25:48.360
+projections; and the agent
+can't automatically access it.
+
+00:25:48.360 --> 00:25:51.480
+Now let's have our isolated
+agent do something useful
+
+00:25:51.480 --> 00:25:52.560
+for us.
+
+00:25:52.560 --> 00:25:54.780
+I haven't looked at
+that data in a while.
+
+00:25:54.780 --> 00:25:59.730
+Let's ask our agent to remind
+me what the key details are.
+
+00:25:59.730 --> 00:26:00.750
+How do I give it access?
+
+00:26:00.750 --> 00:26:04.320
+Well, no special instructions.
+
+00:26:04.320 --> 00:26:09.670
+I'll just attach the file like
+in any chat with OpenClaw.
+
+00:26:18.180 --> 00:26:21.960
+And look. Since this is a
+user-authorized action,
+
+00:26:21.960 --> 00:26:24.930
+access to the doc will
+flow through the agent.
+
+00:26:24.930 --> 00:26:27.360
+And it will use various tools
+
+00:26:27.360 --> 00:26:30.120
+to give me the insights
+I'm looking for,
+
+00:26:30.120 --> 00:26:33.660
+all with the right containment
+and agent identity constructs,
+
+00:26:33.660 --> 00:26:34.980
+working together in Windows
+
+00:26:34.980 --> 00:26:37.800
+to provide safer
+agentic productivity.
+
+00:26:37.800 --> 00:26:40.290
+Additionally, any threats
+like prompt injection
+
+00:26:40.290 --> 00:26:44.310
+that Defender detects while
+using OpenClaw can be associated
+
+00:26:44.310 --> 00:26:48.060
+with the Entra agent identity
+to facilitate SecOps actions
+
+00:26:48.060 --> 00:26:50.520
+in the Defender portal.
+
+00:26:50.520 --> 00:26:53.010
+Let me hand back to
+Klorida for the close.
+
+00:26:53.010 --> 00:26:54.630
+KLORIDA MIRAJ: As we
+bring this together,
+
+00:26:54.630 --> 00:26:56.040
+the broader point is
+
+00:26:56.040 --> 00:26:59.730
+that Windows is not just adding
+isolated security features
+
+00:26:59.730 --> 00:27:00.840
+for agents.
+
+00:27:00.840 --> 00:27:05.970
+It is becoming part of a
+much more complete platform.
+
+00:27:05.970 --> 00:27:13.230
+Across Windows, Entra, Intune,
+Defender, Purview, Agent 365,
+
+00:27:13.230 --> 00:27:18.600
+GitHub, and the rest of the
+Microsoft system, the story is
+
+00:27:18.600 --> 00:27:23.100
+that agent governance
+should not be fragmented.
+
+00:27:23.100 --> 00:27:27.420
+Every agent on every
+Windows device needs a path
+
+00:27:27.420 --> 00:27:31.740
+to being discovered,
+governed, and audited.
+
+00:27:31.740 --> 00:27:35.280
+Identity and containment
+are foundational,
+
+00:27:35.280 --> 00:27:37.890
+but they are only
+the start, right?
+
+00:27:37.890 --> 00:27:40.530
+Enterprises also
+need centralized
+
+00:27:40.530 --> 00:27:42.480
+lifecycle management.
+
+00:27:42.480 --> 00:27:45.990
+They need policy
+enforcement across devices,
+
+00:27:45.990 --> 00:27:50.850
+real-time threat detection and
+response, and end-to-end audit
+
+00:27:50.850 --> 00:27:53.460
+and compliance tracking.
+
+00:27:53.460 --> 00:27:57.360
+It is not enough to know
+that an agent exists.
+
+00:27:57.360 --> 00:28:00.540
+Organizations need to
+manage its lifecycle,
+
+00:28:00.540 --> 00:28:04.350
+understand what it can
+access, see what it has done,
+
+00:28:04.350 --> 00:28:10.140
+and apply policy consistently
+across devices and environments.
+
+00:28:10.140 --> 00:28:14.250
+Microsoft solutions turn
+governance from a concept
+
+00:28:14.250 --> 00:28:16.560
+into an operational capability.
+
+00:28:16.560 --> 00:28:21.990
+Now, going back to everything
+that we discussed today,
+
+00:28:21.990 --> 00:28:27.150
+we have a CTA, call to action,
+for building agents for you all.
+
+00:28:27.150 --> 00:28:29.340
+If you are building agents,
+
+00:28:29.340 --> 00:28:32.940
+the practical takeaway
+is very simple:
+
+00:28:32.940 --> 00:28:36.600
+Design for governance
+from the beginning.
+
+00:28:36.600 --> 00:28:42.240
+Think about packaging, identity,
+containment, network mediation,
+
+00:28:42.240 --> 00:28:47.310
+and event emission as core parts
+of the system, not as something
+
+00:28:47.310 --> 00:28:49.410
+that you've got to do later.
+
+00:28:49.410 --> 00:28:53.970
+So a good agent is not just
+one that just works, right?
+
+00:28:53.970 --> 00:28:58.410
+It is one that can be
+identified, monitored,
+
+00:28:58.410 --> 00:29:01.590
+and governed in a real
+enterprise environment.
+
+00:29:01.590 --> 00:29:04.020
+And this is what
+excites us most.
+
+00:29:04.020 --> 00:29:06.780
+Windows is the best
+place to build agents
+
+00:29:06.780 --> 00:29:10.800
+that can really do work
+across device and cloud
+
+00:29:10.800 --> 00:29:13.140
+with a built-in path to trust,
+
+00:29:13.140 --> 00:29:16.110
+governance, and
+enterprise scale.
+
+00:29:16.110 --> 00:29:17.430
+NAZMUS SAKIB: Thanks
+for joining us today.
+
+00:29:17.430 --> 00:29:19.980
+We're excited to see
+what all of you build.
+
+00:29:19.980 --> 00:29:23.040
+Go try it out, and enjoy
+the rest of Build.
+
+00:29:23.040 --> 00:29:24.580
+KLORIDA MIRAJ: Thank you.

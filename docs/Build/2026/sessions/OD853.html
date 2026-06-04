@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OD853 - Security for AI and Agent Augmented Coding on Windows</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; OD853</nav>
+        <h1>OD853 &mdash; Security for AI and Agent Augmented Coding on Windows</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">OD853 &middot; Pre-recorded</span>
+    <h1>Security for AI and Agent Augmented Coding on Windows</h1>
+    <div class="speakers">Klorida Miraj, Nazmus Sakib</div>
+    <div class="meta">
+        <span>Pre-recorded</span>
+<span>(300) Advanced</span>
+    </div>
+    <div class="tags"><span class="tag">Security</span> <span class="tag">Windows</span> <span class="tag">Agents on Windows</span> <span class="tag">Agent Observability</span> <span class="tag">Containment</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/OD853?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/eaa729a7-8374-4730-91ec-695dd408faeb" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/eaa729a7-8374-4730-91ec-695dd408faeb" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>AI agents create new opportunities for Windows developers to help users do more with less effort. This session explores how agent development on Windows benefits from built‑in security, observability, and manageability at the OS level. Using real examples like sandbox in GitHub CLI , we show how de‑privileged execution and clear boundaries let developers safely move agents from experiments to production without sacrificing trust or velocity.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>Windows platform and security engineers detail how the operating system can host, contain, and govern AI coding agents at enterprise scale. The session frames agents as a new &quot;execution problem&quot; and walks through a spectrum of OS-enforced containment options, agent identity, and detection/response integrations that let developers move agents from experiments to production without sacrificing trust.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Microsoft Execution Containers (MXC) SDK</strong> <em>(00:06:48)</em> — A single SDK and policy model that applies OS-enforced containment across multiple isolation primitives, so one coherent abstraction can cover many workload types.</li>
+<li><strong>Composable sandbox model</strong> <em>(00:07:13)</em> — The same policy maps to different isolation boundaries (process, micro-VM, full VM, cloud) depending on workload risk, avoiding lock-in to one rigid container.</li>
+<li><strong>Hyperlight micro-VM execution</strong> <em>(00:10:44)</em> — Hardware-level isolation with sub-second startup for higher-risk operations, demonstrated running PDF-annotation extraction via an mxc.exe [inferred] host process that leaves no traces.</li>
+<li><strong>Process-level sandboxing in GitHub Copilot CLI</strong> <em>(00:14:22)</em> — An experimental &quot;sandbox enabled&quot; mode runs each tool execution inside a kernel-enforced boundary, keeping the developer inner loop fast.</li>
+<li><strong>Local capabilities discovery with detection hooks</strong> <em>(00:18:57)</em> — Hooks before/after tool use and at prompt submission give security products like Microsoft Defender stable integration points to inspect and block threats such as indirect prompt injection.</li>
+<li><strong>Entra Agent ID integration</strong> <em>(00:22:55)</em> — Distinct, provisioned agent identities (via Entra and Intune) for session-isolated agents, plus low-cost agent-identification tags for delegated process-isolation scenarios.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Why agents differ from traditional software: non-deterministic, act at machine speed, operate on data that may carry adversarial instructions.</li>
+<li>The shift from a prompt-and-answer problem to an execution problem (where code runs, what it can reach, inherited authority).</li>
+<li>Four foundations of trustworthy agentic systems: containment, detection/response, agent identity, and governance.</li>
+<li>A four-stage adoption plan: plan, design, implement, refine.</li>
+<li>The containment spectrum: process isolation, Hyperlight micro-VMs, full Windows/Linux VMs, and Windows 365 cloud PCs.</li>
+<li>Delegated (&quot;agent acts on behalf of user&quot;) versus distinct agent-identity models.</li>
+<li>Defender detecting prompt injection hidden in an issue attachment and surfacing it in the Defender portal for SecOps.</li>
+<li>Session isolation demonstrated with a modified OpenClaw agent running under a separate agent user account that cannot access the user&#39;s Documents.</li>
+<li>Enterprise governance across Windows, Entra, Intune, Defender, Purview, Agent 365, and GitHub.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;If agent behavior is non-deterministic, then containment becomes the deterministic guardrail around it.&quot; — Nazmus Sakib</p>
+</blockquote>
+<blockquote>
+<p>&quot;Containment is not a bolt-on. It is a design tool for building safer agentic apps from the beginning.&quot; — Nazmus Sakib</p>
+</blockquote>
+<blockquote>
+<p>&quot;It is not enough to know that an agent exists. Organizations need to manage its lifecycle, understand what it can access, see what it has done, and apply policy consistently across devices and environments.&quot; — Klorida Miraj</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Microsoft Execution Containers (MXC) SDK</li>
+<li>Hyperlight micro-VMs</li>
+<li>GitHub Copilot CLI</li>
+<li>Windows 365 (cloud PC)</li>
+<li>Microsoft Entra ID / Entra Agent ID</li>
+<li>Microsoft Intune</li>
+<li>Microsoft Defender</li>
+<li>Microsoft Purview</li>
+<li>Agent 365</li>
+<li>OpenClaw (open-source agent framework, as transcribed)</li>
+<li>Windows Task Manager / File Explorer</li>
+<li>Windows Insider builds</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Klorida Miraj — Windows Developer Platform team</li>
+<li>Nazmus Sakib — Windows Enterprise and Security</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (33,100 chars)</summary>
+        <pre class="transcript-body">[00:00:00] KLORIDA MIRAJ: Hey, everyone.
+[00:00:02] Welcome to Build.
+[00:00:03] I&#39;m Klorida from the Windows Developer Platform team,
+[00:00:06] and I&#39;m here with Sakib from Windows Enterprise and Security.
+[00:00:11] NAZMUS SAKIB: Hi.
+[00:00:12] KLORIDA MIRAJ: Today we want to talk
+[00:00:13] about how Windows can help developers build
+[00:00:16] and run agents safely at scale.
+[00:00:18] We are at a moment where agents are starting to feel
+[00:00:22] like a new unit of software.
+[00:00:24] They are not just answering questions.
+[00:00:27] They can reason, use tools, remember context.
+[00:00:31] And, increasingly, they&#39;re taking action in ways
+[00:00:34] that feel more collaborative and alive.
+[00:00:37] So the experience is starting to shift from asking software
+[00:00:41] to do something for you to actually building with it
+[00:00:45] and evolving it over time.
+[00:00:48] That is why I love the Terrarium metaphor.
+[00:00:52] It is not only about automation.
+[00:00:55] It is about creativity,
+[00:00:57] customization, and shared building.
+[00:01:01] You start with something someone else built,
+[00:01:04] you make it your own, and then you keep building together.
+[00:01:08] And that matters because it changes what people expect
+[00:01:11] from software.
+[00:01:13] Instead of just consuming a finished product,
+[00:01:16] people are increasingly shaping the experience.
+[00:01:20] They&#39;re adapting it to their own world
+[00:01:23] and sharing those changes back with each other.
+[00:01:26] That is a much more participatory model and one
+[00:01:29] that makes agents feel less like a feature and more
+[00:01:33] like a medium for collaboration.
+[00:01:36] So there&#39;s the real story behind this slide.
+[00:01:39] Agent Terrarium here is a project a friend
+[00:01:43] of mine, Alex Clarke, created.
+[00:01:46] What he did is he built the initial world.
+[00:01:49] He shared the GitHub repo with me,
+[00:01:52] and what I did is I extended it with my own theme.
+[00:01:55] You see here on the bottom right corner there is the Albanian
+[00:02:00] mountains theme.
+[00:02:01] And I also added Zana -- this is an Albanian fairy --
+[00:02:05] as an agent.
+[00:02:07] Then I shared my version back, and now we both build
+[00:02:11] on top of each other&#39;s work.
+[00:02:13] It is fun, and it&#39;s also made our collaboration better.
+[00:02:18] And that is where the platform matters.
+[00:02:22] As agents become something that people can shape, extend,
+[00:02:27] and collaborate with, the operating system has to do more
+[00:02:31] than just host them, right?
+[00:02:33] It has to remove the friction;
+[00:02:35] and it has to also provide a safe, governable environment
+[00:02:40] where people together can create and they can run
+[00:02:45] and they can build things with confidence.
+[00:02:48] That is why Windows matters here, right,
+[00:02:51] and why we believe it is the best platform to run
+[00:02:55] and build agents at scale.
+[00:02:57] Now, that matters because customers are no longer just
+[00:03:01] asking whether agents can do something impressive
+[00:03:04] or something cool, right?
+[00:03:06] They&#39;re asking whether those agents can be trusted
+[00:03:09] in these real environments, on their actual machines
+[00:03:12] that they&#39;re running, with real business data, right?
+[00:03:16] So Windows has to answer these two questions at the same time.
+[00:03:22] Can the agent be powerful; and, at the same time,
+[00:03:25] can the platform still keep it governable?
+[00:03:29] Let&#39;s start first with what makes agents different.
+[00:03:34] So agents are non-deterministic.
+[00:03:37] We know that.
+[00:03:38] They operate on data that can itself contain instructions
+[00:03:43] or some adversarial content.
+[00:03:45] And they can act fast, at machine speed fast.
+[00:03:50] That means that even a mistake or a bad inference
+[00:03:54] or an attack can scale so much faster
+[00:03:58] than in more traditional user-driven type of flows.
+[00:04:03] The key shift is that this is no longer just a prompt-and-answer
+[00:04:07] problem, right?
+[00:04:09] It is an execution problem.
+[00:04:12] Agents can read files.
+[00:04:14] They can invoke tools.
+[00:04:15] They can call services.
+[00:04:17] They can modify entire environments, right?
+[00:04:21] And that means that the risk is not just what the model
+[00:04:24] is saying.
+[00:04:25] The risk is where execution happens,
+[00:04:28] what the agent can reach,
+[00:04:30] and how much authority it inherits by default.
+[00:04:34] Once you understand the risk model that I just explained,
+[00:04:38] right, the first three needs are super clear:
+[00:04:42] containment to limit the blast radius, detection and response
+[00:04:48] to catch problems early, and then the agent identities
+[00:04:52] that are distinct from humans so permissions
+[00:04:55] and attribution remain meaningful.
+[00:04:59] These are not abstract architecture ideas, right?
+[00:05:02] They&#39;re what makes the difference between an agent
+[00:05:05] that feels impressive in a demo and one
+[00:05:09] that can actually be trusted in a real environment.
+[00:05:13] Governance is the one that completes that model.
+[00:05:17] Agents need to be manageable, discoverable, observable,
+[00:05:22] and configurable in enterprise environments.
+[00:05:25] These are not separate check boxes that you&#39;ll have
+[00:05:28] to go and check, right?
+[00:05:30] Together, containment, detection, identity,
+[00:05:34] and governance form the foundation
+[00:05:37] for trustworthy agentic systems.
+[00:05:41] All right.
+[00:05:41] It&#39;s time for me to hand it to Sakib.
+[00:05:44] He&#39;s going to go through the containment details.
+[00:05:46] NAZMUS SAKIB: Thanks, Klorida.
+[00:05:48] Now that we framed the problem, let&#39;s get concrete
+[00:05:51] about containment and the Windows building blocks
+[00:05:54] that make safer agents possible.
+[00:05:56] Containment is one of the most important ideas in this talk.
+[00:06:00] If agent behavior is non-deterministic,
+[00:06:03] then containment becomes the deterministic guardrail
+[00:06:07] around it.
+[00:06:08] The reason containment matters is simple: Agents should be able
+[00:06:12] to do useful work without inheriting the full blast radius
+[00:06:16] of the user&#39;s session.
+[00:06:18] In both ordinary and adversarial cases,
+[00:06:20] containment reduces the blast radius
+[00:06:23] and constrains what a risky operation can touch.
+[00:06:26] That is the shift
+[00:06:28] from traditional software to agentic software.
+[00:06:31] In traditional apps, a mistake is often bounded
+[00:06:33] by the feature itself.
+[00:06:35] With agents, the execution surface is larger
+[00:06:37] because the system can read, act,
+[00:06:40] and chain together multiple steps.
+[00:06:42] Containment is how you keep that larger surface from turning
+[00:06:46] into a larger blast radius.
+[00:06:48] Given the importance of containment, we are excited
+[00:06:51] to introduce the Microsoft Execution Containers SDK.
+[00:06:56] This single SDK will allow applying containment policies
+[00:07:00] on agents enforced by the OS.
+[00:07:03] The MXC SDK will provide an abstraction layer
+[00:07:06] across various isolation primitives
+[00:07:09] that simplifies containing many different types of workloads.
+[00:07:13] Microsoft execution containers are built
+[00:07:15] around a composable sandbox model.
+[00:07:18] The same policy and SDK can map
+[00:07:21] to different isolation boundaries depending
+[00:07:23] on the workload, so developers are not locked
+[00:07:26] into one rigid container.
+[00:07:28] Windows can apply the right isolation primitive
+[00:07:30] for the task while preserving one coherent abstraction.
+[00:07:35] Different agents and tools need different isolation levels.
+[00:07:38] Our goal is simple: Let developers declare intent
+[00:07:42] with policies, and let Windows enforce the
+[00:07:45] appropriate boundary.
+[00:07:47] What makes this model powerful is
+[00:07:49] that it meets developers where they are.
+[00:07:52] A Coding Agent, an interactive agent,
+[00:07:54] and a cloud-managed agent do not all need the same boundary,
+[00:07:57] but they do need one coherent trust story.
+[00:08:01] That is what the composable sandbox gives you:
+[00:08:03] flexibility in implementation
+[00:08:05] without fragmentation in governance.
+[00:08:08] For developers,
+[00:08:09] the implementation story is practical and incremental.
+[00:08:13] Think of a four-stage plan.
+[00:08:15] First, plan by identifying the sensitive operations your agent
+[00:08:19] needs to perform, especially ones that may be exposed
+[00:08:22] to prompt injection risk or handle customer data.
+[00:08:26] Then focus on design.
+[00:08:28] Identify the model-driven parts so that they can be contained.
+[00:08:32] With the design in hand, you can then move to implement.
+[00:08:35] Contain the highest-risk operations with our MXC SDK.
+[00:08:39] Finally, refine your solution by testing what is allowed
+[00:08:43] and denied; and ensure that it meets your experience
+[00:08:46] and security goals.
+[00:08:48] Containment is not a bolt-on.
+[00:08:51] It is a design tool for building safer agentic apps
+[00:08:54] from the beginning.
+[00:08:56] Containment should not add friction.
+[00:08:58] A single SDK and policy model make it easier
+[00:09:02] to adopt the right isolation level.
+[00:09:05] KLORIDA MIRAJ: Thanks, Sakib.
+[00:09:06] The composable sandbox is the big idea that you&#39;re going
+[00:09:10] to see in the next several slides here with me.
+[00:09:13] Windows is not giving developers one rigid container
+[00:09:17] and asking them to force every workload into it.
+[00:09:21] It&#39;s offering a spectrum of containment options
+[00:09:24] so the boundary can match the risk of the task.
+[00:09:28] It&#39;s the same overall trust model
+[00:09:31] but different levels of isolation.
+[00:09:34] This is where the story shifts from principle to architecture,
+[00:09:39] and we are no longer just saying contain these agents.
+[00:09:44] We&#39;re showing a practical, scalable execution model
+[00:09:48] that can go from a tool call on the device
+[00:09:50] to a broader agent workflow across client and cloud.
+[00:09:55] So that breadth is one
+[00:09:57] of the reasons Windows has a differentiated story here.
+[00:10:02] And that is important because Windows can start
+[00:10:05] with a lightweight local isolation; and,
+[00:10:08] when that is not enough and then when moved all the way
+[00:10:12] to the stronger boundaries when the workload
+[00:10:14] or the enterprise requirement needs it.
+[00:10:18] So we&#39;re rolling this initiative out on a monthly cadence
+[00:10:22] with the developer community.
+[00:10:23] Some of these capabilities are already showing
+[00:10:26] up in Windows Insider builds, and there are more
+[00:10:29] that are going to come later this month.
+[00:10:31] And we&#39;ll keep building and learning together
+[00:10:34] as the platform evolves.
+[00:10:36] We&#39;re excited, and I know you are too.
+[00:10:40] So let&#39;s dig a little bit deeper
+[00:10:42] into the containment spectrum now.
+[00:10:44] I&#39;m going to start with a micro-VM.
+[00:10:47] So at the stronger end of the spectrum is the micro-VM.
+[00:10:52] This is the right fit when the workload is higher risk
+[00:10:56] and it needs a clearly isolated space while still preserving the
+[00:11:02] same overall agent experience.
+[00:11:06] And the message is not to use this everywhere, right?
+[00:11:10] It&#39;s to step up isolation when the workload calls for it.
+[00:11:16] Micro-VMs are also about density.
+[00:11:19] They provide a stronger separation without having
+[00:11:23] to pay the full cost of a larger VM every single time
+[00:11:27] that you&#39;re running your agent.
+[00:11:30] I just explained the Hyperlight micro-VM,
+[00:11:33] the execution primitive at the top
+[00:11:35] of the agent containment stack.
+[00:11:37] Let me show you what that looks like in practice.
+[00:11:40] Imagine Maya, a freelance interior designer.
+[00:11:43] She&#39;s been using GitHub Copilot CLI
+[00:11:45] to manage her client projects,
+[00:11:46] and her previous task has just wrapped up.
+[00:11:49] She has three client PDFs with comments and review feedback
+[00:11:52] that she needs to consolidate.
+[00:11:54] Let&#39;s watch her ask Copilot for help.
+[00:11:57] She types a natural language request:
+[00:11:59] Pull the review comments from all three client PDFs,
+[00:12:02] group them by theme, and produce a clean prioritized summary.
+[00:12:06] No scripts to write, no tools to configure.
+[00:12:08] It&#39;s just a plain-English ask.
+[00:12:11] Copilot understands the task immediately,
+[00:12:13] and it lays out its plan.
+[00:12:15] Notice that it asks
+[00:12:16] for permission before accessing Maya&#39;s files.
+[00:12:19] The user stays in control.
+[00:12:21] Maya grants access, and now Copilot gets to work.
+[00:12:24] Behind the scenes, Copilot is figuring out how
+[00:12:26] to extract annotations from those PDFs.
+[00:12:28] It needs to run code to parse them, right?
+[00:12:31] But here&#39;s the key question: Where does that code execute?
+[00:12:35] There it is.
+[00:12:36] Extract PDF annotations in Hyperlight micro-VM.
+[00:12:41] Copilot chose to run this code inside a Hyperlight micro-VM,
+[00:12:44] and I hope you didn&#39;t miss the wxc exe
+[00:12:47] that appeared in Task Manager.
+[00:12:49] That&#39;s the micro-VM host process.
+[00:12:51] And, once the task is done, Copilot cleans
+[00:12:54] up the temporary config; and,
+[00:12:55] just like that, the micro-VM is gone.
+[00:12:57] No traces left behind.
+[00:12:59] But notice in the File Explorer there&#39;s a new file
+[00:13:02] that has appeared: Client Feedback Summary.
+[00:13:05] Copilot has delivered a well-organized summary,
+[00:13:08] comments from all three client PDFs, grouped by theme
+[00:13:11] and ranked by priority,
+[00:13:13] all of this processed inside a Hyperlight micro-VM,
+[00:13:16] hardware-level isolation with sub-second startup.
+[00:13:19] That&#39;s the power of MXC,
+[00:13:20] safe code execution that&#39;s fast enough to be invisible.
+[00:13:24] Process isolation, on the other side,
+[00:13:27] sits at this lighter-weight end of the spectrum.
+[00:13:31] It is a strong fit for coding agents
+[00:13:33] and focused tool execution scenarios
+[00:13:36] where speed matters for you.
+[00:13:39] So developers keep the familiar coding flow while Windows
+[00:13:43] applies platform-level boundaries
+[00:13:46] to the riskiest operations.
+[00:13:49] This is especially important for developer scenarios
+[00:13:53] because the inner loop needs to stay fast.
+[00:13:57] If the smallest, riskiest operations,
+[00:14:00] like running model-generated code, can be isolated
+[00:14:04] at process level, then developers get a safety benefit
+[00:14:08] without losing responsiveness.
+[00:14:11] And that is how containment becomes something developers
+[00:14:14] actually adopt rather than something that they need
+[00:14:18] to avoid because it&#39;s slowing them down.
+[00:14:22] Now let me pick up where I left off earlier
+[00:14:24] and show you process-level isolation.
+[00:14:26] I have GitHub Copilot CLI with an experimental feature enabled,
+[00:14:30] so code is run in a process sandbox.
+[00:14:33] Going back to Maya, it&#39;s late evening.
+[00:14:35] And everyone has gone to bed,
+[00:14:37] but she has a personal task to do.
+[00:14:39] Her daughter Laura&#39;s birthday is coming up.
+[00:14:41] Maya types &quot;sandbox enabled&quot; to turn on sandboxing.
+[00:14:44] Now every tool execution Copilot runs will be contained
+[00:14:47] in a sandbox.
+[00:14:49] She then asks Copilot to make a birthday card using cat photos
+[00:14:52] from a folder on her laptop.
+[00:14:54] Again, just a natural language request: Pick the best images.
+[00:14:57] Resize them.
+[00:14:58] Combine them.
+[00:14:59] Add a birthday message.
+[00:15:01] Copilot understands and outlines its approach and requests access
+[00:15:05] to the Laura pictures folder.
+[00:15:07] Same consent flow.
+[00:15:09] The user is always in the loop and in control.
+[00:15:12] Maya grants access.
+[00:15:14] And now here&#39;s the sandbox in action.
+[00:15:16] You see that blue dot next to sandbox shell?
+[00:15:19] That means this PowerShell code is executing inside a sandbox.
+[00:15:23] The script is loading and manipulating Maya&#39;s cat photos,
+[00:15:26] but it&#39;s doing so within a kernel-enforced
+[00:15:28] sandbox boundary.
+[00:15:30] It can only access what has been explicitly granted.
+[00:15:33] And done. PowerShell code generated
+[00:15:36] and executed all within the sandbox.
+[00:15:39] Notice in the File Explorer Happy Birthday,
+[00:15:41] Laura has appeared right alongside the source images.
+[00:15:45] Let&#39;s see what it looks like.
+[00:15:47] It&#39;s a custom birthday card
+[00:15:49] with Maya&#39;s favorite cat photos arranged and captioned,
+[00:15:52] all executed in a process sandbox.
+[00:15:55] The code ran, the file was created,
+[00:15:57] and at no point did the execution escape its boundary.
+[00:16:00] This is MXC, Microsoft Execution Containers, composable sandboxes
+[00:16:05] for running dynamically generated code
+[00:16:08] with controlled isolation.
+[00:16:10] We&#39;re moving on to Windows and Linux VM.
+[00:16:13] A full VM gives broader separation
+[00:16:16] and stronger assurance.
+[00:16:18] This is the right fit for workloads
+[00:16:20] that need a different kernel, complete isolation,
+[00:16:23] and stronger guarantees, especially for high-assurance
+[00:16:27] or more controlled enterprise scenarios.
+[00:16:30] This is exactly where the message now shifts
+[00:16:33] from efficiency to assurance.
+[00:16:37] A full VM is the answer when the workload needs much more
+[00:16:41] distance from the host environment,
+[00:16:43] whether because the code is highly untrusted,
+[00:16:46] the environment is maybe tightly managed,
+[00:16:49] or the trust requirement is simply much, much higher.
+[00:16:54] This slide shows how Windows is prepared
+[00:16:57] for that higher-assurance end of the spectrum, too, right.
+[00:17:00] For enterprise customers, this is where policy
+[00:17:04] and assurance start to matter even more than convenience.
+[00:17:09] A full VM gives organizations a boundary they already understand
+[00:17:13] and one they can reason
+[00:17:15] about when the workload is especially sensitive
+[00:17:19] or if the cost of compromise is high.
+[00:17:22] Cloud VMs extend containment beyond the local device.
+[00:17:27] Now, in the enterprise, this can be a Windows 365-powered,
+[00:17:31] giving the agent a cloud PC that is separate
+[00:17:34] from the user&#39;s device, separate from its identity,
+[00:17:38] separate from the user&#39;s kernel device and session.
+[00:17:42] The agent runs remotely in a managed environment,
+[00:17:45] not alongside the user on the same machine.
+[00:17:49] And, because it is built on Windows 365,
+[00:17:53] the environment comes with all the enterprise management
+[00:17:56] that is built already in.
+[00:17:58] Like security policies that can be provisioned up front,
+[00:18:02] identity compliance can be managed centrally
+[00:18:06] through Microsoft Entra ID and Intune.
+[00:18:10] As you can see, this is the highest-assurance end
+[00:18:12] of the spectrum and offers the strongest
+[00:18:16] blast-radius reduction.
+[00:18:17] If the agent is compromised, the impact is contained
+[00:18:21] to a disposable cloud instance with no direct path back
+[00:18:25] to the user&#39;s local device.
+[00:18:27] So far, we focused on containment and its spectrum;
+[00:18:31] and we showed you that Windows can support both developer
+[00:18:34] productivity and the enterprise assurance
+[00:18:37] by letting the boundary scale with the workload instead
+[00:18:40] of forcing every scenario into the same model.
+[00:18:43] But containment is only part of this picture.
+[00:18:46] Let me hand it back to Sakib to cover the other side
+[00:18:49] of the equation, how we detect, respond,
+[00:18:52] and make the broader security ecosystem part of the story.
+[00:18:57] NAZMUS SAKIB: Thanks, Klorida.
+[00:18:58] Agents increasingly depend on tools, skills, services,
+[00:19:02] and sometimes even other agents to complete a task.
+[00:19:06] So developers and administrators need a clear view
+[00:19:09] of what capabilities are present, what is enabled,
+[00:19:12] what is allowed, and what is being used.
+[00:19:15] Local capabilities discovery provides that source of truth
+[00:19:18] and makes those actions admin-manageable.
+[00:19:21] Capabilities discovery matters because, once agents compose
+[00:19:24] with tools and services,
+[00:19:26] the local environment becomes part of the trust model.
+[00:19:30] With local capabilities discovery for agents,
+[00:19:33] we can then complement the security provided by containers.
+[00:19:36] One of the most powerful capabilities this adds is better
+[00:19:40] detection and response; hooks before tool use, after tool use,
+[00:19:44] and at prompt submission; create stable integration points
+[00:19:48] for security products like Defender to inspect,
+[00:19:51] evaluate, and respond.
+[00:19:54] That consistent inspection is essential for customers
+[00:19:58] in enterprise environments to mitigate risks
+[00:20:00] like indirect prompt injection.
+[00:20:03] Here, a developer asks their AI agent, GitHub Copilot,
+[00:20:08] to investigate and fix an externally reported issue
+[00:20:10] in their repo.
+[00:20:12] At first glance, the issue looks routine.
+[00:20:14] But hidden within one
+[00:20:15] of its attachments is a prompt injection attack.
+[00:20:21] GitHub Copilot gets to work on the user&#39;s behalf.
+[00:20:25] It pulls in the issue and its attachments from the repository
+[00:20:30] and begins analyzing the content.
+[00:20:35] As the agent gets to work, but before the attack can take hold,
+[00:20:42] Microsoft Defender can step in.
+[00:20:45] It inspects the data flowing into the agent in real time,
+[00:20:48] recognizes the prompt injection, and blocks it.
+[00:20:51] The detection details, including the analyzed network prompt
+[00:20:54] stream, are surfaced directly to the user in Windows.
+[00:21:01] This protection isn&#39;t limited to GitHub Copilot.
+[00:21:04] Agents built with frameworks like OpenClaw
+[00:21:06] that expose tool-calling hooks are similarly covered.
+[00:21:08] The same attack is attempted; and, once again,
+[00:21:10] Defender detects and blocks it.
+[00:21:14] For enterprises, these detections flow
+[00:21:16] into the Microsoft Defender portal,
+[00:21:17] providing full visibility into the attack
+[00:21:20] and enabling critical SecOps workflows.
+[00:21:24] Another core principle is that the agent is not you.
+[00:21:29] If agents are going to do meaningful work
+[00:21:31] in enterprise environments, we need a clear distinction
+[00:21:34] between what the human did and what the agent did.
+[00:21:38] Without that distinction, audit becomes ambiguous,
+[00:21:42] permissions become harder to reason about,
+[00:21:44] and accountability starts to blur.
+[00:21:47] Identity matters because it shapes permissions
+[00:21:51] and policy before the action happens, not just after.
+[00:21:55] There are at least two useful methods
+[00:21:57] to identify agents and their actions.
+[00:22:00] Sometimes the right solution is where the agent acts
+[00:22:03] on behalf of the user.
+[00:22:05] The agent acts with the user&#39;s delegated context,
+[00:22:08] but the action is still clearly marked
+[00:22:11] and attributable as agent-driven.
+[00:22:14] Increasingly, though,
+[00:22:16] the stronger model is a unique agent identity, managed,
+[00:22:21] permissioned, and governed independently
+[00:22:23] with more precise least-privileged controls.
+[00:22:26] How should we pick the best method
+[00:22:28] to identify agents and their actions?
+[00:22:31] The delegated path is best
+[00:22:33] if you&#39;re using process-based isolation.
+[00:22:36] Work that the agent does
+[00:22:38] on a human user&#39;s behalf still gets a low-cost agent
+[00:22:41] identification tag.
+[00:22:44] This allows downstream systems like Entra
+[00:22:46] to apply agentic risk controls.
+[00:22:49] The contained Coding Agent process is a good example
+[00:22:52] of using this model.
+[00:22:55] If you can go beyond process-level isolation
+[00:22:57] to session-based isolation, you can benefit
+[00:23:00] from using distinct agent identities.
+[00:23:03] Doing so will provide deep integration
+[00:23:05] with the Entra Agent ID system
+[00:23:08] that will provide comprehensive authentication
+[00:23:11] and authorization support for agentic actions.
+[00:23:15] Complex interactive agents
+[00:23:17] like Claws are an ideal example of this use case.
+[00:23:21] Let&#39;s see how the primitives we talked about come together.
+[00:23:26] Earlier, we talked about the MXC SDK
+[00:23:29] and how it can make containment of different types
+[00:23:32] of apps and agents easier.
+[00:23:35] In this example, we have a modified version
+[00:23:37] of the open-source OpenClaw agent.
+[00:23:40] Since OpenClaw is a sophisticated agent,
+[00:23:42] session isolation is a much better fit for the collection
+[00:23:45] of components it needs compared to process isolation.
+[00:23:49] I&#39;ve set up and started our MXC-integrated OpenClaw.
+[00:23:53] The gateway was running earlier,
+[00:23:55] and you just saw the OpenClaw dashboard.
+[00:23:58] This should be familiar to anyone that has tried OpenClaw.
+[00:24:02] Let&#39;s take one small look under the covers.
+[00:24:05] In the Windows Task Manager&#39;s Users pane,
+[00:24:08] you can see we have two users active on the system: me,
+[00:24:13] of course; and my agent user account.
+[00:24:16] OpenClaw&#39;s agent loop runs under the agent user account,
+[00:24:20] and you can see its processes in the Task Manager.
+[00:24:25] Apps I use, like the browser
+[00:24:27] that hosts the OpenClaw dashboard, run under my account.
+[00:24:31] Let&#39;s use the dashboard with our OpenClaw agent.
+[00:24:37] First, I will ask OpenClaw
+[00:24:38] to run the Windows identity utility whoami.
+[00:24:42] I can see that this OpenClaw agent has its own user account
+[00:24:46] in the Entra directory for the tenant.
+[00:24:51] This is thanks
+[00:24:52] to new provisioning capabilities introduced in Entra and Intune.
+[00:24:56] When OpenClaw was set up and run,
+[00:24:58] the agent session seamlessly logged
+[00:25:00] in with the right Entra agent user account thanks to updates
+[00:25:04] to the Windows identity stack.
+[00:25:07] If you recall, the different session
+[00:25:09] and user account gives us robust isolation.
+[00:25:12] Here&#39;s a quick look at my Documents folder.
+[00:25:17] If I ask OpenClaw to list what is there,
+[00:25:20] it won&#39;t actually see my Documents folder.
+[00:25:25] It will see what it has in its Documents folder,
+[00:25:29] and it should return a result for a configuration script.
+[00:25:40] And, if you look, my Documents folder has financial
+[00:25:43] projections; and the agent can&#39;t automatically access it.
+[00:25:48] Now let&#39;s have our isolated agent do something useful
+[00:25:51] for us.
+[00:25:52] I haven&#39;t looked at that data in a while.
+[00:25:54] Let&#39;s ask our agent to remind me what the key details are.
+[00:25:59] How do I give it access?
+[00:26:00] Well, no special instructions.
+[00:26:04] I&#39;ll just attach the file like in any chat with OpenClaw.
+[00:26:18] And look. Since this is a user-authorized action,
+[00:26:21] access to the doc will flow through the agent.
+[00:26:24] And it will use various tools
+[00:26:27] to give me the insights I&#39;m looking for,
+[00:26:30] all with the right containment and agent identity constructs,
+[00:26:33] working together in Windows
+[00:26:34] to provide safer agentic productivity.
+[00:26:37] Additionally, any threats like prompt injection
+[00:26:40] that Defender detects while using OpenClaw can be associated
+[00:26:44] with the Entra agent identity to facilitate SecOps actions
+[00:26:48] in the Defender portal.
+[00:26:50] Let me hand back to Klorida for the close.
+[00:26:53] KLORIDA MIRAJ: As we bring this together,
+[00:26:54] the broader point is
+[00:26:56] that Windows is not just adding isolated security features
+[00:26:59] for agents.
+[00:27:00] It is becoming part of a much more complete platform.
+[00:27:05] Across Windows, Entra, Intune, Defender, Purview, Agent 365,
+[00:27:13] GitHub, and the rest of the Microsoft system, the story is
+[00:27:18] that agent governance should not be fragmented.
+[00:27:23] Every agent on every Windows device needs a path
+[00:27:27] to being discovered, governed, and audited.
+[00:27:31] Identity and containment are foundational,
+[00:27:35] but they are only the start, right?
+[00:27:37] Enterprises also need centralized
+[00:27:40] lifecycle management.
+[00:27:42] They need policy enforcement across devices,
+[00:27:45] real-time threat detection and response, and end-to-end audit
+[00:27:50] and compliance tracking.
+[00:27:53] It is not enough to know that an agent exists.
+[00:27:57] Organizations need to manage its lifecycle,
+[00:28:00] understand what it can access, see what it has done,
+[00:28:04] and apply policy consistently across devices and environments.
+[00:28:10] Microsoft solutions turn governance from a concept
+[00:28:14] into an operational capability.
+[00:28:16] Now, going back to everything that we discussed today,
+[00:28:21] we have a CTA, call to action, for building agents for you all.
+[00:28:27] If you are building agents,
+[00:28:29] the practical takeaway is very simple:
+[00:28:32] Design for governance from the beginning.
+[00:28:36] Think about packaging, identity, containment, network mediation,
+[00:28:42] and event emission as core parts of the system, not as something
+[00:28:47] that you&#39;ve got to do later.
+[00:28:49] So a good agent is not just one that just works, right?
+[00:28:53] It is one that can be identified, monitored,
+[00:28:58] and governed in a real enterprise environment.
+[00:29:01] And this is what excites us most.
+[00:29:04] Windows is the best place to build agents
+[00:29:06] that can really do work across device and cloud
+[00:29:10] with a built-in path to trust,
+[00:29:13] governance, and enterprise scale.
+[00:29:16] NAZMUS SAKIB: Thanks for joining us today.
+[00:29:17] We&#39;re excited to see what all of you build.
+[00:29:19] Go try it out, and enjoy the rest of Build.
+[00:29:23] KLORIDA MIRAJ: Thank you.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

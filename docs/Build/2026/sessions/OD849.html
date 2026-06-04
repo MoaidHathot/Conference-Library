@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OD849 - Microsoft Dataverse plugin: unleashing coding agents on the enterprise</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; OD849</nav>
+        <h1>OD849 &mdash; Microsoft Dataverse plugin: unleashing coding agents on the enterprise</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">OD849 &middot; Pre-recorded</span>
+    <h1>Microsoft Dataverse plugin: unleashing coding agents on the enterprise</h1>
+    <div class="speakers">Suyash Kshirsagar, Kent Weare</div>
+    <div class="meta">
+        <span>Pre-recorded</span>
+<span>(300) Advanced</span>
+    </div>
+    <div class="tags"><span class="tag">Agents</span> <span class="tag">Developer</span> <span class="tag">GitHub Copilot</span> <span class="tag">Visual Studio Code</span> <span class="tag">MCP</span> <span class="tag">Data</span> <span class="tag">App Developers</span> <span class="tag">GitHub Copilot CLI</span> <span class="tag">DevTools</span> <span class="tag">Developer Technologies</span> <span class="tag">Developer Frameworks</span> <span class="tag">Developer Languages</span> <span class="tag">Agents &amp; apps</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/OD849?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/961026f5-a22a-4c0f-a9cb-80b962beb540" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/961026f5-a22a-4c0f-a9cb-80b962beb540" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Coding agents are powerful, but without domain tooling they hallucinate and produce broken solutions. The Dataverse plugin solves this by giving AI agents guardrailed access to tables, columns, relationships, views, security and solutions. See how a natural language request triggers multi-step provisioning, data imports and validation. All executed autonomously. We demo the plugin architecture, MCP server integration and patterns that make agent-driven Dataverse development reliable at scale.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>This advanced session demonstrates the Dataverse plugin (also called the Dataverse Skills plugin) for coding agents, which embeds governed Dataverse operations directly into the coding tools teams already use. Through three personas—a builder, a CRM analyst, and a platform admin—the presenters show how plain-English prompts drive schema creation, data import, CRM queries, and security configuration without portals, FetchXML, or GUIDs. The unifying thesis: one install and one pattern lets different roles turn business intent into validated, solution-packaged Dataverse work.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Dataverse plugin for coding agents</strong> <em>(00:00:37)</em> — A single capability embedded in existing coding tools that turns business intent into governed Dataverse operations across schemas, data, queries, security, and admin tasks.</li>
+<li><strong>Identity-based environment discovery</strong> <em>(00:01:51)</em> — The agent discovers the user&#39;s Dataverse environment from their Microsoft sign-in and configures the MCP server, requiring no org URL, config files, or setup docs.</li>
+<li><strong>Skill-based execution with on-demand tooling</strong> <em>(00:04:37)</em> — Plugin skills such as DBQuery and DVData encode best-practice knowledge and generate tools on the fly, using the Python SDK behind the scenes to parse Excel files and run generated scripts.</li>
+<li><strong>Inline security simulation</strong> <em>(00:15:52)</em> — The agent validates a security model by simulating each user&#39;s access and returning a pass/fail table, replacing manual private-browser impersonation.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>One-prompt data model creation including choices, lookups, self-referential lookups, and many-to-many relationships, packaged into a solution.</li>
+<li>Importing real Excel reference data using business keys (not GUIDs) to resolve lookups, with failure reporting.</li>
+<li>Row-count and relationship validation as a post-import sanity check.</li>
+<li>Natural-language CRM analysis: scoped opportunity queries, named-user scoping via the system user table, and reorder-gap analysis joining account and opportunity tables.</li>
+<li>Logging activities and notes, completing tasks, and inferring activity type, regarding object, owner, and participants from a single sentence.</li>
+<li>Security administration: business units, custom roles, field-level security, access team templates, user assignments, and pre-flight privilege checks.</li>
+<li>Multi-layer auditing (org, table, column) and controlled record sharing via principal object access.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;What if your developer, your operations analyst, and your admin could all describe what they need in plain English and get it done?&quot; — Suyash Kshirsagar</p>
+</blockquote>
+<blockquote>
+<p>&quot;And notice she said Carlos by name. The agent looked him up in the system user table automatically and scoped the query to his records.&quot; — Kent Weare</p>
+</blockquote>
+<blockquote>
+<p>&quot;45 minutes of Thursday afternoon collapsed into 5 minutes of intent. Same plugin Maya used, different operator, different job, same pattern.&quot; — Suyash Kshirsagar</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Microsoft Dataverse</li>
+<li>Dataverse plugin for coding agents (Dataverse Skills plugin)</li>
+<li>MCP server</li>
+<li>DBQuery skill</li>
+<li>DVData skill</li>
+<li>Python SDK</li>
+<li>Maker Portal</li>
+<li>Microsoft sign-in / Microsoft identity</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Kent Weare — Product Manager, Microsoft</li>
+<li>Suyash Kshirsagar — Software Engineering Manager, Microsoft</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (23,257 chars)</summary>
+        <pre class="transcript-body">[00:00:00] KENT WEARE: Welcome to the Talk
+[00:00:01] to Your Terminal Using Dataverse Plugin
+[00:00:03] for Coding Agent Sessions.
+[00:00:04] My name is Kent Weare.
+[00:00:06] I&#39;m a Product Manager at Microsoft,
+[00:00:07] and I&#39;m here joined with --
+[00:00:09] SUYESH KSHIRSAGAR: Hi, my name is Suyash.
+[00:00:11] I&#39;m Software Engineering Manager at Microsoft.
+[00:00:14] Welcome to our session.
+[00:00:15] Thanks for joining.
+[00:00:16] KENT WEARE: Your business data already lives in Dataverse,
+[00:00:19] but today, getting value
+[00:00:21] out of it still means navigating portals, writing queries,
+[00:00:24] and filing tickets with the platform team.
+[00:00:27] SUYESH KSHIRSAGAR: What if your developer,
+[00:00:29] your operations analyst,
+[00:00:30] and your admin could all describe what they need
+[00:00:33] in plain English and get it done?
+[00:00:37] That&#39;s what the Dataverse Skills plugin delivers.
+[00:00:40] Single capability embedded
+[00:00:42] in the coding tools your team already uses,
+[00:00:44] which turns your business intent
+[00:00:46] into governed Dataverse operations.
+[00:00:48] Schemas, data, queries, security, admin operations.
+[00:00:52] Everything without leaving your workflow.
+[00:00:55] In this session, we&#39;re going to see three different roles,
+[00:00:58] three completely different jobs, but using a single approach.
+[00:01:02] KENT WEARE: The platform finally moves at the speed
+[00:01:04] of the people who depend on it.
+[00:01:06] SUYESH KSHIRSAGAR: In this segment, we are going
+[00:01:08] to see Maya, a builder, achieve following objectives.
+[00:01:12] How can she connect to Dataverse?
+[00:01:14] How can she describe and build a data model?
+[00:01:17] She could also import some reference data.
+[00:01:19] And finally, she could also validate the data she
+[00:01:22] just loaded.
+[00:01:24] KENT WEARE: So Maya&#39;s never touched Dataverse.
+[00:01:26] She doesn&#39;t know her org URL, and she shouldn&#39;t have to.
+[00:01:30] She goes ahead and installs the Dataverse Skills plugin,
+[00:01:34] first in the tool that she&#39;s using,
+[00:01:36] and connects using her Microsoft sign-in.
+[00:01:40] So she goes ahead and creates a prompt instructing the agent
+[00:01:44] to connect me to my Dataverse environment.
+[00:01:47] I don&#39;t know my org URL,
+[00:01:49] and notice she doesn&#39;t have to paste one.
+[00:01:51] The agent subsequently discovers her environment
+[00:01:54] from her Microsoft identity, configures the MCP server,
+[00:01:59] and verifies the connection.
+[00:02:01] All from one prompt, no config files, no docs,
+[00:02:06] no setup, no guides required.
+[00:02:11] Maya&#39;s now going to build a data model,
+[00:02:13] and will do so by describing the roast batch tracking system she
+[00:02:17] actually needs.
+[00:02:19] In business terms, not platform terms, no technical jargon.
+[00:02:23] One prompt builds the whole data model, the form, and the view.
+[00:02:28] The prompt that Maya will issue includes,
+[00:02:30] I&#39;m building a roast batch tracking system for Zava Coffee.
+[00:02:33] We&#39;re a B2B roaster and distributor.
+[00:02:36] We need to track our operations.
+[00:02:38] Here&#39;s what I need.
+[00:02:39] A beans table for our coffee varieties,
+[00:02:41] including the appropriate fields.
+[00:02:43] A roast batches table,
+[00:02:45] which includes a self-referential lookup
+[00:02:48] for a parent batch, so we can track re-roasts and blends.
+[00:02:51] A quality checks table,
+[00:02:53] which includes a lookup to the roast batch.
+[00:02:56] An orders table, which includes a many-to-many relationship
+[00:02:59] between roast batches and orders.
+[00:03:01] And we&#39;ll also need to build a main form for roast batches
+[00:03:04] and a view called Batches Ready for QA,
+[00:03:07] which has a filter status of cupping.
+[00:03:10] If you can include that as well, that would be great.
+[00:03:13] Okay, so we&#39;ll also need to go ahead and create everything
+[00:03:16] in a solution called Zava Coffee Ops.
+[00:03:20] So Maya&#39;s built a real-world data model
+[00:03:22] that included sophisticated features like choices, lookups,
+[00:03:27] including CEPH referential, and many-to-many.
+[00:03:30] This took place all from one prompt.
+[00:03:33] Subsequently, the agent picked the right tool
+[00:03:35] for each operation, and we built a form and view as well.
+[00:03:40] Maya never needed to manually click buttons
+[00:03:42] in the Maker Portal to make this work.
+[00:03:44] The app and data model is usable the moment the agent finishes.
+[00:03:51] So the scheme is done.
+[00:03:53] Maya now wants to bring in the team&#39;s real spreadsheets
+[00:03:57] that contains their reference data.
+[00:03:59] Four files, four owners, no goods in any of them.
+[00:04:03] Only business keys, bean codes, batch numbers, and cafe names.
+[00:04:08] Maya&#39;s prompt will include instructions on how
+[00:04:10] to import the four Excel files from the reference data folder
+[00:04:14] into the tables that were just created.
+[00:04:17] Instructions have also been provided to ensure
+[00:04:19] that business keys are to be used
+[00:04:21] to resolve lookups and never goods.
+[00:04:24] Should there be any failures, Maya needs to be informed.
+[00:04:28] So yes, those look to be real Excel files and not CSV files.
+[00:04:32] How is the Dataverse coding agent able to go ahead
+[00:04:35] and parse those files?
+[00:04:36] SUYESH KSHIRSAGAR: Yeah.
+[00:04:36] This is the benefit
+[00:04:37] of the Dataverse plugin for coding agents.
+[00:04:40] It has skills that know how best to address a particular use case
+[00:04:45] or task at hand, including the ability
+[00:04:47] to use various tools behind the scene like the Python SDK
+[00:04:52] and to generate on-demand tools
+[00:04:54] that help achieve the user requirements.
+[00:04:57] KENT WEARE: Wow, that was awesome.
+[00:04:59] Looks more like a data pipeline than a sample generator.
+[00:05:02] It was cool to see how it handled the dependencies
+[00:05:05] in the lookups.
+[00:05:06] Maya needs to perform a quick sanity check before handing off
+[00:05:09] to Riya.
+[00:05:11] Let&#39;s just run a query to validate
+[00:05:13] that we do have the expected row counts from our table queries.
+[00:05:17] Maya will describe how she would
+[00:05:18] like to perform a quick sanity check by asking
+[00:05:21] for the row counts for each table
+[00:05:23] and confirm the two roast batches are linked
+[00:05:26] to their parents.
+[00:05:28] We can now see that the row counts match the spreadsheets.
+[00:05:31] Both the roast links resolved correctly.
+[00:05:34] Maya now has a connected working app
+[00:05:37] with the team&#39;s real data in it.
+[00:05:39] Now, let&#39;s go ahead and shift gears
+[00:05:41] and see what Riya is up to.
+[00:05:44] SUYESH KSHIRSAGAR: Riya is a DevOps analyst for Zawa Coffee.
+[00:05:46] And in this segment, we are going to see how Riya converses
+[00:05:50] with CRM in plain English.
+[00:05:52] Connect to Dataverse, perform opportunity analysis,
+[00:05:56] identify customers who haven&#39;t recently ordered,
+[00:05:59] add notes to opportunities,
+[00:06:01] and even perform some task management,
+[00:06:03] all in natural language.
+[00:06:06] Riya already lives in a terminal.
+[00:06:08] She also has the same Dataverse plugin installed as Maya.
+[00:06:12] She knows the org URL, but she doesn&#39;t have to give it to.
+[00:06:15] She&#39;ll let the agent find that from her Microsoft sign-in.
+[00:06:20] Riya will issue a simple prompt.
+[00:06:22] I have Dataverse plugin.
+[00:06:24] Can you connect me to my CRM environment?
+[00:06:26] Now, the plugin is going to do the discovery of all the tools
+[00:06:31] that are installed, the prerequisites
+[00:06:33] that her machine has, perform the auth, and now connect her
+[00:06:37] to the Dataverse environment.
+[00:06:38] There was a single prompt.
+[00:06:40] There was one auth, one confirmation.
+[00:06:42] Same install Maya used last week, but a different job today.
+[00:06:47] Now, the same prompt also connects her to CRM tables
+[00:06:49] like account, opportunity, contact.
+[00:06:52] Everything is verified as part of this connection.
+[00:06:55] Riya is good to go.
+[00:06:58] Now, the real test.
+[00:06:59] Thursday afternoon, Riya needs Carlos, the sales manager,
+[00:07:03] pipeline review materials.
+[00:07:05] She asks the way she would ask a junior analyst.
+[00:07:09] No need for her to write any fetch XML.
+[00:07:12] Now, the prompt.
+[00:07:14] Show me Carlos&#39; open opportunities
+[00:07:16] over $100,000 closing this quarter.
+[00:07:20] This is where the value of the plugin kicks in.
+[00:07:23] It discovers the underlying tools
+[00:07:25] and then uses the skill Dbquery
+[00:07:28] to embed the knowledge in a Python script.
+[00:07:30] It runs the Python script, and this used to take
+[00:07:33] so much more time before.
+[00:07:35] Now, we don&#39;t have to worry about goods,
+[00:07:38] no estimated close dates, no state code, just the cafe names,
+[00:07:42] deal names, dollars, dates, and stages.
+[00:07:46] This is the shape of a new pipeline review.
+[00:07:49] KENT WEARE: And notice she said Carlos by name.
+[00:07:52] The agent looked him up in the system user table automatically
+[00:07:56] and scoped the query to his records.
+[00:07:59] Named user scoping.
+[00:08:01] Same machinery as my, just a different anchor.
+[00:08:06] SUYESH KSHIRSAGAR: Next prompt.
+[00:08:07] Show me cafes in Portland that haven&#39;t reordered in 30 days.
+[00:08:13] Watch this.
+[00:08:14] This is the one that used to take Riya 20 minutes
+[00:08:18] or more using Advanced Find, Excel, and other ad hoc tooling.
+[00:08:25] Look here.
+[00:08:26] Reorder is not a field.
+[00:08:28] It&#39;s a relationship.
+[00:08:29] Plus, there is some math around date.
+[00:08:32] The agent figured out reorder maps
+[00:08:35] to closed one opportunities, joined the account table
+[00:08:39] to an opportunity table.
+[00:08:41] It also computed the gap and gave Riya a clean call list.
+[00:08:47] This is where her Friday&#39;s accounts to nudge job becomes
+[00:08:51] so much easier, and it&#39;s all written for her.
+[00:08:56] Show me open follow-up tasks due for this week.
+[00:09:00] Now, Riya checks her own follow-ups for the week.
+[00:09:04] Same scoping pattern as Carlos&#39; pipeline.
+[00:09:07] It&#39;s just a different anchor.
+[00:09:09] This time, she is interested in records that she owns.
+[00:09:14] Here is where the agent again resolves I
+[00:09:17] to Riya&#39;s user identity.
+[00:09:19] Queries the tasks where she&#39;s the owner
+[00:09:22] and when the due date is for this week.
+[00:09:25] It returns subject, due date,
+[00:09:27] and regarding records display name.
+[00:09:30] Same pattern as Carlos&#39; pipeline,
+[00:09:33] just a different anchor.
+[00:09:37] Remember the coffee shop from Portland
+[00:09:39] who hasn&#39;t ordered in the last 30 days?
+[00:09:41] Well, Carlos just texted Riya this morning.
+[00:09:45] He called the customer, but he has not, of course, logged it.
+[00:09:50] Riya will take care of it.
+[00:09:52] Here is the prompt.
+[00:09:53] Add a note to the coffee shop opportunity.
+[00:09:57] Carlos called them today.
+[00:09:58] They&#39;re ready to move forward.
+[00:10:00] Sending the contract Monday.
+[00:10:03] Here is where the plugin uses his Dvdata skill
+[00:10:06] and makes the rights to the CRM environment.
+[00:10:09] That is quite easy.
+[00:10:11] Much easier than having to find the opportunity through the UX
+[00:10:15] and make the updates manually.
+[00:10:19] If we expect agents to perform well,
+[00:10:21] we need to ensure we have good data hygiene.
+[00:10:25] With this in mind, Riya will clean up a stale follow-up
+[00:10:29] on Powell&#39;s opportunity.
+[00:10:31] Mark the follow-up task
+[00:10:33] on the Powell&#39;s opportunity as complete.
+[00:10:37] This is the same pattern we have seen previously.
+[00:10:39] Riya said, mark it complete.
+[00:10:42] Agent translated that into the right state code, status code,
+[00:10:47] on the right activity.
+[00:10:48] No status picklists, no activities, subgrids,
+[00:10:53] or anything else to scroll through.
+[00:10:56] Carlos, the sales manager,
+[00:10:58] made a call to Hard Coffee this morning.
+[00:11:01] Watch everything the agent infers
+[00:11:03] from this single sentence in the prompt.
+[00:11:06] Create a phone call activity on the Hard Coffee account.
+[00:11:10] Carlos spoke with the procurement lead, Daniela,
+[00:11:13] about the annual bean contract.
+[00:11:15] She wants samples of the new Ethiopia Guji lot
+[00:11:19] before signing.
+[00:11:21] Look at what the agent inferred.
+[00:11:23] Activity type as phone call.
+[00:11:26] It linked the account via regarding object ID,
+[00:11:29] marked it as completed because the call has already happened.
+[00:11:33] Said the owner to Carlos because it was his call.
+[00:11:37] Riya is logging it on his behalf.
+[00:11:40] And it spotted Daniela on the account&#39;s contacts
+[00:11:44] and linked her as a participant.
+[00:11:47] 45 minutes of Thursday afternoon collapsed
+[00:11:50] into 5 minutes of intent.
+[00:11:52] Same plugin Maya used, different operator,
+[00:11:55] different job, same pattern.
+[00:11:58] We can&#39;t forget about administrators as they want
+[00:12:02] to automate their workloads as well.
+[00:12:04] Kent, what can you tell about how Amara,
+[00:12:07] as our platform admin, uses the same Dataverse plugin to help
+[00:12:11] with her responsibilities?
+[00:12:14] KENT WEARE: Sure.
+[00:12:14] Amara is doing some really interesting things by being able
+[00:12:17] to describe and create sophisticated security models
+[00:12:20] using natural language.
+[00:12:22] Once the security models are in place, Amara is able to go ahead
+[00:12:26] and validate them as well.
+[00:12:29] Amara is about to mutate roles,
+[00:12:32] business units and field security.
+[00:12:34] She wants the agent to confirm her privileges before offering
+[00:12:37] to do anything destructive.
+[00:12:39] She will connect to her desired environment
+[00:12:41] by issuing the following prompt.
+[00:12:43] Connect me to the Zava production environment.
+[00:12:46] I&#39;ll be making security changes,
+[00:12:47] so verify I have system administrative privileges before
+[00:12:51] we start.
+[00:12:53] Now, two things worth noticing.
+[00:12:55] First, we had the same install of the plugin.
+[00:12:58] No administrative-specific bootstrap.
+[00:13:00] Second, the agent verified Amara&#39;s role before proceeding.
+[00:13:04] A less privileged user would have seen exactly what they&#39;re
+[00:13:07] missing in plain English.
+[00:13:10] That&#39;s the kind of pre-flight check
+[00:13:11] that prevents half-finished security changes from occurring.
+[00:13:16] Now, let&#39;s get into it.
+[00:13:18] Amara describes the security plan the way she would describe
+[00:13:21] it to a junior admin.
+[00:13:23] Business units, roles, field security,
+[00:13:27] access team templates, and user assignments.
+[00:13:30] And the agent will fan out across six subsystems
+[00:13:33] in order to go build it.
+[00:13:35] Here&#39;s the prompt that was used in order to address these needs.
+[00:13:39] As you can see, it&#39;s very detailed,
+[00:13:41] but nothing our plugin can&#39;t handle.
+[00:13:44] We&#39;re rolling out to two regions and three job functions,
+[00:13:48] setting up the following business units for Portland
+[00:13:52] and Seattle as child business units underneath the route.
+[00:13:56] Now, we&#39;re going to go ahead and create some custom roles.
+[00:13:58] We&#39;re going to create a Zava sales rep role
+[00:14:01] with specific entity access.
+[00:14:03] We&#39;re also going to go ahead and create Zava warehouse op
+[00:14:06] with access to the operational entities.
+[00:14:09] A Zava leadership role that has read
+[00:14:11] on everything org-wide, but no writes.
+[00:14:14] And then also introduce field-level security.
+[00:14:17] So we&#39;ll restrict the account.lifetime value
+[00:14:20] so only system administrators and Zava leadership can read it.
+[00:14:25] Now, we&#39;ll go ahead and access team templates
+[00:14:29] and use the cross-region account collaborators on account,
+[00:14:33] read, and append to rights.
+[00:14:35] For assignments, let&#39;s go ahead and assign Dakota
+[00:14:39] to the Portland business unit as a sales rep.
+[00:14:42] Let&#39;s then go ahead and assign Lisa
+[00:14:44] to the Seattle business unit as a Zava sales rep.
+[00:14:48] And we&#39;ll go ahead and add Mario
+[00:14:50] to the Portland business unit Zava warehouse op group.
+[00:14:55] Now, of course, we want to make sure we put everything
+[00:14:58] into a solution called Zava security.
+[00:15:02] Now, watch what the agent did without being asked.
+[00:15:05] It enabled the column for field security
+[00:15:08] at the schema level before creating the profile.
+[00:15:11] The prerequisite people forget that produces no audit entries
+[00:15:15] and no error messages.
+[00:15:16] That&#39;s a problem.
+[00:15:18] It assigned the field-level security profile
+[00:15:20] to specific roles, though,
+[00:15:22] because it created an unassigned profile and did nothing.
+[00:15:27] And it added every security component
+[00:15:29] to the solution explicitly, roles,
+[00:15:32] field-level security profiles, team templates.
+[00:15:35] Those don&#39;t auto-add the way these tables did.
+[00:15:39] Since configuration without validation is hope,
+[00:15:43] Amara wants to confirm for each user what they can
+[00:15:47] and cannot see, in line without juggling multiple
+[00:15:50] browser sessions.
+[00:15:52] She&#39;ll issue a prompt of validate the security model
+[00:15:55] for each of Dakota, Lisa, and Mario.
+[00:15:58] Simulate their access and report.
+[00:16:01] Can they read an account record?
+[00:16:03] Can they see a lifetime value?
+[00:16:05] Can they read a roast batch record?
+[00:16:07] Can they read each other&#39;s business unit records?
+[00:16:10] Show me a clear pass-fail table.
+[00:16:14] As we can see, we have all 15 security validation tests
+[00:16:18] that have passed.
+[00:16:19] Green check marks, where they need to be.
+[00:16:21] Red X&#39;s where they also need to be.
+[00:16:24] The agent did inline what usually means logging
+[00:16:26] in as each user in a private browser tab.
+[00:16:31] Configuration has been confirmed and done so in seconds.
+[00:16:35] So now we have another requirement.
+[00:16:37] Lisa needs access
+[00:16:39] to the Portland coffee account, but Dakota owns it.
+[00:16:42] So Amara is going to go ahead and issue a prompt,
+[00:16:45] and the reason for this is that they&#39;re going
+[00:16:47] to be co-pitching a Seattle expansion
+[00:16:50] to that particular cafe.
+[00:16:52] So we need to share one record
+[00:16:54] with Lisa via the cross-region account collaborators team.
+[00:16:59] Now, this is still a controlled path.
+[00:17:01] We have Lisa from Seattle&#39;s business unit,
+[00:17:05] and Lisa needs read access
+[00:17:07] on that one Portland coffee shop account
+[00:17:10] that Dakota happens to own.
+[00:17:12] Because they&#39;re co-pitching,
+[00:17:13] we need to enable the right level of sharing.
+[00:17:17] Notice what the agent didn&#39;t do.
+[00:17:20] It didn&#39;t ask Amara for a GUID for a particular account.
+[00:17:24] No GUID for Lisa, no long-form description of access rights.
+[00:17:27] Those came from the team template she defined earlier.
+[00:17:32] One line of intent, one row of principal object access written,
+[00:17:37] the cross-region collaboration is unblocked.
+[00:17:41] Amara has another requirement related to auditing,
+[00:17:44] and she&#39;ll issue a prompt of enable auditing
+[00:17:47] on account.lifetime value so that we have a log of every read
+[00:17:52] and write, including who accessed it and when,
+[00:17:56] then confirm the audit setting is active.
+[00:17:59] Naturally, auditing is rather important.
+[00:18:01] Let&#39;s see what happens when Amara turns on auditing
+[00:18:04] for a sensitive column so that future reads
+[00:18:08] and writes land in the log correctly.
+[00:18:12] Now, auditing in Dataverse is a three-layer system.
+[00:18:16] We&#39;ve got orgs, tables, and columns,
+[00:18:20] and missing one layer produces no entries with no errors.
+[00:18:24] That&#39;s a problem.
+[00:18:25] The agent, however, though, verifies each layer
+[00:18:29] and only then turns the column level setting on.
+[00:18:33] Now, every change
+[00:18:34] to the lifetime value lands in the audit log.
+[00:18:38] In five minutes, Amara stood up two business units,
+[00:18:42] three custom roles, a field security profile assigned,
+[00:18:46] an access team template, three user assignments,
+[00:18:50] validated the whole model by impersonation,
+[00:18:54] and set up a cross-region share.
+[00:18:57] Every piece lives inside of a solution
+[00:19:00] that she can now version and redeploy.
+[00:19:03] Extremely powerful capabilities for our admin personas.
+[00:19:08] SUYESH KSHIRSAGAR: Well, that concludes our session.
+[00:19:11] We saw three different roles, three completely different jobs,
+[00:19:14] but one unified approach.
+[00:19:16] If any of you are interested in learning more
+[00:19:19] about the capabilities that were demonstrated or get your hands
+[00:19:22] on the Dataverse plugin yourself,
+[00:19:24] please scan the appropriate QR code on your screen.
+[00:19:28] KENT WEARE: Thank you so much for joining us here today.
+[00:19:30] SUYESH KSHIRSAGAR: Thank you, indeed.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

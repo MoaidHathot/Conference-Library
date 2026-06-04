@@ -1,0 +1,861 @@
+**[00:00:01]** Hi everyone, can you hear me OK?
+**[00:00:03]** Thank you.
+**[00:00:04]** They are headsets in the back just in case you
+**[00:00:06]** need them.
+**[00:00:07]** I'm going to try my best to project but I
+**[00:00:10]** have a little bit of a cold so I'm sorry
+**[00:00:12]** if my voice goes in and out so bear with
+**[00:00:14]** me.
+**[00:00:15]** So first of all, thank you for making it to
+**[00:00:19]** build Day 2.
+**[00:00:20]** And we are so happy to have a full house.
+**[00:00:23]** And because of that, you get 2 talks in one.
+**[00:00:28]** So my name is Maria Nagaga.
+**[00:00:31]** I am a product manager here at Microsoft working on
+**[00:00:34]** Foundry tools.
+**[00:00:36]** And I am joined by my friend over here, Joe
+**[00:00:38]** Flick, who works on Content Understanding.
+**[00:00:41]** So thank you for joining our talk.
+**[00:00:43]** Turn your agents into action with tools, APIs and documents.
+**[00:00:49]** So let's go quickly through what our session agenda is
+**[00:00:52]** going to happen.
+**[00:00:53]** We're going to do a brief announcement, but believe me,
+**[00:00:56]** we know you come here for the demos.
+**[00:00:59]** We will give you the demos, we will give you
+**[00:01:01]** the content to the demos, and then we're just going
+**[00:01:03]** to have closing remarks.
+**[00:01:05]** But I think we need to start this with what
+**[00:01:08]** does it mean to build an agent platform here at
+**[00:01:12]** Microsoft?
+**[00:01:13]** Well, it starts with building on GitHub using Foundry as
+**[00:01:17]** your platform where you can have your agent runtime optimize
+**[00:01:21]** your agents and and have all the tools that you
+**[00:01:24]** need.
+**[00:01:25]** And you can distribute these tools through M365 S Let's
+**[00:01:29]** zoom in a little bit more on the tool that
+**[00:01:32]** I sit in, like I work on Microsoft Foundry.
+**[00:01:35]** Microsoft Foundry allows for you to have your agent services,
+**[00:01:40]** models, IQ tools, a control plane, and we enable you
+**[00:01:45]** to govern the life cycle from cloud to edge, right?
+**[00:01:49]** I have been working on Foundry tools along with my
+**[00:01:53]** colleague over here, Linda, and we are providing this single
+**[00:01:57]** hub for people to have prebuilt tools, third party tools,
+**[00:02:00]** while providing you with the enterprise grade scalability that you
+**[00:02:05]** need.
+**[00:02:06]** So in summary, with Foundry tools, we want to have
+**[00:02:09]** this one in place, this one place for all your
+**[00:02:12]** tools regardless of tool types to exist.
+**[00:02:15]** But before we jump into tools, let's talk about the
+**[00:02:19]** single most important capability that your agent needs.
+**[00:02:25]** So agents and tools are rapidly growing, and this is
+**[00:02:29]** leading to a host of problems.
+**[00:02:32]** So LLMS provide you with the reasoning for your tool
+**[00:02:36]** for for your agent.
+**[00:02:37]** Tool calling is what enables your agent to perform an
+**[00:02:42]** action right?
+**[00:02:43]** And this is how your agents provide real business value.
+**[00:02:48]** But one of the problems that we are seeing with
+**[00:02:50]** our customers, they have been thousands of papers written about
+**[00:02:54]** this.
+**[00:02:54]** When you're trying to integrate tools into your agentic application,
+**[00:02:59]** they steering finding the right tools for the jobs.
+**[00:03:04]** The tool ecosystem is rapidly growing.
+**[00:03:07]** Who remember the time when all we had was MCP?
+**[00:03:12]** Who remember the time we're in now, right.
+**[00:03:15]** There's skills, there's plugins, there's APIs, there's connectors, there's going
+**[00:03:20]** to be foobar X bar.
+**[00:03:22]** It's going to continuously grow.
+**[00:03:23]** So how do we steer our tools in the right
+**[00:03:25]** direction?
+**[00:03:26]** There's scrolling.
+**[00:03:28]** How do we manage the tools?
+**[00:03:30]** How do we make sure they're securely in the place
+**[00:03:33]** and they're easily published?
+**[00:03:34]** And then there's security controlling the tools.
+**[00:03:38]** And it has to be incredibly important for us to
+**[00:03:41]** keep these secure because tools reach into your production code
+**[00:03:46]** and generate results.
+**[00:03:47]** They're reaching into your databases, they're reaching into your APIs.
+**[00:03:51]** And we have to make sure that not only the
+**[00:03:53]** agent has access to the right amount of tools and
+**[00:03:57]** securely, but so do the individuals who are leveraging your
+**[00:04:00]** agents as well.
+**[00:04:02]** So what does solving this problem look like?
+**[00:04:06]** I wish I could tell you here is a single
+**[00:04:10]** solution and it's done, but unfortunately that is not the
+**[00:04:14]** case.
+**[00:04:15]** This is an ecosystem made-up of various components where we
+**[00:04:19]** are investing in and foundry.
+**[00:04:22]** We have the tool catalog, which is about discovering and
+**[00:04:25]** publishing and installing your tools.
+**[00:04:28]** That sounds easy.
+**[00:04:29]** The next one is tool creation.
+**[00:04:32]** You curate a set of tools that your agent needs
+**[00:04:35]** in order to complete a specific task.
+**[00:04:38]** And then how do you actually get that curated list
+**[00:04:41]** and share it amongst every single agent that you might
+**[00:04:44]** be controlling?
+**[00:04:45]** There's tool discovery.
+**[00:04:47]** Now, sometimes when people think about tool discovery, they think
+**[00:04:50]** it's about you searching on a registry and finding the
+**[00:04:53]** right tool.
+**[00:04:54]** That's not tool discovery.
+**[00:04:56]** Tool discovery is choosing the best tool to complete the
+**[00:05:00]** task while using the limited amount of tokens.
+**[00:05:04]** How many of you want to use less tokens?
+**[00:05:06]** Oh, not a lot of people.
+**[00:05:07]** OK, you guys just like, spin all the tokens, right?
+**[00:05:10]** So that's when tool discovery comes and tool governance, this
+**[00:05:15]** is a conversation that we hear from our customers all
+**[00:05:19]** the time.
+**[00:05:20]** I love these tools, they're amazing.
+**[00:05:22]** But I don't want Maria to have the same access
+**[00:05:25]** of tools, but Linda does because Linda is better at
+**[00:05:28]** her job, right?
+**[00:05:29]** So like those are the things that we're putting together
+**[00:05:32]** in terms of tool governance.
+**[00:05:36]** So the tool catalog, let's start at the beginning.
+**[00:05:40]** You have thousands of tools, probably soon millions of tools
+**[00:05:44]** and you have multiple tool types.
+**[00:05:48]** And in found, we want to make sure that you
+**[00:05:50]** have all of those in one place.
+**[00:05:52]** So let's look at the tool types.
+**[00:05:55]** The tool landscape is growing, and it's not about just
+**[00:05:58]** the number of tools, it's about the types of tools.
+**[00:06:01]** We have open API, you're all useful, used to this.
+**[00:06:06]** We have MCP, we have A to a, we have
+**[00:06:09]** logic app connectors, we have skills, we have CLI's, we
+**[00:06:13]** have hooks, we have plug insurance and so much more.
+**[00:06:18]** So how do we make sure that all our developers
+**[00:06:21]** and our entire ecosystem can find all these tools in
+**[00:06:25]** a single place?
+**[00:06:27]** Last year I worked to build the tools catalog.
+**[00:06:31]** We shipped it in 2025.
+**[00:06:33]** We have one on Foundry where we have a host
+**[00:06:37]** of tools custom built from the ecosystem.
+**[00:06:40]** But in addition to that, if you need your own
+**[00:06:43]** private registry, you can do it as well with Azure
+**[00:06:46]** API Center and Azure API Management that allows to give
+**[00:06:50]** you that additional covenants.
+**[00:06:53]** So we solved the catalog problem, right?
+**[00:06:55]** You can get all your tools in one place.
+**[00:06:58]** So I want you to imagine this.
+**[00:07:00]** Just go with me on this journey, right?
+**[00:07:03]** It's a short one, I promise you, you only have
+**[00:07:05]** me for 20 minutes, right?
+**[00:07:07]** So we have the catalog and developers can find the
+**[00:07:10]** right tools, but finding the right tools and integrating the
+**[00:07:14]** tools are two different problems.
+**[00:07:17]** So imagine you're building a filled up agent for your
+**[00:07:21]** company and you have this one agent that has 6
+**[00:07:25]** integrations, Entra, SharePoint, ticketing, your own custom MCP or API
+**[00:07:31]** access to your teams, BLOB storage, Azure Search.
+**[00:07:35]** So this sounds simple, right?
+**[00:07:38]** Does it sound simple to people?
+**[00:07:40]** It sounds simple to you.
+**[00:07:41]** OK, It sounds simple, OK, You're not convinced, right?
+**[00:07:45]** So no, it is not simple because every single one
+**[00:07:48]** of those tools has its own identity, is built from
+**[00:07:52]** a different team, has a various set of protocols right,
+**[00:07:56]** and has different credential management.
+**[00:08:00]** Now multiply that with every single integration you need for
+**[00:08:04]** that one filled up agent.
+**[00:08:06]** But then you also have your customer support agent, your
+**[00:08:10]** billing agent, your networks agent, your inventory agent, and what
+**[00:08:15]** seems like 6 integrations ends up being hundreds of integrations,
+**[00:08:20]** not taking into account things like permissions, failures in debugging.
+**[00:08:25]** And what we find is developers are spending more time
+**[00:08:28]** doing integrations and less time doing what makes them money
+**[00:08:32]** and makes their business better, which is building agents.
+**[00:08:37]** So you might remember this from earlier, what's missing that
+**[00:08:42]** we need to solve in the agentic ecosystem, Tool creation,
+**[00:08:46]** tool discovery and tool governance.
+**[00:08:50]** Being able to curate the set of tools for your
+**[00:08:52]** agent, being able to minimize the amount of tokens and
+**[00:08:55]** over bloating into your agent in the context window and
+**[00:08:58]** being able to securely govern them.
+**[00:09:01]** And we think that toolbox is the beginning of the
+**[00:09:04]** promise to enable that to happen.
+**[00:09:09]** And this was in Satya's keynote earlier today, but yesterday.
+**[00:09:13]** But what is a toolbox?
+**[00:09:16]** A tool boxes are a usable bundle of tools managed
+**[00:09:19]** in Foundry that agents can consume through a single consistent
+**[00:09:23]** interface regardless of tool type.
+**[00:09:25]** That is a lot of words, so let's pay attention
+**[00:09:28]** to a couple of them.
+**[00:09:31]** Reusable.
+**[00:09:33]** You should be able to build a set of tool
+**[00:09:35]** boxes and be able to use it.
+**[00:09:37]** Want build it once?
+**[00:09:38]** Use it across any single agent.
+**[00:09:41]** Managed Foundry handles a life cycle for you so you
+**[00:09:45]** don't have to.
+**[00:09:47]** And finally, a consistent interface.
+**[00:09:50]** Your agent shouldn't have to care what the underlining tool
+**[00:09:55]** type is, whether it has an MCP, Open AIAPI spec
+**[00:09:58]** skill or a connector.
+**[00:10:00]** We give you 1 unified endpoint with one oath and
+**[00:10:03]** one experience that you can integrate into any single agent.
+**[00:10:10]** So what are we doing with our tool boxes?
+**[00:10:13]** We have 4 pillars.
+**[00:10:15]** Build, You create tools, you create, You create tools in
+**[00:10:20]** a named reusable bundle, configure and publish them.
+**[00:10:25]** So if you go back to our filled up agent,
+**[00:10:28]** you could have your filled up toolbox.
+**[00:10:31]** So rather than having your ENTRA configuration, your SharePoint configuration,
+**[00:10:35]** and all the others, you're putting it in a single
+**[00:10:38]** toolbox.
+**[00:10:39]** Regardless of toolbox to two type, you have discovery.
+**[00:10:43]** This is the ability that when the agent makes a
+**[00:10:47]** request through a prompt to the toolbox, it only retrieves
+**[00:10:51]** the tool that it requires to complete the task.
+**[00:10:55]** And then consuming, we have a single MCP compatible endpoint
+**[00:11:01]** that exposes every tool to any agent runtime.
+**[00:11:05]** So we're giving you the promises, we give you this
+**[00:11:07]** unified endpoint.
+**[00:11:08]** You can carry it across any single agent that you're
+**[00:11:11]** building or leveraging for your business and governed will give
+**[00:11:15]** you this centralized authentication and observability to monitor all your
+**[00:11:19]** tool calls.
+**[00:11:22]** And these are the features that we have built to
+**[00:11:24]** do this.
+**[00:11:25]** Toolbox is how you build them.
+**[00:11:27]** Tool search is the protocol that is what the tool
+**[00:11:30]** we've built.
+**[00:11:31]** So you can actually search and discover your tools at
+**[00:11:33]** runtime.
+**[00:11:34]** The unified is endpoint is an MCP compatible endpoint and
+**[00:11:38]** then control and visibility where we enable you to add
+**[00:11:42]** your own policies and guardrails And the future.
+**[00:11:45]** We're also going to be giving you a governed dashboard
+**[00:11:48]** where you can see it in more details.
+**[00:11:51]** So the promise of toolbox is you can consume it
+**[00:11:56]** across any agent, hosted agent.
+**[00:12:00]** You can use it in the GitHub Copilot or CLI
+**[00:12:03]** GitHub copilot SDK.
+**[00:12:06]** We want to get working in cloud code as well.
+**[00:12:08]** And soon you'll be able to use it also in
+**[00:12:10]** your Microsoft Copilot Studio application.
+**[00:12:13]** So the tool like my life cycle management is that
+**[00:12:16]** you build a toolbox and you consume A unified endpoint
+**[00:12:20]** and you know it's all going to be governed.
+**[00:12:22]** So I promise that there will be demos.
+**[00:12:26]** So fingers crossed, nothing breaks.
+**[00:12:31]** So let's go and see some demos.
+**[00:12:41]** All right, yeah, so it's showing up.
+**[00:12:46]** So I'm going to show you how you can build
+**[00:12:49]** a toolbox.
+**[00:12:50]** You can build a toolbox in code or you can
+**[00:12:52]** build it in the Foundry portal.
+**[00:12:54]** But I wanted to start by showing you what tool
+**[00:12:57]** configuration would look like if you did not have a
+**[00:13:00]** toolbox today.
+**[00:13:01]** So the first thing you need to do is you're
+**[00:13:04]** configuring every single MCP endpoint separately.
+**[00:13:09]** But where it gets really interesting is if I go
+**[00:13:15]** down to line 33 all the way to line 104,
+**[00:13:20]** that's all off configuration for your application.
+**[00:13:27]** And this is only three MCP servers.
+**[00:13:30]** So imagine if you required multiple MCP servers, that could
+**[00:13:34]** become a lot more robust very, very, very quickly.
+**[00:13:38]** And imagine if you're doing different protocols or like it
+**[00:13:42]** just gets longer and you shouldn't be spending time doing
+**[00:13:45]** this.
+**[00:13:46]** Also, this code doesn't run, it's 100% generated by AI,
+**[00:13:50]** but we will have demos for you to share shortly.
+**[00:13:54]** The next one is with Toolbox.
+**[00:13:59]** That's it.
+**[00:14:01]** I have configured authentication.
+**[00:14:03]** I have all my different app, all my servers in
+**[00:14:05]** a specific toolbox.
+**[00:14:07]** It will generate a URL for me and I can
+**[00:14:09]** then put that in any single application of my choice.
+**[00:14:13]** Now the last thing that I wanted to show you
+**[00:14:15]** in toolbox is something that we have called tool search.
+**[00:14:19]** And what tool search does it is a tool within
+**[00:14:21]** toolbox that actually searches for the specific tool within the
+**[00:14:25]** toolbox by leveraging and pulling all the metadata and finding
+**[00:14:28]** the right one.
+**[00:14:29]** So in that situation, you're not loading everything into the
+**[00:14:33]** context window, you're only loading the tool that is required
+**[00:14:36]** to complete the task.
+**[00:14:38]** So in summary, if you look at this diagram, you
+**[00:14:42]** can take a picture.
+**[00:14:43]** You're going from manually wiring every single tool to your
+**[00:14:48]** specific agent to just attaching it to a toolbox which
+**[00:14:52]** exposed to an agent through a unified endpoint.
+**[00:14:56]** And then tool search enables the search and makes a
+**[00:14:59]** decision.
+**[00:15:00]** So this one says I need AI, need GitHub.
+**[00:15:03]** It just directly picks the GitHub toolbox that is the
+**[00:15:06]** only one that is loaded into the context window.
+**[00:15:10]** Now let me take you on a tour of what
+**[00:15:13]** it looks like in Foundry.
+**[00:15:15]** You can build a toolbox in Foundry.
+**[00:15:17]** You can build it through code.
+**[00:15:19]** You can also do it in the Foundry through the
+**[00:15:23]** tool, the Foundry toolkit.
+**[00:15:25]** I always get that thing mixed up in my mind.
+**[00:15:27]** So sorry about that.
+**[00:15:28]** So when I go into Foundry today and I click
+**[00:15:31]** on build, you're going to present it and you go
+**[00:15:35]** to tools, you're going to notice that there is toolbox
+**[00:15:38]** tools and surprise, surprise skills.
+**[00:15:42]** So I'm going to start with skills and I'm going
+**[00:15:44]** to end on Toolbox.
+**[00:15:45]** So you all saw that really snazzy image that I
+**[00:15:49]** created, right?
+**[00:15:50]** I bet you all loved it.
+**[00:15:52]** Let's say I wanted to share it with everybody on
+**[00:15:54]** my team because I built a skill that enables me
+**[00:15:57]** to make better architectural diagrams and it works pretty well.
+**[00:16:00]** So I can go in here, upload a skill, browse
+**[00:16:06]** from my desktop, if I can find it, there it
+**[00:16:13]** is.
+**[00:16:13]** There's my art skill.
+**[00:16:15]** I will also make this available in the repo just
+**[00:16:17]** in case you want it.
+**[00:16:20]** Give it a name.
+**[00:16:28]** OK?
+**[00:16:29]** Must have Laura's face.
+**[00:16:37]** And if this uploads successfully, I'll know every single other
+**[00:16:40]** demo is going to be absolutely magnificent.
+**[00:16:44]** It uploaded, right?
+**[00:16:45]** So now this is available to any single agent that
+**[00:16:49]** is in my specific project.
+**[00:16:51]** Now, I told you how tools are constantly growing and
+**[00:16:56]** I am very excited to share that browser automation is
+**[00:17:00]** available today.
+**[00:17:02]** This is one of the new tools that we have
+**[00:17:05]** delivered built on Power on Playwright.
+**[00:17:07]** This enables you to scrape information and fill in forms.
+**[00:17:10]** So let me just show you a quick demo.
+**[00:17:12]** Now, as a person who is a horrible typer, I'm
+**[00:17:15]** going to copy and paste unapologetically and try to see
+**[00:17:18]** if this runs.
+**[00:17:19]** If it doesn't, the browser automation team is here in
+**[00:17:22]** the room.
+**[00:17:24]** I'll get them on stage.
+**[00:17:26]** I will get this running right.
+**[00:17:28]** So fingers crossed.
+**[00:17:31]** If not, I promise you I have a GIF that
+**[00:17:33]** actually demonstrates that this works.
+**[00:17:38]** OK, while we're while that's happening, I'll pretend to one
+**[00:17:43]** that I did earlier and there you go.
+**[00:17:46]** It sends it over and you will see in a
+**[00:17:49]** moment what has happened here is that we put in
+**[00:17:53]** a request of what it's going to do is automatically
+**[00:17:57]** fill in a Microsoft form.
+**[00:18:02]** OK, And that's browser automation.
+**[00:18:07]** OK, the next thing I wanted to show you is
+**[00:18:11]** how you can create and build a toolbox.
+**[00:18:15]** Go into Foundry, click toolbox, create, give it a name,
+**[00:18:23]** and you'll see the option to add tools, which shows
+**[00:18:29]** you every single tool that's in the catalog, as well
+**[00:18:37]** as an option to add skills.
+**[00:18:41]** So I could add the skill that I just created.
+**[00:18:44]** OK, there's no sales in this project.
+**[00:18:46]** OK, so while this loads, give me one second.
+**[00:18:59]** Yeah, let's we're going to switch screens because I've been
+**[00:19:05]** having permission issues.
+**[00:19:07]** Now, you know, this demo is live, but this demo
+**[00:19:09]** is also going to be live.
+**[00:19:14]** Who says CEOs are the only people who get demo
+**[00:19:17]** ghosts in the background?
+**[00:19:18]** I have one too.
+**[00:19:22]** OK, All right.
+**[00:19:27]** Is it good?
+**[00:19:30]** Yes, it worked perfectly.
+**[00:19:32]** All right, so let's go ahead.
+**[00:19:34]** We're going to create a toolbox.
+**[00:19:35]** So I added one.
+**[00:19:37]** So I have a toolbox here that Linda created for
+**[00:19:40]** me as a backup.
+**[00:19:42]** And you'll notice there's an option for you to turn
+**[00:19:46]** tool search on.
+**[00:19:48]** So I'm just going to turn that off for a
+**[00:19:50]** moment.
+**[00:19:51]** I'm going to set this one as default and this
+**[00:19:54]** is going to set the endpoint in my hosted agent
+**[00:19:57]** to this specific toolbox version.
+**[00:20:00]** So when I go over to my agent and I
+**[00:20:05]** am going to say.
+**[00:20:12]** Find me three.
+**[00:20:17]** Let's see if this works.
+**[00:20:29]** OK, all right, not working.
+**[00:20:34]** It is fine.
+**[00:20:35]** It is fine.
+**[00:20:36]** It means that they're just too many people.
+**[00:20:38]** So, OK, something's happening.
+**[00:20:44]** All right?
+**[00:20:45]** This, this is this is a good sign.
+**[00:20:48]** So what this is doing, it is going into a
+**[00:20:50]** work order, finding me the work order, and it should
+**[00:20:53]** generate me to see if the work order is complete
+**[00:20:56]** and if the parts are available.
+**[00:21:01]** OK, it worked, right?
+**[00:21:03]** That was a live demo.
+**[00:21:06]** Thank you for your patience.
+**[00:21:08]** Right.
+**[00:21:08]** OK, so I don't want to eat into too much
+**[00:21:12]** of Joe's time, so I'm just going to show you
+**[00:21:16]** one last thing in Toolbox When I go back, you
+**[00:21:19]** will notice that you are given a unified endpoint.
+**[00:21:24]** You can take this unified endpoint into any single application
+**[00:21:28]** of your choice.
+**[00:21:29]** So I want to show you one that is actually
+**[00:21:32]** running.
+**[00:21:32]** You can go there today.
+**[00:21:34]** AK Oh, I forgot.
+**[00:21:40]** Oh, the third tab.
+**[00:21:42]** Oh yes, the FIBI agent.
+**[00:21:44]** So FIBI agent is using the exact same MCP endpoint
+**[00:21:49]** and I want to show you this is all hosted
+**[00:21:52]** in an Azure Container App.
+**[00:21:55]** It's going to run the work order and I want
+**[00:21:58]** you to pay particular attention to the activity live and
+**[00:22:02]** the activity view.
+**[00:22:04]** Once it is working, it will show you which tools
+**[00:22:09]** are called Form Tool Search and how it was loaded.
+**[00:22:14]** And with that being said, I'm going to hand it
+**[00:22:17]** over to you Joe, because we are short on time.
+**[00:22:23]** Yeah.
+**[00:22:31]** Thanks so much, Maria.
+**[00:22:31]** Appreciate it.
+**[00:22:33]** All right, we're going to jump back to PowerPoint.
+**[00:22:42]** All right, so so far we've seen how Toolbox solves
+**[00:22:46]** problems with agents accessing tools, saves, saves tokens on tool
+**[00:22:51]** calls.
+**[00:22:51]** But now we're going to talk about agents in the
+**[00:22:54]** real world where all the content you want doesn't come
+**[00:22:57]** from.
+**[00:22:58]** AP is often the content you need is in the
+**[00:23:00]** document, it's in a video, it's in a PowerPoint deck,
+**[00:23:03]** and the agent needs to go access that content.
+**[00:23:07]** But when agents try to access that content, they often
+**[00:23:11]** break, they scramble costs, grow, use more tokens.
+**[00:23:15]** The agent tries to write custom code to go crack
+**[00:23:17]** that PowerPoint.
+**[00:23:18]** It might go miss content, it might go and try
+**[00:23:21]** to find a table but not be able to access
+**[00:23:24]** the data in the table.
+**[00:23:26]** These are the kind of these are the kind of
+**[00:23:28]** problems we built constant understanding to solve.
+**[00:23:32]** So content understanding takes messy multimodal content and turns it
+**[00:23:36]** into clean, structured agent ready output.
+**[00:23:40]** So you can see here the all any kind of
+**[00:23:42]** file can come into content understanding.
+**[00:23:45]** It gets parsed, classified, extracted, and turns into structured Jason
+**[00:23:50]** with key value pairs and markdown that represents the details
+**[00:23:54]** of what's in that file with high fidelity.
+**[00:23:59]** And this isn't just a brand new service.
+**[00:24:01]** This has been in GAGAD since last six months ago
+**[00:24:04]** and it's been in production for a year and a
+**[00:24:08]** half.
+**[00:24:09]** Foundry IQ uses it to is as its content extraction
+**[00:24:12]** layer to make sure it has the highest fidelity version
+**[00:24:17]** of the input to give you as as grounding for
+**[00:24:20]** your agents.
+**[00:24:21]** And Microsoft 365 Copilot uses it when you ask a
+**[00:24:25]** question about a document or PDF.
+**[00:24:28]** But what's most interesting about content understanding is not how
+**[00:24:30]** we use it, it's how our customers use it.
+**[00:24:32]** So we worked with customers like Walter Skewers.
+**[00:24:36]** They are they they build trusted professional tools for tax
+**[00:24:40]** automation, legal and healthcare.
+**[00:24:43]** And they use content understanding in their CCH access tax
+**[00:24:46]** product.
+**[00:24:47]** They use it to ingest things like tax forms, supporting
+**[00:24:51]** documents for taxes, other financial documents and make sure they
+**[00:24:55]** come in and structured format so that they can automate
+**[00:24:59]** your processing end to end for your tax, for your
+**[00:25:02]** tax prep.
+**[00:25:05]** Also, Data Sniper is an agentic platform for audit and
+**[00:25:09]** finance.
+**[00:25:10]** They use content understanding to power their AI extraction capability.
+**[00:25:15]** It's powered by content understanding, and it allows them to
+**[00:25:17]** take any kind of document and bring it directly into
+**[00:25:20]** Excel, where financial professionals want to live in structured format.
+**[00:25:25]** They talk about it as enabling faster reviews, more reliable
+**[00:25:28]** evidence, and trustworthy AI.
+**[00:25:31]** So with that context, we're going to dive deeper into
+**[00:25:33]** what content understanding is, and then we'll come back to
+**[00:25:36]** see the agent in that FIBBY demo in practice.
+**[00:25:39]** So content understanding is a pipeline, a single pipeline that
+**[00:25:43]** does parse, extract, and Classify.
+**[00:25:46]** Parse allows you to take any kind of input document
+**[00:25:48]** and turn it into Markdown.
+**[00:25:50]** Then Classify decides what kind of document that thing is
+**[00:25:53]** or breaks into pieces that are relevant to your scenario.
+**[00:25:57]** And then extract allows you to get key, value pairs
+**[00:26:00]** or structured content that's relevant for your particular documents out
+**[00:26:03]** of that content.
+**[00:26:05]** And this same pipeline is available for any modality.
+**[00:26:08]** So you can bring in any kind of file, a
+**[00:26:11]** video of image, document, APDF, even like old, even old
+**[00:26:16]** files like zip files or e-mail files can come in
+**[00:26:19]** and there's a custom tailored solution that gives you the
+**[00:26:24]** best results for that file type.
+**[00:26:30]** We're improving content understanding with broad coverage of qual and
+**[00:26:34]** quality integrations.
+**[00:26:35]** Here you can see we have broad coverage with new
+**[00:26:38]** file type supported, better quality with the GBT 5 family
+**[00:26:41]** of models being added as a as a engine for
+**[00:26:44]** running extraction and classification and then easier integration with support
+**[00:26:49]** for Logic Apps Agent framework laying chain.
+**[00:26:52]** Mark it down, a set of open source tools that
+**[00:26:54]** allow you to use this extraction as a part of
+**[00:26:57]** your agent agent runtime.
+**[00:27:00]** So let's drill into the improvements by each area.
+**[00:27:04]** Parts is where we apply Microsoft's OCR and layout technology
+**[00:27:08]** that we've refined over 20 years and still maintain a
+**[00:27:11]** state-of-the-art, continuing to approve it over as new things come
+**[00:27:15]** out in the, in the industry.
+**[00:27:18]** This gives you detailed extraction of tables of multilingual documents,
+**[00:27:23]** even this like crumpled page, we're able to extract some
+**[00:27:27]** details off of it to enable you to parse that
+**[00:27:30]** content.
+**[00:27:31]** It's the foundation of search ingestion for Foundry IQ and
+**[00:27:36]** we and we see here's some new things coming for
+**[00:27:41]** for parse in Foundry IQ.
+**[00:27:43]** One of the key advancements we get from using content
+**[00:27:46]** understanding that we'll see in the demo is that we
+**[00:27:48]** can extract tables well from a document and give you
+**[00:27:51]** structured markdown to ground your agent.
+**[00:27:54]** We also can extract detailed representations of figures, like charts
+**[00:27:59]** and diagrams from documents so that you don't lose that
+**[00:28:03]** content as you ingest it into your system.
+**[00:28:07]** Next, we'll show classification.
+**[00:28:09]** So once I do parse, then I might want to
+**[00:28:12]** classify this document, identifying the type of document it is,
+**[00:28:16]** or breaking a long document up into logical parts.
+**[00:28:20]** Many times, enterprise documents aren't just one document, they're a
+**[00:28:23]** set of documents in a package.
+**[00:28:25]** So I might have a case file, an application bundle,
+**[00:28:29]** or a tax submission.
+**[00:28:30]** It's not just one document, it's a bunch of different
+**[00:28:32]** things all combined in one thing.
+**[00:28:34]** So content understanding allows you to find the classes you
+**[00:28:37]** want to identify, throw away some parts of the document,
+**[00:28:40]** identify the key parts that you care about and extract
+**[00:28:43]** the the right information from each piece.
+**[00:28:46]** And coming in July will enable you to split your
+**[00:28:49]** documents not just on the page boundaries, but also on
+**[00:28:52]** the section boundaries as well, as that's a kiosk from
+**[00:28:55]** customers where you know the boundaries and documents don't fall
+**[00:28:58]** neatly on page boundaries often.
+**[00:29:00]** And so now in content understanding the classification doesn't either.
+**[00:29:05]** Now for extraction.
+**[00:29:08]** Extraction allows us to parse content into structured fields and
+**[00:29:12]** out structured output.
+**[00:29:14]** You get key value pairs, confidence scores, and grounded results.
+**[00:29:19]** So each of these fields extracted aren't just a completion
+**[00:29:23]** from an LLM, they're grounded back to a, to a
+**[00:29:26]** bounding box in the document, A, a word, a sentence
+**[00:29:29]** in the document.
+**[00:29:30]** So you can go directly back into the file to
+**[00:29:32]** find where that content came from.
+**[00:29:35]** And they also give you a confidence score that allows
+**[00:29:38]** you to auto approve when confidence is high and route
+**[00:29:40]** to human review when it isn't.
+**[00:29:43]** This is what allows customers to build real automation workloads
+**[00:29:47]** on top of tools like content on top of content
+**[00:29:50]** understanding.
+**[00:29:52]** And here's what's coming next with Extract in July, we're
+**[00:29:56]** shipping a new training process using knowledge sources so that
+**[00:30:00]** you can improve extraction on the documents that matter to
+**[00:30:04]** you.
+**[00:30:06]** We have, if you have a specific document like a
+**[00:30:08]** tax form, a financial document that matters to your industry
+**[00:30:11]** for your workflow, you can provide some examples.
+**[00:30:14]** Content understanding will train on that file and improve its
+**[00:30:17]** results.
+**[00:30:19]** Also, we'll ship new, new prebuilt analyzers that will have
+**[00:30:23]** significant cost reductions over in terms of tokens to be
+**[00:30:28]** much more efficient.
+**[00:30:30]** And we'll also ship a Gentic extraction.
+**[00:30:34]** So I'm going to drill in a little bit on
+**[00:30:35]** a Gentic extraction.
+**[00:30:36]** So it's a, it's coming in July.
+**[00:30:38]** Constant understanding extraction does a good job at finding answers
+**[00:30:43]** and summarizing data in a in a document.
+**[00:30:45]** But there's another Class, A broader class of use cases
+**[00:30:49]** that it doesn't do a great job with today.
+**[00:30:53]** Those cases are when an answer needs to be built,
+**[00:30:56]** not found, built step by step by reasoning across content
+**[00:31:00]** in the file.
+**[00:31:01]** When you have a, when you're asking a question like
+**[00:31:05]** for this contract and this set of amendments, which, which,
+**[00:31:09]** which clause applies in this, across this entire chain of
+**[00:31:14]** changes to this, to this, to this contract, or how
+**[00:31:17]** could I root cause this, this, this issue?
+**[00:31:21]** The just extracting, just finding a specific value in the
+**[00:31:24]** file isn't good enough.
+**[00:31:25]** You need to reason across the files to, to, to
+**[00:31:28]** answer those kind of hard problems.
+**[00:31:30]** So that's what a gentic mode will allow you to
+**[00:31:32]** do with content understanding.
+**[00:31:34]** For the hardest problems where standard content understanding doesn't work,
+**[00:31:38]** you can turn on the gentic and get the best
+**[00:31:41]** possible extractions and from from content understanding.
+**[00:31:45]** So this is coming in July.
+**[00:31:47]** We don't have a live demo here, but I'm going
+**[00:31:49]** to show us a quick recorded demo here.
+**[00:31:52]** So this is using the same grounding documents that we
+**[00:31:56]** showed this morning in a demo session.
+**[00:31:58]** Demo 331.
+**[00:32:00]** You can grab this QR code and go get that
+**[00:32:02]** repo if you're interested.
+**[00:32:04]** But in that demo, we show extracting from a a
+**[00:32:09]** very complicated fiber optic cable failure scenario.
+**[00:32:13]** So I have this document that describes the fiber optic
+**[00:32:16]** cable failure, the history of how, how it happened.
+**[00:32:19]** And So what I do is I ask a Genting
+**[00:32:20]** mode.
+**[00:32:21]** I, I set a set of questions to it in
+**[00:32:23]** the schema.
+**[00:32:25]** The set of questions would be things like, what's the
+**[00:32:27]** root cause?
+**[00:32:28]** How much is it going to cost to fix?
+**[00:32:30]** Is it on budget?
+**[00:32:31]** And with, by setting those questions in the prompts or
+**[00:32:35]** in the schema constant understanding, a Genting mode is able
+**[00:32:39]** to use a set of tools to reason across this
+**[00:32:42]** big corpus of evidence and loop over it to, to
+**[00:32:46]** to get a good answer Here.
+**[00:32:48]** It's not just look to doing a one shot, it's
+**[00:32:50]** able to search across it.
+**[00:32:51]** And if I look at what it actually does here
+**[00:32:54]** in the trace, it's able to go find specific evidence
+**[00:32:57]** in the documents.
+**[00:32:58]** It's able to ask, ask follow up questions about images,
+**[00:33:03]** to run calculations and code.
+**[00:33:05]** And by doing so, it's able to capture a set
+**[00:33:08]** of evidence to support the final answer and give me
+**[00:33:12]** a root 'cause that's very that's well grounded in the,
+**[00:33:15]** in the, in the, in the input data.
+**[00:33:19]** So ultimately, I'm able to get a root cause, a
+**[00:33:22]** cost analysis and get the right answer for this question
+**[00:33:25]** that would otherwise be require me to do a bunch
+**[00:33:28]** of custom coding to build.
+**[00:33:31]** So with that, I'm going to jump into the fiber
+**[00:33:34]** fiber optic agent that Maria showed earlier and show how
+**[00:33:37]** content understanding can work in that context.
+**[00:33:41]** First, we're going to show how content are sending works
+**[00:33:45]** for Foundry IQ ingestion and then we'll show it as
+**[00:33:48]** a context provider.
+**[00:33:53]** OK, so here's my demo, see if my mouse works.
+**[00:34:00]** There we go.
+**[00:34:02]** So same agent that we saw earlier with Maria, but
+**[00:34:05]** you'll notice on the left side over here, we have
+**[00:34:08]** a set of options.
+**[00:34:10]** There's what Foundry IQ knowledge source it's using and what
+**[00:34:14]** context provider the agent is using to process files at
+**[00:34:18]** their as their input.
+**[00:34:20]** So I'll start with Foundry IQ knowledge source that's minimal
+**[00:34:23]** that doesn't use content understanding to process documents.
+**[00:34:27]** I'm asking a specific question here about this F3 fiber
+**[00:34:31]** and it needs to ground it in this document.
+**[00:34:34]** You can see here this F3 fiber has a set
+**[00:34:36]** of measurements against it.
+**[00:34:37]** I'm actually asking it about this three O 131310 answer
+**[00:34:41]** and there's actually no evidence about what the measurement was
+**[00:34:46]** in that on that fiber, but the agent tells me
+**[00:34:50]** it's 46.
+**[00:34:51]** So the agent generates an ungrounded result here.
+**[00:34:56]** And but what we're going to see is it let's
+**[00:34:59]** see what happens when I turn on content understanding.
+**[00:35:03]** When I turn on content understanding on this file, I'll
+**[00:35:06]** show you what the output looks like.
+**[00:35:07]** So this maintenance log that we just saw will generate
+**[00:35:12]** content understanding, will generate this structured markdown representation that allows
+**[00:35:20]** me to see that missing value right there.
+**[00:35:23]** If I use a simple PDF parser, I can easily
+**[00:35:26]** miss that missing value because it just gets lumped into
+**[00:35:31]** this long list.
+**[00:35:33]** But in fact, when I turn on standard mode with
+**[00:35:36]** content understanding, it tells me there's no recorded separate value
+**[00:35:41]** here.
+**[00:35:41]** So it gives me the right answer now to this
+**[00:35:44]** difficult question, understanding the details of what's in this file.
+**[00:35:50]** So I also might have another case where someone emails
+**[00:35:53]** me a file with a work order in it and
+**[00:35:55]** I need to give it to the agent.
+**[00:35:57]** So I take this DOCX file, I give it to
+**[00:36:00]** my agent.
+**[00:36:00]** I say, can you answer some questions about this file
+**[00:36:03]** and add it into my work workflow system using the
+**[00:36:05]** toolbox that Maria said earlier.
+**[00:36:07]** But actually, docx files aren't supported by my agent because
+**[00:36:11]** typically agent harnesses have very limited file support.
+**[00:36:15]** This is one of the things that I can fix
+**[00:36:18]** by turning on content understanding as a context provider.
+**[00:36:23]** So context providers and agent framework allow you to preprocess
+**[00:36:26]** files and generate a text version that you give to
+**[00:36:29]** your agent.
+**[00:36:30]** So I can turn that on, but I'm going to
+**[00:36:32]** test one other thing first.
+**[00:36:34]** I can also just pass APDF to my agent.
+**[00:36:36]** In this case the agent can receive PD FS, but
+**[00:36:39]** again, it's using a a low quality parser by default.
+**[00:36:43]** So it's gives me incorrect answers.
+**[00:36:45]** So for example, here I asked about this work order
+**[00:36:50]** 89, it tells me it's scheduled, but if I look
+**[00:36:54]** work order 89, it's completed.
+**[00:36:57]** So it gives me the wrong answer for what's in
+**[00:36:59]** this file.
+**[00:37:00]** So I'm going to turn on content understanding, go back
+**[00:37:03]** and get do the same thing again.
+**[00:37:06]** I'll show you what the results, what the results look
+**[00:37:08]** like for this file here.
+**[00:37:09]** Here's what content understanding generates for the output.
+**[00:37:12]** Again, a nice structure table.
+**[00:37:15]** You can also see here in this file, I have
+**[00:37:17]** these charts that are here and content understanding gives me
+**[00:37:21]** a Jason representation of the data in that chart so
+**[00:37:24]** that I don't lose the context of what's in that
+**[00:37:27]** chart.
+**[00:37:28]** When I go into my agent.
+**[00:37:29]** I can ask questions about that chart now as well.
+**[00:37:33]** Coming back to coming back here, it tells me that
+**[00:37:37]** work order a nine is complete.
+**[00:37:39]** It's exactly what the PDF says.
+**[00:37:40]** Now it knows what's there because I've given it a
+**[00:37:43]** good structured representation to that content.
+**[00:37:48]** Sometimes this isn't good enough.
+**[00:37:51]** Sometimes I ask a question about a file and the
+**[00:37:54]** file itself is complicated.
+**[00:37:55]** It's hard to interpret.
+**[00:37:57]** So I'll show an example here.
+**[00:37:59]** This is a a work order.
+**[00:38:02]** You can see here I'm asking who's the who's the
+**[00:38:05]** who's the field technician on this work order?
+**[00:38:09]** There's this Jay Martinez, he's actually the field technician.
+**[00:38:12]** But there's these other people mentioned like the site contact
+**[00:38:15]** John Smith.
+**[00:38:17]** I need to give the agent some guidance of how
+**[00:38:19]** to process this file, how to interpret it without guidance.
+**[00:38:22]** It says the agent, the field technician is John Smith
+**[00:38:25]** the wrong answer.
+**[00:38:26]** So I can give it guidance.
+**[00:38:29]** One way I can give it guidance is by giving
+**[00:38:32]** a creating a classify and extract analyzer and content understanding
+**[00:38:35]** so that it has a predefined way to process this
+**[00:38:38]** file.
+**[00:38:38]** So I'm going to switch on the right to a
+**[00:38:41]** context provider that uses that an analyzer from content understanding
+**[00:38:46]** and rerun the same question.
+**[00:38:48]** So I'll show you real quick what this analyzer does.
+**[00:38:51]** Here's a copy of this analyzer and content understanding studio,
+**[00:38:54]** which is where one way I can visualize and edit
+**[00:38:57]** these edit these analyzers.
+**[00:39:00]** Here you can see this analyzer classifieds the input document.
+**[00:39:03]** It says is it a work order and with a
+**[00:39:05]** description of what a work order is or is it
+**[00:39:07]** something else?
+**[00:39:08]** I could have a list of hundreds of things that
+**[00:39:10]** I want to classify here.
+**[00:39:12]** I can also classify pages page by page or section
+**[00:39:14]** by section as we talked about earlier.
+**[00:39:16]** But in this case, I'm just going to classify the
+**[00:39:18]** whole file.
+**[00:39:18]** Is this a work order or not?
+**[00:39:20]** And when I get a work order, it's going to
+**[00:39:23]** extract the technician.
+**[00:39:24]** And I have some guidance here about how to how
+**[00:39:26]** to how to pick up a technician.
+**[00:39:28]** It tells it this route thing is how you go
+**[00:39:30]** know who the technician is.
+**[00:39:31]** And now I have the standard business rules for my
+**[00:39:34]** content that I've encoded in my agent by calling this
+**[00:39:37]** content understanding analyzer on the input.
+**[00:39:40]** And by doing that, it's able to give me the
+**[00:39:42]** right answer.
+**[00:39:43]** Jay Martinez is the is the field technician.
+**[00:39:48]** This is exactly what I see in the file.
+**[00:39:50]** Jay Martinez is the field technician that got routed to
+**[00:39:53]** this.
+**[00:39:53]** And so by giving it instructions, my own business rules
+**[00:39:56]** on this content, now I can get the right answer
+**[00:39:58]** from these documents even when it's a really hard question.
+**[00:40:02]** So with that, I'm just going to come back and
+**[00:40:05]** show we, we, we showed here in this demo these
+**[00:40:07]** three different scenarios where content understanding is super valuable.
+**[00:40:11]** 1 is when you're using Foundry IQ you can turn
+**[00:40:14]** on content understanding and that is part of your indexing
+**[00:40:17]** process.
+**[00:40:18]** You can you can extract the details of the structure
+**[00:40:21]** of documents, getting figure descriptions, tables out all the structure
+**[00:40:25]** with as little loss as possible into your index so
+**[00:40:28]** that you get the right answers from indexes.
+**[00:40:31]** And then when I upload a file in real time
+**[00:40:33]** to my agent, I can use content understanding as a
+**[00:40:36]** context provider.
+**[00:40:37]** Or in Langshane, I can use the Langshane primitive for
+**[00:40:40]** that as well.
+**[00:40:41]** So I can plug it into the my agent and
+**[00:40:43]** process files and incoming, allowing me to process any kind
+**[00:40:47]** of file, not just APDF, and also get the right
+**[00:40:50]** answers for tricky files.
+**[00:40:52]** And then I can also encode my business rules using
+**[00:40:55]** content understanding.
+**[00:40:56]** So I know how to process a work order or
+**[00:40:58]** a tax file or whatever the type of documents I
+**[00:41:00]** care about.
+**[00:41:01]** I can get that accurately represented with content understanding.
+**[00:41:07]** And with that, I think Marie is coming back and
+**[00:41:11]** we're going to thank you so much.
+**[00:41:15]** Thank you so much.
+**[00:41:15]** So I tried my best to show you how everything
+**[00:41:18]** worked, but I promise you, this all works.
+**[00:41:21]** So I wanted to show if we have three.
+**[00:41:24]** Oh, we have 3 minutes.
+**[00:41:25]** OK.
+**[00:41:25]** I want to try to do this.
+**[00:41:26]** Done.
+**[00:41:28]** I wanted to show you this.
+**[00:41:30]** Yeah.
+**[00:41:31]** Thank you so much.
+**[00:41:32]** I wanted to show you like an agent that was
+**[00:41:35]** leveraging A unified endpoint in an agent freight land graph
+**[00:41:39]** application.
+**[00:41:40]** So this is similar to what we showed in City
+**[00:41:42]** and very similar to what you showed.
+**[00:41:44]** And I wanted you to pay particular attention to the
+**[00:41:46]** activity line.
+**[00:41:48]** You'll notice that it's going into the toolbox, loading a
+**[00:41:51]** spill.
+**[00:41:52]** It's found 10 tools, but only selected one.
+**[00:41:55]** It is pulling that tool, it is checking the order,
+**[00:41:58]** and it's generating the results back.
+**[00:42:01]** So rather than loading every single tool into the context
+**[00:42:04]** window, it's selected 1.
+**[00:42:06]** So I need to show you that this is real
+**[00:42:08]** and you can actually work on it.
+**[00:42:10]** Now the best thing is, is that you can try
+**[00:42:14]** this OOP.
+**[00:42:15]** You can try this all out by going to azureai.azure.com
+**[00:42:20]** and going to Foundry.
+**[00:42:22]** You can also get all our demo content in ask
+**[00:42:25]** dot Ms.
+**[00:42:26]** the build number of this this account.
+**[00:42:29]** And if you want to play around with the live
+**[00:42:31]** demo that I just showed you, you can pull this
+**[00:42:33]** up on your phone.
+**[00:42:34]** You can pull this up on your computer right now,
+**[00:42:37]** AKA dot Ms.
+**[00:42:37]** slash fibi and it will be up for the rest
+**[00:42:40]** of the week.
+**[00:42:41]** And we also have the demo code there.
+**[00:42:43]** So join our Discord on Foundry, try all our documentation,
+**[00:42:48]** the demo.
+**[00:42:49]** God's work with me today.
+**[00:42:50]** I should run my application locally later.
+**[00:42:53]** But thank you so much for coming.
+**[00:42:55]** And we'll be here asking questions like we'll be done
+**[00:42:58]** here.
+**[00:42:58]** Yes, Ralph, don't hold me to it.
+**[00:43:08]** Two to three months, OK.
+**[00:43:11]** Thank you so much.
+**[00:43:11]** All right.
+**[00:43:12]** Thank you.

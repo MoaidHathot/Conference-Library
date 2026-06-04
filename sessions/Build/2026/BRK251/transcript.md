@@ -1,0 +1,954 @@
+**[00:00:00]** Hello everybody, thank you for joining us session.
+**[00:00:03]** I'm Neda.
+**[00:00:04]** I recommend you put your headphones on because it's going
+**[00:00:06]** to be much easier to to hear us with the
+**[00:00:08]** headphones.
+**[00:00:09]** So please put your headphones on.
+**[00:00:11]** So I'm Neda, together with me are a set of
+**[00:00:14]** speakers and we're going to together show you how you
+**[00:00:17]** can build secure and enterprise ready agent with Agent 365.
+**[00:00:21]** S Before we get started, raise your hand if you're
+**[00:00:23]** building agents today or using agents today in your organization.
+**[00:00:27]** OK, look around.
+**[00:00:29]** I think it's everybody, almost everybody.
+**[00:00:31]** Now raise your hand if you think your agents are
+**[00:00:33]** enterprise ready, observed, secure, and governed.
+**[00:00:37]** OK, I have one.
+**[00:00:39]** OK, great.
+**[00:00:39]** So you're in the right place because today here we're
+**[00:00:42]** going to learn how you can build enterprise ready, secure
+**[00:00:45]** and governed agents with Agent 365.
+**[00:00:47]** So let's get started.
+**[00:00:49]** We saw that agents are here.
+**[00:00:50]** Almost all of us raised our hands.
+**[00:00:52]** All of us are using agent in our organization and
+**[00:00:56]** IDC predicts that by 2028 there will be 1.3 billion
+**[00:00:59]** agents in organization.
+**[00:01:01]** That's a huge number, most of more than most of
+**[00:01:04]** countries in the world.
+**[00:01:06]** And there's different types of agents that we talked about.
+**[00:01:08]** One are the SAS agent.
+**[00:01:10]** Those are agents that are pre built, they come built
+**[00:01:12]** in the application.
+**[00:01:13]** They come built pre built on webs that we kind
+**[00:01:15]** of start using and using in the organization.
+**[00:01:18]** Then there's the endpoint agent that we are building.
+**[00:01:20]** These can be the open cloud agent.
+**[00:01:21]** These will be agents building with CLI and other agents
+**[00:01:25]** and we have the cloud agent.
+**[00:01:27]** These are the agent that we're building on different clouds
+**[00:01:29]** on different platforms and different frameworks.
+**[00:01:33]** But the questions come is can we, our organization discover
+**[00:01:36]** all these agents?
+**[00:01:37]** Can they manage them?
+**[00:01:38]** Are they behaving properly?
+**[00:01:39]** Is my agent behaving based on the intent I wanted
+**[00:01:42]** to do?
+**[00:01:42]** Is it breaking with the intent?
+**[00:01:43]** Is it misusing the tools I connected to it?
+**[00:01:46]** Is it over sharing data or the leaking data?
+**[00:01:49]** And can it be governed and audit At the end
+**[00:01:51]** of the day?
+**[00:01:52]** And usually as developer and stuff like that, we take
+**[00:01:55]** different frameworks and different products to make that happen.
+**[00:01:59]** And we want our agents first of all, to be
+**[00:02:01]** able to be observable.
+**[00:02:02]** So to be registered in an inventory and registry and
+**[00:02:05]** to be observable, we want it to be have an
+**[00:02:07]** identity.
+**[00:02:08]** We want to be able to identify that this action
+**[00:02:10]** was made by this agent.
+**[00:02:11]** We want to have threat protection.
+**[00:02:13]** There's a lot of new generative AI risk coming in
+**[00:02:16]** like prompt injection, intent breaking, tools misused.
+**[00:02:19]** We wanted to have threat protection.
+**[00:02:20]** We want to have data security, not to over leak
+**[00:02:22]** data or over share data.
+**[00:02:24]** And we wanted to be in governance and in compliance.
+**[00:02:27]** And for all that, that's where Agent 365 comes in.
+**[00:02:30]** It's the control plane for any agent that you're building,
+**[00:02:33]** any agent in the organization.
+**[00:02:35]** And I'd like to invite Kendra to share with us
+**[00:02:38]** more about Agent 365.
+**[00:02:39]** Thank you, Kendra.
+**[00:02:40]** Thank you so much.
+**[00:02:41]** Nada.
+**[00:02:42]** Hi everyone.
+**[00:02:42]** Thank you so much for being here with us.
+**[00:02:45]** We are going to take you through over the next
+**[00:02:48]** few slides.
+**[00:02:49]** Why you need Agent 365?
+**[00:02:51]** What is the value that you're going to get?
+**[00:02:54]** And the big thing here, if you leave here with
+**[00:02:58]** nothing, understand this Agent 365 provides all of the capabilities
+**[00:03:02]** we're going to go through, not only for Microsoft agents,
+**[00:03:06]** but also for 3rd party custom external agents as well.
+**[00:03:11]** And from this slide, you can see we've broken down
+**[00:03:14]** the value of agents into these three key pillars that
+**[00:03:17]** we think align to the core jobs to be done
+**[00:03:20]** when it comes to managing and governing your agents at
+**[00:03:23]** scale.
+**[00:03:24]** The first is observed because very simply, you cannot govern
+**[00:03:29]** what you cannot see.
+**[00:03:30]** You also cannot trust and feel confident that you're adequately
+**[00:03:34]** protected if you don't know what agents are out there.
+**[00:03:38]** So all of the features that we have available that
+**[00:03:41]** allow you to not only see all of your agents
+**[00:03:44]** across all of your different platforms, but also understand really
+**[00:03:49]** important adoption trends, usage trends, trends for what platforms your
+**[00:03:54]** agents are built on, and so much more.
+**[00:03:56]** In addition to actions that you need to take to
+**[00:04:00]** successfully mitigate and keep your agent ecosystem safe, then we
+**[00:04:05]** have govern.
+**[00:04:06]** Now govern can be a scary word for some depending
+**[00:04:09]** on your audience right now.
+**[00:04:11]** I want to assure you here, when we say governance,
+**[00:04:14]** this is not intended to put the brakes on innovation,
+**[00:04:18]** put the brakes on agent adoption.
+**[00:04:20]** This is intended to actually speed up the pace of
+**[00:04:23]** adoption and speed up the pace of innovation.
+**[00:04:26]** Because governance is all about implementing guardrails so that you
+**[00:04:31]** know no matter how your agent is built, no matter
+**[00:04:35]** who built that agent, there are the proper protections in
+**[00:04:39]** place every single time for the agent based on its
+**[00:04:42]** risk factor.
+**[00:04:44]** And then with security, just like you would secure any
+**[00:04:47]** other employee in your organization, any other data asset app,
+**[00:04:51]** you name it, right across your tenant, you need to
+**[00:04:55]** adequately secure your agents as well.
+**[00:04:58]** And so with Defender and Purview and Dentra, right, you
+**[00:05:01]** have all the tools that you need to be sufficiently
+**[00:05:05]** protected, not only to block these threats in real time,
+**[00:05:09]** but take it a step further.
+**[00:05:11]** Do things like deep hunting and investigation to understand what
+**[00:05:15]** caused these risks, right?
+**[00:05:17]** To see full logs inside of Purview so you know
+**[00:05:21]** every single step that that agent took when that incident
+**[00:05:25]** occurred.
+**[00:05:26]** And taking it a step even further, being able to
+**[00:05:29]** identify other agents in your ecosystem that have similar vulnerabilities
+**[00:05:34]** so that you can mitigate those agents before incidents occur.
+**[00:05:39]** Now again, I want to do a little quiz.
+**[00:05:43]** Raise your hand.
+**[00:05:44]** Does Microsoft Agent 365 support all agents?
+**[00:05:50]** Raise your hand if the answer is yes.
+**[00:05:54]** Excellent.
+**[00:05:55]** About 50% of you are listening.
+**[00:05:56]** OK, for those of you that didn't raise your head,
+**[00:05:58]** keep keep listening.
+**[00:05:59]** We're going to keep in grading that one.
+**[00:06:02]** But how do we do this?
+**[00:06:05]** How do we enable these agents that are not built
+**[00:06:08]** outside of Microsoft?
+**[00:06:10]** The key here is our Agent 365 SDK.
+**[00:06:14]** Now, this SDK is not an agent building SDK.
+**[00:06:19]** It is not going to host your agent.
+**[00:06:21]** It's purely an SDK to wrap your agent and make
+**[00:06:26]** it discoverable within Agent 365.
+**[00:06:29]** You can provide an agent ID to your agent, you
+**[00:06:32]** can enable full observability, you can enable full security policies
+**[00:06:36]** to be applied to those agents, and you can take
+**[00:06:40]** advantage of our productivity capabilities through our Tools gateway.
+**[00:06:46]** But how does this work?
+**[00:06:47]** How are we able to not only cover Microsoft agents,
+**[00:06:51]** but also these third party agents and common pre bill
+**[00:06:54]** agents that we know you are all are using from
+**[00:06:58]** different providers?
+**[00:06:59]** So very simply, it starts at the bottom.
+**[00:07:03]** Foundationally, Agent 365 is that end to end governance platform
+**[00:07:08]** that allows you to scale and operationalize your agent governance
+**[00:07:13]** and management processes, right.
+**[00:07:16]** But if you think about Agent 365 as a stool,
+**[00:07:20]** the legs of the stool that hold Agent 365 up
+**[00:07:23]** are are those trusted security solutions at an enterprise level.
+**[00:07:28]** Microsoft Entra for identity management, Defender for risk assessment and
+**[00:07:34]** real time threat detection and blocking, as well as Purview
+**[00:07:38]** for data governance and then Microsoft Intune for shadow AI
+**[00:07:42]** detection.
+**[00:07:44]** Now again, we have a plethora of agent solutions available
+**[00:07:48]** to you both across Microsoft from all of our different
+**[00:07:52]** agent building platforms to the pre build agents like cowork
+**[00:07:56]** or researcher.
+**[00:07:58]** We also have common really valuable agent solutions that we
+**[00:08:02]** know that you all are leveraging from third party providers,
+**[00:08:07]** right?
+**[00:08:07]** We know our customers have a very heterogeneous mix of
+**[00:08:10]** agents that you're leveraging.
+**[00:08:13]** We also know that where you can't find a solution
+**[00:08:16]** immediately, you're building your own custom agents on the platforms
+**[00:08:21]** of your choice across different clouds and across different solutions
+**[00:08:26]** like Lang chain agents, you're building on AWS, Gemini, etcetera.
+**[00:08:31]** And then lastly, we know that there are really common
+**[00:08:35]** platforms that it would be great to be able to
+**[00:08:38]** automate and ingest the agents across these platforms.
+**[00:08:42]** So lots of agents we need to cover with Agent
+**[00:08:45]** 365 and we are able to do that.
+**[00:08:48]** So within Microsoft, all of the agents built on Microsoft
+**[00:08:52]** have a native experience inside of Agent 365 S right
+**[00:08:55]** out-of-the-box, you're going to see every single agent, whether it's
+**[00:08:59]** in a draft state or it's fully produced into production
+**[00:09:02]** and whether changes are occurring real time, right?
+**[00:09:05]** You're going to have access to all of that data,
+**[00:09:08]** all of that observability data, you're going to be able
+**[00:09:11]** to apply those policy templates, those security guardrails, You're going
+**[00:09:15]** to be able to take action, right, All of those
+**[00:09:18]** pieces with no additional effort.
+**[00:09:20]** You're going to be able to do the same for
+**[00:09:23]** some of our third party partner agent solutions as well.
+**[00:09:28]** We are building an agent ecosystem with these partners to
+**[00:09:32]** proactively extend our SDK and enable an agent ID within
+**[00:09:36]** those agents and enable that observability capabilities and much more.
+**[00:09:41]** And you're going to hear from one of such of
+**[00:09:43]** our partners at the end of this session as well.
+**[00:09:46]** Now for those custom agents, right, the agents that you
+**[00:09:50]** are building on link chain, as I mentioned, you're leveraging
+**[00:09:54]** another SDK, right?
+**[00:09:55]** You're leveraging an AWS cloud solution.
+**[00:09:58]** You can onboard these agents with an Agent 365 with
+**[00:10:02]** that SDK that I mentioned earlier.
+**[00:10:06]** And with this SDK you're going to get things like
+**[00:10:10]** identity, observability tools, messaging, threat protection, governance, as well as
+**[00:10:16]** data security.
+**[00:10:17]** So it is a comprehensive SDK that gives you everything
+**[00:10:21]** you need, but also the flexibility to onboard only to
+**[00:10:25]** what you want.
+**[00:10:28]** And then this last piece here, within our connected agent
+**[00:10:31]** platforms, you're able to do this through a feature called
+**[00:10:34]** Registry Sync, which I will take you through in the
+**[00:10:37]** demo.
+**[00:10:38]** Registry Sync essentially allows us to take your permissions, your
+**[00:10:43]** credentials across these platforms like Amazon Bedrock and Google Vertex
+**[00:10:48]** AI and ingest those agents into the registry, but only
+**[00:10:53]** for visibility purposes.
+**[00:10:55]** And then any governance capabilities or permissions that you have
+**[00:10:59]** across these platforms, you will also have those capabilities inside
+**[00:11:03]** of Agent 365 as well.
+**[00:11:06]** And I know as much as you guys really love
+**[00:11:09]** slides, I'm going to have to bore you with a
+**[00:11:12]** really incredible demo.
+**[00:11:15]** But before we get to that demo, I do want
+**[00:11:17]** to give you some terms that are new terms, but
+**[00:11:20]** really fundamental for your understanding and setting you up for
+**[00:11:25]** success, right?
+**[00:11:26]** So the first term is an agent blueprint.
+**[00:11:28]** Now, the best way to think about an agent blueprint
+**[00:11:32]** is a reusable instruction for an agent that lets it
+**[00:11:35]** know what tools, what data it can leverage, what rules,
+**[00:11:39]** and what guardrails are in place.
+**[00:11:41]** Think about this similar to an agent recipe, right?
+**[00:11:45]** That other agents and agent identities can be created from.
+**[00:11:49]** Now an agent identity is simply taking an agent identity
+**[00:11:54]** and up leveling it from a service principal identity so
+**[00:11:59]** that it is more in line with a user identity
+**[00:12:03]** level.
+**[00:12:03]** Right?
+**[00:12:04]** Because agents are unique, they are essentially apps.
+**[00:12:07]** They're built like apps, but the caveat here is they
+**[00:12:11]** function like users.
+**[00:12:12]** So you need to have an identity that is appropriate
+**[00:12:16]** for their function within your ecosystem.
+**[00:12:19]** And agent identity is specifically created to support agents in
+**[00:12:24]** this.
+**[00:12:25]** Now these agent identities can be authenticated in two different
+**[00:12:29]** ways, right?
+**[00:12:30]** We have agents that work on behalf of the users.
+**[00:12:33]** So essentially when a user invokes that agent, that agent
+**[00:12:37]** assumes that users credentials passes that credential as the auth
+**[00:12:42]** token and the appropriate permissions of that user as well,
+**[00:12:46]** right?
+**[00:12:47]** When it comes to information retrieval or task completion.
+**[00:12:51]** But we also have another way that agents can maintain
+**[00:12:54]** their identity, and that's by leveraging their own user identity,
+**[00:12:58]** right?
+**[00:12:59]** And agent user identity.
+**[00:13:02]** What happens here is that agent maintains their own identity
+**[00:13:06]** and their own permissions, and they pass that identity for
+**[00:13:10]** authentication, and they're able to function on their own without
+**[00:13:15]** working on behalf of a user, if that makes sense.
+**[00:13:19]** OK, with those two terms in your back pocket, we
+**[00:13:23]** will now get to the demo.
+**[00:13:25]** Aarthi, I would love to invite you on stage to
+**[00:13:28]** take us through an incredible demo where we're going to
+**[00:13:32]** take you end to end to see your agent in
+**[00:13:34]** action on board, an agent with our SDK, and more.
+**[00:13:40]** Hello everyone, let's get started.
+**[00:13:42]** You have to listen closely because I'm going to wear
+**[00:13:45]** quite a few different hats.
+**[00:13:46]** I'm starting out as an agent developer.
+**[00:13:49]** I am in my favorite code editor.
+**[00:13:53]** I am in VS Code.
+**[00:13:54]** This is a travel agent.
+**[00:13:56]** Its built on Lang chain using node JS like Kendra
+**[00:13:59]** did.
+**[00:13:59]** Agent 365 is more than more for just just in
+**[00:14:02]** Microsoft built agents and that's why we specifically chose Lang
+**[00:14:06]** chain as an example for the stem.
+**[00:14:09]** This travel agent is helpful.
+**[00:14:12]** It given a source and a destination and travel dates.
+**[00:14:15]** It gives me 3 suggestions for hotels, 3 suggestions for
+**[00:14:19]** flights and maybe restaurants, right?
+**[00:14:22]** I have tested this agent here and if you see,
+**[00:14:25]** I invoked this agent and I got some results here.
+**[00:14:29]** Let me just scroll this up so you can see.
+**[00:14:32]** Yeah, I got 3 airlines from Seattle, so San Francisco
+**[00:14:34]** for build, and I have hotels here.
+**[00:14:37]** Now you're asked to make this agent ready for Agent
+**[00:14:41]** 365 configured for Agent 365.
+**[00:14:43]** What does that entail?
+**[00:14:45]** Now, Kendra introduced quite a few concepts, and if you
+**[00:14:48]** had to stitch together all of this on your own,
+**[00:14:50]** you can.
+**[00:14:51]** We have excellent learned dogs.
+**[00:14:52]** We have samples out there that you can do this
+**[00:14:54]** with.
+**[00:14:55]** But all of you have probably heard about skills and
+**[00:14:58]** how coding agents can do some of our jobs for
+**[00:15:01]** us.
+**[00:15:02]** And so we decided that we will ship some very
+**[00:15:05]** specific Agent 365 skills.
+**[00:15:07]** I'm going to show you how you can maybe invoke
+**[00:15:10]** them from VS Code, right?
+**[00:15:12]** I'm doing slash skills and I'm doing agent 365.
+**[00:15:16]** And I see, oh, OK, there are a few skills,
+**[00:15:19]** but the rest of this execution I'm going to show
+**[00:15:21]** you just because it takes, we are making code changes.
+**[00:15:24]** It takes about 10 minutes to run and I'll consume
+**[00:15:26]** the rest of your demo and still the developer, but
+**[00:15:29]** I just switched to GitHub copilot here.
+**[00:15:31]** You can use cloud code.
+**[00:15:32]** You can use your favorite coding agent of choice.
+**[00:15:34]** Does not matter.
+**[00:15:36]** Let's look through what are these skills.
+**[00:15:38]** OK, there seem to be like 6 skills that we
+**[00:15:40]** should, we are keep constantly adding to this.
+**[00:15:42]** So keep an eye out right?
+**[00:15:45]** There are these two make skills which are really interesting.
+**[00:15:48]** The other skills are kind of piece meal.
+**[00:15:50]** You can just do the setup.
+**[00:15:51]** Why you get an identity for your agent.
+**[00:15:53]** You can just instrument observability, which let's your agents emit
+**[00:15:57]** telemetry.
+**[00:15:58]** You can also optionally add like work IQ servers.
+**[00:16:01]** What this lets you do is have your agent interact
+**[00:16:03]** with your productivity surface.
+**[00:16:05]** Like your agent can create a document.
+**[00:16:08]** Your agent can like have its own calendar that it
+**[00:16:11]** accesses and so on.
+**[00:16:13]** You can test locally, but the path that I'm going
+**[00:16:15]** to show you for the rest of this demo is
+**[00:16:18]** going to be how we make this agent essentially an
+**[00:16:20]** employee in your organization have its own user identity like
+**[00:16:24]** Kendra talk about without.
+**[00:16:25]** Let's take a look now the skill starts out by
+**[00:16:28]** determining what your agent stack is.
+**[00:16:30]** You don't provide much of an input except starting from
+**[00:16:33]** your agent folder and saying make this agent ready for
+**[00:16:36]** agent 365.
+**[00:16:37]** We determined that this is your stack.
+**[00:16:39]** No JS LAN chain looks great.
+**[00:16:41]** It is a TypeScript agent.
+**[00:16:43]** It even determines because this is the coding agent and
+**[00:16:45]** attach access to your code.
+**[00:16:46]** It knows what it does, right?
+**[00:16:48]** But then it determines, oh, you, this is the first
+**[00:16:50]** time you're running this.
+**[00:16:52]** I'm going to scroll a little bit just because this
+**[00:16:54]** is a lot of like coding agent output so bare
+**[00:16:56]** with me.
+**[00:16:57]** And the first thing we checked for is prerequisites right?
+**[00:17:00]** We have all done this in the past.
+**[00:17:02]** That's a package.
+**[00:17:03]** You need to download the package.
+**[00:17:05]** All the dependencies have your machine set up exactly right.
+**[00:17:08]** Good to go.
+**[00:17:09]** Its good.
+**[00:17:09]** Looks like some developers updated our Agent 365 CLI.
+**[00:17:13]** So my coding agent picked the latest version here and
+**[00:17:16]** this is my account.
+**[00:17:17]** This is I've already logged in through Azure CLI.
+**[00:17:20]** This is the target tenant to which your agent is
+**[00:17:23]** going to be enabled for Agent 365.
+**[00:17:25]** Great, all this looks great.
+**[00:17:27]** The coding agent has come up with a detailed plan
+**[00:17:29]** on what it needs to do.
+**[00:17:31]** So let's see what it does.
+**[00:17:32]** OK, it says it needs to install required agent packages.
+**[00:17:36]** It's going to add a valid build and then it's
+**[00:17:38]** going to add observability work, IQ register, publish and deploy.
+**[00:17:42]** That looks pretty good to me.
+**[00:17:43]** So let's see what it ended up doing, right?
+**[00:17:47]** This ran for about 10:00-ish minutes when I ran it
+**[00:17:50]** outside, outside of this demo.
+**[00:17:52]** And at the end I had like a fully extended
+**[00:17:56]** Agent 365 agent.
+**[00:17:57]** Its ready to go.
+**[00:17:59]** Of course.
+**[00:17:59]** I mean, as a developer, you're going to test this
+**[00:18:01]** locally, you're going to make some tweaks because nothing, nothing
+**[00:18:04]** is perfect.
+**[00:18:04]** But you see all the steps that it did.
+**[00:18:06]** It created a blueprint, which is what Kendra was introducing
+**[00:18:09]** earlier.
+**[00:18:10]** The actual agent identity gets created when your agent gets
+**[00:18:13]** activated by your admin and Microsoft Admin Center.
+**[00:18:17]** It configured the observability work IQ.
+**[00:18:21]** I made a choice that I want Word and OneDrive,
+**[00:18:23]** so it configured those MCP servers for me and there's
+**[00:18:26]** a manifest good to go.
+**[00:18:28]** Now I would hand this off to my admin and
+**[00:18:31]** say OK, I want this agent ready.
+**[00:18:33]** In this tenant, you choose whether this agent is shared
+**[00:18:37]** with a subset of users or all users and you
+**[00:18:40]** assign and at that point you, your agent is ready
+**[00:18:43]** to go.
+**[00:18:44]** Now I'm shifting personas a little.
+**[00:18:47]** So now I am an agent user, right?
+**[00:18:50]** This is my tenant.
+**[00:18:51]** I am using Teams within my tenant and I can
+**[00:18:55]** go to the list of apps available and I can
+**[00:18:58]** create an instance.
+**[00:18:59]** This is what creates my own version of this agent
+**[00:19:04]** which is reporting up to me, right?
+**[00:19:07]** So you would have seen agents being used from Teams
+**[00:19:10]** before, and this agent can be used from Teams as
+**[00:19:12]** well.
+**[00:19:13]** Let me just copy over my prom so you can
+**[00:19:16]** see what I'm trying to do.
+**[00:19:18]** And remember when I asked it to plan a trip
+**[00:19:20]** right after Bill for me to Austin.
+**[00:19:22]** Now I'm doing this here from within Teams.
+**[00:19:26]** I'll scroll up so you don't need to keep waiting
+**[00:19:28]** for the agent to reply, but I'll also show you
+**[00:19:30]** its reply.
+**[00:19:31]** I've intentionally asked this agent to provide a response and
+**[00:19:34]** also create a Word document for me.
+**[00:19:36]** And that's because I want to show you how I
+**[00:19:38]** can interact with this agent.
+**[00:19:40]** You all interact with your colleagues.
+**[00:19:42]** You don't always interact with them just over Teams or
+**[00:19:45]** e-mail.
+**[00:19:46]** Sometimes you're working collaborating on a document and you at
+**[00:19:48]** mentioned your colleague because that's just contextual.
+**[00:19:51]** It will be kind of weird to switch to Teams
+**[00:19:54]** and ask your teammate how to to respond.
+**[00:19:57]** So here, OK, this looks pretty good.
+**[00:19:59]** I'll probably take the Southwest and maybe the Marriott looks
+**[00:20:03]** very good and there are some restaurants which look interesting.
+**[00:20:07]** So yeah, I got almost the same reply and it
+**[00:20:10]** has created an editable Word document for us to work
+**[00:20:13]** on.
+**[00:20:13]** So let me switch over to the Word document.
+**[00:20:16]** Now you have, as you see, I've interacted with this
+**[00:20:19]** agent a few times before, but the cool thing is
+**[00:20:22]** now I can say.
+**[00:20:24]** Build demo travel agent.
+**[00:20:25]** This is the agent that I just hired.
+**[00:20:27]** I'm at mentioning it just like I would an employee
+**[00:20:29]** or someone else in your organization.
+**[00:20:31]** And I can say can I get some coffee places
+**[00:20:38]** as well please?
+**[00:20:42]** Its going to take a few minutes because remember as
+**[00:20:45]** part of like setting up your agent for agent 365,
+**[00:20:48]** one of the important parts that we set up was
+**[00:20:50]** created an endpoint for your agent.
+**[00:20:52]** Your agent is now able to respond to notifications, not
+**[00:20:56]** just over teams, but over at mentions from word documents,
+**[00:20:59]** emails that you can send to your agent.
+**[00:21:02]** So as part of running through the skill that I
+**[00:21:04]** showed you before, your agent is ready.
+**[00:21:07]** Now this agent can be hosted anywhere for test purposes.
+**[00:21:09]** We hosted this in Azure, but this LAN chain agent
+**[00:21:12]** could be in GCP, it could be in AWS, it
+**[00:21:15]** could be in your cloud provider of choice.
+**[00:21:17]** It does not matter right?
+**[00:21:19]** While this is happening, my agent will respond here when
+**[00:21:22]** its ready.
+**[00:21:22]** But we can also look through a comment here.
+**[00:21:25]** I had asked for a good Italian place and it
+**[00:21:28]** said OK try Laurel because its popular with excellent food
+**[00:21:32]** and a nice atmosphere.
+**[00:21:34]** Great, I'm going to try that as well as this
+**[00:21:35]** coffee place that I asked for before.
+**[00:21:38]** Now I asked talk to Kendra, talked about observability and
+**[00:21:41]** we wired up your agent for observability.
+**[00:21:43]** But where exactly does this observe observability get used?
+**[00:21:47]** Now, observability is kind of an interesting thing.
+**[00:21:49]** Developers want to know what their agents are up to.
+**[00:21:51]** Who uses your agents?
+**[00:21:53]** But it's also interesting from an end user, because this
+**[00:21:56]** is my employee, right?
+**[00:21:57]** I want to know how my interaction with this agent
+**[00:22:00]** was now.
+**[00:22:01]** So you can see that there are chats which happened
+**[00:22:03]** today when I was testing my agent, right?
+**[00:22:05]** If I refresh it, you will also see the recent
+**[00:22:07]** chat show up.
+**[00:22:08]** There were a couple of failures as well when the
+**[00:22:10]** agent did not carry out what I wanted.
+**[00:22:12]** So even as an end user, I kind of get
+**[00:22:14]** visibility on what my agent was up to.
+**[00:22:17]** What was the prompt that I gave it?
+**[00:22:19]** Did it carry out the task that it needed?
+**[00:22:21]** That is great.
+**[00:22:22]** So developers have observability and users can use this observability.
+**[00:22:26]** But then remember, your IT admins definitely want to know
+**[00:22:30]** what your agent is up to.
+**[00:22:32]** I just want to go a couple of lines back
+**[00:22:34]** now.
+**[00:22:35]** Remember the blueprint Kendra was talking about?
+**[00:22:37]** This is the blueprint right here.
+**[00:22:38]** And there are multiple instances of your blueprint, right?
+**[00:22:41]** Different people could hire, could essentially have your agent reporting
+**[00:22:45]** to them.
+**[00:22:46]** In this case, that is some of my colleagues, Pooja
+**[00:22:48]** and Alasta have multiple instances of this agent and this
+**[00:22:51]** one is mine.
+**[00:22:52]** So let's see as an admin, I can see activity
+**[00:22:55]** across all the instances.
+**[00:22:57]** But in this case, it looks like Aarti is using
+**[00:22:59]** this agent a lot.
+**[00:23:00]** So let's see what its up to.
+**[00:23:02]** I can see both the activity view here as well
+**[00:23:05]** as exactly who are the users of this agent right
+**[00:23:07]** here.
+**[00:23:08]** Now to recap, I started with a basic LAN chain
+**[00:23:12]** agent written in Note JS which I'm going to host
+**[00:23:16]** in Azure.
+**[00:23:17]** Does not matter where I host it right?
+**[00:23:19]** I use skills to get this agent ready for Agent
+**[00:23:23]** 365 had configurations for ENTRA where I blueprint was created.
+**[00:23:28]** I configurations for observability where we wired up open telemetry
+**[00:23:32]** for your agent.
+**[00:23:33]** I optionally chose Word and OneDrive MCP servers because that's
+**[00:23:36]** where the document was created.
+**[00:23:38]** I also have this agent set up for notifications so
+**[00:23:41]** that the agent can get messages over Teams as well
+**[00:23:44]** as notifications when its at mentioned in comments.
+**[00:23:47]** With that like your agent is ready, its configured, its
+**[00:23:50]** ready in your tenant for and ready to unlock all
+**[00:23:53]** the features of Agent 365 that Kendra will show you
+**[00:23:56]** in detail.
+**[00:24:06]** Awesome.
+**[00:24:06]** Thank you so much, Aarthy.
+**[00:24:08]** OK, that was a great demo, but that was a
+**[00:24:10]** long demo.
+**[00:24:11]** So just reiterate everything that we saw here, right?
+**[00:24:15]** She started out with that Lang chain agent.
+**[00:24:17]** She was able to fully onboard it with our SDK.
+**[00:24:20]** So she did things like give it that agent identity.
+**[00:24:23]** She enabled full observability.
+**[00:24:26]** She also took advantage of our tools capabilities and leverage
+**[00:24:30]** some of the MCPS, right?
+**[00:24:33]** And then she pivoted to show you the end user
+**[00:24:35]** experience experience, how she was able to hire that agent
+**[00:24:38]** instance and leverage that agent instance to plan her next
+**[00:24:42]** trip.
+**[00:24:42]** And then collaborate with that agent, go back and forth
+**[00:24:46]** just like she would any other employee to find and
+**[00:24:49]** track additional things.
+**[00:24:51]** And then she was also able to access that activity
+**[00:24:54]** and observe that agent and every step that it took,
+**[00:24:58]** right?
+**[00:24:58]** Really powerful.
+**[00:25:00]** Thank you so much.
+**[00:25:01]** Great demo.
+**[00:25:03]** Now let's switch gears here and show you what that
+**[00:25:09]** experience is.
+**[00:25:12]** I login tech support.
+**[00:25:26]** Oh, there we go.
+**[00:25:27]** Wrong button.
+**[00:25:28]** OK, here we go.
+**[00:25:30]** So let's take a look at the admin experience inside
+**[00:25:34]** of Microsoft 365 Admin Center, right?
+**[00:25:37]** So this is where you're going to see full observability
+**[00:25:41]** of all of your agents across your tenant.
+**[00:25:45]** One thing we are working on is multi tenant capabilities.
+**[00:25:48]** Today you'll see all of your agents in a single
+**[00:25:50]** tenant.
+**[00:25:51]** Here in the overview page, you see high level analytics
+**[00:25:56]** around total number of agents, total number of users.
+**[00:26:00]** These are your employee, human employee users, not your agentic
+**[00:26:04]** users.
+**[00:26:05]** You also see total runtime hours as well.
+**[00:26:08]** And then we have our registry sync.
+**[00:26:10]** I'm going to come back here down below.
+**[00:26:13]** Here you also have your calls to action, right?
+**[00:26:17]** So showing you analytics and data is great, but also
+**[00:26:20]** where do you need to late lean in, take some
+**[00:26:23]** action to resolve some of the issues you have.
+**[00:26:26]** Those pending requests for your agents here, similar to what
+**[00:26:29]** Aarthy was talking about where we were approving her agent
+**[00:26:32]** incense.
+**[00:26:33]** We'll take you through that.
+**[00:26:35]** Also, identifying anywhere where agent risks have been seen.
+**[00:26:39]** Agents without owners, This is a big one, right?
+**[00:26:42]** Making sure that your agent's sprawl stays under control and
+**[00:26:45]** your agent ecosystem has good hygiene.
+**[00:26:49]** And then any agents with exceptions.
+**[00:26:51]** Now, exceptions are anytime where there's an error in your
+**[00:26:54]** agent runtime.
+**[00:26:55]** This is going to surface as an exception.
+**[00:26:58]** Down below, you have some more granular analytics, so you
+**[00:27:01]** can see how many agents were built by your organization
+**[00:27:05]** versus how many agents were built by third party providers,
+**[00:27:08]** and of course, how many agents you're leveraging from across
+**[00:27:12]** Microsoft.
+**[00:27:13]** You also see your top platforms that your agents are
+**[00:27:17]** built on, right?
+**[00:27:18]** So you can understand which teams, which platforms are most
+**[00:27:22]** heavily being used.
+**[00:27:23]** You can see your agent adoption over time.
+**[00:27:27]** This can be really valuable if you're working on any
+**[00:27:30]** sort of adoption campaigns, if you're releasing any big highly
+**[00:27:34]** anticipated agents like an IT support or a benefits agent,
+**[00:27:38]** right?
+**[00:27:39]** And then you also can see your trending agent.
+**[00:27:42]** So these are the agents that are being used heavily
+**[00:27:44]** across your organization.
+**[00:27:46]** Now, if we go into the agent registry, this is
+**[00:27:50]** where, let me close this zoom in a tiny bit.
+**[00:27:54]** This is where this is where you're going to be
+**[00:27:57]** able to see all of your agents across all of
+**[00:28:00]** those different platforms, right?
+**[00:28:02]** So you'll notice as I'm scrolling, these are not just
+**[00:28:05]** Microsoft agents.
+**[00:28:06]** We have work day in here.
+**[00:28:08]** We have some of our partner agents, Genspark, right?
+**[00:28:12]** And you can customize and slice and dice this list
+**[00:28:16]** as needed, right?
+**[00:28:18]** So that you can more successfully manage this large number
+**[00:28:21]** of agents.
+**[00:28:22]** Now, if I go into an agent itself, here I
+**[00:28:25]** am in my Zava procurement agent, I'm able to see
+**[00:28:28]** really valuable agent metadata.
+**[00:28:30]** So I know exactly what this agent does.
+**[00:28:32]** I see metadata around when it was published, when it
+**[00:28:37]** was last updated.
+**[00:28:38]** You see the publisher, the owner, you see that agent
+**[00:28:42]** ID, right?
+**[00:28:43]** But really valuable here, you also see the agent instructions
+**[00:28:47]** so that you can see exactly what that agent is
+**[00:28:50]** doing, what the purpose of that agent is.
+**[00:28:53]** And then you also see the full identity history for
+**[00:28:56]** this agent.
+**[00:28:57]** So not only the bot ID, but you see that
+**[00:29:00]** blueprint ID.
+**[00:29:01]** You also see that entry agent ID as well.
+**[00:29:04]** If this was a copilot studio agent, you would see
+**[00:29:07]** all of the environment details here.
+**[00:29:09]** But because it's a Foundry agent, we're going to go
+**[00:29:13]** ahead and see all of those platform details and be
+**[00:29:16]** able to link out directly to that agent itself.
+**[00:29:20]** But I can see more here.
+**[00:29:22]** I can also see all of the users that this
+**[00:29:25]** agent is shared with.
+**[00:29:27]** I'm going to come back to Data and tools, so
+**[00:29:30]** pause on that one, But from a security perspective, you
+**[00:29:33]** can also see all the different policies that have been
+**[00:29:37]** applied to this agent during that onboarding or approval process.
+**[00:29:41]** And I can drill into Purview or ENTRA to learn
+**[00:29:44]** more and investigate further.
+**[00:29:47]** Along with that, I see all the permissions that this
+**[00:29:49]** agent has.
+**[00:29:49]** And then for me, one of my favorite features, because
+**[00:29:53]** I come from the agent building space, I love that
+**[00:29:56]** we now have a unified view into the activity across
+**[00:30:00]** all agent types.
+**[00:30:01]** So now you know total users, total sessions, exceptions, you
+**[00:30:06]** know your runtime hours.
+**[00:30:08]** You can also track successful sessions, right?
+**[00:30:11]** So that you know how your agent is performing, how
+**[00:30:14]** it's able to support your users.
+**[00:30:16]** And you can also monitor any of those errors or
+**[00:30:19]** exceptions, look for spikes in those exceptions, and then lean
+**[00:30:23]** in if necessary.
+**[00:30:25]** And then down below, you're going to see all of
+**[00:30:27]** the users that are driving traffic to your agent.
+**[00:30:30]** You understand their total sessions, their last activity date, and
+**[00:30:34]** all of those different pieces.
+**[00:30:36]** Now, this is a list view, and that's great.
+**[00:30:39]** We also give you a more visual representation, right?
+**[00:30:42]** So you can understand where your agents are working with
+**[00:30:47]** other agents, they're aggregated by the platforms these agents are
+**[00:30:52]** built on.
+**[00:30:53]** And if you hover over your agents where there are
+**[00:30:57]** multi agent solutions, you're able to see which agents these
+**[00:31:01]** are leveraging.
+**[00:31:02]** Let me zoom out so you can see that a
+**[00:31:04]** little bit easier even across different platforms, right?
+**[00:31:07]** And if you want to drill in and see more
+**[00:31:10]** details and you want to see a list view of
+**[00:31:12]** these connected platforms, you also have that here.
+**[00:31:15]** So I can see all of the agents that my
+**[00:31:17]** researcher agent is using, whether they're all available or whether
+**[00:31:21]** ones blocked, right?
+**[00:31:22]** So really valuable information, not only to understand different combinations
+**[00:31:27]** and different dependencies that your agents have, but if you
+**[00:31:31]** need to lean in and block an agent, you want
+**[00:31:34]** to know the blast radius.
+**[00:31:36]** If I block this agent, what else does it break,
+**[00:31:38]** right?
+**[00:31:39]** So all this information can be found here.
+**[00:31:42]** Now, if I come back to my registry, I want
+**[00:31:45]** to go ahead and drill into agents that have risks.
+**[00:31:49]** So here, if I click on the risks themselves, we
+**[00:31:52]** take you directly to the agent and we show you
+**[00:31:55]** the source of the risks.
+**[00:31:57]** If I had more time, maybe another session, I would
+**[00:32:01]** go ahead and drill into ENTRA or drill into Purview
+**[00:32:04]** so you can see just how granularly you can see
+**[00:32:08]** these incidents, what caused them in Purview.
+**[00:32:11]** Again, you have full access to those logs and you're
+**[00:32:14]** actually able to get down to the document layer or
+**[00:32:17]** the the data source layer that was trying to be
+**[00:32:20]** accessed that actually initiated this risk that was blocked, right.
+**[00:32:24]** And here what I can do, I can go ahead
+**[00:32:26]** and block this agent, and then I can work with
+**[00:32:29]** my SEC OPS team to go and do some additional
+**[00:32:32]** investigation and additional mitigation.
+**[00:32:36]** Now moving into agents without owners, I'm able to easily
+**[00:32:40]** reassign an owner, right?
+**[00:32:42]** I can go ahead and say, hey, Aarthy, I'm going
+**[00:32:45]** to give you a bit more work and I'm going
+**[00:32:47]** to make you the owner of this agent.
+**[00:32:50]** But as you can see here, this process is pretty
+**[00:32:53]** manual, right?
+**[00:32:54]** So it would be great to have a way to
+**[00:32:56]** automate this.
+**[00:32:58]** That's where rules come in.
+**[00:33:00]** So rules inside of Agent 365 give you a very
+**[00:33:03]** simple way to set up automation for some of these
+**[00:33:07]** kind of life cycle management actions across your agent.
+**[00:33:11]** So you can do things like agent reassignment when an
+**[00:33:15]** individual leaves an organization for those agents built in agent
+**[00:33:19]** builder, automatically reassign it to their manager.
+**[00:33:23]** You also can do things like where risk is identified,
+**[00:33:26]** automatically block that agent, right?
+**[00:33:29]** So you don't actually have to come in here and
+**[00:33:31]** manually block it yourself.
+**[00:33:33]** We are investing heavily in risk to make this as
+**[00:33:36]** scalable and as easy as possible and give you more
+**[00:33:39]** and more functionality over the next couple quarters.
+**[00:33:43]** The other piece I want to show you here within
+**[00:33:46]** settings, if we come back here are templates.
+**[00:33:49]** Now templates I would say is one of our hero
+**[00:33:52]** features.
+**[00:33:53]** What templates do is they aggregate all of those custom
+**[00:33:57]** policies from across ENTRA, Defender, Purview, and even SharePoint into
+**[00:34:02]** one reusable template that then you can apply to your
+**[00:34:06]** agents in a consistent and comprehensive way.
+**[00:34:10]** And so if I go into this template, this is
+**[00:34:12]** a custom one that I've created.
+**[00:34:14]** We have default ones.
+**[00:34:15]** You can easily create another, but you'll see here and
+**[00:34:18]** I'll zoom in, it's probably quite little in the back.
+**[00:34:21]** I've set up things like different access packages and I
+**[00:34:24]** have a number of different access packages that I can
+**[00:34:27]** select from.
+**[00:34:28]** I also have conditional access.
+**[00:34:31]** I also have a myriad of different options down below
+**[00:34:35]** that are kind of our default policies as well.
+**[00:34:38]** Things like DLP protection, life cycle management protections, etcetera.
+**[00:34:43]** So I can go ahead now that I've created this
+**[00:34:47]** agent and I will leverage it as a part of
+**[00:34:50]** that agent approval flow that Aarti was mentioning.
+**[00:34:55]** So here I have a staffing agent.
+**[00:34:58]** I, I want to publish this agent across my organization.
+**[00:35:02]** Now, before I do this, my IT admin team needs
+**[00:35:05]** to approve this and apply the appropriate template.
+**[00:35:08]** This is where I'm going to come back to data
+**[00:35:10]** and tools.
+**[00:35:11]** As you can see here, in order to make the
+**[00:35:14]** most informed decision, you want to know what your agent
+**[00:35:17]** is made of, right?
+**[00:35:18]** What data does it have access to?
+**[00:35:20]** What tools does it have access to?
+**[00:35:22]** This is really where you understand the risk level of
+**[00:35:25]** this agent, right?
+**[00:35:27]** And so here I can go ahead and kick off
+**[00:35:29]** the publish flow for this agent.
+**[00:35:31]** I can select the users that have access to it,
+**[00:35:34]** I can pre install it for all users or just
+**[00:35:36]** make it discoverable in the store.
+**[00:35:39]** And then now the magic happens.
+**[00:35:42]** We start with the default template because we believe baseline
+**[00:35:46]** all agents should have some level of protections, right?
+**[00:35:50]** But I want to go ahead and use that DevOps
+**[00:35:52]** template that I created custom for this particular agent.
+**[00:35:56]** You'll see here all of those policies that you saw
+**[00:35:59]** in templates are now being applied and also the appropriate
+**[00:36:03]** permissions.
+**[00:36:04]** I can go ahead and look through, review those permissions,
+**[00:36:08]** approve them, and now this agent is available for my
+**[00:36:11]** organization.
+**[00:36:12]** If I had more time, I could take you through
+**[00:36:14]** that agent instant flow as well that Aarthy was mentioning.
+**[00:36:18]** But where I really want to leave off here, I'm
+**[00:36:21]** going to come back to the registry and I want
+**[00:36:25]** to show you that registry sync capability.
+**[00:36:28]** Let me make sure I'm right on time, OK?
+**[00:36:31]** Registry sync again, is that ability to ingest those agents
+**[00:36:35]** from some of your common third party platforms like Amazon
+**[00:36:40]** Bedrock, Google, Vertex AI, right?
+**[00:36:42]** So here I've configured my access to those platforms.
+**[00:36:47]** And if I click into Google, I can see that
+**[00:36:50]** I have one agent here.
+**[00:36:52]** And you'll see here, I can't see all of the
+**[00:36:55]** observability data that I could had I onboarded this agent
+**[00:36:58]** with the SDK, but I'm at least aware of all
+**[00:37:01]** of the agents that I have deployed across this platform.
+**[00:37:05]** And because in Google I also have permissions to delete
+**[00:37:09]** agents, you'll notice that I also have that permission to
+**[00:37:13]** delete this agent if I wanted to as well.
+**[00:37:17]** Now there's so much more here.
+**[00:37:19]** We allow you to identify and bring shadow agents under
+**[00:37:24]** management.
+**[00:37:25]** We're expanding this outside of Open Claw to leverage the
+**[00:37:30]** Fender to identify 22 plus give or take additional local
+**[00:37:34]** platforms so that you can either block or bring those
+**[00:37:38]** under management, right.
+**[00:37:40]** We also allow you to govern and manage all of
+**[00:37:43]** your tools right here.
+**[00:37:45]** But I'm getting the the speed up signal.
+**[00:37:49]** So I'm going to go back to my PowerPoint and
+**[00:37:52]** finish out here with some really exciting details around customer
+**[00:37:56]** momentum.
+**[00:37:57]** So as you can see here, we have a ton
+**[00:38:01]** of value and we have really enjoyed getting to work
+**[00:38:05]** with some early adopters.
+**[00:38:07]** One such early adopter is EY.
+**[00:38:11]** So with EY, they have found that for mission critical
+**[00:38:16]** agents, Agent 365 is really key, right?
+**[00:38:19]** It gives them the trust to be able to unlock
+**[00:38:22]** these agents and to feel good about leveraging them across
+**[00:38:25]** the organization.
+**[00:38:27]** The next is Genspark, and lucky enough I don't have
+**[00:38:30]** to speak for them because we have Ray here to
+**[00:38:33]** come up on stage and tell us all about our
+**[00:38:36]** partnership and what they've done with Agent 365.
+**[00:38:39]** Thank you so much, Ray.
+**[00:38:44]** Good morning everyone.
+**[00:38:45]** I'm Ray Co Founder of Genspark and I'm very pleased
+**[00:38:49]** to be on the stage and luck and happy to
+**[00:38:52]** share with you guys of how Genspark integrated with Agent
+**[00:38:56]** 365.
+**[00:38:57]** So so Jasma is a unified AI workspace for the
+**[00:39:03]** knowledge people.
+**[00:39:05]** And when we have more than 2000 organizations has already
+**[00:39:10]** vegged Jasma as their daily work, daily work choose.
+**[00:39:15]** So when combined with Agent 365, magic happens.
+**[00:39:19]** So when we observe from the modern jobs, we found
+**[00:39:24]** that there's kinds of types of jobs.
+**[00:39:28]** For example, Sarah from the finance department, they should need
+**[00:39:33]** to queue free the board deck by Friday.
+**[00:39:36]** So she need to do some summarize and make some
+**[00:39:39]** slice.
+**[00:39:40]** And Tom, she he has more than 200 megabytes CSV
+**[00:39:46]** to to run over some to need some powerful compute
+**[00:39:51]** to do some calculations and summarizations.
+**[00:39:56]** So those two kinds of work need two kinds of
+**[00:39:59]** the AIS.
+**[00:40:00]** For Sarah, maybe she just need some simple AI tools
+**[00:40:04]** just like chat based tools.
+**[00:40:07]** But for Tom, he needs a dedicated virtual machines.
+**[00:40:12]** With Agent 365 it actually provided developers.
+**[00:40:18]** Like us the flexibility to combine with the different types
+**[00:40:24]** of the AI back end infrastructure to integrate with Agent
+**[00:40:30]** 365 S to me Agent 365 is actually has a
+**[00:40:34]** three primitives platforms.
+**[00:40:37]** 1 is the identity with the federal identity credentials.
+**[00:40:42]** The second one is the unified UIUX interface, for example,
+**[00:40:48]** like the all the Michael M365 software suites, for example,
+**[00:40:54]** teams, Outlooks works, document work, etcetera.
+**[00:41:00]** And the third is the observability preview audit and plus
+**[00:41:04]** all the lifestyle cycle management.
+**[00:41:08]** Here is the architect.
+**[00:41:09]** How transparent?
+**[00:41:11]** Integrate with Agent 365 and build on top of Agent
+**[00:41:16]** 365.
+**[00:41:17]** So at the top level, there's Microsoft software suite which
+**[00:41:23]** has a Teams, Outlook and Word structure.
+**[00:41:28]** And the middle layer is a very thin layer which
+**[00:41:33]** we integrated as a Python SDK from Agent 365, which
+**[00:41:39]** provide us the identity streaming MCP 2 course over Microsoft
+**[00:41:45]** software.
+**[00:41:47]** And the third one is the observability purview and the
+**[00:41:51]** life cycle management under the hood.
+**[00:41:54]** The third layer is actually the flexible back end.
+**[00:41:58]** We provided, for example, the lightweight AI twos, transmarked chat
+**[00:42:05]** based AI twos and the heavy weighted compute resources like
+**[00:42:11]** Transmark crawl, a dedicated VM provided we've done and here's
+**[00:42:17]** how we integrate and how we integrate the Agent 365.
+**[00:42:22]** For example, for the identity, we just, we, we authenticate
+**[00:42:29]** each request from teams and through our back hands.
+**[00:42:35]** We did not just do the single authentication at the
+**[00:42:39]** beginning.
+**[00:42:39]** We just we authenticate every message so that we can
+**[00:42:44]** ensure security.
+**[00:42:46]** For example, someone from the Teams group chat mentioned your
+**[00:42:51]** agent to asking for some private message from your agent
+**[00:42:55]** and the agent can itself at that message and at
+**[00:42:59]** that session can be authenticated that it found that the
+**[00:43:03]** user is not from your agents AAD and then we
+**[00:43:07]** just refuse that request.
+**[00:43:09]** So with agent 365 we did not need to build
+**[00:43:13]** another authentication layer.
+**[00:43:16]** We just we use all of the capability provided by
+**[00:43:21]** Microsoft.
+**[00:43:23]** And the second one is the MCP, which is the
+**[00:43:25]** great things we experience a lot.
+**[00:43:28]** And because Agent 365 already has already provide powerful MCP's,
+**[00:43:35]** for example, connecting with PowerPoints, Outlooks or Word, for example.
+**[00:43:43]** And then each request comes through jenspart, we can just,
+**[00:43:48]** we can generate a PowerPoint on the flight or Word
+**[00:43:52]** document on the fly and why back into the users
+**[00:43:56]** or the agents OneDrive using the MCP.
+**[00:43:59]** In that way, we don't need to build another storage
+**[00:44:03]** layer for the for for our users.
+**[00:44:06]** And the third one, third one, the last, not the
+**[00:44:10]** least is the most amazing part of Microsoft to provide
+**[00:44:14]** is the observability and the secure and the governance.
+**[00:44:20]** So for the observability, every agency locations inference and all
+**[00:44:27]** the activities, they are already logged into Microsoft preview.
+**[00:44:34]** So, so that the tenants, I mean in the dashboard
+**[00:44:38]** that they can monitor all the activities and that it's
+**[00:44:43]** used as single and unified place for the IT manager
+**[00:44:47]** to, to, to to observe the all the activities for
+**[00:44:51]** the of the agents.
+**[00:44:53]** And for the preview.
+**[00:44:54]** Because the agents has its own unified identity and all
+**[00:44:59]** the preview policies has already implemented in the in enterprise
+**[00:45:05]** will automatically apply to the agents.
+**[00:45:08]** So that the sense sensitive label on the Word document.
+**[00:45:14]** We also applied for the agents so that the agents,
+**[00:45:18]** when the agents come and or leak something sensitive, sensitive
+**[00:45:23]** information and the purview policy can automatically block them.
+**[00:45:28]** We don't need to implement another layer of the the
+**[00:45:33]** security layer of ourselves.
+**[00:45:36]** And of course all the agents has their laws, has
+**[00:45:40]** unified their laws inside the using the same Microsoft API
+**[00:45:45]** so that the IT manager can use the same SQL
+**[00:45:49]** query to query and analysis the agents activities, logs combines
+**[00:45:55]** all those things.
+**[00:45:57]** Agent 365 actually provide the flexibility for the users so
+**[00:46:02]** that the users can choose different kinds of the agent
+**[00:46:06]** back hands, for example chat based or dedicated VMS.
+**[00:46:10]** And for the IT manager inside the enterprise, it still
+**[00:46:15]** has the control for the enterprise because all the activities,
+**[00:46:21]** all the agents logs has already built on top of
+**[00:46:26]** Microsoft provided APIs and the manager.
+**[00:46:30]** The IT manager in the enterprise can use the same
+**[00:46:34]** existing tools to monitor, observe and all the all the
+**[00:46:39]** loss and activities that makes the partnership of Genspark and
+**[00:46:44]** Agent G65 are great.
+**[00:46:46]** And our customers, enterprise customers love this feature a lot.
+**[00:46:51]** For that, I'll just turn back to Neta.
+**[00:46:57]** Thank you everybody and I'll close this off you.
+**[00:46:59]** You saw how you can build enterprise ready agent with
+**[00:47:02]** with Microsoft Agent 365 with the how to integrate the
+**[00:47:05]** SDK, how to observe and secure and govern your agents.
+**[00:47:08]** We have some resources for you here, how to get
+**[00:47:10]** started, how to get started with the SDK and the
+**[00:47:13]** recently released blog.
+**[00:47:14]** I hope you enjoyed our session and thank you everybody.
+**[00:47:16]** Have a wonderful day today.

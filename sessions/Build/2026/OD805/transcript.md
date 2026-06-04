@@ -1,0 +1,947 @@
+**[00:00:00]** BRUNO CAPUANO: Hello everyone.
+**[00:00:01]** Welcome to this session.
+**[00:00:02]** Let's talk about how we can use AI.
+**[00:00:05]** Let's see the AI building blocks that we have
+**[00:00:08]** to build an application in.NET.
+**[00:00:10]** My name is Bruno.
+**[00:00:11]** I'm part of the Dev Project team at GitHub/Microsoft.
+**[00:00:16]** I'm excited to talk about this because we have
+**[00:00:18]** so many things to talk about.
+**[00:00:19]** I'm not sure if we are going to be able to see everything,
+**[00:00:23]** but let's give it a try.
+**[00:00:25]** We have a lot of content to show.
+**[00:00:28]** Let's start with the final application,
+**[00:00:30]** with the real application.
+**[00:00:31]** We have our Zava application,
+**[00:00:33]** which is the content showcase of applications.
+**[00:00:36]** Here, what we are going to see -- let me go back to the app.
+**[00:00:40]** It's literally a full support application that we have.
+**[00:00:45]** This is a support center application
+**[00:00:46]** where we analyze incidents.
+**[00:00:49]** This Analyze Incident is for a user who is going
+**[00:00:54]** to also improve the application and more.
+**[00:00:56]** We can see here in the chat that the user can generate images,
+**[00:01:00]** then can analyze some payment errors,
+**[00:01:03]** a very specific incident, and we will have some responses
+**[00:01:07]** of data analysis of the incident.
+**[00:01:10]** Then we have, okay, make it two tier.
+**[00:01:14]** Make a deeper analysis, and you know what?
+**[00:01:16]** When you finish the analysis,
+**[00:01:18]** display why are you giving me this feedback.
+**[00:01:21]** In the last question here in the chat, what we are going
+**[00:01:24]** to have is we are going to say, okay, this is the feedback
+**[00:01:26]** of this incident, this payment incident,
+**[00:01:29]** and it's tied to this information.
+**[00:01:31]** This is external information.
+**[00:01:33]** What we've just seen here is the standard ABC,
+**[00:01:38]** and more that we have here in an application,
+**[00:01:40]** because behind this support application,
+**[00:01:43]** everything is coordinated with Aspire.
+**[00:01:46]** We have Aspire here -- let's take a look at the graph --
+**[00:01:48]** that is running three services.
+**[00:01:51]** We have a web UI.
+**[00:01:52]** This is a Blazor.NET application
+**[00:01:54]** that is interacting with two services.
+**[00:01:56]** It's interacting with a Microsoft Agent Framework agent
+**[00:02:00]** that is doing some image generation, data grounding,
+**[00:02:03]** and more here, and it's also interacting with another agent.
+**[00:02:07]** In this scenario, it's an NVIDIA NeMo agent.
+**[00:02:11]** NVIDIA has a toolkit.
+**[00:02:12]** It's called the NeMo Toolkit Agent or Agent Toolkit.
+**[00:02:16]** We also created one agent there that is doing the data analysis,
+**[00:02:20]** and it's all put together.
+**[00:02:22]** We have a lot of elements here.
+**[00:02:24]** We can go to the traces, and we can see in the traces.
+**[00:02:27]** Every time that we have these scenarios,
+**[00:02:30]** we have the generated data for the MAF interactions,
+**[00:02:33]** but at the same time, if we go back to the information
+**[00:02:37]** for the data analysis, we should see here that this also include,
+**[00:02:41]** given this is a NeMo agent,
+**[00:02:43]** we can see also here the generative AI information here.
+**[00:02:47]** We put it all together right now,
+**[00:02:49]** and what we have is we are basically using building blocks,
+**[00:02:53]** .NET AI building blocks to have this, and let's basically start
+**[00:02:57]** to deconstruct the magic.
+**[00:02:59]** Let's start to focus on what we are going to talk
+**[00:03:02]** in the next 30-35 minutes.
+**[00:03:04]** We have different layers.
+**[00:03:05]** I split this in five.
+**[00:03:06]** You can do it in more or less if you want to, group some of them,
+**[00:03:11]** but let's start with the foundation.
+**[00:03:12]** The foundation is Microsoft.Extensions.AI.
+**[00:03:14]** Then we'll start to talk about data, we probably start to talk
+**[00:03:17]** about vector data, data ingestion, and more.
+**[00:03:20]** We'll talk about tools, and MCP comes here.
+**[00:03:22]** We'll talk about agents.
+**[00:03:23]** We'll talk about agent framework, and then we have,
+**[00:03:26]** in this specific scenario, the connection
+**[00:03:28]** between two agents using agent-to-agent,
+**[00:03:30]** but there are other topics.
+**[00:03:31]** Like in example, you can see like when you have AG-UI
+**[00:03:34]** in other sessions and more.
+**[00:03:37]** As I said, the third topic to talk is Microsoft.Extensions.AI.
+**[00:03:41]** Microsoft.Extensions.AI is a chat abstraction,
+**[00:03:45]** which is provider agnostics, so you can connect.
+**[00:03:48]** Let's start by the beginning, by a chat, but you can connect
+**[00:03:50]** to chat that runs in the cloud, in example, in Foundry,
+**[00:03:53]** or in another provider that runs locally.
+**[00:03:55]** The idea is that when you have this interface,
+**[00:03:58]** which by the way, is IChatClient interface, you can start
+**[00:04:03]** to interact with those LLMs.
+**[00:04:05]** This is the key part.
+**[00:04:06]** This is where we start.
+**[00:04:08]** Another topic here, which is important,
+**[00:04:10]** is that Microsoft.Extensions.AI, and depending what library
+**[00:04:14]** or what backend are you using, in example, if we use Foundry,
+**[00:04:18]** we are going to have the chance that instead
+**[00:04:19]** of using the standard endpoint URL, model name, and API key,
+**[00:04:25]** you can use integrated security, integrated identity,
+**[00:04:28]** and you can use -- pass their Entra ID,
+**[00:04:30]** your Entra ID to authenticate this.
+**[00:04:32]** By the way, if you're using Foundry, this is the way to go.
+**[00:04:35]** Let's give it a try and start to see this.
+**[00:04:38]** In order to take a look at all of this, all of this content,
+**[00:04:41]** what we are going to have is we're going to base our content
+**[00:04:45]** in two main resources.
+**[00:04:46]** First of all, the official documentations that we have
+**[00:04:48]** in AI app for.NET developers.
+**[00:04:50]** This is important because this covers all of the topics
+**[00:04:54]** that we have, Microsoft.Extensions.AI,
+**[00:04:56]** evaluation libraries, data ingestion, ingestion, and more.
+**[00:05:00]** The samples that we are going to use came from the generative AI
+**[00:05:03]** for beginners in.NET, so it's a mix between real samples --
+**[00:05:06]** you probably know me, I started with a demo.
+**[00:05:09]** I love the code.
+**[00:05:10]** We also have the foundational documents
+**[00:05:12]** and most close samples here.
+**[00:05:14]** If we start by the beginning, if we start with that,
+**[00:05:16]** what we are going to see is that, let's basically open one
+**[00:05:20]** of the samples that we have here.
+**[00:05:22]** We are going to use here a file-based application,
+**[00:05:26]** and this file-based application is using some libraries.
+**[00:05:30]** Let's zoom this a little.
+**[00:05:31]** We are using Microsoft.Extensions.AI,
+**[00:05:33]** of course, and then Azure AI.
+**[00:05:35]** I am running these samples against a backend.
+**[00:05:38]** This is my current Foundry backend
+**[00:05:42]** where you can see I have different models.
+**[00:05:44]** I have a GPT-Image-2 to generate image, GPT-5 Mini, Kimi.
+**[00:05:49]** I have a Grok model text embedding.
+**[00:05:51]** There are a lot of samples here to support this.
+**[00:05:54]** Going back to the code, I have these libraries,
+**[00:05:57]** and the main idea here is that I am using --
+**[00:06:00]** I am going to use integrated security,
+**[00:06:02]** so I don't need to pass an API key.
+**[00:06:04]** The endpoint and the model will come from some user secrets
+**[00:06:07]** that this application is using.
+**[00:06:09]** By default, I think the default values is GPT-5 Mini.
+**[00:06:13]** With this, what I am going to do is I'm going
+**[00:06:16]** to create an Azure client.
+**[00:06:17]** Once again, we can see the difference here using an API
+**[00:06:20]** name, endpoint and API key, or in this scenario,
+**[00:06:23]** I'm going to use a CLI credential
+**[00:06:26]** because I have my demos running from the console,
+**[00:06:29]** and I already did the az login to identify myself.
+**[00:06:32]** Once I have this, these are the three lines that make the magic.
+**[00:06:36]** Create the client and then get an IChatClient.
+**[00:06:39]** That's it.
+**[00:06:40]** This is as simple as we can start to interact with the chat.
+**[00:06:44]** The important part here is that, later,
+**[00:06:46]** what we can do is we can pick up the response from the question.
+**[00:06:49]** I think the question, the first question that we have is,
+**[00:06:52]** what is your model name?
+**[00:06:53]** We can show the question online,
+**[00:06:55]** so if I run this sample here, I am in the file.
+**[00:06:59]** Yes, let's do.NETapp.ts.
+**[00:07:03]** We are using GPT-5 here.
+**[00:07:05]** We are asking, what is your model name?
+**[00:07:08]** After a couple of seconds, we are going
+**[00:07:10]** to have the response saying, "Hey,
+**[00:07:12]** I don't have a personal name.
+**[00:07:13]** I am an AI assistant based in an OpenAI GPT model."
+**[00:07:17]** So that's fine because usually the models doesn't --
+**[00:07:20]** you can probably ask for the model card,
+**[00:07:21]** but they usually don't give you the name.
+**[00:07:24]** However, I can go back to my code
+**[00:07:26]** and let's change the deployment name to use Kimi K2.6.
+**[00:07:32]** This is the version that we have,
+**[00:07:34]** and if I run again the sample, I can't remember if Kimi replies
+**[00:07:39]** with a name, but we are probably going
+**[00:07:40]** to have a different answer.
+**[00:07:41]** This is how easy it is to change models.
+**[00:07:45]** This is how easy it is to change model and say, okay, "Yes,
+**[00:07:47]** I am Kimi, an AI assistant developed by Moonshot AI."
+**[00:07:51]** Remember, both of those samples are running in Azure,
+**[00:07:54]** and the nice part about our using chat, the chat elements
+**[00:07:59]** in Microsoft Azure for AI, is that you can connect literally
+**[00:08:02]** to everything that supports that chat interface.
+**[00:08:05]** How about if we want to run local models?
+**[00:08:07]** Let me switch to one of my demo environments here.
+**[00:08:10]** If we want to run local models, I have here running Ollama.
+**[00:08:13]** Ollama is a provider.
+**[00:08:14]** You can do this with Ollama, LM Studio, or Foundry Local.
+**[00:08:18]** Foundry Local is very, very good.
+**[00:08:20]** In this Ollama instance, I have several models installed here.
+**[00:08:25]** I have Nemotron, Phi-4-mini, Qwen, Llama,
+**[00:08:28]** and other Gemma models, so this is all
+**[00:08:30]** of the models that I have here.
+**[00:08:32]** I am going to start a small application
+**[00:08:35]** that is called Ollama Monitor that is going to show me
+**[00:08:38]** in the taskbar here, which models are loaded
+**[00:08:41]** and which models are waiting to be run.
+**[00:08:44]** I am going to run one demo, which is going
+**[00:08:46]** to be very similar to the one that we have,
+**[00:08:48]** but let's take a look at the code in this one.
+**[00:08:51]** In this scenario, what we have is the -- where is the Ollama?
+**[00:08:56]** There it is.
+**[00:08:57]** What do we have?
+**[00:08:57]** Let's close the monitor for a couple of seconds.
+**[00:09:00]** We are going to create a new Ollama chat client.
+**[00:09:04]** This is running locally in the port 11434, and I'm going
+**[00:09:07]** to use Phi-4-mini, and I'm going to ask, hey,
+**[00:09:10]** I'm going to give you some sentences.
+**[00:09:12]** Analyze the sentiment of these sentences, and then,
+**[00:09:15]** give me an overall sentiment average of all of this.
+**[00:09:18]** Remember, this is all going to work locally.
+**[00:09:21]** Once I have this, I'm going to get the response, and I'm going
+**[00:09:23]** to print the response.
+**[00:09:25]** Let's switch back here to our samples,
+**[00:09:29]** and let's do the samples, core samples,
+**[00:09:33]** and I think this is the basic three.
+**[00:09:36]** Once I am here, I am going to --
+**[00:09:38]** let's launch here the Ollama Monitor so we can see
+**[00:09:41]** that it's running, but we don't have any model loaded,
+**[00:09:47]** and let's run this.
+**[00:09:48]** This is the first time that we run this in a while,
+**[00:09:50]** so Ollama doesn't have the model loaded in memory.
+**[00:09:53]** It's going to take some time.
+**[00:09:55]** Then very similar will happen if you are using Foundry Local
+**[00:09:57]** in example, and there it is.
+**[00:10:00]** The model is loaded, Phi-4-mini, and after a couple of seconds
+**[00:10:03]** when the model is loaded, Ollama is going to start the answer,
+**[00:10:06]** and we are going to start to see what we have.
+**[00:10:09]** Remember, we have here the full analysis of the sentences.
+**[00:10:13]** It's the same interface, the same procedure to work
+**[00:10:15]** with local models, Foundry Local, Ollama, in example,
+**[00:10:19]** with cloud models, with your provider, the one that you want
+**[00:10:22]** to use, with Foundry, where you can use endpoint, model name,
+**[00:10:25]** and API key, or you can use endpoint, model name,
+**[00:10:29]** and integrated security.
+**[00:10:30]** Again, this is what we suggest, and it's very, very good,
+**[00:10:35]** very, very easy to use.
+**[00:10:36]** So we see here basically the foundation, which is working
+**[00:10:39]** with the chat, how well it works.
+**[00:10:42]** If we move forward, let me minimize this small machine.
+**[00:10:45]** If we move forward, we've seen that, hey,
+**[00:10:48]** this is the stack that we have.
+**[00:10:51]** Again, this is kind of LLMs, Gen AI 101,
+**[00:10:55]** working with the chat, and we have it there.
+**[00:10:58]** However, the next step usually is, okay,
+**[00:11:00]** I want to work with data.
+**[00:11:01]** We all know that the model has constraints.
+**[00:11:04]** They don't have access to every data that we have,
+**[00:11:08]** so usually the next step is, okay, I want to do RAG,
+**[00:11:11]** and RAG seems to be very complex or simple.
+**[00:11:14]** Everybody understands RAGs in a different way.
+**[00:11:16]** For me, it's a pipeline of naming the steps.
+**[00:11:19]** We have, in each one of these, the steps, reader, chunk,
+**[00:11:22]** enrich, embeddings/embedder.
+**[00:11:24]** We have different building blocks.
+**[00:11:26]** In example, the vector data is going to handle the storage
+**[00:11:29]** and similarity search.
+**[00:11:30]** Data ingestion is read, chunked, enriched, and more.
+**[00:11:34]** Embeddings are the ones that are going to allow us
+**[00:11:37]** to basically convert this text to a vector
+**[00:11:40]** that represents the meaning of embeddings,
+**[00:11:43]** and you can use embeddings locally.
+**[00:11:44]** We found the local in example.
+**[00:11:46]** You can use embeddings on the cloud.
+**[00:11:47]** I think I showed you how I have a text embedding,
+**[00:11:50]** a small text tree embedding, small from OpenAI.
+**[00:11:53]** In Foundry, you can just go here and more.
+**[00:11:55]** There are different embeddings models.
+**[00:11:57]** Locally, if you want to start and test, I suggest you
+**[00:12:00]** to use one of the ONNX models.
+**[00:12:02]** The mini-LLMs are great, and you're going
+**[00:12:04]** to start to play with this.
+**[00:12:06]** The nice part about that is that you can run the scenarios
+**[00:12:10]** like they are doing RAG or doing vector and data and more locally
+**[00:12:14]** to learn, and then switch to the cloud to more powerful models.
+**[00:12:18]** In example: A couple of local models
+**[00:12:20]** that you can use are very small.
+**[00:12:21]** They are 50 megabytes, 80 megabytes, and they are great.
+**[00:12:24]** You can put your text, and they are going
+**[00:12:25]** to generate an embedding.
+**[00:12:27]** However, if you want to have embeddings
+**[00:12:30]** that are multilingual, because remember, embedding is going
+**[00:12:32]** to create a vector where you are going
+**[00:12:34]** to have the meaning of the text.
+**[00:12:35]** You can later query based on meaning,
+**[00:12:38]** but you can do the query also using another language.
+**[00:12:41]** For those moments, probably, the models on the clouds are going
+**[00:12:44]** to be better for those scenarios.
+**[00:12:46]** Once again, let's give it a look at how this works,
+**[00:12:50]** so let me close here, and let's switch to the next block.
+**[00:12:56]** One important topic that you are going to see here
+**[00:12:58]** in the resources is that everything
+**[00:12:59]** that we've seen is represented here
+**[00:13:02]** in specific lessons on the.NET in AI.
+**[00:13:04]** In example before, we see that this is the homepage
+**[00:13:07]** for AI apps for.NET developers.
+**[00:13:10]** This is the moment that we start to --
+**[00:13:12]** we can see the official documentation talking
+**[00:13:13]** about extensions, the AI library.
+**[00:13:16]** You have a quick start where you can build an AI application
+**[00:13:19]** using OpenAI or Azure OpenAI to chat with.NET.
+**[00:13:23]** If we move forward, and this is where we are right now,
+**[00:13:25]** we can see, hey, this is the concept of embedding.
+**[00:13:28]** So even if you want to learn more later,
+**[00:13:31]** you can always go back to the.NET AI documentations
+**[00:13:34]** and take a look at these concepts.
+**[00:13:37]** Here we have, of course, tutorials
+**[00:13:39]** and we have step-by-step and we have more libraries.
+**[00:13:42]** There are many, many things that you can do,
+**[00:13:44]** but let's go back to the samples.
+**[00:13:47]** Let's close this one, and let's go
+**[00:13:48]** to the basic element that we have here.
+**[00:13:53]** What we have here in the core samples is one RAG scenario,
+**[00:13:58]** and you can see there are many, many samples, one RAG scenario,
+**[00:14:02]** that is doing the following stuff.
+**[00:14:05]** Of course, start with using these libraries
+**[00:14:07]** and getting endpoints.
+**[00:14:09]** I am going to use the embedding deployment from the cloud,
+**[00:14:12]** so I am going to use large language model from the cloud
+**[00:14:14]** and I'm going to use, also,
+**[00:14:15]** an embedding deployment from the cloud.
+**[00:14:17]** Let me double check which one do I have?
+**[00:14:20]** In Foundry, we have this text embedding 3-small.
+**[00:14:24]** Yes, it's the small one from OpenAI.
+**[00:14:26]** Going back to the code, I already did my az login,
+**[00:14:29]** so I am ready here, and I am going
+**[00:14:31]** to create an embedding generator.
+**[00:14:32]** This is the next step.
+**[00:14:34]** This is what we need to do.
+**[00:14:36]** Then on top of that, we are going
+**[00:14:37]** to create an in-memory data store, in-memory vector store,
+**[00:14:42]** where we are going to store information.
+**[00:14:44]** For this specific scenario, our sample is going to be focused
+**[00:14:48]** on storing movies, and we are going
+**[00:14:50]** to create a stored collection.
+**[00:14:53]** Just in case, for the mobile process, the collection is going
+**[00:14:56]** to be -- delete, and I'm sure it's going to be created again.
+**[00:14:59]** Then we have a small supporter here that is going
+**[00:15:03]** to give us a fake -- I think it's 5 or 10 movies
+**[00:15:07]** that we are going to work and each one
+**[00:15:08]** of these movies is going to be created as --
+**[00:15:13]** first is going to be created as a record that is going
+**[00:15:16]** to have a key, then a title, and description, and the embedding.
+**[00:15:20]** The embedding is going to be based
+**[00:15:22]** on the description of the movie.
+**[00:15:23]** This is what we are going to use later
+**[00:15:26]** to make the search using these libraries.
+**[00:15:30]** The important part here is that once we have these
+**[00:15:32]** and the movie, and we see that for each one
+**[00:15:35]** of the elements we are going to insert here, we are going
+**[00:15:40]** to run two questions here.
+**[00:15:41]** Okay, the first one is going to be, hey,
+**[00:15:43]** give me a family friendly movie
+**[00:15:45]** that includes ogres and dragons and more.
+**[00:15:48]** The second one is going to be give me a movie that is a hacker
+**[00:15:52]** who discovers reality is a simulation.
+**[00:15:55]** You probably see where this is going.
+**[00:15:57]** The important part here is that for each one of these queries,
+**[00:16:00]** each one of these questions, we are going to create
+**[00:16:03]** from the string and embedding,
+**[00:16:05]** and then we are going to do a search.
+**[00:16:07]** The search is something that came out of the box
+**[00:16:10]** in the extension service that we have, and this is the moment
+**[00:16:12]** that we are going to have some vector-to-vector call cosine.
+**[00:16:16]** They are going to apply some algorithm to find which one
+**[00:16:19]** of the vectors is closest to the query that we ask.
+**[00:16:23]** The important part is that the response will be, hey,
+**[00:16:26]** this is the movie that is closest there, but also,
+**[00:16:29]** we are going to have a score.
+**[00:16:31]** The score is going to represent how close is this?
+**[00:16:35]** For an example, we are going to ask a question
+**[00:16:37]** and the first answer we say, okay, this is Movie A
+**[00:16:40]** and the score is 98; 98 is very good.
+**[00:16:43]** In a 0 to 100, this is amazing, so it's probably a good result.
+**[00:16:47]** The second is going to be, okay, and this is Movie B
+**[00:16:49]** and the score is 40, so maybe that's not a good one.
+**[00:16:52]** Remember, here it all depends on how well we build our pipeline
+**[00:16:57]** to do the data ingestions, to do the queries and more,
+**[00:17:00]** but we have all of the elements here.
+**[00:17:02]** If you are wondering how this is represented, this is the record
+**[00:17:06]** of the movie where we have a key.
+**[00:17:07]** This case is going to be a string,
+**[00:17:08]** depending on what are you needing to use here?
+**[00:17:12]** Then we have the title and descriptions, also a string.
+**[00:17:15]** At the end, we have the embedding, which is going
+**[00:17:17]** to be a vector-store-vector that we are going to have here,
+**[00:17:21]** and we are going to use cosine similarity
+**[00:17:23]** for the distance function to do the queries.
+**[00:17:28]** The important part of this demo is that it's going to start
+**[00:17:31]** as a memory sample to search the information,
+**[00:17:35]** but we can easily switch this to use ChromaDB
+**[00:17:38]** or any vector database that we need to do this.
+**[00:17:42]** Let's take a look and let's run this.
+**[00:17:44]** Ware in core samples, ragsimple.o2.
+**[00:17:47]** Let's go here.
+**[00:17:48]** Let's go up and do ragsimple.o2.
+**[00:17:52]** Let's clear this and let me refresh.
+**[00:17:54]** I think this is -- yes, this is a standard.
+**[00:17:57]** This is a C# project, so let's do a.NET build first,
+**[00:18:02]** and then let's do a.NET run.
+**[00:18:11]** Remember, the first step is going to create the list
+**[00:18:14]** of movies, and we have here the movies, popular movies,
+**[00:18:17]** as you've probably seen.
+**[00:18:19]** The first question is going to be,
+**[00:18:20]** "Show me a family-friendly movie
+**[00:18:22]** that includes ogres and dragons."
+**[00:18:24]** Yes, we have Shrek here and we have 0.494,
+**[00:18:29]** almost 50% of chances here, and we also have the Lion King.
+**[00:18:34]** We probably need to work better in the description
+**[00:18:36]** of these movies to get a little bit closer,
+**[00:18:38]** and the second question is, show me a movie about a hacker
+**[00:18:42]** who discovered reality is a simulation, and yes,
+**[00:18:44]** The Matrix is the first result,
+**[00:18:47]** but we also have Inception because,
+**[00:18:49]** probably in the description of Inception,
+**[00:18:51]** we talk about simulations and reality and more,
+**[00:18:54]** so there are relationships here.
+**[00:18:56]** Everything that we show here, it shows two results
+**[00:18:58]** because if we go back to our code, we are going to see
+**[00:19:01]** that we asked for two results here
+**[00:19:03]** and we show each one of them.
+**[00:19:05]** Our steps as the developers,
+**[00:19:07]** once we understand these libraries
+**[00:19:08]** and these building blocks, is to later start to play with them,
+**[00:19:11]** to figure out the best way to work with this.
+**[00:19:14]** Maybe I only want to have five
+**[00:19:16]** and then do another re-rank of the results.
+**[00:19:19]** There are hybrid search strategies.
+**[00:19:21]** All of the libraries are here to basically work with this,
+**[00:19:24]** and how about if we want to do the direct ingestion?
+**[00:19:27]** This was a very, very simple one.
+**[00:19:30]** We literally pick up some strings and put it there
+**[00:19:32]** in the vector store, but there are more complex scenarios.
+**[00:19:34]** I example, let me open the data ingestion sample,
+**[00:19:39]** data ingestion, a simple one.
+**[00:19:42]** In this scenario, what we have is, again,
+**[00:19:45]** we read the chat model embeddings and models and more.
+**[00:19:49]** We create a logger.
+**[00:19:50]** We create our clients using the CLI credentials.
+**[00:19:53]** No keys, don't use keys if you're using Foundry.
+**[00:19:57]** Go always for default Azure credentials, CLI credentials,
+**[00:20:01]** or whatever fits better with your scenario.
+**[00:20:04]** Then we are going to do the steps.
+**[00:20:06]** Remember the steps, read, chunk, and more, so the first step,
+**[00:20:09]** we are going to create a markdown reader.
+**[00:20:11]** The markdown reader, very obviously, what it's going
+**[00:20:13]** to do is read, markdown, and then we are going
+**[00:20:17]** to split those documents -- they may be big --
+**[00:20:20]** into chunks so all of the content must stay together.
+**[00:20:23]** This is important.
+**[00:20:24]** This is one of the strategies that we need to follow here.
+**[00:20:28]** Remember, we are going to use, in this scenario, a pipeline,
+**[00:20:31]** the ingestion pipeline, that is going
+**[00:20:33]** to be the markdown reader first.
+**[00:20:35]** Then we are going to have a semantic similarity chunker.
+**[00:20:38]** We are going to have the summary enricher
+**[00:20:40]** and the vector store writer,
+**[00:20:42]** all of these using a SQLite vector store
+**[00:20:45]** to basically run these.
+**[00:20:46]** This is kind of a closer approach of something
+**[00:20:48]** that you are going to run in a real application.
+**[00:20:51]** We define here the size of the tokens, the max token
+**[00:20:54]** that we want to do, and then we create a semantic
+**[00:20:56]** similarity chunker.
+**[00:20:58]** The next step is enrich, of course.
+**[00:21:00]** We are going to have a short AI summary for each chunk
+**[00:21:04]** to basically have a better retrieval quality.
+**[00:21:07]** We want to have something that really,
+**[00:21:09]** really represents what we have there,
+**[00:21:12]** and then we are going to do the write.
+**[00:21:14]** This is the moment that we are going
+**[00:21:15]** to have a connection stream to the vector store.
+**[00:21:17]** Remember, this is only a local store, and once we have this,
+**[00:21:21]** similar to what we did before, we are going
+**[00:21:22]** to have the collection, which is the vector store collection,
+**[00:21:25]** and we're going to do delete and ensure the collection exists.
+**[00:21:28]** This is just for demo purposes.
+**[00:21:30]** You probably don't need to do the delete every time.
+**[00:21:33]** Once we have this, we have the chunk writer here to write this,
+**[00:21:36]** and we are going to create a pipeline.
+**[00:21:39]** This is what I really like.
+**[00:21:40]** You have all of the steps here, a reader, chunker, writer,
+**[00:21:42]** a logger factory, because we want to have logs here,
+**[00:21:45]** and then, for each one of the documents that we have here,
+**[00:21:48]** we are going to create and proceed with this.
+**[00:21:50]** The final step is how we do the search.
+**[00:21:54]** This is a Q&A scenario where we are going to ask questions
+**[00:21:58]** and based on what we have, what we ask --
+**[00:22:01]** so we have the query from the user,
+**[00:22:04]** and we create an embedding.
+**[00:22:05]** We are going to do a search,
+**[00:22:06]** showing three, to have all of this.
+**[00:22:09]** This is all how it works, and as you can see,
+**[00:22:12]** we start with a very simple scenario.
+**[00:22:14]** We start with a very simple, just as starting a string
+**[00:22:17]** that represents movies to something
+**[00:22:18]** that is much more complex because we can pick up markdowns
+**[00:22:21]** or PDF or any type of information
+**[00:22:23]** that you want and follow the steps.
+**[00:22:25]** Follow all of the necessary steps that we have here
+**[00:22:28]** to do the vector data and data ingestion, which is Reader,
+**[00:22:32]** Chunker, Enrich, Embeddings, and Vector store.
+**[00:22:35]** If we do a recap right now of where we are,
+**[00:22:38]** we talked about chats; we talked about embeddings;
+**[00:22:41]** we talked about vector data; we talked about data ingestion.
+**[00:22:45]** At this moment, this is probably when we start to evolve
+**[00:22:48]** with this scenario, we start to get out of,
+**[00:22:50]** let's get out of Microsoft.Extensions.AI.
+**[00:22:53]** Let's talk about tools, because this is the moment
+**[00:22:57]** that we probably need to talk about internal tools or MCP.
+**[00:23:01]** MCP is a wire protocol, it's a standard wire protocol,
+**[00:23:07]** created by Anthropic a couple of years ago.
+**[00:23:09]** Everybody's on MCP right now, and for me, MCP is the way
+**[00:23:13]** that we have today to connect external tools.
+**[00:23:16]** You can do internal because you can run MCP locally
+**[00:23:18]** on local servers but external tools with our applications.
+**[00:23:24]** The important part here is that we have a first-class SDK in C#
+**[00:23:29]** to work with Microsoft.Extensions.AI and MCP.
+**[00:23:32]** It's amazing.
+**[00:23:33]** It's maintained by very, very amazing people here.
+**[00:23:36]** Also, you can connect, literally, any public MCP
+**[00:23:40]** that is around using this SDK.
+**[00:23:43]** Today, I'm going to do a demo using the Microsoft Learn
+**[00:23:46]** MCP server.
+**[00:23:48]** If you want, you can go to the MCP registry that we have
+**[00:23:51]** in GitHub and see a list of MCP tools that we have there,
+**[00:23:54]** where you are going to find the Playground MCP, super popular
+**[00:23:57]** if you want to do automations, or the GitHub MCP and more.
+**[00:24:02]** For this demo, what we are going to do, we are going
+**[00:24:05]** to create a console application that is going
+**[00:24:07]** to use a chat client using MCP tools.
+**[00:24:11]** The MCP is going to be connected
+**[00:24:12]** to the Microsoft Learn MCP server, which provides access
+**[00:24:16]** to the latest documentation that is published in Microsoft Learn,
+**[00:24:19]** and we are going to ask a question two times.
+**[00:24:21]** I think the question is, give me the latest version of --
+**[00:24:26]** can't remember -- Microsoft Agent Framework
+**[00:24:28]** and the URL to get this.
+**[00:24:30]** The Model 1 probably doesn't know where it works,
+**[00:24:32]** where it lives, but the second one, when it's connected
+**[00:24:36]** to the MCP, we'll have the answer for that.
+**[00:24:38]** Let's switch quickly to the MCP and start
+**[00:24:41]** to take a look at the samples here.
+**[00:24:44]** If I go here to core samples, and of course,
+**[00:24:46]** the name for this one is MCP Microsoft Learn, like this.
+**[00:24:52]** This is the MCP server.
+**[00:24:54]** It's located in learn.microsoft.com/api/mcp.
+**[00:24:58]** We are going to ask the same question twice,
+**[00:25:00]** without MCP and with MCP.
+**[00:25:02]** What is important, what is really, really useful,
+**[00:25:04]** is to take a look at the code here.
+**[00:25:07]** This is the question that we are going to use.
+**[00:25:09]** Of course, what is the latest version
+**[00:25:10]** of Microsoft Agent Framework for C#?
+**[00:25:13]** Answer with the version number and the link
+**[00:25:16]** of the official documentation.
+**[00:25:18]** This is the system prompt, your.NET documentation assistant.
+**[00:25:21]** This is what the chat client is going to use and more,
+**[00:25:25]** and then we create the chat client.
+**[00:25:27]** The important part here is that we have the endpoint,
+**[00:25:30]** we have the CLI credential, we have the deployment name,
+**[00:25:33]** but we add function invocations.
+**[00:25:35]** Why do we add function invocation?
+**[00:25:37]** Why do we have this?
+**[00:25:38]** Because at this moment, this is part of Microsoft.Extensions.AI,
+**[00:25:42]** this chat client will be able to invoke external tools.
+**[00:25:45]** In this case, the tool is going to be MCP.
+**[00:25:49]** There are different ways to do this, so bear with me.
+**[00:25:51]** I am going to show you one, but if you take a look
+**[00:25:53]** at the documentation, and you can put all of the tools --
+**[00:25:55]** when you create a chat client,
+**[00:25:56]** you can use the tools on every call.
+**[00:25:59]** As I said, there are different ways to do this.
+**[00:26:01]** The first scenario will be, okay,
+**[00:26:03]** let's create a list of messages.
+**[00:26:05]** For each one of the messages, we are going to display the answer,
+**[00:26:09]** and we have the system prompt and the question.
+**[00:26:11]** The question is, what is the latest version?
+**[00:26:13]** This is also important.
+**[00:26:14]** I haven't mentioned this before.
+**[00:26:17]** The chat client
+**[00:26:17]** in Microsoft.Extensions.AI supports, literally,
+**[00:26:20]** different ways to work.
+**[00:26:21]** Right now, there are chat completion, responses, and more,
+**[00:26:23]** and on the client side, when you ask a question to a model,
+**[00:26:27]** you can wait until the models give you the response,
+**[00:26:30]** or you can stream.
+**[00:26:33]** If the model supports streaming token by token, you can stream
+**[00:26:36]** that question, and this is very important if we want
+**[00:26:38]** to have a nice user experience, because streaming,
+**[00:26:41]** token by token, gives the user the sense that,
+**[00:26:44]** oh, this is working.
+**[00:26:45]** I like it.
+**[00:26:46]** I can really, really see what is going on in real time.
+**[00:26:48]** This is what you see in your, probably, in your standard GPT
+**[00:26:52]** or chat application that you have with AI right now.
+**[00:26:55]** Going back here, what we have is that in the first scenario,
+**[00:27:00]** we are going to ask the question to the chat client,
+**[00:27:04]** and we are going to show the answer.
+**[00:27:05]** In the second scenario, what we are going to do, we are going
+**[00:27:09]** to create an MCP client transport.
+**[00:27:12]** First, this is part of the MCP SDK, where we are going
+**[00:27:16]** to define where is our MCP server?
+**[00:27:19]** This Microsoft Learn MCP doesn't require authentication
+**[00:27:23]** or anything else.
+**[00:27:24]** If you are working, for example, with a GitHub MCP server,
+**[00:27:27]** or with a Hugging Face MCP server, you will need
+**[00:27:31]** to also add all of the necessary auth features or tokens
+**[00:27:36]** or everything that you need to do to make it work.
+**[00:27:38]** This is a simple one for demo purposes,
+**[00:27:40]** but you can take a look at other samples that we have here,
+**[00:27:43]** in example, with Hugging Face.
+**[00:27:45]** Once we have this, we are going to create an MCP client.
+**[00:27:48]** Again, there are different ways that you can do this.
+**[00:27:50]** Take a look at the documentation.
+**[00:27:51]** This is one that I think is good enough to read.
+**[00:27:54]** We are going to create the client that is going
+**[00:27:56]** to use the client transport
+**[00:27:58]** that represents the Microsoft Learn MCP.
+**[00:28:01]** Then we are going to ask the tools.
+**[00:28:04]** What are the tools that are supported by this MCP server?
+**[00:28:07]** We are going to show the list of the tools.
+**[00:28:09]** Then we are going to ask again the question,
+**[00:28:11]** literally the same, but this is the main important difference
+**[00:28:15]** that we have here.
+**[00:28:16]** Once we are doing -- when asking the question, we are going
+**[00:28:18]** to add new chat options element to the question,
+**[00:28:22]** and we are going to pass the collection of tools
+**[00:28:26]** that the MCP provides.
+**[00:28:27]** As I said, there are different ways that you can do this.
+**[00:28:29]** You can pass one tool, all of the tools,
+**[00:28:32]** here in each one of the calls.
+**[00:28:33]** You can add the tools when you create your chat clients.
+**[00:28:36]** They can be there.
+**[00:28:37]** You can filter the tools.
+**[00:28:39]** One important topic here is that if you want to pass all
+**[00:28:42]** of the tools and you have MCP clients with thousands
+**[00:28:46]** of tools that's going to use a lot of context here,
+**[00:28:48]** you maybe want to do a filter first, working,
+**[00:28:51]** figuring out which are the tools that you need
+**[00:28:53]** and really want to use here?
+**[00:28:54]** This is the moment that the library, the building blocks,
+**[00:28:58]** provides a lot of flexibility to support you,
+**[00:29:02]** to support the creation of an application.
+**[00:29:04]** If we run this model, if we go back here to the code,
+**[00:29:07]** this is MCP 3, so let's go back here.
+**[00:29:11]** Let's do MCP 1, 2, 3, clear.
+**[00:29:15]** Let me double check.
+**[00:29:16]** This is a program file, so let's do, again,
+**[00:29:18]** a.NET build first and do a.NET run.
+**[00:29:23]** We are going to -- let's clear our.NET run.
+**[00:29:28]** Oh, not read me, run.
+**[00:29:31]** We are going to see that first, it is going to try
+**[00:29:33]** to answer the question about the latest version
+**[00:29:36]** of Microsoft Azure Framework and the model.
+**[00:29:39]** I think I'm using the standard GPT-5 Mini that I use for most
+**[00:29:42]** of the demos, is going to try to answer the question.
+**[00:29:44]** It takes some time, but we can see here the token-by-token
+**[00:29:48]** output format for everything.
+**[00:29:50]** We see here that -- I don't have live access
+**[00:29:54]** to external documentation from here,
+**[00:29:56]** so I can't fetch the current latest NuGet version.
+**[00:29:58]** This is the before section where we don't have any answer
+**[00:30:02]** from the model because it's not connected.
+**[00:30:04]** In the second one after, it's going to say, yes,
+**[00:30:07]** we are connected to the Microsoft Learn MCP server.
+**[00:30:10]** We have these tools, Microsoft Doc Search
+**[00:30:13]** that is doing all of this.
+**[00:30:14]** We have patterns and more, and on the question, somewhere here,
+**[00:30:18]** users pattern more, asking the model.
+**[00:30:22]** Oh, we don't have a single GA version yet,
+**[00:30:24]** but we have the Microsoft Agent Framework.net packages,
+**[00:30:27]** Microsoft Agent AI and more, and they are published here.
+**[00:30:30]** You can take a look here to the Microsoft Framework overview.
+**[00:30:32]** If we take a look here, let's click this one.
+**[00:30:34]** Oh, it's opened here.
+**[00:30:36]** We can see that it gives us access here
+**[00:30:38]** to the Agent Framework, and somehow,
+**[00:30:40]** we didn't get the version.
+**[00:30:41]** The version is somewhere there.
+**[00:30:43]** It tested, and it's also GA in Microsoft Agent Framework,
+**[00:30:45]** but hey, this is how the MCP tools work.
+**[00:30:49]** We are providing the agent, in these steps,
+**[00:30:52]** access to information using data and more,
+**[00:30:55]** and we are providing the agents, also, access to external tools
+**[00:30:59]** that can be, in example, like MCPs.
+**[00:31:01]** As I said, there are so, so many tools that we can use.
+**[00:31:05]** So wrapping up a little before moving to the next one,
+**[00:31:08]** we have extensions with chat, embeddings, data, and more.
+**[00:31:11]** We have tools, and it's all come together, right now,
+**[00:31:15]** when we start to talk about agents.
+**[00:31:17]** Remember, agents, a fast way to describe an agent,
+**[00:31:21]** an agent can be an LLM -- choose the one that you really like --
+**[00:31:26]** that uses a set of system instructions
+**[00:31:28]** to define how the agent is going to behave, and then uses tools
+**[00:31:32]** to provide the agent features like, in example, memory,
+**[00:31:35]** or access to third-party services that we've just seen
+**[00:31:38]** with the Microsoft Learn MCP and more.
+**[00:31:42]** With all of these, we can go from a very simple agent
+**[00:31:46]** to a more complex one.
+**[00:31:48]** The important part is that when we start to talk
+**[00:31:50]** about the agent, we also bring to the table other topics like,
+**[00:31:52]** in example, workflows and connections to external agents,
+**[00:31:56]** as we say, agent-to-agent is a protocol,
+**[00:31:58]** the one that we used before to connect an ML agent from NVIDIA
+**[00:32:04]** with the Microsoft Agent Framework.
+**[00:32:05]** We can also talk about durable functions,
+**[00:32:07]** durable workflows, and more.
+**[00:32:08]** There are so many things.
+**[00:32:10]** Let's take a look at this,
+**[00:32:12]** and let's see how we can implement this.
+**[00:32:15]** Going back to the code, and before we forget,
+**[00:32:19]** and before we move forward, remember each one
+**[00:32:21]** of these sections, we are, right now, in MCP.
+**[00:32:26]** We have in the.NET and AI documentation,
+**[00:32:29]** you have the "Getting Started with MCP."
+**[00:32:31]** You have how you can create a minimal client.
+**[00:32:34]** Important, and I almost forgot about this.
+**[00:32:36]** I show example how we can consume an MCP,
+**[00:32:39]** and you can create your own servers,
+**[00:32:40]** and you can expose your resources,
+**[00:32:42]** tools, and more with MCP.
+**[00:32:44]** This is also part of the documentation,
+**[00:32:46]** so it's also going to be all here.
+**[00:32:48]** Going back to our Microsoft Agent Framework demo,
+**[00:32:52]** what we are going to see --
+**[00:32:53]** let's open the "Hello World" of the demo.
+**[00:32:56]** So here, let's switch
+**[00:32:58]** to Microsoft Agent Framework samples, and let's open the 01.
+**[00:33:05]** This is how we are going to work,
+**[00:33:07]** so we create a chat client.
+**[00:33:09]** Once we have the chat client, and this is important,
+**[00:33:13]** right now, Microsoft Agent Framework provides on top
+**[00:33:17]** of the chat client a new interface, which is the IAgent,
+**[00:33:22]** and we are going to have the chat client here,
+**[00:33:24]** and then we are going to say, hey,
+**[00:33:26]** chat client, create a new agent.
+**[00:33:28]** The minimal agent definition will require a name
+**[00:33:32]** and a description and instructions.
+**[00:33:33]** We have here, the name is going to be a writer, that is going
+**[00:33:36]** to write a story that they are engaging
+**[00:33:38]** and creating, and that's it.
+**[00:33:40]** That's the minimal expression of an agent,
+**[00:33:42]** which is kind of a wrapper.
+**[00:33:43]** When you do this, it's just a wrapper on top
+**[00:33:47]** of the chat client, but it makes sense, because we are going
+**[00:33:50]** to see here the same exact pattern
+**[00:33:53]** and capabilities that we have before.
+**[00:33:55]** We are going to have this StreamingAsync,
+**[00:33:57]** and this is a writer.
+**[00:33:58]** The writer is going to write a short story
+**[00:34:00]** about a haunted house with a character named Lucia.
+**[00:34:03]** If I go back here to -- we are in core samples.
+**[00:34:07]** Let's do MAF and let do MAF01.
+**[00:34:13]** Oh, my God, we have so many samples here.
+**[00:34:16]** So MAF01, let me see if this is a --
+**[00:34:23]** oh, this is a program, so.NET build.
+**[00:34:26]** Let's build this first, and let's run this,.NET run,
+**[00:34:35]** and what we are going to see here is once again,
+**[00:34:37]** using integrated security, or if you want,
+**[00:34:39]** you can even do this using only local with the local model,
+**[00:34:42]** your Phi-4 mini model locally,
+**[00:34:44]** and you have your agent locally running here.
+**[00:34:46]** This is going to take some time, so in the sense that, hey,
+**[00:34:49]** we start to see here the token by token, the generator
+**[00:34:51]** of the story, that Lucia has not met.
+**[00:34:54]** This is running with an agent.
+**[00:34:56]** However, the agent allows us to put it all together.
+**[00:34:59]** If we move to another sample,
+**[00:35:02]** let's take a look at the MCP sample.
+**[00:35:05]** We have here agents MCP01, and we'll take a look at this.
+**[00:35:09]** We should see here that we create an agent.
+**[00:35:12]** We have, literally, the same pieces of code to work
+**[00:35:15]** with MCPs, and this applies also to functions and more.
+**[00:35:18]** Then when we have the tools, we are going
+**[00:35:20]** to provide the tools here.
+**[00:35:22]** We are going to describe and list the tools
+**[00:35:24]** that we have here, and we are going to create an agent.
+**[00:35:27]** In this agent, on the definition, on the creation
+**[00:35:30]** of the agent, we are going to add the tools,
+**[00:35:34]** so this is the part where we are going to have the agent
+**[00:35:36]** that is going to use the tools.
+**[00:35:39]** Let's ask the same questions, agent framework for C#,
+**[00:35:43]** and also once we have this, show this in the StreamingAsync.
+**[00:35:47]** Let's switch to the MCP01.
+**[00:35:52]** This is MAF, MCP01.
+**[00:35:56]** Let's do a clear, and let's do a.NET run directly
+**[00:36:00]** to run this in one shot.
+**[00:36:03]** There it is.
+**[00:36:04]** This one was fast because the first step is to connect
+**[00:36:07]** to the docs search and show, basically,
+**[00:36:10]** the tool that we have here, which is Microsoft Docs search,
+**[00:36:13]** and at the bottom, we are going to ask the agent,
+**[00:36:17]** and we are going to start to get the information.
+**[00:36:19]** We can see here how small steps here are performing
+**[00:36:22]** when we have external tools in the agent.
+**[00:36:24]** It was very fast.
+**[00:36:25]** We have the description of the tool and more,
+**[00:36:27]** and then we have here the agent information.
+**[00:36:31]** We can see here, hey, we have the version here.
+**[00:36:33]** We have the Learn API configuration,
+**[00:36:36]** how to agent config, so this scenario is working with us
+**[00:36:39]** and is giving us this version.
+**[00:36:40]** I think it's mostly because the system prompt
+**[00:36:42]** in this one is better than the previous one,
+**[00:36:45]** so we have an agent answering the question.
+**[00:36:49]** We can do more because, as you remember, we can start to talk
+**[00:36:54]** about different agents.
+**[00:36:55]** How about if we have two agents?
+**[00:36:57]** I have here MAF1, and I have here MAF2.
+**[00:37:01]** How about if we have two agents here?
+**[00:37:03]** I can have the same chat client that's going to provide access
+**[00:37:07]** to the LLM that is going to create, first, a writer agent
+**[00:37:11]** and then an editor agent.
+**[00:37:13]** This is important.
+**[00:37:14]** Microsoft Agent Framework will provide, later, different ways
+**[00:37:18]** to start to build this agent orchestration.
+**[00:37:21]** You can manually call an agent, process the output,
+**[00:37:23]** provide the output to the next agent,
+**[00:37:25]** process the output and more.
+**[00:37:27]** Microsoft Agent Framework also provides some patterns,
+**[00:37:30]** more patterns.
+**[00:37:30]** In example, the sequential, call one to another,
+**[00:37:33]** one to another one, which are based on round-robin scenarios
+**[00:37:38]** where you can call on one to the other.
+**[00:37:40]** They all, at the same time, there are different patterns
+**[00:37:42]** that you can use there, but these are the key lines of code.
+**[00:37:45]** You can create a workflow.
+**[00:37:46]** In a moment, we're going to start to talk about workflows,
+**[00:37:48]** and then, you can add your agents or your nodes or more.
+**[00:37:51]** There are so many ways that you can do this.
+**[00:37:55]** If we use this, we should see
+**[00:37:56]** that you have Agent 1 calling Agent 2, and at this moment,
+**[00:38:01]** we can run this workflow as an agent
+**[00:38:03]** because internally the workflow is an agent,
+**[00:38:06]** and we can run this using a StreamingAsync.
+**[00:38:08]** If you're also using this in a web application,
+**[00:38:12]** there is a super-cool tool, which is called DevUI
+**[00:38:15]** that allows you to, literally,
+**[00:38:20]** see in real time how the agents are working
+**[00:38:22]** in a visual interface.
+**[00:38:23]** You can test your workflows there.
+**[00:38:24]** You can test your agents there.
+**[00:38:26]** You can have traces, tool calls, and more in a single --
+**[00:38:29]** in a very nice UI application, which is very, very cool.
+**[00:38:33]** This is how easy it is to work with agents.
+**[00:38:36]** If we go back here, this is an example,
+**[00:38:39]** going back to the first scenario,
+**[00:38:40]** when we have this Zava application
+**[00:38:42]** and we have two agents.
+**[00:38:44]** Maybe the approach there is something like this.
+**[00:38:46]** Maybe we have an agent that is involved and it's,
+**[00:38:49]** basically, using A2A for this.
+**[00:38:53]** One of the A2A agents is a Microsoft Agent Framework
+**[00:38:55]** and the other is this NVIDIA agent,
+**[00:38:58]** so we can make it work well altogether.
+**[00:39:00]** Once again, we have the building blocks to do this.
+**[00:39:03]** If we take a look here at the samples, another sample
+**[00:39:05]** that we have here is the A2A agents.
+**[00:39:08]** Let's close this, and what we have is we have a writer agent
+**[00:39:12]** that is going to live in the URL, in the local URL,
+**[00:39:18]** that we are going to run.
+**[00:39:19]** Then we are going to create the second agent that is going
+**[00:39:22]** to be running the second one.
+**[00:39:24]** To map the A2A, we need to have access
+**[00:39:27]** to what is called the agent card,
+**[00:39:29]** which is I think is /.well-known/card.json.
+**[00:39:32]** It's basically a description of how the agents work.
+**[00:39:36]** You can see that in real time to say, oh, that's my agent.
+**[00:39:39]** This is how it works.
+**[00:39:41]** Going back to the first scenario, you see somewhere here
+**[00:39:44]** in the internal application, we have -- this is the NeMo one,
+**[00:39:49]** and if I go back here to the resources and I take a look
+**[00:39:52]** at the NeMo URL, oh, we don't have it here,
+**[00:39:55]** but this slash -- oh, where is this?
+**[00:40:02]** Well-known, and you have information from the agent here.
+**[00:40:05]** We can take a look at the code here for this one later,
+**[00:40:08]** but here, we can see how both agents working
+**[00:40:11]** in two URLs are talking.
+**[00:40:13]** We have the server with the A2A, agent to agent server
+**[00:40:18]** with the agent to agent agent.
+**[00:40:19]** That is going to be consumed for the A2A clients.
+**[00:40:22]** By the way, A2A was initially created and opened by Google.
+**[00:40:28]** As far as I remember right now, it's part of a Linux Foundation,
+**[00:40:31]** so everybody's doing this.
+**[00:40:32]** I think it's a very, very nice way to run and connect agents
+**[00:40:36]** from different versions.
+**[00:40:37]** If we go back to Foundry here, we should see
+**[00:40:40]** that in the tools option that we have in any Foundry scenario,
+**[00:40:46]** in any Foundry project, we have the chance to go
+**[00:40:48]** to Custom Scenarios and add an A2A agent.
+**[00:40:53]** This is the moment where you can provide the name
+**[00:40:56]** and then you have the input.
+**[00:40:57]** This is what I can't remember is the URL,
+**[00:40:59]** which is /.well-known/agent-card.json
+**[00:41:02]** that described this.
+**[00:41:03]** Of course, here, you also have the chance
+**[00:41:05]** to see how you're going to authenticate with your agents.
+**[00:41:08]** All of the same, you can do it with Microsoft
+**[00:41:11]** with the libraries that we have here for.NET.
+**[00:41:16]** We have here the sample and, hey, we have one client talking
+**[00:41:20]** to the other and then creating this, but we also talk
+**[00:41:23]** about image generation, how we can put together everything
+**[00:41:26]** to have an image generation.
+**[00:41:28]** So again, this is all part of the building blocks,
+**[00:41:30]** and we are covering just a small piece here
+**[00:41:32]** of everything that we have.
+**[00:41:34]** If we go back here to the last scenario demo that we have,
+**[00:41:38]** which is MAF image generation -- where is my image generation
+**[00:41:42]** with Foundry -- what we see here is that, first,
+**[00:41:47]** we are using a library, which is text to image generation
+**[00:41:50]** that is going to work with the GPT-Image-2 models on the cloud
+**[00:41:54]** that requires an endpoint, API key,
+**[00:41:56]** a sample of how we can do this, and a client.
+**[00:42:00]** Then we are going to have -- and this is the important part --
+**[00:42:04]** we are going to have here a task that is going
+**[00:42:07]** to generate an image that has a couple of descriptions,
+**[00:42:10]** and this is the Generate Image, that is going
+**[00:42:13]** to be used later as the tool.
+**[00:42:16]** We are going to create an agent here, and in this scenario,
+**[00:42:21]** we have the name and instructions, and we are going
+**[00:42:24]** to create a tool to do this.
+**[00:42:26]** When we ask the agent to create an image,
+**[00:42:29]** it's going to come here and it's going to talk to these tools.
+**[00:42:32]** Everything is coming together to see this, and you can test this
+**[00:42:35]** and see this, and it's going to create an image
+**[00:42:37]** if you have deployed them.
+**[00:42:39]** Wrapping up, we are at the end of the session.
+**[00:42:45]** We talked about agents, MCPs, Microsoft.Extensions.AI,
+**[00:42:49]** there are so many things.
+**[00:42:51]** By the way, this is all libraries.
+**[00:42:53]** This is all C# libraries that you can take a look
+**[00:42:55]** and you can start to use.
+**[00:42:57]** There are images, chat answers, everything that we've seen
+**[00:42:59]** in the previous application, no black boxes there.
+**[00:43:02]** It's all available for any.NET developer, and there is more.
+**[00:43:06]** This is the important part.
+**[00:43:07]** You can take a look at all of the foundational libraries.
+**[00:43:12]** Microsoft Agent Framework doesn't stop at simple agents.
+**[00:43:14]** It supports AG-UI, as I mentioned.
+**[00:43:17]** Take a look at the other sessions
+**[00:43:18]** and do whatever workflows.
+**[00:43:20]** There are so many other things that you can use right now,
+**[00:43:23]** and there are so many other building blocks.
+**[00:43:25]** Go back to the documentation to see what else you have.
+**[00:43:29]** This is the end.
+**[00:43:29]** Remember, the two main links that you need
+**[00:43:31]** to have right now is the Generative AI for Beginners.NET
+**[00:43:34]** for the code samples, and the official AI.NET documentations.
+**[00:43:39]** With all these extensions, AI, C#, and Agent Framework,
+**[00:43:42]** there are so many things.
+**[00:43:44]** Hey, I hope you enjoyed the session.
+**[00:43:45]** See you all in the next one, goodbye.

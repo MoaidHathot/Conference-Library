@@ -1,0 +1,570 @@
+WEBVTT
+
+00:00:00.360 --> 00:00:01.350
+DAVID HAIKNEY: Hello, everybody,
+
+00:00:01.350 --> 00:00:04.830
+and welcome to this online
+video for Microsoft Build.
+
+00:00:04.830 --> 00:00:08.520
+I'm David Haikney, Technical
+Product Director at Arm.
+
+00:00:08.520 --> 00:00:10.740
+In this short video, I'll
+walk you through how
+
+00:00:10.740 --> 00:00:14.430
+to use our new performance
+analysis toolkit, Arm Performix,
+
+00:00:14.430 --> 00:00:15.660
+to help you observe
+
+00:00:15.660 --> 00:00:19.330
+and accelerate the workloads
+running on Cobalt.
+
+00:00:20.370 --> 00:00:23.610
+Microsoft and Arm have an
+incredibly strong partnership,
+
+00:00:23.610 --> 00:00:26.490
+and Performix has been developed
+in close collaboration
+
+00:00:26.490 --> 00:00:29.430
+with Microsoft
+performance experts.
+
+00:00:29.430 --> 00:00:31.830
+I know many of you may
+be migrating to Cobalt
+
+00:00:31.830 --> 00:00:33.660
+for the first time,
+and so I wanted
+
+00:00:33.660 --> 00:00:35.610
+to briefly draw your
+attention to some
+
+00:00:35.610 --> 00:00:39.250
+of the fabulous resources to
+help you on your journey.
+
+00:00:42.320 --> 00:00:44.960
+Before jumping into the demo,
+I want to take a moment
+
+00:00:44.960 --> 00:00:48.390
+to set the scene on
+performance analysis.
+
+00:00:48.390 --> 00:00:49.830
+Performance analysis
+can be thought
+
+00:00:49.830 --> 00:00:51.630
+of like a crime investigation.
+
+00:00:51.630 --> 00:00:54.120
+You have suspects,
+leads, hypotheses.
+
+00:00:54.120 --> 00:00:55.950
+You need to gather
+evidence to help support
+
+00:00:55.950 --> 00:00:57.570
+or disprove your theories.
+
+00:00:57.570 --> 00:00:59.700
+There may be blind
+alleys and dead ends.
+
+00:00:59.700 --> 00:01:03.180
+New evidence may require you to
+revisit previous assumptions.
+
+00:01:03.180 --> 00:01:06.870
+It is not a straightforward,
+linear process.
+
+00:01:06.870 --> 00:01:10.140
+Performance engineers need to
+wrangle a very wide, complex,
+
+00:01:10.140 --> 00:01:12.180
+and fragmented toolset.
+
+00:01:12.180 --> 00:01:15.720
+That is why we built
+Arm Performix.
+
+00:01:15.720 --> 00:01:19.440
+Whilst each investigation is
+unique, the overall approach
+
+00:01:19.440 --> 00:01:23.850
+that expert performance analysts
+take tends to be consistent.
+
+00:01:23.850 --> 00:01:26.430
+Investigations tend
+to start very broad
+
+00:01:26.430 --> 00:01:29.100
+and acquire an overall
+picture before diving deeper
+
+00:01:29.100 --> 00:01:30.690
+into the details.
+
+00:01:30.690 --> 00:01:34.200
+Experiments are run with good
+science, changing one variable
+
+00:01:34.200 --> 00:01:38.130
+at a time, repeating the runs
+to understand consistency,
+
+00:01:38.130 --> 00:01:41.970
+and comparing results
+against previous baselines.
+
+00:01:41.970 --> 00:01:45.240
+Specifically, this means
+starting with an understanding
+
+00:01:45.240 --> 00:01:47.310
+of what the platform,
+in our case,
+
+00:01:47.310 --> 00:01:50.790
+the Cobalt instance,
+is capable of.
+
+00:01:50.790 --> 00:01:53.970
+Then, understanding how
+this system behaves
+
+00:01:53.970 --> 00:01:56.100
+when the workload is applied.
+
+00:01:56.100 --> 00:02:00.360
+This will help dictate where
+analysis is best focused.
+
+00:02:00.360 --> 00:02:01.860
+We'll show you some examples
+
+00:02:01.860 --> 00:02:04.230
+of where we can go deeper
+with the analysis.
+
+00:02:04.230 --> 00:02:06.490
+So let's jump into the demo.
+
+00:02:07.650 --> 00:02:09.660
+This is the Performix UI.
+
+00:02:09.660 --> 00:02:12.450
+Everything we'll demo here is
+also available via the command
+
+00:02:12.450 --> 00:02:16.380
+line for those that prefer to do
+the analysis from the terminal.
+
+00:02:16.380 --> 00:02:18.300
+To get started,
+I'll introduce you
+
+00:02:18.300 --> 00:02:23.070
+to two key concepts,
+recipes and targets.
+
+00:02:23.070 --> 00:02:25.440
+Targets are the systems,
+again, in our case,
+
+00:02:25.440 --> 00:02:30.120
+the Cobalt instances, that we're
+going to run our workload on.
+
+00:02:30.120 --> 00:02:32.130
+Adding a target is a simple case
+
+00:02:32.130 --> 00:02:37.110
+of supplying the relevant SSH
+credentials, host, user, port,
+
+00:02:37.110 --> 00:02:39.730
+and any required SSH keys.
+
+00:02:41.270 --> 00:02:43.760
+The next concept is recipes.
+
+00:02:43.760 --> 00:02:47.240
+These are the experiments
+or workflows we want to run
+
+00:02:47.240 --> 00:02:51.240
+on our target as part of
+our performance analysis.
+
+00:02:51.240 --> 00:02:53.640
+There are a number
+of recipes here.
+
+00:02:53.640 --> 00:02:55.980
+Those that are still under
+development are marked
+
+00:02:55.980 --> 00:02:59.880
+as experimental as we continue
+to expand this toolkit.
+
+00:02:59.880 --> 00:03:04.410
+We'll start by assessing our
+overall Cobalt target instance.
+
+00:03:04.410 --> 00:03:08.370
+We do this by running the
+system characterization recipe.
+
+00:03:08.370 --> 00:03:12.090
+This is going to run a series of
+microbenchmarks on the platform.
+
+00:03:12.090 --> 00:03:14.250
+Running a recipe, we
+select the target,
+
+00:03:14.250 --> 00:03:16.860
+choose the benchmarks
+we want to run.
+
+00:03:16.860 --> 00:03:19.260
+Performix makes sure
+the target is set up
+
+00:03:19.260 --> 00:03:21.090
+and any dependencies
+are installed
+
+00:03:21.090 --> 00:03:24.690
+on the target system
+on your behalf.
+
+00:03:24.690 --> 00:03:28.230
+Here's an example of one of the
+system characterization outputs,
+
+00:03:28.230 --> 00:03:32.370
+how memory bandwidth varies with
+access size, or in other words,
+
+00:03:32.370 --> 00:03:34.200
+how the cache is performing.
+
+00:03:34.200 --> 00:03:35.640
+This recipe is useful
+
+00:03:35.640 --> 00:03:38.340
+to validate the instance
+itself is performing
+
+00:03:38.340 --> 00:03:40.530
+at the expected level.
+
+00:03:40.530 --> 00:03:42.900
+The next step is to
+see how it behaves
+
+00:03:42.900 --> 00:03:45.090
+when the workload is running.
+
+00:03:45.090 --> 00:03:49.320
+We can do this with the
+system utilization recipe.
+
+00:03:49.320 --> 00:03:52.770
+With this recipe, we can choose
+to launch a new workload,
+
+00:03:52.770 --> 00:03:55.110
+attach to an already
+running process,
+
+00:03:55.110 --> 00:03:57.600
+or profile across all processes.
+
+00:03:57.600 --> 00:04:03.540
+In this example, I focus on
+the CPU of our 96-core system.
+
+00:04:03.540 --> 00:04:06.990
+This is a heat map of
+how busy each core is
+
+00:04:06.990 --> 00:04:09.300
+over a one-second interval.
+
+00:04:09.300 --> 00:04:11.430
+We can see that
+roughly two-thirds
+
+00:04:11.430 --> 00:04:13.110
+of the cores are occupied
+
+00:04:13.110 --> 00:04:16.140
+and the remaining
+third relatively idle.
+
+00:04:16.140 --> 00:04:19.800
+This at-a-glance
+visualization generates lots
+
+00:04:19.800 --> 00:04:22.500
+of potential avenues
+for our investigations.
+
+00:04:22.500 --> 00:04:24.570
+Perhaps we can increase
+the thread count,
+
+00:04:24.570 --> 00:04:26.310
+maybe a different instance size,
+
+00:04:26.310 --> 00:04:28.890
+or perhaps there's some lock
+contention that's occupying
+
+00:04:28.890 --> 00:04:30.060
+these cores.
+
+00:04:30.060 --> 00:04:34.080
+Let's dig deeper into what those
+cores are actually running.
+
+00:04:34.080 --> 00:04:37.260
+We can go deeper using
+the code hotspots recipe.
+
+00:04:37.260 --> 00:04:40.080
+This samples where time is
+being spent in the code,
+
+00:04:40.080 --> 00:04:43.130
+and we can tie this back
+to the source code itself.
+
+00:04:43.130 --> 00:04:45.890
+This recipe works
+across all languages,
+
+00:04:45.890 --> 00:04:48.210
+including Java and.NET.
+
+00:04:48.210 --> 00:04:49.950
+Understanding which parts
+
+00:04:49.950 --> 00:04:54.060
+of our code are hot ensures we
+can spend time optimizing the
+
+00:04:54.060 --> 00:04:56.790
+right places, something
+that can't be done
+
+00:04:56.790 --> 00:04:59.610
+with static analysis tools.
+
+00:04:59.610 --> 00:05:00.720
+Another way we can dig
+
+00:05:00.720 --> 00:05:04.830
+into where time is being spent
+is using instruction mix.
+
+00:05:04.830 --> 00:05:08.280
+This is useful for understanding
+how well the application is
+
+00:05:08.280 --> 00:05:11.400
+taking advantage of the
+platform's capabilities.
+
+00:05:11.400 --> 00:05:13.530
+I mentioned earlier
+how it's often useful
+
+00:05:13.530 --> 00:05:17.010
+to compare the results of
+one experiment with another.
+
+00:05:17.010 --> 00:05:21.040
+Performix allows you to
+easily compare between runs.
+
+00:05:22.170 --> 00:05:24.960
+This example shows the
+different instruction mixes
+
+00:05:24.960 --> 00:05:27.810
+between two different
+matrix multiplications,
+
+00:05:27.810 --> 00:05:33.180
+one using Arm NEON instructions,
+the other using SVE.
+
+00:05:33.180 --> 00:05:35.820
+And we can go deeper
+still using the CPU
+
+00:05:35.820 --> 00:05:38.640
+microarchitecture recipe.
+
+00:05:38.640 --> 00:05:42.720
+This uses Arm's top-down
+methodology to characterize
+
+00:05:42.720 --> 00:05:44.310
+where time is being spent
+
+00:05:44.310 --> 00:05:47.220
+at various different
+parts of the CPU.
+
+00:05:47.220 --> 00:05:50.430
+We can dig into how the various
+layers of caching are performing
+
+00:05:50.430 --> 00:05:52.770
+as well as detecting
+pipeline stalls due
+
+00:05:52.770 --> 00:05:55.500
+to branch mispredictions.
+
+00:05:55.500 --> 00:05:58.680
+As you can see, Performix
+has the ability to do
+
+00:05:58.680 --> 00:06:02.250
+that breadth-first analysis
+across the entire system,
+
+00:06:02.250 --> 00:06:05.100
+and then go deep into
+specific aspects
+
+00:06:05.100 --> 00:06:08.670
+as the investigation unfolds.
+
+00:06:08.670 --> 00:06:10.710
+For the final part of
+the demonstration,
+
+00:06:10.710 --> 00:06:12.570
+we're going to look at
+delivering insights
+
+00:06:12.570 --> 00:06:16.200
+and actual improvements
+from this analysis.
+
+00:06:16.200 --> 00:06:18.570
+Performix provides an MCP server
+
+00:06:18.570 --> 00:06:21.630
+so that the analysis can be
+tightly coupled alongside
+
+00:06:21.630 --> 00:06:23.310
+an LLM.
+
+00:06:23.310 --> 00:06:26.160
+Here, next to my code
+in Visual Studio,
+
+00:06:26.160 --> 00:06:29.280
+I'm able to summon the
+analysis from all of the runs
+
+00:06:29.280 --> 00:06:31.380
+that we just performed.
+
+00:06:31.380 --> 00:06:35.100
+Providing this profiling
+data, disassembly,
+
+00:06:35.100 --> 00:06:38.250
+information about the target
+system and source code
+
+00:06:38.250 --> 00:06:43.470
+to the LLM allows Performix
+to deliver dynamic insight
+
+00:06:43.470 --> 00:06:46.020
+to suggest confidence-based
+improvements
+
+00:06:46.020 --> 00:06:50.500
+to accelerate the workload
+running on the Cobalt platform.
+
+00:06:52.740 --> 00:06:57.090
+So in summary, you've seen
+how Performix uses targets
+
+00:06:57.090 --> 00:07:00.750
+and recipes to apply that
+guided analysis approach
+
+00:07:00.750 --> 00:07:04.440
+to our performance
+investigation, starting broad
+
+00:07:04.440 --> 00:07:07.800
+with system characterization
+and utilization
+
+00:07:07.800 --> 00:07:10.620
+and enabling deeper
+analysis with a selection
+
+00:07:10.620 --> 00:07:13.080
+of specialized recipes.
+
+00:07:13.080 --> 00:07:17.670
+Powerful MCP server integration
+means performance analysis goes
+
+00:07:17.670 --> 00:07:20.790
+from being a passive activity
+of sampling and profiling
+
+00:07:20.790 --> 00:07:24.510
+to a dynamic one of actively
+suggesting improvements
+
+00:07:24.510 --> 00:07:28.770
+and optimizations to
+accelerate your workload.
+
+00:07:28.770 --> 00:07:33.540
+Performix is available now, free
+to download and free to use.
+
+00:07:33.540 --> 00:07:37.200
+We'd love for you to try it out
+and let us know your experience.
+
+00:07:37.200 --> 00:07:39.070
+Thank you for watching.

@@ -1,0 +1,849 @@
+**[00:00:01]** All right.
+**[00:00:01]** Good morning, everybody.
+**[00:00:03]** Thanks for starting Day 2 at Build with us at
+**[00:00:06]** BRK 260.
+**[00:00:07]** Today we'll be talking about how you can build local
+**[00:00:10]** AI powered apps for the over 1 billion Windows devices
+**[00:00:13]** out there.
+**[00:00:14]** No need for a cloud setup, no token costs, and
+**[00:00:17]** no network needed.
+**[00:00:19]** All through a stack that's generally available and ready for
+**[00:00:22]** your production workloads and powered with the latest innovation from
+**[00:00:26]** across Microsoft and our silicon partners, AMD, Intel, NVIDIA, and
+**[00:00:30]** Qualcomm.
+**[00:00:31]** We also have several announcements and a ton of live
+**[00:00:34]** demos lined up across 5 devices, so it's going to
+**[00:00:37]** be quite something.
+**[00:00:38]** So let's go ahead and get started.
+**[00:00:40]** We are your speakers for this session.
+**[00:00:42]** My name is Anastasia and I'm a product manager at
+**[00:00:45]** Microsoft working on Windows ML.
+**[00:00:47]** And my name is Aditi, I'm a product manager at
+**[00:00:50]** Microsoft working on the AIAPIS.
+**[00:00:52]** Awesome.
+**[00:00:54]** So for those of you that attended the keynote yesterday,
+**[00:00:57]** you'll have heard Satya talk about unmetered intelligence, or shifting
+**[00:01:01]** from always running your AI workloads in the cloud to
+**[00:01:04]** running them locally, using just the hardware on everyday PCs
+**[00:01:08]** and only going to the cloud when your workload truly
+**[00:01:11]** needs it and it's worth the cost.
+**[00:01:13]** And thanks to recent advancements in AI models, hardware, and
+**[00:01:17]** the software stacks that run them, today every Windows PC
+**[00:01:21]** is becoming increasingly AI capable, leveraging powerful GP US for
+**[00:01:26]** maximum performance and compute intensive workloads, NP us on Cofiled
+**[00:01:30]** Plus PCs for maximum power efficiency and always on experiences,
+**[00:01:35]** and even CP US for maximum reach, especially with lighter
+**[00:01:39]** weight workloads.
+**[00:01:40]** But enough talking about it.
+**[00:01:41]** Let's take a look at some of the real world
+**[00:01:44]** examples of what developers are building using local AI through
+**[00:01:48]** Foundry on Windows.
+**[00:02:22]** None.
+**[00:02:47]** Music.
+**[00:03:03]** Wow, so you were telling me all those experiences are
+**[00:03:06]** running AI models locally?
+**[00:03:08]** That's right, all local, no cloud setup.
+**[00:03:11]** All right, so let's talk about why developers and enterprises
+**[00:03:15]** are betting on local AI.
+**[00:03:17]** From Adobe to WhatsApp building some incredible local AI powered
+**[00:03:21]** experiences.
+**[00:03:22]** The first is running models locally can help improve privacy
+**[00:03:26]** and security because there is no customer or sensitive enterprise
+**[00:03:30]** data that ever has to leave the device.
+**[00:03:33]** Second, it reduces latency because there's no round trip that's
+**[00:03:36]** needed to the cloud, and that's going to be particularly
+**[00:03:39]** critical for real time workloads.
+**[00:03:42]** Third, it enables AI experiences without the need for a
+**[00:03:45]** network connection because all of the compute is taking place
+**[00:03:48]** right on the device.
+**[00:03:50]** And finally, not all AI workloads need cloud scale, and
+**[00:03:53]** running models locally can significantly cut down costs.
+**[00:03:58]** And it's not just developers that are betting on local
+**[00:04:01]** AI.
+**[00:04:01]** Microsoft experiences are betting on it as well, from Outlook
+**[00:04:05]** summarized to GitHub Copilot, all built using the same stack
+**[00:04:09]** that's being offered to developers and enterprises.
+**[00:04:13]** So how can developers get started building these AI powered
+**[00:04:17]** apps?
+**[00:04:17]** Yeah, I'm glad you asked.
+**[00:04:19]** That's what Foundry on Windows is for, and that includes
+**[00:04:22]** the Windows AIAPIS, which are the turnkey APIs powered by
+**[00:04:26]** Windows Inbox models that you can use for common tasks
+**[00:04:29]** such as natural language vision and many others.
+**[00:04:32]** And these are generally going to be the easiest way
+**[00:04:35]** for developers to get started building local AI powered experiences
+**[00:04:38]** on Windows.
+**[00:04:40]** Then for developers that are interested in using common open
+**[00:04:43]** source models, they can run those locally using Foundry Local
+**[00:04:47]** which has a range of models that have already been
+**[00:04:50]** pre optimised to run it really well across all Windows
+**[00:04:53]** devices.
+**[00:04:54]** And then you can use Windows ML to run your
+**[00:04:57]** own custom model.
+**[00:04:59]** This can be one that you trained yourself or found
+**[00:05:01]** on Hugging Face and then fine-tuned for your scenario.
+**[00:05:06]** And Windows ML is also the underlying backbone that powers
+**[00:05:10]** the entire Foundry on Windows stock, enabling its core cross
+**[00:05:13]** silicon capabilities.
+**[00:05:16]** All right, now it's time to introduce our demo scenario,
+**[00:05:19]** the Unmetered Token Cafe, which is powered by Foundry on
+**[00:05:23]** Windows, where the coffee is great and cloud token costs
+**[00:05:27]** are a thing of the past.
+**[00:05:29]** So this cafe just opened.
+**[00:05:32]** Like any small business, the owners are wearing every hat,
+**[00:05:35]** doing everything from taking customer orders to running their experimental
+**[00:05:40]** brews program.
+**[00:05:41]** They don't have the budget for cloud AI bills, They
+**[00:05:44]** don't want to have to rely on their flaky cafe
+**[00:05:47]** network for all of their business operations, and they need
+**[00:05:50]** all of their workloads to just work using the PCs
+**[00:05:53]** that they already own.
+**[00:05:55]** All right, so throughout the rest of the session, we're
+**[00:05:58]** going to be enabling various local AI powered experiences for
+**[00:06:02]** this cafe through Foundry on Windows.
+**[00:06:04]** But as you can imagine, the possibilities are really limitless
+**[00:06:07]** in terms of how you can use Foundry on Windows
+**[00:06:10]** and local AI for your own apps and enterprise workflows.
+**[00:06:13]** So to get started Editi, what would be the best
+**[00:06:16]** way for the cafe to enable customer orders?
+**[00:06:20]** Great question.
+**[00:06:21]** Well, the cafe has a drive through and customers drive
+**[00:06:24]** up, they speak their order into the microphone and we
+**[00:06:27]** need to convert their spoken order into text.
+**[00:06:30]** And the easiest way to get started with this is
+**[00:06:33]** through the Windows AIAPIS.
+**[00:06:35]** So today I'm going to demo to you may my
+**[00:06:38]** sample drive through application.
+**[00:06:40]** I'm going to be running this on my Microsoft Surface
+**[00:06:43]** device with a Qualcomm Snapdragon NPU.
+**[00:06:49]** Alrighty, so here is my drive through application and let's
+**[00:06:53]** say a customer rolls up, they're going to hit that,
+**[00:06:56]** press to talk button, speak into the microphone and say
+**[00:06:59]** their order in the back end.
+**[00:07:00]** This is going to use our brand new speech recognition
+**[00:07:03]** API to convert their spoken order into a string into
+**[00:07:07]** text.
+**[00:07:08]** So, Anastasia, tell me, what would you like to order
+**[00:07:10]** today?
+**[00:07:11]** Yeah, I think I would like to get a matcha
+**[00:07:14]** latte.
+**[00:07:14]** I would want to get it with soy milk extra
+**[00:07:17]** hot because I'm always cold.
+**[00:07:19]** And then maybe a croissant on the side as well.
+**[00:07:23]** And there we go.
+**[00:07:25]** Here is Anastasia's order outputted by our new speech recognition
+**[00:07:30]** API.
+**[00:07:31]** So this particular API took input from the microphone, but
+**[00:07:34]** I can also take input from audio files and audio
+**[00:07:37]** streams.
+**[00:07:38]** Like if you were trying to enable a calls or
+**[00:07:40]** meeting type of scenario.
+**[00:07:42]** So that demo though, that was running on the NPU,
+**[00:07:45]** right?
+**[00:07:46]** But what about the devices at the cafe that might
+**[00:07:49]** not be Copilot Plus PCs?
+**[00:07:50]** Would they still be able to run the workload?
+**[00:07:53]** Yeah, the.
+**[00:07:53]** Really great thing about this API is it runs best
+**[00:07:57]** on Copilot plus PCs.
+**[00:07:58]** It uses the NPU, but it also works for CPU.
+**[00:08:03]** Now when we first released the AIAPIS, we released them
+**[00:08:06]** for the NPU, but we heard so much customer feedback
+**[00:08:09]** that you would all like to address a much broader
+**[00:08:12]** hardware spectrum and we hear you.
+**[00:08:15]** So today we're super excited to share that we're expanding
+**[00:08:19]** the support of many of the AIAPIS to run on
+**[00:08:22]** CPUs and to run on GPUs so you can reach
+**[00:08:25]** a broader set of devices, a broader set of customers
+**[00:08:29]** with these AP is.
+**[00:08:31]** So for my next demo, I'm going to show you
+**[00:08:34]** Phi Silica, our small language model newly running on GPU.
+**[00:08:39]** OK, So all of those orders that we took in
+**[00:08:42]** through the speech to text API, well, they're sitting in
+**[00:08:46]** an unstructured as unstructured text in a barista queue.
+**[00:08:50]** And we want someone looking at this queue to really
+**[00:08:53]** easily be able to understand what they need to do.
+**[00:08:56]** So here I have my ordering application and a barista
+**[00:08:59]** is going to take a look at this and maybe
+**[00:09:01]** hit one of these orders in the back end.
+**[00:09:03]** This is going to use Phi silica running on GPU.
+**[00:09:06]** It's going to extract all the relevant information and structure
+**[00:09:10]** its output as Jason, which again is using a new
+**[00:09:13]** API for structuring Phi silica output.
+**[00:09:17]** If you can see on the task manager, there's a
+**[00:09:19]** little spike on GPU because it's all running locally on
+**[00:09:22]** the GPU.
+**[00:09:23]** And here is the Jason output that I wanted from
+**[00:09:26]** the language model.
+**[00:09:27]** And you can see this is the drink I want,
+**[00:09:30]** the size, the modifiers, quantities, everything.
+**[00:09:33]** Really quick glance, you know what you're making and how
+**[00:09:37]** I implemented this.
+**[00:09:39]** Actually pretty straightforward to use the AIAPIS.
+**[00:09:42]** It's just a few lines of code.
+**[00:09:44]** All of our AP is use a very similar calling
+**[00:09:46]** pattern.
+**[00:09:47]** So first I'm going to check if the model is
+**[00:09:49]** ready on the device by calling this get ready state
+**[00:09:52]** function.
+**[00:09:53]** If it's not ready, I call ensure ready async which
+**[00:09:56]** is going to install it.
+**[00:09:59]** Then next step is initialize the model with create async
+**[00:10:03]** and then the very last step is generating a response
+**[00:10:06]** from the model.
+**[00:10:08]** Here I've done a little bit of fancier work with
+**[00:10:11]** defining the Jason schema that I want, but I just
+**[00:10:14]** call this generate structured Jason response and there you have
+**[00:10:18]** it.
+**[00:10:18]** Really easy to use the Windows AIAPIS.
+**[00:10:30]** We already have production experiences that are using FI silica
+**[00:10:34]** on GPU.
+**[00:10:35]** For example, if you've used the summarized feature in Outlook
+**[00:10:38]** that uses FI on GPU.
+**[00:10:42]** Now let's take a broader look at the set of
+**[00:10:44]** a IAPIS that are available today.
+**[00:10:46]** Starting on the top left, we have our task specific
+**[00:10:49]** AP is.
+**[00:10:49]** Many of these are already generally available.
+**[00:10:52]** These are things like image description, conversation summary text summary,
+**[00:10:57]** text to table.
+**[00:10:58]** But we know that real scenarios sometimes need more customization
+**[00:11:02]** and that's where our customization AP is come in.
+**[00:11:05]** This is fine tuning the language model with Laura adapters,
+**[00:11:09]** doing app content search a rag and structuring your language
+**[00:11:13]** model output.
+**[00:11:15]** On the top right, we have our media AP is
+**[00:11:17]** this is video super resolution and speech recognition, so that
+**[00:11:21]** enables, you know, audio video features for you.
+**[00:11:24]** And then on the bottom corner, we have imaging AP
+**[00:11:28]** is this is a growing set of imaging AP is
+**[00:11:30]** and you can take these, apply them to any domain,
+**[00:11:34]** accessibility, productivity, enterprise workflows, you name it.
+**[00:11:39]** And just to give you a glimpse, these are the
+**[00:11:42]** AP is that we have now expanded to run on
+**[00:11:44]** GP US and CP US.
+**[00:11:48]** All right.
+**[00:11:48]** So we already have a ton of Isvs that are
+**[00:11:51]** using the AIAPIS, But today we're really excited to have
+**[00:11:55]** Alfred from Clipchamp with us to show us video super
+**[00:11:58]** resolution, and he's going to be demoing this on an
+**[00:12:01]** Asus device with the AMD and PU.
+**[00:12:07]** Thanks, Aditi.
+**[00:12:08]** Hello everyone.
+**[00:12:09]** I'm Alfred from Microsoft Clipchamp, the free video editor built
+**[00:12:13]** into Windows in Kitchen.
+**[00:12:15]** We want video creation to be simple and accessible for
+**[00:12:18]** everyone.
+**[00:12:19]** A common part of editing is using clips from different
+**[00:12:22]** sources, iPhones, old videos and screen recordings.
+**[00:12:25]** But those clips may not match the final export resolution,
+**[00:12:28]** making possible video look soft or blurry.
+**[00:12:32]** This is where video Super resolution of VSR can help.
+**[00:12:36]** It uses AI to upscale a video and add details
+**[00:12:39]** that simple resizing cannot.
+**[00:12:41]** We are adding this local model into click chain so
+**[00:12:43]** users can do this without leaving the editor.
+**[00:12:46]** The flow is simple, select a video, open the upscale
+**[00:12:51]** panel, choose a resolution, then click upscale.
+**[00:12:58]** When it's running, let me switch to the code and
+**[00:13:00]** show how we integrate VSR.
+**[00:13:04]** We start by making sure that the model is ready.
+**[00:13:07]** Then we create a video scalar instance with the scaler
+**[00:13:10]** ready.
+**[00:13:11]** Here is how we upscale each frame.
+**[00:13:15]** This method receives A decoder frame from the pipeline along
+**[00:13:18]** with an output surface.
+**[00:13:19]** We pass both to scale and outcomes the upscale frame.
+**[00:13:23]** Finally, the encoder can turn them back into a video.
+**[00:13:26]** As simple as that, the upscale should be done and
+**[00:13:30]** Yep, oh wait, it's still.
+**[00:13:32]** Oh yeah, there we go, it's run.
+**[00:13:33]** It's run.
+**[00:13:34]** Here's a quick comparison video.
+**[00:13:41]** What's the face?
+**[00:13:42]** It looks much sharper on the right.
+**[00:13:44]** It's pretty cool, right?
+**[00:13:46]** And, and here is the best part VSR can run
+**[00:13:51]** on both CPU and MPU, so more Windows devices can
+**[00:13:58]** use it.
+**[00:13:59]** And MPU makes the experience even better.
+**[00:14:02]** Anyone can get sharper videos inside Crypt Chain and in
+**[00:14:05]** your apps too.
+**[00:14:06]** Now it's your turn.
+**[00:14:07]** We can't wait to see what you can do with
+**[00:14:09]** VSR.
+**[00:14:09]** Thank you very much.
+**[00:14:10]** Enjoy the rest of Microsoft builds.
+**[00:14:15]** Thank you Alfred for that demo.
+**[00:14:18]** I know that at the cafe, they're definitely going to
+**[00:14:21]** be using VSR Clip Champ to make their marketing videos
+**[00:14:25]** to help promote the cafe.
+**[00:14:29]** OK, so in the keynote, you might have heard Cynthia
+**[00:14:32]** talking about Ion and you're wondering how does Ion fit
+**[00:14:36]** into our story?
+**[00:14:38]** Well, Ion is going to be the successor to Fi
+**[00:14:41]** Silica and it will be available via the AIAPIS.
+**[00:14:44]** But until then, you can go to that link and
+**[00:14:46]** try it out for yourself.
+**[00:14:47]** And we can give you a little sneak preview today.
+**[00:14:54]** OK, so if you remember build last year, we showed
+**[00:14:58]** the prompt API in the Edge browser today.
+**[00:15:00]** This is being powered by Ion.
+**[00:15:02]** And you can also try prompt API.
+**[00:15:04]** Just toggle on a few, a few flags in the
+**[00:15:08]** Edge Canary.
+**[00:15:10]** And so here I have a prompt, I have a
+**[00:15:13]** system prompt and I'm going to hit run and this
+**[00:15:16]** will generate a response right here on the side.
+**[00:15:24]** There we go.
+**[00:15:26]** OK, So today with ION, we are getting even bigger
+**[00:15:30]** improvements in model quality in context window, faster tokens per
+**[00:15:35]** second.
+**[00:15:36]** And this is going to level up the language model
+**[00:15:39]** experience that you get with the AIAPIS.
+**[00:15:42]** And just like all of our other AP is ION
+**[00:15:46]** is going to be in box.
+**[00:15:48]** So you don't need to handle any distribution, Windows is
+**[00:15:51]** going to do it all for you.
+**[00:15:57]** OK, so now you have seen Inbox APIs, but what
+**[00:16:00]** if you want to run common open source models?
+**[00:16:04]** Well, that is what Foundry Local is for.
+**[00:16:08]** You might be familiar with Microsoft Foundry on Azure.
+**[00:16:12]** Well, we have Foundry Local which enables you to run
+**[00:16:15]** common open source models on CP US, GP US and
+**[00:16:18]** NP US.
+**[00:16:18]** And now Foundry Local is in GA So Anastasia, tell
+**[00:16:21]** me, what is the next thing we should enable for
+**[00:16:24]** the coffee shop?
+**[00:16:26]** Yeah.
+**[00:16:26]** Well, there are lots of customers like me that really
+**[00:16:30]** like their matcha lattes.
+**[00:16:31]** I want to make sure that the cafe never runs
+**[00:16:34]** out.
+**[00:16:35]** How should they implement?
+**[00:16:36]** Maybe an inventory management system?
+**[00:16:39]** Yeah, they are getting a ton of demos.
+**[00:16:43]** Excuse me?
+**[00:16:43]** They're getting a ton of deliveries and they need to
+**[00:16:46]** easily take inventory of everything that's being dropped off.
+**[00:16:49]** Delivery drivers are dropping stuff off daily weekly, so we
+**[00:16:52]** are going to use Foundry local to power an inventory
+**[00:16:56]** application.
+**[00:17:00]** OK, so I'm going to get started and kick off
+**[00:17:04]** inventory app and here I will upload an image of
+**[00:17:08]** all of my dropped off product and once that model
+**[00:17:12]** is loaded into memory, I'll hit identify items in the
+**[00:17:17]** back end.
+**[00:17:17]** This is going to use the Quen 3.5 Vision language
+**[00:17:20]** model.
+**[00:17:21]** It's brand new to the Foundry local catalog and it's
+**[00:17:24]** going to classify everything, describe everything in that image.
+**[00:17:27]** So it makes it really easy for me to know
+**[00:17:29]** what I got and log the inventory.
+**[00:17:33]** There we go.
+**[00:17:33]** It's just so I can show you in code how
+**[00:17:36]** straightforward it is to use foundry local.
+**[00:17:40]** In my experience the best way to get started is
+**[00:17:42]** go check out the GitHub repo.
+**[00:17:43]** There's a ton of samples there.
+**[00:17:45]** Really easy jumping off point.
+**[00:17:48]** So first I call this get model function.
+**[00:17:52]** To that I'm passing Quen 3.5 the 9 billion parameter
+**[00:17:55]** variant that I want.
+**[00:17:57]** Then Step 2 I call model dot download to download
+**[00:18:01]** it to the device.
+**[00:18:03]** Then I'm going to call model dot load, load it
+**[00:18:06]** into memory.
+**[00:18:08]** Once it is loaded into memory, I will call create
+**[00:18:11]** responses client.
+**[00:18:12]** And then the last step is actually generating response.
+**[00:18:16]** So here I call create streaming and I pass to
+**[00:18:19]** it an input, which is my input image and a
+**[00:18:22]** prompt.
+**[00:18:22]** You are a helpful coffee shop inventory assistant.
+**[00:18:26]** And here we go.
+**[00:18:27]** There's there's a description of everything that came in that
+**[00:18:30]** image.
+**[00:18:31]** Here, what a relief that I'm always going to be
+**[00:18:34]** able to get my matcha latte at this cafe.
+**[00:18:36]** And really cool that Foundry Local will take care of
+**[00:18:39]** things like model management as well.
+**[00:18:41]** Did you?
+**[00:18:41]** Could you tell us a little bit more about how
+**[00:18:43]** that all works and the tech behind Foundry Local?
+**[00:18:46]** Yeah, great question.
+**[00:18:48]** Well, starting on the left, you have access to a
+**[00:18:51]** rich model catalog.
+**[00:18:52]** This is everything from open source GPT models to DeepSeek,
+**[00:18:56]** Mistral, Quen, Phi, even Whisper for speech scenarios.
+**[00:19:00]** And today, what is net new?
+**[00:19:02]** Well, we have new variants of Quen like that vision
+**[00:19:05]** language model you saw, and there's new speech models too.
+**[00:19:08]** And you can access all of these through the Foundry
+**[00:19:12]** local SDK, which abstracts away all the complexity of model
+**[00:19:15]** management and device specific hardware acceleration, whether that is for
+**[00:19:20]** CPUGPU or NPU.
+**[00:19:21]** You don't need to write device specific code.
+**[00:19:24]** And then on the right is the Foundry local CLI
+**[00:19:26]** so you can play around with models, see which best
+**[00:19:29]** fits your scenario.
+**[00:19:33]** All right, with that, I'm going to hand it to
+**[00:19:34]** Anastasia.
+**[00:19:35]** Tell us about Windows ML.
+**[00:19:36]** Yeah.
+**[00:19:37]** Thanks, Aditya.
+**[00:19:38]** Now, those earlier scenarios as you saw were using ready
+**[00:19:42]** to use AI models and APIs.
+**[00:19:44]** But if you wanted to run your own custom model,
+**[00:19:47]** for example one that you trained yourself or maybe found
+**[00:19:50]** on Hugging Face, that's where you would use Windows ML
+**[00:19:53]** directly.
+**[00:19:54]** So what kind of devices can the coffee shop use
+**[00:19:57]** to use Windows ML?
+**[00:19:58]** Yeah, well the good news is that Windows ML has
+**[00:20:01]** really broad support starting with Windows 10/18/09 and above, Windows
+**[00:20:05]** Server 2019 and above and even Windows 365 to provide
+**[00:20:09]** a cloud based Windows environment so that developers or potentially
+**[00:20:13]** employees at the unmetered token cafe can access their Windows
+**[00:20:17]** ML development environment from any device.
+**[00:20:20]** That can be another PCA, Mac mobile device or a
+**[00:20:24]** browser.
+**[00:20:27]** All right, So one scenario where Windows ML is going
+**[00:20:30]** to be really helpful at the Unmetered Token Cafe is
+**[00:20:33]** for their experimental bruise program, where the cafe rolls out
+**[00:20:37]** new menu items to customers and then classify sentiment for
+**[00:20:40]** the reviews that come in to get a sense of
+**[00:20:43]** how the menu item is doing.
+**[00:20:45]** For this scenario, I'm going to be using a custom
+**[00:20:49]** open source model, so Windows ML is going to be
+**[00:20:52]** the perfect fit, allowing me to run the model locally
+**[00:20:55]** and performantly through 1 unified stack that scales across all
+**[00:21:00]** Windows devices.
+**[00:21:02]** Now for those of you that have spent some time
+**[00:21:04]** in this space, you'll know that it's not actually always
+**[00:21:07]** as simple as just taking a model and running it.
+**[00:21:10]** Sometimes you'll need to spend some time optimising your model,
+**[00:21:13]** and depending on your scenario and your target hardware, that
+**[00:21:17]** can be somewhat complex and time consuming.
+**[00:21:20]** For example, if your model doesn't export cleanly or if
+**[00:21:23]** some of your model operators aren't supported out-of-the-box on your
+**[00:21:27]** target hardware.
+**[00:21:28]** And so to help with just that, we're really excited
+**[00:21:31]** to announce the brand new Windows MLCLI, which is now
+**[00:21:35]** available in preview for you to try it on GitHub.
+**[00:21:38]** And it's intended to cater to all of your model
+**[00:21:41]** optimization needs.
+**[00:21:42]** So check it out at AK dot Ms.
+**[00:21:44]** slash win MLCLI.
+**[00:21:48]** All right, so let's talk about what the Windows MLCLI
+**[00:21:51]** provides.
+**[00:21:52]** First off, it provides a one stop tool chain and
+**[00:21:55]** set of agent skills so that as a developer you
+**[00:21:58]** can take your model through conversion, optimization and benchmarking through
+**[00:22:03]** one flow.
+**[00:22:05]** Next, the CLI is built to give developers maximum flexibility.
+**[00:22:10]** You can use primitive commands to run each stage of
+**[00:22:13]** the optimization pipeline yourself and have really hands on control
+**[00:22:17]** over exactly how that takes place.
+**[00:22:19]** Or you can keep things simple and run the whole
+**[00:22:22]** thing end to end using a prebuilt config.
+**[00:22:25]** And 3rd, the CLI is built to integrate with AI
+**[00:22:28]** workflows and agents and provides a set of agent skills
+**[00:22:31]** to make it really easy for you to get started
+**[00:22:34]** and incorporate it into your AI driven workflows.
+**[00:22:37]** For example using GitHub Copilot or your tooling of choice.
+**[00:22:41]** And then for developers that prefer to get started with
+**[00:22:44]** some UI, you can also check out the Foundry Toolkit
+**[00:22:47]** extension in VS Code to get started.
+**[00:22:50]** All right, so let's see this in action.
+**[00:22:52]** We are going to be running the Windows MLCLI to
+**[00:22:56]** optimize the model that we are going to be using
+**[00:22:59]** to classify sentiment for new items at the cafe.
+**[00:23:03]** And I'm going to be running this demo on a
+**[00:23:06]** Surface Laptop for Business 7th Edition laptop with Intel processors.
+**[00:23:10]** But it's important to know that the output of the
+**[00:23:13]** CLI is actually going to be a portable model that
+**[00:23:15]** I'm going to be able to run across all devices.
+**[00:23:19]** So let's check it out.
+**[00:23:19]** All right, so here I have a Python virtual environment
+**[00:23:24]** with the CLI already running.
+**[00:23:26]** So let me go ahead and type in the Win
+**[00:23:29]** ML command.
+**[00:23:30]** And what this is going to do is list out
+**[00:23:32]** all of the commands that are available for me to
+**[00:23:34]** try out through the CLI.
+**[00:23:36]** Let me then go ahead and type in Win ML
+**[00:23:39]** Catalog and this is going to list out just some
+**[00:23:42]** of the models that are available for me to optimize
+**[00:23:46]** through Windows MLC Alive.
+**[00:23:48]** But as you can imagine, you can use it for
+**[00:23:50]** many more models, for example, other models that you might
+**[00:23:53]** find on Hugging Face or your own model that you
+**[00:23:56]** trained yourself and then convert it to Onyx format.
+**[00:23:59]** So did he out of this list?
+**[00:24:01]** Is there any model that catches your eye that we
+**[00:24:04]** can potentially use for this sentiment analysis scenario?
+**[00:24:08]** Yeah.
+**[00:24:08]** Is there one there called Cardiff NLP for Sentiment?
+**[00:24:13]** Yeah, great.
+**[00:24:13]** I OK, so the next thing that we would do
+**[00:24:16]** is run the Win ML inspect command.
+**[00:24:19]** Now, just for time, I've already pre run this command
+**[00:24:22]** and I'm going to show you what the output is
+**[00:24:24]** going to look like.
+**[00:24:25]** And what this command does is it helps me rule
+**[00:24:28]** out common reasons why a particular model might not be
+**[00:24:31]** a good fit to optimize through the Win ML CLI
+**[00:24:34]** before I spend too much time on it.
+**[00:24:36]** In this case, I already ran, the output is looking
+**[00:24:39]** good.
+**[00:24:40]** I don't see any errors, so I'm good to continue
+**[00:24:42]** forward.
+**[00:24:44]** The next thing that I would do is actually go
+**[00:24:46]** ahead and export my model.
+**[00:24:48]** This command I've also pre run just for time and
+**[00:24:51]** I'm showing you here what the output looks like.
+**[00:24:53]** And what this is going to do is essentially just
+**[00:24:56]** convert the model to Onyx format, and then that's what
+**[00:24:59]** we're going to use for the rest of the optimization
+**[00:25:02]** workflow.
+**[00:25:04]** Now that we've exported our model, let's go ahead and
+**[00:25:07]** run the analyze command.
+**[00:25:10]** And what this is going to do is read through
+**[00:25:13]** my model graph operator by operator and see which of
+**[00:25:16]** my model operators are supported on my target hardware.
+**[00:25:20]** In this case, if I scroll up and take a
+**[00:25:23]** look at what the output looks like for Qualcomm, I
+**[00:25:26]** can see that a bunch of the operators here are
+**[00:25:29]** showing in green.
+**[00:25:30]** That's good.
+**[00:25:31]** That means the operator is fully supported for anything that's
+**[00:25:35]** showing in yellow.
+**[00:25:36]** That means it's partially supported, so it might fall back
+**[00:25:39]** to CPU.
+**[00:25:40]** And if I were to see anything in red, which
+**[00:25:42]** I don't have here, that would mean that the operator
+**[00:25:45]** isn't supported at all.
+**[00:25:46]** So now that I've run this, the next thing that
+**[00:25:49]** I would do is run the optimize command and let
+**[00:25:51]** me just resize this really quickly so that you can
+**[00:25:54]** see me running that.
+**[00:25:57]** So I'm running the optimize command and this is going
+**[00:26:00]** to take in the config file that the previous step
+**[00:26:03]** generated to actually rewrite my model graph, fuse graph operators
+**[00:26:07]** and address any of those operators that weren't fully supported.
+**[00:26:12]** So I just ran that and that ran really quickly.
+**[00:26:15]** So now let me rerun the analyze command because I
+**[00:26:17]** want to make sure that everything is showing up as
+**[00:26:20]** green before I take next steps, all right.
+**[00:26:23]** And as you can see, that's running and now everything
+**[00:26:26]** across the board is showing up as green, which is
+**[00:26:29]** great.
+**[00:26:30]** Very.
+**[00:26:30]** Nice.
+**[00:26:31]** So the last thing that I'm going to do here
+**[00:26:34]** in the CLI is run this perf command.
+**[00:26:36]** And this is going to help me benchmark my model.
+**[00:26:39]** It's going to give me some stats about throughput and
+**[00:26:42]** other indicators for me to have confidence that the model
+**[00:26:46]** is ready for my production workflow.
+**[00:26:49]** And here you can see we're getting a live graph
+**[00:26:52]** showing NP utilization.
+**[00:26:54]** It's really high.
+**[00:26:54]** So that's great.
+**[00:26:55]** And my performance is looking pretty good as well.
+**[00:26:58]** So I think I'm good to go ahead and move
+**[00:27:00]** forward with this model.
+**[00:27:02]** Yeah, it was also super cool that everything you needed
+**[00:27:05]** was available in one CLI tool.
+**[00:27:08]** That's right.
+**[00:27:08]** And in this particular workflow, I ran each command command
+**[00:27:12]** by command, but I could have also used a prebuilt
+**[00:27:15]** config to run the whole thing end to end, or
+**[00:27:17]** I could have used GitHub copilot and had my agents
+**[00:27:21]** do the model optimization flow for me.
+**[00:27:24]** All right, so now that we've optimized our model, let's
+**[00:27:27]** talk about how Windows ML is going to help us
+**[00:27:30]** run it.
+**[00:27:31]** And more broadly, how Windows ML can benefit you in
+**[00:27:35]** running your own custom AI workloads across Windows GP US
+**[00:27:39]** and P US and CPUs.
+**[00:27:42]** First off, scale.
+**[00:27:45]** Windows ML serves as an abstraction layer to make it
+**[00:27:48]** easier for developers to scale their models across chipsets and
+**[00:27:52]** hardware vendors without having to get as deep in hardware
+**[00:27:55]** specifics or have to deal with several different SDKS.
+**[00:28:00]** With Onyx runtime integration, Windows ML also provides a high
+**[00:28:05]** degree of flexibility on what models can run and where
+**[00:28:09]** next performance.
+**[00:28:10]** We're partnering with our silicon partners to make sure that
+**[00:28:13]** the latest performance improvements, innovation, support for new models and
+**[00:28:18]** devices makes it into the stack through hardware vendor owned
+**[00:28:21]** execution providers.
+**[00:28:23]** This way you get like native benefits but through 1
+**[00:28:28]** unified stack and 3rd deployment.
+**[00:28:31]** Windows ML provides a system wide copy of runtime dependencies
+**[00:28:35]** along with APIs to help you pull down the right
+**[00:28:38]** bits based on your device.
+**[00:28:40]** This way you don't have to package those runtime dependencies
+**[00:28:43]** with your app, can reduce your app size and don't
+**[00:28:46]** have to recompile your app every time an update takes
+**[00:28:49]** place.
+**[00:28:50]** And with our vendor certification program, the bits that are
+**[00:28:54]** provided from Windows ML to app developers go through rigorous
+**[00:28:58]** Windows specific testing with every update.
+**[00:29:00]** So regardless of how you're deploying Windows ML, you're getting
+**[00:29:04]** the runtime dependencies that are optimized for stability, Windows maintained
+**[00:29:09]** and will help you have a smooth update process.
+**[00:29:13]** And then one last thing to call it on this
+**[00:29:16]** slide.
+**[00:29:16]** Windows ML also provides A unified tool chain and set
+**[00:29:20]** of agent skills as we talked about, such as the
+**[00:29:23]** Windows MLCLI and the Foundry Toolkit extension for VS Code
+**[00:29:27]** to help developers prep and optimize their models.
+**[00:29:30]** So that sentiment analysis workflow, I wish it was possible
+**[00:29:33]** to run that through a website so that anyone at
+**[00:29:36]** the cafe could access it without having to download an
+**[00:29:39]** app or without having to use the cloud.
+**[00:29:42]** Yeah, well the good news is they can.
+**[00:29:44]** Not only is Windows ML supported for your everyday native
+**[00:29:48]** Windows app experiences, it's also supported for web apps through
+**[00:29:52]** Web and N, which is available in preview with a
+**[00:29:55]** few experimental flags in any Chromium based browser such as
+**[00:29:59]** Edge or Chrome.
+**[00:30:00]** And you can think of Webmn as the layer that
+**[00:30:04]** sits on top of native MLAPIS like Windows ML on
+**[00:30:08]** Windows providing near native access to GPUSNPUS and CPUs through
+**[00:30:13]** framework APIs.
+**[00:30:14]** And that means that even websites can benefit from native
+**[00:30:18]** Windows ML based hardware acceleration without racking up token costs
+**[00:30:22]** or sending sensitive enterprise data to the cloud.
+**[00:30:25]** All right, so let's see this in action, and I
+**[00:30:28]** am once more going to be using the Surface Laptop
+**[00:30:32]** for Business 7th edition laptop with Intel processors, but this
+**[00:30:37]** time we're going to be inferencing the model.
+**[00:30:45]** All right, so here I have VS Code open with
+**[00:30:48]** my web app and I have the sentiment analyzer dot
+**[00:30:51]** JS file open, which is where the bulk of my
+**[00:30:54]** inferencing code is going to be.
+**[00:30:57]** Some of the key things to call out here is
+**[00:31:00]** I'm using the Onyx Runtime web APIs, which are framework
+**[00:31:04]** APIs that I can use for running Onyx models in
+**[00:31:07]** the browser.
+**[00:31:08]** And under the hood, that's going to use webnon, which
+**[00:31:11]** is going to be working with Windows ML to get
+**[00:31:13]** that native Windows ML based hardware acceleration.
+**[00:31:17]** I'm then going to go ahead and pass in the
+**[00:31:20]** models that I optimized earlier through the Windows MLCLI.
+**[00:31:24]** And then we're going to go ahead and create our
+**[00:31:26]** inference session.
+**[00:31:27]** And so to do that, I'm going to use the
+**[00:31:30]** web and then create context APIs here to set up
+**[00:31:33]** my session.
+**[00:31:34]** And I'm going to pass in a device type.
+**[00:31:36]** Now initially this is set to NPU, but let's actually
+**[00:31:40]** go ahead and change it to NPU because we're going
+**[00:31:43]** to want this to work on all the devices at
+**[00:31:46]** the cafe, not just Copilot plus PCs.
+**[00:31:48]** So I've gone ahead and updated that to CPU, and
+**[00:31:51]** then we'll set up our inference session by passing in
+**[00:31:54]** that context here the model data from earlier, as well
+**[00:31:58]** as setting the name of our execution provider to webnm.
+**[00:32:02]** And then the rest of this file is just going
+**[00:32:05]** to take care of things like model tokenization, tensorization, running
+**[00:32:09]** inference, and then based off of the model outputs, classifying
+**[00:32:13]** my sentiment as positive, neutral, or negative.
+**[00:32:17]** All right, so let's see this running.
+**[00:32:20]** I'm going to do a hard refresh here.
+**[00:32:22]** And as you can see in the bottom right hand
+**[00:32:24]** corner, we're going to be running this on the CPU
+**[00:32:27]** to classify sentiment for this decaf Eclipse beverage, which is
+**[00:32:31]** a no caffeine espresso.
+**[00:32:32]** So let's see how that's going to do with the
+**[00:32:34]** customers at the Unmetered Token Cafe.
+**[00:32:38]** OK, so this is now running and as you can
+**[00:32:40]** see, I'm getting that blip on the CPU because we're
+**[00:32:43]** using the CPU on this device to classify sentiment for
+**[00:32:46]** these reviews that are coming in.
+**[00:32:49]** Nothing needs to go to the cloud.
+**[00:32:51]** I'm getting latency of about 300 milliseconds and about 3
+**[00:32:54]** 1/2 reviews getting classified per second.
+**[00:32:57]** So not bad.
+**[00:32:59]** And if I take a look at the slide chart
+**[00:33:01]** and the sentiment trend, this beverage isn't doing the best.
+**[00:33:06]** A lot of neutral sentiment and negative and positive roughly
+**[00:33:11]** equal.
+**[00:33:11]** So maybe that was a little bit of a questionable
+**[00:33:14]** choice.
+**[00:33:14]** All right, so now let's go ahead and go back
+**[00:33:18]** to VS Code.
+**[00:33:19]** And we're going to update this to now run on
+**[00:33:21]** the NPU because I also want to get a sense
+**[00:33:23]** of what this is going to look like for the
+**[00:33:26]** Copilot Plus PCs at the cafe.
+**[00:33:28]** So let's now go back and refresh this page.
+**[00:33:31]** And just to make things more interesting, we're now going
+**[00:33:34]** to classify sentiment for this Aurora latte beverage, which is
+**[00:33:38]** a lavender honey beverage with a gradient pour from Violet
+**[00:33:41]** to gold.
+**[00:33:42]** And as you can see in the bottom right hand
+**[00:33:44]** corner, this is now going to be running on my
+**[00:33:47]** device's NPU.
+**[00:33:48]** So let's see how this does, all right, right away,
+**[00:33:51]** you can see blazing fast performance compared to what we
+**[00:33:55]** saw on the CPU.
+**[00:33:56]** I'm getting just 30 milliseconds of latency here, over 11
+**[00:34:00]** reviews being classified per second.
+**[00:34:02]** So that's more than times 3 the reviews, the rate
+**[00:34:05]** that we were seeing for CPUs, and this beverage is
+**[00:34:08]** doing much better as well.
+**[00:34:10]** That's great news, All right.
+**[00:34:11]** Lot, a lot of positive sentiment and negative is very
+**[00:34:15]** low.
+**[00:34:16]** Yeah, I think I want to try one of these
+**[00:34:18]** Aurora lattes.
+**[00:34:20]** For sure.
+**[00:34:21]** So this was a super cool demo, but is this
+**[00:34:24]** ready for production?
+**[00:34:27]** Yeah, well, Windows ML went to general availability just last
+**[00:34:31]** fall and already there are dozens of partners shipping production
+**[00:34:35]** experiences on Windows ML to general availability.
+**[00:34:39]** Those include Adobe, Canva, Affinity, Speechify, and many others.
+**[00:34:43]** And Speaking of that, we actually have a couple very
+**[00:34:46]** special guests here.
+**[00:34:47]** We have Jordy and Flex, who are from the voice
+**[00:34:51]** mod team who have built a really compelling experience using
+**[00:34:54]** Windows ML.
+**[00:34:55]** That's going to give you a sense of just how
+**[00:34:58]** low latency Windows ML and local AI experiences can be.
+**[00:35:01]** And they're going to be running their demo on a,
+**[00:35:05]** on a different device on this device, which is an
+**[00:35:09]** SU Sunburg, a 16 laptop with a Qualcomm Snapdragon NPU.
+**[00:35:13]** So Jordy and Flex welcome and come on up.
+**[00:35:21]** Hi everyone.
+**[00:35:22]** I'm Jordy, head of research and innovation at Voicemod.
+**[00:35:25]** Hi everyone, my name is Flex, I'm a content creator
+**[00:35:28]** and Voicemod ambassador.
+**[00:35:30]** We're a Windows First platform that lets anyone transform your
+**[00:35:33]** voice in real time through voice filters, sound boards, and
+**[00:35:37]** creation tools.
+**[00:35:38]** Gamers and streamers customize everything.
+**[00:35:41]** Their skins, their avatars, their setups, but their voice is
+**[00:35:44]** still the one thing left untouched.
+**[00:35:46]** That's where Voice Mod comes in, so anyone can sound
+**[00:35:48]** exactly the way they want to be heard online, whether
+**[00:35:51]** in game or in voice chats.
+**[00:35:53]** And Voice Mode delivers a sophisticated audio generation pipeline by
+**[00:35:58]** combining digital signal processing effects and cutting edge generative AI
+**[00:36:03]** speech to speech models.
+**[00:36:06]** And to have a truly immersive experience, our AI models
+**[00:36:10]** can operate at ultra low latency below 45 milliseconds so
+**[00:36:14]** that any voice interaction feel instantaneous and natural.
+**[00:36:19]** And to do that at scale, we've been building on
+**[00:36:23]** Windows ML.
+**[00:36:25]** And Windows ML has allowed us to offload heavy AI
+**[00:36:30]** inference computation from the CPU to Mpus and GPUs.
+**[00:36:35]** And basically to us, Windows ML offers three things.
+**[00:36:39]** First, it has allowed to run higher quality models locally
+**[00:36:42]** so there's no cloud dependency.
+**[00:36:44]** Second, it allows to reduce the app size thanks to
+**[00:36:47]** the abstraction of the execution providers.
+**[00:36:50]** And 3rd, it allow us to deliver 4 times faster
+**[00:36:54]** as we built it once and then we could deploy
+**[00:36:58]** across our silicon partners, Qualcomm, NVIDIA, AMD and Intel.
+**[00:37:03]** But to better understand how it works, I think the
+**[00:37:06]** best it's we can do is to see it live.
+**[00:37:08]** So Flex, would you like to show us the magic?
+**[00:37:12]** Absolutely, Jordy.
+**[00:37:13]** We are going to give some spice to these Fortnite
+**[00:37:16]** skins using Voice mod.
+**[00:37:17]** So our first skin here is called the Ice King,
+**[00:37:20]** and I want to give him a voice that is
+**[00:37:22]** powerful, that is scary, that is commanding.
+**[00:37:27]** Maybe something like this?
+**[00:37:30]** Maybe your skin like this need a voice like this
+**[00:37:33]** or your skin like this.
+**[00:37:36]** I don't know, Let's try maybe this one I.
+**[00:37:42]** Think this one maybe fits a little bit better for
+**[00:37:44]** this guy.
+**[00:37:46]** Or actually, let's try this one.
+**[00:37:49]** I don't know, this might not be the right voice.
+**[00:37:53]** What do you think, Jordy?
+**[00:37:54]** That's cool.
+**[00:37:58]** I agree, and I feel like everyone wouldn't mind grabbing
+**[00:38:00]** a coffee and sticking around for the rest of the
+**[00:38:03]** stream, but alas, the show must go on.
+**[00:38:05]** Thanks Microsoft Build and thank you to the Windows ML
+**[00:38:08]** team for making this possible.
+**[00:38:20]** Fantastic.
+**[00:38:20]** Thank you Jordy and Flex.
+**[00:38:22]** Incredible demo and great that Windows ML was able to
+**[00:38:25]** help you scale your experience across more Windows devices.
+**[00:38:29]** All right, so finally, let's take a look at all
+**[00:38:32]** of what's new for Windows ML in 2026.
+**[00:38:35]** First off, as we talked about, the Windows ML CLI
+**[00:38:38]** is available for you to try out and preview on
+**[00:38:41]** GitHub to optimize and prepare your models.
+**[00:38:44]** If you're running a generative AI experiences, for example using
+**[00:38:48]** LLMS or other generative workflows, you're going to see some
+**[00:38:51]** performance speed up.
+**[00:38:52]** So up to times 2.6 throughput for Gen.
+**[00:38:55]** AI workloads depending on which model you're using.
+**[00:38:58]** And if you're using the default CPU execution provider, you're
+**[00:39:01]** going to see some performance speed UPS.
+**[00:39:03]** Also with the newest version of Windows ML that's currently
+**[00:39:07]** available in preview next Windows ML2 point O has shipped.
+**[00:39:11]** That includes Onyx runtime improvements and support for new hardware
+**[00:39:15]** vendor plug in execution providers, which across the two of
+**[00:39:19]** those is going to mean support for new models, fundamentals,
+**[00:39:23]** improvements and improved compatibility between releases.
+**[00:39:27]** Web and N is also available for you to try
+**[00:39:30]** out and preview and that's how you can bring native
+**[00:39:33]** hardware based acceleration to your web apps as well in
+**[00:39:36]** Chromium based browsers through a few experimental flags.
+**[00:39:40]** Then because of how Windows ML works, all apps that
+**[00:39:43]** are built using Windows ML also get to benefit from
+**[00:39:46]** all of the innovation that's happening from across the entire
+**[00:39:50]** silicon ecosystem.
+**[00:39:51]** So from AMD, Intel, NVIDIA and Qualcomm for example, support
+**[00:39:56]** for all the newest, latest and greatest devices like Ryzen
+**[00:40:01]** AI 400 series processors.
+**[00:40:03]** From AMD Intel Core Ultra Series 3 processors.
+**[00:40:07]** The upcoming NVIDIA RTX Spark and DGX Station devices as
+**[00:40:12]** well, as well as Qualcomm Snapdragon X2 Elite processors.
+**[00:40:17]** And those aren't the only things that are new.
+**[00:40:20]** The new devices, although those are definitely very cool.
+**[00:40:23]** There are also tons of other improvements as you can
+**[00:40:26]** see on the slide, ranging across fundamentals improvements, performance, tooling
+**[00:40:31]** improvements, and so much more.
+**[00:40:33]** All right, Entity, we've covered a lot in this session.
+**[00:40:37]** What are some of the takeaways that we should leave
+**[00:40:39]** our audience with?
+**[00:40:41]** You're right, we did cover a ton of content, so
+**[00:40:44]** let's bring it all home, OK?
+**[00:40:46]** Through the narrative of this unmetered Token Cafe, we were
+**[00:40:50]** able to show you how easy it is to get
+**[00:40:52]** started building experiences with the AIAPIS and how we've expanded
+**[00:40:56]** many of those capabilities to now run on CPUs and
+**[00:41:00]** GPUs.
+**[00:41:00]** We showed how you can run common open source models
+**[00:41:04]** locally with Foundry Local, and now Foundry Local is in
+**[00:41:07]** GA.
+**[00:41:08]** And then we showed how you can bring your own
+**[00:41:11]** model with Windows ML and do complex optimizations with one
+**[00:41:15]** CLI tool.
+**[00:41:16]** And we are so excited to see what you all
+**[00:41:18]** can build with Microsoft Foundry on Windows.
+**[00:41:23]** So before you all leave, take out your phones.
+**[00:41:26]** We have a ton of resources to help get you
+**[00:41:28]** started.
+**[00:41:28]** Take a photo of all of those links there.
+**[00:41:31]** We also have other sessions, the app build that might
+**[00:41:34]** be relevant that could help you get started as well.
+**[00:41:37]** And then please scan that QR code, provide us feedback
+**[00:41:40]** on the session, on our product.
+**[00:41:42]** We love to hear from you all.
+**[00:41:44]** And then Anastasia and I will stick around in the
+**[00:41:47]** lobby if you want to come talk to us, ask
+**[00:41:49]** us questions.
+**[00:41:50]** Thank you all so much.

@@ -1,0 +1,587 @@
+**[00:00:03]** Hello.
+**[00:00:06]** Hey folks.
+**[00:00:06]** I'm Vaidya from the Microsoft Foundry team and I've got
+**[00:00:10]** Jeff.
+**[00:00:11]** Hi everyone.
+**[00:00:13]** And OC PM from Foundry as well.
+**[00:00:16]** So the topic for today is open source ecosystem, right?
+**[00:00:21]** How you take your open source models and protectionize it
+**[00:00:25]** using Foundry.
+**[00:00:26]** And you've been hearing all these sessions on like, you
+**[00:00:28]** know, Foundry being the agent platform and stuff.
+**[00:00:30]** So we'll cover that.
+**[00:00:32]** And we're going to look at like 3 aspects of
+**[00:00:36]** this.
+**[00:00:37]** First, I'll give an intro on what we are doing
+**[00:00:39]** from platform standpoint in terms of improvements to make the
+**[00:00:43]** consumption better.
+**[00:00:44]** And then Jeff will talk about the partnership, how we
+**[00:00:47]** are getting the latest models into the ecosystem.
+**[00:00:49]** And then finally OC will do all the code demos
+**[00:00:52]** and stuff.
+**[00:00:52]** So got some tight agenda for 20 minutes.
+**[00:00:56]** All right.
+**[00:00:57]** So now talking about platform, how many of you have
+**[00:01:01]** been to these sessions for Foundry that Ina and Tina
+**[00:01:06]** presented yesterday?
+**[00:01:09]** And OK, so Foundry is basically an agent hosting platform,
+**[00:01:14]** right?
+**[00:01:15]** With access to a bunch of models, both proprietary frontier
+**[00:01:18]** model as well as open source models.
+**[00:01:20]** They've got more than 10,000 models from Hugging Face, right?
+**[00:01:23]** So if you look at the proprietary models, the way
+**[00:01:26]** you access the model is multiple form factors.
+**[00:01:28]** You've got the paper token, which is easy access, PSC
+**[00:01:33]** Go kind of set up.
+**[00:01:34]** Or if you want more like production like environment with
+**[00:01:37]** control and latency and stuff, you go for Ptus.
+**[00:01:40]** But what we're introducing today as of now is for
+**[00:01:43]** open source and custom models, we have this construct called
+**[00:01:47]** Foundry managed Compute, which is think of it as a
+**[00:01:51]** managed platform, as a service where you just pick the
+**[00:01:54]** GPUs, you don't have to worry about the infrastructure and
+**[00:01:58]** it works out-of-the-box.
+**[00:02:00]** So it's part of the Foundry resource.
+**[00:02:02]** So the endpoint is the same.
+**[00:02:03]** It's the same SDK, it's the same authentication, billing construct
+**[00:02:07]** and everything.
+**[00:02:09]** Now, the beauty of this is when you deploy a
+**[00:02:13]** model, there are other aspects of the model, right?
+**[00:02:16]** You've got to pick the GPU topology, You've got to
+**[00:02:20]** pick the runtimes.
+**[00:02:21]** You've got all this VLLM, SG, Lang and everything.
+**[00:02:24]** All the maintenance and patchwork will be taken care by
+**[00:02:27]** Foundry.
+**[00:02:29]** You just pick the model parameters and then boom, deploy
+**[00:02:32]** right now if you look at it, one of the
+**[00:02:35]** key enablers for this, its not just sufficient to just
+**[00:02:39]** have the compute, but we need to get the open
+**[00:02:42]** source funnel in right?
+**[00:02:43]** And that's where our partnership with hugging phase comes in
+**[00:02:46]** because I don't know for like we get a lot
+**[00:02:48]** of models and hugging phase that get pushed out like
+**[00:02:51]** whether from Quinn or Minimax.
+**[00:02:52]** And I see a bunch of NVIDIA partners there, a
+**[00:02:55]** Steven like Nemotron models we just got out as well.
+**[00:02:58]** So catch up with all these models in real time
+**[00:03:00]** is super tough.
+**[00:03:01]** And which is where I think Jeff is going to
+**[00:03:04]** talk about how we're going to give you Day 0
+**[00:03:06]** access to these models that you can now deploy using
+**[00:03:08]** the managed computer.
+**[00:03:10]** Over to you, Jeff.
+**[00:03:11]** Thank you so much, Vaidya.
+**[00:03:12]** Thank you and we're very grateful for our partnership with
+**[00:03:15]** Microsoft.
+**[00:03:15]** We've been working together with Vaidya and team on making
+**[00:03:19]** Hugging Face models easy to use for Azure customers.
+**[00:03:22]** And yesterday, if you saw the keynotes, Satya showed there
+**[00:03:26]** are 11,000 models are available today in Microsoft Foundry.
+**[00:03:31]** Little known facts, over 10,000 of those come from Hugging
+**[00:03:34]** Face.
+**[00:03:34]** We've been working together for a long time.
+**[00:03:37]** And the first question that's I want to talk about
+**[00:03:41]** is why is it important for Microsoft and Azure customers
+**[00:03:46]** to be able to work with open models?
+**[00:03:49]** And I have 5 things for you.
+**[00:03:51]** The first one is that basically in terms of performance,
+**[00:03:55]** open models are on par with the Frontier.
+**[00:03:58]** The Frontier open models are on par with the Frontier
+**[00:04:01]** close models, been the case for over a year.
+**[00:04:03]** If you look at the top 20 models in the
+**[00:04:06]** Artificial analysis Intelligence Index, half of them are open models,
+**[00:04:10]** but that's just the baseline performance.
+**[00:04:13]** If we go to the next one.
+**[00:04:14]** The second thing is that the the base open models
+**[00:04:17]** are models that you can build upon, customize and adapt
+**[00:04:21]** in order to improve them specifically for your use case.
+**[00:04:24]** You can fine tune them, you can post train them,
+**[00:04:28]** you can distill them.
+**[00:04:29]** This is an example of Phi to a popular open
+**[00:04:33]** model published by Microsoft.
+**[00:04:35]** And you can see that there are over there are
+**[00:04:38]** about 1500 derivatives of these base models.
+**[00:04:41]** And that's why there are so many models on hugging
+**[00:04:43]** phase, because the way that enterprises uses them is that
+**[00:04:46]** they customize them to their data and their use case
+**[00:04:49]** to make them much more performance.
+**[00:04:51]** The third reason why you should consider open models is
+**[00:04:55]** that if you're not hosting the waits, then you don't
+**[00:04:58]** really control the experience.
+**[00:05:00]** And we're working together with Microsoft to make it super
+**[00:05:03]** easy for you to do that on Azure.
+**[00:05:05]** Right from the model page on Hugging phase, you have
+**[00:05:08]** two options.
+**[00:05:09]** You can either deploy it on your own Azure account,
+**[00:05:13]** your own tenants at Microsoft using Microsoft Foundry.
+**[00:05:17]** We're going to show you how it works.
+**[00:05:19]** And then you can also use Hugging Face inference endpoints
+**[00:05:23]** to deploy them on Azure using the Hugging Face tenant.
+**[00:05:26]** The fourth reason enterprises should consider open models that the
+**[00:05:31]** whole open source community is really focused on making them
+**[00:05:35]** cheaper to run.
+**[00:05:37]** And I have 4 random blog posts about how you
+**[00:05:40]** can make a stable diffusion cheaper to run.
+**[00:05:44]** If you're looking at a specific task, there are small
+**[00:05:47]** models that are state-of-the-art.
+**[00:05:49]** Duckling Granite from IBM as an example is 250 million
+**[00:05:53]** not billion parameters.
+**[00:05:55]** And it's state-of-the-art if you want to run like batch
+**[00:05:57]** inference on documents.
+**[00:05:58]** And then the last one is that with open models,
+**[00:06:01]** because you host them, you can also version control them.
+**[00:06:04]** And I've talked to many people, developers who told me
+**[00:06:07]** that overnight, like the model behind the API, the closed
+**[00:06:11]** model API changed.
+**[00:06:12]** And all of a sudden, like the way that the
+**[00:06:14]** model behaves, the way that the feature acts for the
+**[00:06:17]** customer changes.
+**[00:06:18]** And with open models, you can control exactly which version.
+**[00:06:21]** In fact, on Hugging Face, every model repository is fully
+**[00:06:25]** version control and you can talk to a specific version
+**[00:06:28]** ID code.
+**[00:06:29]** So these are 5 reasons why you should consider open
+**[00:06:33]** models when you build AI application.
+**[00:06:36]** The performance, the baseline performance is on par, but then
+**[00:06:39]** you can improve it by customizing the model to your
+**[00:06:41]** data.
+**[00:06:42]** You host the weights, you own the experience can control
+**[00:06:46]** your costs, and you can control the actual experience using
+**[00:06:50]** version control.
+**[00:06:52]** All right, so now let me give you a quick
+**[00:06:54]** update about Hugging Face.
+**[00:06:56]** I assume that most of you are familiar with it.
+**[00:06:58]** So the latest is that we now have a community
+**[00:07:01]** of over 15,000,000, actually 16,000,000 AI builders who signed up
+**[00:07:05]** for an account on hugging phase in order to work
+**[00:07:08]** with open models.
+**[00:07:09]** When they need to work privately, they set up organizations
+**[00:07:13]** that are over 400,000 organizations set up on hugging phase.
+**[00:07:16]** The bottom one is Microsoft.
+**[00:07:18]** When companies need to have access control security, they sign
+**[00:07:22]** up to enterprise as Microsoft does.
+**[00:07:25]** And then from all these community, from all these organizations
+**[00:07:30]** come over 3,000,000 open and public models today on Hugging
+**[00:07:34]** Face and these cover like every task you can imagine
+**[00:07:38]** in order to use these 3,000,000 public models, there are
+**[00:07:43]** over 1,000,000 public data sets.
+**[00:07:45]** You can use our open source.
+**[00:07:47]** You're probably familiar with the Transformers library.
+**[00:07:49]** We have a whole ecosystem for you to do inference,
+**[00:07:52]** to do post training, to do reinforcement learning, etcetera.
+**[00:07:55]** So we have the open source, we have the models,
+**[00:07:58]** but if you want to build an app and scale
+**[00:08:01]** it to production, there are a lot more challenges that
+**[00:08:05]** you need to solve.
+**[00:08:06]** And that's where the partnership with Microsoft and what we're
+**[00:08:10]** building into Microsoft Foundry really comes into play.
+**[00:08:14]** So let me give you a few tidbits about how
+**[00:08:17]** we're working together.
+**[00:08:19]** The first one, well, we actually monitor daily the trending
+**[00:08:22]** most liked downloaded models for all the most important tasks
+**[00:08:26]** for all the most important model providers like NVIDIA to
+**[00:08:29]** make sure that's when these models land on Hugging face
+**[00:08:33]** within the same day they become available in Microsoft Foundry.
+**[00:08:36]** That's how we got to 11,000 models together.
+**[00:08:40]** These models cover all the different machine learning tasks before.
+**[00:08:43]** Of course, we talk a lot about LLMS, but there
+**[00:08:46]** are so many more use cases, document processing, speech recognition,
+**[00:08:50]** image detection and all those tasks.
+**[00:08:53]** We cover them all.
+**[00:08:54]** You can select them with easy to use filters directly
+**[00:08:58]** in Microsoft Foundry.
+**[00:08:59]** And then as I say, like the model and the
+**[00:09:02]** open source only take you so far.
+**[00:09:04]** If you want to build something with scaled usage, then
+**[00:09:07]** you need to think about how do I optimize the
+**[00:09:10]** runtime?
+**[00:09:11]** How do I use a configuration that will give me
+**[00:09:14]** either the best throughputs or the smallest latency?
+**[00:09:19]** We work it all out for you so that it's
+**[00:09:21]** basically a one click experience.
+**[00:09:23]** We'll show you how with OC.
+**[00:09:26]** And then last, almost last, how do we work together
+**[00:09:30]** to enable those models?
+**[00:09:32]** We talked about 11,000 models.
+**[00:09:34]** We talked about 3 million models on hiding face.
+**[00:09:37]** What is the difference?
+**[00:09:37]** Well, there is a whole pipeline that happens in collaboration
+**[00:09:41]** with the Microsoft team before these models are available to
+**[00:09:44]** you in Microsoft Foundry.
+**[00:09:46]** I talked about the curation that we do together, but
+**[00:09:49]** then we screen for enterprise ready usage.
+**[00:09:52]** We look at the license.
+**[00:09:54]** We will only give you models that are commercially permissible.
+**[00:09:58]** We looked to make sure that there is no remote
+**[00:10:01]** code as part of the model that would be injected
+**[00:10:03]** and executed by the runtime and we filter those out.
+**[00:10:06]** So we go through all these security checks, security scanning
+**[00:10:10]** of models to make sure that whatever lens in Microsoft's
+**[00:10:14]** Foundry is enterprise ready, the weights now with managed compute
+**[00:10:18]** are also uploaded to Microsoft Foundry.
+**[00:10:21]** This way you have complete robustness and supply chain security
+**[00:10:25]** for your models.
+**[00:10:27]** And last, and I think that may be the most
+**[00:10:30]** important thing, we validate the actual deployment experience, including like
+**[00:10:35]** which runtime you're going to use, what configuration parameters for
+**[00:10:39]** a deployment are going to be used, what context window
+**[00:10:42]** you're going to be enabling for that model.
+**[00:10:46]** Oh, and maybe one more thing, like we also want
+**[00:10:49]** to make sure that every deployment of a hanging face
+**[00:10:52]** model, if you pick it from the collection in Microsoft
+**[00:10:55]** Foundry, once it's deployed, it's not going to make network
+**[00:10:59]** calls outside of your own secure tenants.
+**[00:11:01]** So that's also a very important guarantee for enterprises.
+**[00:11:04]** I mentioned run times, I mentioned all these different tasks.
+**[00:11:08]** Depending on the model, there may be like a most
+**[00:11:10]** optimized runtime.
+**[00:11:11]** Some model providers will really focus on VLLM for the
+**[00:11:15]** LLM.
+**[00:11:16]** Some model providers will really focus on SG Lang for
+**[00:11:19]** the optimized deployment of their LLM.
+**[00:11:21]** Some models are not LLM.
+**[00:11:22]** Some models are embedding models that you need in order
+**[00:11:25]** to build like RAG pipelines.
+**[00:11:27]** So we have text embeddings, inferences optimized for that.
+**[00:11:30]** Some models are quantized in order to run better on
+**[00:11:33]** CPU and super efficiently using the LAMAS CPPC plus plus
+**[00:11:37]** runtime.
+**[00:11:38]** And so we have containers and deployment templates for that
+**[00:11:41]** etcetera.
+**[00:11:42]** For NVIDIA models you can find them with Nims and
+**[00:11:45]** that's all powered by tensor RTLLM.
+**[00:11:47]** And for like other types of tasks like speech and
+**[00:11:51]** vision tasks, we have HS HF Serve which is a
+**[00:11:54]** new framework SDK to optimize deployment of these machine learning
+**[00:11:59]** multi modal tasks.
+**[00:12:01]** So there we are, very excited to show this to
+**[00:12:04]** you and OC over to you to show us how
+**[00:12:07]** it all works.
+**[00:12:09]** Sounds good.
+**[00:12:09]** Can you guys hear me well?
+**[00:12:10]** OK, perfect.
+**[00:12:12]** So yeah, my name is OC Kadu.
+**[00:12:13]** Hello.
+**[00:12:13]** Hope everyone is doing well Let's get started with a
+**[00:12:17]** demo.
+**[00:12:19]** So curious how many people use Foundry already?
+**[00:12:22]** Quite a bit.
+**[00:12:23]** OK what about open models?
+**[00:12:25]** OK, that's good.
+**[00:12:26]** So yeah, this will be a treat for you guys
+**[00:12:28]** and for those who you can not fit in any
+**[00:12:30]** of those buckets, you'll still be impressed.
+**[00:12:33]** So yeah, this is Microsoft Foundry.
+**[00:12:35]** As you can see, we're going to go into the
+**[00:12:38]** discover if it works.
+**[00:12:42]** So in Discover is where we'll find like all the
+**[00:12:44]** model catalogs, right?
+**[00:12:45]** And there are like different collections available.
+**[00:12:49]** Oh, that's probably connectivity.
+**[00:12:53]** It's the demo effect.
+**[00:12:54]** It's going to happen.
+**[00:12:56]** Always happens.
+**[00:12:56]** Yep.
+**[00:12:57]** That's where we're on the demo Wi-Fi, so we have
+**[00:12:59]** the demo effect exactly.
+**[00:13:01]** So in the Discover tab you find all the different
+**[00:13:04]** model collections.
+**[00:13:06]** On the left sidebar you will see like the models
+**[00:13:10]** page.
+**[00:13:10]** And here you you can filter by different provider.
+**[00:13:15]** And to find specifically the Hugging Face models, you can
+**[00:13:20]** filter to the Hugging Face collection.
+**[00:13:25]** So within the filters, you're able to select the machine
+**[00:13:28]** learning task that you might want to use.
+**[00:13:30]** So we talked about like embeddings models and vision and
+**[00:13:33]** speech models.
+**[00:13:34]** That's so that's an easy way to get to the
+**[00:13:37]** kind of model that you want to use.
+**[00:13:40]** All right, maybe we're back.
+**[00:13:41]** There we go.
+**[00:13:42]** Got to do a hotspot.
+**[00:13:45]** So yeah, there we go.
+**[00:13:46]** Thank you.
+**[00:13:48]** It's loading.
+**[00:13:50]** But yeah, as Jeff said, discoveries where you see all
+**[00:13:52]** our latest and greatest models.
+**[00:13:54]** So alongside models from Microsoft AI and Drop Pic Open
+**[00:13:58]** AI, we have over 11,000 open models.
+**[00:14:02]** So we are going to go to the models page,
+**[00:14:05]** the models catalog page, it is loading.
+**[00:14:10]** And then as you Scroll down, loading, loading, OK, you
+**[00:14:13]** Scroll down to deployment options, you click on Manage Compute,
+**[00:14:17]** that is a starter show.
+**[00:14:18]** So that's where we're going to focus on.
+**[00:14:20]** So as you can see here, we have all these
+**[00:14:22]** models and as Jeff pointed out, these models are hosted
+**[00:14:26]** on Azure.
+**[00:14:27]** So it's not, we're not pulling it from a Hugging
+**[00:14:29]** Face hub, it's directly from Azure, so there's no worries
+**[00:14:31]** about that there.
+**[00:14:32]** So we're actually going to use a clan model.
+**[00:14:35]** So we're going to start with Clan 3 of Clan
+**[00:14:39]** 32 and select the Clan 332 filling parameter model.
+**[00:14:49]** So this is the deployment page.
+**[00:14:51]** Then after as it loads up, there's going to be
+**[00:14:54]** a deployment button that you simply click on and it
+**[00:14:57]** takes you to a deployment page.
+**[00:15:04]** So I'm just going to hit acknowledgements.
+**[00:15:05]** Of course, you have to acknowledge things here.
+**[00:15:08]** So yeah, so there's this thing called deployment templates.
+**[00:15:11]** So as you can see here, there are multiple deployment
+**[00:15:13]** templates.
+**[00:15:13]** We have 4.
+**[00:15:14]** So there's a base one of just H1 hundreds, H1
+**[00:15:17]** hundreds, That's it.
+**[00:15:19]** But as you can see above, we also have configurations
+**[00:15:22]** for 2H1 hundreds and 2A1 hundreds.
+**[00:15:25]** There's nothing else you have to do.
+**[00:15:26]** Everything is already preconfigured and customized for these deployments, so
+**[00:15:30]** I'm just going to click on the 2H1 hundreds for
+**[00:15:32]** example.
+**[00:15:33]** By the way, when you're selecting like AH100 deployment template,
+**[00:15:37]** then we can take advantage of like the latest Blackwell
+**[00:15:40]** data type.
+**[00:15:41]** So if there's like an NVFP for variant as there
+**[00:15:43]** is for like the latest Demotron models, then we'll take
+**[00:15:46]** advantage of that.
+**[00:15:47]** And if you want to prioritize like more context window
+**[00:15:50]** for like identity use cases or if you want to
+**[00:15:52]** prioritize latency, right, we have these deployment templates that give
+**[00:15:55]** you these easy to use options.
+**[00:15:57]** Exactly.
+**[00:15:58]** And on that note, as you can see, see here.
+**[00:16:00]** So for the 2H1 hundreds, we have the Max contents
+**[00:16:04]** length of 131,000 tokens.
+**[00:16:07]** So and also when you click on accelerators, again, we're
+**[00:16:09]** trying to simplify the infrastructure.
+**[00:16:12]** So all you have to do is just simply click
+**[00:16:14]** on the H-100 and that's it.
+**[00:16:15]** Nothing else.
+**[00:16:16]** You don't have to worry about the lower level infrastructure
+**[00:16:19]** details.
+**[00:16:19]** And that's the magic of manage compute, right?
+**[00:16:22]** It's the new thing that was announced yesterday within Microsoft
+**[00:16:25]** Foundry.
+**[00:16:25]** Like you don't have to go and fetch like in
+**[00:16:28]** the console.
+**[00:16:28]** Do I have the Corda for the right accelerator type?
+**[00:16:31]** Like it's really simple.
+**[00:16:32]** We have a one hundreds, we have H1 hundreds, we
+**[00:16:35]** have AMD Instinct GPUs coming and it's just like this
+**[00:16:38]** little drop down.
+**[00:16:39]** Exactly.
+**[00:16:40]** And going to call this out again.
+**[00:16:42]** So as a single H-100, as you can see, there's
+**[00:16:46]** 41,000 tokens.
+**[00:16:47]** So we try to optimize for your configurations out-of-the-box.
+**[00:16:52]** So I'm going to go to a preconfigured or pre
+**[00:16:55]** deployed model here.
+**[00:16:57]** So we go to build models and we have a
+**[00:17:01]** special tab just for manage compute.
+**[00:17:04]** As you can see here, manage compute deployments, simple as
+**[00:17:07]** that.
+**[00:17:08]** So you click on it, I'm going to take a
+**[00:17:11]** second to load.
+**[00:17:12]** There we go.
+**[00:17:12]** Oh, very cool.
+**[00:17:13]** And I'm going to select the print 332 B parameter
+**[00:17:17]** model.
+**[00:17:19]** Nice.
+**[00:17:19]** So once this is deployed, I guess we can interact
+**[00:17:21]** with it, right?
+**[00:17:22]** Exactly.
+**[00:17:23]** Yeah, so there.
+**[00:17:24]** So yeah, So for the first time and for the
+**[00:17:27]** yeah, first time before I build audience and also for
+**[00:17:30]** the first time, you can actually deploy the open models
+**[00:17:34]** from Foundry.
+**[00:17:35]** Now with that you can also have the Playground integration.
+**[00:17:38]** So I can ask you a simple question like hello.
+**[00:17:42]** And after a couple seconds, that's.
+**[00:17:44]** Simple enough.
+**[00:17:46]** Long and simple hello, how can I help So now
+**[00:17:49]** we that people developers do not live in playgrounds, right?
+**[00:17:53]** We use VS Code and other other software applications.
+**[00:17:59]** I'm simply going to go to the call model screen.
+**[00:18:01]** I'm going to copy this piece of code here.
+**[00:18:04]** So I'm like zooming out and I'm going to go
+**[00:18:08]** to VS code.
+**[00:18:12]** This is just pre configured already, so I'm just going
+**[00:18:16]** to simply 3 lines.
+**[00:18:17]** So simply copy and pasting it here.
+**[00:18:20]** I see what is the capital of France?
+**[00:18:22]** Let's I'm Nigerian, let's switch to Nigeria.
+**[00:18:26]** So what is the capital of Nigeria?
+**[00:18:28]** Staving it getting good.
+**[00:18:32]** Any guesses?
+**[00:18:36]** Sorry, no, you'll see.
+**[00:18:40]** So it's not Lagos in case you guys are guessing
+**[00:18:44]** that, but it is Dun Dun Dun Abuja.
+**[00:18:47]** Exactly.
+**[00:18:48]** Thank you.
+**[00:18:49]** Well done.
+**[00:18:50]** But yeah, I'm on a hot spot, so it's going
+**[00:18:52]** to take a little bit longer.
+**[00:18:53]** So it's a one stop shop.
+**[00:18:54]** So in the same basically UI, we're able to search
+**[00:18:57]** the model, find the model, access the available GPUs, and
+**[00:19:01]** then have the deployed model and integrate it into code,
+**[00:19:05]** right?
+**[00:19:05]** And that's going to come right up.
+**[00:19:07]** But like, I know that.
+**[00:19:09]** Oh, there we go.
+**[00:19:10]** There you go.
+**[00:19:10]** So good job I don't know your name.
+**[00:19:12]** Well done.
+**[00:19:12]** Congratulations.
+**[00:19:13]** Well done.
+**[00:19:14]** But then like I see this particular model being very
+**[00:19:17]** popular by hiding face users who want to use it
+**[00:19:19]** with their agents.
+**[00:19:20]** So can you actually do that in Foundry?
+**[00:19:22]** Of course, Yeah.
+**[00:19:23]** So again, for the first time ever, we now have
+**[00:19:26]** agent integration with these open models.
+**[00:19:28]** So as we go back to our deployment screen, I'm
+**[00:19:33]** going to go back to build, going to our models,
+**[00:19:38]** and I am going to go back to the Clan
+**[00:19:42]** 3 32B model that we deployed.
+**[00:19:47]** Oh, sorry about that.
+**[00:19:49]** There we go.
+**[00:19:52]** So select and I'm simply going to add it to
+**[00:19:54]** an agent.
+**[00:19:55]** I have to create a resource name, so I'm just
+**[00:19:57]** going to do build 2026.
+**[00:19:59]** Why not?
+**[00:20:04]** So after hitting that, going to agents and I'm hitting
+**[00:20:09]** a new agent.
+**[00:20:10]** So I'm going to select Build a new agent.
+**[00:20:13]** And let's go to Thing one.
+**[00:20:14]** I like darkness.
+**[00:20:16]** It's coming up.
+**[00:20:23]** Now the magical thing is that a week ago in
+**[00:20:26]** order to do all of this, you would have had
+**[00:20:30]** to jump through a lot of hoops, right?
+**[00:20:33]** Going from Foundry to Azure Machine Learning, then going to
+**[00:20:36]** get quota, then trying to guess like where is the
+**[00:20:39]** right runtime, then trying to guess what are the right
+**[00:20:42]** deployment parameters and then like how do I plug that
+**[00:20:45]** into my agent creation workflow directly in Foundry and now
+**[00:20:48]** it's all there.
+**[00:20:49]** Exactly and now with that so with agents you also
+**[00:20:52]** have integration to other tools so as you can see
+**[00:20:55]** here we have an integration with the web search tool.
+**[00:20:58]** So that means we can well, that means we can
+**[00:21:00]** interact with the live web results today, the NBA Finals.
+**[00:21:04]** So let's give that a try so.
+**[00:21:06]** Game one who?
+**[00:21:06]** Is playing.
+**[00:21:08]** Who is playing or who's winning?
+**[00:21:09]** What I'm saying, I mean, we're making predictions here, right?
+**[00:21:13]** So.
+**[00:21:15]** It's going to take some time.
+**[00:21:16]** Again, I'm on my hotspot, so let's give it a
+**[00:21:19]** shot.
+**[00:21:21]** Who is in the Hotspot?
+**[00:21:22]** The Knicks or or your computer?
+**[00:21:27]** There you go, Wednesday, June 3rd, NBA Finals tonight at
+**[00:21:30]** 8:30 PM Eastern Time between the New York Knicks and
+**[00:21:33]** San Antonio Spurs.
+**[00:21:34]** Oh, wait, but that's not in the training data.
+**[00:21:36]** Right, exactly.
+**[00:21:37]** How did that work?
+**[00:21:38]** Yeah.
+**[00:21:39]** So going back again, it's the integration with the web
+**[00:21:42]** search tools.
+**[00:21:42]** There are other integrations that we provide, but web search
+**[00:21:45]** of course is one of the top training tools that
+**[00:21:47]** we provide.
+**[00:21:49]** But of course, again, developers do not live in a
+**[00:21:50]** playground.
+**[00:21:51]** So we're going to go to call Agent and after
+**[00:21:54]** this loads, we're going to just copy over a code
+**[00:21:57]** into our platform.
+**[00:22:04]** So here.
+**[00:22:04]** So I'm just going to run it.
+**[00:22:18]** So who do you have for the NBA Finals?
+**[00:22:20]** Who?
+**[00:22:20]** Who do I have?
+**[00:22:21]** Yeah, who do you think is going to win?
+**[00:22:23]** Well, I'm not.
+**[00:22:25]** It's really an opinion.
+**[00:22:27]** Yeah.
+**[00:22:28]** I'm rooting for for Wimby personally.
+**[00:22:30]** Same thing.
+**[00:22:31]** Yeah, yeah, there's going to be a moment.
+**[00:22:34]** But yeah, once it runs, you can see that we
+**[00:22:37]** can easy call the agent from VS Code and there
+**[00:22:39]** you go.
+**[00:22:40]** So I can help with the wider range of tasks,
+**[00:22:42]** including one, 2-3 and four.
+**[00:22:44]** So, but let's also see there is something.
+**[00:22:48]** Yeah, let's try Agentic rag.
+**[00:22:51]** So I have a little demo, a little script here.
+**[00:22:56]** So I'm simply going to say what is my favorite
+**[00:22:58]** country.
+**[00:22:59]** So just calling it again didn't change anything about it.
+**[00:23:02]** I'm still calling the same endpoint, I'm still using the
+**[00:23:05]** same agent.
+**[00:23:07]** Oh, so actually let?
+**[00:23:08]** Me know well, while these things does this networking thing,
+**[00:23:12]** one of the magic of using Microsoft Foundry to do
+**[00:23:15]** all of this work, which you would have to do
+**[00:23:18]** anyways if you were building your agent like with any
+**[00:23:21]** other property, is that all the security features, all the
+**[00:23:25]** enterprise setup that you have with like role based access
+**[00:23:29]** controls and identities and permissions.
+**[00:23:31]** This is all built in.
+**[00:23:33]** So all the security that Microsoft built into Foundry applies
+**[00:23:37]** to your usage of open models to build all these
+**[00:23:41]** experiences exactly.
+**[00:23:42]** And as you can see, I'm calling the agent said
+**[00:23:45]** my favorite country is Nigeria, and it goes on from
+**[00:23:47]** there there.
+**[00:23:48]** That's a wonderful choice.
+**[00:23:49]** Nigeria is a vibrant, but not only that list, it's
+**[00:23:52]** also context aware.
+**[00:23:54]** So real quick as we are getting a signal, so
+**[00:23:56]** I'm testing the second one.
+**[00:23:58]** So again, I'm trying to just showcase the multi turn
+**[00:24:01]** functionality that we now have with open models on Foundry.
+**[00:24:07]** So again, I'm not referencing, I'm not referencing Nigeria at
+**[00:24:11]** all.
+**[00:24:11]** I'm simply saying like, hey, what did I tell you
+**[00:24:13]** my favorite country was?
+**[00:24:16]** And there you go, you mentioned that your favorite country
+**[00:24:18]** is Nigeria exactly.
+**[00:24:19]** So last but not least, it's going to try the
+**[00:24:22]** last one here.
+**[00:24:24]** I'm simply going to ask you what is the city
+**[00:24:26]** I should visit in Nigeria?
+**[00:24:27]** Run it and let's see what cities it will suggest.
+**[00:24:34]** I'm going to Nigeria hopefully in December so it can
+**[00:24:37]** give me some good travel advice here.
+**[00:24:41]** That's beautiful.
+**[00:24:41]** I think we're we've been asked to wrap it up.
+**[00:24:43]** So yesterday Microsoft announced managed computes available in Microsoft Foundry.
+**[00:24:51]** It's the easiest way for you to build with open
+**[00:24:54]** models.
+**[00:24:55]** We're bringing all the hugging face open models into this
+**[00:24:59]** new experience.
+**[00:25:01]** That's how you're able to deploy models with security, with
+**[00:25:05]** performance and with GPUs without having to go through all
+**[00:25:10]** of the hoops.
+**[00:25:12]** Thank you for the partnership.
+**[00:25:13]** Excited to keep building and bring more models, experiences of
+**[00:25:16]** course and.
+**[00:25:16]** Real quick, you got homework.
+**[00:25:18]** So one start building with AI Foundry #2 sign up
+**[00:25:21]** for the preview for Manage Compute and #3 first time
+**[00:25:25]** for Jeff.
+**[00:25:25]** We actually have a Microsoft Feedback portal, so you can
+**[00:25:29]** actually suggest Hugging face models to onboard to Foundry.
+**[00:25:32]** So thank you again for your time.
+**[00:25:33]** I bet you I do.
+**[00:25:35]** Thank you.

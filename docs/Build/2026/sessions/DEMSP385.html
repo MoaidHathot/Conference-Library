@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DEMSP385 - Build context-aware agents using GitHub Copilot, Elastic, and Azure AI</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; DEMSP385</nav>
+        <h1>DEMSP385 &mdash; Build context-aware agents using GitHub Copilot, Elastic, and Azure AI</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">DEMSP385 &middot; Demo</span>
+    <h1>Build context-aware agents using GitHub Copilot, Elastic, and Azure AI</h1>
+    <div class="speakers">Jeff Vestal</div>
+    <div class="meta">
+        <span>25 min</span>
+<span>Demo</span>
+<span>(300) Advanced</span>
+<span>Gateway Pavilion, Level 2, Theater C</span>
+<span>2026-06-02 21:10 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">AI</span> <span class="tag">Observability</span> <span class="tag">Agents</span> <span class="tag">GitHub Copilot</span> <span class="tag">Visual Studio Code</span> <span class="tag">Microsoft Foundry</span> <span class="tag">Foundry Agents</span> <span class="tag">GitHub Actions</span> <span class="tag">Agents &amp; apps</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/DEMSP385?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/d517366a-a8ce-4b50-9047-aeb5e8309c2b" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/d517366a-a8ce-4b50-9047-aeb5e8309c2b" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Your AI reviewer has amnesia; it knows your code, but forgets the 2 AM outage from last month. We’ll demo giving Copilot a memory. Using Elastic Agent Builder and Workflows, we build an agent that reviews PRs against production telemetry and incident history. See it in action: an agent identifies a regression pattern, cites a past incident via OTel traces in Elasticsearch, and helps a dev fix it in VS Code via Copilot Agent Mode and the Elastic MCP server. Powered by Azure AI Foundry.
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>This advanced demo session shows how to give automated code review &quot;memory&quot; of past production incidents by connecting GitHub Copilot, Elastic, and Azure AI Foundry. Elastic&#39;s Agent Builder and Workflows review pull requests against open telemetry traces and incident post-mortems stored in Elasticsearch, flagging changes that risk reintroducing known regressions before they merge.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>PR review agent backed by incident history (00:03:55)</strong> — A GitHub Actions check calls an Elastic Workflow that invokes Elastic Agent Builder to compare a PR diff against past incidents and OTel traces, posting a review comment when it matches a known failure pattern.</li>
+<li><strong>Semantic matching over keyword search (00:09:45)</strong> — The agent uses Elastic&#39;s ESQL <code>match</code> function with Jina AI [inferred] embeddings to perform vector/semantic search across post-mortems rather than literal keyword matching.</li>
+<li><strong>Direct agent querying in Kibana (00:11:29)</strong> — Developers can ask the agent questions about a prospective change before submitting a PR, using the Agent Builder UI on top of Elasticsearch.</li>
+<li><strong>Elastic MCP server in VS Code (00:14:17)</strong> — Copilot Agent Mode connects to the Elastic MCP server, exposing the agent&#39;s tools (find similar traces, search incidents, latency analysis) so developers can diagnose and fix issues without leaving the editor.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Augmenting automated code review with production telemetry and incident post-mortems</li>
+<li>Detecting a reintroduced race condition in an e-commerce inventory checkout flow</li>
+<li>GitHub Actions workflow configuration: gathering PR metadata, diffs, and environment variables to send to Elastic</li>
+<li>Elastic Agent Builder concepts: agents, skills, tools, custom instructions, and workflows</li>
+<li>Using ESQL queries for semantic/vector search over OTel traces and incident data</li>
+<li>Encoding recurring incidents (e.g. race conditions) as reusable agent skills from RCAs</li>
+<li>Fixing flagged code via Copilot Agent Mode and validating with a concurrency test harness</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;The PR reintroduces this critical race condition that previously caused production incidents.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;It&#39;s not just saying seems like a bad idea. We&#39;re saying, again, production broke probably don&#39;t, maybe don&#39;t do that.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;Even just adding in open telemetry information... by being able to call Elasticsearch automatically as part of a GitHub action, you can get ahead of hopefully reoccurring production issues.&quot;</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>GitHub Copilot (Agent Mode)</li>
+<li>GitHub Actions</li>
+<li>Elastic / Elasticsearch</li>
+<li>Elastic Agent Builder</li>
+<li>Elastic Workflows</li>
+<li>Elastic MCP server</li>
+<li>Kibana</li>
+<li>ESQL (Elasticsearch Piped Query Language)</li>
+<li>Visual Studio Code</li>
+<li>Azure AI Foundry</li>
+<li>OpenTelemetry</li>
+<li>Jina AI embeddings [inferred]</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Jeff Vestal — presenter (Elastic)</li>
+</ul>
+<h2>Follow-up resources</h2>
+<p>None mentioned in the transcript.</p>
+
+    </div>
+</section>
+
+<section class="section">
+    <h2>Frames</h2>
+    <div class="frames-grid">
+<figure><img loading="lazy" src="../frames/DEMSP385/frame-001-04-10.jpg" alt="Frame at 04:10"><figcaption>04:10</figcaption></figure>
+<figure><img loading="lazy" src="../frames/DEMSP385/frame-002-08-20.jpg" alt="Frame at 08:20"><figcaption>08:20</figcaption></figure>
+<figure><img loading="lazy" src="../frames/DEMSP385/frame-003-12-30.jpg" alt="Frame at 12:30"><figcaption>12:30</figcaption></figure>
+<figure><img loading="lazy" src="../frames/DEMSP385/frame-004-16-40.jpg" alt="Frame at 16:40"><figcaption>16:40</figcaption></figure>
+    </div>
+</section>
+
+<section class="section">
+    <h2>References</h2>
+    <ul class="refs-list">
+<li><a href="@{link=https://static.rainfocus.com/microsoft/build26/static/staticfile/staticfile/msft-build-2026-submission_1777920789128001JWh4_1780512427007001NX2a.pptx; backpackLink=; label=; category=Download}" target="_blank" rel="noopener"></a></li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (25,462 chars)</summary>
+        <pre class="transcript-body">[00:00:01] All right, thank you.
+[00:00:02] So quick raise of hand just for me, how many
+[00:00:04] people are familiar with elastic Elastic search Elastic.
+[00:00:09] All right, cool.
+[00:00:10] It&#39;s pretty good.
+[00:00:11] OK, so today I&#39;m going to talk about how we
+[00:00:14] can use elastic search with Code Review agency when you
+[00:00:17] push PRS to help.
+[00:00:18] Not we already do a lot of just is your
+[00:00:21] code actually working?
+[00:00:22] Is it syntactically correct?
+[00:00:23] Things like that.
+[00:00:24] We&#39;re going to tie it to if I push this
+[00:00:26] PR, is it going to cause the same incident that
+[00:00:29] happened last month?
+[00:00:34] There we go.
+[00:00:35] OK, So what happens right now is your code gets
+[00:00:38] pushed and you you have a review and maybe it
+[00:00:42] works.
+[00:00:42] If it doesn&#39;t, it gets blocked.
+[00:00:43] Otherwise you merge it.
+[00:00:44] So we&#39;re going to again, take these post mortem incidents
+[00:00:47] that happen, open telemetry traces that are in elastic search,
+[00:00:50] and we&#39;re going to have that automatically check in and
+[00:00:52] make a code review.
+[00:00:54] So this is the most high level chart of this
+[00:00:58] I could put together.
+[00:01:00] So essentially you have your automated review process right now.
+[00:01:02] So you push your PR and GitHub, GitHub actions, fire,
+[00:01:05] they do whatever you know you normally have in your
+[00:01:08] process right now.
+[00:01:09] But we&#39;re going to add in calling Elastic Workflow, which
+[00:01:12] in turn calls Elastic Agent Builder.
+[00:01:15] Agent Builder is just our agent platform, but we run
+[00:01:17] agents.
+[00:01:17] We&#39;ll show it a little bit if it matches.
+[00:01:20] And you know, using semantic search, things about open telemetry,
+[00:01:25] similarities, anything in the incident post mortems that happened, it&#39;ll
+[00:01:29] push back a comment in your code and then you
+[00:01:32] can decide what you want to do.
+[00:01:35] If you want to fix it, we can drop into
+[00:01:36] VS Code.
+[00:01:37] We can use Copilot and the MCP servers back to
+[00:01:40] elastic search to make decisions.
+[00:01:42] And we&#39;ll show all that in just a minute.
+[00:01:45] So really the high level is moving from now, it
+[00:01:47] looks good to it might be syntactically correct again, but
+[00:01:51] it hits a production issue that happened last month.
+[00:01:54] So I&#39;m not a big slide guy, so we&#39;re going
+[00:01:57] to just drop over into an actual example here.
+[00:02:00] So because this is a big event, I practice this
+[00:02:03] a bunch of times.
+[00:02:04] That&#39;s why you have a bunch of these PRS up
+[00:02:06] here.
+[00:02:06] But we&#39;re going to actually go, and we&#39;re going to
+[00:02:08] go and create a pull request and we&#39;ll show the
+[00:02:11] code and all the other things in a minute.
+[00:02:13] So I&#39;m going to go in and I have some
+[00:02:16] code changes.
+[00:02:17] So what this does essentially is pretty small bit of
+[00:02:20] code change.
+[00:02:21] We&#39;re going to take this reserve and we&#39;re going to
+[00:02:23] split out the rights.
+[00:02:24] And so I should mention a little bit of background
+[00:02:26] in this.
+[00:02:27] The application is a, it&#39;s called Wayfinder.
+[00:02:30] It&#39;s a e-commerce store.
+[00:02:32] So we&#39;re in California.
+[00:02:33] I&#39;m from Chicago, but I like to dream that I&#39;m
+[00:02:35] going to go climb all these mountains and do all
+[00:02:37] the adventure stuff.
+[00:02:37] So I go to like a, you know, an adventure
+[00:02:39] store and you buy all the gear and then you
+[00:02:41] don&#39;t really do it, but it&#39;s an e-commerce store.
+[00:02:44] And so key part of this is when you go
+[00:02:46] to purchase an inventory, an item, the inventory has to
+[00:02:48] be correct, right?
+[00:02:49] There&#39;s one pair of boots left, but three people are
+[00:02:52] trying to buy it.
+[00:02:53] You&#39;re going to have an issue there and you want
+[00:02:55] to make sure that only one person actually gets that
+[00:02:58] sale.
+[00:02:59] But what we did here is we decided to change
+[00:03:02] do some refactoring and trying to trying to make a
+[00:03:05] change that helps the this under high throughput.
+[00:03:10] Let&#39;s create a pull request.
+[00:03:11] And again, I&#39;ll look at the files to change the
+[00:03:13] key one that changed here.
+[00:03:16] Again, the specific code changes isn&#39;t super important, but it&#39;s
+[00:03:19] it&#39;s rather minor.
+[00:03:19] Instead of doing an atomic checkout right here, we decided,
+[00:03:24] you know what, let&#39;s just set the quantity once and
+[00:03:27] then I&#39;m going to use it a couple times to
+[00:03:30] do in pre computed quantities in here.
+[00:03:34] So it&#39;s a pretty minor change.
+[00:03:36] We, you know, we&#39;re just kind of move some things
+[00:03:38] around and decide to do this and it it passes
+[00:03:41] normal checks because it&#39;s a valid change you can do.
+[00:03:44] If I go over to the back to the conversation
+[00:03:47] part, Scroll down, see some of the checks.
+[00:03:51] So the checks are running and you can have whatever
+[00:03:53] checks you normally would put in here, but we have
+[00:03:55] this elastic PR agent and this is kind of the
+[00:03:57] key to what we&#39;re talking about today.
+[00:03:59] So if I look up, look up, we can see
+[00:04:01] that we have a new comment on here and elastic
+[00:04:04] agent builder ran through the code and it said, OK,
+[00:04:07] the PR reintroduces this critical race condition that previously caused
+[00:04:11] production incidents.
+[00:04:12] So it&#39;s recommending you don&#39;t do it.
+[00:04:14] And key, it&#39;s not just using it&#39;s you know, it&#39;s
+[00:04:17] training or it&#39;s, you know, what has been trained on
+[00:04:20] about code and, and reviews.
+[00:04:22] It&#39;s saying this actually caused an incident.
+[00:04:24] You can see on April 7th, we had an an
+[00:04:26] incident caused five O 4 gateway timeouts.
+[00:04:29] It looks at hotel traces.
+[00:04:31] It has specific trace examples.
+[00:04:33] So again, it&#39;s saying if you do this, this is
+[00:04:35] what happened.
+[00:04:36] And when you made that change last time or now
+[00:04:38] with all the coding agents, maybe the coding agent decided
+[00:04:41] this was a good idea, but we broke production at
+[00:04:44] least once before.
+[00:04:45] Maybe you don&#39;t want to do it.
+[00:04:47] It gives the root cause on why this is a
+[00:04:49] bad idea and what caused the incident before.
+[00:04:53] And it talks again about the PR removing and so
+[00:04:56] it even gives a suggestion on how you can make
+[00:04:59] this change not break production.
+[00:05:01] That&#39;d be great.
+[00:05:02] We can take a look here.
+[00:05:07] So it&#39;s a pretty simple setup.
+[00:05:09] If we look at this is just calls this one
+[00:05:13] workflow URL in real time.
+[00:05:15] It takes about a minute to run depending on how
+[00:05:17] much data you have, how large your production, how many
+[00:05:19] incidents, RCA&#39;s and things like that.
+[00:05:22] But the workflow file to set it up is again
+[00:05:24] pretty straightforward.
+[00:05:25] So we&#39;re calling Elastic Agent Builder, optionally posting a comment
+[00:05:29] if it matches something that went wrong.
+[00:05:32] We have to give it, you know, some environment variables.
+[00:05:35] So we have things like the PR, the title repo,
+[00:05:37] kind of whatever information that is needed for the agents
+[00:05:40] in Elastic search to run.
+[00:05:42] And then we go through and all this really is
+[00:05:45] just collecting data to send to the agent.
+[00:05:47] Here it&#39;s talking about using the tools, searching hotel traces
+[00:05:51] for for information.
+[00:05:53] And then all this is at the bottom is really
+[00:05:55] just if the agent didn&#39;t match something, it&#39;s going to
+[00:05:58] generate a comment that we saw depends it back.
+[00:06:00] So this is just some parsing out.
+[00:06:01] So really all we&#39;re doing is gathering information about the
+[00:06:04] PR, getting the DIF, sending it off to Elastic, And
+[00:06:06] then when if something comes back, we&#39;ll parse it out
+[00:06:08] and make a comment.
+[00:06:10] So that&#39;s on the the GitHub side.
+[00:06:12] We can take a look if we hop over into
+[00:06:15] Elastic and get it to jump.
+[00:06:20] There we go.
+[00:06:20] OK, so this is Cabana, which is our UI on
+[00:06:24] top of Elastic search.
+[00:06:26] And this is the agent builder or agent UI that&#39;s
+[00:06:29] fairly new, depending on how familiar with Elastic.
+[00:06:32] You know, we&#39;ve been changing getting into agents and and
+[00:06:35] making it embedded as much as possible like everyone else
+[00:06:38] here at build.
+[00:06:39] So you have your history of all the comments or
+[00:06:41] all the conversations you&#39;ve run before.
+[00:06:43] These include the automated ones.
+[00:06:45] So when the automated test and GitHub run and and
+[00:06:47] call this, it still stores the the history so you
+[00:06:50] can go in and see what happened.
+[00:06:52] Now, like most agent platforms, we have things like skills.
+[00:06:56] Sure, most people here are familiar with this, but on
+[00:06:59] the off chance, right, skills kind of provide information on
+[00:07:02] an agent on how something should be done or information
+[00:07:05] about a system or just ways to perform a set
+[00:07:07] of actions.
+[00:07:08] Whereas tools are actually providing functions.
+[00:07:11] So we have things like querying elastic search, obviously for
+[00:07:13] all your datas in there, you can query it to
+[00:07:15] look for things, doing semantic search, vector search, all kinds
+[00:07:18] of things.
+[00:07:20] We have tools to reach out to MCP servers.
+[00:07:23] We have workflows.
+[00:07:24] And since you&#39;re doing a custom agent, we want to
+[00:07:27] make sure we give it some custom instructions.
+[00:07:30] So I have one for today.
+[00:07:35] This is where you kind of explain to the agent
+[00:07:36] what&#39;s going on, right?
+[00:07:37] So in this one it&#39;s, you know, you&#39;re an AI
+[00:07:39] pull request reviewer, wave Finder is my store.
+[00:07:42] You have access to open telemetry data, historical incidents, post
+[00:07:46] mortems and going.
+[00:07:47] And so when you get invoked on the PR and
+[00:07:49] you kind of just walk it through the steps, we&#39;re
+[00:07:52] going to fetch the PR diffs, we&#39;re going to identify
+[00:07:55] any routes that are being used and we have the
+[00:07:57] tools in here.
+[00:07:59] You don&#39;t have to hard code the tools in here
+[00:08:01] because put it in there automatically, but so you can
+[00:08:03] kind of see what&#39;s going on today.
+[00:08:05] And we&#39;re looking for patterns, so not keywords.
+[00:08:07] We&#39;re not just doing keyword matching.
+[00:08:09] We&#39;re doing, you know, semantic look up and things like
+[00:08:10] that.
+[00:08:12] And then if you do find a match, this is
+[00:08:14] kind of important.
+[00:08:15] We want to explain, you know, what the match is,
+[00:08:18] how we found it, specific examples so that we&#39;re not
+[00:08:21] just, again, we&#39;re not just saying seems like a bad
+[00:08:24] idea.
+[00:08:24] We&#39;re saying, again, production broke probably don&#39;t, maybe don&#39;t do
+[00:08:27] that and some other rules.
+[00:08:30] We look at the skill.
+[00:08:31] One of the things you can do if you have
+[00:08:33] a reoccurring incident is, you know, as part of your
+[00:08:36] postmortem is an RCA is creating an actual skill that
+[00:08:39] looks for things like race conditions.
+[00:08:41] So production broke a couple times or race condition.
+[00:08:44] We&#39;re going to make sure that the the agent understands
+[00:08:46] specifically what can go wrong.
+[00:08:49] Obviously they, these agents are or these LMS are smart,
+[00:08:51] they are aware of things like race conditions, but you
+[00:08:54] can kind of be very specific if you really have
+[00:08:56] things that you need the agent to know.
+[00:08:59] And then tools.
+[00:09:00] So I mentioned that this agent has access to a
+[00:09:03] couple tools.
+[00:09:05] This is always curious for me.
+[00:09:07] Who here is familiar with Elastic&#39;s ES pipe QL language.
+[00:09:12] It&#39;s newish.
+[00:09:13] That&#39;s why I ask.
+[00:09:14] No, fantastic.
+[00:09:15] So it is a sequel like syntax, being able to
+[00:09:18] query Elastic with, you know, again, sequel like syntax.
+[00:09:22] I&#39;ll show it in a second, but we have access.
+[00:09:24] It has access to a couple tools here.
+[00:09:26] So we&#39;re looking for similar traces based on Http://routes, looking
+[00:09:30] for latency spikes on those routes, and then this one
+[00:09:33] where we&#39;re looking for actual incidents.
+[00:09:36] So where are we matching POST or previous incidents?
+[00:09:41] This is a dead simple ESQL query.
+[00:09:45] This match query function is a little deceptive in that
+[00:09:48] it&#39;s not just matching on keywords, it&#39;s actually doing semantic
+[00:09:52] search.
+[00:09:52] It&#39;s doing vector search.
+[00:09:54] We&#39;re using the Gina AI embeddings in the cluster where
+[00:09:56] we generate embeddings on all these post mortem incidents and
+[00:09:59] all the comments and all the data.
+[00:10:01] And so then when we can match, you know, semantically
+[00:10:04] on what was going on, give it a full text
+[00:10:06] query.
+[00:10:06] And again, you kind of give the short tool description.
+[00:10:09] You can be more verbose in your real production environment.
+[00:10:15] And then one other thing I want to show over,
+[00:10:17] I&#39;ll show the agents in a second is workflows.
+[00:10:20] So a couple of workflows for the production side, but
+[00:10:23] the PR review that we saw, So in when we
+[00:10:25] were in in GitHub side, we saw that the, the
+[00:10:28] tool or the, the workflow there gathered some environment variables
+[00:10:32] and then passed them over to Elastic and called a
+[00:10:36] workflow.
+[00:10:36] This is the other side of that GitHub workflow where
+[00:10:39] we have these.
+[00:10:40] I&#39;ll look at one that I ran last week when
+[00:10:42] I was setting this all up.
+[00:10:45] It&#39;s pretty straightforward.
+[00:10:46] All it&#39;s doing is getting all these environment variables and
+[00:10:49] information about the PR that we&#39;re we&#39;re pushing and looking
+[00:10:51] for information for.
+[00:10:53] And then I&#39;m calling the agent in Elasticsearch.
+[00:10:55] There&#39;s not much to see here.
+[00:10:57] The input side is this body where again you can
+[00:11:01] see it&#39;s the PR 37 and then all the other
+[00:11:04] information we passed back to the agent.
+[00:11:07] And the outcome in this case when I ran it
+[00:11:10] was it did find because it&#39;s a demo, it did
+[00:11:12] find a match to an incident that happened previously.
+[00:11:16] So it says yeah, it ran for PR 37, the
+[00:11:18] agent response to 200 and the the comment gets sent
+[00:11:22] back.
+[00:11:22] So we&#39;re not actually storing that right here, but it&#39;s
+[00:11:25] saying that you know, it&#39;s inside GitHub MCP tool.
+[00:11:28] Cool.
+[00:11:29] So there&#39;s two things I can show example wise when
+[00:11:31] you&#39;re talking to agent.
+[00:11:32] So if you&#39;re just pushing code, you don&#39;t have to
+[00:11:35] go in here, but you also because all the data
+[00:11:37] is in there and it&#39;s it&#39;s an agent, you know,
+[00:11:40] you as a developer can go in and ask questions
+[00:11:42] to the agent directly.
+[00:11:44] And so you can say, hey, I&#39;m looking at APR
+[00:11:47] that removes the and and quantity.
+[00:11:49] So you can ask questions before you even submit the
+[00:11:51] PR if you want and say, are they matching any
+[00:11:53] known patterns?
+[00:11:55] And so we&#39;re going to match the similar things we
+[00:11:58] did for the GitHub automatically.
+[00:12:00] So we roll back up, we can see it does
+[00:12:03] a couple of things.
+[00:12:05] So it has this search incident tool and it&#39;s saying,
+[00:12:08] you know, it&#39;s looking for a specific concurrency patterns.
+[00:12:12] So it matches, it calls it three times, actually looks
+[00:12:15] for pattern terminology around that.
+[00:12:17] So it&#39;s deciding, you know, phrases and things that could
+[00:12:20] match potentially what you&#39;re asking about changing.
+[00:12:23] It&#39;s finding 5 results, 5 results, different results and then
+[00:12:26] it calls looking for similar traces.
+[00:12:28] So it&#39;s looking for this endpoint to see if there
+[00:12:31] were actually things that happened and latency spikes and then
+[00:12:35] it gives you a nice kind of human friendly answer.
+[00:12:39] But again, the key to all this is not just
+[00:12:41] it&#39;s it&#39;s training and it&#39;s learning.
+[00:12:43] It&#39;s on April, April 7th, an incident, similar thing was
+[00:12:49] changed and we had to fix it happened.
+[00:12:54] And you know, the, the, the 847 lockout contention events
+[00:12:58] caused your production, you know, success rate to actually sell
+[00:13:03] items dropping from 99.7 to 76.
+[00:13:06] So it&#39;s giving concrete examples on how this is going
+[00:13:07] to affect your production.
+[00:13:09] And then it gives the post mortem and it talks
+[00:13:11] about the specific, an example, a sample of specific traces
+[00:13:15] that happened.
+[00:13:17] And then again it gives that kind of recommendation.
+[00:13:21] And we can also ask about a specific endpoint saying
+[00:13:23] I&#39;m going to work on this endpoint.
+[00:13:26] Is there anything in these post mortem incidents that may
+[00:13:29] have happened in the past, similar thing that we&#39;ve seen?
+[00:13:32] Because it&#39;s the same in point and everything it&#39;s going
+[00:13:35] to find these and say, Yep, there&#39;s recent telemetry it
+[00:13:38] broke.
+[00:13:38] So a lot of ways you can go about asking
+[00:13:40] questions, but it&#39;s all being able to use these actual
+[00:13:43] incidents, open telemetry, tracing post mortem information you have and
+[00:13:47] then get ahead of your code from actually breaking production.
+[00:13:51] So great.
+[00:13:51] So we, we started out in this code, we pushed
+[00:13:54] and pushed APR get out, ran automatically and called Elastic
+[00:13:57] search and said, Oh yeah, this code change matches an
+[00:14:00] incident that happened and left a comment and it&#39;s up
+[00:14:04] to you.
+[00:14:05] Here in Elastic side, we&#39;re calling the agent, we&#39;re asking
+[00:14:07] the very similar things.
+[00:14:08] So different ways you can do it.
+[00:14:10] But as a developer, you might just want to sit
+[00:14:12] in VS Code and never actually go into a combat
+[00:14:14] in Elastic.
+[00:14:15] That&#39;s totally fine too.
+[00:14:17] So in VS Code, I&#39;m now using Copilot here and
+[00:14:20] I do have though the MCP server hooked up to
+[00:14:24] Elastic.
+[00:14:25] So Elastic, all that data in there and all the
+[00:14:27] tools that the agent has access to are exposed on
+[00:14:30] MCP server protocol.
+[00:14:31] And so you can just hook into the MCP and
+[00:14:34] do things like call, find similar traces, search incidents, open
+[00:14:38] telemetry, incident analysis, things like that.
+[00:14:41] And you can do it right from get up.
+[00:14:43] So I can say, you know, I got this PR
+[00:14:45] comment for the inventory reserve.
+[00:14:49] Can you actually tell me what&#39;s what was happening and
+[00:14:51] what went on?
+[00:14:52] And the very similar thing is going to happen here.
+[00:14:54] Now we&#39;re just never leaving BS code.
+[00:14:56] We&#39;re calling those same MCP server tools.
+[00:15:00] Find similar traces, find latency spikes.
+[00:15:03] It&#39;s analyzing all the information.
+[00:15:04] And Copilot itself is putting together a very similar response
+[00:15:08] on Yep, it was in a prepared statement.
+[00:15:11] Hit the cash rate.
+[00:15:13] I was saying the comment itself a justification, but it&#39;s
+[00:15:16] exactly the pattern on April 7th.
+[00:15:18] So you made this before or someone else made it
+[00:15:20] before, or your coding agent decided it&#39;s going to make
+[00:15:23] this, but it already broke.
+[00:15:24] And So what you need to change again is giving
+[00:15:27] an example on how to do this and when you
+[00:15:29] can drop in here and give it.
+[00:15:32] And because I don&#39;t want to actually make the change
+[00:15:35] myself, I can just say yes, and copilot&#39;s going to
+[00:15:38] go in and make that change for me and update
+[00:15:40] it.
+[00:15:41] So it&#39;s going to go in, it&#39;s going to figure
+[00:15:43] out, you know, again, what changes to fix.
+[00:15:45] It&#39;s a pretty simple code example.
+[00:15:47] It&#39;s going to make those changes and then it&#39;s going
+[00:15:49] to report back on on what it did.
+[00:15:51] So I can show and again, it, you know, it
+[00:15:56] describes as Scopilot does what changes it made.
+[00:16:01] So it removed that, you know, hard coding the new
+[00:16:04] quantity early on and it got rid of that misleading
+[00:16:06] comment.
+[00:16:07] It changed the, the DB statement here on line 46
+[00:16:11] to, you know, be more thread safe and check out
+[00:16:15] safe.
+[00:16:15] And then it said it added a second check.
+[00:16:17] It even added a second check in here because it,
+[00:16:19] it gives the mention that this isn&#39;t truly transactional.
+[00:16:22] We&#39;re, we&#39;re doing our best with kind of managing it.
+[00:16:25] If you really wanted to, you can make it an
+[00:16:27] actual SQL transaction.
+[00:16:27] But in the code, this is what we&#39;re doing.
+[00:16:31] So I can go ahead and I can commit that
+[00:16:32] and push it back and, and make the change.
+[00:16:34] The last thing I want to show is with all
+[00:16:38] that real quick, just in the terminal, Yeah.
+[00:16:42] And I can give a little test.
+[00:16:43] So I have a harness that fires 20 requests.
+[00:16:46] So again, it&#39;s kind of the thing of there&#39;s one
+[00:16:48] pair of boots left, 20 people really want this boot.
+[00:16:52] We want to make sure that only one person actually
+[00:16:53] gets assigned it.
+[00:16:54] So we&#39;re going to run it.
+[00:16:55] So we made the change, run through this test real
+[00:16:58] simple.
+[00:16:59] And if everything works out, then we have.
+[00:17:01] Yeah, we wanted one.
+[00:17:02] We got one.
+[00:17:03] Pretty straightforward.
+[00:17:05] So what I&#39;ll leave you with is going back to
+[00:17:08] which way I want to go by adding in, you
+[00:17:12] know, post mortem information, RCA information, open telemetry data.
+[00:17:17] You can do some of it, You can do all
+[00:17:19] of it.
+[00:17:19] You don&#39;t have to have it all together.
+[00:17:20] But even just adding in open telemetry information to looking
+[00:17:24] in for when spikes change by being able to call
+[00:17:26] elastic search automatically as part of a GitHub action, you
+[00:17:30] can get ahead of, you know, hopefully reoccurring production issues
+[00:17:34] that happen.
+[00:17:35] You can also load in some information if you were
+[00:17:37] running in in dev and you run those post forums
+[00:17:39] in dev and get ahead of them, you can load
+[00:17:41] that in there so that these lessons learned in dev,
+[00:17:44] you can store them in there and we can match
+[00:17:46] that way.
+[00:17:46] So thank you for hanging out.
+[00:17:49] Elastic is over in the other building.
+[00:17:51] We have these little you can build Legos and clicky
+[00:17:53] things if you like fidgeting with things like I do.
+[00:17:56] I appreciate everyone hanging out and thank you.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

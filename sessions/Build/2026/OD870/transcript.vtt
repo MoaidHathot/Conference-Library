@@ -1,0 +1,1964 @@
+WEBVTT
+
+00:00:00.510 --> 00:00:06.990
+[ Music ]
+
+00:00:06.990 --> 00:00:08.130
+SAURABH SENSHARMA: Hi, everyone,
+
+00:00:08.130 --> 00:00:11.460
+and welcome to Azure
+Storage for AI workloads.
+
+00:00:11.460 --> 00:00:13.860
+I'm Saurabh Sensharma,
+a Product Manager
+
+00:00:13.860 --> 00:00:17.700
+on the Azure Storage team
+focused on AI workloads.
+
+00:00:17.700 --> 00:00:18.960
+And today I'm joined
+
+00:00:18.960 --> 00:00:22.230
+by my colleague Vishnu
+Charan from Azure Storage.
+
+00:00:22.230 --> 00:00:23.400
+Today, we are going to walk you
+
+00:00:23.400 --> 00:00:27.870
+through how Azure Storage
+powers AI inference at scale,
+
+00:00:27.870 --> 00:00:31.500
+how we securely bring
+enterprise data to AI models,
+
+00:00:31.500 --> 00:00:34.890
+how we accelerate inference
+with high-performance storage,
+
+00:00:34.890 --> 00:00:39.620
+and how we reduce GPU idle time
+through faster model loading.
+
+00:00:39.620 --> 00:00:43.160
+Whether you're building on
+Microsoft Foundry, on AKS,
+
+00:00:43.160 --> 00:00:45.200
+or directly on Azure
+Infrastructure
+
+00:00:45.200 --> 00:00:49.710
+as a Service services, this
+session is built for you.
+
+00:00:49.710 --> 00:00:52.620
+This talk is focused
+on inference,
+
+00:00:52.620 --> 00:00:54.780
+the dominant AI workload today,
+
+00:00:54.780 --> 00:00:57.480
+and the unique capabilities
+Azure Storage brings
+
+00:00:57.480 --> 00:01:00.660
+to make agentic inference
+faster, cheaper,
+
+00:01:00.660 --> 00:01:04.590
+and more secure, including
+turning your enterprise data
+
+00:01:04.590 --> 00:01:06.750
+into agent-ready knowledge.
+
+00:01:06.750 --> 00:01:09.990
+This session is broken
+into chapters that map
+
+00:01:09.990 --> 00:01:12.690
+to each agenda item
+that you see here.
+
+00:01:12.690 --> 00:01:14.640
+So feel free to jump
+straight to the topic
+
+00:01:14.640 --> 00:01:17.250
+that matters the most to you.
+
+00:01:17.250 --> 00:01:21.090
+Before we dive in, let's
+quickly frame how Azure Storage
+
+00:01:21.090 --> 00:01:23.460
+and AI connect.
+
+00:01:23.460 --> 00:01:27.330
+We typically think about
+these two in two categories.
+
+00:01:27.330 --> 00:01:32.820
+First, storage for AI, storage
+as a foundational element
+
+00:01:32.820 --> 00:01:36.900
+of every AI workload, from
+training and fine-tuning
+
+00:01:36.900 --> 00:01:41.160
+to agentic inference, which
+is the focus of today's talk.
+
+00:01:41.160 --> 00:01:46.110
+This is where speed, scale, and
+security have to come together.
+
+00:01:46.110 --> 00:01:52.140
+Second, AI for storage, using AI
+to make storage itself smarter,
+
+00:01:52.140 --> 00:01:55.110
+from better data management
+and classification
+
+00:01:55.110 --> 00:01:57.120
+to day-to-day operations.
+
+00:01:57.120 --> 00:02:02.130
+Today, we'll focus on the first
+category, storage for AI.
+
+00:02:02.130 --> 00:02:05.400
+Before we go deep on
+storage for AI inference,
+
+00:02:05.400 --> 00:02:08.280
+let's set the stage on
+how Azure Storage plugs
+
+00:02:08.280 --> 00:02:12.740
+into the AI stack today,
+across training and inference,
+
+00:02:12.740 --> 00:02:17.000
+and how it gives you the freedom
+of choice to build applications
+
+00:02:17.000 --> 00:02:21.260
+on Microsoft Platform as a
+Service services, on Kubernetes,
+
+00:02:21.260 --> 00:02:25.170
+or directly on Infrastructure
+as a Service, or IaaS,
+
+00:02:25.170 --> 00:02:27.750
+with open source
+and partner tools.
+
+00:02:27.750 --> 00:02:29.490
+At the infrastructure layer,
+
+00:02:29.490 --> 00:02:33.050
+the AI workload stack
+looks quite familiar:
+
+00:02:33.050 --> 00:02:37.940
+physical infrastructure,
+GPUs, NICs, local NVMe,
+
+00:02:37.940 --> 00:02:39.470
+the same hardware story.
+
+00:02:39.470 --> 00:02:42.860
+Virtualization on top,
+VMs and Kubernetes nodes,
+
+00:02:42.860 --> 00:02:44.310
+again, the same playbook.
+
+00:02:44.310 --> 00:02:46.710
+But the differences
+emerge in storage,
+
+00:02:46.710 --> 00:02:51.210
+where AI workloads demand high
+throughput and low latency
+
+00:02:51.210 --> 00:02:56.010
+at massive distributed scales
+across three patterns, in fact:
+
+00:02:56.010 --> 00:03:00.090
+data prep, high throughput
+checkpointing during training,
+
+00:03:00.090 --> 00:03:03.840
+and model and data
+retrieval during inference.
+
+00:03:03.840 --> 00:03:07.860
+That starts with Azure Blob as
+the durable foundation accessed
+
+00:03:07.860 --> 00:03:11.340
+through purpose-built storage
+clients beginning with BlobFuse
+
+00:03:11.340 --> 00:03:17.040
+for POSIX-like file access,
+ADLFS for FSSpec workflows,
+
+00:03:17.040 --> 00:03:21.450
+and the PyTorch connector for
+high-throughput data loading.
+
+00:03:21.450 --> 00:03:25.140
+For HPC class throughput,
+Azure Managed Lustre
+
+00:03:25.140 --> 00:03:29.910
+with the AMLFS POSIX client
+and Azure container storage
+
+00:03:29.910 --> 00:03:34.020
+that presents local NVMe
+as persistent volumes
+
+00:03:34.020 --> 00:03:37.800
+for stateful Kubernetes
+workloads with Azure files,
+
+00:03:37.800 --> 00:03:42.090
+disks, and Elastic SAN
+support on the roadmap.
+
+00:03:42.090 --> 00:03:46.860
+All of these are orchestrated
+across VMSS and AKS.
+
+00:03:46.860 --> 00:03:50.550
+We've optimized these clients
+to plug into the AI runtimes
+
+00:03:50.550 --> 00:03:54.150
+and orchestrators the developer
+community is using today.
+
+00:03:54.150 --> 00:03:58.230
+This includes Ray,
+PyTorch, TensorFlow, vLLM,
+
+00:03:58.230 --> 00:04:02.340
+SGLang, Triton, and ONNX.
+
+00:04:02.340 --> 00:04:06.480
+And the same foundation
+powers Microsoft Foundry,
+
+00:04:06.480 --> 00:04:10.560
+the AKS Kubernetes AI toolchain
+operator, or as we call it,
+
+00:04:10.560 --> 00:04:15.240
+KAITO, and the broader
+Azure AI infrastructure.
+
+00:04:15.240 --> 00:04:17.670
+Building on exactly
+this foundation,
+
+00:04:17.670 --> 00:04:20.790
+Azure gives you three
+intentional paths
+
+00:04:20.790 --> 00:04:25.200
+to run AI workloads, and storage
+is a critical element across all
+
+00:04:25.200 --> 00:04:29.460
+of them: Managed PaaS
+with Microsoft Foundry
+
+00:04:29.460 --> 00:04:33.990
+as the managed AI platform with
+access to Microsoft Partner
+
+00:04:33.990 --> 00:04:38.720
+and open models, great for
+teams who want abstraction;
+
+00:04:38.720 --> 00:04:43.880
+managed Kubernetes with AKS for
+teams who want more control,
+
+00:04:43.880 --> 00:04:45.620
+bring your own models
+and frameworks
+
+00:04:45.620 --> 00:04:50.730
+and orchestration still deeply
+integrated with Azure Infra;
+
+00:04:50.730 --> 00:04:55.080
+direct IaaS with VMs,
+storage, networking,
+
+00:04:55.080 --> 00:04:58.260
+and AI-optimized Silicon Direct.
+
+00:04:58.260 --> 00:05:03.450
+This is where hyperscale and
+megascale AI customers operate.
+
+00:05:03.450 --> 00:05:07.710
+Across all three, Storage
+delivers the same outcomes,
+
+00:05:07.710 --> 00:05:10.590
+bringing enterprise data
+into the agent stack
+
+00:05:10.590 --> 00:05:13.650
+and powering fast,
+cost-effective,
+
+00:05:13.650 --> 00:05:16.710
+governable inference at scale.
+
+00:05:16.710 --> 00:05:20.850
+Let's look at agentic inference
+from a storage-centric view.
+
+00:05:20.850 --> 00:05:24.270
+Any agent that leverages
+enterprise data is built
+
+00:05:24.270 --> 00:05:28.230
+on a data pipeline anchored
+in object storage,
+
+00:05:28.230 --> 00:05:31.050
+or Azure Blob, with two stages.
+
+00:05:31.050 --> 00:05:34.020
+Stage 1: Bringing
+your enterprise data
+
+00:05:34.020 --> 00:05:36.960
+to AI services and agents.
+
+00:05:36.960 --> 00:05:41.640
+This is the data preparation
+pipeline, ingestion, cleaning,
+
+00:05:41.640 --> 00:05:45.720
+chunking, embedding, and
+indexing into a vector database
+
+00:05:45.720 --> 00:05:48.750
+so that the agent can
+do grounded retrieval
+
+00:05:48.750 --> 00:05:50.580
+with the right context.
+
+00:05:50.580 --> 00:05:54.150
+Intermediate representations,
+namely the embeddings, indexes,
+
+00:05:54.150 --> 00:05:56.820
+process chunks get
+stored on Azure Blob
+
+00:05:56.820 --> 00:05:59.850
+so they can be retrieved
+with milliseconds latency
+
+00:05:59.850 --> 00:06:03.990
+at query time without
+rerunning the entire pipeline.
+
+00:06:03.990 --> 00:06:09.900
+Stage 2: Retrieve, store, and
+manage AI data at runtime.
+
+00:06:09.900 --> 00:06:14.100
+Every turn of the agent loop
+multiplies load on storage,
+
+00:06:14.100 --> 00:06:16.380
+more retrievals from blob
+and the vector index,
+
+00:06:16.380 --> 00:06:20.400
+more test time compute, and an
+exponential explosion of logs,
+
+00:06:20.400 --> 00:06:23.880
+conversation state, tool
+outputs, and agent traces
+
+00:06:23.880 --> 00:06:28.950
+that all have to be persisted
+for fast retrieval downstream.
+
+00:06:28.950 --> 00:06:32.670
+At scale, distributed
+inference also swaps models
+
+00:06:32.670 --> 00:06:35.700
+in and out across GPUs.
+
+00:06:35.700 --> 00:06:39.000
+That gives us three critical
+storage requirements
+
+00:06:39.000 --> 00:06:42.750
+for agentic inference:
+one, making it easy
+
+00:06:42.750 --> 00:06:45.600
+to bring enterprise
+data securely to agents
+
+00:06:45.600 --> 00:06:49.770
+and converting it into
+agent-accessible knowledge; two,
+
+00:06:49.770 --> 00:06:53.730
+distributing and loading models
+onto AI compute fast enough
+
+00:06:53.730 --> 00:06:57.150
+to keep expensive
+GPUs busy; and three,
+
+00:06:57.150 --> 00:07:00.360
+optimizing infrastructure
+utilization to drive
+
+00:07:00.360 --> 00:07:03.840
+up tokens per watt per dollar.
+
+00:07:03.840 --> 00:07:08.100
+The rest of this talk maps
+directly to those three.
+
+00:07:08.100 --> 00:07:11.280
+Let's start with optimizing
+inference itself.
+
+00:07:11.280 --> 00:07:14.340
+And the biggest lever we
+have there right now is
+
+00:07:14.340 --> 00:07:15.900
+prompt caching.
+
+00:07:15.900 --> 00:07:18.600
+Now that we've set the context
+for top storage requirements
+
+00:07:18.600 --> 00:07:21.420
+for agentic inference,
+let's go one layer deep
+
+00:07:21.420 --> 00:07:23.940
+into where the next big
+wave of inference cost
+
+00:07:23.940 --> 00:07:27.030
+and performance pressure is
+showing up, prompt caching.
+
+00:07:27.030 --> 00:07:29.400
+As enterprises move
+from single-turn chat
+
+00:07:29.400 --> 00:07:32.280
+to long multi-turn
+agentic workflows,
+
+00:07:32.280 --> 00:07:35.970
+the way prompt tokens flow
+through the GPUs is becoming one
+
+00:07:35.970 --> 00:07:40.590
+of the largest drivers of
+inference cost and latency.
+
+00:07:40.590 --> 00:07:42.960
+My colleague Vishnu and
+I are going to walk you
+
+00:07:42.960 --> 00:07:45.330
+through what's happening and
+what we are doing about it
+
+00:07:45.330 --> 00:07:49.140
+at Microsoft to solve for the
+problem of prompt caching.
+
+00:07:49.140 --> 00:07:50.880
+To set the stage, let's look
+
+00:07:50.880 --> 00:07:54.690
+at how inference works
+today without caching.
+
+00:07:54.690 --> 00:07:58.530
+Modern AI agents run on long,
+static enterprise context,
+
+00:07:58.530 --> 00:08:02.220
+system instructions, tool
+definitions, retrieval context.
+
+00:08:02.220 --> 00:08:04.410
+And they invoke these
+prompt contexts
+
+00:08:04.410 --> 00:08:07.080
+across millions of invocations.
+
+00:08:07.080 --> 00:08:10.350
+In most production agents,
+the static, unchanged portion
+
+00:08:10.350 --> 00:08:15.090
+of the prompt represents more
+than 60% of inference cost.
+
+00:08:15.090 --> 00:08:16.290
+Here is why.
+
+00:08:16.290 --> 00:08:20.610
+On every turn, the GPU has to
+recompute the model attention
+
+00:08:20.610 --> 00:08:23.940
+over the entire prefix,
+the static system prompt,
+
+00:08:23.940 --> 00:08:27.030
+the tool definitions, and
+all of those prior turns.
+
+00:08:27.030 --> 00:08:30.750
+Turn two adds even more
+history on top of that.
+
+00:08:30.750 --> 00:08:33.930
+And then turn three
+adds even more.
+
+00:08:33.930 --> 00:08:36.000
+By the time you're
+a few turns in,
+
+00:08:36.000 --> 00:08:38.550
+the GPU is burning
+expensive cycles,
+
+00:08:38.550 --> 00:08:42.420
+re-dealing the same tokens
+it has already seen before.
+
+00:08:42.420 --> 00:08:46.080
+That recompute is what drives
+up Time to First Token,
+
+00:08:46.080 --> 00:08:50.340
+or as we call it, TTFT, and the
+end-to-end inference latency,
+
+00:08:50.340 --> 00:08:53.490
+and further, what makes
+long context agents
+
+00:08:53.490 --> 00:08:55.470
+so expensive to operate.
+
+00:08:55.470 --> 00:08:58.380
+Now let's apply prompt
+caching to the same picture.
+
+00:08:58.380 --> 00:09:00.750
+The idea is simple
+but very powerful.
+
+00:09:00.750 --> 00:09:03.450
+Instead of recomputing
+attention on every turn,
+
+00:09:03.450 --> 00:09:06.750
+we cache the KV state of
+the repeated context token
+
+00:09:06.750 --> 00:09:09.030
+and reuse it for the next turn.
+
+00:09:09.030 --> 00:09:12.120
+On turn 1, the GPU still
+processes the full prefix once,
+
+00:09:12.120 --> 00:09:15.120
+but as it does it, it also
+writes the attention state
+
+00:09:15.120 --> 00:09:17.910
+out as a context-cached object.
+
+00:09:17.910 --> 00:09:20.940
+Turn 2, the GPU doesn't
+redo that work.
+
+00:09:20.940 --> 00:09:24.570
+It just loads the cache state
+and only computes the attention
+
+00:09:24.570 --> 00:09:26.700
+on the new tokens for that turn.
+
+00:09:26.700 --> 00:09:30.960
+Turn 3 and every turn after
+that looks exactly the same.
+
+00:09:30.960 --> 00:09:33.180
+The result is a
+dramatic reduction
+
+00:09:33.180 --> 00:09:34.910
+in GPU compute per turn.
+
+00:09:34.910 --> 00:09:39.320
+And customers can get inference
+cost savings up to 90% along
+
+00:09:39.320 --> 00:09:42.350
+with significantly lower
+time to first token.
+
+00:09:42.350 --> 00:09:45.230
+In fact, this is so impactful
+that model providers
+
+00:09:45.230 --> 00:09:49.560
+like OpenAI already offer
+implicit prompt caching APIs
+
+00:09:49.560 --> 00:09:50.970
+out of the box.
+
+00:09:50.970 --> 00:09:52.530
+That's a great starting point.
+
+00:09:52.530 --> 00:09:55.260
+But for enterprise scenarios,
+our customers are building
+
+00:09:55.260 --> 00:09:58.500
+by using open source models
+or their own models,
+
+00:09:58.500 --> 00:10:01.040
+that alone is not enough.
+
+00:10:01.040 --> 00:10:05.460
+And that's exactly what Vishnu
+and I will talk about next.
+
+00:10:05.460 --> 00:10:06.210
+VISHNU CHARAN:
+Thank you, Saurabh.
+
+00:10:06.210 --> 00:10:08.010
+Hi. I'm Vishnu Charan,
+a Product Manager
+
+00:10:08.010 --> 00:10:10.980
+in the Azure Storage team
+focused on AI workloads.
+
+00:10:10.980 --> 00:10:12.720
+Picking up on explicit caching,
+
+00:10:12.720 --> 00:10:15.780
+the reason that tier works
+is the cache no longer lives
+
+00:10:15.780 --> 00:10:16.880
+on the GPU node.
+
+00:10:16.880 --> 00:10:19.430
+It lives on durable
+Azure storage.
+
+00:10:19.430 --> 00:10:21.920
+And once it's on Azure storage,
+you get the full scale
+
+00:10:21.920 --> 00:10:25.040
+of Azure Blob behind your
+KVCache, effectively,
+
+00:10:25.040 --> 00:10:27.230
+unlimited capacity,
+configurable retention,
+
+00:10:27.230 --> 00:10:28.860
+and multi-region reach.
+
+00:10:28.860 --> 00:10:31.320
+That same idea is also how
+we are meeting the open
+
+00:10:31.320 --> 00:10:32.730
+source community.
+
+00:10:32.730 --> 00:10:37.080
+NIXL is NVIDIA's inference
+transfer library, a unified API
+
+00:10:37.080 --> 00:10:40.560
+for moving model weights and
+KV blocks across memory tiers
+
+00:10:40.560 --> 00:10:43.650
+with a pluggable
+backend underneath.
+
+00:10:43.650 --> 00:10:46.530
+You can see those backends along
+the bottom of the diagram.
+
+00:10:46.530 --> 00:10:49.320
+We've contributed a
+first-class Azure Blob backend
+
+00:10:49.320 --> 00:10:50.400
+into that role.
+
+00:10:50.400 --> 00:10:54.390
+So any framework that already
+speaks NIXL, like vLLM, Dynamo,
+
+00:10:54.390 --> 00:10:57.870
+TensorRT-LLM, or Ray, can
+now read and write KV blocks
+
+00:10:57.870 --> 00:11:01.170
+to Azure Blob with zero
+custom adapter code.
+
+00:11:01.170 --> 00:11:03.570
+The most immediate
+payoff is in LMCache,
+
+00:11:03.570 --> 00:11:08.100
+the open source KVCache
+layer widely used with vLLM.
+
+00:11:08.100 --> 00:11:11.130
+Through our plugin, LMCache
+offloads KV blocks straight
+
+00:11:11.130 --> 00:11:14.370
+to Blob so the picture is
+consistent across the stack.
+
+00:11:14.370 --> 00:11:17.040
+Managed customers land
+on Azure Context Cache.
+
+00:11:17.040 --> 00:11:20.580
+OSS developers land on Azure
+Blob via NIXL and LMCache.
+
+00:11:20.580 --> 00:11:23.820
+Both parts put KVCache
+on durable Azure storage
+
+00:11:23.820 --> 00:11:26.730
+that travels with the
+workload, not the node.
+
+00:11:26.730 --> 00:11:28.500
+And with that, let me
+show you what this looks
+
+00:11:28.500 --> 00:11:29.880
+like in practice.
+
+00:11:29.880 --> 00:11:31.200
+Here's what we've got running.
+
+00:11:31.200 --> 00:11:35.670
+An inference app on vLLM
+serving LAMA 3.3, 70 billion,
+
+00:11:35.670 --> 00:11:38.820
+Tensor parallel across
+all four GPUs on this VM,
+
+00:11:38.820 --> 00:11:41.940
+loading the model from a
+blob storage container.
+
+00:11:41.940 --> 00:11:45.420
+LMCache sits alongside vLLM,
+building the KV cache.
+
+00:11:45.420 --> 00:11:47.880
+Now to drive it, I'm using
+a simple Python client
+
+00:11:47.880 --> 00:11:52.020
+that posts an OpenAI-compatible
+request to that vLLM endpoint
+
+00:11:52.020 --> 00:11:53.310
+with a fairly punishing prompt,
+
+00:11:53.310 --> 00:11:56.430
+roughly 100,000
+tokens of context.
+
+00:11:56.430 --> 00:11:59.280
+And there it is, 52 seconds
+for the first token.
+
+00:11:59.280 --> 00:12:02.160
+That's the GPUs doing
+pre-fill from scratch,
+
+00:12:02.160 --> 00:12:05.520
+the long context cold start
+everyone is familiar with.
+
+00:12:05.520 --> 00:12:07.350
+Now let's run NIXL again.
+
+00:12:07.350 --> 00:12:08.340
+Here's the config.
+
+00:12:08.340 --> 00:12:11.370
+Chunk size 256,
+local CPU tier off,
+
+00:12:11.370 --> 00:12:14.610
+because I want NIXL doing the
+work, not a CPU cache layer.
+
+00:12:14.610 --> 00:12:17.760
+And here's the new
+piece, NIXL storage on,
+
+00:12:17.760 --> 00:12:19.470
+backend set to Azure Blob,
+
+00:12:19.470 --> 00:12:22.080
+async put so rights
+never block inference,
+
+00:12:22.080 --> 00:12:25.560
+plus the storage account and
+container we're targeting.
+
+00:12:25.560 --> 00:12:28.530
+Now I restart vLLM with the
+LMCache connector enabled
+
+00:12:28.530 --> 00:12:30.960
+and fire the same prompt.
+
+00:12:30.960 --> 00:12:33.810
+As tokens stream out, NIXL
+writes the KV chunks straight
+
+00:12:33.810 --> 00:12:35.850
+to blob in the background.
+
+00:12:35.850 --> 00:12:40.020
+We pay GPU prefill once, but
+the cache is being populated.
+
+00:12:40.020 --> 00:12:42.480
+Quick look in the portal,
+and there they are.
+
+00:12:42.480 --> 00:12:45.960
+Around 1,500 chunks,
+about 20 megabytes each,
+
+00:12:45.960 --> 00:12:47.370
+sitting durably
+in the container.
+
+00:12:47.370 --> 00:12:50.400
+The full KV state persistent.
+
+00:12:50.400 --> 00:12:52.140
+Now for the real test.
+
+00:12:52.140 --> 00:12:55.230
+I restart vLLM, wiping
+GPU and CPU memory
+
+00:12:55.230 --> 00:12:57.150
+for a genuine cold start.
+
+00:12:57.150 --> 00:12:58.380
+Same prompt.
+
+00:12:58.380 --> 00:13:01.170
+This time, NIXL streams
+those KV chunks directly
+
+00:13:01.170 --> 00:13:04.050
+from Blob into GPU memory.
+
+00:13:04.050 --> 00:13:04.890
+Watch the network.
+
+00:13:04.890 --> 00:13:05.730
+Here's EndLoad.
+
+00:13:05.730 --> 00:13:09.180
+We're pretty close to the
+line rate on this 80-gig NIC.
+
+00:13:09.180 --> 00:13:10.530
+The bottleneck just moved
+
+00:13:10.530 --> 00:13:12.960
+from GPU compute to
+network bandwidth.
+
+00:13:12.960 --> 00:13:14.700
+Exactly the trade we want.
+
+00:13:14.700 --> 00:13:17.550
+And the time to first
+token, about 8 seconds.
+
+00:13:17.550 --> 00:13:20.010
+Just by streaming
+the KV out of Blob,
+
+00:13:20.010 --> 00:13:23.220
+the model loads roughly
+6 times faster.
+
+00:13:23.220 --> 00:13:27.210
+That's the NIXL Blob plugin,
+turning a 100k token cold start
+
+00:13:27.210 --> 00:13:31.110
+from a 52-second wait
+into an 8-second stream.
+
+00:13:31.110 --> 00:13:34.200
+The NIXL demo you just saw was
+the inference optimization
+
+00:13:34.200 --> 00:13:36.330
+story: KVCache
+streamed out of Blob
+
+00:13:36.330 --> 00:13:39.330
+so cold start don't
+pay pre-fill twice.
+
+00:13:39.330 --> 00:13:42.510
+But the KVCache is only half
+of the cold start story.
+
+00:13:42.510 --> 00:13:44.100
+Every cold start also has
+
+00:13:44.100 --> 00:13:45.720
+to load the model
+weights themselves
+
+00:13:45.720 --> 00:13:48.090
+from storage onto the GPU.
+
+00:13:48.090 --> 00:13:50.070
+For small models,
+that's seconds.
+
+00:13:50.070 --> 00:13:52.590
+For the really large
+ones, it's minutes.
+
+00:13:52.590 --> 00:13:54.660
+Now, I want to
+focus on that half,
+
+00:13:54.660 --> 00:13:57.000
+fast model loading
+and distribution.
+
+00:13:57.000 --> 00:13:58.950
+Same problem, same fix.
+
+00:13:58.950 --> 00:14:01.710
+Saturate the NIC
+straight out of blobs.
+
+00:14:01.710 --> 00:14:04.260
+The Run AI model streamer
+is an open-source loader
+
+00:14:04.260 --> 00:14:05.970
+for large model weights.
+
+00:14:05.970 --> 00:14:08.520
+It plugs straight into the
+engines people actually run
+
+00:14:08.520 --> 00:14:11.160
+in production: vLLM and SGLang.
+
+00:14:11.160 --> 00:14:13.470
+Drop it in, point it
+at a storage account,
+
+00:14:13.470 --> 00:14:16.020
+and it replaces the
+default loader.
+
+00:14:16.020 --> 00:14:18.990
+Cold starts are the tax
+every GPU pays when it comes
+
+00:14:18.990 --> 00:14:23.010
+to order scaling out, recovering
+a failed node, rotating a model,
+
+00:14:23.010 --> 00:14:25.650
+or loading a fine
+tune on demand.
+
+00:14:25.650 --> 00:14:28.380
+With the default loader,
+that tax is unpredictable
+
+00:14:28.380 --> 00:14:30.450
+and minutes long
+on the big models.
+
+00:14:30.450 --> 00:14:34.050
+So the bigger your fleet, the
+more capacity you're burning,
+
+00:14:34.050 --> 00:14:36.060
+just waiting for
+weights to land.
+
+00:14:36.060 --> 00:14:38.280
+Here's what Streamer
+does differently.
+
+00:14:38.280 --> 00:14:40.470
+It splits the model
+file into chunks,
+
+00:14:40.470 --> 00:14:42.660
+pulls them from object
+storage in parallel,
+
+00:14:42.660 --> 00:14:45.810
+stages them in CPU memory,
+and pushes those chunks
+
+00:14:45.810 --> 00:14:48.060
+to the GPU memory concurrently.
+
+00:14:48.060 --> 00:14:51.960
+The reads and copies overlap,
+so the NIC stays saturated
+
+00:14:51.960 --> 00:14:55.230
+and the GPU is fed as fast
+as the network allows.
+
+00:14:55.230 --> 00:14:57.960
+And here's the piece we
+built, the Azure Blob plugin
+
+00:14:57.960 --> 00:14:59.880
+for the running AI Streamer.
+
+00:14:59.880 --> 00:15:04.170
+Weights flow straight out of
+Blob through CPU into the GPU.
+
+00:15:04.170 --> 00:15:06.300
+The Blob container is
+the source of truth,
+
+00:15:06.300 --> 00:15:09.000
+and the NIC is the
+only bottleneck.
+
+00:15:09.000 --> 00:15:11.640
+And we get three to six
+times faster cold starts
+
+00:15:11.640 --> 00:15:14.220
+than the default
+loader consistently.
+
+00:15:14.220 --> 00:15:15.690
+Let me show you it running.
+
+00:15:15.690 --> 00:15:19.260
+Same VM as before, ND96, H100.
+
+00:15:19.260 --> 00:15:24.360
+It has eight H100s on board
+with an 80-gig NIC on the back.
+
+00:15:24.360 --> 00:15:27.570
+The model I'm loading is
+gpt-oss-120b, about 60 gigs
+
+00:15:27.570 --> 00:15:28.830
+of weight, pre-staged
+
+00:15:28.830 --> 00:15:32.010
+as safetensor shards
+in Blob container.
+
+00:15:32.010 --> 00:15:34.830
+Same storage account, same
+plumbing as the NIXL demo,
+
+00:15:34.830 --> 00:15:36.960
+just a different
+artifact this time.
+
+00:15:36.960 --> 00:15:41.610
+Now I start vLLM, standard vLLM
+serve command with one switch.
+
+00:15:41.610 --> 00:15:44.610
+Load format set to
+"runai_ streamer."
+
+00:15:44.610 --> 00:15:46.260
+That's the entire integration.
+
+00:15:46.260 --> 00:15:49.350
+Point it at the blob container,
+and the streamer takes over.
+
+00:15:49.350 --> 00:15:52.740
+Chunked parallel reads
+from blobs, CPU staging,
+
+00:15:52.740 --> 00:15:56.160
+concurrent CPU, GPU
+copies, all overlapping.
+
+00:15:56.160 --> 00:15:57.270
+Now watch the NIC.
+
+00:15:57.270 --> 00:16:00.870
+About 86 gigabits a
+second on an 80-gig link.
+
+00:16:00.870 --> 00:16:03.420
+The NIC is fully saturated.
+
+00:16:03.420 --> 00:16:05.580
+The streamer is pulling
+everything Blob will give it,
+
+00:16:05.580 --> 00:16:08.280
+and the GPUs are eating
+it as fast as it lands.
+
+00:16:08.280 --> 00:16:11.490
+This is what loading and
+network speed looks like.
+
+00:16:11.490 --> 00:16:14.010
+And there it is,
+all 8 GPUs loaded.
+
+00:16:14.010 --> 00:16:15.570
+Application startup complete.
+
+00:16:15.570 --> 00:16:18.630
+Sixty gigs of
+weights into 8 H100s
+
+00:16:18.630 --> 00:16:21.120
+in roughly the time
+it took to say this.
+
+00:16:21.120 --> 00:16:23.760
+One more cut at model loading.
+
+00:16:23.760 --> 00:16:26.730
+This time at AK scale.
+
+00:16:26.730 --> 00:16:27.660
+Everything I have shown
+
+00:16:27.660 --> 00:16:30.810
+so far has been a single
+pod, a single GPU box.
+
+00:16:30.810 --> 00:16:32.340
+But production isn't one pod.
+
+00:16:32.340 --> 00:16:35.010
+It's 100, and every one of
+them has to pull the model
+
+00:16:35.010 --> 00:16:37.920
+down before it can
+serve a single token.
+
+00:16:37.920 --> 00:16:41.220
+If you run the numbers,
+a 70b model is 140 gigs.
+
+00:16:41.220 --> 00:16:45.420
+A hundred pods coming up
+together is 14 terabytes coming
+
+00:16:45.420 --> 00:16:47.070
+out of Blob all at once.
+
+00:16:47.070 --> 00:16:49.770
+You hit throttling,
+the NIC saturates,
+
+00:16:49.770 --> 00:16:51.720
+and cold start
+stretch 10 minutes.
+
+00:16:51.720 --> 00:16:54.300
+Every one of those minutes
+is GPU you're paying for
+
+00:16:54.300 --> 00:16:55.740
+and getting nothing back.
+
+00:16:55.740 --> 00:16:59.670
+So we built a distributed cache
+inside the AK cluster itself.
+
+00:16:59.670 --> 00:17:01.890
+Zero changes to the
+workflow on top.
+
+00:17:01.890 --> 00:17:05.370
+Hugging Face Loader, BlobFuse,
+the Run AI Streamer,
+
+00:17:05.370 --> 00:17:07.950
+they all sit on top
+of it unchanged.
+
+00:17:07.950 --> 00:17:12.030
+Underneath, every GPU node is
+both a cache and a client.
+
+00:17:12.030 --> 00:17:15.510
+Local NVMe RAID holds the hard
+data served at NVMe speed
+
+00:17:15.510 --> 00:17:18.000
+with zero copy send file.
+
+00:17:18.000 --> 00:17:21.030
+Anything missing comes in
+over the network from a peer
+
+00:17:21.030 --> 00:17:24.390
+with increased acceleration
+on the fan inside.
+
+00:17:24.390 --> 00:17:27.630
+First pod warms the
+cache, the next 99 read
+
+00:17:27.630 --> 00:17:29.250
+from inside the cluster, two
+
+00:17:29.250 --> 00:17:32.460
+and a half times faster
+model loading on AKS.
+
+00:17:32.460 --> 00:17:33.150
+Let me show it.
+
+00:17:33.150 --> 00:17:35.270
+Here's the live comparison.
+
+00:17:35.270 --> 00:17:39.470
+Twelve gigs of LLM weights
+loaded on a real cluster.
+
+00:17:39.470 --> 00:17:41.120
+Direct from Blob,
+
+00:17:41.120 --> 00:17:44.280
+1,500 megabytes a second,
+8 seconds to load.
+
+00:17:44.280 --> 00:17:47.400
+With the distributed cache,
+4,000 megabytes a second,
+
+00:17:47.400 --> 00:17:49.980
+3 seconds, 2.5 times faster.
+
+00:17:49.980 --> 00:17:51.720
+And when 100 pods
+come up together,
+
+00:17:51.720 --> 00:17:53.790
+they all read from the cache.
+
+00:17:53.790 --> 00:17:56.660
+Blob gets hit exactly once.
+
+00:17:56.660 --> 00:18:00.200
+That's Azure Container Storage's
+new distributed cache,
+
+00:18:00.200 --> 00:18:02.870
+built for AI on AKS.
+
+00:18:02.870 --> 00:18:05.450
+Distributed cache is in
+early access right now.
+
+00:18:05.450 --> 00:18:09.440
+NVMe class latency, throughput
+to local network saturation,
+
+00:18:09.440 --> 00:18:13.040
+Kubernetes native, and minimum
+to zero changes on your site.
+
+00:18:13.040 --> 00:18:16.610
+If you're running AI on AKS,
+this is the one to try.
+
+00:18:16.610 --> 00:18:18.860
+Scan the QR, sign up
+for the early test,
+
+00:18:18.860 --> 00:18:20.390
+and we'll get you on it.
+
+00:18:20.390 --> 00:18:23.760
+That's the inference half
+of the story on compute.
+
+00:18:23.760 --> 00:18:27.300
+KVCache going out to Blob,
+weights coming back in,
+
+00:18:27.300 --> 00:18:30.900
+both at line rate, but none
+of that runs without data.
+
+00:18:30.900 --> 00:18:34.380
+The model itself, the
+cache, the context windows,
+
+00:18:34.380 --> 00:18:37.650
+the retrieved documents,
+all of it lives in storage.
+
+00:18:37.650 --> 00:18:38.490
+And for inference,
+
+00:18:38.490 --> 00:18:41.030
+the bottleneck isn't
+whether you have the data.
+
+00:18:41.030 --> 00:18:44.630
+It's how fast you can
+feed it into the GPU.
+
+00:18:44.630 --> 00:18:47.210
+So the question for this
+last section is simple.
+
+00:18:47.210 --> 00:18:50.240
+How do you get your data
+sitting in Blob in front
+
+00:18:50.240 --> 00:18:52.940
+of an inference engine
+as fast as possible?
+
+00:18:52.940 --> 00:18:56.040
+That's our third pillar,
+bringing enterprise data
+
+00:18:56.040 --> 00:19:00.300
+to AI inference and converting
+it to agent-ready knowledge.
+
+00:19:00.300 --> 00:19:01.890
+So how do you actually
+get to that data
+
+00:19:01.890 --> 00:19:03.930
+from inside your AI stack?
+
+00:19:03.930 --> 00:19:05.310
+That's what this slide is about.
+
+00:19:05.310 --> 00:19:09.030
+And this revolves around one
+key idea: We meet developers
+
+00:19:09.030 --> 00:19:10.860
+where they are with
+native integrations
+
+00:19:10.860 --> 00:19:13.800
+across the entire AI ecosystem.
+
+00:19:13.800 --> 00:19:16.800
+If you look at that list
+there, BlobFuse and AzCopy
+
+00:19:16.800 --> 00:19:20.130
+on the data movement side,
+ADLFS, the PyTorch connector,
+
+00:19:20.130 --> 00:19:23.430
+the LangChain data loader
+on the framework side,
+
+00:19:23.430 --> 00:19:25.500
+plus the two ecosystem
+integrations you just saw
+
+00:19:25.500 --> 00:19:29.220
+demoed, Run AI Model
+Streamer and NVIDIA NIXL.
+
+00:19:29.220 --> 00:19:33.270
+Effectively, whatever stack
+you're on, Python, Spark, Ray,
+
+00:19:33.270 --> 00:19:34.980
+PyTorch, or an agent framework,
+
+00:19:34.980 --> 00:19:36.390
+you get to Blob
+without friction.
+
+00:19:36.390 --> 00:19:39.600
+A few tools worth
+calling out here.
+
+00:19:39.600 --> 00:19:42.030
+BlobFuse gives you
+a POSIX-like mount,
+
+00:19:42.030 --> 00:19:45.270
+so you can treat object storage
+like a local file system.
+
+00:19:45.270 --> 00:19:49.560
+Same experience across
+VMs, containers, and AKs.
+
+00:19:49.560 --> 00:19:53.850
+ADLFS is the Python-native
+fsspec-compatible interface,
+
+00:19:53.850 --> 00:19:55.770
+which makes Blob
+instantly usable
+
+00:19:55.770 --> 00:19:58.170
+from Dask, Pandas, and RAID.
+
+00:19:58.170 --> 00:20:00.810
+For deep learning, the PyTorch
+connector plugs directly
+
+00:20:00.810 --> 00:20:03.600
+into Dataset, DataLoader,
+and Checkpoint APIs.
+
+00:20:03.600 --> 00:20:08.040
+No custom code, zero config
+auth with Azure Identity.
+
+00:20:08.040 --> 00:20:10.110
+Then, the performance-critical
+parts for agentic
+
+00:20:10.110 --> 00:20:11.700
+and inference workloads.
+
+00:20:11.700 --> 00:20:14.340
+We saw Run:AI Model Streamer
+cutting cold start times,
+
+00:20:14.340 --> 00:20:17.250
+loading models from
+Blob 6x faster.
+
+00:20:17.250 --> 00:20:19.890
+NIXL drops us straight into
+NVIDIA's data movement stack
+
+00:20:19.890 --> 00:20:22.920
+with KVCache offload and
+high-performance model transfers
+
+00:20:22.920 --> 00:20:26.010
+across Dynamo, vLLM,
+Ray, and the rest.
+
+00:20:26.010 --> 00:20:29.280
+And the last one, the
+LangChain Azure Blob loader.
+
+00:20:29.280 --> 00:20:31.740
+Faster ingestion and
+lower memory footprint
+
+00:20:31.740 --> 00:20:34.320
+when you're working with
+large document (inaudible).
+
+00:20:34.320 --> 00:20:36.390
+Five to nine times
+faster lazy-load,
+
+00:20:36.390 --> 00:20:39.270
+seven to ten times
+faster alazy-load
+
+00:20:39.270 --> 00:20:40.980
+against the community loader.
+
+00:20:40.980 --> 00:20:44.370
+So Blob isn't just scalable
+infrastructure underneath.
+
+00:20:44.370 --> 00:20:47.550
+It's deeply integrated into
+the AI developer ecosystem
+
+00:20:47.550 --> 00:20:52.410
+with high performance, secure,
+seamless access across training,
+
+00:20:52.410 --> 00:20:54.510
+inference, and agent workflows.
+
+00:20:54.510 --> 00:20:56.580
+And that's the OSS layer.
+
+00:20:56.580 --> 00:20:58.350
+Saurabh is going to
+take it from here
+
+00:20:58.350 --> 00:21:01.380
+and show how Microsoft Managed
+Infrastructure brings all
+
+00:21:01.380 --> 00:21:04.050
+of this together so customers
+get there without having
+
+00:21:04.050 --> 00:21:06.480
+to wire it up themselves.
+
+00:21:06.480 --> 00:21:07.830
+SAURABH SENSHARMA:
+Thank you, Vishnu.
+
+00:21:07.830 --> 00:21:11.910
+Fast model and enterprise data
+loading is exactly the kind
+
+00:21:11.910 --> 00:21:15.510
+of thing that takes GPU
+idle time off the table
+
+00:21:15.510 --> 00:21:18.960
+and improves the quality
+of agentic inference.
+
+00:21:18.960 --> 00:21:21.510
+Now let's come back
+to the other half
+
+00:21:21.510 --> 00:21:23.820
+of the agentic
+inference picture,
+
+00:21:23.820 --> 00:21:28.320
+bringing your enterprise data
+into the agent as knowledge.
+
+00:21:28.320 --> 00:21:32.340
+In the past, we have shown how
+blob storage plugs directly
+
+00:21:32.340 --> 00:21:36.290
+into Microsoft AI services
+like Azure AI Search
+
+00:21:36.290 --> 00:21:39.260
+and Microsoft Foundry
+to turn enterprise data
+
+00:21:39.260 --> 00:21:43.320
+into agent-ready knowledge
+with just a few API calls.
+
+00:21:43.320 --> 00:21:46.530
+But many of you have
+unstructured enterprise data
+
+00:21:46.530 --> 00:21:50.280
+on Azure files as well,
+file shares, SMB workloads,
+
+00:21:50.280 --> 00:21:53.670
+lift and shift estates,
+and you need the same ease
+
+00:21:53.670 --> 00:21:56.280
+of getting that data into AI.
+
+00:21:56.280 --> 00:21:59.700
+For that, we've made
+Azure Files a data source
+
+00:21:59.700 --> 00:22:02.370
+for Azure AI Search
+with two ways
+
+00:22:02.370 --> 00:22:05.280
+in which you can bring
+this data over to agents.
+
+00:22:05.280 --> 00:22:09.540
+Number one, the Azure Files
+Logic Apps connector,
+
+00:22:09.540 --> 00:22:12.330
+a low-code path to
+connect a file share
+
+00:22:12.330 --> 00:22:15.120
+and create a vector
+or hybrid index.
+
+00:22:15.120 --> 00:22:17.310
+It, by the way, also
+handles re-indexing
+
+00:22:17.310 --> 00:22:18.960
+as your data changes.
+
+00:22:18.960 --> 00:22:23.670
+Number two, the native Azure
+Files Indexer in Azure AI Search
+
+00:22:23.670 --> 00:22:26.160
+for teams that
+want finer control
+
+00:22:26.160 --> 00:22:28.410
+over enrichment and indexing.
+
+00:22:28.410 --> 00:22:32.550
+Either way, the path from
+a file share to a RAG
+
+00:22:32.550 --> 00:22:35.970
+or Retrieval-Augmented
+Generation Ready Index is now
+
+00:22:35.970 --> 00:22:39.780
+only a few clicks or
+a few lines of code.
+
+00:22:39.780 --> 00:22:41.670
+And building on that, many
+
+00:22:41.670 --> 00:22:46.350
+of our customers are going a
+step further with Foundry IQ.
+
+00:22:46.350 --> 00:22:49.860
+Foundry IQ is Microsoft's
+unified knowledge layer
+
+00:22:49.860 --> 00:22:51.480
+for agents.
+
+00:22:51.480 --> 00:22:54.630
+Instead of every agent
+reinventing its own retrieval
+
+00:22:54.630 --> 00:22:59.670
+stack, Foundry IQ gives you a
+single governed knowledge layer
+
+00:22:59.670 --> 00:23:04.410
+that any agent in Microsoft
+Foundry can ground against.
+
+00:23:04.410 --> 00:23:06.690
+What makes this
+developer friendly is
+
+00:23:06.690 --> 00:23:10.050
+that Azure Blob Storage is a
+first-class knowledge source
+
+00:23:10.050 --> 00:23:11.880
+for Foundry IQ.
+
+00:23:11.880 --> 00:23:14.520
+Just point Foundry IQ
+at a blob container,
+
+00:23:14.520 --> 00:23:18.120
+and your enterprise data becomes
+agent accessible knowledge
+
+00:23:18.120 --> 00:23:21.660
+with security, lineage,
+and governance
+
+00:23:21.660 --> 00:23:24.540
+of Azure Storage
+already in place,
+
+00:23:24.540 --> 00:23:27.060
+and no glue code required.
+
+00:23:27.060 --> 00:23:30.330
+Foundry IQ also supports
+Azure AI Search indexes
+
+00:23:30.330 --> 00:23:34.200
+with Azure Blob or Azure
+Files data as well.
+
+00:23:34.200 --> 00:23:38.100
+And this is how we close the
+loop between your data plane
+
+00:23:38.100 --> 00:23:42.180
+in Azure Storage and your agent
+plane in Microsoft Foundry,
+
+00:23:42.180 --> 00:23:46.230
+going from raw enterprise
+data to grounded,
+
+00:23:46.230 --> 00:23:49.470
+governed agents in
+just a few steps.
+
+00:23:49.470 --> 00:23:52.590
+To bring it home, we wanted
+to give AI developers
+
+00:23:52.590 --> 00:23:55.500
+and storage admins
+a single place
+
+00:23:55.500 --> 00:23:59.040
+to discover the AI
+capabilities of Azure Storage
+
+00:23:59.040 --> 00:24:03.810
+and wire your data into
+agent inference fast.
+
+00:24:03.810 --> 00:24:08.460
+Meet Storage Center, a
+centralized hub for file, block,
+
+00:24:08.460 --> 00:24:11.370
+and object storage
+all in one place.
+
+00:24:11.370 --> 00:24:15.630
+You get a unified view of your
+storage landscape, usage,
+
+00:24:15.630 --> 00:24:17.700
+performance, redundancy tiers,
+
+00:24:17.700 --> 00:24:21.240
+and tools like lifecycle
+management and storage mover
+
+00:24:21.240 --> 00:24:25.320
+with rich visualizations that
+make it easy to stay on top
+
+00:24:25.320 --> 00:24:27.930
+of your Azure Storage estate.
+
+00:24:27.930 --> 00:24:31.140
+What we heard loud and clear
+from customers, partners,
+
+00:24:31.140 --> 00:24:34.980
+and developers is that this is
+the best place for both admins
+
+00:24:34.980 --> 00:24:38.160
+and developers to land their
+data, starting with Blob,
+
+00:24:38.160 --> 00:24:40.710
+and then connect it to AI.
+
+00:24:40.710 --> 00:24:43.890
+From Storage Center, you
+can launch into storage
+
+00:24:43.890 --> 00:24:46.980
+for AI experiences
+we covered today.
+
+00:24:46.980 --> 00:24:49.650
+We are excited to announce
+a limited preview
+
+00:24:49.650 --> 00:24:51.330
+of this experience.
+
+00:24:51.330 --> 00:24:54.450
+Scan the QR code now on
+this slide to sign up.
+
+00:24:54.450 --> 00:24:57.180
+We'd love to have you
+in and try this out.
+
+00:24:57.180 --> 00:25:00.300
+So to bring it all together,
+we started this session
+
+00:25:00.300 --> 00:25:04.170
+with three storage requirements
+for agentic inference.
+
+00:25:04.170 --> 00:25:08.010
+Number one, bringing enterprise
+data to agents as knowledge.
+
+00:25:08.010 --> 00:25:09.540
+Number two, distributing
+
+00:25:09.540 --> 00:25:12.300
+and loading models fast
+enough to keep GPUs busy.
+
+00:25:12.300 --> 00:25:16.200
+And number three, optimizing
+infrastructure utilization
+
+00:25:16.200 --> 00:25:19.740
+for better tokens
+per watt per dollar.
+
+00:25:19.740 --> 00:25:23.160
+Across the session, you saw
+how Azure Storage delivers
+
+00:25:23.160 --> 00:25:24.840
+on all of those three.
+
+00:25:24.840 --> 00:25:27.870
+The NIXL plugin that enables
+attaching blob storage
+
+00:25:27.870 --> 00:25:31.500
+to open source model
+runtimes for prompt caching.
+
+00:25:31.500 --> 00:25:34.590
+Number two, fast model
+loading with AKS and IaaS
+
+00:25:34.590 --> 00:25:36.630
+with container storage
+distributed cache
+
+00:25:36.630 --> 00:25:37.950
+in early access.
+
+00:25:37.950 --> 00:25:41.100
+And finally, Azure AI
+Search and Foundry IQ
+
+00:25:41.100 --> 00:25:45.510
+to turn your enterprise data
+into agent-ready knowledge.
+
+00:25:45.510 --> 00:25:48.060
+And to bring it all
+together, Storage Center
+
+00:25:48.060 --> 00:25:50.250
+as your unified entry point
+
+00:25:50.250 --> 00:25:53.400
+to leverage storage
+for AI applications.
+
+00:25:53.400 --> 00:25:56.790
+Here are some helpful references
+that you can refer to
+
+00:25:56.790 --> 00:25:59.880
+and supercharge your AI
+inference workload journey
+
+00:25:59.880 --> 00:26:01.890
+with Azure Storage.
+
+00:26:01.890 --> 00:26:04.470
+From Saurabh and
+Vishnu, thank you.
+
+00:26:04.470 --> 00:26:08.400
+And we can't wait to see what
+AI applications you will build
+
+00:26:08.400 --> 00:26:10.520
+with Azure Storage.
+
+00:26:10.520 --> 00:26:16.290
+[ Music ]

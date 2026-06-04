@@ -1,0 +1,306 @@
+**[00:00:02]** SAI TEJASWY MYLAVARAPU: Hi everyone, I am Sai Tejaswy,
+**[00:00:05]** a Product Manager on Windows Connected Experiences,
+**[00:00:08]** and I am here with Avinash, who engineers a lot about what I am
+**[00:00:11]** about to show you today.
+**[00:00:13]** Today, we are going to show you how Connected Experiences let
+**[00:00:17]** your app become part of Windows,
+**[00:00:19]** meaning it will bring better discovery, more engagement,
+**[00:00:23]** and more installs, and seamless continuity across devices.
+**[00:00:29]** If you have been following Connected Experiences at Build,
+**[00:00:32]** you have seen us go from announcing three APIs
+**[00:00:35]** to shipping them with real partners and real traction.
+**[00:00:40]** Since then, People API with just one surface has been driving
+**[00:00:45]** over 10 million sessions monthly
+**[00:00:47]** through ShareSheet people suggestions alone.
+**[00:00:50]** Now that's 10 million times app engagement opportunities.
+**[00:00:55]** When we look at Resume, with only three months
+**[00:00:57]** into the release of Resume, the click-through of Resume is one
+**[00:01:01]** of the top performers on the taskbar itself.
+**[00:01:04]** That's nearly one in every four users who sees a taskbar nudge
+**[00:01:08]** of Resume are interacting with it.
+**[00:01:12]** Together, Connected Experiences, Share, People, Resume,
+**[00:01:17]** now reach over 50 million devices in a month.
+**[00:01:21]** In the last year alone, these experiences have driven
+**[00:01:24]** over a billion sessions back to the partner applications.
+**[00:01:27]** That's the scale of Windows working for your apps.
+**[00:01:32]** With this, we know the model works.
+**[00:01:35]** Windows surfaces will drive discovery, engagement,
+**[00:01:39]** and installs back to your application.
+**[00:01:42]** In this video, we will cover two concepts in detail.
+**[00:01:45]** One, Resume in depth.
+**[00:01:47]** And two, two more surfaces for People experiences.
+**[00:01:53]** Windows Resume.
+**[00:01:54]** It gives your app continuity across devices
+**[00:01:57]** and can drive net new installs.
+**[00:01:59]** If the user is doing something on your app on their mobile,
+**[00:02:03]** like listening to a podcast or reading an article
+**[00:02:06]** or writing a message, and they sit down at their PC,
+**[00:02:11]** to continue their app activity
+**[00:02:13]** on their PC is what Windows Resume is.
+**[00:02:17]** Let me show you how it works.
+**[00:02:20]** Here's a Pixel 8 running Spotify.
+**[00:02:22]** The user is listening to music on a morning commute.
+**[00:02:26]** She sits down at a PC,
+**[00:02:28]** with Spotify integrating with continuity SDK.
+**[00:02:31]** When the device is in the proximity of Windows,
+**[00:02:34]** Spotify publishes a resume context.
+**[00:02:36]** You see that?
+**[00:02:37]** Spotify just appeared on user's taskbar with that phone badge.
+**[00:02:42]** That badge just showed
+**[00:02:43]** up because Spotify published a resume context.
+**[00:02:46]** Windows received it and surfaced this nudge to the user.
+**[00:02:50]** And with one click, the same album
+**[00:02:52]** and sent the same timestamp.
+**[00:02:54]** Now, where it appears on the user's device.
+**[00:02:57]** Now, here's where it gets really interesting
+**[00:02:59]** for you as a developer.
+**[00:03:01]** What if user doesn't have Spotify on their PC?
+**[00:03:04]** Resume badge will still appear for them.
+**[00:03:07]** But one click here, it will drive user to install the app.
+**[00:03:11]** User's phone activity just drove a PC app to install.
+**[00:03:15]** Neither they browsed nor they looked
+**[00:03:17]** at the store to download the app.
+**[00:03:19]** Windows handled the entire funnel.
+**[00:03:21]** From awareness to install to engagement.
+**[00:03:24]** All within a single click.
+**[00:03:26]** And ready to resume from the next time.
+**[00:03:29]** And resume isn't just for media.
+**[00:03:31]** Let me show you one other partner use case.
+**[00:03:34]** A user is texting a friend on WhatsApp for shopping items.
+**[00:03:38]** In the mid-conversation, they just sent a bunch
+**[00:03:41]** of links to be looked at.
+**[00:03:43]** When they sit down at the PC,
+**[00:03:45]** WhatsApp published a resume context.
+**[00:03:47]** Windows received it and the badge shows up.
+**[00:03:49]** The same conversation gets picked up right
+**[00:03:51]** where they left off on their desktop app now.
+**[00:03:54]** Music continuity, chat continuity
+**[00:03:56]** or document continuity.
+**[00:03:58]** You define what resume means for your app and Windows routes it.
+**[00:04:02]** So how does this all work under the hood?
+**[00:04:04]** There are two ways to integrate Windows resume.
+**[00:04:07]** Let me hand it to Avinash to talk you through both of them.
+**[00:04:12]** AVINASH NOWDURU: Thanks, Sai.
+**[00:04:13]** As we discussed, resume supports two integration paths.
+**[00:04:17]** One is continuity SDK and the other one is Windows
+**[00:04:20]** push notifications.
+**[00:04:21]** The right choice depends on your platform, connectivity model
+**[00:04:24]** and the engagement scenario.
+**[00:04:26]** Let's quickly walk through how each integration path works.
+**[00:04:30]** Let's explore the first integration path,
+**[00:04:32]** continuity SDK.
+**[00:04:34]** Here's the end-to-end flow, how it works.
+**[00:04:36]** The app publishes a resumable activity
+**[00:04:39]** through the continuity SDK on Android.
+**[00:04:41]** Windows receives it through the LTW CDL signaling
+**[00:04:44]** and it surfaces on taskbar in Windows as a resume entry point.
+**[00:04:48]** When the user clicks resume,
+**[00:04:50]** Windows activates the desktop app using the app-provided deep
+**[00:04:53]** link, restoring the experience exactly where the user left off.
+**[00:04:57]** Let's see how you can achieve it with your app.
+**[00:05:00]** Step 1, add a dependency to your Gradle file.
+**[00:05:03]** Continuity SDK is now published to Maven and GitHub.
+**[00:05:07]** Step 2, declare in your manifest
+**[00:05:09]** that your app is a resume activity provider.
+**[00:05:12]** That value 4 maps to resume activity.
+**[00:05:16]** Step 3, initialize the SDK and register your event handlers.
+**[00:05:21]** You get two responses back.
+**[00:05:23]** OnContextRequestReceived, which means it indicates
+**[00:05:26]** that connection is established.
+**[00:05:27]** The app can then send ResumeAppContext to LTW.
+**[00:05:31]** OnSyncServiceDisconnected is your signal to stop.
+**[00:05:35]** You get this if the device is disconnected
+**[00:05:38]** or the sync channel goes down.
+**[00:05:40]** And then you call AppContextManager.Initialize.
+**[00:05:43]** From this point onwards, your app is wired
+**[00:05:46]** into the continuity platform.
+**[00:05:50]** Step 4, create an AppContext object,
+**[00:05:52]** which represents a resume intent.
+**[00:05:55]** ContextId here uniquely identifies this
+**[00:05:57]** activity instance.
+**[00:05:59]** Type Resume Activity.
+**[00:06:01]** This line is the important one.
+**[00:06:03]** This tells Windows that the payload should participate
+**[00:06:05]** in cross-device resume experiences.
+**[00:06:09]** Finally, send AppContext.
+**[00:06:11]** This publishes the activity into the continuity platform.
+**[00:06:14]** Step 5, handle callbacks from the platform.
+**[00:06:18]** OnContextResponseSuccess confirms the resume activity is
+**[00:06:21]** successfully accepted by LTW.
+**[00:06:24]** OnContextResponseError tells you something failed.
+**[00:06:27]** Maybe a connectivity dropped
+**[00:06:29]** or the sync service became unavailable.
+**[00:06:31]** The important pattern here is resiliency.
+**[00:06:34]** Apps should stop publishing while disconnected
+**[00:06:37]** and retry once the connection is restored.
+**[00:06:40]** Let's explore the second path, WNS,
+**[00:06:42]** Windows Notification Service.
+**[00:06:44]** This doesn't require links to Windows or the continuity SDK.
+**[00:06:48]** Your app's cloud backend communicate directly
+**[00:06:50]** to the Windows using the WNS channel
+**[00:06:52]** through push notifications.
+**[00:06:54]** It surfaces on taskbar as a resume entry point.
+**[00:06:57]** When the user clicks on "Resume",
+**[00:06:59]** Windows activates the desktop app restoring the experience
+**[00:07:01]** exactly where the user left off.
+**[00:07:03]** The trade-off, no link to Windows needed,
+**[00:07:06]** works for any platform like Android or iOS,
+**[00:07:09]** but the app must be installed on Windows.
+**[00:07:12]** There's no store installation flow on this path.
+**[00:07:15]** Let's see how you can achieve this within your app.
+**[00:07:18]** The first step, register your channel URA.
+**[00:07:21]** Your PC requests for a WNS channel URA
+**[00:07:23]** and sends it to the server.
+**[00:07:25]** The channel URA becomes the address for communicating
+**[00:07:27]** with Windows from your app.
+**[00:07:30]** Build the resume request and send the WNS notification.
+**[00:07:35]** Here's a sample code how you can do that.
+**[00:07:37]** Some mandatory headers while sending a request.
+**[00:07:40]** The decision matrix.
+**[00:07:42]** Pick the path that fits your scenario.
+**[00:07:44]** Deep mobile to PC integration with installation flow.
+**[00:07:47]** Continuity SDK is your route.
+**[00:07:49]** Broad reach, cloud driven, app already on Windows.
+**[00:07:53]** WNS should be your choice.
+**[00:07:55]** Both paths give you the same result.
+**[00:07:57]** A taskbar badge, a deep link, and a user experience that picks
+**[00:08:01]** up right where they left off.
+**[00:08:03]** Resume is a limited access feature.
+**[00:08:05]** You'll need to request access through Microsoft.
+**[00:08:08]** And here are the links for that.
+**[00:08:12]** Back to you, Sai.
+**[00:08:15]** SAI TEJASWY MYLAVARAPU: All right.
+**[00:08:15]** That was about continuity of app activity.
+**[00:08:18]** Now let's talk about people in Windows.
+**[00:08:22]** App contacts can become a first-class citizens
+**[00:08:24]** across Windows.
+**[00:08:26]** They have a potential to get showed on widgets
+**[00:08:29]** and even the search box.
+**[00:08:33]** All right.
+**[00:08:33]** Let's say you are an application like WhatsApp
+**[00:08:36]** and you have integrated with the People API.
+**[00:08:38]** You've donated your users people to Windows
+**[00:08:41]** to become first class citizens in the user system.
+**[00:08:44]** Here's what happens.
+**[00:08:45]** This is the People widget in the widgets port.
+**[00:08:47]** See those contacts?
+**[00:08:48]** Every one of them that came from WhatsApp.
+**[00:08:51]** WhatsApp donated these contacts using the People API
+**[00:08:53]** and Windows is showing them here.
+**[00:08:55]** Now notice the order.
+**[00:08:57]** Some take first position and some later.
+**[00:08:59]** That's not random.
+**[00:09:00]** That's because WhatsApp also donated interaction signals.
+**[00:09:04]** This helps in ranking.
+**[00:09:05]** You as an app feed the signals and Windows handles the math.
+**[00:09:10]** Now watch what happens when I click on this contact.
+**[00:09:12]** One click and WhatsApp opened directly
+**[00:09:15]** that particular conversation.
+**[00:09:17]** That happened because WhatsApp registered a communication URI
+**[00:09:19]** for that contact.
+**[00:09:21]** Whenever the user clicked, when the user clicked
+**[00:09:25]** that particular chat, Windows fired that URI
+**[00:09:28]** and launched the chat.
+**[00:09:29]** And here's the thing.
+**[00:09:30]** WhatsApp didn't write a single line of widget UI code here.
+**[00:09:34]** The people API handled everything.
+**[00:09:36]** Now let me show you a similar integration
+**[00:09:38]** in a different surface for a different user intent.
+**[00:09:41]** The user is looking for someone in the Windows system search.
+**[00:09:45]** And when your app has donated the contacts
+**[00:09:47]** with the right signals, Windows can match that for the user.
+**[00:09:50]** There is a contact user is looking
+**[00:09:52]** for right alongside apps, files,
+**[00:09:55]** and even web results as a people result.
+**[00:09:58]** You can see WhatsApp attribution right there.
+**[00:10:00]** And look, the action buttons, message, call, and video call.
+**[00:10:04]** WhatsApp donated contacts once and it shows up here in search
+**[00:10:09]** with actions ready to go.
+**[00:10:11]** Now, how do you actually build this?
+**[00:10:13]** Let me hand it over to Avinash again
+**[00:10:15]** to walk you through the code.
+**[00:10:17]** AVINASH NOWDURU: Thank you, Sai.
+**[00:10:18]** Let me show you what this looks like in a code.
+**[00:10:22]** I'm going to walk you through full integration from zero
+**[00:10:25]** to contacts showing up in widgets, search, and share.
+**[00:10:29]** Start by creating a user data account.
+**[00:10:31]** Third-party apps are required to create a user data account
+**[00:10:34]** with com.microsoft.peoplecontract.
+**[00:10:37]** That's your opt-in to that people platform.
+**[00:10:41]** This is a one-time setup per app.
+**[00:10:43]** Next, storing contacts.
+**[00:10:46]** Create a contact list and set other app read access
+**[00:10:49]** to system only.
+**[00:10:50]** That last line is very important.
+**[00:10:52]** It means only Windows system services like widget, search,
+**[00:10:56]** share can read these contacts.
+**[00:10:59]** No other app on the device can see them.
+**[00:11:01]** Your user's contact data stays controlled.
+**[00:11:04]** Next, create a contact object.
+**[00:11:07]** The remote ID here is your app's unique identifier
+**[00:11:10]** for that contact.
+**[00:11:11]** And then save it.
+**[00:11:13]** Windows now knows about this contact.
+**[00:11:15]** These contacts become eligible as share suggestions, widgets,
+**[00:11:19]** and search experiences.
+**[00:11:21]** This is where it gets interesting.
+**[00:11:24]** So far, app has only donated a contact.
+**[00:11:27]** Now, we enrich that contact with capabilities, deep links,
+**[00:11:30]** and interaction semantics.
+**[00:11:33]** Annotations are how you tell Windows what action your app
+**[00:11:36]** supports for this contact.
+**[00:11:38]** The first way of enriching a contact is through interactions.
+**[00:11:42]** Teaching Windows what action your app supports
+**[00:11:45]** for that contact.
+**[00:11:46]** This is where communication URL annotations come into picture.
+**[00:11:50]** You declare the operation your app supports for a contact,
+**[00:11:53]** like message, audio call, video call.
+**[00:11:57]** For each operation, you register a corresponding protocol
+**[00:12:00]** in your app manifest.
+**[00:12:02]** Windows surfaces enable interaction
+**[00:12:04]** with contacts directly through apps' communication capabilities
+**[00:12:07]** using these protocols.
+**[00:12:09]** The next layer of enriching a contact is relevance,
+**[00:12:12]** helping Windows understand which contacts matter
+**[00:12:15]** to the user right now.
+**[00:12:17]** Donating signals.
+**[00:12:18]** Signals are lightweight interaction events
+**[00:12:20]** with your app contacts.
+**[00:12:22]** Your app donates signals without any PII.
+**[00:12:25]** And Windows uses these signals to rank
+**[00:12:27]** and surface the most relevant contacts
+**[00:12:29]** across widgets, search, and share.
+**[00:12:32]** Back to you, Sai.
+**[00:12:33]** SAI TEJASWY MYLAVARAPU: Thank you for the quick walkthrough, Avinash.
+**[00:12:36]** The key idea of Connected Experiences API isn't just
+**[00:12:39]** one-time integration.
+**[00:12:41]** That's a value compounding.
+**[00:12:42]** The real mode for the apps as part
+**[00:12:45]** of Connected Experiences platform is,
+**[00:12:48]** the more your app donates about users, people, and activities,
+**[00:12:52]** it will drive improved engagement back
+**[00:12:54]** to your application.
+**[00:12:55]** And which will also result in more number of downloads
+**[00:12:58]** and users building a trust to your desktop applications.
+**[00:13:03]** And all throughout this, users' data stays in control.
+**[00:13:07]** The contacts are scoped to system surfaces only,
+**[00:13:10]** no app-to-app sharing, and everything is removed
+**[00:13:13]** on uninstall of the app.
+**[00:13:15]** Users can toggle it to control the visibility
+**[00:13:18]** of these contacts anytime within their settings.
+**[00:13:21]** All of this is built into the platform by design.
+**[00:13:24]** Here's how you get started.
+**[00:13:26]** For people, integrate with the cross-device people API.
+**[00:13:29]** Donate your contacts, add communication URLs,
+**[00:13:32]** and donate activity signals so your contacts rank higher
+**[00:13:36]** across widget, search, and share.
+**[00:13:39]** For resume, integrate with either Continuity SDK or WNS,
+**[00:13:44]** and sometimes even both to make your app's activity work
+**[00:13:48]** across Android as well as iOS apps with Windows.
+**[00:13:52]** Start with learn.microsoft.com links that are presented here
+**[00:13:56]** for each of these areas.
+**[00:13:58]** Connected Experiences is how your app not just be an app
+**[00:14:02]** on Windows, but actually become a part of Windows.
+**[00:14:06]** You write the integration once and Windows gives you surfaces,
+**[00:14:09]** ranking, engagement, and installs.
+**[00:14:13]** Thank you and enjoy the rest of the sessions.

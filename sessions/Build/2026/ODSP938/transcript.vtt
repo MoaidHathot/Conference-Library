@@ -1,0 +1,902 @@
+WEBVTT
+
+00:00:00.870 --> 00:00:02.670
+ERIKA HEIDI: Hi,
+I'm Erika Heidi,
+
+00:00:02.670 --> 00:00:05.280
+Staff DevRel Engineer
+at Chainguard.
+
+00:00:05.280 --> 00:00:09.000
+In this short presentation,
+I will share five strategies
+
+00:00:09.000 --> 00:00:13.680
+to mitigate software supply
+chain risks in GitHub actions.
+
+00:00:13.680 --> 00:00:17.490
+So the first thing you should
+do is inspect your repositories
+
+00:00:17.490 --> 00:00:20.910
+for insecure defaults
+and other bad practices.
+
+00:00:20.910 --> 00:00:23.220
+For instance, using
+pull request targets
+
+00:00:23.220 --> 00:00:25.290
+with head code execution,
+
+00:00:25.290 --> 00:00:27.870
+or using long-lived
+personal access tokens
+
+00:00:27.870 --> 00:00:31.230
+with broad privileges,
+direct shell execution
+
+00:00:31.230 --> 00:00:34.410
+that can be manipulated
+by external actors,
+
+00:00:34.410 --> 00:00:37.080
+and also actions pinned by tag.
+
+00:00:37.080 --> 00:00:40.770
+These are some things
+that you should look for.
+
+00:00:40.770 --> 00:00:45.000
+I will talk a little bit more
+about each of these things.
+
+00:00:45.000 --> 00:00:47.400
+Another thing is
+unprotected main branch
+
+00:00:47.400 --> 00:00:50.310
+and unprotected release tags.
+
+00:00:50.310 --> 00:00:51.930
+It can be a little
+bit overwhelming,
+
+00:00:51.930 --> 00:00:55.620
+but the good news is that
+you can use Copilot agent
+
+00:00:55.620 --> 00:00:58.980
+in your repository
+directly and ask it
+
+00:00:58.980 --> 00:01:02.400
+for evaluate your GitHub actions
+
+00:01:02.400 --> 00:01:04.830
+and find any potential
+vulnerabilities.
+
+00:01:04.830 --> 00:01:08.190
+That was the prompt I
+used, for instance, here.
+
+00:01:08.190 --> 00:01:12.150
+And it was very effective
+in detecting the issues.
+
+00:01:12.150 --> 00:01:16.020
+So this was a repo that
+I set up for testing.
+
+00:01:16.020 --> 00:01:22.430
+And I created intentionally a
+lot of insecure things as a demo
+
+00:01:22.430 --> 00:01:26.120
+to demonstrate
+secret exfiltration.
+
+00:01:26.120 --> 00:01:30.120
+And so, this has a vulnerable
+GitHub action workflow.
+
+00:01:30.120 --> 00:01:34.500
+And Copilot was very successful
+in detecting the issues.
+
+00:01:34.500 --> 00:01:37.380
+Pull request targets
+with code execution.
+
+00:01:37.380 --> 00:01:38.970
+So why that's an issue?
+
+00:01:38.970 --> 00:01:45.060
+Because when someone creates
+a pull request, then the code
+
+00:01:45.060 --> 00:01:47.010
+from the pull
+request is executed.
+
+00:01:47.010 --> 00:01:51.480
+And when you use pull request
+targets, this is executed
+
+00:01:51.480 --> 00:01:57.480
+in the context of the actual
+main branch and all the secrets
+
+00:01:57.480 --> 00:02:00.330
+and all the environment
+variables that are used
+
+00:02:00.330 --> 00:02:05.190
+in the actual builds
+in the main branch.
+
+00:02:05.190 --> 00:02:08.250
+So any variables that you have,
+
+00:02:08.250 --> 00:02:11.790
+any secrets that you
+have can be exfiltrated,
+
+00:02:11.790 --> 00:02:16.020
+depending on how you run
+your code in this workflow.
+
+00:02:16.020 --> 00:02:19.860
+And the Copilot detected
+the pull request targets
+
+00:02:19.860 --> 00:02:24.900
+with execution that
+runs go setup.
+
+00:02:24.900 --> 00:02:28.650
+So this is a method -- this is
+the same method that was used
+
+00:02:28.650 --> 00:02:32.730
+for the initial
+Trivy exploitation.
+
+00:02:32.730 --> 00:02:35.580
+So they exploited the
+pull request targets
+
+00:02:35.580 --> 00:02:42.660
+that was using PAT
+with broad privileges.
+
+00:02:42.660 --> 00:02:47.220
+And another thing
+was secrets exposed
+
+00:02:47.220 --> 00:02:49.920
+to attack a controller binary.
+
+00:02:49.920 --> 00:02:51.570
+It's also critical.
+
+00:02:51.570 --> 00:02:55.770
+Write-capable token
+also give permission
+
+00:02:55.770 --> 00:02:57.060
+for writing the pull request.
+
+00:02:57.060 --> 00:03:00.660
+It's also high risk.
+
+00:03:00.660 --> 00:03:07.560
+And also, it also pointed out
+the actions pinned to a tag.
+
+00:03:07.560 --> 00:03:11.550
+So this is insecure because
+tags can be rewritten.
+
+00:03:11.550 --> 00:03:15.030
+And this was also used
+in the Trivy attack.
+
+00:03:15.030 --> 00:03:20.940
+The attackers were able
+to rewrite previous tags,
+
+00:03:20.940 --> 00:03:24.090
+all two points to the
+same malicious commit.
+
+00:03:24.090 --> 00:03:27.270
+So if you were pinning
+your action by tag,
+
+00:03:27.270 --> 00:03:29.940
+you would pull the new codes
+
+00:03:29.940 --> 00:03:35.400
+with malicious
+injected payloads.
+
+00:03:35.400 --> 00:03:39.270
+So yes, this workflow is
+definitely vulnerable.
+
+00:03:39.270 --> 00:03:41.880
+Ask Copilot to check
+your repo and see
+
+00:03:41.880 --> 00:03:45.150
+if it can find any
+vulnerabilities.
+
+00:03:45.150 --> 00:03:49.080
+So you should protect your
+branches, your main branch,
+
+00:03:49.080 --> 00:03:54.630
+especially in your tags so
+they cannot be rewritten.
+
+00:03:54.630 --> 00:03:58.950
+This would prevent the
+malicious code to be released
+
+00:03:58.950 --> 00:04:03.450
+to other users and it
+would contain propagation.
+
+00:04:03.450 --> 00:04:05.550
+And also, you should
+protect your main branch
+
+00:04:05.550 --> 00:04:09.420
+to prevent purge directly
+to the main branch.
+
+00:04:09.420 --> 00:04:13.020
+And attackers can
+also use stolen PAT
+
+00:04:13.020 --> 00:04:16.080
+to inject directly
+on the main branch.
+
+00:04:16.080 --> 00:04:18.300
+So this is also very important.
+
+00:04:18.300 --> 00:04:20.820
+And it's a setting that
+you need to change.
+
+00:04:20.820 --> 00:04:23.850
+So by default, you don't
+have this protection.
+
+00:04:23.850 --> 00:04:26.250
+So you need to go there
+in your repo settings
+
+00:04:26.250 --> 00:04:33.000
+and enable these protections.
+
+00:04:33.000 --> 00:04:37.290
+So the second tip important
+
+00:04:37.290 --> 00:04:42.180
+for minimizing your risk is
+minimizing your attack surface.
+
+00:04:42.180 --> 00:04:45.840
+So this is like one of
+the simplest practices.
+
+00:04:45.840 --> 00:04:48.840
+In theory, it's so simple.
+
+00:04:48.840 --> 00:04:52.650
+Just make sure you have
+a smaller attack surface
+
+00:04:52.650 --> 00:04:56.280
+so you have less entry
+points to be exploited.
+
+00:04:56.280 --> 00:05:00.810
+It's like a low-hanging fruit
+that you cannot ignore.
+
+00:05:00.810 --> 00:05:04.200
+You have to think about direct
+and transitive dependencies.
+
+00:05:04.200 --> 00:05:09.540
+So the dependencies of your
+dependencies are also a risk.
+
+00:05:09.540 --> 00:05:11.640
+Any weak link in the
+chain can be used
+
+00:05:11.640 --> 00:05:15.210
+as a foothold to obtain access.
+
+00:05:15.210 --> 00:05:21.060
+And even with low-privileged
+access, they can also try
+
+00:05:21.060 --> 00:05:26.100
+to exfiltrate privileges and
+some other type of exploitation.
+
+00:05:26.100 --> 00:05:30.390
+But once they get access, yeah,
+there's a lot they can do.
+
+00:05:30.390 --> 00:05:34.890
+So the main idea is not
+to remove functionality.
+
+00:05:34.890 --> 00:05:39.300
+So you don't want to remove
+things that you actually use.
+
+00:05:39.300 --> 00:05:41.970
+But to remove what you don't
+need, what doesn't need
+
+00:05:41.970 --> 00:05:45.210
+to be there in your
+runtime especially.
+
+00:05:45.210 --> 00:05:47.280
+Because there are
+lots of dependencies
+
+00:05:47.280 --> 00:05:50.370
+in the runtime level,
+
+00:05:50.370 --> 00:05:54.330
+in the base OS level
+that you don't need.
+
+00:05:54.330 --> 00:05:59.670
+And one way to do that is by
+using minimal container images.
+
+00:05:59.670 --> 00:06:03.060
+So Chainguard containers
+are very minimal.
+
+00:06:03.060 --> 00:06:05.280
+We build all
+packages from source
+
+00:06:05.280 --> 00:06:08.850
+and that helps us keep the
+images always up to date
+
+00:06:08.850 --> 00:06:11.760
+and with all patches applied.
+
+00:06:11.760 --> 00:06:17.190
+So we are able to have, for
+instance, our Python image.
+
+00:06:17.190 --> 00:06:23.400
+The latest CVE count was
+four CVEs against like 579
+
+00:06:23.400 --> 00:06:26.820
+for the default Python image
+you get from Docker Hub.
+
+00:06:26.820 --> 00:06:34.350
+So it's a significant change and
+it's kind of a low-hanging fruit
+
+00:06:34.350 --> 00:06:38.760
+because you can just change
+the base images you use
+
+00:06:38.760 --> 00:06:43.200
+to build your runtimes and
+your GitHub actions also.
+
+00:06:43.200 --> 00:06:46.650
+And use a smaller image
+with a small attack surface
+
+00:06:46.650 --> 00:06:49.150
+and less vulnerabilities.
+
+00:06:50.700 --> 00:06:56.130
+The third tip is pull
+from trusted sources.
+
+00:06:56.130 --> 00:07:01.710
+So I don't know if you
+know that, but 98% or more
+
+00:07:01.710 --> 00:07:06.990
+of malware is inserted during
+build and distribution time.
+
+00:07:06.990 --> 00:07:10.200
+So it bypasses regular
+review from maintainers.
+
+00:07:10.200 --> 00:07:12.900
+You don't see the actual,
+
+00:07:12.900 --> 00:07:16.560
+exploit the actual malicious
+code in the source code
+
+00:07:16.560 --> 00:07:20.970
+in the repo because it is
+introduced during CI/CD
+
+00:07:20.970 --> 00:07:25.470
+and injected directly into
+artifacts that are produced
+
+00:07:25.470 --> 00:07:32.160
+at build time and distributed
+to repositories everywhere.
+
+00:07:32.160 --> 00:07:35.670
+So public repos will
+download these artifacts
+
+00:07:35.670 --> 00:07:39.150
+that have been tampered with
+and they are different actually
+
+00:07:39.150 --> 00:07:41.790
+from what is in the source code.
+
+00:07:41.790 --> 00:07:46.800
+So there is low visibility
+about what happens
+
+00:07:46.800 --> 00:07:50.130
+at build time usually.
+
+00:07:50.130 --> 00:07:53.670
+So one thing that happens
+a lot is a ghost release.
+
+00:07:53.670 --> 00:07:56.730
+Attackers are exploiting the gap
+
+00:07:56.730 --> 00:08:00.630
+between the verifiable source
+code and the build artifacts
+
+00:08:00.630 --> 00:08:04.350
+that we consume when we
+pull from these sources,
+
+00:08:04.350 --> 00:08:07.080
+the public registries.
+
+00:08:07.080 --> 00:08:10.230
+Public registries
+were built mostly
+
+00:08:10.230 --> 00:08:13.800
+to facilitate distribution
+of dependencies of libraries
+
+00:08:13.800 --> 00:08:16.050
+and facilitate collaboration.
+
+00:08:16.050 --> 00:08:18.690
+And they don't have a lot
+of security measures.
+
+00:08:18.690 --> 00:08:21.330
+Most of the public registries
+
+00:08:21.330 --> 00:08:25.950
+from language ecosystems don't
+have a lot of security measures
+
+00:08:25.950 --> 00:08:29.130
+to protect artifacts
+from tampering.
+
+00:08:29.130 --> 00:08:33.450
+So it was not a main
+concern when we started
+
+00:08:33.450 --> 00:08:39.030
+to share code this at this
+level and at this volume.
+
+00:08:39.030 --> 00:08:44.040
+So now we are faced with
+registries that are public.
+
+00:08:44.040 --> 00:08:48.090
+They are also prone
+to be exploited.
+
+00:08:48.090 --> 00:08:53.250
+So attackers are shifting
+left and they are focusing
+
+00:08:53.250 --> 00:08:57.150
+on turning developer laptops
+and CI/CD pipelines into nodes
+
+00:08:57.150 --> 00:08:58.770
+for propagation because that's
+
+00:08:58.770 --> 00:09:02.070
+where all the credentials
+and secrets are.
+
+00:09:02.070 --> 00:09:05.190
+And you can, with
+these credentials,
+
+00:09:05.190 --> 00:09:11.010
+you can spread laterally and
+spread to other projects
+
+00:09:11.010 --> 00:09:15.690
+and other -- yeah,
+other orgs even.
+
+00:09:15.690 --> 00:09:21.270
+So one way you can reduce a lot
+of these risks is by pulling
+
+00:09:21.270 --> 00:09:26.820
+from trusted sources your
+language dependencies using
+
+00:09:26.820 --> 00:09:28.500
+Chainguard libraries.
+
+00:09:28.500 --> 00:09:31.440
+So we have libraries
+for Python, Java,
+
+00:09:31.440 --> 00:09:33.990
+and JavaScript ecosystems
+at the moment.
+
+00:09:33.990 --> 00:09:39.060
+And the way it works is we make
+sure that the build is safe,
+
+00:09:39.060 --> 00:09:46.200
+the build environment is a safe
+environment, tampering proof.
+
+00:09:46.200 --> 00:09:49.380
+And then we, you can pull
+these dependencies directly
+
+00:09:49.380 --> 00:09:54.360
+from our repos and you will
+be avoiding more than 90%
+
+00:09:54.360 --> 00:09:59.610
+of the risks involved with build
+and distribution time attacks.
+
+00:09:59.610 --> 00:10:03.270
+So we don't execute any pre-
+and post-install scripts.
+
+00:10:03.270 --> 00:10:06.570
+So we don't build
+those libraries.
+
+00:10:06.570 --> 00:10:12.430
+You will only get versions
+that are safe to install.
+
+00:10:14.130 --> 00:10:18.570
+Another important practice
+is pin to digest.
+
+00:10:18.570 --> 00:10:23.830
+Even Copilot pointed out that
+you should not use a tag
+
+00:10:25.410 --> 00:10:29.100
+in your actions, you
+should pin to a digest.
+
+00:10:29.100 --> 00:10:33.090
+A digest is a unique hash
+pointing to a specific build
+
+00:10:33.090 --> 00:10:36.150
+of a container image
+or a GitHub action.
+
+00:10:36.150 --> 00:10:40.260
+So you are not
+pulling unknown code.
+
+00:10:40.260 --> 00:10:45.870
+You will always be pulling the
+same builds, the same codes
+
+00:10:45.870 --> 00:10:48.060
+that you were executing before.
+
+00:10:48.060 --> 00:10:51.780
+So of course, this will
+get stale with time.
+
+00:10:51.780 --> 00:10:53.520
+You need to update the digest
+
+00:10:53.520 --> 00:10:56.400
+when there's new versions
+released of the image
+
+00:10:56.400 --> 00:10:58.440
+or the GitHub actions.
+
+00:10:58.440 --> 00:11:02.460
+But it gives you time to update.
+
+00:11:02.460 --> 00:11:05.250
+You can use Digestabot.
+
+00:11:05.250 --> 00:11:08.940
+It's a tool that Chainguard
+created and it's free to use,
+
+00:11:08.940 --> 00:11:11.910
+open-source, that you can
+use to keep your workflows
+
+00:11:11.910 --> 00:11:13.920
+and Docker files up to date.
+
+00:11:13.920 --> 00:11:17.880
+So whenever there is a new
+version of a container
+
+00:11:17.880 --> 00:11:22.020
+or a GitHub action, you
+will get pull requests
+
+00:11:22.020 --> 00:11:24.210
+with the updated digest.
+
+00:11:24.210 --> 00:11:29.250
+So it's very handy to
+keep your digest updated.
+
+00:11:29.250 --> 00:11:34.080
+Yeah, and pinning to a digest is
+the safest practice you can use
+
+00:11:34.080 --> 00:11:39.120
+regarding tagging containers
+and GitHub actions.
+
+00:11:39.120 --> 00:11:42.280
+So this is the action.
+
+00:11:43.320 --> 00:11:49.770
+And, really, you will
+define a workflow file,
+
+00:11:49.770 --> 00:11:55.260
+a YML file with a configuration
+and, yeah, then you will be able
+
+00:11:55.260 --> 00:11:59.670
+to do these updates
+automatically.
+
+00:11:59.670 --> 00:12:03.210
+And, final advice, I would say,
+
+00:12:03.210 --> 00:12:07.710
+is to ban personal
+access tokens.
+
+00:12:07.710 --> 00:12:11.010
+Don't use long-lived tokens
+
+00:12:11.010 --> 00:12:12.720
+because they can be
+really dangerous.
+
+00:12:12.720 --> 00:12:17.520
+We usually forget
+about tokens and a lot
+
+00:12:17.520 --> 00:12:22.500
+of people give a very long
+expiry time for the token
+
+00:12:22.500 --> 00:12:26.310
+and broad privileges which
+can be really dangerous.
+
+00:12:26.310 --> 00:12:28.800
+That's what we saw
+happening with Trivy.
+
+00:12:28.800 --> 00:12:32.910
+They had an org-wide PAT
+that was exfiltrated.
+
+00:12:32.910 --> 00:12:36.390
+So attackers had full
+control over the whole org.
+
+00:12:36.390 --> 00:12:41.010
+They were able to delete and
+create repos, create releases
+
+00:12:41.010 --> 00:12:44.340
+and do anything they
+wanted, basically.
+
+00:12:44.340 --> 00:12:49.020
+So using short-lived tokens is
+the best solution to make sure
+
+00:12:49.020 --> 00:12:54.210
+that you give only a limited
+privilege to a workflow run
+
+00:12:54.210 --> 00:12:56.220
+and for a limited
+amount of time.
+
+00:12:56.220 --> 00:12:59.940
+So even if the credential
+is exfiltrated,
+
+00:12:59.940 --> 00:13:02.280
+it will expire quickly.
+
+00:13:02.280 --> 00:13:06.240
+So you don't need to be
+so concerned about that.
+
+00:13:06.240 --> 00:13:08.550
+We have an app,
+also a GitHub app,
+
+00:13:08.550 --> 00:13:11.010
+that you can install for free.
+
+00:13:11.010 --> 00:13:13.380
+Call it Octo-STS.
+
+00:13:13.380 --> 00:13:18.120
+And it implements this strategy
+using the same concepts behind
+
+00:13:18.120 --> 00:13:20.010
+Sigstore and Cosign.
+
+00:13:20.010 --> 00:13:25.620
+So it will give you temporary
+credentials and they will expire
+
+00:13:25.620 --> 00:13:27.930
+in a short period of time.
+
+00:13:27.930 --> 00:13:31.770
+So Octo-STS is
+actually the identity
+
+00:13:31.770 --> 00:13:36.720
+that we will pull the request
+for you in your repo.
+
+00:13:36.720 --> 00:13:41.550
+And this is the app for
+you to find on GitHub.
+
+00:13:41.550 --> 00:13:49.260
+So a TLDR, before we close,
+first inspect your repository
+
+00:13:49.260 --> 00:13:52.710
+for insecure defaults
+and other bad practices.
+
+00:13:52.710 --> 00:13:55.200
+You can use Copilots
+to help with that.
+
+00:13:55.200 --> 00:13:57.750
+Ask it to evaluate
+your GitHub actions
+
+00:13:57.750 --> 00:13:59.820
+and find vulnerabilities.
+
+00:13:59.820 --> 00:14:02.070
+Number two, minimize
+attack surface.
+
+00:14:02.070 --> 00:14:06.120
+So you remove a lot of the
+software that doesn't need
+
+00:14:06.120 --> 00:14:08.280
+to be there in your runtime.
+
+00:14:08.280 --> 00:14:11.610
+And then this means that
+you have less entry points
+
+00:14:11.610 --> 00:14:16.830
+for an attacker to exploit
+and less vulnerabilities.
+
+00:14:16.830 --> 00:14:21.570
+So the third one is pull
+from trusted sources.
+
+00:14:21.570 --> 00:14:27.480
+We are seeing increase on
+NPM issues, incidents.
+
+00:14:27.480 --> 00:14:30.780
+And it's very important
+for us now to think
+
+00:14:30.780 --> 00:14:34.920
+about where we are pulling our
+open-source software from.
+
+00:14:34.920 --> 00:14:38.610
+So pull from trusted sources.
+
+00:14:38.610 --> 00:14:41.700
+And the number four
+is pin by digest.
+
+00:14:41.700 --> 00:14:44.790
+Don't pin by tag because
+tags can be hijacked.
+
+00:14:44.790 --> 00:14:49.620
+So pin by digest and use
+Digestabot to keep them updated.
+
+00:14:49.620 --> 00:14:53.970
+And number five, ban long-lived
+personal access tokens
+
+00:14:53.970 --> 00:14:56.160
+and use short-lived
+tokens instead.
+
+00:14:56.160 --> 00:14:59.370
+You can use Octo-STS for that.
+
+00:14:59.370 --> 00:15:06.150
+And yes, that was all I had
+for this short presentation.
+
+00:15:06.150 --> 00:15:09.460
+I hope you stay safe
+and see you next time.

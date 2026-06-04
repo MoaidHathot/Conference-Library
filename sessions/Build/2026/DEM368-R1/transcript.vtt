@@ -1,0 +1,2495 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.8834642171859741
+
+00:00:00.040 --> 00:00:03.194
+Is one of the least known or least explored part
+
+NOTE Confidence: 0.8834642171859741
+
+00:00:03.260 --> 00:00:06.480
+of the Microsoft Fabric, which is how you can run
+
+NOTE Confidence: 0.8834642171859741
+
+00:00:06.545 --> 00:00:11.080
+your machine learning workloads and data science workloads in fabric.
+
+NOTE Confidence: 0.9294853806495667
+
+00:00:11.640 --> 00:00:12.920
+So this is going to be the agenda.
+
+NOTE Confidence: 0.8123323321342468
+
+00:00:12.920 --> 00:00:15.495
+We will start with why it is still important, Why
+
+NOTE Confidence: 0.8123323321342468
+
+00:00:15.547 --> 00:00:17.440
+machine learning is still important.
+
+NOTE Confidence: 0.7910596132278442
+
+00:00:17.800 --> 00:00:20.741
+With all this hype around generative AI, there is still
+
+NOTE Confidence: 0.7910596132278442
+
+00:00:20.795 --> 00:00:22.559
+role for machine learning models.
+
+NOTE Confidence: 0.7288058400154114
+
+00:00:22.680 --> 00:00:25.032
+We are going to talk about where exactly the traditional
+
+NOTE Confidence: 0.7288058400154114
+
+00:00:25.074 --> 00:00:26.880
+machine model, machine learning model fits.
+
+NOTE Confidence: 0.8747004270553589
+
+00:00:27.440 --> 00:00:30.428
+We will start with the introduction of Microsoft Fabric and
+
+NOTE Confidence: 0.8747004270553589
+
+00:00:30.478 --> 00:00:33.314
+then how we can learn machine learning models inside the
+
+NOTE Confidence: 0.8747004270553589
+
+00:00:33.365 --> 00:00:33.719
+fabric.
+
+NOTE Confidence: 0.8522509932518005
+
+00:00:34.600 --> 00:00:37.219
+We will have demos and towards the end I will
+
+NOTE Confidence: 0.8522509932518005
+
+00:00:37.278 --> 00:00:39.839
+also talk about fabrics, data agent as well.
+
+NOTE Confidence: 0.9141086935997009
+
+00:00:40.520 --> 00:00:42.962
+So even though you know generative AI is kind of
+
+NOTE Confidence: 0.9141086935997009
+
+00:00:43.013 --> 00:00:46.167
+highlighting all the limelight these days, a lot of innovation
+
+NOTE Confidence: 0.9141086935997009
+
+00:00:46.218 --> 00:00:46.879
+is happening.
+
+NOTE Confidence: 0.8477126359939575
+
+00:00:47.240 --> 00:00:49.413
+There is still a lot of use cases where you
+
+NOTE Confidence: 0.8477126359939575
+
+00:00:49.463 --> 00:00:52.698
+would like to use traditional machine learning model rather than
+
+NOTE Confidence: 0.8477126359939575
+
+00:00:52.749 --> 00:00:53.759
+using generative AI.
+
+NOTE Confidence: 0.9254372119903564
+
+00:00:54.280 --> 00:00:56.832
+And these are some of the reasons like you are
+
+NOTE Confidence: 0.9254372119903564
+
+00:00:56.887 --> 00:00:59.717
+expecting a low latency, you want to make sure your
+
+NOTE Confidence: 0.9254372119903564
+
+00:00:59.772 --> 00:01:02.879
+model is consistently giving out the exact same results.
+
+NOTE Confidence: 0.8269485235214233
+
+00:01:03.600 --> 00:01:06.445
+You want to also have a compute efficiency, you want
+
+NOTE Confidence: 0.8269485235214233
+
+00:01:06.500 --> 00:01:09.072
+the result fast and also at the fraction of the
+
+NOTE Confidence: 0.8269485235214233
+
+00:01:09.127 --> 00:01:12.519
+cost for all those different workloads or different situation.
+
+NOTE Confidence: 0.881316065788269
+
+00:01:12.880 --> 00:01:15.702
+You want to go with the traditional machine learning models
+
+NOTE Confidence: 0.881316065788269
+
+00:01:15.750 --> 00:01:17.519
+rather than going with generative AI.
+
+NOTE Confidence: 0.8436203002929688
+
+00:01:18.360 --> 00:01:20.804
+Now when it comes to running machine learning models, are
+
+NOTE Confidence: 0.8436203002929688
+
+00:01:20.847 --> 00:01:23.119
+there a lot of services available in Microsoft stack?
+
+NOTE Confidence: 0.9160873293876648
+
+00:01:23.400 --> 00:01:26.574
+You can run those same thing your machine learning models
+
+NOTE Confidence: 0.9160873293876648
+
+00:01:26.630 --> 00:01:27.800
+in Microsoft Foundry.
+
+NOTE Confidence: 0.9552159905433655
+
+00:01:28.319 --> 00:01:30.190
+You can also do that using some of the open
+
+NOTE Confidence: 0.9552159905433655
+
+00:01:30.234 --> 00:01:30.799
+source tools.
+
+NOTE Confidence: 0.9621763229370117
+
+00:01:31.080 --> 00:01:33.255
+But what we are going to focus today is how
+
+NOTE Confidence: 0.9621763229370117
+
+00:01:33.305 --> 00:01:35.936
+we can do the same operations on Microsoft Fabric as
+
+NOTE Confidence: 0.9621763229370117
+
+00:01:35.987 --> 00:01:36.239
+well.
+
+NOTE Confidence: 0.9290603995323181
+
+00:01:36.840 --> 00:01:39.760
+So with that, let's start with what is Microsoft Fabric?
+
+NOTE Confidence: 0.9054698944091797
+
+00:01:39.880 --> 00:01:43.783
+So Microsoft Fabric is Microsoft Unified data and AI platform
+
+NOTE Confidence: 0.9054698944091797
+
+00:01:43.847 --> 00:01:46.599
+where we have a lot of different workloads.
+
+NOTE Confidence: 0.8229712247848511
+
+00:01:46.840 --> 00:01:49.040
+It's a software as a service offering from Microsoft.
+
+NOTE Confidence: 0.9103388786315918
+
+00:01:49.160 --> 00:01:52.614
+We have data factory, we have analytics, you can have
+
+NOTE Confidence: 0.9103388786315918
+
+00:01:52.679 --> 00:01:56.785
+databases, real time intelligence, we have IQ, you can generate
+
+NOTE Confidence: 0.9103388786315918
+
+00:01:56.850 --> 00:01:59.914
+Power BI reports and all the data that lives in
+
+NOTE Confidence: 0.9103388786315918
+
+00:01:59.979 --> 00:02:01.999
+Fabric is part of your one leg.
+
+NOTE Confidence: 0.9165681600570679
+
+00:02:03.720 --> 00:02:06.160
+So these are the, depending on your role, these may
+
+NOTE Confidence: 0.9165681600570679
+
+00:02:06.208 --> 00:02:09.079
+be the different, different services that you will be using.
+
+NOTE Confidence: 0.7304776906967163
+
+00:02:09.080 --> 00:02:11.346
+For example, if you are a data engineer, then maybe
+
+NOTE Confidence: 0.7304776906967163
+
+00:02:11.391 --> 00:02:13.880
+you will be involved in the data factory data warehouse.
+
+NOTE Confidence: 0.8287984132766724
+
+00:02:14.240 --> 00:02:18.840
+You may be using real time intelligence for analytics engineers.
+
+NOTE Confidence: 0.8912226557731628
+
+00:02:19.360 --> 00:02:21.978
+Some of the core services within Fabric will be, you
+
+NOTE Confidence: 0.8912226557731628
+
+00:02:22.028 --> 00:02:23.639
+know, Power BI and data factory.
+
+NOTE Confidence: 0.8956295847892761
+
+00:02:24.000 --> 00:02:26.907
+Now, when it comes to the data scientist, this is
+
+NOTE Confidence: 0.8956295847892761
+
+00:02:26.967 --> 00:02:29.519
+where you know you can use some of the data
+
+NOTE Confidence: 0.8956295847892761
+
+00:02:29.578 --> 00:02:33.079
+science and Azure Machine learning workloads within Fabric.
+
+NOTE Confidence: 0.8603295087814331
+
+00:02:34.960 --> 00:02:38.021
+So these are some of the commonly known machine learning
+
+NOTE Confidence: 0.8603295087814331
+
+00:02:38.075 --> 00:02:42.449
+models that are there, like for example, classification, regression, clustering,
+
+NOTE Confidence: 0.8603295087814331
+
+00:02:42.503 --> 00:02:43.159
+forecasting.
+
+NOTE Confidence: 0.831545889377594
+
+00:02:43.520 --> 00:02:45.503
+There are also a big list of, you know, models
+
+NOTE Confidence: 0.831545889377594
+
+00:02:45.546 --> 00:02:46.280
+that you can use.
+
+NOTE Confidence: 0.9324767589569092
+
+00:02:46.280 --> 00:02:48.960
+You can also bring your own model as well.
+
+NOTE Confidence: 0.9443234801292419
+
+00:02:50.240 --> 00:02:53.706
+So this is the typical process you will be following
+
+NOTE Confidence: 0.9443234801292419
+
+00:02:53.773 --> 00:02:56.639
+when it comes to your data science process.
+
+NOTE Confidence: 0.9275842308998108
+
+00:02:56.640 --> 00:02:59.520
+The first thing is you have to define the problem.
+
+NOTE Confidence: 0.8907935619354248
+
+00:02:59.680 --> 00:03:01.600
+What is the problem you're trying to solve?
+
+NOTE Confidence: 0.9466884136199951
+
+00:03:02.320 --> 00:03:04.436
+And then once you have that, the next step is
+
+NOTE Confidence: 0.9466884136199951
+
+00:03:04.483 --> 00:03:06.412
+going to be let's get the data so that we
+
+NOTE Confidence: 0.9466884136199951
+
+00:03:06.459 --> 00:03:08.811
+can run some machine learning models on the top of
+
+NOTE Confidence: 0.9466884136199951
+
+00:03:08.858 --> 00:03:08.999
+it.
+
+NOTE Confidence: 0.9148364067077637
+
+00:03:09.360 --> 00:03:11.040
+Now, just having the data is not enough.
+
+NOTE Confidence: 0.8464877605438232
+
+00:03:11.080 --> 00:03:13.116
+You have to work and prepare the data for your
+
+NOTE Confidence: 0.8464877605438232
+
+00:03:13.160 --> 00:03:14.399
+experiment, experimentation.
+
+NOTE Confidence: 0.9077414274215698
+
+00:03:14.919 --> 00:03:17.819
+Then step #4 which is the most important step will
+
+NOTE Confidence: 0.9077414274215698
+
+00:03:17.877 --> 00:03:19.559
+be training your model there.
+
+NOTE Confidence: 0.9184155464172363
+
+00:03:19.840 --> 00:03:22.166
+And finally, once your model is available, you will be
+
+NOTE Confidence: 0.9184155464172363
+
+00:03:22.209 --> 00:03:23.199
+generating the insight.
+
+NOTE Confidence: 0.8943026065826416
+
+00:03:23.680 --> 00:03:26.233
+Now, in the typical case, let's say your executives are
+
+NOTE Confidence: 0.8943026065826416
+
+00:03:26.280 --> 00:03:29.066
+going through some data, let's say using Power BI dashboards
+
+NOTE Confidence: 0.8943026065826416
+
+00:03:29.112 --> 00:03:31.434
+and they identified a problem and they want you to
+
+NOTE Confidence: 0.8943026065826416
+
+00:03:31.481 --> 00:03:33.524
+create a model so that you know you can, you
+
+NOTE Confidence: 0.8943026065826416
+
+00:03:33.570 --> 00:03:34.359
+can rectify that.
+
+NOTE Confidence: 0.8279391527175903
+
+00:03:34.760 --> 00:03:36.377
+The first thing you will be doing is you will
+
+NOTE Confidence: 0.8279391527175903
+
+00:03:36.413 --> 00:03:37.959
+be bringing that data into your lake house.
+
+NOTE Confidence: 0.8334812521934509
+
+00:03:38.560 --> 00:03:40.652
+And once your data is in the lake house, then
+
+NOTE Confidence: 0.8334812521934509
+
+00:03:40.699 --> 00:03:43.303
+using Data Wrangler, you will be preparing your data for
+
+NOTE Confidence: 0.8334812521934509
+
+00:03:43.349 --> 00:03:44.279
+the experimentation.
+
+NOTE Confidence: 0.9196118116378784
+
+00:03:44.960 --> 00:03:47.040
+And then finally, you will be using the notebooks.
+
+NOTE Confidence: 0.8647520542144775
+
+00:03:47.040 --> 00:03:49.840
+And inside your notebooks, then you will be running your
+
+NOTE Confidence: 0.8647520542144775
+
+00:03:49.890 --> 00:03:51.840
+experiments, You will be using ML Flow.
+
+NOTE Confidence: 0.9074110984802246
+
+00:03:51.840 --> 00:03:54.694
+And finally, based on the results of your experiment, you
+
+NOTE Confidence: 0.9074110984802246
+
+00:03:54.744 --> 00:03:57.548
+will be specifying, OK, I want to deploy this particular
+
+NOTE Confidence: 0.9074110984802246
+
+00:03:57.598 --> 00:03:58.799
+model inside the fabric.
+
+NOTE Confidence: 0.9405882358551025
+
+00:03:59.240 --> 00:04:01.855
+Once your model is deployed, then you will be using
+
+NOTE Confidence: 0.9405882358551025
+
+00:04:01.906 --> 00:04:03.239
+that to generate insights.
+
+NOTE Confidence: 0.727070152759552
+
+00:04:03.240 --> 00:04:06.520
+Again, here I'm giving the example of Power BI reports.
+
+NOTE Confidence: 0.9643703699111938
+
+00:04:06.720 --> 00:04:09.175
+But the same model you can consume in other services
+
+NOTE Confidence: 0.9643703699111938
+
+00:04:09.222 --> 00:04:09.600
+as well.
+
+NOTE Confidence: 0.8370388150215149
+
+00:04:09.840 --> 00:04:12.728
+For example, you know you can consume it in your
+
+NOTE Confidence: 0.8370388150215149
+
+00:04:12.788 --> 00:04:15.977
+custom app or in any other app where consuming models
+
+NOTE Confidence: 0.8370388150215149
+
+00:04:16.037 --> 00:04:17.000
+is is available.
+
+NOTE Confidence: 0.7756816148757935
+
+00:04:18.560 --> 00:04:20.964
+So now I'll be moving to a demo, demo part
+
+NOTE Confidence: 0.7756816148757935
+
+00:04:21.021 --> 00:04:21.480
+of this.
+
+NOTE Confidence: 0.9313303232192993
+
+00:04:21.640 --> 00:04:24.281
+But before I go there and start showing you some
+
+NOTE Confidence: 0.9313303232192993
+
+00:04:24.336 --> 00:04:27.584
+stuff around Microsoft Fabric, let me give you the scenario
+
+NOTE Confidence: 0.9313303232192993
+
+00:04:27.639 --> 00:04:28.959
+for, for, for this demo.
+
+NOTE Confidence: 0.7753077149391174
+
+00:04:29.960 --> 00:04:33.211
+So we have, let's say you're working for a healthcare
+
+NOTE Confidence: 0.7753077149391174
+
+00:04:33.273 --> 00:04:36.402
+analyst or firm and you want to do some projections
+
+NOTE Confidence: 0.7753077149391174
+
+00:04:36.463 --> 00:04:37.200
+on diabetes.
+
+NOTE Confidence: 0.8297473192214966
+
+00:04:37.520 --> 00:04:40.328
+There is a public data set available from Microsoft that
+
+NOTE Confidence: 0.8297473192214966
+
+00:04:40.378 --> 00:04:42.936
+will be using using that data will be preparing the
+
+NOTE Confidence: 0.8297473192214966
+
+00:04:42.986 --> 00:04:44.239
+data using Data Wrangler.
+
+NOTE Confidence: 0.8141980767250061
+
+00:04:44.600 --> 00:04:47.010
+And once the data is prepared will be running series
+
+NOTE Confidence: 0.8141980767250061
+
+00:04:47.056 --> 00:04:49.513
+of machine learning experiments on the top of it will
+
+NOTE Confidence: 0.8141980767250061
+
+00:04:49.559 --> 00:04:52.016
+be going through the results and the result the model
+
+NOTE Confidence: 0.8141980767250061
+
+00:04:52.063 --> 00:04:54.659
+or the type of machine learning algorithm which is going
+
+NOTE Confidence: 0.8141980767250061
+
+00:04:54.705 --> 00:04:56.791
+to give you the best results will be use that
+
+NOTE Confidence: 0.8141980767250061
+
+00:04:56.837 --> 00:04:59.479
+deploy that and then start and then start consuming that.
+
+NOTE Confidence: 0.9355114698410034
+
+00:05:00.160 --> 00:05:02.328
+So just raise your hand how many of you are
+
+NOTE Confidence: 0.9355114698410034
+
+00:05:02.379 --> 00:05:04.800
+familiar with fabric or have used fabric before?
+
+NOTE Confidence: 0.8625507950782776
+
+00:05:05.800 --> 00:05:06.600
+OK, quite a few.
+
+NOTE Confidence: 0.8939757347106934
+
+00:05:07.200 --> 00:05:08.920
+So with that, I am going to change the context.
+
+NOTE Confidence: 0.9232996106147766
+
+00:05:08.920 --> 00:05:10.640
+Now I am going to start showing you around.
+
+NOTE Confidence: 0.8551381826400757
+
+00:05:11.040 --> 00:05:15.818
+So this is I am inside the fabric and I
+
+NOTE Confidence: 0.8551381826400757
+
+00:05:15.941 --> 00:05:20.719
+am inside my workspace called Labs, OK.
+
+NOTE Confidence: 0.9000891447067261
+
+00:05:21.040 --> 00:05:22.640
+And I have built this notebook.
+
+NOTE Confidence: 0.8853405117988586
+
+00:05:22.920 --> 00:05:25.780
+So in case you are totally new, just go and
+
+NOTE Confidence: 0.8853405117988586
+
+00:05:25.846 --> 00:05:28.640
+inside your workplace click on a new item.
+
+NOTE Confidence: 0.8791692852973938
+
+00:05:29.320 --> 00:05:32.445
+And here you will be seeing multiple options like if
+
+NOTE Confidence: 0.8791692852973938
+
+00:05:32.505 --> 00:05:34.910
+I click on the all items, there is a big
+
+NOTE Confidence: 0.8791692852973938
+
+00:05:34.970 --> 00:05:38.276
+list of items that you can create within your workspace
+
+NOTE Confidence: 0.8791692852973938
+
+00:05:38.336 --> 00:05:40.440
+and you can just like filter on it.
+
+NOTE Confidence: 0.7357267737388611
+
+00:05:40.440 --> 00:05:42.480
+So for example, I am interested in notebook.
+
+NOTE Confidence: 0.8078411221504211
+
+00:05:43.800 --> 00:05:48.675
+All right, then provide the name, provide the location and
+
+NOTE Confidence: 0.8078411221504211
+
+00:05:48.759 --> 00:05:49.599
+that's it.
+
+NOTE Confidence: 0.8827178478240967
+
+00:05:49.600 --> 00:05:50.920
+And your notebook will be ready.
+
+NOTE Confidence: 0.8691487908363342
+
+00:05:51.560 --> 00:05:53.680
+So I have already provided, created a notebook here.
+
+NOTE Confidence: 0.9632870554924011
+
+00:05:53.680 --> 00:05:56.280
+So let me bring this up on the screen.
+
+NOTE Confidence: 0.8341994881629944
+
+00:05:57.520 --> 00:05:59.555
+All right, so this is the notebook that we will
+
+NOTE Confidence: 0.8341994881629944
+
+00:05:59.598 --> 00:06:01.590
+be using and I will be walking you through the
+
+NOTE Confidence: 0.8341994881629944
+
+00:06:01.634 --> 00:06:03.279
+series of steps that we will be doing.
+
+NOTE Confidence: 0.7935418486595154
+
+00:06:03.480 --> 00:06:05.887
+Since this is a short demo session, I will not
+
+NOTE Confidence: 0.7935418486595154
+
+00:06:05.940 --> 00:06:07.719
+be now going through a lot detail.
+
+NOTE Confidence: 0.8048995137214661
+
+00:06:07.720 --> 00:06:09.594
+I have just picked up a very small data set
+
+NOTE Confidence: 0.8048995137214661
+
+00:06:09.637 --> 00:06:10.639
+and a small experiment.
+
+NOTE Confidence: 0.9308550953865051
+
+00:06:11.040 --> 00:06:13.272
+But you can also run the similar exercise on a
+
+NOTE Confidence: 0.9308550953865051
+
+00:06:13.321 --> 00:06:14.680
+very large data set as well.
+
+NOTE Confidence: 0.9398449659347534
+
+00:06:15.040 --> 00:06:17.564
+So for this experiment, what we are doing is we
+
+NOTE Confidence: 0.9398449659347534
+
+00:06:17.617 --> 00:06:20.840
+are gathering the publicly available samples from Microsoft.
+
+NOTE Confidence: 0.8366276025772095
+
+00:06:21.080 --> 00:06:25.211
+It is currently hosted in Azure BLOB storage and the
+
+NOTE Confidence: 0.8366276025772095
+
+00:06:25.290 --> 00:06:28.945
+first step is going to be gating that data and
+
+NOTE Confidence: 0.8366276025772095
+
+00:06:29.024 --> 00:06:32.520
+then gating that data inside the data frame.
+
+NOTE Confidence: 0.7572404146194458
+
+00:06:33.520 --> 00:06:36.520
+And then here we will be displaying that data.
+
+NOTE Confidence: 0.7259418368339539
+
+00:06:36.880 --> 00:06:40.764
+But when it comes to since we are going to
+
+NOTE Confidence: 0.7259418368339539
+
+00:06:40.856 --> 00:06:46.312
+use the psyched learn, psyched learn expect the Pandas data
+
+NOTE Confidence: 0.7259418368339539
+
+00:06:46.405 --> 00:06:46.960
+frame.
+
+NOTE Confidence: 0.7959680557250977
+
+00:06:46.960 --> 00:06:49.216
+So the next step we will be doing is converting
+
+NOTE Confidence: 0.7959680557250977
+
+00:06:49.264 --> 00:06:51.040
+that data into the Pandas data frame.
+
+NOTE Confidence: 0.7737820148468018
+
+00:06:51.520 --> 00:06:55.244
+And after that I will be splitting that data like
+
+NOTE Confidence: 0.7737820148468018
+
+00:06:55.320 --> 00:06:58.360
+let us say I have a huge amount of data.
+
+NOTE Confidence: 0.7620640993118286
+
+00:06:58.360 --> 00:06:59.954
+What I want to do is I am going to
+
+NOTE Confidence: 0.7620640993118286
+
+00:07:00.001 --> 00:07:02.159
+run the experiment on 70% of that data and the
+
+NOTE Confidence: 0.7620640993118286
+
+00:07:02.206 --> 00:07:03.941
+rest of the 30% of the data I want to
+
+NOTE Confidence: 0.7620640993118286
+
+00:07:03.988 --> 00:07:04.880
+use for validation.
+
+NOTE Confidence: 0.8279861807823181
+
+00:07:05.240 --> 00:07:07.486
+So that is the next step I will be doing
+
+NOTE Confidence: 0.8279861807823181
+
+00:07:07.542 --> 00:07:10.070
+and then I will be running series of you know
+
+NOTE Confidence: 0.8279861807823181
+
+00:07:10.126 --> 00:07:10.519
+models.
+
+NOTE Confidence: 0.8689764142036438
+
+00:07:10.520 --> 00:07:13.062
+The first model I will be doing is the linear
+
+NOTE Confidence: 0.8689764142036438
+
+00:07:13.118 --> 00:07:16.056
+regression model and then after that I will be doing
+
+NOTE Confidence: 0.8689764142036438
+
+00:07:16.112 --> 00:07:19.445
+a decision T regressor and after those experiments are done
+
+NOTE Confidence: 0.8689764142036438
+
+00:07:19.502 --> 00:07:22.270
+then I will be listing all these experiments 1 by
+
+NOTE Confidence: 0.8689764142036438
+
+00:07:22.327 --> 00:07:22.440
+1.
+
+NOTE Confidence: 0.8406717777252197
+
+00:07:23.040 --> 00:07:26.200
+Then we will be receiving a specific experiment that I
+
+NOTE Confidence: 0.8406717777252197
+
+00:07:26.259 --> 00:07:29.479
+run which name is experiment diabetes, and once that is
+
+NOTE Confidence: 0.8406717777252197
+
+00:07:29.537 --> 00:07:32.640
+done, then I will be receiving all its previous runs.
+
+NOTE Confidence: 0.9002355933189392
+
+00:07:32.840 --> 00:07:36.160
+So I can go evaluate each run, evaluate different parameters
+
+NOTE Confidence: 0.9002355933189392
+
+00:07:36.215 --> 00:07:39.259
+are there and depending on which experiment give me the
+
+NOTE Confidence: 0.9002355933189392
+
+00:07:39.314 --> 00:07:42.247
+best results, I will use that experiment and then use
+
+NOTE Confidence: 0.9002355933189392
+
+00:07:42.302 --> 00:07:43.520
+and deploy that model.
+
+NOTE Confidence: 0.9147436618804932
+
+00:07:44.440 --> 00:07:47.131
+So when it comes to the Fabric notebooks, when you
+
+NOTE Confidence: 0.9147436618804932
+
+00:07:47.185 --> 00:07:50.037
+create a notebook, let me walk you through few things
+
+NOTE Confidence: 0.9147436618804932
+
+00:07:50.091 --> 00:07:51.760
+when it comes to the execution.
+
+NOTE Confidence: 0.9180523157119751
+
+00:07:51.920 --> 00:07:54.501
+These are the different types of Spark environments you can
+
+NOTE Confidence: 0.9180523157119751
+
+00:07:54.545 --> 00:07:54.720
+use.
+
+NOTE Confidence: 0.7565088272094727
+
+00:07:54.880 --> 00:07:57.767
+So I am going to use Pispark, but I can
+
+NOTE Confidence: 0.7565088272094727
+
+00:07:57.841 --> 00:08:01.395
+also use Spark Scala, Spark SQL and Spark KRR as
+
+NOTE Confidence: 0.7565088272094727
+
+00:08:01.469 --> 00:08:01.839
+well.
+
+NOTE Confidence: 0.8176648020744324
+
+00:08:02.280 --> 00:08:03.780
+So let me just go you through the step by
+
+NOTE Confidence: 0.8176648020744324
+
+00:08:03.817 --> 00:08:03.999
+step.
+
+NOTE Confidence: 0.8797932863235474
+
+00:08:04.000 --> 00:08:07.024
+The first thing I am going to do is I
+
+NOTE Confidence: 0.8797932863235474
+
+00:08:07.106 --> 00:08:11.112
+am just going to load the data through the public
+
+NOTE Confidence: 0.8797932863235474
+
+00:08:11.193 --> 00:08:16.016
+data set available from Microsoft and everything I am doing
+
+NOTE Confidence: 0.8797932863235474
+
+00:08:16.098 --> 00:08:20.104
+right now I am doing inside the fabric inside the
+
+NOTE Confidence: 0.8797932863235474
+
+00:08:20.186 --> 00:08:20.839
+browser.
+
+NOTE Confidence: 0.9346655607223511
+
+00:08:21.320 --> 00:08:23.160
+But you can also do the similar thing.
+
+NOTE Confidence: 0.9123520255088806
+
+00:08:23.160 --> 00:08:26.350
+For example, if you don't use the web version of
+
+NOTE Confidence: 0.9123520255088806
+
+00:08:26.417 --> 00:08:30.205
+this notebook, you can also open this notebook inside the
+
+NOTE Confidence: 0.9123520255088806
+
+00:08:30.272 --> 00:08:32.199
+VS Code and use that as well.
+
+NOTE Confidence: 0.7617779970169067
+
+00:08:32.640 --> 00:08:34.953
+There is also copilot available in case you are new
+
+NOTE Confidence: 0.7617779970169067
+
+00:08:34.998 --> 00:08:37.492
+to Python or you are struggling with, you know, getting
+
+NOTE Confidence: 0.7617779970169067
+
+00:08:37.538 --> 00:08:38.399
+the correct syntax.
+
+NOTE Confidence: 0.8230382204055786
+
+00:08:38.640 --> 00:08:41.290
+You can directly fire up copilot over here to get
+
+NOTE Confidence: 0.8230382204055786
+
+00:08:41.344 --> 00:08:42.480
+get the help on that.
+
+NOTE Confidence: 0.6892263293266296
+
+00:08:45.720 --> 00:08:50.720
+All right, looks like it's running OK.
+
+NOTE Confidence: 0.9268752336502075
+
+00:08:51.240 --> 00:08:52.440
+The job was successful.
+
+NOTE Confidence: 0.9097712635993958
+
+00:08:52.600 --> 00:08:55.593
+And in case you're interested, you can expand this and
+
+NOTE Confidence: 0.9097712635993958
+
+00:08:55.649 --> 00:08:58.698
+find more information about the run, like how much time
+
+NOTE Confidence: 0.9097712635993958
+
+00:08:58.753 --> 00:09:01.359
+it take and you can also go through the details
+
+NOTE Confidence: 0.9097712635993958
+
+00:09:01.414 --> 00:09:02.079
+log as well.
+
+NOTE Confidence: 0.7958648204803467
+
+00:09:02.480 --> 00:09:04.179
+The next thing I want to do is I'm just
+
+NOTE Confidence: 0.7958648204803467
+
+00:09:04.222 --> 00:09:06.445
+going to deflate display the data frame for all the
+
+NOTE Confidence: 0.7958648204803467
+
+00:09:06.488 --> 00:09:07.360
+data that we loaded.
+
+NOTE Confidence: 0.8497122526168823
+
+00:09:11.040 --> 00:09:13.000
+All right, the data is there.
+
+NOTE Confidence: 0.8270245790481567
+
+00:09:13.160 --> 00:09:15.392
+The next thing I want to do is I'm going
+
+NOTE Confidence: 0.8270245790481567
+
+00:09:15.448 --> 00:09:17.960
+to convert these data frames into the pandas.
+
+NOTE Confidence: 0.43449097871780396
+
+00:09:24.400 --> 00:09:34.430
+All right, OK.
+
+NOTE Confidence: 0.5572928190231323
+
+00:09:34.430 --> 00:09:35.310
+It is finished.
+
+NOTE Confidence: 0.8613137602806091
+
+00:09:43.380 --> 00:09:45.834
+Once this is done, then I will be splitting this
+
+NOTE Confidence: 0.8613137602806091
+
+00:09:45.885 --> 00:09:48.339
+data into 70% for training and 30% for the test.
+
+NOTE Confidence: 0.8650041222572327
+
+00:09:58.050 --> 00:10:02.650
+All right, let me go ahead and do that now.
+
+NOTE Confidence: 0.9110466241836548
+
+00:10:05.530 --> 00:10:07.880
+OK, so this one is also done.
+
+NOTE Confidence: 0.8117787837982178
+
+00:10:07.880 --> 00:10:10.009
+The next thing is now or which the most important
+
+NOTE Confidence: 0.8117787837982178
+
+00:10:10.053 --> 00:10:12.400
+step now I will be training a linear regression model.
+
+NOTE Confidence: 0.9269649982452393
+
+00:10:12.560 --> 00:10:14.440
+OK, so let me go ahead and fire that up.
+
+NOTE Confidence: 0.8480550646781921
+
+00:10:18.320 --> 00:10:20.772
+Since my data size is small, all these operations are
+
+NOTE Confidence: 0.8480550646781921
+
+00:10:20.818 --> 00:10:22.160
+going really, really quickly.
+
+NOTE Confidence: 0.9056901335716248
+
+00:10:35.650 --> 00:10:37.450
+All right, this one is done as well.
+
+NOTE Confidence: 0.7881483435630798
+
+00:10:38.090 --> 00:10:39.578
+The next thing I am going to do is I
+
+NOTE Confidence: 0.7881483435630798
+
+00:10:39.619 --> 00:10:41.769
+am going to do like train a decision tree regressor.
+
+NOTE Confidence: 0.7503741979598999
+
+00:10:48.720 --> 00:10:49.200
+Perfect.
+
+NOTE Confidence: 0.9553132653236389
+
+00:10:49.520 --> 00:10:50.640
+That is done as well.
+
+NOTE Confidence: 0.8713257908821106
+
+00:10:51.040 --> 00:10:53.695
+Then I will be listing all the experiments that I
+
+NOTE Confidence: 0.8713257908821106
+
+00:10:53.749 --> 00:10:56.730
+have connected, I have conducted and one thing you will
+
+NOTE Confidence: 0.8713257908821106
+
+00:10:56.784 --> 00:10:59.439
+notice the name of the experiment that we have is
+
+NOTE Confidence: 0.8713257908821106
+
+00:10:59.494 --> 00:11:01.119
+this one experiment- diabetes.
+
+NOTE Confidence: 0.8019915223121643
+
+00:11:01.120 --> 00:11:04.193
+So I am just going to list all the experiments
+
+NOTE Confidence: 0.8019915223121643
+
+00:11:04.260 --> 00:11:07.000
+I have done in this particular workspace.
+
+NOTE Confidence: 0.8681930303573608
+
+00:11:15.730 --> 00:11:19.067
+And then I am interested in one specific experiment that
+
+NOTE Confidence: 0.8681930303573608
+
+00:11:19.127 --> 00:11:21.690
+we have used which is experiment- diabetes.
+
+NOTE Confidence: 0.9361531138420105
+
+00:11:21.690 --> 00:11:23.970
+Let me go ahead and retrieve the information about that.
+
+NOTE Confidence: 0.9035921096801758
+
+00:11:26.280 --> 00:11:27.832
+And the next thing I am going to do is
+
+NOTE Confidence: 0.9035921096801758
+
+00:11:27.872 --> 00:11:29.669
+I am going to retrieve all the runs for that
+
+NOTE Confidence: 0.9035921096801758
+
+00:11:29.710 --> 00:11:30.160
+experiment.
+
+NOTE Confidence: 0.79642254114151
+
+00:11:30.160 --> 00:11:32.371
+All the different kind of runs I have done is
+
+NOTE Confidence: 0.79642254114151
+
+00:11:32.420 --> 00:11:33.600
+in the different models.
+
+NOTE Confidence: 0.9119997024536133
+
+00:11:33.880 --> 00:11:34.720
+I will be doing that.
+
+NOTE Confidence: 0.9051846265792847
+
+00:11:36.880 --> 00:11:39.280
+So these were the different instances of the run I
+
+NOTE Confidence: 0.9051846265792847
+
+00:11:39.328 --> 00:11:39.520
+had.
+
+NOTE Confidence: 0.889248788356781
+
+00:11:39.720 --> 00:11:42.500
+I had the run ID whether it was finished or
+
+NOTE Confidence: 0.889248788356781
+
+00:11:42.564 --> 00:11:44.439
+not and artifact URL as well.
+
+NOTE Confidence: 0.6300305128097534
+
+00:11:48.440 --> 00:11:48.640
+OK.
+
+NOTE Confidence: 0.906458854675293
+
+00:11:49.280 --> 00:11:51.341
+But I am just interested in getting the last two
+
+NOTE Confidence: 0.906458854675293
+
+00:11:51.384 --> 00:11:53.360
+runs and see see what was the result for that.
+
+NOTE Confidence: 0.7073158025741577
+
+00:11:58.080 --> 00:11:58.520
+All right.
+
+NOTE Confidence: 0.870474636554718
+
+00:11:58.760 --> 00:12:01.037
+And finally, what I'm going to do is I just
+
+NOTE Confidence: 0.870474636554718
+
+00:12:01.090 --> 00:12:04.480
+want to do a quick visualization regarding the model comparison.
+
+NOTE Confidence: 0.8155621290206909
+
+00:12:10.460 --> 00:12:12.915
+OK, so next thing I'm going to do is So
+
+NOTE Confidence: 0.8155621290206909
+
+00:12:12.978 --> 00:12:16.189
+what I see is the scores, I'm getting better scores
+
+NOTE Confidence: 0.8155621290206909
+
+00:12:16.252 --> 00:12:19.904
+with the decision tree regressor as compared to the linear
+
+NOTE Confidence: 0.8155621290206909
+
+00:12:19.967 --> 00:12:20.659
+regression.
+
+NOTE Confidence: 0.90517258644104
+
+00:12:21.120 --> 00:12:24.674
+So correspondingly you can run multiple iteration of experiment and
+
+NOTE Confidence: 0.90517258644104
+
+00:12:24.727 --> 00:12:27.963
+then you decide which particular model or experiment you want
+
+NOTE Confidence: 0.90517258644104
+
+00:12:28.016 --> 00:12:28.599
+to go with.
+
+NOTE Confidence: 0.90815669298172
+
+00:12:28.880 --> 00:12:31.733
+So I am going to go back to my workspace
+
+NOTE Confidence: 0.90815669298172
+
+00:12:31.804 --> 00:12:35.941
+now and go to this particular experiment which is diabetes
+
+NOTE Confidence: 0.90815669298172
+
+00:12:36.013 --> 00:12:37.439
+experiment diabetes.
+
+NOTE Confidence: 0.8767783641815186
+
+00:12:40.400 --> 00:12:43.780
+Here I will see all the different runs I have
+
+NOTE Confidence: 0.8767783641815186
+
+00:12:43.855 --> 00:12:48.061
+and then I can see the individual information about that
+
+NOTE Confidence: 0.8767783641815186
+
+00:12:48.136 --> 00:12:53.394
+run like different matrix, different training score, again mean square
+
+NOTE Confidence: 0.8767783641815186
+
+00:12:53.469 --> 00:12:53.920
+error.
+
+NOTE Confidence: 0.9580992460250854
+
+00:12:54.280 --> 00:12:57.394
+And based on my criteria, then I can decide which
+
+NOTE Confidence: 0.9580992460250854
+
+00:12:57.457 --> 00:13:00.000
+particular run that I am most liking it.
+
+NOTE Confidence: 0.9275457859039307
+
+00:13:00.320 --> 00:13:02.183
+And then I can just select that and then save
+
+NOTE Confidence: 0.9275457859039307
+
+00:13:02.224 --> 00:13:02.680
+as a model.
+
+NOTE Confidence: 0.8198606967926025
+
+00:13:03.120 --> 00:13:09.448
+OK, For example, I'm going to create a new model
+
+NOTE Confidence: 0.8198606967926025
+
+00:13:09.580 --> 00:13:16.567
+from this experiment and let's call it as build table
+
+NOTE Confidence: 0.8198606967926025
+
+00:13:16.699 --> 00:13:19.600
+2602 and then save it.
+
+NOTE Confidence: 0.8365623950958252
+
+00:13:21.960 --> 00:13:24.760
+OK, I'm saving this model inside my fabric workspace.
+
+NOTE Confidence: 0.8030536770820618
+
+00:13:24.760 --> 00:13:27.206
+Once this model is saved, I can click on view
+
+NOTE Confidence: 0.8030536770820618
+
+00:13:27.261 --> 00:13:28.240
+the view ML model.
+
+NOTE Confidence: 0.9505186676979065
+
+00:13:29.040 --> 00:13:30.280
+So my model is now ready.
+
+NOTE Confidence: 0.8694372773170471
+
+00:13:31.200 --> 00:13:34.573
+I can also apply the version as well but let
+
+NOTE Confidence: 0.8694372773170471
+
+00:13:34.650 --> 00:13:37.640
+me quickly show you its settings of it.
+
+NOTE Confidence: 0.959385097026825
+
+00:13:37.640 --> 00:13:39.504
+So here I can go and change the name of
+
+NOTE Confidence: 0.959385097026825
+
+00:13:39.552 --> 00:13:41.559
+the model or update the name of the model.
+
+NOTE Confidence: 0.8746342062950134
+
+00:13:41.559 --> 00:13:44.080
+I can add a description, but its one thing to
+
+NOTE Confidence: 0.8746342062950134
+
+00:13:44.136 --> 00:13:46.600
+run your experiment and then create a model.
+
+NOTE Confidence: 0.9548624753952026
+
+00:13:46.720 --> 00:13:49.034
+But the most important part is how you will consume
+
+NOTE Confidence: 0.9548624753952026
+
+00:13:49.079 --> 00:13:49.759
+that model now.
+
+NOTE Confidence: 0.8843127489089966
+
+00:13:50.240 --> 00:13:52.663
+So that's so there you can click on the endpoints
+
+NOTE Confidence: 0.8843127489089966
+
+00:13:52.713 --> 00:13:55.137
+and here you will see the information about how I
+
+NOTE Confidence: 0.8843127489089966
+
+00:13:55.186 --> 00:13:56.719
+can start consuming this model.
+
+NOTE Confidence: 0.8138431310653687
+
+00:13:57.320 --> 00:14:00.641
+You know in other apps so that that app can
+
+NOTE Confidence: 0.8138431310653687
+
+00:14:00.718 --> 00:14:04.580
+make the the past the relevant content and and run
+
+NOTE Confidence: 0.8138431310653687
+
+00:14:04.657 --> 00:14:08.519
+run this model for me and get the relevant output.
+
+NOTE Confidence: 0.7855240106582642
+
+00:14:13.200 --> 00:14:13.480
+All right.
+
+NOTE Confidence: 0.8957192897796631
+
+00:14:14.560 --> 00:14:17.440
+Same thing you can do on Foundry side as well.
+
+NOTE Confidence: 0.8960745334625244
+
+00:14:17.680 --> 00:14:20.280
+In Foundry we have a service called Azure Machine learning.
+
+NOTE Confidence: 0.8202851414680481
+
+00:14:20.520 --> 00:14:23.655
+But one of the advantage of doing everything in fabric
+
+NOTE Confidence: 0.8202851414680481
+
+00:14:23.714 --> 00:14:26.385
+is everything you are doing is you know in one
+
+NOTE Confidence: 0.8202851414680481
+
+00:14:26.443 --> 00:14:28.359
+location everything is SAS based.
+
+NOTE Confidence: 0.8375309705734253
+
+00:14:28.360 --> 00:14:31.301
+So you are not thinking about spinning up multiple services
+
+NOTE Confidence: 0.8375309705734253
+
+00:14:31.351 --> 00:14:33.943
+when it comes to Azure Machine Learning, since it is
+
+NOTE Confidence: 0.8375309705734253
+
+00:14:33.993 --> 00:14:36.635
+part of Azure, you have to take into account multiple
+
+NOTE Confidence: 0.8375309705734253
+
+00:14:36.685 --> 00:14:39.726
+services that you will be creating, how exactly your pipeline
+
+NOTE Confidence: 0.8375309705734253
+
+00:14:39.776 --> 00:14:42.568
+will running, where exactly your app will be hosted, how
+
+NOTE Confidence: 0.8375309705734253
+
+00:14:42.618 --> 00:14:45.359
+you will, you know, bring the data for experimentation.
+
+NOTE Confidence: 0.9383730292320251
+
+00:14:45.640 --> 00:14:48.227
+All these things become very, very easy when it comes
+
+NOTE Confidence: 0.9383730292320251
+
+00:14:48.276 --> 00:14:48.959
+to the fabric.
+
+NOTE Confidence: 0.7995989322662354
+
+00:14:49.880 --> 00:14:52.348
+Now we are going to switch the context and talk
+
+NOTE Confidence: 0.7995989322662354
+
+00:14:52.401 --> 00:14:54.240
+about something called data agents.
+
+NOTE Confidence: 0.8261149525642395
+
+00:14:54.640 --> 00:14:57.783
+So data, I know fabric workloads, sorry machine learning workloads
+
+NOTE Confidence: 0.8261149525642395
+
+00:14:57.831 --> 00:15:00.546
+in fabric or notebooks are mostly for data scientists and
+
+NOTE Confidence: 0.8261149525642395
+
+00:15:00.593 --> 00:15:01.880
+machine learning engineers.
+
+NOTE Confidence: 0.8791172504425049
+
+00:15:02.280 --> 00:15:05.384
+But when it comes to the fabric data agent, anyone
+
+NOTE Confidence: 0.8791172504425049
+
+00:15:05.446 --> 00:15:08.612
+can use Fabric data agent and fabric data agent you
+
+NOTE Confidence: 0.8791172504425049
+
+00:15:08.674 --> 00:15:11.778
+generative AI behind the scene and as long as your
+
+NOTE Confidence: 0.8791172504425049
+
+00:15:11.840 --> 00:15:14.200
+data is in one lake, you can add it to
+
+NOTE Confidence: 0.8791172504425049
+
+00:15:14.262 --> 00:15:17.800
+your data agent, add your custom instructions and then it
+
+NOTE Confidence: 0.8791172504425049
+
+00:15:17.862 --> 00:15:20.160
+can give you insights from that data.
+
+NOTE Confidence: 0.8927680850028992
+
+00:15:20.520 --> 00:15:23.453
+Right now one of the main limitations of fabric data
+
+NOTE Confidence: 0.8927680850028992
+
+00:15:23.509 --> 00:15:24.919
+agent is its a read only.
+
+NOTE Confidence: 0.8350138664245605
+
+00:15:25.200 --> 00:15:27.480
+I can only get the insights from the data.
+
+NOTE Confidence: 0.9046027660369873
+
+00:15:27.480 --> 00:15:29.520
+I cannot really write back to the data.
+
+NOTE Confidence: 0.9467339515686035
+
+00:15:30.720 --> 00:15:33.645
+And once your agent is ready, you can consume that
+
+NOTE Confidence: 0.9467339515686035
+
+00:15:33.703 --> 00:15:35.400
+agent into multiple services.
+
+NOTE Confidence: 0.9031257033348083
+
+00:15:35.400 --> 00:15:37.720
+I can consume that directly into Fabric.
+
+NOTE Confidence: 0.9268086552619934
+
+00:15:37.960 --> 00:15:39.840
+I can also consume on the Foundry side.
+
+NOTE Confidence: 0.8341453671455383
+
+00:15:39.840 --> 00:15:42.743
+I can integrate that with copilot studio and the same
+
+NOTE Confidence: 0.8341453671455383
+
+00:15:42.798 --> 00:15:44.880
+agent is also available as MCP server.
+
+NOTE Confidence: 0.8173720836639404
+
+00:15:45.160 --> 00:15:48.048
+And I can also directly deploy that agent into the
+
+NOTE Confidence: 0.8173720836639404
+
+00:15:48.106 --> 00:15:49.320
+M-65 copilot as well.
+
+NOTE Confidence: 0.906600832939148
+
+00:15:49.920 --> 00:15:52.480
+So I am going back to the demo section now.
+
+NOTE Confidence: 0.8718394041061401
+
+00:15:52.480 --> 00:15:55.225
+So I am going to go back to the workspace
+
+NOTE Confidence: 0.8718394041061401
+
+00:15:55.292 --> 00:15:58.640
+and we will go back to this particular data agent.
+
+NOTE Confidence: 0.8937470316886902
+
+00:15:59.320 --> 00:16:01.727
+So the scenario here is I have a lot of
+
+NOTE Confidence: 0.8937470316886902
+
+00:16:01.788 --> 00:16:05.615
+self information and that information is available in the form
+
+NOTE Confidence: 0.8937470316886902
+
+00:16:05.677 --> 00:16:06.480
+of SQL table.
+
+NOTE Confidence: 0.9111148118972778
+
+00:16:07.120 --> 00:16:10.247
+And someone from the upper management would like to get
+
+NOTE Confidence: 0.9111148118972778
+
+00:16:10.304 --> 00:16:12.919
+some insights from that data in the SQL table.
+
+NOTE Confidence: 0.8336855173110962
+
+00:16:13.360 --> 00:16:16.634
+And without data agent, the current workflow is whatever starts
+
+NOTE Confidence: 0.8336855173110962
+
+00:16:16.686 --> 00:16:19.752
+the upper management would like to generate, they send that
+
+NOTE Confidence: 0.8336855173110962
+
+00:16:19.804 --> 00:16:22.766
+to the data engineering team, Data engineering team run a
+
+NOTE Confidence: 0.8336855173110962
+
+00:16:22.818 --> 00:16:26.093
+lot of SQL queries, summarize that information from the queries
+
+NOTE Confidence: 0.8336855173110962
+
+00:16:26.145 --> 00:16:28.120
+and send back, send that back to them.
+
+NOTE Confidence: 0.9137891530990601
+
+00:16:28.400 --> 00:16:29.800
+So how we can simplify this?
+
+NOTE Confidence: 0.9289355874061584
+
+00:16:30.200 --> 00:16:36.085
+So first thing first, in the fabric data agent again,
+
+NOTE Confidence: 0.9289355874061584
+
+00:16:36.197 --> 00:16:41.305
+you can just go to the workspace, click on the
+
+NOTE Confidence: 0.9289355874061584
+
+00:16:41.416 --> 00:16:46.080
+new item and here go to all items and then
+
+NOTE Confidence: 0.9289355874061584
+
+00:16:46.192 --> 00:16:48.079
+search for agent.
+
+NOTE Confidence: 0.8449379801750183
+
+00:16:48.960 --> 00:16:51.552
+And then here you'll see two options, Data agent and
+
+NOTE Confidence: 0.8449379801750183
+
+00:16:51.602 --> 00:16:52.399
+operation agent.
+
+NOTE Confidence: 0.7938916683197021
+
+00:16:52.400 --> 00:16:55.000
+So I'll be selecting with data agent here and here.
+
+NOTE Confidence: 0.8449334502220154
+
+00:16:55.000 --> 00:16:56.640
+You just have to start with just giving the name.
+
+NOTE Confidence: 0.8848458528518677
+
+00:16:56.960 --> 00:16:59.550
+OK, so for example, I have already created agent, so
+
+NOTE Confidence: 0.8848458528518677
+
+00:16:59.600 --> 00:17:01.792
+I'm just going to go with that, which is the
+
+NOTE Confidence: 0.8848458528518677
+
+00:17:01.842 --> 00:17:02.440
+sales agent.
+
+NOTE Confidence: 0.8921273946762085
+
+00:17:02.680 --> 00:17:04.754
+Once you give it a name, the next thing you
+
+NOTE Confidence: 0.8921273946762085
+
+00:17:04.802 --> 00:17:06.635
+have to do is you have to add the data
+
+NOTE Confidence: 0.8921273946762085
+
+00:17:06.684 --> 00:17:08.903
+and your data can be coming from your Azure AI
+
+NOTE Confidence: 0.8921273946762085
+
+00:17:08.951 --> 00:17:11.845
+search, which is one of the service available with Microsoft
+
+NOTE Confidence: 0.8921273946762085
+
+00:17:11.894 --> 00:17:12.279
+Foundry.
+
+NOTE Confidence: 0.8683406710624695
+
+00:17:12.560 --> 00:17:14.923
+Or you can also click on the data sources and
+
+NOTE Confidence: 0.8683406710624695
+
+00:17:14.975 --> 00:17:17.706
+any data that is available within your lake house or
+
+NOTE Confidence: 0.8683406710624695
+
+00:17:17.759 --> 00:17:20.279
+warehouse, you can use that which is this agent.
+
+NOTE Confidence: 0.9402851462364197
+
+00:17:20.640 --> 00:17:23.717
+So this particular warehouse I have already added and this
+
+NOTE Confidence: 0.9402851462364197
+
+00:17:23.770 --> 00:17:25.680
+warehouse has four tables right now.
+
+NOTE Confidence: 0.7602472901344299
+
+00:17:25.920 --> 00:17:28.720
+The customers date, the product and sales order.
+
+NOTE Confidence: 0.9278795719146729
+
+00:17:29.280 --> 00:17:31.490
+The next thing is then you have to provide the
+
+NOTE Confidence: 0.9278795719146729
+
+00:17:31.538 --> 00:17:34.470
+instructions and the instructions you can provide in the form
+
+NOTE Confidence: 0.9278795719146729
+
+00:17:34.518 --> 00:17:35.479
+of natural language.
+
+NOTE Confidence: 0.9080260992050171
+
+00:17:35.480 --> 00:17:37.982
+So let me minimize this a bit so we can
+
+NOTE Confidence: 0.9080260992050171
+
+00:17:38.047 --> 00:17:41.320
+see and these are very, very detailed instructions.
+
+NOTE Confidence: 0.8641518950462341
+
+00:17:41.440 --> 00:17:44.105
+But you can also small start with a small instruction
+
+NOTE Confidence: 0.8641518950462341
+
+00:17:44.156 --> 00:17:46.318
+and over the time you can you can expand on
+
+NOTE Confidence: 0.8641518950462341
+
+00:17:46.369 --> 00:17:46.519
+it.
+
+NOTE Confidence: 0.8820626735687256
+
+00:17:46.760 --> 00:17:49.260
+And also there is a limitation on the characters like
+
+NOTE Confidence: 0.8820626735687256
+
+00:17:49.307 --> 00:17:52.044
+number of characters like how long of instructions you can
+
+NOTE Confidence: 0.8820626735687256
+
+00:17:52.091 --> 00:17:52.279
+ask.
+
+NOTE Confidence: 0.8946958184242249
+
+00:17:52.960 --> 00:17:55.301
+But once you do the setup, the next thing you
+
+NOTE Confidence: 0.8946958184242249
+
+00:17:55.353 --> 00:17:57.695
+will be doing is you will be testing out your
+
+NOTE Confidence: 0.8946958184242249
+
+00:17:57.747 --> 00:17:58.320
+data agent.
+
+NOTE Confidence: 0.900771975517273
+
+00:17:58.800 --> 00:18:00.440
+So this is the test pane that you have.
+
+NOTE Confidence: 0.8531006574630737
+
+00:18:01.040 --> 00:18:03.359
+And here I am just going to ask one of
+
+NOTE Confidence: 0.8531006574630737
+
+00:18:03.420 --> 00:18:06.289
+the standard query that I have is what are some
+
+NOTE Confidence: 0.8531006574630737
+
+00:18:06.350 --> 00:18:09.280
+of the top 10 most popular products of all time.
+
+NOTE Confidence: 0.889751672744751
+
+00:18:09.280 --> 00:18:11.071
+So let me fire that up and I will show
+
+NOTE Confidence: 0.889751672744751
+
+00:18:11.118 --> 00:18:13.240
+you how exactly things work behind the scene.
+
+NOTE Confidence: 0.829533040523529
+
+00:18:13.640 --> 00:18:15.600
+So I am asking a question in the natural language.
+
+NOTE Confidence: 0.9502127170562744
+
+00:18:15.840 --> 00:18:19.487
+The answer for this question is available in various tables
+
+NOTE Confidence: 0.9502127170562744
+
+00:18:19.549 --> 00:18:20.599
+in my lake house.
+
+NOTE Confidence: 0.830747127532959
+
+00:18:20.840 --> 00:18:23.539
+However, what the fabric data agent is going to be
+
+NOTE Confidence: 0.830747127532959
+
+00:18:23.593 --> 00:18:26.670
+doing is converting my query which is in natural language
+
+NOTE Confidence: 0.830747127532959
+
+00:18:26.724 --> 00:18:28.560
+into the series of SQL statements.
+
+NOTE Confidence: 0.8157097101211548
+
+00:18:29.040 --> 00:18:32.435
+Those statements get executed against those table and the SQL
+
+NOTE Confidence: 0.8157097101211548
+
+00:18:32.491 --> 00:18:35.052
+statement will give me the data in the form of
+
+NOTE Confidence: 0.8157097101211548
+
+00:18:35.107 --> 00:18:38.002
+the records and then behind the scene, it's going to
+
+NOTE Confidence: 0.8157097101211548
+
+00:18:38.058 --> 00:18:41.120
+transfer that records into the format that I am asking.
+
+NOTE Confidence: 0.912725031375885
+
+00:18:43.320 --> 00:18:45.356
+And this is where you can see like how things
+
+NOTE Confidence: 0.912725031375885
+
+00:18:45.402 --> 00:18:46.759
+are working behind the scenes.
+
+NOTE Confidence: 0.8561132550239563
+
+00:18:46.760 --> 00:18:49.254
+So it fired up the SQL queries and this is
+
+NOTE Confidence: 0.8561132550239563
+
+00:18:49.313 --> 00:18:50.679
+the output that we got.
+
+NOTE Confidence: 0.9139417409896851
+
+00:18:50.920 --> 00:18:54.470
+And finally, the agent is going and summarizing that information
+
+NOTE Confidence: 0.9139417409896851
+
+00:18:54.526 --> 00:18:57.189
+based on the user's query and also based on some
+
+NOTE Confidence: 0.9139417409896851
+
+00:18:57.245 --> 00:18:59.519
+of the instructions that I have provided.
+
+NOTE Confidence: 0.8633645176887512
+
+00:19:09.240 --> 00:19:12.165
+All right, while we are waiting for the answers, let
+
+NOTE Confidence: 0.8633645176887512
+
+00:19:12.221 --> 00:19:14.359
+me quickly show you the settings part.
+
+NOTE Confidence: 0.9167571663856506
+
+00:19:14.760 --> 00:19:18.093
+So once I publish the agent, this is where once
+
+NOTE Confidence: 0.9167571663856506
+
+00:19:18.164 --> 00:19:21.780
+the agent is published, I can then expose that that
+
+NOTE Confidence: 0.9167571663856506
+
+00:19:21.851 --> 00:19:25.326
+agent is also available as an MCP server as well,
+
+NOTE Confidence: 0.9167571663856506
+
+00:19:25.397 --> 00:19:28.659
+so that if I had to consume this agent outside
+
+NOTE Confidence: 0.9167571663856506
+
+00:19:28.730 --> 00:19:30.999
+of Fabric, I can do that easily.
+
+NOTE Confidence: 0.8627510070800781
+
+00:19:39.960 --> 00:19:42.620
+OK, I am just going to start it one more
+
+NOTE Confidence: 0.8627510070800781
+
+00:19:42.687 --> 00:19:46.080
+time and refresh it and once that answer is showed,
+
+NOTE Confidence: 0.8627510070800781
+
+00:19:46.146 --> 00:19:49.273
+I will show you then how you can integrate this
+
+NOTE Confidence: 0.8627510070800781
+
+00:19:49.339 --> 00:19:52.399
+fabric data agent with other products as well.
+
+NOTE Confidence: 0.7069073915481567
+
+00:19:54.160 --> 00:19:54.680
+OK, stop.
+
+NOTE Confidence: 0.7448644638061523
+
+00:19:57.880 --> 00:19:58.920
+OK, perfect.
+
+NOTE Confidence: 0.9465099573135376
+
+00:19:58.920 --> 00:20:01.448
+Let me fire this up and we will come back
+
+NOTE Confidence: 0.9465099573135376
+
+00:20:01.510 --> 00:20:01.880
+to it.
+
+NOTE Confidence: 0.9473932981491089
+
+00:20:02.359 --> 00:20:04.592
+But let me show you how I can expose this
+
+NOTE Confidence: 0.9473932981491089
+
+00:20:04.646 --> 00:20:06.280
+agent into the other services.
+
+NOTE Confidence: 0.5696561336517334
+
+00:20:06.760 --> 00:20:09.680
+Because more or more often they are not.
+
+NOTE Confidence: 0.8232430219650269
+
+00:20:09.840 --> 00:20:11.749
+You will not be just creating one agent, you will
+
+NOTE Confidence: 0.8232430219650269
+
+00:20:11.788 --> 00:20:12.880
+be creating multiple agents.
+
+NOTE Confidence: 0.7390523552894592
+
+00:20:13.200 --> 00:20:14.920
+So let us say I created this agent in fabric.
+
+NOTE Confidence: 0.8324807286262512
+
+00:20:15.560 --> 00:20:18.880
+I can explore the same agent inside copilot studio.
+
+NOTE Confidence: 0.7676131129264832
+
+00:20:19.240 --> 00:20:20.360
+So inside copilot Studio.
+
+NOTE Confidence: 0.8657427430152893
+
+00:20:20.359 --> 00:20:23.343
+copilot studio is one of the product available in Microsoft
+
+NOTE Confidence: 0.8657427430152893
+
+00:20:23.394 --> 00:20:24.760
+ecosystem to create agents.
+
+NOTE Confidence: 0.699560284614563
+
+00:20:25.160 --> 00:20:28.270
+It is again follow the same principle as fabric agent
+
+NOTE Confidence: 0.699560284614563
+
+00:20:28.329 --> 00:20:30.559
+which is available as the SAS product.
+
+NOTE Confidence: 0.8813596963882446
+
+00:20:31.000 --> 00:20:33.435
+Most of the stuff is drag and drop and when
+
+NOTE Confidence: 0.8813596963882446
+
+00:20:33.492 --> 00:20:36.325
+it comes to adding the agents to existing agent in
+
+NOTE Confidence: 0.8813596963882446
+
+00:20:36.381 --> 00:20:39.497
+copilot studio, you can either create a new child agent
+
+NOTE Confidence: 0.8813596963882446
+
+00:20:39.554 --> 00:20:42.160
+or you can go to connect to an external agent.
+
+NOTE Confidence: 0.9111962914466858
+
+00:20:42.440 --> 00:20:44.600
+And this is where you can see multiple options.
+
+NOTE Confidence: 0.7916797995567322
+
+00:20:44.720 --> 00:20:47.735
+I can now connect a copilot studio agent to fabric
+
+NOTE Confidence: 0.7916797995567322
+
+00:20:47.795 --> 00:20:48.640
+agent as well.
+
+NOTE Confidence: 0.8963102698326111
+
+00:20:49.000 --> 00:20:50.940
+So if I do that, I had to provide the
+
+NOTE Confidence: 0.8963102698326111
+
+00:20:50.993 --> 00:20:52.199
+connection information.
+
+NOTE Confidence: 0.8559433221817017
+
+00:20:52.400 --> 00:20:55.605
+Once I do, then all the agents, the fabric data
+
+NOTE Confidence: 0.8559433221817017
+
+00:20:55.673 --> 00:21:00.175
+agent, this particular account has access to that information will
+
+NOTE Confidence: 0.8559433221817017
+
+00:21:00.243 --> 00:21:03.108
+come up and then I can just select and ah,
+
+NOTE Confidence: 0.8559433221817017
+
+00:21:03.176 --> 00:21:04.199
+add that agent.
+
+NOTE Confidence: 0.9005365967750549
+
+00:21:04.200 --> 00:21:06.088
+And while adding that agent, I can also provide some
+
+NOTE Confidence: 0.9005365967750549
+
+00:21:06.124 --> 00:21:06.960
+additional description.
+
+NOTE Confidence: 0.8298065662384033
+
+00:21:07.359 --> 00:21:10.866
+So the Copilot Studio agent knows what exactly the purpose
+
+NOTE Confidence: 0.8298065662384033
+
+00:21:10.926 --> 00:21:12.680
+or function of this agent is.
+
+NOTE Confidence: 0.8880181908607483
+
+00:21:15.680 --> 00:21:17.440
+Let me go back here.
+
+NOTE Confidence: 0.8171973824501038
+
+00:21:18.240 --> 00:21:20.532
+OK, looks like the demo gods are not working with
+
+NOTE Confidence: 0.8171973824501038
+
+00:21:20.579 --> 00:21:20.719
+us.
+
+NOTE Confidence: 0.8114269971847534
+
+00:21:21.400 --> 00:21:25.299
+The next thing is when it comes to publishing this
+
+NOTE Confidence: 0.8114269971847534
+
+00:21:25.377 --> 00:21:29.433
+agent, I can directly publish this agent to the M-65
+
+NOTE Confidence: 0.8114269971847534
+
+00:21:29.511 --> 00:21:30.759
+copilot as well.
+
+NOTE Confidence: 0.826808512210846
+
+00:21:31.080 --> 00:21:33.536
+So if you as a user has M-65 copilot license
+
+NOTE Confidence: 0.826808512210846
+
+00:21:33.592 --> 00:21:36.831
+and your tenant admin has made this agent available within
+
+NOTE Confidence: 0.826808512210846
+
+00:21:36.887 --> 00:21:39.902
+the Microsoft 65 copilot chart, I can add mention this
+
+NOTE Confidence: 0.826808512210846
+
+00:21:39.958 --> 00:21:42.080
+agent and start interacting with that.
+
+NOTE Confidence: 0.8692045211791992
+
+00:21:43.040 --> 00:21:45.520
+OK, looks like the responses came back.
+
+NOTE Confidence: 0.8493760228157043
+
+00:21:45.880 --> 00:21:48.613
+And if I do the expand response, this is where
+
+NOTE Confidence: 0.8493760228157043
+
+00:21:48.672 --> 00:21:51.524
+the data will be looked like, like for the final
+
+NOTE Confidence: 0.8493760228157043
+
+00:21:51.584 --> 00:21:52.000
+output.
+
+NOTE Confidence: 0.853766679763794
+
+00:21:52.240 --> 00:21:54.763
+But if you click on the steps completed and if
+
+NOTE Confidence: 0.853766679763794
+
+00:21:54.818 --> 00:21:57.506
+you expand that, this will show you the series of
+
+NOTE Confidence: 0.853766679763794
+
+00:21:57.561 --> 00:22:00.304
+steps the data agent has taken behind the scene to
+
+NOTE Confidence: 0.853766679763794
+
+00:22:00.358 --> 00:22:01.840
+give you the response back.
+
+NOTE Confidence: 0.3969486951828003
+
+00:22:04.280 --> 00:22:11.040
+You OK?
+
+NOTE Confidence: 0.8032366037368774
+
+00:22:14.440 --> 00:22:18.680
+All right, Let's say you are using Microsoft Foundry to
+
+NOTE Confidence: 0.8032366037368774
+
+00:22:18.757 --> 00:22:19.760
+create agent.
+
+NOTE Confidence: 0.8814412355422974
+
+00:22:20.000 --> 00:22:22.800
+You can expose this data agent in a two way.
+
+NOTE Confidence: 0.9168630242347717
+
+00:22:22.800 --> 00:22:25.820
+You can either call that data agent from an agent
+
+NOTE Confidence: 0.9168630242347717
+
+00:22:25.881 --> 00:22:28.470
+or you can also use that as a knowledge as
+
+NOTE Confidence: 0.9168630242347717
+
+00:22:28.531 --> 00:22:28.840
+well.
+
+NOTE Confidence: 0.9244875907897949
+
+00:22:29.680 --> 00:22:32.534
+So if I go and create a knowledge base, I
+
+NOTE Confidence: 0.9244875907897949
+
+00:22:32.603 --> 00:22:35.040
+can also point it to the fabric IQ.
+
+NOTE Confidence: 0.7994750738143921
+
+00:22:35.680 --> 00:22:36.840
+That is one way of doing it.
+
+NOTE Confidence: 0.8723107576370239
+
+00:22:37.480 --> 00:22:41.829
+If I go onclick on the agents here and let's
+
+NOTE Confidence: 0.8723107576370239
+
+00:22:41.928 --> 00:22:46.574
+say I use this particular agent, if we go back,
+
+NOTE Confidence: 0.8723107576370239
+
+00:22:46.672 --> 00:22:50.330
+I think this is not the one and I can
+
+NOTE Confidence: 0.8723107576370239
+
+00:22:50.429 --> 00:22:54.383
+go to the tools and I can add the fabric
+
+NOTE Confidence: 0.8723107576370239
+
+00:22:54.481 --> 00:22:56.359
+data agent as well.
+
+NOTE Confidence: 0.8960497379302979
+
+00:22:56.359 --> 00:23:00.099
+So for example, if I go here and add this
+
+NOTE Confidence: 0.8960497379302979
+
+00:23:00.190 --> 00:23:04.569
+data agent and click on Browse tools, I can also
+
+NOTE Confidence: 0.8960497379302979
+
+00:23:04.660 --> 00:23:08.399
+add this fabric data agent there as well.
+
+NOTE Confidence: 0.8630797863006592
+
+00:23:09.040 --> 00:23:11.420
+So this is the way you know you can, you
+
+NOTE Confidence: 0.8630797863006592
+
+00:23:11.480 --> 00:23:14.932
+can expose the same fabric data agent on multiple products
+
+NOTE Confidence: 0.8630797863006592
+
+00:23:14.992 --> 00:23:16.480
+as well within Microsoft.
+
+NOTE Confidence: 0.9702143669128418
+
+00:23:16.960 --> 00:23:19.200
+With that, we come to an end.
+
+NOTE Confidence: 0.8783706426620483
+
+00:23:19.400 --> 00:23:22.120
+If you have follow up questions, please let me know.
+
+NOTE Confidence: 0.6250577569007874
+
+00:23:22.240 --> 00:23:23.040
+I am available here.
+
+NOTE Confidence: 0.9323037266731262
+
+00:23:23.040 --> 00:23:25.368
+Since this is the last session of the day, I
+
+NOTE Confidence: 0.9323037266731262
+
+00:23:25.421 --> 00:23:28.280
+can stay longer here to address your question, but you
+
+NOTE Confidence: 0.9323037266731262
+
+00:23:28.332 --> 00:23:30.979
+can also send your questions via e-mail or this QR
+
+NOTE Confidence: 0.9323037266731262
+
+00:23:31.032 --> 00:23:33.520
+code will point to my LinkedIn profile as well.
+
+NOTE Confidence: 0.9504682421684265
+
+00:23:33.760 --> 00:23:34.960
+With that, thanks for joining.
+
+NOTE Confidence: 0.827359139919281
+
+00:23:34.960 --> 00:23:37.679
+I have a wonderful rest of the evening and safe
+
+NOTE Confidence: 0.827359139919281
+
+00:23:37.737 --> 00:23:38.199
+travels.
+

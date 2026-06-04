@@ -1,0 +1,453 @@
+**[00:00:00]** ANDREW LEADER: Welcome,
+**[00:00:01]** Windows developers and AI experts.
+**[00:00:03]** I wanted to start today's session with a survey,
+**[00:00:06]** but since I can't see you raise your hands,
+**[00:00:09]** click the like button if you've ever opened a cloud invoice
+**[00:00:12]** and felt your stomach drop.
+**[00:00:15]** You might have experienced this
+**[00:00:17]** when adding cloud-backed AI models to your app.
+**[00:00:21]** Your users end up loving the feature and use it constantly,
+**[00:00:24]** which is awesome, but then you get the bill for all
+**[00:00:28]** that cloud resource usage.
+**[00:00:31]** What if we could change that story?
+**[00:00:33]** What if we could run the same model locally using the hardware
+**[00:00:37]** the user already has and still build the same amazing features
+**[00:00:41]** that users love without the bill at the end of the day?
+**[00:00:45]** Using AI locally means that instead of a bill,
+**[00:00:48]** you get better privacy, lower latency, offline support,
+**[00:00:54]** and finally those cost savings we mentioned.
+**[00:00:57]** Many top ISVs are already using local AI on Windows to delight
+**[00:01:01]** and empower their users.
+**[00:01:04]** Today, we're going to show you how you can run your own custom
+**[00:01:07]** or open-source AI models locally on Windows using Windows ML.
+**[00:01:13]** I'm Andrew Leader, a Product Manager on the Windows ML team.
+**[00:01:17]** MAHA BAYANA: And I'm Maha Bayana,
+**[00:01:18]** and I'm a Software Engineer on the Windows ML team.
+**[00:01:21]** ANDREW LEADER: So Maha,
+**[00:01:22]** what models can you use with Windows ML?
+**[00:01:25]** MAHA BAYANA: So Windows ML works with ONNX models,
+**[00:01:27]** meaning you can choose from over 40,000 ONNX models
+**[00:01:30]** from Hugging Face, or you could choose
+**[00:01:33]** from 229,000 PyTorch models and use the WinML CLI or PyTorch
+**[00:01:39]** to convert them to ONNX.
+**[00:01:41]** You can also train your own models
+**[00:01:43]** to achieve exactly what you need and convert it to ONNX format.
+**[00:01:47]** So once you have an ONNX model, you can run it on Windows ML,
+**[00:01:51]** but if you want to run it on the best possible across GPU
+**[00:01:54]** and NPU, you can even optimize your model for each IHV.
+**[00:01:58]** So you can use the WinML CLI to optimize your models,
+**[00:02:02]** and then the WinML allows your app to accelerate your models
+**[00:02:06]** against a wide variety of Windows hardware
+**[00:02:09]** without shipping specific SDKs or each hardware variant.
+**[00:02:13]** ANDREW LEADER: That sounds really great.
+**[00:02:14]** Some of my users are still on Windows 10, though.
+**[00:02:17]** Can I still use Windows ML?
+**[00:02:18]** MAHA BAYANA: Yeah, of course.
+**[00:02:19]** So Windows ML is built for varying needs
+**[00:02:22]** on Windows developers supporting operating systems back
+**[00:02:25]** to Windows 10.
+**[00:02:27]** ANDREW LEADER: That's excellent.
+**[00:02:27]** A few of our apps are written in C, though.
+**[00:02:30]** Can I use Windows ML with C?
+**[00:02:32]** MAHA BAYANA: Yeah, of course.
+**[00:02:33]** You can use Windows ML directly with C apps.
+**[00:02:35]** You can even use Python with Windows ML,
+**[00:02:37]** or you can use C Sharp and C++, too.
+**[00:02:40]** ANDREW LEADER: That's perfect.
+**[00:02:41]** I've got a number of old apps
+**[00:02:42]** that I could really use local AI, but the way I package
+**[00:02:45]** and deploy them is a little bit outdated.
+**[00:02:48]** Can I still use Windows ML regardless
+**[00:02:49]** of how I deploy my app?
+**[00:02:51]** MAHA BAYANA: Yeah, of course.
+**[00:02:52]** So Windows ML supports both unpackaged and packaged apps,
+**[00:02:56]** and also supports self-contained
+**[00:02:57]** and framework-dependent deployment techniques.
+**[00:03:01]** So you can truly build your app however you want while
+**[00:03:03]** leveraging Windows ML.
+**[00:03:05]** ANDREW LEADER: That's amazing.
+**[00:03:06]** I'm sold. All right, let's build something.
+**[00:03:09]** So in today's session, Maha is going
+**[00:03:11]** to be building a customer support sentiment analysis
+**[00:03:14]** dashboard that takes our incoming customer support
+**[00:03:17]** messages and uses a sentiment analysis model
+**[00:03:20]** to classify each message's sentiment into positive,
+**[00:03:24]** neutral, and negative buckets
+**[00:03:26]** so that we can see the overall trends of our customer feedback
+**[00:03:30]** and notice when a negative event is occurring
+**[00:03:33]** and react to it quickly.
+**[00:03:35]** By the end of this session, you'll learn how
+**[00:03:37]** to use Windows ML to convert and optimize a model
+**[00:03:41]** from HuggingFace to run on NPU, GPU, and CPU Windows PCs,
+**[00:03:47]** and then use that model in a website running inside Edge
+**[00:03:50]** or Chrome, and then finally use that same model
+**[00:03:53]** in a native Windows app for even better Windows integration.
+**[00:03:58]** All right, let's get started.
+**[00:04:00]** Maha, can you show us how to use the Windows ML CLI to convert
+**[00:04:03]** and optimize a model to run on Windows?
+**[00:04:05]** MAHA BAYANA: Yeah.
+**[00:04:06]** So for those of you who aren't familiar with Windows ML CLI,
+**[00:04:09]** it's a new command line tool with a variety
+**[00:04:12]** of model conversion and optimization tasks.
+**[00:04:15]** So this CLI supports a number of commands.
+**[00:04:17]** So let's get over here and let's start
+**[00:04:20]** by running our WinML Hub command.
+**[00:04:23]** Now, this command helps to see a bunch of models it supports,
+**[00:04:27]** and let's go ahead and run this, and it's going
+**[00:04:31]** to take a second over there.
+**[00:04:36]** All right.
+**[00:04:36]** So it looks like there's a sentiment analysis model
+**[00:04:39]** over here and that we could use for our tasks.
+**[00:04:42]** So let's go ahead and export
+**[00:04:44]** that into our project using this export command over here.
+**[00:04:48]** So let's go ahead and have that export command, and we're going
+**[00:04:51]** to run that, and that's going to take a second.
+**[00:04:53]** ANDREW LEADER: Awesome.
+**[00:04:54]** And while that's exporting,
+**[00:04:55]** can you tell me how you know what all those models are for?
+**[00:04:59]** MAHA BAYANA: Yeah.
+**[00:05:00]** So all of these models are from Hugging Face,
+**[00:05:02]** like the one right here,
+**[00:05:04]** like the sentiment Twitter analysis model
+**[00:05:05]** that we are using.
+**[00:05:07]** So you can find the models on there, read their descriptions,
+**[00:05:10]** or you could even ask Copilot about them.
+**[00:05:12]** ANDREW LEADER: Oh, that's great.
+**[00:05:13]** Yeah, I think I can make sense of that.
+**[00:05:15]** And this ONNX model, will it work on all Windows PCs?
+**[00:05:19]** MAHA BAYANA: Correct.
+**[00:05:19]** So this model will work on CPU devices to reach
+**[00:05:23]** across all Windows PCs, but can also be accelerated using
+**[00:05:27]** like NPUs and GPUs and so on.
+**[00:05:30]** ANDREW LEADER: Awesome.
+**[00:05:37]** So now that we have an ONNX model,
+**[00:05:40]** can we use this in our web app?
+**[00:05:42]** MAHA BAYANA: Yeah.
+**[00:05:42]** So let's open up our web app over here so we can look
+**[00:05:46]** at some of the code here.
+**[00:05:47]** So this is our customer support dashboard, and the goal
+**[00:05:50]** of this app, as you said earlier,
+**[00:05:52]** is to classify these incoming customer support comments
+**[00:05:56]** and reviews into three different categories, positive,
+**[00:05:59]** negative, and neutral.
+**[00:06:02]** ANDREW LEADER: Got it.
+**[00:06:02]** And which web libraries will be using in this app?
+**[00:06:06]** MAHA BAYANA: Okay.
+**[00:06:07]** So we're going to be using ONNX Runtime Web,
+**[00:06:10]** which essentially lets us use ONNX models and works
+**[00:06:12]** with WebNN behind the scenes to run the sentiment model
+**[00:06:16]** that we exported earlier using that WinML CLI.
+**[00:06:20]** So let's go ahead and see how we can get access
+**[00:06:23]** to the ONNX Runtime Web.
+**[00:06:24]** So we've already run NPM install ONNX Runtime Web
+**[00:06:28]** in this particular project, and then we're going to go up here
+**[00:06:31]** to this code at the very top, and we're going
+**[00:06:34]** to use this one line over here, which is import ORT
+**[00:06:38]** from ONNX Runtime Web.
+**[00:06:39]** And this is still an experimental feature,
+**[00:06:42]** thus you see that /experimental as a part of it.
+**[00:06:50]** So for WebNN, I also enable some developer preview flags
+**[00:06:54]** to enable WebNN, since right now it's currently
+**[00:06:57]** in developer preview mode.
+**[00:06:58]** So we can go ahead to the browser over here,
+**[00:07:02]** and as you can see in these flags,
+**[00:07:04]** we have these particular WebNN API flags and WebNN flags set
+**[00:07:09]** over here in order to use WebNN.
+**[00:07:12]** ANDREW LEADER: That's awesome.
+**[00:07:13]** Now that we have our prerequisites,
+**[00:07:15]** how do we use our model in our web app?
+**[00:07:18]** MAHA BAYANA: Yeah.
+**[00:07:18]** So let's look at some code here again.
+**[00:07:24]** Yeah. So first we fetch our model
+**[00:07:26]** in this section of the code.
+**[00:07:28]** So as you can see over here,
+**[00:07:29]** we're basically using the model base path, and we're getting
+**[00:07:33]** that model that we initially exported using WinML CLI.
+**[00:07:37]** ANDREW LEADER: So that downloads the model
+**[00:07:38]** onto the user's device, but then after that it runs locally?
+**[00:07:42]** MAHA BAYANA: Correct.
+**[00:07:42]** So other than the CDN cost of the initial model download
+**[00:07:46]** to the user's device, which we can cache for future reloads,
+**[00:07:50]** everything else runs 100% locally on the user's device.
+**[00:07:53]** ANDREW LEADER: That's awesome.
+**[00:07:54]** I love the sound of that.
+**[00:07:56]** So how do we load the model?
+**[00:07:57]** MAHA BAYANA: All right.
+**[00:07:58]** So to load the model, we need to create an inference session,
+**[00:08:01]** and in order to create an inference session,
+**[00:08:02]** we're going to start by creating context.
+**[00:08:05]** So first, we're going to look at the API over here,
+**[00:08:09]** where we're going to basically use the create context API
+**[00:08:12]** in order to tell the device what kind of hardware we want to use.
+**[00:08:16]** So in this case, we're going to use the CPU.
+**[00:08:18]** So we're going to set our device type to CPU.
+**[00:08:21]** For step number two, we're going to go ahead
+**[00:08:22]** and create our inference session.
+**[00:08:24]** Now, in order to create our inference session,
+**[00:08:26]** we're going to use this API right over here,
+**[00:08:28]** which is ORT.Inference Session.Create.
+**[00:08:32]** Now, once we have that API in place,
+**[00:08:35]** we want to give it a couple of metrics to specify what kind
+**[00:08:38]** of hardware and what kind of EPs we want to use.
+**[00:08:41]** So we're going to go ahead and set our EPs to be WebNN,
+**[00:08:45]** our context, which we set in the earlier step,
+**[00:08:48]** and then we're also going to set those model ONNX data
+**[00:08:51]** that we got from our WinML CLI from earlier.
+**[00:08:56]** ANDREW LEADER: Excellent.
+**[00:08:57]** Is there anything else we need to do before we run this?
+**[00:08:59]** MAHA BAYANA: Yeah.
+**[00:09:00]** And for the rest of the code, essentially,
+**[00:09:02]** we're just validating input, tokenizing
+**[00:09:04]** and tensorizing the input, and then basically just running it
+**[00:09:07]** in the session that we created.
+**[00:09:09]** It also runs Softmax on the logits after inference,
+**[00:09:13]** and that's essentially just to map these probabilities
+**[00:09:15]** into their own sentiment categories.
+**[00:09:18]** ANDREW LEADER: Got it.
+**[00:09:18]** Sounds great.
+**[00:09:19]** Can we run the app and see it work?
+**[00:09:21]** MAHA BAYANA: Sure.
+**[00:09:22]** Let's do that.
+**[00:09:23]** So let's go ahead and run our app.
+**[00:09:25]** So we're going to simply do
+**[00:09:26]** that by typing the command pythonserver.py.
+**[00:09:32]** And once we do that, we can go ahead
+**[00:09:33]** and open our local host web app over here.
+**[00:09:37]** And, yeah, as you can see, it's going to take a couple
+**[00:09:41]** of seconds to load that model and get that EP set up.
+**[00:09:44]** But once that happens, we can see the model up in a lot.
+**[00:09:49]** As you can see that we have all of these messages
+**[00:09:52]** on the right side of the screen,
+**[00:09:54]** and these are basically incoming messages
+**[00:09:56]** that are being classified into positive, negative, and neutral.
+**[00:10:00]** And then to the left of the screen,
+**[00:10:01]** you can see that we have a little sentiment analysis chart.
+**[00:10:05]** And this is essentially taking each one of those sentiments,
+**[00:10:07]** converting them to a chart, so you can kind of see
+**[00:10:10]** that sentiment over time.
+**[00:10:12]** ANDREW LEADER: That's really excellent.
+**[00:10:13]** And so, this is all running on the CPU, though, right?
+**[00:10:16]** MAHA BAYANA: Correct.
+**[00:10:17]** So how about we make this a little bit faster?
+**[00:10:20]** ANDREW LEADER: Yeah, that'd be great.
+**[00:10:21]** I heard about these devices that have NPUs.
+**[00:10:24]** Can we leverage the newest NPUs with WebNN?
+**[00:10:27]** MAHA BAYANA: Of course.
+**[00:10:28]** So let's go ahead back a couple of steps.
+**[00:10:30]** And remember how we set that create context part?
+**[00:10:33]** So we're going to go over there, and we're going
+**[00:10:35]** to change our required device type from CPU to NPU.
+**[00:10:40]** So once we do that, we're going to go ahead and save the file.
+**[00:10:43]** And then we're going to go to our browser and reload our site.
+**[00:10:47]** So again, that's going to take a couple of seconds
+**[00:10:49]** to load our model and our EP, but we should see it
+**[00:10:53]** in just about a moment.
+**[00:11:05]** ANDREW LEADER: Wow.
+**[00:11:05]** That was a really simple change,
+**[00:11:07]** and it's running so much faster now.
+**[00:11:10]** This is really awesome.
+**[00:11:13]** MAHA BAYANA: Right?
+**[00:11:13]** It's so much faster.
+**[00:11:14]** As you can clearly see,
+**[00:11:15]** it's classifying those incoming messages much faster
+**[00:11:18]** into their sentiment categories.
+**[00:11:21]** And we also have this chart that's updating
+**[00:11:23]** in real time much faster than what it was doing with the NPU.
+**[00:11:27]** ANDREW LEADER: Yeah, and the rest
+**[00:11:28]** of the device stays responsive
+**[00:11:30]** since it's all processing on the NPU.
+**[00:11:32]** This is really perfect, but it gives me an idea.
+**[00:11:36]** What if we could have a floating overlay
+**[00:11:38]** so that this chart is always visible on the top right
+**[00:11:41]** of the user's screen, and then our support manager can keep an
+**[00:11:45]** eye on things while working on other tasks?
+**[00:11:47]** Could we do that?
+**[00:11:48]** MAHA BAYANA: Yes, that sounds awesome.
+**[00:11:50]** So let's go ahead and use our native WinUI 3 app.
+**[00:11:54]** So let's convert this web app into a native WinUI 3 app
+**[00:11:57]** in order to get that floating overlay.
+**[00:11:59]** ANDREW LEADER: Yeah, and we can use the same ONNX model
+**[00:12:01]** with that Windows app?
+**[00:12:02]** MAHA BAYANA: Correct.
+**[00:12:02]** So you can use the same ONNX model
+**[00:12:04]** that we downloaded using the WinML CLI,
+**[00:12:07]** pretty much just export it the same way we did before.
+**[00:12:12]** All right, so in this WinUI 3 native project,
+**[00:12:15]** I've installed the WinApp SDK ML and WinApp SDK runtime packages,
+**[00:12:20]** which adds WinML and ONNX runtime to our app.
+**[00:12:23]** So as you can see in the packages part of this file,
+**[00:12:27]** you can clearly see that we have these packages installed
+**[00:12:30]** over here.
+**[00:12:31]** ANDREW LEADER: Yeah, and that runtime package,
+**[00:12:32]** that adds the Windows App SDK framework-dependent version,
+**[00:12:36]** so our app can be smaller and not carry as many binaries?
+**[00:12:39]** MAHA BAYANA: Correct.
+**[00:12:39]** It saves about 40 MB of binaries
+**[00:12:41]** that we'd otherwise have to carry in our app.
+**[00:12:44]** ANDREW LEADER: Nice.
+**[00:12:45]** Okay, so once we have those installed, what's next?
+**[00:12:48]** MAHA BAYANA: So next we have our app install
+**[00:12:50]** and register the WinML execution providers.
+**[00:12:53]** ANDREW LEADER: Okay, I've heard about execution providers.
+**[00:12:56]** I think those are SDKs built by the hardware vendors like AMD,
+**[00:13:01]** Intel, NVIDIA, and Qualcomm, and they allow us
+**[00:13:04]** to accelerate our models on their NPUs,
+**[00:13:07]** GPUs, and CPUs, right?
+**[00:13:09]** MAHA BAYANA: Correct.
+**[00:13:09]** So WinML allows us
+**[00:13:12]** to dynamically acquire these providers,
+**[00:13:14]** meaning that our app doesn't need to carry 80 MB
+**[00:13:17]** of providers, further reducing our app size
+**[00:13:19]** and simplifying our distribution.
+**[00:13:22]** ANDREW LEADER: Awesome.
+**[00:13:23]** MAHA BAYANA: So we can use a few steps
+**[00:13:24]** in our code to acquire these EPs.
+**[00:13:27]** So let's go ahead and scroll down to this part over here.
+**[00:13:30]** So first, we're going to create our ORT environment using this
+**[00:13:34]** particular line over here,
+**[00:13:36]** which essentially just creates an ORT environment instance.
+**[00:13:41]** So once we've done that, for step number two,
+**[00:13:43]** we're going to have to discover the compatible EPs
+**[00:13:46]** with our execution-provided catalog.
+**[00:13:48]** So we're going to jump down to this particular method
+**[00:13:51]** over here, and you can see that we're going
+**[00:13:54]** to be using the Find All Providers API in the list
+**[00:13:58]** to essentially list all of the execution providers
+**[00:14:02]** that are available to us.
+**[00:14:04]** Now, for today's session, we're going to be using the QNN EP.
+**[00:14:08]** So we're going to see through all
+**[00:14:10]** of these execution provider lists that we have in a for loop
+**[00:14:14]** and look for our specific EP, which is a QNN one.
+**[00:14:18]** So once we have our QNN EP, for step number three,
+**[00:14:21]** we're going to go ahead and call EnsureReadyAsync API
+**[00:14:25]** on our particular EP.
+**[00:14:27]** Now, this is essentially going to help make that EP ready.
+**[00:14:31]** And once that EP is ready, we're going to go to step number four,
+**[00:14:34]** which is essentially registering that EP to our environment.
+**[00:14:38]** So we're going to go ahead and use this API down here,
+**[00:14:41]** which is TryRegister in order to register our EP to ONNX Runtime.
+**[00:14:46]** ANDREW LEADER: Got it.
+**[00:14:47]** And so, if the EPs aren't on the device,
+**[00:14:49]** those actually get pulled down through Windows Update.
+**[00:14:52]** Is that correct?
+**[00:14:53]** MAHA BAYANA: Correct.
+**[00:14:54]** ANDREW LEADER: All right.
+**[00:14:54]** Now that we have those EPs on the device, how do we inference
+**[00:14:57]** against a specific EP?
+**[00:14:59]** MAHA BAYANA: Yeah.
+**[00:15:00]** So to run a model inference using a specific EP,
+**[00:15:03]** we need to use something called as session options.
+**[00:15:06]** Now, we can set quite a few metrics in the session options.
+**[00:15:10]** So let's go ahead and scroll down to this part,
+**[00:15:12]** which essentially sets those metrics.
+**[00:15:15]** So over here, we can see that for step number one,
+**[00:15:18]** we're kind of using that API called GetEPDevices in order
+**[00:15:22]** for it to give us all our EP and device combinations.
+**[00:15:26]** So the one that we're going to be using
+**[00:15:27]** for today's session is going
+**[00:15:29]** to be our QNN EP with the NPU device.
+**[00:15:32]** So we're going to see through all of those combinations
+**[00:15:34]** over here in order to look for that specific one.
+**[00:15:38]** So for step number three, we're going to go ahead
+**[00:15:40]** and use our Append Execution Providers API.
+**[00:15:44]** And we're essentially going to get that QNN NPU
+**[00:15:47]** that we found from earlier.
+**[00:15:48]** And we're going to append it to this particular session options.
+**[00:15:51]** So we can tell our inference session,
+**[00:15:53]** this is what we want you to run on.
+**[00:15:57]** And then, we can also set a couple of other options
+**[00:16:01]** with our session options.
+**[00:16:02]** For example, if I don't want my session to run on the CPU
+**[00:16:06]** and I completely want to disable it,
+**[00:16:07]** I can use this AddSessionConfigEntry API.
+**[00:16:12]** And in this API, as you can see over here,
+**[00:16:15]** we're essentially just saying disable the CPU fallback.
+**[00:16:19]** And, yeah, you can also use some other APIs
+**[00:16:22]** like SetExecutionPolicy or SetEPPolicy.
+**[00:16:27]** And that will essentially help you prefer one sort
+**[00:16:29]** of hardware over the other.
+**[00:16:31]** So in this case, that would be our NPU over the CPU.
+**[00:16:34]** ANDREW LEADER: Excellent.
+**[00:16:35]** Yeah, that code looks pretty similar to our web code.
+**[00:16:37]** It's pretty neat how we can use the ONNX Runtime on both web
+**[00:16:40]** and native and share a lot of the code.
+**[00:16:43]** MAHA BAYANA: Yeah.
+**[00:16:44]** ANDREW LEADER: And so, did you already implement
+**[00:16:45]** that pop-out feature we mentioned?
+**[00:16:47]** MAHA BAYANA: Yes.
+**[00:16:48]** So we can go ahead and click on this button right over here,
+**[00:16:50]** which is "Pop-out Overlay".
+**[00:16:52]** And you can see that that kind of pops
+**[00:16:54]** out a little sentiment chart to the right top of your screen.
+**[00:16:58]** Now, the nice thing about this is you can always have it
+**[00:17:00]** at the corner of your eye.
+**[00:17:02]** So let's say you're talking to Copilot or writing
+**[00:17:04]** up some docs, reading your emails.
+**[00:17:07]** It's always at the corner of your eye, and you can kind
+**[00:17:09]** of keep track of that sentiment over time.
+**[00:17:11]** So we can go ahead and click our Word doc over here,
+**[00:17:14]** and it's still at the corner of your eye.
+**[00:17:17]** ANDREW LEADER: That's perfect.
+**[00:17:17]** And it's still running so fast because it's all using the NPU,
+**[00:17:20]** and the device still stays performant,
+**[00:17:22]** and the CPU isn't getting bogged down.
+**[00:17:24]** MAHA BAYANA: Correct.
+**[00:17:25]** So we can look at the task manager over here,
+**[00:17:27]** and you can clearly see over here that it runs on the NPU.
+**[00:17:31]** ANDREW LEADER: That's amazing.
+**[00:17:32]** Great work, Maha.
+**[00:17:33]** That looks excellent.
+**[00:17:35]** MAHA BAYANA: Yeah.
+**[00:17:35]** Thank you.
+**[00:17:36]** I can't take all the credit for it, though.
+**[00:17:39]** Windows ML has definitely made it much,
+**[00:17:41]** much easier to use local AI on this device.
+**[00:17:45]** ANDREW LEADER: Yeah.
+**[00:17:47]** Speaking of what's new with Windows ML in 2026,
+**[00:17:51]** we started today with the Windows ML CLI tool,
+**[00:17:54]** which is a new tool that helps you convert and optimize models
+**[00:17:57]** to run locally on Windows across CPUs, GPUs, and NPUs.
+**[00:18:03]** The Windows ML ORT Gen AI library has also received a
+**[00:18:07]** number of performance updates,
+**[00:18:09]** leading to faster local LLM inferencing on Windows.
+**[00:18:13]** And Windows ML itself has been updated to version 2.0,
+**[00:18:18]** bringing the ONNX Runtime 1.24, which includes a number
+**[00:18:21]** of performance and stability updates,
+**[00:18:24]** and some newly updated plugin-based execution providers
+**[00:18:27]** that have performance updates and allow you
+**[00:18:29]** to use the execution providers
+**[00:18:31]** across different runtime versions more easily.
+**[00:18:36]** And finally, WebNN is being updated to use Windows ML
+**[00:18:41]** when on Windows, as we saw earlier,
+**[00:18:43]** leading to faster hardware-accelerated machine
+**[00:18:46]** learning model inferencing when on Edge or Chrome browsers.
+**[00:18:51]** And if you're looking to try Windows ML for yourself,
+**[00:18:54]** you can install the AI Dev Gallery app.
+**[00:18:56]** It includes numerous samples
+**[00:18:58]** of various AI models running locally via Windows ML,
+**[00:19:02]** and it includes code samples,
+**[00:19:03]** so you can easily use those models in your own apps.
+**[00:19:08]** And finally, I wanted
+**[00:19:09]** to highlight some other local AI solutions on Windows.
+**[00:19:13]** Windows ML is part of the Microsoft Foundry on Windows,
+**[00:19:16]** which provides three main local AI solutions.
+**[00:19:20]** If you're not a machine learning expert like Maha,
+**[00:19:24]** you should check out the Windows AI APIs in Foundry Local,
+**[00:19:27]** both of which provide ready-to-use AI models
+**[00:19:30]** that require no machine learning expertise.
+**[00:19:33]** These models are pre-optimized and installed system-wide,
+**[00:19:37]** allowing you to focus on writing your code rather
+**[00:19:40]** than optimizing models.
+**[00:19:42]** But if you need something custom that you can't find in AI APIs
+**[00:19:47]** or Foundry Local, you can use Windows ML
+**[00:19:49]** to run any custom or open-source model.
+**[00:19:54]** To learn more about Windows ML, you can visit aka.ms/WindowsML
+**[00:19:59]** to see our documentation.
+**[00:20:00]** Additionally, we'd love to hear your feedback.
+**[00:20:03]** Please email us.
+**[00:20:04]** And finally, check out our other sessions at Build 2026,
+**[00:20:09]** including Breakout 260, which covers everything
+**[00:20:13]** in Microsoft Foundry on Windows.
+**[00:20:16]** Thank you all for watching.
+**[00:20:17]** We can't wait to see what you build using Windows ML.
+**[00:20:21]** MAHA BAYANA: Thank you.

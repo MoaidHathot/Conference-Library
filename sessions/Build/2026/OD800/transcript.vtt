@@ -1,0 +1,2832 @@
+WEBVTT
+
+00:00:00.510 --> 00:01:29.320
+[ Music ]
+
+00:01:29.320 --> 00:01:30.520
+VYOM NAGRANI: Welcome everyone
+
+00:01:30.520 --> 00:01:32.770
+and thank you for
+joining us today.
+
+00:01:32.770 --> 00:01:34.540
+I'm Vyom Nagrani and I'm joined
+
+00:01:34.540 --> 00:01:36.700
+by my colleague,
+Deepthi Chelupati.
+
+00:01:36.700 --> 00:01:40.590
+We are both Product Managers
+on the Azure SRE Agent team.
+
+00:01:40.590 --> 00:01:43.470
+Today, we want to explore
+a provocative question.
+
+00:01:43.470 --> 00:01:47.760
+What happens when AI agents
+don't just observe incidents,
+
+00:01:47.760 --> 00:01:49.860
+but actually act on them?
+
+00:01:49.860 --> 00:01:53.280
+We are going to show you how
+autonomous SRE is changing the
+
+00:01:53.280 --> 00:01:58.620
+way teams respond to production
+issues, moving from noisy alerts
+
+00:01:58.620 --> 00:02:01.380
+to automated intelligent action.
+
+00:02:01.380 --> 00:02:03.090
+So, let's dive in.
+
+00:02:03.090 --> 00:02:07.140
+Today, generative AI is
+fundamentally transforming how
+
+00:02:07.140 --> 00:02:08.610
+we live and do work.
+
+00:02:08.610 --> 00:02:11.250
+And the proliferation of AI
+agents are playing a big part
+
+00:02:11.250 --> 00:02:13.200
+in driving this adoption.
+
+00:02:13.200 --> 00:02:15.630
+Notably, this trend is
+particularly strong
+
+00:02:15.630 --> 00:02:19.260
+in software development, where
+Gartner estimates that 90%
+
+00:02:19.260 --> 00:02:23.370
+of enterprise software engineers
+will use some form of AI coding
+
+00:02:23.370 --> 00:02:25.740
+or ops assistance by 2028.
+
+00:02:25.740 --> 00:02:27.680
+Ninety percent.
+
+00:02:27.680 --> 00:02:29.360
+But let's start with a
+simple reality check
+
+00:02:29.360 --> 00:02:31.340
+for what's happening today.
+
+00:02:31.340 --> 00:02:34.190
+As a developer, your
+world still revolves
+
+00:02:34.190 --> 00:02:36.080
+around the same fundamentals.
+
+00:02:36.080 --> 00:02:39.530
+You're writing code, fixing
+bugs, designing the next set
+
+00:02:39.530 --> 00:02:42.390
+of features and moving
+your product forward.
+
+00:02:42.390 --> 00:02:45.240
+But at the same time,
+the ground is shifting.
+
+00:02:45.240 --> 00:02:47.250
+You're not just
+building apps anymore.
+
+00:02:47.250 --> 00:02:51.240
+You're migrating and modernizing
+entire systems, increasingly
+
+00:02:51.240 --> 00:02:53.790
+with agents as part of
+how that work gets done.
+
+00:02:53.790 --> 00:02:57.150
+And beyond code, you own
+far more of that lifecycle,
+
+00:02:57.150 --> 00:03:02.100
+from incidents and security
+to releases, documentation.
+
+00:03:02.100 --> 00:03:03.990
+Often, you're running
+continuously,
+
+00:03:03.990 --> 00:03:05.940
+often with agents working
+alongside of you,
+
+00:03:05.940 --> 00:03:07.770
+sometimes even ahead of you.
+
+00:03:07.770 --> 00:03:11.070
+So, the real change in the AI
+agent era isn't what you're
+
+00:03:11.070 --> 00:03:12.240
+responsible for.
+
+00:03:12.240 --> 00:03:15.450
+It's the scale, it's the
+speed, and it's how much
+
+00:03:15.450 --> 00:03:19.050
+of that responsibility you
+can now offload, orchestrate
+
+00:03:19.050 --> 00:03:21.000
+and automate with agents.
+
+00:03:21.000 --> 00:03:25.680
+And the impact is evident across
+the entire lifecycle for DevOps.
+
+00:03:25.680 --> 00:03:28.470
+AstraZeneca, for example,
+saw a 40% increase
+
+00:03:28.470 --> 00:03:30.150
+in developer velocity
+
+00:03:30.150 --> 00:03:33.690
+when adopting GitHub Copilot
+for writing the code.
+
+00:03:33.690 --> 00:03:37.110
+Ford saw a huge modernization
+efficiency boost,
+
+00:03:37.110 --> 00:03:40.980
+up to 70% when using the
+GitHub Copilot modernization.
+
+00:03:40.980 --> 00:03:44.430
+And similarly, Ecolab
+reduced daily alerts
+
+00:03:44.430 --> 00:03:48.240
+for the site reliability
+engineers from 30 to 40 a day,
+
+00:03:48.240 --> 00:03:52.620
+all the way down to under 10 a
+day by using Azure SRE Agent.
+
+00:03:52.620 --> 00:03:54.750
+So, in today's session, we
+want to talk to you more
+
+00:03:54.750 --> 00:03:58.380
+about this last
+piece, the SRE agent.
+
+00:03:58.380 --> 00:04:01.560
+So, what exactly is
+Azure SRE Agent?
+
+00:04:01.560 --> 00:04:05.070
+It's an AI powered agent
+for incident management
+
+00:04:05.070 --> 00:04:08.280
+and resource optimization
+in production environments.
+
+00:04:08.280 --> 00:04:11.100
+Now, there are three core
+value propositions in there.
+
+00:04:11.100 --> 00:04:13.830
+First, that it automates
+operational tasks
+
+00:04:13.830 --> 00:04:15.360
+to keep your
+applications running
+
+00:04:15.360 --> 00:04:17.310
+and to protect your revenue.
+
+00:04:17.310 --> 00:04:20.430
+Second, is that it accelerates
+the root cause analysis
+
+00:04:20.430 --> 00:04:23.340
+to improve reliability
+and availability.
+
+00:04:23.340 --> 00:04:26.460
+And the third, that it's
+fully customizable.
+
+00:04:26.460 --> 00:04:29.010
+You can manage the
+agent and configure it
+
+00:04:29.010 --> 00:04:31.830
+to meet your unique operational
+needs and standards
+
+00:04:31.830 --> 00:04:35.310
+that your enterprise follows
+or your company follows.
+
+00:04:35.310 --> 00:04:38.280
+Think of it as an
+always on SRE teammate
+
+00:04:38.280 --> 00:04:42.060
+that learns how your environment
+works and acts according
+
+00:04:42.060 --> 00:04:43.920
+to how you want it to.
+
+00:04:43.920 --> 00:04:45.990
+So, here's what we'll
+focus on today's session.
+
+00:04:45.990 --> 00:04:48.180
+We have two main scenarios.
+
+00:04:48.180 --> 00:04:50.610
+The first is about
+preventing issues
+
+00:04:50.610 --> 00:04:53.880
+and reducing operational
+toil at scale.
+
+00:04:53.880 --> 00:04:55.320
+This is where the
+agent automates
+
+00:04:55.320 --> 00:04:59.310
+and customizes workflows and
+the outcome is fewer incidents
+
+00:04:59.310 --> 00:05:01.910
+and less repetitive
+work for your teams.
+
+00:05:01.910 --> 00:05:04.940
+The second scenario is
+about reducing downtime
+
+00:05:04.940 --> 00:05:06.720
+and speeding up recovery.
+
+00:05:06.720 --> 00:05:09.990
+Here the agent accelerates
+the root cause analysis,
+
+00:05:09.990 --> 00:05:13.770
+triggers mitigation, resulting
+in faster incident resolution
+
+00:05:13.770 --> 00:05:17.310
+with fewer handoff between
+teams and fewer churn
+
+00:05:17.310 --> 00:05:19.380
+between so many
+different windows.
+
+00:05:19.380 --> 00:05:21.810
+For each of these, we'll walk
+through the capabilities
+
+00:05:21.810 --> 00:05:24.180
+and then show you a live demo.
+
+00:05:24.180 --> 00:05:26.820
+But first, let's start by
+talking about the problem.
+
+00:05:26.820 --> 00:05:29.670
+The developers and
+SRE teams are buried
+
+00:05:29.670 --> 00:05:33.060
+in repetitive operational
+toil across the inner loop
+
+00:05:33.060 --> 00:05:35.370
+and the outer loop of
+software development.
+
+00:05:35.370 --> 00:05:38.940
+They spend their time detecting
+issues before they actually get
+
+00:05:38.940 --> 00:05:40.260
+rolled out to production,
+
+00:05:40.260 --> 00:05:43.050
+verifying that Azure best
+practices are followed.
+
+00:05:43.050 --> 00:05:46.230
+And they're doing this
+across hundreds or thousands
+
+00:05:46.230 --> 00:05:49.440
+of different resources
+across multiple stacks.
+
+00:05:49.440 --> 00:05:50.880
+This is exactly the kind of work
+
+00:05:50.880 --> 00:05:52.620
+that is well suited
+for automation.
+
+00:05:52.620 --> 00:05:56.070
+It's repetitive, it's well
+defined and it's error prone
+
+00:05:56.070 --> 00:05:58.170
+and slow when it's
+done manually.
+
+00:05:58.170 --> 00:06:01.350
+And the Azure SRE Agent is
+designed to take this burden off
+
+00:06:01.350 --> 00:06:03.120
+of your teams, so
+that they can focus
+
+00:06:03.120 --> 00:06:05.910
+on building, not
+on firefighting.
+
+00:06:05.910 --> 00:06:09.060
+So, with that, let's
+try to dive deep
+
+00:06:09.060 --> 00:06:10.890
+into the first scenario
+there where I'd
+
+00:06:10.890 --> 00:06:12.570
+like to invite my
+colleague Deepthi to talk
+
+00:06:12.570 --> 00:06:16.560
+about how we are going to show
+what Azure SRE Agent can do
+
+00:06:16.560 --> 00:06:18.240
+in this space.
+
+00:06:18.240 --> 00:06:19.530
+DEEPTHI CHELUPATI:
+Thank you, Vyom.
+
+00:06:19.530 --> 00:06:22.320
+For the first demo, what
+we wanted to show you is
+
+00:06:22.320 --> 00:06:27.300
+as a developer, I'll be doing
+a lot of deployments week
+
+00:06:27.300 --> 00:06:31.080
+over week, and I want to make
+sure things are actually not
+
+00:06:31.080 --> 00:06:32.910
+breaking in production.
+
+00:06:32.910 --> 00:06:35.130
+But today, you know,
+it's very manual.
+
+00:06:35.130 --> 00:06:37.260
+I need to go make sure whether,
+
+00:06:37.260 --> 00:06:41.070
+first of all have some other
+developers review the code,
+
+00:06:41.070 --> 00:06:42.750
+and then I need to
+make sure to test it
+
+00:06:42.750 --> 00:06:44.130
+in the staging environment,
+
+00:06:44.130 --> 00:06:46.860
+whether it would
+cause any regression
+
+00:06:46.860 --> 00:06:50.880
+and sometimes it depends on
+how much test coverage I have,
+
+00:06:50.880 --> 00:06:53.790
+whether I would be able to
+catch things ahead or not.
+
+00:06:53.790 --> 00:06:57.060
+So, these are some of the
+things that may sort of slip
+
+00:06:57.060 --> 00:07:01.320
+and make it to production and my
+goal as a developer is ideally,
+
+00:07:01.320 --> 00:07:04.590
+I don't want anything to
+slip into production.
+
+00:07:04.590 --> 00:07:08.790
+Let's see how SRE Agent actually
+helps with this scenario.
+
+00:07:08.790 --> 00:07:11.790
+So, with SRE Agent, you
+can connect the agent
+
+00:07:11.790 --> 00:07:15.390
+to code repositories like
+GitHub or Azure DevOps,
+
+00:07:15.390 --> 00:07:19.740
+and you can even set it up
+through event webhook trigger
+
+00:07:19.740 --> 00:07:23.070
+such that you can trigger the
+agent in an asynchronous way.
+
+00:07:23.070 --> 00:07:25.110
+And why is that helpful is
+
+00:07:25.110 --> 00:07:28.890
+because you can imagine your
+developers are actually pushing
+
+00:07:28.890 --> 00:07:33.000
+code (inaudible) and you want
+the agent to actually act on it
+
+00:07:33.000 --> 00:07:35.730
+and check to make sure
+whether the code is good.
+
+00:07:35.730 --> 00:07:38.580
+So, for that, in this demo,
+what I'll show you is
+
+00:07:38.580 --> 00:07:40.770
+that the SRE Agent is connected
+
+00:07:40.770 --> 00:07:42.570
+to all the telemetry
+data sources.
+
+00:07:42.570 --> 00:07:45.450
+So, someone actually
+created the agent for me.
+
+00:07:45.450 --> 00:07:48.360
+They connected it to Dynatrace
+Log Analytics workspace
+
+00:07:48.360 --> 00:07:52.200
+and also some activity logs in
+Azure which has the information.
+
+00:07:52.200 --> 00:07:55.440
+And the agent is set up
+with the resource groups
+
+00:07:55.440 --> 00:07:58.770
+that are required to monitor
+in the Azure ecosystem.
+
+00:07:58.770 --> 00:08:01.650
+So, for me, in my team
+we have a resource group
+
+00:08:01.650 --> 00:08:05.340
+for production environment
+and a staging environment.
+
+00:08:05.340 --> 00:08:09.060
+And I'll also show you
+essentially how as a developer,
+
+00:08:09.060 --> 00:08:15.360
+I don't have to leave my CLI
+or my workspace in the ID.
+
+00:08:15.360 --> 00:08:18.600
+I'll go to Azure Portal
+to look at the SRE agent,
+
+00:08:18.600 --> 00:08:21.600
+but still get all of
+this workflow done.
+
+00:08:21.600 --> 00:08:24.960
+So, now let's see how this
+whole end to end flow works
+
+00:08:24.960 --> 00:08:28.050
+in action with SRE Agent.
+
+00:08:28.050 --> 00:08:32.040
+Now, I'll show you how you
+can create a new SRE Agent
+
+00:08:32.040 --> 00:08:34.470
+and connect it to your
+GitHub action workflow
+
+00:08:34.470 --> 00:08:37.560
+such that it can
+monitor your PRs,
+
+00:08:37.560 --> 00:08:41.700
+check whether they are
+good to go and be merged.
+
+00:08:41.700 --> 00:08:44.730
+And in order to create SRE
+Agent, you need to set it
+
+00:08:44.730 --> 00:08:49.020
+up with a bunch of data
+sources, code repositories
+
+00:08:49.020 --> 00:08:52.350
+and telemetry sources.
+
+00:08:52.350 --> 00:08:56.580
+And also, set up some skills
+and custom agents that can --
+
+00:08:56.580 --> 00:08:59.130
+essentially are like natural
+language instructions
+
+00:08:59.130 --> 00:09:01.740
+that the agent can follow,
+
+00:09:01.740 --> 00:09:03.720
+to perform the
+corresponding workflow
+
+00:09:03.720 --> 00:09:05.490
+that we are working
+on right now.
+
+00:09:05.490 --> 00:09:08.160
+And today, what I'm going to
+show you is instead of going
+
+00:09:08.160 --> 00:09:12.630
+to the Azure Portal, you can
+actually create the SRE agent,
+
+00:09:12.630 --> 00:09:16.500
+configure it and even
+interact with it completely
+
+00:09:16.500 --> 00:09:18.870
+from your developer tools.
+
+00:09:18.870 --> 00:09:22.350
+And for me, Terminal is
+where I sort of use it a lot
+
+00:09:22.350 --> 00:09:24.480
+and I love using
+Copilot CLI as well.
+
+00:09:24.480 --> 00:09:28.230
+So, those are the two things
+I'm going to use right now.
+
+00:09:28.230 --> 00:09:33.750
+In order to create a new agent,
+what you can do is just use one
+
+00:09:33.750 --> 00:09:36.990
+of the recipes that we
+have created and hosted
+
+00:09:36.990 --> 00:09:40.170
+in our Microsoft SRE Agent repo.
+
+00:09:40.170 --> 00:09:48.990
+So, all this recipe does is
+essentially comes with a set
+
+00:09:48.990 --> 00:09:51.060
+of the connectors
+and the things --
+
+00:09:51.060 --> 00:09:54.750
+the tools and the skills that
+you can leverage out of the box.
+
+00:09:54.750 --> 00:09:57.900
+So, you don't have to
+do it from scratch.
+
+00:09:57.900 --> 00:10:01.480
+So, first let me go
+into that folder
+
+00:10:03.960 --> 00:10:06.390
+and to create a new agent.
+
+00:10:06.390 --> 00:10:09.570
+So, there is like a script which
+first creates a configuration
+
+00:10:09.570 --> 00:10:12.600
+for the agent and then
+you can deploy that.
+
+00:10:12.600 --> 00:10:14.430
+So, this is like a recipe.
+
+00:10:14.430 --> 00:10:17.580
+I took it from our
+Microsoft SRE Agent repo.
+
+00:10:17.580 --> 00:10:21.420
+And this recipe essentially
+allows me to create an agent
+
+00:10:21.420 --> 00:10:23.910
+that connects to
+GitHub Dynatrace
+
+00:10:23.910 --> 00:10:28.290
+and then it's customized so
+that it can understand the
+
+00:10:28.290 --> 00:10:32.100
+architecture of the applications
+that I'm hosting on as well
+
+00:10:32.100 --> 00:10:34.560
+like App Service and PostgreSQL.
+
+00:10:34.560 --> 00:10:37.770
+So, I just provided few
+things that are required
+
+00:10:37.770 --> 00:10:39.750
+for the connectors, and the rest
+
+00:10:39.750 --> 00:10:42.940
+of the configuration
+comes with the recipe.
+
+00:10:46.020 --> 00:10:51.330
+So, now it created this
+Contoso Demo 5 folder
+
+00:10:51.330 --> 00:10:54.360
+in which the entire agent
+configuration exists.
+
+00:10:54.360 --> 00:11:00.390
+Okay? Let's deploy it first and
+then I can show you what comes
+
+00:11:00.390 --> 00:11:05.190
+as a part of that recipe for
+the agent configuration.
+
+00:11:05.190 --> 00:11:06.840
+So, this will take few minutes.
+
+00:11:06.840 --> 00:11:09.660
+So, while it is running,
+
+00:11:09.660 --> 00:11:13.470
+let me show you how
+the agent looks like.
+
+00:11:13.470 --> 00:11:19.650
+And think of the entire agent
+configuration is in this folder.
+
+00:11:19.650 --> 00:11:22.710
+Let me actually show
+this to you in a VS IDE
+
+00:11:22.710 --> 00:11:26.280
+so it's easier to follow.
+
+00:11:26.280 --> 00:11:28.170
+So, you know when you
+create a new SRE agent
+
+00:11:28.170 --> 00:11:31.170
+in the Azure subscription, you
+need to give it a resource group
+
+00:11:31.170 --> 00:11:32.850
+in which the agent gets hosted.
+
+00:11:32.850 --> 00:11:35.100
+So, you can change the
+name or the resource group
+
+00:11:35.100 --> 00:11:38.220
+or the subscription or the
+region that you want to choose.
+
+00:11:38.220 --> 00:11:40.830
+There's like three regions
+supported right now
+
+00:11:40.830 --> 00:11:42.600
+and you can choose one of them.
+
+00:11:42.600 --> 00:11:45.480
+You can even give it like
+target resource groups
+
+00:11:45.480 --> 00:11:49.230
+or the subscriptions, and
+you don't have to as well.
+
+00:11:49.230 --> 00:11:51.450
+But in this one,
+because I wanted it
+
+00:11:51.450 --> 00:11:54.090
+to monitor the production and
+the staging, I'm connecting
+
+00:11:54.090 --> 00:11:56.190
+to those resource groups
+and there's a bunch
+
+00:11:56.190 --> 00:11:58.530
+of other things
+you can edit here.
+
+00:11:58.530 --> 00:12:02.310
+And connectors, so this
+recipe comes with a Dynatrace
+
+00:12:02.310 --> 00:12:05.130
+and Log Analytics workspace,
+but you can customize it
+
+00:12:05.130 --> 00:12:07.710
+and add your own
+connectors as well,
+
+00:12:07.710 --> 00:12:11.760
+and the corresponding
+auth details.
+
+00:12:11.760 --> 00:12:15.750
+And then you can even
+configure the agent
+
+00:12:15.750 --> 00:12:17.820
+with some skills
+or custom agents.
+
+00:12:17.820 --> 00:12:20.580
+Even if you've written them
+in a different sort of tool,
+
+00:12:20.580 --> 00:12:22.170
+you can bring them here as well,
+
+00:12:22.170 --> 00:12:26.010
+because we do support the
+markdown file for instructions
+
+00:12:26.010 --> 00:12:29.400
+and it's a simple YAML file
+on the prompt and the spec
+
+00:12:29.400 --> 00:12:34.320
+that you can use for some of the
+custom agents and the skills.
+
+00:12:34.320 --> 00:12:37.680
+And the other part of the
+configuration is how you want
+
+00:12:37.680 --> 00:12:40.590
+to invoke the agent
+through a HTTP trigger
+
+00:12:40.590 --> 00:12:44.700
+or incident platform
+or a scheduled task.
+
+00:12:44.700 --> 00:12:47.820
+So, in this case, I'm
+setting up a HTTP trigger
+
+00:12:47.820 --> 00:12:51.150
+which you can hook it up to
+your GitHub action workflow
+
+00:12:51.150 --> 00:12:54.270
+and that is how the SRE
+Agent will be invoked.
+
+00:12:54.270 --> 00:12:56.130
+Whenever there is a new PR,
+
+00:12:56.130 --> 00:12:59.370
+the GitHub action workflow
+will trigger the SRE Agent,
+
+00:12:59.370 --> 00:13:02.940
+and the agent will start
+performing the analysis
+
+00:13:02.940 --> 00:13:05.640
+of the canary testing
+
+00:13:05.640 --> 00:13:09.570
+to see whether the PR change
+will cause some effect
+
+00:13:09.570 --> 00:13:12.720
+in the production or not and
+if it's good to go or not.
+
+00:13:12.720 --> 00:13:14.100
+So, those kind of things.
+
+00:13:14.100 --> 00:13:16.230
+You can set up like
+an event driven way
+
+00:13:16.230 --> 00:13:18.690
+through this HTTP trigger.
+
+00:13:18.690 --> 00:13:19.470
+And the other part
+
+00:13:19.470 --> 00:13:22.470
+of the configuration is you can
+teach the agent some knowledge
+
+00:13:22.470 --> 00:13:25.200
+about your environment
+or your systems.
+
+00:13:25.200 --> 00:13:28.260
+And that can go
+under this folder.
+
+00:13:28.260 --> 00:13:31.020
+And then, if there is
+anything that you want to go
+
+00:13:31.020 --> 00:13:33.480
+into the core memory
+of the agent,
+
+00:13:33.480 --> 00:13:36.270
+whether it is you're extracting
+it from an existing agent
+
+00:13:36.270 --> 00:13:39.540
+or you're seeding it, those
+things can go under the system,
+
+00:13:39.540 --> 00:13:41.640
+synthesize knowledge, and all
+
+00:13:41.640 --> 00:13:44.310
+of these are simple
+markdown files as well.
+
+00:13:44.310 --> 00:13:46.470
+So, in this case like
+you know, this is,
+
+00:13:46.470 --> 00:13:51.130
+I'm not passing anything in this
+configuration, so this is good.
+
+00:13:52.440 --> 00:13:56.790
+And now, let's see if the agent
+deployment is actually complete.
+
+00:13:56.790 --> 00:13:59.700
+Great. You know, the agent
+deployment succeeded
+
+00:13:59.700 --> 00:14:02.130
+and after it finished
+the agent creation,
+
+00:14:02.130 --> 00:14:06.780
+it's also performing some post
+hook configuration especially
+
+00:14:06.780 --> 00:14:08.100
+for connecting to GitHub.
+
+00:14:08.100 --> 00:14:12.210
+It gave me this OAUTH URL
+that I need to go use
+
+00:14:12.210 --> 00:14:14.880
+to actually authorize.
+
+00:14:14.880 --> 00:14:18.360
+So, the agent
+deployment is complete.
+
+00:14:18.360 --> 00:14:20.670
+So, now that the agent
+is actually created,
+
+00:14:20.670 --> 00:14:23.430
+I want to still continue
+to use the same interface
+
+00:14:23.430 --> 00:14:26.490
+to connect and manage the agent.
+
+00:14:26.490 --> 00:14:29.790
+And for that I can
+use Copilot CLI.
+
+00:14:29.790 --> 00:14:36.000
+So, you can actually access SRE
+Agent endpoint as an MCP server
+
+00:14:36.000 --> 00:14:40.290
+in order to connect to it,
+either view the analysis
+
+00:14:40.290 --> 00:14:43.950
+that the agent did or even
+configure things outside
+
+00:14:43.950 --> 00:14:46.320
+of the Azure portal.
+
+00:14:46.320 --> 00:14:48.630
+And that's been available
+for a while now.
+
+00:14:48.630 --> 00:14:52.830
+So, what I'm doing is because I
+have the MCP running locally,
+
+00:14:52.830 --> 00:14:56.910
+so I'm just going to
+check the JSON file
+
+00:14:56.910 --> 00:14:59.670
+to see how it's configured.
+
+00:14:59.670 --> 00:15:02.970
+So, right now it's connecting
+to a different agent.
+
+00:15:02.970 --> 00:15:05.790
+So, I'm going to actually
+take the URL we got
+
+00:15:05.790 --> 00:15:09.040
+from the deployment.
+
+00:15:21.450 --> 00:15:25.780
+So, let's just check to make
+sure if it's applied correctly.
+
+00:15:39.510 --> 00:15:41.670
+Okay, it is connected.
+
+00:15:41.670 --> 00:15:46.540
+So, let's now actually
+go to the Copilot CLI.
+
+00:15:56.820 --> 00:16:00.630
+All right, now the Copilot
+CLI is connected to SRE Agent
+
+00:16:00.630 --> 00:16:04.410
+that we just created through
+this sort of MCP server.
+
+00:16:04.410 --> 00:16:06.570
+So, I'm going to just
+interact with it
+
+00:16:06.570 --> 00:16:09.480
+to see whether what we've
+configured is actually
+
+00:16:09.480 --> 00:16:10.290
+on the agent.
+
+00:16:10.290 --> 00:16:12.460
+So, I'm going to ask like --.
+
+00:16:47.040 --> 00:16:49.080
+So, it got back with
+like the production
+
+00:16:49.080 --> 00:16:50.730
+and the staging resource group
+
+00:16:50.730 --> 00:16:54.240
+and the log analytics
+workspaces that are connected.
+
+00:16:54.240 --> 00:17:02.650
+Let's also check to see is
+GitHub connected to the agent.
+
+00:17:07.580 --> 00:17:08.180
+Okay, cool.
+
+00:17:08.180 --> 00:17:09.200
+It is connected.
+
+00:17:09.200 --> 00:17:11.670
+What is the repo?
+
+00:17:14.360 --> 00:17:19.740
+Now, I want to see if there is
+skills needed for our workflow
+
+00:17:19.740 --> 00:17:21.180
+that we want to set up.
+
+00:17:21.180 --> 00:17:22.650
+So, what we really
+want the agent
+
+00:17:22.650 --> 00:17:26.370
+to do is whenever it sees
+a new PR, to actually take
+
+00:17:26.370 --> 00:17:29.730
+that change, deploy it in
+a staging environment,
+
+00:17:29.730 --> 00:17:34.350
+run a synthetic sort of, you
+know, traffic, and figure out if
+
+00:17:34.350 --> 00:17:37.830
+that change would sort
+of cause some risk
+
+00:17:37.830 --> 00:17:39.360
+to the production environment.
+
+00:17:39.360 --> 00:17:41.370
+Right? So, we sort of
+prevent those things
+
+00:17:41.370 --> 00:17:44.250
+or review those things
+more carefully.
+
+00:17:44.250 --> 00:17:46.620
+So, for that I'm going
+to just create a skill
+
+00:17:46.620 --> 00:17:51.340
+so that the agent has
+the skill to use.
+
+00:17:57.590 --> 00:18:01.310
+So, I just asked the Copilot
+CLI to create a skill.
+
+00:18:01.310 --> 00:18:02.840
+So, in order to do
+that it's going
+
+00:18:02.840 --> 00:18:09.030
+to again use the SRE MCP
+server to create that.
+
+00:18:09.030 --> 00:18:11.430
+So, it created the skill.
+
+00:18:11.430 --> 00:18:16.810
+And then I need a sub agent that
+can be connected to this skill.
+
+00:18:46.740 --> 00:18:51.720
+All right, now we have the
+skill, the custom agent,
+
+00:18:51.720 --> 00:18:55.890
+and the GitHub action workflow
+is wired to call the SRE agent
+
+00:18:55.890 --> 00:18:59.130
+through a HTTP trigger,
+already part of our deployment
+
+00:18:59.130 --> 00:19:01.350
+that is set up and done.
+
+00:19:01.350 --> 00:19:04.020
+Now, let's actually just
+do a code change and see
+
+00:19:04.020 --> 00:19:05.430
+if the SRE agent picks it up.
+
+00:19:05.430 --> 00:19:15.280
+Okay? So, for that, I'm going to
+switch to my coding workspace.
+
+00:19:19.800 --> 00:19:24.190
+So, what I want to really do
+is like just change this URL,
+
+00:19:27.080 --> 00:19:38.910
+and then just create a new
+branch and kick off this change.
+
+00:20:07.110 --> 00:20:10.030
+And I'm going to
+create a new PR.
+
+00:20:23.760 --> 00:20:27.250
+Okay, so the pull
+request got created.
+
+00:20:28.430 --> 00:20:30.240
+So.
+
+00:20:40.200 --> 00:20:43.540
+So, this is a new one
+that we just created.
+
+00:20:45.020 --> 00:20:48.020
+So, once SRE agent finishes
+the work, it will come here
+
+00:20:48.020 --> 00:20:51.320
+and add a comment on this issue.
+
+00:20:51.320 --> 00:20:55.350
+Let's just check
+the agent to see.
+
+00:20:57.420 --> 00:21:00.040
+So, it did pick up some work.
+
+00:21:03.720 --> 00:21:07.650
+So, what this is doing is
+once the PR got created,
+
+00:21:07.650 --> 00:21:10.890
+the agent got invoked
+via the HTTP trigger.
+
+00:21:10.890 --> 00:21:13.020
+So, it started to do the work.
+
+00:21:13.020 --> 00:21:16.500
+It's essentially trying to
+fetch the details about the PR,
+
+00:21:16.500 --> 00:21:20.790
+so it can deploy that image
+in a staging environment
+
+00:21:20.790 --> 00:21:22.980
+and send some traffic to figure
+
+00:21:22.980 --> 00:21:25.900
+out whether it is a
+good deployment or not.
+
+00:21:29.630 --> 00:21:31.880
+I can show you one existing run
+
+00:21:31.880 --> 00:21:36.240
+from the before while it's
+still doing the work.
+
+00:21:45.090 --> 00:21:50.280
+So, this was the PR that
+the agent actually worked
+
+00:21:50.280 --> 00:21:52.290
+on earlier this morning,
+
+00:21:52.290 --> 00:21:54.660
+which essentially did
+something similar
+
+00:21:54.660 --> 00:21:57.900
+where the database
+URL got switched.
+
+00:21:57.900 --> 00:22:03.780
+So, the agent started picking
+that up and deployed it
+
+00:22:03.780 --> 00:22:06.690
+into the staging environment.
+
+00:22:06.690 --> 00:22:09.300
+Yes. Now, it sort of
+figured out the files
+
+00:22:09.300 --> 00:22:12.180
+that got exactly changed.
+
+00:22:12.180 --> 00:22:17.070
+After all the deployment and the
+synthetic traffic that it did,
+
+00:22:17.070 --> 00:22:19.890
+it did figure out that
+the change would actually
+
+00:22:19.890 --> 00:22:24.120
+in fact impact the production
+deployment because the results
+
+00:22:24.120 --> 00:22:27.160
+from the backend database
+would be different.
+
+00:22:28.230 --> 00:22:31.000
+So, let's go down.
+
+00:22:35.580 --> 00:22:45.090
+So, here is where it did
+the staging in the --
+
+00:22:45.090 --> 00:22:49.050
+so here is where it actually
+did it in the canary testing,
+
+00:22:49.050 --> 00:22:53.700
+the five minute synthetic test,
+and figured out that the,
+
+00:22:53.700 --> 00:22:55.320
+you know, there
+is mock responses
+
+00:22:55.320 --> 00:22:57.840
+in the staging environment
+that are different
+
+00:22:57.840 --> 00:23:00.090
+from the production environment.
+
+00:23:00.090 --> 00:23:03.330
+And it was a really good
+result to know that, you know,
+
+00:23:03.330 --> 00:23:04.980
+things like this,
+you don't want them
+
+00:23:04.980 --> 00:23:07.320
+to be going into production.
+
+00:23:07.320 --> 00:23:13.440
+So, it did flag it as high risk
+and added a comment on this PR.
+
+00:23:13.440 --> 00:23:17.820
+So, this is now helpful because
+our team moves very fast
+
+00:23:17.820 --> 00:23:22.830
+at a lightning speed and having
+this SRE agent automatically
+
+00:23:22.830 --> 00:23:24.660
+figure out whether
+it is a low risk
+
+00:23:24.660 --> 00:23:27.090
+or a high risk really
+puts us at sane
+
+00:23:27.090 --> 00:23:30.270
+and make sure our
+production is safe.
+
+00:23:30.270 --> 00:23:34.230
+So, in this demo, you saw how
+as a developer I was just able
+
+00:23:34.230 --> 00:23:37.830
+to deploy, create an SRE
+agent right from my CLI,
+
+00:23:37.830 --> 00:23:40.110
+even configure or manage skills
+
+00:23:40.110 --> 00:23:42.720
+and sub agents
+using Copilot CLI.
+
+00:23:42.720 --> 00:23:45.870
+And the agent was able to pick
+
+00:23:45.870 --> 00:23:48.180
+up when a developer
+actually created a PR
+
+00:23:48.180 --> 00:23:53.250
+in my code repository and the
+SRE agent actually fully figured
+
+00:23:53.250 --> 00:23:57.300
+if that PR was good to go and
+merge and added a comment.
+
+00:23:57.300 --> 00:23:58.680
+How cool is that?
+
+00:23:58.680 --> 00:24:02.850
+It's really helpful to
+know that the velocity
+
+00:24:02.850 --> 00:24:04.950
+at which we're actually
+going these days
+
+00:24:04.950 --> 00:24:08.730
+and the PRs are being created,
+the agent is actually watching
+
+00:24:08.730 --> 00:24:11.250
+and making sure that
+those are good to go.
+
+00:24:11.250 --> 00:24:14.190
+So, now I'll hand it back
+to Vyom, who will talk
+
+00:24:14.190 --> 00:24:16.830
+about the other capabilities
+within the SRE agent
+
+00:24:16.830 --> 00:24:18.990
+and what more you
+can do with it.
+
+00:24:18.990 --> 00:24:20.100
+VYOM NAGRANI: Thank
+you so much, Deepthi.
+
+00:24:20.100 --> 00:24:22.290
+This was really great.
+
+00:24:22.290 --> 00:24:26.040
+So, now let's talk about how
+the agent enhances reliability
+
+00:24:26.040 --> 00:24:27.390
+and performance.
+
+00:24:27.390 --> 00:24:30.240
+And there are three key
+pillars here which you saw.
+
+00:24:30.240 --> 00:24:32.460
+First is the root
+cause analysis.
+
+00:24:32.460 --> 00:24:36.300
+Instead of engineers manually
+correlating logs, metrics,
+
+00:24:36.300 --> 00:24:39.300
+alerts across
+multiple dashboards,
+
+00:24:39.300 --> 00:24:43.830
+the agent performs a multipath
+transparent RCA automatically.
+
+00:24:43.830 --> 00:24:46.470
+It evaluates
+multiple hypotheses,
+
+00:24:46.470 --> 00:24:48.060
+tests them against telemetry,
+
+00:24:48.060 --> 00:24:52.470
+and produces a clear explainable
+result and a diagnostic summary.
+
+00:24:52.470 --> 00:24:55.560
+This significantly reduces
+the time to insight
+
+00:24:55.560 --> 00:24:58.110
+from hours to minutes.
+
+00:24:58.110 --> 00:25:01.020
+The second is
+automated mitigation.
+
+00:25:01.020 --> 00:25:04.470
+The agent can resolve common
+issues proactively using your
+
+00:25:04.470 --> 00:25:07.530
+guardrails and human
+in the loop workflows.
+
+00:25:07.530 --> 00:25:11.490
+It executes safe reversible
+actions like restarts,
+
+00:25:11.490 --> 00:25:14.100
+scale adjustments, rollbacks,
+
+00:25:14.100 --> 00:25:16.770
+eliminating the repetitive toil
+while still keeping the humans
+
+00:25:16.770 --> 00:25:18.660
+in control.
+
+00:25:18.660 --> 00:25:21.720
+And the third is enhanced
+incident response.
+
+00:25:21.720 --> 00:25:24.240
+The moment an alert fires,
+an agent activates.
+
+00:25:24.240 --> 00:25:28.380
+It ingests signals from Azure
+monitor or third-party tools,
+
+00:25:28.380 --> 00:25:30.930
+performs initial
+analysis and gives the
+
+00:25:30.930 --> 00:25:35.160
+on call engineer a head start
+with a synthesized explanation,
+
+00:25:35.160 --> 00:25:38.520
+a probable cause of what
+most likely the error was
+
+00:25:38.520 --> 00:25:40.860
+and actionable next steps.
+
+00:25:40.860 --> 00:25:45.030
+Together these capabilities
+drastically reduce the downtime
+
+00:25:45.030 --> 00:25:47.850
+and improve the
+operational consistency.
+
+00:25:47.850 --> 00:25:51.090
+The next part is one of our
+most important differentiators
+
+00:25:51.090 --> 00:25:52.920
+and that is extensibility.
+
+00:25:52.920 --> 00:25:56.310
+Now, every organization
+has unique standards,
+
+00:25:56.310 --> 00:26:00.360
+unique processes, different
+compliance requirements.
+
+00:26:00.360 --> 00:26:03.810
+Azure SRE Agent is
+designed to adapt to yours
+
+00:26:03.810 --> 00:26:06.270
+and not the other way around.
+
+00:26:06.270 --> 00:26:10.020
+You can integrate custom
+logic, your own data sources,
+
+00:26:10.020 --> 00:26:13.560
+your own custom knowledge
+into the agent's reasoning.
+
+00:26:13.560 --> 00:26:16.470
+You can encode your proprietary
+troubleshooting steps,
+
+00:26:16.470 --> 00:26:18.960
+your domain specific checks,
+
+00:26:18.960 --> 00:26:21.660
+your specific
+remediation workflows.
+
+00:26:21.660 --> 00:26:23.760
+Also, that the agent
+behaves consistently
+
+00:26:23.760 --> 00:26:26.460
+with your internal standards.
+
+00:26:26.460 --> 00:26:29.280
+And on the insights, it delivers
+intelligent multi-source
+
+00:26:29.280 --> 00:26:33.780
+analysis correlating across
+logs, metrics, configurations,
+
+00:26:33.780 --> 00:26:36.480
+historical patterns
+to detect anomalies
+
+00:26:36.480 --> 00:26:38.610
+that are hard to spot manually.
+
+00:26:38.610 --> 00:26:42.270
+And as Deepthi showed, it deeply
+integrates with GitHub Copilot.
+
+00:26:42.270 --> 00:26:45.150
+Any action the agent performs,
+whether it's diagnosing,
+
+00:26:45.150 --> 00:26:47.850
+mitigating or recommending,
+can be logged automatically
+
+00:26:47.850 --> 00:26:51.420
+as GitHub issues for
+traceability and follow up.
+
+00:26:51.420 --> 00:26:54.570
+And this creates a continuous
+feedback loop to detect,
+
+00:26:54.570 --> 00:26:57.540
+diagnose, fix and then improve.
+
+00:26:57.540 --> 00:26:59.580
+In short, extensibility ensures
+
+00:26:59.580 --> 00:27:02.010
+that the agent becomes
+your operational expert,
+
+00:27:02.010 --> 00:27:04.080
+shaped by your
+environment and aligned
+
+00:27:04.080 --> 00:27:06.840
+to how your teams already work.
+
+00:27:06.840 --> 00:27:09.270
+So, with that, let's kind
+of dig a little bit deeper
+
+00:27:09.270 --> 00:27:13.320
+into a different scenario here
+for automated incident response.
+
+00:27:13.320 --> 00:27:15.810
+Deepthi, you want to walk us
+through more details here?
+
+00:27:15.810 --> 00:27:17.460
+DEEPTHI CHELUPATI: Thanks,
+Vyom for walking us
+
+00:27:17.460 --> 00:27:18.900
+through those capabilities.
+
+00:27:18.900 --> 00:27:21.150
+Now, I want to show you
+how to actually put
+
+00:27:21.150 --> 00:27:22.890
+that together in action.
+
+00:27:22.890 --> 00:27:24.960
+So, in this one,
+earlier we talked
+
+00:27:24.960 --> 00:27:29.670
+about how a developer can
+leverage SRE Agent to take care
+
+00:27:29.670 --> 00:27:32.490
+of their outer loop,
+making sure like you know,
+
+00:27:32.490 --> 00:27:34.710
+things don't slip
+into production.
+
+00:27:34.710 --> 00:27:37.740
+But you know, in reality,
+things can happen
+
+00:27:37.740 --> 00:27:40.410
+and you will find some
+issues in production.
+
+00:27:40.410 --> 00:27:43.980
+And then you want to make sure
+as an IT operations group,
+
+00:27:43.980 --> 00:27:47.880
+the meantime resolution for
+those incidents is very small,
+
+00:27:47.880 --> 00:27:51.060
+so that you know, your apps are
+healthy and quickly back --
+
+00:27:51.060 --> 00:27:53.160
+return to available state.
+
+00:27:53.160 --> 00:27:55.590
+However, today's workflow
+involves like, you know,
+
+00:27:55.590 --> 00:27:59.100
+looking at different tools like
+in this case I've connected it
+
+00:27:59.100 --> 00:28:01.350
+to Dynatrace and you
+have to look at Azure.
+
+00:28:01.350 --> 00:28:03.660
+You have to look at
+different log sources
+
+00:28:03.660 --> 00:28:08.010
+if you have multiple Azure
+telemetry strategy, and you need
+
+00:28:08.010 --> 00:28:10.470
+to piece all those
+things together
+
+00:28:10.470 --> 00:28:11.910
+and then also make sense
+
+00:28:11.910 --> 00:28:16.200
+of where exactly things are
+going wrong and then go
+
+00:28:16.200 --> 00:28:18.360
+and figure out and mitigate it.
+
+00:28:18.360 --> 00:28:20.790
+And there's a lot more to that.
+
+00:28:20.790 --> 00:28:24.120
+I'll walk you through how SRE
+Agent can just simplify all
+
+00:28:24.120 --> 00:28:28.080
+of this into one agent,
+taking care of your incidents
+
+00:28:28.080 --> 00:28:30.330
+and then going
+straight to a code fix
+
+00:28:30.330 --> 00:28:33.480
+and mitigation in few minutes.
+
+00:28:33.480 --> 00:28:36.900
+So, in this setup, I have the
+same agent, the same agent
+
+00:28:36.900 --> 00:28:39.930
+that developers are using for
+their sort of outer loop.
+
+00:28:39.930 --> 00:28:43.320
+The same agent can be
+leveraged by your DevOps
+
+00:28:43.320 --> 00:28:47.940
+or the IT Operations Group where
+they hook it up to ServiceNow
+
+00:28:47.940 --> 00:28:50.340
+or PagerDuty or Azure
+Monitor alerts,
+
+00:28:50.340 --> 00:28:52.800
+whatever is your
+incident platform tool.
+
+00:28:52.800 --> 00:28:56.940
+And then you can sort of figure
+out a response plan of what kind
+
+00:28:56.940 --> 00:28:59.370
+of incidents you want
+the agent to handle.
+
+00:28:59.370 --> 00:29:03.180
+And in this one, you can also
+sort of insert either, you know,
+
+00:29:03.180 --> 00:29:05.790
+the knowledge sources or
+the runbooks and the things
+
+00:29:05.790 --> 00:29:08.070
+that you want the
+agent to be having
+
+00:29:08.070 --> 00:29:10.050
+that contextual knowledge of.
+
+00:29:10.050 --> 00:29:13.380
+Then what the agent does is when
+the incident pops up, you know,
+
+00:29:13.380 --> 00:29:16.440
+it actually starts
+handling it right away.
+
+00:29:16.440 --> 00:29:18.090
+There's no human intervention.
+
+00:29:18.090 --> 00:29:20.640
+And then depending on how
+you configure the agent
+
+00:29:20.640 --> 00:29:23.490
+to actually process it,
+it'll do the diagnosis,
+
+00:29:23.490 --> 00:29:26.760
+root cause analysis and
+then create a dev ticket
+
+00:29:26.760 --> 00:29:32.100
+or even further, go ahead and
+fix it and create a PR for you.
+
+00:29:32.100 --> 00:29:33.840
+All right, let's get
+right into action.
+
+00:29:33.840 --> 00:29:37.410
+I'll show you how SRE Agent
+can automate incidents
+
+00:29:37.410 --> 00:29:40.410
+and perform diagnosis,
+root cause analysis
+
+00:29:40.410 --> 00:29:45.210
+and even create dev tickets with
+the analysis or fix the code
+
+00:29:45.210 --> 00:29:48.420
+and create a PR for you.
+
+00:29:48.420 --> 00:29:51.210
+So, for the second
+scenario, like I said,
+
+00:29:51.210 --> 00:29:54.210
+I wanted to show how you
+can configure the SRE agent
+
+00:29:54.210 --> 00:29:56.280
+to automate incidents.
+
+00:29:56.280 --> 00:29:58.740
+In this case, my
+incident platform
+
+00:29:58.740 --> 00:30:01.860
+that I chose is ServiceNow,
+but you can connect it
+
+00:30:01.860 --> 00:30:04.260
+to PagerDuty or Azure Monitor.
+
+00:30:04.260 --> 00:30:09.300
+So, the deployment script that
+we used to create the SRE Agent,
+
+00:30:09.300 --> 00:30:13.590
+I just deployed another recipe
+which connects to ServiceNow.
+
+00:30:13.590 --> 00:30:16.230
+It comes with the skills
+that are required
+
+00:30:16.230 --> 00:30:20.760
+to handle the incidents for
+some app related errors.
+
+00:30:20.760 --> 00:30:24.270
+And it also has a custom agent
+
+00:30:24.270 --> 00:30:29.160
+that can essentially
+perform the investigation
+
+00:30:29.160 --> 00:30:30.600
+when the errors come in.
+
+00:30:30.600 --> 00:30:34.080
+So, this is how the
+workflow looks like.
+
+00:30:34.080 --> 00:30:36.690
+When the ServiceNow
+incident comes in,
+
+00:30:36.690 --> 00:30:40.830
+it goes through the custom agent
+which can connect to these tools
+
+00:30:40.830 --> 00:30:44.340
+and also the skill set has.
+
+00:30:44.340 --> 00:30:48.720
+So, now let's, you know, I'll
+try to just break the app
+
+00:30:48.720 --> 00:30:51.930
+that is in production to
+simulate a ServiceNow incident,
+
+00:30:51.930 --> 00:30:55.690
+and we can see how the
+agent actually handles it.
+
+00:31:05.550 --> 00:31:09.930
+So, I'm simulating a
+scenario where a IT person
+
+00:31:09.930 --> 00:31:15.600
+or IT team changes the password
+for a backend database because,
+
+00:31:15.600 --> 00:31:17.130
+you know, it's a
+password expired
+
+00:31:17.130 --> 00:31:19.200
+and it has to be rotated.
+
+00:31:19.200 --> 00:31:22.110
+But somehow the applications
+are not updated.
+
+00:31:22.110 --> 00:31:23.790
+So, that's a scenario
+we are trying to figure
+
+00:31:23.790 --> 00:31:26.550
+out whether the agent
+can help us diagnose
+
+00:31:26.550 --> 00:31:28.570
+where the problem is.
+
+00:31:31.530 --> 00:31:33.450
+So, now that the app is broken,
+
+00:31:33.450 --> 00:31:36.330
+I'm going to just send
+a ServiceNow incident
+
+00:31:36.330 --> 00:31:39.520
+to simulate a real-world case.
+
+00:31:44.880 --> 00:31:47.370
+And the ServiceNow
+incident is sent.
+
+00:31:47.370 --> 00:31:50.590
+So, now let's take a
+look at the SRE agent.
+
+00:31:53.010 --> 00:31:54.330
+Okay, there you go.
+
+00:31:54.330 --> 00:31:57.760
+The incident number
+three came here,
+
+00:32:00.210 --> 00:32:03.900
+and we can see the agent
+picked off right away
+
+00:32:03.900 --> 00:32:06.390
+and it started investigating it.
+
+00:32:06.390 --> 00:32:10.680
+And because in this case
+I rotated the password,
+
+00:32:10.680 --> 00:32:12.660
+the order service
+would not be working
+
+00:32:12.660 --> 00:32:14.520
+and receiving some errors.
+
+00:32:14.520 --> 00:32:17.070
+So, the agent started
+diagnosing it.
+
+00:32:17.070 --> 00:32:21.450
+And you can see, because
+we uploaded the knowledge
+
+00:32:21.450 --> 00:32:22.890
+about the app architecture,
+
+00:32:22.890 --> 00:32:25.560
+first thing what the agent
+does is starts by looking
+
+00:32:25.560 --> 00:32:27.300
+at the knowledge base.
+
+00:32:27.300 --> 00:32:31.050
+So, it's almost like, you know,
+a team member who has a context
+
+00:32:31.050 --> 00:32:32.340
+of the things first tries
+
+00:32:32.340 --> 00:32:34.920
+to understand what it
+is before jumping right
+
+00:32:34.920 --> 00:32:37.680
+into the investigation
+aspect of it.
+
+00:32:37.680 --> 00:32:42.510
+And I think it sort of also has
+a memory of the past incidents,
+
+00:32:42.510 --> 00:32:45.630
+so it captured those
+investigations as well to see
+
+00:32:45.630 --> 00:32:49.290
+if it helps with anything
+that is a pattern.
+
+00:32:49.290 --> 00:32:51.810
+Seems like someone is just
+changing the passwords
+
+00:32:51.810 --> 00:32:54.900
+or rotating them, frequently.
+
+00:32:54.900 --> 00:32:58.710
+And because it has the tools and
+the telemetry being connected
+
+00:32:58.710 --> 00:33:03.060
+to it through Dynatrace and
+also through the Azure tools,
+
+00:33:03.060 --> 00:33:07.470
+it started doing that
+analysis in a sequential way.
+
+00:33:07.470 --> 00:33:12.450
+So, first, it looks at the
+logs to understand which app
+
+00:33:12.450 --> 00:33:15.510
+and then the revision
+is causing the problem.
+
+00:33:15.510 --> 00:33:19.410
+And then it starts to look at
+activity logs to figure out.
+
+00:33:19.410 --> 00:33:25.350
+So, it found that just
+now, three minutes ago,
+
+00:33:25.350 --> 00:33:28.380
+the password got
+rotated, which is true.
+
+00:33:28.380 --> 00:33:31.380
+So, I think it's
+getting to the sort
+
+00:33:31.380 --> 00:33:35.160
+of correlation of what happened.
+
+00:33:35.160 --> 00:33:37.980
+And is it like
+matching the symptoms
+
+00:33:37.980 --> 00:33:40.330
+that the user is experiencing?
+
+00:33:46.830 --> 00:33:48.210
+So, bingo.
+
+00:33:48.210 --> 00:33:51.870
+It figured out that the
+database password is rotated,
+
+00:33:51.870 --> 00:33:54.660
+but the container app
+hasn't been updated
+
+00:33:54.660 --> 00:33:58.930
+and that's why it's actually
+causing the failure.
+
+00:34:16.560 --> 00:34:19.320
+So, now it sort of
+confirmed the root cause
+
+00:34:19.320 --> 00:34:23.340
+because it also has access to
+the issues that the agent saw
+
+00:34:23.340 --> 00:34:26.820
+from the past as well,
+that this is a recurring,
+
+00:34:26.820 --> 00:34:28.560
+credential desync pattern.
+
+00:34:28.560 --> 00:34:32.250
+So, now it's going to create a
+new issue in the GitHub to track
+
+00:34:32.250 --> 00:34:35.310
+and also to figure out
+what's a remediation.
+
+00:34:35.310 --> 00:34:39.210
+So, as you can see, the SRE
+Agent is not just trying
+
+00:34:39.210 --> 00:34:43.380
+to diagnose the issue based on
+what it saw, but it's also like,
+
+00:34:43.380 --> 00:34:45.900
+you know, how as an
+expert engineer would tap
+
+00:34:45.900 --> 00:34:49.380
+into their past knowledge
+or past incidents
+
+00:34:49.380 --> 00:34:51.930
+that they have seen
+in the past to figure
+
+00:34:51.930 --> 00:34:54.270
+out whether there is
+some sort of a pattern
+
+00:34:54.270 --> 00:34:57.510
+or a similar analysis
+that can be applied here.
+
+00:34:57.510 --> 00:35:00.720
+It's doing something
+similar as well.
+
+00:35:00.720 --> 00:35:03.030
+And it's using the
+data to validate
+
+00:35:03.030 --> 00:35:06.570
+and support its hypothesis,
+and the assumptions
+
+00:35:06.570 --> 00:35:09.650
+as it's making throughout
+the investigation.
+
+00:35:09.650 --> 00:35:14.750
+And this is just happening, you
+know, within minutes which means
+
+00:35:14.750 --> 00:35:16.910
+in reality, figuring
+these things
+
+00:35:16.910 --> 00:35:21.600
+out would have taken
+multiple hours and switching
+
+00:35:21.600 --> 00:35:23.940
+between different
+tools and contexts.
+
+00:35:23.940 --> 00:35:27.770
+But the agent is just acting
+on that and you don't have
+
+00:35:27.770 --> 00:35:31.670
+to actually look at the agent
+as it's finishing the analysis
+
+00:35:31.670 --> 00:35:35.120
+because the incident is
+picked up automatically
+
+00:35:35.120 --> 00:35:41.220
+and you can just look at your
+GitHub issues or the tools
+
+00:35:41.220 --> 00:35:43.290
+through which you can
+receive the information
+
+00:35:43.290 --> 00:35:46.770
+like even connected to
+an Outlook or teams
+
+00:35:46.770 --> 00:35:50.220
+and just get the message
+out, without having to wait
+
+00:35:50.220 --> 00:35:53.070
+for the analysis to be done.
+
+00:35:53.070 --> 00:35:58.860
+I actually configured the agent
+such that it can perform actions
+
+00:35:58.860 --> 00:36:02.580
+on the resources or perform
+mitigations autonomously.
+
+00:36:02.580 --> 00:36:06.150
+And in this case, that is why it
+proceeded with the remediation
+
+00:36:06.150 --> 00:36:09.600
+as well, because it also felt
+like it's a recurring pattern
+
+00:36:09.600 --> 00:36:12.630
+and in order to fix the issue
+right away we need to sort
+
+00:36:12.630 --> 00:36:16.200
+of update the password
+with the new credentials
+
+00:36:16.200 --> 00:36:19.920
+and make sure it sort of flows
+down to the apps as well.
+
+00:36:19.920 --> 00:36:23.200
+So, it went ahead and
+did the remediation.
+
+00:36:24.360 --> 00:36:27.930
+But in theory, you can
+configure the agent
+
+00:36:27.930 --> 00:36:30.420
+such that it gives
+you the analysis
+
+00:36:30.420 --> 00:36:35.230
+and does not do any automated
+actions on your behalf.
+
+00:36:52.980 --> 00:36:56.580
+So, you see the final summary,
+it figured out the sequence
+
+00:36:56.580 --> 00:36:58.530
+of the things that
+led to the root cause
+
+00:36:58.530 --> 00:37:02.580
+of the password being changed,
+and it went ahead and fixed it.
+
+00:37:02.580 --> 00:37:06.060
+And it also checked to make sure
+that the new revision is healthy
+
+00:37:06.060 --> 00:37:08.620
+and it created a GitHub issue.
+
+00:37:09.630 --> 00:37:10.170
+There you go.
+
+00:37:10.170 --> 00:37:14.220
+You went from your incidents
+being manually handled
+
+00:37:14.220 --> 00:37:17.070
+through like the agent
+actually automating it
+
+00:37:17.070 --> 00:37:22.530
+and providing a mitigation, plus
+the summary of all the issue
+
+00:37:22.530 --> 00:37:27.060
+in a trackable GitHub issue.
+
+00:37:28.170 --> 00:37:30.180
+VYOM NAGRANI: Perfect,
+thank you so much, Deepthi.
+
+00:37:30.180 --> 00:37:33.210
+So, now let's move to a
+very important question.
+
+00:37:33.210 --> 00:37:36.540
+Let's talk about how we've
+built trust and control
+
+00:37:36.540 --> 00:37:40.560
+into every layer of the Azure
+SRE Agent across things
+
+00:37:40.560 --> 00:37:43.560
+like permissions, governance,
+security and monitoring.
+
+00:37:43.560 --> 00:37:45.990
+So, let's start
+with permissions.
+
+00:37:45.990 --> 00:37:49.020
+There are three built-in
+user roles like a reader,
+
+00:37:49.020 --> 00:37:51.800
+a standard user and
+an administrator.
+
+00:37:51.800 --> 00:37:53.000
+Each of these are scoped
+
+00:37:53.000 --> 00:37:55.640
+to exactly what the
+persona that's interacting
+
+00:37:55.640 --> 00:37:57.350
+with the agent would need.
+
+00:37:57.350 --> 00:38:00.470
+So, when you create your agent,
+you can choose between a reader
+
+00:38:00.470 --> 00:38:02.300
+or privilege permission level
+
+00:38:02.300 --> 00:38:05.460
+for the agent's
+managed identity.
+
+00:38:05.460 --> 00:38:08.910
+Now, every agent gets its own
+user assigned managed identity,
+
+00:38:08.910 --> 00:38:13.170
+so there are no secrets
+or API keys to manage.
+
+00:38:13.170 --> 00:38:14.070
+And when the agent needs
+
+00:38:14.070 --> 00:38:17.850
+to perform an action beyond
+its standing permission,
+
+00:38:17.850 --> 00:38:21.750
+it uses the "on behalf
+of" or the "OBO" flow
+
+00:38:21.750 --> 00:38:25.650
+to temporary elevate
+using your credentials.
+
+00:38:25.650 --> 00:38:29.370
+So, no standing right
+access required.
+
+00:38:29.370 --> 00:38:32.490
+On the governance part, you
+control how the agent behaves
+
+00:38:32.490 --> 00:38:34.140
+through different run modes.
+
+00:38:34.140 --> 00:38:37.140
+The review mode means that
+the agent proposes the action
+
+00:38:37.140 --> 00:38:39.390
+and waits for an
+administrator to approve,
+
+00:38:39.390 --> 00:38:42.200
+while the autonomous mode
+lets it execute directly.
+
+00:38:42.200 --> 00:38:46.400
+That's ideal for non-product
+trusted recurring tasks.
+
+00:38:46.400 --> 00:38:51.140
+We also support command
+validation hooks that inspect
+
+00:38:51.140 --> 00:38:54.600
+and validate every
+command before execution
+
+00:38:54.600 --> 00:38:57.810
+or every tool call
+before it's returned.
+
+00:38:57.810 --> 00:39:01.440
+And every single action that the
+agent takes, from tool calls
+
+00:39:01.440 --> 00:39:04.440
+to modeling locations
+to approval decisions,
+
+00:39:04.440 --> 00:39:06.690
+all of this is logged
+to Application Insights
+
+00:39:06.690 --> 00:39:11.850
+as a full audit trail that
+you can query with KQL.
+
+00:39:11.850 --> 00:39:13.170
+On the security front,
+
+00:39:13.170 --> 00:39:15.690
+the architecture is
+secret, less by design.
+
+00:39:15.690 --> 00:39:19.560
+Credentials are never entering
+the reasoning context
+
+00:39:19.560 --> 00:39:22.230
+and an isolated
+identity sidecar issued
+
+00:39:22.230 --> 00:39:26.250
+with short-lived per token calls
+is where the permissions live.
+
+00:39:26.250 --> 00:39:30.600
+Each agent run its own dedicated
+sandbox powered by Micro VM,
+
+00:39:30.600 --> 00:39:34.260
+which is an Azure dedicated
+compute environment as are wrote
+
+00:39:34.260 --> 00:39:38.460
+to your Python tools, so no
+cross agent data is leaked.
+
+00:39:38.460 --> 00:39:41.760
+Connectors to external
+systems like GitHub, Datadog,
+
+00:39:41.760 --> 00:39:45.890
+ServiceNow all use OAuth
+based authentication flows,
+
+00:39:45.890 --> 00:39:49.010
+and all outbound network access
+goes through an egress proxy
+
+00:39:49.010 --> 00:39:50.540
+that validates the requests,
+
+00:39:50.540 --> 00:39:52.610
+controls what each
+agent can reach
+
+00:39:52.610 --> 00:39:55.700
+or you can bring your own VNETs.
+
+00:39:55.700 --> 00:39:57.920
+And finally, for monitoring,
+
+00:39:57.920 --> 00:40:00.080
+Session Insights gives
+you a structured summary
+
+00:40:00.080 --> 00:40:02.540
+of any conversation,
+what was found,
+
+00:40:02.540 --> 00:40:05.130
+what was recommended, and so on.
+
+00:40:05.130 --> 00:40:08.640
+The incident metrics dashboard
+shows mitigation rates,
+
+00:40:08.640 --> 00:40:12.990
+hours saved, the
+per response plan,
+
+00:40:12.990 --> 00:40:15.570
+as well as at a summary level.
+
+00:40:15.570 --> 00:40:19.260
+And the agent consumption lets
+you track exactly how many Azure
+
+00:40:19.260 --> 00:40:23.040
+AI units the agent was used
+on a day-to-day basis.
+
+00:40:23.040 --> 00:40:26.940
+We have inbuilt evals like
+the Intent Met quality score
+
+00:40:26.940 --> 00:40:28.950
+which are automatically
+calculated
+
+00:40:28.950 --> 00:40:32.190
+on every completed thread and
+rated on a one to five scale,
+
+00:40:32.190 --> 00:40:34.860
+so you can measure
+effectiveness over time.
+
+00:40:34.860 --> 00:40:39.090
+Bottom line across all of these,
+you get full autonomous power
+
+00:40:39.090 --> 00:40:43.800
+of things like Azure SRE Agent
+with full enterprise controls.
+
+00:40:43.800 --> 00:40:44.970
+Now, there are three ways
+
+00:40:44.970 --> 00:40:47.040
+in which you can use
+the Azure SRE agent,
+
+00:40:47.040 --> 00:40:48.120
+and these are designed to work
+
+00:40:48.120 --> 00:40:50.300
+across your full
+operational lifecycle.
+
+00:40:50.300 --> 00:40:52.490
+The first is the
+interactive mode.
+
+00:40:52.490 --> 00:40:54.950
+You can chat directly with the
+agent in the Azure portal,
+
+00:40:54.950 --> 00:40:57.020
+ask it questions
+and diagnostics,
+
+00:40:57.020 --> 00:40:59.420
+perform natural
+language operations,
+
+00:40:59.420 --> 00:41:05.010
+upload your task files, HAR
+files for traces or analysis.
+
+00:41:05.010 --> 00:41:08.370
+Think of this as like the
+Copilot mode, which assumes
+
+00:41:08.370 --> 00:41:10.890
+that a human is
+driving the flow.
+
+00:41:10.890 --> 00:41:13.200
+But if this is the only
+thing you use the agent for,
+
+00:41:13.200 --> 00:41:15.600
+you're probably missing
+90% of the value
+
+00:41:15.600 --> 00:41:19.560
+that an agent can unlock
+beyond a Copilot.
+
+00:41:19.560 --> 00:41:22.860
+The primary way most customers
+use the SRE Agent is
+
+00:41:22.860 --> 00:41:24.660
+as a reactive mode.
+
+00:41:24.660 --> 00:41:27.270
+This is the alert
+driven response mode.
+
+00:41:27.270 --> 00:41:30.360
+The agent responds automatically
+to Azure Monitor alerts
+
+00:41:30.360 --> 00:41:34.110
+and integrates with PagerDuty
+and ServiceNow as well.
+
+00:41:34.110 --> 00:41:37.410
+It performs automated triage,
+initial root cause analysis
+
+00:41:37.410 --> 00:41:39.870
+and then can even trigger the
+mitigation with your approval,
+
+00:41:39.870 --> 00:41:42.330
+as we saw in the demo.
+
+00:41:42.330 --> 00:41:46.020
+It tracks incident metrics and
+insights over time for this.
+
+00:41:46.020 --> 00:41:48.240
+And the last one is
+the proactive mode.
+
+00:41:48.240 --> 00:41:51.030
+So, this is where the agent
+operates autonomously
+
+00:41:51.030 --> 00:41:52.340
+on a schedule.
+
+00:41:52.340 --> 00:41:54.350
+It runs things like
+cron expressions
+
+00:41:54.350 --> 00:41:57.740
+where you can perform continuous
+health and compliance checks.
+
+00:41:57.740 --> 00:42:01.370
+You can try to detect anomalies
+across different resources.
+
+00:42:01.370 --> 00:42:04.100
+You can assess the security
+posture of your stack,
+
+00:42:04.100 --> 00:42:07.190
+and it can provide resource
+optimization recommendations.
+
+00:42:07.190 --> 00:42:11.090
+So, across these three modes,
+they give you a full coverage
+
+00:42:11.090 --> 00:42:14.840
+from ad hoc troubleshooting to
+always on autonomous operation
+
+00:42:14.840 --> 00:42:16.860
+that runs in the background.
+
+00:42:16.860 --> 00:42:19.110
+So, then why should you
+choose the Azure SRE Agent?
+
+00:42:19.110 --> 00:42:20.790
+So, it's built
+natively on Azure,
+
+00:42:20.790 --> 00:42:23.580
+which means it understands
+your infrastructure deeply,
+
+00:42:23.580 --> 00:42:24.570
+your resource graph,
+
+00:42:24.570 --> 00:42:27.240
+your monitor signals,
+your entity model.
+
+00:42:27.240 --> 00:42:30.390
+It's extensible, so it adapts
+to your environment rather
+
+00:42:30.390 --> 00:42:33.290
+than forcing you into
+a rigid workflow.
+
+00:42:33.290 --> 00:42:35.930
+It's secured by design
+with managed identity,
+
+00:42:35.930 --> 00:42:38.210
+RBAC, full audit trims.
+
+00:42:38.210 --> 00:42:40.550
+It integrates with the tools
+that you're already using
+
+00:42:40.550 --> 00:42:43.610
+across GitHub, PagerDuty
+as ServiceNow, Datadog,
+
+00:42:43.610 --> 00:42:47.910
+Dynatrace whatever, that
+you're using in your systems.
+
+00:42:47.910 --> 00:42:50.550
+And whether you're a
+team of a single SRE,
+
+00:42:50.550 --> 00:42:54.450
+a team of five operations
+managers, or an organization
+
+00:42:54.450 --> 00:42:56.430
+that supports
+thousands of services,
+
+00:42:56.430 --> 00:42:58.830
+Azure SRE Agent meets
+you where you are
+
+00:42:58.830 --> 00:43:02.050
+and it scales to
+your requirements.
+
+00:43:03.300 --> 00:43:05.520
+So, let's leave you with
+how to quickly get started.
+
+00:43:05.520 --> 00:43:07.260
+It's a simple three
+step process.
+
+00:43:07.260 --> 00:43:09.030
+Step one, you teach it.
+
+00:43:09.030 --> 00:43:11.640
+You upload your runbooks,
+your documentation,
+
+00:43:11.640 --> 00:43:16.130
+connect your code repositories,
+share the team knowledge
+
+00:43:16.130 --> 00:43:17.810
+and the agent learns
+from every session,
+
+00:43:17.810 --> 00:43:20.490
+just like you would
+with a human SRE.
+
+00:43:20.490 --> 00:43:22.470
+Step two, it connects.
+
+00:43:22.470 --> 00:43:25.980
+The agent integrates with Azure
+Monitor, Application Insights,
+
+00:43:25.980 --> 00:43:29.850
+PagerDuty, ServiceNow,
+Datadog, all of these systems,
+
+00:43:29.850 --> 00:43:33.210
+basically anything which can
+connect it through an MCP.
+
+00:43:33.210 --> 00:43:34.830
+Step three, it works for you.
+
+00:43:34.830 --> 00:43:37.170
+It investigates the
+incidents around the clock,
+
+00:43:37.170 --> 00:43:39.180
+it runs scheduled
+compliance scans,
+
+00:43:39.180 --> 00:43:42.360
+triggers issues automatically,
+proposes fixes.
+
+00:43:42.360 --> 00:43:45.060
+You just give it context, it
+connects to your tool and it --
+
+00:43:45.060 --> 00:43:46.410
+it starts working for you.
+
+00:43:46.410 --> 00:43:49.980
+Imagine like a teammate
+that never sleeps.
+
+00:43:49.980 --> 00:43:51.240
+So, that's all we
+had for you today.
+
+00:43:51.240 --> 00:43:53.580
+Thank you all for
+attending today's session.
+
+00:43:53.580 --> 00:43:57.750
+If you'd like to get started,
+head over to sre.azure.com
+
+00:43:57.750 --> 00:43:59.820
+to access the Azure
+SRE Agent portal.
+
+00:43:59.820 --> 00:44:04.650
+You can find our documentation,
+blog posts, walkthroughs,
+
+00:44:04.650 --> 00:44:07.680
+hands-on experience with our
+DIY labs, as well as links
+
+00:44:07.680 --> 00:44:11.190
+to support or file
+feedback over here.
+
+00:44:11.190 --> 00:44:13.950
+We're excited to hear what you
+build with Azure SRE Agent.
+
+00:44:13.950 --> 00:44:15.520
+Thanks so much for attending.
+
+00:44:15.520 --> 00:44:21.710
+[ Music ]

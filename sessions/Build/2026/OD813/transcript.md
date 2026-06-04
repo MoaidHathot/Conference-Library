@@ -1,0 +1,624 @@
+**[00:00:04]** MARAKI KETEMA: Hello,
+**[00:00:04]** and welcome to the Fabric Data Warehousing session.
+**[00:00:07]** We are so excited to tell you all
+**[00:00:10]** about the amazing announcements that we have coming to you.
+**[00:00:13]** My name is Maraki Ketema, and I'm joined
+**[00:00:16]** by my incredible colleagues, Joanna and Rakesh.
+**[00:00:20]** We are some of the product leads on this team,
+**[00:00:23]** and we've been working hard to deliver amazing innovations
+**[00:00:27]** that will make your lives so much easier in this new AI world
+**[00:00:30]** that we're all living in.
+**[00:00:32]** But before we get started, I want to tell you a little bit
+**[00:00:35]** about the Fabric platform.
+**[00:00:37]** You've probably seen this slide before, so I won't spend a lot
+**[00:00:40]** of time on it, but it's the unified data platform for all
+**[00:00:43]** of your AI and BI needs.
+**[00:00:44]** Whether you will need to cleanse your data, analyze your data,
+**[00:00:48]** understand real-time insights or leverage agentic capabilities,
+**[00:00:52]** Microsoft Fabric can serve you with all of those needs.
+**[00:00:57]** Fabric data warehousing in particular is
+**[00:00:59]** in an ideal position to serve the AI world.
+**[00:01:02]** It features a lakehouse architecture
+**[00:01:05]** with an open storage format.
+**[00:01:07]** It decouples compute and storage.
+**[00:01:09]** Storage is bottomless and inexpensive, and you don't need
+**[00:01:12]** to create data silos to share data around.
+**[00:01:15]** We're also serverless, featuring both hyperscalable,
+**[00:01:18]** stateless compute nodes for ultrafast performance
+**[00:01:21]** and stateful nodes with local SSD caching for faster insights.
+**[00:01:26]** Fabric DW manages your data for you.
+**[00:01:29]** You don't have to worry about vacuuming
+**[00:01:31]** or optimizing your data, things just happen
+**[00:01:34]** under the hood automatically.
+**[00:01:37]** And the best part is that Fabric DW borrows its query optimizer
+**[00:01:41]** from SQL Server, the best query optimizer on the market,
+**[00:01:44]** handling imperfect SQL automatically
+**[00:01:47]** so you don't have to worry about it.
+**[00:01:49]** And finally, Fabric DW is fully integrated
+**[00:01:52]** into the Fabric platform, with a single service layer for all
+**[00:01:57]** of your administration, governance, security,
+**[00:02:00]** and observability needs.
+**[00:02:02]** Our customers love Fabric DW.
+**[00:02:05]** Here is a quote from Epic, where they're using Fabric
+**[00:02:09]** to transform how they serve their clinicians,
+**[00:02:12]** their analysts, everybody within their organization.
+**[00:02:16]** Now, if we take a look at the timeline here,
+**[00:02:21]** data platforms have evolved in waves.
+**[00:02:24]** Early on it was about reporting and dashboards.
+**[00:02:27]** Then we moved to large-scale cloud analytics.
+**[00:02:30]** What's different now is the shift to AI-driven
+**[00:02:34]** and agentic experiences.
+**[00:02:36]** You all feel it every day in your everyday work
+**[00:02:39]** as you develop applications and run analytics processes.
+**[00:02:44]** Now, these experiences are fundamentally changing what
+**[00:02:48]** people expect from their data platforms.
+**[00:02:50]** Teams are shifting to dynamic and AI-driven interactions.
+**[00:02:54]** And it's not just about data or more queries.
+**[00:02:57]** The nature of the workload itself is different.
+**[00:03:01]** There's a shift towards interactive experiences,
+**[00:03:04]** where users expect immediate responses
+**[00:03:07]** and continuous iteration.
+**[00:03:09]** Now, at the same time, scale
+**[00:03:11]** and concurrency are increasing rapidly.
+**[00:03:15]** These workloads are coming from applications, agents, reports,
+**[00:03:19]** and pipelines, all at the same time.
+**[00:03:21]** And this is what's pushing data warehousing to its limits.
+**[00:03:25]** And as demand grows, traditional scaling approaches begin
+**[00:03:29]** to show diminishing returns.
+**[00:03:30]** Teams often compensate through additional capacity planning,
+**[00:03:34]** tuning to keep experiences responsive.
+**[00:03:38]** But this is not scalable.
+**[00:03:40]** So when we step back, what the timeline shows is a clear
+**[00:03:44]** inflection point.
+**[00:03:45]** Something more is needed to meet your needs
+**[00:03:49]** and support AI-driven workloads.
+**[00:03:51]** Now, on the Fabric DW team, we took this feedback to heart.
+**[00:03:55]** And this is where a fundamentally different approach
+**[00:03:58]** is needed.
+**[00:03:59]** We built a GPU-accelerated data warehouse in Fabric,
+**[00:04:04]** specifically built for the modern AI workloads.
+**[00:04:09]** Now, at a high level, what it does is quite simple,
+**[00:04:12]** it accelerates analytics and AI workloads
+**[00:04:15]** by executing queries directly on GPUs.
+**[00:04:20]** What that means is that we process complex
+**[00:04:22]** and large-scale queries much more efficiently.
+**[00:04:26]** Now, this translates to in practice faster insights
+**[00:04:29]** for all of your users.
+**[00:04:31]** Whether you're running analytics queries, powering reports,
+**[00:04:34]** supporting AI-driven scenarios,
+**[00:04:36]** building analytical applications,
+**[00:04:39]** your users get results much more quickly and consistently.
+**[00:04:43]** At the same time, we made this GPU accelerator data warehouse
+**[00:04:47]** super simple to use.
+**[00:04:49]** There's no rearchitecting required.
+**[00:04:51]** You do not need to rewrite queries
+**[00:04:53]** or manage separate systems.
+**[00:04:55]** It's designed to be easy and simple to use.
+**[00:04:59]** Everything we built, just like everything else in Fabric,
+**[00:05:03]** is designed with enterprise scale and reliability in mind.
+**[00:05:08]** That means that the system is built to handle high concurrency
+**[00:05:11]** and large data volumes,
+**[00:05:14]** while maintaining predictable performance at every step.
+**[00:05:21]** What's especially exciting is how broadly it applies.
+**[00:05:24]** This is not just about improving a single query
+**[00:05:27]** or a single workload, this powers agents, applications,
+**[00:05:31]** and reports, all at the same time,
+**[00:05:34]** all using the same foundation.
+**[00:05:37]** So instead of optimizing as a developer for one scenario
+**[00:05:41]** at a time, you now have a unified platform powered
+**[00:05:46]** by GPU-accelerated data warehousing
+**[00:05:49]** that supports interactive analytics,
+**[00:05:52]** AI-driven experiences, and real-time applications
+**[00:05:55]** without tradeoffs, without extra knobs and the need to adjust
+**[00:06:00]** to meet the needs of today's scale in AI workloads.
+**[00:06:05]** Let's jump into it.
+**[00:06:06]** So here is how it actually works.
+**[00:06:08]** Nothing changes for you.
+**[00:06:09]** You continue using existing clients
+**[00:06:11]** and standard SQL to issue queries.
+**[00:06:13]** These queries flow through the SQL frontend, and they're parsed
+**[00:06:17]** and optimized, then they're pushed
+**[00:06:19]** into the distribution engine, and that's broken
+**[00:06:22]** down into different plans that are executed by the system.
+**[00:06:25]** The difference is under the hood.
+**[00:06:27]** Instead of relying only on CPUs, queries or portions of queries,
+**[00:06:32]** can be pushed down to GPUs.
+**[00:06:34]** And this allows each backend
+**[00:06:36]** to execute complex operations much more efficiently
+**[00:06:40]** on these GPUs.
+**[00:06:42]** Now, all of this runs in parallel across nodes and GPUs,
+**[00:06:46]** which results in a combined final output and an output
+**[00:06:50]** that your users receive faster than ever before.
+**[00:06:53]** From a user's perspective, it's the same SQL surface area.
+**[00:06:57]** It's the same query that you're writing.
+**[00:06:59]** And it's leveraging the same exact architecture with GPUs
+**[00:07:03]** on top of it to power your users with faster insights.
+**[00:07:09]** Let's jump into the demo
+**[00:07:11]** of how this actually works in the product.
+**[00:07:15]** I'm a developer building an application on top
+**[00:07:18]** of Fabric Data Warehouse,
+**[00:07:19]** and I want to make sure my users get insights instantly,
+**[00:07:22]** whether they're viewing dashboards or asking questions
+**[00:07:26]** of an analytics agent.
+**[00:07:28]** Here we are in Fabric DW.
+**[00:07:30]** I'm going to go ahead and run a couple of ad hoc queries.
+**[00:07:33]** At the bottom, I can quickly tell
+**[00:07:35]** that there's a brand new option called "Query Acceleration".
+**[00:07:40]** It tells me that it's off, but I can navigate
+**[00:07:42]** to "Workspace Settings" and under "Data Warehousing,"
+**[00:07:46]** find the "Query Acceleration" option and turn it on.
+**[00:07:49]** And once it's on, it's applied to every SQL endpoint
+**[00:07:54]** and every data warehouse in this workspace.
+**[00:07:57]** Using it is simple, I just hit "Run," and I can see
+**[00:08:01]** that my query is being accelerated.
+**[00:08:04]** Monitoring gives me visibility
+**[00:08:06]** into what was accelerated and what was not.
+**[00:08:09]** From this brand new column, I can quickly tell
+**[00:08:12]** that several queries have already been accelerated.
+**[00:08:16]** Frequently run queries gives me even more visibility,
+**[00:08:20]** with a count of the total accelerated runs
+**[00:08:23]** for a particular query.
+**[00:08:26]** And when I return to the query editor and click
+**[00:08:28]** on "Query Acceleration," I'm given a bird's eye view
+**[00:08:31]** of the value this capability is adding
+**[00:08:34]** for my particular data warehouse.
+**[00:08:36]** Roughly 89% of the queries were accelerated, which is huge.
+**[00:08:41]** We're super-excited to get this GPU power data warehouse
+**[00:08:45]** into your hands and accelerate insights faster
+**[00:08:48]** than ever before.
+**[00:08:51]** Now that you've seen the demo, let's jump into how developers
+**[00:08:54]** like you are actually using Query Acceleration
+**[00:08:57]** in Fabric Data Warehouse, this GPU-power thing
+**[00:09:00]** that we just talked about.
+**[00:09:01]** UNC Health is a healthcare company,
+**[00:09:04]** and timely insights really matter to them.
+**[00:09:07]** And they've been able to leverage Query Acceleration
+**[00:09:10]** to help their clinicians
+**[00:09:11]** and leaders access insights much faster.
+**[00:09:14]** They're seeing 5x improvements on their query speeds.
+**[00:09:18]** And the impact for them is
+**[00:09:20]** that they spend less time managing performance
+**[00:09:23]** and more time delivering meaningful insights
+**[00:09:26]** to their users.
+**[00:09:27]** And Benjamin Moore is
+**[00:09:28]** yet another customer that's been leveraging Query Acceleration
+**[00:09:31]** in Fabric Data Warehouse.
+**[00:09:33]** And they've told us that it integrates smoothly
+**[00:09:35]** and that they've been able to leverage it
+**[00:09:37]** and see noticeable performance improvements
+**[00:09:39]** for analytics-heavy workloads
+**[00:09:42]** within their Fabric Data Warehouse
+**[00:09:43]** and within Fabric as a whole.
+**[00:09:45]** And this means faster execution for complex queries.
+**[00:09:49]** And their hope is to leverage this capability
+**[00:09:52]** for large-scale reporting scenarios
+**[00:09:55]** and empower their users with quicker access to insights
+**[00:10:00]** and support scalable analytics platforms
+**[00:10:02]** to improve decision-making speed,
+**[00:10:05]** empowering users better than ever before.
+**[00:10:08]** We're super excited to bring this limited preview to you.
+**[00:10:12]** GPU-accelerated data warehousing can be in your hands.
+**[00:10:15]** You can sign up and get access to build apps and deliver AI
+**[00:10:20]** and BI insights faster than ever
+**[00:10:22]** with GPU-accelerated data warehousing.
+**[00:10:25]** But that's not all we have for you today.
+**[00:10:28]** I am super excited to introduce my colleague, Joanna,
+**[00:10:34]** who's going to tell you a little bit about all the ways
+**[00:10:37]** in which Fabric DW is built for developers.
+**[00:10:41]** Joanna?
+**[00:10:43]** JOANNA PODGOETSKY: Thank you so much, Maraki.
+**[00:10:45]** I am super excited to talk to you today about Fabric DW
+**[00:10:49]** and its developer capabilities that we're announcing today.
+**[00:10:53]** Now, first one, this one's a bit of a "finally" moment.
+**[00:10:57]** We all know customers have been waiting for this
+**[00:10:59]** for quite some time, because that's let's be honest,
+**[00:11:02]** ALTER COLUMN is pretty much table stakes.
+**[00:11:04]** Up until now, making data type changes meant rebuilding tables.
+**[00:11:08]** Now you can just alter columns in place, no rewrites,
+**[00:11:12]** no disruption, no drama.
+**[00:11:13]** It just works.
+**[00:11:16]** ALTER TABLE inside a transaction.
+**[00:11:19]** Here we're bringing transactional safety
+**[00:11:21]** to schema changes.
+**[00:11:23]** Today when a customer makes multiple changes to a table,
+**[00:11:26]** there's always a risk that something fails halfway through,
+**[00:11:30]** leaving things in an inconsistent state.
+**[00:11:33]** That's painful to fix.
+**[00:11:34]** With explicit transactions,
+**[00:11:35]** you can group multiple ALTER TABLE operations together
+**[00:11:38]** as a single unit, so everything either succeeds
+**[00:11:42]** or nothing succeeds.
+**[00:11:43]** If something goes wrong,
+**[00:11:45]** all changes are rolled back automatically,
+**[00:11:47]** which means no partial updates
+**[00:11:49]** and no clean-up work after the fact.
+**[00:11:51]** The result is a much safer, more predictable schema evolution,
+**[00:11:56]** especially for those more complex changes.
+**[00:11:59]** T-SQL in the Fabric warehouse continues to evolve
+**[00:12:02]** at a rapid pace, with recent updates introducing fuzzy
+**[00:12:06]** string-matching capabilities based on Levenshtein
+**[00:12:09]** and Jaro-Winkler algorithms, new string concatenation operations,
+**[00:12:13]** additional functions like UNISTR, DATE_BUCKET,
+**[00:12:17]** along with new aggregates like ANY_VALUE
+**[00:12:19]** that expand expressiveness and analytical power
+**[00:12:22]** of the Fabric Warehouse.
+**[00:12:25]** Scalar UDFs in Fabric Data Warehouse are evolving
+**[00:12:28]** to support richer, more complex business logic,
+**[00:12:31]** bringing procedural constructs like loops, multipath execution,
+**[00:12:35]** and complex if/then/else branches
+**[00:12:37]** into your SQL workflows.
+**[00:12:39]** These are built for analytical scenarios
+**[00:12:41]** and optimized for scale.
+**[00:12:43]** They allow you to write cleaner, reusable logic
+**[00:12:46]** without compromising performance.
+**[00:12:50]** Super excited about this one, lakehouse table health checks.
+**[00:12:54]** One of the biggest challenges that customers report to us is
+**[00:12:58]** that when they're using a SQL analytics endpoint
+**[00:13:00]** to query their lakehouse data,
+**[00:13:03]** their data in their lakehouse isn't always
+**[00:13:05]** in an optimal state.
+**[00:13:07]** It often requires manual maintenance.
+**[00:13:09]** Over time things like small files, fragmentations,
+**[00:13:13]** excessive updates and deletes build up,
+**[00:13:15]** and then directly impacts query performance.
+**[00:13:18]** The problem is when performance slows down,
+**[00:13:21]** it's pretty often hard to pinpoint why it happened.
+**[00:13:24]** It turns into a vague "something's wrong" situation,
+**[00:13:28]** but it's kind of hard to know why.
+**[00:13:30]** What we're doing here is we're making it a lot easier
+**[00:13:32]** for you to self-diagnose.
+**[00:13:34]** We now have an official customer-facing diagnostic tool.
+**[00:13:38]** It's a simple store procedure called
+**[00:13:40]** "spgettablehealthmetrics".
+**[00:13:42]** With a single command, you can quickly check the health
+**[00:13:45]** of your tables and understand exactly what went wrong.
+**[00:13:48]** It doesn't just tell you that performance is off,
+**[00:13:51]** it actually pinpoints the root cause.
+**[00:13:54]** Whether it's fragmentation, small files, too many deletes
+**[00:13:57]** or delayed checkpoints, you'd get very clear
+**[00:14:00]** and actionable insights.
+**[00:14:02]** So instead of guessing or manually inspecting,
+**[00:14:05]** you immediately know what needs to be fixed.
+**[00:14:08]** And it isn't just reactive.
+**[00:14:10]** You can plug this into your pipelines.
+**[00:14:12]** So table health is continuously monitored,
+**[00:14:16]** and maintenance can happen proactively at scale.
+**[00:14:19]** The key idea here is simple,
+**[00:14:21]** we're tuning performance feels slow --
+**[00:14:23]** or rather we're turning performance feels slow
+**[00:14:26]** into actionable intelligence, making it much easier
+**[00:14:29]** to keep your data optimized and your queries running super-fast.
+**[00:14:35]** Now, everybody that's familiar
+**[00:14:37]** with the Fabric Data Warehouse knows
+**[00:14:39]** that our out-of-the-box retention policy is 30 days.
+**[00:14:43]** And this doesn't suit all workloads.
+**[00:14:45]** Some customers want a higher retention period,
+**[00:14:48]** other customers want a lower retention period,
+**[00:14:51]** depending on what their workloads need.
+**[00:14:54]** Retention allows you to time travel,
+**[00:14:56]** do point-in-time restores, perform table clones
+**[00:14:59]** for the data retention history period that you specify.
+**[00:15:03]** So today we're announcing the ability to modify
+**[00:15:05]** that default configurable retention setting anywhere
+**[00:15:08]** from one to 120 days.
+**[00:15:11]** This flexibility allows teams to balance operational needs
+**[00:15:14]** with storage cost optimization,
+**[00:15:17]** ensuring historical data is retained
+**[00:15:19]** for only as long as needed.
+**[00:15:21]** Now, this feature is a super-exciting one.
+**[00:15:24]** It's a real gamechanger for performance.
+**[00:15:26]** I want to introduce today to you distributive bitmap filters
+**[00:15:30]** and how they help speed up queries.
+**[00:15:32]** At a high level, the idea is pretty simply.
+**[00:15:35]** We run JOINED especially between large fact tables
+**[00:15:38]** and a smaller dimension table,
+**[00:15:40]** a lot of reasons the fact table don't actually match anything
+**[00:15:43]** useful on the other side.
+**[00:15:45]** So we end up scanning and moving a lot of data
+**[00:15:47]** that we just don't need.
+**[00:15:49]** Distributed Bitmap Filters solve
+**[00:15:51]** that problem early in the process.
+**[00:15:53]** We take the smaller table, build a compact filter from it,
+**[00:15:57]** and then push that filter down to
+**[00:15:59]** where the large table is being scanned.
+**[00:16:01]** That way, we can quickly eliminate rows
+**[00:16:04]** that will never match before we even do the drawing.
+**[00:16:06]** How awesome is that?
+**[00:16:08]** The benefit is that we reduce how much data we need to move
+**[00:16:11]** around the system, and everybody knows that's really expensive,
+**[00:16:14]** right?
+**[00:16:15]** So less IO, fewer resource requests,
+**[00:16:17]** and overall faster query execution.
+**[00:16:20]** This is particularly helpful for selective JOINs.
+**[00:16:24]** But it also improves performance for GROUP BYs aggregations
+**[00:16:27]** where filtering early makes a huge difference.
+**[00:16:30]** So if you look at the diagram,
+**[00:16:32]** the green represents the rows we keep
+**[00:16:34]** and the red are the rows we would normally process
+**[00:16:36]** but can now skip.
+**[00:16:38]** The key takeaway is that we're doing less work up front,
+**[00:16:41]** which leads to faster queries end to end.
+**[00:16:44]** This feature is coming soon and we expect it
+**[00:16:46]** to drive pretty significant performance gains
+**[00:16:49]** to common warehouse workloads.
+**[00:16:51]** Beyond scale, we've also reimagined the day-to-day
+**[00:16:54]** developer experiences in the SQL editor the small papercuts
+**[00:16:59]** that add up over a workday, and we've gone
+**[00:17:02]** after them pretty deliberately.
+**[00:17:04]** First, the new table overview page.
+**[00:17:07]** Today, when developers want to understand a table,
+**[00:17:10]** they end up writing throwaway queries like, "Select top 100,"
+**[00:17:14]** just to get a feel for the data.
+**[00:17:15]** We're adding a rich landing experience,
+**[00:17:18]** which gives you everything in one place,
+**[00:17:20]** full-column metadata with data types.
+**[00:17:23]** Second, we've streamlined query management end to end.
+**[00:17:27]** We've add autosave controls, copy queries, import and export
+**[00:17:31]** of SQL files, and bulk actions
+**[00:17:34]** to manage multiple queries at once.
+**[00:17:36]** Whether they're interactive on a single complex query
+**[00:17:39]** or maintaining a library of dozens, the editor now keeps
+**[00:17:43]** up with how developers actually work.
+**[00:17:46]** Third -- and this is the one we're most excited about
+**[00:17:49]** and I'm sure you will be as well,
+**[00:17:51]** Copilot is now embedded directly in line in the SQL editor.
+**[00:17:56]** So if you're stuck on a JOIN, you want to optimize a query,
+**[00:18:00]** or need to translate a business question into SQL,
+**[00:18:03]** Copilot is right there in your flow.
+**[00:18:06]** This is where AI assistance starts to feel
+**[00:18:08]** like a true pair program rather than a built-on tool.
+**[00:18:12]** The next pillar of this release is integration
+**[00:18:15]** with broader Fabric ecosystem.
+**[00:18:17]** We've deeply connected the warehouse experience to the rest
+**[00:18:20]** of Fabric, which is super exciting.
+**[00:18:23]** Start with cross-engine analytics.
+**[00:18:26]** We've integrated event house endpoint and notebooks directly
+**[00:18:29]** into the warehouse experience.
+**[00:18:31]** That means you can run KQL queries
+**[00:18:34]** against your warehouse data, but jumping to a Spark Notebook
+**[00:18:38]** for heavier transformations and to add assigned workflows,
+**[00:18:42]** all from the same editor.
+**[00:18:44]** Next, copy job creation is now integrated directly
+**[00:18:48]** into the editor.
+**[00:18:50]** Now you can kick off ingestion and data movement jobs right
+**[00:18:53]** from where you're already working.
+**[00:18:56]** On the modeling side, Power BI integration now includes Direct
+**[00:19:00]** Lake over OneLake semantic model creation,
+**[00:19:03]** right from the warehouse.
+**[00:19:04]** You can go from raw tables to a production-ready semantic model
+**[00:19:08]** in significantly fewer clicks.
+**[00:19:11]** And finally, we're adding support for Fabric ontologies,
+**[00:19:15]** letting you define business concepts,
+**[00:19:17]** hierarchies in relationships over your warehouse tables.
+**[00:19:20]** This turns raw schema into a shared business vocabulary,
+**[00:19:24]** which becomes especially powerful
+**[00:19:26]** as AI agents start querying your data and need
+**[00:19:30]** to understand what things actually mean,
+**[00:19:32]** not just what columns exist.
+**[00:19:34]** From a single editor, you can analyze, model,
+**[00:19:38]** and operationalize your data without breaking flow.
+**[00:19:43]** Next up, we have some
+**[00:19:45]** of the awesome new enterprise readiness features,
+**[00:19:47]** which Rakesh is going to cover.
+**[00:19:49]** Over to you, Rakesh.
+**[00:19:52]** RAKESH KRISHNAN: Thank you, Joanna.
+**[00:19:53]** I'm really excited to talk about a number
+**[00:19:55]** of exciting enterprise readiness features.
+**[00:19:58]** So first up, one of the most consistent feedback we have
+**[00:20:02]** hired from our user community is the experience didn't quite hold
+**[00:20:05]** up when you loaded a large warehouse
+**[00:20:08]** with thousands of tables.
+**[00:20:09]** The object explorer felt a little sluggish.
+**[00:20:12]** Expanding nodes took forever.
+**[00:20:14]** So we've been hard at work at addressing this,
+**[00:20:16]** and we reengineered it from the ground up,
+**[00:20:19]** built specifically for scale.
+**[00:20:20]** The new updated explorer loads really fast
+**[00:20:24]** and stays responsive even on the largest warehouses,
+**[00:20:28]** (inaudible) testing that the warehouse containing
+**[00:20:29]** over 10,000 objects.
+**[00:20:31]** With thousands of tables, views and stored procedures,
+**[00:20:34]** we saw almost a 2x improvement in (inaudible) performance.
+**[00:20:38]** But we didn't stop at just the explorer.
+**[00:20:41]** We also re-abled the results grid from the ground up.
+**[00:20:44]** White tables with many columns
+**[00:20:46]** and full resources now render in a jiffy.
+**[00:20:50]** We added native support for large object types.
+**[00:20:53]** So working with (inaudible) binary,
+**[00:20:57]** along with column resizing,
+**[00:20:59]** you will see a substantially improved rendering performance.
+**[00:21:02]** And finally, we are rolling
+**[00:21:04]** out an enhanced intelligence version as well.
+**[00:21:07]** This means faster suggestions, better context, and awareness
+**[00:21:11]** for your schema, and overall improved reliability
+**[00:21:14]** for your warehouse experiences.
+**[00:21:16]** Now, this is the feature many
+**[00:21:19]** of our customers have been eagerly awaiting for,
+**[00:21:21]** and the one I'm most excited about.
+**[00:21:24]** I'm going to be talking about a set of exciting changes
+**[00:21:27]** that are coming to the SQL analytics endpoint.
+**[00:21:29]** So first up, we are excited
+**[00:21:31]** to announce the public preview of the metadata sync.
+**[00:21:35]** As you know, for every lakehouse in Fabric,
+**[00:21:38]** there is a SQL analytics endpoint created
+**[00:21:40]** that lets you query the data
+**[00:21:42]** in Lakehouse using familiar SQL constructs.
+**[00:21:45]** Now, historically once the data lands in Lakehouse,
+**[00:21:48]** there's been a delay before which you can query.
+**[00:21:51]** We've been working hard on a new version
+**[00:21:53]** of the metadata sync built
+**[00:21:55]** on a completely different architecture
+**[00:21:57]** that (inaudible) increases the sync performance,
+**[00:22:00]** minimizing data staleness.
+**[00:22:02]** Your data, once it lands on the lakehouse, will be available
+**[00:22:05]** in seconds, not minutes for query.
+**[00:22:08]** We can't wait for you to try this new capability.
+**[00:22:12]** So continuing on SQL analytics endpoint improvements,
+**[00:22:15]** we're extending one of the most loud capabilities
+**[00:22:17]** in the warehouse, time-travel to SQL analytics endpoint.
+**[00:22:21]** Now, you can create any data on SQL analytics endpoint exactly
+**[00:22:25]** as it looked at any point in the first.
+**[00:22:28]** The use cases are the ones that every data team runs into day
+**[00:22:31]** to day, audits where you need to prove that numbers --
+**[00:22:35]** what the numbers were on a specific date,
+**[00:22:37]** pointing to comparisons to see how a metric drifted over time.
+**[00:22:43]** (Inaudible) when a downstream report looks wrong and you need
+**[00:22:45]** to create it back, all of this
+**[00:22:48]** with this feature it eliminates the need for you
+**[00:22:51]** to create a snapshot or create a copy of your data
+**[00:22:54]** for such critical scenarios.
+**[00:22:56]** Now, how far back your data can go is governed
+**[00:22:58]** by the return string period that you configure in your lakehouse.
+**[00:23:02]** Rounding out the SQL analytics endpoint story for this build,
+**[00:23:05]** we are bringing enterprise-grade CI/CD support as well.
+**[00:23:09]** This pattern customers have asked for is straightforward.
+**[00:23:12]** Treat the CI/CD endpoint like any other piece
+**[00:23:15]** of production infrastructure with version control,
+**[00:23:18]** code review, and automated deployments.
+**[00:23:20]** Today, that end-to-end experience is suboptimal,
+**[00:23:24]** and we are closing that gap.
+**[00:23:25]** So first you have a git-based version control
+**[00:23:27]** for SQL endpoint schema,
+**[00:23:30]** represented as DacFX database project.
+**[00:23:32]** Your schema lives in your source control,
+**[00:23:34]** every change is reviewable,
+**[00:23:36]** and your endpoint becomes a version artifact,
+**[00:23:39]** like any other.
+**[00:23:40]** Second, the integration with Fabric pipelines
+**[00:23:42]** for deploying schema changes makes it --
+**[00:23:46]** the deployments from dev to test to prod
+**[00:23:48]** with minimal manual steps.
+**[00:23:50]** And finally, it is natively integrated
+**[00:23:53]** with the Fabric CI/CD experience,
+**[00:23:55]** and that ensures familiar database DevOps tooling for --
+**[00:23:59]** that the enterprise teams already use.
+**[00:24:02]** Now, continuing on the theme of the CI/CD, I'm super excited
+**[00:24:06]** about this new announcement.
+**[00:24:08]** We are adding support for pre- and post- deployments scripts.
+**[00:24:12]** When it comes to enterprise CI/CD,
+**[00:24:14]** there is prep work you have to do, checking prerequisites,
+**[00:24:17]** validating environments,
+**[00:24:19]** making sure everything is in the right state.
+**[00:24:21]** And there is cleanup afterwards: applying permissions,
+**[00:24:24]** configuring settings, running validation checks.
+**[00:24:27]** Today, all of those deployments live outside the deployment
+**[00:24:31]** cycle and in manual steps.
+**[00:24:34]** That's where many releases break.
+**[00:24:36]** With the support for pre- and post- deployment scripts,
+**[00:24:39]** we're addressing these gaps directly.
+**[00:24:41]** This turns warehouse deployments into something repeatable
+**[00:24:44]** and low risk, with minimal manual steps.
+**[00:24:48]** The full release, the prep, the schema chain,
+**[00:24:51]** the cleanup become -- everything ensure
+**[00:24:53]** that this becomes one governed artifact.
+**[00:24:56]** And these two CI/CD changes are coming soon to all your regions.
+**[00:25:04]** And shifting gears quite a bit, one of our biggest priorities is
+**[00:25:08]** to enable Enterprise customers
+**[00:25:10]** in helping modernize their data stacks.
+**[00:25:13]** So getting customers from their existing data warehouse,
+**[00:25:16]** all the Fabric is one of our key priorities for us,
+**[00:25:19]** and the migration assistant is now generally available,
+**[00:25:22]** for a set of enhancements
+**[00:25:23]** that will make this journey meaningfully simpler.
+**[00:25:26]** First, the live connectivity is now generally available.
+**[00:25:30]** The system now connects directly to your source system,
+**[00:25:34]** eliminating the need for DACPAC extraction
+**[00:25:37]** or any manual prep work.
+**[00:25:39]** This removes one of the most common blockers customers are
+**[00:25:42]** running into today when it comes to migration.
+**[00:25:45]** Another exciting announcement we are having is that we have --
+**[00:25:49]** we now support.SQL files as an input,
+**[00:25:52]** which is going into public preview.
+**[00:25:55]** This is when you have existing script schema definitions
+**[00:25:58]** or workloads you want to bring
+**[00:26:00]** across without going to a live connection.
+**[00:26:03]** Essentially, we support a broad variety of sources now,
+**[00:26:06]** whether it's Azure Synapse, SQL Server,
+**[00:26:08]** or effectively any T-SQL database as a source.
+**[00:26:11]** The same tool covers most
+**[00:26:13]** of your enterprise migration scenarios.
+**[00:26:15]** The bigger picture is the migration
+**[00:26:17]** to Fabric has gotten much easier
+**[00:26:20]** with significantly lower barriers.
+**[00:26:22]** We are excited for you to try all these features out
+**[00:26:25]** and begin your Fabric journey.
+**[00:26:28]** Now, the set of enterprise features don't end there.
+**[00:26:31]** There are some exciting workload management features that have --
+**[00:26:34]** that we are about to announce.
+**[00:26:36]** I'm handing it back to Joanna to talk about them.
+**[00:26:40]** JOANNA PODGOETSKY: Thank you so much, Rakesh.
+**[00:26:43]** So in the Fabric Data Warehouse,
+**[00:26:45]** we've had intelligent workload management built
+**[00:26:47]** in from the get-go.
+**[00:26:49]** The system automatically routes queries based
+**[00:26:51]** on what they're doing.
+**[00:26:52]** Whether it's running a select query
+**[00:26:54]** for your reporting workloads, or ingesting and transforming data,
+**[00:26:59]** different workloads don't interfere with one another.
+**[00:27:02]** Be default, resources are split evenly between select
+**[00:27:06]** and non-select workloads.
+**[00:27:08]** But in reality, some environments are heavy
+**[00:27:10]** on reporting whilst others are more focused
+**[00:27:13]** on ingestion and ETL.
+**[00:27:15]** With custom SQL pools, you now have direct control
+**[00:27:18]** over that 50/50 split, so you can allocate resources in a way
+**[00:27:22]** that better matches how your workloads actually behave.
+**[00:27:25]** So for example, if you want to have
+**[00:27:28]** that split more skewed towards your reporting workloads,
+**[00:27:31]** you can increase the select workload group to 80%,
+**[00:27:34]** maybe you only need 20% left over for ingestion.
+**[00:27:37]** It's all up to you.
+**[00:27:39]** We're evolving our billing model
+**[00:27:41]** to more closely match how real data warehouse workloads behave.
+**[00:27:45]** We will be moving to a node-based billing model,
+**[00:27:48]** so you're billed on the actual compute used
+**[00:27:51]** to run your queries.
+**[00:27:52]** Billing starts with a one-minute minimum, and then moves
+**[00:27:56]** to a per second granularity, which means the larger
+**[00:27:59]** and more stable your workloads are,
+**[00:28:02]** the more that initial minute gets monetized.
+**[00:28:04]** In practice, for the kinds
+**[00:28:06]** of long-running analytical queries common
+**[00:28:08]** in data warehousing workloads, this results
+**[00:28:11]** in much more predictable and efficient usage over time.
+**[00:28:15]** Combined with improvements to our computer efficiency,
+**[00:28:18]** this model is designed to better align
+**[00:28:21]** with steady production-grade workloads.
+**[00:28:23]** And importantly, this is just the foundation.
+**[00:28:26]** We'll continue to build more efficiencies into the engine,
+**[00:28:29]** so over time, your workloads benefit even more
+**[00:28:32]** from this model without any changes on your end.
+**[00:28:35]** So as your workloads scale and run longer,
+**[00:28:38]** this model increasingly works in your favor.
+**[00:28:43]** And let's talk about cache cooldown.
+**[00:28:45]** Cache cooldown gives you control
+**[00:28:47]** over how long your compute stays warm between queries.
+**[00:28:51]** By configuring the cooldown window,
+**[00:28:53]** you can avoid cold starts
+**[00:28:55]** and keep frequently-accessed workloads running
+**[00:28:57]** with low latency.
+**[00:28:59]** It also lets you balance performance and cost,
+**[00:29:02]** especially for bursty or intermittent usage patterns.
+**[00:29:05]** And because scaling remains automatic, the system can scale
+**[00:29:09]** up or down, based on demand, without manual intervention.
+**[00:29:13]** In short, you keep the performance benefits
+**[00:29:16]** of warm queries while staying efficient
+**[00:29:18]** when workloads are idle.
+**[00:29:20]** Really, really exciting stuff.
+**[00:29:23]** All right, so if you're excited about getting started,
+**[00:29:27]** we've made that really easy for you.
+**[00:29:30]** We've pulled together everything you need in one place,
+**[00:29:33]** documentation to go deeper, a free trial
+**[00:29:36]** so you can jump straight in, and guided learning
+**[00:29:39]** if you want a structured path.
+**[00:29:41]** If you're more technical, we've got architecture content
+**[00:29:44]** to help you understand what's happening under the hood.
+**[00:29:46]** And if you want to stay ahead,
+**[00:29:48]** you can track what's coming next on the roadmap.
+**[00:29:51]** And of course, if you want the highlights
+**[00:29:52]** from everything we've just discussed,
+**[00:29:55]** we've got the Build roundups ready to go.
+**[00:29:57]** So whether you are just starting out or already deep in Fabric,
+**[00:30:01]** there's something here to help you take the next step.
+**[00:30:04]** Thank you so much.
+**[00:30:05]** We hope you enjoyed this session.

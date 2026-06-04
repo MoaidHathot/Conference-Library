@@ -1,0 +1,3365 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.9188307523727417
+
+00:00:03.920 --> 00:00:05.945
+Thank you everyone for coming and then joining us for
+
+NOTE Confidence: 0.9188307523727417
+
+00:00:05.983 --> 00:00:06.479
+this session.
+
+NOTE Confidence: 0.8786236047744751
+
+00:00:07.440 --> 00:00:11.564
+Today we're going to talk about building a applications with
+
+NOTE Confidence: 0.8786236047744751
+
+00:00:11.632 --> 00:00:15.138
+the help of Oracle, a database and Azure along with
+
+NOTE Confidence: 0.8786236047744751
+
+00:00:15.207 --> 00:00:18.643
+the MCP servers that we built from both Oracle and
+
+NOTE Confidence: 0.8786236047744751
+
+00:00:18.712 --> 00:00:19.399
+Microsoft.
+
+NOTE Confidence: 0.8616560697555542
+
+00:00:19.840 --> 00:00:22.518
+And all of these are happening with the help of
+
+NOTE Confidence: 0.8616560697555542
+
+00:00:22.575 --> 00:00:24.000
+Microsoft GitHub Copilot.
+
+NOTE Confidence: 0.8281251788139343
+
+00:00:27.840 --> 00:00:31.616
+So when you talk about the developer workflow, there's so
+
+NOTE Confidence: 0.8281251788139343
+
+00:00:31.683 --> 00:00:35.194
+many different developers that we have to go and take
+
+NOTE Confidence: 0.8281251788139343
+
+00:00:35.261 --> 00:00:36.520
+into consideration.
+
+NOTE Confidence: 0.8987940549850464
+
+00:00:37.200 --> 00:00:40.535
+You have the traditional app developers who build their applications,
+
+NOTE Confidence: 0.8987940549850464
+
+00:00:40.583 --> 00:00:42.903
+and they have a set of challenges that they face
+
+NOTE Confidence: 0.8987940549850464
+
+00:00:42.951 --> 00:00:45.851
+today in terms of being able to accelerate their application
+
+NOTE Confidence: 0.8987940549850464
+
+00:00:45.899 --> 00:00:46.479
+development.
+
+NOTE Confidence: 0.8756417632102966
+
+00:00:47.040 --> 00:00:50.520
+You also have the ML engineering developers who look at
+
+NOTE Confidence: 0.8756417632102966
+
+00:00:50.584 --> 00:00:54.950
+building ML applications and we also have data engineering developers
+
+NOTE Confidence: 0.8756417632102966
+
+00:00:55.014 --> 00:00:58.368
+and you even have this new trade of developers called
+
+NOTE Confidence: 0.8756417632102966
+
+00:00:58.431 --> 00:01:00.520
+the forward deployment engineers.
+
+NOTE Confidence: 0.9061344265937805
+
+00:01:00.960 --> 00:01:04.429
+So for all these developers, one of the key factors
+
+NOTE Confidence: 0.9061344265937805
+
+00:01:04.497 --> 00:01:07.899
+when they do the development is they look at, hey,
+
+NOTE Confidence: 0.9061344265937805
+
+00:01:07.967 --> 00:01:09.599
+how do I access my data?
+
+NOTE Confidence: 0.9011049866676331
+
+00:01:09.959 --> 00:01:12.267
+I want to make sure that my data resides where
+
+NOTE Confidence: 0.9011049866676331
+
+00:01:12.317 --> 00:01:12.919
+it is today.
+
+NOTE Confidence: 0.8603686690330505
+
+00:01:13.360 --> 00:01:16.486
+In this case, we are going to talk about Oracle,
+
+NOTE Confidence: 0.8603686690330505
+
+00:01:16.551 --> 00:01:19.872
+a database at Azure, which is residing in the Azure
+
+NOTE Confidence: 0.8603686690330505
+
+00:01:19.937 --> 00:01:23.519
+data centers as a native database application offering.
+
+NOTE Confidence: 0.8438666462898254
+
+00:01:24.080 --> 00:01:26.040
+It's accessible through the Azure marketplace.
+
+NOTE Confidence: 0.888789713382721
+
+00:01:26.040 --> 00:01:29.576
+So you can go and then work with this database
+
+NOTE Confidence: 0.888789713382721
+
+00:01:29.653 --> 00:01:32.959
+as if it's it's a native database in Azure.
+
+NOTE Confidence: 0.8347736597061157
+
+00:01:34.000 --> 00:01:36.280
+Now there's so many challenges that they face.
+
+NOTE Confidence: 0.8272539377212524
+
+00:01:37.520 --> 00:01:38.960
+Few of these are listed here.
+
+NOTE Confidence: 0.7602136731147766
+
+00:01:39.520 --> 00:01:42.630
+One of the fundamental challenges, challenges when it comes to
+
+NOTE Confidence: 0.7602136731147766
+
+00:01:42.681 --> 00:01:45.240
+accessing databases, setting up the connectivities.
+
+NOTE Confidence: 0.93109130859375
+
+00:01:45.600 --> 00:01:48.779
+It requires a lot of manual wiring and API access
+
+NOTE Confidence: 0.93109130859375
+
+00:01:48.843 --> 00:01:50.919
+and even learning documentation.
+
+NOTE Confidence: 0.9086726903915405
+
+00:01:51.960 --> 00:01:54.428
+And of course you need to also do a lot
+
+NOTE Confidence: 0.9086726903915405
+
+00:01:54.491 --> 00:01:56.200
+of manual schema discovery.
+
+NOTE Confidence: 0.8623324036598206
+
+00:01:56.200 --> 00:01:58.403
+So today you got to go and then take steps
+
+NOTE Confidence: 0.8623324036598206
+
+00:01:58.456 --> 00:02:01.394
+before you can have this database available and then set
+
+NOTE Confidence: 0.8623324036598206
+
+00:02:01.446 --> 00:02:03.283
+up for you to go and then use it in
+
+NOTE Confidence: 0.8623324036598206
+
+00:02:03.335 --> 00:02:04.279
+your applications.
+
+NOTE Confidence: 0.8917466998100281
+
+00:02:04.880 --> 00:02:08.640
+Of course, the data gets siloed between Oracle and Microsoft.
+
+NOTE Confidence: 0.8395018577575684
+
+00:02:08.639 --> 00:02:12.610
+So there are like different disparate systems where the data
+
+NOTE Confidence: 0.8395018577575684
+
+00:02:12.676 --> 00:02:16.117
+has to come together and finally, you want to create
+
+NOTE Confidence: 0.8395018577575684
+
+00:02:16.183 --> 00:02:19.822
+data that can be used for running their validations and
+
+NOTE Confidence: 0.8395018577575684
+
+00:02:19.888 --> 00:02:21.080
+then templatizing.
+
+NOTE Confidence: 0.8946207761764526
+
+00:02:21.080 --> 00:02:24.466
+So the apps scaffolding is a big challenge for customers
+
+NOTE Confidence: 0.8946207761764526
+
+00:02:24.526 --> 00:02:26.279
+and developers in particular.
+
+NOTE Confidence: 0.9142017960548401
+
+00:02:27.640 --> 00:02:29.120
+So how are we overcoming this?
+
+NOTE Confidence: 0.8180751204490662
+
+00:02:29.720 --> 00:02:33.149
+Both Oracle, Microsoft has been investing in a technologies and
+
+NOTE Confidence: 0.8180751204490662
+
+00:02:33.203 --> 00:02:35.816
+today we are going to talk about like 3 specific
+
+NOTE Confidence: 0.8180751204490662
+
+00:02:35.870 --> 00:02:39.190
+examples or three different technologies that are going to be
+
+NOTE Confidence: 0.8180751204490662
+
+00:02:39.245 --> 00:02:41.639
+focusing on 2 demos we are going to show up.
+
+NOTE Confidence: 0.8808766603469849
+
+00:02:42.200 --> 00:02:46.640
+So we have these Oracle MCP servers that's available today.
+
+NOTE Confidence: 0.7826424837112427
+
+00:02:46.919 --> 00:02:49.771
+You can go over and check it out in the
+
+NOTE Confidence: 0.7826424837112427
+
+00:02:49.844 --> 00:02:51.160
+in the OCI portal.
+
+NOTE Confidence: 0.8350661993026733
+
+00:02:51.480 --> 00:02:54.646
+And we also have a blog that's been released today
+
+NOTE Confidence: 0.8350661993026733
+
+00:02:54.709 --> 00:02:58.129
+where this is available not just through OCI, but also
+
+NOTE Confidence: 0.8350661993026733
+
+00:02:58.193 --> 00:03:00.599
+available in the Microsoft AI Catalog.
+
+NOTE Confidence: 0.8798193335533142
+
+00:03:01.000 --> 00:03:03.250
+So this is available for you and then you can
+
+NOTE Confidence: 0.8798193335533142
+
+00:03:03.300 --> 00:03:04.200
+get started today.
+
+NOTE Confidence: 0.8767136335372925
+
+00:03:04.919 --> 00:03:07.701
+And you also have the Fabric MCP server that can
+
+NOTE Confidence: 0.8767136335372925
+
+00:03:07.759 --> 00:03:10.656
+provide you a way to go and connect with Microsoft
+
+NOTE Confidence: 0.8767136335372925
+
+00:03:10.714 --> 00:03:11.119
+Fabric.
+
+NOTE Confidence: 0.8674364686012268
+
+00:03:11.600 --> 00:03:14.707
+And all these can be stitched together in a very
+
+NOTE Confidence: 0.8674364686012268
+
+00:03:14.772 --> 00:03:17.880
+coherent way using the Microsoft GitHub Copilot.
+
+NOTE Confidence: 0.91754549741745
+
+00:03:18.920 --> 00:03:22.000
+So I mentioned there are two demo examples.
+
+NOTE Confidence: 0.8051143288612366
+
+00:03:22.000 --> 00:03:23.972
+We're going to show both of them or you can
+
+NOTE Confidence: 0.8051143288612366
+
+00:03:24.018 --> 00:03:26.265
+think of is like Chapter 1 and Chapter 2, because
+
+NOTE Confidence: 0.8051143288612366
+
+00:03:26.311 --> 00:03:28.329
+they're going to build on one, one on top of
+
+NOTE Confidence: 0.8051143288612366
+
+00:03:28.375 --> 00:03:28.879
+each other.
+
+NOTE Confidence: 0.9080023765563965
+
+00:03:29.680 --> 00:03:32.720
+So the first example, this is a fraud detection system.
+
+NOTE Confidence: 0.8686842918395996
+
+00:03:32.960 --> 00:03:36.048
+Basically the idea here is, hey, if I go and
+
+NOTE Confidence: 0.8686842918395996
+
+00:03:36.118 --> 00:03:40.610
+then build a customer and account database using synthetic data,
+
+NOTE Confidence: 0.8686842918395996
+
+00:03:40.681 --> 00:03:44.120
+now I'm going to use that and then transport this
+
+NOTE Confidence: 0.8686842918395996
+
+00:03:44.190 --> 00:03:47.560
+to Fabric, all these data which is within Azure.
+
+NOTE Confidence: 0.9113678336143494
+
+00:03:47.880 --> 00:03:50.362
+So we get get this data to Fabric, make sure
+
+NOTE Confidence: 0.9113678336143494
+
+00:03:50.419 --> 00:03:53.240
+that there is no performance issues or there is no
+
+NOTE Confidence: 0.9113678336143494
+
+00:03:53.297 --> 00:03:54.199
+security issues.
+
+NOTE Confidence: 0.8969672918319702
+
+00:03:54.480 --> 00:03:57.108
+So once you do that, then you can give it
+
+NOTE Confidence: 0.8969672918319702
+
+00:03:57.172 --> 00:04:00.121
+to Fabric and then see hey, what Fabric can do
+
+NOTE Confidence: 0.8969672918319702
+
+00:04:00.185 --> 00:04:03.583
+with this data and then be able to develop predictive
+
+NOTE Confidence: 0.8969672918319702
+
+00:04:03.648 --> 00:04:07.302
+analytics and then run all your other forecasting type of
+
+NOTE Confidence: 0.8969672918319702
+
+00:04:07.366 --> 00:04:08.200
+models on it.
+
+NOTE Confidence: 0.9041798114776611
+
+00:04:08.800 --> 00:04:11.029
+So I am going to talk a little bit about
+
+NOTE Confidence: 0.9041798114776611
+
+00:04:11.085 --> 00:04:12.200
+the first demo here.
+
+NOTE Confidence: 0.8321824669837952
+
+00:04:13.920 --> 00:04:16.254
+So the way we set this up is I'm just
+
+NOTE Confidence: 0.8321824669837952
+
+00:04:16.317 --> 00:04:18.400
+showing like couple screens here.
+
+NOTE Confidence: 0.8225544691085815
+
+00:04:18.920 --> 00:04:22.633
+So there is a database that's been set up through
+
+NOTE Confidence: 0.8225544691085815
+
+00:04:22.709 --> 00:04:27.332
+Microsoft Azure marketplace where you go and create an Oracle
+
+NOTE Confidence: 0.8225544691085815
+
+00:04:27.408 --> 00:04:31.652
+AI database which is running an ADBS which is autonomous
+
+NOTE Confidence: 0.8225544691085815
+
+00:04:31.728 --> 00:04:33.320
+AI database in Azure.
+
+NOTE Confidence: 0.8823390603065491
+
+00:04:33.760 --> 00:04:37.800
+So this is a fully automated database solution that's available.
+
+NOTE Confidence: 0.8159597516059875
+
+00:04:38.080 --> 00:04:41.369
+So we just set this up first initially provision without
+
+NOTE Confidence: 0.8159597516059875
+
+00:04:41.427 --> 00:04:42.719
+creating data in that.
+
+NOTE Confidence: 0.8552250266075134
+
+00:04:43.360 --> 00:04:45.929
+And then the second step is you go and then
+
+NOTE Confidence: 0.8552250266075134
+
+00:04:45.989 --> 00:04:48.319
+create a new empty workspace in Fabric.
+
+NOTE Confidence: 0.8069778084754944
+
+00:04:48.560 --> 00:04:51.505
+So once you have this preset up, the next thing
+
+NOTE Confidence: 0.8069778084754944
+
+00:04:51.567 --> 00:04:54.199
+you go is go into Microsoft Visual Studio.
+
+NOTE Confidence: 0.8942903876304626
+
+00:04:54.960 --> 00:04:57.891
+So with this, I just want to go first give
+
+NOTE Confidence: 0.8942903876304626
+
+00:04:57.960 --> 00:05:01.520
+a quick credit for my colleague Daniel from Sweden.
+
+NOTE Confidence: 0.8854904770851135
+
+00:05:01.800 --> 00:05:03.560
+He set this up for me, right?
+
+NOTE Confidence: 0.86762535572052
+
+00:05:03.560 --> 00:05:06.007
+Like he created the initial setup for me, one of
+
+NOTE Confidence: 0.86762535572052
+
+00:05:06.058 --> 00:05:09.015
+the personal experiences when I took this project and then
+
+NOTE Confidence: 0.86762535572052
+
+00:05:09.066 --> 00:05:12.533
+tried to download into my Visual Studio environment, the application
+
+NOTE Confidence: 0.86762535572052
+
+00:05:12.584 --> 00:05:13.399
+was not working.
+
+NOTE Confidence: 0.8502322435379028
+
+00:05:13.839 --> 00:05:16.290
+So I had to go and then use Microsoft Copilot
+
+NOTE Confidence: 0.8502322435379028
+
+00:05:16.344 --> 00:05:19.122
+to go and then debug for me, do the troubleshooting
+
+NOTE Confidence: 0.8502322435379028
+
+00:05:19.176 --> 00:05:20.320
+and then make it fix.
+
+NOTE Confidence: 0.8272216320037842
+
+00:05:20.760 --> 00:05:24.776
+So this happened through, you know, a few minutes where
+
+NOTE Confidence: 0.8272216320037842
+
+00:05:24.849 --> 00:05:28.939
+all these things are solvable through the, you know, the
+
+NOTE Confidence: 0.8272216320037842
+
+00:05:29.012 --> 00:05:30.399
+power of AI itself.
+
+NOTE Confidence: 0.9120510816574097
+
+00:05:30.720 --> 00:05:33.040
+So which is like a great personal experience for me.
+
+NOTE Confidence: 0.8460452556610107
+
+00:05:33.360 --> 00:05:35.200
+So how did I set up this MCP servers?
+
+NOTE Confidence: 0.8837562203407288
+
+00:05:35.480 --> 00:05:38.960
+They are all available as extensions within Microsoft Visual Studio.
+
+NOTE Confidence: 0.865402340888977
+
+00:05:40.040 --> 00:05:42.767
+So now you can see that I'm running like a
+
+NOTE Confidence: 0.865402340888977
+
+00:05:42.832 --> 00:05:46.079
+few comments here and I'm going to show this here.
+
+NOTE Confidence: 0.8786380887031555
+
+00:05:50.040 --> 00:05:53.046
+So you can see that the, you know, first thing
+
+NOTE Confidence: 0.8786380887031555
+
+00:05:53.111 --> 00:05:55.987
+I'm doing is I'm just making sure that I can
+
+NOTE Confidence: 0.8786380887031555
+
+00:05:56.053 --> 00:05:59.517
+connect to these Oracle MCP server and the Fabric MCP
+
+NOTE Confidence: 0.8786380887031555
+
+00:05:59.582 --> 00:06:00.039
+server.
+
+NOTE Confidence: 0.847783088684082
+
+00:06:00.040 --> 00:06:02.060
+So it's just going and then verifying, hey, whether the
+
+NOTE Confidence: 0.847783088684082
+
+00:06:02.097 --> 00:06:03.200
+connectivity is going through.
+
+NOTE Confidence: 0.8474791049957275
+
+00:06:03.200 --> 00:06:05.129
+So in this case it just goes and then checks
+
+NOTE Confidence: 0.8474791049957275
+
+00:06:05.173 --> 00:06:07.760
+the schema and then confirms that the connectivity happens.
+
+NOTE Confidence: 0.9095296263694763
+
+00:06:08.480 --> 00:06:10.686
+The next step I am going to take here I
+
+NOTE Confidence: 0.9095296263694763
+
+00:06:10.742 --> 00:06:13.175
+am going to pass just for a quick second is
+
+NOTE Confidence: 0.9095296263694763
+
+00:06:13.232 --> 00:06:16.060
+basically to show you that it is creating 2 tables
+
+NOTE Confidence: 0.9095296263694763
+
+00:06:16.117 --> 00:06:19.058
+in the Oracle database that I mentioned I created in
+
+NOTE Confidence: 0.9095296263694763
+
+00:06:19.115 --> 00:06:20.360
+the Azure marketplace.
+
+NOTE Confidence: 0.7161749601364136
+
+00:06:20.360 --> 00:06:25.426
+It is going and creating these synthetic data in the
+
+NOTE Confidence: 0.7161749601364136
+
+00:06:25.523 --> 00:06:30.200
+new database I created which has 2100 rows each.
+
+NOTE Confidence: 0.8601242899894714
+
+00:06:30.760 --> 00:06:32.080
+So why this is important right?
+
+NOTE Confidence: 0.8350632786750793
+
+00:06:32.080 --> 00:06:33.986
+Because now if I want to go and then do
+
+NOTE Confidence: 0.8350632786750793
+
+00:06:34.035 --> 00:06:36.088
+it me as a developer, it takes time for me
+
+NOTE Confidence: 0.8350632786750793
+
+00:06:36.137 --> 00:06:38.337
+to go and then create this data and then make
+
+NOTE Confidence: 0.8350632786750793
+
+00:06:38.386 --> 00:06:40.635
+sure that this is an accurate data and then it
+
+NOTE Confidence: 0.8350632786750793
+
+00:06:40.684 --> 00:06:41.759
+is a performance data.
+
+NOTE Confidence: 0.8805678486824036
+
+00:06:42.000 --> 00:06:45.579
+So all these things will be done by the GitHub
+
+NOTE Confidence: 0.8805678486824036
+
+00:06:45.657 --> 00:06:46.280
+copilot.
+
+NOTE Confidence: 0.8516639471054077
+
+00:06:46.279 --> 00:06:48.854
+So first thing is it just goes and then creates
+
+NOTE Confidence: 0.8516639471054077
+
+00:06:48.908 --> 00:06:49.839
+this tables here.
+
+NOTE Confidence: 0.9400533437728882
+
+00:06:52.520 --> 00:06:54.753
+And by the way, it takes like days for me,
+
+NOTE Confidence: 0.9400533437728882
+
+00:06:54.806 --> 00:06:57.200
+as you know, going back to my developer days.
+
+NOTE Confidence: 0.850679337978363
+
+00:06:57.720 --> 00:06:59.860
+And I'm pretty sure that it is, it is a
+
+NOTE Confidence: 0.850679337978363
+
+00:06:59.915 --> 00:07:02.549
+real problem where, hey, you have to go and then
+
+NOTE Confidence: 0.850679337978363
+
+00:07:02.604 --> 00:07:04.909
+put a lot of efforts to go and then create
+
+NOTE Confidence: 0.850679337978363
+
+00:07:04.964 --> 00:07:07.159
+this, you know, accurate synthetic data.
+
+NOTE Confidence: 0.8244073390960693
+
+00:07:07.600 --> 00:07:09.872
+But here with copilot, I'm able to do that in
+
+NOTE Confidence: 0.8244073390960693
+
+00:07:09.922 --> 00:07:10.680
+within minutes.
+
+NOTE Confidence: 0.8886645436286926
+
+00:07:11.240 --> 00:07:13.951
+So once it goes and then creates the, the, the
+
+NOTE Confidence: 0.8886645436286926
+
+00:07:14.010 --> 00:07:17.016
+2 tables, I'm just making sure that it checks that,
+
+NOTE Confidence: 0.8886645436286926
+
+00:07:17.075 --> 00:07:19.080
+hey, these names are all existing.
+
+NOTE Confidence: 0.8307706713676453
+
+00:07:19.080 --> 00:07:21.755
+And then just just a bunch of validation to make
+
+NOTE Confidence: 0.8307706713676453
+
+00:07:21.811 --> 00:07:24.320
+sure that it is able to create all this data.
+
+NOTE Confidence: 0.8767889142036438
+
+00:07:24.320 --> 00:07:28.019
+So it's going through this creation process and it first
+
+NOTE Confidence: 0.8767889142036438
+
+00:07:28.085 --> 00:07:31.191
+runs the Oracle MCP server which is set up with
+
+NOTE Confidence: 0.8767889142036438
+
+00:07:31.257 --> 00:07:34.692
+this with this application and once it just goes and
+
+NOTE Confidence: 0.8767889142036438
+
+00:07:34.759 --> 00:07:37.600
+then evaluates this that it is able to run.
+
+NOTE Confidence: 0.8334128856658936
+
+00:07:37.800 --> 00:07:40.939
+So underneath it is it is running the SQL CL
+
+NOTE Confidence: 0.8334128856658936
+
+00:07:41.010 --> 00:07:45.006
+which is the Oracle database utility where you could run
+
+NOTE Confidence: 0.8334128856658936
+
+00:07:45.077 --> 00:07:45.719
+your SQL.
+
+NOTE Confidence: 0.8635706305503845
+
+00:07:45.720 --> 00:07:47.952
+So the MCP server is able to go and then
+
+NOTE Confidence: 0.8635706305503845
+
+00:07:48.008 --> 00:07:51.245
+translate the natural language commands to a SQL query and
+
+NOTE Confidence: 0.8635706305503845
+
+00:07:51.301 --> 00:07:52.920
+that is how it gets the data.
+
+NOTE Confidence: 0.8041452765464783
+
+00:07:53.440 --> 00:07:56.146
+So now its just going and then pulling this data
+
+NOTE Confidence: 0.8041452765464783
+
+00:07:56.203 --> 00:07:58.571
+it again making sure that hey it can go on
+
+NOTE Confidence: 0.8041452765464783
+
+00:07:58.627 --> 00:08:01.108
+and count the number of rows it just want to
+
+NOTE Confidence: 0.8041452765464783
+
+00:08:01.165 --> 00:08:01.559
+sample.
+
+NOTE Confidence: 0.924627423286438
+
+00:08:01.560 --> 00:08:03.800
+So we talked about creating the data.
+
+NOTE Confidence: 0.8245591521263123
+
+00:08:03.800 --> 00:08:06.880
+Now its more about hey can I query the data?
+
+NOTE Confidence: 0.84952712059021
+
+00:08:07.080 --> 00:08:09.859
+Can I make sure that hey the data is real
+
+NOTE Confidence: 0.84952712059021
+
+00:08:09.927 --> 00:08:12.570
+and I can go on and see the rows that's
+
+NOTE Confidence: 0.84952712059021
+
+00:08:12.638 --> 00:08:13.520
+been created.
+
+NOTE Confidence: 0.892137885093689
+
+00:08:13.520 --> 00:08:15.959
+So I just trying to this is another step in
+
+NOTE Confidence: 0.892137885093689
+
+00:08:16.016 --> 00:08:16.640
+validation.
+
+NOTE Confidence: 0.8801477551460266
+
+00:08:16.640 --> 00:08:19.489
+We typically do as developers that hey we want to
+
+NOTE Confidence: 0.8801477551460266
+
+00:08:19.547 --> 00:08:22.919
+validate the data that we just imported into the database.
+
+NOTE Confidence: 0.832849383354187
+
+00:08:22.920 --> 00:08:24.903
+So it just goes and then varies and then it
+
+NOTE Confidence: 0.832849383354187
+
+00:08:24.949 --> 00:08:27.256
+gives you some sample data and then make sure that
+
+NOTE Confidence: 0.832849383354187
+
+00:08:27.302 --> 00:08:28.640
+hey this is all looking good.
+
+NOTE Confidence: 0.7789751887321472
+
+00:08:28.920 --> 00:08:30.040
+So we just go and then check.
+
+NOTE Confidence: 0.932741641998291
+
+00:08:30.320 --> 00:08:32.216
+And then once you do that you also want to
+
+NOTE Confidence: 0.932741641998291
+
+00:08:32.261 --> 00:08:33.480
+check the table statistics.
+
+NOTE Confidence: 0.8917016983032227
+
+00:08:33.480 --> 00:08:36.800
+So we have this built in tool called optimizer.
+
+NOTE Confidence: 0.8846592903137207
+
+00:08:37.160 --> 00:08:40.482
+So there is a statistics optimizer that it runs which
+
+NOTE Confidence: 0.8846592903137207
+
+00:08:40.545 --> 00:08:43.743
+is available as part of the Oracle database just to
+
+NOTE Confidence: 0.8846592903137207
+
+00:08:43.805 --> 00:08:47.066
+make sure that hey the SQL querying doesn't have any
+
+NOTE Confidence: 0.8846592903137207
+
+00:08:47.128 --> 00:08:48.320
+performance issues.
+
+NOTE Confidence: 0.827273964881897
+
+00:08:48.559 --> 00:08:50.451
+It just wants to make sure that if there is
+
+NOTE Confidence: 0.827273964881897
+
+00:08:50.495 --> 00:08:53.047
+performance issues it can automatically go and then do the
+
+NOTE Confidence: 0.827273964881897
+
+00:08:53.091 --> 00:08:53.399
+tuning.
+
+NOTE Confidence: 0.8671765923500061
+
+00:08:53.640 --> 00:08:55.788
+So it just goes and then checks and then also
+
+NOTE Confidence: 0.8671765923500061
+
+00:08:55.836 --> 00:08:58.319
+make sure that hey the indices are working properly.
+
+NOTE Confidence: 0.8876189589500427
+
+00:08:58.320 --> 00:09:00.651
+So these are all some of the checks that we
+
+NOTE Confidence: 0.8876189589500427
+
+00:09:00.705 --> 00:09:03.200
+as database developers have to do it manually.
+
+NOTE Confidence: 0.7694751024246216
+
+00:09:03.280 --> 00:09:06.920
+This is all done automated by the GitHub copilot.
+
+NOTE Confidence: 0.7469412088394165
+
+00:09:07.960 --> 00:09:11.166
+So now its again running SQL CL and the background
+
+NOTE Confidence: 0.7469412088394165
+
+00:09:11.231 --> 00:09:14.309
+it just just go then checks the indices and then
+
+NOTE Confidence: 0.7469412088394165
+
+00:09:14.373 --> 00:09:17.773
+constraints and it made sure that it is all validated
+
+NOTE Confidence: 0.7469412088394165
+
+00:09:17.837 --> 00:09:19.119
+through the process.
+
+NOTE Confidence: 0.8283929824829102
+
+00:09:19.520 --> 00:09:20.560
+So now it is all done.
+
+NOTE Confidence: 0.894728422164917
+
+00:09:20.800 --> 00:09:22.949
+So the next step is this is the important step
+
+NOTE Confidence: 0.894728422164917
+
+00:09:22.996 --> 00:09:25.520
+where we are kind of transitioning into the chapter 2.
+
+NOTE Confidence: 0.8768982291221619
+
+00:09:25.520 --> 00:09:28.075
+We will see more in the demo 2 where we
+
+NOTE Confidence: 0.8768982291221619
+
+00:09:28.140 --> 00:09:31.875
+are exporting this data right from the Oracle database to
+
+NOTE Confidence: 0.8768982291221619
+
+00:09:31.941 --> 00:09:32.400
+Fabric.
+
+NOTE Confidence: 0.8677157759666443
+
+00:09:32.720 --> 00:09:35.240
+Again, just to make couple points clear.
+
+NOTE Confidence: 0.8476742506027222
+
+00:09:35.440 --> 00:09:37.440
+So this is again, which is all within Azure.
+
+NOTE Confidence: 0.866905927658081
+
+00:09:37.440 --> 00:09:39.601
+So we want to make sure that this is all
+
+NOTE Confidence: 0.866905927658081
+
+00:09:39.655 --> 00:09:42.032
+secure and you have the I am control and the
+
+NOTE Confidence: 0.866905927658081
+
+00:09:42.086 --> 00:09:45.003
+ability to make sure that the data doesn't go anywhere
+
+NOTE Confidence: 0.866905927658081
+
+00:09:45.057 --> 00:09:45.760
+out of Azure.
+
+NOTE Confidence: 0.9385609030723572
+
+00:09:46.000 --> 00:09:48.040
+So this is just uploading the data.
+
+NOTE Confidence: 0.7875826358795166
+
+00:09:48.280 --> 00:09:50.400
+In this case it's uploading as a CSV file.
+
+NOTE Confidence: 0.8680896162986755
+
+00:09:50.679 --> 00:09:54.520
+But we have today we have an enterprise way of
+
+NOTE Confidence: 0.8680896162986755
+
+00:09:54.603 --> 00:10:00.280
+transporting or replicating data using Oracle Golden Gate Connector.
+
+NOTE Confidence: 0.9411293268203735
+
+00:10:00.640 --> 00:10:04.231
+So here we are just trying to get this data
+
+NOTE Confidence: 0.9411293268203735
+
+00:10:04.315 --> 00:10:06.320
+out to Microsoft Fabric.
+
+NOTE Confidence: 0.8251265287399292
+
+00:10:06.720 --> 00:10:08.790
+So once this data goes through, right like it just
+
+NOTE Confidence: 0.8251265287399292
+
+00:10:08.832 --> 00:10:10.737
+goes and then checks, hey, it ran this one leg
+
+NOTE Confidence: 0.8251265287399292
+
+00:10:10.778 --> 00:10:11.400
+path structure.
+
+NOTE Confidence: 0.8372159004211426
+
+00:10:11.400 --> 00:10:14.314
+So it just make sure that the data went into
+
+NOTE Confidence: 0.8372159004211426
+
+00:10:14.381 --> 00:10:15.639
+the fabric one leg.
+
+NOTE Confidence: 0.8233948945999146
+
+00:10:16.040 --> 00:10:18.349
+So once this is done, we are just verifying that
+
+NOTE Confidence: 0.8233948945999146
+
+00:10:18.397 --> 00:10:19.599
+hey, the data does exist.
+
+NOTE Confidence: 0.915073812007904
+
+00:10:19.600 --> 00:10:21.962
+So after the data is transported, we just want to
+
+NOTE Confidence: 0.915073812007904
+
+00:10:22.010 --> 00:10:23.119
+make sure go to fabric.
+
+NOTE Confidence: 0.8750407695770264
+
+00:10:23.120 --> 00:10:25.736
+So this is where the fabric MCP server is being
+
+NOTE Confidence: 0.8750407695770264
+
+00:10:25.792 --> 00:10:27.240
+used to go out and verify.
+
+NOTE Confidence: 0.878829836845398
+
+00:10:27.240 --> 00:10:30.600
+Hey, did this data land in the fabric one leg?
+
+NOTE Confidence: 0.8830341100692749
+
+00:10:30.960 --> 00:10:33.054
+So it just goes and then again checks all these
+
+NOTE Confidence: 0.8830341100692749
+
+00:10:33.099 --> 00:10:35.640
+things are happening through the MCP server connectivity.
+
+NOTE Confidence: 0.8702019453048706
+
+00:10:36.640 --> 00:10:39.271
+So once this is done, the final step as part
+
+NOTE Confidence: 0.8702019453048706
+
+00:10:39.331 --> 00:10:41.843
+of this demo is to show, hey, you have the
+
+NOTE Confidence: 0.8702019453048706
+
+00:10:41.902 --> 00:10:42.800
+data in Fabric.
+
+NOTE Confidence: 0.7712182998657227
+
+00:10:43.160 --> 00:10:46.937
+Can you go and then create in a Fabric notebook
+
+NOTE Confidence: 0.7712182998657227
+
+00:10:47.017 --> 00:10:51.036
+with the ML files and then Spark delta files being
+
+NOTE Confidence: 0.7712182998657227
+
+00:10:51.117 --> 00:10:51.759
+created.
+
+NOTE Confidence: 0.88869708776474
+
+00:10:51.960 --> 00:10:54.406
+So this is where you can take this to the
+
+NOTE Confidence: 0.88869708776474
+
+00:10:54.465 --> 00:10:57.150
+next step of being able to not just run your,
+
+NOTE Confidence: 0.88869708776474
+
+00:10:57.210 --> 00:10:59.955
+you know, queries to get the data, but also be
+
+NOTE Confidence: 0.88869708776474
+
+00:11:00.014 --> 00:11:02.640
+able to use it for your analytics workloads.
+
+NOTE Confidence: 0.8748850226402283
+
+00:11:02.840 --> 00:11:04.936
+So with this, I would like to pass it to
+
+NOTE Confidence: 0.8748850226402283
+
+00:11:04.988 --> 00:11:07.608
+Raji to go and then walk through this second demo,
+
+NOTE Confidence: 0.8748850226402283
+
+00:11:07.661 --> 00:11:10.072
+which will show you what you could do with the
+
+NOTE Confidence: 0.8748850226402283
+
+00:11:10.124 --> 00:11:12.639
+data, the power of data that you have in Fabric.
+
+NOTE Confidence: 0.726576566696167
+
+00:11:16.240 --> 00:11:16.880
+Thanks, Partha.
+
+NOTE Confidence: 0.30574163794517517
+
+00:11:17.200 --> 00:11:18.040
+I'm Raju, Lakshmila.
+
+NOTE Confidence: 0.8089755177497864
+
+00:11:18.040 --> 00:11:19.200
+Joshila, Hi everyone.
+
+NOTE Confidence: 0.8415347933769226
+
+00:11:19.200 --> 00:11:19.760
+I'm part of.
+
+NOTE Confidence: 0.6810953617095947
+
+00:11:19.760 --> 00:11:20.880
+Oracle AI Database at.
+
+NOTE Confidence: 0.8548156023025513
+
+00:11:20.880 --> 00:11:23.440
+Azure Microsoft team so so.
+
+NOTE Confidence: 0.9701641201972961
+
+00:11:23.440 --> 00:11:24.120
+Far just a quick.
+
+NOTE Confidence: 0.8479598760604858
+
+00:11:24.120 --> 00:11:25.960
+Refresher on what you have seen with the help of.
+
+NOTE Confidence: 0.856216311454773
+
+00:11:25.960 --> 00:11:28.120
+Fartha, we were able to look at how.
+
+NOTE Confidence: 0.9370195865631104
+
+00:11:28.120 --> 00:11:30.840
+If you have an autonomous database.
+
+NOTE Confidence: 0.9690625667572021
+
+00:11:31.000 --> 00:11:31.880
+With the help of.
+
+NOTE Confidence: 0.9076999425888062
+
+00:11:31.920 --> 00:11:34.440
+Oracle MCP Server and the tools that it brings in.
+
+NOTE Confidence: 0.8927345871925354
+
+00:11:34.440 --> 00:11:37.264
+You are able to draw insights directly on your data
+
+NOTE Confidence: 0.8927345871925354
+
+00:11:37.319 --> 00:11:38.759
+with a few prompts, right?
+
+NOTE Confidence: 0.9081128835678101
+
+00:11:38.840 --> 00:11:42.080
+So along with Autonomous database, Oracle.
+
+NOTE Confidence: 0.8803919553756714
+
+00:11:42.360 --> 00:11:44.840
+AI database at Azure provides a whole.
+
+NOTE Confidence: 0.8853994607925415
+
+00:11:44.840 --> 00:11:48.954
+Spectrum of offerings ranging from Base DB, Exadata and Exascale
+
+NOTE Confidence: 0.8853994607925415
+
+00:11:49.019 --> 00:11:52.940
+to offer enterprise customers the choice of choosing the best
+
+NOTE Confidence: 0.8853994607925415
+
+00:11:53.005 --> 00:11:56.669
+solution that helps them to run their Oracle workloads on
+
+NOTE Confidence: 0.8853994607925415
+
+00:11:56.734 --> 00:11:57.119
+Azure.
+
+NOTE Confidence: 0.8970502614974976
+
+00:11:58.840 --> 00:11:59.760
+So if you look at.
+
+NOTE Confidence: 0.8680092096328735
+
+00:12:00.320 --> 00:12:02.640
+The screen so the navigation on the Azure.
+
+NOTE Confidence: 0.8898870944976807
+
+00:12:02.640 --> 00:12:05.640
+Portal takes you to the Oracle AI database at Azure.
+
+NOTE Confidence: 0.9589481353759766
+
+00:12:05.880 --> 00:12:08.160
+Page and you have all the different offerings that are.
+
+NOTE Confidence: 0.9479489326477051
+
+00:12:08.160 --> 00:12:10.200
+Available as of today for you to try out.
+
+NOTE Confidence: 0.9105514883995056
+
+00:12:10.760 --> 00:12:14.243
+And using OCI Golden Gate as Partha mentioned, you can
+
+NOTE Confidence: 0.9105514883995056
+
+00:12:14.307 --> 00:12:17.919
+replicate relevant Oracle data into Fabric in real time.
+
+NOTE Confidence: 0.939979612827301
+
+00:12:18.679 --> 00:12:22.270
+And Fabric itself has another option of mirroring your Oracle
+
+NOTE Confidence: 0.939979612827301
+
+00:12:22.329 --> 00:12:24.919
+data natively into Fabric in near real time.
+
+NOTE Confidence: 0.9382240176200867
+
+00:12:24.920 --> 00:12:28.039
+So you can choose between either OCI, Golden Gate or
+
+NOTE Confidence: 0.9382240176200867
+
+00:12:28.099 --> 00:12:32.539
+Fabric Mirroring, whichever option chooses your requirements best to mimic
+
+NOTE Confidence: 0.9382240176200867
+
+00:12:32.599 --> 00:12:34.879
+or bring your Oracle data into Fabric.
+
+NOTE Confidence: 0.9088708162307739
+
+00:12:35.440 --> 00:12:37.320
+So let's pause on this screen for a bit.
+
+NOTE Confidence: 0.90251624584198
+
+00:12:37.800 --> 00:12:38.560
+So we're looking at.
+
+NOTE Confidence: 0.9045027494430542
+
+00:12:38.680 --> 00:12:39.800
+The data estate of.
+
+NOTE Confidence: 0.8409797549247742
+
+00:12:39.840 --> 00:12:43.427
+Java Media it's a fictitious company which has a mirrored
+
+NOTE Confidence: 0.8409797549247742
+
+00:12:43.490 --> 00:12:47.582
+database which contains Oracle data mirrored into Fabric and they
+
+NOTE Confidence: 0.8409797549247742
+
+00:12:47.645 --> 00:12:47.960
+also.
+
+NOTE Confidence: 0.8641229271888733
+
+00:12:47.960 --> 00:12:49.480
+Have a SQL database.
+
+NOTE Confidence: 0.8512338995933533
+
+00:12:49.520 --> 00:12:51.000
+In which they are maintaining some of their.
+
+NOTE Confidence: 0.8077133893966675
+
+00:12:51.000 --> 00:12:52.240
+Structural data estate.
+
+NOTE Confidence: 0.9026098251342773
+
+00:12:53.040 --> 00:12:54.360
+So using shortcuts from.
+
+NOTE Confidence: 0.9698151350021362
+
+00:12:54.360 --> 00:12:56.000
+Fabric they have unified.
+
+NOTE Confidence: 0.8901993036270142
+
+00:12:56.000 --> 00:12:58.000
+All of this data into a lake house.
+
+NOTE Confidence: 0.9623908996582031
+
+00:12:59.480 --> 00:13:00.920
+So let's look at the structure of the.
+
+NOTE Confidence: 0.9458730220794678
+
+00:13:00.920 --> 00:13:02.916
+Data we have in the lake house before we jump
+
+NOTE Confidence: 0.9458730220794678
+
+00:13:02.960 --> 00:13:03.360
+into the.
+
+NOTE Confidence: 0.972801923751831
+
+00:13:03.360 --> 00:13:04.680
+Developer perspective of what?
+
+NOTE Confidence: 0.9691795110702515
+
+00:13:04.680 --> 00:13:05.120
+We can do.
+
+NOTE Confidence: 0.9632071256637573
+
+00:13:05.760 --> 00:13:07.120
+So in the lake house I have.
+
+NOTE Confidence: 0.9091756939888
+
+00:13:07.120 --> 00:13:08.280
+4 master tables.
+
+NOTE Confidence: 0.9308090806007385
+
+00:13:08.280 --> 00:13:09.920
+This is my bronze layer of data.
+
+NOTE Confidence: 0.9712270498275757
+
+00:13:09.920 --> 00:13:10.240
+Which is.
+
+NOTE Confidence: 0.9208198189735413
+
+00:13:10.240 --> 00:13:11.480
+All raw at this point.
+
+NOTE Confidence: 0.9313551783561707
+
+00:13:11.559 --> 00:13:14.255
+Some of this is brought from Oracle, some of it
+
+NOTE Confidence: 0.9313551783561707
+
+00:13:14.313 --> 00:13:14.599
+from.
+
+NOTE Confidence: 0.845255434513092
+
+00:13:14.600 --> 00:13:16.560
+SQL database so this.
+
+NOTE Confidence: 0.9343669414520264
+
+00:13:16.560 --> 00:13:17.160
+Contains.
+
+NOTE Confidence: 0.8876256346702576
+
+00:13:17.160 --> 00:13:18.760
+Viewership data of various.
+
+NOTE Confidence: 0.9154899716377258
+
+00:13:18.760 --> 00:13:22.191
+Programs that are run by this channel and across regions
+
+NOTE Confidence: 0.9154899716377258
+
+00:13:22.253 --> 00:13:25.439
+how are how is the viewership and general sentiment.
+
+NOTE Confidence: 0.9571832418441772
+
+00:13:26.480 --> 00:13:27.400
+So now let's look.
+
+NOTE Confidence: 0.9558553695678711
+
+00:13:27.400 --> 00:13:28.960
+At as a developer the 1st.
+
+NOTE Confidence: 0.9764207005500793
+
+00:13:28.960 --> 00:13:29.600
+Thing you want to.
+
+NOTE Confidence: 0.971398651599884
+
+00:13:29.600 --> 00:13:31.560
+Do is use?
+
+NOTE Confidence: 0.9349569082260132
+
+00:13:31.559 --> 00:13:35.735
+The Microsoft Fabric MCP Server extension which comes through VS
+
+NOTE Confidence: 0.9349569082260132
+
+00:13:35.800 --> 00:13:38.279
+Code and once you install it you have.
+
+NOTE Confidence: 0.9686065316200256
+
+00:13:38.280 --> 00:13:39.040
+A list of tools.
+
+NOTE Confidence: 0.9664849638938904
+
+00:13:39.040 --> 00:13:40.040
+That are made available.
+
+NOTE Confidence: 0.9803545475006104
+
+00:13:40.040 --> 00:13:40.360
+To you.
+
+NOTE Confidence: 0.9644120931625366
+
+00:13:41.000 --> 00:13:42.760
+As a developer, so instead of writing all.
+
+NOTE Confidence: 0.7330007553100586
+
+00:13:42.760 --> 00:13:43.600
+Of this explicitly.
+
+NOTE Confidence: 0.9448497891426086
+
+00:13:43.600 --> 00:13:44.560
+You can right away.
+
+NOTE Confidence: 0.9683735966682434
+
+00:13:44.560 --> 00:13:45.160
+Use these.
+
+NOTE Confidence: 0.947885274887085
+
+00:13:45.160 --> 00:13:48.089
+Tools once you install this VS Code extension as you
+
+NOTE Confidence: 0.947885274887085
+
+00:13:48.145 --> 00:13:49.159
+see on the screen.
+
+NOTE Confidence: 0.8862559795379639
+
+00:13:49.160 --> 00:13:52.940
+I have my Fabric MCP server extension installed along with
+
+NOTE Confidence: 0.8862559795379639
+
+00:13:53.005 --> 00:13:56.720
+Oracle's MCP server extension which I've used previously.
+
+NOTE Confidence: 0.6553729176521301
+
+00:13:57.440 --> 00:13:57.840
+So.
+
+NOTE Confidence: 0.9545968770980835
+
+00:13:58.120 --> 00:14:00.080
+The first thing I want to understand is what are.
+
+NOTE Confidence: 0.9012250900268555
+
+00:14:00.080 --> 00:14:02.760
+All the workspaces I have access to as a developer.
+
+NOTE Confidence: 0.9588302969932556
+
+00:14:03.080 --> 00:14:05.000
+So with just a simple prompt I would.
+
+NOTE Confidence: 0.9447135925292969
+
+00:14:05.000 --> 00:14:05.880
+Ask it to list.
+
+NOTE Confidence: 0.9359079003334045
+
+00:14:05.880 --> 00:14:09.065
+All the workspaces from fabric that I can access using
+
+NOTE Confidence: 0.9359079003334045
+
+00:14:09.124 --> 00:14:10.599
+my credentials connected.
+
+NOTE Confidence: 0.9167851209640503
+
+00:14:10.600 --> 00:14:13.431
+To VS Code, so as you see it with the
+
+NOTE Confidence: 0.9167851209640503
+
+00:14:13.507 --> 00:14:14.119
+help of.
+
+NOTE Confidence: 0.47612637281417847
+
+00:14:14.240 --> 00:14:15.320
+GitHub copilot.
+
+NOTE Confidence: 0.8635963797569275
+
+00:14:15.560 --> 00:14:18.240
+It kind of understood there is a fabric MCP server.
+
+NOTE Confidence: 0.8644739985466003
+
+00:14:18.240 --> 00:14:19.600
+It identified the fabric MCP.
+
+NOTE Confidence: 0.6961928606033325
+
+00:14:19.600 --> 00:14:20.480
+Server's tools.
+
+NOTE Confidence: 0.9582449197769165
+
+00:14:20.480 --> 00:14:22.914
+That are relevant to the call or the prompt, and
+
+NOTE Confidence: 0.9582449197769165
+
+00:14:22.965 --> 00:14:25.400
+then it invoked the relevant tool to get me the.
+
+NOTE Confidence: 0.928638756275177
+
+00:14:25.400 --> 00:14:28.200
+Details of various workspaces I have access to.
+
+NOTE Confidence: 0.8476370573043823
+
+00:14:28.920 --> 00:14:30.920
+So as you're noticing, I have a bunch of.
+
+NOTE Confidence: 0.9436174035072327
+
+00:14:31.160 --> 00:14:32.680
+Workspaces I have access to.
+
+NOTE Confidence: 0.8916743993759155
+
+00:14:33.000 --> 00:14:35.360
+And I'm more interested in the Java media.
+
+NOTE Confidence: 0.9249507188796997
+
+00:14:35.360 --> 00:14:36.680
+Workspace which we just.
+
+NOTE Confidence: 0.9592710137367249
+
+00:14:36.680 --> 00:14:37.480
+Saw a minute ago.
+
+NOTE Confidence: 0.9041834473609924
+
+00:14:38.480 --> 00:14:41.296
+So let the prompt complete and once that is done
+
+NOTE Confidence: 0.9041834473609924
+
+00:14:41.355 --> 00:14:43.526
+the next step I want to do is also to
+
+NOTE Confidence: 0.9041834473609924
+
+00:14:43.585 --> 00:14:47.165
+understand a bit of relationships that exist between the data
+
+NOTE Confidence: 0.9041834473609924
+
+00:14:47.223 --> 00:14:48.279
+in the lake house.
+
+NOTE Confidence: 0.8064212799072266
+
+00:14:48.840 --> 00:14:51.299
+And a follow up prompt I have given is to
+
+NOTE Confidence: 0.8064212799072266
+
+00:14:51.359 --> 00:14:54.779
+help me understand about the data estate in the workspace
+
+NOTE Confidence: 0.8064212799072266
+
+00:14:54.839 --> 00:14:55.919
+called Java Media.
+
+NOTE Confidence: 0.9231451749801636
+
+00:14:56.240 --> 00:14:58.800
+So again with the help of Fabric MCP server.
+
+NOTE Confidence: 0.9039406776428223
+
+00:14:58.960 --> 00:15:00.560
+The required tools are.
+
+NOTE Confidence: 0.9405068755149841
+
+00:15:00.720 --> 00:15:04.237
+Identified and they are invoked to bring me these details
+
+NOTE Confidence: 0.9405068755149841
+
+00:15:04.299 --> 00:15:05.040
+of the data.
+
+NOTE Confidence: 0.9575003981590271
+
+00:15:05.400 --> 00:15:07.080
+So ideally it should be listing all.
+
+NOTE Confidence: 0.9636082053184509
+
+00:15:07.080 --> 00:15:07.840
+The four tables.
+
+NOTE Confidence: 0.946754515171051
+
+00:15:07.840 --> 00:15:09.681
+That we just saw in the lake house in the
+
+NOTE Confidence: 0.946754515171051
+
+00:15:09.726 --> 00:15:10.399
+fabric and the.
+
+NOTE Confidence: 0.6983498930931091
+
+00:15:10.400 --> 00:15:11.880
+Relationships that exist.
+
+NOTE Confidence: 0.9576087594032288
+
+00:15:12.040 --> 00:15:17.368
+Between them so you can use a model of your
+
+NOTE Confidence: 0.9576087594032288
+
+00:15:17.492 --> 00:15:18.360
+choice.
+
+NOTE Confidence: 0.7473502159118652
+
+00:15:18.360 --> 00:15:21.120
+For now I'm using an Opus model with GitHub Copilot.
+
+NOTE Confidence: 0.9308765530586243
+
+00:15:22.800 --> 00:15:23.400
+So as you see.
+
+NOTE Confidence: 0.9137935042381287
+
+00:15:23.400 --> 00:15:26.200
+It started invoking various tools from Fabric MCP server.
+
+NOTE Confidence: 0.9160969853401184
+
+00:15:26.200 --> 00:15:28.858
+Once it is completed, it renders a response back to
+
+NOTE Confidence: 0.9160969853401184
+
+00:15:28.910 --> 00:15:31.359
+me using the large language model of my choice.
+
+NOTE Confidence: 0.6420725584030151
+
+00:15:32.320 --> 00:15:32.720
+All right.
+
+NOTE Confidence: 0.9610344767570496
+
+00:15:33.120 --> 00:15:33.880
+That's good it.
+
+NOTE Confidence: 0.9241974353790283
+
+00:15:33.880 --> 00:15:36.637
+Gave me all the four tables and looks like it's
+
+NOTE Confidence: 0.9241974353790283
+
+00:15:36.696 --> 00:15:40.685
+also building me a data relationship entity relationship model which
+
+NOTE Confidence: 0.9241974353790283
+
+00:15:40.744 --> 00:15:40.920
+is.
+
+NOTE Confidence: 0.9651515483856201
+
+00:15:40.920 --> 00:15:41.760
+Cool to look at.
+
+NOTE Confidence: 0.9620645046234131
+
+00:15:42.360 --> 00:15:44.789
+Right, so I'm not spending a lot of time creating
+
+NOTE Confidence: 0.9620645046234131
+
+00:15:44.838 --> 00:15:47.218
+all of this myself or relying on someone else to
+
+NOTE Confidence: 0.9620645046234131
+
+00:15:47.267 --> 00:15:48.159
+build this for me.
+
+NOTE Confidence: 0.9478549957275391
+
+00:15:50.080 --> 00:15:52.281
+So I can also now understand easily as a developer,
+
+NOTE Confidence: 0.9478549957275391
+
+00:15:52.324 --> 00:15:55.172
+what are the relationships that exist between various tables, What
+
+NOTE Confidence: 0.9478549957275391
+
+00:15:55.215 --> 00:15:57.416
+are the primary keys, what are the foreign keys and
+
+NOTE Confidence: 0.9478549957275391
+
+00:15:57.460 --> 00:15:58.280
+so on and so forth.
+
+NOTE Confidence: 0.929842472076416
+
+00:15:59.080 --> 00:16:01.420
+So let me wear the hat of a data engineer
+
+NOTE Confidence: 0.929842472076416
+
+00:16:01.477 --> 00:16:04.103
+at this point and try to bring my bronze layer
+
+NOTE Confidence: 0.929842472076416
+
+00:16:04.161 --> 00:16:05.359
+data into gold layer.
+
+NOTE Confidence: 0.9265341758728027
+
+00:16:06.120 --> 00:16:09.322
+So I'm trying to build a data pipeline using Fabric
+
+NOTE Confidence: 0.9265341758728027
+
+00:16:09.384 --> 00:16:11.079
+MCP server and Fabric APIs.
+
+NOTE Confidence: 0.9530320167541504
+
+00:16:11.080 --> 00:16:12.240
+So this is your day-to-day?
+
+NOTE Confidence: 0.9168768525123596
+
+00:16:12.240 --> 00:16:13.720
+Job as a data engineer to.
+
+NOTE Confidence: 0.8931983709335327
+
+00:16:13.720 --> 00:16:14.640
+Build these ETL.
+
+NOTE Confidence: 0.8928025960922241
+
+00:16:14.640 --> 00:16:18.080
+Pipelines and maintain these ETL pipelines right?
+
+NOTE Confidence: 0.9630669355392456
+
+00:16:18.360 --> 00:16:21.135
+So at this point I'm not even writing any piece
+
+NOTE Confidence: 0.9630669355392456
+
+00:16:21.194 --> 00:16:22.080
+of code myself.
+
+NOTE Confidence: 0.9607904553413391
+
+00:16:22.080 --> 00:16:23.960
+All it has done at this point is.
+
+NOTE Confidence: 0.6006442308425903
+
+00:16:24.240 --> 00:16:25.920
+Created 5 to do.
+
+NOTE Confidence: 0.8576369881629944
+
+00:16:25.920 --> 00:16:27.200
+'S as you see on the screen.
+
+NOTE Confidence: 0.9137745499610901
+
+00:16:27.240 --> 00:16:31.454
+It started first by understanding my fabric configuration and the
+
+NOTE Confidence: 0.9137745499610901
+
+00:16:31.519 --> 00:16:34.632
+second step it has done is created a notebook to
+
+NOTE Confidence: 0.9137745499610901
+
+00:16:34.697 --> 00:16:37.680
+bring my bronze layer of data into gold layer.
+
+NOTE Confidence: 0.897823691368103
+
+00:16:38.080 --> 00:16:40.672
+For the purpose of demo, I'm directly bringing my data
+
+NOTE Confidence: 0.897823691368103
+
+00:16:40.720 --> 00:16:41.680
+from bronze to gold.
+
+NOTE Confidence: 0.9410291910171509
+
+00:16:42.040 --> 00:16:44.865
+Ideally you can also make it sequential, bringing the data
+
+NOTE Confidence: 0.9410291910171509
+
+00:16:44.913 --> 00:16:47.397
+first from bronze layer to silver and then to gold,
+
+NOTE Confidence: 0.9410291910171509
+
+00:16:47.446 --> 00:16:49.200
+and the second notebook it has also.
+
+NOTE Confidence: 0.9643474817276001
+
+00:16:49.200 --> 00:16:49.680
+Created.
+
+NOTE Confidence: 0.9483582377433777
+
+00:16:49.680 --> 00:16:50.960
+Is validating that this?
+
+NOTE Confidence: 0.8901963829994202
+
+00:16:50.960 --> 00:16:51.960
+Gold data that I have.
+
+NOTE Confidence: 0.9320917129516602
+
+00:16:51.960 --> 00:16:53.960
+Created is written back into the lake.
+
+NOTE Confidence: 0.9624983668327332
+
+00:16:53.960 --> 00:16:54.880
+House that we already.
+
+NOTE Confidence: 0.8629016876220703
+
+00:16:54.880 --> 00:16:57.837
+Have and the last step it is also done is
+
+NOTE Confidence: 0.8629016876220703
+
+00:16:57.909 --> 00:16:58.919
+deploying all.
+
+NOTE Confidence: 0.9253280758857727
+
+00:16:58.920 --> 00:17:01.080
+Of this code that is first locally.
+
+NOTE Confidence: 0.9408676028251648
+
+00:17:01.080 --> 00:17:04.719
+Created in the VS Code into Fabric as a notebook
+
+NOTE Confidence: 0.9408676028251648
+
+00:17:04.795 --> 00:17:06.159
+and let's see how.
+
+NOTE Confidence: 0.9730832576751709
+
+00:17:06.160 --> 00:17:06.960
+All of this looks.
+
+NOTE Confidence: 0.9605299830436707
+
+00:17:06.960 --> 00:17:09.800
+Together in the Fabric workspace once completed.
+
+NOTE Confidence: 0.9114695191383362
+
+00:17:10.520 --> 00:17:11.960
+So from VS Code we see.
+
+NOTE Confidence: 0.8974131345748901
+
+00:17:11.960 --> 00:17:13.440
+That all of this is successfully.
+
+NOTE Confidence: 0.9414065480232239
+
+00:17:13.440 --> 00:17:15.890
+Done as an indication for us to now switch to
+
+NOTE Confidence: 0.9414065480232239
+
+00:17:15.944 --> 00:17:18.721
+the fabric portal and look at the workspace and the
+
+NOTE Confidence: 0.9414065480232239
+
+00:17:18.775 --> 00:17:19.320
+artifacts.
+
+NOTE Confidence: 0.838470995426178
+
+00:17:22.800 --> 00:17:23.120
+So nice.
+
+NOTE Confidence: 0.9334275722503662
+
+00:17:23.119 --> 00:17:26.086
+It has also given me a good pipeline view of
+
+NOTE Confidence: 0.9334275722503662
+
+00:17:26.154 --> 00:17:29.390
+what has been done from bronze to gold layer and
+
+NOTE Confidence: 0.9334275722503662
+
+00:17:29.458 --> 00:17:30.199
+as you see.
+
+NOTE Confidence: 0.9350447058677673
+
+00:17:30.200 --> 00:17:31.160
+Let's pause here for a.
+
+NOTE Confidence: 0.9687250852584839
+
+00:17:31.160 --> 00:17:33.560
+2nd if you look at the screen you could see.
+
+NOTE Confidence: 0.9382774829864502
+
+00:17:33.560 --> 00:17:34.640
+2 artifacts.
+
+NOTE Confidence: 0.9427299499511719
+
+00:17:34.640 --> 00:17:35.880
+On the top 2.
+
+NOTE Confidence: 0.8633098006248474
+
+00:17:36.040 --> 00:17:37.200
+Notebooks that are created.
+
+NOTE Confidence: 0.9168447256088257
+
+00:17:37.200 --> 00:17:39.640
+One for gold viewership and the other one for validation.
+
+NOTE Confidence: 0.9384997487068176
+
+00:17:40.760 --> 00:17:41.680
+So the first notebook.
+
+NOTE Confidence: 0.9725450277328491
+
+00:17:41.680 --> 00:17:42.640
+Let's go and make.
+
+NOTE Confidence: 0.7172775268554688
+
+00:17:42.640 --> 00:17:43.800
+Sure, the pispark code.
+
+NOTE Confidence: 0.93876051902771
+
+00:17:43.800 --> 00:17:47.081
+That we initially created locally is all migrated correctly as
+
+NOTE Confidence: 0.93876051902771
+
+00:17:47.134 --> 00:17:49.040
+in the form of a notebook on Fabric.
+
+NOTE Confidence: 0.9393980503082275
+
+00:17:49.880 --> 00:17:52.444
+So at any point as a developer, you're free to
+
+NOTE Confidence: 0.9393980503082275
+
+00:17:52.500 --> 00:17:53.559
+update any of this.
+
+NOTE Confidence: 0.9466954469680786
+
+00:17:53.720 --> 00:17:55.000
+All we are getting.
+
+NOTE Confidence: 0.9568122029304504
+
+00:17:55.160 --> 00:17:55.840
+Is a head.
+
+NOTE Confidence: 0.9344290494918823
+
+00:17:55.840 --> 00:17:58.860
+Start to not create all of this from scratch but
+
+NOTE Confidence: 0.9344290494918823
+
+00:17:58.923 --> 00:18:01.000
+use Fabric MCP server and Fabric.
+
+NOTE Confidence: 0.6879836320877075
+
+00:18:01.000 --> 00:18:02.080
+APIs together.
+
+NOTE Confidence: 0.8232550621032715
+
+00:18:02.359 --> 00:18:05.324
+To kind of build a scaffolding for us to, you
+
+NOTE Confidence: 0.8232550621032715
+
+00:18:05.390 --> 00:18:05.719
+know.
+
+NOTE Confidence: 0.9116455912590027
+
+00:18:05.880 --> 00:18:07.560
+Save a lot of hours as a developer.
+
+NOTE Confidence: 0.956352174282074
+
+00:18:08.200 --> 00:18:09.880
+The last step we want to validate.
+
+NOTE Confidence: 0.7509474754333496
+
+00:18:09.880 --> 00:18:10.760
+Is also the Pi.
+
+NOTE Confidence: 0.8426027894020081
+
+00:18:10.880 --> 00:18:12.040
+Pipelines in general.
+
+NOTE Confidence: 0.9475001692771912
+
+00:18:12.040 --> 00:18:12.600
+Right, so we have.
+
+NOTE Confidence: 0.898992121219635
+
+00:18:12.600 --> 00:18:13.640
+Created 2 notebooks.
+
+NOTE Confidence: 0.8929660320281982
+
+00:18:13.640 --> 00:18:16.000
+We have tried to stitch them together into a data.
+
+NOTE Confidence: 0.932865560054779
+
+00:18:16.000 --> 00:18:19.400
+Pipeline looks like it has successfully migrated that into Fabric
+
+NOTE Confidence: 0.932865560054779
+
+00:18:19.452 --> 00:18:21.440
+data pipeline and let's make sure the.
+
+NOTE Confidence: 0.9654572606086731
+
+00:18:21.440 --> 00:18:22.600
+Run was also successful.
+
+NOTE Confidence: 0.9496497511863708
+
+00:18:22.800 --> 00:18:25.147
+As you see on the screen, it has succeeded in
+
+NOTE Confidence: 0.9496497511863708
+
+00:18:25.199 --> 00:18:28.172
+the previous run to run this pipeline, bringing my bronze
+
+NOTE Confidence: 0.9496497511863708
+
+00:18:28.224 --> 00:18:29.319
+data into gold layer.
+
+NOTE Confidence: 0.9663752317428589
+
+00:18:29.960 --> 00:18:30.560
+So if I look.
+
+NOTE Confidence: 0.9185689687728882
+
+00:18:30.560 --> 00:18:33.493
+At the runs in more detail, it also shows how
+
+NOTE Confidence: 0.9185689687728882
+
+00:18:33.558 --> 00:18:36.557
+much of time each of the notebook has taken to
+
+NOTE Confidence: 0.9185689687728882
+
+00:18:36.622 --> 00:18:39.359
+complete and these are all great insights.
+
+NOTE Confidence: 0.8590711355209351
+
+00:18:39.360 --> 00:18:41.880
+For a developer to build all of this day-to-day.
+
+NOTE Confidence: 0.8966939449310303
+
+00:18:42.200 --> 00:18:44.200
+And the last check we will also make is.
+
+NOTE Confidence: 0.8215465545654297
+
+00:18:44.520 --> 00:18:45.800
+Whether if the data?
+
+NOTE Confidence: 0.8469113111495972
+
+00:18:45.800 --> 00:18:47.967
+Created in the gold layer is returned back into the
+
+NOTE Confidence: 0.8469113111495972
+
+00:18:48.010 --> 00:18:49.200
+lake house we initially had.
+
+NOTE Confidence: 0.9748993515968323
+
+00:18:49.280 --> 00:18:51.662
+As you see, we now have 5 tables when we
+
+NOTE Confidence: 0.9748993515968323
+
+00:18:51.722 --> 00:18:52.080
+first.
+
+NOTE Confidence: 0.9720162153244019
+
+00:18:52.080 --> 00:18:52.400
+Started.
+
+NOTE Confidence: 0.9456801414489746
+
+00:18:52.400 --> 00:18:53.160
+We had four raw.
+
+NOTE Confidence: 0.9529724717140198
+
+00:18:53.160 --> 00:18:53.560
+Tables.
+
+NOTE Confidence: 0.9452147483825684
+
+00:18:53.560 --> 00:18:55.636
+Now the 5th table has been added which is my
+
+NOTE Confidence: 0.9452147483825684
+
+00:18:55.683 --> 00:18:55.919
+gold.
+
+NOTE Confidence: 0.919904887676239
+
+00:18:55.920 --> 00:18:57.200
+Layer of the raw data.
+
+NOTE Confidence: 0.9417378306388855
+
+00:18:57.200 --> 00:18:58.720
+That I had on the viewership.
+
+NOTE Confidence: 0.9566397666931152
+
+00:18:59.640 --> 00:19:00.360
+This is all great.
+
+NOTE Confidence: 0.9720219969749451
+
+00:19:00.360 --> 00:19:01.440
+Now let me switch.
+
+NOTE Confidence: 0.7995277047157288
+
+00:19:01.800 --> 00:19:03.680
+And we're the heart of an ML engineer.
+
+NOTE Confidence: 0.970219612121582
+
+00:19:03.680 --> 00:19:04.000
+Who?
+
+NOTE Confidence: 0.7612568140029907
+
+00:19:04.120 --> 00:19:05.280
+Usually gets this gold.
+
+NOTE Confidence: 0.8653453588485718
+
+00:19:05.280 --> 00:19:08.440
+Data and tries to build any models, so I'm trying.
+
+NOTE Confidence: 0.8915959596633911
+
+00:19:08.440 --> 00:19:09.560
+To build a viewership.
+
+NOTE Confidence: 0.9197820425033569
+
+00:19:09.560 --> 00:19:12.799
+Prediction model for Java media, So with just a single
+
+NOTE Confidence: 0.9197820425033569
+
+00:19:12.859 --> 00:19:13.279
+prompt.
+
+NOTE Confidence: 0.7716856598854065
+
+00:19:13.800 --> 00:19:14.720
+Let's let's pause here.
+
+NOTE Confidence: 0.9679743647575378
+
+00:19:14.720 --> 00:19:15.320
+For a second.
+
+NOTE Confidence: 0.9449601173400879
+
+00:19:16.920 --> 00:19:19.437
+So what I'm trying to do is create an ML
+
+NOTE Confidence: 0.9449601173400879
+
+00:19:19.500 --> 00:19:22.080
+experiment using profit model to kind of.
+
+NOTE Confidence: 0.9556829333305359
+
+00:19:22.080 --> 00:19:24.640
+Build a forecast on the viewership for various.
+
+NOTE Confidence: 0.9221476912498474
+
+00:19:24.640 --> 00:19:27.399
+Channel programs that I have so one it takes a
+
+NOTE Confidence: 0.9221476912498474
+
+00:19:27.459 --> 00:19:28.719
+while for completion.
+
+NOTE Confidence: 0.9552754759788513
+
+00:19:28.720 --> 00:19:30.400
+So once it is complete.
+
+NOTE Confidence: 0.9489601254463196
+
+00:19:31.080 --> 00:19:32.560
+It creates a few artifacts.
+
+NOTE Confidence: 0.968916654586792
+
+00:19:32.560 --> 00:19:34.320
+Let's look at how they look.
+
+NOTE Confidence: 0.9741560220718384
+
+00:19:39.120 --> 00:19:39.720
+Yeah, you see.
+
+NOTE Confidence: 0.8915024995803833
+
+00:19:39.720 --> 00:19:41.760
+It has successfully completed and it has made.
+
+NOTE Confidence: 0.8443842530250549
+
+00:19:41.760 --> 00:19:42.760
+Sure it has accessed.
+
+NOTE Confidence: 0.8979538679122925
+
+00:19:42.760 --> 00:19:45.897
+The data from our gold layer built a notebook to
+
+NOTE Confidence: 0.8979538679122925
+
+00:19:45.962 --> 00:19:49.688
+create and run the ML experiment and the expectation here
+
+NOTE Confidence: 0.8979538679122925
+
+00:19:49.754 --> 00:19:53.479
+is this ML experiment should now be migrated into Fabric.
+
+NOTE Confidence: 0.9642630815505981
+
+00:19:53.480 --> 00:19:54.520
+Workspace with the help of.
+
+NOTE Confidence: 0.9019225239753723
+
+00:19:54.520 --> 00:19:56.720
+Fabric MCP Server tools and Fabric.
+
+NOTE Confidence: 0.5511070489883423
+
+00:19:56.720 --> 00:19:58.120
+REST API successfully.
+
+NOTE Confidence: 0.9342188239097595
+
+00:19:58.640 --> 00:20:00.840
+So all looks good on my VS Code.
+
+NOTE Confidence: 0.6199548840522766
+
+00:20:00.840 --> 00:20:01.560
+With help of GitHub.
+
+NOTE Confidence: 0.789635956287384
+
+00:20:01.560 --> 00:20:03.240
+Copilot, let's go and validate it.
+
+NOTE Confidence: 0.8273717164993286
+
+00:20:03.600 --> 00:20:05.360
+So first thing on the workspace you notice.
+
+NOTE Confidence: 0.9256279468536377
+
+00:20:05.360 --> 00:20:06.200
+Is it has created?
+
+NOTE Confidence: 0.9603219032287598
+
+00:20:06.200 --> 00:20:10.049
+This ML experiment and it has followed the instructions to
+
+NOTE Confidence: 0.9603219032287598
+
+00:20:10.116 --> 00:20:12.240
+run this differently by channel.
+
+NOTE Confidence: 0.8935046195983887
+
+00:20:12.240 --> 00:20:15.564
+So you see four different runs and various ML metrics
+
+NOTE Confidence: 0.8935046195983887
+
+00:20:15.626 --> 00:20:18.637
+that you would be interested in to look at which
+
+NOTE Confidence: 0.8935046195983887
+
+00:20:18.700 --> 00:20:22.400
+and which metrics are more, you know, significant and which
+
+NOTE Confidence: 0.8935046195983887
+
+00:20:22.463 --> 00:20:22.839
+model.
+
+NOTE Confidence: 0.9487861394882202
+
+00:20:22.840 --> 00:20:23.520
+Should I switch to?
+
+NOTE Confidence: 0.9088680148124695
+
+00:20:23.560 --> 00:20:25.640
+Profit seems to be good, so I'm good.
+
+NOTE Confidence: 0.9661169648170471
+
+00:20:25.640 --> 00:20:26.760
+With the results.
+
+NOTE Confidence: 0.8744015693664551
+
+00:20:26.760 --> 00:20:27.960
+Now I'll also validate.
+
+NOTE Confidence: 0.9423743486404419
+
+00:20:27.960 --> 00:20:28.720
+If the results are.
+
+NOTE Confidence: 0.9067882299423218
+
+00:20:28.720 --> 00:20:30.720
+Written back into my lake house in the form.
+
+NOTE Confidence: 0.9129102826118469
+
+00:20:30.720 --> 00:20:31.480
+Of a forecast.
+
+NOTE Confidence: 0.9218212962150574
+
+00:20:31.480 --> 00:20:32.120
+Delta table.
+
+NOTE Confidence: 0.9585896730422974
+
+00:20:32.680 --> 00:20:34.200
+So you see now a new table is.
+
+NOTE Confidence: 0.8686869740486145
+
+00:20:34.200 --> 00:20:36.640
+Added to Our Lake House as a forecast viewership.
+
+NOTE Confidence: 0.9234029650688171
+
+00:20:36.880 --> 00:20:38.780
+This is a new delta table that came out of
+
+NOTE Confidence: 0.9234029650688171
+
+00:20:38.825 --> 00:20:39.640
+our ML experiment.
+
+NOTE Confidence: 0.9067109823226929
+
+00:20:40.040 --> 00:20:42.570
+As an ML engineer, you're spending a lot of days
+
+NOTE Confidence: 0.9067109823226929
+
+00:20:42.623 --> 00:20:45.365
+and weeks to build all of these experiments and with
+
+NOTE Confidence: 0.9067109823226929
+
+00:20:45.418 --> 00:20:48.001
+the help of Fabric MCP Server, as you've seen now
+
+NOTE Confidence: 0.9067109823226929
+
+00:20:48.054 --> 00:20:50.479
+with the tools that it brings in and with the.
+
+NOTE Confidence: 0.8407189846038818
+
+00:20:50.480 --> 00:20:52.415
+Help of Fabric REST APIs you are able to do
+
+NOTE Confidence: 0.8407189846038818
+
+00:20:52.460 --> 00:20:53.000
+all of this.
+
+NOTE Confidence: 0.863061249256134
+
+00:20:53.240 --> 00:20:55.880
+With just a few prompts in in a few hours.
+
+NOTE Confidence: 0.9586443305015564
+
+00:20:56.320 --> 00:20:57.360
+So this is the power.
+
+NOTE Confidence: 0.8884064555168152
+
+00:20:57.440 --> 00:20:58.400
+That we are bringing very.
+
+NOTE Confidence: 0.9527616500854492
+
+00:20:58.400 --> 00:20:59.640
+Closer to the developers.
+
+NOTE Confidence: 0.9152893424034119
+
+00:20:59.640 --> 00:21:01.908
+And the last step we also want to make sure
+
+NOTE Confidence: 0.9152893424034119
+
+00:21:01.961 --> 00:21:02.120
+is.
+
+NOTE Confidence: 0.9341141581535339
+
+00:21:02.360 --> 00:21:03.240
+How can we add?
+
+NOTE Confidence: 0.9631367921829224
+
+00:21:03.240 --> 00:21:04.840
+Value to the business users.
+
+NOTE Confidence: 0.6725710034370422
+
+00:21:05.320 --> 00:21:06.120
+Right, so I've.
+
+NOTE Confidence: 0.9594430923461914
+
+00:21:06.280 --> 00:21:08.040
+I want to make sure all of this.
+
+NOTE Confidence: 0.9586664438247681
+
+00:21:08.040 --> 00:21:08.800
+Is great, but.
+
+NOTE Confidence: 0.9291477203369141
+
+00:21:09.200 --> 00:21:11.685
+For business users to see the real value from the
+
+NOTE Confidence: 0.9291477203369141
+
+00:21:11.736 --> 00:21:14.221
+data, I'm trying to create a semantic model and a
+
+NOTE Confidence: 0.9291477203369141
+
+00:21:14.272 --> 00:21:16.200
+data agent which helps business users.
+
+NOTE Confidence: 0.7923575639724731
+
+00:21:16.440 --> 00:21:17.400
+Converse with this.
+
+NOTE Confidence: 0.9138765335083008
+
+00:21:17.400 --> 00:21:20.343
+Data for insights in the form of a self-serve on
+
+NOTE Confidence: 0.9138765335083008
+
+00:21:20.405 --> 00:21:21.079
+data model.
+
+NOTE Confidence: 0.8534596562385559
+
+00:21:21.840 --> 00:21:24.736
+So it took the MO, it took the prompt from
+
+NOTE Confidence: 0.8534596562385559
+
+00:21:24.805 --> 00:21:27.977
+the VS Code as I expected, and it also created
+
+NOTE Confidence: 0.8534596562385559
+
+00:21:28.046 --> 00:21:31.357
+the run and completion of a semantic model and a
+
+NOTE Confidence: 0.8534596562385559
+
+00:21:31.426 --> 00:21:35.081
+data agent using a Fabric MCP server tools and Fabric
+
+NOTE Confidence: 0.8534596562385559
+
+00:21:35.150 --> 00:21:35.840
+REST APIs.
+
+NOTE Confidence: 0.9501749873161316
+
+00:21:36.440 --> 00:21:39.200
+So now let's switch to Fabric portal one last time.
+
+NOTE Confidence: 0.8766248226165771
+
+00:21:39.240 --> 00:21:41.360
+So you see the semantic model successfully created.
+
+NOTE Confidence: 0.9523895978927612
+
+00:21:41.360 --> 00:21:43.040
+Let me go ahead and auto.
+
+NOTE Confidence: 0.9205613136291504
+
+00:21:43.040 --> 00:21:45.440
+Recreate a Power BI dashboard out of.
+
+NOTE Confidence: 0.9279079437255859
+
+00:21:45.440 --> 00:21:47.040
+It and see if this all makes sense.
+
+NOTE Confidence: 0.9423501491546631
+
+00:21:48.800 --> 00:21:51.628
+It takes a few minutes to load this up based
+
+NOTE Confidence: 0.9423501491546631
+
+00:21:51.692 --> 00:21:54.199
+on the data you have, so once complete.
+
+NOTE Confidence: 0.9495325088500977
+
+00:21:54.200 --> 00:21:56.449
+You see how we are able to create a Power
+
+NOTE Confidence: 0.9495325088500977
+
+00:21:56.504 --> 00:21:58.480
+BI dashboard right away with Fabric?
+
+NOTE Confidence: 0.7633764743804932
+
+00:21:58.480 --> 00:22:01.956
+MCP server and REST APIs and a few prompts right
+
+NOTE Confidence: 0.7633764743804932
+
+00:22:02.029 --> 00:22:03.839
+from your GitHub Copilot.
+
+NOTE Confidence: 0.9530909657478333
+
+00:22:04.720 --> 00:22:06.981
+So you're free to make any tweaks to the Power
+
+NOTE Confidence: 0.9530909657478333
+
+00:22:07.030 --> 00:22:08.799
+BI dashboard or share this as it is.
+
+NOTE Confidence: 0.9696811437606812
+
+00:22:08.800 --> 00:22:09.640
+For your business.
+
+NOTE Confidence: 0.8909665942192078
+
+00:22:09.640 --> 00:22:11.905
+Users to see value of what you have built so
+
+NOTE Confidence: 0.8909665942192078
+
+00:22:11.957 --> 00:22:14.119
+far right you've created gold data you've.
+
+NOTE Confidence: 0.9122225642204285
+
+00:22:14.119 --> 00:22:17.290
+Created ML experiments and you've created a forecast model for
+
+NOTE Confidence: 0.9122225642204285
+
+00:22:17.341 --> 00:22:18.159
+your viewership.
+
+NOTE Confidence: 0.9598088264465332
+
+00:22:18.280 --> 00:22:20.957
+And this is all readable to your business users at
+
+NOTE Confidence: 0.9598088264465332
+
+00:22:21.010 --> 00:22:21.599
+this point.
+
+NOTE Confidence: 0.9479861259460449
+
+00:22:22.280 --> 00:22:24.440
+And you're not spending a lot of time creating all
+
+NOTE Confidence: 0.9479861259460449
+
+00:22:24.484 --> 00:22:26.040
+of this from scratch as a developer.
+
+NOTE Confidence: 0.9259682893753052
+
+00:22:26.520 --> 00:22:28.320
+And let's look at the data agent we have built.
+
+NOTE Confidence: 0.5565499663352966
+
+00:22:28.320 --> 00:22:30.320
+Through the GitHub Copilot.
+
+NOTE Confidence: 0.9040491580963135
+
+00:22:30.760 --> 00:22:34.197
+So now you see the data agent has connections to
+
+NOTE Confidence: 0.9040491580963135
+
+00:22:34.269 --> 00:22:35.199
+the 2 tables.
+
+NOTE Confidence: 0.975733757019043
+
+00:22:35.200 --> 00:22:37.000
+That we just created for the forecast.
+
+NOTE Confidence: 0.9391312003135681
+
+00:22:37.080 --> 00:22:39.200
+And it also is responding.
+
+NOTE Confidence: 0.974680483341217
+
+00:22:39.360 --> 00:22:41.120
+For any queries that we have.
+
+NOTE Confidence: 0.9326028823852539
+
+00:22:41.200 --> 00:22:44.200
+From a business user standpoint, so someone like a business.
+
+NOTE Confidence: 0.9017813205718994
+
+00:22:44.200 --> 00:22:46.160
+User would ask for details on the.
+
+NOTE Confidence: 0.6379820108413696
+
+00:22:46.160 --> 00:22:47.880
+Forecast and the data insights.
+
+NOTE Confidence: 0.9424915313720703
+
+00:22:47.880 --> 00:22:50.732
+It is able to leverage the lake house data to
+
+NOTE Confidence: 0.9424915313720703
+
+00:22:50.795 --> 00:22:52.000
+build all of these.
+
+NOTE Confidence: 0.9566314816474915
+
+00:22:52.000 --> 00:22:54.490
+Responses and also show a nice chat at the end
+
+NOTE Confidence: 0.9566314816474915
+
+00:22:54.544 --> 00:22:57.305
+for business users to draw more meaning out of this
+
+NOTE Confidence: 0.9566314816474915
+
+00:22:57.359 --> 00:22:58.280
+and you can also.
+
+NOTE Confidence: 0.9304937720298767
+
+00:22:58.280 --> 00:22:59.440
+Publish this directly.
+
+NOTE Confidence: 0.9322403073310852
+
+00:22:59.640 --> 00:23:02.031
+As an agent in your Microsoft Store or you can
+
+NOTE Confidence: 0.9322403073310852
+
+00:23:02.083 --> 00:23:04.891
+also convert this into your Fabric MCP server that you
+
+NOTE Confidence: 0.9322403073310852
+
+00:23:04.943 --> 00:23:06.919
+can integrate with other applications.
+
+NOTE Confidence: 0.9414358735084534
+
+00:23:07.400 --> 00:23:10.708
+And obviously you can also enable role based access control
+
+NOTE Confidence: 0.9414358735084534
+
+00:23:10.764 --> 00:23:13.399
+on this data agent to make sure only the right.
+
+NOTE Confidence: 0.9659093022346497
+
+00:23:13.400 --> 00:23:14.960
+Users have access to all of.
+
+NOTE Confidence: 0.8803722262382507
+
+00:23:14.960 --> 00:23:15.280
+This.
+
+NOTE Confidence: 0.9283998608589172
+
+00:23:16.000 --> 00:23:19.239
+So just to close out on things, what you have
+
+NOTE Confidence: 0.9283998608589172
+
+00:23:19.311 --> 00:23:22.479
+seen at the beginning of the demo is we had.
+
+NOTE Confidence: 0.9727182984352112
+
+00:23:22.480 --> 00:23:23.000
+All of our.
+
+NOTE Confidence: 0.8302359580993652
+
+00:23:23.000 --> 00:23:24.440
+Data in Oracle estate.
+
+NOTE Confidence: 0.9765137434005737
+
+00:23:24.440 --> 00:23:25.040
+With the help of.
+
+NOTE Confidence: 0.9441605806350708
+
+00:23:25.040 --> 00:23:27.960
+Fabric MCP Server and Oracle MCP Server.
+
+NOTE Confidence: 0.9523937702178955
+
+00:23:27.960 --> 00:23:30.137
+We were able to draw all of these insights and
+
+NOTE Confidence: 0.9523937702178955
+
+00:23:30.185 --> 00:23:32.079
+you can do a lot more what we have shown
+
+NOTE Confidence: 0.9523937702178955
+
+00:23:32.126 --> 00:23:32.599
+you today.
+
+NOTE Confidence: 0.9601697325706482
+
+00:23:32.600 --> 00:23:33.920
+Is just a bit of it.
+
+NOTE Confidence: 0.8980109095573425
+
+00:23:34.119 --> 00:23:37.186
+But if you're bringing all of this into Fabric IQ,
+
+NOTE Confidence: 0.8980109095573425
+
+00:23:37.247 --> 00:23:38.719
+Foundry IQ, and Work IQ.
+
+NOTE Confidence: 0.8703352808952332
+
+00:23:38.720 --> 00:23:39.240
+Layers.
+
+NOTE Confidence: 0.7834748029708862
+
+00:23:39.600 --> 00:23:42.165
+And tying this back to Satya's keynote yesterday as well,
+
+NOTE Confidence: 0.7834748029708862
+
+00:23:42.210 --> 00:23:42.480
+right?
+
+NOTE Confidence: 0.9247029423713684
+
+00:23:42.480 --> 00:23:46.646
+A unified IQ layer makes your Oracle transactional data more
+
+NOTE Confidence: 0.9247029423713684
+
+00:23:46.716 --> 00:23:47.479
+actionable.
+
+NOTE Confidence: 0.9538877010345459
+
+00:23:47.680 --> 00:23:48.760
+So your Oracle.
+
+NOTE Confidence: 0.7869630455970764
+
+00:23:48.760 --> 00:23:51.447
+Data now is is being help helping you to make
+
+NOTE Confidence: 0.7869630455970764
+
+00:23:51.507 --> 00:23:53.239
+those decisions based on the.
+
+NOTE Confidence: 0.9519388675689697
+
+00:23:53.280 --> 00:23:54.440
+Emails that you have.
+
+NOTE Confidence: 0.6027071475982666
+
+00:23:54.440 --> 00:23:55.440
+In all the themes.
+
+NOTE Confidence: 0.8982730507850647
+
+00:23:55.440 --> 00:23:56.360
+Chats that you have.
+
+NOTE Confidence: 0.8899366855621338
+
+00:23:56.359 --> 00:23:58.676
+Or the calendars that you have and the workflows that
+
+NOTE Confidence: 0.8899366855621338
+
+00:23:58.720 --> 00:24:00.599
+you have in your business and work context.
+
+NOTE Confidence: 0.6625233292579651
+
+00:24:00.840 --> 00:24:01.000
+So.
+
+NOTE Confidence: 0.9592965841293335
+
+00:24:01.000 --> 00:24:03.120
+Together Oracle and Microsoft.
+
+NOTE Confidence: 0.9744470119476318
+
+00:24:03.160 --> 00:24:04.880
+Are powerful together if.
+
+NOTE Confidence: 0.8917819857597351
+
+00:24:04.880 --> 00:24:07.896
+You're bringing the transactional data with IQ layer added on
+
+NOTE Confidence: 0.8917819857597351
+
+00:24:07.945 --> 00:24:08.439
+top of it.
+
+NOTE Confidence: 0.860813558101654
+
+00:24:08.880 --> 00:24:10.639
+So we are working in this space to make this
+
+NOTE Confidence: 0.860813558101654
+
+00:24:10.679 --> 00:24:11.239
+more and more.
+
+NOTE Confidence: 0.9667772054672241
+
+00:24:11.240 --> 00:24:12.360
+Better for developers to.
+
+NOTE Confidence: 0.8697264790534973
+
+00:24:12.360 --> 00:24:17.280
+Build agents and agentic solutions more seamlessly, so I will.
+
+NOTE Confidence: 0.8809273838996887
+
+00:24:17.280 --> 00:24:18.480
+Hand it over back to Partha to.
+
+NOTE Confidence: 0.9637705087661743
+
+00:24:18.480 --> 00:24:19.680
+Talk about more resources.
+
+NOTE Confidence: 0.978041410446167
+
+00:24:19.680 --> 00:24:20.200
+You have.
+
+NOTE Confidence: 0.9093273282051086
+
+00:24:20.200 --> 00:24:23.109
+Available online to check, check out some demos and also
+
+NOTE Confidence: 0.9093273282051086
+
+00:24:23.161 --> 00:24:25.240
+some blog posts we have published today.
+
+NOTE Confidence: 0.7794142961502075
+
+00:24:25.360 --> 00:24:26.080
+Over to you, Partha.
+
+NOTE Confidence: 0.758420467376709
+
+00:24:26.240 --> 00:24:26.920
+Thank you, Raji.
+
+NOTE Confidence: 0.8614925146102905
+
+00:24:27.160 --> 00:24:29.788
+And as you saw with these two demos, you have
+
+NOTE Confidence: 0.8614925146102905
+
+00:24:29.847 --> 00:24:32.767
+a demonstration of how we can bring both these two
+
+NOTE Confidence: 0.8614925146102905
+
+00:24:32.826 --> 00:24:36.973
+technologies and then bring both these two apparently disparate systems
+
+NOTE Confidence: 0.8614925146102905
+
+00:24:37.032 --> 00:24:40.712
+together in a seamless and accelerated way where developers can
+
+NOTE Confidence: 0.8614925146102905
+
+00:24:40.770 --> 00:24:44.450
+just focus on app development and then business outcomes rather
+
+NOTE Confidence: 0.8614925146102905
+
+00:24:44.509 --> 00:24:48.539
+than worrying about infrastructure and then, you know, worrying about
+
+NOTE Confidence: 0.8614925146102905
+
+00:24:48.598 --> 00:24:50.000
+the configuration setup.
+
+NOTE Confidence: 0.8389144539833069
+
+00:24:50.400 --> 00:24:52.160
+So it's not just these two demos.
+
+NOTE Confidence: 0.835035502910614
+
+00:24:52.160 --> 00:24:54.280
+We have tons of demos available in our booth.
+
+NOTE Confidence: 0.6644110679626465
+
+00:24:54.280 --> 00:24:55.600
+So go and then check it out of the booth.
+
+NOTE Confidence: 0.7950529456138611
+
+00:24:55.600 --> 00:24:59.018
+So which is like just right across this place and
+
+NOTE Confidence: 0.7950529456138611
+
+00:24:59.087 --> 00:25:01.319
+can go and then get other demos.
+
+NOTE Confidence: 0.8455672860145569
+
+00:25:01.320 --> 00:25:04.073
+And then we also have a much more detailed on
+
+NOTE Confidence: 0.8455672860145569
+
+00:25:04.135 --> 00:25:08.479
+demand session that's already available in the Microsoft build catalog.
+
+NOTE Confidence: 0.8120906352996826
+
+00:25:08.680 --> 00:25:11.434
+So go on and check out that session so you
+
+NOTE Confidence: 0.8120906352996826
+
+00:25:11.499 --> 00:25:14.909
+can get more knowledge about the MCP servers as well
+
+NOTE Confidence: 0.8120906352996826
+
+00:25:14.975 --> 00:25:16.679
+as the Microsoft AI stack.
+
+NOTE Confidence: 0.8981156945228577
+
+00:25:17.440 --> 00:25:20.240
+And we also have some online resources.
+
+NOTE Confidence: 0.6735962629318237
+
+00:25:20.240 --> 00:25:21.896
+So you can go on and check out these online
+
+NOTE Confidence: 0.6735962629318237
+
+00:25:21.934 --> 00:25:22.320
+resources.
+
+NOTE Confidence: 0.8202558755874634
+
+00:25:22.560 --> 00:25:25.492
+But last but not the least, people can come and
+
+NOTE Confidence: 0.8202558755874634
+
+00:25:25.555 --> 00:25:27.240
+then ask us some questions.
+
+NOTE Confidence: 0.7769498229026794
+
+00:25:27.240 --> 00:25:29.595
+I have some goodies to give, like I have like
+
+NOTE Confidence: 0.7769498229026794
+
+00:25:29.647 --> 00:25:32.159
+4 T-shirts, 2 Excel and then two large T-shirts.
+
+NOTE Confidence: 0.8602337837219238
+
+00:25:32.160 --> 00:25:35.004
+So for people who come first and then ask these
+
+NOTE Confidence: 0.8602337837219238
+
+00:25:35.065 --> 00:25:38.091
+questions, we are happy to give away this and hope
+
+NOTE Confidence: 0.8602337837219238
+
+00:25:38.152 --> 00:25:41.360
+to go and you know, have more conversations with you.
+
+NOTE Confidence: 0.9498160481452942
+
+00:25:41.720 --> 00:25:44.427
+And again, thanks for stopping by and hope to hear
+
+NOTE Confidence: 0.9498160481452942
+
+00:25:44.481 --> 00:25:45.240
+more from you.
+
+NOTE Confidence: 0.9677440524101257
+
+00:25:45.560 --> 00:25:46.000
+Thank you guys.
+

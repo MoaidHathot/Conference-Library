@@ -1,0 +1,825 @@
+**[00:00:00]** Yes, thank you all for coming. Now, it's time to
+**[00:00:04]** begin, everyone, and we will begin the long-awaited Japan Wrap-Up
+**[00:00:09]** session. This session is currently being streamed live. Yes, in
+**[00:00:14]** Japan, it's probably this morning, so I'm sure many people
+**[00:00:19]** are watching that live stream. Thank you very much. Yes.
+**[00:00:25]** This session carefully selects especially important points from the many
+**[00:00:30]** announcements announced at Microsoft Build 2026 and explains them clearly
+**[00:00:35]** in Japanese. Although the time is only 45 minutes, we
+**[00:00:39]** hope everyone can take home key points we want everyone
+**[00:00:44]** to keep in mind, or tips that will lead to
+**[00:00:47]** future considerations.
+**[00:00:49]** And above all, for those attending in person, I will
+**[00:00:52]** make sure to condense and summarize this report thoroughly as
+**[00:00:56]** a business trip report, so I hope you will stay
+**[00:00:59]** until the end.
+**[00:01:00]** Yes, yes.
+**[00:01:03]** Now, let me introduce the flow of this session. First,
+**[00:01:07]** as a key update for the entire Build 2026, we
+**[00:01:10]** will share the main announcement points. Wait, let's continue. This
+**[00:01:15]** time, we'll divide it into three areas.
+**[00:01:18]** Yes, experts from Microsoft Japan in each field will explain
+**[00:01:22]** the specific details. Yes, and if you have time, I'd
+**[00:01:26]** love to accept Q&A from everyone at the venue, so
+**[00:01:29]** thank you for your help. Alright, without further ado, we
+**[00:01:33]** will begin the first session. Under the title Key-Up Days,
+**[00:01:38]** we are pleased to hear from Okazaki, Executive Officer and
+**[00:01:42]** General Manager of the Cloud and AI Solutions Business Division
+**[00:01:46]** at Microsoft Japan.
+**[00:01:48]** Well then, Mr. Okazaki, please.
+**[00:01:58]** Yes, yes, hello everyone. Yes, I'm Okazaki from Microsoft. Yes,
+**[00:02:02]** everyone, welcome. Yes, thank you for participating in Buildway. Yes,
+**[00:02:06]** everyone, have you noticed? Here, at the keynote venue where
+**[00:02:11]** Satya did it, do you know today? This is the
+**[00:02:14]** closing act. Surprisingly, Japan is the place.
+**[00:02:17]** I serve as the closing session for the keynote. I
+**[00:02:20]** already think it's all thanks to everyone.
+**[00:02:23]** . Thank you very much. Yes. Yes, first of all.
+**[00:02:26]** Um.
+**[00:02:26]** Build, yes. Overview—yes, I hope I can share it. Yes,
+**[00:02:31]** it's different from usual, and here, we're holding it in
+**[00:02:36]** a place called Automason.
+**[00:02:38]** Well, it's a somewhat warehouse-style building. So, we're holding it,
+**[00:02:42]** and it feels kind of like a festival, with an
+**[00:02:45]** atmosphere that makes developers happy. Yes, we're holding it, and
+**[00:02:49]** with 2,500 customers participating locally, it's like 2,500 people. Even
+**[00:02:53]** at 2,500, it's overcapacity. Why, well, compared to last time,
+**[00:02:57]** we're doing it in a slightly more condensed form. On
+**[00:03:00]** the other hand, online, there are people with over 150,000
+**[00:03:04]** yen, right?
+**[00:03:04]** It looks just like the one you watched.
+**[00:03:06]** Thank you.
+**[00:03:07]** Alright, then I think we'll get right into the contents.
+**[00:03:10]** Yes, this time, well, the main topic of Build Yes
+**[00:03:13]** is... Yes, how, yes, how can we create an ecosystem
+**[00:03:17]** utilizing frontier AI or agents? Well, that's the key message.
+**[00:03:20]** Well, from the developer's perspective and from many of you,
+**[00:03:24]** it's about what possibilities there are, and what kind of
+**[00:03:28]** support Microsoft can provide. Yes, from the developer's perspective, yes.
+**[00:03:32]** Yes, big. Yes,
+**[00:03:33]** I spoke in order from four different groups. Yes, from
+**[00:03:37]** the infrastructure layer, to the model context tool layer, and
+**[00:03:42]** the gent-time developer tool, I'm talking about it from that
+**[00:03:46]** perspective. Yes, it's just as I thought.
+**[00:03:49]** Because it's all developers. Well, I like these things freely.
+**[00:03:53]** While combining these elements, to actually implement enterprise systems, well,
+**[00:03:57]** it is important to make solid use of our own
+**[00:04:00]** data and secure it.
+**[00:04:01]** Execute safely. Well, that's after that. It's important to keep
+**[00:04:05]** meeting them. Well, we discussed how to make that happen.
+**[00:04:09]** So, first of all. Regarding infrastructure, well, first of all,
+**[00:04:13]** what Satya said was...
+**[00:04:14]** Performance equals tokens. Yes, I can break it. It's written
+**[00:04:18]** in the form of 'Watt to Zaler,' and it's really
+**[00:04:21]** important to see how efficiently you can execute with tokens
+**[00:04:25]** that deliver the same performance. Well, that's why I'll talk
+**[00:04:29]** about it.
+**[00:04:29]** And recently, I think many people have experienced this: the
+**[00:04:33]** fees for using the distant area are steadily rising. Well,
+**[00:04:37]** it's just about managing that properly and skillfully while executing
+**[00:04:41]** the performance we want with the right cost negotiation. Well,
+**[00:04:45]** the message from E-Key is that it's necessary to balance
+**[00:04:49]** these things.
+**[00:04:50]** Yes. To make that possible. Yes, the microphone software is.
+**[00:04:54]** Well, yes, we're driving innovation across both edge and cloud
+**[00:04:58]** platforms.
+**[00:04:59]** First, regarding the side of one edge, yes, in the
+**[00:05:02]** form of arm-metered intelligence, well, how much of the edge
+**[00:05:06]** side? Yes, on the PC side, I announced that by
+**[00:05:09]** optimally combining GPUs and NPU, we optimize AI processing on
+**[00:05:13]** the edge side to optimize good processing. It's not just
+**[00:05:17]** about speeding up the machines, but also about making them
+**[00:05:20]** locally foundry. Yes, actually local. E. Luem, huh? We aim
+**[00:05:24]** to achieve this by providing technologies that move both the
+**[00:05:28]** Windows
+**[00:05:29]** side and the edge side. On the other hand, well,
+**[00:05:32]** regarding the server side, we continue to innovate. Yes, three
+**[00:05:37]** years ago, yes, we announced something called Maia and Cobalt,
+**[00:05:41]** and well, they did announce it, and it was called
+**[00:05:45]** 200. Yes, we have the opportunity to announce the Maia
+**[00:05:49]** 200 and Cobalt 200, respectively.
+**[00:05:51]** Yes, regarding Maia, it is a chipset designed to optimize
+**[00:05:55]** AI processing, and for Cobalt, it uses an arm-based architecture,
+**[00:06:00]** such as agent applications. Yes, we are optimizing those features.
+**[00:06:04]** By executing it efficiently. Yes, we are evolving on the
+**[00:06:08]** edge and infrastructure sides, focusing on how efficiently you can
+**[00:06:13]** execute what you want to do.
+**[00:06:15]** Yes, of course, server-sided. Well, it's not like you can
+**[00:06:22]** open it just because of infrastructure upgrades. Well, we believe
+**[00:06:30]** it's important to process the database layer as well. Yes,
+**[00:06:38]** it was originally like Cosmos Davy, very much. Well, we
+**[00:06:45]** have
+**[00:06:45]** databases like those used on ChatGPT's backend, but well, as
+**[00:06:48]** an even newer technology, yes, Azure Horazon David, right? Yes,
+**[00:06:50]** let them publish a public bear review. Seriously. Yes, this
+**[00:06:53]** is the post-Gresse Escuel that many customers use. It is
+**[00:06:55]** an open-source database, and even large-scale OLTP processing can be
+**[00:06:58]** supported in a manager-style manner. And on the other hand,
+**[00:07:00]** Regarding the data warehouse, we've announced innovations in the fabric
+**[00:07:03]** sector, in the form of GPU acceleration and fabric data
+**[00:07:05]** warehouses, and that's NVIDIA.
+**[00:07:06]** By combining it with accelerated computing, query performance can be
+**[00:07:11]** increased by 7 times, and by actually achieving parallel processing
+**[00:07:15]** rates, execution can be done very quickly. Yes, on fabric.
+**[00:07:19]** Well, if you're running it, you haven't changed the application.
+**[00:07:23]** Well, the key point is that it can realize a
+**[00:07:26]** high-speed data warehouse.
+**[00:07:28]** Yes, the point is, agents are already accessing the database
+**[00:07:32]** more and more. Well, it's important to build a database
+**[00:07:35]** architecture that can handle such things—a dataware architecture. On the
+**[00:07:40]** other hand, you also consider how much you are an
+**[00:07:43]** agent or something. The question is whether we can utilize
+**[00:07:46]** and operate our own data, and yes, Microsoft is very
+**[00:07:50]** important to us. Microsoft IQ Pro. Ah. The concept of
+**[00:07:53]** 'toform' is the same. Up until now, we
+**[00:07:55]** have presented work IQ, public IQ, and foundry IQ, but
+**[00:08:00]** yes, in addition, we also presented something called Web IQ.
+**[00:08:05]** Well, to put it simply, yes, AI processing and such.
+**[00:08:09]** Well, it's an engine optimized for agent processing, supporting web
+**[00:08:14]** grounding. Well, you might have been able to do something
+**[00:08:19]** similar before,
+**[00:08:21]** but faster, and even more. Huh? Eh, low-cost, right? Well,
+**[00:08:25]** WebIQ is about combining processing of such things. Also, well,
+**[00:08:30]** it's not just about using Copilot ourselves. They want to
+**[00:08:34]** utilize such daywear in their own applications as well. The
+**[00:08:39]** key point of the Work iqapi is that it actually
+**[00:08:42]** becomes a GA.
+**[00:08:43]** That's what I think.
+**[00:08:46]** Also, when it comes to implementing agents, we believe that
+**[00:08:51]** the key theme is whether to carry out the work
+**[00:08:55]** safely and securely. Yes, you also spoke on how to
+**[00:09:00]** use OpenClaw and gave a presentation. Well, OpenClaw is really
+**[00:09:05]** convenient, and since you can handle all the processes that
+**[00:09:11]** could be done on a PC, you can delete files
+**[00:09:15]** and such.
+**[00:09:15]** When it comes to risk, or when you take action,
+**[00:09:19]** you really need to plan. It's scary to use it
+**[00:09:23]** in the workplace. Right? Well, in that sense, it's important
+**[00:09:28]** to see how to create a safe and secure environment
+**[00:09:32]** in a straightforward way for PCs like Windows environments. Well,
+**[00:09:37]** if that happens, we announced that newer technologies are easier
+**[00:09:42]** to use,
+**[00:09:43]** and that's what we called the Microsoft Execution Container. Well,
+**[00:09:47]** by combining powerful agent handling with this, you can safely
+**[00:09:51]** and securely eliminate it. Exchange. Being able to do this
+**[00:09:55]** is also a major point. On the other hand, as
+**[00:09:58]** the foundation for running agents on the server side, we
+**[00:10:02]** have announced something called a host agent. As you can
+**[00:10:06]** imagine, I
+**[00:10:06]** think you can understand that agents will need to run
+**[00:10:08]** more and more scaling in the future. But the open
+**[00:10:09]** agent architecture you created—yes, the things you actually execute. Yeah,
+**[00:10:11]** on top of this host agent foundation? So. Huh? Uh:
+**[00:10:12]** It can be scaled and executed securely and securely. Well,
+**[00:10:14]** the big point is that we also offer that kind
+**[00:10:15]** of environment.
+**[00:10:15]** It's an intro. Develop.
+**[00:10:17]** I've presented a few things regarding par tools, but for
+**[00:10:23]** me, Well, I'd like to talk about the git upload
+**[00:10:27]** and Copilot update.
+**[00:10:29]** Well, to put it simply. Agent-driven, development. Well, it was
+**[00:10:33]** centered around agents. Yes, I hope you can think of
+**[00:10:37]** it as a desktop application specialized for enterprise development. Yes,
+**[00:10:41]** you use multiple agents, and well, people and teams and
+**[00:10:45]** agents work together to build it. Well, the platform provides
+**[00:10:49]** strong support for those areas, so please feel free to
+**[00:10:53]** give it a try. Right. re
+**[00:10:54]** Bana. That's how I feel.
+**[00:10:56]** Yes, yes, then I see. Well, I want to take
+**[00:11:00]** a bit more step back and, in the form of
+**[00:11:04]** frontier opportunities, talk not only from the developer's perspective but
+**[00:11:10]** also from the frontier customers' perspective — yes, what possible
+**[00:11:16]** possibilities are possible. First of all, Microsoft has supported various
+**[00:11:23]** AI tools
+**[00:11:24]** and agents that you use. Yes, at first, we released
+**[00:11:28]** something based on chat. Seriously. Recently, I've been presenting something
+**[00:11:35]** called this kind of work. So, while I'm sharing the
+**[00:11:39]** tradition of action, the biggest point is that we introduced
+**[00:11:45]** something called Autopilot this time. Yes, do you all remember
+**[00:11:50]** three years
+**[00:11:51]** ago? Microsoft had previously sent a message saying they would
+**[00:11:53]** not build Autopilot, but now they are finally running it
+**[00:11:55]** autonomously. Well, Autopilot is great, and I can offer it
+**[00:11:58]** to everyone. That's how much reality I came to. What.
+**[00:12:00]** Say it. I hope you can take this in perspective.
+**[00:12:01]** So, about Microsoft's solution and the specific announcement you made.
+**[00:12:04]** Yes, this is what we call Microsoft Scout. Yes, the
+**[00:12:06]** Japanese demo is available in time, so I hope everyone
+**[00:12:08]** can take a look at the screen. Right now, we've
+**[00:12:10]** started moving on here, and we're asking for last week's
+**[00:12:12]** business trip expense reimbursement.
+**[00:12:13]** So, in the cloud they do for M365, they can
+**[00:12:16]** simultaneously search for data and local data, and it seems
+**[00:12:19]** pretty good. Um, I do the task of finding files.
+**[00:12:23]** Then, analyze the files you find. Well, the format is
+**[00:12:26]** to take out and remove the content that is actually
+**[00:12:29]** included in the expense reimbursement.
+**[00:12:32]** Also, the expense reimbursement application I usually use is the
+**[00:12:37]** one I usually use, and I find this one, and
+**[00:12:41]** I'm trying to use this application to enter this kind
+**[00:12:46]** of data. But the point is, is it okay to
+**[00:12:49]** do the last thing before you start? The key point
+**[00:12:53]** is to ask that question. While we take the lead,
+**[00:12:58]** the final decision is made
+**[00:13:00]** by the human body, so we designed it to ensure
+**[00:13:02]** safety and security. And. Microsoft Scout also uploads files for
+**[00:13:04]** you, and the expense settlement is completed—that's what Microsoft Scout
+**[00:13:07]** is all about. Most people can probably change their business
+**[00:13:09]** trips, so I think many people probably need to handle
+**[00:13:12]** this kind of process, so I think many people have
+**[00:13:14]** wanted to use it. Yes.
+**[00:13:14]** However, I think the evolution of the frontier model plays
+**[00:13:18]** a major role in Microsoft Scout's development of Microsoft Scout.
+**[00:13:23]** Well, this data is about what it means, but right
+**[00:13:26]** now, in 2026, even for long-term processes that require more
+**[00:13:30]** than an hour of human input, about 80% of people
+**[00:13:33]** will be able to get the correct answer. Well, just
+**[00:13:37]** keep evolving with that. . So. But the scalpel I
+**[00:13:40]** want to say can't handle those kinds of situations. So,
+**[00:13:44]** can I make
+**[00:13:45]** everything AI? Where do we and our companies generate value?
+**[00:13:49]** That's the big message: it's a single model, and the
+**[00:13:53]** evolution of this model isn't just a single model. The
+**[00:13:57]** important aspect is that they keep competing and evolving with
+**[00:14:02]** various models.
+**[00:14:03]** The key point isn't that it depends on the model,
+**[00:14:06]** but rather the form that includes that model. Well, things
+**[00:14:09]** like harness mechanisms, information sharing with minimal integration and context,
+**[00:14:14]** and mechanisms to evaluate how agents are created and whether
+**[00:14:18]** agents are functioning properly—we combine these with a system that
+**[00:14:21]** continuously monitors our organizational values.
+**[00:14:25]** Keep evolving. We evolve our agents into forms that fit
+**[00:14:29]** our organization. Well, the idea that we need to create
+**[00:14:33]** such a system is what I was passing by throughout
+**[00:14:36]** this session. Well, Satya was the last one who suggested
+**[00:14:40]** making it together. As you all know, we have supported
+**[00:14:44]** over 11,000 models with the Microsoft Fund. Now, here's a
+**[00:14:49]** close-up of a representative part. If you go on a
+**[00:14:52]** date, you know.
+**[00:14:54]** Yes, Cloud Ink Load-in and Microsoft Fundraisal have become supported,
+**[00:14:57]** and even the Unstropic model is supported within the fundraiser.
+**[00:15:01]** Well, in Japan, that kind of thing isn't quite mainstream
+**[00:15:04]** yet, but... Fireworks AI, which can perform open-source optimization processes,
+**[00:15:08]** has also become a foundly supported platform. And when you
+**[00:15:11]** came this time, you probably thought, 'Huh?' Huh? Microsoft AI:
+**[00:15:14]** Well, well, I think the fact that they announced it
+**[00:15:17]** on a grand scale was a big message. Yes, the
+**[00:15:19]** one
+**[00:15:19]** who actually announced the previous story was Mustava. Yes, the
+**[00:15:26]** person who originally founded DeepMind and now leads the Mike
+**[00:15:32]** Soft AI Promotion Office is presenting this announcement.
+**[00:15:39]** Yes, we have released seven different models. Well, for example,
+**[00:15:43]** I used Image 2.5 to optimize the image. Yes. Also,
+**[00:15:47]** we've been announcing seven models that actually perform highly accurate
+**[00:15:52]** character recognition, such as the Transfer Live 1.5. But what
+**[00:15:57]** I emphasized most this time was the form of My
+**[00:16:00]** Thinking King One. Well, within Microsoft, it runs based on
+**[00:16:05]** reasoning base. The most standard model has
+**[00:16:08]** also been announced. Right. It has become a form we
+**[00:16:11]** were given to us. Depending on the good things—no, even
+**[00:16:15]** very open benchmarks—we submit high-level materials, so I think combining
+**[00:16:19]** them has increased the options for executing the optimal approach
+**[00:16:24]** more effectively. On the other hand, rather than simply relying
+**[00:16:28]** on models, we have presented something like frontier tuning that
+**[00:16:32]** optimizes the model using our own knowledge.
+**[00:16:35]** Well, by utilizing this, yes, we have them learn the
+**[00:16:43]** domain knowledge they have. Well, as we keep evolving the
+**[00:16:51]** model, we run the optimal processing that best fits our
+**[00:17:00]** company.
+**[00:17:01]** Also, while evaluating the agent itself. Well, the main announcement
+**[00:17:04]** of this build is that we announced a mechanism to
+**[00:17:06]** continuously optimize agents. Yes, just now. Danger. I want to
+**[00:17:09]** emphasize once again the importance of creating systems that make
+**[00:17:11]** AI smarter, whether it's your own knowledge or based on
+**[00:17:14]** experience, or by continuously improving your own knowledge, or by
+**[00:17:16]** making agents increasingly effective. Finally, yes. Well, for the remaining
+**[00:17:20]** parts, I think I'd like to make an announcement on
+**[00:17:22]** the security side. Yes, regarding security. Yes, how to leverage
+**[00:17:24]** AI to enhance security.
+**[00:17:26]** The message is about how to refine the process and
+**[00:17:27]** how to strengthen security for handling AI. Security With made
+**[00:17:30]** a major announcement regarding AI, and yes, it's the m-dash
+**[00:17:32]** that makes a big announcement. Yes, this is, well, I
+**[00:17:34]** think there are various security attacks, and we have announced
+**[00:17:37]** mechanisms to maintain such risk vulnerabilities and support our customers.
+**[00:17:40]** However, the mechanism itself is that the key point is
+**[00:17:42]** using four models. By combining models from OpenAce and Anthology,
+**[00:17:44]** creating over a hundred agents and building an integrated ecosystem
+**[00:17:47]** on this foundation, we have been able to achieve vulnerability
+**[00:17:49]** detection at a high level. Well, actually, there's a consumption
+**[00:17:52]** indicator called Cyber Gym, right? Is it okay if this
+**[00:17:56]** is by far the most popular 88? They also offer
+**[00:18:00]** such specifications. Well, in fact, running with this combination is
+**[00:18:06]** more effective than running with a single model. Um, being
+**[00:18:12]** able to deliver results is similar to the benchmark I
+**[00:18:16]** have shown here. And also,
+**[00:18:18]** since it's already possible to use it, let's just do
+**[00:18:24]** it. Well, lately it's definitely the agent. Well, is that
+**[00:18:29]** AI-powered threat really okay? Cases where people get asked that
+**[00:18:35]** question are increasing a lot. That's what I think. So,
+**[00:18:41]** if you're interested, I hope you'll reach out to our
+**[00:18:46]** members. On the other hand,
+**[00:18:48]** these are the numbers within Microsoft—the number of agents hasn't
+**[00:18:54]** changed, but the number of agents has been steadily increasing.
+**[00:18:59]** Recently, there are more than twice as many agents. The
+**[00:19:04]** key point is how to manage the organization where the
+**[00:19:09]** individual and the agent merge. Well, as the number of
+**[00:19:13]** agents keeps increasing, how to
+**[00:19:16]** complete them is really important. Right. This is a key
+**[00:19:19]** point. To make that happen, as you all know, we
+**[00:19:22]** have already announced something called Agent 365. However, the key
+**[00:19:26]** point I announced this time was that the key point
+**[00:19:29]** was that we have introduced Agent 3654 Local Agent, which
+**[00:19:33]** allows us to manage agents operating locally.
+**[00:19:36]** Well, for example, OpenPro runs on PCs, like PCs in
+**[00:19:39]** our hallway, so it would be problematic if employees could
+**[00:19:42]** enter without permission and expose them to risk. So, we
+**[00:19:46]** need to properly detect such things and reduce risks by
+**[00:19:49]** treating them as important corporate assets. Well, this service is
+**[00:19:53]** designed to make those things possible. And on the other
+**[00:19:57]** hand,
+**[00:19:58]** No, no, I'm not just an agent who works on
+**[00:20:00]** MycoSoft. I think the mindset of developers is to widely
+**[00:20:03]** incorporate good agents and create products using various technologies. Well,
+**[00:20:08]** to support that, by combining something called the Agent 365
+**[00:20:11]** SDK, you can create agents in any kind of environment.
+**[00:20:14]** Well, um, you can really control it properly on the
+**[00:20:17]** control plane. Say it. Since these areas are important, I
+**[00:20:21]** hope you will consider utilizing these kinds of things. Lastly,
+**[00:20:24]** I hope you can enter the new
+**[00:20:26]** frontier category. Well, if you go to the heartfelt message
+**[00:20:33]** of 'Beyond the Frontier,' yes, I have announced two main
+**[00:20:40]** ones. Well, one of them is a microphone soft discovery.
+**[00:20:47]** Well, well, well, I did present it two years ago,
+**[00:20:53]** and it was
+**[00:20:54]** actually a research exploration type. Um, maybe it's that kind
+**[00:20:57]** of survey. We have developed excellent services optimized for those
+**[00:20:59]** areas, such as drug discovery or chemical substances. The key
+**[00:21:02]** point is to apply AI to places that are quite
+**[00:21:03]** central to Japanese industry.
+**[00:21:05]** Yes, the point is, the answer hasn't been decided yet.
+**[00:21:08]** You create hypotheses and repeatedly test them to find the
+**[00:21:12]** answer. Well, that's where the optimization is made. Well, actually,
+**[00:21:16]** it will come up after this. Well, well, our excellent
+**[00:21:20]** quantum chips have actually been put to use in some
+**[00:21:23]** places. 2000 more to go. Yes, in 2029, well, well.
+**[00:21:26]** We have announced that it will become a reality, so
+**[00:21:30]** I hope you will make use of it. Uh, this
+**[00:21:33]** one is also a GA (ga) version. Wait, is it
+**[00:21:36]** possible for everyone to make use of it? Well, I've
+**[00:21:39]** included the screen, so I won't be able to explain
+**[00:21:43]** it in time, so I hope you'll check it out
+**[00:21:46]** later.
+**[00:21:46]** Yes, that's the last one. Well, I've been presenting the
+**[00:21:49]** evolution of infrastructure, but I think even more difficult challenges
+**[00:21:53]** will emerge going forward. Well, in that sense, Microsoft is
+**[00:21:56]** putting a lot of effort into quantum computing.
+**[00:21:59]** Yes, this place called Myura Na 2—well, it was a
+**[00:22:03]** one-day event the other day, which was once a hot
+**[00:22:06]** topic, so I released that two. Well, in reality, by
+**[00:22:10]** further improving reliability, we are achieving the ability to minimize
+**[00:22:16]** error rates. Yes, these are also in a form that
+**[00:22:19]** cannot be offered in 2029. Yes, Microsoft is doing their
+**[00:22:23]** best. Huh? Huh? I hope you can look forward to
+**[00:22:27]** it. Yes, yes,
+**[00:22:28]** yes, that's what I mean. Um, I want to pass
+**[00:22:30]** the baton to the next 'yes, yes' presenter. Yes, Mom,
+**[00:22:33]** thank you for your support.
+**[00:22:41]** Yes. This is Okawa from Microsoft Japan. Um, from this
+**[00:22:45]** time onward, I hope to talk about the local part
+**[00:22:48]** of Windows and developer tools.
+**[00:22:50]** This time, starting with Windows, I asked, 'Why does Microsoft
+**[00:22:55]** update Windows so often?' I was asked, but I think
+**[00:22:59]** this is the message that Windows is an environment for
+**[00:23:03]** developers, and that we'll keep growing it more and more.
+**[00:23:07]** Not just Windows app developers, but cloud developers too.
+**[00:23:12]** Including that, I think we will evolve the development environment
+**[00:23:20]** accordingly. So, to start by first, this is about unmade
+**[00:23:27]** intelligence. It's intelligence that operates locally. Well, it's been around
+**[00:23:36]** here as expected. I think some of you must
+**[00:23:42]** find token spending tough, but you can still run LLM
+**[00:23:43]** locally. Well, that's the kind of place it is. That's
+**[00:23:45]** the part where we'll keep going. Since it's compatible with
+**[00:23:47]** GPMPW, I skipped a bit and this time, this one
+**[00:23:49]** has come out—the Surface ARTIC Spark Rib Box. I want
+**[00:23:51]** this, you know, this one, the GPU, the ARTICS, the
+**[00:23:52]** GPU, and the CPU for the Arm Artict, all come
+**[00:23:54]** together as a set, and so, It has 128GB of
+**[00:23:55]** unified memory, so I guess this model, probably around 120
+**[00:23:57]** billion, will be able to run it. That means I'm
+**[00:23:59]** really looking forward to it too. So, why is such
+**[00:24:01]** a local AI important? Well, there are various reasons. Right?
+**[00:24:03]** P. There are challenges with livasy security. There are people
+**[00:24:05]** who want environments with low latency, and there are various
+**[00:24:07]** options, but already, there are many companies that use this
+**[00:24:09]** local model to create excellent app shares. It's about
+**[00:24:11]** why we should do it together. Of course, Microsoft is
+**[00:24:17]** also local. We implement various functions using models. We've implemented
+**[00:24:26]** office features and such. Well, I think it's about working
+**[00:24:33]** together on these kinds of things. Yes. So, when
+**[00:24:39]** you implement this, you get this environment found-ray. On. This
+**[00:24:43]** is Window. Recently, there are several layers. The first is
+**[00:24:47]** Windows AIPs. This is a typical local AI scenario. Here,
+**[00:24:51]** you can access AI keys just by calling the API.
+**[00:24:54]** This is the founder-local area. I'll talk about this later,
+**[00:24:58]** but we provide that common open-source model—an environment for running
+**[00:25:02]** locally. And when it comes to wanting to run my
+**[00:25:05]** own unique model, Windows Mail comes up. . Yes,
+**[00:25:09]** this time. Well, in addition to NPU, GPU will also
+**[00:25:12]** be usable, so I think this is a pretty important
+**[00:25:15]** point. Yes, yes, so we'll keep going. It's the Windows
+**[00:25:19]** AI API. This is the newly added feature. Well, the
+**[00:25:22]** voice recognition feature, and the structure output of Python, this
+**[00:25:27]** is the latest update. Furthermore, it can now be used
+**[00:25:30]** with GPU and CPU. There's something listed here. Well, for
+**[00:25:34]** example, you can summarize the text, or apply a
+**[00:25:38]** roller to Faisilica, and so on. Well, you can do
+**[00:25:39]** that too. U. It's starting to get worse. That's how
+**[00:25:40]** it works. I ended up making too many materials. I'll
+**[00:25:42]** keep skipping Foundry Local. Foundry Local. Yes, yes, this is
+**[00:25:44]** it. Yes, it's about running an open-source model locally. It
+**[00:25:46]** creates an environment. Well, this is it. Download the necessary
+**[00:25:48]** model from that Foundationary local and download it locally. And
+**[00:25:49]** also, you can call it via API, so let's talk
+**[00:25:51]** about it.
+**[00:25:51]** There is a room. Wind.
+**[00:25:52]** Uzuemuel, this is also a pretty convenient point. Your application
+**[00:25:56]** is located in 1-chome, but you can do it from
+**[00:25:59]** your own application. For this Windows ML layer, well, well.
+**[00:26:02]** By accessing through programs, you can access the hardware layers
+**[00:26:07]** beneath us—Intel, AMD, Qualcomm, NV—various hardware types. Windows is used,
+**[00:26:12]** but by absorbing the differences in each layer, you can
+**[00:26:15]** run models and make inferences about the local ML. Well,
+**[00:26:19]** here's how it goes.
+**[00:26:21]** Provided as an environment for una.
+**[00:26:22]** We are doing so. Yes.
+**[00:26:23]** Also, today and this time, I thought it might be
+**[00:26:26]** quite a hot topic, so I added it. This web
+**[00:26:28]** NN has been mentioned here that it can now run
+**[00:26:31]** in this browser, so I hope you will make use
+**[00:26:34]** of this as well. Yes. Um, and this MXC will
+**[00:26:36]** be coming soon. Since Mr. Nitta will be talking, I'll
+**[00:26:40]** skip the topic for a bit.
+**[00:26:41]** And from here, for developers, there's that convenient point. I'd
+**[00:26:52]** like to highlight a few of them. Windows, you know,
+**[00:27:01]** Developer Configurations, this feature has
+**[00:27:08]** been released, and there are two options: Dev Configuration Winget
+**[00:27:11]** and Double SL Comfort. This is the development environment. When
+**[00:27:13]** I move to another machine, installing the tools I use
+**[00:27:15]** can take quite a while. Right. But. Some of you
+**[00:27:16]** might find it annoying or even turn it into a
+**[00:27:18]** script, but here's the point: you set it as a
+**[00:27:19]** definition file and then burn it into your environment, so
+**[00:27:21]** you can install it all at once. Well, this kind
+**[00:27:23]** of feature that makes setting up development environments more convenient
+**[00:27:25]** has come out. Also, the Windows 3 654 developer—this is
+**[00:27:27]** a machine that runs in the cloud. It's a machine
+**[00:27:29]** that runs in the cloud, with 32 VCUs, a massive
+**[00:27:31]** 128GB of memory, and 2 terabytes of storage.
+**[00:27:32]** And apparently, there are GP installation environments too. Well, if
+**[00:27:36]** you buy a development environment, if you buy it for
+**[00:27:39]** a company, it probably becomes a fixed asset. You have
+**[00:27:42]** to depreciate. Well, you know, they'll probably depreciate it over
+**[00:27:45]** five years, right? The environment developers use is on the
+**[00:27:48]** cloud, with those variable costs, right? You can use this
+**[00:27:51]** Operax. I think this is quite a benefit. And on
+**[00:27:54]** top of that, you can use some language models on
+**[00:27:57]** this
+**[00:27:57]** cloud PC. U. That's how it is. That's how it
+**[00:27:59]** works. Well, that's how it goes. Connecting local devices and
+**[00:28:01]** cloud PCs. The tasks you do on the cloud PC
+**[00:28:03]** side are... Just monitor from your local device and give
+**[00:28:05]** instructions.
+**[00:28:05]** Things like that.
+**[00:28:06]** Actually, it's possible. So, this is it. It's a WSL
+**[00:28:09]** container.
+**[00:28:09]** I think you can still use double SL before, but
+**[00:28:15]** now you can use it as a container and execute
+**[00:28:20]** it. So, the commands are called Double SA and Double
+**[00:28:26]** SLC, and these will be released soon. Compared to that
+**[00:28:32]** double SL, it's a bit lighter,
+**[00:28:36]** and you can run Linux containers on Windows in a
+**[00:28:40]** lighter environment, which is a convenient point. Thoughts. Anyway. So,
+**[00:28:48]** here's the development skill for developing Windows apps. This is
+**[00:28:54]** the terminal for developing Windows apps. Regarding the terminal, this
+**[00:29:01]** is the Incegen terminal. It seems
+**[00:29:04]** the city administration will be integrated into the terminal. While
+**[00:29:06]** operating that terminal, I got some kind of error. Nowadays,
+**[00:29:07]** I think you'd probably copy the error or message and
+**[00:29:09]** ask the LLM for the answer, but what exactly is
+**[00:29:10]** this error? This terminal is now available in an integrated
+**[00:29:11]** way from above. Well, that's how it looks. Wait. I
+**[00:29:13]** think this will also be a convenient feature. Next, about
+**[00:29:14]** Debtrax, the knife for software companies that sharpens well, probably
+**[00:29:16]** evolving into a central control system for software factories. I
+**[00:29:17]** think everyone is watching this process now. So, the Ritter
+**[00:29:19]** Copilot update has been released. This is it. Well, until
+**[00:29:20]** now, there have been people using CLI and VS code,
+**[00:29:21]** and I think some people were using it in that
+**[00:29:22]** browser, but with the new desktop app for Windows, well,
+**[00:29:24]** that's the new desktop app that came out. . Um,
+**[00:29:25]** this is how it looks. Well, in that repository base,
+**[00:29:26]** there's that list on the left side. Then, based on
+**[00:29:28]** the repository, you open chat sessions and proceed with that
+**[00:29:29]** process. Alright, and with
+**[00:29:30]** this, I think the most interesting thing I found was
+**[00:29:32]** this Canvas extension. Sorry for the small handwriting. It's down
+**[00:29:34]** there. It's called Create Canvas. You say, 'Please create a
+**[00:29:37]** canvas application,' give instructions, and inside, you can use GitHub
+**[00:29:39]** Copilot to make a signboard application, and if you ask
+**[00:29:41]** me to make a signboard application, it will create a
+**[00:29:44]** signboard or canvas for you. So, this app, this canvas
+**[00:29:46]** app, is stored in my own repository. Why can you
+**[00:29:48]** share this signboard with others who share the same repository,
+**[00:29:50]** and the agent can do the same, this is called
+**[00:29:52]** the canvas application data? Share it. This is the kind
+**[00:29:54]** of form that allows agents and humans to form more
+**[00:29:56]** convenient teams, so I guess this is the kind of
+**[00:29:58]** feature that has emerged. And for the runtime
+**[00:30:00]** part, it's a sandbox. Well, these days, well, several isolation
+**[00:30:06]** layers are implemented. Well, you can run directly, create containers
+**[00:30:13]** per session, or do it in a sandbox managed by
+**[00:30:18]** the OS. And here's the one thing I want to
+**[00:30:22]** do. Automate tasks you perform every
+**[00:30:26]** day. Automation. Section. That's the amount. Well, it's a bit
+**[00:30:29]** of a small font, but if you define the code
+**[00:30:32]** review at what time every day as automation means it's
+**[00:30:35]** automatically done every morning, for example. It will carry it
+**[00:30:38]** out. So, this is it. That automation is also properly
+**[00:30:41]** implemented in the cloud. It's running on Recurve. Why is
+**[00:30:45]** that repository operation? I didn't know notifications would come to
+**[00:30:49]** my smartphone too. Then, when I checked the code review
+**[00:30:52]** results on my smartphone app during my morning commute and
+**[00:30:55]** said something
+**[00:30:56]** was off, I went through the loop. You can also
+**[00:31:02]** assign tasks like assigning it to one lap of Copilot.
+**[00:31:09]** And it's the same with that desktop app too. Like.
+**[00:31:15]** You can assign and make a loop, have them check
+**[00:31:21]** it out, and then the agent
+**[00:31:25]** will automatically resolve the issue. Well, that's how it is—the
+**[00:31:30]** workflow is set up. And of course, when doing code
+**[00:31:33]** reviews, within this same Copilot app, you can split the
+**[00:31:37]** pane, review the code, and then automatically merge the code,
+**[00:31:41]** and you can now have agents do it.
+**[00:31:44]** So, is this what that past history was? I think
+**[00:31:51]** that's quite common, but well, there are commands for doing
+**[00:32:00]** that too. Well, in this way, until now, the world
+**[00:32:08]** was where
+**[00:32:09]** people would ask coding agents to assist them, and the
+**[00:32:11]** coding agents would handle the work beyond that. But from
+**[00:32:13]** now on, there will be an agent team. There are
+**[00:32:15]** humans there too. So, that's the part. Everyone. That's what
+**[00:32:17]** I thought. I think AI agents are development teams that
+**[00:32:19]** collaborate and work together to pursue a single outcome. So,
+**[00:32:22]** I think there are people who want to use this
+**[00:32:24]** in that program. So, this time we launched the Copilot
+**[00:32:26]** SDK, which is the GA. So, I hope everyone will
+**[00:32:28]** definitely use it. Yes, regarding the development environment, it supports
+**[00:32:30]** six languages right now. Yes, the fact that it was
+**[00:32:32]** newly added with a Jabba and a final piece is
+**[00:32:34]** a key point. Huh? Huh? So, you see.
+**[00:32:36]** This Copilot SDK includes the class platform and sound box
+**[00:32:40]** functions, so this one too, well, when separating security and
+**[00:32:44]** running agents, it becomes a pretty important point, so I
+**[00:32:48]** recommend giving it a try. This is the separation of
+**[00:32:52]** sessions, well, it's a definition file, like where you can
+**[00:32:56]** access it—something like this.
+**[00:32:58]** Yes. In that sense, I define it.
+**[00:32:59]** It will be so. Yes.
+**[00:33:00]** So, the point is, you can use it in various
+**[00:33:02]** environments. The key point is that it can be used
+**[00:33:05]** on local machines, cloud points, and well, well, well, it's
+**[00:33:07]** exactly that it can be used in environments disconnected from
+**[00:33:10]** the network. The final message is to ask them to
+**[00:33:13]** use it in various places. Why has it evolved from
+**[00:33:15]** the Copilot coding agent for guitars to the Copilot cli
+**[00:33:18]** Copilot SDK? Well, you can use any kind of machine—locally
+**[00:33:20]** or in the cloud. So, for everyone like Windows, this
+**[00:33:23]** time we've evolved and can develop in the environment they
+**[00:33:26]** like.
+**[00:33:26]** Why is that? I hope you enjoy coding and developing
+**[00:33:33]** applications in environments you like. Yes, next time, regarding the
+**[00:33:43]** cloud AI part with Mr. Nitta.
+**[00:33:47]** Right. I hope you can share that story. Yes.
+**[00:33:50]** Yes, everyone, hello. I am a reaper of Microsoft Japan
+**[00:33:53]** solution engineers. Well, from my side, I'd like to share
+**[00:33:57]** a brief update about the agent. Yes, I think I
+**[00:34:00]** mentioned this diagram earlier in the context of the Frontier
+**[00:34:04]** developer, but I'd like to introduce the parts outlined in
+**[00:34:08]** red here, which are a bit short of that time.
+**[00:34:11]** Yes, first of all. Um, from below. I'm sorry. I'd
+**[00:34:14]** like to start from the bottom of this diagram. Yes,
+**[00:34:18]** first, let's talk about the context. Yes. It was announced
+**[00:34:21]** in today's session, and in the form of IQ serverless
+**[00:34:24]** by the fund, the so-called 'good serverless AI search service'
+**[00:34:28]** was announced in a public preview. So, originally.
+**[00:34:32]** Yes, it's AI search. The current system, which used to
+**[00:34:35]** be about sizing capacity in this way, is the way
+**[00:34:38]** it used to be, but well, with serverless usage, it
+**[00:34:40]** can be used vigorously at zero scale, so I think
+**[00:34:43]** it's become very user-friendly. Right now, it's a developer-tier area,
+**[00:34:47]** so I think you can use it for a trial
+**[00:34:49]** period, so if you're interested, please give it a try.
+**[00:34:52]** We hope you will receive it.
+**[00:34:54]** Yes, continuing on, there's the Microsoft Execution Container, which has
+**[00:34:59]** appeared several times before, and it's called the Leftt MXC.
+**[00:35:03]** Well, yes, in keynotes, you can run it with OpenClaw
+**[00:35:07]** Windows. Also, the Copaote SDK cross that was just shown.
+**[00:35:11]** TOM'S and Box are also being realized with this technology,
+**[00:35:16]** but from my perspective, the key points are a bit
+**[00:35:19]** technical—well, well, lately, there have been quite a few
+**[00:35:24]** OS layers. —. I think the last part is quite
+**[00:35:26]** used, but mxc also implements the native binary for that
+**[00:35:29]** OS at the end, and the SDK for the interface
+**[00:35:31]** that implements that native binary is implemented as a type
+**[00:35:34]** script. And since this is publicly available on Github, the
+**[00:35:37]** content is still there. Of course, this is a preview
+**[00:35:39]** of that service, but I definitely want to be interested.
+**[00:35:42]** If so, please take a look. Yes.
+**[00:35:44]** Yes. Now, I'd like to move on to observability, but
+**[00:35:46]** before we get into the specific service, I'd like to
+**[00:35:49]** share some comments from NTT DATA. Now, let's talk about
+**[00:35:51]** the features I'm about to introduce. In fact, NTT Data
+**[00:35:53]** has been conducting verification during the private preview stage. So,
+**[00:35:56]** within NTT DATA's initiative called Smart Air Agent, well, the
+**[00:35:59]** control play of that foundry this time... Middle. and among
+**[00:36:01]** them, there were comments saying there is a very powerful
+**[00:36:04]** enterprise-grade system that can accelerate smart air agent initiatives, and
+**[00:36:07]** well, during this Microsoft Build event, Well, as an employee,
+**[00:36:10]** I am truly delighted to receive comments like this. Now,
+**[00:36:12]** the observation part I'm about to introduce is probably
+**[00:36:14]** a demo like this, and you really need to see
+**[00:36:19]** the screen in person. Wah. Huh? A difficult spot. I
+**[00:36:24]** think there might be some of that, so I hope
+**[00:36:28]** you can just get a glimpse of the image. So,
+**[00:36:33]** I'd like to introduce a quick slide with a few
+**[00:36:37]** slides. First, the first is the New Evaluation Capability,
+**[00:36:43]** which is an extension of the evaluation functions that existed
+**[00:36:50]** until now. When evaluating agents, Not just single interactions, but
+**[00:36:58]** also multi-turn evaluations that include all conversational exchanges, or the
+**[00:37:07]** agent's
+**[00:37:09]** Yes, you look at definitions, simulate the multi-tan conversation, and
+**[00:37:13]** give it a good evaluation. Also, I create datasets from
+**[00:37:16]** existing trace data. Yes, and also, regarding continuous evaluation, to
+**[00:37:21]** improve accuracy, we of course evaluate everything, but since we
+**[00:37:25]** can't evaluate everything this way, we have a function that
+**[00:37:29]** properly samples and evaluates the system. Yes, yes, it has
+**[00:37:32]** been developed. This is a public preview. Huh? Well, I've
+**[00:37:36]** already
+**[00:37:36]** tried it out, but I think it might work. From
+**[00:37:39]** here, the private preview feature appears, and first, the Rubric
+**[00:37:43]** Evaluator feature is introduced. Until now, it was fundraising. When
+**[00:37:47]** evaluating custom items, users created custom evaluators and evaluated them.
+**[00:37:51]** This rubric valuer automatically generates custom evaluators based on agent
+**[00:37:56]** definitions, and based on this, you can evaluate the custom
+**[00:37:59]** by providing a review. Value. Machine. making it easier to
+**[00:38:02]** make
+**[00:38:03]** I wonder if it happened? That's what I think.
+**[00:38:04]** And the other is mainly using the rubric evaluator mentioned
+**[00:38:09]** earlier. This agent, called the Optimizer, has appeared. So, this
+**[00:38:14]** is a function of an optimizer that uses agents in
+**[00:38:18]** a loop to set specific thresholds and meet those thresholds
+**[00:38:22]** in a way that is better than possible. Well, it's
+**[00:38:26]** like models, tools, skills, and so on.
+**[00:38:30]** Yes, we experiment with prompts and things like that. Yes,
+**[00:38:33]** the loop keeps spinning and optimizing the process more and
+**[00:38:36]** more. So, well, for those who did machine learning, there
+**[00:38:40]** were usually several methods for hyperpanameter tuning, like candycates, and
+**[00:38:44]** I think they selected the most accurate method, but the
+**[00:38:47]** image was exactly the same. Yes, personally, I think it's
+**[00:38:50]** fine. Well. Optimizers in that kind of way are used
+**[00:38:53]** on that fundraiser for private
+**[00:38:55]** It appears in the preview section.
+**[00:38:57]** Also, there are things called 'R-O'4 Agents,' which are designed
+**[00:39:01]** to achieve a return on investment. Well, it's a feature
+**[00:39:05]** that visualizes the cost of tokens and the cost of
+**[00:39:08]** valuation to the top of the tool called, links the
+**[00:39:11]** business value of those users to the actual cost-effectiveness, and
+**[00:39:16]** makes even more visible that this is actually cost-effective. This
+**[00:39:20]** is also a feature for the Price. Be. It's available
+**[00:39:24]** in the preview, and the Agent Optimizer I
+**[00:39:27]** just introduced and R-5 Agent are expected to be in
+**[00:39:30]** public preview soon, so I think you can try them
+**[00:39:32]** out right away. Now, starting with the 'Observability' feature I
+**[00:39:36]** introduced this time, there are also guardrails on the foundry.
+**[00:39:40]** Various features including security have been introduced, so this session
+**[00:39:44]** is definitely worth your attention. Well, including what was recorded.
+**[00:39:48]** Look. I hope you can take your leave. Now, let's
+**[00:39:51]** continue with the section on cloud platform data, Gakugu-san.
+**[00:39:58]** Hello everyone. This is Yamamoto from Microsoft. Yes, from me,
+**[00:40:02]** yes. Just three main updates—okay, I'll introduce them, so just
+**[00:40:05]** remember these three before you leave. One is the AI
+**[00:40:08]** data center, another is the modernization of the Okay Guitar
+**[00:40:11]** Co-Pilot, and the third is the Layfin. First, the first
+**[00:40:14]** point.
+**[00:40:16]** From the AI data center. What made me realize again
+**[00:40:19]** through this build is that it's not just the AI
+**[00:40:22]** model itself, but the infrastructure that supports it is crucial.
+**[00:40:27]** In the past year and a half, Microsoft has expanded
+**[00:40:30]** data center capacity comparable to the first decade of the
+**[00:40:34]** Azure era.
+**[00:40:36]** This is like Copilot that you all use, or when
+**[00:40:38]** you use AI tools, well, sessions start up, right? And
+**[00:40:41]** in each session, container-like things pop up one after another.
+**[00:40:44]** Then, by doing that, you perform the proper processing and
+**[00:40:47]** respond to the user. Yes, it does it immediately. So,
+**[00:40:49]** yes, infrastructure equipped with good capacity GP for data centers
+**[00:40:53]** becomes extremely important, and for that, we need to expand
+**[00:40:56]** data centers. Ah. Yes, yes, this was also a key
+**[00:40:58]** note for Satya, and yes, yes, we have also begun
+**[00:41:00]** construction of an AI-dedicated data center called Fairwater. And when
+**[00:41:04]** we keep expanding our data centers like this, it's not
+**[00:41:08]** that we're expanding without thinking—there are principles. While adhering to
+**[00:41:15]** policies like not raising local electricity bills and circulating water
+**[00:41:21]** to reduce actual consumption to zero, we are implementing the
+**[00:41:26]** cloud on a global scale in a very sustainable way.
+**[00:41:31]** We are working to provide the power of these efforts.
+**[00:41:35]** And the ones running in those data centers are in-house
+**[00:41:39]** developed chips like Mayer and Cobalt, which were from Okazaki
+**[00:41:43]** earlier. So, for us, I think Microsoft's tools are good
+**[00:41:47]** because they deliver value to everyone through a full stack
+**[00:41:51]** of data centers, chips, OS, and developer tools. Next are
+**[00:41:55]** Guitar of Co, Pilot, and Modernization.
+**[00:41:58]** This is not a GA but rather a feature extension,
+**[00:42:01]** but what I felt during the session with this build
+**[00:42:05]** was that the Copilot modernization of the guitar section is
+**[00:42:09]** about to change the very way modernization progresses. I've been
+**[00:42:13]** at Microsoft for eight years, and I've supported many customers
+**[00:42:17]** with their commitment to quality. It's just a simple intention
+**[00:42:21]** or a rehost.
+**[00:42:22]** So, yes. There are a lot of customers who end
+**[00:42:25]** up finishing. Many customers say modernization is not progressing smoothly.
+**[00:42:29]** Come and see. Orima.
+**[00:42:30]** So, the reason modernization hasn't progressed is that it's difficult
+**[00:42:35]** to coordinate between the development team, infrastructure team, and IT
+**[00:42:40]** team. To modernize, a broad understanding of applications, infrastructure, and
+**[00:42:46]** governance operations is required.
+**[00:42:49]** With the addition of the Guitar Department's Copilot, we can
+**[00:42:53]** now provide various forms of support, allowing the development and
+**[00:42:58]** IT teams to advance modernization on the same foundation. This
+**[00:43:03]** is the actual modernization screen of that guitar department, Copied.
+**[00:43:09]** On my VS code, I started the VS code in
+**[00:43:12]** the folder where the source code is.
+**[00:43:15]** We are about to launch the guitar onaization extension. This
+**[00:43:18]** is a Java application, but we conducted an assessment. Well,
+**[00:43:21]** it depends on the scale, but it's about 20 minutes.
+**[00:43:24]** The results of the assessment will be released. How to
+**[00:43:27]** migrate to the cloud? What needs to be changed to
+**[00:43:29]** migrate to Perth?
+**[00:43:30]** Huh? You can see that right away.
+**[00:43:32]** .
+**[00:43:33]** So, what's the biggest change in this announcement is on
+**[00:43:36]** this screen. Hey, especially on the right side, I want
+**[00:43:40]** you to look at the rulebook, command center, and the
+**[00:43:43]** biggest part is expanding supported scenarios. It's the mainframe marked
+**[00:43:48]** in red. Yes. I also spoke with some customers, and
+**[00:43:51]** they still run with mainframe spills.
+**[00:43:54]** Application.
+**[00:43:55]** That's what I've heard. In fact, yes, it was like
+**[00:43:57]** this. Yes, with a partner.
+**[00:43:59]** We have also received feedback from customers on the modernization
+**[00:44:03]** of the guitar club Copilot. We have also experienced this
+**[00:44:07]** modernization with Japanese partners such as Hitachi and NTT Data,
+**[00:44:12]** so we hope to talk with you again when we
+**[00:44:14]** return to Japan. This is the third and last one.
+**[00:44:18]** This is the layfin.
+**[00:44:21]** So, in this era of AI, I think it's become
+**[00:44:25]** this easy for everyone to make apps and even mockups.
+**[00:44:30]** But it's tough to bring that to the production level
+**[00:44:36]** and even the production level. So, what makes it difficult
+**[00:44:41]** is that building the backend involves authentication, good operations, governance,
+**[00:44:49]** and so
+**[00:44:50]** on—it's extremely challenging. This Layfin is provided by AI and
+**[00:44:53]** Microsoft. Huh? This project aims to use the power of
+**[00:44:55]** fabric to enable applications at a production level that can
+**[00:44:58]** be used, including the backend. This was announced as a
+**[00:45:00]** public preview. I have a quick video, so let's check
+**[00:45:03]** it out.
+**[00:45:05]** U.
+**[00:45:15]** I went too far. Please wait a moment.
+**[00:45:38]** Don't play the video.
+**[00:45:39]** Thank you, everyone.
+**[00:45:40]** We have them.
+**[00:45:41]** Sorry, um, um, I wanted to show it at the
+**[00:45:44]** end, but time ran out all at once. Thank you
+**[00:45:48]** very much.
+**[00:45:48]** I did. Thank you.
+**[00:45:50]** Thank you very much. I want to finish in just
+**[00:45:53]** one minute of 'Kkukkuku'. Regarding that Q&A, I hope to
+**[00:45:56]** have plenty of fun during the Japan dinner afterward, and
+**[00:45:59]** I hope to ask for your help there.
+**[00:46:02]** Yes, and also, um, you have to ask for this,
+**[00:46:06]** and yes, this is the recap. The event is being
+**[00:46:10]** planned by a Japanese person, so there will be an
+**[00:46:15]** announcement later, but I really hope you'll join us. Please
+**[00:46:21]** share this with other members, and um, last minute, yes,
+**[00:46:26]** here is the link to that survey. Um, I think
+**[00:46:30]** you'll share
+**[00:46:32]** the link later, so please give me feedback. Um, can
+**[00:46:33]** we continue this session? How about that? That depends on
+**[00:46:34]** everyone, so I hope you'll read that part and leave
+**[00:46:36]** it to me. Also, well, next time, okay. There's Ignite
+**[00:46:37]** in November, and there will be another build next year,
+**[00:46:38]** so I'm looking forward to seeing you all again. Thank
+**[00:46:40]** you very much.
+**[00:46:40]** I did.

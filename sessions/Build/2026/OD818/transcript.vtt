@@ -1,0 +1,2724 @@
+WEBVTT
+
+00:00:03.540 --> 00:00:04.320
+PIERO MORANO: Hello, everyone,
+
+00:00:04.320 --> 00:00:06.840
+and welcome to our
+Microsoft Build session
+
+00:00:06.840 --> 00:00:09.120
+on the AI-Native Data Engineer.
+
+00:00:09.120 --> 00:00:11.220
+This is obviously a very
+hot topic right now,
+
+00:00:11.220 --> 00:00:14.190
+and I'm really excited to spend
+this session exploring how AI is
+
+00:00:14.190 --> 00:00:16.770
+changing the way
+that engineers work,
+
+00:00:16.770 --> 00:00:18.630
+not just by generating code
+
+00:00:18.630 --> 00:00:22.050
+but by helping us rethink the
+full data developer workflow
+
+00:00:22.050 --> 00:00:25.200
+across Fabric, VS Code, and CLI.
+
+00:00:25.200 --> 00:00:28.050
+My name is Piero Morano, and
+I lead product management
+
+00:00:28.050 --> 00:00:30.270
+for the Developer Experience
+for Data Engineering
+
+00:00:30.270 --> 00:00:32.760
+and Data Science in
+Microsoft Fabric.
+
+00:00:32.760 --> 00:00:33.810
+In this session, we'll look
+
+00:00:33.810 --> 00:00:36.450
+at how the data engineering
+role is evolving,
+
+00:00:36.450 --> 00:00:40.650
+how to choose the right power
+tool for the right job,
+
+00:00:40.650 --> 00:00:44.280
+and how Fabric can help data
+engineers move faster while
+
+00:00:44.280 --> 00:00:45.210
+staying in control
+
+00:00:45.210 --> 00:00:47.400
+of architecture
+quality and outcomes.
+
+00:00:47.400 --> 00:00:49.740
+I'm really excited to be
+joined by Rocky Rackman,
+
+00:00:49.740 --> 00:00:52.830
+who will bring a practical
+data engineering perspective
+
+00:00:52.830 --> 00:00:56.190
+and show how these ideas apply
+in real Fabric scenarios.
+
+00:00:56.190 --> 00:00:58.290
+Raki, over to you
+for a quick intro.
+
+00:00:58.290 --> 00:00:58.620
+RAKI RAHMAN: Hey.
+
+00:00:58.620 --> 00:00:59.250
+Thanks, Piero.
+
+00:00:59.250 --> 00:01:00.000
+Hi, everybody.
+
+00:01:00.000 --> 00:01:01.230
+My name is Raki Rahman.
+
+00:01:01.230 --> 00:01:02.490
+I'm a principal
+software engineer
+
+00:01:02.490 --> 00:01:05.790
+on the SQL Server Telemetry
+and Intelligence team.
+
+00:01:05.790 --> 00:01:08.670
+We've been a Fabric customer for
+about three or four years now.
+
+00:01:08.670 --> 00:01:12.890
+And I aspire to be an AI-native
+data engineer, and I would love
+
+00:01:12.890 --> 00:01:14.450
+to show some of the tips
+
+00:01:14.450 --> 00:01:16.070
+and tricks we've picked
+up along the way.
+
+00:01:16.070 --> 00:01:16.980
+Thank you, Piero.
+
+00:01:16.980 --> 00:01:17.310
+PIERO MORANO: Awesome.
+
+00:01:17.310 --> 00:01:18.840
+Thank you so much, Raki.
+
+00:01:18.840 --> 00:01:21.270
+Let me quickly walk
+through the agenda today.
+
+00:01:21.270 --> 00:01:23.670
+So we'll start by
+framing how the role
+
+00:01:23.670 --> 00:01:26.610
+of the data engineer is
+evolving in the age of AI.
+
+00:01:26.610 --> 00:01:30.420
+Then we'll look at two
+important working styles,
+
+00:01:30.420 --> 00:01:33.570
+the native IDE data engineer
+who prefers VS Code,
+
+00:01:33.570 --> 00:01:35.490
+a more developer-centric
+workflow;
+
+00:01:35.490 --> 00:01:38.100
+and briefly touch upon the
+web-first data engineer
+
+00:01:38.100 --> 00:01:41.400
+or analyst who works
+directly in Fabric portal.
+
+00:01:41.400 --> 00:01:44.970
+From there, Raki will take us
+into a practical Fabric scenario
+
+00:01:44.970 --> 00:01:48.420
+and show how he builds
+a pipeline in his work
+
+00:01:48.420 --> 00:01:52.350
+of everyday work in
+his team across using,
+
+00:01:52.350 --> 00:01:56.280
+leveraging AI
+across the process.
+
+00:01:56.280 --> 00:01:59.160
+For those of you new
+to Microsoft Fabric,
+
+00:01:59.160 --> 00:02:01.560
+here's a quick foundation
+before we dive deep
+
+00:02:01.560 --> 00:02:02.730
+into the main topic.
+
+00:02:02.730 --> 00:02:07.020
+Microsoft Fabric brings together
+the core experiences data teams
+
+00:02:07.020 --> 00:02:08.850
+need in one unified platform.
+
+00:02:08.850 --> 00:02:12.960
+So, from databases to data
+orchestration and analytics,
+
+00:02:12.960 --> 00:02:15.420
+real-time intelligence,
+Power BI,
+
+00:02:15.420 --> 00:02:18.840
+what makes it especially
+important in the age of AI is
+
+00:02:18.840 --> 00:02:21.240
+that these experiences
+are not isolated.
+
+00:02:21.240 --> 00:02:24.210
+They are connected through the
+Fabric platform with OneLake
+
+00:02:24.210 --> 00:02:28.980
+as the common data foundation,
+governance, and security.
+
+00:02:28.980 --> 00:02:31.500
+With that foundation in
+mind, let's dive deeper
+
+00:02:31.500 --> 00:02:34.350
+into how the role of data
+engineer is evolving.
+
+00:02:34.350 --> 00:02:36.600
+Many of you are probably
+already in the middle
+
+00:02:36.600 --> 00:02:38.760
+of this transition
+or revolution.
+
+00:02:38.760 --> 00:02:41.280
+You are experimenting with
+AI tools in the browser,
+
+00:02:41.280 --> 00:02:43.650
+VS Code perhaps on the terminal,
+
+00:02:43.650 --> 00:02:45.870
+and trying to understand
+what this means
+
+00:02:45.870 --> 00:02:47.910
+for your day-by-day work.
+
+00:02:47.910 --> 00:02:49.740
+On the left side
+of these slides,
+
+00:02:49.740 --> 00:02:52.260
+we see the traditional
+work of the data engineer:
+
+00:02:52.260 --> 00:02:55.830
+building Pipelines, writing
+ETL logic, debugging issues,
+
+00:02:55.830 --> 00:02:56.880
+managing dependencies,
+
+00:02:56.880 --> 00:03:00.780
+making sure that the old
+data flow works reliably.
+
+00:03:00.780 --> 00:03:05.190
+That work is still critical, but
+the way we do it is changing.
+
+00:03:05.190 --> 00:03:08.580
+On the right-hand side, we
+have the emerging AI-native
+
+00:03:08.580 --> 00:03:09.420
+data engineer.
+
+00:03:09.420 --> 00:03:11.370
+This is not a different person.
+
+00:03:11.370 --> 00:03:13.380
+It is evolution of the same job.
+
+00:03:13.380 --> 00:03:15.960
+The engineer still owns the
+architecture, the quality,
+
+00:03:15.960 --> 00:03:18.810
+and the end results but uses AI
+
+00:03:18.810 --> 00:03:21.120
+to accelerate the
+implementation.
+
+00:03:21.120 --> 00:03:22.410
+From a product standpoint,
+
+00:03:22.410 --> 00:03:26.640
+this means investing not only
+on-code generation but also
+
+00:03:26.640 --> 00:03:30.300
+in the foundations that make
+AI useful for real engineers.
+
+00:03:30.300 --> 00:03:33.930
+So more work on
+API tools, skills,
+
+00:03:33.930 --> 00:03:36.660
+and better context
+and experience.
+
+00:03:36.660 --> 00:03:39.090
+As you watch this session,
+I encourage you to think
+
+00:03:39.090 --> 00:03:43.230
+about which one of these tools
+can help you be more productive
+
+00:03:43.230 --> 00:03:45.540
+using AI.
+
+00:03:45.540 --> 00:03:47.730
+So, if the role of the
+data engineer is changing,
+
+00:03:47.730 --> 00:03:50.640
+the tools need to
+evolve as well.
+
+00:03:50.640 --> 00:03:53.610
+The key point is that there
+is no single best surface
+
+00:03:53.610 --> 00:03:55.710
+for every data engineer
+or every task.
+
+00:03:55.710 --> 00:04:00.570
+First, the Fabric web portal,
+This is great for zero setup,
+
+00:04:00.570 --> 00:04:02.520
+visual exploration
+collaboration,
+
+00:04:02.520 --> 00:04:04.350
+and quick access to data.
+
+00:04:04.350 --> 00:04:07.140
+Second, IDE in VS Code.
+
+00:04:07.140 --> 00:04:10.080
+This is where many
+professional developers
+
+00:04:10.080 --> 00:04:13.290
+and data engineers are most
+productive with GitHub Copilot,
+
+00:04:13.290 --> 00:04:15.180
+source control, and more.
+
+00:04:15.180 --> 00:04:17.430
+Third, the CLI and
+terminal experience.
+
+00:04:17.430 --> 00:04:20.910
+This is useful when the task is
+more scriptable, repeatable,
+
+00:04:20.910 --> 00:04:23.340
+and automation-focused.
+
+00:04:23.340 --> 00:04:26.610
+Not every task needs
+the same AI experience.
+
+00:04:26.610 --> 00:04:29.790
+For exploration, debugging,
+and ad hoc analysis,
+
+00:04:29.790 --> 00:04:32.070
+you usually want a
+conversational flow
+
+00:04:32.070 --> 00:04:36.270
+where you stay close to the data
+and guide the AI step by step.
+
+00:04:36.270 --> 00:04:38.940
+For more repeatable or
+operational work, you may want
+
+00:04:38.940 --> 00:04:40.230
+to delegate more
+
+00:04:40.230 --> 00:04:44.280
+of the execution while
+reviewing the plan and results.
+
+00:04:44.280 --> 00:04:48.120
+The key point is simple: Match
+the AI interaction model
+
+00:04:48.120 --> 00:04:50.340
+to the task, and keep
+the engineer in control
+
+00:04:50.340 --> 00:04:52.920
+of the important decision.
+
+00:04:52.920 --> 00:04:54.660
+So, before we jump
+into the demo,
+
+00:04:54.660 --> 00:04:59.100
+let me quickly clarify the
+experiences I am referring to.
+
+00:04:59.100 --> 00:05:02.190
+First, we have the newly
+enhanced Copilot Chat
+
+00:05:02.190 --> 00:05:05.100
+in Fabric notebooks, which
+helps user work directly
+
+00:05:05.100 --> 00:05:06.540
+in the Fabric portal.
+
+00:05:06.540 --> 00:05:09.390
+Second, we have the Fabric
+data engineering extension
+
+00:05:09.390 --> 00:05:12.360
+in VS Code, now enhanced
+with MCP and tools
+
+00:05:12.360 --> 00:05:15.480
+that make the custom
+GitHub Copilot agent aware
+
+00:05:15.480 --> 00:05:17.590
+of Fabric context.
+
+00:05:18.630 --> 00:05:21.720
+Let me jump into the first demo
+
+00:05:21.720 --> 00:05:27.290
+where I am reading an event
+stream using a Spark notebook,
+
+00:05:27.290 --> 00:05:28.730
+leveraging Kafka.
+
+00:05:28.730 --> 00:05:31.340
+And this is bridging
+the Spark and the RTI,
+
+00:05:31.340 --> 00:05:33.530
+the real-time
+intelligence in Fabric.
+
+00:05:33.530 --> 00:05:36.380
+The stream comes into
+the notebook as a JSON,
+
+00:05:36.380 --> 00:05:37.820
+and I would like to transform it
+
+00:05:37.820 --> 00:05:40.130
+into a Delta table following
+the best practices
+
+00:05:40.130 --> 00:05:43.820
+of medallion architecture
+and EventHub best practices.
+
+00:05:43.820 --> 00:05:45.710
+I'm not very familiar
+with streaming,
+
+00:05:45.710 --> 00:05:49.100
+so I decide to use Copilot
+and see how it can help.
+
+00:05:49.100 --> 00:05:50.190
+Let's see what happened.
+
+00:05:50.190 --> 00:05:52.830
+UNIDENTIFIED PERSON 1: I am using
+now Fabric Data Engineering new
+
+00:05:52.830 --> 00:05:56.340
+VS Code extension, and I will
+leverage the new Fabric-aware
+
+00:05:56.340 --> 00:05:59.160
+notebook agent mode to integrate
+a new social media feed
+
+00:05:59.160 --> 00:06:00.330
+from event stream.
+
+00:06:00.330 --> 00:06:02.820
+I am reading the event
+stream in my Spark notebook.
+
+00:06:02.820 --> 00:06:04.620
+The first cell is
+a parameter cell,
+
+00:06:04.620 --> 00:06:07.320
+and the second one connects
+to the Fabric event stream
+
+00:06:07.320 --> 00:06:10.530
+as a Kafka source, decoding
+the binary key value columns
+
+00:06:10.530 --> 00:06:11.550
+to strings.
+
+00:06:11.550 --> 00:06:14.100
+As I run the notebook cells
+and events start arriving,
+
+00:06:14.100 --> 00:06:16.110
+each record contains
+a JSON payload
+
+00:06:16.110 --> 00:06:18.420
+with customer feedback details.
+
+00:06:18.420 --> 00:06:20.220
+My goal is to ingest
+this streaming
+
+00:06:20.220 --> 00:06:21.720
+into our medallion architecture,
+
+00:06:21.720 --> 00:06:23.730
+applying streaming
+best practices.
+
+00:06:23.730 --> 00:06:26.520
+So, instead of manually
+designing the ingestion pattern,
+
+00:06:26.520 --> 00:06:29.640
+I ask Copilot, can you check
+this notebook that read
+
+00:06:29.640 --> 00:06:32.730
+from event streaming social
+media feeds and suggest a plan
+
+00:06:32.730 --> 00:06:35.430
+to incorporate it into our
+medallion architecture
+
+00:06:35.430 --> 00:06:37.500
+and eventhouse authoring
+best practices
+
+00:06:37.500 --> 00:06:39.060
+in my built-in folders?
+
+00:06:39.060 --> 00:06:42.120
+Copilot interprets the notebook
+and, after checking the skills,
+
+00:06:42.120 --> 00:06:45.360
+suggests a plan that starts
+with Phase 1 Bronze Layer: One,
+
+00:06:45.360 --> 00:06:48.180
+parse the value column, which
+right now is just a big string
+
+00:06:48.180 --> 00:06:51.270
+of JSON text; two,
+add tracking columns,
+
+00:06:51.270 --> 00:06:53.880
+suggesting to break it apart
+into individual columns
+
+00:06:53.880 --> 00:06:56.820
+as add metadata columns,
+including ingestion timestamp
+
+00:06:56.820 --> 00:07:00.840
+and batch ID so we can trace
+every record back to its source;
+
+00:07:00.840 --> 00:07:04.170
+three, write to a Delta bronze
+table using append-only mode,
+
+00:07:04.170 --> 00:07:06.300
+adding also a checkpoint
+so, if the notebook crashes
+
+00:07:06.300 --> 00:07:08.760
+and restarts, it picks up
+exactly where it left off
+
+00:07:08.760 --> 00:07:12.630
+to avoid duplicates or data
+loss; four, validate; finally,
+
+00:07:12.630 --> 00:07:15.210
+check row counts to make
+sure data is flowing.
+
+00:07:15.210 --> 00:07:17.460
+But how did Copilot
+figure all of this out?
+
+00:07:17.460 --> 00:07:18.810
+It scanned the built-in folder
+
+00:07:18.810 --> 00:07:21.090
+and discovered two
+available skills:
+
+00:07:21.090 --> 00:07:24.630
+E2E medallion architecture
+and eventhouse authoring.
+
+00:07:24.630 --> 00:07:26.610
+By reading the medallion
+architecture skill,
+
+00:07:26.610 --> 00:07:30.120
+Copilot was able to generate
+a solid implementation plan.
+
+00:07:30.120 --> 00:07:32.460
+Continuing with the silver
+layer, the plan suggests reading
+
+00:07:32.460 --> 00:07:34.920
+from the bronze Delta table
+that we just created.
+
+00:07:34.920 --> 00:07:36.690
+From there, we apply
+a few quality rules
+
+00:07:36.690 --> 00:07:39.840
+like removing duplicates; then
+do some schema conformance; and,
+
+00:07:39.840 --> 00:07:42.240
+finally, curate data
+to a silver table.
+
+00:07:42.240 --> 00:07:44.100
+The plan also suggests
+additional steps,
+
+00:07:44.100 --> 00:07:47.430
+including a gold layer,
+eventhouse optimizations,
+
+00:07:47.430 --> 00:07:50.670
+and even a graphical view of
+the proposed architecture.
+
+00:07:50.670 --> 00:07:53.760
+But I want to move in a more
+controlled way, so I ask Copilot
+
+00:07:53.760 --> 00:07:56.760
+to continue only with Phase
+1 and Phase 2 for now,
+
+00:07:56.760 --> 00:08:00.420
+meaning bronze and silver only.
+
+00:08:00.420 --> 00:08:03.690
+I also make the lakehouse
+targets explicit: Retail raw LH
+
+00:08:03.690 --> 00:08:06.930
+for bronze, retail
+curated LH for silver.
+
+00:08:06.930 --> 00:08:08.910
+And I want to preserve
+the setup I already have,
+
+00:08:08.910 --> 00:08:11.670
+so I ask Copilot not to
+modify the first two cells
+
+00:08:11.670 --> 00:08:14.940
+in my notebook and, instead,
+implement everything starting
+
+00:08:14.940 --> 00:08:18.300
+from cell 3, keeping all the
+new steps in the same notebook.
+
+00:08:18.300 --> 00:08:20.820
+Copilot identifies the
+two lakehouses for bronze
+
+00:08:20.820 --> 00:08:25.080
+and silver using Fabric notebook
+MCP server and proceeds
+
+00:08:25.080 --> 00:08:28.110
+with a plan maintaining the
+first two cells untouched.
+
+00:08:28.110 --> 00:08:31.080
+It also updates the notebook
+with clear markdown cells,
+
+00:08:31.080 --> 00:08:32.580
+very convenient
+when collaborating
+
+00:08:32.580 --> 00:08:34.170
+with other team members.
+
+00:08:34.170 --> 00:08:35.850
+After a few iterations
+with Copilot,
+
+00:08:35.850 --> 00:08:38.100
+I now have the final
+version of the notebook.
+
+00:08:38.100 --> 00:08:40.920
+It includes clear markdown
+cells so the pipeline is easy
+
+00:08:40.920 --> 00:08:43.890
+to understand and collaborate
+on, and it also has a cell
+
+00:08:43.890 --> 00:08:45.960
+to control the incoming
+streaming data.
+
+00:08:45.960 --> 00:08:49.110
+At this point, I ask Copilot
+to execute the notebook.
+
+00:08:49.110 --> 00:08:51.690
+I also ask it to skip
+one debugging cell.
+
+00:08:51.690 --> 00:08:53.910
+Copilot understands the
+current cell organization
+
+00:08:53.910 --> 00:08:55.230
+and runs the notebook.
+
+00:08:55.230 --> 00:08:57.060
+During execution, it
+confirms the number
+
+00:08:57.060 --> 00:08:58.950
+of incoming streaming
+records being written
+
+00:08:58.950 --> 00:09:00.780
+into the bronze
+and silver tables.
+
+00:09:00.780 --> 00:09:03.120
+Once the run completes, I
+can see the data flowing
+
+00:09:03.120 --> 00:09:04.440
+through the pipeline,
+
+00:09:04.440 --> 00:09:07.620
+transformed from the original
+JSON events into Delta tables
+
+00:09:07.620 --> 00:09:09.630
+in the bronze and
+silver lakehouses.
+
+00:09:09.630 --> 00:09:12.030
+This saved me a significant
+amount of time.
+
+00:09:12.030 --> 00:09:14.610
+Before moving forward, I'll ask
+another team member to review
+
+00:09:14.610 --> 00:09:16.410
+and validate the notebook.
+
+00:09:16.410 --> 00:09:16.680
+PIERO MORANO: Okay.
+
+00:09:16.680 --> 00:09:20.100
+Great. So now that we have
+seen, we have a better idea
+
+00:09:20.100 --> 00:09:25.110
+of what does it mean to build
+a data pipeline using GitHub
+
+00:09:25.110 --> 00:09:28.110
+Copilot on VS Code and
+the VS Code extension,
+
+00:09:28.110 --> 00:09:29.340
+the engineering extension.
+
+00:09:29.340 --> 00:09:34.070
+I will hand it over to Raki to
+have a better understanding
+
+00:09:34.070 --> 00:09:37.130
+of how this can work in
+real-life experience.
+
+00:09:37.130 --> 00:09:38.270
+Raki, over to you.
+
+00:09:38.270 --> 00:09:39.500
+RAKI RAHMAN: Thank you, Piero.
+
+00:09:39.500 --> 00:09:41.970
+So we're going to
+have some fun now.
+
+00:09:43.430 --> 00:09:49.440
+The way I want to approach AI
+is this is a TV show character.
+
+00:09:49.440 --> 00:09:50.550
+It's from The Simpsons.
+
+00:09:50.550 --> 00:09:52.680
+His name is Ralph Wiggum.
+
+00:09:52.680 --> 00:09:54.300
+So the way you can
+think about AI,
+
+00:09:54.300 --> 00:09:56.430
+or at least this is my
+mindset of thinking about AI,
+
+00:09:56.430 --> 00:09:59.550
+is Ralph Wiggum in The
+Simpsons character,
+
+00:09:59.550 --> 00:10:03.390
+he's a very charming,
+very simple kid.
+
+00:10:03.390 --> 00:10:06.600
+He's not too bright, but
+he's very hardworking.
+
+00:10:06.600 --> 00:10:11.040
+And the idea is that, when
+you can give Ralph a task
+
+00:10:11.040 --> 00:10:14.610
+and you can give him the hints
+in order to go ahead and achieve
+
+00:10:14.610 --> 00:10:18.150
+that task, he is the hardest
+worker in the room in order
+
+00:10:18.150 --> 00:10:20.610
+to achieve whatever
+you've asked him to.
+
+00:10:20.610 --> 00:10:23.850
+And this concept in AI is
+actually called a Ralph loop,
+
+00:10:23.850 --> 00:10:27.720
+which you can take a look in
+your favorite search engine.
+
+00:10:27.720 --> 00:10:29.670
+Go ahead and search up the
+Ralph loop, and you'll notice
+
+00:10:29.670 --> 00:10:33.600
+that this is picking up a lot
+of momentum in the industry.
+
+00:10:33.600 --> 00:10:39.210
+And the idea is that you want to
+basically go ahead and place AI
+
+00:10:39.210 --> 00:10:44.220
+into a context-bounded box and
+give it a well-defined task.
+
+00:10:44.220 --> 00:10:46.620
+And, similar to Ralph,
+when you give him a task,
+
+00:10:46.620 --> 00:10:48.210
+he's going to try
+his hardest in order
+
+00:10:48.210 --> 00:10:50.160
+to achieve what
+you've asked him to.
+
+00:10:50.160 --> 00:10:53.120
+AI is also going to be able to
+do that, but it is up to you
+
+00:10:53.120 --> 00:10:56.810
+to basically go ahead and place
+AI inside the right context.
+
+00:10:56.810 --> 00:10:58.190
+This is called a Ralph loop.
+
+00:10:58.190 --> 00:11:03.380
+So the way my team,
+we use Fabric is --
+
+00:11:03.380 --> 00:11:06.210
+let me go ahead and just
+show the architecture --
+
+00:11:06.210 --> 00:11:09.360
+is we have data that is
+coming in, you know.
+
+00:11:09.360 --> 00:11:12.570
+So, similar to
+other enterprises,
+
+00:11:12.570 --> 00:11:14.910
+we employ the Medallion
+Architecture.
+
+00:11:14.910 --> 00:11:16.470
+So, on the top
+left of my screen,
+
+00:11:16.470 --> 00:11:19.620
+you can see we have data coming
+in at very high velocity
+
+00:11:19.620 --> 00:11:21.750
+from all sorts of data
+sources, like, for example,
+
+00:11:21.750 --> 00:11:24.240
+Piero was showing Kafka.
+
+00:11:24.240 --> 00:11:27.210
+A lot of data coming in,
+being landed into Delta Lake.
+
+00:11:27.210 --> 00:11:30.660
+And then the idea is the data
+that is inside of Delta Lake,
+
+00:11:30.660 --> 00:11:34.680
+inside of a bronze format,
+there's no schema.
+
+00:11:34.680 --> 00:11:36.120
+There is no structure
+to the data.
+
+00:11:36.120 --> 00:11:37.710
+There's no columnar compression.
+
+00:11:37.710 --> 00:11:39.450
+And the first thing
+that we have to do
+
+00:11:39.450 --> 00:11:42.030
+as a data engineer is
+essentially apply schema
+
+00:11:42.030 --> 00:11:42.540
+to the data.
+
+00:11:42.540 --> 00:11:44.550
+This is called schema on read.
+
+00:11:44.550 --> 00:11:46.680
+And the schema might
+be very complex.
+
+00:11:46.680 --> 00:11:47.580
+It might be XML.
+
+00:11:47.580 --> 00:11:48.780
+There might be nested JSON.
+
+00:11:48.780 --> 00:11:52.770
+There could be all sorts of
+different things that we have
+
+00:11:52.770 --> 00:11:56.670
+to do in order to apply a
+robust schema to the data,
+
+00:11:56.670 --> 00:11:59.760
+get it into columnar format, and
+store it inside of Delta Lake
+
+00:11:59.760 --> 00:12:03.600
+in a well-compressed structure
+so that, when you run queries
+
+00:12:03.600 --> 00:12:05.970
+on the data, your queries
+are effectively fast.
+
+00:12:05.970 --> 00:12:10.500
+So we're going to look at a
+demonstration of this workflow
+
+00:12:10.500 --> 00:12:11.160
+that I just mentioned.
+
+00:12:11.160 --> 00:12:15.750
+But the idea is, now that the
+data has landed in OneLake,
+
+00:12:15.750 --> 00:12:18.990
+what I want to do, actually, is,
+because I'm working in VS Code,
+
+00:12:18.990 --> 00:12:24.750
+I want to use the compute power
+of my local machine in order
+
+00:12:24.750 --> 00:12:27.780
+to work with data that is
+production data in OneLake.
+
+00:12:27.780 --> 00:12:29.850
+And so one of the
+tricks that I've picked
+
+00:12:29.850 --> 00:12:32.640
+up over the last three years
+in using OneLake is the fact
+
+00:12:32.640 --> 00:12:35.700
+that you can basically go
+ahead and mount OneLake
+
+00:12:35.700 --> 00:12:37.320
+into your personal computer.
+
+00:12:37.320 --> 00:12:40.260
+So, if you're a Windows user,
+you are probably familiar
+
+00:12:40.260 --> 00:12:41.850
+with the OneLake Explorer.
+
+00:12:41.850 --> 00:12:44.580
+In this case, we're going
+to be using a Linux
+
+00:12:44.580 --> 00:12:47.130
+VS Code dev container
+where we're going
+
+00:12:47.130 --> 00:12:49.200
+to be using a mount
+called BlobFuse.
+
+00:12:49.200 --> 00:12:50.940
+This is basically a
+standard Linux driver.
+
+00:12:50.940 --> 00:12:54.000
+You can, again, go to your
+favorite web search and search
+
+00:12:54.000 --> 00:12:57.720
+for BlobFuse driver for
+ADLS; and you will find
+
+00:12:57.720 --> 00:12:59.790
+that you can use BlobFuse
+in order to go ahead
+
+00:12:59.790 --> 00:13:02.430
+and mount OneLake as
+a read-only mount
+
+00:13:02.430 --> 00:13:03.630
+into your local file system.
+
+00:13:03.630 --> 00:13:05.070
+So, in the bottom of my screen,
+
+00:13:05.070 --> 00:13:07.710
+you can see I'm showing
+tmp mount OneLake.
+
+00:13:07.710 --> 00:13:10.020
+This is basically going to be
+a local drive where I'm going
+
+00:13:10.020 --> 00:13:14.250
+to have OneLake Delta Lake
+tables available locally.
+
+00:13:14.250 --> 00:13:15.960
+I'm going to show you
+that in a second.
+
+00:13:15.960 --> 00:13:18.540
+So then what my team
+does is basically we try
+
+00:13:18.540 --> 00:13:21.150
+to simulate Fabric Spark
+running on our computer.
+
+00:13:21.150 --> 00:13:23.550
+So we're basically able to
+go ahead and use the power
+
+00:13:23.550 --> 00:13:24.870
+of our local compute on data
+
+00:13:24.870 --> 00:13:27.870
+that is running
+inside of OneLake.
+
+00:13:27.870 --> 00:13:30.360
+So, for example, we're going
+to have Spark running locally.
+
+00:13:30.360 --> 00:13:31.620
+I have a Livy server.
+
+00:13:31.620 --> 00:13:34.020
+And, by the way, all of
+this is open source.
+
+00:13:34.020 --> 00:13:38.250
+So, in an upcoming slide, I'll
+be giving you some GitHub links
+
+00:13:38.250 --> 00:13:38.850
+where you can go ahead
+
+00:13:38.850 --> 00:13:40.950
+and reproduce this
+demonstration locally.
+
+00:13:40.950 --> 00:13:43.200
+So, essentially, the idea
+is I've got a Livy server.
+
+00:13:43.200 --> 00:13:45.060
+I've got Fabric Spark.
+
+00:13:45.060 --> 00:13:46.830
+I've got the Hive API.
+
+00:13:46.830 --> 00:13:48.390
+I have my Copilot CLI.
+
+00:13:48.390 --> 00:13:50.940
+And I can use either
+regular Spark code,
+
+00:13:50.940 --> 00:13:55.080
+so either it's PySpark or Scala;
+or I can use a tool like DBT,
+
+00:13:55.080 --> 00:13:57.390
+Data Build Tool, which is
+gaining a lot of traction
+
+00:13:57.390 --> 00:13:59.460
+in the industry, in
+order to go ahead
+
+00:13:59.460 --> 00:14:02.070
+and do my data transformations.
+
+00:14:02.070 --> 00:14:05.040
+The idea from that
+point is any code
+
+00:14:05.040 --> 00:14:09.420
+that I write locally we're going
+to be running full unit tests,
+
+00:14:09.420 --> 00:14:12.420
+full integration tests on
+this data, on production data
+
+00:14:12.420 --> 00:14:15.420
+on our local computer.
+
+00:14:15.420 --> 00:14:18.600
+And the idea is
+that I can go ahead
+
+00:14:18.600 --> 00:14:21.450
+and essentially take what
+I'm about to show you and,
+
+00:14:21.450 --> 00:14:24.390
+if I have, for example,
+GitHub Action CI machines,
+
+00:14:24.390 --> 00:14:27.570
+or I have multiple dev boxes,
+I can effectively go ahead
+
+00:14:27.570 --> 00:14:29.640
+and parallelize what we're
+going to look at today
+
+00:14:29.640 --> 00:14:33.540
+with the Ralph loop across
+10 different machines,
+
+00:14:33.540 --> 00:14:36.630
+which allows me to basically
+work with 10 different users.
+
+00:14:36.630 --> 00:14:39.690
+So, previously, when I would
+personally be serializing these
+
+00:14:39.690 --> 00:14:42.330
+tasks, you know, I might not
+be getting done as much work
+
+00:14:42.330 --> 00:14:45.000
+as my business needs,
+whereas now with AI,
+
+00:14:45.000 --> 00:14:46.260
+even as a single person,
+
+00:14:46.260 --> 00:14:48.930
+I'm able to essentially
+parallelize and, you know,
+
+00:14:48.930 --> 00:14:53.730
+throw AI at the data engineering
+problem, and, at the same time,
+
+00:14:53.730 --> 00:14:55.590
+I'm fully in control, as
+you'll see, because I have
+
+00:14:55.590 --> 00:14:57.390
+to give a lot of
+input to the AI.
+
+00:14:57.390 --> 00:14:59.670
+And, again, we're just
+basically putting Ralph Wiggum
+
+00:14:59.670 --> 00:15:01.530
+into that bounded box.
+
+00:15:01.530 --> 00:15:04.920
+And then, after that, you know,
+in order to build confidence,
+
+00:15:04.920 --> 00:15:06.720
+I can go ahead and take the
+code that is generated.
+
+00:15:06.720 --> 00:15:10.710
+I can use Azure DevOps or GitHub
+Actions to test that same code
+
+00:15:10.710 --> 00:15:15.900
+on OneLake's production data
+before I merge my PR into main.
+
+00:15:15.900 --> 00:15:18.060
+And then, when I merge
+my PR into main,
+
+00:15:18.060 --> 00:15:20.910
+we're going to go ahead and take
+it all back to Fabric again.
+
+00:15:20.910 --> 00:15:22.350
+It's the same Spark code.
+
+00:15:22.350 --> 00:15:25.890
+And we're going to use the power
+of Fabric Spark; or you can,
+
+00:15:25.890 --> 00:15:29.370
+you know, scale out to 200
+nodes with 64 cores and so on,
+
+00:15:29.370 --> 00:15:31.170
+which I wouldn't be able
+to do locally, right?
+
+00:15:31.170 --> 00:15:32.970
+So we basically get the
+best of both worlds,
+
+00:15:32.970 --> 00:15:35.790
+and the pipeline is running
+confidently in production.
+
+00:15:35.790 --> 00:15:37.260
+So I'm going to show
+you a demonstration
+
+00:15:37.260 --> 00:15:38.550
+of exactly what I mean by that.
+
+00:15:38.550 --> 00:15:43.080
+So, first of all, I'm inside
+of my Visual Studio Code.
+
+00:15:43.080 --> 00:15:46.110
+You can see I am running
+inside of the dev container.
+
+00:15:46.110 --> 00:15:49.050
+I also have my Fabric data
+engineering extension,
+
+00:15:49.050 --> 00:15:51.480
+so I can interact with Fabric.
+
+00:15:51.480 --> 00:15:54.780
+And so, just to orient you
+with regards to what's
+
+00:15:54.780 --> 00:15:58.980
+on my screen right now,
+I have a Copilot skill,
+
+00:15:58.980 --> 00:16:00.330
+which is what you're
+seeing over here.
+
+00:16:00.330 --> 00:16:02.550
+So the way you author a
+skill is you basically need
+
+00:16:02.550 --> 00:16:06.390
+to have a YAML front matter
+that allows the Copilot CLI
+
+00:16:06.390 --> 00:16:10.110
+to go ahead and discover
+what this skill does;
+
+00:16:10.110 --> 00:16:12.060
+and then I'm just showing
+you the markdown format.
+
+00:16:12.060 --> 00:16:14.220
+So the first thing I'm going
+to do is I'm going to go ahead
+
+00:16:14.220 --> 00:16:19.410
+and turn on the Copilot CLI,
+which is running locally.
+
+00:16:19.410 --> 00:16:23.100
+And let me just go ahead and
+expand my screen a little bit.
+
+00:16:23.100 --> 00:16:24.000
+So this is joining.
+
+00:16:24.000 --> 00:16:26.160
+I'm going to go ahead and
+just clear my screen.
+
+00:16:26.160 --> 00:16:31.050
+Perfect. So now you'll
+notice that, if I go to --
+
+00:16:31.050 --> 00:16:33.480
+let me just go ahead and show
+you that OneLake is mounted
+
+00:16:33.480 --> 00:16:34.530
+on my local file system.
+
+00:16:34.530 --> 00:16:36.750
+So, if I go to
+tree, this is just
+
+00:16:36.750 --> 00:16:46.360
+to show you what the data
+contains, tmp dot m the mount.
+
+00:16:47.760 --> 00:16:51.900
+Okay. So you can see I have
+three different lakehouses
+
+00:16:51.900 --> 00:16:54.120
+from my Fabric production
+workspace mounted
+
+00:16:54.120 --> 00:16:54.990
+into my file system.
+
+00:16:54.990 --> 00:16:58.890
+And so, if I, say, go ahead
+and do tree 4, you'll be able
+
+00:16:58.890 --> 00:17:01.470
+to see all of the different,
+you know, Deltas.
+
+00:17:01.470 --> 00:17:02.670
+We have hundreds of Delta tables
+
+00:17:02.670 --> 00:17:03.840
+that are basically
+going to be mounted.
+
+00:17:03.840 --> 00:17:05.360
+So this is taking a
+little bit of time,
+
+00:17:05.360 --> 00:17:08.180
+but you can see these are
+all of our hive partitions
+
+00:17:08.180 --> 00:17:09.440
+and so on and so forth.
+
+00:17:09.440 --> 00:17:11.900
+So, essentially, this is
+our production OneLake
+
+00:17:11.900 --> 00:17:13.700
+that I've just, like,
+mounted locally.
+
+00:17:13.700 --> 00:17:16.620
+Cool. So let's go
+back to our scenario.
+
+00:17:16.620 --> 00:17:20.550
+What I want to do is I want
+to go ahead and use Copilot
+
+00:17:20.550 --> 00:17:24.930
+and Ralph in order to ingest
+a brand-new data source
+
+00:17:24.930 --> 00:17:27.960
+that has been asked for me from
+bronze and to get it into,
+
+00:17:27.960 --> 00:17:29.970
+let's say, gold or
+silver or whatnot.
+
+00:17:29.970 --> 00:17:32.070
+So let's go ahead and
+simulate what I would do.
+
+00:17:32.070 --> 00:17:34.350
+So the first thing is I go
+ahead and just fire this skill.
+
+00:17:34.350 --> 00:17:36.380
+So I'm just going to take
+the name of the skill,
+
+00:17:36.380 --> 00:17:38.660
+and all you need to do
+
+00:17:38.660 --> 00:17:45.380
+in Copilot is you basically just
+need to fire it into the task.
+
+00:17:45.380 --> 00:17:48.960
+So let me go ahead.
+
+00:17:51.780 --> 00:17:53.250
+Copy path.
+
+00:17:53.250 --> 00:17:55.380
+And then you just pop that in.
+
+00:17:55.380 --> 00:17:59.250
+And we have the Spark Bronze to
+Silver skill, and you fire that.
+
+00:17:59.250 --> 00:18:02.250
+Now, what is the most important
+thing here that I want
+
+00:18:02.250 --> 00:18:05.450
+to highlight is the
+authoring of the skill.
+
+00:18:05.450 --> 00:18:09.770
+So, for example, you can see we
+are immediately placing Copilot
+
+00:18:09.770 --> 00:18:13.100
+-- in this case, I'm
+using Claude Opus.
+
+00:18:13.100 --> 00:18:15.830
+I'm placing it into a
+bounded box, right?
+
+00:18:15.830 --> 00:18:18.770
+So I'm placing Ralph
+into a bounded box.
+
+00:18:18.770 --> 00:18:22.220
+So, essentially, you can
+see that it's saying, okay.
+
+00:18:22.220 --> 00:18:22.850
+Do you want to go ahead
+
+00:18:22.850 --> 00:18:25.250
+and start creating
+a bronze to silver?
+
+00:18:25.250 --> 00:18:26.280
+I say yes.
+
+00:18:26.280 --> 00:18:29.280
+Okay. And, essentially,
+let's go ahead
+
+00:18:29.280 --> 00:18:32.640
+and let Copilot do
+what it's doing.
+
+00:18:32.640 --> 00:18:36.300
+And we're telling it, okay.
+
+00:18:36.300 --> 00:18:37.920
+You're not allowed
+to commit the code.
+
+00:18:37.920 --> 00:18:39.900
+You're not allowed
+to add the code.
+
+00:18:39.900 --> 00:18:42.090
+I'm going to review
+everything that you produce.
+
+00:18:42.090 --> 00:18:44.070
+And I am also giving it hints
+
+00:18:44.070 --> 00:18:46.320
+about what is the
+structure of my code base.
+
+00:18:46.320 --> 00:18:48.300
+So you're going to see that one
+
+00:18:48.300 --> 00:18:50.610
+of the most important things
+you can do as a data engineer,
+
+00:18:50.610 --> 00:18:52.710
+especially when you have a
+very complex code base --
+
+00:18:52.710 --> 00:18:56.610
+so, for example, here you can
+see we have a Scala-based code
+
+00:18:56.610 --> 00:18:58.800
+base; and the code
+base is quite complex.
+
+00:18:58.800 --> 00:19:01.560
+There's at least a few
+hundred thousand lines
+
+00:19:01.560 --> 00:19:03.030
+of code, if not more.
+
+00:19:03.030 --> 00:19:06.660
+So, basically, we have hundreds
+and hundreds of lines of code
+
+00:19:06.660 --> 00:19:08.670
+that are used in order to serve
+
+00:19:08.670 --> 00:19:12.210
+up the SQL Server OneLake
+data lake, right?
+
+00:19:12.210 --> 00:19:13.590
+So this just keeps on going.
+
+00:19:13.590 --> 00:19:15.960
+So what you don't want to do
+is you don't want Copilot
+
+00:19:15.960 --> 00:19:19.260
+to just go ahead and discover
+all of this code every time
+
+00:19:19.260 --> 00:19:21.510
+because you're going to run
+out of the context window.
+
+00:19:21.510 --> 00:19:23.760
+And so, essentially, what I'm
+telling Copilot is, look.
+
+00:19:23.760 --> 00:19:25.470
+You don't need to read
+the whole code base.
+
+00:19:25.470 --> 00:19:27.990
+The way we write our code is
+we use these loader classes,
+
+00:19:27.990 --> 00:19:29.820
+transformer classes,
+and driver classes.
+
+00:19:29.820 --> 00:19:34.170
+And you want to go ahead,
+Copilot, and reuse as much code
+
+00:19:34.170 --> 00:19:37.140
+as possible; run unit
+tests; run the Spark jobs;
+
+00:19:37.140 --> 00:19:41.070
+and then basically vacuum the
+table so that, in production,
+
+00:19:41.070 --> 00:19:43.650
+we have the table
+in a good format.
+
+00:19:43.650 --> 00:19:45.120
+So we give some context.
+
+00:19:45.120 --> 00:19:48.870
+You go ahead and tell Copilot
+exactly what your coding pattern
+
+00:19:48.870 --> 00:19:50.850
+is in your particular repo.
+
+00:19:50.850 --> 00:19:53.280
+And, while it's reading the
+skill, you can basically see
+
+00:19:53.280 --> 00:19:56.700
+that it picks up exactly
+what the context is.
+
+00:19:56.700 --> 00:19:59.880
+At this point, you just
+have to basically go ahead
+
+00:19:59.880 --> 00:20:04.650
+and tell AI some sort of visual
+cue where it knows to stop.
+
+00:20:04.650 --> 00:20:07.080
+And you can see it's going
+ahead and telling me, okay.
+
+00:20:07.080 --> 00:20:09.360
+What bronze tables do you want
+to transform to silver, right?
+
+00:20:09.360 --> 00:20:12.690
+Go ahead and provide the full
+database and table name.
+
+00:20:12.690 --> 00:20:15.300
+So, in this case,
+as I mentioned,
+
+00:20:15.300 --> 00:20:16.440
+we have Spark running locally.
+
+00:20:16.440 --> 00:20:19.460
+So you can see I've got
+Apache Spark is running
+
+00:20:19.460 --> 00:20:21.020
+on my local file system.
+
+00:20:21.020 --> 00:20:25.820
+And I just vibe-coded a
+little UI just for my team
+
+00:20:25.820 --> 00:20:30.560
+where we're using Livy as an API
+in order to query my local Spark
+
+00:20:30.560 --> 00:20:32.930
+and using local Spark
+to query OneLake.
+
+00:20:32.930 --> 00:20:34.520
+These are the tables
+that we have in OneLake.
+
+00:20:34.520 --> 00:20:36.770
+So just as an example, you know,
+let's say I want to go ahead
+
+00:20:36.770 --> 00:20:40.370
+and do a bronze transformation
+on this particular table,
+
+00:20:40.370 --> 00:20:42.660
+on this Arc SQL
+Server extension log.
+
+00:20:42.660 --> 00:20:48.090
+So all I have to do is go
+ahead and just place it.
+
+00:20:48.090 --> 00:20:48.840
+So I have this query.
+
+00:20:48.840 --> 00:20:51.990
+Let me just go ahead and
+copy it and paste it here,
+
+00:20:51.990 --> 00:20:53.520
+and then I click on run.
+
+00:20:53.520 --> 00:20:55.710
+And what this is doing
+is this is using Livy
+
+00:20:55.710 --> 00:21:00.540
+on my local dev container with
+my local Spark to query OneLake,
+
+00:21:00.540 --> 00:21:03.720
+which is, you know, potentially
+on the other side of the world;
+
+00:21:03.720 --> 00:21:05.040
+and I'm able to see this data.
+
+00:21:05.040 --> 00:21:08.130
+So right off the bat you can see
+that our bronze data, it looks,
+
+00:21:08.130 --> 00:21:10.260
+as you can see,
+there's no schema.
+
+00:21:10.260 --> 00:21:13.200
+The body itself is
+completely, you know,
+
+00:21:13.200 --> 00:21:14.790
+unreadable by a human being.
+
+00:21:14.790 --> 00:21:18.450
+And this is essentially a
+binary encoded payload.
+
+00:21:18.450 --> 00:21:20.130
+This is what we
+would call bronze.
+
+00:21:20.130 --> 00:21:23.430
+So what I need to do is I just
+take this table and I just need
+
+00:21:23.430 --> 00:21:27.840
+to go ahead and provide it back
+to our trusty friend Copilot.
+
+00:21:27.840 --> 00:21:29.780
+So I just go ahead
+and pop it in.
+
+00:21:29.780 --> 00:21:32.780
+And what you're going
+to notice is that one
+
+00:21:32.780 --> 00:21:33.620
+of the things you want to do
+
+00:21:33.620 --> 00:21:36.080
+with Copilot is you
+have these skills.
+
+00:21:36.080 --> 00:21:37.490
+The skills are great.
+
+00:21:37.490 --> 00:21:41.340
+But you also want to
+have deterministic code
+
+00:21:41.340 --> 00:21:45.540
+that the AI can invoke so,
+every time you're trying
+
+00:21:45.540 --> 00:21:48.840
+to have it do something, you
+can have repeatable behavior.
+
+00:21:48.840 --> 00:21:50.940
+So one of the things that my
+team has done is, you know,
+
+00:21:50.940 --> 00:21:53.610
+I have built up -- as I
+mentioned, I have the UI,
+
+00:21:53.610 --> 00:21:54.360
+which I've vibe-coded;
+
+00:21:54.360 --> 00:21:58.590
+and I also built
+deterministic CLI tools
+
+00:21:58.590 --> 00:22:01.560
+that allow the Copilot,
+like in this case,
+
+00:22:01.560 --> 00:22:02.490
+you can run SQL query.
+
+00:22:02.490 --> 00:22:05.250
+So, for example, you can see
+again I used another Copilot
+
+00:22:05.250 --> 00:22:06.180
+to code this.
+
+00:22:06.180 --> 00:22:09.360
+But I just have the ability
+for Copilot to go ahead
+
+00:22:09.360 --> 00:22:13.290
+and run a SQL statement and then
+get the results back inside
+
+00:22:13.290 --> 00:22:14.040
+of markdown, right?
+
+00:22:14.040 --> 00:22:16.710
+So, basically, this index.ts
+file that you're seeing,
+
+00:22:16.710 --> 00:22:19.440
+it is a skill that allows
+me to basically go ahead
+
+00:22:19.440 --> 00:22:22.020
+and allow a human or a Copilot
+
+00:22:22.020 --> 00:22:24.960
+to just run regular
+Spark SQL statements
+
+00:22:24.960 --> 00:22:26.520
+and get the results back.
+
+00:22:26.520 --> 00:22:28.770
+So that's what Copilot
+is doing right now.
+
+00:22:28.770 --> 00:22:30.600
+You can see it is
+basically going ahead
+
+00:22:30.600 --> 00:22:33.510
+and doing a describe statement
+on that table in order
+
+00:22:33.510 --> 00:22:34.980
+to see what the schemas are.
+
+00:22:34.980 --> 00:22:38.190
+It is doing a sampling of the
+raw data, so Copilot is able
+
+00:22:38.190 --> 00:22:41.070
+to basically go ahead and see
+what the shape of my data is.
+
+00:22:41.070 --> 00:22:43.590
+And then, finally,
+we're going to --
+
+00:22:43.590 --> 00:22:45.090
+you need to basically
+give it hints
+
+00:22:45.090 --> 00:22:47.580
+to say what the encoding
+of the data is.
+
+00:22:47.580 --> 00:22:50.370
+So, for example, what I was
+showing you earlier is,
+
+00:22:50.370 --> 00:22:54.330
+in case of my team, it's a JSON
+body that is base64 encoded.
+
+00:22:54.330 --> 00:22:57.300
+And so what you're going to find
+is Copilot is basically going
+
+00:22:57.300 --> 00:22:59.700
+to be able to use
+these tips to figure
+
+00:22:59.700 --> 00:23:02.100
+out exactly what the shape
+of my data is, right?
+
+00:23:02.100 --> 00:23:04.500
+So the idea that I'm
+trying to convey is that,
+
+00:23:04.500 --> 00:23:08.010
+when you're a human being and
+you have a bronze dataset
+
+00:23:08.010 --> 00:23:10.770
+and you take a look at
+your data, the same kind
+
+00:23:10.770 --> 00:23:15.660
+of cognitive analysis that we do
+by using our eyes in this tool,
+
+00:23:15.660 --> 00:23:17.160
+you basically just
+need to go ahead
+
+00:23:17.160 --> 00:23:20.070
+and give Copilot the
+same kind of eyes
+
+00:23:20.070 --> 00:23:21.570
+and the same kind of tools.
+
+00:23:21.570 --> 00:23:23.430
+And, when you do that,
+what you're going
+
+00:23:23.430 --> 00:23:26.760
+to find is the things that you
+would have to do manually,
+
+00:23:26.760 --> 00:23:29.340
+Copilot is able to basically
+be grounded in this kind
+
+00:23:29.340 --> 00:23:34.230
+of straight-line format in order
+to go ahead and do the kind
+
+00:23:34.230 --> 00:23:36.030
+of data engineering that you
+would, except, you know,
+
+00:23:36.030 --> 00:23:37.440
+you don't have to sit
+here with your keyboard;
+
+00:23:37.440 --> 00:23:39.090
+you can just go ahead and
+work with your business,
+
+00:23:39.090 --> 00:23:41.550
+work with human beings,
+gather more requirements,
+
+00:23:41.550 --> 00:23:43.920
+understand exactly what the
+schema of the data should be,
+
+00:23:43.920 --> 00:23:46.650
+doing the things that are more
+impactful as a data engineer
+
+00:23:46.650 --> 00:23:49.620
+to your business versus, you
+know, sitting here and trying
+
+00:23:49.620 --> 00:23:51.180
+to basically
+understand, you know,
+
+00:23:51.180 --> 00:23:53.640
+what kind of gzip compression
+and whatnot to apply, right?
+
+00:23:53.640 --> 00:23:55.410
+We want to basically
+delegate as much of that
+
+00:23:55.410 --> 00:23:57.270
+to machines as possible.
+
+00:23:57.270 --> 00:23:59.700
+So, anyways, in the interest of
+time, obviously, this is going
+
+00:23:59.700 --> 00:24:02.340
+to be an end-to-end bronze
+to silver pipeline.
+
+00:24:02.340 --> 00:24:03.870
+Let's keep Copilot running.
+
+00:24:03.870 --> 00:24:05.580
+But let me just walk you through
+what the end-to-end is going
+
+00:24:05.580 --> 00:24:06.330
+to look like.
+
+00:24:06.330 --> 00:24:09.930
+So, again, you know Copilot is
+going to go ahead and figure
+
+00:24:09.930 --> 00:24:11.670
+out exactly what the
+shape of this data is.
+
+00:24:11.670 --> 00:24:14.220
+You can see it's already
+scanning my code base.
+
+00:24:14.220 --> 00:24:15.750
+So the next thing
+is, as I mentioned,
+
+00:24:15.750 --> 00:24:17.520
+the most important
+thing that you can do
+
+00:24:17.520 --> 00:24:22.140
+in this AI-native landscape is
+the way you author your code has
+
+00:24:22.140 --> 00:24:24.330
+to be done in an
+AI-friendly manner.
+
+00:24:24.330 --> 00:24:27.510
+So what I mean by that is
+imagine you have an engineer
+
+00:24:27.510 --> 00:24:29.160
+on your team who is
+trying to figure
+
+00:24:29.160 --> 00:24:31.560
+out how you write all
+your ETL code, right?
+
+00:24:31.560 --> 00:24:34.320
+If you don't have any sort
+of structure to your code,
+
+00:24:34.320 --> 00:24:36.930
+a human being is going to
+struggle to read and understand
+
+00:24:36.930 --> 00:24:38.520
+and grok the code base.
+
+00:24:38.520 --> 00:24:39.600
+Same thing with AI, right?
+
+00:24:39.600 --> 00:24:40.500
+It has a context window.
+
+00:24:40.500 --> 00:24:41.880
+You can't just read
+a billion lines
+
+00:24:41.880 --> 00:24:44.430
+of code and make sense of it.
+
+00:24:44.430 --> 00:24:47.010
+So, in this case, you can see
+that our team, we go ahead
+
+00:24:47.010 --> 00:24:48.510
+and interface all of our code,
+
+00:24:48.510 --> 00:24:51.240
+just regular engineering
+best practices,
+
+00:24:51.240 --> 00:24:54.540
+with this extends data
+transformer interface.
+
+00:24:54.540 --> 00:24:57.780
+So, for example, let's
+say I have this data
+
+00:24:57.780 --> 00:24:59.040
+transformation code.
+
+00:24:59.040 --> 00:25:02.040
+And I go ahead and say
+extends data transformer.
+
+00:25:02.040 --> 00:25:04.980
+You will notice that, even
+though we have thousands
+
+00:25:04.980 --> 00:25:07.560
+and thousands of lines of
+code, every single one
+
+00:25:07.560 --> 00:25:11.310
+of our data transformers
+are using this data
+
+00:25:11.310 --> 00:25:12.270
+transformer trait.
+
+00:25:12.270 --> 00:25:14.880
+So, for example, if I
+go ahead and search
+
+00:25:14.880 --> 00:25:18.900
+for here extends data
+transformer, you will notice
+
+00:25:18.900 --> 00:25:25.230
+that any Spark code that I have
+in my very large code base,
+
+00:25:25.230 --> 00:25:27.060
+all of them have to
+basically go ahead
+
+00:25:27.060 --> 00:25:30.210
+and implement this data
+transformer interface.
+
+00:25:30.210 --> 00:25:33.330
+And, if I go into this data
+transformer, you will notice
+
+00:25:33.330 --> 00:25:36.240
+that it just defines a
+transformation method that takes
+
+00:25:36.240 --> 00:25:38.250
+in a data frame and
+spits out a data frame.
+
+00:25:38.250 --> 00:25:39.360
+Why is this important?
+
+00:25:39.360 --> 00:25:42.690
+The reason it's important is
+because the first thing we want
+
+00:25:42.690 --> 00:25:46.140
+to do with AI is we don't want
+it to just write all sorts
+
+00:25:46.140 --> 00:25:48.780
+of code that doesn't align
+with our expectations,
+
+00:25:48.780 --> 00:25:50.220
+code that is not testable.
+
+00:25:50.220 --> 00:25:53.070
+We want to basically take
+AI and bound it inside
+
+00:25:53.070 --> 00:25:54.990
+of a type box that we define.
+
+00:25:54.990 --> 00:25:57.420
+And the way I'm doing
+that is every single one
+
+00:25:57.420 --> 00:26:00.990
+of my code classes are using
+this data transformer.
+
+00:26:00.990 --> 00:26:02.940
+And I basically
+just told AI, hey.
+
+00:26:02.940 --> 00:26:04.230
+Go ahead and search for it.
+
+00:26:04.230 --> 00:26:05.730
+Ctrl F for it.
+
+00:26:05.730 --> 00:26:09.930
+And then go ahead and look at
+my existing coding patterns,
+
+00:26:09.930 --> 00:26:13.710
+and any new code that you're
+going to generate has to comply
+
+00:26:13.710 --> 00:26:15.840
+with the code that I
+have in my code base.
+
+00:26:15.840 --> 00:26:18.810
+And so it's as if you're
+onboarding a human engineer
+
+00:26:18.810 --> 00:26:21.630
+into your code base and you're
+giving them the best practices
+
+00:26:21.630 --> 00:26:24.810
+on how to code to align with
+your expectations, right?
+
+00:26:24.810 --> 00:26:26.190
+So you can see, for example,
+
+00:26:26.190 --> 00:26:28.830
+like our friend here has
+gone ahead and figured
+
+00:26:28.830 --> 00:26:31.620
+out exactly what the
+body format was.
+
+00:26:31.620 --> 00:26:32.850
+It's figured out the data type.
+
+00:26:32.850 --> 00:26:35.550
+It's figured out
+timestamp, JSON.
+
+00:26:35.550 --> 00:26:37.410
+Essentially, everything
+that you would have to do
+
+00:26:37.410 --> 00:26:39.450
+as a human being, it's
+going ahead and doing
+
+00:26:39.450 --> 00:26:44.130
+that in a very deterministic
+manner at machine speed, right.
+
+00:26:44.130 --> 00:26:46.830
+Again, you can go ahead
+and tell AI, okay.
+
+00:26:46.830 --> 00:26:50.100
+Try to reuse the code that
+exists in my existing code base.
+
+00:26:50.100 --> 00:26:51.900
+Don't just create a new class.
+
+00:26:51.900 --> 00:26:53.850
+Try to put the code
+in the best class
+
+00:26:53.850 --> 00:26:56.190
+where you think this
+data belongs, right?
+
+00:26:56.190 --> 00:26:58.860
+So you can see AI is going
+and figuring out, oh.
+
+00:26:58.860 --> 00:27:02.460
+You know, this code, I can go
+ahead and reuse this T and I,
+
+00:27:02.460 --> 00:27:03.450
+which is the name of my team,
+
+00:27:03.450 --> 00:27:05.370
+JSON transformations
+and so on, right.
+
+00:27:05.370 --> 00:27:08.940
+So, anyway, so, at this point,
+you can go ahead and AI is going
+
+00:27:08.940 --> 00:27:11.160
+to present a comprehensive
+design proposal
+
+00:27:11.160 --> 00:27:12.330
+on what the schema
+is going to be,
+
+00:27:12.330 --> 00:27:14.520
+what the destination
+table is going to be.
+
+00:27:14.520 --> 00:27:17.010
+It's going to ask me and prompt,
+you know, as I said, pause.
+
+00:27:17.010 --> 00:27:17.820
+Do not proceed.
+
+00:27:17.820 --> 00:27:21.840
+And 10 times out of 10
+almost AI is going to comply
+
+00:27:21.840 --> 00:27:23.310
+with these instructions.
+
+00:27:23.310 --> 00:27:26.670
+And then you go ahead and
+tell it to run the code
+
+00:27:26.670 --> 00:27:30.630
+and actually write the code
+after you've done validating it.
+
+00:27:30.630 --> 00:27:32.880
+And then I'm just
+giving it the kind
+
+00:27:32.880 --> 00:27:35.070
+of coding standards
+that our team uses.
+
+00:27:35.070 --> 00:27:37.950
+Go ahead and register those new
+tables that you're creating
+
+00:27:37.950 --> 00:27:41.010
+for liquid clustering and
+vacuuming and things like that.
+
+00:27:41.010 --> 00:27:43.920
+And then, finally,
+we tell AI, hey.
+
+00:27:43.920 --> 00:27:47.310
+You went ahead and studied this
+sample data, wrote this code.
+
+00:27:47.310 --> 00:27:48.990
+Go ahead and
+generate unit tests.
+
+00:27:48.990 --> 00:27:51.570
+So, for example, you can see
+it's basically prompting me
+
+00:27:51.570 --> 00:27:54.090
+for exactly what
+I want it to do.
+
+00:27:54.090 --> 00:27:56.970
+But, when it gets to step
+seven, it'll go ahead
+
+00:27:56.970 --> 00:27:58.080
+and generate unit tests.
+
+00:27:58.080 --> 00:28:01.020
+So let's say we go ahead
+and take the skill
+
+00:28:01.020 --> 00:28:03.480
+that I was just showing you.
+
+00:28:03.480 --> 00:28:05.700
+So let me just go ahead
+and quickly show that.
+
+00:28:05.700 --> 00:28:08.520
+So we have this open telemetry
+columnar integration test.
+
+00:28:08.520 --> 00:28:12.030
+I have given AI
+that piece of code
+
+00:28:12.030 --> 00:28:15.300
+as a North Star
+gold-standard unit test.
+
+00:28:15.300 --> 00:28:16.590
+So it doesn't have to figure
+
+00:28:16.590 --> 00:28:18.420
+out what unit tests
+should look like.
+
+00:28:18.420 --> 00:28:21.210
+It knows exactly what my team
+is expecting with regards
+
+00:28:21.210 --> 00:28:23.370
+to robust best practices.
+
+00:28:23.370 --> 00:28:25.890
+And, once that's done,
+it is going to go ahead
+
+00:28:25.890 --> 00:28:31.770
+and generate the test code
+that matches that standard.
+
+00:28:31.770 --> 00:28:34.380
+And then we're actually
+going to go ahead and ask it
+
+00:28:34.380 --> 00:28:37.320
+to run the Spark job that it
+just created using a Spark job
+
+00:28:37.320 --> 00:28:38.820
+definition locally, right?
+
+00:28:38.820 --> 00:28:40.890
+So, again, you need to have
+a CLI tool that does that.
+
+00:28:40.890 --> 00:28:41.730
+You take the driver class.
+
+00:28:41.730 --> 00:28:42.660
+You run it.
+
+00:28:42.660 --> 00:28:45.510
+AI is basically going to
+keep on running the code.
+
+00:28:45.510 --> 00:28:48.030
+If it fails for some reason,
+it's going to make code changes.
+
+00:28:48.030 --> 00:28:49.170
+It's going to build the jar.
+
+00:28:49.170 --> 00:28:50.820
+It's going to run the test.
+
+00:28:50.820 --> 00:28:52.650
+It's going to effectively
+do all of this
+
+00:28:52.650 --> 00:28:53.760
+without you being in the loop.
+
+00:28:53.760 --> 00:28:54.900
+So this might take one hour.
+
+00:28:54.900 --> 00:28:55.830
+This might take two hours.
+
+00:28:55.830 --> 00:28:57.180
+It might take 30 minutes.
+
+00:28:57.180 --> 00:28:58.410
+It doesn't matter.
+
+00:28:58.410 --> 00:29:00.630
+And then, at the very
+end, when it's gone ahead
+
+00:29:00.630 --> 00:29:05.370
+and tested everything, we can go
+ahead and just open up the PR;
+
+00:29:05.370 --> 00:29:08.940
+and the quality of the
+code would be as good.
+
+00:29:08.940 --> 00:29:11.640
+Honestly, it is as
+good as if I sat here
+
+00:29:11.640 --> 00:29:13.140
+and wrote it myself, right?
+
+00:29:13.140 --> 00:29:16.110
+All you need to do with AI is
+basically go ahead and ground it
+
+00:29:16.110 --> 00:29:18.510
+in context, put it
+inside of a box,
+
+00:29:18.510 --> 00:29:21.420
+and let Ralph Wiggum
+do what he does best,
+
+00:29:21.420 --> 00:29:23.010
+which is essentially
+just keep trying
+
+00:29:23.010 --> 00:29:25.980
+until what you ask for succeeds.
+
+00:29:25.980 --> 00:29:30.750
+So, yeah. That's basically
+how I have found using AI
+
+00:29:30.750 --> 00:29:31.320
+in a nutshell.
+
+00:29:31.320 --> 00:29:32.760
+So we took a look at
+the demonstration.
+
+00:29:32.760 --> 00:29:34.350
+You can go ahead
+and do all sorts
+
+00:29:34.350 --> 00:29:37.290
+of very fancy techniques
+with GitHub Copilot.
+
+00:29:37.290 --> 00:29:38.460
+There's new tools coming out,
+
+00:29:38.460 --> 00:29:40.080
+new skill sets coming
+out every day.
+
+00:29:40.080 --> 00:29:41.880
+But I think the foundation
+comes to be the same.
+
+00:29:41.880 --> 00:29:43.290
+You have these amazing models
+
+00:29:43.290 --> 00:29:45.030
+that are coming out
+every single day.
+
+00:29:45.030 --> 00:29:46.590
+You need to ground
+it in your context.
+
+00:29:46.590 --> 00:29:48.060
+You need to write
+your code in a manner
+
+00:29:48.060 --> 00:29:50.040
+that is extensible with AI.
+
+00:29:50.040 --> 00:29:51.600
+And then you basically
+need to go ahead
+
+00:29:51.600 --> 00:29:55.260
+and have an amazing local
+development environment.
+
+00:29:55.260 --> 00:29:57.810
+So we looked at a VS
+Code dev container.
+
+00:29:57.810 --> 00:29:59.280
+In the interest of time,
+I'm not going to go
+
+00:29:59.280 --> 00:30:00.840
+into too many details.
+
+00:30:00.840 --> 00:30:03.690
+But I do have this
+code that is available
+
+00:30:03.690 --> 00:30:04.710
+for anyone to reproduce.
+
+00:30:04.710 --> 00:30:06.630
+I have a GitHub link that
+I'm going to share with you.
+
+00:30:06.630 --> 00:30:09.210
+But, essentially, the idea is
+we're running a dev container
+
+00:30:09.210 --> 00:30:10.590
+on VS Code locally.
+
+00:30:10.590 --> 00:30:14.160
+We're going to be testing
+this using GitHub Actions.
+
+00:30:14.160 --> 00:30:16.440
+When our PR merges,
+we can go ahead
+
+00:30:16.440 --> 00:30:18.300
+and take 10 GitHub
+Action machines
+
+00:30:18.300 --> 00:30:21.510
+and throw 10 Copilot CLIs
+at the same problem.
+
+00:30:21.510 --> 00:30:23.610
+And then we go ahead and
+merge the unit tests.
+
+00:30:23.610 --> 00:30:26.550
+And then we put it into Fabric,
+and our code is basically going
+
+00:30:26.550 --> 00:30:30.450
+to run with as much
+confidence as we need.
+
+00:30:30.450 --> 00:30:31.410
+So that's it.
+
+00:30:31.410 --> 00:30:33.330
+Here are the two Git repos.
+
+00:30:33.330 --> 00:30:36.090
+This is my GitHub handle, and
+we have the dev container
+
+00:30:36.090 --> 00:30:38.010
+that you can use to
+basically go ahead and build
+
+00:30:38.010 --> 00:30:39.240
+and repro this locally.
+
+00:30:39.240 --> 00:30:42.090
+And I've got some sample code
+that shows these GitHub skills
+
+00:30:42.090 --> 00:30:45.210
+and patterns inside
+of this Git repo.
+
+00:30:45.210 --> 00:30:47.280
+So that's everything
+from my end.
+
+00:30:47.280 --> 00:30:49.410
+Piero, are there any
+last words that you want
+
+00:30:49.410 --> 00:30:51.420
+to say or any questions?
+
+00:30:51.420 --> 00:30:53.250
+PIERO MORANO: Well,
+Raki, thank you so much.
+
+00:30:53.250 --> 00:30:55.590
+This was absolutely awesome.
+
+00:30:55.590 --> 00:31:00.210
+You encapsulated in a very
+short demo so many feature
+
+00:31:00.210 --> 00:31:04.050
+and workload of Fabric, so
+this is absolutely excellent.
+
+00:31:04.050 --> 00:31:07.440
+For people that are not
+very familiar with Fabric,
+
+00:31:07.440 --> 00:31:10.110
+here's the link to more
+documentation, docs,
+
+00:31:10.110 --> 00:31:11.910
+tutorial, and YouTube channel.
+
+00:31:11.910 --> 00:31:14.880
+Subscribe and check it out, and
+let us know what you think.
+
+00:31:14.880 --> 00:31:16.540
+Thank you all.

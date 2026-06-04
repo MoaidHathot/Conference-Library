@@ -1,0 +1,5225 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.5842763185501099
+
+00:00:00.760 --> 00:00:01.320
+Cool.
+
+NOTE Confidence: 0.9221169352531433
+
+00:00:01.360 --> 00:00:03.360
+Well, welcome everybody.
+
+NOTE Confidence: 0.8709665536880493
+
+00:00:04.040 --> 00:00:06.534
+If you're in the right place, you're at the build
+
+NOTE Confidence: 0.8709665536880493
+
+00:00:06.585 --> 00:00:10.200
+and ship faster with developer optimized experience on Windows session.
+
+NOTE Confidence: 0.5970209836959839
+
+00:00:10.520 --> 00:00:11.520
+My name is Cale Cinnamon.
+
+NOTE Confidence: 0.9214279651641846
+
+00:00:11.520 --> 00:00:13.000
+I'm here with Craig.
+
+NOTE Confidence: 0.8823991417884827
+
+00:00:13.440 --> 00:00:15.850
+Hello, I'm Craig, I'm a product manager working on the
+
+NOTE Confidence: 0.8823991417884827
+
+00:00:15.895 --> 00:00:18.440
+Windows Subsystem of Linux and other AI tools on Windows.
+
+NOTE Confidence: 0.5812951326370239
+
+00:00:18.880 --> 00:00:20.000
+Cool and Jinya as well.
+
+NOTE Confidence: 0.9030513167381287
+
+00:00:20.280 --> 00:00:22.440
+Windows performance and you'll hear about that.
+
+NOTE Confidence: 0.9661081433296204
+
+00:00:23.000 --> 00:00:23.480
+Perfect.
+
+NOTE Confidence: 0.9320343136787415
+
+00:00:23.880 --> 00:00:27.337
+So our team covers a bunch of your favorite utilities
+
+NOTE Confidence: 0.9320343136787415
+
+00:00:27.402 --> 00:00:28.120
+on Windows.
+
+NOTE Confidence: 0.9411734342575073
+
+00:00:28.160 --> 00:00:31.101
+Obviously, Windows itself, and then we have power toys on
+
+NOTE Confidence: 0.9411734342575073
+
+00:00:31.152 --> 00:00:33.320
+our side, Windows terminals from our team.
+
+NOTE Confidence: 0.8520228266716003
+
+00:00:33.479 --> 00:00:36.769
+We can get the Windows package manager and WSL, the
+
+NOTE Confidence: 0.8520228266716003
+
+00:00:36.834 --> 00:00:38.640
+Windows Subsystem for Linux.
+
+NOTE Confidence: 0.9423827528953552
+
+00:00:38.960 --> 00:00:41.096
+So today we're going to cover a bunch of updates
+
+NOTE Confidence: 0.9423827528953552
+
+00:00:41.141 --> 00:00:43.633
+that have come across these utilities and we're going to
+
+NOTE Confidence: 0.9423827528953552
+
+00:00:43.678 --> 00:00:44.879
+get into it pretty quickly.
+
+NOTE Confidence: 0.886767566204071
+
+00:00:44.880 --> 00:00:47.200
+We have minimal slides because that's our jam.
+
+NOTE Confidence: 0.9268888235092163
+
+00:00:47.760 --> 00:00:50.480
+So we're going to cover building on Windows.
+
+NOTE Confidence: 0.9190834164619446
+
+00:00:50.680 --> 00:00:52.723
+So that's going to be, you know, when you're building
+
+NOTE Confidence: 0.9190834164619446
+
+00:00:52.761 --> 00:00:55.036
+your apps, but it's really the improvements made to Windows
+
+NOTE Confidence: 0.9190834164619446
+
+00:00:55.075 --> 00:00:57.079
+that are the things we're going to be talking about.
+
+NOTE Confidence: 0.9347758293151855
+
+00:00:57.360 --> 00:00:59.960
+And then also building for Windows, that's going to be
+
+NOTE Confidence: 0.9347758293151855
+
+00:01:00.008 --> 00:01:03.137
+everything we've created to help make building those Windows apps
+
+NOTE Confidence: 0.9347758293151855
+
+00:01:03.185 --> 00:01:05.160
+even more seamless and even easier to do.
+
+NOTE Confidence: 0.9653738141059875
+
+00:01:06.080 --> 00:01:08.080
+So I think that's it.
+
+NOTE Confidence: 0.8434118032455444
+
+00:01:08.080 --> 00:01:10.821
+We're going to get into some some desktop stuff right
+
+NOTE Confidence: 0.8434118032455444
+
+00:01:10.873 --> 00:01:11.080
+now.
+
+NOTE Confidence: 0.9433830380439758
+
+00:01:11.080 --> 00:01:12.760
+So let's hop on over to mine.
+
+NOTE Confidence: 0.8258580565452576
+
+00:01:13.920 --> 00:01:14.440
+Sweet.
+
+NOTE Confidence: 0.9143781661987305
+
+00:01:14.840 --> 00:01:16.928
+So a lot of this was in the keynote this
+
+NOTE Confidence: 0.9143781661987305
+
+00:01:16.980 --> 00:01:19.590
+morning, but we're going to go a little bit deeper
+
+NOTE Confidence: 0.9143781661987305
+
+00:01:19.642 --> 00:01:21.000
+into some of these topics.
+
+NOTE Confidence: 0.8274316191673279
+
+00:01:21.000 --> 00:01:23.880
+But first up is all about developer setup.
+
+NOTE Confidence: 0.8004059791564941
+
+00:01:23.920 --> 00:01:26.087
+So when you're on Windows, you know, you got to
+
+NOTE Confidence: 0.8004059791564941
+
+00:01:26.133 --> 00:01:28.485
+go grab all of your things, you know, Python, Node,
+
+NOTE Confidence: 0.8004059791564941
+
+00:01:28.531 --> 00:01:31.160
+all your packages, all your favorite tooling and it takes
+
+NOTE Confidence: 0.8004059791564941
+
+00:01:31.206 --> 00:01:31.759
+a long time.
+
+NOTE Confidence: 0.8992801904678345
+
+00:01:32.560 --> 00:01:35.230
+So our team has actually put together a win get
+
+NOTE Confidence: 0.8992801904678345
+
+00:01:35.287 --> 00:01:38.355
+configuration file that does a bunch of this stuff for
+
+NOTE Confidence: 0.8992801904678345
+
+00:01:38.412 --> 00:01:38.640
+you.
+
+NOTE Confidence: 0.8236497640609741
+
+00:01:38.640 --> 00:01:42.095
+So it installs Ubuntu along with Windows hub system for
+
+NOTE Confidence: 0.8236497640609741
+
+00:01:42.158 --> 00:01:46.116
+Linux, along with tooling like Git, GitHub, CLI, copilot, CLIVS
+
+NOTE Confidence: 0.8236497640609741
+
+00:01:46.179 --> 00:01:49.006
+code, all of those things to make that step a
+
+NOTE Confidence: 0.8236497640609741
+
+00:01:49.069 --> 00:01:50.199
+little bit easier.
+
+NOTE Confidence: 0.8711386322975159
+
+00:01:50.440 --> 00:01:52.974
+And what's really cool about these win get configuration files
+
+NOTE Confidence: 0.8711386322975159
+
+00:01:53.015 --> 00:01:54.160
+is that they're item potent.
+
+NOTE Confidence: 0.9211854338645935
+
+00:01:54.480 --> 00:01:56.868
+So if you already had git, which most of us,
+
+NOTE Confidence: 0.9211854338645935
+
+00:01:56.922 --> 00:01:59.419
+I'm sure you do, it's not going to install git
+
+NOTE Confidence: 0.9211854338645935
+
+00:01:59.474 --> 00:01:59.799
+again.
+
+NOTE Confidence: 0.9384894371032715
+
+00:01:59.800 --> 00:02:01.218
+It's just going to make sure that git is there
+
+NOTE Confidence: 0.9384894371032715
+
+00:02:01.249 --> 00:02:02.544
+and then it's going to move on to the next
+
+NOTE Confidence: 0.9384894371032715
+
+00:02:02.575 --> 00:02:02.760
+thing.
+
+NOTE Confidence: 0.969477653503418
+
+00:02:03.560 --> 00:02:05.769
+So if you want to get this today, we have
+
+NOTE Confidence: 0.969477653503418
+
+00:02:05.823 --> 00:02:08.680
+a repo that we published this morning we made public.
+
+NOTE Confidence: 0.7500414848327637
+
+00:02:08.680 --> 00:02:10.120
+It's Windows developer config.
+
+NOTE Confidence: 0.9632540345191956
+
+00:02:10.440 --> 00:02:12.100
+We will also have a slide at the end with
+
+NOTE Confidence: 0.9632540345191956
+
+00:02:12.141 --> 00:02:13.680
+all of the links and all the goodness.
+
+NOTE Confidence: 0.8564921617507935
+
+00:02:13.680 --> 00:02:16.000
+So no sweat now.
+
+NOTE Confidence: 0.9373184442520142
+
+00:02:16.160 --> 00:02:18.569
+But there's a few other things that we're going to
+
+NOTE Confidence: 0.9373184442520142
+
+00:02:18.617 --> 00:02:20.930
+show today that are in this repo, but the config
+
+NOTE Confidence: 0.9373184442520142
+
+00:02:20.978 --> 00:02:23.098
+file is here and you can download it and see
+
+NOTE Confidence: 0.9373184442520142
+
+00:02:23.146 --> 00:02:25.459
+what it's going to install, and then you can run
+
+NOTE Confidence: 0.9373184442520142
+
+00:02:25.508 --> 00:02:26.520
+it and go from there.
+
+NOTE Confidence: 0.9413144588470459
+
+00:02:26.520 --> 00:02:29.071
+So that's a quick way to get your developer device
+
+NOTE Confidence: 0.9413144588470459
+
+00:02:29.122 --> 00:02:29.479
+set up.
+
+NOTE Confidence: 0.8315713405609131
+
+00:02:29.760 --> 00:02:33.549
+And then some things that we've added to Windows itself
+
+NOTE Confidence: 0.8315713405609131
+
+00:02:33.618 --> 00:02:37.270
+that will are in the Insider program and our shipping
+
+NOTE Confidence: 0.8315713405609131
+
+00:02:37.339 --> 00:02:41.680
+is some taskbar personalization, in particular movable taskbar.
+
+NOTE Confidence: 0.9695218801498413
+
+00:02:42.040 --> 00:02:44.360
+So this has been a very popular request.
+
+NOTE Confidence: 0.9400023818016052
+
+00:02:44.360 --> 00:02:45.640
+We're excited to bring it back.
+
+NOTE Confidence: 0.748805820941925
+
+00:02:46.160 --> 00:02:47.360
+Here's the taskbar on the left.
+
+NOTE Confidence: 0.7845467329025269
+
+00:02:47.360 --> 00:02:49.201
+You can put on the top, put on the bottom
+
+NOTE Confidence: 0.7845467329025269
+
+00:02:49.246 --> 00:02:50.280
+where it's always been.
+
+NOTE Confidence: 0.8361949324607849
+
+00:02:50.480 --> 00:02:51.440
+But yeah, thank you.
+
+NOTE Confidence: 0.860161542892456
+
+00:02:53.800 --> 00:02:55.337
+So force a habit, I'm going to keep it on
+
+NOTE Confidence: 0.860161542892456
+
+00:02:55.374 --> 00:02:57.174
+the bottom because I'm going to lose my icons if
+
+NOTE Confidence: 0.860161542892456
+
+00:02:57.212 --> 00:02:57.999
+I put it on the left.
+
+NOTE Confidence: 0.9107831120491028
+
+00:02:58.920 --> 00:03:00.600
+But this is in the Insider program.
+
+NOTE Confidence: 0.9319184422492981
+
+00:03:00.600 --> 00:03:05.360
+And another thing that's coming is the new run dialogue.
+
+NOTE Confidence: 0.9408999681472778
+
+00:03:05.440 --> 00:03:07.680
+So very exciting.
+
+NOTE Confidence: 0.9638240933418274
+
+00:03:08.200 --> 00:03:09.280
+So this is run.
+
+NOTE Confidence: 0.7731449604034424
+
+00:03:10.760 --> 00:03:13.329
+It looks somewhat similar, but a little bit more streamlined
+
+NOTE Confidence: 0.7731449604034424
+
+00:03:13.371 --> 00:03:13.800
+of the UI.
+
+NOTE Confidence: 0.9145389199256897
+
+00:03:14.080 --> 00:03:16.563
+And what's really neat about this is that it's built
+
+NOTE Confidence: 0.9145389199256897
+
+00:03:16.611 --> 00:03:19.954
+leveraging the architecture of Power Toys Command Palette, which looks
+
+NOTE Confidence: 0.9145389199256897
+
+00:03:20.002 --> 00:03:20.480
+like this.
+
+NOTE Confidence: 0.8652835488319397
+
+00:03:20.680 --> 00:03:23.551
+So Power Toys had, well, Power Toys had Power Toys
+
+NOTE Confidence: 0.8652835488319397
+
+00:03:23.608 --> 00:03:26.480
+Run even before this, which looked even different.
+
+NOTE Confidence: 0.8639053106307983
+
+00:03:26.480 --> 00:03:27.520
+Let's see if I got that.
+
+NOTE Confidence: 0.9594063758850098
+
+00:03:28.560 --> 00:03:29.440
+So here's the evolution.
+
+NOTE Confidence: 0.9030544757843018
+
+00:03:29.440 --> 00:03:32.025
+We have Power Toys run, this came out first, and
+
+NOTE Confidence: 0.9030544757843018
+
+00:03:32.079 --> 00:03:34.988
+then we evolved this into Command Palette, which has a
+
+NOTE Confidence: 0.9030544757843018
+
+00:03:35.042 --> 00:03:38.274
+bit more extensibility, more things you can install into it,
+
+NOTE Confidence: 0.9030544757843018
+
+00:03:38.328 --> 00:03:40.160
+a different UI based off feedback.
+
+NOTE Confidence: 0.946342945098877
+
+00:03:40.160 --> 00:03:43.361
+And then this architecture is now inside run and you
+
+NOTE Confidence: 0.946342945098877
+
+00:03:43.423 --> 00:03:46.563
+can, you know, search for your tooling and it looks
+
+NOTE Confidence: 0.946342945098877
+
+00:03:46.625 --> 00:03:50.320
+very similar to how Command Palette was maybe just inverted.
+
+NOTE Confidence: 0.9695237874984741
+
+00:03:51.280 --> 00:03:53.372
+So what's really great about that is, you know, we're
+
+NOTE Confidence: 0.9695237874984741
+
+00:03:53.411 --> 00:03:54.279
+all about open source.
+
+NOTE Confidence: 0.9034900665283203
+
+00:03:54.280 --> 00:03:56.690
+That slide I showed at the beginning, I think almost
+
+NOTE Confidence: 0.9034900665283203
+
+00:03:56.736 --> 00:03:59.239
+everything on there except Windows was is open source.
+
+NOTE Confidence: 0.9031509757041931
+
+00:03:59.640 --> 00:04:02.356
+So if you contributed to the command Palette on power
+
+NOTE Confidence: 0.9031509757041931
+
+00:04:02.408 --> 00:04:04.919
+toys, there's a good chance that your code is now
+
+NOTE Confidence: 0.9031509757041931
+
+00:04:04.970 --> 00:04:06.560
+in Windows, which is very cool.
+
+NOTE Confidence: 0.8986806869506836
+
+00:04:07.480 --> 00:04:10.640
+So that was vertical taskbar we have run.
+
+NOTE Confidence: 0.9560133218765259
+
+00:04:10.640 --> 00:04:13.687
+And now one thing I want to cover, also open
+
+NOTE Confidence: 0.9560133218765259
+
+00:04:13.756 --> 00:04:17.357
+source, is an experiment that we are trying out that
+
+NOTE Confidence: 0.9560133218765259
+
+00:04:17.426 --> 00:04:19.919
+we want to see how you guys like it.
+
+NOTE Confidence: 0.9273250699043274
+
+00:04:20.400 --> 00:04:22.899
+So this is intelligent terminal and it kind of came
+
+NOTE Confidence: 0.9273250699043274
+
+00:04:22.948 --> 00:04:25.693
+from, you know, we're working with all these agents, but
+
+NOTE Confidence: 0.9273250699043274
+
+00:04:25.742 --> 00:04:28.095
+when you go into Copilot CLI, it takes over your
+
+NOTE Confidence: 0.9273250699043274
+
+00:04:28.144 --> 00:04:28.879
+whole terminal.
+
+NOTE Confidence: 0.9322751760482788
+
+00:04:29.200 --> 00:04:31.074
+So it would be really nice if you had a
+
+NOTE Confidence: 0.9322751760482788
+
+00:04:31.122 --> 00:04:33.572
+companion working with you so you can still stay in
+
+NOTE Confidence: 0.9322751760482788
+
+00:04:33.620 --> 00:04:36.167
+your prompt, but then have an agent helping you along
+
+NOTE Confidence: 0.9322751760482788
+
+00:04:36.215 --> 00:04:36.599
+the way.
+
+NOTE Confidence: 0.940034031867981
+
+00:04:37.320 --> 00:04:40.359
+So here's a regex command that I asked an agent
+
+NOTE Confidence: 0.940034031867981
+
+00:04:40.423 --> 00:04:43.463
+to write for me because I don't know regex, but
+
+NOTE Confidence: 0.940034031867981
+
+00:04:43.527 --> 00:04:46.049
+I also asked it to make it not work and
+
+NOTE Confidence: 0.940034031867981
+
+00:04:46.114 --> 00:04:48.959
+the agent has detected that it doesn't work.
+
+NOTE Confidence: 0.9623042345046997
+
+00:04:48.960 --> 00:04:52.468
+This is meant to be like a password verification regex
+
+NOTE Confidence: 0.9623042345046997
+
+00:04:52.533 --> 00:04:55.523
+and the agent is now thinking about how to fix
+
+NOTE Confidence: 0.9623042345046997
+
+00:04:55.587 --> 00:04:58.642
+this and it should give me a solution to create
+
+NOTE Confidence: 0.9623042345046997
+
+00:04:58.707 --> 00:05:01.696
+a better regex so it's not giving me a command
+
+NOTE Confidence: 0.9623042345046997
+
+00:05:01.761 --> 00:05:05.399
+specifically because it doesn't know my desired outcome.
+
+NOTE Confidence: 0.8915702700614929
+
+00:05:05.600 --> 00:05:07.480
+Do I want to check for an uppercase letter?
+
+NOTE Confidence: 0.9250723123550415
+
+00:05:07.480 --> 00:05:09.842
+Do I want to check for a unique character so
+
+NOTE Confidence: 0.9250723123550415
+
+00:05:09.896 --> 00:05:12.097
+I can work with the agent to come up with
+
+NOTE Confidence: 0.9250723123550415
+
+00:05:12.151 --> 00:05:14.943
+a better syntax of regex without having to leave the
+
+NOTE Confidence: 0.9250723123550415
+
+00:05:14.996 --> 00:05:15.480
+terminal?
+
+NOTE Confidence: 0.9322516322135925
+
+00:05:16.080 --> 00:05:18.712
+And what's really cool is when you first get intelligent
+
+NOTE Confidence: 0.9322516322135925
+
+00:05:18.759 --> 00:05:21.297
+terminal, it's going to ask you like, hey, which agent
+
+NOTE Confidence: 0.9322516322135925
+
+00:05:21.344 --> 00:05:22.520
+do you want to work with?
+
+NOTE Confidence: 0.7688899636268616
+
+00:05:22.520 --> 00:05:25.632
+I only have GitHub copilot installed because I'm GitHub copilot
+
+NOTE Confidence: 0.7688899636268616
+
+00:05:25.682 --> 00:05:25.880
+fan.
+
+NOTE Confidence: 0.7503868937492371
+
+00:05:26.160 --> 00:05:29.960
+But you can add in clod, codex, open code, anything.
+
+NOTE Confidence: 0.914147675037384
+
+00:05:29.960 --> 00:05:32.812
+Once you install in your machine, it should automatically get
+
+NOTE Confidence: 0.914147675037384
+
+00:05:32.859 --> 00:05:35.430
+picked up by Intelligent Terminal and you can pick your
+
+NOTE Confidence: 0.914147675037384
+
+00:05:35.477 --> 00:05:36.600
+preferred model as well.
+
+NOTE Confidence: 0.9606069326400757
+
+00:05:36.760 --> 00:05:38.520
+So this is available today.
+
+NOTE Confidence: 0.9727969765663147
+
+00:05:38.520 --> 00:05:39.920
+We want to get your feedback on this.
+
+NOTE Confidence: 0.9487234354019165
+
+00:05:39.920 --> 00:05:42.883
+Like how does this agentic pain feel when you're working
+
+NOTE Confidence: 0.9487234354019165
+
+00:05:42.936 --> 00:05:43.360
+with it?
+
+NOTE Confidence: 0.9491308331489563
+
+00:05:43.560 --> 00:05:45.510
+What kind of things do you want to change or
+
+NOTE Confidence: 0.9491308331489563
+
+00:05:45.554 --> 00:05:46.840
+have added to the experience?
+
+NOTE Confidence: 0.9717627167701721
+
+00:05:46.840 --> 00:05:47.480
+We want to know.
+
+NOTE Confidence: 0.9638465046882629
+
+00:05:47.800 --> 00:05:49.320
+So this is open source.
+
+NOTE Confidence: 0.9624022841453552
+
+00:05:49.320 --> 00:05:52.240
+It's on GitHub, published I think this morning as well.
+
+NOTE Confidence: 0.8692954778671265
+
+00:05:52.240 --> 00:05:53.640
+Everything is fresh this morning.
+
+NOTE Confidence: 0.9630373120307922
+
+00:05:54.720 --> 00:05:56.826
+So yeah, go ahead and try this out and let
+
+NOTE Confidence: 0.9630373120307922
+
+00:05:56.876 --> 00:05:58.079
+us know how you like it.
+
+NOTE Confidence: 0.9670758247375488
+
+00:05:58.080 --> 00:06:00.341
+But since we're on the topic of terminal things, I
+
+NOTE Confidence: 0.9670758247375488
+
+00:06:00.386 --> 00:06:02.151
+want to hand it over to Craig to show a
+
+NOTE Confidence: 0.9670758247375488
+
+00:06:02.196 --> 00:06:02.920
+little bit more.
+
+NOTE Confidence: 0.9236749410629272
+
+00:06:03.480 --> 00:06:05.763
+Yeah, so let's take a look at my machine and
+
+NOTE Confidence: 0.9236749410629272
+
+00:06:05.815 --> 00:06:08.410
+we're going to take a look at WSL containers, also
+
+NOTE Confidence: 0.9236749410629272
+
+00:06:08.462 --> 00:06:12.200
+freshly announced this morning and something we're really excited about.
+
+NOTE Confidence: 0.92011958360672
+
+00:06:12.480 --> 00:06:14.707
+My goal today is to convince you if you have
+
+NOTE Confidence: 0.92011958360672
+
+00:06:14.757 --> 00:06:17.542
+never used containers before, why you might want to get
+
+NOTE Confidence: 0.92011958360672
+
+00:06:17.592 --> 00:06:19.921
+started using them and show you how you can do
+
+NOTE Confidence: 0.92011958360672
+
+00:06:19.971 --> 00:06:21.440
+all this with WSL containers.
+
+NOTE Confidence: 0.8084927201271057
+
+00:06:21.760 --> 00:06:24.701
+So we've added a new binary to WSL called WSLCI
+
+NOTE Confidence: 0.8084927201271057
+
+00:06:24.764 --> 00:06:27.205
+can go ahead and run this and I can run
+
+NOTE Confidence: 0.8084927201271057
+
+00:06:27.268 --> 00:06:29.960
+tons of different Linux container commands.
+
+NOTE Confidence: 0.9214567542076111
+
+00:06:30.279 --> 00:06:33.650
+So a Linux container is basically just a very nice
+
+NOTE Confidence: 0.9214567542076111
+
+00:06:33.718 --> 00:06:37.628
+little package where I can run arbitrary Linux binaries or
+
+NOTE Confidence: 0.9214567542076111
+
+00:06:37.696 --> 00:06:38.639
+distributions.
+
+NOTE Confidence: 0.8967174887657166
+
+00:06:38.920 --> 00:06:41.320
+In this case, I just ran Ubuntu, right?
+
+NOTE Confidence: 0.8593857884407043
+
+00:06:41.320 --> 00:06:42.720
+I ran the latest version of Ubuntu.
+
+NOTE Confidence: 0.9278173446655273
+
+00:06:43.080 --> 00:06:44.960
+But if I'm more of a Debian fan, I can
+
+NOTE Confidence: 0.9278173446655273
+
+00:06:45.010 --> 00:06:47.287
+very easily just go here and say, hey, give me
+
+NOTE Confidence: 0.9278173446655273
+
+00:06:47.336 --> 00:06:49.712
+the latest version of Debian and then it will be
+
+NOTE Confidence: 0.9278173446655273
+
+00:06:49.761 --> 00:06:51.890
+able to go pull it down for me, even though
+
+NOTE Confidence: 0.9278173446655273
+
+00:06:51.939 --> 00:06:52.879
+I didn't have that.
+
+NOTE Confidence: 0.7974164485931396
+
+00:06:52.880 --> 00:06:55.800
+Downloaded it, pulled it down and and ran that.
+
+NOTE Confidence: 0.9213665127754211
+
+00:06:55.800 --> 00:06:58.176
+So I can run that directly here inside of my
+
+NOTE Confidence: 0.9213665127754211
+
+00:06:58.230 --> 00:07:01.848
+terminal where containers get really powerful and where this really
+
+NOTE Confidence: 0.9213665127754211
+
+00:07:01.902 --> 00:07:04.387
+shows for WSL Container is you can use this to
+
+NOTE Confidence: 0.9213665127754211
+
+00:07:04.441 --> 00:07:07.627
+build powerful Linux environments that you can share to the
+
+NOTE Confidence: 0.9213665127754211
+
+00:07:07.681 --> 00:07:08.600
+cloud or locally.
+
+NOTE Confidence: 0.8666761517524719
+
+00:07:08.920 --> 00:07:11.450
+And now this all works just directly as part of
+
+NOTE Confidence: 0.8666761517524719
+
+00:07:11.504 --> 00:07:11.720
+WSL.
+
+NOTE Confidence: 0.9482295513153076
+
+00:07:12.160 --> 00:07:14.540
+On top of that, we have container as an alias
+
+NOTE Confidence: 0.9482295513153076
+
+00:07:14.593 --> 00:07:15.440
+that's built in.
+
+NOTE Confidence: 0.8128195405006409
+
+00:07:15.640 --> 00:07:18.458
+So you can use either WSLC or Container, whichever is
+
+NOTE Confidence: 0.8128195405006409
+
+00:07:18.511 --> 00:07:20.000
+more to your heart's desire.
+
+NOTE Confidence: 0.9448494911193848
+
+00:07:20.600 --> 00:07:22.774
+So if I go to this file here I have
+
+NOTE Confidence: 0.9448494911193848
+
+00:07:22.836 --> 00:07:25.943
+a container folder and in it I have some different
+
+NOTE Confidence: 0.9448494911193848
+
+00:07:26.005 --> 00:07:26.999
+container files.
+
+NOTE Confidence: 0.9676076173782349
+
+00:07:27.280 --> 00:07:30.444
+And So what I can do is actually build this
+
+NOTE Confidence: 0.9676076173782349
+
+00:07:30.518 --> 00:07:30.959
+image.
+
+NOTE Confidence: 0.9627766013145447
+
+00:07:31.160 --> 00:07:35.191
+So I'm going to build a service directly inside of
+
+NOTE Confidence: 0.9627766013145447
+
+00:07:35.272 --> 00:07:36.239
+my terminal.
+
+NOTE Confidence: 0.955409824848175
+
+00:07:36.880 --> 00:07:40.023
+So it's going to go ahead, grab that image, build
+
+NOTE Confidence: 0.955409824848175
+
+00:07:40.087 --> 00:07:40.279
+it.
+
+NOTE Confidence: 0.8851669430732727
+
+00:07:40.560 --> 00:07:42.560
+I actually ran this before, so everything was cached.
+
+NOTE Confidence: 0.8715807795524597
+
+00:07:42.880 --> 00:07:44.884
+And if we go ahead and take a look at
+
+NOTE Confidence: 0.8715807795524597
+
+00:07:44.938 --> 00:07:48.080
+that, at that container file with edit, great editor tool.
+
+NOTE Confidence: 0.9384393692016602
+
+00:07:48.080 --> 00:07:50.112
+If you haven't seen this in the command line, it's
+
+NOTE Confidence: 0.9384393692016602
+
+00:07:50.153 --> 00:07:50.560
+beautiful.
+
+NOTE Confidence: 0.8051137924194336
+
+00:07:50.560 --> 00:07:53.260
+It works with your mouse, which I probably my favorite
+
+NOTE Confidence: 0.8051137924194336
+
+00:07:53.310 --> 00:07:53.560
+part.
+
+NOTE Confidence: 0.9163419008255005
+
+00:07:54.080 --> 00:07:56.308
+And if I go and take a look at this,
+
+NOTE Confidence: 0.9163419008255005
+
+00:07:56.370 --> 00:07:59.155
+I can see I'm grabbing Python 3.13 and then I
+
+NOTE Confidence: 0.9163419008255005
+
+00:07:59.217 --> 00:08:02.684
+am going and running a bunch of different Linux commands
+
+NOTE Confidence: 0.9163419008255005
+
+00:08:02.745 --> 00:08:05.159
+to set up a specific Linux environment.
+
+NOTE Confidence: 0.9475855231285095
+
+00:08:05.560 --> 00:08:08.851
+Now that I've built that container, let's go ahead and
+
+NOTE Confidence: 0.9475855231285095
+
+00:08:08.912 --> 00:08:10.679
+take a look at it in my list.
+
+NOTE Confidence: 0.7679818272590637
+
+00:08:10.920 --> 00:08:13.387
+So I just ran WSLC image LS and then I
+
+NOTE Confidence: 0.7679818272590637
+
+00:08:13.452 --> 00:08:15.920
+piped it to grep and ran mark it down.
+
+NOTE Confidence: 0.95050448179245
+
+00:08:16.600 --> 00:08:17.160
+Well, hold on.
+
+NOTE Confidence: 0.9125497341156006
+
+00:08:17.520 --> 00:08:20.429
+Piping it to grip is pretty cool because we have
+
+NOTE Confidence: 0.9125497341156006
+
+00:08:20.489 --> 00:08:23.338
+just released core utils, which is a new way to
+
+NOTE Confidence: 0.9125497341156006
+
+00:08:23.398 --> 00:08:26.792
+run a ton of different Linux core utilities all directly
+
+NOTE Confidence: 0.9125497341156006
+
+00:08:26.853 --> 00:08:27.520
+on Windows.
+
+NOTE Confidence: 0.9122264981269836
+
+00:08:27.720 --> 00:08:30.351
+So things like grip are now available as part of
+
+NOTE Confidence: 0.9122264981269836
+
+00:08:30.405 --> 00:08:30.679
+that.
+
+NOTE Confidence: 0.9203320145606995
+
+00:08:31.120 --> 00:08:33.796
+I can even go ahead and take a look at
+
+NOTE Confidence: 0.9203320145606995
+
+00:08:33.866 --> 00:08:36.119
+here's I'm looking at that list.
+
+NOTE Confidence: 0.8782750368118286
+
+00:08:36.320 --> 00:08:38.625
+And then I piped this to WC, which counts the
+
+NOTE Confidence: 0.8782750368118286
+
+00:08:38.676 --> 00:08:39.239
+word count.
+
+NOTE Confidence: 0.9325702786445618
+
+00:08:39.440 --> 00:08:43.440
+It's telling me there's 165 different tools inside of this.
+
+NOTE Confidence: 0.8245448470115662
+
+00:08:43.440 --> 00:08:45.160
+So let's let's take a look at the list.
+
+NOTE Confidence: 0.8059579133987427
+
+00:08:46.560 --> 00:08:49.960
+Things like test.exetail.exe.
+
+NOTE Confidence: 0.9014537334442139
+
+00:08:50.280 --> 00:08:54.608
+I'm personally really excited about env.exe, which shows your environment
+
+NOTE Confidence: 0.9014537334442139
+
+00:08:54.667 --> 00:08:57.751
+variables, because I only really know how to do that
+
+NOTE Confidence: 0.9014537334442139
+
+00:08:57.810 --> 00:09:00.359
+in Bash, speaking from personal experience.
+
+NOTE Confidence: 0.9121577739715576
+
+00:09:00.760 --> 00:09:03.971
+And it's just a super awesome and powerful way to,
+
+NOTE Confidence: 0.9121577739715576
+
+00:09:04.035 --> 00:09:06.540
+if you're a big Linux fan like I am and
+
+NOTE Confidence: 0.9121577739715576
+
+00:09:06.604 --> 00:09:10.201
+you're a big fan of bringing those worlds together, they
+
+NOTE Confidence: 0.9121577739715576
+
+00:09:10.265 --> 00:09:11.999
+can just coexist so nicely.
+
+NOTE Confidence: 0.9565276503562927
+
+00:09:12.680 --> 00:09:15.800
+And so let's kind of go back to our example.
+
+NOTE Confidence: 0.9258475303649902
+
+00:09:15.800 --> 00:09:20.080
+And I am going to run that market down service
+
+NOTE Confidence: 0.9258475303649902
+
+00:09:20.173 --> 00:09:23.616
+which I built and so I can go and run
+
+NOTE Confidence: 0.9258475303649902
+
+00:09:23.709 --> 00:09:24.640
+that here.
+
+NOTE Confidence: 0.9044539928436279
+
+00:09:24.880 --> 00:09:27.285
+And so I, I took that container that I, I
+
+NOTE Confidence: 0.9044539928436279
+
+00:09:27.344 --> 00:09:30.629
+defined in that container file and then now I'm starting
+
+NOTE Confidence: 0.9044539928436279
+
+00:09:30.688 --> 00:09:31.040
+it up.
+
+NOTE Confidence: 0.879658043384552
+
+00:09:31.440 --> 00:09:34.844
+What you'll notice is that I use this dash P
+
+NOTE Confidence: 0.879658043384552
+
+00:09:34.921 --> 00:09:38.790
+to say, please take port 8000 in the container and
+
+NOTE Confidence: 0.879658043384552
+
+00:09:38.868 --> 00:09:40.880
+forward that onto Windows.
+
+NOTE Confidence: 0.8947097063064575
+
+00:09:41.160 --> 00:09:44.186
+And so now when I have that and I go
+
+NOTE Confidence: 0.8947097063064575
+
+00:09:44.270 --> 00:09:47.465
+to Edge and I go to local host 8000, I
+
+NOTE Confidence: 0.8947097063064575
+
+00:09:47.549 --> 00:09:50.240
+get that what that container is.
+
+NOTE Confidence: 0.9455931782722473
+
+00:09:50.280 --> 00:09:53.172
+So that container is defining a very neat little web
+
+NOTE Confidence: 0.9455931782722473
+
+00:09:53.228 --> 00:09:53.839
+app for me.
+
+NOTE Confidence: 0.9341571927070618
+
+00:09:54.200 --> 00:09:58.815
+That web app allows me to go in and take
+
+NOTE Confidence: 0.9341571927070618
+
+00:09:58.930 --> 00:10:00.200
+any folder.
+
+NOTE Confidence: 0.9665762186050415
+
+00:10:00.200 --> 00:10:05.098
+So let's go and find my samples, which I have
+
+NOTE Confidence: 0.9665762186050415
+
+00:10:05.207 --> 00:10:11.956
+very conveniently placed about 30 folders down just 3029 more,
+
+NOTE Confidence: 0.9665762186050415
+
+00:10:12.064 --> 00:10:13.479
+just 39 more.
+
+NOTE Confidence: 0.8215518593788147
+
+00:10:13.480 --> 00:10:14.080
+All right, here we go.
+
+NOTE Confidence: 0.7236524224281311
+
+00:10:15.080 --> 00:10:15.560
+So there we go.
+
+NOTE Confidence: 0.911827802658081
+
+00:10:16.240 --> 00:10:17.720
+And then I can drag and drop this in.
+
+NOTE Confidence: 0.8534607291221619
+
+00:10:18.000 --> 00:10:20.977
+All this does is it takes any PDF file so
+
+NOTE Confidence: 0.8534607291221619
+
+00:10:21.050 --> 00:10:23.520
+or any file in here like dot docx.
+
+NOTE Confidence: 0.8801488876342773
+
+00:10:23.760 --> 00:10:26.691
+So it took this complex PDF and then it converted
+
+NOTE Confidence: 0.8801488876342773
+
+00:10:26.751 --> 00:10:29.503
+that into markdown and it shows me that on the
+
+NOTE Confidence: 0.8801488876342773
+
+00:10:29.563 --> 00:10:30.880
+left and on the right.
+
+NOTE Confidence: 0.9546995759010315
+
+00:10:31.160 --> 00:10:34.594
+So that could be my full website right contained right
+
+NOTE Confidence: 0.9546995759010315
+
+00:10:34.658 --> 00:10:35.040
+there.
+
+NOTE Confidence: 0.9718784093856812
+
+00:10:35.240 --> 00:10:36.440
+I was able to go run that.
+
+NOTE Confidence: 0.9372871518135071
+
+00:10:36.880 --> 00:10:39.422
+And so, you know, if that didn't convince you, I
+
+NOTE Confidence: 0.9372871518135071
+
+00:10:39.475 --> 00:10:41.964
+think the the last thing I'd really show is you
+
+NOTE Confidence: 0.9372871518135071
+
+00:10:42.017 --> 00:10:44.772
+can do things like light your whole terminal on fire
+
+NOTE Confidence: 0.9372871518135071
+
+00:10:44.825 --> 00:10:46.519
+by running different containers.
+
+NOTE Confidence: 0.7723399996757507
+
+00:10:46.840 --> 00:10:49.583
+So that someone built that, that you can go run
+
+NOTE Confidence: 0.7723399996757507
+
+00:10:49.641 --> 00:10:52.560
+with just one command line, a super powerful tool.
+
+NOTE Confidence: 0.9018867015838623
+
+00:10:53.200 --> 00:10:55.880
+And I think it begs the question of why did
+
+NOTE Confidence: 0.9018867015838623
+
+00:10:55.943 --> 00:10:58.998
+we build a Linux container CLI and when there are
+
+NOTE Confidence: 0.9018867015838623
+
+00:10:59.060 --> 00:11:03.300
+other awesome CLI tools like there's Padman Desktop, Docker Desktop,
+
+NOTE Confidence: 0.9018867015838623
+
+00:11:03.362 --> 00:11:04.360
+Rancher desktop.
+
+NOTE Confidence: 0.9643521904945374
+
+00:11:04.600 --> 00:11:07.539
+And the answer is these are all great tools, but
+
+NOTE Confidence: 0.9643521904945374
+
+00:11:07.601 --> 00:11:10.479
+we actually also built an API for this as well.
+
+NOTE Confidence: 0.9078500866889954
+
+00:11:10.480 --> 00:11:13.273
+And we're going to be showing that in Part 2
+
+NOTE Confidence: 0.9078500866889954
+
+00:11:13.337 --> 00:11:15.559
+on the building for Windows, right?
+
+NOTE Confidence: 0.6823028922080994
+
+00:11:15.600 --> 00:11:15.880
+Right.
+
+NOTE Confidence: 0.9179918169975281
+
+00:11:16.240 --> 00:11:18.400
+And so we'll show that.
+
+NOTE Confidence: 0.9040759205818176
+
+00:11:18.400 --> 00:11:21.250
+And because we wanted to be opinionated about how this
+
+NOTE Confidence: 0.9040759205818176
+
+00:11:21.303 --> 00:11:24.364
+would work, like for example, we added this system session
+
+NOTE Confidence: 0.9040759205818176
+
+00:11:24.417 --> 00:11:24.840
+command.
+
+NOTE Confidence: 0.8714228272438049
+
+00:11:25.040 --> 00:11:27.871
+This doesn't exist in Docker or Podman where we're being
+
+NOTE Confidence: 0.8714228272438049
+
+00:11:27.921 --> 00:11:30.954
+opinionated about making sure that these things, the API and
+
+NOTE Confidence: 0.8714228272438049
+
+00:11:31.005 --> 00:11:32.319
+the CLI can work together.
+
+NOTE Confidence: 0.9079425930976868
+
+00:11:33.360 --> 00:11:35.953
+So we knew we were going to make some decisions
+
+NOTE Confidence: 0.9079425930976868
+
+00:11:36.008 --> 00:11:36.560
+like that.
+
+NOTE Confidence: 0.8858497142791748
+
+00:11:36.560 --> 00:11:37.840
+That's why we created the CLI.
+
+NOTE Confidence: 0.9563939571380615
+
+00:11:38.240 --> 00:11:40.280
+But the best part is this is all open source.
+
+NOTE Confidence: 0.9077746868133545
+
+00:11:40.280 --> 00:11:43.750
+We have ton of improvements coming to the underlying virtual
+
+NOTE Confidence: 0.9077746868133545
+
+00:11:43.807 --> 00:11:47.104
+machine technology powering this and those will all go to
+
+NOTE Confidence: 0.9077746868133545
+
+00:11:47.162 --> 00:11:49.360
+Docker, Podman, Rancher, all for free.
+
+NOTE Confidence: 0.9273704290390015
+
+00:11:49.360 --> 00:11:53.084
+For example, we are improving cross OS file performance by
+
+NOTE Confidence: 0.9273704290390015
+
+00:11:53.148 --> 00:11:56.359
+two times when accessing Windows files from Linux.
+
+NOTE Confidence: 0.8767828345298767
+
+00:11:56.760 --> 00:12:00.963
+And so something we're really excited for, and that is
+
+NOTE Confidence: 0.8767828345298767
+
+00:12:01.041 --> 00:12:02.519
+the Whirlwind Tour.
+
+NOTE Confidence: 0.749320387840271
+
+00:12:03.160 --> 00:12:03.960
+Cool, let's jump back.
+
+NOTE Confidence: 0.8900014758110046
+
+00:12:03.960 --> 00:12:06.531
+Yeah, well, so actually I pulled this up while you
+
+NOTE Confidence: 0.8900014758110046
+
+00:12:06.582 --> 00:12:09.257
+were chatting the core utils that he showed with all
+
+NOTE Confidence: 0.8900014758110046
+
+00:12:09.308 --> 00:12:11.880
+the 75 command line utilities available on GitHub.
+
+NOTE Confidence: 0.9664101004600525
+
+00:12:12.320 --> 00:12:14.340
+So if you want to go grab this today and
+
+NOTE Confidence: 0.9664101004600525
+
+00:12:14.390 --> 00:12:17.118
+have all those utilities right away, you can come over
+
+NOTE Confidence: 0.9664101004600525
+
+00:12:17.169 --> 00:12:19.239
+to this repo and download them from here.
+
+NOTE Confidence: 0.943523645401001
+
+00:12:19.640 --> 00:12:22.346
+And you know, something else, like we're talking about WSL
+
+NOTE Confidence: 0.943523645401001
+
+00:12:22.393 --> 00:12:23.279
+and all that stuff.
+
+NOTE Confidence: 0.9607877731323242
+
+00:12:23.280 --> 00:12:27.596
+Something else that comes in this Windows developer config is
+
+NOTE Confidence: 0.9607877731323242
+
+00:12:27.667 --> 00:12:28.799
+a comfort shell.
+
+NOTE Confidence: 0.853251576423645
+
+00:12:29.160 --> 00:12:33.840
+So this is a customized flavor, not flavor, but like
+
+NOTE Confidence: 0.853251576423645
+
+00:12:33.930 --> 00:12:34.560
+a it's.
+
+NOTE Confidence: 0.8193754553794861
+
+00:12:35.120 --> 00:12:37.520
+Like a customized implementation of Ubuntu.
+
+NOTE Confidence: 0.803097665309906
+
+00:12:38.040 --> 00:12:39.240
+There you go, right what he said.
+
+NOTE Confidence: 0.7550691962242126
+
+00:12:40.840 --> 00:12:41.800
+It's a setup script.
+
+NOTE Confidence: 0.9475942254066467
+
+00:12:42.040 --> 00:12:44.911
+Yeah, so it will come with everything pre installed that
+
+NOTE Confidence: 0.9475942254066467
+
+00:12:44.963 --> 00:12:46.040
+you're familiar with.
+
+NOTE Confidence: 0.910306990146637
+
+00:12:46.040 --> 00:12:49.092
+So if you're someone who likes to use Homebrew or
+
+NOTE Confidence: 0.910306990146637
+
+00:12:49.154 --> 00:12:52.580
+ZSH, Starship, those kinds of tools, we pre install all
+
+NOTE Confidence: 0.910306990146637
+
+00:12:52.642 --> 00:12:55.757
+of these for you with that comfort shell and it'll
+
+NOTE Confidence: 0.910306990146637
+
+00:12:55.819 --> 00:12:57.999
+plug right into your Ubuntu distro.
+
+NOTE Confidence: 0.9111085534095764
+
+00:12:58.000 --> 00:12:59.520
+So one of my favorites.
+
+NOTE Confidence: 0.9147749543190002
+
+00:12:59.520 --> 00:13:01.406
+I showed this at the keynote, but like, how cool
+
+NOTE Confidence: 0.9147749543190002
+
+00:13:01.445 --> 00:13:01.760
+is that?
+
+NOTE Confidence: 0.31750741600990295
+
+00:13:01.840 --> 00:13:02.360
+It's B top.
+
+NOTE Confidence: 0.9091221690177917
+
+00:13:03.080 --> 00:13:05.035
+So this comes baked in along with a lot of
+
+NOTE Confidence: 0.9091221690177917
+
+00:13:05.081 --> 00:13:05.920
+those other tools.
+
+NOTE Confidence: 0.9459004998207092
+
+00:13:07.320 --> 00:13:10.480
+I think that's what we've got for building on Windows.
+
+NOTE Confidence: 0.9229046106338501
+
+00:13:10.480 --> 00:13:12.392
+We might want to do a little recap because that
+
+NOTE Confidence: 0.9229046106338501
+
+00:13:12.433 --> 00:13:12.839
+was a lot.
+
+NOTE Confidence: 0.871389627456665
+
+00:13:13.400 --> 00:13:16.455
+So let's jump back and kind of walk through the
+
+NOTE Confidence: 0.871389627456665
+
+00:13:16.520 --> 00:13:18.080
+things we showed so far.
+
+NOTE Confidence: 0.8756697773933411
+
+00:13:18.360 --> 00:13:21.350
+So we started with optimizing your setup with that config
+
+NOTE Confidence: 0.8756697773933411
+
+00:13:21.403 --> 00:13:23.239
+file available in that GitHub repo.
+
+NOTE Confidence: 0.9523183703422546
+
+00:13:23.760 --> 00:13:25.680
+That includes a lot of fan favorite tooling.
+
+NOTE Confidence: 0.9491910934448242
+
+00:13:26.120 --> 00:13:29.181
+And then there's also that intelligent terminal, which is an
+
+NOTE Confidence: 0.9491910934448242
+
+00:13:29.232 --> 00:13:32.395
+experimental experience that we're playing with of how you can
+
+NOTE Confidence: 0.9491910934448242
+
+00:13:32.446 --> 00:13:34.640
+have an agent helping you in your terminal.
+
+NOTE Confidence: 0.7791853547096252
+
+00:13:35.280 --> 00:13:38.790
+Then those there's those Windows improvements, so new run leveraging
+
+NOTE Confidence: 0.7791853547096252
+
+00:13:38.842 --> 00:13:42.559
+the power toys command palette architecture along with vertical taskbar.
+
+NOTE Confidence: 0.9474562406539917
+
+00:13:42.560 --> 00:13:45.200
+And then we've got those core utils as well.
+
+NOTE Confidence: 0.925766110420227
+
+00:13:45.480 --> 00:13:48.927
+And then as Craig covered, the WSL container, new implementation
+
+NOTE Confidence: 0.925766110420227
+
+00:13:48.981 --> 00:13:52.159
+for having a native container solution that works with your
+
+NOTE Confidence: 0.925766110420227
+
+00:13:52.213 --> 00:13:53.559
+existing container files.
+
+NOTE Confidence: 0.8686972260475159
+
+00:13:54.080 --> 00:13:56.069
+And then of course, Comfort Shell, which we just showed
+
+NOTE Confidence: 0.8686972260475159
+
+00:13:56.105 --> 00:13:57.479
+with that cool B top thing at the end.
+
+NOTE Confidence: 0.9635941982269287
+
+00:13:58.320 --> 00:14:01.040
+So that is building on Windows.
+
+NOTE Confidence: 0.9076999425888062
+
+00:14:01.040 --> 00:14:03.849
+Now we're going to talk about building for Windows and
+
+NOTE Confidence: 0.9076999425888062
+
+00:14:03.901 --> 00:14:07.074
+how you can streamline building your apps directly on Windows
+
+NOTE Confidence: 0.9076999425888062
+
+00:14:07.126 --> 00:14:09.519
+that are like Win UI apps, that sort of thing.
+
+NOTE Confidence: 0.8505544662475586
+
+00:14:09.520 --> 00:14:12.680
+So I think it's still me, so I'll keep going.
+
+NOTE Confidence: 0.9080339670181274
+
+00:14:13.840 --> 00:14:17.182
+So something that we have come out with that is
+
+NOTE Confidence: 0.9080339670181274
+
+00:14:17.253 --> 00:14:21.377
+intended to make building Windows apps a little bit easier
+
+NOTE Confidence: 0.9080339670181274
+
+00:14:21.448 --> 00:14:22.800
+is the Win App CLI.
+
+NOTE Confidence: 0.9086765050888062
+
+00:14:23.440 --> 00:14:25.520
+So this is a command line interface, also open source.
+
+NOTE Confidence: 0.5382968783378601
+
+00:14:25.520 --> 00:14:26.160
+That's our jam.
+
+NOTE Confidence: 0.8547228574752808
+
+00:14:26.160 --> 00:14:27.480
+Everything's on GitHub, it's great.
+
+NOTE Confidence: 0.8966849446296692
+
+00:14:28.280 --> 00:14:31.770
+But this is a single CLI for managing Windows SDKS,
+
+NOTE Confidence: 0.8966849446296692
+
+00:14:31.838 --> 00:14:37.039
+packaging, generating app identity manifests, certificates, and build tools.
+
+NOTE Confidence: 0.914120614528656
+
+00:14:37.360 --> 00:14:40.426
+And you can use it to really just jumpstart building
+
+NOTE Confidence: 0.914120614528656
+
+00:14:40.485 --> 00:14:41.960
+all of your Windows apps.
+
+NOTE Confidence: 0.9333662390708923
+
+00:14:41.960 --> 00:14:44.906
+And it covers the hard part like publishing and all
+
+NOTE Confidence: 0.9333662390708923
+
+00:14:44.964 --> 00:14:45.600
+that stuff.
+
+NOTE Confidence: 0.9066482186317444
+
+00:14:46.600 --> 00:14:49.506
+So it's got, let me see, there was a section
+
+NOTE Confidence: 0.9066482186317444
+
+00:14:49.573 --> 00:14:52.480
+that I wanted to show that I am now missing.
+
+NOTE Confidence: 0.8381875157356262
+
+00:14:52.480 --> 00:14:56.544
+Oh, yeah, here's some things that package having package identity
+
+NOTE Confidence: 0.8381875157356262
+
+00:14:56.606 --> 00:14:57.920
+for your app unlocks.
+
+NOTE Confidence: 0.9141650795936584
+
+00:14:57.920 --> 00:15:00.276
+So this is a really great thing to use if
+
+NOTE Confidence: 0.9141650795936584
+
+00:15:00.333 --> 00:15:04.012
+you want to have package identity, but having interactive native
+
+NOTE Confidence: 0.9141650795936584
+
+00:15:04.069 --> 00:15:08.610
+notifications along with integration with Explorer, taskbar share, share sheet,
+
+NOTE Confidence: 0.9141650795936584
+
+00:15:08.667 --> 00:15:09.760
+that kind of thing.
+
+NOTE Confidence: 0.9726616144180298
+
+00:15:09.760 --> 00:15:11.800
+And then there's also instructions for how to get started
+
+NOTE Confidence: 0.9726616144180298
+
+00:15:11.835 --> 00:15:12.479
+with this as well.
+
+NOTE Confidence: 0.7883383631706238
+
+00:15:13.280 --> 00:15:15.831
+And of course, it's on Winget because everything we make
+
+NOTE Confidence: 0.7883383631706238
+
+00:15:15.876 --> 00:15:16.559
+goes on Winget.
+
+NOTE Confidence: 0.8851019740104675
+
+00:15:16.560 --> 00:15:20.765
+So it's really easy, one line install and then something
+
+NOTE Confidence: 0.8851019740104675
+
+00:15:20.840 --> 00:15:23.919
+that leverages this is the Windev skills.
+
+NOTE Confidence: 0.8513754606246948
+
+00:15:24.240 --> 00:15:27.144
+So this is an agent plugin and plugins for agents
+
+NOTE Confidence: 0.8513754606246948
+
+00:15:27.203 --> 00:15:30.285
+is really just a bundle of like skills, MCP servers,
+
+NOTE Confidence: 0.8513754606246948
+
+00:15:30.344 --> 00:15:32.360
+custom agents, that kind of thing.
+
+NOTE Confidence: 0.8666141629219055
+
+00:15:32.360 --> 00:15:33.680
+And then they just called it a plugin.
+
+NOTE Confidence: 0.9228078722953796
+
+00:15:33.680 --> 00:15:37.177
+But it's really just all those other things we know
+
+NOTE Confidence: 0.9228078722953796
+
+00:15:37.245 --> 00:15:38.480
+and one installer.
+
+NOTE Confidence: 0.9713331460952759
+
+00:15:39.320 --> 00:15:42.400
+So this is what you can use with your agents.
+
+NOTE Confidence: 0.8580764532089233
+
+00:15:43.200 --> 00:15:46.424
+Oh, there's a talk later I should go to that
+
+NOTE Confidence: 0.8580764532089233
+
+00:15:46.497 --> 00:15:49.721
+you can use with your agents to build Win UI
+
+NOTE Confidence: 0.8580764532089233
+
+00:15:49.794 --> 00:15:51.479
+3 and Win App SDK apps.
+
+NOTE Confidence: 0.8969108462333679
+
+00:15:52.000 --> 00:15:55.180
+So this comes with a lot of skills that are
+
+NOTE Confidence: 0.8969108462333679
+
+00:15:55.254 --> 00:16:00.063
+really helpful like building and running the workflow, having Win
+
+NOTE Confidence: 0.8969108462333679
+
+00:16:00.136 --> 00:16:04.945
+UI design, Win UI code review, testing, packaging, migrating from
+
+NOTE Confidence: 0.8969108462333679
+
+00:16:05.019 --> 00:16:08.199
+WPF session report along with Win UI setup.
+
+NOTE Confidence: 0.8929109573364258
+
+00:16:08.680 --> 00:16:11.098
+What I like about it is it's showing you up
+
+NOTE Confidence: 0.8929109573364258
+
+00:16:11.154 --> 00:16:12.279
+to date information.
+
+NOTE Confidence: 0.9066807627677917
+
+00:16:12.280 --> 00:16:14.641
+Your agent doesn't need to go out and waste tokens
+
+NOTE Confidence: 0.9066807627677917
+
+00:16:14.688 --> 00:16:15.679
+on like a web search.
+
+NOTE Confidence: 0.9063974022865295
+
+00:16:15.680 --> 00:16:17.320
+It can directly access some of the stuff.
+
+NOTE Confidence: 0.9193565845489502
+
+00:16:17.520 --> 00:16:19.880
+That's not older information either.
+
+NOTE Confidence: 0.8045014142990112
+
+00:16:19.960 --> 00:16:20.680
+Yes, totally.
+
+NOTE Confidence: 0.6765568256378174
+
+00:16:20.680 --> 00:16:21.240
+So this is that.
+
+NOTE Confidence: 0.8682389259338379
+
+00:16:21.240 --> 00:16:21.960
+That's a great point.
+
+NOTE Confidence: 0.9645281434059143
+
+00:16:21.960 --> 00:16:23.651
+This is a really great way to be more efficient
+
+NOTE Confidence: 0.9645281434059143
+
+00:16:23.687 --> 00:16:24.479
+with your token usage.
+
+NOTE Confidence: 0.881035327911377
+
+00:16:24.640 --> 00:16:27.204
+If you already provide that context to your to your
+
+NOTE Confidence: 0.881035327911377
+
+00:16:27.255 --> 00:16:30.021
+agent saying, hey, here's the skills, here's how to get
+
+NOTE Confidence: 0.881035327911377
+
+00:16:30.071 --> 00:16:32.736
+all this stuff rather than researching Win UI 3, it's
+
+NOTE Confidence: 0.881035327911377
+
+00:16:32.787 --> 00:16:35.000
+going to know all about it with this plugin.
+
+NOTE Confidence: 0.9601960182189941
+
+00:16:35.440 --> 00:16:38.280
+And I installed it by running this long prompt.
+
+NOTE Confidence: 0.7980600595474243
+
+00:16:38.280 --> 00:16:40.621
+I just pasted it and copilot because it's a little
+
+NOTE Confidence: 0.7980600595474243
+
+00:16:40.668 --> 00:16:42.635
+bit easier, but you can also do it by hand
+
+NOTE Confidence: 0.7980600595474243
+
+00:16:42.682 --> 00:16:43.759
+if that's your jam too.
+
+NOTE Confidence: 0.8997806310653687
+
+00:16:44.520 --> 00:16:46.351
+And I think it it might be kind of fun
+
+NOTE Confidence: 0.8997806310653687
+
+00:16:46.400 --> 00:16:48.280
+to try to build a win UI app right now.
+
+NOTE Confidence: 0.8931728601455688
+
+00:16:48.280 --> 00:16:51.586
+I don't know how long this is going to take,
+
+NOTE Confidence: 0.8931728601455688
+
+00:16:51.661 --> 00:16:54.968
+so bear with me, but I liked Craig's mark it
+
+NOTE Confidence: 0.8931728601455688
+
+00:16:55.043 --> 00:16:55.720
+down app.
+
+NOTE Confidence: 0.9383066296577454
+
+00:16:55.800 --> 00:16:57.280
+I think we could try to build it again.
+
+NOTE Confidence: 0.5293051600456238
+
+00:16:57.440 --> 00:16:57.600
+That's.
+
+NOTE Confidence: 0.9321088790893555
+
+00:16:57.680 --> 00:16:58.840
+OK, you can steal my idea.
+
+NOTE Confidence: 0.48135894536972046
+
+00:16:58.880 --> 00:16:59.480
+Yeah, that's fine.
+
+NOTE Confidence: 0.6525650024414062
+
+00:16:59.720 --> 00:17:01.120
+All my ideas are original.
+
+NOTE Confidence: 0.9600711464881897
+
+00:17:01.120 --> 00:17:01.640
+What do you mean?
+
+NOTE Confidence: 0.805065393447876
+
+00:17:02.760 --> 00:17:04.651
+So I'm going to jump into copilot and then we're
+
+NOTE Confidence: 0.805065393447876
+
+00:17:04.690 --> 00:17:06.818
+going to I already have this plug in installed because
+
+NOTE Confidence: 0.805065393447876
+
+00:17:06.857 --> 00:17:08.040
+I ran that long prompt, right?
+
+NOTE Confidence: 0.8822970986366272
+
+00:17:09.720 --> 00:17:12.940
+And when you get here, what first thing you want
+
+NOTE Confidence: 0.8822970986366272
+
+00:17:13.007 --> 00:17:15.623
+to do so that the agent is in the right
+
+NOTE Confidence: 0.8822970986366272
+
+00:17:15.690 --> 00:17:18.441
+state is you want to set the agent to the
+
+NOTE Confidence: 0.8822970986366272
+
+00:17:18.508 --> 00:17:20.320
+win dev win UI dev plug in.
+
+NOTE Confidence: 0.9364202618598938
+
+00:17:20.320 --> 00:17:21.914
+So after you install it, you're going to get a
+
+NOTE Confidence: 0.9364202618598938
+
+00:17:21.949 --> 00:17:22.400
+custom agent.
+
+NOTE Confidence: 0.7921345233917236
+
+00:17:22.400 --> 00:17:24.303
+So this is going to know to route to those
+
+NOTE Confidence: 0.7921345233917236
+
+00:17:24.349 --> 00:17:26.117
+skills to get all of that win UI when I
+
+NOTE Confidence: 0.7921345233917236
+
+00:17:26.162 --> 00:17:27.159
+have SDK goodness too.
+
+NOTE Confidence: 0.8825340867042542
+
+00:17:27.160 --> 00:17:29.200
+So we're going to set this.
+
+NOTE Confidence: 0.8755730986595154
+
+00:17:30.040 --> 00:17:31.972
+So now here you can see I've got win UI
+
+NOTE Confidence: 0.8755730986595154
+
+00:17:32.022 --> 00:17:33.360
+dev set as my custom agent.
+
+NOTE Confidence: 0.9171687960624695
+
+00:17:33.360 --> 00:17:34.760
+So that's how you know you're in the right place.
+
+NOTE Confidence: 0.8577906489372253
+
+00:17:35.200 --> 00:17:37.552
+And then I'm going to try to use the voice
+
+NOTE Confidence: 0.8577906489372253
+
+00:17:37.608 --> 00:17:40.800
+feature of copilot CLI since I'm on stage and everything.
+
+NOTE Confidence: 0.8050470352172852
+
+00:17:40.800 --> 00:17:42.894
+I don't know how this is going to go, but
+
+NOTE Confidence: 0.8050470352172852
+
+00:17:42.945 --> 00:17:45.347
+I'm going to just a yap to copilot really quick
+
+NOTE Confidence: 0.8050470352172852
+
+00:17:45.398 --> 00:17:46.880
+to build his market down app.
+
+NOTE Confidence: 0.9602483510971069
+
+00:17:46.920 --> 00:17:48.240
+So let's see how this goes.
+
+NOTE Confidence: 0.8870255351066589
+
+00:17:50.320 --> 00:17:53.383
+Let's build a native Win UI3 app that takes any
+
+NOTE Confidence: 0.8870255351066589
+
+00:17:53.448 --> 00:17:55.599
+file and converts it to markdown.
+
+NOTE Confidence: 0.9595438838005066
+
+00:17:55.920 --> 00:17:58.596
+Have it have a side by side view and display
+
+NOTE Confidence: 0.9595438838005066
+
+00:17:58.657 --> 00:18:01.455
+the contents of both files on each side of the
+
+NOTE Confidence: 0.9595438838005066
+
+00:18:01.516 --> 00:18:01.759
+app.
+
+NOTE Confidence: 0.8461821675300598
+
+00:18:02.240 --> 00:18:05.779
+Make it look prettier than Craig's mark it down app
+
+NOTE Confidence: 0.8461821675300598
+
+00:18:05.849 --> 00:18:08.903
+and then do UI testing and run it after it's
+
+NOTE Confidence: 0.8461821675300598
+
+00:18:08.972 --> 00:18:09.319
+done.
+
+NOTE Confidence: 0.8545300364494324
+
+00:18:10.960 --> 00:18:11.280
+Cool.
+
+NOTE Confidence: 0.8706730604171753
+
+00:18:11.280 --> 00:18:14.000
+I'm also going to put this into autopilot mode.
+
+NOTE Confidence: 0.9310386776924133
+
+00:18:14.000 --> 00:18:15.720
+I just switched modes with shift tab.
+
+NOTE Confidence: 0.8656340837478638
+
+00:18:16.080 --> 00:18:19.000
+So you got plan autopilot and like regular, and we're
+
+NOTE Confidence: 0.8656340837478638
+
+00:18:19.055 --> 00:18:21.920
+just going to kick this off, enable all permissions.
+
+NOTE Confidence: 0.9616185426712036
+
+00:18:21.920 --> 00:18:22.560
+This is fine.
+
+NOTE Confidence: 0.8167985081672668
+
+00:18:22.560 --> 00:18:23.480
+Everything's great.
+
+NOTE Confidence: 0.8954676389694214
+
+00:18:24.760 --> 00:18:26.280
+It's not like this is my real machine, right?
+
+NOTE Confidence: 0.832784116268158
+
+00:18:26.280 --> 00:18:28.440
+Yeah, or it's a live demo or anything.
+
+NOTE Confidence: 0.6563718318939209
+
+00:18:28.440 --> 00:18:28.560
+Right.
+
+NOTE Confidence: 0.9115254878997803
+
+00:18:28.560 --> 00:18:31.173
+We don't know what's going to happen and I don't
+
+NOTE Confidence: 0.9115254878997803
+
+00:18:31.228 --> 00:18:34.114
+know if this is going to finish either, but something
+
+NOTE Confidence: 0.9115254878997803
+
+00:18:34.169 --> 00:18:36.946
+that comes with those skills and that plugin is the
+
+NOTE Confidence: 0.9115254878997803
+
+00:18:37.000 --> 00:18:37.600
+UI testing.
+
+NOTE Confidence: 0.9479893445968628
+
+00:18:37.600 --> 00:18:40.341
+So it's going to hopefully build the app, deploy it,
+
+NOTE Confidence: 0.9479893445968628
+
+00:18:40.394 --> 00:18:42.872
+and then it's going to do UI testing that comes
+
+NOTE Confidence: 0.9479893445968628
+
+00:18:42.925 --> 00:18:43.399
+baked in.
+
+NOTE Confidence: 0.9475621581077576
+
+00:18:43.400 --> 00:18:44.680
+So it's already going to know how to do it.
+
+NOTE Confidence: 0.8980461359024048
+
+00:18:44.680 --> 00:18:46.824
+And my mouse would be like bouncing around and clicking
+
+NOTE Confidence: 0.8980461359024048
+
+00:18:46.863 --> 00:18:48.852
+all the buttons and checking all the text boxes and
+
+NOTE Confidence: 0.8980461359024048
+
+00:18:48.891 --> 00:18:49.319
+everything.
+
+NOTE Confidence: 0.890731155872345
+
+00:18:49.760 --> 00:18:51.920
+So I'm going to let this run.
+
+NOTE Confidence: 0.9751281142234802
+
+00:18:52.520 --> 00:18:54.000
+I did do this before.
+
+NOTE Confidence: 0.8706838488578796
+
+00:18:54.160 --> 00:18:58.332
+I didn't say make it prettier than Craig's, so it's
+
+NOTE Confidence: 0.8706838488578796
+
+00:18:58.414 --> 00:18:59.559
+not beautiful.
+
+NOTE Confidence: 0.8903359174728394
+
+00:18:59.560 --> 00:19:02.438
+But I did build this Win UI app with that
+
+NOTE Confidence: 0.8903359174728394
+
+00:19:02.508 --> 00:19:03.000
+prompt.
+
+NOTE Confidence: 0.8642459511756897
+
+00:19:03.800 --> 00:19:05.970
+Well, different prompt, but with that plug in to kind
+
+NOTE Confidence: 0.8642459511756897
+
+00:19:06.011 --> 00:19:07.691
+of do the same thing and it worked on the
+
+NOTE Confidence: 0.8642459511756897
+
+00:19:07.732 --> 00:19:08.920
+first try, which was awesome.
+
+NOTE Confidence: 0.15709149837493896
+
+00:19:08.920 --> 00:19:09.120
+Lynda.
+
+NOTE Confidence: 0.8517469167709351
+
+00:19:09.440 --> 00:19:12.240
+What's great is it's using all the modern tools, right?
+
+NOTE Confidence: 0.5324521064758301
+
+00:19:12.240 --> 00:19:13.920
+The modern button buttons et.
+
+NOTE Confidence: 0.4153185188770294
+
+00:19:13.920 --> 00:19:14.640
+Cetera, right, right.
+
+NOTE Confidence: 0.8340640068054199
+
+00:19:14.640 --> 00:19:17.451
+Like this is truly a Win UI3 component along with
+
+NOTE Confidence: 0.8340640068054199
+
+00:19:17.508 --> 00:19:20.664
+the text box and everything and this browse file button
+
+NOTE Confidence: 0.8340640068054199
+
+00:19:20.721 --> 00:19:21.640
+and all of that.
+
+NOTE Confidence: 0.8660648465156555
+
+00:19:21.960 --> 00:19:24.058
+So and then, you know, we got to talk about
+
+NOTE Confidence: 0.8660648465156555
+
+00:19:24.107 --> 00:19:24.840
+power toys too.
+
+NOTE Confidence: 0.9041745066642761
+
+00:19:24.840 --> 00:19:27.371
+I'm just shoehorning this in because I love power toys,
+
+NOTE Confidence: 0.9041745066642761
+
+00:19:27.417 --> 00:19:29.119
+but they just added this new utility.
+
+NOTE Confidence: 0.9015624523162842
+
+00:19:29.120 --> 00:19:30.080
+It's grab and move.
+
+NOTE Confidence: 0.9323605895042419
+
+00:19:30.119 --> 00:19:33.427
+So you know, like so I have, I don't know,
+
+NOTE Confidence: 0.9323605895042419
+
+00:19:33.506 --> 00:19:35.159
+50 tabs open on edge.
+
+NOTE Confidence: 0.9689478874206543
+
+00:19:35.160 --> 00:19:36.000
+Don't judge me.
+
+NOTE Confidence: 0.9260729551315308
+
+00:19:36.280 --> 00:19:38.458
+I'm one of those like many tab people, not many
+
+NOTE Confidence: 0.9260729551315308
+
+00:19:38.504 --> 00:19:39.200
+windows people.
+
+NOTE Confidence: 0.9384818077087402
+
+00:19:40.160 --> 00:19:42.359
+So I can never grab the taskbar or the title
+
+NOTE Confidence: 0.9384818077087402
+
+00:19:42.409 --> 00:19:44.159
+bar because my tabs are in the way.
+
+NOTE Confidence: 0.9608848690986633
+
+00:19:44.600 --> 00:19:45.840
+So grab and move.
+
+NOTE Confidence: 0.8862040638923645
+
+00:19:45.840 --> 00:19:48.238
+Let's just hold alt and you can just click from
+
+NOTE Confidence: 0.8862040638923645
+
+00:19:48.289 --> 00:19:51.299
+anywhere and you're just dragging the whole thing around so
+
+NOTE Confidence: 0.8862040638923645
+
+00:19:51.350 --> 00:19:53.851
+it makes it a little bit easier, which is awesome
+
+NOTE Confidence: 0.8862040638923645
+
+00:19:53.902 --> 00:19:56.198
+so I'm going to let this run hopefully we can
+
+NOTE Confidence: 0.8862040638923645
+
+00:19:56.249 --> 00:19:59.106
+hopefully it'll build in the next 25 minutes we're going
+
+NOTE Confidence: 0.8862040638923645
+
+00:19:59.157 --> 00:20:01.198
+to see but I think now would be a really
+
+NOTE Confidence: 0.8862040638923645
+
+00:20:01.249 --> 00:20:01.760
+good time.
+
+NOTE Confidence: 0.9600777626037598
+
+00:20:01.760 --> 00:20:04.713
+You know we're talking about building apps and what comes
+
+NOTE Confidence: 0.9600777626037598
+
+00:20:04.765 --> 00:20:08.186
+with that is maybe having more performance optimization with those
+
+NOTE Confidence: 0.9600777626037598
+
+00:20:08.237 --> 00:20:10.000
+apps, especially with compilation.
+
+NOTE Confidence: 0.8712285757064819
+
+00:20:10.520 --> 00:20:12.640
+So I'm going to hand it over to Jinya.
+
+NOTE Confidence: 0.8706891536712646
+
+00:20:12.640 --> 00:20:15.073
+We're going to pull up a slide first because we've
+
+NOTE Confidence: 0.8706891536712646
+
+00:20:15.122 --> 00:20:16.679
+got some great stuff to show us.
+
+NOTE Confidence: 0.9392775297164917
+
+00:20:17.360 --> 00:20:18.600
+But let's.
+
+NOTE Confidence: 0.7466519474983215
+
+00:20:19.200 --> 00:20:22.160
+Whoa, our slides must be the old one.
+
+NOTE Confidence: 0.741535484790802
+
+00:20:22.280 --> 00:20:23.280
+This is our old slides.
+
+NOTE Confidence: 0.9196305274963379
+
+00:20:23.280 --> 00:20:23.920
+We don't have a slide.
+
+NOTE Confidence: 0.8026644587516785
+
+00:20:23.920 --> 00:20:26.800
+I'm so sorry, but we're going to let you.
+
+NOTE Confidence: 0.8377357125282288
+
+00:20:26.800 --> 00:20:27.800
+We're just going to leave this up.
+
+NOTE Confidence: 0.6954079270362854
+
+00:20:28.160 --> 00:20:29.320
+OK, You go, You go.
+
+NOTE Confidence: 0.49197351932525635
+
+00:20:29.320 --> 00:20:29.600
+So without.
+
+NOTE Confidence: 0.7588154077529907
+
+00:20:31.240 --> 00:20:34.144
+Performance without performance on Windows when it works right, There's
+
+NOTE Confidence: 0.7588154077529907
+
+00:20:34.185 --> 00:20:34.839
+a lot of things.
+
+NOTE Confidence: 0.5075151324272156
+
+00:20:35.240 --> 00:20:36.320
+A lot of people like me here.
+
+NOTE Confidence: 0.7273359894752502
+
+00:20:36.600 --> 00:20:38.771
+So when you work on performance, you may have heard
+
+NOTE Confidence: 0.7273359894752502
+
+00:20:38.814 --> 00:20:39.240
+about the.
+
+NOTE Confidence: 0.8139328956604004
+
+00:20:39.520 --> 00:20:41.434
+Yeah, Deanna, can you move your mic up a little
+
+NOTE Confidence: 0.8139328956604004
+
+00:20:41.474 --> 00:20:41.760
+higher?
+
+NOTE Confidence: 0.6432256102561951
+
+00:20:41.760 --> 00:20:41.840
+I'm.
+
+NOTE Confidence: 0.4963260293006897
+
+00:20:42.840 --> 00:20:43.080
+Not there.
+
+NOTE Confidence: 0.478899210691452
+
+00:20:43.520 --> 00:20:43.920
+Hi, how about now?
+
+NOTE Confidence: 0.43421730399131775
+
+00:20:45.080 --> 00:20:45.440
+No.
+
+NOTE Confidence: 0.7348455190658569
+
+00:20:46.200 --> 00:20:47.720
+How about if I just hold it?
+
+NOTE Confidence: 0.5553669333457947
+
+00:20:48.400 --> 00:20:49.000
+Do you have my mic?
+
+NOTE Confidence: 0.21088705956935883
+
+00:20:50.680 --> 00:20:51.000
+Works.
+
+NOTE Confidence: 0.6199567317962646
+
+00:20:51.040 --> 00:20:51.560
+Can I hold my?
+
+NOTE Confidence: 0.4952048063278198
+
+00:20:51.640 --> 00:20:52.520
+OK, it's working now.
+
+NOTE Confidence: 0.711268961429596
+
+00:20:52.760 --> 00:20:55.966
+OK, so if you ever work on say performance on
+
+NOTE Confidence: 0.711268961429596
+
+00:20:56.037 --> 00:21:00.883
+Windows, you must heard about say Profile guided optimization called
+
+NOTE Confidence: 0.711268961429596
+
+00:21:00.954 --> 00:21:01.240
+PGO.
+
+NOTE Confidence: 0.8221246600151062
+
+00:21:01.240 --> 00:21:04.027
+There the basic idea is just to collect the the
+
+NOTE Confidence: 0.8221246600151062
+
+00:21:04.086 --> 00:21:07.526
+actual say executable running and sample the data where it
+
+NOTE Confidence: 0.8221246600151062
+
+00:21:07.585 --> 00:21:10.609
+goes, which part will be executed and fit that into
+
+NOTE Confidence: 0.8221246600151062
+
+00:21:10.669 --> 00:21:11.440
+the compiler.
+
+NOTE Confidence: 0.7813249826431274
+
+00:21:11.600 --> 00:21:14.049
+So that compiler would do a better job about optimizing
+
+NOTE Confidence: 0.7813249826431274
+
+00:21:14.093 --> 00:21:16.320
+it when you're spitting out the binary code there.
+
+NOTE Confidence: 0.7549138069152832
+
+00:21:16.720 --> 00:21:20.516
+So we've heard say good performance number improvements from the
+
+NOTE Confidence: 0.7549138069152832
+
+00:21:20.576 --> 00:21:21.999
+PGO, say 5 percent, 10%.
+
+NOTE Confidence: 0.8392945528030396
+
+00:21:22.280 --> 00:21:24.941
+The benefit is very real, but the cost is a
+
+NOTE Confidence: 0.8392945528030396
+
+00:21:25.003 --> 00:21:28.468
+little bit hindering the adoption among the ISP like you
+
+NOTE Confidence: 0.8392945528030396
+
+00:21:28.530 --> 00:21:28.840
+here.
+
+NOTE Confidence: 0.8838993310928345
+
+00:21:29.480 --> 00:21:31.686
+The two major things that we heard about is that
+
+NOTE Confidence: 0.8838993310928345
+
+00:21:31.732 --> 00:21:34.766
+one, it requires some instrumentation, which means some extra code
+
+NOTE Confidence: 0.8838993310928345
+
+00:21:34.812 --> 00:21:35.639
+in your app there.
+
+NOTE Confidence: 0.9041714072227478
+
+00:21:35.680 --> 00:21:36.560
+You need to do that.
+
+NOTE Confidence: 0.8368276953697205
+
+00:21:37.240 --> 00:21:39.884
+Second, when you run that, when you build that, there
+
+NOTE Confidence: 0.8368276953697205
+
+00:21:39.934 --> 00:21:42.480
+will be an extra fork in your build pipeline there.
+
+NOTE Confidence: 0.6440370082855225
+
+00:21:42.720 --> 00:21:45.125
+And not everyone is a is a friend about extra
+
+NOTE Confidence: 0.6440370082855225
+
+00:21:45.178 --> 00:21:47.583
+things to mess it with your to mess with your
+
+NOTE Confidence: 0.6440370082855225
+
+00:21:47.636 --> 00:21:49.080
+build pipeline on that one.
+
+NOTE Confidence: 0.8194446563720703
+
+00:21:49.280 --> 00:21:51.592
+And last but not the least, when you run the
+
+NOTE Confidence: 0.8194446563720703
+
+00:21:51.645 --> 00:21:53.800
+instrument build, usually it's very slow.
+
+NOTE Confidence: 0.8685916662216187
+
+00:21:54.200 --> 00:21:57.941
+So it's not actually mimicking what the end user will
+
+NOTE Confidence: 0.8685916662216187
+
+00:21:58.011 --> 00:22:02.247
+see, making the quality of your profile questionable on that
+
+NOTE Confidence: 0.8685916662216187
+
+00:22:02.317 --> 00:22:02.599
+one.
+
+NOTE Confidence: 0.781854510307312
+
+00:22:02.880 --> 00:22:05.649
+So this is where the SPGO, the sample base SPG
+
+NOTE Confidence: 0.781854510307312
+
+00:22:05.709 --> 00:22:08.298
+OS come in to rescue user is that using the
+
+NOTE Confidence: 0.781854510307312
+
+00:22:08.358 --> 00:22:12.512
+app code instrumentation is actually using the hardware counters very
+
+NOTE Confidence: 0.781854510307312
+
+00:22:12.572 --> 00:22:16.124
+lightweight from you can use your release wheel to actually
+
+NOTE Confidence: 0.781854510307312
+
+00:22:16.184 --> 00:22:19.375
+run that and use the hardware counters to collect the
+
+NOTE Confidence: 0.781854510307312
+
+00:22:19.435 --> 00:22:22.987
+profile so that you can enjoy the same performance benefit,
+
+NOTE Confidence: 0.781854510307312
+
+00:22:23.047 --> 00:22:26.358
+but without all those fiction that we just talked about
+
+NOTE Confidence: 0.781854510307312
+
+00:22:26.418 --> 00:22:26.720
+them.
+
+NOTE Confidence: 0.9505926966667175
+
+00:22:27.200 --> 00:22:29.360
+So the impact is really, really real.
+
+NOTE Confidence: 0.8596435189247131
+
+00:22:29.359 --> 00:22:32.488
+We work with the Adobe Photoshop team there and they
+
+NOTE Confidence: 0.8596435189247131
+
+00:22:32.548 --> 00:22:35.074
+try it and they're seeing up to 20% of the
+
+NOTE Confidence: 0.8596435189247131
+
+00:22:35.134 --> 00:22:37.119
+improvement in the real workflow.
+
+NOTE Confidence: 0.7583087682723999
+
+00:22:37.240 --> 00:22:39.720
+Some of the CPU abound workflow on that one.
+
+NOTE Confidence: 0.8323394656181335
+
+00:22:40.560 --> 00:22:43.586
+So in the next few minutes I'm going to show
+
+NOTE Confidence: 0.8323394656181335
+
+00:22:43.655 --> 00:22:46.199
+you how to apply the SPGL end to end.
+
+NOTE Confidence: 0.8427273631095886
+
+00:22:46.480 --> 00:22:48.937
+Unfortunately I cannot show the source code from the Photoshop
+
+NOTE Confidence: 0.8427273631095886
+
+00:22:48.977 --> 00:22:50.919
+there, so I have to build something myself I got.
+
+NOTE Confidence: 0.37082159519195557
+
+00:22:54.400 --> 00:22:55.320
+Clint, I got my folder.
+
+NOTE Confidence: 0.3709243834018707
+
+00:22:55.320 --> 00:22:56.800
+Thanks, Clint.
+
+NOTE Confidence: 0.37308377027511597
+
+00:23:04.200 --> 00:23:04.600
+Right now.
+
+NOTE Confidence: 0.48934468626976013
+
+00:23:05.120 --> 00:23:05.520
+Yeah, nice.
+
+NOTE Confidence: 0.49168118834495544
+
+00:23:06.480 --> 00:23:06.800
+Thank you.
+
+NOTE Confidence: 0.45969149470329285
+
+00:23:06.880 --> 00:23:07.560
+That's a hero.
+
+NOTE Confidence: 0.7447937726974487
+
+00:23:09.320 --> 00:23:10.400
+All right, let's put you up.
+
+NOTE Confidence: 0.9417880773544312
+
+00:23:10.600 --> 00:23:11.000
+Here we go.
+
+NOTE Confidence: 0.4921371042728424
+
+00:23:11.200 --> 00:23:11.400
+Yep.
+
+NOTE Confidence: 0.7827850580215454
+
+00:23:13.280 --> 00:23:15.316
+So on the lab you're, you're seeing a sample code
+
+NOTE Confidence: 0.7827850580215454
+
+00:23:15.357 --> 00:23:16.479
+that I'm going to use here.
+
+NOTE Confidence: 0.8113423585891724
+
+00:23:16.480 --> 00:23:20.611
+It's just a stack based virtual machine calculating the Fibonacci
+
+NOTE Confidence: 0.8113423585891724
+
+00:23:20.675 --> 00:23:21.119
+series.
+
+NOTE Confidence: 0.7487529516220093
+
+00:23:21.240 --> 00:23:24.029
+That one there you will see all the sample code
+
+NOTE Confidence: 0.7487529516220093
+
+00:23:24.088 --> 00:23:26.640
+when we published the the repo on that one.
+
+NOTE Confidence: 0.9670591354370117
+
+00:23:26.640 --> 00:23:27.960
+So don't worry about that one.
+
+NOTE Confidence: 0.8566505312919617
+
+00:23:28.480 --> 00:23:32.081
+But I want to draw your attention to something here,
+
+NOTE Confidence: 0.8566505312919617
+
+00:23:32.150 --> 00:23:33.119
+the switch OP.
+
+NOTE Confidence: 0.7996026873588562
+
+00:23:33.240 --> 00:23:36.370
+So this is just the running the every single operator
+
+NOTE Confidence: 0.7996026873588562
+
+00:23:36.429 --> 00:23:38.319
+of your virtual machine instead.
+
+NOTE Confidence: 0.46916335821151733
+
+00:23:40.120 --> 00:23:40.760
+Microphone Guy.
+
+NOTE Confidence: 0.39562901854515076
+
+00:23:42.680 --> 00:23:43.000
+OK.
+
+NOTE Confidence: 0.8683326840400696
+
+00:23:43.840 --> 00:23:46.682
+So you'll see the switch here, which which means it
+
+NOTE Confidence: 0.8683326840400696
+
+00:23:46.737 --> 00:23:49.524
+will jump based on the operator, it will jump from
+
+NOTE Confidence: 0.8683326840400696
+
+00:23:49.579 --> 00:23:50.360
+here to there.
+
+NOTE Confidence: 0.8756290078163147
+
+00:23:50.400 --> 00:23:53.399
+And and as you can imagine in this stack, actually
+
+NOTE Confidence: 0.8756290078163147
+
+00:23:53.459 --> 00:23:56.279
+a lot of the branching can be very predictable.
+
+NOTE Confidence: 0.8027005195617676
+
+00:23:56.280 --> 00:23:59.262
+And while the others is rarely used because there's so
+
+NOTE Confidence: 0.8027005195617676
+
+00:23:59.318 --> 00:24:00.920
+many loops on that one there.
+
+NOTE Confidence: 0.7822465300559998
+
+00:24:01.040 --> 00:24:03.231
+So this is where the PGO and SPGO are really
+
+NOTE Confidence: 0.7822465300559998
+
+00:24:03.281 --> 00:24:03.680
+good at.
+
+NOTE Confidence: 0.5450883507728577
+
+00:24:03.880 --> 00:24:04.680
+So optimizing.
+
+NOTE Confidence: 0.8549209833145142
+
+00:24:06.920 --> 00:24:09.800
+OK, now let's do it end to end.
+
+NOTE Confidence: 0.7875444293022156
+
+00:24:12.280 --> 00:24:15.440
+First step, let's just build it.
+
+NOTE Confidence: 0.877752959728241
+
+00:24:15.680 --> 00:24:19.926
+No fancy thing, no SPGO, just the compiler optimizations for
+
+NOTE Confidence: 0.877752959728241
+
+00:24:19.996 --> 00:24:22.119
+things like that one and then.
+
+NOTE Confidence: 0.5189447402954102
+
+00:24:26.960 --> 00:24:29.440
+Clint's the four speaker for her talk, actually, yeah.
+
+NOTE Confidence: 0.6287628412246704
+
+00:24:32.520 --> 00:24:36.760
+So I need a favor from you color.
+
+NOTE Confidence: 0.8201423287391663
+
+00:24:36.760 --> 00:24:39.720
+So can you document the the runtime here?
+
+NOTE Confidence: 0.8506613373756409
+
+00:24:40.040 --> 00:24:41.520
+What the baseline look like?
+
+NOTE Confidence: 0.8140442967414856
+
+00:24:42.240 --> 00:24:42.920
+I got 3 seconds.
+
+NOTE Confidence: 0.5742756724357605
+
+00:24:43.240 --> 00:24:44.440
+OK, 3 seconds there.
+
+NOTE Confidence: 0.8739587068557739
+
+00:24:44.680 --> 00:24:45.680
+OK, that's the baseline.
+
+NOTE Confidence: 0.8017790913581848
+
+00:24:45.880 --> 00:24:48.080
+No SPGO, no optimization so far.
+
+NOTE Confidence: 0.9646579027175903
+
+00:24:49.000 --> 00:24:50.880
+Now this is the first step you need to do.
+
+NOTE Confidence: 0.7362088561058044
+
+00:24:52.080 --> 00:24:55.139
+It's just to compile your, your code as you compare
+
+NOTE Confidence: 0.7362088561058044
+
+00:24:55.199 --> 00:24:58.259
+the the original 1 and this one here, everything is
+
+NOTE Confidence: 0.7362088561058044
+
+00:24:58.319 --> 00:25:00.839
+the same except there's a slash SPGO here.
+
+NOTE Confidence: 0.8158343434333801
+
+00:25:01.400 --> 00:25:04.034
+So you are not actually optimizing anything yet because you
+
+NOTE Confidence: 0.8158343434333801
+
+00:25:04.079 --> 00:25:05.239
+don't have any sample yet.
+
+NOTE Confidence: 0.8069567084312439
+
+00:25:05.240 --> 00:25:09.207
+But it's telling the compiler I'm going to apply SPGL
+
+NOTE Confidence: 0.8069567084312439
+
+00:25:09.282 --> 00:25:13.774
+now prep your executable PDP and everything because you will
+
+NOTE Confidence: 0.8069567084312439
+
+00:25:13.848 --> 00:25:17.891
+need that information to consume the SPD file later on
+
+NOTE Confidence: 0.8069567084312439
+
+00:25:17.966 --> 00:25:18.640
+that one.
+
+NOTE Confidence: 0.9471895098686218
+
+00:25:19.760 --> 00:25:22.400
+So just run it, OK?
+
+NOTE Confidence: 0.7750303149223328
+
+00:25:22.560 --> 00:25:25.194
+Yeah, it comes out and say, hey, the SPD is
+
+NOTE Confidence: 0.7750303149223328
+
+00:25:25.256 --> 00:25:28.319
+not found too because we haven't fed anything yet.
+
+NOTE Confidence: 0.8906981348991394
+
+00:25:29.359 --> 00:25:32.053
+OK, next one, I think many of you are familiar
+
+NOTE Confidence: 0.8906981348991394
+
+00:25:32.112 --> 00:25:35.039
+with the Xperf run something and then Xperf again.
+
+NOTE Confidence: 0.8384506702423096
+
+00:25:35.200 --> 00:25:37.640
+So this is a traditional way you capture the ETL
+
+NOTE Confidence: 0.8384506702423096
+
+00:25:37.691 --> 00:25:40.080
+traces and do a lot of the profiling about that
+
+NOTE Confidence: 0.8384506702423096
+
+00:25:40.131 --> 00:25:40.639
+one there.
+
+NOTE Confidence: 0.8448269367218018
+
+00:25:41.480 --> 00:25:44.072
+You will see here there's a lot of numbers and
+
+NOTE Confidence: 0.8448269367218018
+
+00:25:44.129 --> 00:25:45.199
+speech or whatever.
+
+NOTE Confidence: 0.9488966464996338
+
+00:25:45.560 --> 00:25:47.080
+Don't worry about it now.
+
+NOTE Confidence: 0.7439442873001099
+
+00:25:47.119 --> 00:25:48.907
+So you would go, there was a tutorial at the
+
+NOTE Confidence: 0.7439442873001099
+
+00:25:48.948 --> 00:25:50.736
+end and you can go and see hey, what exactly
+
+NOTE Confidence: 0.7439442873001099
+
+00:25:50.777 --> 00:25:52.239
+how you should want to come in here.
+
+NOTE Confidence: 0.8398234844207764
+
+00:25:52.440 --> 00:25:56.144
+But believe me, this is one for the expert to
+
+NOTE Confidence: 0.8398234844207764
+
+00:25:56.227 --> 00:26:00.837
+collect the hardware counters which will be used for the
+
+NOTE Confidence: 0.8398234844207764
+
+00:26:00.920 --> 00:26:02.319
+PGO optimization.
+
+NOTE Confidence: 0.805765688419342
+
+00:26:03.600 --> 00:26:05.560
+OK, I'll just run everything here.
+
+NOTE Confidence: 0.7430539727210999
+
+00:26:13.800 --> 00:26:14.760
+OK, should be fine.
+
+NOTE Confidence: 0.385185569524765
+
+00:26:19.720 --> 00:26:21.960
+OK, stop the X perf here.
+
+NOTE Confidence: 0.8182653784751892
+
+00:26:22.320 --> 00:26:25.071
+One thing as you may notice, we are just running
+
+NOTE Confidence: 0.8182653784751892
+
+00:26:25.128 --> 00:26:28.739
+the release build to no instrumentation, no nothing fancy, it's
+
+NOTE Confidence: 0.8182653784751892
+
+00:26:28.797 --> 00:26:32.007
+just how your end user will actually run your executable
+
+NOTE Confidence: 0.8182653784751892
+
+00:26:32.064 --> 00:26:35.159
+here that that's what we are collecting the data from.
+
+NOTE Confidence: 0.8743826746940613
+
+00:26:36.920 --> 00:26:40.135
+Next step, now you have the ETL traces with all
+
+NOTE Confidence: 0.8743826746940613
+
+00:26:40.203 --> 00:26:41.639
+the information here.
+
+NOTE Confidence: 0.8050774335861206
+
+00:26:42.119 --> 00:26:45.900
+Let's abstract those informations and then put it in the
+
+NOTE Confidence: 0.8050774335861206
+
+00:26:45.968 --> 00:26:49.681
+SPT file there so that the compilers can can understand
+
+NOTE Confidence: 0.8050774335861206
+
+00:26:49.749 --> 00:26:51.640
+what's going on in that one.
+
+NOTE Confidence: 0.8326832056045532
+
+00:26:52.160 --> 00:26:53.280
+And this is the step one.
+
+NOTE Confidence: 0.8139412999153137
+
+00:26:53.280 --> 00:26:57.377
+And the Step 2 here is actually convert the SPT
+
+NOTE Confidence: 0.8139412999153137
+
+00:26:57.464 --> 00:27:01.562
+into the SPD file which will be directly fed to
+
+NOTE Confidence: 0.8139412999153137
+
+00:27:01.649 --> 00:27:03.480
+the the the compiler.
+
+NOTE Confidence: 0.8928532004356384
+
+00:27:03.880 --> 00:27:06.814
+Why don't we just combine these two into one single
+
+NOTE Confidence: 0.8928532004356384
+
+00:27:06.872 --> 00:27:07.159
+step?
+
+NOTE Confidence: 0.7969399094581604
+
+00:27:07.160 --> 00:27:08.240
+Why have two steps here?
+
+NOTE Confidence: 0.8592685461044312
+
+00:27:08.800 --> 00:27:11.517
+The reason is for a lot of the, the big
+
+NOTE Confidence: 0.8592685461044312
+
+00:27:11.587 --> 00:27:15.560
+software there, there are many, many important workflows.
+
+NOTE Confidence: 0.8157609701156616
+
+00:27:15.560 --> 00:27:17.960
+Some of them are benchmarks, some of the user interaction.
+
+NOTE Confidence: 0.7735474705696106
+
+00:27:18.119 --> 00:27:20.238
+There are quite a few thing you want to optimize
+
+NOTE Confidence: 0.7735474705696106
+
+00:27:20.282 --> 00:27:20.680
+together.
+
+NOTE Confidence: 0.8586347699165344
+
+00:27:21.560 --> 00:27:24.827
+So by splitting them into several things like this one
+
+NOTE Confidence: 0.8586347699165344
+
+00:27:24.888 --> 00:27:27.974
+for HX perf, say capturing the ETL, you can capture
+
+NOTE Confidence: 0.8586347699165344
+
+00:27:28.034 --> 00:27:28.639
+one thing.
+
+NOTE Confidence: 0.8612657785415649
+
+00:27:28.640 --> 00:27:31.221
+So 1 workflow for one ETL, for one SPD and
+
+NOTE Confidence: 0.8612657785415649
+
+00:27:31.282 --> 00:27:33.679
+you can just several times in parallel.
+
+NOTE Confidence: 0.9121118187904358
+
+00:27:33.920 --> 00:27:36.840
+And at the end you can combine all those SPTS.
+
+NOTE Confidence: 0.8234083652496338
+
+00:27:36.840 --> 00:27:40.648
+It signals information into one single profile data, the SPD
+
+NOTE Confidence: 0.8234083652496338
+
+00:27:40.711 --> 00:27:41.600
+into that one.
+
+NOTE Confidence: 0.9140880703926086
+
+00:27:42.800 --> 00:27:45.040
+OK, Did I do that now?
+
+NOTE Confidence: 0.8670450448989868
+
+00:27:45.680 --> 00:27:46.800
+Yes, SPD here.
+
+NOTE Confidence: 0.925511360168457
+
+00:27:47.440 --> 00:27:50.200
+OK, And this is the last step.
+
+NOTE Confidence: 0.9561429619789124
+
+00:27:52.000 --> 00:27:52.920
+I'm ready for fireworks.
+
+NOTE Confidence: 0.7046841382980347
+
+00:27:53.480 --> 00:27:55.520
+Yeah, more terminal fire.
+
+NOTE Confidence: 0.8257748484611511
+
+00:27:56.760 --> 00:27:57.680
+When does it light on fire?
+
+NOTE Confidence: 0.8609848618507385
+
+00:27:57.760 --> 00:27:58.040
+Yeah.
+
+NOTE Confidence: 0.6002632975578308
+
+00:27:59.960 --> 00:28:00.400
+It's coming.
+
+NOTE Confidence: 0.15862001478672028
+
+00:28:00.400 --> 00:28:00.640
+The fire.
+
+NOTE Confidence: 0.2342262715101242
+
+00:28:00.640 --> 00:28:00.960
+It's coming.
+
+NOTE Confidence: 0.33613842725753784
+
+00:28:01.040 --> 00:28:01.440
+It's coming.
+
+NOTE Confidence: 0.8015698194503784
+
+00:28:01.880 --> 00:28:02.600
+Yeah, I promise you.
+
+NOTE Confidence: 0.8500291109085083
+
+00:28:03.119 --> 00:28:06.468
+So when you rebuild with the profile data, everything is
+
+NOTE Confidence: 0.8500291109085083
+
+00:28:06.528 --> 00:28:09.518
+exactly the same as you did before, except for the
+
+NOTE Confidence: 0.8500291109085083
+
+00:28:09.577 --> 00:28:12.149
+last step here is that, hey, now I have the
+
+NOTE Confidence: 0.8500291109085083
+
+00:28:12.208 --> 00:28:14.840
+profile data at hand fitted to the compiler.
+
+NOTE Confidence: 0.8249356746673584
+
+00:28:15.560 --> 00:28:17.600
+And again, that's the last step you have here.
+
+NOTE Confidence: 0.694351851940155
+
+00:28:17.760 --> 00:28:19.840
+And then it build yet another executable.
+
+NOTE Confidence: 0.4782263934612274
+
+00:28:19.920 --> 00:28:20.160
+Yeah.
+
+NOTE Confidence: 0.9342154264450073
+
+00:28:20.680 --> 00:28:23.240
+How do we know whether it works or not?
+
+NOTE Confidence: 0.8679536581039429
+
+00:28:23.720 --> 00:28:27.240
+You can't tell until you run something here.
+
+NOTE Confidence: 0.7152227759361267
+
+00:28:27.240 --> 00:28:29.040
+Now it's optimized.
+
+NOTE Confidence: 0.788963258266449
+
+00:28:29.040 --> 00:28:31.880
+Bill, how long does it take?
+
+NOTE Confidence: 0.9311550855636597
+
+00:28:32.920 --> 00:28:33.440
+2 seconds.
+
+NOTE Confidence: 0.9049391746520996
+
+00:28:33.880 --> 00:28:36.880
+2 seconds OK and the original baseline is?
+
+NOTE Confidence: 0.9688107967376709
+
+00:28:37.000 --> 00:28:37.480
+3 seconds.
+
+NOTE Confidence: 0.8036701083183289
+
+00:28:37.920 --> 00:28:41.140
+So without bringing up the calculator, I can tell you
+
+NOTE Confidence: 0.8036701083183289
+
+00:28:41.201 --> 00:28:44.603
+it's almost 33% improvement by just running up all these
+
+NOTE Confidence: 0.8036701083183289
+
+00:28:44.664 --> 00:28:45.879
+kind of things here.
+
+NOTE Confidence: 0.865775465965271
+
+00:28:46.280 --> 00:28:49.110
+So of course, your mileage may vary because the app
+
+NOTE Confidence: 0.865775465965271
+
+00:28:49.166 --> 00:28:52.607
+code, the quality of your samples, the hardware and everything
+
+NOTE Confidence: 0.865775465965271
+
+00:28:52.662 --> 00:28:53.439
+like that one.
+
+NOTE Confidence: 0.8344283699989319
+
+00:28:53.440 --> 00:28:57.057
+But we heard reports from the Isvs somewhere between 5
+
+NOTE Confidence: 0.8344283699989319
+
+00:28:57.124 --> 00:29:01.143
+to 15% of performance improvement by just going through this
+
+NOTE Confidence: 0.8344283699989319
+
+00:29:01.210 --> 00:29:01.880
+step here.
+
+NOTE Confidence: 0.8977372646331787
+
+00:29:02.280 --> 00:29:04.880
+So you can see what actually really matter.
+
+NOTE Confidence: 0.7505378127098083
+
+00:29:04.880 --> 00:29:07.864
+It starts from Step 2 here and then we profile
+
+NOTE Confidence: 0.7505378127098083
+
+00:29:07.929 --> 00:29:10.718
+and then we convert it to SPD and review it
+
+NOTE Confidence: 0.7505378127098083
+
+00:29:10.783 --> 00:29:12.599
+again with the profile data.
+
+NOTE Confidence: 0.7193863391876221
+
+00:29:12.960 --> 00:29:15.847
+And that's a whole end to end apply to your
+
+NOTE Confidence: 0.7193863391876221
+
+00:29:15.914 --> 00:29:16.720
+application.
+
+NOTE Confidence: 0.7748512625694275
+
+00:29:16.720 --> 00:29:17.920
+That's how it works here.
+
+NOTE Confidence: 0.7943512797355652
+
+00:29:18.680 --> 00:29:21.678
+So we talk about the 20% improvement from Adobe and
+
+NOTE Confidence: 0.7943512797355652
+
+00:29:21.737 --> 00:29:24.617
+they really like it because that means not just a
+
+NOTE Confidence: 0.7943512797355652
+
+00:29:24.676 --> 00:29:28.380
+benchmark numbers better, but that's more responsive and out of
+
+NOTE Confidence: 0.7943512797355652
+
+00:29:28.439 --> 00:29:31.437
+the way when their users are using the Photoshop on
+
+NOTE Confidence: 0.7943512797355652
+
+00:29:31.496 --> 00:29:35.376
+Windows, that one there, besides the performance number, they also
+
+NOTE Confidence: 0.7943512797355652
+
+00:29:35.435 --> 00:29:38.198
+see that this is a, a rethinking about how they
+
+NOTE Confidence: 0.7943512797355652
+
+00:29:38.257 --> 00:29:40.080
+think about optimization there.
+
+NOTE Confidence: 0.742630124092102
+
+00:29:40.280 --> 00:29:42.756
+They previously they did a lot of low, low level
+
+NOTE Confidence: 0.742630124092102
+
+00:29:42.807 --> 00:29:45.593
+tunings and doing this and doing that, yes, that would
+
+NOTE Confidence: 0.742630124092102
+
+00:29:45.645 --> 00:29:48.431
+give you something, but the SPG is something say, hey,
+
+NOTE Confidence: 0.742630124092102
+
+00:29:48.482 --> 00:29:51.010
+this is more a scalable and sustainable way to do
+
+NOTE Confidence: 0.742630124092102
+
+00:29:51.062 --> 00:29:51.320
+that.
+
+NOTE Confidence: 0.8128819465637207
+
+00:29:51.520 --> 00:29:54.247
+It's about, hey, this is a whole procedure and they
+
+NOTE Confidence: 0.8128819465637207
+
+00:29:54.301 --> 00:29:57.831
+already very naturally integrate this one into their product build
+
+NOTE Confidence: 0.8128819465637207
+
+00:29:57.884 --> 00:30:00.772
+pipeline because as you can see, it's not intrusive at
+
+NOTE Confidence: 0.8128819465637207
+
+00:30:00.826 --> 00:30:01.040
+all.
+
+NOTE Confidence: 0.808648407459259
+
+00:30:02.040 --> 00:30:04.493
+So several small things you need to do, but it's
+
+NOTE Confidence: 0.808648407459259
+
+00:30:04.545 --> 00:30:07.408
+not forking an instrument view other things that one and
+
+NOTE Confidence: 0.808648407459259
+
+00:30:07.459 --> 00:30:09.759
+they see that and they love that and they are
+
+NOTE Confidence: 0.808648407459259
+
+00:30:09.810 --> 00:30:12.622
+going to release the SP optimized version to the public
+
+NOTE Confidence: 0.808648407459259
+
+00:30:12.673 --> 00:30:15.536
+in the coming days there so that everyone, the customers
+
+NOTE Confidence: 0.808648407459259
+
+00:30:15.588 --> 00:30:18.399
+on Windows, you'll be able to see the benefit yourself.
+
+NOTE Confidence: 0.8462997674942017
+
+00:30:19.080 --> 00:30:22.030
+11 more tips that Adobe want to want to share
+
+NOTE Confidence: 0.8462997674942017
+
+00:30:22.096 --> 00:30:23.079
+with all of us.
+
+NOTE Confidence: 0.8362674117088318
+
+00:30:23.240 --> 00:30:26.618
+We see, hey, now we have 33%, but is that
+
+NOTE Confidence: 0.8362674117088318
+
+00:30:26.700 --> 00:30:27.360
+the end?
+
+NOTE Confidence: 0.7822967171669006
+
+00:30:27.800 --> 00:30:28.240
+What happened?
+
+NOTE Confidence: 0.7797765731811523
+
+00:30:28.240 --> 00:30:30.512
+If I change my code, because this is a product
+
+NOTE Confidence: 0.7797765731811523
+
+00:30:30.562 --> 00:30:32.439
+code, it is a commercial product code.
+
+NOTE Confidence: 0.7403444647789001
+
+00:30:32.440 --> 00:30:34.040
+They keep evolving every year there.
+
+NOTE Confidence: 0.8677988648414612
+
+00:30:34.440 --> 00:30:37.196
+Even if your code doesn't change at all, your customers
+
+NOTE Confidence: 0.8677988648414612
+
+00:30:37.247 --> 00:30:38.399
+may use it differently.
+
+NOTE Confidence: 0.7609601020812988
+
+00:30:38.400 --> 00:30:40.627
+Sometimes they use this one and later they might switch
+
+NOTE Confidence: 0.7609601020812988
+
+00:30:40.668 --> 00:30:41.599
+to the other one there.
+
+NOTE Confidence: 0.6910754442214966
+
+00:30:43.000 --> 00:30:45.680
+The the the the way to think about SP2O.
+
+NOTE Confidence: 0.9492209553718567
+
+00:30:46.040 --> 00:30:47.440
+This is not a one shot thing.
+
+NOTE Confidence: 0.49069032073020935
+
+00:30:47.520 --> 00:30:48.800
+It's an iterated things.
+
+NOTE Confidence: 0.8289313316345215
+
+00:30:48.800 --> 00:30:50.920
+Yeah, you see, you do this one pass here.
+
+NOTE Confidence: 0.6692456603050232
+
+00:30:51.360 --> 00:30:54.773
+Oh, the code change or the customer use passions changes
+
+NOTE Confidence: 0.6692456603050232
+
+00:30:54.834 --> 00:30:55.199
+there.
+
+NOTE Confidence: 0.8823823928833008
+
+00:30:56.080 --> 00:30:57.880
+Go back to number 3 here.
+
+NOTE Confidence: 0.7526718974113464
+
+00:30:58.640 --> 00:31:01.729
+Run the new scenario, run your new executable and collect
+
+NOTE Confidence: 0.7526718974113464
+
+00:31:01.784 --> 00:31:02.759
+the profile again.
+
+NOTE Confidence: 0.8528663516044617
+
+00:31:02.760 --> 00:31:05.280
+Refresh your profile and feed it back to your optimizer.
+
+NOTE Confidence: 0.9296990036964417
+
+00:31:05.480 --> 00:31:07.120
+You keep doing that again and again.
+
+NOTE Confidence: 0.7600442171096802
+
+00:31:07.120 --> 00:31:07.440
+Again.
+
+NOTE Confidence: 0.8188008666038513
+
+00:31:07.440 --> 00:31:09.840
+This is that could be easily part of your build
+
+NOTE Confidence: 0.8188008666038513
+
+00:31:09.891 --> 00:31:10.759
+pipeline already.
+
+NOTE Confidence: 0.7655184864997864
+
+00:31:11.040 --> 00:31:13.951
+And this is the way you keep evolving your code
+
+NOTE Confidence: 0.7655184864997864
+
+00:31:14.013 --> 00:31:17.297
+and the optimized results as your code evolves and as
+
+NOTE Confidence: 0.7655184864997864
+
+00:31:17.359 --> 00:31:19.279
+your user calls that one there.
+
+NOTE Confidence: 0.8671874403953552
+
+00:31:19.840 --> 00:31:23.213
+So I hope in the past few minutes you agree
+
+NOTE Confidence: 0.8671874403953552
+
+00:31:23.292 --> 00:31:23.920
+with me.
+
+NOTE Confidence: 0.8331335186958313
+
+00:31:23.920 --> 00:31:26.418
+This is not just a demo, it's reshaping how you
+
+NOTE Confidence: 0.8331335186958313
+
+00:31:26.471 --> 00:31:27.800
+think about optimization.
+
+NOTE Confidence: 0.7537484765052795
+
+00:31:28.400 --> 00:31:31.911
+Think about shaping how you think about optimization for the
+
+NOTE Confidence: 0.7537484765052795
+
+00:31:31.969 --> 00:31:34.719
+user experience for your customers on that one.
+
+NOTE Confidence: 0.8469682931900024
+
+00:31:34.960 --> 00:31:37.379
+And this is also something you can go back home
+
+NOTE Confidence: 0.8469682931900024
+
+00:31:37.430 --> 00:31:40.312
+tonight and start applying to your product there and let
+
+NOTE Confidence: 0.8469682931900024
+
+00:31:40.364 --> 00:31:41.960
+us know how that works for you.
+
+NOTE Confidence: 0.523958146572113
+
+00:31:43.200 --> 00:31:43.440
+Yeah.
+
+NOTE Confidence: 0.48830485343933105
+
+00:31:43.440 --> 00:31:44.560
+And that's the performance story.
+
+NOTE Confidence: 0.6253504753112793
+
+00:31:44.800 --> 00:31:45.440
+That's awesome.
+
+NOTE Confidence: 0.5458661317825317
+
+00:31:45.440 --> 00:31:45.880
+Nice.
+
+NOTE Confidence: 0.9060867428779602
+
+00:31:46.000 --> 00:31:46.320
+Yeah.
+
+NOTE Confidence: 0.8567924499511719
+
+00:31:46.320 --> 00:31:49.800
+And 33% performance boost on compilation, which is great.
+
+NOTE Confidence: 0.9218502640724182
+
+00:31:49.800 --> 00:31:52.487
+And you built your app, then trained a profile on
+
+NOTE Confidence: 0.9218502640724182
+
+00:31:52.542 --> 00:31:55.119
+it, and then rebuilt the app with that profile.
+
+NOTE Confidence: 0.9638016819953918
+
+00:31:55.120 --> 00:31:56.520
+And that's where that boost came from.
+
+NOTE Confidence: 0.9506087303161621
+
+00:31:56.600 --> 00:31:57.080
+Exactly.
+
+NOTE Confidence: 0.9478240609169006
+
+00:31:57.160 --> 00:31:58.480
+Everything in 10 seconds.
+
+NOTE Confidence: 0.6863033771514893
+
+00:31:58.520 --> 00:31:59.920
+That's how killers summarize everything.
+
+NOTE Confidence: 0.6781643033027649
+
+00:32:01.640 --> 00:32:02.680
+That's for your keynote material.
+
+NOTE Confidence: 0.7817310690879822
+
+00:32:03.080 --> 00:32:03.720
+Yeah, I see it.
+
+NOTE Confidence: 0.7916448712348938
+
+00:32:04.240 --> 00:32:05.280
+They only gave me 10 seconds.
+
+NOTE Confidence: 0.8327699303627014
+
+00:32:07.440 --> 00:32:07.800
+Sweet.
+
+NOTE Confidence: 0.9657244682312012
+
+00:32:07.800 --> 00:32:08.520
+That was awesome.
+
+NOTE Confidence: 0.6976441740989685
+
+00:32:08.520 --> 00:32:09.400
+Thank you, Jinya.
+
+NOTE Confidence: 0.8837735652923584
+
+00:32:09.640 --> 00:32:12.244
+So I think one of the last things we want
+
+NOTE Confidence: 0.8837735652923584
+
+00:32:12.308 --> 00:32:12.880
+to cover.
+
+NOTE Confidence: 0.9060295820236206
+
+00:32:12.880 --> 00:32:14.900
+Also, my app did build and then it did all
+
+NOTE Confidence: 0.9060295820236206
+
+00:32:14.948 --> 00:32:16.680
+the UI testing and then it finished.
+
+NOTE Confidence: 0.9697443246841431
+
+00:32:16.680 --> 00:32:18.200
+So very cool, very cool.
+
+NOTE Confidence: 0.8811023235321045
+
+00:32:18.680 --> 00:32:21.829
+Looks like this still not as pretty as Craig's, but
+
+NOTE Confidence: 0.8811023235321045
+
+00:32:21.891 --> 00:32:22.879
+what can you do?
+
+NOTE Confidence: 0.84160315990448
+
+00:32:23.800 --> 00:32:26.042
+But actually Speaking of Craig, I'm going to hand it
+
+NOTE Confidence: 0.84160315990448
+
+00:32:26.085 --> 00:32:28.846
+back to him because there's more things with devices, containers
+
+NOTE Confidence: 0.84160315990448
+
+00:32:28.889 --> 00:32:30.916
+that you tease at the beginning that I think we
+
+NOTE Confidence: 0.84160315990448
+
+00:32:30.959 --> 00:32:31.519
+should cover.
+
+NOTE Confidence: 0.946311354637146
+
+00:32:31.600 --> 00:32:33.520
+Yeah, so let's talk about that API.
+
+NOTE Confidence: 0.7609699368476868
+
+00:32:33.800 --> 00:32:34.800
+Kayla, you've inspired me.
+
+NOTE Confidence: 0.8816030025482178
+
+00:32:34.880 --> 00:32:37.124
+I want to make my own Mark it Down app
+
+NOTE Confidence: 0.8816030025482178
+
+00:32:37.183 --> 00:32:38.719
+that's on Windows as well.
+
+NOTE Confidence: 0.9353585243225098
+
+00:32:39.560 --> 00:32:42.440
+And so I want to use an API on Windows.
+
+NOTE Confidence: 0.9304895401000977
+
+00:32:42.600 --> 00:32:44.803
+I want to take all that awesome Linux container code
+
+NOTE Confidence: 0.9304895401000977
+
+00:32:44.845 --> 00:32:46.668
+that I had and just build it into a Windows
+
+NOTE Confidence: 0.9304895401000977
+
+00:32:46.710 --> 00:32:46.880
+app.
+
+NOTE Confidence: 0.9651620984077454
+
+00:32:47.080 --> 00:32:48.760
+And I don't want to rewrite everything.
+
+NOTE Confidence: 0.8950708508491516
+
+00:32:49.080 --> 00:32:51.172
+So if you take a look on the left side
+
+NOTE Confidence: 0.8950708508491516
+
+00:32:51.227 --> 00:32:53.759
+of my screen, I have this Gray container file.
+
+NOTE Confidence: 0.84117192029953
+
+00:32:53.920 --> 00:32:56.280
+I have all my Linux code sitting here, right?
+
+NOTE Confidence: 0.9533953666687012
+
+00:32:56.600 --> 00:32:59.360
+And I've made that as part of a project.
+
+NOTE Confidence: 0.8735414743423462
+
+00:32:59.600 --> 00:33:02.680
+So this lives inside of AC project.
+
+NOTE Confidence: 0.802327573299408
+
+00:33:03.240 --> 00:33:04.880
+And in the C project.
+
+NOTE Confidence: 0.8876277208328247
+
+00:33:05.040 --> 00:33:07.790
+I went to the CS project and let me zoom
+
+NOTE Confidence: 0.8876277208328247
+
+00:33:07.859 --> 00:33:08.960
+up a little bit.
+
+NOTE Confidence: 0.8671291470527649
+
+00:33:09.480 --> 00:33:13.404
+I've added a WSL containers Nugent package right here, and
+
+NOTE Confidence: 0.8671291470527649
+
+00:33:13.472 --> 00:33:17.126
+then I've defined that exact same container that I ran
+
+NOTE Confidence: 0.8671291470527649
+
+00:33:17.194 --> 00:33:18.479
+in the CLI earlier.
+
+NOTE Confidence: 0.8836901187896729
+
+00:33:18.800 --> 00:33:21.402
+So I said here's what you want to call it,
+
+NOTE Confidence: 0.8836901187896729
+
+00:33:21.464 --> 00:33:24.624
+here's where you can find it, and then here's where
+
+NOTE Confidence: 0.8836901187896729
+
+00:33:24.686 --> 00:33:28.279
+I want you to outputitandnowaspartof.net buildand.net run.
+
+NOTE Confidence: 0.9453622698783875
+
+00:33:28.320 --> 00:33:30.320
+It will automatically build that container.
+
+NOTE Confidence: 0.9610635638237
+
+00:33:30.320 --> 00:33:32.425
+Whenever I edit that, it will just automatically make it
+
+NOTE Confidence: 0.9610635638237
+
+00:33:32.463 --> 00:33:34.118
+part of the build process so I don't have to
+
+NOTE Confidence: 0.9610635638237
+
+00:33:34.155 --> 00:33:34.719
+think about it.
+
+NOTE Confidence: 0.9157631993293762
+
+00:33:34.720 --> 00:33:37.677
+It truly is part of my source code and I
+
+NOTE Confidence: 0.9157631993293762
+
+00:33:37.751 --> 00:33:40.709
+can go and run net run and it will build
+
+NOTE Confidence: 0.9157631993293762
+
+00:33:40.783 --> 00:33:42.039
+and run this app.
+
+NOTE Confidence: 0.8662983775138855
+
+00:33:42.360 --> 00:33:45.771
+And so I went ahead and created the same market
+
+NOTE Confidence: 0.8662983775138855
+
+00:33:45.843 --> 00:33:48.819
+down app, but this time I did it fully in
+
+NOTE Confidence: 0.8662983775138855
+
+00:33:48.891 --> 00:33:49.400
+Win UI.
+
+NOTE Confidence: 0.93215411901474
+
+00:33:49.640 --> 00:33:50.840
+So it looks nice and modern.
+
+NOTE Confidence: 0.9363489151000977
+
+00:33:51.240 --> 00:33:53.695
+And really the big take away here while this is
+
+NOTE Confidence: 0.9363489151000977
+
+00:33:53.747 --> 00:33:56.359
+building is this looks exactly like a Windows app.
+
+NOTE Confidence: 0.9128043055534363
+
+00:33:56.640 --> 00:33:58.658
+In fact, if I didn't tell you that this was
+
+NOTE Confidence: 0.9128043055534363
+
+00:33:58.705 --> 00:34:01.005
+running Linux in the back end, you would not know
+
+NOTE Confidence: 0.9128043055534363
+
+00:34:01.052 --> 00:34:02.319
+which is fine that's great.
+
+NOTE Confidence: 0.9555816650390625
+
+00:34:02.320 --> 00:34:04.279
+There are a lot of customers who want to be
+
+NOTE Confidence: 0.9555816650390625
+
+00:34:04.325 --> 00:34:06.330
+able to use the power of Linux or don't even
+
+NOTE Confidence: 0.9555816650390625
+
+00:34:06.376 --> 00:34:08.518
+know that they need the power of Linux and they
+
+NOTE Confidence: 0.9555816650390625
+
+00:34:08.563 --> 00:34:09.839
+don't want to know about it.
+
+NOTE Confidence: 0.9556155204772949
+
+00:34:10.040 --> 00:34:12.189
+For example, my mom and dad don't need to know
+
+NOTE Confidence: 0.9556155204772949
+
+00:34:12.236 --> 00:34:15.040
+that they're doing some great Linux stuff in the background.
+
+NOTE Confidence: 0.9528638124465942
+
+00:34:15.680 --> 00:34:17.160
+They just need to run powerful apps.
+
+NOTE Confidence: 0.8537787795066833
+
+00:34:17.520 --> 00:34:20.304
+So let's take a look at that is same receipt
+
+NOTE Confidence: 0.8537787795066833
+
+00:34:20.367 --> 00:34:21.760
+that I put in earlier.
+
+NOTE Confidence: 0.8781647682189941
+
+00:34:22.000 --> 00:34:22.680
+Well, here we go.
+
+NOTE Confidence: 0.9025334119796753
+
+00:34:22.960 --> 00:34:25.702
+It goes in the Windows app and it does the
+
+NOTE Confidence: 0.9025334119796753
+
+00:34:25.767 --> 00:34:28.639
+exact same rendering, which is pretty great.
+
+NOTE Confidence: 0.8706568479537964
+
+00:34:29.040 --> 00:34:31.510
+And so I've made this log here that would show
+
+NOTE Confidence: 0.8706568479537964
+
+00:34:31.564 --> 00:34:34.249
+how quickly things start up or, you know, don't or
+
+NOTE Confidence: 0.8706568479537964
+
+00:34:34.302 --> 00:34:34.840
+shut down.
+
+NOTE Confidence: 0.8989039063453674
+
+00:34:35.560 --> 00:34:37.849
+If I go and run this app again, I'll I'll
+
+NOTE Confidence: 0.8989039063453674
+
+00:34:37.905 --> 00:34:38.519
+watch that.
+
+NOTE Confidence: 0.8770879507064819
+
+00:34:38.520 --> 00:34:40.350
+And you can see the speed that we're starting up
+
+NOTE Confidence: 0.8770879507064819
+
+00:34:40.388 --> 00:34:40.960
+that container.
+
+NOTE Confidence: 0.9320328235626221
+
+00:34:41.239 --> 00:34:44.126
+It basically takes about 2 1/2 seconds is how long
+
+NOTE Confidence: 0.9320328235626221
+
+00:34:44.184 --> 00:34:46.320
+we're benchmarking from a cold start.
+
+NOTE Confidence: 0.8220162987709045
+
+00:34:46.640 --> 00:34:50.248
+And so it's going and initializing the session and then
+
+NOTE Confidence: 0.8220162987709045
+
+00:34:50.314 --> 00:34:53.529
+it will start up the container and then that's it
+
+NOTE Confidence: 0.8220162987709045
+
+00:34:53.595 --> 00:34:54.119
+started.
+
+NOTE Confidence: 0.8291188478469849
+
+00:34:54.120 --> 00:34:56.934
+And then now it's running the Linux code inside of
+
+NOTE Confidence: 0.8291188478469849
+
+00:34:56.991 --> 00:34:57.160
+it.
+
+NOTE Confidence: 0.8322416543960571
+
+00:34:57.160 --> 00:34:59.480
+So then it executed my Python service.
+
+NOTE Confidence: 0.9160451292991638
+
+00:34:59.880 --> 00:35:01.720
+And all of this is powered by.
+
+NOTE Confidence: 0.887290894985199
+
+00:35:01.719 --> 00:35:04.867
+If I go to my task manager, I can see
+
+NOTE Confidence: 0.887290894985199
+
+00:35:04.952 --> 00:35:08.609
+that I have a new process here that mark it
+
+NOTE Confidence: 0.887290894985199
+
+00:35:08.694 --> 00:35:09.120
+down.
+
+NOTE Confidence: 0.8146694898605347
+
+00:35:09.120 --> 00:35:12.597
+Service runs in its own WSLVM, so it's exact same
+
+NOTE Confidence: 0.8146694898605347
+
+00:35:12.668 --> 00:35:15.719
+VM technology that powers your WSL distros.
+
+NOTE Confidence: 0.8960809707641602
+
+00:35:15.960 --> 00:35:18.679
+We're now applying it to Linux containers running as part
+
+NOTE Confidence: 0.8960809707641602
+
+00:35:18.727 --> 00:35:19.919
+of a Windows application.
+
+NOTE Confidence: 0.8812925815582275
+
+00:35:20.200 --> 00:35:22.820
+So each Windows app gets its own WSLVM and you
+
+NOTE Confidence: 0.8812925815582275
+
+00:35:22.877 --> 00:35:25.612
+can run as many containers as you want inside of
+
+NOTE Confidence: 0.8812925815582275
+
+00:35:25.669 --> 00:35:25.839
+it.
+
+NOTE Confidence: 0.902882993221283
+
+00:35:26.480 --> 00:35:28.838
+And this wouldn't be a demo without taking a look
+
+NOTE Confidence: 0.902882993221283
+
+00:35:28.886 --> 00:35:30.715
+at the code, so we for sure have to go
+
+NOTE Confidence: 0.902882993221283
+
+00:35:30.763 --> 00:35:32.399
+see how we're actually doing this.
+
+NOTE Confidence: 0.8999804258346558
+
+00:35:32.920 --> 00:35:35.909
+And as you can see, it's just some C code
+
+NOTE Confidence: 0.8999804258346558
+
+00:35:35.981 --> 00:35:37.439
+that's not too long.
+
+NOTE Confidence: 0.9178403615951538
+
+00:35:37.640 --> 00:35:40.810
+I'm able to go in here and say, hey, please
+
+NOTE Confidence: 0.9178403615951538
+
+00:35:40.884 --> 00:35:44.571
+start a new session for me that starts the virtual
+
+NOTE Confidence: 0.9178403615951538
+
+00:35:44.644 --> 00:35:48.552
+machine and with these CPU and memory count, and then
+
+NOTE Confidence: 0.9178403615951538
+
+00:35:48.626 --> 00:35:49.880
+I can start that.
+
+NOTE Confidence: 0.9485020637512207
+
+00:35:49.880 --> 00:35:51.320
+I can pull a specific image.
+
+NOTE Confidence: 0.9017330408096313
+
+00:35:51.320 --> 00:35:53.945
+In this case, I'm running that locally and where it's
+
+NOTE Confidence: 0.9017330408096313
+
+00:35:53.995 --> 00:35:56.719
+really powerful is I can configure this to have exactly
+
+NOTE Confidence: 0.9017330408096313
+
+00:35:56.769 --> 00:35:57.759
+what options I need.
+
+NOTE Confidence: 0.9422400593757629
+
+00:35:58.160 --> 00:36:01.048
+So in this case, I said I want only port
+
+NOTE Confidence: 0.9422400593757629
+
+00:36:01.120 --> 00:36:04.586
+8000 to be mapped over so that I'm exposing that
+
+NOTE Confidence: 0.9422400593757629
+
+00:36:04.659 --> 00:36:06.320
+API that I used before.
+
+NOTE Confidence: 0.9409893751144409
+
+00:36:06.719 --> 00:36:09.415
+And you can add other options here like you can
+
+NOTE Confidence: 0.9409893751144409
+
+00:36:09.473 --> 00:36:12.455
+do volume mounting, for example, to say, hey, I want
+
+NOTE Confidence: 0.9409893751144409
+
+00:36:12.513 --> 00:36:15.323
+to be able to run or access only specific Windows
+
+NOTE Confidence: 0.9409893751144409
+
+00:36:15.381 --> 00:36:15.839
+folders.
+
+NOTE Confidence: 0.9366396069526672
+
+00:36:16.200 --> 00:36:17.989
+Or you can even do things like, hey, I want
+
+NOTE Confidence: 0.9366396069526672
+
+00:36:18.031 --> 00:36:19.280
+to give this access to my GPU.
+
+NOTE Confidence: 0.8128954172134399
+
+00:36:19.720 --> 00:36:22.640
+And so super powerful way that runs.
+
+NOTE Confidence: 0.9596350789070129
+
+00:36:22.880 --> 00:36:25.429
+And when it's all closed and done, all of those
+
+NOTE Confidence: 0.9596350789070129
+
+00:36:25.483 --> 00:36:26.839
+resources are cleaned up.
+
+NOTE Confidence: 0.8871914148330688
+
+00:36:26.840 --> 00:36:29.313
+You can see the VM has gone away and it
+
+NOTE Confidence: 0.8871914148330688
+
+00:36:29.377 --> 00:36:31.280
+works just like any other app.
+
+NOTE Confidence: 0.8412414193153381
+
+00:36:31.280 --> 00:36:34.062
+And the last thing I'd want to show is we're
+
+NOTE Confidence: 0.8412414193153381
+
+00:36:34.125 --> 00:36:35.959
+also improving the ecosystem.
+
+NOTE Confidence: 0.908332109451294
+
+00:36:36.239 --> 00:36:39.254
+So we're really trying to make this a very comprehensive
+
+NOTE Confidence: 0.908332109451294
+
+00:36:39.308 --> 00:36:42.484
+end to end story of developing with containers wherever you
+
+NOTE Confidence: 0.908332109451294
+
+00:36:42.538 --> 00:36:43.399
+are, API or CLI.
+
+NOTE Confidence: 0.8862463235855103
+
+00:36:43.880 --> 00:36:46.976
+So we're doing fun things like if you go to
+
+NOTE Confidence: 0.8862463235855103
+
+00:36:47.048 --> 00:36:50.432
+there's a project lazy WSLC, you can get a very
+
+NOTE Confidence: 0.8862463235855103
+
+00:36:50.504 --> 00:36:53.816
+nice TUI demo or TUI interface for all of your
+
+NOTE Confidence: 0.8862463235855103
+
+00:36:53.888 --> 00:36:54.680
+containers.
+
+NOTE Confidence: 0.9643982648849487
+
+00:36:54.680 --> 00:36:56.931
+So you can go ahead and take this as a
+
+NOTE Confidence: 0.9643982648849487
+
+00:36:56.991 --> 00:36:57.880
+nice dashboard.
+
+NOTE Confidence: 0.9279677867889404
+
+00:36:58.400 --> 00:37:00.739
+On top of that, this will also be supported with
+
+NOTE Confidence: 0.9279677867889404
+
+00:37:00.788 --> 00:37:01.519
+dev containers.
+
+NOTE Confidence: 0.875300943851471
+
+00:37:01.680 --> 00:37:04.827
+So if you do commands like attach to running container,
+
+NOTE Confidence: 0.875300943851471
+
+00:37:04.884 --> 00:37:08.031
+reopening container or use it in VS Code, WSL container
+
+NOTE Confidence: 0.875300943851471
+
+00:37:08.088 --> 00:37:09.919
+will be supported there as well.
+
+NOTE Confidence: 0.884489119052887
+
+00:37:10.560 --> 00:37:13.261
+And then last but not least, for our WSL container
+
+NOTE Confidence: 0.884489119052887
+
+00:37:13.315 --> 00:37:16.449
+demos, we also wanted to highlight an amazing partner that
+
+NOTE Confidence: 0.884489119052887
+
+00:37:16.503 --> 00:37:17.799
+we've been working with.
+
+NOTE Confidence: 0.8502221703529358
+
+00:37:18.120 --> 00:37:20.520
+So we've been working with the Moonray team.
+
+NOTE Confidence: 0.9281227588653564
+
+00:37:21.320 --> 00:37:24.506
+They're a team that builds a super powerful Linux based
+
+NOTE Confidence: 0.9281227588653564
+
+00:37:24.564 --> 00:37:27.519
+rendering engine and that is used to render tons of
+
+NOTE Confidence: 0.9281227588653564
+
+00:37:27.577 --> 00:37:30.242
+movies that you might be aware of like the bad
+
+NOTE Confidence: 0.9281227588653564
+
+00:37:30.300 --> 00:37:32.791
+guys two or the wild robot, which I'm a big
+
+NOTE Confidence: 0.9281227588653564
+
+00:37:32.849 --> 00:37:34.239
+fan of as I love robots.
+
+NOTE Confidence: 0.9355007410049438
+
+00:37:34.600 --> 00:37:37.214
+And so this is a team that has all of
+
+NOTE Confidence: 0.9355007410049438
+
+00:37:37.284 --> 00:37:40.817
+their code in Linux and is open source, fully open
+
+NOTE Confidence: 0.9355007410049438
+
+00:37:40.888 --> 00:37:44.420
+source, just like WSL, and they want to bring this
+
+NOTE Confidence: 0.9355007410049438
+
+00:37:44.491 --> 00:37:47.599
+awesome tool to Windows users to easily use.
+
+NOTE Confidence: 0.9334044456481934
+
+00:37:48.280 --> 00:37:50.125
+Well, how do you bridge that gap and make it
+
+NOTE Confidence: 0.9334044456481934
+
+00:37:50.167 --> 00:37:50.879
+production ready?
+
+NOTE Confidence: 0.9057031273841858
+
+00:37:51.440 --> 00:37:54.265
+That's where we've been able to work together on taking
+
+NOTE Confidence: 0.9057031273841858
+
+00:37:54.317 --> 00:37:57.040
+a look at the Windows Subsystem for Linux containers.
+
+NOTE Confidence: 0.9465671181678772
+
+00:37:57.640 --> 00:37:59.315
+And so I can go ahead and take a quick
+
+NOTE Confidence: 0.9465671181678772
+
+00:37:59.359 --> 00:37:59.800
+look here.
+
+NOTE Confidence: 0.9111550450325012
+
+00:38:00.240 --> 00:38:02.600
+I have a demo app of their code.
+
+NOTE Confidence: 0.8058027625083923
+
+00:38:02.600 --> 00:38:06.244
+So I have the WCLC Moonray folder, and I have
+
+NOTE Confidence: 0.8058027625083923
+
+00:38:06.325 --> 00:38:09.159
+built this and created moonray.exe.
+
+NOTE Confidence: 0.9029285907745361
+
+00:38:09.400 --> 00:38:12.080
+So that's very obviously a Windows executable.
+
+NOTE Confidence: 0.9006126523017883
+
+00:38:12.520 --> 00:38:15.480
+And I'm also inputting inputs to this.
+
+NOTE Confidence: 0.8557385802268982
+
+00:38:15.880 --> 00:38:18.443
+And if you note the back slash, these are definitely
+
+NOTE Confidence: 0.8557385802268982
+
+00:38:18.493 --> 00:38:20.119
+Windows files that I'm giving in.
+
+NOTE Confidence: 0.8616411685943604
+
+00:38:20.600 --> 00:38:24.322
+And these are Windows files of RDLA, which are basically
+
+NOTE Confidence: 0.8616411685943604
+
+00:38:24.389 --> 00:38:25.319
+render inputs.
+
+NOTE Confidence: 0.8448207974433899
+
+00:38:25.600 --> 00:38:28.192
+And then I'm asking it, hey, could you please render
+
+NOTE Confidence: 0.8448207974433899
+
+00:38:28.242 --> 00:38:29.240
+out this JPG for me?
+
+NOTE Confidence: 0.9163137674331665
+
+00:38:29.760 --> 00:38:32.185
+And when I run this, it's going to run exactly
+
+NOTE Confidence: 0.9163137674331665
+
+00:38:32.238 --> 00:38:34.821
+the same as what I showed earlier, just a command
+
+NOTE Confidence: 0.9163137674331665
+
+00:38:34.874 --> 00:38:35.559
+line version.
+
+NOTE Confidence: 0.7205760478973389
+
+00:38:35.920 --> 00:38:39.466
+And I've shown that these I've kept in this like
+
+NOTE Confidence: 0.7205760478973389
+
+00:38:39.540 --> 00:38:41.240
+debug information here.
+
+NOTE Confidence: 0.9052740931510925
+
+00:38:41.360 --> 00:38:43.520
+So you can see the that was the machine starting.
+
+NOTE Confidence: 0.9746494889259338
+
+00:38:43.720 --> 00:38:45.720
+Now we have the actual rendering happening.
+
+NOTE Confidence: 0.9644102454185486
+
+00:38:45.880 --> 00:38:48.698
+It's using up all of my CPU, which is exactly
+
+NOTE Confidence: 0.9644102454185486
+
+00:38:48.760 --> 00:38:51.578
+what you want to see when you're doing a nice
+
+NOTE Confidence: 0.9644102454185486
+
+00:38:51.641 --> 00:38:52.079
+render.
+
+NOTE Confidence: 0.920377254486084
+
+00:38:52.480 --> 00:38:55.932
+And then once it's done, it will perfectly shut down,
+
+NOTE Confidence: 0.920377254486084
+
+00:38:55.997 --> 00:38:57.039
+clean up the VM.
+
+NOTE Confidence: 0.9610452651977539
+
+00:38:57.400 --> 00:38:59.757
+And I can go ahead and take a look at
+
+NOTE Confidence: 0.9610452651977539
+
+00:38:59.821 --> 00:39:03.707
+the beautiful image we rendered, which was this lovely orange
+
+NOTE Confidence: 0.9610452651977539
+
+00:39:03.771 --> 00:39:04.600
+coffee maker.
+
+NOTE Confidence: 0.8842986822128296
+
+00:39:05.280 --> 00:39:09.195
+And so that was all done exactly as a Windows
+
+NOTE Confidence: 0.8842986822128296
+
+00:39:09.282 --> 00:39:10.239
+CLI, right?
+
+NOTE Confidence: 0.5811092853546143
+
+00:39:10.800 --> 00:39:11.720
+its.exe.
+
+NOTE Confidence: 0.8864285945892334
+
+00:39:11.720 --> 00:39:13.480
+It was all Windows inputs and outputs.
+
+NOTE Confidence: 0.9140004515647888
+
+00:39:13.480 --> 00:39:16.446
+I opened a Windows file, but everything, all of the
+
+NOTE Confidence: 0.9140004515647888
+
+00:39:16.504 --> 00:39:19.412
+code that was running in the back end, beyond just
+
+NOTE Confidence: 0.9140004515647888
+
+00:39:19.470 --> 00:39:22.319
+the integration code for the API was fully Linux.
+
+NOTE Confidence: 0.8741397857666016
+
+00:39:22.360 --> 00:39:25.760
+So something we're really, really excited to see what you
+
+NOTE Confidence: 0.8741397857666016
+
+00:39:25.820 --> 00:39:29.579
+could do with, from AI containers, AI containerization to cloud
+
+NOTE Confidence: 0.8741397857666016
+
+00:39:29.639 --> 00:39:33.040
+to local, I think there's tons of exciting opportunities.
+
+NOTE Confidence: 0.20829859375953674
+
+00:39:33.040 --> 00:39:33.160
+Cool.
+
+NOTE Confidence: 0.6530365943908691
+
+00:39:34.560 --> 00:39:34.920
+Sweet.
+
+NOTE Confidence: 0.9164010286331177
+
+00:39:35.000 --> 00:39:35.720
+Yeah, that was great.
+
+NOTE Confidence: 0.9530940055847168
+
+00:39:35.760 --> 00:39:38.179
+And you know, we're running out of time here, so
+
+NOTE Confidence: 0.9530940055847168
+
+00:39:38.229 --> 00:39:40.245
+I'm going to kind of wrap it up with one
+
+NOTE Confidence: 0.9530940055847168
+
+00:39:40.296 --> 00:39:40.800
+last note.
+
+NOTE Confidence: 0.9664398431777954
+
+00:39:40.800 --> 00:39:43.319
+So we, you know, on our team, we've been working
+
+NOTE Confidence: 0.9664398431777954
+
+00:39:43.372 --> 00:39:46.154
+on all these open source tools and we've been working
+
+NOTE Confidence: 0.9664398431777954
+
+00:39:46.207 --> 00:39:47.519
+on open source for years.
+
+NOTE Confidence: 0.8918365240097046
+
+00:39:47.840 --> 00:39:52.490
+And actually, Clint had the great idea of exporting the
+
+NOTE Confidence: 0.8918365240097046
+
+00:39:52.574 --> 00:39:58.154
+list of contributors of everyone who's contributed to Terminal WSL
+
+NOTE Confidence: 0.8918365240097046
+
+00:39:58.239 --> 00:40:02.212
+when UI power toys and the file is 16,000 lines
+
+NOTE Confidence: 0.8918365240097046
+
+00:40:02.297 --> 00:40:02.720
+long.
+
+NOTE Confidence: 0.964670717716217
+
+00:40:03.239 --> 00:40:06.599
+So we've had over 16,000 open source contributors on all
+
+NOTE Confidence: 0.964670717716217
+
+00:40:06.659 --> 00:40:08.519
+of our projects, which is huge.
+
+NOTE Confidence: 0.9393932819366455
+
+00:40:08.800 --> 00:40:11.538
+So we want to truly, truly thank everybody that's contributed
+
+NOTE Confidence: 0.9393932819366455
+
+00:40:11.583 --> 00:40:14.321
+to everything that we've been working on because the products
+
+NOTE Confidence: 0.9393932819366455
+
+00:40:14.366 --> 00:40:16.880
+would not be where they are today without without y'all.
+
+NOTE Confidence: 0.6158060431480408
+
+00:40:17.040 --> 00:40:19.174
+I should have my name my name ZZZZZZZ so I
+
+NOTE Confidence: 0.6158060431480408
+
+00:40:19.225 --> 00:40:19.479
+show.
+
+NOTE Confidence: 0.7122417688369751
+
+00:40:19.480 --> 00:40:19.560
+Up.
+
+NOTE Confidence: 0.592862606048584
+
+00:40:19.560 --> 00:40:20.160
+Yeah, you should have been.
+
+NOTE Confidence: 0.631331205368042
+
+00:40:20.400 --> 00:40:22.040
+I should have wasted opportunity.
+
+NOTE Confidence: 0.9441383481025696
+
+00:40:23.000 --> 00:40:25.040
+And of course, we're very excited about Core Utils.
+
+NOTE Confidence: 0.8200204968452454
+
+00:40:25.040 --> 00:40:27.318
+So we thought it would be fun to do a
+
+NOTE Confidence: 0.8200204968452454
+
+00:40:27.380 --> 00:40:30.705
+little graph with one of our friends, Nora, who's been
+
+NOTE Confidence: 0.8200204968452454
+
+00:40:30.766 --> 00:40:34.400
+a really awesome contributor and especially for Power Toys.
+
+NOTE Confidence: 0.8079127073287964
+
+00:40:34.400 --> 00:40:36.494
+So want to give a huge shout out to our
+
+NOTE Confidence: 0.8079127073287964
+
+00:40:36.548 --> 00:40:38.159
+contributors and Nora as well.
+
+NOTE Confidence: 0.9605391621589661
+
+00:40:38.160 --> 00:40:40.569
+But we want to just thank everyone who's made these
+
+NOTE Confidence: 0.9605391621589661
+
+00:40:40.616 --> 00:40:43.120
+products, you know, shape up to where they are today.
+
+NOTE Confidence: 0.9638376235961914
+
+00:40:44.200 --> 00:40:46.633
+So here's that slide with all the links that I
+
+NOTE Confidence: 0.9638376235961914
+
+00:40:46.686 --> 00:40:47.479
+told you about.
+
+NOTE Confidence: 0.910799503326416
+
+00:40:48.040 --> 00:40:50.637
+So we're going to maybe recap a little bit, but
+
+NOTE Confidence: 0.910799503326416
+
+00:40:50.692 --> 00:40:52.240
+we talked about config file.
+
+NOTE Confidence: 0.7253127098083496
+
+00:40:52.239 --> 00:40:55.875
+We had that Comfort shell and that same repo SPGO
+
+NOTE Confidence: 0.7253127098083496
+
+00:40:55.950 --> 00:40:57.359
+that Jinye covered.
+
+NOTE Confidence: 0.9051808714866638
+
+00:40:57.360 --> 00:40:59.595
+This link will show you how to run that with
+
+NOTE Confidence: 0.9051808714866638
+
+00:40:59.646 --> 00:41:02.999
+your own projects and get that performance boost with compilation.
+
+NOTE Confidence: 0.8616825938224792
+
+00:41:03.320 --> 00:41:06.883
+And then of course, there's Intelligent Terminal and its own
+
+NOTE Confidence: 0.8616825938224792
+
+00:41:06.943 --> 00:41:07.239
+repo.
+
+NOTE Confidence: 0.7096830606460571
+
+00:41:07.400 --> 00:41:09.750
+The Win F CLI and Win F skills have their
+
+NOTE Confidence: 0.7096830606460571
+
+00:41:09.807 --> 00:41:12.559
+own repos, and Power Toys also has its own repo.
+
+NOTE Confidence: 0.9729087352752686
+
+00:41:12.640 --> 00:41:15.307
+So if you want to get started with any of
+
+NOTE Confidence: 0.9729087352752686
+
+00:41:15.372 --> 00:41:17.520
+these, this is the slide to grab.
+
+NOTE Confidence: 0.9055665135383606
+
+00:41:18.160 --> 00:41:21.280
+And with that we can jump into Q&A.
+
+NOTE Confidence: 0.8960767388343811
+
+00:41:21.280 --> 00:41:24.445
+Thank you so much everybody for listening and watching and
+
+NOTE Confidence: 0.8960767388343811
+
+00:41:24.499 --> 00:41:27.119
+feel free to scan this because it's I think it's
+
+NOTE Confidence: 0.8960767388343811
+
+00:41:27.174 --> 00:41:27.719
+important.
+
+NOTE Confidence: 0.830314576625824
+
+00:41:28.040 --> 00:41:30.252
+So thank you, everybody and we're happy to answer my
+
+NOTE Confidence: 0.830314576625824
+
+00:41:30.294 --> 00:41:30.720
+questions.
+
+NOTE Confidence: 0.5707853436470032
+
+00:41:30.720 --> 00:41:31.160
+Thank you.
+

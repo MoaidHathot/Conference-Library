@@ -1,0 +1,782 @@
+WEBVTT
+
+00:00:00.120 --> 00:00:03.270
+EDO SEGAL: Welcome to the
+Napster Companion API session.
+
+00:00:03.270 --> 00:00:04.710
+If you're here, you're
+probably curious
+
+00:00:04.710 --> 00:00:07.530
+about video multimodal agents
+
+00:00:07.530 --> 00:00:09.270
+that you can deploy
+in your application.
+
+00:00:09.270 --> 00:00:11.430
+One of the core
+areas of friction
+
+00:00:11.430 --> 00:00:14.640
+for doing this has
+been the cost.
+
+00:00:14.640 --> 00:00:17.910
+We've been working for the last
+three years on reducing the cost
+
+00:00:17.910 --> 00:00:21.210
+and engineering the heck out of
+it, so we can deliver it to you
+
+00:00:21.210 --> 00:00:22.440
+at a cost-effective way,
+
+00:00:22.440 --> 00:00:25.680
+so you can actually scale
+it to millions of users.
+
+00:00:25.680 --> 00:00:27.480
+And we've also made
+it incredibly easy
+
+00:00:27.480 --> 00:00:28.740
+for you to deploy them.
+
+00:00:28.740 --> 00:00:32.580
+So literally within one day, you
+can add a video multimodal agent
+
+00:00:32.580 --> 00:00:34.320
+to your agentic application.
+
+00:00:34.320 --> 00:00:36.890
+This adds another layer
+of human connection
+
+00:00:36.890 --> 00:00:39.050
+to everything you're building,
+as we're already seeing
+
+00:00:39.050 --> 00:00:41.300
+in the wild with some of the
+world's biggest companies.
+
+00:00:41.300 --> 00:00:44.480
+We'll share some examples, as
+well as walk you through how
+
+00:00:44.480 --> 00:00:47.120
+to actually build it yourself
+in a matter of hours.
+
+00:00:47.120 --> 00:00:51.810
+Over to Ziv Navoth, our
+Chief Product Officer.
+
+00:00:51.810 --> 00:00:53.130
+ZIV NAVOTH: Thanks, Edo.
+
+00:00:53.130 --> 00:00:55.650
+Let's start with cost
+because for many developers,
+
+00:00:55.650 --> 00:00:57.990
+that's been the gating factor.
+
+00:00:57.990 --> 00:01:00.510
+Real-time multimodal video
+agents have been technically
+
+00:01:00.510 --> 00:01:02.280
+possible for a while.
+
+00:01:02.280 --> 00:01:05.310
+What hasn't been possible
+is shipping them at scale.
+
+00:01:05.310 --> 00:01:09.120
+The Omniagent API runs at only
+one cent per render minute
+
+00:01:09.120 --> 00:01:10.920
+when you bring your own LLM.
+
+00:01:10.920 --> 00:01:14.550
+That's roughly 20 times
+cheaper than the alternatives.
+
+00:01:14.550 --> 00:01:18.570
+Enough that a five-minute
+customer call costs five cents,
+
+00:01:18.570 --> 00:01:22.080
+and a full-time agent running
+eight hours a day costs less
+
+00:01:22.080 --> 00:01:23.460
+than $5.
+
+00:01:23.460 --> 00:01:26.850
+So that's a shift that makes
+this a production tool instead
+
+00:01:26.850 --> 00:01:28.410
+of a proof of concept.
+
+00:01:28.410 --> 00:01:31.170
+Now, let's talk about how
+this fits in your stack.
+
+00:01:31.170 --> 00:01:34.110
+The Omniagent API
+is Azure Native.
+
+00:01:34.110 --> 00:01:39.450
+The browser-side SDK opens an
+HTTPS and WebRTC connection
+
+00:01:39.450 --> 00:01:43.110
+through Azure's Front Door
+and load balancing solutions.
+
+00:01:43.110 --> 00:01:46.980
+Our network stack also has
+private endpoint support.
+
+00:01:46.980 --> 00:01:51.660
+Omniagent core pods run in Azure
+Kubernetes Service, auto-scaled.
+
+00:01:51.660 --> 00:01:53.310
+The orchestration layer can talk
+
+00:01:53.310 --> 00:01:55.860
+to your own Azure
+OpenAI deployment,
+
+00:01:55.860 --> 00:01:57.540
+or it can talk to ours.
+
+00:01:57.540 --> 00:01:59.760
+The real-time multimodal
+rendering pipeline runs
+
+00:01:59.760 --> 00:02:01.950
+on dedicated Azure VM clusters
+
+00:02:01.950 --> 00:02:05.100
+and streams synchronized
+video back over WebRTC
+
+00:02:05.100 --> 00:02:07.500
+with low round-trip latency.
+
+00:02:07.500 --> 00:02:09.840
+Every component you see
+in this stack is running
+
+00:02:09.840 --> 00:02:12.840
+on an Azure managed service.
+
+00:02:12.840 --> 00:02:15.420
+Omniagent delivers three
+additional benefits.
+
+00:02:15.420 --> 00:02:18.000
+First, single cloud billing.
+
+00:02:18.000 --> 00:02:21.270
+The line item shows up on
+your existing Azure invoice.
+
+00:02:21.270 --> 00:02:25.230
+Second, your existing governance
+policies just keep working.
+
+00:02:25.230 --> 00:02:27.210
+The same Azure Policy, Defender,
+
+00:02:27.210 --> 00:02:31.680
+and DDoS protection you
+already have applies to this.
+
+00:02:31.680 --> 00:02:34.350
+Third, multi-provider support.
+
+00:02:34.350 --> 00:02:37.140
+Bring whichever LLM
+you've already deployed.
+
+00:02:37.140 --> 00:02:40.290
+Swapping providers is a
+key change, not a rewrite.
+
+00:02:40.290 --> 00:02:44.550
+It's the same agent
+configuration either way.
+
+00:02:44.550 --> 00:02:46.830
+Siemens is one of
+our key deployments.
+
+00:02:46.830 --> 00:02:48.690
+Their field service
+technicians interact
+
+00:02:48.690 --> 00:02:51.660
+with manufacturing systems
+through voice and video instead
+
+00:02:51.660 --> 00:02:54.150
+of dashboards and
+manual commands.
+
+00:02:54.150 --> 00:02:56.850
+The same architecture is
+running customer service,
+
+00:02:56.850 --> 00:02:59.610
+sales onboarding, and
+corporate training.
+
+00:02:59.610 --> 00:03:04.170
+Identical runtime, but
+a different agent.
+
+00:03:04.170 --> 00:03:05.790
+Let me show you how
+this comes together,
+
+00:03:05.790 --> 00:03:07.950
+from provisioning the
+resource to the live agent
+
+00:03:07.950 --> 00:03:14.010
+in your application in three
+steps: create, deploy, monitor.
+
+00:03:14.010 --> 00:03:15.510
+Let's build one.
+
+00:03:15.510 --> 00:03:19.140
+Step one, create your agent.
+
+00:03:19.140 --> 00:03:22.380
+The Omniagent API is part
+of your Azure account.
+
+00:03:22.380 --> 00:03:24.330
+You spin it up directly
+from the Azure portal,
+
+00:03:24.330 --> 00:03:26.790
+the same way you'd
+create a Cosmos DB
+
+00:03:26.790 --> 00:03:28.800
+or any other Azure resource.
+
+00:03:28.800 --> 00:03:29.790
+No separate purchase,
+
+00:03:29.790 --> 00:03:32.190
+no separate vendor,
+no separate bill.
+
+00:03:32.190 --> 00:03:35.790
+It lives alongside the
+rest of your Azure stack.
+
+00:03:35.790 --> 00:03:39.210
+Once it's running, open the
+Omniagent API dashboard.
+
+00:03:39.210 --> 00:03:41.790
+We'll walk through
+it click by click.
+
+00:03:41.790 --> 00:03:43.470
+Everything you see
+here is also available
+
+00:03:43.470 --> 00:03:46.620
+through the REST API itself, so
+you can build it click by click
+
+00:03:46.620 --> 00:03:49.380
+or call it from your code.
+
+00:03:49.380 --> 00:03:52.710
+A quick word on the anatomy of
+an agent before we build one.
+
+00:03:52.710 --> 00:03:54.030
+There are four parts.
+
+00:03:54.030 --> 00:03:58.020
+The Omniagent is the face, the
+voice, and the personality.
+
+00:03:58.020 --> 00:04:00.030
+The knowledge is the
+documents and data
+
+00:04:00.030 --> 00:04:02.490
+that the agent grounds
+its answers in.
+
+00:04:02.490 --> 00:04:05.010
+FAQs are the curated
+questions and answers
+
+00:04:05.010 --> 00:04:08.490
+for things you want handled
+the same way every time.
+
+00:04:08.490 --> 00:04:11.700
+And tools are what the agent
+calls out to when it needs
+
+00:04:11.700 --> 00:04:14.190
+to take action on
+the user's behalf.
+
+00:04:14.190 --> 00:04:17.670
+Omniagent plus knowledge
+plus FAQs plus tools.
+
+00:04:17.670 --> 00:04:19.440
+That's your agent.
+
+00:04:19.440 --> 00:04:21.900
+Now, let's go and build one.
+
+00:04:21.900 --> 00:04:24.000
+On the dashboard,
+you'll see two buttons:
+
+00:04:24.000 --> 00:04:26.790
+New Omniagent and
+New Digital Twin.
+
+00:04:26.790 --> 00:04:30.180
+An Omniagent is a fictional
+agent for support, sales,
+
+00:04:30.180 --> 00:04:33.270
+onboarding, or any role
+inside your application.
+
+00:04:33.270 --> 00:04:35.520
+A digital twin is
+an agent configured
+
+00:04:35.520 --> 00:04:39.090
+to represent a specific person:
+their likeness, their voice,
+
+00:04:39.090 --> 00:04:42.170
+their style, their
+personal knowledge.
+
+00:04:42.170 --> 00:04:44.240
+You don't even have to
+start from scratch.
+
+00:04:44.240 --> 00:04:47.060
+Napster ships a library
+of stock agents,
+
+00:04:47.060 --> 00:04:49.940
+pre-built personas
+across common roles.
+
+00:04:49.940 --> 00:04:53.510
+Pick one, customize
+it, and you're off.
+
+00:04:53.510 --> 00:04:56.190
+Or, build your own from scratch.
+
+00:04:56.190 --> 00:05:00.150
+Today, we're building Vera,
+a field service specialist.
+
+00:05:00.150 --> 00:05:03.840
+We give her a name, upload a
+photo, and the system spins
+
+00:05:03.840 --> 00:05:06.930
+up a lifelike video avatar.
+
+00:05:06.930 --> 00:05:08.970
+Then, we wire up the rest.
+
+00:05:08.970 --> 00:05:10.880
+We attach knowledge.
+
+00:05:10.880 --> 00:05:13.160
+Vera already has the
+equipment service manuals,
+
+00:05:13.160 --> 00:05:16.160
+the parts catalog, and the
+diagnostic procedures.
+
+00:05:16.160 --> 00:05:19.950
+Today, we're adding the
+Atlas service knowledge.
+
+00:05:26.310 --> 00:05:27.930
+We add FAQs.
+
+00:05:27.930 --> 00:05:30.240
+She already has the
+equipment safety protocols
+
+00:05:30.240 --> 00:05:32.520
+and the parts and warranty FAQ.
+
+00:05:32.520 --> 00:05:35.680
+Today, we're adding
+the field service FAQ.
+
+00:05:47.550 --> 00:05:49.530
+And we attach tools.
+
+00:05:49.530 --> 00:05:53.040
+This is what Vera uses to take
+action on the user's behalf.
+
+00:05:53.040 --> 00:05:56.370
+She already has get service
+history, look up part,
+
+00:05:56.370 --> 00:06:00.240
+order part, schedule inspection,
+and escalate to engineering.
+
+00:06:00.240 --> 00:06:02.250
+A pretty comprehensive toolbox.
+
+00:06:02.250 --> 00:06:05.280
+But today, we're going to
+add get customer lookup,
+
+00:06:05.280 --> 00:06:09.210
+so she can resolve a
+customer ID into a name.
+
+00:06:09.210 --> 00:06:12.900
+Omniagent, knowledge,
+FAQs, tools.
+
+00:06:12.900 --> 00:06:15.540
+That's Vera, defined once.
+
+00:06:15.540 --> 00:06:19.570
+But before we ship her, we
+test her in the playground.
+
+00:06:25.140 --> 00:06:27.720
+VERA: Hi, how can I help you?
+
+00:06:27.720 --> 00:06:28.290
+Marcus: Hey, Vera.
+
+00:06:28.290 --> 00:06:31.260
+I'm on site at customer 4421.
+
+00:06:31.260 --> 00:06:33.000
+The compressor is short-cycling.
+
+00:06:33.000 --> 00:06:35.160
+What should I check?
+
+00:06:35.160 --> 00:06:36.150
+VERA: Hey, Marcus.
+
+00:06:36.150 --> 00:06:37.560
+That's Northgate Industrial,
+
+00:06:37.560 --> 00:06:39.750
+same compressor we
+worked on last month.
+
+00:06:39.750 --> 00:06:42.360
+Their model has a known
+high-pressure switch issue.
+
+00:06:42.360 --> 00:06:44.130
+Let me pull their
+service history.
+
+00:06:44.130 --> 00:06:46.860
+Three pressure-related
+work orders in six months.
+
+00:06:46.860 --> 00:06:48.900
+Want me to open a parts request?
+
+00:06:48.900 --> 00:06:50.560
+Marcus: Yeah, go ahead.
+
+00:06:52.440 --> 00:06:53.130
+VERA: Done.
+
+00:06:53.130 --> 00:06:55.800
+The switch will be at your local
+depot by tomorrow morning.
+
+00:06:55.800 --> 00:06:58.890
+I've also scheduled a follow-up
+inspection for 30 days out.
+
+00:06:58.890 --> 00:07:01.410
+This unit needs
+closer monitoring.
+
+00:07:01.410 --> 00:07:03.040
+Marcus: Thanks, Vera.
+
+00:07:04.590 --> 00:07:05.940
+VERA: Good luck
+with the install.
+
+00:07:05.940 --> 00:07:08.380
+Call back if anything comes up.
+
+00:07:09.600 --> 00:07:11.460
+ZIV NAVOTH: That's the
+same Vera we just built.
+
+00:07:11.460 --> 00:07:16.230
+When she behaves the way we
+want, we can move on to deploy.
+
+00:07:16.230 --> 00:07:18.300
+The agent is
+multimodal by design,
+
+00:07:18.300 --> 00:07:21.900
+so it ships across the channels
+your users actually use.
+
+00:07:21.900 --> 00:07:25.200
+We also refer to this
+as an Omniagent.
+
+00:07:25.200 --> 00:07:28.650
+On the web, the web SDK
+opens a WebRTC connection
+
+00:07:28.650 --> 00:07:31.770
+and renders the video agent
+inside your application
+
+00:07:31.770 --> 00:07:35.370
+as a sales agent on your pricing
+page, a support concierge
+
+00:07:35.370 --> 00:07:36.840
+in your help center,
+
+00:07:36.840 --> 00:07:39.480
+an onboarding guide
+on your homepage.
+
+00:07:39.480 --> 00:07:41.760
+Lifelike presence,
+real-time voice,
+
+00:07:41.760 --> 00:07:44.970
+mounted to any
+element on your page.
+
+00:07:44.970 --> 00:07:47.340
+In your native mobile
+or desktop app,
+
+00:07:47.340 --> 00:07:49.650
+the WebSocket handler
+streams real-time voice
+
+00:07:49.650 --> 00:07:51.600
+between the app and the agent.
+
+00:07:51.600 --> 00:07:54.660
+Voice first, no
+browser required.
+
+00:07:54.660 --> 00:07:59.820
+On the phone, the agent answers
+inbound SIP and VoIP calls.
+
+00:07:59.820 --> 00:08:02.760
+An after-hours support
+line, an intake agent
+
+00:08:02.760 --> 00:08:06.840
+on your main number, a callback
+for high-priority customers.
+
+00:08:06.840 --> 00:08:09.990
+Your customers dial a
+regular phone number.
+
+00:08:09.990 --> 00:08:12.240
+The agent picks up.
+
+00:08:12.240 --> 00:08:13.740
+On text, the agent routes
+
+00:08:13.740 --> 00:08:16.230
+through your messaging
+channel of your choice.
+
+00:08:16.230 --> 00:08:19.500
+Same agent, same
+memory, same tools.
+
+00:08:19.500 --> 00:08:22.380
+You can also turn on
+memory at this layer.
+
+00:08:22.380 --> 00:08:24.000
+When you start a
+session for a user,
+
+00:08:24.000 --> 00:08:26.310
+you tell the Omniagent
+API to remember.
+
+00:08:26.310 --> 00:08:29.100
+From that point on, the
+agent extracts facts,
+
+00:08:29.100 --> 00:08:30.900
+summarizes conversations,
+
+00:08:30.900 --> 00:08:34.920
+and carries that context
+forward automatically.
+
+00:08:34.920 --> 00:08:38.040
+Memory follows the user
+across every channel.
+
+00:08:38.040 --> 00:08:40.140
+Start the conversation
+in your web app,
+
+00:08:40.140 --> 00:08:42.090
+continue it on the phone,
+
+00:08:42.090 --> 00:08:44.280
+pick it up over text
+the next morning.
+
+00:08:44.280 --> 00:08:49.680
+Same agent, with the same
+context, and no re-explaining.
+
+00:08:49.680 --> 00:08:52.320
+Step three: Monitor.
+
+00:08:52.320 --> 00:08:53.910
+Every conversation the agent has
+
+00:08:53.910 --> 00:08:57.660
+on every channel is
+captured and inspectable.
+
+00:08:57.660 --> 00:09:00.630
+Open any session, and you
+see the full transcript,
+
+00:09:00.630 --> 00:09:04.290
+every tool the agent called,
+every memory read and write,
+
+00:09:04.290 --> 00:09:06.470
+and the identity of the user.
+
+00:09:06.470 --> 00:09:10.310
+End-to-end audit,
+native to the platform.
+
+00:09:10.310 --> 00:09:11.960
+Track the outcomes that matter.
+
+00:09:11.960 --> 00:09:13.850
+How many issues did
+the agent resolve?
+
+00:09:13.850 --> 00:09:15.620
+How many actions did it take?
+
+00:09:15.620 --> 00:09:20.190
+Iterate the prompt, redeploy,
+and watch the numbers move.
+
+00:09:20.190 --> 00:09:21.360
+That's the platform.
+
+00:09:21.360 --> 00:09:24.750
+A multimodal AI co-worker, you
+can spin up in your Azure tenant
+
+00:09:24.750 --> 00:09:27.420
+in minutes, running
+on your own LLM,
+
+00:09:27.420 --> 00:09:30.000
+deployed across every
+channel your customers use,
+
+00:09:30.000 --> 00:09:32.820
+and inspectable end-to-end.
+
+00:09:32.820 --> 00:09:35.010
+Three things for
+you to take away.
+
+00:09:35.010 --> 00:09:37.140
+First, it's available
+today on Azure.
+
+00:09:37.140 --> 00:09:40.140
+Provision it from the portal the
+same way you'd provision any
+
+00:09:40.140 --> 00:09:42.030
+other Azure resource.
+
+00:09:42.030 --> 00:09:44.820
+Second, once you're signed up,
+the quickstart will get you
+
+00:09:44.820 --> 00:09:47.430
+to a running agent
+in under 15 minutes.
+
+00:09:47.430 --> 00:09:51.200
+Bring your existing Azure OpenAI
+deployment, and you're off.
+
+00:09:51.200 --> 00:09:53.000
+And third, if you're
+here at Build,
+
+00:09:53.000 --> 00:09:54.350
+come find us at our booth.
+
+00:09:54.350 --> 00:09:57.470
+We'll build a co-worker
+with you live.
+
+00:09:57.470 --> 00:09:59.250
+Thanks for your time.

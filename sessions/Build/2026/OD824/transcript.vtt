@@ -1,0 +1,1591 @@
+WEBVTT
+
+00:00:03.270 --> 00:00:04.590
+ADITYA BADRAMRAJU: Hi, everyone.
+
+00:00:04.590 --> 00:00:07.410
+I hope you are
+having great Build.
+
+00:00:07.410 --> 00:00:08.400
+I'm Aditya.
+
+00:00:08.400 --> 00:00:11.580
+I'm the Product Manager
+from Azure SQL.
+
+00:00:11.580 --> 00:00:12.990
+Today, I'm here to talk to you
+
+00:00:12.990 --> 00:00:15.900
+about building
+scalable applications
+
+00:00:15.900 --> 00:00:17.970
+without having polyglot tax.
+
+00:00:17.970 --> 00:00:20.340
+Now let's talk what
+exactly is polyglot tax.
+
+00:00:20.340 --> 00:00:21.840
+What do we mean by that?
+
+00:00:21.840 --> 00:00:26.610
+When I say polyglot tax, I mean
+having the tax that you pay
+
+00:00:26.610 --> 00:00:29.700
+for choosing multiple databases.
+
+00:00:29.700 --> 00:00:33.630
+Okay. How many of you are
+building applications day in,
+
+00:00:33.630 --> 00:00:35.100
+day out?
+
+00:00:35.100 --> 00:00:37.050
+I'm sure everyone.
+
+00:00:37.050 --> 00:00:40.440
+So let's say you
+build a prototype.
+
+00:00:40.440 --> 00:00:41.910
+How long do you take?
+
+00:00:41.910 --> 00:00:46.710
+Based on whatever
+that application is,
+
+00:00:46.710 --> 00:00:48.600
+it takes -- you
+start at 9:00 AM.
+
+00:00:48.600 --> 00:00:51.210
+Before lunch, you
+almost have it.
+
+00:00:51.210 --> 00:00:54.660
+You can say, "Aditya,
+it can be fast."
+
+00:00:54.660 --> 00:00:57.060
+I'm sure it's for sure fast.
+
+00:00:57.060 --> 00:01:00.660
+So, but my point is you can
+build a prototype pretty fast.
+
+00:01:00.660 --> 00:01:02.790
+But let's say you
+built a prototype
+
+00:01:02.790 --> 00:01:05.280
+and that prototype
+is super successful.
+
+00:01:05.280 --> 00:01:07.980
+How do you -- and then
+you want to add something
+
+00:01:07.980 --> 00:01:10.620
+like semantic search
+with vectors,
+
+00:01:10.620 --> 00:01:12.510
+you might get a vector DB.
+
+00:01:12.510 --> 00:01:15.960
+And then you extended
+it to have graphs.
+
+00:01:15.960 --> 00:01:17.820
+You added graph DB.
+
+00:01:17.820 --> 00:01:21.520
+And then you need to do
+analytics on top of it.
+
+00:01:22.980 --> 00:01:24.360
+See what I'm doing here?
+
+00:01:24.360 --> 00:01:29.850
+You add so many databases
+that are specific to them.
+
+00:01:29.850 --> 00:01:33.810
+And now, because you are
+adding so many databases,
+
+00:01:33.810 --> 00:01:37.710
+in all of this data, in all
+shipping all of this data,
+
+00:01:37.710 --> 00:01:42.780
+if something broke at one point,
+the other things won't work.
+
+00:01:42.780 --> 00:01:49.290
+Imagine the data that flows
+from vectors is broken,
+
+00:01:49.290 --> 00:01:51.420
+which comes to the analytics.
+
+00:01:51.420 --> 00:01:54.840
+The analytics might not
+give you the right answers.
+
+00:01:54.840 --> 00:01:56.310
+So that is broken.
+
+00:01:56.310 --> 00:02:01.440
+So that's the polyglot
+tax I'm talking about.
+
+00:02:01.440 --> 00:02:08.220
+We are here because this
+one we can really avoid
+
+00:02:08.220 --> 00:02:10.080
+with Microsoft SQL.
+
+00:02:10.080 --> 00:02:15.390
+Now, how do -- let's say
+you're building a fraud check,
+
+00:02:15.390 --> 00:02:18.360
+real-time fraud
+check application.
+
+00:02:18.360 --> 00:02:21.450
+How do you typically do that
+with all these databases?
+
+00:02:21.450 --> 00:02:25.590
+You do -- you have a relational
+database for order history.
+
+00:02:25.590 --> 00:02:28.770
+You have a JSON or a
+document databases
+
+00:02:28.770 --> 00:02:30.480
+for device fingerprint.
+
+00:02:30.480 --> 00:02:32.280
+When I say device
+fingerprint, is it coming
+
+00:02:32.280 --> 00:02:35.580
+from an application, is it
+coming from a browser, etc?
+
+00:02:35.580 --> 00:02:38.010
+You might use a document
+database for that.
+
+00:02:38.010 --> 00:02:41.730
+For detecting multiple
+graph relations
+
+00:02:41.730 --> 00:02:45.840
+between multiple people,
+you might use graph.
+
+00:02:45.840 --> 00:02:48.810
+If you want to find
+similar transactions like,
+
+00:02:48.810 --> 00:02:51.090
+what would this
+database look like?
+
+00:02:51.090 --> 00:02:54.030
+What is this transaction
+looking like?
+
+00:02:54.030 --> 00:02:59.580
+Buying something from Walmart,
+what does that look like?
+
+00:02:59.580 --> 00:03:02.010
+Is there a similar
+transaction to that?
+
+00:03:02.010 --> 00:03:03.750
+There is that too.
+
+00:03:03.750 --> 00:03:07.950
+And then finally, you would
+want all of this coming
+
+00:03:07.950 --> 00:03:11.580
+to a statistical baseline, which
+essentially means analytics.
+
+00:03:11.580 --> 00:03:13.650
+We have five
+different databases,
+
+00:03:13.650 --> 00:03:17.070
+five different sync jobs,
+five different auth systems.
+
+00:03:17.070 --> 00:03:20.550
+And because of all of this,
+you have so much latency
+
+00:03:20.550 --> 00:03:22.740
+because your application
+needs to wait
+
+00:03:22.740 --> 00:03:25.590
+to read from all of this.
+
+00:03:25.590 --> 00:03:27.030
+The costs are also the same.
+
+00:03:27.030 --> 00:03:28.290
+That's what I'm trying to say.
+
+00:03:28.290 --> 00:03:30.420
+Because you are trying to
+read from all of this,
+
+00:03:30.420 --> 00:03:33.030
+you have network latency.
+
+00:03:33.030 --> 00:03:35.760
+You have different
+security surfaces
+
+00:03:35.760 --> 00:03:36.990
+with all these databases.
+
+00:03:36.990 --> 00:03:45.450
+You have security in relational
+versus DW versus your --
+
+00:03:45.450 --> 00:03:47.490
+what do you say,
+graph, all of that.
+
+00:03:47.490 --> 00:03:50.880
+You have separate auth
+systems everywhere.
+
+00:03:50.880 --> 00:03:52.710
+You need to pay tax for that.
+
+00:03:52.710 --> 00:03:55.170
+You would have different
+database backups
+
+00:03:55.170 --> 00:03:56.310
+for all of this.
+
+00:03:56.310 --> 00:03:57.660
+Imagine that.
+
+00:03:57.660 --> 00:03:59.220
+There is no one single
+backup statement
+
+00:03:59.220 --> 00:04:00.750
+that would be doing this.
+
+00:04:00.750 --> 00:04:04.230
+Finally, more than anything,
+there is cognitive load
+
+00:04:04.230 --> 00:04:07.020
+so which means I need
+to, as a developer,
+
+00:04:07.020 --> 00:04:09.840
+I need to learn five
+different tools,
+
+00:04:09.840 --> 00:04:13.050
+five different query
+languages, etc.
+
+00:04:13.050 --> 00:04:16.650
+Now, as a user, it's
+okay, but as an agent,
+
+00:04:16.650 --> 00:04:20.370
+it's going to be even
+more tough because agents
+
+00:04:20.370 --> 00:04:24.090
+with so many choices tend
+to hallucinate a lot.
+
+00:04:24.090 --> 00:04:26.820
+More hallucination
+means more wrong data,
+
+00:04:26.820 --> 00:04:30.150
+which we really
+doesn't want to have.
+
+00:04:30.150 --> 00:04:34.830
+That's why we are here
+talking avoiding polyglot tax
+
+00:04:34.830 --> 00:04:36.870
+with Microsoft SQL core engine.
+
+00:04:36.870 --> 00:04:43.320
+And not just with engine
+avoiding the tax, you need scale
+
+00:04:43.320 --> 00:04:47.190
+to perform and use the
+best of this engine.
+
+00:04:47.190 --> 00:04:50.490
+That best of this engine comes
+from Azure SQL Hyperscale.
+
+00:04:50.490 --> 00:04:54.270
+We will talk how Azure SQL
+Hyperscale helps with that.
+
+00:04:54.270 --> 00:04:56.970
+So Act 1: how to avoid the tax
+
+00:04:56.970 --> 00:04:59.370
+with all the different
+capabilities that we built
+
+00:04:59.370 --> 00:05:02.460
+into Microsoft SQL core engine.
+
+00:05:02.460 --> 00:05:06.590
+Act 2 is to how do you scale
+that Microsoft SQL core engine,
+
+00:05:06.590 --> 00:05:10.790
+which is the base of building
+the Azure SQL Hyperscale.
+
+00:05:10.790 --> 00:05:13.280
+Okay. Let's go into Part 1.
+
+00:05:13.280 --> 00:05:16.010
+Okay. So let's talk
+about the first act,
+
+00:05:16.010 --> 00:05:19.700
+which is the core engine and how
+we are avoiding the polyglot tax
+
+00:05:19.700 --> 00:05:20.900
+with Microsoft SQL.
+
+00:05:20.900 --> 00:05:28.650
+Okay. So let's say
+you have the --
+
+00:05:28.650 --> 00:05:34.800
+as I mentioned in the fraud
+detection app setting,
+
+00:05:34.800 --> 00:05:38.370
+where you would need, if
+you are logging from app
+
+00:05:38.370 --> 00:05:40.770
+or if you are logging
+from a web browser,
+
+00:05:40.770 --> 00:05:42.540
+you need a JSON
+kind of a document.
+
+00:05:42.540 --> 00:05:45.990
+And how would SQL
+really do that?
+
+00:05:45.990 --> 00:05:52.470
+So recently, SQL essentially
+introduced JSON native type
+
+00:05:52.470 --> 00:05:59.160
+and JSON indexes, and it is --
+previously, when we started,
+
+00:05:59.160 --> 00:06:03.120
+we kind of did NVARCHAR MAX,
+but it's no more NVARCHAR MAX.
+
+00:06:03.120 --> 00:06:08.280
+It's purely JSON type,
+native JSON type, ANSI.
+
+00:06:08.280 --> 00:06:11.250
+And it is a pre-parsed binary,
+
+00:06:11.250 --> 00:06:14.160
+which means the way
+we store the JSON
+
+00:06:14.160 --> 00:06:17.610
+in our engine is a
+pre-parsed binary,
+
+00:06:17.610 --> 00:06:22.410
+which essentially makes
+JSON save 30 to 50% less.
+
+00:06:22.410 --> 00:06:25.890
+And there is this
+famous JSON index,
+
+00:06:25.890 --> 00:06:31.140
+which in another relational
+databases where you index.
+
+00:06:31.140 --> 00:06:35.190
+When you index, the entire
+JSON document gets indexed.
+
+00:06:35.190 --> 00:06:37.320
+The cool thing that
+we did with JSON
+
+00:06:37.320 --> 00:06:41.640
+in Microsoft SQL is you can
+index the particular path
+
+00:06:41.640 --> 00:06:42.630
+of that JSON.
+
+00:06:42.630 --> 00:06:46.770
+So that essentially makes
+you feel that, okay,
+
+00:06:46.770 --> 00:06:51.870
+if I want to search only on the
+device, then whatever the date
+
+00:06:51.870 --> 00:06:56.340
+or anything, I can index only on
+the path of device in that JSON
+
+00:06:56.340 --> 00:07:00.660
+and attributes, and your
+JSON index will essentially
+
+00:07:00.660 --> 00:07:01.680
+pick that.
+
+00:07:01.680 --> 00:07:07.890
+Now, with JSON, one of the
+favorite features of using JSON,
+
+00:07:07.890 --> 00:07:10.590
+even for the people in
+document databases,
+
+00:07:10.590 --> 00:07:13.650
+is the schema flexibility.
+
+00:07:13.650 --> 00:07:16.740
+You can have a JSON document
+of, let's say, four attributes,
+
+00:07:16.740 --> 00:07:20.340
+one of them, and another JSON
+document of five attributes.
+
+00:07:20.340 --> 00:07:22.050
+In a relational
+world, you might need
+
+00:07:22.050 --> 00:07:25.560
+to add one more column
+and all of that.
+
+00:07:25.560 --> 00:07:27.390
+That is not there with JSON.
+
+00:07:27.390 --> 00:07:29.280
+And, hey, SQL supports it.
+
+00:07:29.280 --> 00:07:30.780
+Microsoft SQL supports it.
+
+00:07:30.780 --> 00:07:33.840
+And now, all the JSON
+updates that you do
+
+00:07:33.840 --> 00:07:37.770
+and what all you do follow the
+same transaction boundary,
+
+00:07:37.770 --> 00:07:39.900
+and no more or nothing
+more than that,
+
+00:07:39.900 --> 00:07:42.540
+so which means you can
+rollback, roll forward,
+
+00:07:42.540 --> 00:07:45.540
+all the ACID
+properties are done.
+
+00:07:45.540 --> 00:07:48.840
+So we kind of see
+the Microsoft SQL.
+
+00:07:48.840 --> 00:07:55.620
+We did -- internally,
+we did the YCSW tests,
+
+00:07:55.620 --> 00:08:00.420
+and we see that we are no less
+than any document database
+
+00:08:00.420 --> 00:08:02.130
+when it comes to
+JSON performance
+
+00:08:02.130 --> 00:08:03.870
+and JSON index performance.
+
+00:08:03.870 --> 00:08:07.620
+That's why we -- once you
+do this, I almost kind
+
+00:08:07.620 --> 00:08:09.840
+of say you need not really think
+
+00:08:09.840 --> 00:08:11.730
+about having a separate
+document database.
+
+00:08:11.730 --> 00:08:13.740
+You can essentially say goodbye,
+
+00:08:13.740 --> 00:08:17.130
+and we just bank
+on Microsoft SQL.
+
+00:08:17.130 --> 00:08:23.190
+Now, since forever, as I said,
+we have invested in graph,
+
+00:08:23.190 --> 00:08:26.190
+and you have graph
+in Microsoft SQL.
+
+00:08:26.190 --> 00:08:31.260
+You can do MATCH, and you can
+say the syntax is natively
+
+00:08:31.260 --> 00:08:36.150
+supported, and you can have the
+query optimizer understand this
+
+00:08:36.150 --> 00:08:39.120
+MATCH and give you
+a perfect plan
+
+00:08:39.120 --> 00:08:40.830
+that is required for this MATCH.
+
+00:08:40.830 --> 00:08:47.190
+And that way, graph is inbuilt
+in Microsoft SQL itself.
+
+00:08:47.190 --> 00:08:48.810
+So you have JSON.
+
+00:08:48.810 --> 00:08:50.010
+You have graph.
+
+00:08:50.010 --> 00:08:55.470
+And there are graphs also
+very interesting scenarios
+
+00:08:55.470 --> 00:08:59.700
+when it comes to application
+like anti-fraud detection,
+
+00:08:59.700 --> 00:09:01.380
+fraud detection,
+and all of that.
+
+00:09:01.380 --> 00:09:07.260
+So you really need -- wherever
+you need a specialist graph kind
+
+00:09:07.260 --> 00:09:09.660
+of scenarios, you need --
+
+00:09:09.660 --> 00:09:14.430
+Microsoft SQL does support all
+the basic graph functionalities,
+
+00:09:14.430 --> 00:09:18.840
+such that you can use
+Microsoft SQL for that.
+
+00:09:18.840 --> 00:09:25.800
+Now, recently, we started
+supporting vectors.
+
+00:09:25.800 --> 00:09:29.850
+And when we started, again, we
+used to support vectors on top
+
+00:09:29.850 --> 00:09:32.820
+of varbinary, and then
+we immediately switched
+
+00:09:32.820 --> 00:09:34.950
+and vectors in native type.
+
+00:09:34.950 --> 00:09:38.430
+Now, we initially
+released vector type,
+
+00:09:38.430 --> 00:09:41.610
+but we haven't released
+the index on it.
+
+00:09:41.610 --> 00:09:46.230
+Later, we released vector
+indexes using the DiskANN,
+
+00:09:46.230 --> 00:09:48.300
+which is a great
+Microsoft research,
+
+00:09:48.300 --> 00:09:50.760
+which came out from this
+Microsoft research,
+
+00:09:50.760 --> 00:09:56.430
+and which is essentially
+pretty fast and HNSW.
+
+00:09:56.430 --> 00:10:01.320
+And now, imagine vector
+databases are kind of tricky.
+
+00:10:01.320 --> 00:10:04.710
+If you have a specialized
+vector database,
+
+00:10:04.710 --> 00:10:10.680
+and if you don't have the
+operational data's context
+
+00:10:10.680 --> 00:10:17.040
+to it, what happens is you would
+end up searching a lot number
+
+00:10:17.040 --> 00:10:19.860
+of rows, a lot
+number of vectors,
+
+00:10:19.860 --> 00:10:22.230
+and that is costly in general.
+
+00:10:22.230 --> 00:10:27.630
+Let's say you want to
+search about person Bob.
+
+00:10:27.630 --> 00:10:34.470
+And that person Bob is in
+one of the relational data.
+
+00:10:34.470 --> 00:10:38.520
+You find that person, and you
+will select transactions similar
+
+00:10:38.520 --> 00:10:43.200
+to that, which essentially gives
+you more context, and hence,
+
+00:10:43.200 --> 00:10:49.380
+it will help you -- it will
+help you reduce the --
+
+00:10:49.380 --> 00:10:52.830
+reduce the tax on it, and
+it will be pretty fast.
+
+00:10:52.830 --> 00:10:54.780
+Hence, essentially,
+it's a pre-filter.
+
+00:10:54.780 --> 00:11:00.870
+And we also kind of introduced
+very recently updatable
+
+00:11:00.870 --> 00:11:02.400
+DiskANN indexes.
+
+00:11:02.400 --> 00:11:08.190
+So this essentially makes people
+who are vector databases kind
+
+00:11:08.190 --> 00:11:12.330
+of -- there is no need of a
+separate vector database.
+
+00:11:12.330 --> 00:11:14.850
+Now, clustered columnstore.
+
+00:11:14.850 --> 00:11:21.300
+This is one of the very famous
+features that SQL have.
+
+00:11:21.300 --> 00:11:22.920
+And we are
+continuously investing
+
+00:11:22.920 --> 00:11:32.850
+in this columnstore today, where
+-- so in SQL, traditionally used
+
+00:11:32.850 --> 00:11:35.880
+to be its rowstore, you can
+convert them to columnstore,
+
+00:11:35.880 --> 00:11:38.850
+and which is more OLAP-friendly.
+
+00:11:38.850 --> 00:11:43.290
+And all the data that you
+have for the analytics,
+
+00:11:43.290 --> 00:11:46.680
+you can transfer them as a
+columnstore, which essentially,
+
+00:11:46.680 --> 00:11:50.940
+again, gives you a very huge
+amount of compression for you
+
+00:11:50.940 --> 00:11:54.780
+to -- on top of the
+rowstore, and you can expose
+
+00:11:54.780 --> 00:11:57.540
+that for your
+analytics endpoint.
+
+00:11:57.540 --> 00:12:00.750
+So that essentially
+gives you HTAP.
+
+00:12:00.750 --> 00:12:06.120
+One, you have the
+primary transactions.
+
+00:12:06.120 --> 00:12:07.050
+You have analytics.
+
+00:12:07.050 --> 00:12:08.520
+You have JSON.
+
+00:12:08.520 --> 00:12:11.580
+But just having
+transactions, analytics,
+
+00:12:11.580 --> 00:12:15.150
+and the real-time transactions,
+it makes Microsoft SQL one
+
+00:12:15.150 --> 00:12:17.550
+of the best analytical
+stores out there.
+
+00:12:17.550 --> 00:12:20.580
+So now, combine all this story.
+
+00:12:20.580 --> 00:12:22.560
+Let's look at all of this.
+
+00:12:22.560 --> 00:12:24.480
+You have JSON.
+
+00:12:24.480 --> 00:12:30.300
+You got the order history of
+a person using relational.
+
+00:12:30.300 --> 00:12:32.970
+That's what I'm kind
+of doing with this.
+
+00:12:32.970 --> 00:12:37.050
+And then you kind of got the
+device footprint from JSON,
+
+00:12:37.050 --> 00:12:40.110
+saying -- by just
+using JSON value.
+
+00:12:40.110 --> 00:12:45.240
+And then you said, "Okay,
+for this, can you give me
+
+00:12:45.240 --> 00:12:50.850
+for the MATCH of this -- for a
+risk score greater than 0.8?
+
+00:12:50.850 --> 00:12:54.570
+And then find the similar
+transactions of that
+
+00:12:54.570 --> 00:12:59.220
+in the vector table and give a
+90-day baseline on top of it."
+
+00:12:59.220 --> 00:13:04.500
+And I can write all of it in
+a single stored procedure
+
+00:13:04.500 --> 00:13:09.270
+and execute that, and it will
+have one transaction boundary.
+
+00:13:09.270 --> 00:13:13.830
+Which means, let's say when you
+are writing something on JSON,
+
+00:13:13.830 --> 00:13:16.260
+if it fails, everything fails.
+
+00:13:16.260 --> 00:13:20.550
+This is very, very important
+for agents because agents,
+
+00:13:20.550 --> 00:13:27.390
+though one of the fact that we
+learned recently is agent needs
+
+00:13:27.390 --> 00:13:29.340
+a lot of data to read.
+
+00:13:29.340 --> 00:13:31.980
+But agent also
+loves idempotency,
+
+00:13:31.980 --> 00:13:34.770
+which means they
+come, they write.
+
+00:13:34.770 --> 00:13:38.220
+If they write, they
+might rewrite because of
+
+00:13:38.220 --> 00:13:42.210
+so many things, which means
+they need a proper rollback.
+
+00:13:42.210 --> 00:13:47.130
+ACID semantics are so
+important in agentic world
+
+00:13:47.130 --> 00:13:50.880
+than a normal world
+because in a normal world,
+
+00:13:50.880 --> 00:13:53.910
+a developer would be sitting
+and making sure that, oh,
+
+00:13:53.910 --> 00:13:57.090
+this transaction has this
+transaction boundary.
+
+00:13:57.090 --> 00:14:02.310
+And hence, when it comes to
+agents, they just come in,
+
+00:14:02.310 --> 00:14:04.590
+put the transaction, and go out.
+
+00:14:04.590 --> 00:14:09.180
+That we should really make
+sure that ACID is the only way
+
+00:14:09.180 --> 00:14:11.610
+where you can know the
+data that is coming
+
+00:14:11.610 --> 00:14:14.940
+in is completely coming
+in and get committed.
+
+00:14:14.940 --> 00:14:18.720
+So it becomes even more
+important in the agentic world.
+
+00:14:18.720 --> 00:14:22.860
+Now, that's the part
+with core engine,
+
+00:14:22.860 --> 00:14:25.200
+where you avoided polyglot tax.
+
+00:14:25.200 --> 00:14:29.610
+Now, take this core engine,
+take it up, and you plug
+
+00:14:29.610 --> 00:14:33.210
+that into something
+which scales.
+
+00:14:33.210 --> 00:14:34.650
+That is Hyperscale.
+
+00:14:34.650 --> 00:14:35.700
+That is the Hyperscale,
+
+00:14:35.700 --> 00:14:39.390
+and I call this databases
+peace of mind database.
+
+00:14:39.390 --> 00:14:41.580
+The reason why I call
+this databases a peace
+
+00:14:41.580 --> 00:14:47.100
+of mind database is
+when you start --
+
+00:14:47.100 --> 00:14:48.270
+there is a famous customer.
+
+00:14:48.270 --> 00:14:50.460
+He told me this story.
+
+00:14:50.460 --> 00:14:53.190
+He mentioned, "Hey, Aditya.
+
+00:14:53.190 --> 00:14:55.920
+After we switched to Hyperscale,
+
+00:14:55.920 --> 00:14:58.620
+I can really sleep
+peacefully in the night."
+
+00:14:58.620 --> 00:15:01.350
+That made me come up with
+this peace of mind database
+
+00:15:01.350 --> 00:15:03.540
+with some other colleagues.
+
+00:15:03.540 --> 00:15:08.010
+The reason why I
+said that whatever
+
+00:15:08.010 --> 00:15:09.270
+that customer told me is
+
+00:15:09.270 --> 00:15:12.810
+so important is the
+customer need not wake
+
+00:15:12.810 --> 00:15:17.790
+up for a file group full, or
+a file full, or a log full,
+
+00:15:17.790 --> 00:15:21.150
+or anything because
+Hyperscale just grows
+
+00:15:21.150 --> 00:15:22.950
+as your application grows.
+
+00:15:22.950 --> 00:15:25.740
+And it has its own
+dedicated log service.
+
+00:15:25.740 --> 00:15:28.530
+It has its own page
+servers and Azure storage.
+
+00:15:28.530 --> 00:15:34.410
+So why I typically show
+a architecture diagram,
+
+00:15:34.410 --> 00:15:37.800
+here I'm not showing it
+purposefully because all you,
+
+00:15:37.800 --> 00:15:39.930
+as an audience, need
+
+00:15:39.930 --> 00:15:45.240
+to understand here is Hyperscale
+has different components.
+
+00:15:45.240 --> 00:15:49.380
+You have log service, dedicated
+log service for your writes.
+
+00:15:49.380 --> 00:15:52.680
+Your reads are coming
+from page servers,
+
+00:15:52.680 --> 00:15:57.630
+which are essentially a --
+which have SSDs of its own,
+
+00:15:57.630 --> 00:15:58.890
+and it is asynchronous.
+
+00:15:58.890 --> 00:16:03.450
+Log service will do continuous
+redo into page service.
+
+00:16:03.450 --> 00:16:06.780
+This page service will
+continuously write back
+
+00:16:06.780 --> 00:16:11.670
+into Azure storage for the
+durable -- as a durable tier.
+
+00:16:11.670 --> 00:16:15.630
+Now, if you do that, because you
+are writing into Azure storage,
+
+00:16:15.630 --> 00:16:19.620
+what happens is we can use
+the Azure storage's tech
+
+00:16:19.620 --> 00:16:21.510
+of taking snapshots.
+
+00:16:21.510 --> 00:16:25.860
+Now, eventually, it became a
+good news for all the users
+
+00:16:25.860 --> 00:16:29.250
+because compute on the
+top is not involved
+
+00:16:29.250 --> 00:16:32.850
+in taking the backups, which
+means there is no pages
+
+00:16:32.850 --> 00:16:35.130
+that were read to take a backup.
+
+00:16:35.130 --> 00:16:38.550
+Or in traditional SQL, if you
+are doing backup database,
+
+00:16:38.550 --> 00:16:41.310
+database name, you are
+essentially reading that backup,
+
+00:16:41.310 --> 00:16:42.960
+reading all the data
+into the compute
+
+00:16:42.960 --> 00:16:45.420
+and writing it
+back into the.bak.
+
+00:16:45.420 --> 00:16:50.670
+That is not needed anymore with
+Hyperscale snapshot backups.
+
+00:16:50.670 --> 00:16:58.360
+Now, how, in general, with
+agents and all of this world,
+
+00:16:59.580 --> 00:17:02.730
+people use Hyperscale.
+
+00:17:02.730 --> 00:17:09.570
+So the way they use is they use
+primary for the OLTP writes.
+
+00:17:09.570 --> 00:17:11.100
+One of the major things
+
+00:17:11.100 --> 00:17:15.570
+that Hyperscale has a advantage
+is having named replicas.
+
+00:17:15.570 --> 00:17:17.310
+What this named replicas is,
+
+00:17:17.310 --> 00:17:20.160
+think of it like you have
+its own connection string
+
+00:17:20.160 --> 00:17:21.980
+for a readable copy.
+
+00:17:21.980 --> 00:17:23.570
+Now, why is that important?
+
+00:17:23.570 --> 00:17:27.920
+That is important because that
+readable copy essentially has
+
+00:17:27.920 --> 00:17:30.890
+its own buffer pool, which
+means its own memory,
+
+00:17:30.890 --> 00:17:32.850
+its own L2 cache.
+
+00:17:32.850 --> 00:17:36.660
+We call it as RBPEX, which is
+resilient buffer pool extension,
+
+00:17:36.660 --> 00:17:39.150
+which means it has
+its own working set.
+
+00:17:39.150 --> 00:17:42.240
+And that working set
+is extremely different
+
+00:17:42.240 --> 00:17:44.820
+to any other named
+replica that you give.
+
+00:17:44.820 --> 00:17:48.870
+So you can differentiate
+working sets in Hyperscale
+
+00:17:48.870 --> 00:17:51.390
+with different named replicas
+
+00:17:51.390 --> 00:17:56.130
+with an underlying all
+the same data of 128 TB.
+
+00:17:56.130 --> 00:17:59.970
+And you can have your writes
+not affected by reads.
+
+00:17:59.970 --> 00:18:04.550
+So we see customers doing
+writes on the primary.
+
+00:18:04.550 --> 00:18:06.380
+They are continuous writes.
+
+00:18:06.380 --> 00:18:12.470
+We see customers doing
+agents pointed to one
+
+00:18:12.470 --> 00:18:15.560
+of the named replicas, and
+they do vector distances,
+
+00:18:15.560 --> 00:18:17.270
+similar transactions,
+all of that,
+
+00:18:17.270 --> 00:18:20.750
+and find the cosine similarity
+
+00:18:20.750 --> 00:18:23.150
+and give back what
+exactly it is.
+
+00:18:23.150 --> 00:18:26.160
+So that from one named replica.
+
+00:18:27.200 --> 00:18:30.740
+I have seen customers
+using nightly jobs,
+
+00:18:30.740 --> 00:18:33.290
+and they use serverless
+specifically
+
+00:18:33.290 --> 00:18:36.420
+for those named replicas,
+where they go --
+
+00:18:36.420 --> 00:18:40.230
+in the morning, the serverless
+comes to two vCores,
+
+00:18:40.230 --> 00:18:44.940
+and in the night when they use,
+they expand it to 128 vCores.
+
+00:18:44.940 --> 00:18:49.890
+They run their job, run the
+analytics, and they sleep off.
+
+00:18:49.890 --> 00:18:52.710
+So they use separate
+named replica for that.
+
+00:18:52.710 --> 00:18:58.080
+By the way, your primary
+can always be provisioned,
+
+00:18:58.080 --> 00:19:03.750
+and your named replicas
+can be serverless.
+
+00:19:03.750 --> 00:19:07.680
+So we also care about your
+business continuity; hence,
+
+00:19:07.680 --> 00:19:13.320
+we do have Geo-DR and high
+availability built-in
+
+00:19:13.320 --> 00:19:14.850
+into Hyperscale.
+
+00:19:14.850 --> 00:19:19.890
+Now, let's look at
+the other side of it.
+
+00:19:19.890 --> 00:19:23.160
+Hyperscale comes -- because
+Hyperscale also is a Microsoft
+
+00:19:23.160 --> 00:19:29.130
+SQL core engine, the engine
+itself has the best security
+
+00:19:29.130 --> 00:19:30.720
+out there.
+
+00:19:30.720 --> 00:19:31.860
+Do you know something
+
+00:19:31.860 --> 00:19:38.220
+that Microsoft SQL
+supports ledger too?
+
+00:19:38.220 --> 00:19:41.460
+That's what we support
+even in Hyperscale
+
+00:19:41.460 --> 00:19:43.680
+because Microsoft
+SQL supports it.
+
+00:19:43.680 --> 00:19:45.210
+We have dynamic data masking.
+
+00:19:45.210 --> 00:19:49.080
+You can have always encrypted,
+
+00:19:49.080 --> 00:19:50.550
+(inaudible) only
+stored procedures,
+
+00:19:50.550 --> 00:19:52.470
+tenant-based execution,
+
+00:19:52.470 --> 00:19:56.250
+all of that using
+Microsoft SQL core engine
+
+00:19:56.250 --> 00:19:57.660
+and also in Hyperscale.
+
+00:19:57.660 --> 00:20:04.920
+Now, what is AI or
+agent or any talk
+
+00:20:04.920 --> 00:20:07.380
+without having an MCP server?
+
+00:20:07.380 --> 00:20:11.310
+So SQL has its own MCP server.
+
+00:20:11.310 --> 00:20:13.830
+We did that with the
+Data API builder.
+
+00:20:13.830 --> 00:20:18.540
+You have so many
+tools that you use --
+
+00:20:18.540 --> 00:20:21.270
+you can use with
+this MCP server.
+
+00:20:21.270 --> 00:20:24.450
+You point the -- you have
+a DAB, create a DAB.
+
+00:20:24.450 --> 00:20:27.660
+You created a Data API builder
+using Data API builder.
+
+00:20:27.660 --> 00:20:32.460
+You created that, and you get
+your Data API REST endpoint.
+
+00:20:32.460 --> 00:20:36.450
+Using that REST endpoint, you
+can point that to an MCP,
+
+00:20:36.450 --> 00:20:42.360
+and that MCP can come from
+Hyperscale, and then that's it.
+
+00:20:42.360 --> 00:20:46.740
+So you can talk to your data,
+which is in Hyperscale.
+
+00:20:46.740 --> 00:20:48.090
+Imagine this.
+
+00:20:48.090 --> 00:20:50.250
+You have 128 TB data.
+
+00:20:50.250 --> 00:20:51.780
+You have agents.
+
+00:20:51.780 --> 00:20:53.580
+You have writes.
+
+00:20:53.580 --> 00:20:55.260
+And you have MCP.
+
+00:20:55.260 --> 00:21:00.630
+You can talk to all of this with
+MCP with the natural language,
+
+00:21:00.630 --> 00:21:04.650
+saying, "Update
+so-and-so person's name,
+
+00:21:04.650 --> 00:21:09.060
+last name to this," or, "Change
+the salary of so-and-so person
+
+00:21:09.060 --> 00:21:12.720
+to this," all of it using MCP.
+
+00:21:12.720 --> 00:21:15.030
+That's what we have
+with SQL MCP server.
+
+00:21:15.030 --> 00:21:18.870
+Yeah. So what is -- we
+understand that core engine --
+
+00:21:18.870 --> 00:21:22.920
+now come back to core
+engine is now --
+
+00:21:22.920 --> 00:21:28.080
+doesn't have polyglot tax, and
+Hyperscale is giving scale.
+
+00:21:28.080 --> 00:21:31.950
+Whatever it is, the economics
+are very important.
+
+00:21:31.950 --> 00:21:36.720
+So in the economics, because
+you are avoiding polyglot tax,
+
+00:21:36.720 --> 00:21:38.580
+essentially, you are
+eliminating all the sidecars,
+
+00:21:38.580 --> 00:21:41.430
+which means separate vector
+DB, separate graph DB.
+
+00:21:41.430 --> 00:21:45.780
+All of them are not there, and
+hence, you eliminate that tax.
+
+00:21:45.780 --> 00:21:50.970
+You only pay for what you use
+with serverless, and it can go
+
+00:21:50.970 --> 00:21:54.210
+from two vCores to 80 vCores,
+but only when you need.
+
+00:21:54.210 --> 00:21:56.520
+If not, you will come
+back to the two vCores
+
+00:21:56.520 --> 00:21:58.920
+and pay the less bill for that.
+
+00:21:58.920 --> 00:22:03.450
+You pay only for storage
+from 10 GB to 128 TB.
+
+00:22:03.450 --> 00:22:07.500
+We won't over-provision like you
+need not over-provision upfront,
+
+00:22:07.500 --> 00:22:09.810
+and you don't need to pay bill.
+
+00:22:09.810 --> 00:22:12.510
+Whenever your data grows,
+we grow with that,
+
+00:22:12.510 --> 00:22:15.330
+which means even the
+people cost is less
+
+00:22:15.330 --> 00:22:17.100
+because you really
+need not think
+
+00:22:17.100 --> 00:22:20.160
+of having five different
+personas doing five different
+
+00:22:20.160 --> 00:22:21.930
+things and five
+different expertise.
+
+00:22:21.930 --> 00:22:25.650
+You can have one SQL expertise,
+and that's pretty much it.
+
+00:22:25.650 --> 00:22:30.480
+So Hyperscale also -- imagine
+all of this we are giving you
+
+00:22:30.480 --> 00:22:34.230
+with a 68% better performance
+than our compete.
+
+00:22:34.230 --> 00:22:36.510
+So that's a steal.
+
+00:22:36.510 --> 00:22:39.960
+So that's why we say
+that Microsoft SQL,
+
+00:22:39.960 --> 00:22:41.370
+combined with Azure
+SQL Hyperscale,
+
+00:22:41.370 --> 00:22:42.900
+has the best economics.
+
+00:22:42.900 --> 00:22:45.270
+By the way, one
+point I really want
+
+00:22:45.270 --> 00:22:53.430
+to touch upon is Azure SQL
+Hyperscale is the database
+
+00:22:53.430 --> 00:22:57.270
+with licensing-free model.
+
+00:22:57.270 --> 00:23:02.280
+Now, so ultimately,
+what is here.
+
+00:23:02.280 --> 00:23:06.630
+So two acts, five ideas
+I will leave you with.
+
+00:23:06.630 --> 00:23:10.500
+Polyglot tax is a choice,
+not an inevitability,
+
+00:23:10.500 --> 00:23:13.770
+which means it's not
+really needed to go
+
+00:23:13.770 --> 00:23:15.570
+to polyglot tax choice.
+
+00:23:15.570 --> 00:23:17.940
+But I also want to
+ground upon a truth
+
+00:23:17.940 --> 00:23:20.430
+that one size doesn't fit all.
+
+00:23:20.430 --> 00:23:23.970
+So there are cases where,
+in the extreme cases,
+
+00:23:23.970 --> 00:23:29.310
+you might need a DQP, and you
+really need a data warehouse.
+
+00:23:29.310 --> 00:23:31.650
+In the extreme cases of graph,
+
+00:23:31.650 --> 00:23:33.930
+you might need a separate
+graph databases.
+
+00:23:33.930 --> 00:23:38.220
+But all the basic scenario,
+all the scenarios where,
+
+00:23:38.220 --> 00:23:42.060
+for the most of the scenarios,
+unless it is exceptional,
+
+00:23:42.060 --> 00:23:45.690
+Microsoft SQL covers you with an
+exceptional relational workload.
+
+00:23:45.690 --> 00:23:47.460
+So that's what we are saying.
+
+00:23:47.460 --> 00:23:49.410
+And Hyperscale
+architecture is one
+
+00:23:49.410 --> 00:23:54.330
+of the best architectures
+purpose-built for cloud.
+
+00:23:54.330 --> 00:23:59.340
+And agents, as I mentioned
+in the talk, really,
+
+00:23:59.340 --> 00:24:03.780
+really need all these
+guarantees more than ever.
+
+00:24:03.780 --> 00:24:09.000
+So Microsoft SQL and Azure
+SQL Hyperscale as a story is
+
+00:24:09.000 --> 00:24:12.450
+so shining right now than ever.
+
+00:24:12.450 --> 00:24:16.770
+So all I say is avoid
+the tax, ship at scale,
+
+00:24:16.770 --> 00:24:19.260
+and yeah, sleep at night.
+
+00:24:19.260 --> 00:24:20.650
+Thank you.

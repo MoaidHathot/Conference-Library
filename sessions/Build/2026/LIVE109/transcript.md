@@ -1,0 +1,337 @@
+**[00:00:00]** Hello my friends, and welcome back to BUILD.
+**[00:00:02]** I am excited.
+**[00:00:02]** I'm Seth Juarez.
+**[00:00:03]** I'm here with my friend Scott Guthrie.
+**[00:00:04]** How are you doing, my friend?
+**[00:00:05]** Doing well, Seth.
+**[00:00:06]** Fantastic.
+**[00:00:07]** So are are you enjoying build?
+**[00:00:08]** First of all, I am fantastic.
+**[00:00:10]** So let's start first.
+**[00:00:11]** I want to start because I want to get into
+**[00:00:13]** this.
+**[00:00:13]** What's top of mind for you, for developers as they're
+**[00:00:16]** here and tell us what you do so people can
+**[00:00:18]** know.
+**[00:00:18]** They all know, but I want you to tell.
+**[00:00:19]** Them sure.
+**[00:00:20]** I mean so so you know what my job is
+**[00:00:22]** is I run Azure and kind of the overall Microsoft
+**[00:00:26]** cloud infrastructure.
+**[00:00:27]** So everything that we showed today runs on top of
+**[00:00:31]** that.
+**[00:00:32]** So my team and I are kind of sort of
+**[00:00:35]** involved in everything at the base level and then also
+**[00:00:39]** all the data platform and several of the higher level
+**[00:00:43]** services.
+**[00:00:43]** And so you know, things that are top of mind
+**[00:00:46]** for me are, you know, how do we keep building
+**[00:00:48]** out the infrastructure to support the AI revolution that's happening?
+**[00:00:51]** So I spend an awful lot of time working on
+**[00:00:54]** adding data centers and network and compute and storage to
+**[00:00:58]** make all that possible.
+**[00:01:00]** How do we do it more cost effectively?
+**[00:01:02]** And so a lot of the innovations we talked about
+**[00:01:05]** even today in the keynote around Azure Maya and Azure
+**[00:01:08]** Cobalt in terms of our first party silicon, how do
+**[00:01:10]** we take, you know, large percentage of the cost out
+**[00:01:13]** of AI solutions?
+**[00:01:15]** And then how do we enable AI that's rock solid,
+**[00:01:18]** reliable, super fast, super performant and enables all the higher
+**[00:01:23]** level tooling, whether it's get up, Copilot or other tools,
+**[00:01:28]** Microsoft 365 and our overall ecintic solutions, you know, to
+**[00:01:32]** be a platform that you can then build amazing AI
+**[00:01:36]** solutions with.
+**[00:01:37]** So let's talk a little bit about the fundamentals, 'cause
+**[00:01:40]** this is the cool part about Azure is that there's
+**[00:01:43]** a ton of like operating system fundamentals.
+**[00:01:45]** Can you give people a sense of the scale of
+**[00:01:47]** this stuff?
+**[00:01:48]** Like we have a ton of data centers, a ton
+**[00:01:50]** of.
+**[00:01:50]** Tell us about that.
+**[00:01:52]** Yeah.
+**[00:01:52]** I mean, I think in our earnings report, you know,
+**[00:01:55]** we kind of quoted that we added over a GW
+**[00:01:58]** of data centers in 90 days and, you know, gigawatts
+**[00:02:01]** a lot, it's like the size of Seattle.
+**[00:02:04]** And so it's, you know, we're, we're growing fast and
+**[00:02:07]** we're doing it, as Satya talked about in the keynote,
+**[00:02:10]** responsibly, our data centers are 0 water waste.
+**[00:02:12]** So you know, they, they use less water than a
+**[00:02:15]** restaurant does in an annual year.
+**[00:02:18]** And you know, we, we invest very heavily in making
+**[00:02:21]** sure the communities that we operate in, we're good stewards
+**[00:02:24]** in terms of electricity prices, taxes, community engagement, because we
+**[00:02:29]** want to be long term members of the community.
+**[00:02:32]** And, and to do that, we have to act responsibly.
+**[00:02:35]** And then, you know, there's an awful lot of work
+**[00:02:39]** involved to do this all reliably at scale on a
+**[00:02:43]** consistent basis in 80 plus locations and countries around the
+**[00:02:48]** world.
+**[00:02:49]** That's the fun.
+**[00:02:50]** You say that with like, there's a lot of tell
+**[00:02:52]** us about the work involved because like these things, we
+**[00:02:54]** just, we just have them turned on and we're super
+**[00:02:56]** excited about it, but there's a lot of work that
+**[00:02:58]** goes on to do that.
+**[00:02:59]** Yeah, I mean, you, you need to get land, you
+**[00:03:01]** need to get power, you need to get permitting.
+**[00:03:05]** You know, in terms of the, the, you know, some
+**[00:03:08]** of these sites have 6000 workers on them in terms
+**[00:03:11]** of doing construction.
+**[00:03:13]** It's, it's very precision tradecraft.
+**[00:03:17]** You know, this is not just anyone can walk up.
+**[00:03:20]** You're talking about people with 510 years of experience in
+**[00:03:24]** terms of electrical cooling and other construction things.
+**[00:03:27]** So this, this is really tradecraft and you know, and
+**[00:03:30]** you got to do it safely.
+**[00:03:32]** And so we take safety incredibly importantly because at the
+**[00:03:36]** end of the day, you know, the most, you know,
+**[00:03:39]** we have signs that we put up on our job
+**[00:03:41]** sites.
+**[00:03:42]** The most important part of the day is you go
+**[00:03:44]** home alive and safe.
+**[00:03:45]** And, you know, and because this is high electrical equipment,
+**[00:03:48]** this is heavy equipment, you kind of can't take that
+**[00:03:50]** for granted.
+**[00:03:51]** And, you know, thankfully we have one of the best
+**[00:03:53]** safety records and again, one of the best environmental records
+**[00:03:56]** in the industry.
+**[00:03:57]** And, and we're kind of growing at scale.
+**[00:04:01]** And then there's the software that goes with it.
+**[00:04:02]** Yeah, of course.
+**[00:04:03]** Because when you're you're growing at the rate we're growing,
+**[00:04:06]** we're constantly having to change the network architecture, change the
+**[00:04:09]** storage architectures.
+**[00:04:11]** You know, there's huge supply chain constraints in the world
+**[00:04:14]** on memory, on SSDs, on hard drives.
+**[00:04:17]** And so you, you're constantly also having to architect new
+**[00:04:21]** ways of doing things to basically handle what is effectively
+**[00:04:25]** a doubling of capacity every two years or so.
+**[00:04:28]** And you know, generally in software, almost no software when
+**[00:04:33]** it's handles 10X the scale works.
+**[00:04:36]** And so you kind of if you're doubling every two
+**[00:04:38]** years, you kind of need to be starting on the
+**[00:04:40]** next generation almost immediately upon shipping the current generation because
+**[00:04:44]** you'll be at that next generation very quickly.
+**[00:04:47]** And that's, that's surprising because I, it's obviously something I
+**[00:04:50]** haven't considered because of your doubling scale.
+**[00:04:53]** Like everyone's built software on your website works great when
+**[00:04:55]** like your mom looks at it or your dad, right?
+**[00:04:57]** But then all of a sudden when thousands and then
+**[00:05:00]** hundreds of thousands and you have to change the way
+**[00:05:02]** you think about how to architect the software on top
+**[00:05:04]** of the core.
+**[00:05:05]** So what are some?
+**[00:05:06]** So what are some innovations that would be surprising to
+**[00:05:09]** folks here and watching that maybe they hadn't said it
+**[00:05:12]** needed to be done?
+**[00:05:13]** Well, I think, I think one of the things and,
+**[00:05:16]** and you know, we benefited with our partnership with Opening
+**[00:05:19]** eye as an example with some of our data services
+**[00:05:21]** and, and with Azure in general.
+**[00:05:22]** But you know, as you think about just give it
+**[00:05:27]** one example would be memory and chat history and authentication.
+**[00:05:33]** You know, in a world where you've got an agent
+**[00:05:36]** that's running all over the world, if all those agents
+**[00:05:40]** have to go back to a single database at some
+**[00:05:43]** point, your database will fall over.
+**[00:05:46]** You know, it, it just, it will not be able
+**[00:05:49]** to scale to the load of a chat TPT or
+**[00:05:51]** a Claude or a copilot.
+**[00:05:53]** And so, you know, how do you architect your database
+**[00:05:58]** layer so that you can scale, you know, linearly?
+**[00:06:02]** And, and so a lot of the work we did
+**[00:06:04]** in in Cosmos DB as an example, was to enable
+**[00:06:07]** that where we can basically do a separate instance of
+**[00:06:10]** Cosmos in every region, but then do eventual consistency of
+**[00:06:14]** the chat history so that, you know, if any region
+**[00:06:17]** has an issue, you, you just go seamlessly to the
+**[00:06:20]** next region and away you go.
+**[00:06:22]** But you don't have any synchronous locks anywhere.
+**[00:06:24]** And, and that way you can replicate scale units, you
+**[00:06:29]** can keep growing in a very natural way.
+**[00:06:33]** And you know, that'd be like one example.
+**[00:06:35]** And then, you know, the trick would be like things
+**[00:06:37]** like attachments when you upload something into ChatGPT, like if
+**[00:06:41]** you store it in the database and everyone's uploading documents
+**[00:06:44]** now and images, you know, that database gets really big.
+**[00:06:46]** And so, you know, how do we do external attachments
+**[00:06:49]** and spill over to BLOB storage where we effectively are
+**[00:06:52]** doing like archival level costs, but at the same time
+**[00:06:55]** having the ability to rate sequel against it and then
+**[00:06:58]** having a globally replicated state store.
+**[00:07:01]** You know that that type of thing is not easy.
+**[00:07:04]** And and what makes it particularly not easy is when
+**[00:07:07]** these apps are evolving constantly.
+**[00:07:09]** You can't like take it down for a day to
+**[00:07:11]** upgrade the schema.
+**[00:07:12]** You kind of need to keep the plane running in
+**[00:07:15]** the air while you swap out the engines, and that's
+**[00:07:17]** part of the fun of running a live service.
+**[00:07:20]** So I think that's a, this is a really good
+**[00:07:22]** pivot because we kind of touched on it a little
+**[00:07:25]** bit, but a lot of the Azure core stuff is
+**[00:07:27]** data and there's a lot of data products that we
+**[00:07:29]** have in terms of like breadth and specificity and kinds.
+**[00:07:33]** Can you talk about those a little bit?
+**[00:07:34]** Yeah.
+**[00:07:34]** I mean, we have, you know, I'd say broadly inside
+**[00:07:38]** our Azure data services, three types of operational data services.
+**[00:07:43]** Like 1 is our SQL family of products.
+**[00:07:45]** And in particular, you know, we've kind of taken our
+**[00:07:48]** traditional on Prem sequel and made it a great cloud
+**[00:07:51]** native solution.
+**[00:07:52]** And then with SQL Hyperscale, they're really enabling SAS based
+**[00:07:55]** applications where you can have elastic pools so that you
+**[00:07:58]** can maintain sort of a logical database per customer, but
+**[00:08:01]** you're effectively running it on a a Paas service that's
+**[00:08:04]** shared across customers.
+**[00:08:06]** And you know, that's been great.
+**[00:08:09]** Cosmos DB is our cloud native no SQL solution.
+**[00:08:12]** And as I mentioned, Chachi BT and Copilot and Teams
+**[00:08:15]** and a whole bunch of other customers use that Adobe
+**[00:08:18]** and others, it's really, really good for cloud native and
+**[00:08:21]** especially Eugentic scale.
+**[00:08:23]** And then one of the big services that we just
+**[00:08:26]** went public preview on today is Horizon DB, which is
+**[00:08:30]** our Postgres service that is really a cloud native Postgres
+**[00:08:34]** that's designed to enable horizontal scale out and it's Postgres
+**[00:08:39]** compatible.
+**[00:08:40]** But is really enables a much, much larger scale Postgres
+**[00:08:44]** database than what we've historically supported with our Postgres service
+**[00:08:50]** in Azure, which was 100% compatible with Postgres.
+**[00:08:53]** But because it's 100% compatible means that you're kind of
+**[00:08:57]** scaling the traditional original database in a more A compatible,
+**[00:09:02]** but at the same time scale limited way.
+**[00:09:05]** So Horizon DB, we're super excited about it has AI
+**[00:09:08]** built in, as does Cosmos and SQL.
+**[00:09:10]** And so it's, it's between those three, we've got a
+**[00:09:13]** really good set of offerings.
+**[00:09:14]** And then the big thing that we were really excited
+**[00:09:16]** about is our fabric, Microsoft Fabric, which is our analytic
+**[00:09:19]** stack.
+**[00:09:20]** And that has what we call 1 Lake where you
+**[00:09:23]** can store any type of data inclusive of data bricks
+**[00:09:27]** and snowflake.
+**[00:09:28]** Tables can be mounted in it in a zero copy
+**[00:09:31]** kind of way, meaning it shows up, but you don't
+**[00:09:34]** have to transfer data in and out.
+**[00:09:36]** And then Fabric gives you kind of a data warehouse.
+**[00:09:38]** It gives you streaming capabilities and a bunch more.
+**[00:09:40]** And one of the things then we talked about today
+**[00:09:44]** and is now GA is our Fabric IQ, which basically
+**[00:09:47]** takes the semantic models of Power BI, takes all the
+**[00:09:50]** data from Fabric or from data bricks and snowflake and
+**[00:09:54]** can surface it in Microsoft 365 Copilot.
+**[00:09:57]** And so suddenly when people are asking questions in their
+**[00:10:00]** inside their organization, we can leverage anything that's in Power
+**[00:10:03]** BI dashboards or any of the semantic models or the
+**[00:10:06]** data behind it to give much, much better answers.
+**[00:10:09]** And you know, collectively that makes up sort of the
+**[00:10:11]** Azure data services.
+**[00:10:13]** Yeah.
+**[00:10:13]** And it's quite expansive because you can choose between, you
+**[00:10:15]** know, no sequel.
+**[00:10:16]** You can choose from sequel, You can choose from Postgres
+**[00:10:19]** if you want, but it's a special kind of Postgres
+**[00:10:21]** that scales.
+**[00:10:22]** Can you give us a sense of the kind of
+**[00:10:23]** scale that you can get to with these services?
+**[00:10:26]** Well, I mean in terms of storage perspective, you know,
+**[00:10:30]** we had exabytes of storage per week now across Azure,
+**[00:10:33]** right?
+**[00:10:33]** And so it's it's a lot of data.
+**[00:10:35]** I remember once amount of time a petabyte was considered
+**[00:10:37]** a lot of data.
+**[00:10:38]** Yeah.
+**[00:10:38]** You know, an exabyte is a, you know, 1000 *
+**[00:10:41]** a petabyte.
+**[00:10:43]** And you know, we're adding those, you know, multiple multiples
+**[00:10:46]** of those week.
+**[00:10:47]** And so you can scale these things to be really,
+**[00:10:50]** really big, right.
+**[00:10:51]** And you know, and again, part of the challenge of
+**[00:10:55]** Agentic for all of us is when you have users
+**[00:10:58]** that are hitting your apps, you know, the amount of
+**[00:11:01]** database traffic you get on your app.
+**[00:11:03]** When you have a web UI or a mobile UI
+**[00:11:06]** and it's a user on the other end, you know,
+**[00:11:09]** you might get 1000 requests.
+**[00:11:11]** A second would be a very busy web app, right?
+**[00:11:14]** You know, with agents, you know you will get to
+**[00:11:16]** 1,000,000 of requests per second.
+**[00:11:18]** Yes.
+**[00:11:19]** And you know, I think one of the things that
+**[00:11:22]** apps are starting to struggle with is as you start
+**[00:11:26]** to have agents that go after things, you know, you
+**[00:11:29]** can get very quickly 10/20/30 X the volume of API
+**[00:11:33]** requests that you historically did.
+**[00:11:36]** And usually the first thing to buckle in your architecture
+**[00:11:38]** is your relational database or your data system.
+**[00:11:41]** And that's why it's going to be super important to
+**[00:11:44]** have these services that can scale and have flexibility so
+**[00:11:47]** that you can also adopt both relational and no sequel
+**[00:11:50]** solutions, including the ability to globally replicate it and have
+**[00:11:54]** local copies everywhere around the world for fast latency in
+**[00:11:57]** order to handle that new workflow.
+**[00:11:59]** And it's a good pivot because I think now we
+**[00:12:02]** need to talk about how AI is changing everything.
+**[00:12:05]** So what is different now?
+**[00:12:06]** We have about two minutes tell us about how AI
+**[00:12:08]** is changing, how fabric is helping with the IQ and
+**[00:12:10]** the context the data tell us about.
+**[00:12:12]** That I think with the, with the agents, I mean
+**[00:12:15]** it's, it's, I mean fundamentally it's changing everything over the
+**[00:12:18]** next couple years.
+**[00:12:20]** And in the same way that, you know, mobile app,
+**[00:12:22]** you know, smartphone apps changed everything in terms of our
+**[00:12:25]** consumer experience, the same way the web browser changed.
+**[00:12:28]** So that we've had multiple of these waves.
+**[00:12:30]** But you know, Agentic builds on everything that came before.
+**[00:12:33]** And I think it's a new level of cognition capabilities
+**[00:12:36]** that we historically didn't have inside our apps.
+**[00:12:39]** And, you know, I think architecturally I kind of talked
+**[00:12:43]** about data being key.
+**[00:12:45]** You know, AI is only really good if you have
+**[00:12:48]** got good data.
+**[00:12:49]** AI with bad data kind of sucks or has bad
+**[00:12:52]** decisions.
+**[00:12:53]** And so how do you surface the data inside your
+**[00:12:55]** organization?
+**[00:12:56]** And that's where the IQ layer really comes into play.
+**[00:12:59]** How do you scale that data so that your system
+**[00:13:02]** doesn't fall over and that your costs don't explode is
+**[00:13:05]** going to be key.
+**[00:13:07]** And then there's a whole bunch of other things at
+**[00:13:10]** the infrastructure layer, you know, things like VM start time
+**[00:13:13]** or the ability to run and bring up lots of
+**[00:13:16]** machines quickly, ephemerally, because you want to have like, say
+**[00:13:19]** a cloth sandbox, run something for a couple minutes, tear
+**[00:13:23]** it down, and then immediately have a new one.
+**[00:13:26]** You know, there's a bunch of architectural things both at
+**[00:13:28]** the software layer that we're investing in.
+**[00:13:30]** And then even things like Cobalt, which is our ARM
+**[00:13:33]** 64 processor is much, much faster at bringing up machines.
+**[00:13:37]** And you know, the whole memory architecture and the overall
+**[00:13:41]** subsystem at the silicon layer is really optimized for these,
+**[00:13:46]** you know, sometimes short lived agentic apps at scale and
+**[00:13:50]** that are sandboxed.
+**[00:13:51]** And you know, the things like MTC that we talked
+**[00:13:54]** about today and Windows that we're adding is also going
+**[00:13:56]** to be key to that architecture.
+**[00:13:58]** So I think with agents, it's not just about the
+**[00:14:00]** AI.
+**[00:14:00]** It really is going to be sort of a whole
+**[00:14:03]** evolution of the way software, both operating systems, cloud infrastructure,
+**[00:14:08]** dev tools, security, compliance, monitoring, AI OPS, like everything is
+**[00:14:13]** going to change all at once.
+**[00:14:15]** Well, thanks for editing on that.
+**[00:14:16]** Everything's going to change.
+**[00:14:17]** Thanks so much for being with us, my.
+**[00:14:18]** Friend, it's going to be a fun ride.
+**[00:14:19]** It's a fun.
+**[00:14:19]** Ride, Thank you so much and we'll see you in
+**[00:14:21]** a little bit.
+**[00:14:21]** Thanks everyone.

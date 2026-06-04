@@ -1,0 +1,1143 @@
+**[00:00:02]** All right, I think we are at time it's of
+**[00:00:05]** the hour.
+**[00:00:05]** So hello, I think maybe some folks will keep trickling
+**[00:00:09]** in as we go along.
+**[00:00:10]** And I know it is the end of the day.
+**[00:00:13]** So I'll hopefully be able to share some interesting new
+**[00:00:16]** information that is both useful and actionable and something you
+**[00:00:20]** can actually just take back and and make practical in
+**[00:00:23]** your team or in your organization's day-to-day lives.
+**[00:00:27]** So I will go ahead and get this started.
+**[00:00:30]** So right, the main thing we're going to be talking
+**[00:00:32]** about today is productivity and engineering productivity in the way
+**[00:00:36]** that we think about productivity now that so much is
+**[00:00:39]** changing about the way we build software.
+**[00:00:43]** Now over the course of this talk, I think there's,
+**[00:00:45]** you know, everything has been on and around AI or
+**[00:00:47]** in the extension of the AI space.
+**[00:00:50]** And there's really two ways for us to talk about
+**[00:00:53]** the AI value proposition and what it what it does
+**[00:00:55]** for us and what it helps us do with the
+**[00:00:58]** first one being how we use AI to make our
+**[00:01:00]** products better and we integrate them into product experiences and
+**[00:01:04]** change customer experiences.
+**[00:01:06]** And the second one is really about how we use
+**[00:01:09]** AI to make ourselves better, to change how we work,
+**[00:01:11]** not what we build.
+**[00:01:13]** And the entire focus of this talk is on how
+**[00:01:16]** we use AI to transform the way that we work.
+**[00:01:19]** Hopefully you've heard more than enough or maybe not enough
+**[00:01:22]** still about the first one, but this is really where
+**[00:01:24]** our focus is going to be today.
+**[00:01:26]** So in order to do this, I'm going to talk
+**[00:01:28]** about a couple of things.
+**[00:01:30]** And then we're going to keep a big chunk of
+**[00:01:32]** time at the end, hopefully about 20 minutes for open
+**[00:01:35]** Q&A.
+**[00:01:36]** And I really do want to make sure that there's
+**[00:01:38]** there's plenty of time for us to have conversations and
+**[00:01:41]** to ask interesting or challenging questions based on things you
+**[00:01:44]** see here that you might want to dig into a
+**[00:01:46]** little deeper as we sort of pass through some of
+**[00:01:48]** these main things first, like a little bit of context
+**[00:01:51]** on sort of the how work is changing.
+**[00:01:52]** This might be familiar, this might seem obvious, Some of
+**[00:01:54]** it might still be new, but I'll share some of
+**[00:01:56]** the broad trends we see.
+**[00:01:57]** And then we're going to dive into Edge Thrive, which
+**[00:02:00]** is the way that we at Microsoft really are focusing
+**[00:02:02]** on how we understand, we reshape productivity, we optimize for
+**[00:02:05]** the right things, and we create these great outcomes for
+**[00:02:08]** developers.
+**[00:02:08]** Cool.
+**[00:02:10]** OK.
+**[00:02:10]** So productivity in the AI era, you have probably all
+**[00:02:15]** seen or heard some version of this question in the
+**[00:02:19]** last handful of months.
+**[00:02:21]** I certainly know I have.
+**[00:02:22]** You might even been somebody that asked this question.
+**[00:02:26]** Well, hopefully you're moving past that.
+**[00:02:27]** I certainly know that I have as well.
+**[00:02:30]** The thing that's fascinating is that we we asked this
+**[00:02:35]** question for good reason.
+**[00:02:37]** So this question has been asked for the right reasons.
+**[00:02:39]** And I understand why it was asked because we recognize
+**[00:02:42]** that there's a fundamental change in the way that software
+**[00:02:45]** engineers are working on a day-to-day basis.
+**[00:02:47]** And when things are changing, when the way that we
+**[00:02:51]** develop is changing you, you need to have some insight.
+**[00:02:54]** If you don't have an understanding of what's going on,
+**[00:02:56]** it's, it's scary.
+**[00:02:58]** And so overly simplified reductive metrics or answers to that
+**[00:03:02]** question are really attractive, but they are unfortunately not helpful.
+**[00:03:09]** They've actually go from not helpful to actively harmful if
+**[00:03:11]** you're really trying to drive transformation and you're trying to
+**[00:03:14]** understand what's changing.
+**[00:03:15]** So, and I mean, it's funny actually, if we think
+**[00:03:18]** back how many years has it been in the industry
+**[00:03:21]** that we really understood and recognized that things like how
+**[00:03:24]** many lines of code does an engineer produce or how
+**[00:03:27]** many PRS do they have is not a performance metric
+**[00:03:29]** that is useful or meaningful in any way, shape or
+**[00:03:32]** form.
+**[00:03:33]** I mean, it's been probably 10 or 15 years since
+**[00:03:35]** I've had somebody come to me seriously and say, oh,
+**[00:03:37]** we should, we should be thinking about this.
+**[00:03:39]** Or when I'm talking with our partners, when I'm talking
+**[00:03:42]** with the industry, we've learned that.
+**[00:03:43]** And yet somehow in the last couple of months, pop
+**[00:03:46]** culture and the news cycle has caused us to forget
+**[00:03:49]** this incredibly important and foundational thing.
+**[00:03:53]** And of course we do understand, and what we have
+**[00:03:56]** learned is that where we actually spend time as engineers
+**[00:03:59]** is varied and it crosses a large span of different
+**[00:04:03]** classes of work and different amounts of time.
+**[00:04:06]** So at Microsoft, we do longitudinal studies across the industry
+**[00:04:10]** and within ourselves to shape and understand where developer time
+**[00:04:14]** goes.
+**[00:04:14]** We publish a lot of these papers.
+**[00:04:15]** I think 1 was published at the start of this
+**[00:04:18]** year, and here are a couple summaries out of this.
+**[00:04:21]** We use this foundational approach of dividing time developer time
+**[00:04:24]** into 3 buckets, which is how much time you spend
+**[00:04:27]** on innovation, how much time you spend running the business
+**[00:04:30]** and keeping the lights on, and how much time you
+**[00:04:32]** spend with sort of organizational responsibilities.
+**[00:04:35]** This can be forms of meetings or trainings or various
+**[00:04:37]** other things you just need to do as a citizen
+**[00:04:39]** of the business.
+**[00:04:41]** The thing that's fascinating is, you know, the P50, what
+**[00:04:44]** the averages are across the industry is really how this
+**[00:04:47]** time divides.
+**[00:04:48]** Less than 40%, roughly 40% is spent on innovation.
+**[00:04:52]** You know, 45 ish percent is spent on keeping the
+**[00:04:54]** lights on and about 15% are spent on these other
+**[00:04:57]** organizational responsibilities.
+**[00:04:59]** And when you double click into this even further, the
+**[00:05:02]** actual time we spent interacting with the code systems or
+**[00:05:05]** with the technical systems themselves are only about 1/4 of
+**[00:05:08]** that.
+**[00:05:10]** But the thing that's really wild is if you double
+**[00:05:12]** click in and even a little bit deeper, the amount
+**[00:05:15]** of time engineers on average are spending actively coding and,
+**[00:05:18]** and you know, in functioning businesses is somewhere between 10
+**[00:05:21]** and 15% of their week.
+**[00:05:23]** That number is not very large.
+**[00:05:25]** It we obviously all wish we had more of that
+**[00:05:27]** time.
+**[00:05:28]** Like this is AI think a universal dream amongst all
+**[00:05:31]** of us as engineers, but the reality of what it
+**[00:05:34]** looks like in, in, in functioning businesses, you know, in
+**[00:05:37]** mature organizations, this is a pretty common pattern.
+**[00:05:40]** So again, this takes us back to the deep understanding
+**[00:05:43]** that attempting to reduce or to have a reductive view
+**[00:05:46]** of what productivity really is with something as simple as
+**[00:05:49]** how much code did you make or how fast are
+**[00:05:51]** you making it?
+**[00:05:52]** It, it is really wrong.
+**[00:05:54]** So the, this then leaves us with the question of,
+**[00:05:57]** OK, if we're transforming the way that we work and
+**[00:05:59]** AI is breaking these bottlenecks and really changing all the
+**[00:06:02]** stuff, what is the question we are are, are, are
+**[00:06:04]** asking ourselves and what do we really want to be
+**[00:06:07]** seeking?
+**[00:06:08]** And the good news is the answer to that is
+**[00:06:10]** simple, simple to say, difficult to do.
+**[00:06:13]** And it's based on this idea, straightforward, right?
+**[00:06:16]** We want to create more value faster.
+**[00:06:19]** These are the objectives.
+**[00:06:20]** This is the outcome.
+**[00:06:20]** This is the thing that really we're trying to create
+**[00:06:23]** for our organizations.
+**[00:06:24]** So with this in mind, we'll take a couple minutes
+**[00:06:26]** and talk about some of these other large scale patterns
+**[00:06:29]** that we're seeing in transformations with some of the highest
+**[00:06:32]** performing teams, and then I'm going to dive into and
+**[00:06:34]** thrive.
+**[00:06:34]** We're really how we talk about this objective, how we
+**[00:06:37]** measure it, and how we try to start drive a
+**[00:06:39]** flywheel of, you know, good change and improvement in the
+**[00:06:41]** developer experience.
+**[00:06:43]** So like mentioned, right, the nature of the development loop
+**[00:06:46]** is changing, where the bottlenecks are are changing, the nature
+**[00:06:49]** of where we're spending our time and energy is changing.
+**[00:06:53]** This little frame is something that we've been using broadly
+**[00:06:56]** in Microsoft and externally as well.
+**[00:06:58]** When we think about the waves of how work has
+**[00:07:01]** really changed or how AI is impacted, the way we
+**[00:07:03]** work or the way we interact with it in the
+**[00:07:06]** last couple of years.
+**[00:07:07]** So in, you know, in the ChatGPT area just is
+**[00:07:10]** not that long ago, right?
+**[00:07:12]** It's like 3 1/2 years ago is when this started.
+**[00:07:14]** We began with a very direct interaction, a back and
+**[00:07:17]** forth transactional interaction where we ask the LMA question.
+**[00:07:21]** At the start of last year, the second wave became
+**[00:07:24]** possible, but in reality that didn't start happening until like
+**[00:07:27]** August, mid year.
+**[00:07:28]** A little bit after mid year where we really started
+**[00:07:31]** interacting with agents and giving them asynchronous tasks.
+**[00:07:34]** Where we would give an agent a task, it could
+**[00:07:36]** do stuff asynchronously, it could start to use tools as
+**[00:07:38]** well.
+**[00:07:39]** And right now what we're in is this emerging 3rd
+**[00:07:42]** wave where really we're working with agents on complex goals
+**[00:07:45]** and where they have both tools, they have memory, they
+**[00:07:48]** have entitlements to have a variety of other things that
+**[00:07:51]** lets them do more rich and complex goal seeking.
+**[00:07:54]** And this is still very much emerging.
+**[00:07:56]** I think we all recognize that the there's frothiness and,
+**[00:07:59]** and how to handle certain responsibilities in here and how
+**[00:08:02]** to really empower the agents.
+**[00:08:03]** But we'll, we're seeing this mature, you know, day by
+**[00:08:06]** day by day.
+**[00:08:07]** OK, Now what's fascinating here I put classic SDLC, even
+**[00:08:11]** though it makes me feel sad to write that, but
+**[00:08:15]** here we are.
+**[00:08:16]** So as we think about, you know, the software development
+**[00:08:19]** life cycle, this is something that's probably familiar to us
+**[00:08:22]** all, a simple distillation of, you know, plan, create, validate,
+**[00:08:25]** deploy, operate.
+**[00:08:28]** Historically, the vast majority of time, Again, we could talk
+**[00:08:32]** about, I'll share a couple percentages, but the vast majority
+**[00:08:37]** of our time as engineers are spent in these two
+**[00:08:40]** buckets where operate represents something like 75 to 80% of
+**[00:08:44]** time on average.
+**[00:08:45]** Create is that 10 to 15% of like active, active
+**[00:08:48]** coding that we sort of talked about a second ago
+**[00:08:51]** and plan, validate and deploy, consume the remainder.
+**[00:08:55]** Now this is not perfect and true for every organization.
+**[00:08:58]** Again, these are looking at averages and large statistical data
+**[00:09:00]** sets, but this is sort of the shape of the
+**[00:09:02]** pattern that we generally see.
+**[00:09:04]** I think it's also probably intuitive to most of us.
+**[00:09:06]** We spend the majority of our time keeping systems working,
+**[00:09:09]** figuring out how to optimize them, some creating and then
+**[00:09:11]** a handful of, you know, the other, the other pieces
+**[00:09:13]** are a part of the picture as well.
+**[00:09:16]** Now the thing that's fascinating is among teams which are
+**[00:09:20]** moving into that third wave, the way that we work
+**[00:09:23]** and what the LSDLC looks like is fundamentally different.
+**[00:09:27]** And this has been one of the, the, the biggest
+**[00:09:30]** and most transformational changes.
+**[00:09:31]** That's that that begs a whole bunch of other really
+**[00:09:34]** interesting questions, which is the vast majority of time and
+**[00:09:38]** energy is being spent on plan and being spent on
+**[00:09:41]** validate where create is rapidly, rapidly decreasing the amount of
+**[00:09:45]** time sort of like asymptotically moving towards 0 and deploy
+**[00:09:49]** and operate R as well, although not quite as fast.
+**[00:09:52]** These ones are lagging a little behind how quickly agent
+**[00:09:56]** systems, models, harnesses in the whole ecosystem is moving coding
+**[00:10:00]** rapidly, rapidly towards 0.
+**[00:10:03]** Now this is interesting.
+**[00:10:06]** And to me, this is like really one of these
+**[00:10:08]** places where we're seeing an identity crisis.
+**[00:10:11]** Something that's really challenging and difficult to understand or to
+**[00:10:15]** internalize is that code is rapidly becoming output of a
+**[00:10:18]** system rather than input of the system, right?
+**[00:10:21]** It has been the source of truth historically.
+**[00:10:23]** Even still today, it's still the source of truth.
+**[00:10:25]** But the way that it's written and the nuance by
+**[00:10:28]** which it's written is, is, is starting to change its
+**[00:10:31]** shape.
+**[00:10:33]** And while this is true, I think something important to
+**[00:10:37]** mention is that across the SDLC, while coding is one
+**[00:10:40]** of the first to really to, to, to start to
+**[00:10:43]** change and transition from being out or input to output.
+**[00:10:48]** The nature of the models and how model capability is
+**[00:10:51]** evolving is not happening uniformly across the stack.
+**[00:10:55]** So right, we see code becoming incredibly good.
+**[00:10:58]** Like at this point the LLMS like the foundational models
+**[00:11:01]** and frontier models are capable of writing a single line
+**[00:11:05]** of code as good as any of us.
+**[00:11:07]** However, when it comes to system design and architecture and
+**[00:11:10]** an understanding of sustainability of those systems, they're certainly not
+**[00:11:13]** there.
+**[00:11:14]** They're getting better, but they're not getting better as fast
+**[00:11:17]** as as fundamentally its ability to produce an excellent line
+**[00:11:21]** of code verification.
+**[00:11:22]** So as we think about that verify piece, there have
+**[00:11:24]** been some improvements and there's some stuff that they can
+**[00:11:27]** do now that they couldn't even do six months ago,
+**[00:11:29]** but they're not again, they're like that.
+**[00:11:31]** This is definitely sub linear in terms of the capabilities
+**[00:11:34]** in the shape of where they're working.
+**[00:11:35]** And then as you get to operations much slower and
+**[00:11:37]** when you get to taste, they're not there at all.
+**[00:11:40]** And in fact, I don't think that's going to change
+**[00:11:42]** as time goes on.
+**[00:11:44]** Taste is definitely one of the aspects that we bring
+**[00:11:46]** to the table and that great engineers bring to the
+**[00:11:48]** table and we'll continue bringing to the table.
+**[00:11:51]** So with all of these things, the reason I show
+**[00:11:54]** these is because, again, the nature of the highest performing
+**[00:11:57]** teams, the most productive and highest performing teams is changing.
+**[00:12:02]** And what it is that we have to pay attention
+**[00:12:04]** to and how and what those bottlenecks are, how we
+**[00:12:06]** help enable those teams to do more, again, is continuing
+**[00:12:09]** to change in some really interesting ways.
+**[00:12:13]** And as we build on that point, it's important to
+**[00:12:17]** understand that, right?
+**[00:12:20]** AI is changing so much about how we work, but
+**[00:12:22]** it does not change the fundamental concept of productivity, and
+**[00:12:26]** it doesn't change how we measure productivity, right?
+**[00:12:29]** If productivity is about the ability to create outcomes, the
+**[00:12:31]** way that you think about those outcomes, the way that
+**[00:12:34]** you measure and the way that you understand those outcomes
+**[00:12:37]** is the same regardless of what tools you use and
+**[00:12:39]** the tools in your hands.
+**[00:12:41]** Now, of course, AI is actually helping us understand outcomes
+**[00:12:44]** in new and powerful ways.
+**[00:12:45]** We'll talk about that a little bit.
+**[00:12:47]** We can talk about it in question in the Q&A
+**[00:12:48]** too, if that applies.
+**[00:12:50]** But fundamentally, the idea of productivity is durable.
+**[00:12:52]** OK, so let's talk about that a little bit.
+**[00:12:55]** So again, like I mentioned in Microsoft, we have this.
+**[00:12:58]** We Enge Thrive is the name and the description for
+**[00:13:01]** how we are understanding, shaping and building programs around using
+**[00:13:06]** AI to help our engineers be more successful.
+**[00:13:09]** And this is the concept, right?
+**[00:13:11]** This is the root of exactly how we describe it
+**[00:13:13]** in the mission of this function and which is to
+**[00:13:16]** make it fast and easy to build.
+**[00:13:18]** Great work where fast and easy describe how we work.
+**[00:13:22]** The engineering experience, the system, the whole life cycle of
+**[00:13:26]** the SDLC and great work describes what we make.
+**[00:13:29]** And this triad is incredibly important.
+**[00:13:32]** You, you can't have one or just two.
+**[00:13:34]** You have to have all three and you have to
+**[00:13:37]** lift you.
+**[00:13:37]** There's no such thing as a teeter totter in play
+**[00:13:39]** here either, right?
+**[00:13:39]** If you want to improve one of these, you want
+**[00:13:41]** to make it faster.
+**[00:13:42]** You have to make sure that you're keeping it easy
+**[00:13:44]** and you're maintaining quality.
+**[00:13:45]** Same thing across the board.
+**[00:13:46]** You can't try to just crank a quality dial and
+**[00:13:49]** then dial down your ability to move fast and easy
+**[00:13:52]** as as sane as that or is is as tempting
+**[00:13:54]** as that might be in in certain scenarios.
+**[00:13:57]** So with this focus on making it fast and easy
+**[00:13:59]** to do great work, we break all of our metrics
+**[00:14:02]** and the structure by which we think of this into
+**[00:14:05]** these three categories of speed, ease and quality.
+**[00:14:08]** So, you know, fast and easy to do great work.
+**[00:14:11]** Now I want to take a second before we dive
+**[00:14:13]** into the specific metrics and then get into some of
+**[00:14:17]** the the use cases that I want to share.
+**[00:14:19]** Because when we get to the final section, I'm just
+**[00:14:21]** going to run you through a couple things that are
+**[00:14:24]** hopefully, you know, great sort of case studies and use
+**[00:14:26]** cases of how we applied it.
+**[00:14:27]** I want to take a minute to stop and talk
+**[00:14:30]** about activity versus outcome.
+**[00:14:33]** I think that in this talk, if there's a single
+**[00:14:35]** thing that you take away is the importance of this
+**[00:14:39]** concept right here, which is to pay attention to measure
+**[00:14:42]** and to target changes in outcome, not activity.
+**[00:14:45]** This is sort of like there's another great phrase, which
+**[00:14:48]** is, you know, progress over motion.
+**[00:14:50]** Activity describes motion, outcomes describe progress.
+**[00:14:54]** And I'll show you a couple examples of this.
+**[00:14:57]** So like we start again, we started with that original
+**[00:14:59]** question, how much more code did our engineers provide?
+**[00:15:01]** That's an activity metric, not an outcome metric.
+**[00:15:04]** Here's a couple.
+**[00:15:05]** Like in inside of activity, there's really two different categories
+**[00:15:08]** that you can use to measure these, you know, metrics
+**[00:15:11]** that describe how we work and metrics that describe what
+**[00:15:14]** we did.
+**[00:15:15]** And there's a few in here.
+**[00:15:16]** So you know, like what's your AI adoption and usage?
+**[00:15:19]** How many tokens are you are you using?
+**[00:15:21]** You know, what are your PR counts?
+**[00:15:23]** What number of agent based PR counts do you have?
+**[00:15:27]** These are all interesting and they actually are useful.
+**[00:15:30]** I don't want to say that they're not useful.
+**[00:15:32]** They're used.
+**[00:15:32]** They're interesting and useful metrics to have in order to
+**[00:15:36]** understand how behaviors are changing, not to attempt to move
+**[00:15:40]** on their own.
+**[00:15:41]** These metrics are not metrics you target when you target
+**[00:15:43]** them.
+**[00:15:44]** There's a whole bunch of side effects.
+**[00:15:45]** Talk about that in a SEC.
+**[00:15:46]** Outcome metrics are described are ideas that just are metrics
+**[00:15:49]** that describe what you achieve.
+**[00:15:51]** And I'll double click into each of these in just
+**[00:15:53]** one second.
+**[00:15:53]** But Speaking of activity metrics and the and the and
+**[00:15:57]** the unintended or often very obvious side effects.
+**[00:16:00]** So like token maxing, which is the thing you've probably
+**[00:16:03]** been hearing about in the last couple months where people
+**[00:16:05]** are worried about, you know, people are just like grinding
+**[00:16:08]** away tokens for purposes that don't actually create really any
+**[00:16:11]** value, but because they've heard that they're expected to use
+**[00:16:14]** a certain amount or be AI active in a certain
+**[00:16:16]** way.
+**[00:16:17]** This is exactly what happens when you focus on activity.
+**[00:16:20]** In fact, like any of us in the room, by
+**[00:16:23]** the time we go to sleep could probably be at
+**[00:16:25]** our companies, the largest AI token consumers and the largest
+**[00:16:29]** code producers of any of any person in the company,
+**[00:16:33]** right?
+**[00:16:33]** All you have to do is open up your laptop,
+**[00:16:35]** like create a new repo that's on the side that's
+**[00:16:38]** not well paid attention to, like open up a whole
+**[00:16:40]** bunch of terminals and start having these things just spewing
+**[00:16:43]** out non functional, but Python looking code and every between
+**[00:16:47]** 150 lines and 300 lines, make a new commit, push
+**[00:16:49]** that commit into that location and like just burn, burn,
+**[00:16:52]** burn, burn, burn, burn, right?
+**[00:16:54]** This is obviously silly.
+**[00:16:56]** Like that would obviously consume lots of energy, but produce
+**[00:16:59]** absolutely no value.
+**[00:17:01]** But that is activity, right?
+**[00:17:02]** So it it shows us, it's just like a demonstration
+**[00:17:05]** of how obvious it is that when you focus on
+**[00:17:07]** activity metrics, you end up with side effects like this.
+**[00:17:09]** When you focus on outcome metrics, you actually create outcomes
+**[00:17:12]** that really matter.
+**[00:17:14]** And there's one other one before I get in there,
+**[00:17:16]** I do want to talk about this.
+**[00:17:17]** And this is a fundamental concept of the way that
+**[00:17:19]** we do inch thrive.
+**[00:17:20]** Inch Thrive is not focused on measuring individuals, it's focused
+**[00:17:23]** on measuring systems.
+**[00:17:25]** So if you think about that speed, ease and quality,
+**[00:17:28]** you know, how fast am I?
+**[00:17:30]** How fast am I able to go from an idea
+**[00:17:32]** to production or how like, and, and if you double
+**[00:17:34]** click into that, you can be like, well, how long
+**[00:17:36]** does it take for my build to complete?
+**[00:17:39]** That's not an individual performance metric.
+**[00:17:42]** That's a measure of the system that I operate in
+**[00:17:44]** the, the, the, the life, the life cycle of the
+**[00:17:47]** system that I'm a part of in order to complete
+**[00:17:49]** a job, in order to create value.
+**[00:17:51]** So the idea of attempting to distill productivity into an
+**[00:17:55]** individual metric is also a non functional.
+**[00:17:58]** It doesn't work.
+**[00:17:59]** That's performance.
+**[00:18:00]** You know, employee performance is a whole different conversation and
+**[00:18:02]** it's much more nuanced and it requires all kinds of
+**[00:18:04]** other stuff.
+**[00:18:06]** Productivity again, is measured at the system level and how
+**[00:18:09]** that system impacts individuals.
+**[00:18:11]** So let's double click on the three most important of
+**[00:18:14]** these metrics that we pay attention to, we manage towards
+**[00:18:18]** and we do have significant investments around speedies and quality
+**[00:18:22]** speed.
+**[00:18:23]** The best metric we found is this thing of this
+**[00:18:26]** one described as idea to customer.
+**[00:18:29]** How long it takes in calendar days or hours to
+**[00:18:32]** go from an idea to a customer.
+**[00:18:35]** Where like the idea, the origination of that idea can
+**[00:18:37]** be a a PRD taking shape, a ticket being formed
+**[00:18:40]** with an idea in it that doesn't even have a
+**[00:18:42]** design dock and like no engineer involved or maybe an
+**[00:18:45]** engineer wrote it.
+**[00:18:46]** The point at which this thing becomes something real all
+**[00:18:49]** the way to the point in which it's in the
+**[00:18:51]** customer's hands when you've gone through experimentation or treatments or
+**[00:18:55]** your Canaries or whatever the case may be, and it's
+**[00:18:58]** actually creating value.
+**[00:18:59]** That whole timeline is incredibly powerful to understand because of
+**[00:19:03]** course you're going to need to be able to double
+**[00:19:05]** click into different areas to see where your bottlenecks are
+**[00:19:08]** in that life cycle.
+**[00:19:10]** The second one, this one is pretty fun as well.
+**[00:19:12]** This is innovation time or an innovation time ratio.
+**[00:19:16]** So remember at the start we showed that, you know,
+**[00:19:18]** donut diagram where innovation time is, you know, 39 ish
+**[00:19:21]** percent roughly there how much time you have for innovation.
+**[00:19:24]** That is a number that you want to drive as
+**[00:19:27]** far up as you possibly can, like 80 or 90%
+**[00:19:29]** is a really, really great target for that number.
+**[00:19:33]** And so we are super attentive to where our engineering
+**[00:19:36]** time is going and how we can then find what
+**[00:19:38]** are the things that are sucking up that time and
+**[00:19:41]** how we can minimize those now, especially with AI, because
+**[00:19:44]** AI is allowing us to break many of these old
+**[00:19:47]** bottlenecks, which have just been a part of software development
+**[00:19:50]** for decades now.
+**[00:19:52]** And then finally, quality.
+**[00:19:53]** This one's a little bit tricky.
+**[00:19:54]** So like I have, you know, just product quality measure,
+**[00:19:56]** you know, measures of defect, escape, resilience and experience.
+**[00:19:59]** I think quality is.
+**[00:20:01]** This is fairly well understood in the industry, you know,
+**[00:20:04]** like looking at defect escape rate or what we describe
+**[00:20:06]** as is incidents per PR, looking at what your mean
+**[00:20:09]** time to mitigate is, so how fast you're able to
+**[00:20:11]** respond.
+**[00:20:12]** And then of course, always you want to have some
+**[00:20:14]** kind of metric which measures customer experience or product love
+**[00:20:16]** or however you want to shape that up.
+**[00:20:19]** And I'm going to put this eye chart up here.
+**[00:20:21]** This is more for reference.
+**[00:20:22]** I'm not actually going to run through all of this,
+**[00:20:24]** but just to so like this is really our the
+**[00:20:26]** state-of-the-art of where we are inside of Microsoft with the
+**[00:20:29]** metrics that we are attentive to and that we've driven
+**[00:20:32]** to be as consistent as possible across the entire business.
+**[00:20:35]** And when I say that, and this is actually a
+**[00:20:37]** point I'll remake again later.
+**[00:20:38]** So we'll, we'll double, we'll double up on this one
+**[00:20:41]** is the importance of having company wide consistent metrics.
+**[00:20:45]** It can't be overstated.
+**[00:20:47]** You in order to really start optimizing systems, you need
+**[00:20:50]** to have a common frame for how you describe and
+**[00:20:52]** how you talk about these.
+**[00:20:54]** But I will also say we've been working backwards towards
+**[00:20:57]** these and the shape of these substantially over the last
+**[00:21:00]** few years.
+**[00:21:00]** So this is really sort of like where we are
+**[00:21:02]** and the nature of our North Star as well.
+**[00:21:05]** So it's, it's uncommon that you're starting in a position
+**[00:21:08]** like this.
+**[00:21:09]** But I hope that these are useful and we'll talk
+**[00:21:11]** about the application of these in just a second.
+**[00:21:14]** OK.
+**[00:21:14]** So we've got metrics.
+**[00:21:17]** Imagine that you have metrics or you already have metrics
+**[00:21:19]** and you're thinking about things that are, you know, really
+**[00:21:21]** great outcome metrics.
+**[00:21:22]** What do we do next?
+**[00:21:24]** And this is this is where we go from talking
+**[00:21:27]** about maybe some things that are new and you haven't
+**[00:21:30]** heard before to talking about just good old fashioned program
+**[00:21:34]** management, like how we actually run programs of transformations and
+**[00:21:39]** organizations based on good driving directional metrics.
+**[00:21:43]** So the the key operational principles of and thrive are
+**[00:21:47]** a few things.
+**[00:21:48]** One, we focus and Createspace to identify, understand and execute
+**[00:21:53]** on our bottlenecks.
+**[00:21:55]** So what are the bottlenecks in the SDLC and how
+**[00:21:57]** do these measures help us understand what those are?
+**[00:22:00]** We createspace to do that.
+**[00:22:01]** Two, we create leadership accountability for development experience.
+**[00:22:05]** This is done at the absolute highest level.
+**[00:22:07]** So like, so we start with Satya.
+**[00:22:09]** I started doing this with Satya and the SLT three
+**[00:22:11]** years ago in shapes as we were evolving and our
+**[00:22:14]** metrics were certainly not as mature as what I just
+**[00:22:17]** showed on that eye chart a second ago.
+**[00:22:19]** We really only started with a couple and then iterated
+**[00:22:21]** and grew.
+**[00:22:22]** And then finally, this one is, I'll explain why this
+**[00:22:25]** one's so important, but this is the focus.
+**[00:22:28]** Focus on the idea of continuous improvement rather than hitting
+**[00:22:31]** a particular benchmark.
+**[00:22:35]** This one is important to add because this was the
+**[00:22:40]** single, the single largest I got.
+**[00:22:43]** I people asked me this question more than any other
+**[00:22:46]** question.
+**[00:22:47]** As we were starting to roll out these programs and
+**[00:22:49]** change the way that we thought about developer productivity leaders
+**[00:22:52]** across the board, They were like, there was a almost
+**[00:22:55]** visceral fear of like, well, a reorg just happened and
+**[00:22:57]** this other team came to me.
+**[00:22:59]** And so my benchmark is going to go from here
+**[00:23:00]** to here and I'm going to be punished for it
+**[00:23:02]** and it's bad.
+**[00:23:03]** No, no, no, no.
+**[00:23:03]** That's obviously not the point.
+**[00:23:05]** The point is that we're focusing on constantly asking, understanding
+**[00:23:08]** what can we do in order to improve developer experience?
+**[00:23:11]** How do we make it faster and easier to build
+**[00:23:13]** great products?
+**[00:23:14]** So the drive for continuous improvement is actually incredibly important
+**[00:23:18]** when you're thinking about putting these kinds of things into
+**[00:23:20]** practice.
+**[00:23:21]** Whoops, let me not bang that anymore.
+**[00:23:24]** Now this is sort of the North Star like and
+**[00:23:26]** again, this describes the way that we're running the program
+**[00:23:30]** now.
+**[00:23:31]** But I can also promise that anybody starting on something
+**[00:23:34]** like this, whether you have something and you're evolving or
+**[00:23:37]** if you don't have something, but you are thinking about
+**[00:23:40]** how to or to really institute and measure and understand
+**[00:23:42]** and drive some of this change in your own organization.
+**[00:23:46]** These are things that you want to work backwards towards.
+**[00:23:48]** So like I mentioned that first point, consistent company wide
+**[00:23:51]** metrics, you want to do everything you possibly can to
+**[00:23:54]** not have a bunch of fragmented metrics.
+**[00:23:56]** So for example, like focus time, you know, we talked
+**[00:23:59]** about innovation time, Focus time is a piece of that.
+**[00:24:02]** Focus time comes directly from Viva Insights.
+**[00:24:05]** So if you guys are, you know, using some of
+**[00:24:06]** this tool chain like Viva Insights gives you focus time
+**[00:24:09]** right out-of-the-box, which is incredibly powerful.
+**[00:24:11]** And in fact, actually I'll talk about one of the
+**[00:24:13]** two case studies I'll share with you is related to
+**[00:24:15]** focus time.
+**[00:24:16]** You know, dashboards, obviously you want real time as much
+**[00:24:19]** as you possibly can.
+**[00:24:20]** They help people self-serve and actually take action.
+**[00:24:23]** We want business processes to drive accountability and change.
+**[00:24:26]** And this is like really driving and running Robs.
+**[00:24:28]** And then finally, and this is important as well, is
+**[00:24:31]** that as you start to see, and especially now with
+**[00:24:34]** AI playing such a role, a big role in the
+**[00:24:37]** transformation, as you start to see patterns or reusable ideas
+**[00:24:41]** that you can use that that that will help you
+**[00:24:44]** change.
+**[00:24:44]** You want to gather these and share them as much
+**[00:24:46]** as you possibly can.
+**[00:24:47]** Cool.
+**[00:24:48]** OK.
+**[00:24:48]** One other piece of good news if you're early in
+**[00:24:51]** your journey is that it's always the right time to
+**[00:24:53]** get started because the odds are really big wins are
+**[00:24:56]** low hanging fruit.
+**[00:24:57]** They're easy to grab onto.
+**[00:24:59]** And that is exactly what I'll I'll talk about here.
+**[00:25:02]** So I want to now share 2 quick case studies
+**[00:25:05]** of what we did and how we ran some of
+**[00:25:08]** these programs.
+**[00:25:09]** And some of the outcomes just in both of these
+**[00:25:11]** case studies occurred in periods of time that were between
+**[00:25:14]** 8:00 and 12:00 weeks.
+**[00:25:15]** So very small, but with really substantial outcomes driven based
+**[00:25:20]** on great outcome metrics, on the outcome metrics that we've
+**[00:25:24]** talked about also.
+**[00:25:25]** Yeah, perfect.
+**[00:25:26]** So we'll just dive in.
+**[00:25:27]** So the first one was a focus on focus time.
+**[00:25:31]** So this what focus time is actually here, we'll get
+**[00:25:33]** right here.
+**[00:25:33]** So like why focus time?
+**[00:25:35]** Or actually first we'll say what it is, right.
+**[00:25:37]** What focus time is, is the amount of time, the
+**[00:25:39]** number of hours you have in a work week that
+**[00:25:42]** are not being interrupted by things like meetings.
+**[00:25:46]** There's a handful of different things which contribute to focus
+**[00:25:48]** time that sort of break up that focus time.
+**[00:25:51]** We wanted to ensure that the majority of developers time
+**[00:25:54]** was focus time.
+**[00:25:56]** Why?
+**[00:25:57]** Well, I think you probably intuitively understand why having time
+**[00:26:00]** to focus is important.
+**[00:26:01]** But like this is the key to getting into flow.
+**[00:26:04]** We have an enormous amount of research and studies, again,
+**[00:26:07]** longitudinal studies and Microsoft internal studies that show just profoundly
+**[00:26:11]** different like outcomes for developers that have more focus time
+**[00:26:15]** versus ones that have less on almost every dimension that
+**[00:26:18]** you can imagine wanting to move.
+**[00:26:19]** So this stuff is just this idea is incredibly important.
+**[00:26:23]** Now the way that we started up this flywheel and
+**[00:26:26]** I'm going to like this is not super technical, but
+**[00:26:29]** this is very important from a like a process and
+**[00:26:32]** an organizational standpoint.
+**[00:26:33]** If you want to sort of understand and replicate.
+**[00:26:35]** And I'll share some of the like the lessons or
+**[00:26:37]** maybe the takeaways from this in a second.
+**[00:26:39]** But to start this up, the first thing we did
+**[00:26:42]** is we at the senior leadership level picked one metric
+**[00:26:45]** to focus on rather than going to the org and
+**[00:26:48]** saying, OK, everybody go and find the metric, find the
+**[00:26:51]** most optimal metric or the most important one.
+**[00:26:54]** We used information from developer surveys, which are a great
+**[00:26:57]** and powerful source of data to understand what some of
+**[00:27:00]** their biggest pain points were.
+**[00:27:01]** And one of the things that rose to the top
+**[00:27:03]** was a sense of feeling fragmented, a sense of like
+**[00:27:05]** not having enough time to just focus and get stuff
+**[00:27:08]** done.
+**[00:27:08]** So we picked one metric to start across the org.
+**[00:27:12]** Then we defined roles of clear accountability.
+**[00:27:14]** So every engineering leader under in this in this organization
+**[00:27:18]** inside of Corey I, which is Jay Preak's organization, we
+**[00:27:21]** focused on how we define specific role.
+**[00:27:23]** So every engineering leader at the highest level was responsible
+**[00:27:26]** for improving this metric.
+**[00:27:28]** Like immediately with really clear, like with, with clear intention
+**[00:27:31]** and focus, we set up bi weekly reviews.
+**[00:27:33]** So literally every two weeks we came together.
+**[00:27:37]** Each leader had a chunk of time, like 5 minutes
+**[00:27:39]** over the course of an hour to say this is
+**[00:27:41]** the state of our data.
+**[00:27:43]** This is exactly what I'm digging into.
+**[00:27:45]** And here's how I'm making some changes to the way
+**[00:27:47]** that we're working in order to attempt to move it.
+**[00:27:50]** And in two weeks, we'll report back on what's changed.
+**[00:27:52]** We'll decide where we double down or how we pivot
+**[00:27:54]** or how we evolve.
+**[00:27:55]** And then, of course, every one of these conversations was
+**[00:27:58]** grounded in the data.
+**[00:28:00]** And this, like I mentioned, was focused time.
+**[00:28:01]** So this largely came from the Viva Insights.
+**[00:28:04]** And then we enriched it with some additional telemetry, developer
+**[00:28:07]** instrumentation telemetry that we had.
+**[00:28:10]** Oh boy, that is a little bit difficult to read.
+**[00:28:13]** So let's see how maybe actually I'm just going to
+**[00:28:16]** skip to this one then.
+**[00:28:18]** OK, So here are the outcomes from that work in
+**[00:28:21]** eight weeks.
+**[00:28:22]** By running that program, by having this focus on an
+**[00:28:25]** outcome metric that we care about, we recovered on average,
+**[00:28:29]** right, the P 52.1 hours of focus time per engineer
+**[00:28:32]** per week.
+**[00:28:34]** We saw an increase in 13 percent NPR velocity, which
+**[00:28:36]** again, that's not an outcome metric, but it shows a
+**[00:28:39]** behavioral change, an activity change.
+**[00:28:41]** This means that we actually got developers back into flow.
+**[00:28:44]** And right, this is a, this is a metric that
+**[00:28:46]** sort of is an indicator of that.
+**[00:28:48]** We saw a 25% decrease in our bad developer day
+**[00:28:51]** telemetry, which I don't have a chance to talk about.
+**[00:28:54]** But actually we did just publish a paper in the
+**[00:28:55]** last couple of weeks on inch Thrive that dives into
+**[00:28:57]** bad developer days a little bit more.
+**[00:28:59]** And then we saw this decrease in a couple of
+**[00:29:02]** these really annoying wasteful patterns of meeting across the organization.
+**[00:29:07]** So in just a few weeks, we recovered, you know,
+**[00:29:11]** the equivalent of like 55,000 hours of engineering time by
+**[00:29:15]** doing like just good hygiene and clean up work.
+**[00:29:19]** Now, there's one other part of this.
+**[00:29:21]** Oh, yeah.
+**[00:29:21]** So you're saying like, why this example is, again, we
+**[00:29:23]** did it fast.
+**[00:29:25]** So much of the what we did in here was
+**[00:29:27]** not based on AI or using AI.
+**[00:29:29]** It was based on using information that's coming from AI.
+**[00:29:32]** Like the ability to manifest this data is really only
+**[00:29:35]** possible now that we're able to use AI to analyze
+**[00:29:37]** this data to give us a great outcome metric, which
+**[00:29:39]** we can then act on in a new way.
+**[00:29:42]** The other cool thing too is that part of this
+**[00:29:44]** focus and fragmentation time was based on these operational challenges
+**[00:29:47]** that engineers ran into and they were running into all
+**[00:29:50]** the time, which is keeping the lights on and keeping
+**[00:29:53]** the business running.
+**[00:29:54]** That is where we were able to apply AI in
+**[00:29:56]** new and interesting ways.
+**[00:29:57]** Like that was actually the origin of SRE agent.
+**[00:30:01]** So our agent, which handles like so many of our
+**[00:30:04]** SRE tasks, which now are not SRE tasks, really just
+**[00:30:06]** operational tasks, system health tasks, stuff that no one wants
+**[00:30:10]** to do, but it's important, it's important for the state.
+**[00:30:13]** And like while the Sr.
+**[00:30:14]** ES now get to focus on really doing rich great
+**[00:30:16]** SRE work, building out deeper understandings of the shapes of
+**[00:30:19]** the systems.
+**[00:30:20]** So this example, like I think this example is, is
+**[00:30:23]** great in that it shows how fast you can make
+**[00:30:26]** progress when you just hone in and actually really build
+**[00:30:29]** a business rhythm around one of these pieces of data.
+**[00:30:32]** Cool.
+**[00:30:33]** Now I'll talk about another one.
+**[00:30:35]** So this is the next case study.
+**[00:30:36]** It tells a slightly different story.
+**[00:30:38]** This one is actually much more rooted in AI, but
+**[00:30:40]** really interesting.
+**[00:30:41]** So this is a speed metric, time to 1st PR.
+**[00:30:44]** How long does it take for a new employee or
+**[00:30:46]** a person who changes teams to submit their first PR
+**[00:30:49]** in that team?
+**[00:30:51]** We wanted this time to be in less than a
+**[00:30:53]** week.
+**[00:30:54]** We were not less than a week when we started.
+**[00:30:56]** We were more than a week, a decent amount more
+**[00:30:58]** than a week for the whole company across all of
+**[00:31:01]** Microsoft.
+**[00:31:02]** So this is affecting many, many, many 10s of thousands
+**[00:31:04]** of engineers or technical folks across the board.
+**[00:31:08]** So again, yeah, what?
+**[00:31:10]** It is cool.
+**[00:31:11]** Why I think, Oh, and actually, I didn't mention the
+**[00:31:13]** why.
+**[00:31:13]** Why is this so important?
+**[00:31:15]** Intuitively, you probably understand that, like getting into the actual
+**[00:31:19]** development experience fast is important.
+**[00:31:21]** It changes trajectories.
+**[00:31:24]** We know that beyond into intuitively, this is extremely empirically
+**[00:31:27]** the outcome for engineers who are coding faster.
+**[00:31:30]** They're like it's, it's crazy how much it impacts multi
+**[00:31:34]** year trajectory and success.
+**[00:31:36]** Like again, very, very strong and interesting and powerful correlations
+**[00:31:39]** with long term success.
+**[00:31:41]** So what did we do in here?
+**[00:31:43]** But there were four major things that we did over
+**[00:31:46]** the course of just 8 weeks while looking at this
+**[00:31:49]** metric and deciding we wanted to invest in and drive
+**[00:31:52]** this metric in the right direction because we know it's
+**[00:31:55]** an outcome metric that's related, that's essential to speed, ease
+**[00:31:58]** and quality, right?
+**[00:31:59]** This first one is we built an agent which is
+**[00:32:02]** called First Mate that is there on day zero, like
+**[00:32:06]** it's there on day zero.
+**[00:32:08]** And the moment a person is online, they're attached to
+**[00:32:10]** this thing, they're hooked up to it.
+**[00:32:11]** It has information about their team, where they're going, and
+**[00:32:14]** its objective is to help them begin their engineering work
+**[00:32:17]** and get their first PR through and then sort of
+**[00:32:19]** move on to the path towards their towards their 10th
+**[00:32:22]** PR.
+**[00:32:22]** We pay attention to time to 1st PR, time to
+**[00:32:24]** 10th PR and time to 30th PR.
+**[00:32:27]** We, so we, we, we invested in actually building this
+**[00:32:30]** well grounded agent 2.
+**[00:32:32]** We started improving the documentation for pull request workflows.
+**[00:32:36]** Interestingly enough, not so much for the consumption of the
+**[00:32:38]** human as we thought it would be when we started.
+**[00:32:41]** They turned out to be far more useful for the
+**[00:32:43]** consumption by first mate by the agent, which then in
+**[00:32:46]** turn was like this really great flywheel of, of fast
+**[00:32:48]** self improvement for the agent.
+**[00:32:50]** 3rd, we created video exercises.
+**[00:32:53]** This again, kind of seems silly.
+**[00:32:54]** Looks like creating APR isn't this easy, but actually putting
+**[00:32:57]** visuals when you're coming into a new company, you know,
+**[00:33:00]** 1P, the first party systems are, are, are often different
+**[00:33:03]** than anything you've seen before.
+**[00:33:05]** And we have a number of systems that are internal
+**[00:33:07]** that are different than if you're, you know, using Azure
+**[00:33:10]** from the outside.
+**[00:33:11]** So we actually created visual things to help people understand
+**[00:33:14]** the flow of those tools and what those essential tools
+**[00:33:16]** were.
+**[00:33:17]** And it was astonishingly effective.
+**[00:33:19]** You would also, I wouldn't be surprised if you said
+**[00:33:21]** like, are you, are you, are you telling me you
+**[00:33:24]** didn't have great easy video documentation in the past?
+**[00:33:27]** The answer is no, we didn't.
+**[00:33:28]** And the reason why is because there was not an
+**[00:33:31]** impetus for it.
+**[00:33:31]** I mean, it should have happened, but the focus on
+**[00:33:34]** these outcome metrics created the impetus to do the thing
+**[00:33:36]** that had been de prioritized or sort of always one
+**[00:33:39]** of those, Oh yeah, you know, we'll eventually do it
+**[00:33:41]** when it matters.
+**[00:33:43]** And then finally, we had to spend time and energy
+**[00:33:45]** talking to managers around the business and communicating.
+**[00:33:49]** We did this via like one of our company all
+**[00:33:51]** hand leadership things where all leaders were together to really
+**[00:33:54]** emphasize that we have to change and set and raise
+**[00:33:57]** our expectations for how quickly new engineers in a team,
+**[00:34:00]** like new to the company are transferring from the team
+**[00:34:03]** are able to on board.
+**[00:34:06]** Now this is fun.
+**[00:34:08]** I was asked this question a number of times This
+**[00:34:10]** like but wait right?
+**[00:34:12]** Isn't this metric so easy to game?
+**[00:34:14]** Like what does a first PR tell you?
+**[00:34:15]** Couldn't they just put in a no op like comment
+**[00:34:19]** commit on some repo And the answer is absolutely and
+**[00:34:23]** it does not matter because the results were amazing.
+**[00:34:27]** It doesn't matter if the first commit is a no
+**[00:34:29]** op.
+**[00:34:29]** What it means when you're able to put a no
+**[00:34:31]** op commit through to production is that your machine works,
+**[00:34:34]** you're attached to the infrastructure, you understand the deployment cycle,
+**[00:34:37]** you understand how your code is present.
+**[00:34:39]** You understand what you needed to do to get code
+**[00:34:41]** reviews to go through that whole cycle.
+**[00:34:43]** You're already exposed to it.
+**[00:34:44]** So while it seems easy to game, when you game
+**[00:34:47]** an outcome metric, you create the success that you sought
+**[00:34:51]** to create.
+**[00:34:52]** That's the point.
+**[00:34:53]** Like if you can game an outcome metric, you get
+**[00:34:55]** promoted.
+**[00:34:56]** If you can game an activity metric, well, welcome, welcome
+**[00:34:58]** to the game.
+**[00:34:59]** Like that's whatever that anybody can do that.
+**[00:35:01]** So we saw this incredible improvement.
+**[00:35:03]** We were able to get down to our target.
+**[00:35:06]** Now it's also wild.
+**[00:35:07]** Again, as I mentioned, time to 1st PR is this
+**[00:35:09]** fascinating indicator of a whole bunch of other things.
+**[00:35:12]** It also changes your trajectory.
+**[00:35:14]** So by the time you get to your 10th PR,
+**[00:35:17]** we can predict with high precision what your coding activity,
+**[00:35:20]** the time and the energy you spend actively in systems,
+**[00:35:23]** how much time you will have for innovation, for actual
+**[00:35:26]** direct coding.
+**[00:35:27]** We can predict it extremely accurately.
+**[00:35:31]** And so by compressing and accelerating these, we saw massive
+**[00:35:34]** positive outcomes and changes in developer behavior.
+**[00:35:37]** The activity, again, activity is not just the objective.
+**[00:35:40]** We also then can correlate these two people being able
+**[00:35:43]** to move idea to production faster.
+**[00:35:45]** We correlate it to them being able to have a
+**[00:35:47]** having more time to to focus on creating new value
+**[00:35:50]** and less time focused on just toil and on keeping
+**[00:35:52]** the lights on.
+**[00:35:53]** There's an entire set of behavioral and pattern changes that
+**[00:35:56]** happens when you actually drive, you know, time to 1st
+**[00:35:58]** PR and time to 10th PR down.
+**[00:36:00]** So again, sort of one of these great examples of,
+**[00:36:03]** you know, why, why this matters.
+**[00:36:05]** And now it's sort of the point, you know what
+**[00:36:07]** why this matters when you have a metric that's an
+**[00:36:09]** actual outcome metric and you game it, you win.
+**[00:36:12]** And this is one of these great scenarios where really
+**[00:36:15]** AI allowed us to transform and tackle a problem that
+**[00:36:18]** we couldn't reasonably tackle before, like having to read mountains
+**[00:36:21]** of documentation and maintain that documentation and all of that
+**[00:36:25]** jazz.
+**[00:36:25]** Like, you know, the moment you write documentation, it's already
+**[00:36:27]** out of date.
+**[00:36:28]** And so this is just sort of the nature of
+**[00:36:30]** the game.
+**[00:36:31]** OK, With this in mind, we've still got a solid
+**[00:36:33]** 10 minutes left for Q&A.
+**[00:36:35]** And like I mentioned, here's a couple of the key
+**[00:36:37]** takeaways as you're thinking about productivity and your thinking about
+**[00:36:41]** how we actually drive programs to transform and create better
+**[00:36:44]** developer outcomes, make it faster and easier for engineers to
+**[00:36:47]** get work done.
+**[00:36:48]** Of all of these, if there's one thing in here
+**[00:36:50]** that's the most important, take away activity, you know, or
+**[00:36:53]** out, you know, outcomes over activity.
+**[00:36:55]** This is the most important thing right now.
+**[00:36:57]** And this will keep and stay durable as the way
+**[00:37:00]** that we work and as AI changes, the tools that
+**[00:37:02]** we hold on a daily basis, outcomes are everything and
+**[00:37:05]** activities are constantly changing.
+**[00:37:08]** Cool.
+**[00:37:08]** All right, so I don't know how Q&A works here.
+**[00:37:12]** I guess you just have to shout, OK, Or is
+**[00:37:14]** there somebody with the microphone?
+**[00:37:16]** OK, great.
+**[00:37:16]** We had a hand up right there and another hand
+**[00:37:18]** up down there.
+**[00:37:24]** So you talked about focus time, so the two things
+**[00:37:27]** that immediately came to mind or daily stand ups and
+**[00:37:30]** teams messages and just communication between teams and others.
+**[00:37:34]** How did you address those?
+**[00:37:35]** Yeah, great question.
+**[00:37:36]** So one, teams messages, we do not count as a
+**[00:37:39]** thing that knocks people out of focus.
+**[00:37:42]** There is enough, there's enough data that the way people
+**[00:37:44]** work and communicate, especially with remote teams, it's the equivalent
+**[00:37:47]** of being able to have conversations and it's used for
+**[00:37:49]** work.
+**[00:37:50]** Now, you could very rightfully so argue that like, oh,
+**[00:37:53]** there's certain classes of messages which are totally distracting.
+**[00:37:57]** You're right.
+**[00:37:58]** So part of what we do is in different teams
+**[00:38:00]** and across the business, talk about, you know, or provide
+**[00:38:03]** some best practices on using teams, how you set up
+**[00:38:05]** notifications, various other stuff like that in order to help
+**[00:38:08]** you minimize distraction and sort of keep things elevated, elevated
+**[00:38:12]** that you need in order to collaborate.
+**[00:38:14]** Stand up meetings we exclude or actually let me let
+**[00:38:17]** me be a little more nuanced than that.
+**[00:38:20]** There are certain classes of meetings which we can detect
+**[00:38:23]** and in fact, Aviva is capable of detecting as well
+**[00:38:25]** to know what they are, how many people are invited,
+**[00:38:28]** what the rhythms look like and what the titles are
+**[00:38:31]** to understand are these clear working meetings.
+**[00:38:34]** And even with that, still the thing that we did
+**[00:38:37]** and that we pushed for in the org was to
+**[00:38:39]** compress the meetings, whether they're recurring meetings or whether they're
+**[00:38:43]** non recurring meetings into blocks.
+**[00:38:45]** So for a period of time, like, and actually, this
+**[00:38:48]** still largely stays the stands true is that if you're
+**[00:38:52]** in IC, don't, don't, don't be booked into meetings after,
+**[00:38:55]** you know, after 1:00 or afternoon.
+**[00:38:58]** The other thing is, as it relates to stand ups
+**[00:39:02]** or recurring meetings or individually scheduled meetings, we made a
+**[00:39:06]** very specific point to speak to the whole organization, to
+**[00:39:10]** speak to people across the board, to say any meeting
+**[00:39:14]** that exists has to have an agenda, a purpose, and
+**[00:39:18]** you need to be there for the right reason.
+**[00:39:21]** If you are invited to 1 and the agenda is
+**[00:39:24]** not clear and defined, the purpose and the out the,
+**[00:39:27]** the outcome of that meeting is not clear and defined,
+**[00:39:30]** We expect you to, to, to cancel, to not go,
+**[00:39:33]** to decline it.
+**[00:39:35]** And so like it, it is like we are not
+**[00:39:37]** only giving you permission, we're setting the expectation that if
+**[00:39:40]** these criteria are not met, then don't go.
+**[00:39:42]** When it comes to stand ups and other stuff, again,
+**[00:39:45]** it was really like, Hey, set your rhythms for these.
+**[00:39:47]** And if these are, if these are things that are
+**[00:39:49]** part of your, your operations and aren't blowing it up,
+**[00:39:52]** we actually we excised those from the focus time detractors.
+**[00:39:56]** Good question.
+**[00:39:58]** Yeah, perfect.
+**[00:40:01]** Hi.
+**[00:40:09]** Regarding the outcome, how did you measure that?
+**[00:40:12]** Is it like like is it just a number of
+**[00:40:17]** PRS?
+**[00:40:17]** Is it like, you know how big?
+**[00:40:19]** You know?
+**[00:40:20]** That was my first question.
+**[00:40:21]** And the second question is in terms of the focus
+**[00:40:24]** time, is there like a minimum focus time for this
+**[00:40:28]** to work that you measured like 2 hours, four hours?
+**[00:40:31]** Yeah, great question.
+**[00:40:32]** I'll answer the second one first and then I'll get
+**[00:40:34]** back to that eye chart.
+**[00:40:36]** So the second one is, yes, so focus time.
+**[00:40:40]** So there's a there.
+**[00:40:41]** We did a bunch of these studies and across the
+**[00:40:43]** industry, we partnered with some other folks doing studies in
+**[00:40:45]** the space too.
+**[00:40:45]** What does it take to get into flow?
+**[00:40:48]** There are sort of three positions that have been taken
+**[00:40:51]** over the years and most are gravitating towards one of
+**[00:40:54]** the three answers, which is 60 minutes, 90 minutes or
+**[00:40:57]** 120 minutes.
+**[00:40:58]** I mean, you need a contiguous block of time that
+**[00:41:01]** is one of those 3 sizes in order to actually
+**[00:41:03]** be fully into flow into the, into the, you know,
+**[00:41:05]** high production complex thinking that's needed for hard problems.
+**[00:41:10]** We subscribe to the 120 minute approach and it's funny,
+**[00:41:13]** I actually started and you know, prior to this, I
+**[00:41:16]** ran a, a bunch of the stuff at Google and
+**[00:41:18]** then part of that I ran every, the platform and
+**[00:41:21]** infrastructure in Netflix and I was in the, the 60
+**[00:41:24]** to 90 minute camp previously.
+**[00:41:25]** But after really digging into it and then seeing out
+**[00:41:28]** like what the objective outcomes were, I, I, we, we
+**[00:41:31]** moved over to the 120 minutes.
+**[00:41:33]** Now again, when it comes to outcomes, none of these
+**[00:41:36]** are related to PR volume.
+**[00:41:39]** PRS are a part of them.
+**[00:41:41]** So like again, idea to customer is related to PRS
+**[00:41:45]** time to 1st or time to end PR is APR
+**[00:41:48]** gives you a point in time, but volume flow like
+**[00:41:52]** throughput, throughputs not a metric on here.
+**[00:41:57]** And that's key.
+**[00:41:58]** Like that is absolutely key.
+**[00:42:00]** Now again, I want to reiterate this point.
+**[00:42:02]** Activity metrics are useful.
+**[00:42:04]** They're useful to understand because activity metrics show you how
+**[00:42:09]** behaviors are changing, but the moment you manage to it
+**[00:42:13]** or attempt to move an activity metric directly, the metric
+**[00:42:17]** is lost forever, like it becomes meaningless.
+**[00:42:20]** The moment like an incentive is set around an activity
+**[00:42:23]** metric, it's no longer actually informative of behavior because this
+**[00:42:27]** that the the unintended side effects caused that number to
+**[00:42:30]** lose any meaningful fidelity.
+**[00:42:32]** This again, is why we go here.
+**[00:42:33]** So by not by so explicitly not focusing on those
+**[00:42:36]** kinds of the activity metrics from an outcome standpoint, but
+**[00:42:39]** just to understand transformation, we've largely been able to keep
+**[00:42:43]** the activity metrics useful.
+**[00:42:45]** So for example, like we do look at, you know,
+**[00:42:47]** how much like how much are people using AI?
+**[00:42:50]** What is token use look like?
+**[00:42:52]** How has it affected coding velocity?
+**[00:42:54]** Those things tell us where we are on that first
+**[00:42:58]** or second or third wave of AI usage.
+**[00:43:01]** They at least give us a pointer in that direction,
+**[00:43:03]** like, oh, we can see that these teams are working
+**[00:43:05]** in these ways.
+**[00:43:05]** They're consuming sort of like exponentially more tokens than others
+**[00:43:08]** because they're working with teams of agents towards goals.
+**[00:43:11]** OK, that's good to know.
+**[00:43:14]** Are they doing more?
+**[00:43:15]** That's the question that matters is like, OK, are they?
+**[00:43:18]** Are they, are they spinning in circles and just lighting
+**[00:43:20]** piles of money on fire is like, that's not the
+**[00:43:23]** goal, but it's useful to understand.
+**[00:43:24]** And then we can look at them and say, OK,
+**[00:43:26]** how much more is coming out of these groups from
+**[00:43:28]** a feature, like from an idea to customer standpoint or
+**[00:43:30]** the throughput?
+**[00:43:31]** What's that?
+**[00:43:36]** What are we?
+**[00:43:37]** What is more?
+**[00:43:37]** I think you're talking about change over time, Are we?
+**[00:43:39]** Talking about change in terms of what number of?
+**[00:43:44]** Features, yeah, sure it'd be, it can be features, fixes,
+**[00:43:47]** changes, reductions and operational burden, whatever it like.
+**[00:43:50]** So you can like you know, features, bugs, enhancements, art,
+**[00:43:53]** you know, sort of like 3 classic categories of how
+**[00:43:56]** you think about the different kind of work going through.
+**[00:44:00]** We use those in a handful of others as well.
+**[00:44:02]** So like among teams that are some of the heaviest
+**[00:44:05]** coding users, we look at and understand of the changes
+**[00:44:08]** that are going through, how many are new features versus
+**[00:44:11]** how many are like addressing work items that are just
+**[00:44:14]** necessary to keep your system alive.
+**[00:44:17]** We think of these, you know, we think of this
+**[00:44:19]** is like our Secure Future initiative anytime where there's security
+**[00:44:22]** updates or dependency management you have to do or migrations
+**[00:44:25]** we set, we are able to separate and understand what
+**[00:44:27]** those look like and what the throughput of those are.
+**[00:44:30]** So that again as we're thinking about idea to customer,
+**[00:44:33]** we're not only looking at calendar time, we can also
+**[00:44:35]** then understand throughput or volume as well as an outcome.
+**[00:44:39]** Yeah, good question.
+**[00:44:41]** Perfect.
+**[00:44:41]** And I think we've got time for another question or
+**[00:44:43]** two.
+**[00:44:43]** Yeah, go ahead.
+**[00:44:50]** Yeah, as we said, my company to adopt these.
+**[00:44:56]** Yeah, Beautiful.
+**[00:44:57]** Yeah, beautiful.
+**[00:44:57]** OK, So your question is how do we get executive
+**[00:44:59]** buy in to actually pay attention to the outcome metrics
+**[00:45:01]** and to care about these things?
+**[00:45:06]** There is I wish I had an easy answer for
+**[00:45:09]** this.
+**[00:45:11]** I think I think the point, the answer to this
+**[00:45:15]** is by speaking up.
+**[00:45:17]** So I say this, it's, it's funny, I say this
+**[00:45:20]** at Microsoft frequently is and I say this across the
+**[00:45:23]** industry to to folks and friends who I try to
+**[00:45:26]** advise is as I see engineers and as first line
+**[00:45:29]** managers, as second line managers, as wherever we are, we
+**[00:45:33]** have way more power than we think.
+**[00:45:36]** The end the engineer on the ground who's doing work
+**[00:45:39]** has the ability to say in a way that they
+**[00:45:42]** don't often exercise, it is impossible for me to do
+**[00:45:45]** the right thing or it is so difficult for me
+**[00:45:48]** to do the right thing.
+**[00:45:50]** In order to do the right thing, we have like
+**[00:45:53]** I we need to fix this thing that impacts our
+**[00:45:55]** speed, ease or quality.
+**[00:45:56]** It doesn't mean stop all work, but like I have
+**[00:45:59]** an idea on how we can improve this.
+**[00:46:01]** This is a thing that we need to be able
+**[00:46:03]** to improve here.
+**[00:46:04]** Now we can use AI to tackle some of these
+**[00:46:06]** classic bottlenecks in new and incredibly fast ways.
+**[00:46:09]** Like these things I just showed you our company impacting
+**[00:46:12]** across Microsoft and 10's and 10s of thousands of engineers.
+**[00:46:15]** And the two studies I show you, the teams that
+**[00:46:19]** did these were one was 5 people, one was 8
+**[00:46:22]** people and it was done in less than two months.
+**[00:46:26]** Both of them were done in less than two months.
+**[00:46:28]** This is the power of now where AI is actually
+**[00:46:31]** allowing us to break old bottlenecks.
+**[00:46:33]** So it doesn't have to be huge teams and huge
+**[00:46:35]** organizations, small teams that are focused and ambitious on these
+**[00:46:38]** problems and that speak up and fight for these things
+**[00:46:41]** are actually really capable of driving incredible change.
+**[00:46:44]** And then the framing, like the reason why this focus
+**[00:46:47]** on outcomes versus activities, how like these are really durable
+**[00:46:51]** as our work changes.
+**[00:46:52]** Simply talking about this and having common language is one
+**[00:46:56]** of the most effective ways to change the views.
+**[00:46:58]** And I can say this like, even as an exec,
+**[00:47:00]** as I talked to my peers, these are people who
+**[00:47:02]** are strongly opinionated, who've been in the industry for decades.
+**[00:47:05]** They're rooted in their ways of working.
+**[00:47:07]** I have to do it as well.
+**[00:47:08]** It doesn't like it's, it's the same.
+**[00:47:10]** We still have to create an understanding for why this
+**[00:47:13]** is valuable.
+**[00:47:14]** So your question is absolutely right on.
+**[00:47:17]** We have more power as ICS then we often remember
+**[00:47:20]** and our ability to tackle some of these problems in
+**[00:47:23]** really creative ways.
+**[00:47:25]** Now is is is more open than ever.
+**[00:47:27]** The fruit is incredibly low hanging.
+**[00:47:30]** Cool.
+**[00:47:30]** Excellent.
+**[00:47:31]** OK, I think I've run a minute long, so I
+**[00:47:32]** don't want to hold you all before, you know, since
+**[00:47:34]** this is the end of the day, you probably want
+**[00:47:36]** to have something to eat or drink.
+**[00:47:37]** Perfect.
+**[00:47:38]** Thank you so much.

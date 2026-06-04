@@ -1,0 +1,1575 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.9005494117736816
+
+00:00:00.720 --> 00:00:01.440
+Hey everyone.
+
+NOTE Confidence: 0.8887830376625061
+
+00:00:01.440 --> 00:00:03.200
+Thank you so much for joining the session.
+
+NOTE Confidence: 0.847623884677887
+
+00:00:03.440 --> 00:00:05.840
+My name is Vignesh and I am a part of
+
+NOTE Confidence: 0.847623884677887
+
+00:00:05.904 --> 00:00:08.240
+the applied AI team at Fireworks AI.
+
+NOTE Confidence: 0.8840583562850952
+
+00:00:08.760 --> 00:00:11.731
+I'm going to take you through a small presentation, maybe
+
+NOTE Confidence: 0.8840583562850952
+
+00:00:11.784 --> 00:00:14.391
+like 5 minutes on what Fireworks AI is, what we're
+
+NOTE Confidence: 0.8840583562850952
+
+00:00:14.443 --> 00:00:17.050
+doing, and also how you can use open source models
+
+NOTE Confidence: 0.8840583562850952
+
+00:00:17.102 --> 00:00:20.074
+through Fireworks AI on Foundry and start building out AI
+
+NOTE Confidence: 0.8840583562850952
+
+00:00:20.126 --> 00:00:22.159
+workflows for like different use cases.
+
+NOTE Confidence: 0.8700447678565979
+
+00:00:23.400 --> 00:00:25.600
+So I'm going to go go ahead and get started.
+
+NOTE Confidence: 0.8425393104553223
+
+00:00:25.600 --> 00:00:30.064
+So we are high performance open source inference for open
+
+NOTE Confidence: 0.8425393104553223
+
+00:00:30.143 --> 00:00:31.239
+source models.
+
+NOTE Confidence: 0.7211318016052246
+
+00:00:31.440 --> 00:00:34.804
+We are we have a founding team from Pytorch at
+
+NOTE Confidence: 0.7211318016052246
+
+00:00:34.877 --> 00:00:36.559
+Meta and Vertex at GCP.
+
+NOTE Confidence: 0.8034483790397644
+
+00:00:36.800 --> 00:00:40.124
+We have we have day 0 support for almost all
+
+NOTE Confidence: 0.8034483790397644
+
+00:00:40.199 --> 00:00:44.279
+the major open source providers out there from Kimi to
+
+NOTE Confidence: 0.8034483790397644
+
+00:00:44.355 --> 00:00:44.959
+GLM 5.1.
+
+NOTE Confidence: 0.8394170999526978
+
+00:00:45.240 --> 00:00:48.782
+We serve around 30 trillion tokens per day and 180,000
+
+NOTE Confidence: 0.8394170999526978
+
+00:00:48.848 --> 00:00:50.160
+requests per second.
+
+NOTE Confidence: 0.8905144333839417
+
+00:00:50.560 --> 00:00:53.492
+You also have the option of bringing your own models
+
+NOTE Confidence: 0.8905144333839417
+
+00:00:53.548 --> 00:00:57.045
+to foundry and then deploying them using the fireworks serving
+
+NOTE Confidence: 0.8905144333839417
+
+00:00:57.101 --> 00:00:57.439
+stack.
+
+NOTE Confidence: 0.8505876064300537
+
+00:00:57.760 --> 00:01:00.723
+It's optimized for ultra low latency and we can also
+
+NOTE Confidence: 0.8505876064300537
+
+00:01:00.780 --> 00:01:03.971
+tune it for high throughput to make sure it's production
+
+NOTE Confidence: 0.8505876064300537
+
+00:01:04.028 --> 00:01:06.535
+ready for your work flows and you can use it
+
+NOTE Confidence: 0.8505876064300537
+
+00:01:06.592 --> 00:01:07.959
+to serve your customers.
+
+NOTE Confidence: 0.8752085566520691
+
+00:01:08.680 --> 00:01:12.542
+We are first party Azure integration and you can use
+
+NOTE Confidence: 0.8752085566520691
+
+00:01:12.617 --> 00:01:14.919
+your Mac or build it via Azure.
+
+NOTE Confidence: 0.8051450848579407
+
+00:01:16.200 --> 00:01:19.240
+How the fireworks serving stack itself works.
+
+NOTE Confidence: 0.8533009886741638
+
+00:01:19.240 --> 00:01:23.571
+So it's basically workload aware optimization for like different models
+
+NOTE Confidence: 0.8533009886741638
+
+00:01:23.632 --> 00:01:25.279
+that's available out there.
+
+NOTE Confidence: 0.852276086807251
+
+00:01:25.440 --> 00:01:28.584
+Once you find an open source model that is up
+
+NOTE Confidence: 0.852276086807251
+
+00:01:28.654 --> 00:01:32.358
+to mark with your evaluations, then we make sure that
+
+NOTE Confidence: 0.852276086807251
+
+00:01:32.428 --> 00:01:35.922
+we have we tune different knobs to optimize it for
+
+NOTE Confidence: 0.852276086807251
+
+00:01:35.992 --> 00:01:37.600
+your specific workload.
+
+NOTE Confidence: 0.7385498881340027
+
+00:01:37.880 --> 00:01:40.744
+You can have adaptive caching, we help you quantize the
+
+NOTE Confidence: 0.7385498881340027
+
+00:01:40.796 --> 00:01:43.348
+model but also have it own serving stack with our
+
+NOTE Confidence: 0.7385498881340027
+
+00:01:43.400 --> 00:01:45.639
+own inference engine called fire retention.
+
+NOTE Confidence: 0.8493391871452332
+
+00:01:45.640 --> 00:01:47.921
+But also choose the right setup of hardware that you
+
+NOTE Confidence: 0.8493391871452332
+
+00:01:47.965 --> 00:01:50.290
+would need to make sure you have like high throughput
+
+NOTE Confidence: 0.8493391871452332
+
+00:01:50.334 --> 00:01:52.440
+or like really low latency across your workload.
+
+NOTE Confidence: 0.8578549027442932
+
+00:01:52.800 --> 00:01:54.520
+So that's what we do.
+
+NOTE Confidence: 0.8934661149978638
+
+00:01:54.520 --> 00:01:58.136
+And then we abstract this and give you an endpoint
+
+NOTE Confidence: 0.8934661149978638
+
+00:01:58.208 --> 00:02:02.837
+that you can start using in production immediately how Fireworks
+
+NOTE Confidence: 0.8934661149978638
+
+00:02:02.910 --> 00:02:05.079
+operates on Microsoft Foundry.
+
+NOTE Confidence: 0.8933294415473938
+
+00:02:05.280 --> 00:02:08.954
+So you would be able to access all the state-of-the-art
+
+NOTE Confidence: 0.8933294415473938
+
+00:02:09.021 --> 00:02:11.159
+open models day zero on Foundry.
+
+NOTE Confidence: 0.8828174471855164
+
+00:02:11.160 --> 00:02:14.185
+We make sure we enable new models as they keep
+
+NOTE Confidence: 0.8828174471855164
+
+00:02:14.250 --> 00:02:15.040
+rolling out.
+
+NOTE Confidence: 0.7820654511451721
+
+00:02:15.360 --> 00:02:18.972
+It's optimized inference for like specific workloads that we spoke
+
+NOTE Confidence: 0.7820654511451721
+
+00:02:19.027 --> 00:02:20.559
+about in the previous slide.
+
+NOTE Confidence: 0.9175593852996826
+
+00:02:20.920 --> 00:02:23.400
+And of course, it's at an enterprise scale.
+
+NOTE Confidence: 0.9207169413566589
+
+00:02:23.400 --> 00:02:25.948
+So you would be able to scale up without any
+
+NOTE Confidence: 0.9207169413566589
+
+00:02:26.005 --> 00:02:27.280
+break in the workflow.
+
+NOTE Confidence: 0.799648642539978
+
+00:02:27.560 --> 00:02:30.142
+And you can also like bring your own custom models,
+
+NOTE Confidence: 0.799648642539978
+
+00:02:30.192 --> 00:02:33.078
+bring your own weights after fine tuning, and then upload
+
+NOTE Confidence: 0.799648642539978
+
+00:02:33.129 --> 00:02:34.799
+it to Foundry to serve inference.
+
+NOTE Confidence: 0.8380770683288574
+
+00:02:36.080 --> 00:02:38.105
+A lot of people right now are really interested in
+
+NOTE Confidence: 0.8380770683288574
+
+00:02:38.146 --> 00:02:39.239
+post training their models.
+
+NOTE Confidence: 0.8594635128974915
+
+00:02:39.240 --> 00:02:42.160
+So how that workflow would work is once you're done
+
+NOTE Confidence: 0.8594635128974915
+
+00:02:42.218 --> 00:02:45.826
+post training the weights, you would register that custom model
+
+NOTE Confidence: 0.8594635128974915
+
+00:02:45.883 --> 00:02:49.320
+in Microsoft Foundry and then you would create a deployment.
+
+NOTE Confidence: 0.7285001277923584
+
+00:02:49.320 --> 00:02:52.251
+And then the inference request would be routed using the
+
+NOTE Confidence: 0.7285001277923584
+
+00:02:52.303 --> 00:02:53.560
+fireworks serving stack.
+
+NOTE Confidence: 0.797289252281189
+
+00:02:53.560 --> 00:02:56.261
+And that's how you will get optimized inference with your
+
+NOTE Confidence: 0.797289252281189
+
+00:02:56.308 --> 00:02:57.920
+own custom weights that you bring.
+
+NOTE Confidence: 0.8666107058525085
+
+00:02:58.919 --> 00:03:01.441
+Some of the use cases that we see across the
+
+NOTE Confidence: 0.8666107058525085
+
+00:03:01.498 --> 00:03:05.223
+board are like code completion, code review bots, customized chat
+
+NOTE Confidence: 0.8666107058525085
+
+00:03:05.280 --> 00:03:09.119
+bots, and even like some transcription and summarization use cases.
+
+NOTE Confidence: 0.9550647139549255
+
+00:03:09.440 --> 00:03:11.945
+And a lot of people also like to experiment with
+
+NOTE Confidence: 0.9550647139549255
+
+00:03:11.997 --> 00:03:13.720
+the different open source models.
+
+NOTE Confidence: 0.9309659600257874
+
+00:03:13.920 --> 00:03:16.080
+So you start with some sort of AB testing.
+
+NOTE Confidence: 0.901105523109436
+
+00:03:16.080 --> 00:03:18.678
+I'm going to show you how you can compare different
+
+NOTE Confidence: 0.901105523109436
+
+00:03:18.729 --> 00:03:20.919
+open source models through through Foundry.
+
+NOTE Confidence: 0.9060818552970886
+
+00:03:21.240 --> 00:03:23.553
+And then you can pick the best and then create
+
+NOTE Confidence: 0.9060818552970886
+
+00:03:23.604 --> 00:03:24.560
+an agent with that.
+
+NOTE Confidence: 0.8465932607650757
+
+00:03:24.560 --> 00:03:26.923
+And then you can start serving that using the Foundry
+
+NOTE Confidence: 0.8465932607650757
+
+00:03:26.968 --> 00:03:28.440
+endpoints that are being created.
+
+NOTE Confidence: 0.9130048751831055
+
+00:03:28.960 --> 00:03:32.207
+So these are some of the models that are available
+
+NOTE Confidence: 0.9130048751831055
+
+00:03:32.272 --> 00:03:34.999
+right now through Fireworks AI on Foundry.
+
+NOTE Confidence: 0.9665850400924683
+
+00:03:35.280 --> 00:03:37.280
+But we keep adding to the list.
+
+NOTE Confidence: 0.937242865562439
+
+00:03:37.560 --> 00:03:39.789
+And as more and more models come out, we work
+
+NOTE Confidence: 0.937242865562439
+
+00:03:39.839 --> 00:03:42.167
+really hard to make sure that we enable them on
+
+NOTE Confidence: 0.937242865562439
+
+00:03:42.217 --> 00:03:44.298
+day zero so that you can get access to all
+
+NOTE Confidence: 0.937242865562439
+
+00:03:44.348 --> 00:03:45.239
+the latest models.
+
+NOTE Confidence: 0.8727024793624878
+
+00:03:45.640 --> 00:03:48.863
+So I'm going to switch over to the Microsoft Foundry
+
+NOTE Confidence: 0.8727024793624878
+
+00:03:48.925 --> 00:03:52.148
+page and take you through what a workflow would look
+
+NOTE Confidence: 0.8727024793624878
+
+00:03:52.210 --> 00:03:52.519
+like.
+
+NOTE Confidence: 0.7888625264167786
+
+00:03:52.520 --> 00:03:55.096
+So this would be the landing page when you log
+
+NOTE Confidence: 0.7888625264167786
+
+00:03:55.152 --> 00:03:55.880
+into Foundry.
+
+NOTE Confidence: 0.9082263708114624
+
+00:03:55.880 --> 00:03:58.887
+And then if you go to Discover and you navigate
+
+NOTE Confidence: 0.9082263708114624
+
+00:03:58.951 --> 00:04:01.831
+to the models page, this is where you get all
+
+NOTE Confidence: 0.9082263708114624
+
+00:04:01.895 --> 00:04:05.799
+the different providers that are available on Foundry and the
+
+NOTE Confidence: 0.9082263708114624
+
+00:04:05.863 --> 00:04:08.679
+plethora of models that are available there.
+
+NOTE Confidence: 0.8853825330734253
+
+00:04:09.040 --> 00:04:11.832
+So what I would do is go search here for
+
+NOTE Confidence: 0.8853825330734253
+
+00:04:11.901 --> 00:04:12.599
+fireworks.
+
+NOTE Confidence: 0.8480165600776672
+
+00:04:12.840 --> 00:04:17.056
+So these are all the multi tenant models that are
+
+NOTE Confidence: 0.8480165600776672
+
+00:04:17.143 --> 00:04:18.520
+already enabled.
+
+NOTE Confidence: 0.9383957982063293
+
+00:04:18.520 --> 00:04:21.202
+So the infrastructure is already ready for you to go
+
+NOTE Confidence: 0.9383957982063293
+
+00:04:21.254 --> 00:04:22.080
+and start using.
+
+NOTE Confidence: 0.8657039403915405
+
+00:04:22.320 --> 00:04:24.488
+So what you would have to do is let's say
+
+NOTE Confidence: 0.8657039403915405
+
+00:04:24.541 --> 00:04:26.550
+you want to use a Kimi K 2.6 model and
+
+NOTE Confidence: 0.8657039403915405
+
+00:04:26.603 --> 00:04:28.559
+test it for your particular use case.
+
+NOTE Confidence: 0.8913848996162415
+
+00:04:29.000 --> 00:04:32.580
+I would click on that model and then I would
+
+NOTE Confidence: 0.8913848996162415
+
+00:04:32.662 --> 00:04:33.719
+go to deploy.
+
+NOTE Confidence: 0.8802303075790405
+
+00:04:34.080 --> 00:04:36.369
+So for the next two minutes, I'm going to take
+
+NOTE Confidence: 0.8802303075790405
+
+00:04:36.419 --> 00:04:39.555
+you to the different deployment options that would be available
+
+NOTE Confidence: 0.8802303075790405
+
+00:04:39.604 --> 00:04:41.794
+to you and how you would go about using that
+
+NOTE Confidence: 0.8802303075790405
+
+00:04:41.844 --> 00:04:42.840
+just testing it out.
+
+NOTE Confidence: 0.809608519077301
+
+00:04:43.200 --> 00:04:45.680
+So they're like different deployment types.
+
+NOTE Confidence: 0.8144481182098389
+
+00:04:45.680 --> 00:04:49.072
+So data data zone standard is basically the multi tenant
+
+NOTE Confidence: 0.8144481182098389
+
+00:04:49.133 --> 00:04:52.465
+serverless endpoint that you would get for you to start
+
+NOTE Confidence: 0.8144481182098389
+
+00:04:52.526 --> 00:04:53.920
+testing Communique 2.6.
+
+NOTE Confidence: 0.9275097846984863
+
+00:04:54.120 --> 00:04:57.230
+So you can set tokens per minute rate limits across
+
+NOTE Confidence: 0.9275097846984863
+
+00:04:57.291 --> 00:05:00.646
+different accounts so that you can manage how much they
+
+NOTE Confidence: 0.9275097846984863
+
+00:05:00.707 --> 00:05:03.879
+can start calling this model and experiment with it.
+
+NOTE Confidence: 0.9031121730804443
+
+00:05:04.200 --> 00:05:08.177
+So this would be one common endpoint across multiple different
+
+NOTE Confidence: 0.9031121730804443
+
+00:05:08.241 --> 00:05:10.679
+users that you can start testing with.
+
+NOTE Confidence: 0.8515570759773254
+
+00:05:10.720 --> 00:05:13.176
+Maybe you just run evals on it and you don't
+
+NOTE Confidence: 0.8515570759773254
+
+00:05:13.232 --> 00:05:16.080
+run a massive production workload on this endpoint.
+
+NOTE Confidence: 0.7029557228088379
+
+00:05:16.640 --> 00:05:18.560
+If you're satisfied with the Kimi mod.
+
+NOTE Confidence: 0.5684558749198914
+
+00:05:27.850 --> 00:05:28.210
+Hello.
+
+NOTE Confidence: 0.630850076675415
+
+00:05:28.330 --> 00:05:28.570
+Yeah.
+
+NOTE Confidence: 0.5713599324226379
+
+00:05:28.570 --> 00:05:28.730
+OK.
+
+NOTE Confidence: 0.880303680896759
+
+00:05:28.970 --> 00:05:31.855
+So once your up to mark with your benchmarks and
+
+NOTE Confidence: 0.880303680896759
+
+00:05:31.915 --> 00:05:34.921
+evaluation looks good on the model and you want to
+
+NOTE Confidence: 0.880303680896759
+
+00:05:34.981 --> 00:05:38.227
+move to a more dedicated deployment or a single tenant
+
+NOTE Confidence: 0.880303680896759
+
+00:05:38.287 --> 00:05:42.074
+deployment, that is when you would explore the global provision
+
+NOTE Confidence: 0.880303680896759
+
+00:05:42.134 --> 00:05:45.080
+throughput or the data zone provision throughput.
+
+NOTE Confidence: 0.8543338179588318
+
+00:05:45.360 --> 00:05:47.947
+So if you click on this option, you can see
+
+NOTE Confidence: 0.8543338179588318
+
+00:05:48.007 --> 00:05:51.498
+there's like a PTU calculation metric that's going to come
+
+NOTE Confidence: 0.8543338179588318
+
+00:05:51.558 --> 00:05:52.039
+through.
+
+NOTE Confidence: 0.8282815217971802
+
+00:05:52.360 --> 00:05:55.199
+So this is going to help you calculate how many
+
+NOTE Confidence: 0.8282815217971802
+
+00:05:55.259 --> 00:05:59.186
+provision throughput throughput units you would need to deploy to
+
+NOTE Confidence: 0.8282815217971802
+
+00:05:59.247 --> 00:06:01.120
+serve your production workload.
+
+NOTE Confidence: 0.9211864471435547
+
+00:06:01.360 --> 00:06:04.317
+So let's say I have input token of 80,000 and
+
+NOTE Confidence: 0.9211864471435547
+
+00:06:04.382 --> 00:06:08.128
+then it's like 500 output tokens that are being generated
+
+NOTE Confidence: 0.9211864471435547
+
+00:06:08.194 --> 00:06:11.414
+and it's going to be like 300 requests per minute
+
+NOTE Confidence: 0.9211864471435547
+
+00:06:11.480 --> 00:06:13.320
+or 3000 requests per minute.
+
+NOTE Confidence: 0.8628191947937012
+
+00:06:13.320 --> 00:06:16.502
+And then I calculate it's going to show that you
+
+NOTE Confidence: 0.8628191947937012
+
+00:06:16.568 --> 00:06:20.480
+need 61,500 Ptus to cover this, this particular deployment.
+
+NOTE Confidence: 0.9483766555786133
+
+00:06:20.720 --> 00:06:24.604
+And then once you Max out the scale, right now
+
+NOTE Confidence: 0.9483766555786133
+
+00:06:24.688 --> 00:06:26.039
+it's up to 1160.
+
+NOTE Confidence: 0.8150936365127563
+
+00:06:26.280 --> 00:06:27.320
+That's all you could go to.
+
+NOTE Confidence: 0.8649879693984985
+
+00:06:27.320 --> 00:06:30.425
+So you would have to make sure that the workload
+
+NOTE Confidence: 0.8649879693984985
+
+00:06:30.489 --> 00:06:32.559
+meets the PTU units calculation.
+
+NOTE Confidence: 0.9441431760787964
+
+00:06:32.560 --> 00:06:34.560
+And then you click on deploy, it's going to create
+
+NOTE Confidence: 0.9441431760787964
+
+00:06:34.600 --> 00:06:36.000
+a single tenant deployment for you.
+
+NOTE Confidence: 0.9392634630203247
+
+00:06:36.320 --> 00:06:40.314
+So before moving on to like a specific dedicated deployment,
+
+NOTE Confidence: 0.9392634630203247
+
+00:06:40.381 --> 00:06:43.244
+you would want to test out how the model is
+
+NOTE Confidence: 0.9392634630203247
+
+00:06:43.310 --> 00:06:46.440
+actually performing for your specific use case.
+
+NOTE Confidence: 0.9116165041923523
+
+00:06:46.680 --> 00:06:49.569
+So in the interest of time, I'm going to switch
+
+NOTE Confidence: 0.9116165041923523
+
+00:06:49.630 --> 00:06:52.519
+over to some models that I've already deployed.
+
+NOTE Confidence: 0.8083085417747498
+
+00:06:53.120 --> 00:06:55.783
+So let's say I have a Kimi 2.5 and a
+
+NOTE Confidence: 0.8083085417747498
+
+00:06:55.856 --> 00:06:58.520
+minimax model already deployed here.
+
+NOTE Confidence: 0.8941975831985474
+
+00:06:58.520 --> 00:07:01.029
+So I'm going to go to the minimax model and
+
+NOTE Confidence: 0.8941975831985474
+
+00:07:01.088 --> 00:07:03.890
+this is opening me up to like a playground where
+
+NOTE Confidence: 0.8941975831985474
+
+00:07:03.948 --> 00:07:06.633
+I can start chatting with the model to see how
+
+NOTE Confidence: 0.8941975831985474
+
+00:07:06.692 --> 00:07:08.559
+it's performing for my use case.
+
+NOTE Confidence: 0.9025363922119141
+
+00:07:08.839 --> 00:07:12.045
+So let's say I have a code review agent and
+
+NOTE Confidence: 0.9025363922119141
+
+00:07:12.120 --> 00:07:16.444
+I want to test out-of-the-box how this particular model is
+
+NOTE Confidence: 0.9025363922119141
+
+00:07:16.519 --> 00:07:19.799
+with identifying specific aspects of a code.
+
+NOTE Confidence: 0.7956649661064148
+
+00:07:19.800 --> 00:07:22.718
+So here I want the model to catch issues with
+
+NOTE Confidence: 0.7956649661064148
+
+00:07:22.783 --> 00:07:26.545
+SQL injections or like hard coded secrets that are already
+
+NOTE Confidence: 0.7956649661064148
+
+00:07:26.610 --> 00:07:27.000
+there.
+
+NOTE Confidence: 0.8616147637367249
+
+00:07:27.280 --> 00:07:30.309
+So you can see there's like the latency is super
+
+NOTE Confidence: 0.8616147637367249
+
+00:07:30.372 --> 00:07:34.159
+quick, you have like a very good response already generated.
+
+NOTE Confidence: 0.9184930324554443
+
+00:07:34.440 --> 00:07:37.517
+So you go through the response, you see if it's
+
+NOTE Confidence: 0.9184930324554443
+
+00:07:37.582 --> 00:07:41.053
+good enough for your particular use case and you also
+
+NOTE Confidence: 0.9184930324554443
+
+00:07:41.118 --> 00:07:44.720
+have the option of pitting 2 models against each other.
+
+NOTE Confidence: 0.8889816999435425
+
+00:07:44.960 --> 00:07:47.595
+So let's say I want to compare this with a
+
+NOTE Confidence: 0.8889816999435425
+
+00:07:47.658 --> 00:07:48.599
+Kimi 2.6 model.
+
+NOTE Confidence: 0.8586788177490234
+
+00:07:48.880 --> 00:07:51.930
+Then I go to the compare models UI and then
+
+NOTE Confidence: 0.8586788177490234
+
+00:07:52.001 --> 00:07:55.264
+I'm going to send the same input again so that
+
+NOTE Confidence: 0.8586788177490234
+
+00:07:55.334 --> 00:07:59.520
+it simultaneously generates output across these two models.
+
+NOTE Confidence: 0.8491565585136414
+
+00:07:59.680 --> 00:08:02.182
+You can see the minimax model is like it does
+
+NOTE Confidence: 0.8491565585136414
+
+00:08:02.238 --> 00:08:04.240
+not have a lot of traffic right now.
+
+NOTE Confidence: 0.8512133359909058
+
+00:08:04.240 --> 00:08:08.387
+So the answer was generated super quickly, whereas the Kimi
+
+NOTE Confidence: 0.8512133359909058
+
+00:08:08.457 --> 00:08:12.604
+model is generating a more detailed answer which involves a
+
+NOTE Confidence: 0.8512133359909058
+
+00:08:12.675 --> 00:08:13.799
+lot of thinking.
+
+NOTE Confidence: 0.9090871214866638
+
+00:08:13.800 --> 00:08:16.204
+It's giving you different options of how you need to
+
+NOTE Confidence: 0.9090871214866638
+
+00:08:16.250 --> 00:08:18.839
+go about deploying this particular code into production.
+
+NOTE Confidence: 0.9068949222564697
+
+00:08:19.040 --> 00:08:23.054
+So depending on how important the different aspects of latency,
+
+NOTE Confidence: 0.9068949222564697
+
+00:08:23.118 --> 00:08:26.622
+quality and how many tokens generated are, you can pick
+
+NOTE Confidence: 0.9068949222564697
+
+00:08:26.686 --> 00:08:29.553
+one of these models and then click on Save as
+
+NOTE Confidence: 0.9068949222564697
+
+00:08:29.617 --> 00:08:29.999
+agent.
+
+NOTE Confidence: 0.8820505142211914
+
+00:08:30.240 --> 00:08:32.257
+So let's say I want to save the minimax model
+
+NOTE Confidence: 0.8820505142211914
+
+00:08:32.302 --> 00:08:32.840
+as an agent.
+
+NOTE Confidence: 0.8373069763183594
+
+00:08:32.840 --> 00:08:34.891
+I click on Save as agent here, or if I
+
+NOTE Confidence: 0.8373069763183594
+
+00:08:34.945 --> 00:08:37.483
+want to click have the Kimi model serving as an
+
+NOTE Confidence: 0.8373069763183594
+
+00:08:37.537 --> 00:08:40.021
+agent, then I would click use Save as an agent
+
+NOTE Confidence: 0.8373069763183594
+
+00:08:40.075 --> 00:08:41.479
+for this particular model.
+
+NOTE Confidence: 0.8874883055686951
+
+00:08:42.240 --> 00:08:46.160
+So I've already deployed some like a code review agent.
+
+NOTE Confidence: 0.9423136711120605
+
+00:08:46.440 --> 00:08:49.680
+So let's say I have a saved agent.
+
+NOTE Confidence: 0.9463170766830444
+
+00:08:49.680 --> 00:08:52.160
+Now I want to run it through some evaluations.
+
+NOTE Confidence: 0.794037938117981
+
+00:08:52.440 --> 00:08:55.720
+So how would I go about doing that?
+
+NOTE Confidence: 0.8637058734893799
+
+00:08:55.720 --> 00:08:59.480
+So inside the playground you have a matrix Configurator.
+
+NOTE Confidence: 0.8492965698242188
+
+00:08:59.559 --> 00:09:02.568
+So you can use different agents that are already pre
+
+NOTE Confidence: 0.8492965698242188
+
+00:09:02.626 --> 00:09:06.559
+configured inside foundry with your own custom evaluation data sets.
+
+NOTE Confidence: 0.8631757497787476
+
+00:09:06.800 --> 00:09:09.012
+So I want to run it through a set of
+
+NOTE Confidence: 0.8631757497787476
+
+00:09:09.073 --> 00:09:11.409
+50 rows with for like I want to see if
+
+NOTE Confidence: 0.8631757497787476
+
+00:09:11.470 --> 00:09:16.080
+it's performing well for intent, resolution, coherence, fluency, relevance.
+
+NOTE Confidence: 0.7682250142097473
+
+00:09:16.360 --> 00:09:19.108
+And then I'm I'm going to select those matrix and
+
+NOTE Confidence: 0.7682250142097473
+
+00:09:19.164 --> 00:09:21.800
+then I'm going to click on run full evaluation.
+
+NOTE Confidence: 0.892942488193512
+
+00:09:22.120 --> 00:09:24.285
+I want to run the evaluation not against just the
+
+NOTE Confidence: 0.892942488193512
+
+00:09:24.329 --> 00:09:25.920
+model, but my entire agent hardness.
+
+NOTE Confidence: 0.8027489185333252
+
+00:09:26.120 --> 00:09:29.089
+It might include multiple tool calls or you might have
+
+NOTE Confidence: 0.8027489185333252
+
+00:09:29.144 --> 00:09:32.499
+a very detailed system prompt that you've already created the
+
+NOTE Confidence: 0.8027489185333252
+
+00:09:32.554 --> 00:09:33.159
+agent with.
+
+NOTE Confidence: 0.9566342830657959
+
+00:09:33.400 --> 00:09:35.446
+So I want to use the entire hardness to run
+
+NOTE Confidence: 0.9566342830657959
+
+00:09:35.493 --> 00:09:36.159
+my evaluation.
+
+NOTE Confidence: 0.8311499953269958
+
+00:09:36.480 --> 00:09:38.946
+So I'm going to pick the agent and then click
+
+NOTE Confidence: 0.8311499953269958
+
+00:09:39.001 --> 00:09:39.439
+on next.
+
+NOTE Confidence: 0.9526684284210205
+
+00:09:39.800 --> 00:09:40.960
+You have different options.
+
+NOTE Confidence: 0.9208583831787109
+
+00:09:41.000 --> 00:09:43.299
+I'm going to go with the existing data set one
+
+NOTE Confidence: 0.9208583831787109
+
+00:09:43.349 --> 00:09:44.999
+and not the synthetic generation.
+
+NOTE Confidence: 0.888858437538147
+
+00:09:45.320 --> 00:09:48.760
+I uploaded a code review eval data set.
+
+NOTE Confidence: 0.9189825057983398
+
+00:09:49.559 --> 00:09:52.084
+It's like 50 rows and then it's going to give
+
+NOTE Confidence: 0.9189825057983398
+
+00:09:52.140 --> 00:09:54.159
+you a preview of what it looks like.
+
+NOTE Confidence: 0.9584752321243286
+
+00:09:54.160 --> 00:09:54.960
+What do I have?
+
+NOTE Confidence: 0.9134687781333923
+
+00:09:54.960 --> 00:09:57.097
+I have the ground truth here to make sure that
+
+NOTE Confidence: 0.9134687781333923
+
+00:09:57.143 --> 00:09:59.559
+I can have a comparison with the generated response.
+
+NOTE Confidence: 0.9513974189758301
+
+00:09:59.920 --> 00:10:01.959
+And then you can also use some of the open
+
+NOTE Confidence: 0.9513974189758301
+
+00:10:02.008 --> 00:10:03.999
+source benchmarks that are already there.
+
+NOTE Confidence: 0.8462969660758972
+
+00:10:04.000 --> 00:10:05.120
+This is pre uploaded.
+
+NOTE Confidence: 0.8907488584518433
+
+00:10:05.320 --> 00:10:07.346
+So if it's like a basic coding agent and you
+
+NOTE Confidence: 0.8907488584518433
+
+00:10:07.392 --> 00:10:09.741
+want to send it through some of the benchmarks that
+
+NOTE Confidence: 0.8907488584518433
+
+00:10:09.787 --> 00:10:11.399
+are available, then you can use it.
+
+NOTE Confidence: 0.8623777627944946
+
+00:10:12.360 --> 00:10:15.637
+I'm going to use my data set for this particular
+
+NOTE Confidence: 0.8623777627944946
+
+00:10:15.705 --> 00:10:16.319
+workflow.
+
+NOTE Confidence: 0.8813400268554688
+
+00:10:16.760 --> 00:10:19.320
+And then there is automated field mapping.
+
+NOTE Confidence: 0.8164641261100769
+
+00:10:19.320 --> 00:10:21.788
+I have a GPD Photo Mini as my judge, a
+
+NOTE Confidence: 0.8164641261100769
+
+00:10:21.853 --> 00:10:25.361
+judge model for this particular use case, and I'm just
+
+NOTE Confidence: 0.8164641261100769
+
+00:10:25.425 --> 00:10:26.919
+going to click on next.
+
+NOTE Confidence: 0.9073665738105774
+
+00:10:26.920 --> 00:10:30.000
+And then there's a bunch of auto suggested criteria.
+
+NOTE Confidence: 0.9573946595191956
+
+00:10:30.360 --> 00:10:32.960
+You might not want to evaluate against all of this.
+
+NOTE Confidence: 0.8706799149513245
+
+00:10:33.040 --> 00:10:36.400
+Maybe you just want to do relevance, groundedness and coherence.
+
+NOTE Confidence: 0.9198626279830933
+
+00:10:36.600 --> 00:10:38.603
+So you would just select that and then you click
+
+NOTE Confidence: 0.9198626279830933
+
+00:10:38.645 --> 00:10:40.356
+on next again and then you give it a name
+
+NOTE Confidence: 0.9198626279830933
+
+00:10:40.398 --> 00:10:41.399
+and then you can submit.
+
+NOTE Confidence: 0.8834770321846008
+
+00:10:41.640 --> 00:10:45.432
+So this will ensure that the entire suite of evaluation
+
+NOTE Confidence: 0.8834770321846008
+
+00:10:45.501 --> 00:10:48.604
+that you have is run against all the rows and
+
+NOTE Confidence: 0.8834770321846008
+
+00:10:48.673 --> 00:10:52.949
+you will have percentage like numbers against each metric that
+
+NOTE Confidence: 0.8834770321846008
+
+00:10:53.018 --> 00:10:54.879
+you wanted to evaluate for.
+
+NOTE Confidence: 0.8183402419090271
+
+00:10:55.120 --> 00:10:58.949
+So I have some pre, I already ran some evaluations
+
+NOTE Confidence: 0.8183402419090271
+
+00:10:59.025 --> 00:11:01.400
+I have like a pre-existing run.
+
+NOTE Confidence: 0.7990359663963318
+
+00:11:01.679 --> 00:11:05.279
+So this one was already completed for this particularly for
+
+NOTE Confidence: 0.7990359663963318
+
+00:11:05.340 --> 00:11:07.719
+the code review agent that I had built.
+
+NOTE Confidence: 0.8520646095275879
+
+00:11:08.080 --> 00:11:10.738
+So if you can see task completion is at 90%
+
+NOTE Confidence: 0.8520646095275879
+
+00:11:10.799 --> 00:11:13.890
+task adherence and all of this, you can go through
+
+NOTE Confidence: 0.8520646095275879
+
+00:11:13.952 --> 00:11:16.919
+the metrics and if it's not good, then you tweak
+
+NOTE Confidence: 0.8520646095275879
+
+00:11:16.981 --> 00:11:18.279
+your harness further.
+
+NOTE Confidence: 0.8327787518501282
+
+00:11:18.280 --> 00:11:20.858
+You can go back to the same agent, create multiple
+
+NOTE Confidence: 0.8327787518501282
+
+00:11:20.910 --> 00:11:23.953
+iterations of versions of it and run the evaluation metrics
+
+NOTE Confidence: 0.8327787518501282
+
+00:11:24.005 --> 00:11:26.738
+again until it reach hits your benchmark and you want
+
+NOTE Confidence: 0.8327787518501282
+
+00:11:26.790 --> 00:11:28.079
+to push it to production.
+
+NOTE Confidence: 0.8622162938117981
+
+00:11:28.840 --> 00:11:33.128
+So once you're satisfied with the agent, you have different
+
+NOTE Confidence: 0.8622162938117981
+
+00:11:33.200 --> 00:11:34.800
+ways of publishing it.
+
+NOTE Confidence: 0.8852159380912781
+
+00:11:34.800 --> 00:11:36.910
+You can first take a look at the web app
+
+NOTE Confidence: 0.8852159380912781
+
+00:11:36.962 --> 00:11:39.389
+preview of how it would look like on the front
+
+NOTE Confidence: 0.8852159380912781
+
+00:11:39.442 --> 00:11:42.080
+end if you're choosing to publish through Foundry.
+
+NOTE Confidence: 0.9321942925453186
+
+00:11:42.360 --> 00:11:46.517
+So this is the same agent basically without the playground
+
+NOTE Confidence: 0.9321942925453186
+
+00:11:46.589 --> 00:11:49.814
+and you can send the same prompt here and see
+
+NOTE Confidence: 0.9321942925453186
+
+00:11:49.886 --> 00:11:51.320
+how it's performing.
+
+NOTE Confidence: 0.8890082240104675
+
+00:11:51.600 --> 00:11:54.343
+And if you want to use it as a workflow
+
+NOTE Confidence: 0.8890082240104675
+
+00:11:54.414 --> 00:11:57.509
+in code, then you would go to the call agent
+
+NOTE Confidence: 0.8890082240104675
+
+00:11:57.580 --> 00:12:01.168
+tab and you will have snippets of code available to
+
+NOTE Confidence: 0.8890082240104675
+
+00:12:01.238 --> 00:12:01.519
+you.
+
+NOTE Confidence: 0.8780186772346497
+
+00:12:01.920 --> 00:12:05.469
+You can also either use the project endpoint with your
+
+NOTE Confidence: 0.8780186772346497
+
+00:12:05.535 --> 00:12:08.887
+specific API key for your account and make sure you
+
+NOTE Confidence: 0.8780186772346497
+
+00:12:08.953 --> 00:12:12.896
+can incorporate it in Python workflows that's outside of the
+
+NOTE Confidence: 0.8780186772346497
+
+00:12:12.962 --> 00:12:14.079
+Azure Foundry UI.
+
+NOTE Confidence: 0.8474845886230469
+
+00:12:14.080 --> 00:12:16.729
+So this this is how like an end to end
+
+NOTE Confidence: 0.8474845886230469
+
+00:12:16.798 --> 00:12:21.400
+workflow of deploy, like going from just testing, comparing models
+
+NOTE Confidence: 0.8474845886230469
+
+00:12:21.470 --> 00:12:24.746
+and how you would go about starting to use this
+
+NOTE Confidence: 0.8474845886230469
+
+00:12:24.816 --> 00:12:28.860
+iterated model in like a production workflow looks like so
+
+NOTE Confidence: 0.8474845886230469
+
+00:12:28.929 --> 00:12:31.788
+you can test out the web UI, you can take
+
+NOTE Confidence: 0.8474845886230469
+
+00:12:31.858 --> 00:12:35.692
+the code snippet and start using it in Python workflows
+
+NOTE Confidence: 0.8474845886230469
+
+00:12:35.762 --> 00:12:36.319
+offline.
+
+NOTE Confidence: 0.7294178605079651
+
+00:12:36.560 --> 00:12:40.200
+So this would how like fireworks AI on foundry function.
+
+NOTE Confidence: 0.8335992693901062
+
+00:12:40.200 --> 00:12:42.947
+And this is how intuitive and easy it would be
+
+NOTE Confidence: 0.8335992693901062
+
+00:12:43.007 --> 00:12:44.559
+to use open source models.
+
+NOTE Confidence: 0.8725073337554932
+
+00:12:44.920 --> 00:12:48.045
+Now let's say you're you're still not happy with the
+
+NOTE Confidence: 0.8725073337554932
+
+00:12:48.105 --> 00:12:51.771
+quality of the out-of-the-box open source models and you want
+
+NOTE Confidence: 0.8725073337554932
+
+00:12:51.832 --> 00:12:54.717
+to move to a more fine grained workflow of doing
+
+NOTE Confidence: 0.8725073337554932
+
+00:12:54.777 --> 00:12:56.399
+some sort of post training.
+
+NOTE Confidence: 0.7780524492263794
+
+00:12:56.400 --> 00:13:00.160
+That's when the bring your own weights come into play.
+
+NOTE Confidence: 0.8874478340148926
+
+00:13:00.440 --> 00:13:03.190
+So you would take the base model as is and
+
+NOTE Confidence: 0.8874478340148926
+
+00:13:03.255 --> 00:13:07.053
+you can use any fine tuning framework available outside of
+
+NOTE Confidence: 0.8874478340148926
+
+00:13:07.119 --> 00:13:08.560
+Foundry or on Foundry.
+
+NOTE Confidence: 0.8551633954048157
+
+00:13:08.920 --> 00:13:12.425
+And we, we also the Fireworks AI native platform also
+
+NOTE Confidence: 0.8551633954048157
+
+00:13:12.491 --> 00:13:13.880
+supports fine tuning.
+
+NOTE Confidence: 0.8886715769767761
+
+00:13:14.120 --> 00:13:16.043
+You can go there, use one of our SFT or
+
+NOTE Confidence: 0.8886715769767761
+
+00:13:16.092 --> 00:13:19.100
+RFT frameworks that are available, tune the models and upload
+
+NOTE Confidence: 0.8886715769767761
+
+00:13:19.149 --> 00:13:21.763
+those weights and go through the same workflow that I
+
+NOTE Confidence: 0.8886715769767761
+
+00:13:21.812 --> 00:13:24.377
+just showed you to make sure you can serve inference
+
+NOTE Confidence: 0.8886715769767761
+
+00:13:24.426 --> 00:13:27.040
+on open source models using the Fireworks tech stack.
+
+NOTE Confidence: 0.8920692801475525
+
+00:13:27.360 --> 00:13:29.876
+So this was a very quick way of showing how
+
+NOTE Confidence: 0.8920692801475525
+
+00:13:29.935 --> 00:13:32.861
+you can use Fireworks AI on Foundry, and I'm happy
+
+NOTE Confidence: 0.8920692801475525
+
+00:13:32.919 --> 00:13:36.080
+to answer any questions if you have anything else that
+
+NOTE Confidence: 0.8920692801475525
+
+00:13:36.138 --> 00:13:38.479
+you would like to see on Foundry itself.
+
+NOTE Confidence: 0.8350668549537659
+
+00:13:38.720 --> 00:13:41.560
+So thank you for stopping by and this was great.
+
+NOTE Confidence: 0.9672602415084839
+
+00:13:41.560 --> 00:13:42.280
+Thank you for listening.
+
+NOTE Confidence: 0.6656239032745361
+
+00:13:58.810 --> 00:13:59.690
+Amazing.
+
+NOTE Confidence: 0.8526861071586609
+
+00:13:59.690 --> 00:14:03.210
+Thank you so much Manesh for the amazing demo session.
+
+NOTE Confidence: 0.8368358016014099
+
+00:14:03.210 --> 00:14:07.291
+Thank you so much everyone for being here and attending
+
+NOTE Confidence: 0.8368358016014099
+
+00:14:07.365 --> 00:14:08.850
+the amazing session.
+
+NOTE Confidence: 0.7683852910995483
+
+00:14:09.320 --> 00:14:12.280
+Just want to do some program announcement.
+
+NOTE Confidence: 0.9134114384651184
+
+00:14:12.280 --> 00:14:15.242
+We are going to also have a next session coming
+
+NOTE Confidence: 0.9134114384651184
+
+00:14:15.305 --> 00:14:16.440
+up really quickly.
+
+NOTE Confidence: 0.9639724493026733
+
+00:14:16.679 --> 00:14:19.390
+So if you are wanting to go to the next
+
+NOTE Confidence: 0.9639724493026733
+
+00:14:19.459 --> 00:14:22.239
+session, please hang tight, stay seated.
+
+NOTE Confidence: 0.9741249680519104
+
+00:14:22.560 --> 00:14:24.920
+If not, have a great day.
+
+NOTE Confidence: 0.9734607934951782
+
+00:14:24.920 --> 00:14:26.600
+Thank you so much for being here today.
+

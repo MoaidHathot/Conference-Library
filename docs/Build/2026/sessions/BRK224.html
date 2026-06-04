@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRK224 - PepsiCo’s blueprint for agentic AI</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRK224</nav>
+        <h1>BRK224 &mdash; PepsiCo’s blueprint for agentic AI</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRK224 &middot; Breakout</span>
+    <h1>PepsiCo’s blueprint for agentic AI</h1>
+    <div class="speakers">Krunal Patel, Rishabh Saha, Bob Ward, Govanna Flores</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(200) Intermediate</span>
+<span>Gateway Pavilion, Level 1, Cowell Theater</span>
+<span>2026-06-03 21:45 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">Azure SQL</span> <span class="tag">Azure Database for PostgreSQL</span> <span class="tag">Azure Cosmos DB</span> <span class="tag">CP&amp;D</span> <span class="tag">Data</span> <span class="tag">Cloud platform &amp; data</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRK224?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/95afb175-5c57-46c2-bd53-d67dda3d0888" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Learn from Microsoft and PepsiCo engineers who modernized PepsiCo’s data foundation for agentic applications using Azure SQL, Cosmos DB, PostgreSQL, and Azure Databricks. Discover a practical build path for agentic RAG architecture, leveraging Azure SQL features like vector indexing and semantic search, to streamline app development and enable faster, repeatable patterns.  Refresh your own data layer to reduce app development cycles while leveraging modern, repeatable patterns to ship faster.
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>A Microsoft–PepsiCo session demonstrating how PepsiCo modernized its data foundation to build a production multi-agent system for key account managers (KAMs). Bob Ward frames the data-readiness prerequisites for AI, then PepsiCo and Microsoft engineers walk through the &quot;CAM 360&quot; agentic system that turns a KAM&#39;s Monday-morning meeting prep from hours of fragmented work into minutes.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Horizon DB public preview</strong> — Announced the day before the session (00:06:48), a scalable, Postgres-compatible database built for the cloud within Azure.</li>
+<li><strong>Cosmos DB semantic re-ranking</strong> — Among several Cosmos DB announcements that week, highlighted as popular with the community (00:06:28).</li>
+<li><strong>Azure SQL Database / Hyperscale GitHub Copilot integration</strong> — Deeper integration with GitHub Copilot in Visual Studio Code to improve the Azure SQL developer experience (00:06:36).</li>
+<li><strong>CAM 360 agentic system</strong> — PepsiCo&#39;s six-agent system (orchestrator, data analyst, tactic, tracking, best-practices, and debrief agents) that prepares KAMs for customer meetings (00:17:49).</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Data sprawl and vendor sprawl as barriers to successful AI projects, versus a unified lakehouse &quot;finish line.&quot;</li>
+<li>Making data &quot;AI ready&quot;: real-time, unified, meaningful, contextual, and trusted.</li>
+<li>The Enterprise Data Foundation (EDF) as a metadata-first layer enabling agents, and the shift from &quot;data for dashboards&quot; to &quot;data for agents.&quot;</li>
+<li>Architecture of the data analyst (&quot;nerd&quot;) agent: authentication with JWT-to-OIDC token federation, Genie text-to-SQL, and an enrichment/persistence layer with session memory.</li>
+<li>Use of LangGraph/LangSmith for orchestration tracing and Databricks Genie configuration (tables, definitions, Unity Catalog access control, high- vs. low-confidence query paths, golden datasets).</li>
+<li>The tracking agent&#39;s learning loop: configurable signals, an enterprise knowledge layer, a fact-builder agent producing confidence-scored facts stored in Cosmos DB, and a fact ledger.</li>
+<li>Foundry IQ for agentic RAG/retrieval, with configurable retrieval instructions, planning models, and reasoning effort.</li>
+<li>Compounding intelligence: debriefs and prior meetings becoming institutional memory for future KAMs.</li>
+<li>Lessons learned: keep scope small, the risk of confident hallucination, the need for domain experts, and the payoff of a strong data foundation.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;Just like we cannot build a skyscraper on sand, it&#39;s very difficult to build agents if your data is inconsistent, if your data is not governed properly, or if your data is just not meaningful enough.&quot; — Rishab Saha</p>
+</blockquote>
+<blockquote>
+<p>&quot;The agents are very good with confidently hallucinating, especially if part of your answer is wrong and part of your answer is right.&quot; — Rishab Saha</p>
+</blockquote>
+<blockquote>
+<p>&quot;It&#39;s not really to replace people... It&#39;s really to give time back to people so they can really focus on what&#39;s the most important for them.&quot; — Rishab Saha</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Azure SQL Database / Hyperscale</li>
+<li>Azure Database for PostgreSQL</li>
+<li>Azure Cosmos DB</li>
+<li>Azure Databricks (Genie, Unity Catalog)</li>
+<li>Microsoft Fabric</li>
+<li>Horizon DB</li>
+<li>Azure MySQL</li>
+<li>Azure AI Foundry / Foundry IQ / Foundry Local</li>
+<li>Copilot Studio</li>
+<li>GitHub Copilot</li>
+<li>Visual Studio / Visual Studio Code</li>
+<li>Azure Kubernetes Service / Azure Container services / static web apps</li>
+<li>LangGraph / LangSmith</li>
+<li>OpenTelemetry (OTLP)</li>
+<li>Responses API</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Bob Ward — Principal Architect, Azure Data team, Microsoft</li>
+<li>Rishab Saha [inferred: Rishabh Saha] — Chief Architect, Microsoft Office of the CTO</li>
+<li>Krunal Patel — Senior Manager, PepsiCo AI Solutions and Platforms team</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>Azure free resources (trial/getting started)</li>
+<li>Azure Accelerate program</li>
+<li>Cloud Accelerate Factory</li>
+<li>Session survey and presentation slides made available post-Build</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (56,933 chars)</summary>
+        <pre class="transcript-body">[00:00:01] Hope you&#39;ve had a great time here at Microsoft Build.
+[00:00:04] You&#39;ve seen a lot of amazing technologies, announcements, innovations, a
+[00:00:09] lot about AI, certainly a lot of tools, a lot
+[00:00:12] about data.
+[00:00:13] But you know what for me really brings it home
+[00:00:15] is when I see our customers be successful with it.
+[00:00:17] That&#39;s what we&#39;re here about today.
+[00:00:19] I&#39;m Bob Ward, a Principal Architect in the Azure Data
+[00:00:21] team for Microsoft.
+[00:00:23] And the heart of this session today is for you
+[00:00:25] to see a great example about Microsoft Partner with PepsiCo
+[00:00:29] to build an amazing solution combining a data LED approach
+[00:00:32] with AI.
+[00:00:33] But before I bring them on stage, let me show
+[00:00:35] you a little bit.
+[00:00:37] Let me just talk a little bit of some foundation
+[00:00:38] for you.
+[00:00:40] This may not surprise you, but in studies that Gartner
+[00:00:42] has done, so many companies believe if they don&#39;t have
+[00:00:45] the right data infrastructure, the right data, the right secure
+[00:00:49] data quality data, AI projects are kind of doomed to
+[00:00:52] fail.
+[00:00:52] In fact, some have started and I&#39;ve seen it where
+[00:00:54] they are not successful.
+[00:00:56] Here&#39;s the good news.
+[00:00:56] Over the last year, we&#39;ve seen many companies start down
+[00:00:59] this approach of modernizing their data state, getting it in
+[00:01:02] a way that they&#39;re ready to build intelligent AI solutions.
+[00:01:06] Now, what I&#39;ve seen is the starting line for someone
+[00:01:09] doing this journey looks like this.
+[00:01:12] There&#39;s a lot of arrows on there.
+[00:01:13] There&#39;s a lot of silos on there.
+[00:01:16] There&#39;s a lot of situations where you may have seen
+[00:01:18] this in your company, A lot of copies of data,
+[00:01:20] a lot of sprawl of data.
+[00:01:21] This leads to a lot of problems.
+[00:01:23] This leads to scenarios where there&#39;s a lot of inefficiencies
+[00:01:26] and even accessing the data, no one really knows actually
+[00:01:29] where the data is.
+[00:01:31] This also leads to limited interoperability, a lot of manual
+[00:01:34] file transfers, a lot of copies, a lot of pipelines
+[00:01:36] floating around, which is very costly to organization.
+[00:01:40] What really hurts is exposure because this data, a lot
+[00:01:43] of people don&#39;t know where it is.
+[00:01:45] It&#39;s really hard to govern this and the exposure where
+[00:01:47] this data might become a problem.
+[00:01:48] Security becomes a super big issue.
+[00:01:51] Now anytime I&#39;ve seen data sprawl, it usually involves vendor
+[00:01:54] sprawl.
+[00:01:55] So now you&#39;ve got to keep up with multiple vendors
+[00:01:57] who may have multiple different subscriptions, different versions, different policies.
+[00:02:01] You&#39;ve got to track as well.
+[00:02:03] So what&#39;s a good finish line look like?
+[00:02:05] Well, to me, that&#39;s like Nirvana.
+[00:02:06] This is like multiple organizations working together on different tasks,
+[00:02:10] but these tasks work off a centralized unified data platform,
+[00:02:13] often a lake house type approach or a lake based
+[00:02:16] approach.
+[00:02:17] And it&#39;s interesting, even though there are multiple tasks that
+[00:02:20] the organization has to do, because everything is integrated together,
+[00:02:24] they can achieve different types of tasks together in an
+[00:02:27] interoperable way.
+[00:02:28] Now there may be a lot of data sources still
+[00:02:30] involved in the organization, this finish line scenario, but they&#39;re
+[00:02:33] well integrated into the actual lake approach.
+[00:02:36] This gives you great governance, great security, a tighter integration
+[00:02:40] with AI models.
+[00:02:41] You need 2 products that give you that are Microsoft
+[00:02:44] Fabric and Azure Data bricks.
+[00:02:46] And you&#39;re going to see examples of that today from
+[00:02:48] PepsiCo.
+[00:02:49] So you make this journey to the finish line.
+[00:02:51] What are some things you need to do?
+[00:02:53] Well, first of all, you got to unify your data.
+[00:02:55] As you saw in that diagram, this could be a
+[00:02:57] difficult approach, and I&#39;ve seen it be a difficult approach
+[00:02:59] and take a while in many companies.
+[00:03:01] But with platforms like fabric and data bricks, it become
+[00:03:04] a little easier than you think.
+[00:03:06] Even when you unify that data, though, the data needs
+[00:03:09] to be ready for AI.
+[00:03:10] I&#39;m a data person that involves data that&#39;s curated, data
+[00:03:13] that is secure, data of high quality.
+[00:03:16] There are tools to help you make that journey.
+[00:03:18] So even when you get unification, if the data is
+[00:03:20] not ready, it can be difficult to build an AI
+[00:03:22] solution that&#39;s successful.
+[00:03:24] Now AI models have to come into play.
+[00:03:26] And it could be you&#39;re going to use popular models
+[00:03:28] that exist out there today, or you&#39;re going to go
+[00:03:30] down the exercise of fine tuning models, but you need
+[00:03:33] a platform that&#39;s going to give you choice of models
+[00:03:35] per the needs of your business.
+[00:03:36] And then finally, you&#39;ve got to build the right solution.
+[00:03:39] Am I going to build simple chat agents?
+[00:03:40] Am I going to build complicated type agents?
+[00:03:43] You&#39;re going to see examples where PepsiCo has decided to
+[00:03:46] build solutions that, guess what, fit the needs of their
+[00:03:48] business.
+[00:03:49] Kind of makes sense, right?
+[00:03:50] And they went through this journey of making sure their
+[00:03:52] data is ready for AI.
+[00:03:54] Now you have tools along the way as developers and
+[00:03:56] you&#39;ve seen at this event many of these tools mentioned.
+[00:03:59] If you&#39;re want the low code approach, you could use
+[00:04:02] things like Copilot Studio or you could use rich combinations
+[00:04:05] of things like Visual Studio, Visual Studio Code and GitHub
+[00:04:08] Copilot to give that rich developer experience to build any
+[00:04:12] data solution you need with AI now in the middle,
+[00:04:15] you need a way to host AI models in a
+[00:04:17] very, very comprehensive way.
+[00:04:18] Cost effective way with Choice and Foundry is it From
+[00:04:21] personal experience, and I&#39;ve tried to deploy models on premises
+[00:04:24] in many different scenarios, I have found Founder to be
+[00:04:27] so superior to give me the models of quality I
+[00:04:29] need.
+[00:04:30] With a Choice, I need to pick the models that
+[00:04:32] give me the power, whether it be small models or
+[00:04:34] or large models.
+[00:04:36] I have application hosting platforms, I can do things in
+[00:04:38] Kubernetes, Azure Container services, static web apps.
+[00:04:40] I have many different choices where these apps can be
+[00:04:43] hosted that can integrate with these models.
+[00:04:45] Now I&#39;m a database guy, so we need databases and
+[00:04:48] we have a rich choice of Azure databases available to
+[00:04:50] you.
+[00:04:51] And then of course, you might use Databricks and Fabric
+[00:04:53] as that unifying platform to bring them together.
+[00:04:56] And notice here at the bottom, this is going to
+[00:04:59] give you resiliency, governance, and security in a very unified
+[00:05:02] way.
+[00:05:03] And don&#39;t forget, if you need to build solutions that
+[00:05:05] will work on the edge, you can do that as
+[00:05:07] well.
+[00:05:08] Technologies like Foundry Local give you the ability to do
+[00:05:11] things like AI models in an edge type scenario.
+[00:05:14] So Speaking of Azure Database, this is what I specialize
+[00:05:16] in.
+[00:05:17] We&#39;ve got a great set for you to use.
+[00:05:19] And PepsiCo uses several of these, whether it be the
+[00:05:22] popular Azure SQL like Hyperscale based on SQL Server, you
+[00:05:25] all know and like it could be Postgres Sequel or
+[00:05:28] Cosmos DB for no sequel.
+[00:05:30] Or it could be the new Postgres offering.
+[00:05:31] We just announced this event called Horizon DBA Postgres compatible
+[00:05:35] database that&#39;s built and scaled for the cloud.
+[00:05:38] Or it could even be my sequel.
+[00:05:40] But with all these choices, what&#39;s common among them?
+[00:05:42] Well, first of all, they all allow scale.
+[00:05:44] They are using the backbone of Azure.
+[00:05:46] So it&#39;s very easy for us to build managed database
+[00:05:48] infrastructures that scale to your needs.
+[00:05:51] All of them support transactions.
+[00:05:52] They&#39;re all built because that&#39;s they&#39;re all relational databases or
+[00:05:55] in the case of Cosmos, a no sequel database.
+[00:05:58] That is very transactional intent, which means that for AI
+[00:06:01] systems, they can support OTP type transactions, but still give
+[00:06:05] things you need.
+[00:06:06] Like the Third Point, vector support.
+[00:06:08] One of things I love we&#39;ve done is ensure that
+[00:06:11] every database we have has integrated vector support for rich
+[00:06:14] searching, tightly integrated with things like Foundry or the ability
+[00:06:18] to mirror these databases easily into Fabric support that lake
+[00:06:22] approach.
+[00:06:23] Now we&#39;ve made a lot of announcements this week about
+[00:06:26] our databases, including for Cosmos DB, several announcements.
+[00:06:28] A semantic re ranking is one of those I think
+[00:06:30] is very, very popular that a Cosmos DB community really
+[00:06:33] likes.
+[00:06:34] Cosmos is a technology that PepsiCo has used.
+[00:06:36] One of their solutions we have, Azure SQL Database, including
+[00:06:39] Hyperscale, made several announcements this week on deep integrations with
+[00:06:43] GitHub Copilot in Visual Studio Code to give a better
+[00:06:46] experience for developers with Azure SQL.
+[00:06:48] And then of course, we announced yesterday the public preview
+[00:06:52] of Horizon DB, a rich set of scalable architectures inside
+[00:06:55] Azure to support Postgres compatibility for Postgres developers.
+[00:07:00] But hey, you&#39;ve heard me talk enough here, you really
+[00:07:02] want to see what things are in action.
+[00:07:03] So I&#39;d like to welcome on today&#39;s Rishab from Microsoft
+[00:07:06] and Kernel from PepsiCo.
+[00:07:10] Thanks, Bob.
+[00:07:12] Thank you.
+[00:07:12] Thank you.
+[00:07:12] Thank you so much.
+[00:07:13] Thank you.
+[00:07:15] Good afternoon, everyone.
+[00:07:16] I&#39;m Rishab Saha, Chief Architect at Microsoft&#39;s Office of the
+[00:07:20] CTO.
+[00:07:20] I&#39;m thrilled to be joined today by Krunal Patel, Senior
+[00:07:23] Manager at Pepsico&#39;s AI Solution and Platforms team.
+[00:07:28] By the way, before we start Krunal, I saw a
+[00:07:29] lot of people with a lot of food and drinks
+[00:07:31] here.
+[00:07:32] Do you really get unlimited Pepsi at work?
+[00:07:34] Well, well, unlimited thing that we get is a complexity
+[00:07:38] and it&#39;s scale.
+[00:07:39] Right.
+[00:07:39] Do you say complexity and scale?
+[00:07:41] Yeah, touch&#233; but but that&#39;s actually true.
+[00:07:44] Let&#39;s think about the scale that Pepsi cooperates 300,000 plus
+[00:07:50] employees, products enjoyed in 200 plus countries, 23 plus billion
+[00:07:55] dollar brands.
+[00:07:57] That&#39;s massive scale.
+[00:07:58] There&#39;s a high degree of chance that all of us
+[00:08:01] today had consumed a Pepsi product in some shape or
+[00:08:05] form.
+[00:08:06] But this scale creates complexity, and this complexity creates a
+[00:08:10] very specific kind of pain for the people who are
+[00:08:13] closest to Pepsi&#39;s largest customers.
+[00:08:16] And that&#39;s the pain, or that&#39;s the story that we
+[00:08:18] are going to talk about.
+[00:08:20] Obviously, Bob kicked us off with a lot of product
+[00:08:23] story.
+[00:08:23] But for the next 3035 minutes, we&#39;ll be talking more
+[00:08:27] about the people story, the story about a key account
+[00:08:30] manager, a Cam, and how we took them Monday morning
+[00:08:33] from chaos to clarity.
+[00:08:34] Let&#39;s begin.
+[00:08:35] Yeah.
+[00:08:37] So a key account manager or Cam is a senior
+[00:08:40] sales professional responsible for managing Pepsico&#39;s largest customers.
+[00:08:46] And these are the who&#39;s who of the retailers.
+[00:08:48] Think about, I would name names, but in a way
+[00:08:52] we go and shop PepsiCo products when this key account
+[00:08:57] managers have to prep for a meeting with an executive
+[00:09:01] in that for their customers.
+[00:09:04] These are some of the challenges that you see on
+[00:09:06] screen that they have to go through fragmented information.
+[00:09:10] Imagine it&#39;s Monday morning.
+[00:09:12] They have a meeting in the next 48 hours.
+[00:09:14] The way they start today is going through multiple reports,
+[00:09:18] multiple dashboards, contacts, buried in some emails, and still trying
+[00:09:22] to figure out, do I have the current data?
+[00:09:24] Do I have the latest context?
+[00:09:26] And that&#39;s a very painful process for a key account
+[00:09:29] manager to go through because their true competency lies in
+[00:09:32] actually strategizing, actually thinking about the conversation that they need
+[00:09:36] to have with their customers.
+[00:09:38] But even before they go there, they have to go
+[00:09:40] through all these hurdles.
+[00:09:42] And this is not just one task.
+[00:09:44] If you really zoom in.
+[00:09:46] Its a combination of all the things that you&#39;re seeing
+[00:09:48] on the screen today, right?
+[00:09:50] And its its painful, right?
+[00:09:52] If I was in their shoes, if I had to
+[00:09:54] go through all these things even before I could do
+[00:09:57] my main job, it&#39;s a really, really painful struggle.
+[00:10:00] And by the way, these are not small customers that
+[00:10:02] they&#39;re working with.
+[00:10:03] These are really, really big retail customers driving multi $1,000,000
+[00:10:07] in revenue.
+[00:10:09] So Kunal, maybe walk us through, we know that this
+[00:10:12] was a challenge and we began how did we go
+[00:10:14] or how, where do we want to go?
+[00:10:16] Maybe let&#39;s walk us through that.
+[00:10:18] You know what?
+[00:10:18] I would say that imagine a world where, you know,
+[00:10:21] we have account plans and all the health of that
+[00:10:24] account comes together in one singular workflow, right?
+[00:10:29] Think about like, you know, hey, it&#39;s a singular place
+[00:10:32] where, you know, it&#39;s a trusted data, but at at
+[00:10:35] the same time, like, you know, it&#39;s a, it&#39;s a
+[00:10:37] one, one source.
+[00:10:38] We don&#39;t have to go to multiple data silos and,
+[00:10:40] you know, compile the different information and validate from different
+[00:10:43] people now.
+[00:10:45] And also like, you know, think about like, you know,
+[00:10:48] hey, learning system that compounds over time.
+[00:10:51] It doesn&#39;t have to actually, we don&#39;t have to feed
+[00:10:53] it keep on feeding data, but it actually learns on
+[00:10:56] its own eventually, right?
+[00:10:58] So that&#39;s kind of a system we build.
+[00:11:00] How about you walk us through like, you know, let&#39;s,
+[00:11:02] let&#39;s walk us through.
+[00:11:04] Obviously, I think it all starts with the foundation, one
+[00:11:07] of the key learnings, you know, for any person or
+[00:11:10] person now who is in the relationship business, it&#39;s a
+[00:11:13] lot of those learnings become tribal knowledge at some point
+[00:11:16] in time, right?
+[00:11:17] Because you have a single customer managing, managing a massive
+[00:11:20] amount of relationships and information.
+[00:11:22] However, even before we go solving for that, the key
+[00:11:25] starts with the foundation.
+[00:11:28] Just like we cannot build a skyscraper on sand, it&#39;s
+[00:11:31] very difficult to build agents if your data is inconsistent,
+[00:11:35] if your data is not governed properly, or if your
+[00:11:38] data is just not meaningful enough.
+[00:11:41] So it all starts with foundation or an enterprise data
+[00:11:44] foundation.
+[00:11:45] Bob alluded to this in, in, in his part, but
+[00:11:48] these are based on some, I would say, common sense
+[00:11:51] principles, right?
+[00:11:53] You need to have your dev OPS and governance in
+[00:11:56] place.
+[00:11:57] You need to make sure that you have your industry
+[00:12:00] data models standardized so that your data is actually harmonized
+[00:12:03] across various business functions or markets.
+[00:12:06] You also need to make sure you&#39;re building reusable modules
+[00:12:09] so every team is not doing the same thing differently.
+[00:12:13] And obviously you end with central observability because that&#39;s how
+[00:12:17] your system learns, evolves, and adapts.
+[00:12:19] Now PepsiCo, from what I saw, had put in a
+[00:12:22] lot of effort and they had that EDF foundation pretty
+[00:12:25] well baked in.
+[00:12:26] Now maybe walk us through how we went from the
+[00:12:29] foundational EDF layer and then traditionally what was data for
+[00:12:33] dashboards, we evolved that for data for agents.
+[00:12:37] Yeah, data for dashboards to data for agents, Yes, that&#39;s
+[00:12:40] the goal that we or that&#39;s the journey that we
+[00:12:42] are on, right?
+[00:12:44] Right now, yeah, our pipelines are serving to a dashboards.
+[00:12:47] But eventually like you know, insights, insights we want to
+[00:12:50] be automated right now, today, insights are actually manipulated or
+[00:12:54] actually understood by humans and actions are taken by the
+[00:12:57] manual rules, right.
+[00:12:59] But instead like you know, the tomorrow that we are
+[00:13:02] driving for or we have worked together to get there,
+[00:13:04] right, The connected knowledge graph and also that connected knowledge
+[00:13:08] graph that builds the common knowledge layer.
+[00:13:12] Also that common knowledge layer sits on top of, you
+[00:13:16] know, the multiple different fragmented data agents that can take
+[00:13:21] advantage of that, that can reason on it, that can
+[00:13:25] actually decide and actually take an action on it, right?
+[00:13:30] Insights to automation.
+[00:13:32] That&#39;s what, you know, we have built together.
+[00:13:34] Now the foundation perspective, like, you know, EDF is a
+[00:13:37] really metadata first foundation that you know, we have built
+[00:13:41] together and also on on on top of that, you
+[00:13:44] know, we we have created a data as a knowledge
+[00:13:47] where, you know, we have a different disconnected entities coming
+[00:13:51] together.
+[00:13:52] We have our data as intelligence, you know, where we
+[00:13:55] know we we allow agents to actually reason through, scroll
+[00:13:59] through, go deeper and then you then it comes to
+[00:14:02] a agent layer.
+[00:14:03] So basically the concept is, you know, making the data
+[00:14:06] AI ready data so that you know, we can generate
+[00:14:08] more value for the business.
+[00:14:10] So it is safe to say if you want to
+[00:14:12] do anything with agents, you need to have your data
+[00:14:15] AI ready.
+[00:14:17] And making your data AI ready, even with a strong
+[00:14:19] foundation is extremely hard.
+[00:14:21] It is hard because you have to solve for these
+[00:14:24] five things together at the same time.
+[00:14:27] You need your data to be real time or in
+[00:14:30] in real time available to the agents.
+[00:14:33] We all know agents are very sensitive to latency, even
+[00:14:36] if it is available in real time.
+[00:14:38] You also need to make sure your data is unified.
+[00:14:41] Some of this complex business workflows touch various parts of
+[00:14:44] your business, so you need to make sure your data
+[00:14:47] is unified.
+[00:14:48] Even if your data is unified, you still make to
+[00:14:51] need to make sure that your data is meaningful.
+[00:14:54] You need to make sure all the business context, all
+[00:14:56] the business meanings, all the business processes are captured.
+[00:15:00] Even with that, you still need to make sure it
+[00:15:02] is contextual.
+[00:15:04] Agents work extremely well with the right context at the
+[00:15:07] right time.
+[00:15:08] And all of this is meaningless if your data isn&#39;t
+[00:15:11] really trusted.
+[00:15:12] And these doing this individually is hard, but doing this
+[00:15:16] at the scale that Pepsi operates in is way harder.
+[00:15:20] Now we do have Azure services and platforms that make
+[00:15:24] it possible make it easy.
+[00:15:26] Perhaps Azure Databricks, Microsoft Fabric, you know, our enterprise application
+[00:15:30] databases like SQL, Cosmos DB.
+[00:15:32] But even with all that, you still need to be
+[00:15:35] very conscious or an intentional about the architectural decisions you&#39;re
+[00:15:39] making.
+[00:15:40] One of the things as a chief architect I keep
+[00:15:43] saying is operating model is something that also needs to
+[00:15:46] evolve.
+[00:15:47] All these things are important, but so is your operating
+[00:15:50] model.
+[00:15:51] Maybe let&#39;s talk about some of the capabilities.
+[00:15:53] Again, I won&#39;t drain to the slides, but in Pepsico&#39;s
+[00:15:56] case, these were all the components that were important in
+[00:15:59] making this solution a possibility.
+[00:16:03] Individually, maybe these products are not as interesting.
+[00:16:06] The highlight of the slide that I want us to
+[00:16:09] take away with is all these products were used from
+[00:16:13] a point of view of being production ready, right?
+[00:16:16] That that was the goal.
+[00:16:18] And once you see the solution is a multi agent
+[00:16:20] system, so different teams, different developers, different components, you know,
+[00:16:24] might have access to different solutions.
+[00:16:26] So we didn&#39;t really want to push them in a
+[00:16:29] way where we are articulating user, you can just use
+[00:16:32] this or not.
+[00:16:33] This come kind of tells the entire story.
+[00:16:36] And this will be available in as part of your
+[00:16:39] presentation post build.
+[00:16:41] So you can get access to this.
+[00:16:42] But these are all more theoretical concepts, right?
+[00:16:46] Maybe let&#39;s talk about the Cam 360 agent and this
+[00:16:49] agentic system.
+[00:16:50] Well, before we dive that, let me paint a picture.
+[00:16:54] Meet Priya.
+[00:16:54] Let&#39;s let&#39;s use Priya as an example.
+[00:16:57] A key account manager.
+[00:16:59] In 48 hours, she has an important meeting with one
+[00:17:02] of her largest retail customers.
+[00:17:05] Today she&#39;s going through 6710 different systems, reports, emails, contacts
+[00:17:11] buried in some documents.
+[00:17:14] It takes her hours to even go through what she
+[00:17:17] really needs to prepare for that meeting.
+[00:17:20] So we went from that to a new world where
+[00:17:22] she just bringing up can 360 and asking it help
+[00:17:26] me get prepared.
+[00:17:27] Walk us through how that journey got unlocked.
+[00:17:30] Well, when you say that, you know, Priya, you know,
+[00:17:33] going to multiple system, but I want to just say
+[00:17:36] that, you know, hey, Priya is now company with the
+[00:17:39] six superstars, you know, the six superstar team members, like,
+[00:17:43] you know, I have a data, a team that you
+[00:17:45] know, actually crunch into the data.
+[00:17:47] I let me introduce you with them, right.
+[00:17:49] You know, that is orchestrator.
+[00:17:51] It&#39;s a, you know, really smart project manager.
+[00:17:54] It orchestrates everything across the board.
+[00:17:57] Then you know you have a superstar in the team.
+[00:17:59] We have a nerd, data nerd which is a data
+[00:18:01] analyst agent.
+[00:18:02] It actually countries the data and goes through a number.
+[00:18:06] We have a person named tactic agent.
+[00:18:08] It makes sure that you know the account personas are
+[00:18:10] really captured very well and actually all the strategies that
+[00:18:14] we create on top of it, it&#39;s actually followed the
+[00:18:17] tag tracking agent.
+[00:18:18] We life cycle perspective on the accounts.
+[00:18:21] We manage that through this tracking agent and we make
+[00:18:23] sure that, you know, we are on track.
+[00:18:25] We have a best practices.
+[00:18:26] Of course, I think about PepsiCo scale like, you know,
+[00:18:29] PepsiCo is a big.
+[00:18:30] So in this scale, we want to make sure that,
+[00:18:31] you know, we also follow the runbook that you know,
+[00:18:33] we have been following for the success.
+[00:18:35] So that&#39;s this agent actually make sure that and my
+[00:18:38] favorite one last one, right, You know, the debrief agent
+[00:18:41] in this case, like, you know, you can just talk
+[00:18:43] to it.
+[00:18:44] It&#39;s a live conversational agent where, you know, it could
+[00:18:46] make sure that you hit the knowledge layer.
+[00:18:47] If knowledge has some gaps, it will create a question.
+[00:18:50] It will ask that question to the user, to the
+[00:18:52] Priya and Priya would answer that and it will capture
+[00:18:55] into knowledge and next time you know, boom, it will
+[00:18:58] have a better understanding around your account.
+[00:19:00] That&#39;s awesome.
+[00:19:01] I think safe to say that every Cam has a
+[00:19:04] team of 6 working with them all the time.
+[00:19:07] And this is the complexity that today, before the system
+[00:19:10] existed, they had to really go through and solve for.
+[00:19:13] Maybe let&#39;s pick a couple of agents.
+[00:19:14] You said nerd, so maybe let&#39;s dive into the data
+[00:19:17] analyst agent and yeah, just walk us through the behind
+[00:19:20] the scenes.
+[00:19:21] So data analyst agent is interesting one, right?
+[00:19:24] It&#39;s a hybrid system.
+[00:19:25] You can see that it has authentication query genie and
+[00:19:29] also enriched layers.
+[00:19:31] But authentication is where, you know, we make sure that,
+[00:19:34] you know, users access if they don&#39;t have access to
+[00:19:37] specific data, you know, we don&#39;t agent does not actually
+[00:19:40] also go through and look at that data and then
+[00:19:43] comes to a genie.
+[00:19:44] Genie is a heart and actually on this case, like
+[00:19:46] you know it will, it will do a text to
+[00:19:48] SQL generation and also executes that and provides the responses
+[00:19:51] back.
+[00:19:52] And finally, you know, and reach and persist layer where
+[00:19:55] you know, we have this knowledge layer and also all
+[00:19:58] the different session memories are stored.
+[00:20:01] So that actually makes the synthesization very easy.
+[00:20:05] So let&#39;s do deep dive into a demo.
+[00:20:08] You know, I have a small demo that you know,
+[00:20:09] we can that&#39;s a good idea.
+[00:20:11] So I&#39;ll quickly go through this demo.
+[00:20:16] Yeah.
+[00:20:16] So think about this like no, this is a Lang
+[00:20:18] Smith.
+[00:20:19] This is a combination of a Lang graph and Genie.
+[00:20:23] So in Lang Smith we have yeah, in Lang Smith
+[00:20:27] we have a flows as you can see that is
+[00:20:30] a project manager, you know, orchestrator in the center.
+[00:20:35] And you know, as query comes in like you know,
+[00:20:37] there is a query being written just for demo purpose.
+[00:20:40] This query is asking top actually accounts that you know
+[00:20:45] that can be used.
+[00:20:46] So and it is going through all the authentication, converting
+[00:20:50] those token from JW to YDC tokens and then, you
+[00:20:53] know, doing a call to a genie.
+[00:20:55] And after that, you know, it is starting to synthesize,
+[00:20:58] right.
+[00:20:58] You know, before even it provides an answer back, it
+[00:21:01] has a, you know, golden data set that it actually
+[00:21:04] looks at and you know, finally provides the output that,
+[00:21:07] hey, this is output that, you know, I want to
+[00:21:09] look for.
+[00:21:10] But if I, if I go even deeper, like, you
+[00:21:12] know, if I, if I go to a node by
+[00:21:15] node, if I want to understand what nodes are built,
+[00:21:18] right?
+[00:21:19] You know, there are multiple nodes here and, and in
+[00:21:23] a we ask or we can take a look at
+[00:21:25] that nodes.
+[00:21:26] So these are this is a graph.
+[00:21:29] This is a graph and nodes that we are looking
+[00:21:32] at, there are multiple nodes and graphs mentioned.
+[00:21:34] And these are the steps that we are following, right?
+[00:21:36] So in these steps we we want to make sure
+[00:21:39] that, you know, the conversion of the token happens very
+[00:21:43] well.
+[00:21:43] So we have a federation policy in the database Genie
+[00:21:46] configured so that you know, we use that and convert
+[00:21:49] the token from JW to YDC.
+[00:21:51] That happens here in authentication layer in this tab.
+[00:21:54] Then you know we have Genie call.
+[00:21:57] Now after we call to Genie, we have a conversation,
+[00:22:00] IDs and all that we track onto a session and
+[00:22:03] we keep on tracking that hey, where we are on
+[00:22:06] that Genie, that request, we received that request back.
+[00:22:10] The response actually provides us summarized output and at the
+[00:22:13] same time also it provides a sequel.
+[00:22:17] Now our orchestrator on the other side, it compiles all
+[00:22:20] the information from this Genie output and actually provides it
+[00:22:25] back.
+[00:22:25] So you can see that in this case it is
+[00:22:29] going through the code snippets that you know, it, it
+[00:22:33] provides output to orchestrator and orchestrator actually synthesizes at the
+[00:22:40] end now.
+[00:22:41] Yeah, it over here, right here, it is trying to
+[00:22:44] show that, you know, we have conversation IDs that we
+[00:22:47] tracked through and I know that is a genie IDs
+[00:22:50] that, you know, we follow through.
+[00:22:52] We make sure that, you know, we we tied back
+[00:22:56] to the to the query and at the end we
+[00:22:59] have a final output that, you know, it gets generated
+[00:23:04] here.
+[00:23:05] Now I want to walk you through one more piece
+[00:23:07] like, you know, yeah, it&#39;s a it&#39;s a genie being
+[00:23:10] used under land graph flow, right?
+[00:23:13] But not only that, like, you know, I will, we
+[00:23:15] will show data breaks, let&#39;s say like how data breaks
+[00:23:18] configuration looks like for genie.
+[00:23:20] So we, we configure the genie.
+[00:23:22] We make sure that you know in this genie we
+[00:23:25] have all the all the tables that are that are
+[00:23:29] needed that are created also warehouse.
+[00:23:32] It&#39;s a it&#39;s a no sort of warehouse like you
+[00:23:34] know, we have created here just to make sure that
+[00:23:37] you know the speed is provided.
+[00:23:40] All the tables that are actually in the picture are
+[00:23:44] being used with that those tables.
+[00:23:47] You know you have all the definitions mentioned in those
+[00:23:50] tables.
+[00:23:50] All the column details are captured in those tables as
+[00:23:54] you can see here as we go and deeper each
+[00:23:56] and every configurations helps actually Genie understand a little bit
+[00:24:00] more about the data so that when it generates the
+[00:24:03] SQL, it&#39;s much more accurate SQL rather than you know,
+[00:24:07] it&#39;s, it&#39;s just keeps on trying, right.
+[00:24:10] So as you can see here, it&#39;s it is there
+[00:24:12] is a formatting assistant also that we have used.
+[00:24:15] So we make sure that you know the formatting is
+[00:24:18] correct at the end and and this data actually we
+[00:24:21] also take advantage of Unity catalog here, right?
+[00:24:25] So you need the catalog actually helps us make sure
+[00:24:28] that you know the users has access to the right
+[00:24:30] tables.
+[00:24:31] Let&#39;s say we configure here 10 tables, but user may
+[00:24:33] not have access to all 10 tables.
+[00:24:35] They only may have access to only two or three
+[00:24:37] tables.
+[00:24:38] So we don&#39;t want, you know our agents to provide
+[00:24:41] access to all of the data and provide the answer.
+[00:24:44] But you know that that might not be a good
+[00:24:46] one, right?
+[00:24:47] Because user may not have access and we are trying
+[00:24:50] to attach into the data which is restricted data.
+[00:24:53] So we also take took care of that over here
+[00:24:55] we are providing an instruction making sure that you know
+[00:24:59] all the instructions are configured, system instructions for the agent
+[00:25:03] are configured correctly.
+[00:25:04] 1 short examples are created here and all the queries.
+[00:25:08] So there are some high confidence path if queries are
+[00:25:11] really matching closely with them that, you know, we have
+[00:25:14] a high confidence path where we have a real static
+[00:25:16] sequels configured here, but there are some low confidence paths
+[00:25:20] where you know, we generate a sequel on the fly,
+[00:25:22] right?
+[00:25:23] So that&#39;s also out there.
+[00:25:25] As you can see, we we have those high confidence
+[00:25:29] path very well established, right.
+[00:25:31] A lot of high, high confidence queries already mentioned.
+[00:25:35] And this is all because of the golden data set
+[00:25:38] that we collected with at the layer of the log
+[00:25:41] logs that we collect for the user usage.
+[00:25:43] So in the development cycles when we actually provide it
+[00:25:46] to users, we also collect that how they are using
+[00:25:49] it, what common questions they are asking.
+[00:25:51] And based on that, we compile the high confidence path.
+[00:25:54] As you can see that the questions as questions being
+[00:25:57] asked for the high confidence path, it is instant of
+[00:26:01] the first question was high confidence path.
+[00:26:04] It would run those queries and it would provide the
+[00:26:06] answer back immediately.
+[00:26:07] For the low confidence, as you can see, there is
+[00:26:09] a trusted sign.
+[00:26:11] Unfortunately we had to label some of the data out,
+[00:26:15] but yeah, so this is a nutshell.
+[00:26:18] Like you know the you you get the data back
+[00:26:20] to a orchestrator level and orchestrator then you know synthesize
+[00:26:24] just in case if it has to use some other
+[00:26:27] agents as well, then it does it and then finally
+[00:26:30] provides output.
+[00:26:31] Yeah, I know.
+[00:26:31] And by the way, for all of us or those
+[00:26:33] of you who have tried building a natural language to
+[00:26:36] SQL kind of a system, we know it&#39;s a very,
+[00:26:39] very hard thing to do.
+[00:26:40] But there were three key takeaways as part of this.
+[00:26:44] You know, walk through first, if Priya the Cam, when
+[00:26:47] she started interacting with the system, she started with just
+[00:26:51] an intent, right?
+[00:26:52] She didn&#39;t really have to go and figure out where
+[00:26:55] the data sources or knowledge sources to get that answer
+[00:26:58] resides.
+[00:26:59] The second part was that intent got translated into a
+[00:27:02] SQL query or whatever the query mechanism is behind the
+[00:27:06] scenes.
+[00:27:07] But the reason that was good and accurate because of
+[00:27:10] the Enterprise Data Foundation and the work Pepsi had done
+[00:27:13] in setting that foundation properly.
+[00:27:15] And more importantly, the system is not just summarizing information
+[00:27:19] and giving it back to Priya.
+[00:27:21] The system is making sure Priya has access to the
+[00:27:24] variable she needs to make her conversation with the customer
+[00:27:28] as appropriate and as meaningful as possible.
+[00:27:32] So this was an example of data analyst or NERD
+[00:27:35] agent as you put so.
+[00:27:38] So let&#39;s see a tracking agent.
+[00:27:41] Let&#39;s walk through another agent.
+[00:27:44] Maybe let&#39;s move the story forward, right.
+[00:27:46] So Priya used the data analyst agent had an amazing
+[00:27:49] meeting with her customer.
+[00:27:51] It&#39;s Thursday evening, maybe Thursday morning.
+[00:27:53] She had the meeting Thursday evening in the current cycle.
+[00:27:56] What she did is she went back to her car,
+[00:27:59] she may be scribbled some notes, maybe send an e-mail,
+[00:28:02] or she may be made a promise to herself that
+[00:28:04] she&#39;ll go and update the account plan in the near
+[00:28:07] future.
+[00:28:08] All of us who have done this know it&#39;s very
+[00:28:11] easy to miss context when you are in that cycle.
+[00:28:14] And even if you are able to do all that,
+[00:28:17] that context and information is still very relevant to you,
+[00:28:21] Priya.
+[00:28:22] It does not really become an institutional knowledge base or
+[00:28:25] an institutional memory.
+[00:28:28] So the goal of the tracking agent was how do
+[00:28:31] we extend the preparation work that maybe a data analyst
+[00:28:34] agent has done?
+[00:28:36] How do we extend that and make that into a
+[00:28:38] learning system?
+[00:28:39] So the tracking agent really had three main components.
+[00:28:42] The first part is learning module.
+[00:28:45] The learning module essentially allows you to create categories that
+[00:28:49] you want your system to continuously learn about.
+[00:28:52] And these categories are configurable.
+[00:28:54] These categories would be things like pricing, This could be
+[00:28:57] things like escalation.
+[00:28:59] This could be any parameter that you want your system
+[00:29:02] to continuously learn about.
+[00:29:04] Once that learning has happened, then it moves on to
+[00:29:07] the enterprise knowledge layer.
+[00:29:09] The enterprise knowledge layer is essentially the layer which is
+[00:29:12] extracting the tribal knowledge and information that existed in Priya&#39;s
+[00:29:17] memory and making that available to everyone in the accounting
+[00:29:20] or everyone who will come later who needs to build
+[00:29:23] on top of that knowledge base.
+[00:29:26] And finally, the fact builder agent is working on generating
+[00:29:29] facts from the signals that you have configured.
+[00:29:32] We will see that in action in a bit.
+[00:29:35] And the tracking agent is essentially the conversational interface that
+[00:29:39] is only working with the fact Ledger.
+[00:29:41] It only knows that the facts are stored in the
+[00:29:43] fact Ledger and that&#39;s the only thing that a Cam
+[00:29:45] needs to interact with.
+[00:29:47] Everything that you see on the learning side, the enterprise
+[00:29:49] knowledge side, and the compounding intelligence side is happening behind
+[00:29:52] the scenes on a scheduled basis.
+[00:29:55] So if you see this in action, this is the
+[00:29:58] example of a signal.
+[00:30:00] Like I said, signals could be any category that you
+[00:30:03] want your system to continuously learn about.
+[00:30:05] It&#39;s configurable in this sense.
+[00:30:07] It&#39;s tracking pricing information.
+[00:30:10] It&#39;s tracking the hints that you want your system to
+[00:30:13] learn about pricing.
+[00:30:15] It also has an extraction prompt for your downstream agent
+[00:30:19] to maybe use that as a prompt.
+[00:30:21] Once you set this up, you could also set additional
+[00:30:24] things like metadata fields.
+[00:30:25] Metadata fields are more relevant for your knowledge sources and
+[00:30:29] knowledge bases so that it knows the context that it&#39;s
+[00:30:32] talking about.
+[00:30:33] This is again a configurable thing that you&#39;re storing in
+[00:30:36] Cosmos DB.
+[00:30:37] Once this is set, this gives you the learning part.
+[00:30:42] The next part is we move into Foundry IQ.
+[00:30:46] In Foundry IQ, if you are by the way, if
+[00:30:48] you have not attended Pablo session earlier in the morning,
+[00:30:50] I strongly recommended you.
+[00:30:51] But Foundry IQ solves for the agentic RAG or the
+[00:30:54] agentic retrieval process.
+[00:30:57] It comprises of knowledge sources.
+[00:30:59] Knowledge sources could be you know something like your indexes
+[00:31:02] or even Federated things like you know your remote MCP
+[00:31:05] servers, remote SharePoint, whatever it be.
+[00:31:08] This is where all the knowledge that is relevant for
+[00:31:11] that customer is constantly being ingested and reasoned over.
+[00:31:16] Where Foundry IQ makes agentic rag and agentic retrieval extremely
+[00:31:20] seamless is as part of this particular knowledge base.
+[00:31:24] When you look at the knowledge base, the knowledge base
+[00:31:28] is really a combination of knobs that it gives the
+[00:31:31] developers and the developer can go and just adjust those
+[00:31:35] knobs.
+[00:31:35] So as a developer, I can adjust knobs of the
+[00:31:38] retrieval mechanism.
+[00:31:40] I can choose what the retrieval instruction that I need
+[00:31:44] to put.
+[00:31:45] Once I have the retrieval instructions put together, I can
+[00:31:48] also choose the planning mechanism.
+[00:31:50] In the planning mechanism I just configure a chat completions
+[00:31:54] model to do the planning.
+[00:31:56] Once planning happens, I also have the ability to do
+[00:31:58] the reasoning effort.
+[00:32:00] Now, this from a implementation perspective is very, very simple.
+[00:32:05] If you try to do this without something like Foundry
+[00:32:08] IQ, try to build a smart agentic rag system.
+[00:32:11] It&#39;s a very, very hard problem to solve, especially at
+[00:32:14] PepsiCo scale.
+[00:32:15] But this is what is responsible for building that enterprise
+[00:32:18] knowledge layer and really extracting things that were usually in
+[00:32:22] someone&#39;s memory and democratizing it and making it available to
+[00:32:26] everyone else.
+[00:32:27] This is still happening behind the scenes, right?
+[00:32:31] Once this happens, the fact builder agent comes into play.
+[00:32:34] Like I said, the fact builder agent is responsible for
+[00:32:37] converting the signals that you want your system to learn
+[00:32:40] about.
+[00:32:42] Combining that with all the knowledge sources and the knowledge
+[00:32:46] bases that you have and extracting facts or making things
+[00:32:50] factual statements.
+[00:32:52] From implementation perspective, it&#39;s fairly seamless.
+[00:32:55] It has a core agent runtime.
+[00:32:58] Core agent runtime is essentially an agent which is abstracted
+[00:33:02] away so that multiple agents can use that same abstraction.
+[00:33:05] The key part is it uses responses API.
+[00:33:08] It also has tool calling already abstracted away, and that&#39;s
+[00:33:12] essentially what this agent needs.
+[00:33:15] Because we&#39;re using responses API, things get pretty standardized and
+[00:33:18] simple.
+[00:33:19] And this obviously is the system prompt that also has
+[00:33:22] been configured for the Fad Builder agent.
+[00:33:25] What once this is done, the final output of this
+[00:33:28] looks something like this.
+[00:33:31] Now you have the signals.
+[00:33:32] The signals are combined with the knowledge bases and the
+[00:33:35] fact builder agent generates facts.
+[00:33:37] An example of this is pricing.
+[00:33:39] We wanted our system to learn about pricing.
+[00:33:42] It went through maybe an e-mail that it found in
+[00:33:45] one of the knowledge sources and it&#39;s also summarizing what
+[00:33:48] was that pricing rated discussion that had happened.
+[00:33:53] Along with the pricing really discussion, it also generates a
+[00:33:56] confidence score and summary.
+[00:33:58] The extraction summary is something very particular like this customer
+[00:34:02] had requested a blanket 7% increase.
+[00:34:05] Along with that, it also generates stakeholders confidence, reason and
+[00:34:09] some additional extracted data, which again were the things you
+[00:34:12] wanted your system to learn about.
+[00:34:16] The critical part of this is if I had no
+[00:34:18] idea of what happened with that customer maybe in the
+[00:34:22] last quarter or last year, I just needed to ask
+[00:34:25] simply without spending hours trying to get hold of the
+[00:34:28] right person or even going to multiple emails trying to
+[00:34:32] get the right context.
+[00:34:33] So this is what is getting that system from preparation
+[00:34:36] to learning.
+[00:34:37] And finally, from a tracking agent perspective, behind the scenes,
+[00:34:42] I as a Cam user, I&#39;m conversing or having a
+[00:34:45] conversation with the tracking agent.
+[00:34:49] The tracking agent is again built on that same abstraction
+[00:34:53] that the fact agent was built upon similar structure, right?
+[00:34:57] It had access to the same agent runtime.
+[00:35:01] The original tools that it had was search facts.
+[00:35:03] And this retailers as an example, you can start giving
+[00:35:06] it additional tools as needed.
+[00:35:08] And as part of this, this is just looking at
+[00:35:11] Cosmos DB and based on the intent of the question,
+[00:35:14] it&#39;s providing the right facts to the end user.
+[00:35:18] And again, these are like nothing too complicated or in
+[00:35:21] a complex.
+[00:35:22] By the way, we also had observability set up.
+[00:35:24] We wanted to make sure everything that the agent is
+[00:35:28] doing is properly monitored and using open standard OLTP, open
+[00:35:32] telemetry protocols.
+[00:35:35] From a user experience perspective, this is all that it
+[00:35:39] leads to, right?
+[00:35:40] You just ask a question and intent the agent behind
+[00:35:43] the scenes goes through everything your learning configurations that you
+[00:35:47] have done, the enterprise knowledge layer, you have built the
+[00:35:51] facts that were created and at the end of the
+[00:35:54] day, in a matter of minutes pre as access to
+[00:35:56] what was the last offer for ABC, which is a
+[00:35:59] dummy company in this case.
+[00:36:02] So if if we kind of, you know, just summarize
+[00:36:04] this, right, this is also an example of compounding intelligence
+[00:36:07] and intelligence that compounds on top of each other.
+[00:36:10] Every meeting that happened earlier, you know, was in someone&#39;s
+[00:36:14] memory.
+[00:36:14] Just make sure that it&#39;s making the system smarter.
+[00:36:18] Every debrief that usually happened now gives you an opportunity
+[00:36:22] to plan better for the next account cycle.
+[00:36:26] Every Cam or every new Cam that comes after can
+[00:36:28] benefit from the context that came before them.
+[00:36:31] You really don&#39;t need to reinvent the wheel to get
+[00:36:34] the right context at the right time.
+[00:36:37] Now, all this is good.
+[00:36:40] We kind of talked about things that worked, but I
+[00:36:42] think to be truthful, we also wanted to share about
+[00:36:45] some of the lessons that we that we went through,
+[00:36:47] right?
+[00:36:48] You obviously saw six agents.
+[00:36:50] We just talked about two.
+[00:36:51] But even when we started with individual agents, one of
+[00:36:54] the key learnings was don&#39;t try to boil the ocean,
+[00:36:56] right?
+[00:36:57] I mean, when we started, it didn&#39;t feel like we
+[00:36:59] were boiling the ocean, but you really need to keep
+[00:37:02] your scope small.
+[00:37:03] If you think you&#39;re starting small, start smaller.
+[00:37:06] Start with one workflow, one person, one data source, and
+[00:37:09] then start building on top of that.
+[00:37:12] The second thing is, even with all the data foundations
+[00:37:15] work and everything that we had put together, we still
+[00:37:18] underestimated the quality of data all the more because when
+[00:37:22] engineers and architects are working on agentic systems, when the
+[00:37:26] responses come back, the agents are very good with confidently
+[00:37:30] hallucinating, especially if part of your answer is wrong and
+[00:37:34] part of your answer is right.
+[00:37:36] It&#39;s very difficult for an engineer who&#39;s not a domain
+[00:37:38] expert to figure out what&#39;s happening.
+[00:37:40] So you need to absolutely make sure your domain exports
+[00:37:43] are part of this journey right from the one.
+[00:37:46] And finally, obviously the best part was the Enterprise Data
+[00:37:49] Foundation.
+[00:37:49] Yeah, the good part, right?
+[00:37:50] I mean, we had, we learned that, you know, the
+[00:37:53] Enterprise Data Foundation played a, you know, pivotal role in
+[00:37:56] this.
+[00:37:57] And because of that, like, you know, agents just did
+[00:38:00] not work.
+[00:38:00] But it compounded this value, right?
+[00:38:03] Debrief agents actually made next sessions even better, right?
+[00:38:07] So those kind of things really we loved so that
+[00:38:10] you know, data Foundation, investment in Data Foundation, making AI
+[00:38:13] ready data was valuable.
+[00:38:15] So say, if you say the first couple of agents
+[00:38:17] were a little bit hard to do, but once those
+[00:38:20] foundations were built in, the next 345 agents were an
+[00:38:22] order of magnitude faster because we had those foundations set
+[00:38:26] up.
+[00:38:26] And that that&#39;s a pretty common experience that we&#39;ll all
+[00:38:28] have.
+[00:38:29] It will be like climbing on a hill essentially, right?
+[00:38:33] Well, thanks for now.
+[00:38:34] Thanks for sharing the PepsiCo story with us.
+[00:38:38] By the way, what you heard today was PepsiCo story,
+[00:38:41] but it&#39;s not really relevant just for Pepsi, right?
+[00:38:46] If you try to extend that on what it truly
+[00:38:48] means to do enterprise AI at scale from a blueprint
+[00:38:50] perspective, it would look something like this.
+[00:38:53] You start with a secure infrastructure, you make sure you
+[00:38:57] unify and govern your data on top you have to
+[00:39:01] make sure your AI platform is ready.
+[00:39:04] That&#39;s where your models agents would reside, operate, run on.
+[00:39:08] You also need to make sure your user experience layer
+[00:39:11] or where the agents actually interact with humans.
+[00:39:14] That&#39;s will bake too, but the pattern still holds, right?
+[00:39:19] Your agents might change based on your industry, your data
+[00:39:22] might evolve based on your company, even a user experience
+[00:39:26] might change based on what role you are in.
+[00:39:29] But at the end of the day, the building blocks
+[00:39:31] will still remain pretty consistent to what you&#39;re seeing on
+[00:39:34] screen.
+[00:39:38] And by the way, we also have a few resources
+[00:39:41] if you if you want to go through, if you
+[00:39:43] haven&#39;t tried Azure, there are some free resources that are
+[00:39:46] available here.
+[00:39:47] If you&#39;re already an Azure customer, you can go through
+[00:39:50] programs like Azure accelerate, which will give you access to,
+[00:39:53] you know, trusted experts that was or programs like this
+[00:39:55] is one of the things that PepsiCo and Microsoft, you
+[00:39:58] know, partnered on.
+[00:39:59] Obviously, you also have things like cloud accelerate factory and
+[00:40:01] stuff like that.
+[00:40:02] And I own brain through the slides.
+[00:40:05] This is all something that would be available after the
+[00:40:07] session.
+[00:40:07] So you can go through this and consume this and
+[00:40:09] make sure if you want to take advantage of these
+[00:40:11] programs, those are accessible to you.
+[00:40:14] Maybe maybe let&#39;s end with where we started, right?
+[00:40:19] By the way, there&#39;s also survey if you guys want
+[00:40:21] to kind of quickly do an eval.
+[00:40:23] But let me end where we start, right?
+[00:40:26] A single Cam Monday morning, an important meeting happening in
+[00:40:31] 48 hours.
+[00:40:32] Before she spent hours just thinking about where the information
+[00:40:36] is, what the right information is, multiple dashboards, multiple reports,
+[00:40:41] multiple emails asking her team where do I get that
+[00:40:44] information.
+[00:40:45] But now she just opens up the can 360 agent
+[00:40:49] asks a single question.
+[00:40:51] Help me get prepared and within minutes, not hours, not
+[00:40:55] days, not weeks.
+[00:40:56] She has access to all the information that she needs,
+[00:40:59] including biosignals, data, risks, talking points, even a draft strategy
+[00:41:04] with enough time to think, to strategize and actually focus
+[00:41:07] on the customer relationship itself.
+[00:41:10] And that&#39;s I think the key part of why we
+[00:41:12] are doing all this, right?
+[00:41:13] It&#39;s not really to replace people.
+[00:41:15] That&#39;s what we were really focused on when we started
+[00:41:17] on this journey.
+[00:41:17] It&#39;s really to give time back to people so they
+[00:41:20] can really focus on what&#39;s the most important for them,
+[00:41:23] right?
+[00:41:24] Think, strategize and actually be human.
+[00:41:26] Thank you so much.
+[00:41:27] We&#39;ll be available if anyone has any questions, but this
+[00:41:29] was great.
+[00:41:29] Thank you so much.
+[00:41:30] Thank you.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

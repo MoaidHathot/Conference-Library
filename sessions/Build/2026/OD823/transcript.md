@@ -1,0 +1,633 @@
+**[00:00:03]** SHRUTI PATHAK: Hello, everyone.
+**[00:00:04]** My name is Shruti.
+**[00:00:05]** I'm a Product Manager for Azure Managed Redis.
+**[00:00:08]** And today, we'll talk about how Azure Managed Redis is the new
+**[00:00:13]** age Redis, Managed Redis on Azure, and how it helps
+**[00:00:17]** with building AI apps at the internet scale.
+**[00:00:22]** So most of you must be familiar with Redis.
+**[00:00:25]** It has been around for a long time.
+**[00:00:27]** You are probably using it already for your session store,
+**[00:00:31]** for leaderboard, for reducing database cost,
+**[00:00:34]** or making your databases more performant.
+**[00:00:38]** Redis use cases have recently expanded along
+**[00:00:42]** with the internet scale.
+**[00:00:43]** It started out with some basic traditional scenarios,
+**[00:00:46]** but Redis now has many more use cases that it can support,
+**[00:00:51]** like time series, vector searches,
+**[00:00:54]** JSON data, semantic caching.
+**[00:00:57]** Times have changed.
+**[00:00:58]** The internet scale has changed,
+**[00:00:59]** and so has the Redis use cases have expanded as well.
+**[00:01:04]** So today, we'll be quickly covering what's new with Redis,
+**[00:01:07]** especially the Azure Managed Redis.
+**[00:01:10]** Azure Managed Redis is a fully managed in-memory data store
+**[00:01:15]** on Azure.
+**[00:01:16]** It's a first-party offering on Azure, and it's based
+**[00:01:20]** on the Redis Enterprise software,
+**[00:01:23]** which offers a much more cost-effective TCO compared
+**[00:01:27]** to the Azure Cache for Redis offering.
+**[00:01:29]** And it's also much more performant.
+**[00:01:31]** It's up to 15% more -- 15 times, sorry, not 15% --
+**[00:01:35]** 15 times much more performant
+**[00:01:38]** than the Azure Cache for Redis offerings.
+**[00:01:40]** It is zone redundant by default.
+**[00:01:42]** It has four nines offering by default, and obviously,
+**[00:01:45]** you can also set it up with a five 9s setup
+**[00:01:49]** with a geo-replication,
+**[00:01:50]** which will give you the five 9s of availability SLA.
+**[00:01:54]** As with the Redis software,
+**[00:01:57]** it can support your accelerations scenarios
+**[00:02:01]** for your applications.
+**[00:02:03]** You can use Redis as a distributed cache.
+**[00:02:05]** You can use it for session management.
+**[00:02:07]** You can use it for leaderboards, pub/sub.
+**[00:02:09]** You name it.
+**[00:02:10]** There's so many scenarios where you can use Redis.
+**[00:02:13]** But alongside those, Azure Managed Redis is also able
+**[00:02:17]** to power your RAG scenarios, and you can also use it
+**[00:02:21]** as a lightweight vector data store as well.
+**[00:02:25]** How is that possible?
+**[00:02:27]** So we'll talk about the secret source a little bit.
+**[00:02:30]** How does Azure Managed Redis do that?
+**[00:02:33]** But first, let's look at the state of AI agents today.
+**[00:02:37]** So AI agents today -- this is a very simple depiction,
+**[00:02:41]** but there's an input that usually a user provides,
+**[00:02:45]** or there's some triggers or events
+**[00:02:48]** that trigger the AI agent.
+**[00:02:49]** And internally, the AI agent is essentially a bunch
+**[00:02:53]** of instructions, a model, and a lot of tool calls
+**[00:02:56]** that enrich what the agent can do.
+**[00:02:59]** And then obviously, it produces some kind of output
+**[00:03:01]** that makes it more -- that makes it productive.
+**[00:03:05]** But if you look at the tool calls that the agent needs
+**[00:03:08]** to enrich itself, it needs knowledge that's specific
+**[00:03:12]** to your domain.
+**[00:03:13]** It needs to be able to execute some actions
+**[00:03:15]** so that it's more impactful, and then obviously,
+**[00:03:18]** it needs memory as well.
+**[00:03:21]** So these are -- this is a high-level overview
+**[00:03:24]** of what actually an agent looks like.
+**[00:03:27]** But if you start doing agents in production,
+**[00:03:32]** lot of challenges start coming up.
+**[00:03:35]** Gartner predicts that 40%
+**[00:03:37]** of enterprise applications will have specific AI agents
+**[00:03:42]** by the year 2026.
+**[00:03:44]** So this is already up from 2025, where 2025 didn't have a lot
+**[00:03:50]** of AI-specific -- task-specific agents,
+**[00:03:53]** and that number is growing up this year,
+**[00:03:57]** and it will continue next year as well.
+**[00:03:59]** But once you start putting AI agents in production,
+**[00:04:04]** there's some challenges that are going to show up.
+**[00:04:07]** The pace of innovation in the AI world is tremendous.
+**[00:04:11]** How do you keep up with the pace?
+**[00:04:13]** How do you keep yourself abreast with the new innovations,
+**[00:04:17]** the new things that are happening in vector search?
+**[00:04:19]** How do you use or how do you adopt those things
+**[00:04:23]** for your production scenarios?
+**[00:04:24]** So that's one challenge.
+**[00:04:25]** The other one is unpredictable cost.
+**[00:04:27]** A lot of this is new for most of us, the way tokens work,
+**[00:04:33]** the way token score relate to the dollar amount
+**[00:04:37]** that you end up paying.
+**[00:04:38]** A lot of times, you will see -- you get surprises at the end
+**[00:04:42]** of the month when you see your bill.
+**[00:04:44]** So there's unpredictable cost in there.
+**[00:04:46]** Model calls are expensive, and they take a lot of time as well.
+**[00:04:51]** So there's this cost aspect as well that's quite challenging.
+**[00:04:55]** And these agents, as we just saw in the previous screen,
+**[00:05:00]** agents need context, and agents need memory
+**[00:05:03]** to be more impactful.
+**[00:05:06]** Once you solve all of these challenges,
+**[00:05:09]** that's when you will be able to build enterprise-ready,
+**[00:05:11]** internet-scale AI agents.
+**[00:05:15]** So today, we'll be mostly covering these two challenges:
+**[00:05:18]** the cost management and context and memory.
+**[00:05:21]** How do you solve these two challenges
+**[00:05:24]** with Azure Managed Redis?
+**[00:05:25]** So I have my friends Phil and Roy,
+**[00:05:28]** who will join a little bit later, who will talk
+**[00:05:31]** about these challenges one by one.
+**[00:05:33]** So how does Azure Managed Redis do that?
+**[00:05:37]** So the secret sauce is the Redis search module that comes in,
+**[00:05:42]** that you can configure at no extra cost.
+**[00:05:45]** So the Redis search module allows Azure Managed Redis
+**[00:05:49]** to do vector similarity search on embeddings
+**[00:05:53]** that you store inside of Redis.
+**[00:05:55]** So once you configure this module, it allows you
+**[00:05:59]** to do a similarity search on vectors,
+**[00:06:03]** and that powers both the cost savings and the context --
+**[00:06:08]** the memory context scenarios that I just mentioned.
+**[00:06:11]** Now that I've given up the secret sauce, I think it's time
+**[00:06:15]** for me to take a backseat and let Phil and Roy later
+**[00:06:19]** on show you all the magic and how it happens.
+**[00:06:22]** So this was it from my side.
+**[00:06:24]** Take it over, Phil.
+**[00:06:27]** PHILIP LAUSSERMAIR: Hi, everyone.
+**[00:06:27]** My name is Philip Laussermair.
+**[00:06:29]** I'm a Senior Solutions Architect at Redis, and I specialize
+**[00:06:32]** in Azure Managed Redis.
+**[00:06:34]** As Shruti mentioned, I'm really excited to walk you through one
+**[00:06:37]** of our top AI use cases, semantic caching,
+**[00:06:40]** and it's all powered
+**[00:06:41]** by our semantic search capability in Redis Search.
+**[00:06:45]** So if you know Redis, you probably think of caching.
+**[00:06:50]** This is one of our bread-and-butter use cases.
+**[00:06:52]** This is what we actually were founded on.
+**[00:06:54]** And for the last 10 years or so,
+**[00:06:57]** this is really what we focused on.
+**[00:06:59]** And the typical pattern, you see it here.
+**[00:07:02]** You put it in front of a database.
+**[00:07:03]** It's meant to offload a lot of repetitive costs,
+**[00:07:06]** take off pressure from the database, improve performance.
+**[00:07:10]** And that's the typical pattern.
+**[00:07:12]** You check the cache,
+**[00:07:13]** if the existing key is already in there.
+**[00:07:16]** If it is, you serve it to the customer.
+**[00:07:18]** If not, you call the database and then load it back
+**[00:07:20]** into your Redis instance.
+**[00:07:22]** So this works extremely well.
+**[00:07:25]** In any best practice with databases,
+**[00:07:28]** you'll probably see caching come up as one of the first ways
+**[00:07:31]** to optimize and improve.
+**[00:07:33]** But a lot of things, as Shruti has mentioned,
+**[00:07:35]** has changed in the last decade or so, especially in the last,
+**[00:07:39]** let's say, two or three years
+**[00:07:41]** with the advent of generative AI.
+**[00:07:44]** So, at Redis, what we've been able
+**[00:07:46]** to do is exact key-value match caching is not ideal for LLMs.
+**[00:07:54]** I could ask a query that Shruti could send
+**[00:07:57]** in a few minutes later in a slightly different variation,
+**[00:08:00]** but it could be the same underlying intent.
+**[00:08:02]** It could have the same meaning.
+**[00:08:04]** And in that scenario, tokens are expensive.
+**[00:08:07]** You're going to generate a full amount of tokens for a scenario
+**[00:08:10]** where you potentially could have saved on that.
+**[00:08:12]** And that's where semantic caching comes into play.
+**[00:08:16]** So the general idea stays the same.
+**[00:08:19]** We're going to check Redis, see if there's a cache hit.
+**[00:08:23]** If not, instead of calling a database,
+**[00:08:25]** we're going to call an LLM.
+**[00:08:27]** But really how this is all being powered is now you can store
+**[00:08:31]** your vector embeddings in your Redis instance,
+**[00:08:34]** and then using vector similarity search, as prompts come in,
+**[00:08:38]** we can then check the cache, compare the similarity,
+**[00:08:42]** and based on a threshold that you would set, that determines
+**[00:08:46]** if it was similar enough to be a cache hit or not.
+**[00:08:49]** And we actually have a demo,
+**[00:08:51]** so I can show you this live what this would look like,
+**[00:08:53]** how it would be for you or your customers.
+**[00:08:56]** But at the end of the day, the idea is this is really meant
+**[00:08:59]** to save on tokens, which we all see
+**[00:09:02]** in the news day in and day out.
+**[00:09:04]** Token cost is exploding.
+**[00:09:07]** Response time, of course, is a huge performance factor.
+**[00:09:11]** The agents are running longer and longer.
+**[00:09:14]** They're getting much more intelligent, but that could lead
+**[00:09:17]** to seconds or even minutes of wait time.
+**[00:09:20]** And then finally, consistency.
+**[00:09:23]** There's certain use cases where you sometimes don't want an LLM
+**[00:09:26]** to be so non-deterministic.
+**[00:09:28]** If you're going to ask it the same prompt
+**[00:09:30]** or the same underlying intent every time, you want to be able
+**[00:09:34]** to have a sense of confidence
+**[00:09:36]** that you're promoting the same answer that you intend.
+**[00:09:41]** So it gives you some confidence from that angle as well.
+**[00:09:44]** But now that we have a general understanding
+**[00:09:46]** of the underlying architecture, why don't we jump into a demo,
+**[00:09:50]** and that should make it a lot more clear and pretty exciting.
+**[00:09:54]** Okay. So now we're in our semantic caching demo here.
+**[00:09:58]** So just to orient you, I want
+**[00:09:59]** to show you what you're looking at here.
+**[00:10:02]** On the left side, I want you to think of just a regular LLM,
+**[00:10:05]** take Copilot, ChatGPT, Claude.
+**[00:10:09]** That's the left side.
+**[00:10:10]** The right side is the same idea,
+**[00:10:12]** but with semantic caching underneath the hood,
+**[00:10:14]** powered by an Azure Managed Redis instance,
+**[00:10:17]** live as we go along.
+**[00:10:19]** I want to point out a few other items, some metrics down here
+**[00:10:22]** that will capture every time we send a prompt.
+**[00:10:25]** But really, without further ado, we can jump right in.
+**[00:10:28]** So let's say we were going to send a prompt,
+**[00:10:31]** "How do I improve product search relevance using
+**[00:10:34]** vector embeddings?"
+**[00:10:35]** Let's pretend we're an e-commerce company, Contoso,
+**[00:10:39]** and this might be a typical question that would be asked.
+**[00:10:43]** So what's happening right now is both are acting
+**[00:10:45]** like a typical LLM.
+**[00:10:47]** I sent a query.
+**[00:10:48]** We're going to get a response.
+**[00:10:50]** They were two separate responses.
+**[00:10:52]** So generative AI being non-deterministic.
+**[00:10:56]** You can see the same query
+**[00:10:58]** at relatively the same exact moment gave me similar
+**[00:11:02]** but a little different answers.
+**[00:11:04]** The one on the left took 118 tokens.
+**[00:11:06]** The one on the right, 131.
+**[00:11:08]** And both were roughly between one to two seconds in timing.
+**[00:11:13]** So now let's take a similarly phrased search,
+**[00:11:18]** but not exactly the same value.
+**[00:11:20]** So instead of "How do I improve product search relevance using
+**[00:11:23]** vector embeddings?"
+**[00:11:25]** let's just change it up,
+**[00:11:26]** "How can vector embeddings make product search more relevant?"
+**[00:11:29]** And what I want you to take a focus on is right on the right,
+**[00:11:33]** what you saw was a semantic cache hit.
+**[00:11:36]** So the first thing you notice was it was extremely fast.
+**[00:11:39]** The second thing you'll notice is it is the exact
+**[00:11:42]** same response.
+**[00:11:44]** So we're taking advantage of that previous response.
+**[00:11:47]** And so no tokens were generated.
+**[00:11:50]** That's one of the biggest things to highlight.
+**[00:11:52]** On the left here, since this was just our normal LLM call,
+**[00:11:55]** every time we send a request, we're going to get a response.
+**[00:11:58]** It did go and generate another 126 tokens.
+**[00:12:02]** As you can see, very similar, but for this kind of query,
+**[00:12:07]** we didn't get to take advantage of the previous one.
+**[00:12:08]** So every time, it's just going to make net new calls.
+**[00:12:12]** So I want to show you one other thing.
+**[00:12:15]** If I click here on this query, these are the steps
+**[00:12:18]** that actually happened underneath the hood
+**[00:12:20]** in that almost millisecond it took to get the response back.
+**[00:12:25]** So the first few things, first off, of course,
+**[00:12:27]** we're going to check the cache.
+**[00:12:30]** There's different ways you can optimize semantic caching.
+**[00:12:32]** The first one being we actually can do an exact cache lookup.
+**[00:12:37]** So if it was a key-value pair, we could take advantage of that
+**[00:12:40]** and actually just serve it like a data cache would.
+**[00:12:44]** Since that didn't exist, we then went
+**[00:12:46]** and generated our embeddings.
+**[00:12:48]** We got our embeddings back,
+**[00:12:50]** and did the vector similarity search.
+**[00:12:53]** Based on our threshold,
+**[00:12:54]** the cosine similarity was high enough
+**[00:12:58]** that it triggered a cache hit.
+**[00:13:00]** And so that's what you saw as the end user.
+**[00:13:03]** You got that result super fast, with no tokens being spent.
+**[00:13:08]** So just to show you what it would look like again
+**[00:13:11]** in the same scenario
+**[00:13:11]** with another query not related to any of these.
+**[00:13:14]** If I fire it off, both are going to act just
+**[00:13:17]** like typical LLMs, respond.
+**[00:13:20]** The reason I highlight that is this is all running every single
+**[00:13:23]** time underneath the hood.
+**[00:13:25]** Because Redis is an in-memory database, it's lightning fast.
+**[00:13:29]** So just because this is happening,
+**[00:13:32]** customers aren't sitting around waiting.
+**[00:13:34]** If I throw in more, you'll see it's just --
+**[00:13:37]** you wouldn't notice it was running any other time.
+**[00:13:41]** So next, I want to show some more deep dives
+**[00:13:45]** on vector similarity search.
+**[00:13:47]** So taking our first prompt, let's see,
+**[00:13:50]** "What's the most cost-effective caching strategy
+**[00:13:52]** for serving personalized product recommendations
+**[00:13:55]** to 10 million daily active users?"
+**[00:13:58]** Then we have a few variations below
+**[00:14:00]** that are either extremely similar or even unrelated.
+**[00:14:04]** So what I'm going to do is I'm just going to run a test
+**[00:14:07]** that is generating the similarity using a cosine vector
+**[00:14:11]** similarity search.
+**[00:14:13]** And this similarity threshold here is what you would set
+**[00:14:16]** in your application or client.
+**[00:14:18]** That's the threshold that you are comfortable
+**[00:14:21]** with for what would trigger a semantic cache hit or not.
+**[00:14:26]** So just here what we generated, at a 50% similarity threshold,
+**[00:14:30]** it would need to clear.
+**[00:14:32]** We can see that these top four prompts would be considered a
+**[00:14:35]** semantic cache hit.
+**[00:14:37]** If we wanted to increase that, let's say we wanted to go
+**[00:14:41]** to 75%, the first thing you notice is this variation four.
+**[00:14:46]** It's no longer considered similar enough
+**[00:14:48]** to do a semantic cache hit.
+**[00:14:51]** I should call out this first one, prompt cache hit.
+**[00:14:54]** This is that exact same key-value pair.
+**[00:14:56]** So this is going to be a match 100% of the time
+**[00:15:00]** because it's an exact key-value pair.
+**[00:15:02]** And finally, if we wanted to be super strict
+**[00:15:05]** and went all the way up to 90%, every single one
+**[00:15:08]** of these would be a miss.
+**[00:15:10]** So that gives you the flexibility
+**[00:15:11]** of how strict you want each scenario to be
+**[00:15:15]** with your threshold using vector similarity search.
+**[00:15:19]** Finally, I want to show you another scenario
+**[00:15:21]** of what it looks like for your end users that are being powered
+**[00:15:27]** by the same Managed Redis instance,
+**[00:15:29]** where you might be thinking, "Okay, this is great.
+**[00:15:32]** I love these semantic cache hits.
+**[00:15:34]** It saves a lot of tokens,
+**[00:15:35]** but how do I ensure no data leakage?"
+**[00:15:37]** If someone asks a very similar question,
+**[00:15:40]** but they have specific data to them that the LLM is using,
+**[00:15:44]** how do I make sure that's not being shown to anyone else?
+**[00:15:47]** So we have our two users here: Merchandiser Mia
+**[00:15:51]** and Platform Priya, and they have different roles in Contoso.
+**[00:15:55]** And what we're going to do is we're just going to ask,
+**[00:15:57]** based on some memory we have on the users, "What is your role?"
+**[00:16:02]** So on the left, Merchandiser Mia,
+**[00:16:04]** on the right, Platform Priya.
+**[00:16:06]** And I'm going to show you again, first, LLM call, nothing there.
+**[00:16:12]** Let's say, "What's my job?"
+**[00:16:14]** If I send that one, what you're going
+**[00:16:16]** to notice is each got a semantic cache hit, but strictly
+**[00:16:19]** on the keys we have saved for them.
+**[00:16:22]** And how that's being done is in the way you structure your keys
+**[00:16:25]** in Redis, you would actually set
+**[00:16:27]** up the naming convention specific to each user or domain
+**[00:16:31]** or whatever fits your use case,
+**[00:16:33]** and the search engine can be queried based
+**[00:16:37]** on that formula, essentially.
+**[00:16:39]** So in this example, we want to make sure that it's
+**[00:16:42]** in a per-user format so that there's no chance of leakage.
+**[00:16:47]** On the flip side, there are cases
+**[00:16:49]** where you actually want a global cache,
+**[00:16:52]** and that one would be something like an FAQ bot,
+**[00:16:56]** where it doesn't matter who the user is.
+**[00:16:58]** They're all going to be asking similar questions,
+**[00:17:00]** and you really want to take advantage of those.
+**[00:17:02]** So let's pretend this is our FAQ bot on our Contoso website
+**[00:17:06]** that unauthenticated users can come and use.
+**[00:17:09]** So let's start with the first one:
+**[00:17:11]** "What are just -- what are your hours?"
+**[00:17:13]** And these are semantically different.
+**[00:17:15]** This one was considered a cache hit
+**[00:17:17]** because it was similar enough to this.
+**[00:17:19]** This is just a vanilla LLM, so it doesn't have hours.
+**[00:17:22]** But you can start to see where, in these public instances,
+**[00:17:26]** you can generate a lot of semantic cache hits
+**[00:17:29]** and save a lot of tokens.
+**[00:17:30]** If this visitor B was a user that was coming in, say,
+**[00:17:34]** five minutes later,
+**[00:17:35]** they wouldn't know any different based on these responses,
+**[00:17:38]** obviously using real company data.
+**[00:17:40]** But in that scenario, almost every response
+**[00:17:43]** in this chain would be a semantic cache hit,
+**[00:17:45]** and there would be no tokens spent in that scenario.
+**[00:17:49]** So, again, one of the benefits and the flexibility
+**[00:17:52]** of either a global or per-user cache.
+**[00:17:55]** Finally, just to wrap up, I want to give you a sense
+**[00:17:57]** of what does this look like at scale.
+**[00:18:00]** So a quick calculator of what this looks
+**[00:18:02]** like in an enterprise use case.
+**[00:18:05]** Let's even drop this down to say 200,000 daily queries,
+**[00:18:09]** a 70% semantic cache hit rate, extremely low on the token sort
+**[00:18:14]** of budget in this scenario, and the pricing of GPT-5.
+**[00:18:19]** So, in this scenario, on an annualized basis,
+**[00:18:22]** that would be just
+**[00:18:23]** about $300,000 a year for your token spend.
+**[00:18:28]** And the way to think about the savings
+**[00:18:30]** with semantic caching is whatever your cache hit rate
+**[00:18:34]** percentage is, that is your net savings.
+**[00:18:37]** So with a 70% cache hit rate,
+**[00:18:39]** we're going to get 70% savings off of this overall spend.
+**[00:18:43]** And so what that comes out to is just
+**[00:18:45]** under 100,000, around 90,000 a year.
+**[00:18:49]** This also factors in both the embedding cost
+**[00:18:51]** that you would have to pay for for each query,
+**[00:18:54]** and the actual Redis instance
+**[00:18:55]** that could power a load like this.
+**[00:18:58]** And as you can see, even factoring those
+**[00:19:00]** in over an annualized basis, that would save over $200,000.
+**[00:19:06]** The last thing before I wrap up is I want to call
+**[00:19:08]** out this break-even rate.
+**[00:19:10]** This is the number of semantic cache hits that you would need
+**[00:19:14]** to have in your setup for this to be break-even.
+**[00:19:18]** So what this is saying, at a 1.2% cache hit rate,
+**[00:19:22]** you only need one out of 100 queries in your setup
+**[00:19:25]** to be a semantic cache hit for this
+**[00:19:27]** to ultimately save you any money net after that first query.
+**[00:19:32]** So, again, it's very scalable.
+**[00:19:36]** Once you set in place, you can kind of leave them there.
+**[00:19:39]** It really helps with performance.
+**[00:19:41]** It helps with token spend.
+**[00:19:42]** But overall, that is semantic caching
+**[00:19:45]** with Azure Managed Redis.
+**[00:19:46]** And now I am happy to pass it over to Roy,
+**[00:19:49]** who's going to talk a little bit
+**[00:19:50]** about how you can use Azure Managed Redis
+**[00:19:53]** for agent memory at the same time.
+**[00:19:55]** Thanks, everyone.
+**[00:19:57]** ROY DE MILDE: Thank you, Phil.
+**[00:19:58]** And also, Shruti, thank you for the great presentation
+**[00:20:00]** and the demo and everything that we saw.
+**[00:20:03]** So I'm Roy, based out of the Netherlands.
+**[00:20:04]** I'm a Solutions Architect for Azure Managed Redis,
+**[00:20:07]** covering EMEA, and working with customers and partners
+**[00:20:10]** to make them successful
+**[00:20:11]** when they are adopting Azure Managed Redis.
+**[00:20:14]** I'm going to talk a little bit about agent memory.
+**[00:20:17]** I'm just going to explain why that is important
+**[00:20:20]** and how you can use AMR for that, and then I will jump
+**[00:20:23]** into a quick demo as well to showcase that.
+**[00:20:26]** So when we think about an agentic workflow
+**[00:20:29]** or an agentic AI system, we're thinking
+**[00:20:31]** about different agents working together to make sure
+**[00:20:37]** that you have highly fulfilling AI tasks.
+**[00:20:39]** But those agents can act even better when you're thinking
+**[00:20:43]** about when they can leverage memory as well.
+**[00:20:47]** The way we determine this is
+**[00:20:48]** that we have these short-term memory and the long-term memory.
+**[00:20:52]** So, for short-term memory, we often think
+**[00:20:55]** about the interaction, the conversation, a certain state,
+**[00:20:59]** and stuff like that, that we are saving
+**[00:21:03]** within that short-term memory capability.
+**[00:21:06]** But then, if you look at the long-term memory,
+**[00:21:08]** we think about from a personalization perspective.
+**[00:21:11]** When a user is interacting with the AI system,
+**[00:21:15]** you basically want the AI system to be aware.
+**[00:21:18]** What are the preferences?
+**[00:21:20]** What is some of the things that are important
+**[00:21:22]** for this specific user?
+**[00:21:24]** Or what is something of their interest and stuff like that?
+**[00:21:27]** And you can go nuts with this.
+**[00:21:29]** The world's your oyster if you think about it.
+**[00:21:31]** So what we are doing is splitting those two out,
+**[00:21:34]** more on the conversation history and state aspect,
+**[00:21:38]** and also the preferences, the behavior, the durable facts,
+**[00:21:44]** and the interest for a real personalization type
+**[00:21:46]** of interaction.
+**[00:21:49]** Now, when you think about this, and a user is interacting
+**[00:21:52]** with your systems, now the agents can have rapidly fast
+**[00:21:57]** access to that data.
+**[00:21:59]** And they can use that when they are determining they're using
+**[00:22:02]** specific tools, they're creating, they're using an LLM
+**[00:22:05]** to do certain reasoning about it, whatever you have built,
+**[00:22:09]** but they can rapidly fast get that data and include
+**[00:22:12]** that within the whole pattern that they are doing.
+**[00:22:16]** And this is where Azure Managed Redis really, really shines
+**[00:22:19]** if you are saving that specific data into AMR.
+**[00:22:24]** And also think about when agents are working together,
+**[00:22:28]** and a specific agent wants to give context to the other agent,
+**[00:22:33]** it's stored within AMR, so it can just easily say,
+**[00:22:36]** "Hey, have a look at this."
+**[00:22:38]** And now the new agent that needs to do something else
+**[00:22:40]** within the agentic workflow, they can grab that information
+**[00:22:44]** as well, giving you a way better experience as a user,
+**[00:22:48]** but also allowing you to interact better
+**[00:22:51]** with your consumers and your users.
+**[00:22:54]** So I do have a small demo around this.
+**[00:22:56]** So I'm going to hop over to another screen.
+**[00:22:58]** Just give me one sec real quick.
+**[00:23:09]** So here you can see the demo that we have built.
+**[00:23:11]** So basically, it's the same context of the previous demo
+**[00:23:14]** that you have seen by Phil.
+**[00:23:17]** So on the left-hand side,
+**[00:23:18]** you see the without memory capabilities,
+**[00:23:20]** and on the right-hand side,
+**[00:23:21]** you see the with memory capabilities.
+**[00:23:23]** So this is everything around personalization,
+**[00:23:25]** and that's how we have built this.
+**[00:23:27]** So this is basically an AI system where I can interact
+**[00:23:30]** with the system, and the system knows about me.
+**[00:23:33]** It has stored the conversations that we had,
+**[00:23:36]** and it has stored the durable facts, the preferences,
+**[00:23:39]** what type of work do I do.
+**[00:23:41]** So in this scenario, let me hop over to myself,
+**[00:23:45]** and let me just basically teach the AI a little bit about me.
+**[00:23:49]** So I'm going to say, "Hey, I'm a software engineer working
+**[00:23:51]** on machine learning projects, and I love hiking,
+**[00:23:54]** photography on the weekends."
+**[00:23:56]** So when I'm going to send that to both, you're going to see
+**[00:23:58]** on the left-hand side, it's going to respond like,
+**[00:24:00]** "Hey, nice to meet you.
+**[00:24:01]** Great." But nothing is being saved --
+**[00:24:03]** not on the conversational side,
+**[00:24:05]** not on the long-term memory side.
+**[00:24:07]** On the right-hand side, you actually see
+**[00:24:09]** that we are analyzing the message.
+**[00:24:11]** We can give a response back, and we're going
+**[00:24:14]** to remember certain facts about this user.
+**[00:24:16]** In this case, this is me.
+**[00:24:18]** So the user is a software engineer, and it loves hiking,
+**[00:24:21]** and it loves photography.
+**[00:24:22]** And if we actually look to the agent activity log,
+**[00:24:25]** it runs through a specific aspect of things to do
+**[00:24:29]** to analyze the message, reason about the message,
+**[00:24:33]** and also saving the aspects that we want to save
+**[00:24:37]** to the long-term memory.
+**[00:24:39]** So now, because we have stored the long-term memory facts
+**[00:24:47]** in effect to database as a hash vector,
+**[00:24:50]** I can also use semantic search, which my colleague was talking
+**[00:24:54]** about before, to ask questions about it.
+**[00:24:57]** So if I'm going to say, "Hey, what do you know about my work?"
+**[00:25:00]** it's probably going to give me a response back:
+**[00:25:03]** "This is what I know.
+**[00:25:04]** You like to work on machine learning projects.
+**[00:25:06]** Your main stack is this and this and this."
+**[00:25:08]** So it actually knows what I'm all about.
+**[00:25:11]** And if I can ask it, "Hey, what activities do I enjoy?"
+**[00:25:15]** it's going to give a reason back as well.
+**[00:25:17]** And you see on the left-hand side, it doesn't have a clue.
+**[00:25:20]** This AI system doesn't know.
+**[00:25:22]** But on the right-hand side, because we have
+**[00:25:24]** that long-term memory in place, it actually knows about me.
+**[00:25:28]** What we have also done in this specific scenario is we set
+**[00:25:33]** TTLs, times to live,
+**[00:25:34]** on the specific short-term and long-term memory.
+**[00:25:37]** So the short-term memory is only kept for 30 days.
+**[00:25:40]** And every single conversation I have
+**[00:25:42]** with this specific AI system is going to be saved for 30 days,
+**[00:25:47]** so I can jump to another one, or I can jump to,
+**[00:25:51]** "I also like sim racing," and stuff like that.
+**[00:25:54]** Now, the long-term, we're going to save
+**[00:25:56]** that a little bit longer, over a year, because I can be a user
+**[00:26:00]** and I can go away for two months, but the moment I'm going
+**[00:26:03]** to come back and interacting with the system,
+**[00:26:06]** I want this system to know about me.
+**[00:26:08]** So basically, how does this work?
+**[00:26:10]** And I'm going to jump to how it all works.
+**[00:26:14]** So basically, you send a message, "What are my hobbies?"
+**[00:26:17]** This generates a query embedding,
+**[00:26:19]** because we're using the text-embedding-3-small model
+**[00:26:23]** from Azure OpenAI for this.
+**[00:26:25]** It's going to do a vector search around this.
+**[00:26:27]** It's going to build some context, and we are using AI
+**[00:26:30]** to generate a response as well.
+**[00:26:32]** Any new facts will be saved as vectors,
+**[00:26:35]** and we update the conversational history.
+**[00:26:37]** So we're all working together basically
+**[00:26:39]** to have a whole different flow on this specific system.
+**[00:26:44]** Now, if we go to the long-term memory,
+**[00:26:47]** this is actually super interesting.
+**[00:26:48]** So what we are saying over here is, "Hey,
+**[00:26:51]** we want to save any personal information, any work,
+**[00:26:55]** any preferences, and any interest.
+**[00:26:58]** But we don't want to save every single thing."
+**[00:27:01]** So we are going to give the AI system or the different agents,
+**[00:27:04]** we're going to give them a set of instructions.
+**[00:27:07]** And then every message that I'm going to send, the agent
+**[00:27:10]** and the AI system is going to analyze it.
+**[00:27:13]** Is this a permanent fact or is it temporary?
+**[00:27:16]** So if I'm going to say, "I'm feeling tired today,"
+**[00:27:18]** that's not going to be saved as a long-term memory,
+**[00:27:21]** because it's a temporary thing.
+**[00:27:22]** I can feel fine tomorrow.
+**[00:27:24]** Or, would this help me
+**[00:27:26]** in personalizing future conversation?
+**[00:27:28]** Is the fact about the user and not about the world?
+**[00:27:31]** Then, we're using a special tag if we want to save that,
+**[00:27:34]** and we have the specific decision criteria,
+**[00:27:36]** and it's going to save it or skip it specifically.
+**[00:27:40]** So, in this specific scenario that I also showcased, "Hey,
+**[00:27:43]** I'm a Software Developer at Microsoft,
+**[00:27:45]** and I love playing tennis on the weekends."
+**[00:27:47]** It's a little bit different than the one I showed,
+**[00:27:48]** but it's roughly the same.
+**[00:27:50]** We are basically identifying multiple facts, and we're going
+**[00:27:54]** to store those facts
+**[00:27:56]** in the vector database while using an embeddings model
+**[00:28:00]** to create embeddings and then store them all, obviously.
+**[00:28:03]** So we're using vector hash
+**[00:28:04]** for all these different types of facts.
+**[00:28:06]** So that's very, very interesting.
+**[00:28:09]** Now, let me jump to this one.
+**[00:28:11]** How would this potentially look
+**[00:28:13]** like from a AMR storage perspective?
+**[00:28:15]** So, as you can see over here, we have the short-term memory.
+**[00:28:18]** We have Phil talking to the AI system.
+**[00:28:20]** You have me and Thomas talking to the AI system,
+**[00:28:23]** and you see the TTLs standing there as well.
+**[00:28:25]** And I can actually click this open,
+**[00:28:27]** and this is basically the whole conversation
+**[00:28:28]** that we potentially had.
+**[00:28:30]** But then if I go to the vector facts,
+**[00:28:33]** you see these are all the facts that we have stored: interest,
+**[00:28:36]** personal, work, and we tag them as well.
+**[00:28:39]** So this allows you to give multiple agents access
+**[00:28:43]** to durable information or to the short-term information
+**[00:28:47]** rapidly quick.
+**[00:28:49]** And now think about it,
+**[00:28:50]** if you have multiple agents working together, they all have
+**[00:28:53]** that same information, and they can access that rapidly quick,
+**[00:28:57]** increasing the performance of your whole workflow,
+**[00:29:00]** and therefore giving your customers a way
+**[00:29:01]** better experience.
+**[00:29:03]** If you think about a travel companion type of application,
+**[00:29:08]** this travel companion knows that I like Airbnbs
+**[00:29:12]** and early flights, and I don't need to specify
+**[00:29:14]** that every single time I'm interacting with it.
+**[00:29:17]** So every single time I'm talking to the system,
+**[00:29:20]** and it's helping me to book my travel, it already knows this,
+**[00:29:23]** and it gives me a way better experience, and I get as a user
+**[00:29:27]** to a faster result that I'm looking for --
+**[00:29:31]** booking my flight without telling it every single thing.
+**[00:29:35]** The agent memory capability of AMR also fully integrates
+**[00:29:38]** with the agent framework, the Microsoft Agent Framework,
+**[00:29:42]** so that's also something that is natively embedded
+**[00:29:45]** and supported around that as well.
+**[00:29:48]** So that was my quick demo around this
+**[00:29:50]** and why I think agent memory and using AMR
+**[00:29:53]** for agent memory is a very interesting way
+**[00:29:57]** of giving your agents that specific information
+**[00:30:00]** that they need to have those high-fulfilling AI tasks.
+**[00:30:04]** So thanks, everyone, for listening to us and learning
+**[00:30:07]** about semantic caching, semantic search, agent memory,
+**[00:30:12]** and Azure Managed Redis as the foundation for all of that.
+**[00:30:16]** I want to say a big thanks to Phil and Shruti
+**[00:30:18]** for doing this together with me.
+**[00:30:20]** If you have any questions, any feedback, any comments,
+**[00:30:23]** or anything at all, feel free to send us an email.
+**[00:30:26]** We also have some resources that could be very useful,
+**[00:30:29]** and we have some different samples
+**[00:30:32]** of the demos on GitHub as well.
+**[00:30:34]** So thank you very much, and if there's anything,
+**[00:30:37]** feel free to contact us.

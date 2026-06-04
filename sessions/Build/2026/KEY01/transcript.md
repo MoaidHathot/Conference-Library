@@ -1,0 +1,2834 @@
+**[00:00:00]** [ Music ]
+**[00:01:21]** Satya Nadella: All right. Good morning!
+**[00:01:24]** [ Cheering ]
+**[00:01:25]** [ Applause ]
+**[00:01:26]** Good morning!
+**[00:01:27]** [ Applause ]
+**[00:01:29]** It's fantastic to be back
+**[00:01:32]** in San Francisco at Build.
+**[00:01:35]** It's always fun to be at developer conferences
+**[00:01:38]** at times of great change.
+**[00:01:40]** You know, developer conferences are always
+**[00:01:41]** about understanding tech shifts, understanding the new stack.
+**[00:01:46]** But it's also about really coming to grips
+**[00:01:49]** with the new opportunity, right, for us as developers,
+**[00:01:53]** for the companies that we work at,
+**[00:01:55]** as well as the broader world.
+**[00:01:58]** So today we're going to unpack this.
+**[00:02:00]** This conference is all about that.
+**[00:02:02]** And if there's one key takeaway, it would be this:
+**[00:02:06]** How do you all participate fully
+**[00:02:10]** in thisFrontier intelligence ecosystem?
+**[00:02:14]** Right?
+**[00:02:14]** It's not about any one piece of technology that you'll hear
+**[00:02:17]** about or even the platform itself.
+**[00:02:20]** It's about the value that you can build, you can compound,
+**[00:02:24]** you can create on top of the platform.
+**[00:02:27]** That's what a developer conference needs to be about,
+**[00:02:30]** and that's what we will focus on.
+**[00:02:31]** So let's kind of get into it.
+**[00:02:34]** Let's take a look at this AI stack
+**[00:02:37]** that this conference is going to unpack
+**[00:02:39]** in a great amount of detail.
+**[00:02:41]** It starts, of course, with the compute fabric, right,
+**[00:02:44]** that ubiquitous compute fabric
+**[00:02:47]** that spans the edge and the cloud.
+**[00:02:51]** You then have this layer, which is the emerging layer,
+**[00:02:54]** where you have the models, you have context,
+**[00:02:57]** you have the tools the models can access.
+**[00:03:01]** And then on top of that, you have the runtime
+**[00:03:03]** where you deploy your agents and applications that you built
+**[00:03:08]** on top of the context layer, on top of the model layer.
+**[00:03:11]** And then, of course, you have the best tooling
+**[00:03:14]** to do all of this.
+**[00:03:15]** And then you have the security, the compliance,
+**[00:03:18]** and the governance, right?
+**[00:03:20]** That's the simplest form of the tech stack.
+**[00:03:23]** But let's kind of start where it always starts,
+**[00:03:26]** which is infrastructure.
+**[00:03:28]** And, in fact, let's start at the edge with Windows.
+**[00:03:32]** Because when you step back, the amount of compute there is
+**[00:03:38]** at the edge is actually astounding, right?
+**[00:03:40]** I mean, think about every NPU, GPU, CPU even, every PC.
+**[00:03:47]** If you sort of aggregate that, that's a lot of compute power.
+**[00:03:51]** So we asked ourselves one simple question, right?
+**[00:03:55]** If we can deliver unmetered intelligence to every desk
+**[00:04:01]** and every home, right?
+**[00:04:02]** It takes us all the way back to the very beginning.
+**[00:04:05]** But that's what we said.
+**[00:04:06]** Can we do that in this era of AI?
+**[00:04:10]** And, in fact, we're, in some sense,
+**[00:04:12]** delivering that already today, right?
+**[00:04:14]** When you look at something like, say, Outlook Summarize,
+**[00:04:17]** it's actually using onboard AI locally.
+**[00:04:20]** Same thing with PowerPoint alt text or Team Super Resolution.
+**[00:04:25]** It's just not Microsoft stuff.
+**[00:04:27]** For example, Adobe After Effects
+**[00:04:29]** or Premiere are both using Windows ML across NPUs
+**[00:04:34]** and GPUs for local processing.
+**[00:04:37]** And so, today, one of the things that I'm really excited
+**[00:04:40]** about in order to tap into all this compute power is
+**[00:04:43]** to expand the scope of Windows ML and Windows AI, right?
+**[00:04:48]** So you now have the full install base
+**[00:04:51]** of GPUs that you can get to.
+**[00:04:53]** So I'm really thrilled that every developer
+**[00:04:56]** out there can count on building for local onboard AI
+**[00:05:00]** and then have it run across all of the install base.
+**[00:05:04]** Now, we are also announcing two very cool new models
+**[00:05:10]** that are all going to run on Windows Inbox.
+**[00:05:14]** The first is a new SLM.
+**[00:05:16]** It's sort of a more efficient model, Aion Instruct,
+**[00:05:22]** and it's a great reasoning model.
+**[00:05:24]** And then we have the planning model, Aion Plan,
+**[00:05:28]** which is a local agentic loop.
+**[00:05:29]** I mean, think about it, right?
+**[00:05:30]** You now have a full local agentic loop.
+**[00:05:33]** You can give it tools access
+**[00:05:36]** and build fully onboard agentic applications without having
+**[00:05:41]** to round trip to the cloud.
+**[00:05:44]** And of course, we said, in order to really push the limits,
+**[00:05:48]** realize this unmetered intelligence, there's also a lot
+**[00:05:52]** of hardware that's evolving, too.
+**[00:05:54]** And so, we're thrilled to see the innovation
+**[00:05:56]** across the Windows ecosystem, right?
+**[00:05:58]** It's AMD with their Ryzen processors.
+**[00:06:02]** The Panther Lake stuff from Intel is just exciting to see.
+**[00:06:05]** Qualcomm announced two sets of things which are great.
+**[00:06:08]** One on the high end with Snapdragon X2 Elite.
+**[00:06:12]** And then on the low end, even for sub-500 PCs
+**[00:06:16]** with Snapdragon C. So it's great to see all of this.
+**[00:06:20]** And, of course, that brings us to NVIDIA and RTX Spark.
+**[00:06:25]** This is a next-generation SoC for PCs.
+**[00:06:28]** It brings together the CPU, the GPU,
+**[00:06:32]** as well as the AI capabilities into a single SoC.
+**[00:06:35]** And that's the exciting part.
+**[00:06:36]** And it includes unified memory architecture
+**[00:06:40]** and also the integrated DRTM, right?
+**[00:06:43]** So you now have all of the systems innovation
+**[00:06:46]** and the SoC coming together.
+**[00:06:49]** And we're really thrilled that one of the first devices
+**[00:06:52]** that we built was the Surface Ultra, right?
+**[00:06:56]** It's a beautiful device.
+**[00:06:59]** And it really brings the power of NVIDIA together
+**[00:07:03]** with the design and the craftsmanship of Surface.
+**[00:07:06]** It's 128 gigabytes of unified memory.
+**[00:07:10]** It's a beautiful 2,000-NIT display.
+**[00:07:14]** And it has an all-day battery life.
+**[00:07:18]** And so, we are very excited to see this later this fall.
+**[00:07:22]** And it's also wonderful to see all the designs
+**[00:07:26]** from all the OEM partners who are building, taking advantage
+**[00:07:30]** of this new SoC and the new platform and bringing
+**[00:07:33]** out some pretty exciting machines that are going
+**[00:07:36]** to be all available come this fall.
+**[00:07:40]** And so, of course, we said, okay, this is fantastic.
+**[00:07:44]** What can we do next?
+**[00:07:45]** So, we said, let's try and push this and push the architecture
+**[00:07:51]** to its limit for developers, right?
+**[00:07:54]** What if we could just max the compute, max the memory,
+**[00:07:59]** build out that developer machine that's the dream machine?
+**[00:08:04]** And that's what we're announcing today.
+**[00:08:06]** Surface RTX Spark, Dev Box.
+**[00:08:09]** Let's roll the video.
+**[00:08:11]** [ Music ]
+**[00:09:07]** Satya Nadella: All right.
+**[00:09:08]** [ Applause ]
+**[00:09:14]** Yeah, this is truly a dream machine.
+**[00:09:16]** It's got one petaflop of AI compute, 20 CPU cores.
+**[00:09:24]** All of those things have 128 gigabytes
+**[00:09:28]** of unified memory access.
+**[00:09:30]** So super excited about this coming in the fall
+**[00:09:34]** and you can join the waitlist.
+**[00:09:35]** I'm on the waitlist as well, so --
+**[00:09:37]** [ Laughter ]
+**[00:09:38]** -- we'll get there.
+**[00:09:40]** You know, so then we said, why stop there?
+**[00:09:45]** We said, what if we did one more thing?
+**[00:09:49]** And in fact, I think Jensen did that already.
+**[00:09:52]** And he said, Windows is coming to the DGX station.
+**[00:09:56]** So a new, I describe it as the desktop data center,
+**[00:10:00]** which you can have right there
+**[00:10:03]** and running a one-trillion parameter model locally.
+**[00:10:07]** I mean, just to sort of put it in perspective,
+**[00:10:09]** it's pretty close to what perhaps we had
+**[00:10:11]** when we built GPT-2.5 or 3, right,
+**[00:10:15]** one of the first supercomputers.
+**[00:10:16]** So it's pretty crazy to think that we've come this far
+**[00:10:20]** where you can now have a data center on your desktop.
+**[00:10:24]** And of course, we're extending the developer endpoints even
+**[00:10:27]** to the cloud.
+**[00:10:28]** Windows 365 now has the developer distribution that's
+**[00:10:33]** optimized for developer productivity in the cloud.
+**[00:10:36]** So that's the Windows 365 that I use every day.
+**[00:10:40]** And it's simply about making Windows, whether it's
+**[00:10:43]** on the laptop, the desktop, the cloud, wherever --
+**[00:10:46]** the best place to build.
+**[00:10:49]** And so, to that end, we have tons and tons of updates, right?
+**[00:10:53]** We're starting, by the way, with one of the favorite things
+**[00:10:57]** for all of us, which is distraction-free
+**[00:11:00]** dev environment.
+**[00:11:02]** We're also introducing an intelligent terminal,
+**[00:11:05]** which has got built-in GitHub Copilot, right?
+**[00:11:07]** Terminal with sort of the Copilot intelligence.
+**[00:11:10]** And of course, there's lots and lots
+**[00:11:12]** of Linux love across Windows now.
+**[00:11:15]** So you have 70-plus utilities.
+**[00:11:19]** So GREP, in full glory, is now available
+**[00:11:23]** for regular Windows access.
+**[00:11:25]** 70-plus utilities, as I said,
+**[00:11:27]** all of that is coming to Windows.
+**[00:11:30]** We're also bringing things from the Mac that you love,
+**[00:11:35]** things like Starship, Z Shell.
+**[00:11:38]** Homebrew is going to be native on Windows as well.
+**[00:11:41]** So you'll be able to switch to Windows.
+**[00:11:45]** And today, we're announcing WSL containers.
+**[00:11:49]** This has, I know, been a point of pain
+**[00:11:52]** when you're managing all these environments,
+**[00:11:54]** switching all the mental gymnastics of trying
+**[00:11:57]** to keep this straight.
+**[00:11:58]** So having first-class support
+**[00:12:00]** for containers will really help us be in the flow
+**[00:12:05]** when you are building and deploying locally.
+**[00:12:08]** And to show you all of this on our new Surface RTX Spark,
+**[00:12:14]** I wanted to invite up on stage Kayla to just take a spin
+**[00:12:20]** through all the dev tools.
+**[00:12:21]** Kayla, go ahead.
+**[00:12:22]** [ Applause ]
+**[00:12:29]** Kayla Cinnamon: Our team has been working hard
+**[00:12:31]** to make Windows a great place for development.
+**[00:12:33]** And today, I'm going to show you some major improvements
+**[00:12:36]** and delighters you can try out today.
+**[00:12:38]** So what we have here is the default experience
+**[00:12:41]** on the Surface RTX Spark Dev Box.
+**[00:12:44]** Right away, it feels calm.
+**[00:12:45]** There's no news feed, no widgets popping up, no notifications,
+**[00:12:49]** and of course, we're in dark mode.
+**[00:12:51]** I'm immediately ready to start development.
+**[00:12:54]** Well, there's one thing I'd like to change.
+**[00:12:56]** I like to put my taskbar on the left.
+**[00:12:58]** So let me jump into my taskbar settings using the new Run,
+**[00:13:01]** which is built leveraging the architecture
+**[00:13:04]** of PowerToys command pallet.
+**[00:13:07]** No, no, no, I want it all the way on the left.
+**[00:13:10]** There we go.
+**[00:13:12]** After popular demand, we're excited to announce
+**[00:13:14]** that vertical taskbar is now available
+**[00:13:16]** in Windows Insider builds.
+**[00:13:20]** The new Surface RTX Spark also has a bunch
+**[00:13:23]** of key dev tools already installed, like Python, Node,
+**[00:13:27]** and many more of your favorites.
+**[00:13:29]** All of the developer goodness, all in one file.
+**[00:13:32]** And if you want to get the same experience today on your device,
+**[00:13:35]** we're making this file available to everyone right now.
+**[00:13:38]** We have a public repo set up with the configuration file
+**[00:13:41]** and instructions for how to apply it using Winget Configure,
+**[00:13:44]** which will make the adjustments to Windows
+**[00:13:46]** and install all the tools.
+**[00:13:49]** Now, one cool thing that I have running here is PowerToys' new
+**[00:13:51]** utility called "Grab and Move", which lets you hold "Alt"
+**[00:13:54]** and move the window around from anywhere.
+**[00:13:57]** Another tip is that you can enable "end task",
+**[00:13:59]** which lets you end the process
+**[00:14:01]** without having to open Task Manager.
+**[00:14:04]** So let me jump into my dev drive.
+**[00:14:06]** Dev drives run on REFS with Defender running in async
+**[00:14:10]** and are optimized for performance when it comes
+**[00:14:12]** to development scenarios.
+**[00:14:14]** Also, File Explorer is "Git-aware".
+**[00:14:17]** We've got stuff like "last change author name",
+**[00:14:19]** "last change message", the status of each file.
+**[00:14:23]** Plus, my favorite is that the branch name is
+**[00:14:25]** on the bottom left.
+**[00:14:26]** So now let's get started building and open our terminal.
+**[00:14:31]** This is an experimental experience called,
+**[00:14:33]** "Intelligent Terminal",
+**[00:14:34]** that makes working with agents even more seamless.
+**[00:14:38]** When you first install Intelligent Terminal,
+**[00:14:39]** you're greeted with the option to pick your favorite agent.
+**[00:14:42]** I'm going to use GitHub Copilot for today,
+**[00:14:44]** but you can use whichever agent speaks to you.
+**[00:14:47]** Now here in Intelligent Terminal,
+**[00:14:49]** I have a regular terminal pane at the top
+**[00:14:51]** and an agent that's listening on the bottom, and I can work
+**[00:14:54]** between them while the agent helps along the way.
+**[00:14:57]** So for example, here's an error being generated.
+**[00:14:59]** My agent pane is able to detect it and provide a fix,
+**[00:15:02]** which is great when I don't remember the syntax,
+**[00:15:04]** especially for something like RegEX.
+**[00:15:07]** So I'm going to work on OpenClaw,
+**[00:15:09]** and I've already built it using WSL Container.
+**[00:15:13]** WSL Container is a native container experience on Windows,
+**[00:15:16]** plus it can leverage the GPU, which is perfect
+**[00:15:18]** for the Surface RTX Spark.
+**[00:15:21]** It can also reference your existing container files,
+**[00:15:23]** just like the one in the OpenClaw project.
+**[00:15:26]** So here's one of the files open in Microsoft Edit,
+**[00:15:28]** which ships in Windows by default
+**[00:15:30]** and just got syntax highlighting in its latest version.
+**[00:15:34]** And then you can also just see your containers running
+**[00:15:36]** with a simple container images command.
+**[00:15:39]** And since we're on the topic of WSL,
+**[00:15:41]** we're providing a WSL profile that's designed
+**[00:15:43]** to feel comfortable for those of you who use tools
+**[00:15:46]** like Starship, Zsh, and Homebrew.
+**[00:15:50]** So it comes pre-configured with all of your favorite utilities,
+**[00:15:53]** and it's available in the repo that I showed earlier.
+**[00:15:56]** And it also includes one of my favorites, BTOP.
+**[00:16:00]** So the Surface RTX Spark is designed
+**[00:16:03]** for developer heavy workloads,
+**[00:16:04]** including serving large local models for coding.
+**[00:16:08]** I've already done some development
+**[00:16:09]** with a 120 billion-parameter model
+**[00:16:12]** that most machines can't even load.
+**[00:16:14]** So here's a quick view of my usage,
+**[00:16:16]** and we can see how many tokens I've used locally.
+**[00:16:18]** So we're looking at about 3.4 million tokens leveraged
+**[00:16:21]** on the device itself.
+**[00:16:23]** Now, we can kick off multiple sub-agents using Fleet.
+**[00:16:27]** And just so we don't have to watch me type,
+**[00:16:29]** I'm going to use Copilot's Voice feature,
+**[00:16:31]** which is also leveraging its own local model.
+**[00:16:34]** So I'll just hold "Spacebar" and tell it what I want it to do.
+**[00:16:38]** Find any console.writeline or debug.writeline calls
+**[00:16:41]** in the tray and node projects and convert them
+**[00:16:45]** to the standard logger used elsewhere in the codebase.
+**[00:16:50]** There we go.
+**[00:16:50]** Now, the main agent will delegate sub-agent tasks
+**[00:16:54]** of appropriate complexity to the local model, utilizing my GPU
+**[00:16:57]** and making it more cost efficient.
+**[00:17:00]** Now, as developers, while we're debugging, we're often looking
+**[00:17:03]** through log files to diagnose any issues.
+**[00:17:05]** Sometimes finding the location of the log files is a challenge.
+**[00:17:09]** I'd love to be able to just type something
+**[00:17:11]** like "grep log" and find them all.
+**[00:17:14]** Ah, sweet.
+**[00:17:16]** So on top of already adding curl, tar, and sudo to Windows,
+**[00:17:20]** now we're adding over 75
+**[00:17:22]** command-line utilities like env, head,
+**[00:17:25]** tail, and touch for those of us who love
+**[00:17:27]** to live in the terminal.
+**[00:17:31]** So I found all my log files, but now having
+**[00:17:33]** to parse them is the second challenge.
+**[00:17:36]** Well, I've actually had Aion Instruct proactively performing
+**[00:17:39]** analyses on my log files this whole time.
+**[00:17:43]** Now I can quickly diagnose anything that's gone wrong
+**[00:17:45]** in my development, plus I don't have to worry about token usage
+**[00:17:48]** because it's all local.
+**[00:17:50]** We can even take a look at our machine's resources.
+**[00:17:53]** The models are loaded, and you can see 90 gigs
+**[00:17:56]** of RAM being utilized by the GPU,
+**[00:17:58]** truly showcasing the full power of the Surface RTX Spark.
+**[00:18:02]** We were able to use three local models simultaneously,
+**[00:18:06]** unmetered, while going
+**[00:18:07]** up our regular dev flow without a hitch.
+**[00:18:10]** That's huge.
+**[00:18:14]** [ Applause ]
+**[00:18:20]** So, I know you're going to love what the team's been working on.
+**[00:18:23]** We hope it gives you a glimpse of what's possible
+**[00:18:25]** on Windows today and where we're headed next.
+**[00:18:27]** Thank you. Back to you, Satya.
+**[00:18:29]** [ Applause ]
+**[00:18:34]** Satya Nadella: Yeah, that's really the beginning
+**[00:18:36]** of this idea of unmetered intelligence,
+**[00:18:39]** having those models and having the agents using the models work
+**[00:18:44]** in parallel to what you may be doing along
+**[00:18:46]** with the cloud as well.
+**[00:18:47]** And that, I think, is what the platform enables as first class.
+**[00:18:51]** Now let's move to the cloud.
+**[00:18:54]** You know, the driving equation for us remains the same,
+**[00:18:57]** which is tokens per dollar per watt.
+**[00:19:00]** How do we optimize around this, right?
+**[00:19:02]** So when we think about the systems problem,
+**[00:19:04]** we think about electrons coming on one end and tokens
+**[00:19:08]** on the other end, and how do we think
+**[00:19:10]** about the systems optimization end-to-end?
+**[00:19:13]** It starts with the data center design itself, right?
+**[00:19:16]** The core compute, storage, network, all the accelerators
+**[00:19:20]** that go into accelerating each of those components.
+**[00:19:23]** How do you even think about the DC-to-DC connectivity
+**[00:19:27]** and the networking, as well as the offload to something
+**[00:19:32]** like the local compute, right?
+**[00:19:33]** That's the sort of systems challenge.
+**[00:19:36]** But before we even get into all of the systems
+**[00:19:39]** and the technology and the innovation,
+**[00:19:42]** perhaps the most important design criteria
+**[00:19:44]** for us is, how do we earn the permission from the communities
+**[00:19:49]** in which we're building these data centers?
+**[00:19:51]** And that's where these principles ground us
+**[00:19:55]** and focus us.
+**[00:19:56]** How do we ensure that the DCs do not increase the
+**[00:20:00]** electricity prices?
+**[00:20:02]** Making sure that we are replenishing all our water use,
+**[00:20:06]** creating jobs in the local communities
+**[00:20:09]** for the local residents, adding to the tax base,
+**[00:20:13]** making sure we are strengthening the communities by investing
+**[00:20:15]** in local training and the nonprofits in the area.
+**[00:20:19]** Only when we live up to these principles, do the hard work
+**[00:20:23]** around it, is when we earn the permission to go ahead
+**[00:20:26]** and innovate and build.
+**[00:20:28]** And we've been doing a lot of data center build-out.
+**[00:20:32]** Today, Azure spans more than 500 data centers in 80 regions.
+**[00:20:38]** It's the most expansive, you know,
+**[00:20:40]** we have the most expansive hyperscaler footprint out there.
+**[00:20:43]** And we have added more data center capacity
+**[00:20:46]** in the last 18 months than the first decade of Azure,
+**[00:20:51]** just to put that in perspective.
+**[00:20:53]** But more importantly, what we are building is also
+**[00:20:57]** very different.
+**[00:20:58]** In fact, the first 15 years or so, you know,
+**[00:21:00]** we built out the commercial cloud infrastructure for a set
+**[00:21:05]** of heterogeneous, you know,
+**[00:21:07]** workloads that spanned the enterprise.
+**[00:21:10]** But now when you look at what we are building, right,
+**[00:21:12]** when you think about all the gigawatts that were going
+**[00:21:14]** to come online, really, they have three dominant workloads.
+**[00:21:19]** There is training, there is inference,
+**[00:21:22]** and then there is the agent runtime, right?
+**[00:21:24]** These are three dominant workloads.
+**[00:21:26]** And in fact, when you look at Fairwater,
+**[00:21:30]** it was sort of our first AI super-factory.
+**[00:21:34]** You know, it spanned two regions, Georgia and Wisconsin.
+**[00:21:38]** The entire system was designed
+**[00:21:41]** from the ground up for AI, right?
+**[00:21:42]** We worked, in fact, very closely with even NVIDIA on this.
+**[00:21:45]** It's a two-story architecture
+**[00:21:47]** that lets us essentially place racks, obviously,
+**[00:21:51]** in three dimensions and pack the maximum number
+**[00:21:54]** of GPUs densely with network access.
+**[00:21:58]** That means you've really got fantastic higher-performance
+**[00:22:01]** networking, lower latency, and more effective bandwidth
+**[00:22:05]** across the entire cluster.
+**[00:22:07]** And we're rethinking even the power delivery, right?
+**[00:22:10]** So we started, okay, how do we deliver hundreds
+**[00:22:13]** of kilowatts per row while minimizing all the loss, right,
+**[00:22:17]** which is the conversion loss that happens
+**[00:22:19]** from the grid to the silicon.
+**[00:22:21]** So we basically sort of even took a new approach to it.
+**[00:22:26]** And all of this also changes
+**[00:22:28]** with the cooling system, right, and water.
+**[00:22:31]** So in fact, the cooling loop is filled once,
+**[00:22:34]** and the data center can operate effectively
+**[00:22:37]** with zero water consumption.
+**[00:22:38]** In fact, the daily water usage over the course
+**[00:22:42]** of an entire year is roughly equivalent
+**[00:22:45]** to what a single restaurant would use, right?
+**[00:22:48]** I mean, that's --
+**[00:22:49]** [ Applause ]
+**[00:22:54]** And when it comes to the systems and the silicon, again,
+**[00:22:58]** we have a lot of choice.
+**[00:22:59]** We have first-party silicon.
+**[00:23:01]** We have partner systems.
+**[00:23:04]** We were the very first cloud to bring up, in fact,
+**[00:23:07]** NVIDIA's Vera Rubin system for validation.
+**[00:23:10]** Very exciting to see that.
+**[00:23:12]** We're working closely with AMD.
+**[00:23:14]** We worked with them on MI300.
+**[00:23:16]** Now we're working with them on their next-generation AMD GPUs.
+**[00:23:21]** Maia 200 is continuing to scale.
+**[00:23:24]** In fact, it's live in Iowa and Arizona.
+**[00:23:27]** We'll deploy it internationally later this year.
+**[00:23:29]** It delivers 30% improved tokens per dollar compared to sort
+**[00:23:33]** of what's the leading GPU today.
+**[00:23:36]** And we have validated it with 5.5, GPT-5.5, and we are going
+**[00:23:41]** to use that to power Microsoft 365 Copilot.
+**[00:23:44]** And so, when it comes to running these agents,
+**[00:23:50]** the interesting thing now is it's no longer just
+**[00:23:53]** about having an AI accelerator or a GPU.
+**[00:23:55]** The CPU is really critical.
+**[00:23:58]** In fact, the ratios may be even coming to one is to one.
+**[00:24:02]** And that's why we are innovating with Cobalt.
+**[00:24:05]** We're announcing the preview of Cobalt 200 VMs,
+**[00:24:10]** our next-generation ARM-based CPU designed
+**[00:24:13]** for both cloud-native and agent workloads today.
+**[00:24:17]** So it's exciting to see Cobalt make progress as well.
+**[00:24:21]** [ Applause ]
+**[00:24:25]** You know, one thing that we've been trying to make sure is
+**[00:24:28]** that it's being optimized
+**[00:24:29]** for these new workloads I talked about, right?
+**[00:24:31]** These new agent workloads.
+**[00:24:32]** So in fact, Cobalt delivers 50-plus percent better
+**[00:24:35]** performance than Cobalt 100 on cloud-native.
+**[00:24:38]** But we started benchmarking them using the GitHub Copilot traces,
+**[00:24:42]** these agentic traces,
+**[00:24:44]** to see because the call patterns are so different.
+**[00:24:46]** And we're now seeing 33% lower latency for the agent calls,
+**[00:24:51]** 14% faster speed, 23% higher throughput.
+**[00:24:54]** So this is about the core design of both the AI accelerator
+**[00:24:59]** and the CPU for the agent.
+**[00:25:02]** And, of course, when you talk about AI workloads,
+**[00:25:05]** you need scale, you need reliability,
+**[00:25:07]** and that's why the network becomes super critical.
+**[00:25:11]** We have innovated with the MRC architecture
+**[00:25:15]** and rebuilt how traffic across Azure moves
+**[00:25:18]** to support AI workloads,
+**[00:25:21]** which are fundamentally synchronous data parallel
+**[00:25:24]** workloads, right?
+**[00:25:25]** And so, therefore, they span tens and thousands of GPUs.
+**[00:25:30]** And so, you need to have them coherent.
+**[00:25:31]** That's what the next Frontier, you know,
+**[00:25:34]** is for us to make sure we're able
+**[00:25:37]** to keep scaling the network architecture.
+**[00:25:39]** And, of course, it's not about just inside the data center.
+**[00:25:43]** It's also about connecting across the data centers.
+**[00:25:46]** And every Fairwater data center, for example, is connected
+**[00:25:50]** through our continent-spanning AI Wan
+**[00:25:53]** forming this truly fungible compute fabric.
+**[00:25:59]** And, you know, all this innovation is exciting,
+**[00:26:03]** but when you think about innovation, designing for AI,
+**[00:26:07]** and I would say, deep understanding of systems,
+**[00:26:13]** you know, there's no better company than NVIDIA,
+**[00:26:16]** and there's no better person than Jensen to talk about it.
+**[00:26:21]** So I want to invite, live from Taipei, Jensen Huang,
+**[00:26:25]** CEO and founder of NVIDIA.
+**[00:26:28]** [ Applause ]
+**[00:26:34]** Jensen Huang: Hi, Satya.
+**[00:26:34]** Satya Nadella: Thank you so much for being at Build again.
+**[00:26:38]** I know it's late for you in Taipei.
+**[00:26:40]** I really appreciate you staying up.
+**[00:26:44]** You know, I've been looking at social and, you know,
+**[00:26:49]** and everything people have been talking
+**[00:26:51]** about since your keynote over the weekend.
+**[00:26:54]** And suddenly, you know, this concept
+**[00:26:57]** of unmetered intelligence right at the edge is so hot again.
+**[00:27:03]** So maybe you want to talk a little bit.
+**[00:27:04]** You have thought about this, talked about this, and now,
+**[00:27:07]** of course, with RTX Spark really delivered, I think,
+**[00:27:11]** what's a breakthrough system for AI to be much more ubiquitous.
+**[00:27:15]** But maybe, Jensen, you can just share a little bit your vision
+**[00:27:19]** around where you see this going.
+**[00:27:22]** Jensen Huang: Well, this all started about three years ago
+**[00:27:24]** between a conversation between you and I.
+**[00:27:26]** And we were talking about how we could build a new class
+**[00:27:31]** of PCs that's incredible for designers and creators,
+**[00:27:35]** and it would be incredible for artificial intelligence.
+**[00:27:38]** And it would be one of these systems
+**[00:27:39]** that has the processing capability
+**[00:27:43]** but also the software stack that's integrated
+**[00:27:46]** into the world's design packages and creator packages and,
+**[00:27:49]** of course, all the things that we're doing with AI.
+**[00:27:51]** And here we are, three years later,
+**[00:27:54]** we built an incredible new chip, and this system is supported
+**[00:28:00]** by all of this new software that you created for Windows.
+**[00:28:04]** And we now have the ability to have, essentially,
+**[00:28:07]** an autonomous agent running on the PC.
+**[00:28:11]** Now, when you take a step back and you think about
+**[00:28:13]** what does that mean?
+**[00:28:15]** For the 40 years or some 30 years
+**[00:28:17]** we've been working together,
+**[00:28:19]** we went from inventing DirectX together
+**[00:28:23]** to creating now this incredible computer
+**[00:28:29]** that has autonomous systems running.
+**[00:28:31]** The PC evolved from being an incredible tool
+**[00:28:35]** to now being a tool that's used autonomously by an AI assistant.
+**[00:28:41]** And so, the idea that I could be traveling and I'm on the phone
+**[00:28:45]** and I could text my PC and ask my PC to get some coding done
+**[00:28:50]** or some idea that I have, and it would fire
+**[00:28:53]** up the tools on the PC.
+**[00:28:56]** And it would make the modifications or the changes
+**[00:28:59]** or the design that I told it to do, and it would iterate
+**[00:29:03]** with me while I'm away from the PC.
+**[00:29:06]** My PC became an assistant.
+**[00:29:08]** While I'm sitting there, of course,
+**[00:29:09]** this PC would be my great assistant as well.
+**[00:29:12]** And so, this idea that the PC evolved from a personal computer
+**[00:29:18]** to a personal AI, it's just really exciting.
+**[00:29:21]** And to see it come to life, Satya, to see it come to life
+**[00:29:25]** and actually doing that, you know,
+**[00:29:27]** so I'm super excited about it.
+**[00:29:29]** Spark, as you mentioned earlier,
+**[00:29:31]** has all this incredible capabilities,
+**[00:29:33]** a petaflop of AI performance.
+**[00:29:35]** It has a petaflop of NVFP4, this numerical format
+**[00:29:40]** that our two companies worked on together that allows us
+**[00:29:43]** to take advantage of this 128 gigabytes of memory
+**[00:29:48]** and fit maybe a couple of hundred-billion-parameter model.
+**[00:29:52]** A couple
+**[00:29:52]** of hundred-billion-parameter model is state-of-the-art.
+**[00:29:56]** And so, I think the days
+**[00:29:57]** of having a really smart assistant running autonomously
+**[00:30:00]** on the PC is here.
+**[00:30:01]** Satya Nadella: Yeah, no, it's so awesome.
+**[00:30:02]** And in fact, I'm also excited
+**[00:30:04]** about Windows coming to the GB300.
+**[00:30:06]** And so, that's another thing that it's kind
+**[00:30:09]** of like data center right on your desktop.
+**[00:30:11]** And it's so exciting.
+**[00:30:12]** But talking about that data center side, obviously,
+**[00:30:16]** you know, this entire thing got started
+**[00:30:19]** when we built the first supercomputer together
+**[00:30:22]** to train the GPT models.
+**[00:30:25]** And we have come a long way.
+**[00:30:26]** In fact, even I was talking about the Fairwater design,
+**[00:30:29]** it is custom-built essentially for the Grace Blackwell era
+**[00:30:34]** to be able to max the data center design
+**[00:30:37]** with the system design you had.
+**[00:30:39]** And now, of course, we're validating Vera Rubin.
+**[00:30:41]** We're very excited about it.
+**[00:30:43]** Maybe you want to share a little bit about sort
+**[00:30:45]** of what happens even on the cloud side
+**[00:30:47]** with how you're pushing on the systems innovation.
+**[00:30:51]** Jensen Huang: Well, our journey is incredible.
+**[00:30:54]** We built the first AI supercomputer together.
+**[00:30:57]** That was based on Ampere.
+**[00:30:58]** Of course, Hopper was an incredible success.
+**[00:31:01]** Those first two generations were focused on pre-training.
+**[00:31:04]** Grace Blackwell came along and all of the focus moved
+**[00:31:09]** to post-training reinforcement learning, which allowed us
+**[00:31:13]** to have reasoning models.
+**[00:31:15]** And these reasoning models, based on mixture of experts,
+**[00:31:18]** were incredibly intelligent, energy efficient.
+**[00:31:21]** But it requires giant systems.
+**[00:31:24]** And so, we created NVLink 72,
+**[00:31:27]** and the entire rack became one computer.
+**[00:31:30]** We had evolved from one node to now one rack.
+**[00:31:33]** Well. . .
+**[00:31:36]** Microsoft deployed the largest number
+**[00:31:39]** of Grace Blackwells in the world today; the fastest
+**[00:31:42]** and the largest number of Grace Blackwells in the world.
+**[00:31:45]** Fairwater is just a magnificent system to look at.
+**[00:31:49]** It's just a miracle of engineering.
+**[00:31:52]** It's just an incredible feat.
+**[00:31:54]** It's completely liquid-cooled.
+**[00:31:56]** You mentioned something earlier that I'm very proud of as well,
+**[00:31:59]** that it's closed looped, basically uses almost no water.
+**[00:32:03]** And it's incredibly environmentally friendly.
+**[00:32:05]** It's energy efficient.
+**[00:32:07]** We're able to increase the token generation rate
+**[00:32:10]** and reduce the cost of token generation by an order
+**[00:32:14]** of magnitude, some 30 times over Hopper.
+**[00:32:17]** So that was a huge achievement.
+**[00:32:19]** Well, Vera Rubin was created for a world
+**[00:32:23]** where these AIs are now agentic.
+**[00:32:26]** And so, whereas Hopper was created for pre-training,
+**[00:32:29]** Grace Blackwell for training, post-training,
+**[00:32:32]** and also inference, Vera Rubin is designed to run agents.
+**[00:32:37]** It's agents, as you know,
+**[00:32:39]** this computing pattern is exactly the same computing
+**[00:32:42]** pattern we're going to run on the RTX Spark.
+**[00:32:45]** It's exactly the same agentic system, except, of course,
+**[00:32:48]** it's going to be much, much larger.
+**[00:32:50]** We're going to process an enormous number
+**[00:32:52]** of them simultaneously.
+**[00:32:54]** Many of them are going to be from different customers
+**[00:32:57]** and different partners.
+**[00:32:58]** And so, the entire path, the entire coding path from storage,
+**[00:33:03]** which is the long-term memory,
+**[00:33:05]** the working memory, is encrypted.
+**[00:33:08]** The data is encrypted in transit.
+**[00:33:11]** The data is also encrypted in use.
+**[00:33:14]** And so, we're going to really innovate in the area
+**[00:33:17]** of confidential computing.
+**[00:33:18]** And so, this entire disaggregated,
+**[00:33:21]** distributed computing system, you mentioned CPUs.
+**[00:33:24]** Vera is a revolutionary CPU designed for agents.
+**[00:33:27]** You know, the past CPUs were designed for humans.
+**[00:33:30]** And, you know, we're just more patient than agents are.
+**[00:33:33]** And agents want low latency,
+**[00:33:36]** just as you've been working on as well.
+**[00:33:39]** Vera was designed for extremely low latency.
+**[00:33:41]** And so, Vera Rubin is just completely revolutionary.
+**[00:33:44]** I can't wait to show it to everybody.
+**[00:33:46]** You've already stood it up.
+**[00:33:48]** Satya Nadella: Yep.
+**[00:33:48]** Jensen Huang: Our two teams
+**[00:33:50]** have been working very closely.
+**[00:33:52]** You know, almost long before the chips taped out,
+**[00:33:56]** long before the systems were brought up,
+**[00:33:58]** our two teams were already completely aligned.
+**[00:34:01]** And so, the design, the data centers were created
+**[00:34:03]** for Vera Rubin.
+**[00:34:05]** Vera Rubin is designed and integrated
+**[00:34:06]** into your complete stack,
+**[00:34:08]** into your networking, into your security.
+**[00:34:10]** And so, the moment that our systems were rolling off the
+**[00:34:13]** lines, they were being stood up at Microsoft.
+**[00:34:16]** So I'm incredibly excited about the collaboration.
+**[00:34:18]** Satya Nadella: Yeah, I know this speed of light execution
+**[00:34:21]** between the teams is fantastic to see.
+**[00:34:23]** And, of course, all this is
+**[00:34:24]** to power the ecosystem around us, right?
+**[00:34:27]** I mean, you and I, having grown up with the PC, the server,
+**[00:34:30]** and now with AI, have always thought about, ultimately, it's
+**[00:34:34]** about creating the opportunity for every developer,
+**[00:34:37]** every organization to build on the work that we do
+**[00:34:40]** and the platforms we create.
+**[00:34:41]** And speaking of that, there's a lot of software
+**[00:34:44]** that NVIDIA builds that's all also coming.
+**[00:34:47]** For example, we're going to have your models in Foundry,
+**[00:34:50]** your tooling in Foundry.
+**[00:34:51]** We're going to have, in fact, your software even help us
+**[00:34:54]** with accelerating our workloads when it comes
+**[00:34:57]** to even the data warehouse.
+**[00:34:59]** We're going to obviously have stuff in Windows.
+**[00:35:02]** Just talk a little bit about that broader vision
+**[00:35:05]** of what does it mean for -- as an opportunity, right?
+**[00:35:08]** Because everybody talks
+**[00:35:09]** about this one model or one piece of tech.
+**[00:35:11]** But it's about the broadest, biggest opportunity
+**[00:35:15]** for people to create value.
+**[00:35:17]** Maybe you want to share a little bit about that.
+**[00:35:21]** Jensen Huang: Well, we've been preparing for this moment.
+**[00:35:23]** You know, what happened in the last several months,
+**[00:35:25]** we've been working for a decade and a half together,
+**[00:35:28]** getting ready for, really, what happened
+**[00:35:30]** in the last several months.
+**[00:35:31]** All of a sudden, because of agentic systems, the convergence
+**[00:35:35]** of these really great models, AI is now useful.
+**[00:35:39]** If you just look at GitHub,
+**[00:35:42]** the commits into GitHub has gone completely parabolic.
+**[00:35:47]** In the last several months,
+**[00:35:49]** the number of commits increased by a factor of three.
+**[00:35:53]** It's clear that agentic systems are useful,
+**[00:35:56]** that it's doing productive work,
+**[00:35:58]** and also tokens are now profitable as a result.
+**[00:36:02]** And so, the amount of demand for compute between the usage
+**[00:36:07]** of the AI and the computation that's necessary for agents,
+**[00:36:11]** the compute demand has really gone through the roof.
+**[00:36:14]** Well, one of the things
+**[00:36:15]** that we've been doing together is making sure that all
+**[00:36:19]** of the tools that agents are going
+**[00:36:20]** to use are fully accelerated.
+**[00:36:22]** Fabric, for example, is now fully accelerated.
+**[00:36:25]** We're accelerating data processing, SQL, Spark,
+**[00:36:31]** semantic-based, vector-based, graph-based.
+**[00:36:35]** We're going to make sure that all of the tools
+**[00:36:37]** that are available on Azure are going
+**[00:36:39]** to be fully GPU-accelerated
+**[00:36:41]** because the agents are going to be impatient.
+**[00:36:43]** The faster we can get the answers back to the agents,
+**[00:36:46]** the faster they can iterate, the faster we can generate tokens,
+**[00:36:49]** which are ultimately what the developers,
+**[00:36:52]** both of our customers would like to do, is generate a lot
+**[00:36:54]** of tokens that are really profitable,
+**[00:36:56]** that are highly intelligent.
+**[00:36:58]** Satya Nadella: Thank you so much, Jensen,
+**[00:37:00]** for the partnership and the leadership and the innovation
+**[00:37:03]** that you bring to this entire ecosystem.
+**[00:37:06]** And really thrilled to be working closely with you
+**[00:37:09]** and the team and bring all this to the developers here
+**[00:37:12]** and beyond and look forward to seeing what the next sort
+**[00:37:15]** of few months and the next year bring in terms of the innovation
+**[00:37:19]** that gets built on top of the platform.
+**[00:37:21]** So thank you again for joining this late
+**[00:37:23]** in the night from Taipei.
+**[00:37:26]** Jensen Huang: Thank you so much, Satya,
+**[00:37:27]** for your partnership and friendship. Thank you.
+**[00:37:29]** Satya Nadella: Thank you.
+**[00:37:30]** [ Applause ]
+**[00:37:34]** Satya Nadella: So so far, we've talked
+**[00:37:36]** about the edge and the cloud.
+**[00:37:40]** The current form factors, right?
+**[00:37:42]** I mean, when I saw that Jensen picture from the weekend
+**[00:37:45]** where he had all the desktops, I felt like, man,
+**[00:37:47]** I'm back in the '90s, right?
+**[00:37:48]** Because it is so cool to see the lineup of all the machines
+**[00:37:54]** that I loved and I grew up with back yet again
+**[00:37:57]** with new functionality, right?
+**[00:37:59]** The same form factor, but unbelievable new functionality
+**[00:38:03]** because of the onboard AI capability, right?
+**[00:38:06]** So that's sort of what we've seen with the laptop,
+**[00:38:09]** the desktop and, of course, with the cloud.
+**[00:38:12]** But it also, you know, sets up that next question.
+**[00:38:17]** If you have that capability, which is new function
+**[00:38:21]** and you can put it into existing form factors,
+**[00:38:24]** can you even purpose-build new form factors
+**[00:38:30]** for the new function?
+**[00:38:31]** Can you build a new platform even for the agent era?
+**[00:38:36]** And that is the motivation behind Project Solara,
+**[00:38:40]** which we're introducing today.
+**[00:38:42]** And to talk about this, I wanted to invite Stevie on stage.
+**[00:38:45]** But first, let's roll the video.
+**[00:38:48]** Speaker 1: First, there's you.
+**[00:38:50]** [ Music ]
+**[00:38:52]** Then, everything in front of you.
+**[00:38:54]** [ Music ]
+**[00:38:56]** We get it.
+**[00:38:57]** The noise.
+**[00:38:59]** The weight of it all.
+**[00:39:01]** [ Music ]
+**[00:39:03]** So we've been building something.
+**[00:39:04]** [ Music ]
+**[00:39:06]** A new chip-to-cloud platform
+**[00:39:08]** for an agent-first world.
+**[00:39:10]** And for new agent first devices.
+**[00:39:14]** You come close.
+**[00:39:16]** It's ready when you are.
+**[00:39:19]** You speak.
+**[00:39:20]** It understands you.
+**[00:39:22]** What matters comes forward.
+**[00:39:24]** Everything else falls away.
+**[00:39:28]** And when you want it to keep going, it keeps going.
+**[00:39:33]** Your call.
+**[00:39:35]** Sometimes it sits with you.
+**[00:39:38]** Sometimes it goes with you.
+**[00:39:41]** Sometimes it sees what you want it to see.
+**[00:39:43]** It doesn't decide for you.
+**[00:39:47]** It just lights the path.
+**[00:39:49]** It tries to clear the way when you need it to.
+**[00:39:53]** And that's the idea.
+**[00:39:54]** A whole ecosystem built to clear the way.
+**[00:39:58]** So all that's left is where you need to go.
+**[00:40:02]** Wherever you are.
+**[00:40:04]** Whenever it matters.
+**[00:40:05]** [ Music ]
+**[00:40:10]** [ Applause ]
+**[00:40:12]** Steven Bathiche: I am so excited to be here.
+**[00:40:14]** It really is great to be back on this stage.
+**[00:40:17]** Now, before I talk about those awesome new devices you just
+**[00:40:20]** saw, let me start with the "why".
+**[00:40:24]** Back at Build 2023, I talked
+**[00:40:27]** about the outside AI application structure, where AI moves
+**[00:40:32]** from operating within the application frame
+**[00:40:34]** to operating globally, working across multiple apps
+**[00:40:38]** and services to connect, coordinate and maintain context
+**[00:40:42]** across entire workflows, devices and time scales.
+**[00:40:48]** What if there were an ecosystem of devices specifically designed
+**[00:40:53]** for that new type of application structure, for those types
+**[00:40:57]** of agents, for that transformational
+**[00:41:00]** interaction technology?
+**[00:41:02]** That is the impetus behind Project Solara.
+**[00:41:05]** But with so many possible forms, which one do you pick?
+**[00:41:09]** What is the next device?
+**[00:41:13]** You see, the big "a-ha" for us is that it's not
+**[00:41:15]** about choosing one specific form factor,
+**[00:41:18]** it is about creating a system that extends your agent
+**[00:41:21]** across a constellation of devices.
+**[00:41:24]** The next computer is not one device.
+**[00:41:27]** It is all these devices working together as one system,
+**[00:41:32]** with agents showing up closer to where and when you need them.
+**[00:41:37]** To realize this vision, two challenges immediately show up.
+**[00:41:42]** First, many specialized form factors already exist,
+**[00:41:46]** but often rely on custom one-off apps and fragmented stacks
+**[00:41:50]** that are difficult and expensive to build, deploy and maintain.
+**[00:41:55]** And second, across every industry,
+**[00:41:58]** people and organizations are already building their own
+**[00:42:01]** agents, deeply specialized and instrumented for their work.
+**[00:42:05]** But the impact of those agents is constrained by how
+**[00:42:08]** and where they can exist.
+**[00:42:11]** Project Solara addresses both by giving organizations a way
+**[00:42:14]** to extend their agents onto new, purpose-built,
+**[00:42:18]** easy-to-manage form factors designed to reach the nooks
+**[00:42:22]** and crannies where conventional computers either do not exist
+**[00:42:26]** or are not optimal.
+**[00:42:30]** It's a turnkey solution
+**[00:42:31]** for building unique agent-first devices enabled
+**[00:42:34]** by three pillars.
+**[00:42:37]** First, it's enterprise-ready,
+**[00:42:39]** enabled by the AOSP-based Microsoft device
+**[00:42:42]** ecosystem platform.
+**[00:42:44]** Second, it has an agent-driven interaction model
+**[00:42:49]** with just-in-time UI that adapts to the form factor.
+**[00:42:53]** And third, it has extensibility
+**[00:42:55]** so you can bring your own agents.
+**[00:42:57]** And tying it all together is Azure, unifying the system
+**[00:43:00]** across cloud and device.
+**[00:43:03]** Okay. That's enough of that.
+**[00:43:05]** Now let's talk about the devices.
+**[00:43:08]** Today we're previewing two very broad categories.
+**[00:43:11]** The first is stationary and the second is portable.
+**[00:43:14]** The first device is designed for your desk
+**[00:43:17]** and it's built on MediaTek silicon.
+**[00:43:20]** With Hello for Business, just walking
+**[00:43:22]** up to the device securely signs you in, giving you direct access
+**[00:43:26]** to your agents, just like Nathan's about to show you here.
+**[00:43:32]** For the information worker, this means frictionless
+**[00:43:34]** yet protected access
+**[00:43:35]** to Microsoft 365 Copilot grounded in Work IQ.
+**[00:43:40]** And with a simple glance, it surfaces what matters next
+**[00:43:42]** in your workday, helping you think, plan, and even act
+**[00:43:46]** by delegating tasks to your agents with a simple tap
+**[00:43:49]** or just using your voice.
+**[00:43:53]** Think of it as a dedicated, secured,
+**[00:43:54]** ambient device for work.
+**[00:43:57]** It even supports experiences like handoff between devices,
+**[00:44:00]** acting as a companion to your existing Windows PC.
+**[00:44:04]** Or, it can even let you access your cloud PC
+**[00:44:08]** through Windows 365 and a connected monitor.
+**[00:44:10]** How cool is that?
+**[00:44:12]** [ Cheering ]
+**[00:44:13]** [ Applause ]
+**[00:44:17]** Now, the second device is portable.
+**[00:44:20]** It's reimagining a wearable that millions
+**[00:44:23]** of people use every day, the access badge.
+**[00:44:27]** Built using Qualcomm silicon for wearable,
+**[00:44:29]** this digital badge is a lightweight form factor designed
+**[00:44:33]** for agent interactions on the go.
+**[00:44:36]** And then it's adaptable across a variety
+**[00:44:38]** of verticals and workflows.
+**[00:44:40]** All right, I have here an early prototype of the badge.
+**[00:44:46]** And so -- thanks.
+**[00:44:47]** And using my fingerprint, I tap to unlock the device.
+**[00:44:51]** And I have access now to all my agents in a secured manner.
+**[00:44:55]** And would you look at that?
+**[00:44:56]** I already have a task.
+**[00:44:57]** And it says gather content
+**[00:44:59]** for your social media posts for today.
+**[00:45:01]** So, why not just do it right now, right?
+**[00:45:03]** So, I'm going to hit "Record".
+**[00:45:06]** And then now the device's camera is recording.
+**[00:45:09]** I'm going to pan across.
+**[00:45:10]** I hope you don't mind.
+**[00:45:11]** I'm going to take your shots.
+**[00:45:12]** Yes. Thank you.
+**[00:45:13]** Copilot, find some good shots from this, clean them up,
+**[00:45:17]** and then send them to me for me and my team to review.
+**[00:45:21]** All right.
+**[00:45:23]** And then there you have it.
+**[00:45:24]** Now my agent's off running through multiple tasks
+**[00:45:27]** to actually clean this up and send them to me and the team.
+**[00:45:29]** That's pretty cool.
+**[00:45:30]** [ Applause ]
+**[00:45:35]** Okay, I know it's a simple demo, but it's all agent-driven.
+**[00:45:39]** And there are so many verticals, so many opportunities.
+**[00:45:42]** I mean, for example, imagine in healthcare.
+**[00:45:44]** From the moment you pick up the device,
+**[00:45:46]** the right agent shapes the experience around the role
+**[00:45:49]** and the workflow, helping with check-ins, patient records,
+**[00:45:53]** and critical insights,
+**[00:45:55]** all through enterprise-grade secure access.
+**[00:45:59]** And with the built-in microphones,
+**[00:46:00]** the nurse can start a hands-free voice-based documentation,
+**[00:46:04]** including diarization and annotation.
+**[00:46:07]** And the side-facing camera can be used to verify
+**[00:46:09]** and document patient vitals or even scan in medications
+**[00:46:13]** and help verify workflows.
+**[00:46:15]** You know, these are just a few examples
+**[00:46:17]** of how this small purpose-built wearable can bring intelligence
+**[00:46:21]** directly into the flow of patient care,
+**[00:46:24]** helping nurses access and gather and even act
+**[00:46:27]** on information while staying present with the patient.
+**[00:46:32]** And while both the stationary
+**[00:46:34]** and portable concept devices represent a specific expression
+**[00:46:37]** of agent-first devices, their core reference hardware
+**[00:46:40]** and software are designed to be highly flexible.
+**[00:46:43]** I mean, just with a few changes, loading a different agent,
+**[00:46:46]** adjusting the shape, the screen size, the sensors,
+**[00:46:49]** or even input methods, the same foundation,
+**[00:46:52]** the same software can be adapted for many verticals
+**[00:46:56]** and workflows, such as retail, industrial, hospitality,
+**[00:46:59]** financial service, legal, and so forth.
+**[00:47:01]** I mean, that is the power of the platform, that flexibility.
+**[00:47:06]** So whatever your scenario, there are thousands
+**[00:47:08]** of untapped opportunities to bring agent workflows
+**[00:47:10]** into places where computing has not naturally fit before.
+**[00:47:15]** And while this is an early look, we're really excited
+**[00:47:18]** that AccuWeather, Best Buy, CBS Health, Levi's, Target,
+**[00:47:23]** and others are working towards exploring how specialized agents
+**[00:47:27]** and devices can improve their workflows.
+**[00:47:31]** This is the broader opportunity for the ecosystem.
+**[00:47:35]** Agents moving outside the app and taking shape
+**[00:47:38]** in devices designed for a specific scenario,
+**[00:47:41]** a specific customer, and a specific place.
+**[00:47:46]** And for all of you, this is the moment to imagine
+**[00:47:50]** where your agents should live, what form they should take,
+**[00:47:54]** and what new work they can unlock.
+**[00:47:59]** Last week, Satya sat down with Cristiano Amon from Qualcomm
+**[00:48:03]** to discuss this future.
+**[00:48:05]** Let's roll the video.
+**[00:48:07]** Satya Nadella: Cristiano, it's so wonderful
+**[00:48:09]** having you here at Device Lab and to talk
+**[00:48:12]** about these new reference designs.
+**[00:48:14]** Cristiano Amon: Very happy to be here.
+**[00:48:16]** I have been to this Device Lab a lot recently.
+**[00:48:19]** Satya Nadella: You know, one of the things that you
+**[00:48:21]** and I have chatted for a while is,
+**[00:48:23]** how there's a real platform shift.
+**[00:48:25]** We are moving from building operating systems,
+**[00:48:28]** devices for apps to agents.
+**[00:48:32]** You want to talk a little bit about how you see this?
+**[00:48:34]** Cristiano Amon: Yeah, absolutely. In every generation
+**[00:48:36]** of technology transition we've seen a shift,
+**[00:48:38]** and I think this one seems to be a very big one.
+**[00:48:41]** Agents really changes the whole nature of the device in itself,
+**[00:48:46]** starting with the fact that, you know,
+**[00:48:48]** if the AI understand the world the way we understand it,
+**[00:48:52]** it's going to be closer to our senses.
+**[00:48:54]** It's going to be closer to our eyes, to our mouth, to our ears.
+**[00:48:57]** It's going to be things that we wear,
+**[00:48:59]** and it's changing the nature of the computing.
+**[00:49:01]** I think you need a computing
+**[00:49:03]** that is now geared towards real-time context
+**[00:49:07]** and from silicon to cloud.
+**[00:49:09]** Satya Nadella: I mean, this is sort of one
+**[00:49:10]** of the reference designs we have, which I love.
+**[00:49:12]** There's stuff happening at the edge here on this device.
+**[00:49:16]** There's things on the cloud.
+**[00:49:17]** You want to talk a little bit about the core systems
+**[00:49:20]** and silicon implications for such a new ecosystem?
+**[00:49:24]** Cristiano Amon: You need a very power-efficient CPU.
+**[00:49:27]** The whole silicon is designed for you
+**[00:49:29]** to have a cloud-native experience.
+**[00:49:31]** And then you have a lot of sensors.
+**[00:49:32]** Satya Nadella: Right.
+**[00:49:33]** Cristiano Amon: A lot of sensors for context.
+**[00:49:35]** It's a much more personalized and bespoke experience
+**[00:49:38]** than an app in itself.
+**[00:49:40]** And I think that's changing the nature of devices.
+**[00:49:43]** And even the definition
+**[00:49:45]** of a wearable platform is changing in itself.
+**[00:49:48]** And you've started to see those incredible new form factors.
+**[00:49:51]** Satya Nadella: That computing platform, one of the things
+**[00:49:53]** that you and I have talked a lot about is, how do you build it
+**[00:49:57]** such that there is an open ecosystem, right?
+**[00:50:00]** Because it's not about one agent.
+**[00:50:02]** It's about any agent.
+**[00:50:04]** Cristiano Amon: This is what makes it very,
+**[00:50:06]** very interesting and exciting.
+**[00:50:08]** Because the smartphone today is at the center
+**[00:50:12]** of your digital life, the job of those devices today is
+**[00:50:17]** to be extending the functionality of the smartphone.
+**[00:50:20]** And because of that, you actually saw that many
+**[00:50:23]** of those platforms became vertical.
+**[00:50:25]** It was a natural thing to have a vertical platform
+**[00:50:28]** from the same company because the phone was at the center.
+**[00:50:31]** That changes dramatically --
+**[00:50:33]** Satya Nadella: Right.
+**[00:50:34]** Cristiano Amon: -- when you think about agents.
+**[00:50:36]** And agents becomes the center
+**[00:50:39]** of your digital experience.
+**[00:50:41]** And the industry is going to be looking
+**[00:50:43]** for an open horizontal platform that actually enable the agents
+**[00:50:49]** to be interacting with the best possible device
+**[00:50:52]** for different applications.
+**[00:50:54]** And I think that's what's exciting.
+**[00:50:55]** Satya Nadella: And we want to make it possible
+**[00:50:57]** for anybody who's thinking of an agentic system
+**[00:51:00]** to not just be bound to current devices, but to imagine
+**[00:51:04]** that there can be many, many devices that carry
+**[00:51:07]** that intelligence in different contexts. And so, that's
+**[00:51:10]** the open ecosystem we want to build together.
+**[00:51:12]** And again, it's so great to be partnered
+**[00:51:14]** with you to get this started.
+**[00:51:16]** Cristiano Amon: That's awesome.
+**[00:51:16]** We're very proud of this partnership.
+**[00:51:18]** And it's just the beginning.
+**[00:51:21]** [ Applause ]
+**[00:51:25]** Satya Nadella: Thank you very much, Stevie and Cristiano.
+**[00:51:28]** We are very excited about Project Solara.
+**[00:51:30]** It's sort of a new platform, but perhaps,
+**[00:51:33]** more importantly, it's a set of new platform rules
+**[00:51:37]** that don't, you know, in some sense,
+**[00:51:40]** hem in what you can imagine, the type of form factors,
+**[00:51:45]** where your agents live.
+**[00:51:47]** I think always whenever these new platforms have come,
+**[00:51:51]** you get to rewrite even the rules
+**[00:51:53]** of how new platforms operate.
+**[00:51:56]** And that's what we are trying to get done with Project Solara
+**[00:51:59]** so that you as developers and enterprises have the flexibility
+**[00:52:05]** to imagine the form factors that you want
+**[00:52:08]** and have your agents be ubiquitous.
+**[00:52:10]** Now, let's go up the stack to the next layer.
+**[00:52:15]** We are building a new intelligence layer,
+**[00:52:18]** bringing together the models, context, as well as the tools.
+**[00:52:23]** It, of course, starts with model choice.
+**[00:52:26]** Every customer, every developer is going
+**[00:52:30]** to choose the right model for the right task
+**[00:52:33]** and their eval mix, latency budget, even COGS budgets.
+**[00:52:38]** And Foundry, today, has over 11,000 models.
+**[00:52:43]** It's the largest model catalog out there from OpenAI
+**[00:52:48]** to Anthropic and, of course, even MAI models.
+**[00:52:51]** And just last week, we brought the OpenAI real-time voice
+**[00:52:55]** models along with Claude Opus 4.8 to Foundry.
+**[00:52:59]** So we're continuing to bring all theseFrontier models.
+**[00:53:03]** The consideration, though,
+**[00:53:05]** about the models is becoming now increasingly key.
+**[00:53:09]** In fact, from the last developer conference to now,
+**[00:53:12]** when you're building any agentic system,
+**[00:53:15]** having this context really shaped right is becoming
+**[00:53:20]** super important.
+**[00:53:21]** And, in fact, it starts right at the data tier, right?
+**[00:53:24]** The data estate to date has been built for applications
+**[00:53:28]** that supported these user-facing applications, right?
+**[00:53:31]** Now you have to change and build them for agents, which, again,
+**[00:53:35]** have very different call patterns even to the data tier.
+**[00:53:39]** Agents are continuously storing, retrieving, reasoning,
+**[00:53:45]** acting, and learning, right?
+**[00:53:47]** That's sort of what's happening in a continuous loop.
+**[00:53:50]** And you see that today.
+**[00:53:51]** Agents are using things like Cosmos DB for their memory.
+**[00:53:55]** In fact, ChatGPT does.
+**[00:53:56]** Azure Search is used for retrieval
+**[00:54:00]** of indices and embeddings.
+**[00:54:03]** Fabric IQ for the semantic models
+**[00:54:05]** and the ontologies instead
+**[00:54:07]** of the business logic tier effectively for agents.
+**[00:54:11]** And also, you have Fabric real-time intelligence
+**[00:54:14]** for all the observability traces, which now brings me
+**[00:54:18]** to a very exciting new service, Horizon DB,
+**[00:54:22]** which is our fully managed PostgreSQL service on Azure.
+**[00:54:26]** Really thrilled to have this.
+**[00:54:28]** [ Applause ]
+**[00:54:31]** I mean, one of the things we wanted to make sure is we built,
+**[00:54:35]** ground-up, a Postgres managed service which was
+**[00:54:38]** for high availability scale-out.
+**[00:54:41]** It's zoned-redundant with automated failover,
+**[00:54:45]** 128 terabytes of storage per cluster, 15 read replicas.
+**[00:54:51]** I mean, the read-heavy workloads you can scale
+**[00:54:54]** with this managed service.
+**[00:54:56]** And in our internal testing, we're seeing something like,
+**[00:55:00]** you know, Horizon is delivering 3x throughput compared
+**[00:55:04]** to any self-managed Postgres SQL setup.
+**[00:55:07]** So it's super critical when you think about the scale you need.
+**[00:55:12]** The other data workload we're also changing pretty
+**[00:55:15]** dramatically is the data warehouse.
+**[00:55:17]** In a world where agents are constantly querying data,
+**[00:55:22]** the data warehouse effectively becomes pretty mission critical,
+**[00:55:26]** right?
+**[00:55:26]** I mean, it's one thing to have it be mission critical
+**[00:55:29]** for users, but when agents need the analysis done on the fly,
+**[00:55:34]** you know, bringing GPU acceleration
+**[00:55:37]** to Fabric is super key, and we are seeing 7x performance gains.
+**[00:55:43]** So it's really thrilling to see that AI acceleration.
+**[00:55:47]** [ Applause ]
+**[00:55:50]** So if you sort of have the data tier,
+**[00:55:52]** the layer about this is the IQ layer that we are building
+**[00:55:59]** that brings together, essentially,
+**[00:56:01]** the model capabilities along with the data, right?
+**[00:56:05]** So you kind of mix the data and the model capabilities
+**[00:56:08]** so that you can deliver that right context
+**[00:56:12]** to unlock intelligence, right?
+**[00:56:14]** That's where -- in fact, if you want, when people talk
+**[00:56:17]** about token efficiency, this is perhaps the most important
+**[00:56:21]** consideration, right?
+**[00:56:22]** If you structure the context right and feed the models,
+**[00:56:26]** then you will, by definition,
+**[00:56:28]** going to be so much more token-efficient.
+**[00:56:31]** The first domain is the web.
+**[00:56:34]** Web grounding is so important.
+**[00:56:37]** You need that fresh, high-quality and fast web data,
+**[00:56:44]** and that's why we are really, really excited
+**[00:56:47]** to announce today Web IQ.
+**[00:56:50]** [ Applause ]
+**[00:56:53]** And Web IQ is built
+**[00:56:56]** on our global infrastructure that's already serving
+**[00:56:59]** over a billion users, but fundamentally re-architected
+**[00:57:04]** for the LLM and the agentic workflow.
+**[00:57:06]** It's model-agnostic, it's MCP-native,
+**[00:57:10]** plugs right into any agent runtime.
+**[00:57:14]** It has web, it has news, images, video,
+**[00:57:17]** so agents can ground responses in fresh, verifiable content.
+**[00:57:24]** And Web IQ leads across all of the three key criteria, right?
+**[00:57:29]** It's best-in-class in quality, it's best in class
+**[00:57:31]** in speed, as well as in cost.
+**[00:57:34]** So we're very, very thrilled about Web IQ being
+**[00:57:36]** in the developers' hands as you build out agentic systems.
+**[00:57:40]** Of course, we're not stopping there.
+**[00:57:42]** Beyond the web, every developer wants to be able
+**[00:57:44]** to ground their agents on what's the most valuable data
+**[00:57:49]** across the enterprise.
+**[00:57:51]** And so, we are bringing together Foundry, Fabric,
+**[00:57:55]** and Microsoft 365 as this unified IQ layer, right?
+**[00:57:59]** It's a continuously updated understanding
+**[00:58:04]** of your organization to show you all of this rich IQ in action,
+**[00:58:10]** building real-life agents.
+**[00:58:12]** Here is Elijah. Elijah, take it away.
+**[00:58:14]** [ Applause ]
+**[00:58:18]** Elijah Straight: Agents are only as good
+**[00:58:20]** as the context we give them.
+**[00:58:23]** Microsoft IQ unifies enterprise intelligence
+**[00:58:27]** for every organization.
+**[00:58:29]** I'm here at a Power Utilities Control Center and will start
+**[00:58:33]** by running a long-running agent.
+**[00:58:37]** This agent is going to help us assess the current grid
+**[00:58:40]** operations incident and produce a brief for us
+**[00:58:43]** so we can respond accordingly.
+**[00:58:46]** Now, I'm going to go ahead and kick that off.
+**[00:58:48]** And while that runs, let me show you how we got here
+**[00:58:51]** with context from Microsoft IQ.
+**[00:58:54]** We built our agent in Microsoft Foundry.
+**[00:58:57]** It's connected to various tools, and it's also wired
+**[00:59:00]** to a Foundry IQ knowledge base, a single grounded source
+**[00:59:04]** that packages our documents, operational data,
+**[00:59:07]** and people into context the agent can reason over.
+**[00:59:11]** After building the agent in Foundry, we published it
+**[00:59:14]** to Microsoft 365 for the whole team.
+**[00:59:17]** Let's go see it in action.
+**[00:59:21]** Now, here in M365, I will start with a question
+**[00:59:23]** about current events that an ungrounded LLM wouldn't be able
+**[00:59:26]** to answer.
+**[00:59:27]** I'm going to ask about current electricity prices in SF.
+**[00:59:32]** For this, our agent pulls in the first IQ in our toolbox, Web IQ,
+**[00:59:37]** search built for the AI era.
+**[00:59:39]** Web IQ delivers industry-leading quality,
+**[00:59:43]** velocity, and efficiency.
+**[00:59:45]** Web IQ constantly indexes fresh, official sources
+**[00:59:49]** from across the web, and additionally,
+**[00:59:51]** Web IQ does a great job with semantic documents.
+**[00:59:54]** And here we can see Web IQ gave us our answer grounded
+**[00:59:58]** in reality.
+**[01:00:00]** Now, not only can we deploy our agent here in M365,
+**[01:00:03]** but we can also embed it in our custom apps.
+**[01:00:06]** Let's head back to the control center.
+**[01:00:08]** Let's see how we handled a previous incident.
+**[01:00:11]** So, after using Web IQ to gather external info,
+**[01:00:15]** we asked for details about our potentially at-risk substations.
+**[01:00:19]** The real power of Microsoft IQ comes when we combine
+**[01:00:23]** that external knowledge with our own internal enterprise context.
+**[01:00:27]** For this information, our agent pulls in the next layer
+**[01:00:30]** of Microsoft IQ, Fabric IQ.
+**[01:00:34]** Here is Brightline's grid represented
+**[01:00:37]** as a Fabric ontology,
+**[01:00:39]** an operational model of the live grid.
+**[01:00:42]** And critically, we didn't build this from scratch.
+**[01:00:45]** Fabric takes the Power BI semantic models used by millions
+**[01:00:49]** of customers today and lets teams extend them
+**[01:00:52]** into rich ontologies that help run the business.
+**[01:00:55]** This model -- yes!
+**[01:00:57]** This model is coupled with live telemetry
+**[01:01:00]** so it reflects the real operational state
+**[01:01:02]** of the grid minute-by-minute.
+**[01:01:05]** This is what Microsoft IQ means by enterprise intelligence.
+**[01:01:09]** [ Applause ]
+**[01:01:13]** Not data scattered across disparate systems,
+**[01:01:16]** but a single living model of the business
+**[01:01:18]** that an agent can reason over.
+**[01:01:21]** Now, turning back to our agent,
+**[01:01:23]** we can see that it gave us a table
+**[01:01:26]** of our most exposed substations.
+**[01:01:28]** That's the agent querying the ontology you just saw.
+**[01:01:32]** Now, the agent has access
+**[01:01:33]** to both the outside world and our grid.
+**[01:01:35]** The last piece is the one that turns a situation
+**[01:01:38]** into a response, our policies and our people.
+**[01:01:42]** By asking, what are the steps to respond to a substation trip,
+**[01:01:46]** we activate the final layer of Microsoft IQ, Work IQ.
+**[01:01:51]** This is Brightline's response procedure in SharePoint.
+**[01:01:55]** It's the playbook the team actually reaches
+**[01:01:57]** for when something goes wrong.
+**[01:01:59]** And the important thing is, the agent isn't working
+**[01:02:02]** from a stale upload or copied snapshot.
+**[01:02:05]** It's answering from the same source the team maintains day
+**[01:02:09]** to day.
+**[01:02:10]** When the procedure changes, the answer changes with it.
+**[01:02:13]** No re-uploads, no prompt rebuilds, and no stale versions.
+**[01:02:17]** And critically, this is your knowledge.
+**[01:02:20]** The assets you create stay with you, no matter what model
+**[01:02:24]** or agent is reasoning over them.
+**[01:02:27]** Now, if we return to our agent, we can see the proper way
+**[01:02:30]** to respond to this issue.
+**[01:02:32]** Not a generic recommendation,
+**[01:02:34]** but our playbook applied to this incident.
+**[01:02:37]** Now, we just saw one situation, three questions,
+**[01:02:41]** and one connected answer.
+**[01:02:42]** Now, let's go check back in on our long-running agent.
+**[01:02:45]** And, oh, let's check the backup really quick.
+**[01:02:50]** Moment of truth. . .
+**[01:02:53]** And. . .
+**[01:02:55]** boom!
+**[01:02:57]** Our task finished.
+**[01:02:59]** [ Applause ]
+**[01:03:02]** Here we can see every step the agent took.
+**[01:03:06]** First, beginning with Web IQ,
+**[01:03:08]** connecting it to the outside world.
+**[01:03:10]** Second, Fabric IQ through Foundry, anchoring it
+**[01:03:14]** in the real state of our operations.
+**[01:03:16]** And third, Work IQ, grounding it in our people and procedures.
+**[01:03:21]** I triggered this manually, but with Foundry routines,
+**[01:03:23]** this can run on a schedule, turning a one-off response
+**[01:03:26]** into continuous proactive execution.
+**[01:03:29]** And, if we look closely, we can see it even used the power
+**[01:03:34]** of Work IQ to alert me directly about the incident.
+**[01:03:37]** And if we go ahead and check Teams,
+**[01:03:39]** it sent me an incident brief notifying me of the situation.
+**[01:03:44]** [ Applause ]
+**[01:03:48]** That's the power of Microsoft IQ.
+**[01:03:51]** When a crisis hits, the team doesn't chase answers
+**[01:03:53]** across a dozen systems.
+**[01:03:55]** They ask a question and get a response grounded in the world,
+**[01:03:58]** their operations, and their people,
+**[01:04:00]** all in one place they can trust.
+**[01:04:02]** Back to you, Satya.
+**[01:04:04]** [ Applause ]
+**[01:04:07]** Satya Nadella: All right. Thank you, Elijah.
+**[01:04:11]** And now, you know, let's sort of move
+**[01:04:14]** up from this context model layer to deploying these agents
+**[01:04:20]** and thinking about the runtime.
+**[01:04:22]** And, you know, when you're building a first-class agentic
+**[01:04:26]** system, you need a first-class agent runtime and a platform
+**[01:04:30]** that we are going to ship both with Windows as well
+**[01:04:33]** as part of Foundry in Azure.
+**[01:04:35]** We want Windows to be a fantastic place
+**[01:04:39]** to run and scale agents.
+**[01:04:42]** And agents, effectively,
+**[01:04:44]** are a new execution environment, right?
+**[01:04:46]** It's a new paradigm even.
+**[01:04:47]** They reason continuously.
+**[01:04:50]** They generate and run code dynamically.
+**[01:04:53]** They take actions across files and devices as well
+**[01:04:58]** as across the network.
+**[01:05:01]** Obviously, there's a lot of power in it, right?
+**[01:05:04]** The fact that it can generate code and act on it
+**[01:05:07]** on a long-running agent that's autonomous.
+**[01:05:09]** But, obviously, it creates new risk.
+**[01:05:12]** And that's why today we're introducing Microsoft Execution
+**[01:05:16]** Containers, or MXC.
+**[01:05:18]** MXC is a new policy layer that lets Windows apply isolation
+**[01:05:24]** and containment using AI-native --
+**[01:05:28]** -- or OS-native primitives, right?
+**[01:05:31]** You need to bake this into the operating system
+**[01:05:34]** so that the containment is enforced by policy.
+**[01:05:38]** You can have process-level isolation
+**[01:05:40]** for lightweight agent actions.
+**[01:05:42]** You can have session-level isolation for user separation.
+**[01:05:47]** So Windows and Linux virtual machines, in fact,
+**[01:05:50]** are also great, including WSL, for much stronger boundaries.
+**[01:05:55]** And, in fact, if you want full isolation and containment,
+**[01:05:58]** Windows 365 for agents for maximum isolation
+**[01:06:01]** in a separate managed environment effectively.
+**[01:06:04]** You can pick the right containment option
+**[01:06:07]** for the workload, and Windows will enforce it via MXC.
+**[01:06:11]** And so, I think this becomes pretty critical as you think
+**[01:06:15]** about deploying agents at scale on your Windows desktop.
+**[01:06:19]** We want to ensure containment is enforced, of course,
+**[01:06:22]** regardless of who builds the agent, right?
+**[01:06:25]** So this is why you want to bake it into the operating system.
+**[01:06:28]** To that end, we are working with many partners to ensure
+**[01:06:31]** that containment, we are building support,
+**[01:06:33]** real developer workloads out there,
+**[01:06:36]** and also addresses the needs.
+**[01:06:38]** In fact, NVIDIA is bringing OpenShell to Windows
+**[01:06:42]** to securely execute autonomous AI agents.
+**[01:06:46]** And today, we are really thrilled to announce
+**[01:06:50]** that OpenClaw runs on Windows, leveraging MXC.
+**[01:06:54]** [ Applause ]
+**[01:06:58]** Yeah, we are very deeply engaged with the team
+**[01:07:01]** to make OpenClaw run super well on Windows.
+**[01:07:05]** And so, let me hand it over to my colleagues,
+**[01:07:08]** Scott and Samantha, to show you OpenClaw on Windows.
+**[01:07:11]** Scott, Samantha.
+**[01:07:12]** [ Applause ]
+**[01:07:18]** Scott Hanselman: Hey, friends.
+**[01:07:20]** You know, OpenClaw came out in November of last year,
+**[01:07:22]** and it took the world by storm.
+**[01:07:24]** And for the last several months, I've been reusing my OpenClaw
+**[01:07:27]** to stay on top of my health.
+**[01:07:29]** My "claw" can help me manage my blood sugar,
+**[01:07:31]** and it gives me even proactive notifications via "heartbeat".
+**[01:07:36]** I've got mine triaging my personal email,
+**[01:07:38]** it's doing my GitHub issues and tracking packages,
+**[01:07:41]** and it even buys me movie tickets.
+**[01:07:42]** So, Samantha, what are you using your "claw" for?
+**[01:07:45]** Samantha Song: That's cool, Scott.
+**[01:07:46]** I turned my OpenClaw agent into my triathlon coach.
+**[01:07:49]** I'm nowhere near ready for my race in September,
+**[01:07:52]** but Coach "Claw" developed a work-back plan for me
+**[01:07:55]** and is using my Strava data to notify me on how I'm progressing
+**[01:07:59]** and to keep me accountable when I'm slacking.
+**[01:08:01]** Scott Hanselman: Now, we've both found our "claws"
+**[01:08:03]** to be super useful, and that's why we're working closely
+**[01:08:06]** with OpenClaw to make them successful
+**[01:08:08]** and even more successful on Windows.
+**[01:08:10]** We've been collaborating in the open on GitHub
+**[01:08:12]** to bring you all an OpenClaw Windows Companion app.
+**[01:08:16]** It's going to help you set up your own "claws" or connect
+**[01:08:18]** to existing ones, whether they're hosted
+**[01:08:19]** in Windows or in WSL.
+**[01:08:22]** And the Windows Companion,
+**[01:08:23]** we're going to sandbox the OpenClaw tool calls
+**[01:08:26]** to keep you and your system safe.
+**[01:08:29]** Samantha Song: Yeah,
+**[01:08:29]** you'll see the OpenClaw Windows Companion app running right now
+**[01:08:32]** in the background.
+**[01:08:33]** Go ahead and right-click on it, Scott.
+**[01:08:35]** Scott Hanselman: All right. . .
+**[01:08:38]** Samantha Song: That looks awesome.
+**[01:08:39]** You'll notice immediately it looks
+**[01:08:41]** like a native Windows app because it is.
+**[01:08:43]** It's written in WinUI 3.
+**[01:08:45]** It's got all kinds of information about my Gateway,
+**[01:08:48]** other machines that are participating in my "claw",
+**[01:08:51]** my sessions, and my usage.
+**[01:08:53]** I've also got quick access to things like Chat, Canvas,
+**[01:08:57]** the main dashboard, and more.
+**[01:08:59]** Let's jump into companion settings.
+**[01:09:02]** Within the app, we've got full chat support with tool calling.
+**[01:09:06]** And you'll notice down here in the corner, we've got lots
+**[01:09:09]** of permissions options along with our sandbox configuration.
+**[01:09:13]** Scott Hanselman: Now, this sandbox is really interesting
+**[01:09:15]** because this is using MXC, the Microsoft Execution Containers.
+**[01:09:18]** And for this, we're going to be using process isolation.
+**[01:09:21]** Now, newer versions of Windows are going
+**[01:09:23]** to have even more containment options,
+**[01:09:25]** so you're going to want to keep an eye out for more news
+**[01:09:26]** with MXC in the future.
+**[01:09:28]** Now, I can see that I've got "One-click" security
+**[01:09:31]** option settings.
+**[01:09:32]** But, Samantha, talk to me about "Custom folders".
+**[01:09:36]** Samantha Song: Yeah, you've got full support
+**[01:09:37]** about what files and folders you want OpenClaw to have access to.
+**[01:09:41]** And really granular security features like "Clipboard" access
+**[01:09:44]** or talking to the Internet itself.
+**[01:09:47]** Now, I've given it read-only desktop,
+**[01:09:50]** read access to your desktop folder.
+**[01:09:52]** OpenClaw already has a rich safety layer.
+**[01:09:55]** And that layer is only augmented more by appropriate containment
+**[01:09:59]** that can be managed by me or policies applied by IT.
+**[01:10:02]** Now, for the purposes of this demo,
+**[01:10:05]** I'm going to do something really scary and ask OpenClaw
+**[01:10:08]** to delete all the files on your desktop.
+**[01:10:10]** Scott Hanselman: That's cool,
+**[01:10:11]** because I have a nice, clean desktop.
+**[01:10:13]** I think you're keeping a secret.
+**[01:10:15]** You hid all your icons from the audience while we were on stage.
+**[01:10:19]** I think we need to show the audience who you really are.
+**[01:10:22]** Samantha Song: So disrespectful.
+**[01:10:24]** I know where everything is.
+**[01:10:25]** [ Laughter ]
+**[01:10:27]** It's just -- don't touch my stuff.
+**[01:10:28]** I know where they are.
+**[01:10:30]** You know, Sam, I need to make sure that you're clear
+**[01:10:32]** that a messy desktop is an organized mind.
+**[01:10:34]** I'm pretty sure that that's the quote, right?
+**[01:10:38]** So what we've done is we've asked OpenClaw
+**[01:10:39]** to delete those files from the Windows node.
+**[01:10:42]** And the only thing that is going to keep from happening is MXC,
+**[01:10:45]** because we've turned off all
+**[01:10:46]** of the many layers that OpenClaw offers.
+**[01:10:48]** But our IT -- in this case, Samantha --
+**[01:10:50]** has set it to read-only.
+**[01:10:52]** So, it's trying to go and delete all of those files.
+**[01:10:54]** We can actually see the different attempts,
+**[01:10:56]** where it's going and deleting, and then checking the directory,
+**[01:10:58]** and then deleting again, because it's very persistent.
+**[01:11:01]** It wants these files gone, and I want them to stay.
+**[01:11:05]** Oh, nope. The read-only sandbox is there.
+**[01:11:09]** 94 JPEGs are still on the desktop.
+**[01:11:12]** Absolutely.
+**[01:11:13]** My desktop icons are safe from Samantha's reign of terror.
+**[01:11:17]** Foiled again.
+**[01:11:18]** Scott Hanselman: Oh, my goodness -- so bad.
+**[01:11:20]** Samantha Song: Today we've seen security sandboxing,
+**[01:11:23]** WinUI 3, and open-source brought together all
+**[01:11:26]** in this alpha release of a Windows companion app.
+**[01:11:29]** We think this app is a great opportunity to showcase OpenClaw
+**[01:11:32]** on Windows, and it's only going
+**[01:11:33]** to get better in the coming months.
+**[01:11:35]** Scott Hanselman: That is right, and by the way,
+**[01:11:37]** I want to note that we're doing all this development work
+**[01:11:39]** on this calm Windows development machine with all the tools
+**[01:11:42]** that I love, like WSL, Containers, and Containment,
+**[01:11:48]** and I've even got GitHub Copilot
+**[01:11:50]** with multi-model support ready to go.
+**[01:11:52]** Now, this is literally how the team and I have been working
+**[01:11:55]** on the OpenClaw app on GitHub.
+**[01:11:57]** Now, people might wonder how all of this came together.
+**[01:12:00]** Turns out, that over the holidays,
+**[01:12:03]** I got a DM from this random guy on the Internet,
+**[01:12:07]** and it took me a couple of days to get back to him,
+**[01:12:10]** and then when I did, we just had this kind of cool idea
+**[01:12:14]** that maybe he should come to Microsoft Build.
+**[01:12:17]** Now, I think there's one more person that we all want to thank
+**[01:12:19]** for bringing the next generation of agents to the world.
+**[01:12:22]** Everybody put your hands together
+**[01:12:23]** for the "Clawfather" himself, Peter Steinberger.
+**[01:12:25]** [ Applause ]
+**[01:12:29]** Peter Steinberger: Scott. . .
+**[01:12:31]** Samantha.
+**[01:12:32]** Stop showing off my secret DMs.
+**[01:12:35]** [ Laughter ]
+**[01:12:37]** I'm so excited to see OpenClaw native on Windows.
+**[01:12:41]** You know, watching a "claw" try to delete all your desktop file
+**[01:12:46]** and just fail made me really happy
+**[01:12:49]** [ Laughter ]
+**[01:12:50]** because six months ago, that totally would have worked.
+**[01:12:52]** [ Laughter ]
+**[01:12:53]** You know, I built OpenClaw to have access to everything.
+**[01:12:58]** You know, my files, my machines, my chats, always on
+**[01:13:01]** and fully open-source.
+**[01:13:03]** That's what makes it so powerful,
+**[01:13:05]** and that's what also makes companies a bit nervous.
+**[01:13:09]** You know, what I kept hearing was,
+**[01:13:11]** "Peter, I love my 'claw', can I use this at work?"
+**[01:13:16]** And that's what we spent the last few months on,
+**[01:13:18]** with Microsoft, GitHub, OpenAI, NVIDIA, just to name a few.
+**[01:13:24]** We added observability.
+**[01:13:25]** We added auto mode for permissions.
+**[01:13:28]** We changed how access works.
+**[01:13:30]** It's not all or nothing anymore.
+**[01:13:31]** You can pick which folder should be read-only,
+**[01:13:34]** which one should be write-it or hidden.
+**[01:13:37]** So here's the news.
+**[01:13:39]** You can totally run OpenClaw inside your company now.
+**[01:13:42]** [ Cheering ]
+**[01:13:43]** [ Applause ]
+**[01:13:47]** And we even made the harness itself a plug-in.
+**[01:13:51]** You can bring your own.
+**[01:13:52]** Copilot, Codex, whatever you already trust,
+**[01:13:57]** and your rules come right with it.
+**[01:14:00]** And then you put OpenClaw on top of it.
+**[01:14:02]** You get persistent memory, heartbeats,
+**[01:14:05]** and you get a "claw" right inside Slack or Teams.
+**[01:14:09]** It's been really exciting to see OpenClaw
+**[01:14:13]** grow into something
+**[01:14:15]** much bigger;
+**[01:14:17]** a global movement and a community.
+**[01:14:20]** And I started the OpenClaw Foundation, a real nonprofit,
+**[01:14:24]** so it stays open and neutral, any model, any operating system.
+**[01:14:30]** Because we are entering a new era of building these agents.
+**[01:14:35]** More capability for the people who don't code
+**[01:14:39]** and more power for those who do.
+**[01:14:42]** And we get to do this.
+**[01:14:43]** We get to build it together in the open.
+**[01:14:47]** So my task is simple:
+**[01:14:48]** Come build with us.
+**[01:14:50]** Thank you.
+**[01:14:51]** [ Applause ]
+**[01:14:52]** Scott Hanselman: Fantastic.
+**[01:14:53]** [ Applause ]
+**[01:14:55]** Thank you very much to Peter.
+**[01:14:56]** Thank you to Samantha.
+**[01:14:58]** Thank you to the Companion App team for their hard work.
+**[01:15:00]** Thank you to the OpenClaw community
+**[01:15:02]** for giving everyone here a crustacean of their own.
+**[01:15:04]** And as we walk out, I want to remind you
+**[01:15:06]** that that's the first time you've ever seen OpenClaw
+**[01:15:08]** running on a Surface Laptop Ultra. Goodbye.
+**[01:15:11]** [ Applause ]
+**[01:15:17]** Satya Nadella: All right, thank you so much,
+**[01:15:19]** Samantha, Scott, and Peter.
+**[01:15:21]** It's so wonderful to see OpenClaw come to Windows
+**[01:15:26]** and have all of that capability in terms of the security
+**[01:15:31]** and that comfort to be able to have these long-running agents
+**[01:15:36]** and unmetered intelligence come together.
+**[01:15:39]** So now, let's move from the Windows-side on the edge
+**[01:15:43]** to the cloud with Foundry.
+**[01:15:45]** And we are building Foundry into this full application platform
+**[01:15:51]** for the agent era, right?
+**[01:15:52]** I mean, every era of the platform shift when we moved
+**[01:15:57]** to the cloud, we had the Cloud-native App stack,
+**[01:15:59]** and now we have the Agent-native App stack in Foundry.
+**[01:16:03]** We are particularly excited about the Foundry-hosted agent
+**[01:16:09]** as a runtime for long-running agents.
+**[01:16:12]** Agents now have -- so, if you're building
+**[01:16:15]** in Foundry-hosted agents, you can have all the IQ layers.
+**[01:16:20]** You have the tools.
+**[01:16:22]** You have the durability and the memory and the state.
+**[01:16:26]** You have your own sandbox.
+**[01:16:28]** In fact, it's a super-fast sandbox that you can spin up.
+**[01:16:33]** You can generate the rubrics, you can -- and the evals.
+**[01:16:38]** You can, in fact, have all the safety and the guardrails
+**[01:16:41]** around your agentic system.
+**[01:16:44]** And, in fact, even one of the coolest things
+**[01:16:46]** in Foundry is, it's a continuously
+**[01:16:48]** improving loop even, right?
+**[01:16:49]** It's got that self-improvement loop built in, right?
+**[01:16:52]** So you build an agent that's continuously getting better.
+**[01:16:56]** And I'm really also excited today to announce a partnership
+**[01:17:01]** with Fireworks AI, bringing, in fact,
+**[01:17:04]** all of their open-weight models to Foundry.
+**[01:17:08]** That means giving you, as developers, more choices,
+**[01:17:11]** as well as their great inference stack
+**[01:17:14]** to build the next generation of these agentic applications
+**[01:17:17]** with all the enterprise rails that Foundry has,
+**[01:17:21]** as well as the governance Foundry has.
+**[01:17:24]** So, really excited about that partnership.
+**[01:17:26]** [ Applause ]
+**[01:17:30]** And so, now that brings us to the tools.
+**[01:17:34]** GitHub itself is at the heart of all this.
+**[01:17:37]** You know, in fact, Jensen spoke to this;
+**[01:17:39]** The GitHub is not just about the code repo,
+**[01:17:42]** it's becoming the control plane for all the agents.
+**[01:17:46]** And nearly everything we measure on GitHub,
+**[01:17:49]** whether it's repo creation, PR activity, API usage, actions,
+**[01:17:53]** all of them are growing faster
+**[01:17:56]** because of these agentic workflows.
+**[01:17:59]** This new scale is driven by humans
+**[01:18:02]** and agents collaborating together.
+**[01:18:04]** And we are exposing our tooling across every form factor.
+**[01:18:08]** In fact, we have seen tremendous growth in CLI-driven --
+**[01:18:14]** you know, the approachability of the CLI form factor.
+**[01:18:17]** It's always been great to go to a terminal.
+**[01:18:20]** And now, though, when combined with the power of the models
+**[01:18:23]** and natural language, you know, CLI has become the thing
+**[01:18:25]** that everybody goes to.
+**[01:18:27]** But at the end of the day, when you have hundreds of CLIs,
+**[01:18:33]** it becomes pretty complicated.
+**[01:18:35]** It doesn't scale, especially the cognitive load that I have
+**[01:18:39]** when you have 100 CLI sessions open is such that you kind
+**[01:18:43]** of need something new.
+**[01:18:45]** And so, that's what has led us to build, you know,
+**[01:18:49]** we need like this tool, essentially, that has the speed
+**[01:18:53]** and the flexibility of a CLI, but has the capability of an IDE
+**[01:18:59]** and the ability to scale
+**[01:19:00]** to infinite number of agent sessions.
+**[01:19:03]** And so, today we are taking that next big step,
+**[01:19:06]** introducing our new GitHub Copilot app.
+**[01:19:10]** [ Applause ]
+**[01:19:15]** And we realize that it's not sufficient
+**[01:19:17]** because you still have a backend to deal with, right?
+**[01:19:19]** Code is easy to generate, but what about the backend?
+**[01:19:22]** So you need to contend with identities,
+**[01:19:24]** storage, database schemas.
+**[01:19:27]** And that's why we are really super excited about Rayfin.
+**[01:19:30]** Rayfin is an agent-first SDK that connects your agents
+**[01:19:36]** to a backend-as-a-service
+**[01:19:39]** and we are bringing this to everywhere you build.
+**[01:19:42]** That's why I'm, again, super excited about Rayfin
+**[01:19:46]** and the partnership with Replit.
+**[01:19:48]** You can now build apps in Replit while the -- yeah.
+**[01:19:52]** [ Applause ]
+**[01:19:55]** You can build the app in Replit while the app
+**[01:19:57]** and data are deployed into the enterprise-managed fabric tenant
+**[01:20:01]** thanks to the Rayfin SDK.
+**[01:20:04]** And so, this Rayfin SDK is available now for anyone else
+**[01:20:08]** to be able to use with their tools as a backend
+**[01:20:11]** and essentially have this backend service.
+**[01:20:13]** And now to show you all of the Foundry and Rayfin
+**[01:20:17]** and building agents and the long-running agents,
+**[01:20:20]** let me invite up on stage Cassidy.
+**[01:20:22]** Cassidy, take it away.
+**[01:20:23]** [ Cheering ]
+**[01:20:25]** [ Applause ]
+**[01:20:26]** Cassidy Williams: Hello, everyone.
+**[01:20:29]** I'm so excited to be amongst my fellow devs today.
+**[01:20:31]** This has been a long day.
+**[01:20:32]** Fix your shoulders, sit back, all right.
+**[01:20:34]** I see a lot of you sitting up.
+**[01:20:36]** Great, great.
+**[01:20:37]** I know you're drinking from the firehose of information today,
+**[01:20:39]** so I want you to go into the next few minutes thinking,
+**[01:20:42]** "What can I try out on my laptop later today?"
+**[01:20:45]** So, as Satya said, we're going to show you Rayfin, but first,
+**[01:20:48]** I can't wait to show you the new GitHub Copilot app.
+**[01:20:52]** This app is your home base for development and operations
+**[01:20:55]** on your computer, and we think you're going to love it.
+**[01:20:57]** So, let me show you around.
+**[01:20:58]** When you open up the app from the start,
+**[01:21:00]** you see this home screen here
+**[01:21:01]** where you can kick off a new agentic coding session.
+**[01:21:04]** But also, before I get into the serious stuff,
+**[01:21:06]** you can drag Mona around, and there's a game.
+**[01:21:10]** Look, it's so fun.
+**[01:21:12]** Okay, I'm not very good at it so let's just get back to --
+**[01:21:15]** you can kick off a new agentic coding session.
+**[01:21:19]** So, I started off one a little bit earlier here,
+**[01:21:22]** and it gave me a review of a bunch of release blockers.
+**[01:21:25]** Which one should I fix?
+**[01:21:26]** Call it out. . .
+**[01:21:29]** Eight? Three? The "critical" ones?
+**[01:21:31]** You know what?
+**[01:21:32]** How about we just do all of them?
+**[01:21:35]** Let's go.
+**[01:21:36]** This app will now kick off a separate session for every single issue here.
+**[01:21:41]** I don't have to worry about stashing or coding complex
+**[01:21:44]** or anything, because the app takes care
+**[01:21:45]** of that, with git work trees.
+**[01:21:48]** Git-worktrees are isolated environments for each session
+**[01:21:50]** that you run so your agents can work in parallel
+**[01:21:53]** without stepping on each other.
+**[01:21:55]** But you still have to merge them, right?
+**[01:21:57]** So, Copilot has your back there too.
+**[01:22:00]** If I head over, not to this one, but to this issue here,
+**[01:22:04]** I can run "Agent merge".
+**[01:22:07]** And when I enable "Agent merge",
+**[01:22:08]** Copilot will continuously babysit this PR
+**[01:22:11]** through CI checks, code review, and merge conflicts.
+**[01:22:15]** Okay, let me keep showing you
+**[01:22:16]** around while those are still running.
+**[01:22:18]** Now, if I head over to "My work", I can see a focused view of all
+**[01:22:23]** of my activity and just projects loaded in the app,
+**[01:22:25]** issues and PRs, everything here.
+**[01:22:28]** And then under automations, I have a bunch
+**[01:22:30]** of reusable sessions and workflows
+**[01:22:32]** that can run locally or on the cloud.
+**[01:22:34]** You see there's "Issue Poetry" there?
+**[01:22:36]** That is real, and that is load-bearing.
+**[01:22:38]** Okay. And now, under "Sessions",
+**[01:22:41]** like I briefly showed earlier, these are sessions.
+**[01:22:44]** If I want to add a new repository,
+**[01:22:46]** I can click that button here, and it can pull
+**[01:22:48]** from a local repo or from a GitHub repository.
+**[01:22:51]** And then if I were to just add one,
+**[01:22:54]** I can add a session in "pocketcal".
+**[01:22:56]** This is an open-source repo.
+**[01:22:57]** I can start a session anywhere, and it just loads it.
+**[01:23:01]** I don't have to clone, I don't have to pull,
+**[01:23:02]** it just works.
+**[01:23:04]** Now, when I look at a session within this repository --
+**[01:23:07]** let me look at this other one over here.
+**[01:23:09]** I get an integrated browser.
+**[01:23:10]** There's a terminal, I can see the chat, it's all loading.
+**[01:23:13]** I can even toggle light mode and dark mode in here.
+**[01:23:16]** And there's also this great button, "Pick and Polish",
+**[01:23:18]** where if I click that, I can pick and polish anything
+**[01:23:21]** in this app, and it adds it to the chat.
+**[01:23:24]** And I can say, "Hey, I want you to add reordering to this list",
+**[01:23:28]** and it'll just work, all living in there.
+**[01:23:31]** I have access to all the most popular models via my single
+**[01:23:34]** GitHub Copilot subscription, including those from OpenAI,
+**[01:23:37]** Anthropic, and Google.
+**[01:23:40]** You can see all of them in our model picker.
+**[01:23:42]** And having model choice is great.
+**[01:23:43]** Not only can you pick the right model for the task,
+**[01:23:45]** but for bigger features,
+**[01:23:46]** Copilot can request a Rubber Duck review.
+**[01:23:49]** So, in this session here, for example,
+**[01:23:51]** I was using GPT-5.5,
+**[01:23:53]** but if I scroll up, it actually requested one
+**[01:23:56]** from Claude Opus 4.8.
+**[01:23:59]** All models have blind spots, and the power
+**[01:24:01]** of the Copilot multimodel approach means
+**[01:24:03]** that I can catch them earlier.
+**[01:24:05]** And this is all very cool.
+**[01:24:07]** But working with AI in 2026 should be more than just chat.
+**[01:24:12]** You just saw me scrolling that,
+**[01:24:13]** there's so many words here.
+**[01:24:15]** So, today I'm very excited
+**[01:24:17]** to show you the concept of a "canvas".
+**[01:24:20]** I'm going to open one right there.
+**[01:24:23]** The canvas is how an agent can build a custom UI
+**[01:24:26]** to communicate with you.
+**[01:24:28]** What if your AI could see?
+**[01:24:32]** Everyone say, "Demo Gods, bless us."
+**[01:24:34]** Okay, let's see if it works.
+**[01:24:37]** Here is a fun canvas where, if I get the camera going -- okay,
+**[01:24:42]** the agent shows your PRs down here, and I can toggle it
+**[01:24:45]** with a thumbs up or a thumbs down.
+**[01:24:47]** Let's approve it. . .
+**[01:24:49]** Hey! It's so fun!
+**[01:24:51]** [ Applause ]
+**[01:24:52]** And they can go so much deeper if you want.
+**[01:24:54]** This is just the beginning of what you can do.
+**[01:24:57]** So, again, I kicked off a bunch of different sessions earlier.
+**[01:25:01]** This is a signal box app.
+**[01:25:03]** It's 100% agent-built.
+**[01:25:05]** It's containerized with a database backend.
+**[01:25:08]** Would you be able to deploy this to your enterprise
+**[01:25:11]** with no questions asked?
+**[01:25:13]** Be honest.
+**[01:25:15]** No. Yes. Exactly, no. But -- you can with Rayfin.
+**[01:25:21]** And that is very, very exciting.
+**[01:25:22]** Let me open up a new terminal over here.
+**[01:25:25]** All I have to do is type "rayfin up".
+**[01:25:30]** And then. . . Demo Gods, bless us -- come on!
+**[01:25:33]** It will. . .
+**[01:25:36]** maybe deploy!
+**[01:25:38]** Blamo! It's happening!
+**[01:25:39]** Yes!
+**[01:25:40]** And all hosted on Microsoft Fabric.
+**[01:25:43]** Okay, I know that's a lot.
+**[01:25:45]** I know that's a lot.
+**[01:25:46]** With Rayfin, your agents get a complete enterprise backend
+**[01:25:49]** so you can deploy with confidence
+**[01:25:51]** in the way that's best for you.
+**[01:25:52]** But this is the key thing to remember:
+**[01:25:55]** This app is not just another session manager --
+**[01:25:58]** -- yes, it is.
+**[01:26:00]** It manages a lot of sessions.
+**[01:26:01]** But session managers just make it easy to create work.
+**[01:26:05]** But GitHub Copilot helps you to finish it.
+**[01:26:08]** Thank you so much. Happy Pride.
+**[01:26:09]** Back to you, Satya.
+**[01:26:10]** [ Cheering ]
+**[01:26:12]** [ Applause ]
+**[01:26:17]** Satya Nadella: All right.
+**[01:26:19]** Now we're back to IDEs that have UI.
+**[01:26:21]** That's sort of so cool.
+**[01:26:24]** You know, it kind of comes a full circle.
+**[01:26:28]** Now let's talk about how you can observe, govern,
+**[01:26:32]** and secure these agents.
+**[01:26:34]** Agent 365 is the agent control plane.
+**[01:26:38]** Agent requires their own identities, access controls,
+**[01:26:44]** even when they're working on your behalf, right?
+**[01:26:47]** You just want that work on behalf,
+**[01:26:48]** identity to be enforced, so we extended Entra.
+**[01:26:53]** Agents need real-time defense, so we extended Defender.
+**[01:26:58]** Agents require this always-on data protections and compliance,
+**[01:27:03]** so we extended Purview.
+**[01:27:05]** And these agents can be hosted anywhere.
+**[01:27:08]** They can be on AWS, GCP, not just on Azure,
+**[01:27:12]** or built with any framework.
+**[01:27:14]** And today we're announcing a number of updates,
+**[01:27:18]** including the GA of Agent 365 SDK.
+**[01:27:22]** And we're expanding it to your local agents running on Windows
+**[01:27:26]** and elsewhere and the "claws" you just saw earlier.
+**[01:27:30]** And let us take a look at how all of Agent 365 composes.
+**[01:27:35]** Over to you, Amanda.
+**[01:27:39]** [ Applause ]
+**[01:27:40]** AMANDA FOSTER: Everyone is building agents.
+**[01:27:43]** But that's not the hard part anymore.
+**[01:27:45]** The hard part is integrating them into your business
+**[01:27:48]** and governing them at-scale.
+**[01:27:50]** Today, I'll show you how Foundry makes this easy.
+**[01:27:53]** Let's start locally.
+**[01:27:55]** I've already built a LangGraph agent.
+**[01:27:57]** And now, I'll show you the value Foundry adds.
+**[01:28:00]** First, tools.
+**[01:28:02]** Agents need tools to get work done.
+**[01:28:04]** And with Foundry Toolbox, I just add my tools once
+**[01:28:07]** and any agent can consume them through a single MCP endpoint.
+**[01:28:13]** And because tools live centrally,
+**[01:28:15]** that means governance does as well.
+**[01:28:17]** I've applied a guardrail, which blocks PII from leaking
+**[01:28:21]** into tool calls and tool responses.
+**[01:28:23]** And all I have to do is apply this once,
+**[01:28:26]** and all my agents are protected.
+**[01:28:29]** Now, let's make this agent enterprise-ready.
+**[01:28:32]** To deploy this agent to Foundry
+**[01:28:34]** all I have to do is add this one block of code;
+**[01:28:37]** and then I push my changes,
+**[01:28:39]** and GitHub Actions takes it from there.
+**[01:28:42]** Once deployed, I can actually use this agent
+**[01:28:45]** in the same Foundry extension I showed you earlier,
+**[01:28:48]** and let's now test it out.
+**[01:28:51]** I'm asking it to track a few open items
+**[01:28:54]** from a stand-up I had earlier today.
+**[01:28:56]** And what's actually happening right now is Foundry is spinning
+**[01:29:00]** up a dedicated micro VM just for this session.
+**[01:29:04]** And the session even gets its own persistent file system.
+**[01:29:08]** What you're going to see in a minute here, is if I go to the
+**[01:29:11]** "Files" tab to track the open items,
+**[01:29:14]** the agent's actually writing to a file.
+**[01:29:18]** Pretty cool, right?
+**[01:29:21]** Plus, Foundry now has server-side traces
+**[01:29:24]** and built-in evals to show me exactly what happened
+**[01:29:28]** on every run.
+**[01:29:29]** But how do I know if my agent's doing a good job?
+**[01:29:33]** That's what Foundry's brand new rubric evaluators are for.
+**[01:29:38]** It's super simple.
+**[01:29:39]** With just one AZD command, Foundry reads my agent
+**[01:29:43]** and then generates the evaluation criteria for me.
+**[01:29:47]** In other words, it creates a rubric personalized just
+**[01:29:51]** to this agent.
+**[01:29:52]** Now let's check out this rubric in Foundry Portal.
+**[01:29:56]** Look at these dimensions.
+**[01:29:59]** Governance outcome correctness, prescribed source usage.
+**[01:30:03]** I didn't write any of these.
+**[01:30:04]** Foundry generated them from production traces.
+**[01:30:08]** And with this rubric, I can score my agent and run evals.
+**[01:30:12]** But we can do so much more than that.
+**[01:30:15]** That's where Foundry's brand-new agent optimizer takes over.
+**[01:30:19]** Here's how it works.
+**[01:30:20]** It tunes four things:
+**[01:30:22]** the model, instructions, tool descriptions, and skills.
+**[01:30:26]** And then it generates, improves candidates,
+**[01:30:28]** and scores each one using the rubric I just showed you.
+**[01:30:33]** Here, I can view the candidates.
+**[01:30:34]** I can see the strategy used.
+**[01:30:36]** I can see their scores.
+**[01:30:37]** And I can actually view exactly what changed.
+**[01:30:41]** This candidate, for example, improved its score
+**[01:30:43]** by updating the model and the system prompt.
+**[01:30:46]** Foundry then makes it super easy to deploy the best candidate
+**[01:30:50]** as a brand-new agent version.
+**[01:30:53]** But this is not a one-time thing.
+**[01:30:56]** Every run feeds the next eval,
+**[01:30:58]** and every eval tells the optimizer where to improve next.
+**[01:31:03]** So, your agents now get better the more they're used.
+**[01:31:06]** But now, let's put this agent to work.
+**[01:31:09]** I've published my agent to Teams and M365 Copilot.
+**[01:31:14]** And right now, I'm going to ask it to just catch me
+**[01:31:17]** up on what I've missed
+**[01:31:18]** because I've been offline all morning but my agent hasn't.
+**[01:31:23]** While it works on that, though,
+**[01:31:25]** let me explain what makes this agent different.
+**[01:31:28]** This is an autopilot agent
+**[01:31:30]** which means it has its own identity
+**[01:31:32]** and productivity license.
+**[01:31:34]** So, it can work across M365 on its own behalf.
+**[01:31:38]** Earlier, you saw me using this agent by myself,
+**[01:31:41]** but shipping a feature in a new release takes a whole team.
+**[01:31:45]** And that's why this agent lives in our Teams group Chat.
+**[01:31:49]** Now let's check out how it did.
+**[01:31:50]** It summarized all updates and called
+**[01:31:52]** out the key features I need to be tracking.
+**[01:31:56]** But to put an agent like this, actually to work,
+**[01:31:59]** in your enterprise, governance needs to come first.
+**[01:32:03]** And that's why every autopilot agent requires admin approval.
+**[01:32:07]** Here, admins can review all critical details,
+**[01:32:10]** and they can even choose who has the ability
+**[01:32:12]** to talk to the agent.
+**[01:32:14]** But it doesn't end there.
+**[01:32:16]** Even after approval, admins can continue to monitor the agent
+**[01:32:20]** and block it at any time.
+**[01:32:22]** But governance cannot apply to just one agent.
+**[01:32:27]** Every agent in your organization needs to be managed
+**[01:32:31]** with the same rigor as users, apps, and devices.
+**[01:32:34]** And that's exactly what Microsoft Agent 365 provides.
+**[01:32:39]** So, let's zoom out.
+**[01:32:41]** Today we saw Foundry accelerate development, take your agent
+**[01:32:45]** from local to enterprise-ready, and put it to work in M365.
+**[01:32:50]** Foundry makes it simple.
+**[01:32:51]** You build the agent, we handle the rest.
+**[01:32:53]** Now back to you, Satya.
+**[01:32:55]** [ Applause ]
+**[01:32:57]** Satya Nadella: Thank you, Amanda.
+**[01:32:58]** [ Applause ]
+**[01:33:01]** You know, what you just saw was how we're building security
+**[01:33:06]** for AI.
+**[01:33:08]** But there is also one other critical aspect, especially,
+**[01:33:11]** you know, the news today is all about, you know,
+**[01:33:15]** how do you defend yourself using AI against attacks that may,
+**[01:33:20]** in fact, be using AI, right?
+**[01:33:22]** So, last month we announced our multi-model agentic security
+**[01:33:28]** system, MDASH.
+**[01:33:30]** That's essentially an agent harness for security,
+**[01:33:34]** essentially, that we built.
+**[01:33:36]** We're bringing together 100 agents across theFrontier
+**[01:33:41]** and custom models to really find these exploitable bugs better
+**[01:33:45]** than any single model does.
+**[01:33:47]** In fact, when we debuted this harness, it was on the top
+**[01:33:51]** of CyberGym benchmark.
+**[01:33:53]** So, I want you to take a look at what you can do with MDASH
+**[01:33:57]** to really defend against AI attacks
+**[01:34:00]** and defend the entire digital estate.
+**[01:34:02]** Over to you, Sarah.
+**[01:34:04]** [ Applause ]
+**[01:34:09]** Sarah Young: Thanks, Satya.
+**[01:34:10]** Now, we all know that security scans can take a while,
+**[01:34:13]** so I'm not going to do one live.
+**[01:34:16]** So, let me show you the results
+**[01:34:17]** of an MDASH scan I already ran on my code base.
+**[01:34:21]** Now, the system runs as a standalone CLI,
+**[01:34:24]** but today I'm using it in my GitHub Copilot app
+**[01:34:27]** on my local dev machine.
+**[01:34:30]** The scan is broken down by vulnerability domains
+**[01:34:33]** and severity, and it's also,
+**[01:34:37]** additional to finding traditional issues
+**[01:34:40]** like coding errors and hard-coded secrets,
+**[01:34:43]** it's also identifying AI-specific vulnerabilities
+**[01:34:46]** in the code base.
+**[01:34:48]** Now, what happened under the hood is
+**[01:34:50]** that over 100 specialized agents are working together
+**[01:34:53]** to discover, debate, and prove exploitable
+**[01:34:57]** vulnerabilities end-to-end.
+**[01:34:59]** And when the scan finishes, it generates both a SARIF log
+**[01:35:03]** and an HTML report that I can give to my management.
+**[01:35:07]** Now, the "defender details" command allows me to dig
+**[01:35:11]** into these vulnerabilities,
+**[01:35:12]** and I can see what the vulnerability is,
+**[01:35:16]** where it is in my code, and the severity to help me prioritize.
+**[01:35:20]** And from here, of course, we're going to fix it.
+**[01:35:25]** Now, using the "defender fix" command,
+**[01:35:27]** the system will remediate suggested fixes directly
+**[01:35:31]** in my local dev environment.
+**[01:35:33]** And when that's done, I can check out the "diff".
+**[01:35:36]** So, I have full transparency about what the harness has done,
+**[01:35:40]** and I still have a human-in-the-loop check.
+**[01:35:43]** But, of course, everything I've shown you
+**[01:35:46]** so far has run locally, but I can also create a PR to plug
+**[01:35:51]** into my existing workflows and push up to my repo.
+**[01:35:55]** And I can take the SARIF output from the scan,
+**[01:35:58]** and I can upload it to tools like GitHub Advanced Security
+**[01:36:02]** and manage everything alongside my other application
+**[01:36:05]** security findings.
+**[01:36:07]** Now, I've shown you MDASH working on my code,
+**[01:36:10]** but let me show you a vulnerability our security
+**[01:36:14]** research teams identified using MDASH
+**[01:36:17]** that you can go and look up yourself.
+**[01:36:19]** So, the TLDR, because this is a lot to read, of this bug is
+**[01:36:23]** that WASM time reads an out-of-date map of an object,
+**[01:36:29]** runs off the end, and then it crashes the host.
+**[01:36:32]** So, this is exactly the kind of bug
+**[01:36:35]** that the harness was built for, because the flow is spread
+**[01:36:39]** across three different parts of the code base.
+**[01:36:41]** So, no single file looks wrong on its own.
+**[01:36:45]** They look absolutely fine, and we can even see here,
+**[01:36:49]** which is probably my favorite part of this bug,
+**[01:36:52]** a very confident statement
+**[01:36:54]** from the developers claiming everything is fine.
+**[01:36:57]** Now, this is exactly the sort of reassurance
+**[01:37:00]** that fools normal scanners and single AI models.
+**[01:37:03]** But MDASH wasn't fooled.
+**[01:37:05]** One team of agents spotted the suspicious gap,
+**[01:37:08]** another team argued it apart,
+**[01:37:10]** and a third team built a working example
+**[01:37:13]** that actually triggered the crash.
+**[01:37:16]** And it did all of this in an open-source code base.
+**[01:37:18]** And this is the kind of joined-up reasoning
+**[01:37:20]** that previously required significant manual security
+**[01:37:24]** research effort.
+**[01:37:26]** This is MDASH helping developers create secure code
+**[01:37:29]** from the start, coming soon to your CLI
+**[01:37:32]** and the Microsoft Defender portal.
+**[01:37:34]** Back to you, Satya.
+**[01:37:36]** [ Applause ]
+**[01:37:38]** Satya Nadella: Thank you, Sarah.
+**[01:37:40]** So, that was the stack.
+**[01:37:42]** Before, though, we move to unpacking more
+**[01:37:46]** of the opportunity, I want to do something different.
+**[01:37:50]** I want to introduce two people whose LinkedIn profiles were
+**[01:37:54]** both super impressive and slightly perplexing.
+**[01:37:57]** Under current role, it says they're general partners
+**[01:38:01]** at Mantis VC.
+**[01:38:03]** Under previous role, it says they sold
+**[01:38:05]** out Madison Square Garden.
+**[01:38:07]** Please help me welcome Alex and Drew from the Chainsmokers.
+**[01:38:10]** Alex, Drew.
+**[01:38:11]** [ Music ]
+**[01:38:12]** [ Applause ]
+**[01:38:14]** [ Music ]
+**[01:38:18]** Satya Nadella: It's so wonderful to see you, Alex.
+**[01:38:20]** Thank you so much.
+**[01:38:21]** You know, one of the things when my team came to me and said,
+**[01:38:24]** "Hey, we're going to have Chainsmokers at Build."
+**[01:38:27]** I thought maybe that's what we're calling our new GitHub
+**[01:38:29]** Copilot app.
+**[01:38:31]** But, you know, it's so, I thought maybe they're your fans.
+**[01:38:34]** But tell me about how you got into this.
+**[01:38:37]** I mean, you've been at it, now, for what --
+**[01:38:39]** 12-plus years
+**[01:38:41]** as venture capitalists or angel investors first,
+**[01:38:44]** and you've had your firm now for seven-plus years.
+**[01:38:46]** And you even picked what I would have not thought is the natural
+**[01:38:50]** place, which is B2B SaaS even as the first place.
+**[01:38:53]** Just give us a little bit about the back story on this.
+**[01:38:56]** DREW TAGGART: Sure. Well --
+**[01:38:57]** -- Hey, I'm sure you guys are wondering what timeline you're
+**[01:38:59]** on where the Chainsmokers are at Microsoft Build.
+**[01:39:02]** But hey, how are you?
+**[01:39:05]** We've been in the Chainsmokers for 14 years, and, you know,
+**[01:39:10]** when our music started to take off in the mid-2000 teens,
+**[01:39:13]** we got to play a few events like this.
+**[01:39:16]** And we met a lot of the founders
+**[01:39:18]** from the consumer mobile cloud era of startups,
+**[01:39:22]** and they taught us a lot and gave us a front-row seat
+**[01:39:25]** into what early-stage investing was like.
+**[01:39:28]** We fell in love with it.
+**[01:39:29]** We found a lot of -- we had a lot in common
+**[01:39:32]** with these founders, and the way
+**[01:39:33]** that they built their business was the same way that we thought
+**[01:39:36]** about starting the Chainsmokers and, you know, kind of breaking
+**[01:39:40]** through the noise there.
+**[01:39:41]** And, you know, we got to participate
+**[01:39:43]** in a few of their deals.
+**[01:39:44]** We were very lucky, and we decided to institutionalize
+**[01:39:47]** in 2020 and start our own fund.
+**[01:39:48]** Satya Nadella: That's so cool.
+**[01:39:49]** And when you sort of hear about all this AI stuff
+**[01:39:52]** and what's happening, obviously there's a lot even going on.
+**[01:39:55]** Even in your portfolio, we were talking backstage,
+**[01:39:57]** things are changing.
+**[01:39:58]** How do you sort of see the opportunity going forward?
+**[01:40:01]** ALEX PALL: I mean, there's
+**[01:40:02]** so many vectors you could talk about this on.
+**[01:40:04]** Of course, there's the creative output side which --
+**[01:40:06]** Satya Nadella: Yeah.
+**[01:40:07]** ALEX PALL: -- you know, we've been experimenting
+**[01:40:09]** with in music, but always important
+**[01:40:10]** to have your authenticity when it comes to creativity.
+**[01:40:13]** But on the investment side, I think we're moving
+**[01:40:15]** from producing outputs to producing actions,
+**[01:40:18]** which I think presents, like, a very interesting opportunity
+**[01:40:21]** to kind of reimagine the entire architecture of the way software
+**[01:40:24]** and enterprise has been built.
+**[01:40:26]** So, instead of humans, you know, producing outputs,
+**[01:40:28]** it's machines producing outputs and rethinking what
+**[01:40:31]** that entire space looks like in that context.
+**[01:40:34]** Satya Nadella: Yeah, no, it's fantastic to see that.
+**[01:40:37]** And maybe just to close out, any sort of,
+**[01:40:40]** as artists who have had, you know, great success,
+**[01:40:44]** when you look at a founder,
+**[01:40:47]** what sort of is the advice you give them when you're creating,
+**[01:40:51]** you know, you're bringing something new?
+**[01:40:53]** And it's a creative process.
+**[01:40:55]** So, what are you looking for in founders?
+**[01:40:57]** What is it that you're giving them as advice?
+**[01:41:00]** DREW TAGGART: Totally.
+**[01:41:00]** I mean, there really are so many parallels.
+**[01:41:02]** Maybe it seems like that.
+**[01:41:03]** Maybe it doesn't.
+**[01:41:04]** But, I mean, it's really difficult as artists
+**[01:41:06]** to really find, I guess, what your sound is,
+**[01:41:09]** what's authentically you, what you can continue to do over
+**[01:41:13]** and over because with this much competition,
+**[01:41:15]** you have to be moving authentically.
+**[01:41:18]** You have to be connected to the product that you're creating
+**[01:41:21]** and because you're going to have to iterate and keep it going
+**[01:41:24]** and have consistency for a long period of time to kind of lock
+**[01:41:27]** into your fan base and make something that's special
+**[01:41:29]** and unique.
+**[01:41:29]** And, you know, we try to advise our founders
+**[01:41:32]** to do the same thing.
+**[01:41:33]** Satya Nadella: Fantastic.
+**[01:41:33]** Thank you both for joining us.
+**[01:41:35]** Are you game for playing for us this evening
+**[01:41:38]** for our closest friends here?
+**[01:41:40]** ALEX PALL: We'll be there.
+**[01:41:41]** Satya Nadella: Six o'clock, six this evening.
+**[01:41:43]** Thank you so much.
+**[01:41:44]** DREW TAGGART: Thank you.
+**[01:41:44]** ALEX PALL: Thank you so much.
+**[01:41:45]** Satya Nadella: Thank you, thank you.
+**[01:41:46]** [ Applause ]
+**[01:41:50]** Satya Nadella: So, we'll be right here at 6 p.m. tonight
+**[01:41:54]** and really looking forward to it.
+**[01:41:56]** So, that effectively,
+**[01:41:59]** sort of, talks a little bit
+**[01:42:00]** about the developer stack.
+**[01:42:02]** So, now let's talk about what is the opportunity
+**[01:42:06]** for every company, right?
+**[01:42:08]** At the end of the day, we are institution
+**[01:42:10]** and organizational builders. How --
+**[01:42:12]** -- if whether it's an AI-native company,
+**[01:42:14]** whether it's a SaaS company, whether it's an enterprise,
+**[01:42:18]** the first thing we want to do is make sure
+**[01:42:21]** that, as you build things like plugins or agents
+**[01:42:25]** or your AI apps, we want to make sure
+**[01:42:28]** that they're discovered throughout the
+**[01:42:30]** Microsoft ecosystem.
+**[01:42:32]** That's job number one for us.
+**[01:42:33]** That's why we're doing the things we're doing in Windows
+**[01:42:37]** or the Microsoft 365 Copilot or in Teams or in GitHub.
+**[01:42:41]** We want to structure them such that your applications,
+**[01:42:45]** your agents, your plugins are discovered.
+**[01:42:48]** Customers are also building
+**[01:42:50]** lots of line-of-business applications,
+**[01:42:52]** line-of-business agents,
+**[01:42:54]** then using Copilot Studio.
+**[01:42:56]** And we want to make that all discoverable again as part
+**[01:42:59]** of the Copilot experience.
+**[01:43:01]** And Teams, in some sense, has become this destination
+**[01:43:05]** for multiplayer, human-to-agent interaction.
+**[01:43:09]** We want you to be able to find agents,
+**[01:43:11]** interact with agents, right in Teams.
+**[01:43:15]** And we are supercharging all of this.
+**[01:43:19]** Copilot continues to evolve very quickly.
+**[01:43:22]** It started first with Chat, with some of the best models,
+**[01:43:26]** with great access to Work IQ.
+**[01:43:28]** We didn't have the name Work IQ, but now that's kind
+**[01:43:32]** of where it got started.
+**[01:43:33]** Then came Cowork, a new way of working
+**[01:43:37]** and generating these stunning artifacts
+**[01:43:40]** and solve these multi-step problems, right?
+**[01:43:43]** So, you assign multi-step tasks to Cowork.
+**[01:43:47]** You saw GitHub.
+**[01:43:48]** GitHub has continued to evolve as well.
+**[01:43:52]** And now, as of -- you know,
+**[01:43:53]** come summer, you will be bringing coding
+**[01:43:58]** to all knowledge work within one Copilot super app, right?
+**[01:44:03]** That's going to be really exciting to see, yeah?
+**[01:44:06]** [ Applause ]
+**[01:44:08]** So, you'll have Chat, Cowork, and Code all in Copilot.
+**[01:44:13]** But today, we're introducing something completely new.
+**[01:44:19]** Autopilots.
+**[01:44:21]** We can think of autopilots as enterprise-grade "claws".
+**[01:44:27]** These are autonomous, long-running agents
+**[01:44:30]** with full enterprise compliance that run in your tenant.
+**[01:44:35]** Autopilots can have a name, personality,
+**[01:44:40]** custom connectors, context, and memory.
+**[01:44:43]** And they're a totally new way to reduce toil
+**[01:44:46]** and get you back to what you love.
+**[01:44:49]** To kick things off, the first autopilot we are introducing
+**[01:44:53]** is Scout.
+**[01:44:54]** Let's take a look.
+**[01:44:56]** [ Music ]
+**[01:45:52]** Satya Nadella: All right.
+**[01:45:53]** [ Applause ]
+**[01:45:56]** As you can see, Scout works where you work,
+**[01:46:00]** joining group chats and Teams, handling threads in Outlook.
+**[01:46:04]** Starting today, for those of you who are on CopilotFrontier,
+**[01:46:07]** you can try out Scout.
+**[01:46:09]** And in the coming months, we will build this
+**[01:46:11]** out to a complete digital team
+**[01:46:14]** of autopilots right inside of Copilot.
+**[01:46:16]** So, you can go to the Copilot app.
+**[01:46:18]** Scout is the one that comes by default.
+**[01:46:20]** But you can build more of these autopilots.
+**[01:46:24]** And so, that's the future of what we think
+**[01:46:27]** of as the Copilot ecosystem itself.
+**[01:46:29]** And so far, we have talked a lot about what you can do
+**[01:46:33]** to build your own agents and how these agents are discovered
+**[01:46:36]** in things like Copilot and Teams and Windows.
+**[01:46:39]** But when you think about what makes any organization,
+**[01:46:43]** any enterprise, any company unique,
+**[01:46:47]** it is its tacit knowledge that it's continuously compounding
+**[01:46:52]** through its operations.
+**[01:46:54]** So, the key consideration at some level in an AI age is
+**[01:46:57]** to ask the question, what's the future of the firm?
+**[01:47:01]** How do you continue to preserve and compound
+**[01:47:05]** that tacit knowledge in the age of AI
+**[01:47:08]** where models can learn anything from the data
+**[01:47:11]** and the trajectories they see?
+**[01:47:13]** To do that, we believe that every organization,
+**[01:47:17]** whether it's an AI-native company, a SaaS company,
+**[01:47:21]** or any enterprise, will need
+**[01:47:23]** to build their own hill climbing machine.
+**[01:47:27]** It's a system that continuously improves
+**[01:47:31]** against your objectives, your private evals,
+**[01:47:36]** compounding your advantage over time, not someone else's.
+**[01:47:41]** To deliver on this, we're taking the next step
+**[01:47:44]** with Frontier Tuning.
+**[01:47:46]** We have been working with many customers already
+**[01:47:48]** to help really build their own learning loop, the environment,
+**[01:47:54]** the context, the tools, the rubrics,
+**[01:47:57]** and even train their own models.
+**[01:47:59]** And today, we are really thrilled and excited
+**[01:48:03]** about supercharging that Frontier Tuning capability
+**[01:48:07]** with the innovation that's coming
+**[01:48:09]** out of our superintelligence lab.
+**[01:48:11]** To tell you all about this, let me hand it over to Mustafa.
+**[01:48:14]** Mustafa.
+**[01:48:15]** [ Applause ]
+**[01:48:19]** Mustafa Suleyman: Thank you, thank you.
+**[01:48:22]** Thank you.
+**[01:48:22]** Good morning, everybody.
+**[01:48:25]** You know, we really are living in the most remarkable times.
+**[01:48:29]** Since I started working in AI, the compute that we use
+**[01:48:33]** to train Frontier models has increased by one trillion fold.
+**[01:48:39]** That's 12 orders of magnitude of computation in just 15 years.
+**[01:48:45]** It's now clear that a consistent, exponential increase
+**[01:48:49]** in computation leads
+**[01:48:51]** to predictable advances in AI capabilities.
+**[01:48:56]** And in the next few years, we're going to see three more orders
+**[01:48:59]** of magnitude of compute applied to train Frontier models.
+**[01:49:04]** Intelligence is now a function of compute.
+**[01:49:07]** Log linear hill climbing has become the norm.
+**[01:49:10]** The scaling laws are clearly holding,
+**[01:49:12]** and it is a remarkable time in our industry.
+**[01:49:17]** And so, in this context,
+**[01:49:19]** we at MAI are building towards what we call humanist
+**[01:49:22]** superintelligence, state-of-the-art AI capabilities
+**[01:49:27]** that are explicitly designed to serve people
+**[01:49:30]** and organizations and not replace them.
+**[01:49:34]** Because the type of AI that we create really does matter.
+**[01:49:39]** We need an AI that places humanity first,
+**[01:49:43]** but always prioritizes human well-being and human progress.
+**[01:49:49]** This is the core philosophy
+**[01:49:51]** and motivation behind our superintelligence efforts
+**[01:49:54]** at Microsoft, and it shapes everything that we do.
+**[01:49:58]** And as a platform company, our job and our commitment is
+**[01:50:02]** to keep you developers building at the absolute Frontier.
+**[01:50:06]** So, today we are very excited to announce a family
+**[01:50:10]** of seven new models across Image, Voice,
+**[01:50:13]** Transcription, and Coding.
+**[01:50:15]** [ Applause ]
+**[01:50:21]** These are all built with real attention to detail
+**[01:50:23]** and a commitment to making very practical and efficient tools
+**[01:50:28]** that are tuned to just how you work in the real world.
+**[01:50:31]** So, first up, MAI Image-2.5 and its Flash variant,
+**[01:50:35]** two superstrong models that deliver a step change
+**[01:50:39]** in quality, now at number two on the leaderboard,
+**[01:50:42]** surpassing the score of Nano Banana 2 on image editing.
+**[01:50:46]** [ Applause ]
+**[01:50:49]** They give you precise editing with incredible control
+**[01:50:53]** and consistency, Flash is here
+**[01:50:55]** for super-efficient production workloads, while 2.5 gives you
+**[01:50:59]** that maximum fidelity and professional-grade performance.
+**[01:51:03]** They're live in PowerPoint today, they're rolling
+**[01:51:05]** out to OneDrive, and right now you can access them on Foundry
+**[01:51:09]** at a market-leading quality per dollar.
+**[01:51:12]** Next up, we've got MAI Transcribe-1.5.
+**[01:51:16]** This is the best transcription model in the world.
+**[01:51:19]** State-of-the-art accuracy across 43 languages, beating out Gemini
+**[01:51:24]** and OpenAI's flagship transcription models.
+**[01:51:28]** We've optimized it for real-world use
+**[01:51:30]** so that you can produce highly accurate transcripts
+**[01:51:33]** for any bespoke use case five times faster
+**[01:51:37]** than all rival models.
+**[01:51:40]** It's now being integrated inside of GitHub, Teams, Copilot,
+**[01:51:43]** Dynamics 365, Contact Center, and it's now also available
+**[01:51:47]** in Foundry, where I'm very excited
+**[01:51:49]** to say it is the fastest, most efficient,
+**[01:51:52]** and most cost-effective transcription model of any
+**[01:51:55]** of the hyperscalers out there.
+**[01:51:56]** [ Applause ]
+**[01:52:02]** So, paired with that, we've got MAI Voice-2.
+**[01:52:04]** This is our latest speech generation model.
+**[01:52:07]** It has beautiful prosody, natural-sounding delivery,
+**[01:52:11]** fine-grained emotional control, and it's available
+**[01:52:13]** in 15 languages, with many more coming soon.
+**[01:52:16]** We're also announcing Voice 2-Flash,
+**[01:52:19]** and that provides the very best value and speed
+**[01:52:22]** for ultra-latency-sensitive voice agents, which, of course,
+**[01:52:25]** is the big thing in 2026.
+**[01:52:28]** Next up, our text foundation model, MAI Thinking-1.
+**[01:52:33]** This is our first reasoning model,
+**[01:52:35]** and it's exceptionally strong in our target use cases
+**[01:52:38]** of reasoning and SWE tasks.
+**[01:52:41]** It's a 35 billion active parameter MOE
+**[01:52:44]** with a 256k context window.
+**[01:52:47]** That means that it competes in the medium-sized weight class,
+**[01:52:49]** where it's certainly punching above its weight.
+**[01:52:51]** And independent human raters on Surge prefer it
+**[01:52:55]** in overall quality side-by-sides versus Sonnet 4.6.
+**[01:53:00]** [ Applause ]
+**[01:53:03]** It's achieved 97% on AIME 2025,
+**[01:53:07]** which is obviously the key measure
+**[01:53:08]** of its general-purpose reasoning abilities.
+**[01:53:11]** But most importantly of all, it's now at 53%
+**[01:53:15]** on SWE Bench Pro, which places it right alongside Opus 4.6,
+**[01:53:19]** at least on the toughest coding benchmark that's out there.
+**[01:53:22]** So, we're very happy with that.
+**[01:53:24]** [ Applause ]
+**[01:53:27]** Now, there's plenty more for us to do as we get this
+**[01:53:30]** into production, and hill climb against real-world tasks
+**[01:53:33]** and real-world traffic.
+**[01:53:35]** But what is actually most remarkable about this model,
+**[01:53:38]** we think, is that it is climbed entirely from the bottom.
+**[01:53:43]** And that means that it hasn't targeted any
+**[01:53:45]** of the benchmarks specifically, and it's done
+**[01:53:47]** so with absolutely zero distillation.
+**[01:53:50]** And to us, this is critical, because it means
+**[01:53:53]** that the model is created with an enterprise-grade, clean,
+**[01:53:57]** and commercially licensed data lineage that means
+**[01:54:00]** that you can put it into production
+**[01:54:02]** in a very trustworthy way with complete confidence.
+**[01:54:06]** Now, finally, I'm incredibly excited
+**[01:54:08]** to announce MAI Code-1-Flash.
+**[01:54:11]** This is our new inference-efficient coding
+**[01:54:13]** model, which has been especially tuned for VS Code and,
+**[01:54:16]** of course, GitHub Copilot CLI.
+**[01:54:19]** It achieves 51% on SWE Bench Pro,
+**[01:54:22]** despite having just 5 billion parameters.
+**[01:54:25]** And so, it's much closer to Haiku in terms of size,
+**[01:54:28]** but cheaper in cost, delivering really strong coding performance
+**[01:54:32]** at great inference efficiency.
+**[01:54:34]** And it's rolling out today inside of VS Code.
+**[01:54:37]** [ Applause ]
+**[01:54:42]** Now, alongside distribution on Foundry and optimization
+**[01:54:45]** for our 1P products, we're also very excited
+**[01:54:47]** to make our models available on Open Router,
+**[01:54:50]** as well as Fireworks and BaseTen.
+**[01:54:53]** So, this means that, for the first time, you're going
+**[01:54:54]** to be able to tune the weights directly yourself
+**[01:54:57]** in an ecosystem of your choice.
+**[01:54:59]** Now, across this entire family,
+**[01:55:01]** safety and security have been built in from the start.
+**[01:55:05]** Our voice models come with protections
+**[01:55:07]** against unauthorized cloning.
+**[01:55:09]** Everything is watermarked from scratch.
+**[01:55:12]** We've reduced our over-refusals, improved representation,
+**[01:55:15]** including for people with disabilities.
+**[01:55:17]** We're also publishing a very detailed technical report today
+**[01:55:21]** to give you a full and transparent understanding
+**[01:55:24]** of how we put all of this together.
+**[01:55:27]** Now, one of the things I'm particularly excited about is
+**[01:55:30]** that we have been carefully co-designing our models
+**[01:55:33]** with our own silicon.
+**[01:55:35]** So, that means that we've optimized MAI-Thinking-1
+**[01:55:38]** on our very own Maia 200 chip
+**[01:55:41]** and benchmarked it head-to-head against the GB200.
+**[01:55:45]** And so, on top of the 30% performance improvement
+**[01:55:48]** that Satya talked about earlier,
+**[01:55:50]** we're now seeing a further 1.4x performance per watt gain
+**[01:55:55]** when we run our MAI models on the Maia 200 end-to-end.
+**[01:56:00]** And that's huge.
+**[01:56:01]** Because, as everybody knows, at this scale, every watt counts.
+**[01:56:06]** And silicon and model co-design is a really key advantage
+**[01:56:10]** that we think is going to help keep everybody here right
+**[01:56:13]** on the Frontier with the most efficient
+**[01:56:15]** and most powerful thinking and coding agents out there.
+**[01:56:19]** We're also super excited that these faster
+**[01:56:21]** and more efficient MAI models are coming to the N1X
+**[01:56:25]** that Satya mentioned a few moments ago.
+**[01:56:28]** And we think that's going to be able
+**[01:56:29]** to deliver the very best performance on Windows
+**[01:56:32]** in a few months' time.
+**[01:56:34]** Now, to us, this is what owning the full stack end-to-end
+**[01:56:38]** looks like.
+**[01:56:39]** It's the foundation of Microsoft Frontier Tuning.
+**[01:56:42]** It lets you customize the MAI models using our full stack
+**[01:56:45]** hill-climbing machine right where you want it.
+**[01:56:48]** And it means that the disciplined
+**[01:56:50]** and very relentless engineering that has gone
+**[01:56:52]** into building our models is now available to all of you
+**[01:56:56]** on a platform that you can trust, working on your behalf,
+**[01:56:59]** to create custom agents that you will control.
+**[01:57:04]** So, the really big thing, of course, that's happened
+**[01:57:06]** in the last year is these RLEs,
+**[01:57:08]** reinforcement learning environments,
+**[01:57:09]** these unique training gyms for your AIs.
+**[01:57:13]** They create company
+**[01:57:14]** and task-specific agents adapted only
+**[01:57:17]** to you, built on MAI models.
+**[01:57:20]** So, for example, within Microsoft,
+**[01:57:22]** we use our RLEs combined with our MAI models
+**[01:57:25]** to climb towards the best agentic use cases on Excel.
+**[01:57:29]** Our MAI-tuned model is now on par with GPT-5.4 on public
+**[01:57:33]** and private benchmarks,
+**[01:57:35]** whilst at the same time being 10 times more efficient on cost.
+**[01:57:41]** Thank you.
+**[01:57:43]** You know, and many other early adopters are seeing
+**[01:57:45]** similar results.
+**[01:57:47]** When we've tuned our models on McKinsey's tasks, MAI delivered
+**[01:57:50]** the highest win rate, even outperforming GPT-5.5,
+**[01:57:54]** and, again, delivering 10x greater efficiency on cost.
+**[01:57:58]** So, to us, this is the advantage
+**[01:58:00]** of very carefully calibrated Frontier Tuning.
+**[01:58:05]** And importantly, unlike with some of the other companies,
+**[01:58:08]** with MAI, you don't rent intelligence from a shared model
+**[01:58:12]** that learns from everybody.
+**[01:58:14]** Only you keep the benefits of your hard-earned workflows,
+**[01:58:18]** know-how, knowledge, and your own institutional data.
+**[01:58:23]** Only you get to control the resulting model.
+**[01:58:26]** And so, with us, the RLEs and the models that you build inside
+**[01:58:30]** of them, they become your moat.
+**[01:58:33]** And I really think this is distinct.
+**[01:58:35]** It marks a new era in AI
+**[01:58:37]** that we're all very, very excited about.
+**[01:58:40]** Okay, so now, just one final announcement
+**[01:58:43]** that I'm very excited about.
+**[01:58:45]** We are taking customization and co-creation of our models
+**[01:58:49]** to the highest level possible on what I think of as,
+**[01:58:52]** perhaps, the most important application of AI:
+**[01:58:55]** Healthcare.
+**[01:58:56]** So today, we're very proud to be announcing that we're partnering
+**[01:58:59]** with Mayo Clinic to jointly develop a new Frontier model
+**[01:59:03]** for health and then deploy it around the world
+**[01:59:05]** in their hospitals and beyond.
+**[01:59:07]** So, this morning, please help me in welcoming
+**[01:59:09]** to the stage a physician, ground-breaking researcher,
+**[01:59:13]** president and CEO of the Mayo Clinic, Dr. Gianrico Farrugia.
+**[01:59:17]** [ Music ]
+**[01:59:19]** [ Applause ]
+**[01:59:23]** Mustafa Suleyman: Thank you so much
+**[01:59:24]** for being here, Gianrico.
+**[01:59:26]** Now, of course, everyone will recognize Mayo
+**[01:59:28]** as, perhaps, the leading hospital in the world
+**[01:59:31]** with an incredible track record of research and innovation
+**[01:59:35]** and clinical practice.
+**[01:59:36]** Tell us a little bit more about what you hope to get
+**[01:59:39]** out of our collaboration.
+**[01:59:40]** Gianrico Farrugia: Well, first of all,
+**[01:59:40]** thanks for having me here.
+**[01:59:41]** Thanks to Satya as well.
+**[01:59:43]** Mayo Clinic is known for being able to live
+**[01:59:46]** up to our primary value.
+**[01:59:47]** The needs of the patient come first.
+**[01:59:49]** We deliver outstanding healthcare.
+**[01:59:52]** We're ranked the number one healthcare organization
+**[01:59:54]** in the world.
+**[01:59:55]** Yet we know most people
+**[01:59:57]** in the world will not have access to Mayo Clinic.
+**[02:00:00]** So, seven years ago, we decided to create a platform,
+**[02:00:03]** the Mayo Clinic platform, moving all of healthcare
+**[02:00:06]** from a pipeline to a platform.
+**[02:00:09]** And with our partners, that platform now is
+**[02:00:12]** in four continents and reaches about 100 million people.
+**[02:00:17]** It has created the largest, to our knowledge,
+**[02:00:20]** deepest longitudinal healthcare data set in the world,
+**[02:00:24]** multimodal, including genomics.
+**[02:00:27]** So, here together, now we have the opportunity
+**[02:00:29]** to do what we do best together,
+**[02:00:31]** which is create a Frontier model for healthcare.
+**[02:00:34]** What it means if you're a patient,
+**[02:00:36]** if you're somebody interested in healthcare, you can get clinical
+**[02:00:40]** and logistical answers to your healthcare.
+**[02:00:42]** But if you're a healthcare provider, if you're a physician,
+**[02:00:45]** it can give you insight,
+**[02:00:47]** it can act as your real-time team member
+**[02:00:50]** that can tell you what is likely to happen next.
+**[02:00:54]** But it can also prevent harm and, therefore,
+**[02:00:56]** increase patient safety and giving valuable insights
+**[02:01:00]** that make the team better at giving you what you need most,
+**[02:01:03]** which is better healthcare.
+**[02:01:05]** Mustafa Suleyman: Yeah, and I think that one of the things
+**[02:01:06]** that we're most excited about is
+**[02:01:08]** that the models are already pretty incredible
+**[02:01:10]** at textbook knowledge.
+**[02:01:12]** They've read all the journals and all the papers.
+**[02:01:14]** But what they're really lacking is the kind of clinical practice
+**[02:01:17]** and clinical expertise of your team and your clinicians
+**[02:01:20]** that you've developed over the last many decades.
+**[02:01:23]** So, how do you think we might go about using
+**[02:01:25]** that clinical practice to improve the performance
+**[02:01:27]** of the model in production?
+**[02:01:28]** Gianrico Farrugia: So, the exciting part here is
+**[02:01:30]** we each do what we do best
+**[02:01:32]** and we can tackle something that has eluded healthcare
+**[02:01:34]** for a long time: trusted, scalable solutions.
+**[02:01:38]** And to do that, you need to have the right data,
+**[02:01:41]** you certainly need to have the right people, but you also need
+**[02:01:44]** to have a very patient-focused lens.
+**[02:01:47]** And between the two of us, we now have all this together
+**[02:01:50]** so that we can build this Frontier model
+**[02:01:53]** and then offer safe, secure, trustworthy, and, of course,
+**[02:01:57]** effective healthcare solutions for all.
+**[02:02:00]** Mustafa Suleyman: Well, our number one objective, of course,
+**[02:02:01]** is to put the patient first,
+**[02:02:02]** deliver the highest quality we can in a trusted way,
+**[02:02:05]** and then, hopefully, share that with the world over.
+**[02:02:07]** So, we're very excited for this partnership,
+**[02:02:09]** can't wait to share more with everyone in the future.
+**[02:02:11]** Gianrico Farrugia: Us too.
+**[02:02:11]** Thank you.
+**[02:02:12]** Mustafa Suleyman: Thank you.
+**[02:02:13]** [ Applause ]
+**[02:02:18]** Mustafa Suleyman: So, today marks some
+**[02:02:20]** very, very exciting steps that we're taking
+**[02:02:23]** on our journey to create humanist superintelligence
+**[02:02:25]** at Microsoft.
+**[02:02:26]** We now have an incredible roster of seven new world-class models
+**[02:02:30]** to keep everybody working at the absolute Frontier.
+**[02:02:33]** And we're really looking forward to everybody being able
+**[02:02:36]** to co-create your own unique agents adapted
+**[02:02:39]** to you that you'll control.
+**[02:02:41]** I really feel like this is a new era in AI; an era of AI
+**[02:02:45]** that you control on your terms.
+**[02:02:48]** So, let's build it together.
+**[02:02:49]** Thank you very much, everyone.
+**[02:02:51]** [ Applause ]
+**[02:02:57]** And now over to Tanaya to show us how Frontier Tuning works
+**[02:03:01]** in practice.
+**[02:03:04]** [ Applause ]
+**[02:03:09]** Tanaya Yadav: Thanks, Mustafa.
+**[02:03:11]** With Frontier Tuning, we're making it possible for you
+**[02:03:15]** to create your own enterprise AI with the models
+**[02:03:19]** and the harness tuned on your data and your workflows.
+**[02:03:24]** Let me show you how you can build your own
+**[02:03:26]** hill-climbing machine.
+**[02:03:29]** MAI Thinking-1 is now available in private preview
+**[02:03:33]** in the Foundry model catalog.
+**[02:03:36]** You can go ahead and deploy the model as is, or if you want
+**[02:03:40]** to go on your own hill-climbing journey, you can start
+**[02:03:43]** by clicking the "Fine Tune" button.
+**[02:03:46]** Now, I'm in the fine tuning UI.
+**[02:03:48]** The first thing I'll do is add my data set.
+**[02:03:52]** Next, I'm going to add a grader, and that's it.
+**[02:03:55]** I go ahead and submit the job.
+**[02:03:57]** A couple of hours in, I see how the model is learning.
+**[02:04:02]** It generates roll-outs, it scores them,
+**[02:04:05]** and we start to hill-climb.
+**[02:04:07]** Now, if you want full control over your RL training loop,
+**[02:04:11]** let me give you a sneak peek into our low-level training API.
+**[02:04:16]** You can see here I have the MAI thinking model.
+**[02:04:20]** I can also configure my roll-out strategy as well
+**[02:04:24]** as my hyper-parameters to define exactly how I want my training
+**[02:04:28]** algorithm to work.
+**[02:04:31]** In fact, I can also incorporate my own RL gym here
+**[02:04:35]** by defining the tools that this model interacts with.
+**[02:04:39]** All right, you just saw all the code.
+**[02:04:41]** But as an M365 customer, you're never starting from scratch.
+**[02:04:46]** Let's hop on to Copilot.
+**[02:04:49]** As a part of Frontier Tuning, we're introducing a new way
+**[02:04:54]** to build RL environments based on your data and your workflows.
+**[02:05:00]** One of our customers, Land O'Lakes,
+**[02:05:02]** one amongst the largest agri-businesses
+**[02:05:05]** in the United States, is in fact, using this to perfect
+**[02:05:10]** that butter on your morning toast.
+**[02:05:12]** Let me walk you through their environment.
+**[02:05:16]** Now, on a high level, the environment consists
+**[02:05:19]** of skills, knowledge, and tools.
+**[02:05:22]** But in the backend, we create an entire RL gym for your agents
+**[02:05:28]** to continuously learn the way that you work.
+**[02:05:31]** Now, let's look at the "Butter Report Generation" skill here.
+**[02:05:34]** These tasks are very complex.
+**[02:05:37]** They require many manual steps and a high degree of precision.
+**[02:05:42]** Now, in these tasks, even 80% accuracy isn't good enough.
+**[02:05:47]** To hill-climb to higher accuracy,
+**[02:05:49]** we're extending the industry definition of skills
+**[02:05:54]** to include rubrics on what "good" looks like.
+**[02:05:57]** But this is just one task.
+**[02:05:59]** How do I scale this to codify all
+**[02:06:02]** of these tasks in an enterprise?
+**[02:06:05]** You spend a lot of time in M365, in Teams, Outlook, Word,
+**[02:06:09]** Excel, and PowerPoint.
+**[02:06:11]** We use those signals to suggest skills in rubrics
+**[02:06:15]** that truly define the way that you work.
+**[02:06:18]** Next, you can add your organizational knowledge
+**[02:06:21]** for grounding, like from OneDrive and SharePoint.
+**[02:06:25]** Now, the environment comes built-in with Microsoft Tools,
+**[02:06:28]** and you can add custom tools to it.
+**[02:06:31]** Because these tools tap into real workflows,
+**[02:06:35]** we virtualize them to simulate execution so the model can learn
+**[02:06:39]** without actually impacting the live state of your business.
+**[02:06:44]** And now, my most favorite part, the science.
+**[02:06:47]** By generalizing all of these learnings into the "main" model,
+**[02:06:52]** as well as in the embedding model, we're able to hill-climb
+**[02:06:56]** for tasks that require high accuracy.
+**[02:07:02]** And not only this, we are able to hill-climb to more
+**[02:07:07]** than 90% accuracy for Land O'Lakes tasks using the
+**[02:07:12]** MAI model.
+**[02:07:14]** In fact, we estimate this model to be 10x more efficient
+**[02:07:19]** than the baseline models.
+**[02:07:21]** Now, with this environment set up,
+**[02:07:23]** let's go back to "Butter" reporting.
+**[02:07:26]** Let's run this task, this time using this tuned environment
+**[02:07:31]** as an inferencing harness.
+**[02:07:34]** Now, usually this task takes a couple of minutes to run.
+**[02:07:38]** In the meantime, I will show you a cached response.
+**[02:07:43]** Now, as you can see here,
+**[02:07:45]** the agent has leveraged "Test-Time Tree Search"
+**[02:07:49]** with multiple models, including a fine-tuned model.
+**[02:07:53]** And what you see here is a summary
+**[02:07:56]** that doesn't feel generic.
+**[02:07:58]** It feels undoubtedly Land O'Lakes.
+**[02:08:01]** And that's not it.
+**[02:08:02]** The task holds itself to high standards,
+**[02:08:06]** and it continuously retrospects and evaluates itself.
+**[02:08:11]** This way, with Frontier Tuning, your agent continuously improves
+**[02:08:16]** with your compliant RL environment on your data
+**[02:08:21]** and coding the way you work.
+**[02:08:24]** Now, that is what I call Frontier Tuning
+**[02:08:26]** as smooth as butter.
+**[02:08:29]** We cannot wait to see the environments you build.
+**[02:08:33]** Back to you, Satya.
+**[02:08:35]** Satya Nadella: All right.
+**[02:08:36]** [ Applause ]
+**[02:08:38]** Satya Nadella: Thank you so much,
+**[02:08:39]** Tanaya, Mustafa, Gianrico.
+**[02:08:42]** Thank you for the partnership here.
+**[02:08:44]** You know, what you just saw is a pretty significant shift.
+**[02:08:50]** We believe that times come for every company to just move
+**[02:08:55]** from consuming a Frontier model to fully participating
+**[02:09:01]** at the Frontier and the Frontier ecosystem.
+**[02:09:04]** That's the transition.
+**[02:09:06]** You can have your own private evals and outcomes,
+**[02:09:10]** your private RLEs and traces, your enterprise knowledge,
+**[02:09:15]** create this scaffolding for models to hill-climb.
+**[02:09:20]** That's what will allow you to create that differentiated IP
+**[02:09:24]** that you own, you control.
+**[02:09:26]** But the second salient point is
+**[02:09:29]** that there is a new operating point at the Frontier
+**[02:09:34]** where you can use a very efficient reasoning model
+**[02:09:38]** and a coding model and achieve Frontier-level performance
+**[02:09:44]** because you've done the hard work of creating
+**[02:09:46]** that environment, that RLE, that hill-climbing machine
+**[02:09:49]** in which these models with your traces can hill climb
+**[02:09:53]** to the Frontier.
+**[02:09:54]** So, we think that the combination
+**[02:09:56]** of these two is a pretty big game-changer in how people think
+**[02:10:00]** about what does it mean to operate at the Frontier?
+**[02:10:03]** What does Frontier tokens look like?
+**[02:10:05]** How are you in control?
+**[02:10:07]** What's the future of a firm?
+**[02:10:08]** These are the big questions and really an ecosystem
+**[02:10:12]** that gets built around as opposed to a few models
+**[02:10:15]** that just are hungry for all data.
+**[02:10:18]** To close out, though, I want to talk about that Frontiers beyond
+**[02:10:24]** that push this ecosystem of ours and really say,
+**[02:10:28]** "What's the next big thing?"
+**[02:10:30]** Bending the curve -- you know, when Mustafa talked about this
+**[02:10:34]** with Gianrico when it comes to health --
+**[02:10:37]** but building, you know,
+**[02:10:38]** that scientific discovery loop can have, perhaps, the biggest
+**[02:10:44]** societal impact, right?
+**[02:10:46]** Science today still is a little too linear.
+**[02:10:50]** You create a hypothesis -- you form a hypothesis,
+**[02:10:53]** you run an experiment, you wait for lab results,
+**[02:10:56]** which is out of band, and then you begin again.
+**[02:10:59]** But what if the scientific method itself could become more
+**[02:11:03]** continuous, more parallel, more programmable?
+**[02:11:06]** That's what we're doing with Microsoft Discovery, right?
+**[02:11:09]** Discovery brings together the models, the HPC compute,
+**[02:11:13]** the knowledge graphs of all the scientific knowledge,
+**[02:11:16]** the automated lab and simulation into one agentic discovery loop.
+**[02:11:22]** And so, today I'm really thrilled
+**[02:11:25]** to GA Microsoft Discovery, and to show you all of this
+**[02:11:29]** in action; let me invite up David on stage.
+**[02:11:31]** David, take it away.
+**[02:11:33]** [ Applause ]
+**[02:11:34]** David Carmona: Hello!
+**[02:11:35]** [ Applause ]
+**[02:11:36]** I work in the Microsoft Discovery and Quantum team.
+**[02:11:39]** Today, to recycle a PET plastic like this bottle,
+**[02:11:43]** you have to shred it and melt it.
+**[02:11:45]** The result is degraded.
+**[02:11:47]** You cannot use it to make this bottle again.
+**[02:11:49]** It's downcycling.
+**[02:11:51]** Cambridge Consultants, part of Capgemini,
+**[02:11:54]** is using Microsoft Discovery to advance that research.
+**[02:11:57]** Let me show it to you. . .
+**[02:11:59]** This is the Microsoft Discovery app.
+**[02:12:02]** It is based on VS Code because agentic discovery has many
+**[02:12:06]** parallels with agentic software engineering.
+**[02:12:09]** Today, I want to do these three things as a scientist.
+**[02:12:13]** First, I want to write a scientific paper
+**[02:12:16]** about this topic.
+**[02:12:17]** I'll explore an existing line of research.
+**[02:12:20]** Instead of melting the plastic, I can use proteins
+**[02:12:24]** to the composite so you can recycle it again and again.
+**[02:12:29]** Second, I want to perform the actual discovery
+**[02:12:33]** to find new proteins.
+**[02:12:35]** And third, I want to create a lab protocol
+**[02:12:39]** to test the results in a real lab.
+**[02:12:42]** If you are a developer,
+**[02:12:43]** these three steps should be very familiar to you.
+**[02:12:46]** They look a lot like planning, coding and testing,
+**[02:12:50]** and deploying to production, but for science.
+**[02:12:53]** Let's launch it.
+**[02:12:56]** This will kick off the discovery engine.
+**[02:12:58]** You can think of this as a team
+**[02:13:00]** of specialized agents always running
+**[02:13:03]** in the background following the scientific method.
+**[02:13:06]** You can see those agents here and you can add more.
+**[02:13:10]** Microsoft Discovery includes a community of agents, models,
+**[02:13:14]** and tools across many domains.
+**[02:13:17]** You can use open-source, third-parties, or create your own.
+**[02:13:21]** Okay, so, this is still running and it will be running
+**[02:13:24]** for a while, even hours or days, because the discovery engine,
+**[02:13:29]** like science, is not sequential.
+**[02:13:32]** It is exploring hypotheses
+**[02:13:33]** and performing long-running simulations dynamically.
+**[02:13:38]** So, let me open one that is already completed.
+**[02:13:40]** You can see the files that it created here.
+**[02:13:43]** This one is the research paper that I was asking for.
+**[02:13:48]** To create it, Discovery is using a knowledge graph internally,
+**[02:13:52]** bringing together public scientific literature
+**[02:13:55]** and internal knowledge.
+**[02:13:57]** This is a critical asset because it provides complete visibility
+**[02:14:01]** of the reasoning so scientists can be in full control.
+**[02:14:05]** We can go now to step two, the discovery itself.
+**[02:14:08]** Let me open the output for that one.
+**[02:14:11]** So, how do you come up with new proteins to decompose plastic?
+**[02:14:17]** This is the approach that Discovery took.
+**[02:14:19]** First, you need an AI model
+**[02:14:21]** to predict how good a protein is for that.
+**[02:14:25]** Then, you need a way to generate new proteins.
+**[02:14:28]** And finally, you need
+**[02:14:29]** to identify the most promising ones.
+**[02:14:32]** So, let's start with the model.
+**[02:14:34]** Microsoft Discovery trained multiple models
+**[02:14:37]** and picked the best.
+**[02:14:38]** And there's no out-of-the-box agent for that.
+**[02:14:41]** But that's okay.
+**[02:14:43]** If Microsoft Discovery does not find an agent for a task,
+**[02:14:46]** it will create one on the fly, which is pretty cool.
+**[02:14:50]** So, here's all the files that it created.
+**[02:14:53]** This one here is the YAML for the agent.
+**[02:14:56]** And this one, for example,
+**[02:14:57]** is the Python code to train the models.
+**[02:15:00]** Now, we need to generate candidates for new proteins.
+**[02:15:03]** And that task requires a lot of compute.
+**[02:15:07]** Discovery is integrated with HPC, so agents can use it
+**[02:15:11]** for complex simulations.
+**[02:15:13]** You can see the process here.
+**[02:15:15]** It started with a seed protein and then it created variations
+**[02:15:20]** by replacing small segments.
+**[02:15:22]** You can see those segments there.
+**[02:15:24]** Then it applied the model from before
+**[02:15:26]** to see the variation helps or not, learning in that process.
+**[02:15:31]** This is done millions of times in multiple jobs
+**[02:15:34]** in parallel exploring a huge tree of proteins.
+**[02:15:39]** The result is 80 proteins that are ready to be sent to the lab
+**[02:15:43]** for testing, which we said it was
+**[02:15:45]** like deploying software, right?
+**[02:15:48]** The problem, though, is
+**[02:15:49]** that creating a protein is a little bit more complicated.
+**[02:15:53]** The most common way is inserting DNA into bacteria
+**[02:15:57]** so the bacteria create the protein for me.
+**[02:16:00]** So, Discovery created another file, this one here.
+**[02:16:04]** This file contains all the DNA sequences
+**[02:16:07]** to create each protein.
+**[02:16:08]** I can send this now to a lab,
+**[02:16:10]** create the proteins and test them.
+**[02:16:13]** Or, I can go one step further.
+**[02:16:16]** If I have an automated lab,
+**[02:16:18]** I can integrate it directly with the agents.
+**[02:16:21]** Let's do it.
+**[02:16:22]** So, let me go back to the session
+**[02:16:24]** and let's just submit job to lab.
+**[02:16:28]** Go.
+**[02:16:29]** This will use a custom agent that is sending instructions
+**[02:16:32]** for the lab equipment.
+**[02:16:33]** And this is very real.
+**[02:16:35]** Cambridge Consultants does have an automated lab.
+**[02:16:39]** And I have it right here.
+**[02:16:41]** So, this is the application control in the lab.
+**[02:16:44]** It has a Copilot interface so the scientists can interact
+**[02:16:48]** with the lab to design experiments, which is,
+**[02:16:50]** it feels like being Iron Man but for chemistry.
+**[02:16:53]** In this case, Discovery is admitting the job.
+**[02:16:56]** You can see it already here.
+**[02:16:57]** But remember, you need to grow the bacteria
+**[02:17:00]** so this will take some time.
+**[02:17:01]** So, let me open a previous run.
+**[02:17:03]** And there you go.
+**[02:17:04]** These are all the steps that the agents are doing.
+**[02:17:08]** Most of them completely automated
+**[02:17:10]** with human supervision.
+**[02:17:12]** How cool is that?
+**[02:17:14]** [ Applause ]
+**[02:17:20]** This is bringing together the physical world
+**[02:17:22]** and the digital agents in a unified discovery loop.
+**[02:17:25]** And this was just one example of what Microsoft Discovery can do.
+**[02:17:29]** Customers across industries are using it today
+**[02:17:32]** to embrace a new era of scientific discovery.
+**[02:17:35]** Thank you.
+**[02:17:36]** Back to you, Satya.
+**[02:17:37]** [ Applause ]
+**[02:17:41]** Satya Nadella: Thank you so much, David.
+**[02:17:43]** Talking about scientific discovery, we're also continuing
+**[02:17:47]** to make rapid progress on our long-term goal
+**[02:17:51]** of building a scalable quantum computer.
+**[02:17:55]** We announced last year our first QPU.
+**[02:17:59]** We created a new state of matter
+**[02:18:02]** that was only theorized 100 years ago
+**[02:18:05]** and we proved it out that it exists.
+**[02:18:08]** Our vision was to take a very radically different approach
+**[02:18:12]** to addressing the fundamental barriers
+**[02:18:16]** to building a scalable quantum machine, which is all
+**[02:18:18]** about reliability, speed, as well as size.
+**[02:18:23]** Since then, we have continued to make progress
+**[02:18:26]** across the full quantum stack with both our academic
+**[02:18:30]** and industry partners.
+**[02:18:32]** In fact, in QuNorth, we will have a quantum computer powered
+**[02:18:35]** by atom computers, natural atom computers,
+**[02:18:39]** with our stack in there.
+**[02:18:40]** We are also working with Algorithmic
+**[02:18:42]** and Columbia and ETH Zurich.
+**[02:18:45]** And we ourselves, in fact, use this discovery agentic loop
+**[02:18:51]** to accelerate the work in quantum, compressing years
+**[02:18:56]** of research into this last year.
+**[02:18:59]** And today, I'm really thrilled to announce Majorana 2.
+**[02:19:04]** And so, this is Majorana 2.
+**[02:19:08]** Majorana 2 implements the next-generation material stack
+**[02:19:13]** that we use discovery to discover
+**[02:19:16]** and build and help fabricate.
+**[02:19:18]** The resulting qubits are exceptionally reliable
+**[02:19:21]** and capable of maintaining their state much longer.
+**[02:19:26]** While other common approaches deliver a lifetime
+**[02:19:29]** of just microseconds or even milliseconds,
+**[02:19:32]** Majorana 2 provides qubit mean lifetime of 20 seconds or up
+**[02:19:38]** to even a minute, essentially a thousand times higher
+**[02:19:42]** than what we were able to achieve with Majorana 1.
+**[02:19:45]** [ Applause ]
+**[02:19:47]** And the operations, and this is so key,
+**[02:19:50]** operations in Majorana 2 are one microsecond,
+**[02:19:53]** enabling pretty complex, quantum computation in that lifetime.
+**[02:19:59]** And all of this in the same qubit form factor of Majorana 1
+**[02:20:04]** in one one-hundredth
+**[02:20:05]** of a millimeter controlled all digitally,
+**[02:20:08]** which is again a super important aspect, making it all possible
+**[02:20:12]** to fit a million of these qubits
+**[02:20:14]** in a chip smaller than a credit card.
+**[02:20:17]** It's this combination of the reliability, the speed,
+**[02:20:21]** the size that makes the topological approach so unique.
+**[02:20:26]** With Majorana 1, we had proven out the foundational physics,
+**[02:20:30]** and with Majorana 2, now we begin the engineering scale.
+**[02:20:36]** But ultimately -- yeah.
+**[02:20:37]** [ Applause ]
+**[02:20:41]** But ultimately, it is never about tech for tech's sake.
+**[02:20:47]** It's about tackling those pressing challenges
+**[02:20:51]** of people and planet.
+**[02:20:54]** It is also the fundamental point of this conference.
+**[02:20:57]** The question is not whether you can build the next-grade model,
+**[02:21:01]** the next-grade platform, or even this quantum machine.
+**[02:21:05]** The question is, how do we build this Frontier
+**[02:21:08]** ecosystem together?
+**[02:21:11]** Because there are really two stories people can tell
+**[02:21:15]** about this moment.
+**[02:21:16]** One is that technology concentrates power,
+**[02:21:19]** reduces human agency, and leaves the society
+**[02:21:23]** to absorb the consequences.
+**[02:21:26]** The other is that we use this next wave to unlock opportunity
+**[02:21:31]** for developers, scientists,
+**[02:21:33]** enterprises, and every community.
+**[02:21:35]** And our job is to make the second story true.
+**[02:21:39]** That's our North Star for the Frontier ecosystem.
+**[02:21:42]** Let's all go build together.
+**[02:21:44]** Thank you all very, very much.
+**[02:21:45]** [ Applause ]
+**[02:21:52]** [ Music ]
+**[02:22:34]** David Shaw: This is one of those rare moments
+**[02:22:35]** when something that once felt beyond imagination suddenly
+**[02:22:40]** feels within reach.
+**[02:22:43]** [ Music ]
+**[02:22:45]** Quantum is our most fundamental physical theory.
+**[02:22:47]** It's really the low-level operating system
+**[02:22:49]** of the real physical world.
+**[02:22:51]** Sabrina Maniscalco: For quantum computing
+**[02:22:53]** to deliver real-world impact,
+**[02:22:55]** it has to be both reliable and scalable.
+**[02:23:00]** [ Music ]
+**[02:23:01]** David Shaw: Reaching quantum at scale will allow us
+**[02:23:03]** to take a more direct approach
+**[02:23:04]** to solving problems in chemistry --
+**[02:23:06]** Sabrina Maniscalco: The discovery of new material.
+**[02:23:08]** David Shaw: Life sciences.
+**[02:23:09]** Sabrina Maniscalco: The way
+**[02:23:09]** in which we bring drugs to market.
+**[02:23:13]** It opens up millions of possibilities.
+**[02:23:16]** Quantum will change the world
+**[02:23:18]** and this change is just beginning to happen.
+**[02:23:21]** [ Music ]

@@ -1,0 +1,1129 @@
+WEBVTT
+
+00:00:03.120 --> 00:00:03.780
+RAVISH PATEL: Hi, everyone.
+
+00:00:03.780 --> 00:00:07.200
+My name is Ravish and I
+work at PingCAP on TiDB
+
+00:00:07.200 --> 00:00:08.850
+as a solutions engineer.
+
+00:00:08.850 --> 00:00:12.270
+Over the next 20 minutes or
+so, I'm going to show you how
+
+00:00:12.270 --> 00:00:17.370
+to build agent memory for your
+AI agents using just SQL.
+
+00:00:17.370 --> 00:00:20.070
+There's also a demo halfway
+through, so hopefully,
+
+00:00:20.070 --> 00:00:22.960
+you stick around, and
+let's get started.
+
+00:00:25.980 --> 00:00:28.620
+Before we get into TiDB,
+real quick, I want to talk
+
+00:00:28.620 --> 00:00:31.830
+about why agents are different.
+
+00:00:31.830 --> 00:00:34.740
+It's because they hit a database
+in completely different ways
+
+00:00:34.740 --> 00:00:37.640
+than the apps you've
+worked on before.
+
+00:00:37.640 --> 00:00:39.390
+There are three big things.
+
+00:00:39.390 --> 00:00:42.510
+First, agent workloads
+are bursty, right?
+
+00:00:42.510 --> 00:00:45.600
+One agent might be running
+out flat for 10 seconds,
+
+00:00:45.600 --> 00:00:47.880
+and then the other one
+might be sitting idle
+
+00:00:47.880 --> 00:00:52.050
+for two hours doing nothing, and
+your database has to handle both
+
+00:00:52.050 --> 00:00:54.840
+without costing you
+a lot of money.
+
+00:00:54.840 --> 00:00:58.230
+Second is you're dealing
+with massive concurrency.
+
+00:00:58.230 --> 00:01:02.130
+It's not an app with a
+thousand users, but instead,
+
+00:01:02.130 --> 00:01:04.980
+you're running millions of
+agents at the same time
+
+00:01:04.980 --> 00:01:08.340
+and each with their own state.
+
+00:01:08.340 --> 00:01:11.700
+Third is constant
+context recall.
+
+00:01:11.700 --> 00:01:13.920
+Basically, every step
+the agent takes,
+
+00:01:13.920 --> 00:01:16.320
+it has to remember
+what just happened.
+
+00:01:16.320 --> 00:01:20.250
+Otherwise, the whole
+thing will fall apart.
+
+00:01:20.250 --> 00:01:23.520
+Those are the three things
+you can't really skip.
+
+00:01:23.520 --> 00:01:27.760
+Let me quickly show you what
+most teams end up doing today.
+
+00:01:32.160 --> 00:01:33.600
+Here's the situation.
+
+00:01:33.600 --> 00:01:36.960
+Let's say an agent finishes
+a chat with the user.
+
+00:01:36.960 --> 00:01:38.640
+The user comes back tomorrow,
+
+00:01:38.640 --> 00:01:41.970
+and the agent has no
+clue who the user is.
+
+00:01:41.970 --> 00:01:45.150
+It's like the conversation
+never happened.
+
+00:01:45.150 --> 00:01:47.640
+To fix that, what most teams end
+
+00:01:47.640 --> 00:01:51.750
+up doing is they run three
+different databases plus a bunch
+
+00:01:51.750 --> 00:01:56.070
+of ETL pipelines, and
+that's their memory layer.
+
+00:01:56.070 --> 00:01:59.370
+You've got your regular database
+for storing chat history,
+
+00:01:59.370 --> 00:02:02.130
+user accounts, that
+kind of stuff,
+
+00:02:02.130 --> 00:02:04.890
+and that's the source of truth.
+
+00:02:04.890 --> 00:02:07.980
+Then on top of that, you
+have a vector database
+
+00:02:07.980 --> 00:02:10.890
+for semantic search so
+you can store embeddings
+
+00:02:10.890 --> 00:02:13.530
+of whatever the user said.
+
+00:02:13.530 --> 00:02:16.320
+On top of that, you
+have a search engine
+
+00:02:16.320 --> 00:02:19.860
+because vectors are
+bad at exact matches.
+
+00:02:19.860 --> 00:02:23.130
+If the user said a word
+like, let's say, "Tokyo,"
+
+00:02:23.130 --> 00:02:24.750
+you want a keyword index
+
+00:02:24.750 --> 00:02:28.350
+to actually find
+that word, "Tokyo."
+
+00:02:28.350 --> 00:02:30.960
+Then there's the fourth piece
+nobody really talks about,
+
+00:02:30.960 --> 00:02:32.490
+which is the glue layer.
+
+00:02:32.490 --> 00:02:36.600
+That's your ETL jobs, your
+message buses, the client jobs,
+
+00:02:36.600 --> 00:02:40.530
+something to keep all three
+of these things in sync,
+
+00:02:40.530 --> 00:02:45.180
+and your team has to write
+and maintain that code.
+
+00:02:45.180 --> 00:02:48.450
+So now, you've got
+three databases to run,
+
+00:02:48.450 --> 00:02:50.910
+three separate builds
+from three databases,
+
+00:02:50.910 --> 00:02:54.240
+and three things that can break.
+
+00:02:54.240 --> 00:02:56.850
+On top of that, your
+data is never really
+
+00:02:56.850 --> 00:03:00.040
+in sync, so it's just a lot.
+
+00:03:03.210 --> 00:03:07.020
+Now, look, if you're building
+just a regular application,
+
+00:03:07.020 --> 00:03:09.210
+you can kind of sort
+of live with this.
+
+00:03:09.210 --> 00:03:12.270
+It's annoying, but I guess
+you can deal with it.
+
+00:03:12.270 --> 00:03:15.750
+However, with agents, though,
+this stack breaks in a bunch
+
+00:03:15.750 --> 00:03:17.850
+of ways, and here's why.
+
+00:03:17.850 --> 00:03:20.190
+The first one is stale data.
+
+00:03:20.190 --> 00:03:23.640
+Your vector index is always a
+few seconds behind your main
+
+00:03:23.640 --> 00:03:29.190
+database, so the agent ends up
+reading old data and old facts.
+
+00:03:29.190 --> 00:03:31.680
+Let's say a user updated
+their address an hour ago,
+
+00:03:31.680 --> 00:03:34.860
+but the agent is still
+using the old one.
+
+00:03:34.860 --> 00:03:37.890
+Then you've got the
+read-after-write problem.
+
+00:03:37.890 --> 00:03:41.520
+Say your agent just placed an
+order, and two seconds later,
+
+00:03:41.520 --> 00:03:44.670
+the user asks, "What is
+the status of my order?"
+
+00:03:44.670 --> 00:03:47.880
+and the agent says, "I
+don't see any orders."
+
+00:03:47.880 --> 00:03:53.010
+The write just happened, but the
+read side hasn't caught up yet.
+
+00:03:53.010 --> 00:03:55.860
+Then the third one
+is partial writes.
+
+00:03:55.860 --> 00:03:58.320
+Agent, let's say, does
+a multi-step thing,
+
+00:03:58.320 --> 00:04:00.300
+like processing a refund.
+
+00:04:00.300 --> 00:04:03.930
+It deducts the balance,
+logs the refund event,
+
+00:04:03.930 --> 00:04:07.470
+triggers some sort of an email.
+
+00:04:07.470 --> 00:04:10.830
+Now, midway through,
+the email service dies
+
+00:04:10.830 --> 00:04:14.400
+so the balance shows that
+the refund was applied.
+
+00:04:14.400 --> 00:04:16.890
+The log says that it happened,
+
+00:04:16.890 --> 00:04:19.230
+but the user never
+got the email.
+
+00:04:19.230 --> 00:04:22.710
+Then the user calls the support,
+and support sees the logs
+
+00:04:22.710 --> 00:04:24.330
+and says it looks fine,
+
+00:04:24.330 --> 00:04:28.260
+so you're stuck explaining
+a ghost refund.
+
+00:04:28.260 --> 00:04:32.280
+The last one is a connection
+fan out, so for example,
+
+00:04:32.280 --> 00:04:36.510
+let's say you have 10,000 agents
+times the three systems is
+
+00:04:36.510 --> 00:04:41.790
+basically 30,000 connections you
+need to maintain and manage.
+
+00:04:41.790 --> 00:04:44.610
+Your connection pools
+can basically keep
+
+00:04:44.610 --> 00:04:47.130
+up with those connections,
+so your latency goes
+
+00:04:47.130 --> 00:04:50.100
+up when the traffic
+spikes, and you spend half
+
+00:04:50.100 --> 00:04:52.770
+of your time managing
+connections instead
+
+00:04:52.770 --> 00:04:54.880
+of building features.
+
+00:04:56.070 --> 00:05:00.630
+Look, this is all not just
+theory or hypothetical.
+
+00:05:00.630 --> 00:05:04.530
+This stuff actually happens in
+production, and you only run
+
+00:05:04.530 --> 00:05:06.570
+into it once you're at scale,
+
+00:05:06.570 --> 00:05:10.210
+which is the worst possible
+time for it to happen.
+
+00:05:13.620 --> 00:05:15.990
+That's where TiDB
+comes into play.
+
+00:05:15.990 --> 00:05:18.480
+Real quick, in case you
+haven't heard of TiDB before,
+
+00:05:18.480 --> 00:05:20.310
+here's a quick summary.
+
+00:05:20.310 --> 00:05:22.980
+So first, it is a
+distributed SQL database,
+
+00:05:22.980 --> 00:05:25.860
+so it can scale
+horizontally across nodes,
+
+00:05:25.860 --> 00:05:28.140
+so no sharding, no rewrites.
+
+00:05:28.140 --> 00:05:32.310
+You just add nodes and
+capacity whenever you need it.
+
+00:05:32.310 --> 00:05:34.560
+Second, it is MySQL compatible.
+
+00:05:34.560 --> 00:05:38.100
+Any drivers you have, any
+ORM, any tools you're using
+
+00:05:38.100 --> 00:05:42.330
+with MySQL, it works
+with TiDB as well.
+
+00:05:42.330 --> 00:05:47.310
+Third is it has an HTAP and an
+AI engine, so transactions,
+
+00:05:47.310 --> 00:05:49.470
+analytics, vector search,
+
+00:05:49.470 --> 00:05:54.510
+and full-text search all
+live in the same database.
+
+00:05:54.510 --> 00:05:58.410
+Fourth, it's used in production
+by many of our customers
+
+00:05:58.410 --> 00:06:03.840
+like Manus, Pinterest,
+Dify, and a lot of others.
+
+00:06:03.840 --> 00:06:07.290
+That's basically a quick
+overview of what TiDB is.
+
+00:06:07.290 --> 00:06:10.540
+Now let's go ahead and get
+into the capabilities.
+
+00:06:13.680 --> 00:06:14.220
+All right.
+
+00:06:14.220 --> 00:06:18.000
+Here's what TiDB
+gives your agents.
+
+00:06:18.000 --> 00:06:21.270
+The first three rows fix
+the three data problems
+
+00:06:21.270 --> 00:06:24.990
+that we just talked about,
+and the last two are extras
+
+00:06:24.990 --> 00:06:27.840
+that kind of just
+make your life easier
+
+00:06:27.840 --> 00:06:29.880
+when you're building agents.
+
+00:06:29.880 --> 00:06:33.120
+The first one is agent
+state and chat history.
+
+00:06:33.120 --> 00:06:35.220
+That's just normal SQL.
+
+00:06:35.220 --> 00:06:37.320
+Next up, we have
+semantic recall,
+
+00:06:37.320 --> 00:06:41.580
+which is a vector column
+with an HLSW index.
+
+00:06:41.580 --> 00:06:45.390
+Next is keyword search,
+which is a full-text index
+
+00:06:45.390 --> 00:06:49.800
+with a multilingual parser, so
+it can handle English, Spanish,
+
+00:06:49.800 --> 00:06:52.950
+Japanese, whatever
+you throw at it.
+
+00:06:52.950 --> 00:06:56.460
+Then we have embeddings
+on insert, which is nice.
+
+00:06:56.460 --> 00:07:01.020
+There's actually a SQL function
+called, "embed underscore text,"
+
+00:07:01.020 --> 00:07:03.300
+which basically you
+can give it some text
+
+00:07:03.300 --> 00:07:05.160
+and it will call
+the embedding model
+
+00:07:05.160 --> 00:07:09.270
+and it will store the vector
+for you in the table.
+
+00:07:09.270 --> 00:07:11.580
+The last one is
+hybrid retrieval,
+
+00:07:11.580 --> 00:07:14.820
+so you can run a vector
+search and on top of that,
+
+00:07:14.820 --> 00:07:18.240
+you can run a keyword search
+and then you can combine them
+
+00:07:18.240 --> 00:07:21.220
+with some sort of
+ranking algorithm.
+
+00:07:22.230 --> 00:07:24.690
+We're going to see all
+of this during the demo
+
+00:07:24.690 --> 00:07:26.620
+in just a second.
+
+00:07:29.130 --> 00:07:33.630
+Now, just one more slide and
+then we'll get into the demo.
+
+00:07:33.630 --> 00:07:35.670
+This goes back to what
+I said at the start
+
+00:07:35.670 --> 00:07:39.240
+about agents having different
+needs from a database.
+
+00:07:39.240 --> 00:07:43.530
+The first thing you get from
+TiDB is you get scale to zero.
+
+00:07:43.530 --> 00:07:45.780
+If you have idle agents,
+
+00:07:45.780 --> 00:07:48.090
+they literally don't
+cost you anything.
+
+00:07:48.090 --> 00:07:51.420
+You're only paying for the
+requests you actually run
+
+00:07:51.420 --> 00:07:57.030
+so when your traffic is bursty,
+your bill is bursty too.
+
+00:07:57.030 --> 00:07:59.280
+Then you get database branching.
+
+00:07:59.280 --> 00:08:02.520
+You can spin up an isolated
+database per agent
+
+00:08:02.520 --> 00:08:04.860
+in just a few milliseconds.
+
+00:08:04.860 --> 00:08:07.830
+Every agent gets
+its own workspace,
+
+00:08:07.830 --> 00:08:11.280
+totally separated
+from everyone else.
+
+00:08:11.280 --> 00:08:13.530
+Third is resource control
+
+00:08:13.530 --> 00:08:17.070
+so you can cap how much
+each workload uses,
+
+00:08:17.070 --> 00:08:20.160
+so if one agent
+goes off the rail,
+
+00:08:20.160 --> 00:08:23.520
+it doesn't take down
+everything else.
+
+00:08:23.520 --> 00:08:26.100
+The last one is fast scale out.
+
+00:08:26.100 --> 00:08:29.400
+Compute and storage
+are separated in TiDB,
+
+00:08:29.400 --> 00:08:33.060
+so when the traffic spikes,
+the database can add capacity
+
+00:08:33.060 --> 00:08:36.280
+in seconds instead of minutes.
+
+00:08:37.760 --> 00:08:39.350
+Okay, that's enough slides.
+
+00:08:39.350 --> 00:08:43.160
+Let me show you in the database.
+
+00:08:43.160 --> 00:08:47.520
+Okay. In Demo 1, we're going
+to create the memory table.
+
+00:08:50.820 --> 00:08:54.990
+Okay. Here we are in the SQL
+editor on a free TiDB cluster,
+
+00:08:54.990 --> 00:08:58.410
+and I'm going to run the
+whole demo on just one table.
+
+00:08:58.410 --> 00:09:01.770
+So up top, you see normal
+columns like a user ID,
+
+00:09:01.770 --> 00:09:06.270
+just a regular ID,
+content, a timestamp.
+
+00:09:06.270 --> 00:09:09.440
+The interesting one, however,
+is the embedding column.
+
+00:09:09.440 --> 00:09:13.280
+It's a vector with
+1,536 dimensions,
+
+00:09:13.280 --> 00:09:15.710
+and it is a generated column.
+
+00:09:15.710 --> 00:09:18.420
+Every time a row gets inserted,
+
+00:09:18.420 --> 00:09:21.720
+TiDB calls the function
+called embed underscore text,
+
+00:09:21.720 --> 00:09:25.200
+which is pointed at my
+Azure Open API deployment,
+
+00:09:25.200 --> 00:09:28.260
+and it generates the
+embedding and stores it,
+
+00:09:28.260 --> 00:09:30.810
+no Python, no pipeline.
+
+00:09:30.810 --> 00:09:33.510
+Plus, at the end, you also
+see there's a vector index
+
+00:09:33.510 --> 00:09:37.770
+for semantic search and a full
+text index for keyword search,
+
+00:09:37.770 --> 00:09:39.510
+both on the same table.
+
+00:09:39.510 --> 00:09:42.970
+As you can see, the
+table is created.
+
+00:09:45.780 --> 00:09:48.960
+The step #2 for the demo
+is inserting memories
+
+00:09:48.960 --> 00:09:51.040
+and seeing the data.
+
+00:09:55.320 --> 00:09:59.520
+Now, I'm going to drop the
+five memories for user ID 42.
+
+00:09:59.520 --> 00:10:03.000
+As you can see, they are
+plain English strings,
+
+00:10:03.000 --> 00:10:05.490
+no embedding code in
+my script anywhere,
+
+00:10:05.490 --> 00:10:09.420
+but TiDB is calling the Azure
+Open API in the background
+
+00:10:09.420 --> 00:10:12.420
+to generate the embeddings.
+
+00:10:12.420 --> 00:10:16.230
+There they are, so you see
+five rows for "Jazz," "Vinyl,"
+
+00:10:16.230 --> 00:10:20.250
+"Peanut Allergy," "Tokyo
+Flight," "Email Preference,"
+
+00:10:20.250 --> 00:10:23.400
+and yeah, that's our data
+set that we're going to use
+
+00:10:23.400 --> 00:10:25.840
+for the rest of the demo.
+
+00:10:31.680 --> 00:10:35.620
+Step #3 is going to
+be semantic search.
+
+00:10:38.580 --> 00:10:41.280
+So here, the agent is
+asking, let's say,
+
+00:10:41.280 --> 00:10:43.860
+what does the user
+like to listen to?
+
+00:10:43.860 --> 00:10:46.800
+So notice, my question doesn't
+share a single keyword
+
+00:10:46.800 --> 00:10:48.840
+with anything in the database.
+
+00:10:48.840 --> 00:10:54.270
+There's no listen, no like,
+just Jazz and Miles Davis,
+
+00:10:54.270 --> 00:10:58.500
+but as you can see, the
+jazz row comes back first,
+
+00:10:58.500 --> 00:11:02.310
+and you can see the
+distance is 0.49.
+
+00:11:02.310 --> 00:11:05.040
+That's the closest
+batch by meaning,
+
+00:11:05.040 --> 00:11:08.640
+so TiDB took my English
+question, embedded it,
+
+00:11:08.640 --> 00:11:14.230
+and ranked the rows by
+similarity, all in one SQL call.
+
+00:11:16.740 --> 00:11:19.750
+Step #4 is keyword search.
+
+00:11:22.980 --> 00:11:27.210
+Now, sometimes you want exact
+word matching instead, you know,
+
+00:11:27.210 --> 00:11:30.240
+so vectors are kind
+of bad at that.
+
+00:11:30.240 --> 00:11:32.610
+Here, we're using a full
+text search to check
+
+00:11:32.610 --> 00:11:37.950
+if the user mentioned a city,
+and once we execute the query,
+
+00:11:37.950 --> 00:11:40.800
+you can see there will
+be a row, the Tokyo row,
+
+00:11:40.800 --> 00:11:42.480
+which is the exact match.
+
+00:11:42.480 --> 00:11:46.650
+Then you can also see
+the score of 1.34.
+
+00:11:46.650 --> 00:11:51.210
+The big thing here is this is
+the same table I just did vector
+
+00:11:51.210 --> 00:11:55.840
+search on, no separate engine,
+to keep everything in sync.
+
+00:11:57.930 --> 00:12:01.030
+Step #5 is hybrid search.
+
+00:12:04.110 --> 00:12:06.300
+So, okay, I guess this
+one really matters,
+
+00:12:06.300 --> 00:12:10.320
+so real hybrid search
+isn't just one query.
+
+00:12:10.320 --> 00:12:15.090
+It basically is two searches
+plus a ranking step on top,
+
+00:12:15.090 --> 00:12:18.960
+so what's happening here is
+the first common expression is
+
+00:12:18.960 --> 00:12:21.660
+running a vector search,
+grabbing the top 10 rows
+
+00:12:21.660 --> 00:12:25.020
+by meaning, and the second
+common table expression is
+
+00:12:25.020 --> 00:12:26.490
+running a keyword search,
+
+00:12:26.490 --> 00:12:29.250
+grabbing the top 10
+by exact word match.
+
+00:12:29.250 --> 00:12:33.960
+Then we're combining them using
+something called reciprocal rank
+
+00:12:33.960 --> 00:12:36.510
+fusion or RRF.
+
+00:12:36.510 --> 00:12:38.370
+The data is super simple.
+
+00:12:38.370 --> 00:12:43.350
+Rows that rank high in
+both lists basically win,
+
+00:12:43.350 --> 00:12:46.680
+so I'm asking what dietary
+restrictions the user has.
+
+00:12:46.680 --> 00:12:49.170
+The vector is looking
+for the meaning.
+
+00:12:49.170 --> 00:12:52.290
+Keyword is looking for the words
+like "allergy" and "peanut,"
+
+00:12:52.290 --> 00:12:55.620
+and as you can see, the peanut
+allergy row comes first
+
+00:12:55.620 --> 00:13:00.000
+because it's scored well in both
+of these searches, the vector
+
+00:13:00.000 --> 00:13:02.550
+and the keyword search.
+
+00:13:02.550 --> 00:13:06.030
+One query, one database,
+no separate engines
+
+00:13:06.030 --> 00:13:08.410
+to keep everything in sync.
+
+00:13:10.440 --> 00:13:11.610
+The last one is going
+
+00:13:11.610 --> 00:13:14.980
+to be asset transactions
+across tables.
+
+00:13:16.920 --> 00:13:21.060
+So real agents, as we know, do
+multi-step writes that have
+
+00:13:21.060 --> 00:13:24.390
+to land together, and
+there are two tables here.
+
+00:13:24.390 --> 00:13:26.760
+So there's a memory table
+you've been seeing,
+
+00:13:26.760 --> 00:13:29.490
+and there's also a
+separate user facts table
+
+00:13:29.490 --> 00:13:33.330
+where we track aggregate stats
+per user, like their trips
+
+00:13:33.330 --> 00:13:35.760
+and their memory count.
+
+00:13:35.760 --> 00:13:38.610
+Now, what's happening here is
+I'm wrapping a transaction
+
+00:13:38.610 --> 00:13:42.120
+around two writes,
+insert into memories,
+
+00:13:42.120 --> 00:13:45.540
+update the user facts
+table, and then commit.
+
+00:13:45.540 --> 00:13:48.450
+As you can see, the new
+memory is in the memories,
+
+00:13:48.450 --> 00:13:51.630
+and trip counters
+went from 0 to 1
+
+00:13:51.630 --> 00:13:55.230
+and memory counter went
+from 0 to 1 as well.
+
+00:13:55.230 --> 00:13:58.770
+Both writes landed together,
+and if either one had failed,
+
+00:13:58.770 --> 00:14:00.480
+neither would have stuck.
+
+00:14:00.480 --> 00:14:04.810
+That's real distributed asset
+across multiple tables.
+
+00:14:07.470 --> 00:14:09.090
+Okay, so that was
+the whole demo.
+
+00:14:09.090 --> 00:14:12.630
+Now let me close out with a few
+companies actually running TiDB
+
+00:14:12.630 --> 00:14:14.040
+in production.
+
+00:14:14.040 --> 00:14:17.910
+These are real numbers
+and not just benchmarks.
+
+00:14:17.910 --> 00:14:19.680
+The first one is Manus.
+
+00:14:19.680 --> 00:14:21.750
+They are an AI startup company,
+
+00:14:21.750 --> 00:14:24.750
+and every agent gets
+its own database spun
+
+00:14:24.750 --> 00:14:26.850
+up in milliseconds.
+
+00:14:26.850 --> 00:14:29.580
+Over a million and a half
+of these agents right now,
+
+00:14:29.580 --> 00:14:35.280
+and they moved over to TiDB and
+got to production in two weeks.
+
+00:14:35.280 --> 00:14:36.600
+Then we have Dify.
+
+00:14:36.600 --> 00:14:40.770
+They are an AI dev platform
+company and their backend used
+
+00:14:40.770 --> 00:14:46.710
+to be a 500,000 containers, and
+they moved all of it onto TiDB.
+
+00:14:46.710 --> 00:14:51.000
+Now they just have one
+engine that does everything,
+
+00:14:51.000 --> 00:14:52.710
+and then we also have Pinterest.
+
+00:14:52.710 --> 00:14:54.690
+I mean, they are
+not an AI company,
+
+00:14:54.690 --> 00:14:57.210
+but the problem they
+had was very similar.
+
+00:14:57.210 --> 00:15:00.690
+They had six different databases
+systems doing different jobs.
+
+00:15:00.690 --> 00:15:05.070
+Now they'll have only one, which
+is TiDB, and TiDB is doing,
+
+00:15:05.070 --> 00:15:10.000
+basically, 1.3 million queries
+per second for Pinterest.
+
+00:15:11.070 --> 00:15:14.220
+Across all three, the story
+is basically the same.
+
+00:15:14.220 --> 00:15:16.710
+You have less stuff, more speed,
+
+00:15:16.710 --> 00:15:21.640
+and engineers building product
+instead of patching pipelines.
+
+00:15:24.030 --> 00:15:26.370
+Just a quick recap
+before I wrap up.
+
+00:15:26.370 --> 00:15:29.640
+With TiDB, you get
+auto-embeddings on inserts,
+
+00:15:29.640 --> 00:15:31.440
+no more Python pipelines.
+
+00:15:31.440 --> 00:15:33.660
+You get vector,
+full text search,
+
+00:15:33.660 --> 00:15:35.850
+and SQL all on the same table,
+
+00:15:35.850 --> 00:15:38.520
+so you've got one
+source of truth.
+
+00:15:38.520 --> 00:15:42.090
+You also get hybrid
+search the right way,
+
+00:15:42.090 --> 00:15:45.360
+two searches with RRF on top.
+
+00:15:45.360 --> 00:15:47.880
+The whole engine is
+built for how, actually,
+
+00:15:47.880 --> 00:15:53.100
+agents run with branching, scale
+to zero, and resource control.
+
+00:15:53.100 --> 00:15:56.970
+The best part is you can spin up
+a free cluster in 30 seconds,
+
+00:15:56.970 --> 00:16:00.190
+and it can scale to
+millions of agents.
+
+00:16:01.980 --> 00:16:02.460
+All right.
+
+00:16:02.460 --> 00:16:04.620
+If you want to try this,
+here's where to go.
+
+00:16:04.620 --> 00:16:08.580
+You go to TiDB.com,
+which is the main one.
+
+00:16:08.580 --> 00:16:12.450
+You can spin up a free TiDB
+starter cluster, no credit card,
+
+00:16:12.450 --> 00:16:16.080
+and your cluster is going to
+be ready within 30 seconds.
+
+00:16:16.080 --> 00:16:19.410
+TiDB also has a native
+Azure Open AI integration,
+
+00:16:19.410 --> 00:16:24.270
+so you can very easily integrate
+your Azure deployment.
+
+00:16:24.270 --> 00:16:27.120
+For agent patterns and the
+customer stories I just talked
+
+00:16:27.120 --> 00:16:32.020
+about, you can go to
+pinkhat.com/ai/agenticai.
+
+00:16:33.900 --> 00:16:37.410
+Now, if you are a Python
+developer, we have a Python SDK,
+
+00:16:37.410 --> 00:16:41.400
+which you can install by
+doing "pip install pytidb,
+
+00:16:41.400 --> 00:16:46.950
+and that gets you hybrid
+search and RRF in three lines.
+
+00:16:46.950 --> 00:16:51.060
+For cursor and Claude users,
+we do have an MCP server
+
+00:16:51.060 --> 00:16:56.250
+and a bunch of agent rules on
+github.com/pinkapp/ agentrules,
+
+00:16:56.250 --> 00:17:01.620
+so you can drop TiDB directly
+into your AI coding workflow.
+
+00:17:01.620 --> 00:17:04.050
+That's pretty much all I have,
+so thank you all so much
+
+00:17:04.050 --> 00:17:07.740
+for watching and go build
+something cool with TiDB
+
+00:17:07.740 --> 00:17:11.980
+and stop running three databases
+when you only need one.

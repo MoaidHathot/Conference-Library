@@ -1,0 +1,3185 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.8066020011901855
+
+00:00:03.880 --> 00:00:04.600
+Hi everybody.
+
+NOTE Confidence: 0.8553980588912964
+
+00:00:05.040 --> 00:00:05.920
+How's everyone doing?
+
+NOTE Confidence: 0.8511769771575928
+
+00:00:06.480 --> 00:00:09.280
+Hey guys, doing well.
+
+NOTE Confidence: 0.8423368334770203
+
+00:00:09.280 --> 00:00:10.800
+Oh my God, ready for dinner I feel like.
+
+NOTE Confidence: 0.9170445799827576
+
+00:00:11.280 --> 00:00:12.360
+Yeah, it's a long day.
+
+NOTE Confidence: 0.776454746723175
+
+00:00:13.120 --> 00:00:13.360
+OK.
+
+NOTE Confidence: 0.8476084470748901
+
+00:00:13.440 --> 00:00:16.648
+So our session is about how to build Windows applications
+
+NOTE Confidence: 0.8476084470748901
+
+00:00:16.704 --> 00:00:19.687
+with Copilot or with clock code using agents, as well
+
+NOTE Confidence: 0.8476084470748901
+
+00:00:19.743 --> 00:00:22.670
+as how to use AI inside of your applications running
+
+NOTE Confidence: 0.8476084470748901
+
+00:00:22.727 --> 00:00:25.653
+on on Windows and using the Windows platform APIs to
+
+NOTE Confidence: 0.8476084470748901
+
+00:00:25.710 --> 00:00:28.749
+make your applications real to leverage a lot of these
+
+NOTE Confidence: 0.8476084470748901
+
+00:00:28.805 --> 00:00:29.199
+things.
+
+NOTE Confidence: 0.6092242002487183
+
+00:00:29.600 --> 00:00:29.880
+That's right.
+
+NOTE Confidence: 0.8094636797904968
+
+00:00:29.880 --> 00:00:32.000
+We're going to stay outside of PowerPoint.
+
+NOTE Confidence: 0.9550569653511047
+
+00:00:32.080 --> 00:00:33.040
+I hope that's OK.
+
+NOTE Confidence: 0.8083751201629639
+
+00:00:33.520 --> 00:00:34.840
+We're going to be doing mostly demos.
+
+NOTE Confidence: 0.790678858757019
+
+00:00:34.880 --> 00:00:37.160
+We'll be staying mostly in the terminal here.
+
+NOTE Confidence: 0.9409544467926025
+
+00:00:37.440 --> 00:00:37.880
+Is that OK?
+
+NOTE Confidence: 0.8686926364898682
+
+00:00:38.160 --> 00:00:38.560
+Yeah, of course.
+
+NOTE Confidence: 0.5427611470222473
+
+00:00:38.560 --> 00:00:39.040
+You're fine with that?
+
+NOTE Confidence: 0.5707964897155762
+
+00:00:39.080 --> 00:00:39.360
+Go ahead.
+
+NOTE Confidence: 0.6476635932922363
+
+00:00:39.360 --> 00:00:39.480
+Yeah.
+
+NOTE Confidence: 0.865542471408844
+
+00:00:39.479 --> 00:00:40.970
+I'm good, I'm a developer, he's a PM, so I
+
+NOTE Confidence: 0.865542471408844
+
+00:00:41.005 --> 00:00:41.680
+have to check with.
+
+NOTE Confidence: 0.6539624333381653
+
+00:00:41.680 --> 00:00:41.920
+The PM.
+
+NOTE Confidence: 0.7981242537498474
+
+00:00:41.920 --> 00:00:44.522
+I'm not used to a presentation without a deck, but
+
+NOTE Confidence: 0.7981242537498474
+
+00:00:44.574 --> 00:00:45.720
+I'll get used to that.
+
+NOTE Confidence: 0.8696661591529846
+
+00:00:46.640 --> 00:00:50.080
+So I work on skills and agents.
+
+NOTE Confidence: 0.9679517149925232
+
+00:00:50.320 --> 00:00:51.000
+What do you work on?
+
+NOTE Confidence: 0.8615519404411316
+
+00:00:51.280 --> 00:00:53.000
+I work on Windows AI platforms.
+
+NOTE Confidence: 0.7475763559341431
+
+00:00:53.479 --> 00:00:55.491
+We'll go figure out how to use AI as well
+
+NOTE Confidence: 0.7475763559341431
+
+00:00:55.540 --> 00:00:56.080
+as with AI.
+
+NOTE Confidence: 0.67366623878479
+
+00:00:56.080 --> 00:00:56.400
+There you go.
+
+NOTE Confidence: 0.7908594608306885
+
+00:00:57.040 --> 00:00:58.000
+So we have everything covered.
+
+NOTE Confidence: 0.7784005999565125
+
+00:00:58.000 --> 00:00:59.919
+So you have any questions after the fact come by
+
+NOTE Confidence: 0.7784005999565125
+
+00:00:59.959 --> 00:01:01.279
+and then we'll have a lot of fun.
+
+NOTE Confidence: 0.8936325311660767
+
+00:01:01.960 --> 00:01:04.068
+So First things first, I'm going to show you an
+
+NOTE Confidence: 0.8936325311660767
+
+00:01:04.113 --> 00:01:05.279
+application that we built.
+
+NOTE Confidence: 0.8737350702285767
+
+00:01:05.520 --> 00:01:09.224
+This is a sample application that we used GitHub Copilot
+
+NOTE Confidence: 0.8737350702285767
+
+00:01:09.290 --> 00:01:12.400
+and some of our skills to build it for Windows.
+
+NOTE Confidence: 0.8299118876457214
+
+00:01:12.520 --> 00:01:14.080
+It's all built with Win UI.
+
+NOTE Confidence: 0.8858706951141357
+
+00:01:14.640 --> 00:01:16.666
+And the idea here is that you can take a
+
+NOTE Confidence: 0.8858706951141357
+
+00:01:16.716 --> 00:01:19.350
+media file, let's say you're a YouTube, and you want
+
+NOTE Confidence: 0.8858706951141357
+
+00:01:19.401 --> 00:01:21.883
+to do some processing on your file before you can
+
+NOTE Confidence: 0.8858706951141357
+
+00:01:21.934 --> 00:01:24.720
+upload it to YouTube or whatever platform you're using.
+
+NOTE Confidence: 0.9033467173576355
+
+00:01:25.240 --> 00:01:27.682
+You might want to do things like generating transcripts, You
+
+NOTE Confidence: 0.9033467173576355
+
+00:01:27.723 --> 00:01:29.839
+might want to do things like generating the summary.
+
+NOTE Confidence: 0.8492767214775085
+
+00:01:30.240 --> 00:01:32.522
+You might want to do things like, hey, I want
+
+NOTE Confidence: 0.8492767214775085
+
+00:01:32.572 --> 00:01:35.210
+to burn the captions into my video or whatever types
+
+NOTE Confidence: 0.8492767214775085
+
+00:01:35.260 --> 00:01:37.644
+of effects or processes you might want to do as
+
+NOTE Confidence: 0.8492767214775085
+
+00:01:37.695 --> 00:01:38.760
+part of your process.
+
+NOTE Confidence: 0.8373764157295227
+
+00:01:39.200 --> 00:01:41.634
+So we've built this application to be able to handle
+
+NOTE Confidence: 0.8373764157295227
+
+00:01:41.681 --> 00:01:43.320
+those type of things fully offline.
+
+NOTE Confidence: 0.7580594420433044
+
+00:01:43.360 --> 00:01:46.851
+So it's using things like AI models, it's using things
+
+NOTE Confidence: 0.7580594420433044
+
+00:01:46.916 --> 00:01:48.080
+like fondue local.
+
+NOTE Confidence: 0.6396527290344238
+
+00:01:48.360 --> 00:01:49.320
+What are the things that we're using?
+
+NOTE Confidence: 0.7592624425888062
+
+00:01:49.320 --> 00:01:51.560
+In here, yeah, I can see myself using that actually.
+
+NOTE Confidence: 0.8553845882415771
+
+00:01:51.560 --> 00:01:53.277
+Yeah, you just did some name drop there, so I'll
+
+NOTE Confidence: 0.8553845882415771
+
+00:01:53.313 --> 00:01:54.279
+just explain it real quick.
+
+NOTE Confidence: 0.8283029794692993
+
+00:01:54.520 --> 00:01:57.582
+I mean, Foundry, local, Microsoft Foundry on Windows, those are
+
+NOTE Confidence: 0.8283029794692993
+
+00:01:57.631 --> 00:01:59.770
+the names for stuff that we offer as part of
+
+NOTE Confidence: 0.8283029794692993
+
+00:01:59.819 --> 00:02:00.840
+the Windows AI stack.
+
+NOTE Confidence: 0.8507368564605713
+
+00:02:01.320 --> 00:02:03.706
+So all we're really trying to do here is whether
+
+NOTE Confidence: 0.8507368564605713
+
+00:02:03.756 --> 00:02:06.988
+you're bringing your own model, whether you're looking for models
+
+NOTE Confidence: 0.8507368564605713
+
+00:02:07.038 --> 00:02:09.972
+on Hugging Face or use some of these primitives, primitives
+
+NOTE Confidence: 0.8507368564605713
+
+00:02:10.021 --> 00:02:12.159
+that we provide as part of the Windows SDK.
+
+NOTE Confidence: 0.8885589241981506
+
+00:02:12.360 --> 00:02:14.934
+We're trying to make it easy for you to effectively
+
+NOTE Confidence: 0.8885589241981506
+
+00:02:14.984 --> 00:02:16.599
+run AI models on Windows, right?
+
+NOTE Confidence: 0.8038476705551147
+
+00:02:17.800 --> 00:02:21.249
+So for example, here we're using Whisper for for transcription
+
+NOTE Confidence: 0.8038476705551147
+
+00:02:21.304 --> 00:02:22.639
+runs completely offline.
+
+NOTE Confidence: 0.7890216112136841
+
+00:02:22.960 --> 00:02:26.418
+Here we're using Foundry local, we're using the Quen the
+
+NOTE Confidence: 0.7890216112136841
+
+00:02:26.480 --> 00:02:27.160
+what is it?
+
+NOTE Confidence: 0.7723283767700195
+
+00:02:27.160 --> 00:02:29.400
+A three 14 billion parameter.
+
+NOTE Confidence: 0.8896886110305786
+
+00:02:29.640 --> 00:02:31.560
+This is a razor blade device.
+
+NOTE Confidence: 0.810436487197876
+
+00:02:31.680 --> 00:02:34.130
+It comes with a really nice GPU, I think a
+
+NOTE Confidence: 0.810436487197876
+
+00:02:34.188 --> 00:02:34.480
+5080.
+
+NOTE Confidence: 0.6126117706298828
+
+00:02:34.720 --> 00:02:35.000
+That's right.
+
+NOTE Confidence: 0.7735300064086914
+
+00:02:35.000 --> 00:02:37.600
+You can run this 14 billion model on here.
+
+NOTE Confidence: 0.6749405264854431
+
+00:02:37.600 --> 00:02:37.840
+You can.
+
+NOTE Confidence: 0.7976506352424622
+
+00:02:38.040 --> 00:02:40.600
+You can generate this completely offline as part of that.
+
+NOTE Confidence: 0.8467217683792114
+
+00:02:41.080 --> 00:02:42.280
+Well, let's be honest, how?
+
+NOTE Confidence: 0.8644440174102783
+
+00:02:42.280 --> 00:02:43.883
+How long did it take for you to build this
+
+NOTE Confidence: 0.8644440174102783
+
+00:02:43.921 --> 00:02:44.799
+this app though, right?
+
+NOTE Confidence: 0.8583815693855286
+
+00:02:45.120 --> 00:02:47.535
+So we started about a month ago, but All in
+
+NOTE Confidence: 0.8583815693855286
+
+00:02:47.591 --> 00:02:50.512
+all completely I've been working on this about a day
+
+NOTE Confidence: 0.8583815693855286
+
+00:02:50.568 --> 00:02:53.039
+full of working on this all through Copilot.
+
+NOTE Confidence: 0.9493056535720825
+
+00:02:53.440 --> 00:02:55.514
+We have not looked at the code for this application
+
+NOTE Confidence: 0.9493056535720825
+
+00:02:55.555 --> 00:02:55.840
+at all.
+
+NOTE Confidence: 0.7535588145256042
+
+00:02:55.840 --> 00:02:58.560
+It's only be done with Copilot 100%.
+
+NOTE Confidence: 0.6300254464149475
+
+00:02:58.800 --> 00:02:59.960
+So you see a lie the whole time.
+
+NOTE Confidence: 0.8663491010665894
+
+00:03:00.240 --> 00:03:02.320
+I think we threw out the UI like 4 times.
+
+NOTE Confidence: 0.8415098190307617
+
+00:03:02.320 --> 00:03:04.349
+We started like OK that doesn't look like let's change
+
+NOTE Confidence: 0.8415098190307617
+
+00:03:04.386 --> 00:03:04.799
+it to this.
+
+NOTE Confidence: 0.8122937083244324
+
+00:03:04.800 --> 00:03:06.520
+Let's try a Jupiter type look.
+
+NOTE Confidence: 0.8928754925727844
+
+00:03:06.800 --> 00:03:08.560
+We're just experimenting and trying things out.
+
+NOTE Confidence: 0.8356925845146179
+
+00:03:09.919 --> 00:03:11.601
+What I want to do for the rest of the
+
+NOTE Confidence: 0.8356925845146179
+
+00:03:11.647 --> 00:03:14.010
+session is show you the tooling that copilot uses to
+
+NOTE Confidence: 0.8356925845146179
+
+00:03:14.056 --> 00:03:16.374
+build applications like this and how we can how you
+
+NOTE Confidence: 0.8356925845146179
+
+00:03:16.419 --> 00:03:17.919
+can use the same things yourself.
+
+NOTE Confidence: 0.7880862355232239
+
+00:03:17.960 --> 00:03:20.120
+So First things first here.
+
+NOTE Confidence: 0.5761889219284058
+
+00:03:20.120 --> 00:03:22.040
+Admin copilot, GitHub copilot.
+
+NOTE Confidence: 0.6844202876091003
+
+00:03:22.560 --> 00:03:25.840
+We have a plug in installed called Win UI.
+
+NOTE Confidence: 0.745975136756897
+
+00:03:26.240 --> 00:03:28.393
+So if I do a plug in list you can
+
+NOTE Confidence: 0.745975136756897
+
+00:03:28.458 --> 00:03:31.526
+see here we have the Win UI plugin installed on
+
+NOTE Confidence: 0.745975136756897
+
+00:03:31.591 --> 00:03:32.440
+here copilot.
+
+NOTE Confidence: 0.7338685989379883
+
+00:03:32.480 --> 00:03:35.695
+You can install it yourself quickly through just plugin install
+
+NOTE Confidence: 0.7338685989379883
+
+00:03:35.746 --> 00:03:36.919
+Win UI Awesome Copilot.
+
+NOTE Confidence: 0.8414638638496399
+
+00:03:37.240 --> 00:03:37.920
+That's coming here.
+
+NOTE Confidence: 0.8705859780311584
+
+00:03:37.920 --> 00:03:39.500
+What's awesome Copilot by the way, Can you tell me
+
+NOTE Confidence: 0.8705859780311584
+
+00:03:39.532 --> 00:03:39.879
+real quick?
+
+NOTE Confidence: 0.7652544975280762
+
+00:03:40.120 --> 00:03:40.520
+Yeah, awesome.
+
+NOTE Confidence: 0.7793434858322144
+
+00:03:40.520 --> 00:03:42.823
+Copilot is just a repository of all the plugins and
+
+NOTE Confidence: 0.7793434858322144
+
+00:03:42.868 --> 00:03:44.719
+skills and things you can do for Copilot.
+
+NOTE Confidence: 0.8071252107620239
+
+00:03:44.960 --> 00:03:46.600
+You can download a bunch of different ones.
+
+NOTE Confidence: 0.6416711807250977
+
+00:03:46.720 --> 00:03:47.040
+Very cool.
+
+NOTE Confidence: 0.8283008337020874
+
+00:03:47.040 --> 00:03:48.943
+If you want to learn more about this one, you
+
+NOTE Confidence: 0.8283008337020874
+
+00:03:48.986 --> 00:03:50.678
+can just go to our repo here and we have
+
+NOTE Confidence: 0.8283008337020874
+
+00:03:50.720 --> 00:03:52.497
+links at the end where you can go and take
+
+NOTE Confidence: 0.8283008337020874
+
+00:03:52.540 --> 00:03:53.640
+a picture of that as well.
+
+NOTE Confidence: 0.8245745301246643
+
+00:03:54.320 --> 00:03:56.184
+But when it comes, once you install it, it comes
+
+NOTE Confidence: 0.8245745301246643
+
+00:03:56.223 --> 00:03:57.000
+with several skills.
+
+NOTE Confidence: 0.774477481842041
+
+00:03:57.800 --> 00:04:00.080
+Like for example, I'll do skills list here.
+
+NOTE Confidence: 0.8976708650588989
+
+00:04:01.000 --> 00:04:02.806
+And you can see here we have all these Win
+
+NOTE Confidence: 0.8976708650588989
+
+00:04:02.849 --> 00:04:03.280
+UI skills.
+
+NOTE Confidence: 0.8232918977737427
+
+00:04:03.280 --> 00:04:04.600
+Let me do just skills.
+
+NOTE Confidence: 0.7240661382675171
+
+00:04:04.600 --> 00:04:05.800
+It's going to do a better list.
+
+NOTE Confidence: 0.725020706653595
+
+00:04:07.360 --> 00:04:08.880
+Sorry, let me stop that.
+
+NOTE Confidence: 0.6010088920593262
+
+00:04:10.960 --> 00:04:11.320
+There you go.
+
+NOTE Confidence: 0.7875367999076843
+
+00:04:11.360 --> 00:04:14.087
+So you can see here we have several skills for
+
+NOTE Confidence: 0.7875367999076843
+
+00:04:14.147 --> 00:04:18.119
+design that workflow, packaging, code review, session report setup.
+
+NOTE Confidence: 0.8777130842208862
+
+00:04:18.120 --> 00:04:20.442
+So all the things that an agent needs to know
+
+NOTE Confidence: 0.8777130842208862
+
+00:04:20.494 --> 00:04:22.920
+to understand how to build Win UI applications.
+
+NOTE Confidence: 0.9476132988929749
+
+00:04:22.920 --> 00:04:23.480
+That's awesome.
+
+NOTE Confidence: 0.8343299031257629
+
+00:04:23.520 --> 00:04:25.699
+I'm so happy to see packaging there because that's where
+
+NOTE Confidence: 0.8343299031257629
+
+00:04:25.738 --> 00:04:26.399
+I stock the most.
+
+NOTE Confidence: 0.7810376286506653
+
+00:04:27.120 --> 00:04:27.480
+Exactly.
+
+NOTE Confidence: 0.7911555767059326
+
+00:04:27.680 --> 00:04:29.801
+You know what The thing is that anybody can build
+
+NOTE Confidence: 0.7911555767059326
+
+00:04:29.844 --> 00:04:31.360
+a skill that's just markdown files.
+
+NOTE Confidence: 0.8450770378112793
+
+00:04:31.760 --> 00:04:34.356
+What we've actually done here, we've also shipping a set
+
+NOTE Confidence: 0.8450770378112793
+
+00:04:34.403 --> 00:04:36.489
+of tools that come as part of the skills that
+
+NOTE Confidence: 0.8450770378112793
+
+00:04:36.536 --> 00:04:39.086
+make it possible for agents to actually build when your
+
+NOTE Confidence: 0.8450770378112793
+
+00:04:39.133 --> 00:04:41.683
+applications, for example, let me show you see the ones
+
+NOTE Confidence: 0.8450770378112793
+
+00:04:41.729 --> 00:04:42.239
+we've done.
+
+NOTE Confidence: 0.8707637786865234
+
+00:04:43.240 --> 00:04:46.262
+First things first, we have now new set of templates
+
+NOTE Confidence: 0.8707637786865234
+
+00:04:46.320 --> 00:04:46.960
+for Win UI.
+
+NOTE Confidence: 0.8848282694816589
+
+00:04:47.560 --> 00:04:51.426
+For example, this is something we released about few weeks
+
+NOTE Confidence: 0.8848282694816589
+
+00:04:51.493 --> 00:04:51.759
+ago.
+
+NOTE Confidence: 0.8233537673950195
+
+00:04:52.240 --> 00:04:55.400
+It's called Net New Win UI templates.
+
+NOTE Confidence: 0.12584543228149414
+
+00:04:55.960 --> 00:04:56.080
+And.
+
+NOTE Confidence: 0.6977841854095459
+
+00:04:56.840 --> 00:05:02.200
+Sorry.net runsorry.net new Win UI.
+
+NOTE Confidence: 0.2615009844303131
+
+00:05:02.480 --> 00:05:02.880
+It's on net.
+
+NOTE Confidence: 0.7613548636436462
+
+00:05:04.480 --> 00:05:06.659
+You know what happens when you're nervous and you present
+
+NOTE Confidence: 0.7613548636436462
+
+00:05:06.697 --> 00:05:07.080
+to people?
+
+NOTE Confidence: 0.7001600861549377
+
+00:05:07.120 --> 00:05:08.720
+You tend to make mistakes.
+
+NOTE Confidence: 0.8486714363098145
+
+00:05:08.760 --> 00:05:09.520
+Understandable.
+
+NOTE Confidence: 0.8473502397537231
+
+00:05:09.760 --> 00:05:11.040
+And I'm so grateful for Elaine.
+
+NOTE Confidence: 0.9548812508583069
+
+00:05:11.040 --> 00:05:11.480
+Thank you SO.
+
+NOTE Confidence: 0.6855378150939941
+
+00:05:11.480 --> 00:05:12.160
+Much, Yes.
+
+NOTE Confidence: 0.9075244665145874
+
+00:05:12.160 --> 00:05:13.480
+I'm just here to catch all the typos.
+
+NOTE Confidence: 0.8737388253211975
+
+00:05:15.240 --> 00:05:17.388
+So we have new templates for Win UI that allows
+
+NOTE Confidence: 0.8737388253211975
+
+00:05:17.434 --> 00:05:19.765
+agents to get started quickly so they don't have to
+
+NOTE Confidence: 0.8737388253211975
+
+00:05:19.811 --> 00:05:22.051
+guess how to make all the manifest files, all the
+
+NOTE Confidence: 0.8737388253211975
+
+00:05:22.097 --> 00:05:23.239
+XAML files, all CS files.
+
+NOTE Confidence: 0.8872551918029785
+
+00:05:23.880 --> 00:05:25.000
+It will just work for them.
+
+NOTE Confidence: 0.8722038865089417
+
+00:05:25.160 --> 00:05:27.477
+So this is same as if you open up Visual
+
+NOTE Confidence: 0.8722038865089417
+
+00:05:27.535 --> 00:05:30.199
+Studio and start a new template from there my.
+
+NOTE Confidence: 0.8680675625801086
+
+00:05:30.640 --> 00:05:33.261
+Agents, it's easier for them to use CLI tooling instead
+
+NOTE Confidence: 0.8680675625801086
+
+00:05:33.309 --> 00:05:34.120
+of Visual Studio.
+
+NOTE Confidence: 0.8485055565834045
+
+00:05:34.200 --> 00:05:35.738
+So we're making a lot of these CLI tooling so
+
+NOTE Confidence: 0.8485055565834045
+
+00:05:35.772 --> 00:05:37.516
+agents can actually use them and do the same things
+
+NOTE Confidence: 0.8485055565834045
+
+00:05:37.550 --> 00:05:38.200
+that humans can do.
+
+NOTE Confidence: 0.8420281410217285
+
+00:05:38.920 --> 00:05:39.960
+I don't think that's new.
+
+NOTE Confidence: 0.9009061455726624
+
+00:05:40.000 --> 00:05:41.360
+That wasn't possible before.
+
+NOTE Confidence: 0.7732087969779968
+
+00:05:41.360 --> 00:05:44.599
+Is icanjust.net run this, win your application now and it's
+
+NOTE Confidence: 0.7732087969779968
+
+00:05:44.654 --> 00:05:47.399
+going to run fully packaged on on my machine here.
+
+NOTE Confidence: 0.9681091904640198
+
+00:05:47.640 --> 00:05:49.120
+And that's something you couldn't do before.
+
+NOTE Confidence: 0.798001766204834
+
+00:05:49.160 --> 00:05:50.560
+It's like hitting F5 right?
+
+NOTE Confidence: 0.43216413259506226
+
+00:05:50.760 --> 00:05:51.600
+But in the CLI you.
+
+NOTE Confidence: 0.7205456495285034
+
+00:05:51.839 --> 00:05:53.870
+Hit F5 and you go to the play button, Visual
+
+NOTE Confidence: 0.7205456495285034
+
+00:05:53.916 --> 00:05:54.240
+Studio.
+
+NOTE Confidence: 0.9121288061141968
+
+00:05:54.520 --> 00:05:56.704
+But there was no way to run a packaged application
+
+NOTE Confidence: 0.9121288061141968
+
+00:05:56.747 --> 00:05:57.839
+through the command line.
+
+NOTE Confidence: 0.8861877918243408
+
+00:05:58.120 --> 00:06:00.440
+And now you can do that here through through this.
+
+NOTE Confidence: 0.8653320670127869
+
+00:06:01.320 --> 00:06:04.169
+The way we've achieved this is we have a new
+
+NOTE Confidence: 0.8653320670127869
+
+00:06:04.234 --> 00:06:05.399
+CLI called Winapp.
+
+NOTE Confidence: 0.7487214207649231
+
+00:06:06.280 --> 00:06:06.680
+There it is.
+
+NOTE Confidence: 0.7384464144706726
+
+00:06:07.120 --> 00:06:07.880
+It's just Win app.
+
+NOTE Confidence: 0.7539023756980896
+
+00:06:08.000 --> 00:06:09.800
+You can get it through Win Gap or whatever.
+
+NOTE Confidence: 0.9639871716499329
+
+00:06:10.360 --> 00:06:12.902
+It has a lot of different commands that have to
+
+NOTE Confidence: 0.9639871716499329
+
+00:06:12.956 --> 00:06:15.120
+do with Windows application development.
+
+NOTE Confidence: 0.7766568660736084
+
+00:06:15.520 --> 00:06:18.819
+Things like giving applications package identity so they can call
+
+NOTE Confidence: 0.7766568660736084
+
+00:06:18.870 --> 00:06:21.409
+about a lot of the APIs that require identity like
+
+NOTE Confidence: 0.7766568660736084
+
+00:06:21.459 --> 00:06:22.119
+notification.
+
+NOTE Confidence: 0.7695220708847046
+
+00:06:22.120 --> 00:06:24.032
+So a lot of the AI AP is like my
+
+NOTE Confidence: 0.7695220708847046
+
+00:06:24.092 --> 00:06:27.081
+Silica or any of the shell integrations as part of
+
+NOTE Confidence: 0.7695220708847046
+
+00:06:27.141 --> 00:06:27.440
+that.
+
+NOTE Confidence: 0.7272318601608276
+
+00:06:27.600 --> 00:06:29.345
+That's right, it knows how to look out for docs,
+
+NOTE Confidence: 0.7272318601608276
+
+00:06:29.381 --> 00:06:29.600
+right?
+
+NOTE Confidence: 0.8727772235870361
+
+00:06:30.080 --> 00:06:30.440
+As well.
+
+NOTE Confidence: 0.8030003905296326
+
+00:06:30.680 --> 00:06:33.513
+So that's exactly so for example, other things that we've
+
+NOTE Confidence: 0.8030003905296326
+
+00:06:33.563 --> 00:06:36.049
+done as part of these skills, we've added tools to
+
+NOTE Confidence: 0.8030003905296326
+
+00:06:36.099 --> 00:06:39.181
+help agents once they've created the applications that can run
+
+NOTE Confidence: 0.8030003905296326
+
+00:06:39.231 --> 00:06:39.479
+them.
+
+NOTE Confidence: 0.8517801761627197
+
+00:06:39.800 --> 00:06:41.160
+What controls did they use?
+
+NOTE Confidence: 0.7016028165817261
+
+00:06:41.160 --> 00:06:42.240
+What APS did they use?
+
+NOTE Confidence: 0.9142900109291077
+
+00:06:42.240 --> 00:06:42.960
+They need to know this.
+
+NOTE Confidence: 0.8253479599952698
+
+00:06:43.160 --> 00:06:45.432
+And instead of trying to feed off this as far
+
+NOTE Confidence: 0.8253479599952698
+
+00:06:45.483 --> 00:06:48.361
+as skills and poison the the context window, because it's
+
+NOTE Confidence: 0.8253479599952698
+
+00:06:48.412 --> 00:06:50.381
+going to be a lot, a lot of content, we
+
+NOTE Confidence: 0.8253479599952698
+
+00:06:50.432 --> 00:06:52.906
+have the CLI tools that agents can just call into
+
+NOTE Confidence: 0.8253479599952698
+
+00:06:52.957 --> 00:06:55.381
+to get more permission on what control to use or
+
+NOTE Confidence: 0.8253479599952698
+
+00:06:55.431 --> 00:06:56.239
+what API to use.
+
+NOTE Confidence: 0.8114124536514282
+
+00:06:56.760 --> 00:07:00.068
+For example, if we call the Win UI search tool
+
+NOTE Confidence: 0.8114124536514282
+
+00:07:00.139 --> 00:07:03.160
+here and I can just search for let's say a
+
+NOTE Confidence: 0.8114124536514282
+
+00:07:03.232 --> 00:07:03.519
+tab.
+
+NOTE Confidence: 0.4882030189037323
+
+00:07:03.680 --> 00:07:04.440
+To tab yeah.
+
+NOTE Confidence: 0.7183576822280884
+
+00:07:04.560 --> 00:07:04.720
+Right.
+
+NOTE Confidence: 0.8622824549674988
+
+00:07:05.360 --> 00:07:08.546
+It will find all the different samples that we have
+
+NOTE Confidence: 0.8622824549674988
+
+00:07:08.609 --> 00:07:11.045
+as part of the Win UI gallery or the AI
+
+NOTE Confidence: 0.8622824549674988
+
+00:07:11.108 --> 00:07:13.919
+Dev gallery or the Community Toolkit gallery.
+
+NOTE Confidence: 0.8608371615409851
+
+00:07:14.240 --> 00:07:17.206
+And as an agent, I can just get the code
+
+NOTE Confidence: 0.8608371615409851
+
+00:07:17.280 --> 00:07:20.988
+for those samples and I'll be able to know exactly
+
+NOTE Confidence: 0.8608371615409851
+
+00:07:21.062 --> 00:07:23.955
+how to use a tab, for example, a tab in
+
+NOTE Confidence: 0.8608371615409851
+
+00:07:24.029 --> 00:07:27.663
+this case the XAML code, the.net code, also a lot
+
+NOTE Confidence: 0.8608371615409851
+
+00:07:27.737 --> 00:07:27.960
+of.
+
+NOTE Confidence: 0.5354631543159485
+
+00:07:28.000 --> 00:07:29.280
+Important stuffs at the end.
+
+NOTE Confidence: 0.9168370366096497
+
+00:07:30.360 --> 00:07:32.380
+Agents, we found that they get stuck on some random
+
+NOTE Confidence: 0.9168370366096497
+
+00:07:32.420 --> 00:07:34.203
+things and they spent a lot of times on those
+
+NOTE Confidence: 0.9168370366096497
+
+00:07:34.242 --> 00:07:34.520
+things.
+
+NOTE Confidence: 0.9453152418136597
+
+00:07:34.840 --> 00:07:37.427
+So we've put a lot of different information for agents
+
+NOTE Confidence: 0.9453152418136597
+
+00:07:37.475 --> 00:07:39.439
+to know how to handle certain situations.
+
+NOTE Confidence: 0.8647896647453308
+
+00:07:39.840 --> 00:07:42.422
+What we found is by providing these type of tools
+
+NOTE Confidence: 0.8647896647453308
+
+00:07:42.474 --> 00:07:44.846
+to agents is that we're able to save over 70%
+
+NOTE Confidence: 0.8647896647453308
+
+00:07:44.899 --> 00:07:46.480
+of token usage for for agents.
+
+NOTE Confidence: 0.8152321577072144
+
+00:07:46.480 --> 00:07:48.888
+So as you're using these skills and building these applications,
+
+NOTE Confidence: 0.8152321577072144
+
+00:07:48.926 --> 00:07:50.920
+you're also saving on how many tokens you're using to
+
+NOTE Confidence: 0.8152321577072144
+
+00:07:50.958 --> 00:07:52.199
+build those type of applications.
+
+NOTE Confidence: 0.8553603291511536
+
+00:07:53.720 --> 00:07:56.411
+The other tool that we have here is for example
+
+NOTE Confidence: 0.8553603291511536
+
+00:07:56.468 --> 00:07:58.816
+is Win MD that is able to search for APIs
+
+NOTE Confidence: 0.8553603291511536
+
+00:07:58.873 --> 00:07:59.160
+like.
+
+NOTE Confidence: 0.8746331334114075
+
+00:07:59.160 --> 00:08:01.360
+In this case, we're building an AI powered application.
+
+NOTE Confidence: 0.646075963973999
+
+00:08:01.520 --> 00:08:03.200
+Let's look out for some AIAPIS then, so.
+
+NOTE Confidence: 0.7229862213134766
+
+00:08:03.920 --> 00:08:04.960
+Use ML models.
+
+NOTE Confidence: 0.7832474112510681
+
+00:08:05.040 --> 00:08:07.600
+Also search for use ML models and you'll be able
+
+NOTE Confidence: 0.7832474112510681
+
+00:08:07.653 --> 00:08:10.053
+to find OK, here's APIs that it might be good
+
+NOTE Confidence: 0.7832474112510681
+
+00:08:10.106 --> 00:08:12.240
+for you to if you want to use ML models.
+
+NOTE Confidence: 0.7533597946166992
+
+00:08:12.240 --> 00:08:15.799
+For example, we found the Machine learning namespace here, the
+
+NOTE Confidence: 0.7533597946166992
+
+00:08:15.856 --> 00:08:19.415
+Onyx runtime namespace, maybe the five silica namespace for AI
+
+NOTE Confidence: 0.7533597946166992
+
+00:08:19.472 --> 00:08:19.759
+text.
+
+NOTE Confidence: 0.7252216339111328
+
+00:08:20.080 --> 00:08:21.560
+See, our language model shows up there.
+
+NOTE Confidence: 0.694882333278656
+
+00:08:21.800 --> 00:08:22.280
+Exactly.
+
+NOTE Confidence: 0.8237053155899048
+
+00:08:22.280 --> 00:08:24.087
+So it's able to go like, OK, now I need
+
+NOTE Confidence: 0.8237053155899048
+
+00:08:24.133 --> 00:08:26.589
+more information about this and it's going to get all
+
+NOTE Confidence: 0.8237053155899048
+
+00:08:26.636 --> 00:08:28.953
+the information directly to code and how to use it
+
+NOTE Confidence: 0.8237053155899048
+
+00:08:28.999 --> 00:08:29.880
+and when to use it.
+
+NOTE Confidence: 0.857642650604248
+
+00:08:30.280 --> 00:08:33.173
+So this way instead of shipping everything an agent needs
+
+NOTE Confidence: 0.857642650604248
+
+00:08:33.223 --> 00:08:35.660
+to know, the agent can just look for it whenever
+
+NOTE Confidence: 0.857642650604248
+
+00:08:35.710 --> 00:08:36.319
+it needs it.
+
+NOTE Confidence: 0.6678683757781982
+
+00:08:36.320 --> 00:08:38.462
+So that way it's actively what it's building and how
+
+NOTE Confidence: 0.6678683757781982
+
+00:08:38.503 --> 00:08:39.080
+it's building.
+
+NOTE Confidence: 0.8429149985313416
+
+00:08:39.560 --> 00:08:40.120
+That's pretty sweet.
+
+NOTE Confidence: 0.8109995126724243
+
+00:08:40.559 --> 00:08:42.515
+The last tool I want to show you here is
+
+NOTE Confidence: 0.8109995126724243
+
+00:08:42.564 --> 00:08:42.759
+the.
+
+NOTE Confidence: 0.8559156060218811
+
+00:08:43.480 --> 00:08:45.510
+Once it's done building the application, it needs to be
+
+NOTE Confidence: 0.8559156060218811
+
+00:08:45.547 --> 00:08:47.320
+able to go test it and verify that it's working.
+
+NOTE Confidence: 0.8293005228042603
+
+00:08:47.679 --> 00:08:50.216
+So we also added tooling for called UI for an
+
+NOTE Confidence: 0.8293005228042603
+
+00:08:50.273 --> 00:08:53.937
+agent to be able to launch applications, inspect the application,
+
+NOTE Confidence: 0.8293005228042603
+
+00:08:53.993 --> 00:08:57.319
+check out the visual tree, click button, stick screenshots.
+
+NOTE Confidence: 0.7128433585166931
+
+00:08:57.600 --> 00:09:00.277
+So for example, now I can do win your UI
+
+NOTE Confidence: 0.7128433585166931
+
+00:09:00.344 --> 00:09:00.879
+inspect.
+
+NOTE Confidence: 0.7746422290802002
+
+00:09:01.040 --> 00:09:04.492
+Let's say I want to inspect the terminal and I
+
+NOTE Confidence: 0.7746422290802002
+
+00:09:04.567 --> 00:09:07.120
+want all the interactive elements.
+
+NOTE Confidence: 0.854329526424408
+
+00:09:07.679 --> 00:09:09.459
+So I can say, OK, here's the live visual tree
+
+NOTE Confidence: 0.854329526424408
+
+00:09:09.499 --> 00:09:11.159
+for the terminal I'm running in right now.
+
+NOTE Confidence: 0.8098824620246887
+
+00:09:11.760 --> 00:09:13.040
+And here's the new tab button.
+
+NOTE Confidence: 0.8539539575576782
+
+00:09:13.400 --> 00:09:15.541
+And an agent could just take this and just click
+
+NOTE Confidence: 0.8539539575576782
+
+00:09:15.586 --> 00:09:15.720
+it.
+
+NOTE Confidence: 0.7527530789375305
+
+00:09:15.720 --> 00:09:20.183
+So I can say Winapp UI invoke that button on
+
+NOTE Confidence: 0.7527530789375305
+
+00:09:20.284 --> 00:09:25.560
+the terminal app and then it creates a new terminal.
+
+NOTE Confidence: 0.8447096347808838
+
+00:09:25.559 --> 00:09:28.264
+So an agent can now actually use applications and interact
+
+NOTE Confidence: 0.8447096347808838
+
+00:09:28.310 --> 00:09:31.294
+with them, take screenshots and knows they functionally work and
+
+NOTE Confidence: 0.8447096347808838
+
+00:09:31.341 --> 00:09:32.880
+they can do this end to end 100%.
+
+NOTE Confidence: 0.8048632144927979
+
+00:09:34.840 --> 00:09:37.003
+So actually the final tool that we want to dive
+
+NOTE Confidence: 0.8048632144927979
+
+00:09:37.049 --> 00:09:37.280
+into.
+
+NOTE Confidence: 0.8965964317321777
+
+00:09:37.400 --> 00:09:38.400
+So that was not the final tool.
+
+NOTE Confidence: 0.6247048377990723
+
+00:09:38.400 --> 00:09:38.760
+That was not.
+
+NOTE Confidence: 0.8179615139961243
+
+00:09:38.760 --> 00:09:41.336
+The final tool alive, the final tool that I wanted
+
+NOTE Confidence: 0.8179615139961243
+
+00:09:41.388 --> 00:09:43.603
+to get into is actually a tool that we just
+
+NOTE Confidence: 0.8179615139961243
+
+00:09:43.655 --> 00:09:44.479
+announced today.
+
+NOTE Confidence: 0.704673171043396
+
+00:09:44.520 --> 00:09:45.840
+It's called Win ML.
+
+NOTE Confidence: 0.8511342406272888
+
+00:09:46.320 --> 00:09:48.290
+This is a tool that you shared with me a
+
+NOTE Confidence: 0.8511342406272888
+
+00:09:48.339 --> 00:09:50.359
+few weeks ago and said OK, use this tool.
+
+NOTE Confidence: 0.7006749510765076
+
+00:09:50.680 --> 00:09:52.040
+Sorry my microphone I think is falling out.
+
+NOTE Confidence: 0.8638108968734741
+
+00:09:52.920 --> 00:09:57.040
+Use this tool to add a model and a feature.
+
+NOTE Confidence: 0.8510634899139404
+
+00:09:57.480 --> 00:09:59.281
+Maybe you can tell us more about how this tool
+
+NOTE Confidence: 0.8510634899139404
+
+00:09:59.320 --> 00:10:01.199
+works and how the agent actually used this tool.
+
+NOTE Confidence: 0.930002748966217
+
+00:10:01.440 --> 00:10:02.000
+Absolutely.
+
+NOTE Confidence: 0.7731893658638
+
+00:10:02.000 --> 00:10:03.480
+I mean, you've seen Phytelica, right?
+
+NOTE Confidence: 0.8205399513244629
+
+00:10:03.480 --> 00:10:06.229
+So we've got Phytelica or a local language model that's
+
+NOTE Confidence: 0.8205399513244629
+
+00:10:06.279 --> 00:10:08.679
+already integrated into the app, which is great.
+
+NOTE Confidence: 0.8114436268806458
+
+00:10:08.679 --> 00:10:12.041
+I mean for primitives like language models, some video processing,
+
+NOTE Confidence: 0.8114436268806458
+
+00:10:12.092 --> 00:10:15.046
+audio processing capabilities, we kind of try to bake that
+
+NOTE Confidence: 0.8114436268806458
+
+00:10:15.097 --> 00:10:15.760
+into Windows.
+
+NOTE Confidence: 0.9122263789176941
+
+00:10:15.920 --> 00:10:18.779
+So we have a really handy turnkey API level solution
+
+NOTE Confidence: 0.9122263789176941
+
+00:10:18.834 --> 00:10:20.759
+that you can just go ahead and use.
+
+NOTE Confidence: 0.885192334651947
+
+00:10:21.080 --> 00:10:24.784
+But for capabilities where it's not part of the primitives,
+
+NOTE Confidence: 0.885192334651947
+
+00:10:24.847 --> 00:10:28.175
+like for example, right, like in your app, I remember
+
+NOTE Confidence: 0.885192334651947
+
+00:10:28.238 --> 00:10:31.063
+we were trying to add captions on a frame per
+
+NOTE Confidence: 0.885192334651947
+
+00:10:31.126 --> 00:10:31.880
+frame basis.
+
+NOTE Confidence: 0.8678517937660217
+
+00:10:31.880 --> 00:10:34.080
+So we can like start searching for video content.
+
+NOTE Confidence: 0.9413726925849915
+
+00:10:34.200 --> 00:10:36.023
+We can grab the highlights from the videos, which is
+
+NOTE Confidence: 0.9413726925849915
+
+00:10:36.058 --> 00:10:36.759
+kind of cool, right?
+
+NOTE Confidence: 0.8283878564834595
+
+00:10:37.040 --> 00:10:38.849
+But we don't have that yet as part of the
+
+NOTE Confidence: 0.8283878564834595
+
+00:10:38.893 --> 00:10:39.599
+Windows AI APIs.
+
+NOTE Confidence: 0.8627328872680664
+
+00:10:39.880 --> 00:10:42.588
+So I did whatever everybody does when they can't find
+
+NOTE Confidence: 0.8627328872680664
+
+00:10:42.639 --> 00:10:45.040
+a model, which is go up to Hugging Face, right,
+
+NOTE Confidence: 0.8627328872680664
+
+00:10:45.091 --> 00:10:46.880
+and try to find the right solution.
+
+NOTE Confidence: 0.8335958123207092
+
+00:10:47.160 --> 00:10:49.400
+And I think there is a good clip model, right?
+
+NOTE Confidence: 0.8811200261116028
+
+00:10:49.400 --> 00:10:51.640
+Like a vision transformer model that we saw there.
+
+NOTE Confidence: 0.9517260789871216
+
+00:10:52.240 --> 00:10:53.240
+Let's see that real quick.
+
+NOTE Confidence: 0.944206178188324
+
+00:10:53.280 --> 00:10:54.400
+Yeah, that's the one that we found.
+
+NOTE Confidence: 0.940619945526123
+
+00:10:55.679 --> 00:10:58.666
+But finding that model on Hugging Face doesn't mean that
+
+NOTE Confidence: 0.940619945526123
+
+00:10:58.719 --> 00:11:01.279
+you have a model that you can effectively run on
+
+NOTE Confidence: 0.940619945526123
+
+00:11:01.333 --> 00:11:03.039
+Windows devices just yet, right?
+
+NOTE Confidence: 0.9487776756286621
+
+00:11:03.240 --> 00:11:04.952
+So there's a whole bunch of steps that you have
+
+NOTE Confidence: 0.9487776756286621
+
+00:11:04.988 --> 00:11:05.280
+to take.
+
+NOTE Confidence: 0.958388090133667
+
+00:11:05.480 --> 00:11:07.520
+You have to convert the model format first.
+
+NOTE Confidence: 0.8221149444580078
+
+00:11:07.840 --> 00:11:10.532
+So most of these models that's sort of published our
+
+NOTE Confidence: 0.8221149444580078
+
+00:11:10.584 --> 00:11:13.121
+pipe torch and you have to make sure it's Windows
+
+NOTE Confidence: 0.8221149444580078
+
+00:11:13.173 --> 00:11:15.399
+friendly, you have to convert them to Onyx.
+
+NOTE Confidence: 0.8090928196907043
+
+00:11:15.560 --> 00:11:17.240
+So they run with Onyx runtime.
+
+NOTE Confidence: 0.878387451171875
+
+00:11:17.520 --> 00:11:21.209
+And after that there's a bunch of optimizations, maybe quantizations
+
+NOTE Confidence: 0.878387451171875
+
+00:11:21.264 --> 00:11:23.705
+that you want it to do because the model size
+
+NOTE Confidence: 0.878387451171875
+
+00:11:23.760 --> 00:11:26.039
+is too big and you want it to compile them
+
+NOTE Confidence: 0.878387451171875
+
+00:11:26.093 --> 00:11:28.860
+potentially because you want it to have them run on
+
+NOTE Confidence: 0.878387451171875
+
+00:11:28.915 --> 00:11:30.759
+a specific hardware configuration.
+
+NOTE Confidence: 0.8487415909767151
+
+00:11:31.080 --> 00:11:34.468
+So all of those steps feels pretty fragmented or complex
+
+NOTE Confidence: 0.8487415909767151
+
+00:11:34.529 --> 00:11:35.800
+at this point, right?
+
+NOTE Confidence: 0.8274344801902771
+
+00:11:35.960 --> 00:11:38.879
+That's kind of the reason why we introduced Win ML
+
+NOTE Confidence: 0.8274344801902771
+
+00:11:38.938 --> 00:11:41.390
+CLI, which is this 2 chain that you can do
+
+NOTE Confidence: 0.8274344801902771
+
+00:11:41.449 --> 00:11:43.959
+all of that things in a streamlined manner.
+
+NOTE Confidence: 0.893921434879303
+
+00:11:44.360 --> 00:11:46.200
+So if we go back to our terminal real quick.
+
+NOTE Confidence: 0.8672192692756653
+
+00:11:47.000 --> 00:11:49.177
+So can we just walk through it maybe step by
+
+NOTE Confidence: 0.8672192692756653
+
+00:11:49.226 --> 00:11:51.503
+step of what the agent actually does to get it
+
+NOTE Confidence: 0.8672192692756653
+
+00:11:51.552 --> 00:11:51.799
+from?
+
+NOTE Confidence: 0.6790516376495361
+
+00:11:52.160 --> 00:11:53.880
+I have this model, a Hank face.
+
+NOTE Confidence: 0.7776545882225037
+
+00:11:54.320 --> 00:11:56.767
+I need this model in a format that's going to
+
+NOTE Confidence: 0.7776545882225037
+
+00:11:56.821 --> 00:11:59.160
+run on this device that has and NVIDIA GPU.
+
+NOTE Confidence: 0.7753247618675232
+
+00:11:59.400 --> 00:12:02.100
+It has a really nice NPU too from the Intel,
+
+NOTE Confidence: 0.7753247618675232
+
+00:12:02.161 --> 00:12:03.880
+but how do we get into that?
+
+NOTE Confidence: 0.7834436893463135
+
+00:12:03.920 --> 00:12:06.680
+Part I would love to leverage NPU on this device.
+
+NOTE Confidence: 0.671400249004364
+
+00:12:06.680 --> 00:12:08.360
+It's a great Copilot Plus device.
+
+NOTE Confidence: 0.9089463353157043
+
+00:12:08.400 --> 00:12:11.622
+And so before doing that though, just real quick, there's
+
+NOTE Confidence: 0.9089463353157043
+
+00:12:11.678 --> 00:12:14.561
+like 3 top level approaches where you would use the
+
+NOTE Confidence: 0.9089463353157043
+
+00:12:14.618 --> 00:12:15.240
+CLI, right?
+
+NOTE Confidence: 0.9587203860282898
+
+00:12:15.240 --> 00:12:17.868
+There's this build command where you see right there, if
+
+NOTE Confidence: 0.9587203860282898
+
+00:12:17.915 --> 00:12:20.685
+we're able to highlight that real quick, that build command
+
+NOTE Confidence: 0.9587203860282898
+
+00:12:20.732 --> 00:12:23.079
+is able to help you streamline the entire process.
+
+NOTE Confidence: 0.9029232263565063
+
+00:12:23.080 --> 00:12:26.272
+So when you run build with a specific build configuration,
+
+NOTE Confidence: 0.9029232263565063
+
+00:12:26.327 --> 00:12:29.409
+you're able to export model locally and then analyze the
+
+NOTE Confidence: 0.9029232263565063
+
+00:12:29.464 --> 00:12:32.160
+model over its graph and then be able to optimize
+
+NOTE Confidence: 0.9029232263565063
+
+00:12:32.215 --> 00:12:35.793
+the model, optionally quantize the model, do everything that I've
+
+NOTE Confidence: 0.9029232263565063
+
+00:12:35.848 --> 00:12:38.600
+mentioned earlier, right, in a streamlined matter.
+
+NOTE Confidence: 0.8670814037322998
+
+00:12:38.880 --> 00:12:41.813
+But there's also this way for you to do step
+
+NOTE Confidence: 0.8670814037322998
+
+00:12:41.880 --> 00:12:42.880
+by step, right?
+
+NOTE Confidence: 0.7987081408500671
+
+00:12:43.000 --> 00:12:45.623
+Which is basically like, have you ordered pizza online before,
+
+NOTE Confidence: 0.7987081408500671
+
+00:12:45.666 --> 00:12:45.920
+right?
+
+NOTE Confidence: 0.836890697479248
+
+00:12:45.920 --> 00:12:47.791
+Like if you order pizza and they kind of sit
+
+NOTE Confidence: 0.836890697479248
+
+00:12:47.833 --> 00:12:49.959
+back, you know, it's ready when it's ready, right?
+
+NOTE Confidence: 0.9105179309844971
+
+00:12:50.200 --> 00:12:52.096
+But you can also just kind of go into the
+
+NOTE Confidence: 0.9105179309844971
+
+00:12:52.142 --> 00:12:54.363
+app, see how the toppings are added and then put
+
+NOTE Confidence: 0.9105179309844971
+
+00:12:54.409 --> 00:12:55.520
+it into the oven, right?
+
+NOTE Confidence: 0.8217660188674927
+
+00:12:55.520 --> 00:12:57.540
+Like, so in this case, we're actually going to do
+
+NOTE Confidence: 0.8217660188674927
+
+00:12:57.582 --> 00:12:59.644
+the step by step so that people can understand how
+
+NOTE Confidence: 0.8217660188674927
+
+00:12:59.685 --> 00:13:00.840
+the pizza is made, you know?
+
+NOTE Confidence: 0.6996577978134155
+
+00:13:01.320 --> 00:13:01.840
+What teach me?
+
+NOTE Confidence: 0.8849254250526428
+
+00:13:01.880 --> 00:13:02.360
+What do I do?
+
+NOTE Confidence: 0.8404598832130432
+
+00:13:02.840 --> 00:13:07.445
+So let's start with exporting the model, which is 1
+
+NOTE Confidence: 0.8404598832130432
+
+00:13:07.535 --> 00:13:08.800
+ML export, OK.
+
+NOTE Confidence: 0.9294777512550354
+
+00:13:08.880 --> 00:13:10.577
+And then all we have to do is go back
+
+NOTE Confidence: 0.9294777512550354
+
+00:13:10.623 --> 00:13:12.917
+to hugging face real quick and then grab the model
+
+NOTE Confidence: 0.9294777512550354
+
+00:13:12.963 --> 00:13:13.559
+ID like that.
+
+NOTE Confidence: 0.8456721901893616
+
+00:13:13.560 --> 00:13:13.840
+Yeah.
+
+NOTE Confidence: 0.8983502984046936
+
+00:13:14.320 --> 00:13:16.665
+And then we do Dash M for the model name
+
+NOTE Confidence: 0.8983502984046936
+
+00:13:16.723 --> 00:13:18.599
+and then we just paste it there.
+
+NOTE Confidence: 0.7891361713409424
+
+00:13:18.600 --> 00:13:20.360
+And then we specify Dash O.
+
+NOTE Confidence: 0.829537034034729
+
+00:13:20.360 --> 00:13:21.160
+That's the output.
+
+NOTE Confidence: 0.8190961480140686
+
+00:13:21.480 --> 00:13:24.874
+And then we just give it a name and then
+
+NOTE Confidence: 0.8190961480140686
+
+00:13:24.959 --> 00:13:27.759
+Onyx so we can start to run that.
+
+NOTE Confidence: 0.9337328672409058
+
+00:13:27.760 --> 00:13:30.340
+But since we're on the demo network, we're not going
+
+NOTE Confidence: 0.9337328672409058
+
+00:13:30.389 --> 00:13:32.920
+to wait for pulling this model down from the cloud.
+
+NOTE Confidence: 0.9260533452033997
+
+00:13:32.920 --> 00:13:35.120
+Instead, we have the model already pre downloaded, right?
+
+NOTE Confidence: 0.9520828723907471
+
+00:13:36.080 --> 00:13:37.160
+So let's take a look at the model.
+
+NOTE Confidence: 0.803244948387146
+
+00:13:37.360 --> 00:13:40.403
+It's the click vision transformer model that's already converted to
+
+NOTE Confidence: 0.803244948387146
+
+00:13:40.449 --> 00:13:41.040
+Onyx on disk.
+
+NOTE Confidence: 0.9432012438774109
+
+00:13:41.360 --> 00:13:43.520
+So the next step that we would do is analyze.
+
+NOTE Confidence: 0.9328381419181824
+
+00:13:43.880 --> 00:13:46.162
+So let's go ahead and take a look which of
+
+NOTE Confidence: 0.9328381419181824
+
+00:13:46.216 --> 00:13:50.129
+those operators are able to leverage the specific hardware configuration
+
+NOTE Confidence: 0.9328381419181824
+
+00:13:50.183 --> 00:13:52.629
+that we pointed to and which of the ones that
+
+NOTE Confidence: 0.9328381419181824
+
+00:13:52.683 --> 00:13:54.639
+has optimization opportunity, right?
+
+NOTE Confidence: 0.827954888343811
+
+00:13:54.640 --> 00:13:56.200
+So let's run Winml analyze so.
+
+NOTE Confidence: 0.9543769955635071
+
+00:13:56.280 --> 00:13:58.520
+We're checking if this model can work on this device.
+
+NOTE Confidence: 0.5435967445373535
+
+00:13:58.520 --> 00:13:59.840
+Essentially, that's right what we're doing.
+
+NOTE Confidence: 0.8108608722686768
+
+00:14:00.240 --> 00:14:02.444
+OK, let's do Winml analyze Dash M, and then we'll
+
+NOTE Confidence: 0.8108608722686768
+
+00:14:02.489 --> 00:14:04.559
+pass in the Onyx file that we just downloaded.
+
+NOTE Confidence: 0.8085428476333618
+
+00:14:05.440 --> 00:14:08.884
+And then let's also add a oh, actually let's stop
+
+NOTE Confidence: 0.8085428476333618
+
+00:14:08.955 --> 00:14:10.080
+that real quick.
+
+NOTE Confidence: 0.7338961362838745
+
+00:14:10.520 --> 00:14:14.608
+And before we hit enter, let's also add Dash Dash
+
+NOTE Confidence: 0.7338961362838745
+
+00:14:14.692 --> 00:14:18.280
+Optim config and give it a Jason file name.
+
+NOTE Confidence: 0.419970840215683
+
+00:14:18.280 --> 00:14:18.480
+Jason.
+
+NOTE Confidence: 0.8697649836540222
+
+00:14:21.080 --> 00:14:21.880
+Yeah, that's perfect.
+
+NOTE Confidence: 0.9196898341178894
+
+00:14:22.600 --> 00:14:24.996
+So what this is trying to do is it's going
+
+NOTE Confidence: 0.9196898341178894
+
+00:14:25.054 --> 00:14:28.421
+to analyze the entire model graph operator by operator, and
+
+NOTE Confidence: 0.9196898341178894
+
+00:14:28.478 --> 00:14:31.445
+it's going to figure out like which of the operators
+
+NOTE Confidence: 0.9196898341178894
+
+00:14:31.502 --> 00:14:34.527
+has opportunity to be fused together so that later on
+
+NOTE Confidence: 0.9196898341178894
+
+00:14:34.584 --> 00:14:38.408
+in the optimization step, we're able to actually combine operators,
+
+NOTE Confidence: 0.9196898341178894
+
+00:14:38.465 --> 00:14:40.519
+for example, into a single operator.
+
+NOTE Confidence: 0.9633727669715881
+
+00:14:40.680 --> 00:14:44.440
+And then that would improve the performance of the model.
+
+NOTE Confidence: 0.7144593596458435
+
+00:14:45.400 --> 00:14:47.320
+I see here what's using open vino here.
+
+NOTE Confidence: 0.6829829216003418
+
+00:14:47.320 --> 00:14:50.572
+So that's the on the CPU, but also the GPU
+
+NOTE Confidence: 0.6829829216003418
+
+00:14:50.650 --> 00:14:50.960
+one.
+
+NOTE Confidence: 0.9060878753662109
+
+00:14:50.960 --> 00:14:52.960
+So the different providers for different.
+
+NOTE Confidence: 0.7644040584564209
+
+00:14:53.120 --> 00:14:55.763
+OK, there's the NPU one as well, exactly everything on
+
+NOTE Confidence: 0.7644040584564209
+
+00:14:55.812 --> 00:14:56.400
+this device.
+
+NOTE Confidence: 0.8722934126853943
+
+00:14:56.440 --> 00:14:59.116
+So it's testing everything that's able to run a model
+
+NOTE Confidence: 0.8722934126853943
+
+00:14:59.166 --> 00:15:01.994
+on this device, including obviously all the open vino EP
+
+NOTE Confidence: 0.8722934126853943
+
+00:15:02.044 --> 00:15:02.599
+based ones.
+
+NOTE Confidence: 0.7186437845230103
+
+00:15:02.600 --> 00:15:04.709
+So a lot of the Intel chips, but also at
+
+NOTE Confidence: 0.7186437845230103
+
+00:15:04.761 --> 00:15:07.029
+the same time, I know this has a NVIDIA GPU
+
+NOTE Confidence: 0.7186437845230103
+
+00:15:07.081 --> 00:15:08.399
+on it as well right here.
+
+NOTE Confidence: 0.7352105975151062
+
+00:15:08.400 --> 00:15:10.804
+So you're able to see the TRT RTX EP there
+
+NOTE Confidence: 0.7352105975151062
+
+00:15:10.861 --> 00:15:11.319
+as well.
+
+NOTE Confidence: 0.7881785035133362
+
+00:15:11.320 --> 00:15:11.880
+Yeah, exactly.
+
+NOTE Confidence: 0.8597376942634583
+
+00:15:12.320 --> 00:15:15.839
+So you see, all these operators are well supported, but
+
+NOTE Confidence: 0.8597376942634583
+
+00:15:15.903 --> 00:15:18.975
+let's open up that Jason file real quick and see
+
+NOTE Confidence: 0.8597376942634583
+
+00:15:19.039 --> 00:15:21.919
+what's the output of our optimization script.
+
+NOTE Confidence: 0.7329070568084717
+
+00:15:24.560 --> 00:15:24.920
+Sweet.
+
+NOTE Confidence: 0.789400041103363
+
+00:15:25.360 --> 00:15:27.257
+So I mean, it's not a whole lot, but as
+
+NOTE Confidence: 0.789400041103363
+
+00:15:27.306 --> 00:15:29.544
+you can see here, what is pointing out, it's a
+
+NOTE Confidence: 0.789400041103363
+
+00:15:29.593 --> 00:15:30.079
+tiny file.
+
+NOTE Confidence: 0.805543065071106
+
+00:15:30.080 --> 00:15:30.680
+Yeah, exactly.
+
+NOTE Confidence: 0.8160538673400879
+
+00:15:30.960 --> 00:15:33.030
+But what it does is it's pointing out something important,
+
+NOTE Confidence: 0.8160538673400879
+
+00:15:33.065 --> 00:15:33.280
+right?
+
+NOTE Confidence: 0.824022650718689
+
+00:15:33.280 --> 00:15:37.055
+Like it's basically saying after Matt Mao operator, which is
+
+NOTE Confidence: 0.824022650718689
+
+00:15:37.118 --> 00:15:40.956
+a matrix multiplication, when it's followed by an ad, there's
+
+NOTE Confidence: 0.824022650718689
+
+00:15:41.019 --> 00:15:44.605
+an opportunity to fuse those operators into one, which is
+
+NOTE Confidence: 0.824022650718689
+
+00:15:44.668 --> 00:15:44.920
+jam.
+
+NOTE Confidence: 0.9185453653335571
+
+00:15:44.920 --> 00:15:47.532
+I believe what we do next is then we're able
+
+NOTE Confidence: 0.9185453653335571
+
+00:15:47.592 --> 00:15:50.086
+to pass this as a recipe to our next step,
+
+NOTE Confidence: 0.9185453653335571
+
+00:15:50.145 --> 00:15:52.996
+which is to optimize the model so that we'll end
+
+NOTE Confidence: 0.9185453653335571
+
+00:15:53.055 --> 00:15:56.143
+up with less compute notes, hopefully so that we can
+
+NOTE Confidence: 0.9185453653335571
+
+00:15:56.202 --> 00:15:58.400
+improve the performance of the model.
+
+NOTE Confidence: 0.9549202919006348
+
+00:15:58.560 --> 00:15:59.560
+So let's run that real quick.
+
+NOTE Confidence: 0.6616801619529724
+
+00:15:59.560 --> 00:16:06.040
+Let's do win ML, optimize, optimize, OK, sweet, good job.
+
+NOTE Confidence: 0.7859311699867249
+
+00:16:06.320 --> 00:16:08.480
+And let's do Dash M and then let's pass in
+
+NOTE Confidence: 0.7859311699867249
+
+00:16:08.531 --> 00:16:09.560
+that Onyx model, OK?
+
+NOTE Confidence: 0.40699639916419983
+
+00:16:12.280 --> 00:16:12.480
+Onyx.
+
+NOTE Confidence: 0.8030434846878052
+
+00:16:13.880 --> 00:16:14.200
+Exactly.
+
+NOTE Confidence: 0.8365781307220459
+
+00:16:14.200 --> 00:16:17.067
+And then let's do A-C for passing in the config
+
+NOTE Confidence: 0.8365781307220459
+
+00:16:17.128 --> 00:16:19.080
+file that was outputted exactly.
+
+NOTE Confidence: 0.9130188226699829
+
+00:16:19.640 --> 00:16:22.120
+And after that I think we can just hit enter.
+
+NOTE Confidence: 0.729117751121521
+
+00:16:22.840 --> 00:16:24.000
+It's going to figure out output I'm.
+
+NOTE Confidence: 0.7638755440711975
+
+00:16:24.160 --> 00:16:25.480
+Being careful hitting enter now I want.
+
+NOTE Confidence: 0.5261321067810059
+
+00:16:25.720 --> 00:16:27.400
+To just wait for everything, wait for all that wait.
+
+NOTE Confidence: 0.8206555247306824
+
+00:16:27.440 --> 00:16:27.840
+For you to.
+
+NOTE Confidence: 0.810279130935669
+
+00:16:28.720 --> 00:16:29.280
+Say, sounds good, OK.
+
+NOTE Confidence: 0.7675175070762634
+
+00:16:31.280 --> 00:16:33.870
+So I see it did an optimization here and optimized
+
+NOTE Confidence: 0.7675175070762634
+
+00:16:33.921 --> 00:16:34.440
+the notes.
+
+NOTE Confidence: 0.9741957783699036
+
+00:16:34.800 --> 00:16:35.400
+Exactly.
+
+NOTE Confidence: 0.8921912908554077
+
+00:16:35.680 --> 00:16:39.753
+So after optimization, what we're going to do here, I
+
+NOTE Confidence: 0.8921912908554077
+
+00:16:39.830 --> 00:16:43.520
+think let's test and see if it runs fast enough.
+
+NOTE Confidence: 0.6861223578453064
+
+00:16:44.160 --> 00:16:44.880
+How does this work though?
+
+NOTE Confidence: 0.9136331677436829
+
+00:16:44.880 --> 00:16:47.480
+Is it optimizing for all of my devices?
+
+NOTE Confidence: 0.7471567988395691
+
+00:16:47.480 --> 00:16:49.040
+Like which device is it optimizing it for?
+
+NOTE Confidence: 0.9622024297714233
+
+00:16:49.640 --> 00:16:51.240
+So that's a good question.
+
+NOTE Confidence: 0.8797863125801086
+
+00:16:51.240 --> 00:16:54.829
+So right now it's still after the optimization, it's still
+
+NOTE Confidence: 0.8797863125801086
+
+00:16:54.891 --> 00:16:58.232
+a platform agnostic means that this will still run all
+
+NOTE Confidence: 0.8797863125801086
+
+00:16:58.294 --> 00:17:01.203
+the on all the different chips that you have on
+
+NOTE Confidence: 0.8797863125801086
+
+00:17:01.265 --> 00:17:04.668
+this device and you're able to have good portability as
+
+NOTE Confidence: 0.8797863125801086
+
+00:17:04.730 --> 00:17:05.039
+well.
+
+NOTE Confidence: 0.8022115230560303
+
+00:17:05.040 --> 00:17:07.155
+If you wanted to move this Onyx file to a
+
+NOTE Confidence: 0.8022115230560303
+
+00:17:07.206 --> 00:17:10.095
+different device, you have the option to compile this to
+
+NOTE Confidence: 0.8022115230560303
+
+00:17:10.147 --> 00:17:12.572
+the sort of to the hardware graph layer so that
+
+NOTE Confidence: 0.8022115230560303
+
+00:17:12.623 --> 00:17:14.120
+it's really pretty compelled.
+
+NOTE Confidence: 0.9331448674201965
+
+00:17:14.120 --> 00:17:17.000
+It's ready to go for a specific hardware configuration.
+
+NOTE Confidence: 0.9724719524383545
+
+00:17:17.000 --> 00:17:18.400
+But we're not going to do that this time.
+
+NOTE Confidence: 0.8824138045310974
+
+00:17:18.640 --> 00:17:20.519
+Instead, what we're going to do is to just test
+
+NOTE Confidence: 0.8824138045310974
+
+00:17:20.559 --> 00:17:21.239
+this performance.
+
+NOTE Confidence: 0.8598951697349548
+
+00:17:21.640 --> 00:17:25.365
+So let's run Winml and perf, and we'll pass in
+
+NOTE Confidence: 0.8598951697349548
+
+00:17:25.446 --> 00:17:28.119
+the model after the optimization.
+
+NOTE Confidence: 0.8904101252555847
+
+00:17:31.320 --> 00:17:34.640
+Sounds good and let's just hit enter for now.
+
+NOTE Confidence: 0.7989287972450256
+
+00:17:35.359 --> 00:17:38.074
+It's going to by default run 100 iterations of test
+
+NOTE Confidence: 0.7989287972450256
+
+00:17:38.127 --> 00:17:41.320
+cases for all the popular model categories that's on Hugging
+
+NOTE Confidence: 0.7989287972450256
+
+00:17:41.373 --> 00:17:41.639
+Face.
+
+NOTE Confidence: 0.8833567500114441
+
+00:17:42.119 --> 00:17:44.597
+We've prepared like test cases for you, so we're able
+
+NOTE Confidence: 0.8833567500114441
+
+00:17:44.644 --> 00:17:46.935
+to run this preliminary test and just get a sense
+
+NOTE Confidence: 0.8833567500114441
+
+00:17:46.982 --> 00:17:49.320
+of whether it's going to run while on this device.
+
+NOTE Confidence: 0.6974697113037109
+
+00:17:49.320 --> 00:17:49.520
+So it's.
+
+NOTE Confidence: 0.6842005252838135
+
+00:17:50.120 --> 00:17:51.120
+Testing it on the MPU I.
+
+NOTE Confidence: 0.923798143863678
+
+00:17:51.480 --> 00:17:54.680
+See exactly when you don't specify a device target?
+
+NOTE Confidence: 0.8812745809555054
+
+00:17:54.880 --> 00:17:56.612
+In this case we want it to run MPU, which
+
+NOTE Confidence: 0.8812745809555054
+
+00:17:56.655 --> 00:17:57.119
+is perfect.
+
+NOTE Confidence: 0.8310518264770508
+
+00:17:57.280 --> 00:18:00.010
+But since this is a Copilot Plus device, we default
+
+NOTE Confidence: 0.8310518264770508
+
+00:18:00.064 --> 00:18:00.599
+it to MPU.
+
+NOTE Confidence: 0.8951449394226074
+
+00:18:00.840 --> 00:18:02.680
+And that actually works well for our use case, right?
+
+NOTE Confidence: 0.8070139288902283
+
+00:18:02.680 --> 00:18:05.023
+Because we wanted to leave GPU for all the the
+
+NOTE Confidence: 0.8070139288902283
+
+00:18:05.074 --> 00:18:06.959
+video processing that we're gonna do.
+
+NOTE Confidence: 0.9015414714813232
+
+00:18:07.480 --> 00:18:07.760
+That's right.
+
+NOTE Confidence: 0.8138497471809387
+
+00:18:07.760 --> 00:18:08.360
+That's a good call out.
+
+NOTE Confidence: 0.8877670168876648
+
+00:18:08.359 --> 00:18:10.537
+So you can have different models running on different devices
+
+NOTE Confidence: 0.8877670168876648
+
+00:18:10.573 --> 00:18:12.357
+and they can run at the same time without actually
+
+NOTE Confidence: 0.8877670168876648
+
+00:18:12.393 --> 00:18:14.000
+impacting performance for what they're doing.
+
+NOTE Confidence: 0.9528362154960632
+
+00:18:14.120 --> 00:18:14.840
+Absolutely.
+
+NOTE Confidence: 0.8805156946182251
+
+00:18:14.840 --> 00:18:18.774
+And the model inferences on like 3 millisecond average, that's
+
+NOTE Confidence: 0.8805156946182251
+
+00:18:18.838 --> 00:18:19.600
+pretty good.
+
+NOTE Confidence: 0.867186963558197
+
+00:18:19.720 --> 00:18:22.629
+So we're able to process like over 300 frames per
+
+NOTE Confidence: 0.867186963558197
+
+00:18:22.688 --> 00:18:23.520
+second that's.
+
+NOTE Confidence: 0.789640486240387
+
+00:18:24.840 --> 00:18:25.120
+Really cool.
+
+NOTE Confidence: 0.8658732175827026
+
+00:18:25.119 --> 00:18:27.497
+So when you shared this with me, I actually gave
+
+NOTE Confidence: 0.8658732175827026
+
+00:18:27.546 --> 00:18:28.240
+it to Copilot.
+
+NOTE Confidence: 0.8399595618247986
+
+00:18:28.600 --> 00:18:30.818
+I said, here's the CLI, I need to use this
+
+NOTE Confidence: 0.8399595618247986
+
+00:18:30.871 --> 00:18:32.720
+model that you also shared with me.
+
+NOTE Confidence: 0.8698812127113342
+
+00:18:32.720 --> 00:18:34.488
+Can we build a feature where we're actually able to
+
+NOTE Confidence: 0.8698812127113342
+
+00:18:34.522 --> 00:18:35.320
+search through a video?
+
+NOTE Confidence: 0.9235684871673584
+
+00:18:35.640 --> 00:18:38.684
+It took about 20 minutes, 25 minutes and I was
+
+NOTE Confidence: 0.9235684871673584
+
+00:18:38.750 --> 00:18:42.125
+able to build a whole new effect called Fine Frames
+
+NOTE Confidence: 0.9235684871673584
+
+00:18:42.191 --> 00:18:42.919
+right here.
+
+NOTE Confidence: 0.7358953952789307
+
+00:18:43.280 --> 00:18:43.720
+Look at that.
+
+NOTE Confidence: 0.9166474342346191
+
+00:18:43.840 --> 00:18:45.800
+Allows me to search for something in a video.
+
+NOTE Confidence: 0.8357363343238831
+
+00:18:45.880 --> 00:18:49.020
+So in this case, what we're searching for this is
+
+NOTE Confidence: 0.8357363343238831
+
+00:18:49.084 --> 00:18:51.199
+a build keynote demo from Master.
+
+NOTE Confidence: 0.9136863946914673
+
+00:18:51.200 --> 00:18:53.928
+It's about two hours long, so it's a very long
+
+NOTE Confidence: 0.9136863946914673
+
+00:18:53.987 --> 00:18:56.359
+video and I want to search for a person.
+
+NOTE Confidence: 0.7695090770721436
+
+00:18:57.520 --> 00:19:00.440
+The NVIDIA CEO was wearing a very nice leather jacket.
+
+NOTE Confidence: 0.6744261980056763
+
+00:19:00.640 --> 00:19:01.400
+Leather jacket.
+
+NOTE Confidence: 0.11327145993709564
+
+00:19:01.400 --> 00:19:02.080
+I want to remember.
+
+NOTE Confidence: 0.7834987044334412
+
+00:19:02.120 --> 00:19:02.840
+That's pretty vague.
+
+NOTE Confidence: 0.5049028396606445
+
+00:19:02.840 --> 00:19:03.040
+Yes, I'm.
+
+NOTE Confidence: 0.7370885014533997
+
+00:19:03.040 --> 00:19:04.760
+Going to search for that a person.
+
+NOTE Confidence: 0.9491387605667114
+
+00:19:04.960 --> 00:19:06.000
+Who could that person be?
+
+NOTE Confidence: 0.22884510457515717
+
+00:19:06.000 --> 00:19:06.200
+Leather.
+
+NOTE Confidence: 0.6874815225601196
+
+00:19:07.440 --> 00:19:09.520
+Jacket so we can run this.
+
+NOTE Confidence: 0.7265225052833557
+
+00:19:09.520 --> 00:19:12.533
+So what this effect does actually samples different key frames
+
+NOTE Confidence: 0.7265225052833557
+
+00:19:12.582 --> 00:19:13.360
+from that video.
+
+NOTE Confidence: 0.8659117221832275
+
+00:19:13.640 --> 00:19:15.472
+It gets the embeddings for each one, and then it
+
+NOTE Confidence: 0.8659117221832275
+
+00:19:15.510 --> 00:19:17.839
+does the comparison with the string that we're searching for.
+
+NOTE Confidence: 0.83717280626297
+
+00:19:18.320 --> 00:19:19.945
+Then when it's able to do that, it's going to
+
+NOTE Confidence: 0.83717280626297
+
+00:19:19.981 --> 00:19:21.535
+do a person and then find the top five that
+
+NOTE Confidence: 0.83717280626297
+
+00:19:21.571 --> 00:19:22.799
+actually match what we're looking.
+
+NOTE Confidence: 0.8621479868888855
+
+00:19:22.840 --> 00:19:23.560
+For awesome.
+
+NOTE Confidence: 0.755215585231781
+
+00:19:23.920 --> 00:19:25.650
+In this case you found the top five and then
+
+NOTE Confidence: 0.755215585231781
+
+00:19:25.689 --> 00:19:26.240
+the first one.
+
+NOTE Confidence: 0.533672571182251
+
+00:19:26.800 --> 00:19:27.800
+It was Jensen with his.
+
+NOTE Confidence: 0.5899530649185181
+
+00:19:28.080 --> 00:19:30.000
+Look at that, Jensen.
+
+NOTE Confidence: 0.8569276332855225
+
+00:19:30.000 --> 00:19:30.840
+That's his name.
+
+NOTE Confidence: 0.26542186737060547
+
+00:19:30.840 --> 00:19:30.920
+You.
+
+NOTE Confidence: 0.7357214689254761
+
+00:19:32.000 --> 00:19:34.312
+Can see here that friend completely on the NPU and
+
+NOTE Confidence: 0.7357214689254761
+
+00:19:34.358 --> 00:19:36.810
+was really fast doing all those embeddings for on all
+
+NOTE Confidence: 0.7357214689254761
+
+00:19:36.856 --> 00:19:39.400
+those frames, two hours worth of video, which is great.
+
+NOTE Confidence: 0.8124623894691467
+
+00:19:40.520 --> 00:19:43.529
+OK, before we move on now it's not going to
+
+NOTE Confidence: 0.8124623894691467
+
+00:19:43.599 --> 00:19:46.119
+be a session without doing a A deck.
+
+NOTE Confidence: 0.5939244031906128
+
+00:19:46.240 --> 00:19:48.850
+So we're going to we're going to deal with a
+
+NOTE Confidence: 0.5939244031906128
+
+00:19:48.910 --> 00:19:49.800
+bit of a recap.
+
+NOTE Confidence: 0.7114877700805664
+
+00:19:50.320 --> 00:19:51.240
+We're going to go back to our deck.
+
+NOTE Confidence: 0.896584153175354
+
+00:19:51.240 --> 00:19:53.629
+We're going to stay in our CLI still again, because
+
+NOTE Confidence: 0.896584153175354
+
+00:19:53.676 --> 00:19:56.159
+I refuse to go to PowerPoint because I'm a developer.
+
+NOTE Confidence: 0.7272776365280151
+
+00:19:56.240 --> 00:20:01.588
+OK, so I built a my presentation in in the
+
+NOTE Confidence: 0.7272776365280151
+
+00:20:01.715 --> 00:20:03.880
+terminal present.
+
+NOTE Confidence: 0.9098979234695435
+
+00:20:04.120 --> 00:20:04.640
+There we go.
+
+NOTE Confidence: 0.9105754494667053
+
+00:20:04.640 --> 00:20:06.520
+So we can actually run our presentation here.
+
+NOTE Confidence: 0.9505442380905151
+
+00:20:06.520 --> 00:20:08.920
+So again, hello folks.
+
+NOTE Confidence: 0.6823647022247314
+
+00:20:09.280 --> 00:20:11.440
+That's our name presentation without having our names.
+
+NOTE Confidence: 0.9421361684799194
+
+00:20:11.800 --> 00:20:12.720
+That's me, that's him.
+
+NOTE Confidence: 0.786217987537384
+
+00:20:13.560 --> 00:20:14.320
+I think we look alike.
+
+NOTE Confidence: 0.9230562448501587
+
+00:20:16.080 --> 00:20:18.586
+Just as a recap, a lot of the stuff that
+
+NOTE Confidence: 0.9230562448501587
+
+00:20:18.649 --> 00:20:19.840
+we showed today is.
+
+NOTE Confidence: 0.8117995858192444
+
+00:20:20.400 --> 00:20:24.640
+How are we enabling agents to build Windows applications by
+
+NOTE Confidence: 0.8117995858192444
+
+00:20:24.711 --> 00:20:28.305
+providing them tools and skills to go to duties as
+
+NOTE Confidence: 0.8117995858192444
+
+00:20:28.376 --> 00:20:28.880
+a user?
+
+NOTE Confidence: 0.7955978512763977
+
+00:20:29.200 --> 00:20:30.943
+I'm if I want to create a new application and
+
+NOTE Confidence: 0.7955978512763977
+
+00:20:30.982 --> 00:20:32.919
+go to file new, I don't create files from scratch.
+
+NOTE Confidence: 0.792586088180542
+
+00:20:33.320 --> 00:20:34.440
+Agents did the same things.
+
+NOTE Confidence: 0.5893764495849609
+
+00:20:34.720 --> 00:20:35.040
+If I go.
+
+NOTE Confidence: 0.8714684247970581
+
+00:20:35.120 --> 00:20:36.240
+Ask you to build me a house.
+
+NOTE Confidence: 0.8433314561843872
+
+00:20:36.520 --> 00:20:39.600
+You're not going to go manifest, you know a house.
+
+NOTE Confidence: 0.8274533152580261
+
+00:20:39.600 --> 00:20:41.013
+You're going to need to get all the tools to
+
+NOTE Confidence: 0.8274533152580261
+
+00:20:41.045 --> 00:20:41.559
+build the house.
+
+NOTE Confidence: 0.8161972761154175
+
+00:20:41.920 --> 00:20:42.680
+Same thing with agents.
+
+NOTE Confidence: 0.858715832233429
+
+00:20:42.880 --> 00:20:45.509
+Everything a human requires to learn there is a matching
+
+NOTE Confidence: 0.858715832233429
+
+00:20:45.556 --> 00:20:46.119
+agent skill.
+
+NOTE Confidence: 0.7700947523117065
+
+00:20:46.720 --> 00:20:48.483
+By making it easier for agents, we also make it
+
+NOTE Confidence: 0.7700947523117065
+
+00:20:48.521 --> 00:20:50.360
+easier for humans to build to build applications.
+
+NOTE Confidence: 0.8816905617713928
+
+00:20:50.840 --> 00:20:53.169
+With this, we were able to now take something that
+
+NOTE Confidence: 0.8816905617713928
+
+00:20:53.216 --> 00:20:55.918
+was completely a Visual Studio experience, take it down to
+
+NOTE Confidence: 0.8816905617713928
+
+00:20:55.964 --> 00:20:58.340
+the terminal and felt both humans and users able to
+
+NOTE Confidence: 0.8816905617713928
+
+00:20:58.387 --> 00:20:58.760
+do this.
+
+NOTE Confidence: 0.7902861833572388
+
+00:20:59.240 --> 00:21:01.535
+Like for example, humans need to go look up AP
+
+NOTE Confidence: 0.7902861833572388
+
+00:21:01.584 --> 00:21:03.879
+is agents should be able to do the same thing.
+
+NOTE Confidence: 0.8070981502532959
+
+00:21:04.000 --> 00:21:06.274
+Humans need to be able to get stuck traces able
+
+NOTE Confidence: 0.8070981502532959
+
+00:21:06.322 --> 00:21:09.128
+to figure out why something crashed and agents should have
+
+NOTE Confidence: 0.8070981502532959
+
+00:21:09.177 --> 00:21:11.160
+the same tools to be able to do this same
+
+NOTE Confidence: 0.8070981502532959
+
+00:21:11.209 --> 00:21:12.079
+thing with models.
+
+NOTE Confidence: 0.8223813772201538
+
+00:21:12.320 --> 00:21:14.240
+You know, we have the tools to go optimize models.
+
+NOTE Confidence: 0.7715259194374084
+
+00:21:14.440 --> 00:21:16.106
+Agents should have the exact same tools to be able
+
+NOTE Confidence: 0.7715259194374084
+
+00:21:16.140 --> 00:21:16.240
+to.
+
+NOTE Confidence: 0.9566915035247803
+
+00:21:16.240 --> 00:21:16.440
+Do that.
+
+NOTE Confidence: 0.920097827911377
+
+00:21:16.440 --> 00:21:16.840
+That's right.
+
+NOTE Confidence: 0.783599317073822
+
+00:21:19.040 --> 00:21:21.816
+And the fun thing about agents, about doing this through
+
+NOTE Confidence: 0.783599317073822
+
+00:21:21.865 --> 00:21:24.096
+copilot is so quick to go and test things out
+
+NOTE Confidence: 0.783599317073822
+
+00:21:24.145 --> 00:21:24.839
+like it's fun.
+
+NOTE Confidence: 0.8234028816223145
+
+00:21:24.840 --> 00:21:26.200
+It's not a fun example of this.
+
+NOTE Confidence: 0.6400971412658691
+
+00:21:26.440 --> 00:21:30.711
+I built this presentation style also with the copilot and
+
+NOTE Confidence: 0.6400971412658691
+
+00:21:30.786 --> 00:21:32.360
+it's all in markdown.
+
+NOTE Confidence: 0.7827823162078857
+
+00:21:32.440 --> 00:21:34.520
+But I hated having to edit markdown myself.
+
+NOTE Confidence: 0.7798752784729004
+
+00:21:34.800 --> 00:21:36.933
+So I also asked copilot to build me an application
+
+NOTE Confidence: 0.7798752784729004
+
+00:21:36.976 --> 00:21:38.000
+to edit my presentation.
+
+NOTE Confidence: 0.8043127655982971
+
+00:21:38.440 --> 00:21:40.174
+So in a way I asked copilot to go build
+
+NOTE Confidence: 0.8043127655982971
+
+00:21:40.219 --> 00:21:42.532
+me a whole new PowerPoint without me having to spend
+
+NOTE Confidence: 0.8043127655982971
+
+00:21:42.577 --> 00:21:43.199
+a lot of time.
+
+NOTE Confidence: 0.8841325044631958
+
+00:21:43.320 --> 00:21:45.197
+I'm very busy, I have no time but yet I
+
+NOTE Confidence: 0.8841325044631958
+
+00:21:45.245 --> 00:21:47.364
+have found the time to be able to build this
+
+NOTE Confidence: 0.8841325044631958
+
+00:21:47.412 --> 00:21:48.519
+deck and be able to do.
+
+NOTE Confidence: 0.6172788739204407
+
+00:21:48.800 --> 00:21:50.800
+This thing feel like I'm an inception at this point.
+
+NOTE Confidence: 0.8768036365509033
+
+00:21:51.000 --> 00:21:53.410
+It's so cheap now to build applications it's crazy and
+
+NOTE Confidence: 0.8768036365509033
+
+00:21:53.455 --> 00:21:54.080
+this is great.
+
+NOTE Confidence: 0.8543408513069153
+
+00:21:54.080 --> 00:21:56.980
+I've been using this for all my presentation anyway, so
+
+NOTE Confidence: 0.8543408513069153
+
+00:21:57.033 --> 00:22:00.040
+we really appreciate you guys spending some time with us.
+
+NOTE Confidence: 0.785236656665802
+
+00:22:00.359 --> 00:22:02.181
+There's a lot of links here for the stuff that
+
+NOTE Confidence: 0.785236656665802
+
+00:22:02.220 --> 00:22:04.239
+we've talked about, so go ahead and take a picture.
+
+NOTE Confidence: 0.7756690979003906
+
+00:22:07.040 --> 00:22:07.480
+OK, good.
+
+NOTE Confidence: 0.7842909097671509
+
+00:22:08.160 --> 00:22:09.760
+And then I think that's it.
+
+NOTE Confidence: 0.9119681119918823
+
+00:22:10.240 --> 00:22:10.680
+That's it.
+
+NOTE Confidence: 0.7519322633743286
+
+00:22:11.040 --> 00:22:11.480
+Thanks folks.
+
+NOTE Confidence: 0.6006178259849548
+
+00:22:11.840 --> 00:22:12.200
+Thank you all.
+
+NOTE Confidence: 0.37003034353256226
+
+00:22:12.200 --> 00:22:13.480
+Enjoy your rest of your day.
+
+NOTE Confidence: 0.586233377456665
+
+00:22:13.560 --> 00:22:13.640
+Bye.
+

@@ -1,0 +1,2940 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.4577828645706177
+
+00:00:03.280 --> 00:00:03.680
+Hello.
+
+NOTE Confidence: 0.6802858114242554
+
+00:00:06.160 --> 00:00:06.600
+Hey folks.
+
+NOTE Confidence: 0.813771665096283
+
+00:00:06.600 --> 00:00:10.350
+I'm Vaidya from the Microsoft Foundry team and I've got
+
+NOTE Confidence: 0.813771665096283
+
+00:00:10.419 --> 00:00:10.759
+Jeff.
+
+NOTE Confidence: 0.7169576287269592
+
+00:00:11.560 --> 00:00:12.120
+Hi everyone.
+
+NOTE Confidence: 0.6329739689826965
+
+00:00:13.040 --> 00:00:15.400
+And OC PM from Foundry as well.
+
+NOTE Confidence: 0.8804066181182861
+
+00:00:16.000 --> 00:00:20.840
+So the topic for today is open source ecosystem, right?
+
+NOTE Confidence: 0.9141376614570618
+
+00:00:21.760 --> 00:00:25.686
+How you take your open source models and protectionize it
+
+NOTE Confidence: 0.9141376614570618
+
+00:00:25.755 --> 00:00:26.720
+using Foundry.
+
+NOTE Confidence: 0.8419089317321777
+
+00:00:26.720 --> 00:00:28.836
+And you've been hearing all these sessions on like, you
+
+NOTE Confidence: 0.8419089317321777
+
+00:00:28.874 --> 00:00:30.759
+know, Foundry being the agent platform and stuff.
+
+NOTE Confidence: 0.860068678855896
+
+00:00:30.760 --> 00:00:31.480
+So we'll cover that.
+
+NOTE Confidence: 0.8552919030189514
+
+00:00:32.720 --> 00:00:36.169
+And we're going to look at like 3 aspects of
+
+NOTE Confidence: 0.8552919030189514
+
+00:00:36.248 --> 00:00:36.640
+this.
+
+NOTE Confidence: 0.8863213062286377
+
+00:00:37.200 --> 00:00:39.729
+First, I'll give an intro on what we are doing
+
+NOTE Confidence: 0.8863213062286377
+
+00:00:39.784 --> 00:00:43.139
+from platform standpoint in terms of improvements to make the
+
+NOTE Confidence: 0.8863213062286377
+
+00:00:43.194 --> 00:00:44.239
+consumption better.
+
+NOTE Confidence: 0.8799915909767151
+
+00:00:44.800 --> 00:00:47.187
+And then Jeff will talk about the partnership, how we
+
+NOTE Confidence: 0.8799915909767151
+
+00:00:47.232 --> 00:00:49.439
+are getting the latest models into the ecosystem.
+
+NOTE Confidence: 0.8524590134620667
+
+00:00:49.600 --> 00:00:52.150
+And then finally OC will do all the code demos
+
+NOTE Confidence: 0.8524590134620667
+
+00:00:52.205 --> 00:00:52.760
+and stuff.
+
+NOTE Confidence: 0.8567389845848083
+
+00:00:52.760 --> 00:00:55.720
+So got some tight agenda for 20 minutes.
+
+NOTE Confidence: 0.6669298410415649
+
+00:00:56.480 --> 00:00:56.800
+All right.
+
+NOTE Confidence: 0.8708616495132446
+
+00:00:57.040 --> 00:01:01.854
+So now talking about platform, how many of you have
+
+NOTE Confidence: 0.8708616495132446
+
+00:01:01.948 --> 00:01:06.857
+been to these sessions for Foundry that Ina and Tina
+
+NOTE Confidence: 0.8708616495132446
+
+00:01:06.951 --> 00:01:08.839
+presented yesterday?
+
+NOTE Confidence: 0.8049380779266357
+
+00:01:09.160 --> 00:01:14.799
+And OK, so Foundry is basically an agent hosting platform,
+
+NOTE Confidence: 0.8049380779266357
+
+00:01:14.896 --> 00:01:15.479
+right?
+
+NOTE Confidence: 0.840858519077301
+
+00:01:15.480 --> 00:01:18.651
+With access to a bunch of models, both proprietary frontier
+
+NOTE Confidence: 0.840858519077301
+
+00:01:18.704 --> 00:01:20.639
+model as well as open source models.
+
+NOTE Confidence: 0.77213454246521
+
+00:01:20.640 --> 00:01:23.440
+They've got more than 10,000 models from Hugging Face, right?
+
+NOTE Confidence: 0.8680160045623779
+
+00:01:23.600 --> 00:01:26.315
+So if you look at the proprietary models, the way
+
+NOTE Confidence: 0.8680160045623779
+
+00:01:26.370 --> 00:01:28.920
+you access the model is multiple form factors.
+
+NOTE Confidence: 0.6867443323135376
+
+00:01:28.920 --> 00:01:33.042
+You've got the paper token, which is easy access, PSC
+
+NOTE Confidence: 0.6867443323135376
+
+00:01:33.120 --> 00:01:34.520
+Go kind of set up.
+
+NOTE Confidence: 0.884030282497406
+
+00:01:34.520 --> 00:01:37.451
+Or if you want more like production like environment with
+
+NOTE Confidence: 0.884030282497406
+
+00:01:37.502 --> 00:01:39.920
+control and latency and stuff, you go for Ptus.
+
+NOTE Confidence: 0.875748336315155
+
+00:01:40.520 --> 00:01:43.780
+But what we're introducing today as of now is for
+
+NOTE Confidence: 0.875748336315155
+
+00:01:43.846 --> 00:01:47.838
+open source and custom models, we have this construct called
+
+NOTE Confidence: 0.875748336315155
+
+00:01:47.905 --> 00:01:51.231
+Foundry managed Compute, which is think of it as a
+
+NOTE Confidence: 0.875748336315155
+
+00:01:51.298 --> 00:01:54.891
+managed platform, as a service where you just pick the
+
+NOTE Confidence: 0.875748336315155
+
+00:01:54.957 --> 00:01:58.816
+GPUs, you don't have to worry about the infrastructure and
+
+NOTE Confidence: 0.875748336315155
+
+00:01:58.883 --> 00:02:00.480
+it works out-of-the-box.
+
+NOTE Confidence: 0.8880376219749451
+
+00:02:00.480 --> 00:02:02.040
+So it's part of the Foundry resource.
+
+NOTE Confidence: 0.8681521415710449
+
+00:02:02.520 --> 00:02:03.640
+So the endpoint is the same.
+
+NOTE Confidence: 0.7335873246192932
+
+00:02:03.640 --> 00:02:07.439
+It's the same SDK, it's the same authentication, billing construct
+
+NOTE Confidence: 0.7335873246192932
+
+00:02:07.496 --> 00:02:08.360
+and everything.
+
+NOTE Confidence: 0.9195725917816162
+
+00:02:09.840 --> 00:02:12.956
+Now, the beauty of this is when you deploy a
+
+NOTE Confidence: 0.9195725917816162
+
+00:02:13.027 --> 00:02:16.639
+model, there are other aspects of the model, right?
+
+NOTE Confidence: 0.8206045031547546
+
+00:02:16.639 --> 00:02:20.263
+You've got to pick the GPU topology, You've got to
+
+NOTE Confidence: 0.8206045031547546
+
+00:02:20.335 --> 00:02:21.639
+pick the runtimes.
+
+NOTE Confidence: 0.6148932576179504
+
+00:02:21.640 --> 00:02:24.640
+You've got all this VLLM, SG, Lang and everything.
+
+NOTE Confidence: 0.8689489960670471
+
+00:02:24.680 --> 00:02:27.842
+All the maintenance and patchwork will be taken care by
+
+NOTE Confidence: 0.8689489960670471
+
+00:02:27.900 --> 00:02:28.360
+Foundry.
+
+NOTE Confidence: 0.873355507850647
+
+00:02:29.040 --> 00:02:32.810
+You just pick the model parameters and then boom, deploy
+
+NOTE Confidence: 0.873355507850647
+
+00:02:32.877 --> 00:02:35.503
+right now if you look at it, one of the
+
+NOTE Confidence: 0.873355507850647
+
+00:02:35.571 --> 00:02:39.206
+key enablers for this, its not just sufficient to just
+
+NOTE Confidence: 0.873355507850647
+
+00:02:39.274 --> 00:02:42.304
+have the compute, but we need to get the open
+
+NOTE Confidence: 0.873355507850647
+
+00:02:42.371 --> 00:02:43.919
+source funnel in right?
+
+NOTE Confidence: 0.7898159027099609
+
+00:02:43.919 --> 00:02:46.769
+And that's where our partnership with hugging phase comes in
+
+NOTE Confidence: 0.7898159027099609
+
+00:02:46.816 --> 00:02:48.811
+because I don't know for like we get a lot
+
+NOTE Confidence: 0.7898159027099609
+
+00:02:48.858 --> 00:02:51.327
+of models and hugging phase that get pushed out like
+
+NOTE Confidence: 0.7898159027099609
+
+00:02:51.375 --> 00:02:52.800
+whether from Quinn or Minimax.
+
+NOTE Confidence: 0.7880868911743164
+
+00:02:52.800 --> 00:02:55.224
+And I see a bunch of NVIDIA partners there, a
+
+NOTE Confidence: 0.7880868911743164
+
+00:02:55.278 --> 00:02:58.079
+Steven like Nemotron models we just got out as well.
+
+NOTE Confidence: 0.8620825409889221
+
+00:02:58.080 --> 00:03:00.869
+So catch up with all these models in real time
+
+NOTE Confidence: 0.8620825409889221
+
+00:03:00.930 --> 00:03:01.840
+is super tough.
+
+NOTE Confidence: 0.8510607481002808
+
+00:03:01.880 --> 00:03:04.011
+And which is where I think Jeff is going to
+
+NOTE Confidence: 0.8510607481002808
+
+00:03:04.061 --> 00:03:06.242
+talk about how we're going to give you Day 0
+
+NOTE Confidence: 0.8510607481002808
+
+00:03:06.291 --> 00:03:08.869
+access to these models that you can now deploy using
+
+NOTE Confidence: 0.8510607481002808
+
+00:03:08.919 --> 00:03:09.959
+the managed computer.
+
+NOTE Confidence: 0.6185211539268494
+
+00:03:10.240 --> 00:03:10.800
+Over to you, Jeff.
+
+NOTE Confidence: 0.8322834968566895
+
+00:03:11.200 --> 00:03:12.560
+Thank you so much, Vaidya.
+
+NOTE Confidence: 0.8996871709823608
+
+00:03:12.680 --> 00:03:15.201
+Thank you and we're very grateful for our partnership with
+
+NOTE Confidence: 0.8996871709823608
+
+00:03:15.245 --> 00:03:15.679
+Microsoft.
+
+NOTE Confidence: 0.859635055065155
+
+00:03:15.680 --> 00:03:19.107
+We've been working together with Vaidya and team on making
+
+NOTE Confidence: 0.859635055065155
+
+00:03:19.166 --> 00:03:22.239
+Hugging Face models easy to use for Azure customers.
+
+NOTE Confidence: 0.8490417003631592
+
+00:03:22.600 --> 00:03:26.551
+And yesterday, if you saw the keynotes, Satya showed there
+
+NOTE Confidence: 0.8490417003631592
+
+00:03:26.620 --> 00:03:30.640
+are 11,000 models are available today in Microsoft Foundry.
+
+NOTE Confidence: 0.82955002784729
+
+00:03:31.080 --> 00:03:34.197
+Little known facts, over 10,000 of those come from Hugging
+
+NOTE Confidence: 0.82955002784729
+
+00:03:34.251 --> 00:03:34.520
+Face.
+
+NOTE Confidence: 0.9701324701309204
+
+00:03:34.520 --> 00:03:37.280
+We've been working together for a long time.
+
+NOTE Confidence: 0.9240970015525818
+
+00:03:37.600 --> 00:03:41.780
+And the first question that's I want to talk about
+
+NOTE Confidence: 0.9240970015525818
+
+00:03:41.864 --> 00:03:46.546
+is why is it important for Microsoft and Azure customers
+
+NOTE Confidence: 0.9240970015525818
+
+00:03:46.629 --> 00:03:49.639
+to be able to work with open models?
+
+NOTE Confidence: 0.9756758809089661
+
+00:03:49.640 --> 00:03:51.160
+And I have 5 things for you.
+
+NOTE Confidence: 0.9690285325050354
+
+00:03:51.160 --> 00:03:55.480
+The first one is that basically in terms of performance,
+
+NOTE Confidence: 0.9690285325050354
+
+00:03:55.557 --> 00:03:58.720
+open models are on par with the Frontier.
+
+NOTE Confidence: 0.8467037081718445
+
+00:03:58.720 --> 00:04:01.402
+The Frontier open models are on par with the Frontier
+
+NOTE Confidence: 0.8467037081718445
+
+00:04:01.453 --> 00:04:03.680
+close models, been the case for over a year.
+
+NOTE Confidence: 0.9243210554122925
+
+00:04:03.840 --> 00:04:06.205
+If you look at the top 20 models in the
+
+NOTE Confidence: 0.9243210554122925
+
+00:04:06.266 --> 00:04:10.452
+Artificial analysis Intelligence Index, half of them are open models,
+
+NOTE Confidence: 0.9243210554122925
+
+00:04:10.512 --> 00:04:12.999
+but that's just the baseline performance.
+
+NOTE Confidence: 0.9708988666534424
+
+00:04:13.320 --> 00:04:14.440
+If we go to the next one.
+
+NOTE Confidence: 0.9001600742340088
+
+00:04:14.440 --> 00:04:17.621
+The second thing is that the the base open models
+
+NOTE Confidence: 0.9001600742340088
+
+00:04:17.686 --> 00:04:21.258
+are models that you can build upon, customize and adapt
+
+NOTE Confidence: 0.9001600742340088
+
+00:04:21.323 --> 00:04:24.960
+in order to improve them specifically for your use case.
+
+NOTE Confidence: 0.8990393280982971
+
+00:04:24.960 --> 00:04:28.196
+You can fine tune them, you can post train them,
+
+NOTE Confidence: 0.8990393280982971
+
+00:04:28.264 --> 00:04:29.680
+you can distill them.
+
+NOTE Confidence: 0.8322120308876038
+
+00:04:29.839 --> 00:04:32.997
+This is an example of Phi to a popular open
+
+NOTE Confidence: 0.8322120308876038
+
+00:04:33.070 --> 00:04:35.200
+model published by Microsoft.
+
+NOTE Confidence: 0.8513269424438477
+
+00:04:35.440 --> 00:04:38.360
+And you can see that there are over there are
+
+NOTE Confidence: 0.8513269424438477
+
+00:04:38.424 --> 00:04:41.280
+about 1500 derivatives of these base models.
+
+NOTE Confidence: 0.8941426277160645
+
+00:04:41.279 --> 00:04:43.868
+And that's why there are so many models on hugging
+
+NOTE Confidence: 0.8941426277160645
+
+00:04:43.920 --> 00:04:46.871
+phase, because the way that enterprises uses them is that
+
+NOTE Confidence: 0.8941426277160645
+
+00:04:46.923 --> 00:04:49.616
+they customize them to their data and their use case
+
+NOTE Confidence: 0.8941426277160645
+
+00:04:49.667 --> 00:04:51.480
+to make them much more performance.
+
+NOTE Confidence: 0.9144672751426697
+
+00:04:51.880 --> 00:04:55.124
+The third reason why you should consider open models is
+
+NOTE Confidence: 0.9144672751426697
+
+00:04:55.183 --> 00:04:58.251
+that if you're not hosting the waits, then you don't
+
+NOTE Confidence: 0.9144672751426697
+
+00:04:58.310 --> 00:05:00.079
+really control the experience.
+
+NOTE Confidence: 0.9560056924819946
+
+00:05:00.080 --> 00:05:03.408
+And we're working together with Microsoft to make it super
+
+NOTE Confidence: 0.9560056924819946
+
+00:05:03.466 --> 00:05:05.360
+easy for you to do that on Azure.
+
+NOTE Confidence: 0.8582334518432617
+
+00:05:05.800 --> 00:05:08.456
+Right from the model page on Hugging phase, you have
+
+NOTE Confidence: 0.8582334518432617
+
+00:05:08.507 --> 00:05:09.120
+two options.
+
+NOTE Confidence: 0.9064314365386963
+
+00:05:09.440 --> 00:05:13.404
+You can either deploy it on your own Azure account,
+
+NOTE Confidence: 0.9064314365386963
+
+00:05:13.482 --> 00:05:17.679
+your own tenants at Microsoft using Microsoft Foundry.
+
+NOTE Confidence: 0.8564808964729309
+
+00:05:17.680 --> 00:05:19.480
+We're going to show you how it works.
+
+NOTE Confidence: 0.8184257745742798
+
+00:05:19.800 --> 00:05:23.126
+And then you can also use Hugging Face inference endpoints
+
+NOTE Confidence: 0.8184257745742798
+
+00:05:23.183 --> 00:05:26.280
+to deploy them on Azure using the Hugging Face tenant.
+
+NOTE Confidence: 0.9183642268180847
+
+00:05:26.720 --> 00:05:31.501
+The fourth reason enterprises should consider open models that the
+
+NOTE Confidence: 0.9183642268180847
+
+00:05:31.573 --> 00:05:35.920
+whole open source community is really focused on making them
+
+NOTE Confidence: 0.9183642268180847
+
+00:05:35.993 --> 00:05:37.080
+cheaper to run.
+
+NOTE Confidence: 0.8270391821861267
+
+00:05:37.080 --> 00:05:40.300
+And I have 4 random blog posts about how you
+
+NOTE Confidence: 0.8270391821861267
+
+00:05:40.373 --> 00:05:43.520
+can make a stable diffusion cheaper to run.
+
+NOTE Confidence: 0.8450961709022522
+
+00:05:44.200 --> 00:05:47.124
+If you're looking at a specific task, there are small
+
+NOTE Confidence: 0.8450961709022522
+
+00:05:47.179 --> 00:05:49.000
+models that are state-of-the-art.
+
+NOTE Confidence: 0.7435100078582764
+
+00:05:49.480 --> 00:05:53.329
+Duckling Granite from IBM as an example is 250 million
+
+NOTE Confidence: 0.7435100078582764
+
+00:05:53.400 --> 00:05:55.039
+not billion parameters.
+
+NOTE Confidence: 0.7728581428527832
+
+00:05:55.040 --> 00:05:57.379
+And it's state-of-the-art if you want to run like batch
+
+NOTE Confidence: 0.7728581428527832
+
+00:05:57.421 --> 00:05:58.400
+inference on documents.
+
+NOTE Confidence: 0.9136683940887451
+
+00:05:58.800 --> 00:06:01.485
+And then the last one is that with open models,
+
+NOTE Confidence: 0.9136683940887451
+
+00:06:01.542 --> 00:06:04.800
+because you host them, you can also version control them.
+
+NOTE Confidence: 0.9092599153518677
+
+00:06:04.800 --> 00:06:07.932
+And I've talked to many people, developers who told me
+
+NOTE Confidence: 0.9092599153518677
+
+00:06:07.990 --> 00:06:11.297
+that overnight, like the model behind the API, the closed
+
+NOTE Confidence: 0.9092599153518677
+
+00:06:11.355 --> 00:06:12.400
+model API changed.
+
+NOTE Confidence: 0.9339480400085449
+
+00:06:12.400 --> 00:06:14.555
+And all of a sudden, like the way that the
+
+NOTE Confidence: 0.9339480400085449
+
+00:06:14.607 --> 00:06:17.276
+model behaves, the way that the feature acts for the
+
+NOTE Confidence: 0.9339480400085449
+
+00:06:17.327 --> 00:06:18.200
+customer changes.
+
+NOTE Confidence: 0.8744713068008423
+
+00:06:18.200 --> 00:06:21.920
+And with open models, you can control exactly which version.
+
+NOTE Confidence: 0.7330920696258545
+
+00:06:21.920 --> 00:06:25.405
+In fact, on Hugging Face, every model repository is fully
+
+NOTE Confidence: 0.7330920696258545
+
+00:06:25.467 --> 00:06:28.769
+version control and you can talk to a specific version
+
+NOTE Confidence: 0.7330920696258545
+
+00:06:28.830 --> 00:06:29.319
+ID code.
+
+NOTE Confidence: 0.9080386757850647
+
+00:06:29.839 --> 00:06:33.507
+So these are 5 reasons why you should consider open
+
+NOTE Confidence: 0.9080386757850647
+
+00:06:33.579 --> 00:06:36.239
+models when you build AI application.
+
+NOTE Confidence: 0.946564793586731
+
+00:06:36.240 --> 00:06:39.028
+The performance, the baseline performance is on par, but then
+
+NOTE Confidence: 0.946564793586731
+
+00:06:39.074 --> 00:06:41.405
+you can improve it by customizing the model to your
+
+NOTE Confidence: 0.946564793586731
+
+00:06:41.451 --> 00:06:41.679
+data.
+
+NOTE Confidence: 0.8471620678901672
+
+00:06:42.279 --> 00:06:46.322
+You host the weights, you own the experience can control
+
+NOTE Confidence: 0.8471620678901672
+
+00:06:46.394 --> 00:06:50.652
+your costs, and you can control the actual experience using
+
+NOTE Confidence: 0.8471620678901672
+
+00:06:50.725 --> 00:06:51.879
+version control.
+
+NOTE Confidence: 0.8146184682846069
+
+00:06:52.120 --> 00:06:54.507
+All right, so now let me give you a quick
+
+NOTE Confidence: 0.8146184682846069
+
+00:06:54.565 --> 00:06:56.080
+update about Hugging Face.
+
+NOTE Confidence: 0.9097636938095093
+
+00:06:56.080 --> 00:06:58.280
+I assume that most of you are familiar with it.
+
+NOTE Confidence: 0.8736275434494019
+
+00:06:58.800 --> 00:07:01.479
+So the latest is that we now have a community
+
+NOTE Confidence: 0.8736275434494019
+
+00:07:01.539 --> 00:07:05.410
+of over 15,000,000, actually 16,000,000 AI builders who signed up
+
+NOTE Confidence: 0.8736275434494019
+
+00:07:05.469 --> 00:07:08.328
+for an account on hugging phase in order to work
+
+NOTE Confidence: 0.8736275434494019
+
+00:07:08.387 --> 00:07:09.400
+with open models.
+
+NOTE Confidence: 0.8389832973480225
+
+00:07:09.760 --> 00:07:13.300
+When they need to work privately, they set up organizations
+
+NOTE Confidence: 0.8389832973480225
+
+00:07:13.360 --> 00:07:16.960
+that are over 400,000 organizations set up on hugging phase.
+
+NOTE Confidence: 0.9607252478599548
+
+00:07:16.960 --> 00:07:18.560
+The bottom one is Microsoft.
+
+NOTE Confidence: 0.9373651146888733
+
+00:07:18.560 --> 00:07:22.355
+When companies need to have access control security, they sign
+
+NOTE Confidence: 0.9373651146888733
+
+00:07:22.417 --> 00:07:24.559
+up to enterprise as Microsoft does.
+
+NOTE Confidence: 0.8510032892227173
+
+00:07:25.200 --> 00:07:30.088
+And then from all these community, from all these organizations
+
+NOTE Confidence: 0.8510032892227173
+
+00:07:30.166 --> 00:07:34.744
+come over 3,000,000 open and public models today on Hugging
+
+NOTE Confidence: 0.8510032892227173
+
+00:07:34.821 --> 00:07:38.856
+Face and these cover like every task you can imagine
+
+NOTE Confidence: 0.8510032892227173
+
+00:07:38.934 --> 00:07:43.279
+in order to use these 3,000,000 public models, there are
+
+NOTE Confidence: 0.8510032892227173
+
+00:07:43.356 --> 00:07:45.839
+over 1,000,000 public data sets.
+
+NOTE Confidence: 0.9580387473106384
+
+00:07:45.880 --> 00:07:47.320
+You can use our open source.
+
+NOTE Confidence: 0.9297575950622559
+
+00:07:47.320 --> 00:07:49.560
+You're probably familiar with the Transformers library.
+
+NOTE Confidence: 0.8932095766067505
+
+00:07:49.680 --> 00:07:52.292
+We have a whole ecosystem for you to do inference,
+
+NOTE Confidence: 0.8932095766067505
+
+00:07:52.344 --> 00:07:55.479
+to do post training, to do reinforcement learning, etcetera.
+
+NOTE Confidence: 0.9382627010345459
+
+00:07:55.760 --> 00:07:58.816
+So we have the open source, we have the models,
+
+NOTE Confidence: 0.9382627010345459
+
+00:07:58.881 --> 00:08:01.547
+but if you want to build an app and scale
+
+NOTE Confidence: 0.9382627010345459
+
+00:08:01.612 --> 00:08:05.124
+it to production, there are a lot more challenges that
+
+NOTE Confidence: 0.9382627010345459
+
+00:08:05.189 --> 00:08:06.360
+you need to solve.
+
+NOTE Confidence: 0.9496815204620361
+
+00:08:06.960 --> 00:08:10.616
+And that's where the partnership with Microsoft and what we're
+
+NOTE Confidence: 0.9496815204620361
+
+00:08:10.675 --> 00:08:13.920
+building into Microsoft Foundry really comes into play.
+
+NOTE Confidence: 0.886267364025116
+
+00:08:14.400 --> 00:08:17.429
+So let me give you a few tidbits about how
+
+NOTE Confidence: 0.886267364025116
+
+00:08:17.501 --> 00:08:19.159
+we're working together.
+
+NOTE Confidence: 0.9045774936676025
+
+00:08:19.160 --> 00:08:22.625
+The first one, well, we actually monitor daily the trending
+
+NOTE Confidence: 0.9045774936676025
+
+00:08:22.683 --> 00:08:26.266
+most liked downloaded models for all the most important tasks
+
+NOTE Confidence: 0.9045774936676025
+
+00:08:26.324 --> 00:08:29.672
+for all the most important model providers like NVIDIA to
+
+NOTE Confidence: 0.9045774936676025
+
+00:08:29.731 --> 00:08:32.961
+make sure that's when these models land on Hugging face
+
+NOTE Confidence: 0.9045774936676025
+
+00:08:33.020 --> 00:08:36.719
+within the same day they become available in Microsoft Foundry.
+
+NOTE Confidence: 0.8223226070404053
+
+00:08:36.720 --> 00:08:39.840
+That's how we got to 11,000 models together.
+
+NOTE Confidence: 0.8725573420524597
+
+00:08:40.160 --> 00:08:43.600
+These models cover all the different machine learning tasks before.
+
+NOTE Confidence: 0.8912724256515503
+
+00:08:43.600 --> 00:08:46.493
+Of course, we talk a lot about LLMS, but there
+
+NOTE Confidence: 0.8912724256515503
+
+00:08:46.556 --> 00:08:50.832
+are so many more use cases, document processing, speech recognition,
+
+NOTE Confidence: 0.8912724256515503
+
+00:08:50.895 --> 00:08:53.159
+image detection and all those tasks.
+
+NOTE Confidence: 0.9430867433547974
+
+00:08:53.160 --> 00:08:54.400
+We cover them all.
+
+NOTE Confidence: 0.9536749720573425
+
+00:08:54.480 --> 00:08:58.041
+You can select them with easy to use filters directly
+
+NOTE Confidence: 0.9536749720573425
+
+00:08:58.108 --> 00:08:59.519
+in Microsoft Foundry.
+
+NOTE Confidence: 0.8054215908050537
+
+00:08:59.840 --> 00:09:02.114
+And then as I say, like the model and the
+
+NOTE Confidence: 0.8054215908050537
+
+00:09:02.169 --> 00:09:04.000
+open source only take you so far.
+
+NOTE Confidence: 0.9141945242881775
+
+00:09:04.000 --> 00:09:07.606
+If you want to build something with scaled usage, then
+
+NOTE Confidence: 0.9141945242881775
+
+00:09:07.673 --> 00:09:10.678
+you need to think about how do I optimize the
+
+NOTE Confidence: 0.9141945242881775
+
+00:09:10.745 --> 00:09:11.279
+runtime?
+
+NOTE Confidence: 0.8690005540847778
+
+00:09:11.280 --> 00:09:14.792
+How do I use a configuration that will give me
+
+NOTE Confidence: 0.8690005540847778
+
+00:09:14.869 --> 00:09:18.840
+either the best throughputs or the smallest latency?
+
+NOTE Confidence: 0.9410573244094849
+
+00:09:19.160 --> 00:09:21.724
+We work it all out for you so that it's
+
+NOTE Confidence: 0.9410573244094849
+
+00:09:21.790 --> 00:09:23.959
+basically a one click experience.
+
+NOTE Confidence: 0.9289271235466003
+
+00:09:23.960 --> 00:09:25.680
+We'll show you how with OC.
+
+NOTE Confidence: 0.9160815477371216
+
+00:09:26.040 --> 00:09:30.473
+And then last, almost last, how do we work together
+
+NOTE Confidence: 0.9160815477371216
+
+00:09:30.560 --> 00:09:32.560
+to enable those models?
+
+NOTE Confidence: 0.9611293077468872
+
+00:09:32.560 --> 00:09:34.320
+We talked about 11,000 models.
+
+NOTE Confidence: 0.862611711025238
+
+00:09:34.320 --> 00:09:36.520
+We talked about 3 million models on hiding face.
+
+NOTE Confidence: 0.969211757183075
+
+00:09:37.000 --> 00:09:37.720
+What is the difference?
+
+NOTE Confidence: 0.9600894451141357
+
+00:09:37.720 --> 00:09:41.149
+Well, there is a whole pipeline that happens in collaboration
+
+NOTE Confidence: 0.9600894451141357
+
+00:09:41.205 --> 00:09:44.578
+with the Microsoft team before these models are available to
+
+NOTE Confidence: 0.9600894451141357
+
+00:09:44.634 --> 00:09:46.039
+you in Microsoft Foundry.
+
+NOTE Confidence: 0.9298055768013
+
+00:09:46.040 --> 00:09:49.762
+I talked about the curation that we do together, but
+
+NOTE Confidence: 0.9298055768013
+
+00:09:49.833 --> 00:09:52.839
+then we screen for enterprise ready usage.
+
+NOTE Confidence: 0.920767605304718
+
+00:09:52.880 --> 00:09:54.200
+We look at the license.
+
+NOTE Confidence: 0.8806323409080505
+
+00:09:54.200 --> 00:09:58.440
+We will only give you models that are commercially permissible.
+
+NOTE Confidence: 0.9231621026992798
+
+00:09:58.640 --> 00:10:01.002
+We looked to make sure that there is no remote
+
+NOTE Confidence: 0.9231621026992798
+
+00:10:01.053 --> 00:10:03.518
+code as part of the model that would be injected
+
+NOTE Confidence: 0.9231621026992798
+
+00:10:03.569 --> 00:10:06.240
+and executed by the runtime and we filter those out.
+
+NOTE Confidence: 0.872955322265625
+
+00:10:06.240 --> 00:10:10.422
+So we go through all these security checks, security scanning
+
+NOTE Confidence: 0.872955322265625
+
+00:10:10.491 --> 00:10:14.331
+of models to make sure that whatever lens in Microsoft's
+
+NOTE Confidence: 0.872955322265625
+
+00:10:14.400 --> 00:10:18.857
+Foundry is enterprise ready, the weights now with managed compute
+
+NOTE Confidence: 0.872955322265625
+
+00:10:18.925 --> 00:10:21.600
+are also uploaded to Microsoft Foundry.
+
+NOTE Confidence: 0.9608197212219238
+
+00:10:21.720 --> 00:10:25.909
+This way you have complete robustness and supply chain security
+
+NOTE Confidence: 0.9608197212219238
+
+00:10:25.976 --> 00:10:27.040
+for your models.
+
+NOTE Confidence: 0.8926680088043213
+
+00:10:27.559 --> 00:10:30.167
+And last, and I think that may be the most
+
+NOTE Confidence: 0.8926680088043213
+
+00:10:30.229 --> 00:10:35.010
+important thing, we validate the actual deployment experience, including like
+
+NOTE Confidence: 0.8926680088043213
+
+00:10:35.072 --> 00:10:39.293
+which runtime you're going to use, what configuration parameters for
+
+NOTE Confidence: 0.8926680088043213
+
+00:10:39.355 --> 00:10:42.708
+a deployment are going to be used, what context window
+
+NOTE Confidence: 0.8926680088043213
+
+00:10:42.770 --> 00:10:45.440
+you're going to be enabling for that model.
+
+NOTE Confidence: 0.8655882477760315
+
+00:10:46.760 --> 00:10:49.430
+Oh, and maybe one more thing, like we also want
+
+NOTE Confidence: 0.8655882477760315
+
+00:10:49.486 --> 00:10:52.440
+to make sure that every deployment of a hanging face
+
+NOTE Confidence: 0.8655882477760315
+
+00:10:52.497 --> 00:10:55.565
+model, if you pick it from the collection in Microsoft
+
+NOTE Confidence: 0.8655882477760315
+
+00:10:55.622 --> 00:10:58.974
+Foundry, once it's deployed, it's not going to make network
+
+NOTE Confidence: 0.8655882477760315
+
+00:10:59.030 --> 00:11:01.359
+calls outside of your own secure tenants.
+
+NOTE Confidence: 0.9384193420410156
+
+00:11:01.360 --> 00:11:04.040
+So that's also a very important guarantee for enterprises.
+
+NOTE Confidence: 0.7880517244338989
+
+00:11:04.720 --> 00:11:08.000
+I mentioned run times, I mentioned all these different tasks.
+
+NOTE Confidence: 0.8634697198867798
+
+00:11:08.200 --> 00:11:10.893
+Depending on the model, there may be like a most
+
+NOTE Confidence: 0.8634697198867798
+
+00:11:10.949 --> 00:11:11.959
+optimized runtime.
+
+NOTE Confidence: 0.7523161768913269
+
+00:11:11.960 --> 00:11:15.694
+Some model providers will really focus on VLLM for the
+
+NOTE Confidence: 0.7523161768913269
+
+00:11:15.763 --> 00:11:16.039
+LLM.
+
+NOTE Confidence: 0.722064733505249
+
+00:11:16.040 --> 00:11:19.035
+Some model providers will really focus on SG Lang for
+
+NOTE Confidence: 0.722064733505249
+
+00:11:19.092 --> 00:11:21.239
+the optimized deployment of their LLM.
+
+NOTE Confidence: 0.9231449961662292
+
+00:11:21.400 --> 00:11:22.840
+Some models are not LLM.
+
+NOTE Confidence: 0.871257483959198
+
+00:11:22.840 --> 00:11:25.537
+Some models are embedding models that you need in order
+
+NOTE Confidence: 0.871257483959198
+
+00:11:25.586 --> 00:11:26.960
+to build like RAG pipelines.
+
+NOTE Confidence: 0.7748336791992188
+
+00:11:27.040 --> 00:11:29.920
+So we have text embeddings, inferences optimized for that.
+
+NOTE Confidence: 0.8662958741188049
+
+00:11:30.120 --> 00:11:33.781
+Some models are quantized in order to run better on
+
+NOTE Confidence: 0.8662958741188049
+
+00:11:33.853 --> 00:11:37.873
+CPU and super efficiently using the LAMAS CPPC plus plus
+
+NOTE Confidence: 0.8662958741188049
+
+00:11:37.945 --> 00:11:38.519
+runtime.
+
+NOTE Confidence: 0.936622679233551
+
+00:11:38.520 --> 00:11:41.461
+And so we have containers and deployment templates for that
+
+NOTE Confidence: 0.936622679233551
+
+00:11:41.511 --> 00:11:41.959
+etcetera.
+
+NOTE Confidence: 0.8371086120605469
+
+00:11:42.040 --> 00:11:45.060
+For NVIDIA models you can find them with Nims and
+
+NOTE Confidence: 0.8371086120605469
+
+00:11:45.122 --> 00:11:47.279
+that's all powered by tensor RTLLM.
+
+NOTE Confidence: 0.8469324707984924
+
+00:11:47.440 --> 00:11:51.087
+And for like other types of tasks like speech and
+
+NOTE Confidence: 0.8469324707984924
+
+00:11:51.162 --> 00:11:54.437
+vision tasks, we have HS HF Serve which is a
+
+NOTE Confidence: 0.8469324707984924
+
+00:11:54.512 --> 00:11:59.425
+new framework SDK to optimize deployment of these machine learning
+
+NOTE Confidence: 0.8469324707984924
+
+00:11:59.500 --> 00:12:00.840
+multi modal tasks.
+
+NOTE Confidence: 0.8884225487709045
+
+00:12:01.160 --> 00:12:04.648
+So there we are, very excited to show this to
+
+NOTE Confidence: 0.8884225487709045
+
+00:12:04.726 --> 00:12:07.594
+you and OC over to you to show us how
+
+NOTE Confidence: 0.8884225487709045
+
+00:12:07.672 --> 00:12:08.680
+it all works.
+
+NOTE Confidence: 0.9443281292915344
+
+00:12:09.120 --> 00:12:09.680
+Sounds good.
+
+NOTE Confidence: 0.8912865519523621
+
+00:12:09.720 --> 00:12:10.720
+Can you guys hear me well?
+
+NOTE Confidence: 0.8126659989356995
+
+00:12:10.720 --> 00:12:11.760
+OK, perfect.
+
+NOTE Confidence: 0.6592674255371094
+
+00:12:12.000 --> 00:12:13.560
+So yeah, my name is OC Kadu.
+
+NOTE Confidence: 0.8282746076583862
+
+00:12:13.560 --> 00:12:13.880
+Hello.
+
+NOTE Confidence: 0.8515691757202148
+
+00:12:13.880 --> 00:12:17.358
+Hope everyone is doing well Let's get started with a
+
+NOTE Confidence: 0.8515691757202148
+
+00:12:17.425 --> 00:12:17.759
+demo.
+
+NOTE Confidence: 0.9011207222938538
+
+00:12:19.000 --> 00:12:21.960
+So curious how many people use Foundry already?
+
+NOTE Confidence: 0.7991175651550293
+
+00:12:22.720 --> 00:12:23.320
+Quite a bit.
+
+NOTE Confidence: 0.9288619160652161
+
+00:12:23.320 --> 00:12:24.760
+OK what about open models?
+
+NOTE Confidence: 0.9398649334907532
+
+00:12:25.560 --> 00:12:26.560
+OK, that's good.
+
+NOTE Confidence: 0.8478124737739563
+
+00:12:26.760 --> 00:12:28.663
+So yeah, this will be a treat for you guys
+
+NOTE Confidence: 0.8478124737739563
+
+00:12:28.708 --> 00:12:30.520
+and for those who you can not fit in any
+
+NOTE Confidence: 0.8478124737739563
+
+00:12:30.566 --> 00:12:32.560
+of those buckets, you'll still be impressed.
+
+NOTE Confidence: 0.8102763295173645
+
+00:12:33.400 --> 00:12:35.040
+So yeah, this is Microsoft Foundry.
+
+NOTE Confidence: 0.8363824486732483
+
+00:12:35.040 --> 00:12:38.820
+As you can see, we're going to go into the
+
+NOTE Confidence: 0.8363824486732483
+
+00:12:38.910 --> 00:12:40.800
+discover if it works.
+
+NOTE Confidence: 0.8428210616111755
+
+00:12:42.280 --> 00:12:44.455
+So in Discover is where we'll find like all the
+
+NOTE Confidence: 0.8428210616111755
+
+00:12:44.501 --> 00:12:45.519
+model catalogs, right?
+
+NOTE Confidence: 0.9479678869247437
+
+00:12:45.520 --> 00:12:48.720
+And there are like different collections available.
+
+NOTE Confidence: 0.790856659412384
+
+00:12:49.160 --> 00:12:51.800
+Oh, that's probably connectivity.
+
+NOTE Confidence: 0.8256335854530334
+
+00:12:53.160 --> 00:12:54.160
+It's the demo effect.
+
+NOTE Confidence: 0.7216261029243469
+
+00:12:54.320 --> 00:12:55.120
+It's going to happen.
+
+NOTE Confidence: 0.7725498676300049
+
+00:12:56.200 --> 00:12:56.800
+Always happens.
+
+NOTE Confidence: 0.3413934111595154
+
+00:12:56.960 --> 00:12:57.200
+Yep.
+
+NOTE Confidence: 0.7861778140068054
+
+00:12:57.480 --> 00:12:59.636
+That's where we're on the demo Wi-Fi, so we have
+
+NOTE Confidence: 0.7861778140068054
+
+00:12:59.681 --> 00:13:00.760
+the demo effect exactly.
+
+NOTE Confidence: 0.8917333483695984
+
+00:13:01.320 --> 00:13:04.490
+So in the Discover tab you find all the different
+
+NOTE Confidence: 0.8917333483695984
+
+00:13:04.555 --> 00:13:05.720
+model collections.
+
+NOTE Confidence: 0.9384258389472961
+
+00:13:06.400 --> 00:13:10.204
+On the left sidebar you will see like the models
+
+NOTE Confidence: 0.9384258389472961
+
+00:13:10.283 --> 00:13:10.680
+page.
+
+NOTE Confidence: 0.7887248396873474
+
+00:13:10.880 --> 00:13:14.680
+And here you you can filter by different provider.
+
+NOTE Confidence: 0.892158031463623
+
+00:13:15.800 --> 00:13:20.312
+And to find specifically the Hugging Face models, you can
+
+NOTE Confidence: 0.892158031463623
+
+00:13:20.391 --> 00:13:23.399
+filter to the Hugging Face collection.
+
+NOTE Confidence: 0.8603043556213379
+
+00:13:25.240 --> 00:13:28.120
+So within the filters, you're able to select the machine
+
+NOTE Confidence: 0.8603043556213379
+
+00:13:28.171 --> 00:13:30.280
+learning task that you might want to use.
+
+NOTE Confidence: 0.911857008934021
+
+00:13:30.280 --> 00:13:33.655
+So we talked about like embeddings models and vision and
+
+NOTE Confidence: 0.911857008934021
+
+00:13:33.716 --> 00:13:34.560
+speech models.
+
+NOTE Confidence: 0.8926656246185303
+
+00:13:34.960 --> 00:13:37.652
+That's so that's an easy way to get to the
+
+NOTE Confidence: 0.8926656246185303
+
+00:13:37.716 --> 00:13:39.959
+kind of model that you want to use.
+
+NOTE Confidence: 0.810941755771637
+
+00:13:40.720 --> 00:13:41.760
+All right, maybe we're back.
+
+NOTE Confidence: 0.9643293619155884
+
+00:13:41.840 --> 00:13:42.440
+There we go.
+
+NOTE Confidence: 0.6416984796524048
+
+00:13:42.920 --> 00:13:43.920
+Got to do a hotspot.
+
+NOTE Confidence: 0.7200643420219421
+
+00:13:45.080 --> 00:13:45.920
+So yeah, there we go.
+
+NOTE Confidence: 0.9656420946121216
+
+00:13:46.560 --> 00:13:47.200
+Thank you.
+
+NOTE Confidence: 0.7830260396003723
+
+00:13:48.800 --> 00:13:49.520
+It's loading.
+
+NOTE Confidence: 0.7772275805473328
+
+00:13:50.400 --> 00:13:52.819
+But yeah, as Jeff said, discoveries where you see all
+
+NOTE Confidence: 0.7772275805473328
+
+00:13:52.864 --> 00:13:54.280
+our latest and greatest models.
+
+NOTE Confidence: 0.7954301238059998
+
+00:13:54.720 --> 00:13:58.761
+So alongside models from Microsoft AI and Drop Pic Open
+
+NOTE Confidence: 0.7954301238059998
+
+00:13:58.834 --> 00:14:01.480
+AI, we have over 11,000 open models.
+
+NOTE Confidence: 0.8647575378417969
+
+00:14:02.160 --> 00:14:05.804
+So we are going to go to the models page,
+
+NOTE Confidence: 0.8647575378417969
+
+00:14:05.893 --> 00:14:09.359
+the models catalog page, it is loading.
+
+NOTE Confidence: 0.81651371717453
+
+00:14:10.240 --> 00:14:13.327
+And then as you Scroll down, loading, loading, OK, you
+
+NOTE Confidence: 0.81651371717453
+
+00:14:13.385 --> 00:14:16.987
+Scroll down to deployment options, you click on Manage Compute,
+
+NOTE Confidence: 0.81651371717453
+
+00:14:17.044 --> 00:14:18.359
+that is a starter show.
+
+NOTE Confidence: 0.7653203010559082
+
+00:14:18.360 --> 00:14:19.760
+So that's where we're going to focus on.
+
+NOTE Confidence: 0.9211658239364624
+
+00:14:20.360 --> 00:14:22.919
+So as you can see here, we have all these
+
+NOTE Confidence: 0.9211658239364624
+
+00:14:22.982 --> 00:14:26.415
+models and as Jeff pointed out, these models are hosted
+
+NOTE Confidence: 0.9211658239364624
+
+00:14:26.478 --> 00:14:27.040
+on Azure.
+
+NOTE Confidence: 0.7731290459632874
+
+00:14:27.040 --> 00:14:29.068
+So it's not, we're not pulling it from a Hugging
+
+NOTE Confidence: 0.7731290459632874
+
+00:14:29.110 --> 00:14:31.519
+Face hub, it's directly from Azure, so there's no worries
+
+NOTE Confidence: 0.7731290459632874
+
+00:14:31.561 --> 00:14:32.279
+about that there.
+
+NOTE Confidence: 0.7615154981613159
+
+00:14:32.800 --> 00:14:35.280
+So we're actually going to use a clan model.
+
+NOTE Confidence: 0.6590934991836548
+
+00:14:35.280 --> 00:14:39.625
+So we're going to start with Clan 3 of Clan
+
+NOTE Confidence: 0.6590934991836548
+
+00:14:39.726 --> 00:14:44.879
+32 and select the Clan 332 filling parameter model.
+
+NOTE Confidence: 0.8061991333961487
+
+00:14:49.920 --> 00:14:51.240
+So this is the deployment page.
+
+NOTE Confidence: 0.8692969679832458
+
+00:14:51.240 --> 00:14:54.141
+Then after as it loads up, there's going to be
+
+NOTE Confidence: 0.8692969679832458
+
+00:14:54.204 --> 00:14:57.421
+a deployment button that you simply click on and it
+
+NOTE Confidence: 0.8692969679832458
+
+00:14:57.484 --> 00:14:59.439
+takes you to a deployment page.
+
+NOTE Confidence: 0.8176297545433044
+
+00:15:04.480 --> 00:15:05.720
+So I'm just going to hit acknowledgements.
+
+NOTE Confidence: 0.9048082232475281
+
+00:15:05.720 --> 00:15:07.960
+Of course, you have to acknowledge things here.
+
+NOTE Confidence: 0.8198473453521729
+
+00:15:08.240 --> 00:15:10.680
+So yeah, so there's this thing called deployment templates.
+
+NOTE Confidence: 0.9264195561408997
+
+00:15:11.080 --> 00:15:13.266
+So as you can see here, there are multiple deployment
+
+NOTE Confidence: 0.9264195561408997
+
+00:15:13.307 --> 00:15:13.719
+templates.
+
+NOTE Confidence: 0.8949447274208069
+
+00:15:13.720 --> 00:15:14.280
+We have 4.
+
+NOTE Confidence: 0.7606027722358704
+
+00:15:14.280 --> 00:15:17.170
+So there's a base one of just H1 hundreds, H1
+
+NOTE Confidence: 0.7606027722358704
+
+00:15:17.235 --> 00:15:18.520
+hundreds, That's it.
+
+NOTE Confidence: 0.8435999155044556
+
+00:15:19.440 --> 00:15:22.909
+But as you can see above, we also have configurations
+
+NOTE Confidence: 0.8435999155044556
+
+00:15:22.974 --> 00:15:25.200
+for 2H1 hundreds and 2A1 hundreds.
+
+NOTE Confidence: 0.957420289516449
+
+00:15:25.280 --> 00:15:26.440
+There's nothing else you have to do.
+
+NOTE Confidence: 0.7678258419036865
+
+00:15:26.440 --> 00:15:30.417
+Everything is already preconfigured and customized for these deployments, so
+
+NOTE Confidence: 0.7678258419036865
+
+00:15:30.469 --> 00:15:32.929
+I'm just going to click on the 2H1 hundreds for
+
+NOTE Confidence: 0.7678258419036865
+
+00:15:32.981 --> 00:15:33.399
+example.
+
+NOTE Confidence: 0.8308019042015076
+
+00:15:33.400 --> 00:15:37.319
+By the way, when you're selecting like AH100 deployment template,
+
+NOTE Confidence: 0.8308019042015076
+
+00:15:37.379 --> 00:15:40.696
+then we can take advantage of like the latest Blackwell
+
+NOTE Confidence: 0.8308019042015076
+
+00:15:40.756 --> 00:15:41.359
+data type.
+
+NOTE Confidence: 0.7806163430213928
+
+00:15:41.360 --> 00:15:43.702
+So if there's like an NVFP for variant as there
+
+NOTE Confidence: 0.7806163430213928
+
+00:15:43.752 --> 00:15:46.493
+is for like the latest Demotron models, then we'll take
+
+NOTE Confidence: 0.7806163430213928
+
+00:15:46.542 --> 00:15:47.440
+advantage of that.
+
+NOTE Confidence: 0.882388710975647
+
+00:15:47.720 --> 00:15:50.252
+And if you want to prioritize like more context window
+
+NOTE Confidence: 0.882388710975647
+
+00:15:50.299 --> 00:15:52.409
+for like identity use cases or if you want to
+
+NOTE Confidence: 0.882388710975647
+
+00:15:52.456 --> 00:15:55.786
+prioritize latency, right, we have these deployment templates that give
+
+NOTE Confidence: 0.882388710975647
+
+00:15:55.833 --> 00:15:57.239
+you these easy to use options.
+
+NOTE Confidence: 0.8624407649040222
+
+00:15:57.400 --> 00:15:58.040
+Exactly.
+
+NOTE Confidence: 0.784134030342102
+
+00:15:58.240 --> 00:16:00.200
+And on that note, as you can see, see here.
+
+NOTE Confidence: 0.8502591848373413
+
+00:16:00.520 --> 00:16:04.257
+So for the 2H1 hundreds, we have the Max contents
+
+NOTE Confidence: 0.8502591848373413
+
+00:16:04.333 --> 00:16:06.240
+length of 131,000 tokens.
+
+NOTE Confidence: 0.8853231072425842
+
+00:16:07.080 --> 00:16:09.885
+So and also when you click on accelerators, again, we're
+
+NOTE Confidence: 0.8853231072425842
+
+00:16:09.935 --> 00:16:11.839
+trying to simplify the infrastructure.
+
+NOTE Confidence: 0.9378598928451538
+
+00:16:12.080 --> 00:16:14.071
+So all you have to do is just simply click
+
+NOTE Confidence: 0.9378598928451538
+
+00:16:14.119 --> 00:16:15.399
+on the H-100 and that's it.
+
+NOTE Confidence: 0.9668206572532654
+
+00:16:15.480 --> 00:16:16.000
+Nothing else.
+
+NOTE Confidence: 0.8785085082054138
+
+00:16:16.000 --> 00:16:18.956
+You don't have to worry about the lower level infrastructure
+
+NOTE Confidence: 0.8785085082054138
+
+00:16:19.005 --> 00:16:19.400
+details.
+
+NOTE Confidence: 0.8882725834846497
+
+00:16:19.960 --> 00:16:22.040
+And that's the magic of manage compute, right?
+
+NOTE Confidence: 0.9127388000488281
+
+00:16:22.040 --> 00:16:25.231
+It's the new thing that was announced yesterday within Microsoft
+
+NOTE Confidence: 0.9127388000488281
+
+00:16:25.281 --> 00:16:25.680
+Foundry.
+
+NOTE Confidence: 0.9401443004608154
+
+00:16:25.840 --> 00:16:28.112
+Like you don't have to go and fetch like in
+
+NOTE Confidence: 0.9401443004608154
+
+00:16:28.165 --> 00:16:28.800
+the console.
+
+NOTE Confidence: 0.7767198085784912
+
+00:16:28.800 --> 00:16:31.040
+Do I have the Corda for the right accelerator type?
+
+NOTE Confidence: 0.9528363943099976
+
+00:16:31.040 --> 00:16:32.520
+Like it's really simple.
+
+NOTE Confidence: 0.8160529136657715
+
+00:16:32.680 --> 00:16:35.365
+We have a one hundreds, we have H1 hundreds, we
+
+NOTE Confidence: 0.8160529136657715
+
+00:16:35.422 --> 00:16:38.451
+have AMD Instinct GPUs coming and it's just like this
+
+NOTE Confidence: 0.8160529136657715
+
+00:16:38.508 --> 00:16:39.479
+little drop down.
+
+NOTE Confidence: 0.8891165256500244
+
+00:16:39.880 --> 00:16:40.560
+Exactly.
+
+NOTE Confidence: 0.7245743274688721
+
+00:16:40.960 --> 00:16:42.840
+And going to call this out again.
+
+NOTE Confidence: 0.9088678956031799
+
+00:16:42.840 --> 00:16:46.169
+So as a single H-100, as you can see, there's
+
+NOTE Confidence: 0.9088678956031799
+
+00:16:46.243 --> 00:16:47.279
+41,000 tokens.
+
+NOTE Confidence: 0.8598871231079102
+
+00:16:47.280 --> 00:16:51.760
+So we try to optimize for your configurations out-of-the-box.
+
+NOTE Confidence: 0.8084880113601685
+
+00:16:52.240 --> 00:16:55.164
+So I'm going to go to a preconfigured or pre
+
+NOTE Confidence: 0.8084880113601685
+
+00:16:55.230 --> 00:16:56.560
+deployed model here.
+
+NOTE Confidence: 0.8604966998100281
+
+00:16:57.360 --> 00:17:01.129
+So we go to build models and we have a
+
+NOTE Confidence: 0.8604966998100281
+
+00:17:01.228 --> 00:17:04.799
+special tab just for manage compute.
+
+NOTE Confidence: 0.8879889845848083
+
+00:17:04.960 --> 00:17:07.461
+As you can see here, manage compute deployments, simple as
+
+NOTE Confidence: 0.8879889845848083
+
+00:17:07.504 --> 00:17:07.719
+that.
+
+NOTE Confidence: 0.8038869500160217
+
+00:17:08.320 --> 00:17:11.127
+So you click on it, I'm going to take a
+
+NOTE Confidence: 0.8038869500160217
+
+00:17:11.199 --> 00:17:12.279
+second to load.
+
+NOTE Confidence: 0.8348745107650757
+
+00:17:12.280 --> 00:17:12.800
+There we go.
+
+NOTE Confidence: 0.6586205959320068
+
+00:17:12.840 --> 00:17:13.400
+Oh, very cool.
+
+NOTE Confidence: 0.7807016372680664
+
+00:17:13.400 --> 00:17:16.970
+And I'm going to select the print 332 B parameter
+
+NOTE Confidence: 0.7807016372680664
+
+00:17:17.042 --> 00:17:17.480
+model.
+
+NOTE Confidence: 0.7256760597229004
+
+00:17:19.120 --> 00:17:19.560
+Nice.
+
+NOTE Confidence: 0.9575492143630981
+
+00:17:19.800 --> 00:17:21.820
+So once this is deployed, I guess we can interact
+
+NOTE Confidence: 0.9575492143630981
+
+00:17:21.861 --> 00:17:22.480
+with it, right?
+
+NOTE Confidence: 0.9430485367774963
+
+00:17:22.840 --> 00:17:23.320
+Exactly.
+
+NOTE Confidence: 0.4493961036205292
+
+00:17:23.320 --> 00:17:23.920
+Yeah, so there.
+
+NOTE Confidence: 0.8367382287979126
+
+00:17:24.280 --> 00:17:27.022
+So yeah, So for the first time and for the
+
+NOTE Confidence: 0.8367382287979126
+
+00:17:27.087 --> 00:17:30.548
+yeah, first time before I build audience and also for
+
+NOTE Confidence: 0.8367382287979126
+
+00:17:30.614 --> 00:17:34.205
+the first time, you can actually deploy the open models
+
+NOTE Confidence: 0.8367382287979126
+
+00:17:34.271 --> 00:17:35.119
+from Foundry.
+
+NOTE Confidence: 0.8049686551094055
+
+00:17:35.400 --> 00:17:38.200
+Now with that you can also have the Playground integration.
+
+NOTE Confidence: 0.8464137315750122
+
+00:17:38.760 --> 00:17:41.440
+So I can ask you a simple question like hello.
+
+NOTE Confidence: 0.7851598262786865
+
+00:17:42.800 --> 00:17:44.200
+And after a couple seconds, that's.
+
+NOTE Confidence: 0.6175094842910767
+
+00:17:44.200 --> 00:17:44.960
+Simple enough.
+
+NOTE Confidence: 0.7686163187026978
+
+00:17:46.840 --> 00:17:49.622
+Long and simple hello, how can I help So now
+
+NOTE Confidence: 0.7686163187026978
+
+00:17:49.685 --> 00:17:53.480
+we that people developers do not live in playgrounds, right?
+
+NOTE Confidence: 0.8597168326377869
+
+00:17:53.840 --> 00:17:58.360
+We use VS Code and other other software applications.
+
+NOTE Confidence: 0.8434616923332214
+
+00:17:59.160 --> 00:18:01.240
+I'm simply going to go to the call model screen.
+
+NOTE Confidence: 0.923751175403595
+
+00:18:01.680 --> 00:18:03.640
+I'm going to copy this piece of code here.
+
+NOTE Confidence: 0.7690581679344177
+
+00:18:04.800 --> 00:18:08.552
+So I'm like zooming out and I'm going to go
+
+NOTE Confidence: 0.7690581679344177
+
+00:18:08.639 --> 00:18:09.599
+to VS code.
+
+NOTE Confidence: 0.7833861708641052
+
+00:18:12.800 --> 00:18:16.113
+This is just pre configured already, so I'm just going
+
+NOTE Confidence: 0.7833861708641052
+
+00:18:16.175 --> 00:18:17.279
+to simply 3 lines.
+
+NOTE Confidence: 0.7630418539047241
+
+00:18:17.880 --> 00:18:19.840
+So simply copy and pasting it here.
+
+NOTE Confidence: 0.8697119951248169
+
+00:18:20.560 --> 00:18:22.080
+I see what is the capital of France?
+
+NOTE Confidence: 0.7610403895378113
+
+00:18:22.080 --> 00:18:24.440
+Let's I'm Nigerian, let's switch to Nigeria.
+
+NOTE Confidence: 0.9648000001907349
+
+00:18:26.440 --> 00:18:28.280
+So what is the capital of Nigeria?
+
+NOTE Confidence: 0.5761463642120361
+
+00:18:28.360 --> 00:18:30.600
+Staving it getting good.
+
+NOTE Confidence: 0.9555325508117676
+
+00:18:32.520 --> 00:18:33.440
+Any guesses?
+
+NOTE Confidence: 0.7088271975517273
+
+00:18:36.160 --> 00:18:39.680
+Sorry, no, you'll see.
+
+NOTE Confidence: 0.7682945728302002
+
+00:18:40.280 --> 00:18:44.452
+So it's not Lagos in case you guys are guessing
+
+NOTE Confidence: 0.7682945728302002
+
+00:18:44.541 --> 00:18:47.559
+that, but it is Dun Dun Dun Abuja.
+
+NOTE Confidence: 0.7112420201301575
+
+00:18:47.560 --> 00:18:48.200
+Exactly.
+
+NOTE Confidence: 0.801743745803833
+
+00:18:48.200 --> 00:18:48.560
+Thank you.
+
+NOTE Confidence: 0.9143791198730469
+
+00:18:49.640 --> 00:18:50.280
+Well done.
+
+NOTE Confidence: 0.7943329811096191
+
+00:18:50.600 --> 00:18:52.067
+But yeah, I'm on a hot spot, so it's going
+
+NOTE Confidence: 0.7943329811096191
+
+00:18:52.101 --> 00:18:53.079
+to take a little bit longer.
+
+NOTE Confidence: 0.7512627243995667
+
+00:18:53.080 --> 00:18:54.400
+So it's a one stop shop.
+
+NOTE Confidence: 0.803202748298645
+
+00:18:54.400 --> 00:18:57.586
+So in the same basically UI, we're able to search
+
+NOTE Confidence: 0.803202748298645
+
+00:18:57.651 --> 00:19:01.358
+the model, find the model, access the available GPUs, and
+
+NOTE Confidence: 0.803202748298645
+
+00:19:01.423 --> 00:19:05.064
+then have the deployed model and integrate it into code,
+
+NOTE Confidence: 0.803202748298645
+
+00:19:05.129 --> 00:19:05.520
+right?
+
+NOTE Confidence: 0.8641000986099243
+
+00:19:05.960 --> 00:19:07.520
+And that's going to come right up.
+
+NOTE Confidence: 0.9351975917816162
+
+00:19:07.520 --> 00:19:08.800
+But like, I know that.
+
+NOTE Confidence: 0.8356547951698303
+
+00:19:09.120 --> 00:19:09.640
+Oh, there we go.
+
+NOTE Confidence: 0.8905197978019714
+
+00:19:10.320 --> 00:19:10.960
+There you go.
+
+NOTE Confidence: 0.8774030208587646
+
+00:19:10.960 --> 00:19:12.240
+So good job I don't know your name.
+
+NOTE Confidence: 0.610145628452301
+
+00:19:12.240 --> 00:19:12.600
+Well done.
+
+NOTE Confidence: 0.6805967092514038
+
+00:19:12.840 --> 00:19:13.400
+Congratulations.
+
+NOTE Confidence: 0.8781517148017883
+
+00:19:13.600 --> 00:19:14.120
+Well done.
+
+NOTE Confidence: 0.8027810454368591
+
+00:19:14.880 --> 00:19:17.222
+But then like I see this particular model being very
+
+NOTE Confidence: 0.8027810454368591
+
+00:19:17.267 --> 00:19:19.384
+popular by hiding face users who want to use it
+
+NOTE Confidence: 0.8027810454368591
+
+00:19:19.429 --> 00:19:20.240
+with their agents.
+
+NOTE Confidence: 0.8556491136550903
+
+00:19:20.520 --> 00:19:22.600
+So can you actually do that in Foundry?
+
+NOTE Confidence: 0.8838824033737183
+
+00:19:22.760 --> 00:19:23.440
+Of course, Yeah.
+
+NOTE Confidence: 0.9154343008995056
+
+00:19:23.440 --> 00:19:26.053
+So again, for the first time ever, we now have
+
+NOTE Confidence: 0.9154343008995056
+
+00:19:26.110 --> 00:19:28.440
+agent integration with these open models.
+
+NOTE Confidence: 0.8306939601898193
+
+00:19:28.880 --> 00:19:33.593
+So as we go back to our deployment screen, I'm
+
+NOTE Confidence: 0.8306939601898193
+
+00:19:33.696 --> 00:19:38.512
+going to go back to build, going to our models,
+
+NOTE Confidence: 0.8306939601898193
+
+00:19:38.614 --> 00:19:42.405
+and I am going to go back to the Clan
+
+NOTE Confidence: 0.8306939601898193
+
+00:19:42.508 --> 00:19:45.480
+3 32B model that we deployed.
+
+NOTE Confidence: 0.8577215075492859
+
+00:19:47.120 --> 00:19:48.680
+Oh, sorry about that.
+
+NOTE Confidence: 0.7518748641014099
+
+00:19:49.360 --> 00:19:49.720
+There we go.
+
+NOTE Confidence: 0.8219075798988342
+
+00:19:52.160 --> 00:19:54.399
+So select and I'm simply going to add it to
+
+NOTE Confidence: 0.8219075798988342
+
+00:19:54.451 --> 00:19:54.920
+an agent.
+
+NOTE Confidence: 0.8432526588439941
+
+00:19:55.280 --> 00:19:57.914
+I have to create a resource name, so I'm just
+
+NOTE Confidence: 0.8432526588439941
+
+00:19:57.973 --> 00:19:59.319
+going to do build 2026.
+
+NOTE Confidence: 0.9641343355178833
+
+00:19:59.320 --> 00:19:59.680
+Why not?
+
+NOTE Confidence: 0.8530548810958862
+
+00:20:04.760 --> 00:20:09.402
+So after hitting that, going to agents and I'm hitting
+
+NOTE Confidence: 0.8530548810958862
+
+00:20:09.488 --> 00:20:10.519
+a new agent.
+
+NOTE Confidence: 0.7371852397918701
+
+00:20:10.680 --> 00:20:12.960
+So I'm going to select Build a new agent.
+
+NOTE Confidence: 0.7537236213684082
+
+00:20:13.440 --> 00:20:14.600
+And let's go to Thing one.
+
+NOTE Confidence: 0.4653477668762207
+
+00:20:14.600 --> 00:20:16.600
+I like darkness.
+
+NOTE Confidence: 0.641669750213623
+
+00:20:16.600 --> 00:20:19.240
+It's coming up.
+
+NOTE Confidence: 0.8939671516418457
+
+00:20:23.359 --> 00:20:26.718
+Now the magical thing is that a week ago in
+
+NOTE Confidence: 0.8939671516418457
+
+00:20:26.796 --> 00:20:30.154
+order to do all of this, you would have had
+
+NOTE Confidence: 0.8939671516418457
+
+00:20:30.232 --> 00:20:33.200
+to jump through a lot of hoops, right?
+
+NOTE Confidence: 0.9091783165931702
+
+00:20:33.200 --> 00:20:36.368
+Going from Foundry to Azure Machine Learning, then going to
+
+NOTE Confidence: 0.9091783165931702
+
+00:20:36.421 --> 00:20:39.052
+get quota, then trying to guess like where is the
+
+NOTE Confidence: 0.9091783165931702
+
+00:20:39.106 --> 00:20:42.005
+right runtime, then trying to guess what are the right
+
+NOTE Confidence: 0.9091783165931702
+
+00:20:42.059 --> 00:20:44.959
+deployment parameters and then like how do I plug that
+
+NOTE Confidence: 0.9091783165931702
+
+00:20:45.012 --> 00:20:48.180
+into my agent creation workflow directly in Foundry and now
+
+NOTE Confidence: 0.9091783165931702
+
+00:20:48.234 --> 00:20:49.040
+it's all there.
+
+NOTE Confidence: 0.8334797620773315
+
+00:20:49.280 --> 00:20:52.187
+Exactly and now with that so with agents you also
+
+NOTE Confidence: 0.8334797620773315
+
+00:20:52.247 --> 00:20:55.155
+have integration to other tools so as you can see
+
+NOTE Confidence: 0.8334797620773315
+
+00:20:55.214 --> 00:20:58.360
+here we have an integration with the web search tool.
+
+NOTE Confidence: 0.8223910331726074
+
+00:20:58.359 --> 00:21:00.844
+So that means we can well, that means we can
+
+NOTE Confidence: 0.8223910331726074
+
+00:21:00.901 --> 00:21:04.119
+interact with the live web results today, the NBA Finals.
+
+NOTE Confidence: 0.8257341384887695
+
+00:21:04.120 --> 00:21:05.920
+So let's give that a try so.
+
+NOTE Confidence: 0.7484685182571411
+
+00:21:06.320 --> 00:21:06.920
+Game one who?
+
+NOTE Confidence: 0.6818963289260864
+
+00:21:06.920 --> 00:21:07.800
+Is playing.
+
+NOTE Confidence: 0.5717152953147888
+
+00:21:08.720 --> 00:21:09.680
+Who is playing or who's winning?
+
+NOTE Confidence: 0.6394658088684082
+
+00:21:09.680 --> 00:21:13.320
+What I'm saying, I mean, we're making predictions here, right?
+
+NOTE Confidence: 0.431393563747406
+
+00:21:13.320 --> 00:21:13.400
+So.
+
+NOTE Confidence: 0.8178330063819885
+
+00:21:15.520 --> 00:21:16.480
+It's going to take some time.
+
+NOTE Confidence: 0.7878598570823669
+
+00:21:16.480 --> 00:21:19.119
+Again, I'm on my hotspot, so let's give it a
+
+NOTE Confidence: 0.7878598570823669
+
+00:21:19.179 --> 00:21:19.479
+shot.
+
+NOTE Confidence: 0.38294994831085205
+
+00:21:21.400 --> 00:21:22.280
+Who is in the Hotspot?
+
+NOTE Confidence: 0.6244592070579529
+
+00:21:22.280 --> 00:21:25.240
+The Knicks or or your computer?
+
+NOTE Confidence: 0.87605881690979
+
+00:21:27.720 --> 00:21:30.834
+There you go, Wednesday, June 3rd, NBA Finals tonight at
+
+NOTE Confidence: 0.87605881690979
+
+00:21:30.890 --> 00:21:33.783
+8:30 PM Eastern Time between the New York Knicks and
+
+NOTE Confidence: 0.87605881690979
+
+00:21:33.838 --> 00:21:34.839
+San Antonio Spurs.
+
+NOTE Confidence: 0.7789825201034546
+
+00:21:34.840 --> 00:21:36.440
+Oh, wait, but that's not in the training data.
+
+NOTE Confidence: 0.6866903901100159
+
+00:21:36.760 --> 00:21:37.400
+Right, exactly.
+
+NOTE Confidence: 0.8108212351799011
+
+00:21:37.440 --> 00:21:38.760
+How did that work?
+
+NOTE Confidence: 0.5222395658493042
+
+00:21:38.840 --> 00:21:39.080
+Yeah.
+
+NOTE Confidence: 0.8806713819503784
+
+00:21:39.080 --> 00:21:41.970
+So going back again, it's the integration with the web
+
+NOTE Confidence: 0.8806713819503784
+
+00:21:42.024 --> 00:21:42.719
+search tools.
+
+NOTE Confidence: 0.914446234703064
+
+00:21:42.960 --> 00:21:45.660
+There are other integrations that we provide, but web search
+
+NOTE Confidence: 0.914446234703064
+
+00:21:45.705 --> 00:21:47.820
+of course is one of the top training tools that
+
+NOTE Confidence: 0.914446234703064
+
+00:21:47.865 --> 00:21:48.360
+we provide.
+
+NOTE Confidence: 0.8395614624023438
+
+00:21:49.040 --> 00:21:50.935
+But of course, again, developers do not live in a
+
+NOTE Confidence: 0.8395614624023438
+
+00:21:50.974 --> 00:21:51.400
+playground.
+
+NOTE Confidence: 0.819108784198761
+
+00:21:51.400 --> 00:21:54.181
+So we're going to go to call Agent and after
+
+NOTE Confidence: 0.819108784198761
+
+00:21:54.244 --> 00:21:57.278
+this loads, we're going to just copy over a code
+
+NOTE Confidence: 0.819108784198761
+
+00:21:57.342 --> 00:21:58.480
+into our platform.
+
+NOTE Confidence: 0.6987136602401733
+
+00:22:04.000 --> 00:22:04.520
+So here.
+
+NOTE Confidence: 0.8122082352638245
+
+00:22:04.520 --> 00:22:06.040
+So I'm just going to run it.
+
+NOTE Confidence: 0.8791272044181824
+
+00:22:18.490 --> 00:22:19.890
+So who do you have for the NBA Finals?
+
+NOTE Confidence: 0.7044360041618347
+
+00:22:20.650 --> 00:22:20.730
+Who?
+
+NOTE Confidence: 0.858912467956543
+
+00:22:20.930 --> 00:22:21.570
+Who do I have?
+
+NOTE Confidence: 0.8080063462257385
+
+00:22:21.610 --> 00:22:22.810
+Yeah, who do you think is going to win?
+
+NOTE Confidence: 0.962944746017456
+
+00:22:23.650 --> 00:22:24.890
+Well, I'm not.
+
+NOTE Confidence: 0.8292292356491089
+
+00:22:25.690 --> 00:22:26.650
+It's really an opinion.
+
+NOTE Confidence: 0.45585742592811584
+
+00:22:27.010 --> 00:22:27.290
+Yeah.
+
+NOTE Confidence: 0.6760056614875793
+
+00:22:28.650 --> 00:22:30.410
+I'm rooting for for Wimby personally.
+
+NOTE Confidence: 0.5090532302856445
+
+00:22:30.490 --> 00:22:30.850
+Same thing.
+
+NOTE Confidence: 0.6394471526145935
+
+00:22:31.530 --> 00:22:34.480
+Yeah, yeah, there's going to be a moment.
+
+NOTE Confidence: 0.8388621807098389
+
+00:22:34.480 --> 00:22:37.042
+But yeah, once it runs, you can see that we
+
+NOTE Confidence: 0.8388621807098389
+
+00:22:37.102 --> 00:22:39.843
+can easy call the agent from VS Code and there
+
+NOTE Confidence: 0.8388621807098389
+
+00:22:39.902 --> 00:22:40.319
+you go.
+
+NOTE Confidence: 0.868260383605957
+
+00:22:40.720 --> 00:22:42.938
+So I can help with the wider range of tasks,
+
+NOTE Confidence: 0.868260383605957
+
+00:22:42.988 --> 00:22:44.400
+including one, 2-3 and four.
+
+NOTE Confidence: 0.9152029752731323
+
+00:22:44.400 --> 00:22:47.160
+So, but let's also see there is something.
+
+NOTE Confidence: 0.7676703333854675
+
+00:22:48.120 --> 00:22:51.240
+Yeah, let's try Agentic rag.
+
+NOTE Confidence: 0.9068305492401123
+
+00:22:51.280 --> 00:22:54.400
+So I have a little demo, a little script here.
+
+NOTE Confidence: 0.914657711982727
+
+00:22:56.119 --> 00:22:58.495
+So I'm simply going to say what is my favorite
+
+NOTE Confidence: 0.914657711982727
+
+00:22:58.546 --> 00:22:58.959
+country.
+
+NOTE Confidence: 0.8775555491447449
+
+00:22:59.800 --> 00:23:02.760
+So just calling it again didn't change anything about it.
+
+NOTE Confidence: 0.9260374307632446
+
+00:23:02.760 --> 00:23:05.658
+I'm still calling the same endpoint, I'm still using the
+
+NOTE Confidence: 0.9260374307632446
+
+00:23:05.710 --> 00:23:06.279
+same agent.
+
+NOTE Confidence: 0.44232407212257385
+
+00:23:07.360 --> 00:23:08.440
+Oh, so actually let?
+
+NOTE Confidence: 0.8370755910873413
+
+00:23:08.600 --> 00:23:12.336
+Me know well, while these things does this networking thing,
+
+NOTE Confidence: 0.8370755910873413
+
+00:23:12.399 --> 00:23:15.451
+one of the magic of using Microsoft Foundry to do
+
+NOTE Confidence: 0.8370755910873413
+
+00:23:15.513 --> 00:23:18.253
+all of this work, which you would have to do
+
+NOTE Confidence: 0.8370755910873413
+
+00:23:18.316 --> 00:23:21.617
+anyways if you were building your agent like with any
+
+NOTE Confidence: 0.8370755910873413
+
+00:23:21.679 --> 00:23:25.291
+other property, is that all the security features, all the
+
+NOTE Confidence: 0.8370755910873413
+
+00:23:25.354 --> 00:23:28.966
+enterprise setup that you have with like role based access
+
+NOTE Confidence: 0.8370755910873413
+
+00:23:29.028 --> 00:23:31.519
+controls and identities and permissions.
+
+NOTE Confidence: 0.9335612058639526
+
+00:23:31.680 --> 00:23:32.840
+This is all built in.
+
+NOTE Confidence: 0.8769735097885132
+
+00:23:33.600 --> 00:23:37.729
+So all the security that Microsoft built into Foundry applies
+
+NOTE Confidence: 0.8769735097885132
+
+00:23:37.796 --> 00:23:40.978
+to your usage of open models to build all these
+
+NOTE Confidence: 0.8769735097885132
+
+00:23:41.046 --> 00:23:42.400
+experiences exactly.
+
+NOTE Confidence: 0.7900855541229248
+
+00:23:42.800 --> 00:23:44.954
+And as you can see, I'm calling the agent said
+
+NOTE Confidence: 0.7900855541229248
+
+00:23:45.001 --> 00:23:47.390
+my favorite country is Nigeria, and it goes on from
+
+NOTE Confidence: 0.7900855541229248
+
+00:23:47.437 --> 00:23:48.000
+there there.
+
+NOTE Confidence: 0.8714083433151245
+
+00:23:48.080 --> 00:23:49.040
+That's a wonderful choice.
+
+NOTE Confidence: 0.7567055225372314
+
+00:23:49.040 --> 00:23:52.154
+Nigeria is a vibrant, but not only that list, it's
+
+NOTE Confidence: 0.7567055225372314
+
+00:23:52.216 --> 00:23:53.400
+also context aware.
+
+NOTE Confidence: 0.8583874702453613
+
+00:23:54.119 --> 00:23:56.784
+So real quick as we are getting a signal, so
+
+NOTE Confidence: 0.8583874702453613
+
+00:23:56.844 --> 00:23:58.479
+I'm testing the second one.
+
+NOTE Confidence: 0.8747997283935547
+
+00:23:58.480 --> 00:24:01.581
+So again, I'm trying to just showcase the multi turn
+
+NOTE Confidence: 0.8747997283935547
+
+00:24:01.641 --> 00:24:05.159
+functionality that we now have with open models on Foundry.
+
+NOTE Confidence: 0.9175835251808167
+
+00:24:07.840 --> 00:24:11.573
+So again, I'm not referencing, I'm not referencing Nigeria at
+
+NOTE Confidence: 0.9175835251808167
+
+00:24:11.635 --> 00:24:11.879
+all.
+
+NOTE Confidence: 0.9357790350914001
+
+00:24:11.880 --> 00:24:13.931
+I'm simply saying like, hey, what did I tell you
+
+NOTE Confidence: 0.9357790350914001
+
+00:24:13.974 --> 00:24:14.999
+my favorite country was?
+
+NOTE Confidence: 0.6673523783683777
+
+00:24:16.200 --> 00:24:18.579
+And there you go, you mentioned that your favorite country
+
+NOTE Confidence: 0.6673523783683777
+
+00:24:18.620 --> 00:24:19.400
+is Nigeria exactly.
+
+NOTE Confidence: 0.8296138644218445
+
+00:24:19.680 --> 00:24:21.976
+So last but not least, it's going to try the
+
+NOTE Confidence: 0.8296138644218445
+
+00:24:22.029 --> 00:24:22.760
+last one here.
+
+NOTE Confidence: 0.819892942905426
+
+00:24:24.160 --> 00:24:26.068
+I'm simply going to ask you what is the city
+
+NOTE Confidence: 0.819892942905426
+
+00:24:26.112 --> 00:24:27.239
+I should visit in Nigeria?
+
+NOTE Confidence: 0.8503901362419128
+
+00:24:27.880 --> 00:24:34.280
+Run it and let's see what cities it will suggest.
+
+NOTE Confidence: 0.911637544631958
+
+00:24:34.840 --> 00:24:37.405
+I'm going to Nigeria hopefully in December so it can
+
+NOTE Confidence: 0.911637544631958
+
+00:24:37.454 --> 00:24:39.280
+give me some good travel advice here.
+
+NOTE Confidence: 0.6717952489852905
+
+00:24:41.080 --> 00:24:41.720
+That's beautiful.
+
+NOTE Confidence: 0.9347047805786133
+
+00:24:41.720 --> 00:24:43.600
+I think we're we've been asked to wrap it up.
+
+NOTE Confidence: 0.8020963072776794
+
+00:24:43.600 --> 00:24:50.600
+So yesterday Microsoft announced managed computes available in Microsoft Foundry.
+
+NOTE Confidence: 0.8654024600982666
+
+00:24:51.240 --> 00:24:54.521
+It's the easiest way for you to build with open
+
+NOTE Confidence: 0.8654024600982666
+
+00:24:54.591 --> 00:24:55.079
+models.
+
+NOTE Confidence: 0.7826340794563293
+
+00:24:55.359 --> 00:24:59.482
+We're bringing all the hugging face open models into this
+
+NOTE Confidence: 0.7826340794563293
+
+00:24:59.555 --> 00:25:00.639
+new experience.
+
+NOTE Confidence: 0.9029996991157532
+
+00:25:01.320 --> 00:25:05.861
+That's how you're able to deploy models with security, with
+
+NOTE Confidence: 0.9029996991157532
+
+00:25:05.938 --> 00:25:10.402
+performance and with GPUs without having to go through all
+
+NOTE Confidence: 0.9029996991157532
+
+00:25:10.479 --> 00:25:11.479
+of the hoops.
+
+NOTE Confidence: 0.9588890075683594
+
+00:25:12.080 --> 00:25:13.400
+Thank you for the partnership.
+
+NOTE Confidence: 0.8406405448913574
+
+00:25:13.560 --> 00:25:16.241
+Excited to keep building and bring more models, experiences of
+
+NOTE Confidence: 0.8406405448913574
+
+00:25:16.284 --> 00:25:16.760
+course and.
+
+NOTE Confidence: 0.8617417812347412
+
+00:25:16.760 --> 00:25:18.160
+Real quick, you got homework.
+
+NOTE Confidence: 0.7516378164291382
+
+00:25:18.520 --> 00:25:21.650
+So one start building with AI Foundry #2 sign up
+
+NOTE Confidence: 0.7516378164291382
+
+00:25:21.716 --> 00:25:25.107
+for the preview for Manage Compute and #3 first time
+
+NOTE Confidence: 0.7516378164291382
+
+00:25:25.172 --> 00:25:25.760
+for Jeff.
+
+NOTE Confidence: 0.8220832347869873
+
+00:25:25.760 --> 00:25:29.119
+We actually have a Microsoft Feedback portal, so you can
+
+NOTE Confidence: 0.8220832347869873
+
+00:25:29.179 --> 00:25:32.719
+actually suggest Hugging face models to onboard to Foundry.
+
+NOTE Confidence: 0.9223363399505615
+
+00:25:32.720 --> 00:25:33.960
+So thank you again for your time.
+
+NOTE Confidence: 0.5698356032371521
+
+00:25:33.960 --> 00:25:34.720
+I bet you I do.
+
+NOTE Confidence: 0.774813175201416
+
+00:25:35.240 --> 00:25:35.680
+Thank you.
+

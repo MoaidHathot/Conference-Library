@@ -1,0 +1,2845 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.791265606880188
+
+00:00:01.040 --> 00:00:05.587
+All right, Hi everyone, My name is Salil, I'm a
+
+NOTE Confidence: 0.791265606880188
+
+00:00:05.684 --> 00:00:08.200
+product manager at GitHub.
+
+NOTE Confidence: 0.582055926322937
+
+00:00:08.200 --> 00:00:09.120
+Hello everyone is.
+
+NOTE Confidence: 0.6025266647338867
+
+00:00:10.280 --> 00:00:12.120
+My audio coming through.
+
+NOTE Confidence: 0.8702967166900635
+
+00:00:12.120 --> 00:00:13.200
+My audio is not coming through.
+
+NOTE Confidence: 0.8838143348693848
+
+00:00:13.200 --> 00:00:14.640
+Now is my audio coming through?
+
+NOTE Confidence: 0.7434234023094177
+
+00:00:14.960 --> 00:00:17.572
+My name is Dennis and I'm also a product manager
+
+NOTE Confidence: 0.7434234023094177
+
+00:00:17.626 --> 00:00:19.639
+at GitHub supporting Salil today and.
+
+NOTE Confidence: 0.8669813871383667
+
+00:00:19.920 --> 00:00:22.240
+We're going to be talking about rethinking CI.
+
+NOTE Confidence: 0.7681241631507874
+
+00:00:22.360 --> 00:00:25.644
+So actions, AI, agents and the end of fail commit
+
+NOTE Confidence: 0.7681241631507874
+
+00:00:25.711 --> 00:00:27.320
+or commit, fail, commit.
+
+NOTE Confidence: 0.8864262700080872
+
+00:00:28.440 --> 00:00:32.680
+So actions usage has been accelerating at an unprecedented rate.
+
+NOTE Confidence: 0.8796700835227966
+
+00:00:32.680 --> 00:00:36.131
+At the beginning of January 2026, we were running 2.8
+
+NOTE Confidence: 0.8796700835227966
+
+00:00:36.196 --> 00:00:37.759
+million jobs for a week.
+
+NOTE Confidence: 0.944393515586853
+
+00:00:38.080 --> 00:00:41.566
+The beginning of this year, we were running 550 million
+
+NOTE Confidence: 0.944393515586853
+
+00:00:41.629 --> 00:00:42.199
+per week.
+
+NOTE Confidence: 0.9625776410102844
+
+00:00:43.440 --> 00:00:45.582
+Just a month ago, at the beginning of May, we
+
+NOTE Confidence: 0.9625776410102844
+
+00:00:45.630 --> 00:00:46.440
+were running 850.
+
+NOTE Confidence: 0.9303945302963257
+
+00:00:46.440 --> 00:00:49.680
+That's a 60% increase almost in only a few months.
+
+NOTE Confidence: 0.9110468029975891
+
+00:00:49.960 --> 00:00:53.217
+And while a lot of this increased usage is coming
+
+NOTE Confidence: 0.9110468029975891
+
+00:00:53.283 --> 00:00:56.075
+from AI and agents, CI is still one of our
+
+NOTE Confidence: 0.9110468029975891
+
+00:00:56.141 --> 00:00:59.000
+primary ways that people are using actions.
+
+NOTE Confidence: 0.9423606991767883
+
+00:00:59.600 --> 00:01:02.534
+But we've noticed a lot of our users are running
+
+NOTE Confidence: 0.9423606991767883
+
+00:01:02.595 --> 00:01:05.468
+into a bit of a challenge when they use actions
+
+NOTE Confidence: 0.9423606991767883
+
+00:01:05.529 --> 00:01:08.464
+and they get into what we call the commit, fail,
+
+NOTE Confidence: 0.9423606991767883
+
+00:01:08.525 --> 00:01:09.320
+commit cycle.
+
+NOTE Confidence: 0.8855447173118591
+
+00:01:09.480 --> 00:01:12.625
+So they commit some changes, they run a workflow and
+
+NOTE Confidence: 0.8855447173118591
+
+00:01:12.685 --> 00:01:14.440
+something looks a little off.
+
+NOTE Confidence: 0.8860486745834351
+
+00:01:14.440 --> 00:01:17.266
+Maybe it's a failure, maybe it succeeds, but it looks
+
+NOTE Confidence: 0.8860486745834351
+
+00:01:17.319 --> 00:01:18.119
+a little weird.
+
+NOTE Confidence: 0.897615909576416
+
+00:01:18.440 --> 00:01:21.123
+But the only way that they have to solve this
+
+NOTE Confidence: 0.897615909576416
+
+00:01:21.182 --> 00:01:23.865
+is they go, they try and make a small change,
+
+NOTE Confidence: 0.897615909576416
+
+00:01:23.925 --> 00:01:27.860
+add print statement, something like that, recommit, rerun and keep
+
+NOTE Confidence: 0.897615909576416
+
+00:01:27.920 --> 00:01:31.080
+on going until they eventually break out of the loop.
+
+NOTE Confidence: 0.8830453753471375
+
+00:01:31.480 --> 00:01:33.609
+Now, how many of you have encountered this before this
+
+NOTE Confidence: 0.8830453753471375
+
+00:01:33.648 --> 00:01:34.240
+sort of figure?
+
+NOTE Confidence: 0.8298048973083496
+
+00:01:35.520 --> 00:01:36.760
+All right, a bunch of people here.
+
+NOTE Confidence: 0.8643138408660889
+
+00:01:37.040 --> 00:01:39.672
+So I'm going to be talking through two ways that
+
+NOTE Confidence: 0.8643138408660889
+
+00:01:39.727 --> 00:01:42.469
+we are working on helping, giving all of you tools
+
+NOTE Confidence: 0.8643138408660889
+
+00:01:42.523 --> 00:01:45.265
+to help resolve and break out of this commit field
+
+NOTE Confidence: 0.8643138408660889
+
+00:01:45.320 --> 00:01:47.240
+commit loop as quickly as possible.
+
+NOTE Confidence: 0.8521755933761597
+
+00:01:47.760 --> 00:01:50.441
+The first is going to be an agent based solution
+
+NOTE Confidence: 0.8521755933761597
+
+00:01:50.497 --> 00:01:53.737
+using agentic work flows to help AI diagnose problems when
+
+NOTE Confidence: 0.8521755933761597
+
+00:01:53.793 --> 00:01:54.519
+they come up.
+
+NOTE Confidence: 0.9208411574363708
+
+00:01:55.080 --> 00:01:57.183
+The second is going to be a sneak peek of
+
+NOTE Confidence: 0.9208411574363708
+
+00:01:57.234 --> 00:02:00.004
+our actions debugger, a way to actually dig inside the
+
+NOTE Confidence: 0.9208411574363708
+
+00:02:00.055 --> 00:02:03.081
+runner itself and help you troubleshoot and debug issues as
+
+NOTE Confidence: 0.9208411574363708
+
+00:02:03.133 --> 00:02:03.800
+they come up.
+
+NOTE Confidence: 0.781726062297821
+
+00:02:04.080 --> 00:02:06.198
+I'm curious how many of you guys have heard of
+
+NOTE Confidence: 0.781726062297821
+
+00:02:06.244 --> 00:02:07.120
+agentic work flows?
+
+NOTE Confidence: 0.8106916546821594
+
+00:02:07.120 --> 00:02:09.183
+Can you raise your hand new you guys are using
+
+NOTE Confidence: 0.8106916546821594
+
+00:02:09.227 --> 00:02:10.079
+it Pretty familiar.
+
+NOTE Confidence: 0.8051638603210449
+
+00:02:10.080 --> 00:02:10.400
+Nice.
+
+NOTE Confidence: 0.7610623836517334
+
+00:02:11.400 --> 00:02:11.600
+Awesome.
+
+NOTE Confidence: 0.8544852137565613
+
+00:02:13.000 --> 00:02:17.774
+But for those who maybe aren't familiar with agentic work
+
+NOTE Confidence: 0.8544852137565613
+
+00:02:17.857 --> 00:02:21.543
+flows, they are a way that you can create an
+
+NOTE Confidence: 0.8544852137565613
+
+00:02:21.627 --> 00:02:25.479
+actions workflow but infuse agent logic in it.
+
+NOTE Confidence: 0.8340112566947937
+
+00:02:25.480 --> 00:02:28.624
+And the way that you're basically building them is you
+
+NOTE Confidence: 0.8340112566947937
+
+00:02:28.682 --> 00:02:32.117
+are creating Markdown files and expressing what you want to
+
+NOTE Confidence: 0.8340112566947937
+
+00:02:32.175 --> 00:02:34.970
+do in Markdown, and then we turn it into actions
+
+NOTE Confidence: 0.8340112566947937
+
+00:02:35.028 --> 00:02:35.319
+YAML.
+
+NOTE Confidence: 0.9639415740966797
+
+00:02:35.600 --> 00:02:39.008
+So I'm going to show you an example here of
+
+NOTE Confidence: 0.9639415740966797
+
+00:02:39.087 --> 00:02:39.959
+a workflow.
+
+NOTE Confidence: 0.7726994156837463
+
+00:02:40.400 --> 00:02:42.744
+This is a, this is not an agentic workflow, but
+
+NOTE Confidence: 0.7726994156837463
+
+00:02:42.794 --> 00:02:45.389
+I'm going to show you how a special agentic workflow
+
+NOTE Confidence: 0.7726994156837463
+
+00:02:45.438 --> 00:02:47.783
+that we call the CI doctor can help you resolve
+
+NOTE Confidence: 0.7726994156837463
+
+00:02:47.833 --> 00:02:49.479
+and diagnose issues more quickly.
+
+NOTE Confidence: 0.9591291546821594
+
+00:02:49.480 --> 00:02:52.440
+So I have a pretty basic workflow here.
+
+NOTE Confidence: 0.9481604099273682
+
+00:02:52.440 --> 00:02:55.615
+It's running a Python script that's going to read a
+
+NOTE Confidence: 0.9481604099273682
+
+00:02:55.677 --> 00:02:58.479
+handful of files that look kind of like this.
+
+NOTE Confidence: 0.835553765296936
+
+00:02:58.480 --> 00:03:01.073
+They're a bunch of just key value pairs and sum
+
+NOTE Confidence: 0.835553765296936
+
+00:03:01.129 --> 00:03:02.840
+them all up in return to value.
+
+NOTE Confidence: 0.9437002539634705
+
+00:03:03.639 --> 00:03:07.331
+So if I go and I try and run this
+
+NOTE Confidence: 0.9437002539634705
+
+00:03:07.442 --> 00:03:09.679
+particular workflow.
+
+NOTE Confidence: 0.8325350284576416
+
+00:03:13.520 --> 00:03:16.480
+So we're looking at basically any typical actions workflow.
+
+NOTE Confidence: 0.8380590081214905
+
+00:03:16.480 --> 00:03:18.859
+This is just a standard actions workflow, but I'm going
+
+NOTE Confidence: 0.8380590081214905
+
+00:03:18.902 --> 00:03:20.978
+to show you how an agentic workflow can help you
+
+NOTE Confidence: 0.8380590081214905
+
+00:03:21.022 --> 00:03:22.319
+diagnose and debug it quickly.
+
+NOTE Confidence: 0.44891417026519775
+
+00:03:22.600 --> 00:03:22.920
+Perfect.
+
+NOTE Confidence: 0.921875536441803
+
+00:03:23.120 --> 00:03:26.529
+So if you look, this workflow has failed and if
+
+NOTE Confidence: 0.921875536441803
+
+00:03:26.601 --> 00:03:29.503
+I dig into it a little bit, I'm going to
+
+NOTE Confidence: 0.921875536441803
+
+00:03:29.575 --> 00:03:32.839
+see something in my Python script has failed.
+
+NOTE Confidence: 0.8170684576034546
+
+00:03:32.840 --> 00:03:33.840
+Something weird has happened.
+
+NOTE Confidence: 0.7561495900154114
+
+00:03:33.840 --> 00:03:36.800
+And cannot concatenate string, not in something.
+
+NOTE Confidence: 0.9527231454849243
+
+00:03:37.000 --> 00:03:37.480
+Yes.
+
+NOTE Confidence: 0.819415807723999
+
+00:03:38.400 --> 00:03:40.081
+But one thing I can do is if I go
+
+NOTE Confidence: 0.819415807723999
+
+00:03:40.132 --> 00:03:42.781
+back to all my work flows, you'll notice right after
+
+NOTE Confidence: 0.819415807723999
+
+00:03:42.832 --> 00:03:45.889
+this CI failure doctor workflow trigger and this workflow is
+
+NOTE Confidence: 0.819415807723999
+
+00:03:45.940 --> 00:03:46.959
+an agentic workflow.
+
+NOTE Confidence: 0.8848196268081665
+
+00:03:46.960 --> 00:03:49.745
+It's designed to look and see when workflows fail and
+
+NOTE Confidence: 0.8848196268081665
+
+00:03:49.797 --> 00:03:52.162
+when they do, it's going to run an agent that
+
+NOTE Confidence: 0.8848196268081665
+
+00:03:52.215 --> 00:03:55.526
+actually does that, that actually analyzes and figures out what
+
+NOTE Confidence: 0.8848196268081665
+
+00:03:55.578 --> 00:03:59.205
+happened and provides root cause analysis and suggested solutions for
+
+NOTE Confidence: 0.8848196268081665
+
+00:03:59.257 --> 00:04:01.359
+how I can actually deal with this going.
+
+NOTE Confidence: 0.6853376030921936
+
+00:04:01.360 --> 00:04:01.640
+Forward.
+
+NOTE Confidence: 0.6812038421630859
+
+00:04:01.640 --> 00:04:04.472
+So that's CI failure doctor action that's running that was
+
+NOTE Confidence: 0.6812038421630859
+
+00:04:04.521 --> 00:04:05.839
+triggered automatically it.
+
+NOTE Confidence: 0.7065174579620361
+
+00:04:05.840 --> 00:04:06.760
+Was triggered automatically.
+
+NOTE Confidence: 0.8432756066322327
+
+00:04:06.760 --> 00:04:09.534
+This particular 1 is set up to trigger any time
+
+NOTE Confidence: 0.8432756066322327
+
+00:04:09.593 --> 00:04:12.840
+that the demo sum key counts from files workflow fails.
+
+NOTE Confidence: 0.9032249450683594
+
+00:04:14.120 --> 00:04:16.243
+And what I can do is I can show you
+
+NOTE Confidence: 0.9032249450683594
+
+00:04:16.304 --> 00:04:20.187
+what this workflow looks like, what's actually running here, And
+
+NOTE Confidence: 0.9032249450683594
+
+00:04:20.248 --> 00:04:23.524
+if you look, one special thing you'll see with agentic
+
+NOTE Confidence: 0.9032249450683594
+
+00:04:23.585 --> 00:04:26.680
+workflows is normally you just see a workflow file.
+
+NOTE Confidence: 0.8931686878204346
+
+00:04:26.880 --> 00:04:29.280
+In this case we see the agentic workflow file.
+
+NOTE Confidence: 0.8112205862998962
+
+00:04:29.680 --> 00:04:31.800
+And what this is, if I pull this up is
+
+NOTE Confidence: 0.8112205862998962
+
+00:04:31.856 --> 00:04:34.255
+you can see there's a little bit of sort of
+
+NOTE Confidence: 0.8112205862998962
+
+00:04:34.311 --> 00:04:37.770
+traditional YAML actions information here, but the rest is all
+
+NOTE Confidence: 0.8112205862998962
+
+00:04:37.826 --> 00:04:38.439
+marked out.
+
+NOTE Confidence: 0.8280556797981262
+
+00:04:38.800 --> 00:04:41.699
+It's saying that you're the CIA failure doctor, You are
+
+NOTE Confidence: 0.8280556797981262
+
+00:04:41.751 --> 00:04:45.600
+investigating failed GitHub actions to identify root causes and patterns.
+
+NOTE Confidence: 0.8827709555625916
+
+00:04:45.800 --> 00:04:48.045
+And there's a lot of data and information in here
+
+NOTE Confidence: 0.8827709555625916
+
+00:04:48.091 --> 00:04:50.795
+about how we should actually do the analysis, the different
+
+NOTE Confidence: 0.8827709555625916
+
+00:04:50.841 --> 00:04:53.499
+steps and components that should be returning and, and how
+
+NOTE Confidence: 0.8827709555625916
+
+00:04:53.545 --> 00:04:54.920
+to actually work through this.
+
+NOTE Confidence: 0.8410051465034485
+
+00:04:54.920 --> 00:04:58.213
+And this particular agentic workflow is actually one of a
+
+NOTE Confidence: 0.8410051465034485
+
+00:04:58.271 --> 00:05:01.737
+number of different prebuilt templates that we have that you
+
+NOTE Confidence: 0.8410051465034485
+
+00:05:01.795 --> 00:05:04.800
+can find online and very easily add with the wizard.
+
+NOTE Confidence: 0.8583589196205139
+
+00:05:05.240 --> 00:05:06.440
+We have the CI Doctor.
+
+NOTE Confidence: 0.8707053661346436
+
+00:05:06.440 --> 00:05:09.895
+There's a number that help support with issue triage or
+
+NOTE Confidence: 0.8707053661346436
+
+00:05:09.958 --> 00:05:14.167
+PR triage automatic documentation, but in this case this particular
+
+NOTE Confidence: 0.8707053661346436
+
+00:05:14.230 --> 00:05:17.497
+one is designed to help us identify and resolve open
+
+NOTE Confidence: 0.8707053661346436
+
+00:05:17.560 --> 00:05:18.000
+issues.
+
+NOTE Confidence: 0.8877707719802856
+
+00:05:18.200 --> 00:05:20.563
+So just so I understand what we're looking at is
+
+NOTE Confidence: 0.8877707719802856
+
+00:05:20.612 --> 00:05:22.876
+an MD file that you can create, you're using a
+
+NOTE Confidence: 0.8877707719802856
+
+00:05:22.926 --> 00:05:25.092
+template for the CIA doctor, but can I go in
+
+NOTE Confidence: 0.8877707719802856
+
+00:05:25.141 --> 00:05:27.159
+and just like edit the edit the file as I
+
+NOTE Confidence: 0.8877707719802856
+
+00:05:27.209 --> 00:05:29.079
+want and it would change the behavior?
+
+NOTE Confidence: 0.906051754951477
+
+00:05:29.120 --> 00:05:31.012
+You can not only edit the prompt, but one thing
+
+NOTE Confidence: 0.906051754951477
+
+00:05:31.052 --> 00:05:32.864
+that's really cool that you can do is you can
+
+NOTE Confidence: 0.906051754951477
+
+00:05:32.904 --> 00:05:34.997
+actually use Copilot to help you build and edit that
+
+NOTE Confidence: 0.906051754951477
+
+00:05:35.038 --> 00:05:35.319
+prompt.
+
+NOTE Confidence: 0.9395851492881775
+
+00:05:35.320 --> 00:05:38.413
+So for example, I actually made some small customizations to
+
+NOTE Confidence: 0.9395851492881775
+
+00:05:38.464 --> 00:05:41.248
+this one to add in this slash command protocol because
+
+NOTE Confidence: 0.9395851492881775
+
+00:05:41.299 --> 00:05:43.516
+as I was going through it, I noticed it was
+
+NOTE Confidence: 0.9395851492881775
+
+00:05:43.568 --> 00:05:44.960
+producing some odd results.
+
+NOTE Confidence: 0.829966127872467
+
+00:05:45.200 --> 00:05:47.538
+And I actually was able to use Copilot help me
+
+NOTE Confidence: 0.829966127872467
+
+00:05:47.589 --> 00:05:50.640
+modify this particular agentic workflow to adapt to my need.
+
+NOTE Confidence: 0.8178108930587769
+
+00:05:50.640 --> 00:05:52.508
+So I could add in a slash command to provide
+
+NOTE Confidence: 0.8178108930587769
+
+00:05:52.550 --> 00:05:54.970
+the CIA doctor with additional information as I was going
+
+NOTE Confidence: 0.8178108930587769
+
+00:05:55.012 --> 00:05:55.479
+through it.
+
+NOTE Confidence: 0.8407961130142212
+
+00:05:55.680 --> 00:05:57.400
+So you were able to customize this for your needs.
+
+NOTE Confidence: 0.9299073219299316
+
+00:05:57.400 --> 00:05:59.720
+What happens to this MD file?
+
+NOTE Confidence: 0.6750871539115906
+
+00:05:59.720 --> 00:05:59.920
+Right?
+
+NOTE Confidence: 0.9193174839019775
+
+00:05:59.920 --> 00:06:02.040
+MD files are easy for us to understand.
+
+NOTE Confidence: 0.7935088872909546
+
+00:06:02.320 --> 00:06:03.760
+Is this physically then used?
+
+NOTE Confidence: 0.614348292350769
+
+00:06:03.760 --> 00:06:05.360
+What what comes of the MD file?
+
+NOTE Confidence: 0.9224667549133301
+
+00:06:05.360 --> 00:06:07.939
+So when you actually put the MD file into your
+
+NOTE Confidence: 0.9224667549133301
+
+00:06:07.995 --> 00:06:11.078
+repo, you then use a specific command, which I'll throw
+
+NOTE Confidence: 0.9224667549133301
+
+00:06:11.135 --> 00:06:11.919
+up right here.
+
+NOTE Confidence: 0.8259716033935547
+
+00:06:12.520 --> 00:06:15.418
+Basically what you have to do is when you create
+
+NOTE Confidence: 0.8259716033935547
+
+00:06:15.479 --> 00:06:18.136
+the the MD file, you run a command GitHub AW
+
+NOTE Confidence: 0.8259716033935547
+
+00:06:18.196 --> 00:06:18.680
+compile.
+
+NOTE Confidence: 0.8062970042228699
+
+00:06:19.120 --> 00:06:22.148
+AW is an extension for a genetic workflows that you
+
+NOTE Confidence: 0.8062970042228699
+
+00:06:22.207 --> 00:06:24.879
+can set up and install inside the GitHub CLI.
+
+NOTE Confidence: 0.890536904335022
+
+00:06:25.160 --> 00:06:27.720
+And I just run this GitHub AW compile.
+
+NOTE Confidence: 0.7711708545684814
+
+00:06:27.880 --> 00:06:29.640
+You'll see it's thrown up a couple of warnings.
+
+NOTE Confidence: 0.9060466289520264
+
+00:06:29.640 --> 00:06:31.254
+In this case, it's telling me I should make sure
+
+NOTE Confidence: 0.9060466289520264
+
+00:06:31.288 --> 00:06:32.600
+to restrict it just to the main branch.
+
+NOTE Confidence: 0.9614722728729248
+
+00:06:32.880 --> 00:06:34.240
+I took that out just for this demo.
+
+NOTE Confidence: 0.8571838736534119
+
+00:06:34.920 --> 00:06:37.098
+But what it'll do is it'll let you, it'll basically
+
+NOTE Confidence: 0.8571838736534119
+
+00:06:37.141 --> 00:06:37.440
+run it.
+
+NOTE Confidence: 0.9008122086524963
+
+00:06:37.440 --> 00:06:39.872
+And in this case, since it's already compiled, it's not
+
+NOTE Confidence: 0.9008122086524963
+
+00:06:39.917 --> 00:06:41.199
+going to really add anything.
+
+NOTE Confidence: 0.8483184576034546
+
+00:06:41.200 --> 00:06:43.218
+But what it does is it turns it into an
+
+NOTE Confidence: 0.8483184576034546
+
+00:06:43.269 --> 00:06:46.426
+action's YAML, something that's not really readable for us as
+
+NOTE Confidence: 0.8483184576034546
+
+00:06:46.478 --> 00:06:48.600
+humans, but actions knows how to read it.
+
+NOTE Confidence: 0.8179742097854614
+
+00:06:49.080 --> 00:06:51.053
+And you basically every when you make changes to your
+
+NOTE Confidence: 0.8179742097854614
+
+00:06:51.090 --> 00:06:52.840
+markdown file, you recompile and you add it in.
+
+NOTE Confidence: 0.8005187511444092
+
+00:06:52.840 --> 00:06:54.440
+It all gets committed as part of your workflow.
+
+NOTE Confidence: 0.8273080587387085
+
+00:06:54.680 --> 00:06:57.015
+So I as a human, I start with MD, then
+
+NOTE Confidence: 0.8273080587387085
+
+00:06:57.077 --> 00:07:00.519
+the genetic workflows process lets me convert that into.
+
+NOTE Confidence: 0.6861093044281006
+
+00:07:00.960 --> 00:07:01.600
+An actual workflow.
+
+NOTE Confidence: 0.6722855567932129
+
+00:07:01.600 --> 00:07:03.600
+It converts it to a dot lock dot yaml.
+
+NOTE Confidence: 0.8166909217834473
+
+00:07:04.040 --> 00:07:05.840
+We just put dot lock dot yaml because we want
+
+NOTE Confidence: 0.8166909217834473
+
+00:07:05.880 --> 00:07:08.680
+something to differentiate between non agentic workflows because a lot
+
+NOTE Confidence: 0.8166909217834473
+
+00:07:08.720 --> 00:07:10.320
+of people are still going to have those.
+
+NOTE Confidence: 0.6037124395370483
+
+00:07:10.800 --> 00:07:11.040
+Love it.
+
+NOTE Confidence: 0.8239753842353821
+
+00:07:11.760 --> 00:07:13.804
+So why don't we jump back and see how the
+
+NOTE Confidence: 0.8239753842353821
+
+00:07:13.853 --> 00:07:15.199
+CI failure doctor is going?
+
+NOTE Confidence: 0.9185864925384521
+
+00:07:16.800 --> 00:07:18.040
+It looks like it's still running.
+
+NOTE Confidence: 0.6159284114837646
+
+00:07:18.320 --> 00:07:19.560
+That's the running another question.
+
+NOTE Confidence: 0.8687431812286377
+
+00:07:19.560 --> 00:07:22.753
+So per repo can I have different files then basically
+
+NOTE Confidence: 0.8687431812286377
+
+00:07:22.813 --> 00:07:24.320
+that have different jobs?
+
+NOTE Confidence: 0.8501486778259277
+
+00:07:24.320 --> 00:07:27.040
+Can I share my agentic workflow files across?
+
+NOTE Confidence: 0.7777807116508484
+
+00:07:27.200 --> 00:07:27.800
+How does that work?
+
+NOTE Confidence: 0.6180164813995361
+
+00:07:27.840 --> 00:07:28.080
+Yeah.
+
+NOTE Confidence: 0.8567767143249512
+
+00:07:28.080 --> 00:07:29.907
+So what you can do is you can actually take
+
+NOTE Confidence: 0.8567767143249512
+
+00:07:29.950 --> 00:07:31.480
+any agentic workflow you've defined.
+
+NOTE Confidence: 0.8175972700119019
+
+00:07:31.680 --> 00:07:34.285
+You can share it with anyone else in your, you
+
+NOTE Confidence: 0.8175972700119019
+
+00:07:34.342 --> 00:07:37.287
+know, using your, your repos and just share the same
+
+NOTE Confidence: 0.8175972700119019
+
+00:07:37.344 --> 00:07:40.120
+way you would any other file that's in your repo.
+
+NOTE Confidence: 0.845054566860199
+
+00:07:40.320 --> 00:07:42.872
+And then those teammates can again customize it further or
+
+NOTE Confidence: 0.845054566860199
+
+00:07:42.915 --> 00:07:45.159
+just recompile it and have it added to their, their
+
+NOTE Confidence: 0.845054566860199
+
+00:07:45.203 --> 00:07:45.599
+workflow.
+
+NOTE Confidence: 0.9127795696258545
+
+00:07:45.600 --> 00:07:47.911
+So you can do, you can basically treat these like
+
+NOTE Confidence: 0.9127795696258545
+
+00:07:47.958 --> 00:07:50.316
+any other file or any other workflow that you work
+
+NOTE Confidence: 0.9127795696258545
+
+00:07:50.364 --> 00:07:50.600
+with.
+
+NOTE Confidence: 0.8451590538024902
+
+00:07:50.920 --> 00:07:53.534
+The other cool thing is at GitHub, we are building
+
+NOTE Confidence: 0.8451590538024902
+
+00:07:53.586 --> 00:07:56.409
+more and more of these agentic workflows to help solve
+
+NOTE Confidence: 0.8451590538024902
+
+00:07:56.462 --> 00:07:58.239
+common problems that we're seeing.
+
+NOTE Confidence: 0.8252343535423279
+
+00:07:58.400 --> 00:08:00.612
+So the ones that I brought up before are ones
+
+NOTE Confidence: 0.8252343535423279
+
+00:08:00.661 --> 00:08:03.268
+that we've run into in the past, but we're continuing
+
+NOTE Confidence: 0.8252343535423279
+
+00:08:03.317 --> 00:08:05.579
+to add and iterate and make all of them better
+
+NOTE Confidence: 0.8252343535423279
+
+00:08:05.628 --> 00:08:06.119
+over time.
+
+NOTE Confidence: 0.6883816719055176
+
+00:08:06.240 --> 00:08:07.720
+Love it looks like it looks like it's done.
+
+NOTE Confidence: 0.8694050908088684
+
+00:08:08.040 --> 00:08:11.301
+So what this will have done is in this case,
+
+NOTE Confidence: 0.8694050908088684
+
+00:08:11.375 --> 00:08:14.192
+if I go to my issues, it'll pop up the
+
+NOTE Confidence: 0.8694050908088684
+
+00:08:14.266 --> 00:08:16.119
+CI failure investigation.
+
+NOTE Confidence: 0.8703867197036743
+
+00:08:16.560 --> 00:08:18.704
+And if I look at this, it will tell me
+
+NOTE Confidence: 0.8703867197036743
+
+00:08:18.760 --> 00:08:22.089
+dealt with a type error because this particular file counts
+
+NOTE Confidence: 0.8703867197036743
+
+00:08:22.145 --> 00:08:25.079
+13 contains string values instead of integer values.
+
+NOTE Confidence: 0.9407163858413696
+
+00:08:25.360 --> 00:08:26.120
+That's actually correct.
+
+NOTE Confidence: 0.9114763736724854
+
+00:08:26.120 --> 00:08:28.120
+I went in and deliberately made that error to make
+
+NOTE Confidence: 0.9114763736724854
+
+00:08:28.160 --> 00:08:29.400
+sure that this workflow failed.
+
+NOTE Confidence: 0.8689172863960266
+
+00:08:29.680 --> 00:08:32.000
+But if you look, it'll say, you know, provide information.
+
+NOTE Confidence: 0.9337763786315918
+
+00:08:32.000 --> 00:08:35.081
+These are strings instead of integers and it will talk
+
+NOTE Confidence: 0.9337763786315918
+
+00:08:35.138 --> 00:08:38.220
+about, it will also indicate that this function that I
+
+NOTE Confidence: 0.9337763786315918
+
+00:08:38.277 --> 00:08:40.959
+have in there, it isn't doing any type casting.
+
+NOTE Confidence: 0.8495475053787231
+
+00:08:41.200 --> 00:08:44.756
+Now obviously this is this was some deliberate errors that
+
+NOTE Confidence: 0.8495475053787231
+
+00:08:44.818 --> 00:08:48.068
+I introduced, but it it's something where it can show
+
+NOTE Confidence: 0.8495475053787231
+
+00:08:48.129 --> 00:08:52.360
+you why things failed, provide you information, suggest findings, and
+
+NOTE Confidence: 0.8495475053787231
+
+00:08:52.421 --> 00:08:56.039
+even provide different suggested actions that you can take.
+
+NOTE Confidence: 0.8732729554176331
+
+00:08:56.040 --> 00:08:58.320
+So in this case, it suggests fixing the actual file.
+
+NOTE Confidence: 0.8419521450996399
+
+00:08:59.480 --> 00:09:02.564
+It add recommends adding in an actual casting operation to
+
+NOTE Confidence: 0.8419521450996399
+
+00:09:02.617 --> 00:09:05.808
+force these values to be integers even when they're strings,
+
+NOTE Confidence: 0.8419521450996399
+
+00:09:05.861 --> 00:09:08.520
+and then making sure to even add a data validation
+
+NOTE Confidence: 0.8419521450996399
+
+00:09:08.574 --> 00:09:08.839
+step.
+
+NOTE Confidence: 0.8837653994560242
+
+00:09:08.840 --> 00:09:11.305
+Something part of my actual workflow that I can use
+
+NOTE Confidence: 0.8837653994560242
+
+00:09:11.354 --> 00:09:13.481
+to to help this, and one awesome thing I can
+
+NOTE Confidence: 0.8837653994560242
+
+00:09:13.530 --> 00:09:15.560
+even do is now that I have this issue come
+
+NOTE Confidence: 0.8837653994560242
+
+00:09:15.609 --> 00:09:17.736
+up, I can actually assign it to an agent and
+
+NOTE Confidence: 0.8837653994560242
+
+00:09:17.785 --> 00:09:20.154
+an agent will actually go start a session and try
+
+NOTE Confidence: 0.8837653994560242
+
+00:09:20.202 --> 00:09:22.039
+and fix all of these different errors.
+
+NOTE Confidence: 0.5797446966171265
+
+00:09:22.040 --> 00:09:22.120
+So.
+
+NOTE Confidence: 0.917182445526123
+
+00:09:22.880 --> 00:09:23.800
+This is really cool, right?
+
+NOTE Confidence: 0.8212579488754272
+
+00:09:23.800 --> 00:09:26.173
+So at the end of the day, what we're seeing
+
+NOTE Confidence: 0.8212579488754272
+
+00:09:26.229 --> 00:09:29.375
+is you were able to trigger an automated agentic workflow
+
+NOTE Confidence: 0.8212579488754272
+
+00:09:29.431 --> 00:09:30.480
+based off an event.
+
+NOTE Confidence: 0.8913538455963135
+
+00:09:30.480 --> 00:09:33.480
+In your case, it was the CI actually failing.
+
+NOTE Confidence: 0.7741459608078003
+
+00:09:33.800 --> 00:09:37.039
+Once the agentic workflow notice the CI failed, the the
+
+NOTE Confidence: 0.7741459608078003
+
+00:09:37.098 --> 00:09:41.280
+CI doctor agentic workflow specifically that one immediately kicks off.
+
+NOTE Confidence: 0.3471435308456421
+
+00:09:41.320 --> 00:09:41.520
+Yep.
+
+NOTE Confidence: 0.9616092443466187
+
+00:09:41.840 --> 00:09:43.988
+And then it produces an issue for you to review
+
+NOTE Confidence: 0.9616092443466187
+
+00:09:44.034 --> 00:09:45.360
+and understand what happened.
+
+NOTE Confidence: 0.9497606754302979
+
+00:09:45.360 --> 00:09:47.200
+And you didn't have to trigger anything on your own.
+
+NOTE Confidence: 0.9424758553504944
+
+00:09:47.200 --> 00:09:48.320
+It was kind of all in the background.
+
+NOTE Confidence: 0.943067193031311
+
+00:09:48.480 --> 00:09:48.920
+Exactly.
+
+NOTE Confidence: 0.8914855122566223
+
+00:09:48.920 --> 00:09:51.183
+I put it all together and it just runs on
+
+NOTE Confidence: 0.8914855122566223
+
+00:09:51.238 --> 00:09:51.680
+its own.
+
+NOTE Confidence: 0.8496427536010742
+
+00:09:51.840 --> 00:09:53.774
+One thing I could do if I wanted to is
+
+NOTE Confidence: 0.8496427536010742
+
+00:09:53.825 --> 00:09:55.658
+I can add in, you know, if say I had
+
+NOTE Confidence: 0.8496427536010742
+
+00:09:55.709 --> 00:09:58.305
+found an issue and maybe I didn't realize, maybe I,
+
+NOTE Confidence: 0.8496427536010742
+
+00:09:58.356 --> 00:10:01.156
+I found OK, there's actually some other reason why this
+
+NOTE Confidence: 0.8496427536010742
+
+00:10:01.207 --> 00:10:01.919
+isn't working.
+
+NOTE Confidence: 0.9014121294021606
+
+00:10:02.120 --> 00:10:04.754
+I have the ability because of that customization that I
+
+NOTE Confidence: 0.9014121294021606
+
+00:10:04.802 --> 00:10:06.718
+was able to make, I can then add in more
+
+NOTE Confidence: 0.9014121294021606
+
+00:10:06.766 --> 00:10:09.640
+information about what's going on and, and where the issues.
+
+NOTE Confidence: 0.9240369200706482
+
+00:10:09.640 --> 00:10:11.655
+And, and this actually can speed up my process because
+
+NOTE Confidence: 0.9240369200706482
+
+00:10:11.693 --> 00:10:13.335
+now once I know the problem, I can just like
+
+NOTE Confidence: 0.9240369200706482
+
+00:10:13.373 --> 00:10:14.903
+I said, assign it to an agent and it will
+
+NOTE Confidence: 0.9240369200706482
+
+00:10:14.941 --> 00:10:15.799
+take care of it for me.
+
+NOTE Confidence: 0.7833563685417175
+
+00:10:15.800 --> 00:10:16.240
+I love it.
+
+NOTE Confidence: 0.914018988609314
+
+00:10:16.920 --> 00:10:18.920
+Or I can just assign this to, to someone else.
+
+NOTE Confidence: 0.7600763440132141
+
+00:10:18.920 --> 00:10:20.605
+I can design it to Denzon and he can take
+
+NOTE Confidence: 0.7600763440132141
+
+00:10:20.646 --> 00:10:21.880
+a crack at making that change.
+
+NOTE Confidence: 0.8946605324745178
+
+00:10:23.400 --> 00:10:26.178
+So this can work really well in a case where
+
+NOTE Confidence: 0.8946605324745178
+
+00:10:26.242 --> 00:10:29.842
+a workflow has failed, something's gone wrong, and I have
+
+NOTE Confidence: 0.8946605324745178
+
+00:10:29.905 --> 00:10:31.799
+very obvious data to diagnose.
+
+NOTE Confidence: 0.9444196820259094
+
+00:10:31.800 --> 00:10:34.884
+But one of the other problems we sometimes run into
+
+NOTE Confidence: 0.9444196820259094
+
+00:10:34.945 --> 00:10:36.759
+is your workflow doesn't fail.
+
+NOTE Confidence: 0.9032365679740906
+
+00:10:36.920 --> 00:10:40.000
+It succeeds, but does so in a strange way.
+
+NOTE Confidence: 0.9100434184074402
+
+00:10:40.000 --> 00:10:42.240
+Something doesn't add up the way you would want it.
+
+NOTE Confidence: 0.7773709893226624
+
+00:10:42.840 --> 00:10:46.602
+And in those cases, an agentic workload providing that information
+
+NOTE Confidence: 0.7773709893226624
+
+00:10:46.659 --> 00:10:47.799
+might not be enough.
+
+NOTE Confidence: 0.812111496925354
+
+00:10:47.800 --> 00:10:49.200
+You might just need to start rooting around the things.
+
+NOTE Confidence: 0.8057871460914612
+
+00:10:49.200 --> 00:10:52.592
+And what we're going to, what I'm going to show
+
+NOTE Confidence: 0.8057871460914612
+
+00:10:52.664 --> 00:10:55.839
+you next is a sneak preview of our debugger.
+
+NOTE Confidence: 0.9260355830192566
+
+00:10:55.840 --> 00:10:57.952
+This is a way that we're giving for users to
+
+NOTE Confidence: 0.9260355830192566
+
+00:10:58.000 --> 00:11:00.592
+actually dig into the runner itself and figure out how
+
+NOTE Confidence: 0.9260355830192566
+
+00:11:00.640 --> 00:11:01.840
+to troubleshoot problems.
+
+NOTE Confidence: 0.9021691083908081
+
+00:11:01.840 --> 00:11:04.800
+So let's pull this open.
+
+NOTE Confidence: 0.9248449802398682
+
+00:11:04.800 --> 00:11:08.633
+So here I have a PR that's open and there's
+
+NOTE Confidence: 0.9248449802398682
+
+00:11:08.722 --> 00:11:12.822
+a workflow that's going to run on this PR that
+
+NOTE Confidence: 0.9248449802398682
+
+00:11:12.912 --> 00:11:18.528
+will basically check any markdown files that have been modified
+
+NOTE Confidence: 0.9248449802398682
+
+00:11:18.617 --> 00:11:22.361
+and it will include them as part of the PR
+
+NOTE Confidence: 0.9248449802398682
+
+00:11:22.450 --> 00:11:23.520
+description.
+
+NOTE Confidence: 0.8474577069282532
+
+00:11:23.679 --> 00:11:25.961
+This is something that we actually use on our own
+
+NOTE Confidence: 0.8474577069282532
+
+00:11:26.007 --> 00:11:28.148
+team because we write a lot of documents in in
+
+NOTE Confidence: 0.8474577069282532
+
+00:11:28.195 --> 00:11:30.197
+markdown and it's an easy way for us to get
+
+NOTE Confidence: 0.8474577069282532
+
+00:11:30.243 --> 00:11:32.292
+that information and and sort of see in a in
+
+NOTE Confidence: 0.8474577069282532
+
+00:11:32.338 --> 00:11:34.479
+a well rendered form what this will look like.
+
+NOTE Confidence: 0.9566671252250671
+
+00:11:34.720 --> 00:11:37.714
+And so far I've added in this one file called
+
+NOTE Confidence: 0.9566671252250671
+
+00:11:37.780 --> 00:11:40.841
+page 2, but I want to continue working on this
+
+NOTE Confidence: 0.9566671252250671
+
+00:11:40.908 --> 00:11:41.840
+particular PR.
+
+NOTE Confidence: 0.890139102935791
+
+00:11:41.840 --> 00:11:44.960
+So I'm going to go switch over to the S
+
+NOTE Confidence: 0.890139102935791
+
+00:11:45.040 --> 00:11:48.720
+code and I'm going to actually take this file.
+
+NOTE Confidence: 0.8990181088447571
+
+00:11:49.040 --> 00:11:53.052
+I'm going to copy it and I'm going to make
+
+NOTE Confidence: 0.8990181088447571
+
+00:11:53.147 --> 00:11:58.114
+another version of this which I'm just going to call
+
+NOTE Confidence: 0.8990181088447571
+
+00:11:58.210 --> 00:12:02.127
+Page 3 and I'm going to make a small edit
+
+NOTE Confidence: 0.8990181088447571
+
+00:12:02.222 --> 00:12:03.559
+to it as well.
+
+NOTE Confidence: 0.8241801261901855
+
+00:12:04.480 --> 00:12:08.251
+So basically right now we have a workflow file that's
+
+NOTE Confidence: 0.8241801261901855
+
+00:12:08.322 --> 00:12:11.595
+supposed to merge all of them D files into one
+
+NOTE Confidence: 0.8241801261901855
+
+00:12:11.666 --> 00:12:11.879
+MD.
+
+NOTE Confidence: 0.8527728915214539
+
+00:12:11.880 --> 00:12:14.242
+Basically one view that I can look through the actions
+
+NOTE Confidence: 0.8527728915214539
+
+00:12:14.286 --> 00:12:14.680
+workflow.
+
+NOTE Confidence: 0.9284908771514893
+
+00:12:14.680 --> 00:12:15.080
+No.
+
+NOTE Confidence: 0.9330902099609375
+
+00:12:15.080 --> 00:12:15.880
+So it's a little different.
+
+NOTE Confidence: 0.9071382880210876
+
+00:12:15.880 --> 00:12:18.113
+What it's going to do is it's going to identify
+
+NOTE Confidence: 0.9071382880210876
+
+00:12:18.160 --> 00:12:20.726
+all the workflow, the MD files that have been modified
+
+NOTE Confidence: 0.9071382880210876
+
+00:12:20.773 --> 00:12:23.054
+by this particular PR and then put links to them
+
+NOTE Confidence: 0.9071382880210876
+
+00:12:23.102 --> 00:12:24.479
+in the actual PR description.
+
+NOTE Confidence: 0.8411158323287964
+
+00:12:24.480 --> 00:12:26.288
+So that way I can just looking at the PR,
+
+NOTE Confidence: 0.8411158323287964
+
+00:12:26.332 --> 00:12:28.272
+see what those files are and then move to an
+
+NOTE Confidence: 0.8411158323287964
+
+00:12:28.316 --> 00:12:29.639
+easily rendered version of it.
+
+NOTE Confidence: 0.840238094329834
+
+00:12:30.360 --> 00:12:34.080
+So I already had page 2 modified.
+
+NOTE Confidence: 0.8640586137771606
+
+00:12:34.120 --> 00:12:40.905
+I'm going to add in Page 3, and I forgot
+
+NOTE Confidence: 0.8640586137771606
+
+00:12:41.074 --> 00:12:43.280
+to save this.
+
+NOTE Confidence: 0.801867663860321
+
+00:12:43.520 --> 00:12:56.221
+So let's save that and commit this and pop it
+
+NOTE Confidence: 0.801867663860321
+
+00:12:56.503 --> 00:12:57.350
+up.
+
+NOTE Confidence: 0.8490620851516724
+
+00:12:57.429 --> 00:13:01.187
+And if we go back to this, to this particular
+
+NOTE Confidence: 0.8490620851516724
+
+00:13:01.270 --> 00:13:05.194
+PR, we're going to see some of these work flows
+
+NOTE Confidence: 0.8490620851516724
+
+00:13:05.278 --> 00:13:06.280
+are running.
+
+NOTE Confidence: 0.8694224953651428
+
+00:13:06.559 --> 00:13:09.133
+So we want to see then Page 3 as another
+
+NOTE Confidence: 0.8694224953651428
+
+00:13:09.198 --> 00:13:09.520
+link.
+
+NOTE Confidence: 0.7151671051979065
+
+00:13:09.520 --> 00:13:10.480
+Yep, we should see.
+
+NOTE Confidence: 0.8917931318283081
+
+00:13:10.760 --> 00:13:12.280
+So for example this one page 2.
+
+NOTE Confidence: 0.8882468938827515
+
+00:13:12.400 --> 00:13:14.200
+The link it points to is this.
+
+NOTE Confidence: 0.9245421886444092
+
+00:13:14.200 --> 00:13:15.680
+It's just a better rendered version of it.
+
+NOTE Confidence: 0.1893559843301773
+
+00:13:16.000 --> 00:13:16.160
+Gotcha.
+
+NOTE Confidence: 0.9121482372283936
+
+00:13:16.600 --> 00:13:19.021
+But we should expect it to see page 2 and
+
+NOTE Confidence: 0.9121482372283936
+
+00:13:19.080 --> 00:13:21.974
+Page 3, but for some reason this workflow is only
+
+NOTE Confidence: 0.9121482372283936
+
+00:13:22.034 --> 00:13:22.919
+showing Page 3.
+
+NOTE Confidence: 0.7149455547332764
+
+00:13:22.920 --> 00:13:25.320
+It's a little weird, it's not what I'm expecting.
+
+NOTE Confidence: 0.6755678653717041
+
+00:13:25.360 --> 00:13:26.760
+The action didn't work as you wanted.
+
+NOTE Confidence: 0.6773067116737366
+
+00:13:26.800 --> 00:13:29.236
+To exactly the workflow didn't didn't operate the way I
+
+NOTE Confidence: 0.6773067116737366
+
+00:13:29.281 --> 00:13:29.680
+expected.
+
+NOTE Confidence: 0.9419088363647461
+
+00:13:29.920 --> 00:13:32.092
+And normally what I do in this case in the
+
+NOTE Confidence: 0.9419088363647461
+
+00:13:32.144 --> 00:13:34.264
+old world is I'd have to just kind of put
+
+NOTE Confidence: 0.9419088363647461
+
+00:13:34.316 --> 00:13:35.920
+in a bunch of print statements.
+
+NOTE Confidence: 0.933684766292572
+
+00:13:35.920 --> 00:13:37.718
+I'd have to go in and open my workflow and
+
+NOTE Confidence: 0.933684766292572
+
+00:13:37.761 --> 00:13:39.559
+try and guess what exactly the problem is.
+
+NOTE Confidence: 0.900485634803772
+
+00:13:39.880 --> 00:13:42.320
+And it might take me a while.
+
+NOTE Confidence: 0.9106147289276123
+
+00:13:42.960 --> 00:13:44.923
+But instead what I'm going to do is I'm going
+
+NOTE Confidence: 0.9106147289276123
+
+00:13:44.967 --> 00:13:45.839
+to use the debugger.
+
+NOTE Confidence: 0.9097317457199097
+
+00:13:45.960 --> 00:13:48.475
+So what I'm going to do is I'm going to
+
+NOTE Confidence: 0.9097317457199097
+
+00:13:48.540 --> 00:13:51.959
+pop open this particular workflow and the job and I'm
+
+NOTE Confidence: 0.9097317457199097
+
+00:13:52.023 --> 00:13:54.733
+going to do a rerun and you can rerun with
+
+NOTE Confidence: 0.9097317457199097
+
+00:13:54.797 --> 00:13:57.120
+debug logging, but I'm going to and.
+
+NOTE Confidence: 0.854095995426178
+
+00:13:57.480 --> 00:13:58.920
+This is a real sneak peek, right?
+
+NOTE Confidence: 0.6463869214057922
+
+00:13:59.160 --> 00:14:00.680
+Yeah, this is this is not out yet.
+
+NOTE Confidence: 0.8610101938247681
+
+00:14:00.679 --> 00:14:04.303
+This is we're, we're still, this is still an internal
+
+NOTE Confidence: 0.8610101938247681
+
+00:14:04.371 --> 00:14:08.132
+thing, but I'm going to enable this debugger, rerun the
+
+NOTE Confidence: 0.8610101938247681
+
+00:14:08.200 --> 00:14:10.320
+job and it's going to kick off.
+
+NOTE Confidence: 0.8772516846656799
+
+00:14:11.160 --> 00:14:13.658
+And when I open this up, you see it's it's
+
+NOTE Confidence: 0.8772516846656799
+
+00:14:13.717 --> 00:14:16.989
+kicking off and you'll see it says waiting for debugger
+
+NOTE Confidence: 0.8772516846656799
+
+00:14:17.049 --> 00:14:18.119
+client to connect.
+
+NOTE Confidence: 0.8891355991363525
+
+00:14:18.679 --> 00:14:21.037
+And So what I do is I copy the link
+
+NOTE Confidence: 0.8891355991363525
+
+00:14:21.104 --> 00:14:23.597
+to this job, I go back to VS Code and
+
+NOTE Confidence: 0.8891355991363525
+
+00:14:23.664 --> 00:14:27.032
+I'm going to do GitHub debug running job, which is
+
+NOTE Confidence: 0.8891355991363525
+
+00:14:27.099 --> 00:14:30.939
+part of a slightly modified version of the GitHub Actions
+
+NOTE Confidence: 0.8891355991363525
+
+00:14:31.006 --> 00:14:31.679
+extension.
+
+NOTE Confidence: 0.9214068055152893
+
+00:14:32.600 --> 00:14:35.597
+I pop in this job and in a second I
+
+NOTE Confidence: 0.9214068055152893
+
+00:14:35.683 --> 00:14:39.879
+should get connected to the job that I'm running.
+
+NOTE Confidence: 0.856570839881897
+
+00:14:40.160 --> 00:14:42.232
+And the way that we've set this up is that
+
+NOTE Confidence: 0.856570839881897
+
+00:14:42.281 --> 00:14:45.439
+we're using something called the Debug Adapter Protocol, or DAP.
+
+NOTE Confidence: 0.8224481344223022
+
+00:14:46.200 --> 00:14:49.621
+Basically, DAP is a protocol that is used by lots
+
+NOTE Confidence: 0.8224481344223022
+
+00:14:49.690 --> 00:14:53.879
+of different debuggers for debugging different applications.
+
+NOTE Confidence: 0.8106586933135986
+
+00:14:53.880 --> 00:14:54.960
+It's a standardized protocol.
+
+NOTE Confidence: 0.9124038815498352
+
+00:14:55.240 --> 00:14:57.497
+We've chosen it because it allows you to tightly integrate
+
+NOTE Confidence: 0.9124038815498352
+
+00:14:57.536 --> 00:14:58.120
+with debuggers.
+
+NOTE Confidence: 0.9138333201408386
+
+00:14:58.440 --> 00:15:00.989
+I happen to be using VS Code right now because
+
+NOTE Confidence: 0.9138333201408386
+
+00:15:01.045 --> 00:15:04.648
+it's my application of choice, but any application which supports
+
+NOTE Confidence: 0.9138333201408386
+
+00:15:04.703 --> 00:15:06.200
+the DAP protocol will work.
+
+NOTE Confidence: 0.8981613516807556
+
+00:15:06.200 --> 00:15:08.249
+So the lead engineer on this is a big fan
+
+NOTE Confidence: 0.8981613516807556
+
+00:15:08.299 --> 00:15:08.799
+of Neovim.
+
+NOTE Confidence: 0.8018606305122375
+
+00:15:09.080 --> 00:15:11.138
+He does all of this in Neovim and it's something
+
+NOTE Confidence: 0.8018606305122375
+
+00:15:11.181 --> 00:15:13.626
+there are lots of different integrations for DAP and it's
+
+NOTE Confidence: 0.8018606305122375
+
+00:15:13.669 --> 00:15:15.599
+something that can be added pretty easily so.
+
+NOTE Confidence: 0.89805006980896
+
+00:15:16.080 --> 00:15:18.915
+I was able to basically connect to the actual actions
+
+NOTE Confidence: 0.89805006980896
+
+00:15:18.968 --> 00:15:20.520
+runner using the URL you had.
+
+NOTE Confidence: 0.8502851128578186
+
+00:15:20.760 --> 00:15:22.840
+Can we go back to the browser really quickly?
+
+NOTE Confidence: 0.7484719753265381
+
+00:15:22.840 --> 00:15:25.174
+It seems like yeah, you can see the debugger is
+
+NOTE Confidence: 0.7484719753265381
+
+00:15:25.224 --> 00:15:25.919
+now connected.
+
+NOTE Confidence: 0.7668857574462891
+
+00:15:25.920 --> 00:15:29.471
+So no matter what client I use, basically I'm connecting
+
+NOTE Confidence: 0.7668857574462891
+
+00:15:29.534 --> 00:15:31.120
+to this runner's compute.
+
+NOTE Confidence: 0.8678330183029175
+
+00:15:31.320 --> 00:15:33.527
+That's right, you're connected to the runner and you're actually
+
+NOTE Confidence: 0.8678330183029175
+
+00:15:33.562 --> 00:15:35.080
+operating and you can run commands on there.
+
+NOTE Confidence: 0.9164822697639465
+
+00:15:35.080 --> 00:15:39.693
+So for example I should be able to you know
+
+NOTE Confidence: 0.9164822697639465
+
+00:15:39.801 --> 00:15:43.986
+if I were to do something like a run LS
+
+NOTE Confidence: 0.9164822697639465
+
+00:15:44.093 --> 00:15:48.599
+here I can see the different files I have.
+
+NOTE Confidence: 0.5268887281417847
+
+00:15:48.760 --> 00:15:50.400
+In run commands on the runner.
+
+NOTE Confidence: 0.7853490114212036
+
+00:15:50.440 --> 00:15:52.188
+You can run commands and that's that's the whole point
+
+NOTE Confidence: 0.7853490114212036
+
+00:15:52.220 --> 00:15:52.480
+of this.
+
+NOTE Confidence: 0.90120929479599
+
+00:15:52.480 --> 00:15:55.004
+It's being able to run commands as well as if
+
+NOTE Confidence: 0.90120929479599
+
+00:15:55.060 --> 00:15:57.417
+I go to the actual VS Code debugger, I can
+
+NOTE Confidence: 0.90120929479599
+
+00:15:57.473 --> 00:16:00.783
+see in this variable section all the context information on
+
+NOTE Confidence: 0.90120929479599
+
+00:16:00.839 --> 00:16:01.119
+here.
+
+NOTE Confidence: 0.9583781957626343
+
+00:16:01.120 --> 00:16:02.908
+So if I want to see what's in the GitHub
+
+NOTE Confidence: 0.9583781957626343
+
+00:16:02.952 --> 00:16:04.919
+context, I can pop it open and look in there
+
+NOTE Confidence: 0.9583781957626343
+
+00:16:04.964 --> 00:16:06.439
+and see all the different values.
+
+NOTE Confidence: 0.9487799406051636
+
+00:16:06.440 --> 00:16:09.000
+I can see environment variables that are defined.
+
+NOTE Confidence: 0.9446353912353516
+
+00:16:10.040 --> 00:16:12.073
+I can see secrets that are defined, although I can't
+
+NOTE Confidence: 0.9446353912353516
+
+00:16:12.112 --> 00:16:13.520
+actually see the secrets themselves.
+
+NOTE Confidence: 0.903778076171875
+
+00:16:13.520 --> 00:16:15.932
+We obviously want to redact those, but you can see
+
+NOTE Confidence: 0.903778076171875
+
+00:16:15.980 --> 00:16:18.199
+kind of all the information and be able to try
+
+NOTE Confidence: 0.903778076171875
+
+00:16:18.247 --> 00:16:19.839
+and debug and and work into this.
+
+NOTE Confidence: 0.9201086759567261
+
+00:16:19.840 --> 00:16:23.385
+So let's let's jump in a little to the next
+
+NOTE Confidence: 0.9201086759567261
+
+00:16:23.467 --> 00:16:23.880
+step.
+
+NOTE Confidence: 0.9148353934288025
+
+00:16:23.960 --> 00:16:27.481
+So my first two steps, checking out the repository and
+
+NOTE Confidence: 0.9148353934288025
+
+00:16:27.546 --> 00:16:28.720
+setting up Python.
+
+NOTE Confidence: 0.9189275503158569
+
+00:16:29.400 --> 00:16:31.413
+Probably not likely that either one of those two are
+
+NOTE Confidence: 0.9189275503158569
+
+00:16:31.452 --> 00:16:31.839
+the issue.
+
+NOTE Confidence: 0.8829874992370605
+
+00:16:32.320 --> 00:16:34.728
+But if I go to this step of collect changed
+
+NOTE Confidence: 0.8829874992370605
+
+00:16:34.784 --> 00:16:35.120
+files.
+
+NOTE Confidence: 0.8551816344261169
+
+00:16:35.120 --> 00:16:38.348
+So what this basically is doing is it's creating a
+
+NOTE Confidence: 0.8551816344261169
+
+00:16:38.413 --> 00:16:42.481
+temporary directory and then it's going to basically be writing
+
+NOTE Confidence: 0.8551816344261169
+
+00:16:42.545 --> 00:16:45.903
+doing a get DIF between two commits and then writing
+
+NOTE Confidence: 0.8551816344261169
+
+00:16:45.967 --> 00:16:48.679
+that value out to A to a particular value.
+
+NOTE Confidence: 0.9598072171211243
+
+00:16:49.040 --> 00:16:51.228
+So why don't we Scroll down and see what those
+
+NOTE Confidence: 0.9598072171211243
+
+00:16:51.276 --> 00:16:51.799
+values are?
+
+NOTE Confidence: 0.8820650577545166
+
+00:16:52.200 --> 00:16:56.080
+So my head value is 3 O 9C9.
+
+NOTE Confidence: 0.8989525437355042
+
+00:16:56.240 --> 00:17:01.725
+Well if I go back to my PR3O9C9 that looks
+
+NOTE Confidence: 0.8989525437355042
+
+00:17:01.856 --> 00:17:02.640
+right.
+
+NOTE Confidence: 0.834083616733551
+
+00:17:03.520 --> 00:17:07.200
+But then if I look at my my base Shaw,
+
+NOTE Confidence: 0.834083616733551
+
+00:17:07.296 --> 00:17:12.720
+that's AO7FF, well, hey, that's the commit right before.
+
+NOTE Confidence: 0.8922876715660095
+
+00:17:13.240 --> 00:17:16.088
+If I go back to what the head of main
+
+NOTE Confidence: 0.8922876715660095
+
+00:17:16.165 --> 00:17:19.321
+is and look at that now my main, the head
+
+NOTE Confidence: 0.8922876715660095
+
+00:17:19.397 --> 00:17:22.400
+of main is something totally different.
+
+NOTE Confidence: 0.813125729560852
+
+00:17:22.560 --> 00:17:25.924
+So it looks like I'm making this particular the way
+
+NOTE Confidence: 0.813125729560852
+
+00:17:25.990 --> 00:17:29.288
+this workflow is written, I'm looking at the a bad
+
+NOTE Confidence: 0.813125729560852
+
+00:17:29.354 --> 00:17:30.079
+comparison.
+
+NOTE Confidence: 0.8797910809516907
+
+00:17:30.080 --> 00:17:33.195
+So I'm instead comparing the last two commits of my
+
+NOTE Confidence: 0.8797910809516907
+
+00:17:33.256 --> 00:17:33.439
+PR.
+
+NOTE Confidence: 0.9703440070152283
+
+00:17:33.440 --> 00:17:34.280
+That's not really that helpful.
+
+NOTE Confidence: 0.9632413983345032
+
+00:17:34.280 --> 00:17:37.889
+That's why I saw the Page 3 and not page
+
+NOTE Confidence: 0.9632413983345032
+
+00:17:37.979 --> 00:17:38.160
+2.
+
+NOTE Confidence: 0.8257389664649963
+
+00:17:38.920 --> 00:17:41.422
+So clearly the two values I'm using here in this
+
+NOTE Confidence: 0.8257389664649963
+
+00:17:41.474 --> 00:17:44.759
+that I'm setting it with these environment variables are wrong.
+
+NOTE Confidence: 0.9304736852645874
+
+00:17:44.760 --> 00:17:45.935
+So I need to figure out what the right answer
+
+NOTE Confidence: 0.9304736852645874
+
+00:17:45.961 --> 00:17:46.039
+is.
+
+NOTE Confidence: 0.816146731376648
+
+00:17:46.040 --> 00:17:48.554
+So the debugger is basically you're able to view all
+
+NOTE Confidence: 0.816146731376648
+
+00:17:48.602 --> 00:17:51.262
+the variables that that the debugger that the runner is
+
+NOTE Confidence: 0.816146731376648
+
+00:17:51.311 --> 00:17:52.520
+using using the debugger.
+
+NOTE Confidence: 0.7640098333358765
+
+00:17:52.520 --> 00:17:55.276
+And now you've been able to identify, hey, my base
+
+NOTE Confidence: 0.7640098333358765
+
+00:17:55.331 --> 00:17:58.639
+Shawn Headshaw is what you're validating with the variables.
+
+NOTE Confidence: 0.7180935740470886
+
+00:17:58.640 --> 00:18:00.914
+And notice I notice that the base SHA is wrong
+
+NOTE Confidence: 0.7180935740470886
+
+00:18:00.964 --> 00:18:01.360
+in this.
+
+NOTE Confidence: 0.7962045669555664
+
+00:18:01.360 --> 00:18:02.200
+Case exactly.
+
+NOTE Confidence: 0.8606109023094177
+
+00:18:02.440 --> 00:18:04.449
+So what I can then do is this the base
+
+NOTE Confidence: 0.8606109023094177
+
+00:18:04.502 --> 00:18:07.039
+Shawn I'm looking for must be in here somewhere.
+
+NOTE Confidence: 0.9258650541305542
+
+00:18:07.040 --> 00:18:09.760
+So let me look in the GitHub context.
+
+NOTE Confidence: 0.846403956413269
+
+00:18:10.080 --> 00:18:12.960
+Let me look at the event GitHub event context.
+
+NOTE Confidence: 0.8602733612060547
+
+00:18:13.280 --> 00:18:14.280
+There's a pull request one here.
+
+NOTE Confidence: 0.9626520276069641
+
+00:18:14.280 --> 00:18:14.960
+Let me check that out.
+
+NOTE Confidence: 0.873850405216217
+
+00:18:15.560 --> 00:18:18.600
+And if I open that 10, there's a base here.
+
+NOTE Confidence: 0.9638915657997131
+
+00:18:18.600 --> 00:18:19.320
+Let me check that out.
+
+NOTE Confidence: 0.8244945406913757
+
+00:18:20.040 --> 00:18:24.757
+Well, base has a Shawn If I go B49-A-57, that
+
+NOTE Confidence: 0.8244945406913757
+
+00:18:24.862 --> 00:18:26.120
+looks right.
+
+NOTE Confidence: 0.9699647426605225
+
+00:18:26.520 --> 00:18:28.844
+So what I should probably be doing is using that
+
+NOTE Confidence: 0.9699647426605225
+
+00:18:28.892 --> 00:18:29.279
+instead.
+
+NOTE Confidence: 0.8794428706169128
+
+00:18:29.720 --> 00:18:32.060
+Now, I could stop here, go and make those changes
+
+NOTE Confidence: 0.8794428706169128
+
+00:18:32.108 --> 00:18:32.919
+and and go ahead.
+
+NOTE Confidence: 0.9323932528495789
+
+00:18:32.920 --> 00:18:34.440
+But what if I'm wrong?
+
+NOTE Confidence: 0.8877677917480469
+
+00:18:34.440 --> 00:18:35.720
+What if I want to just double check this?
+
+NOTE Confidence: 0.9286082983016968
+
+00:18:36.080 --> 00:18:37.480
+Well, let me actually do this.
+
+NOTE Confidence: 0.9393996596336365
+
+00:18:37.480 --> 00:18:40.700
+I can do run and I can basically I can
+
+NOTE Confidence: 0.9393996596336365
+
+00:18:40.785 --> 00:18:44.600
+just run the actual commit that I want to do.
+
+NOTE Confidence: 0.7940146923065186
+
+00:18:45.000 --> 00:18:50.679
+So I can do a get diff name only and
+
+NOTE Confidence: 0.7940146923065186
+
+00:18:50.837 --> 00:18:53.519
+this one will be.
+
+NOTE Confidence: 0.9405530691146851
+
+00:18:55.240 --> 00:18:56.600
+Let's copy this value.
+
+NOTE Confidence: 0.8236854076385498
+
+00:18:56.960 --> 00:18:59.149
+So now you're bringing those variables in and you're going
+
+NOTE Confidence: 0.8236854076385498
+
+00:18:59.187 --> 00:18:59.640
+to rerun it.
+
+NOTE Confidence: 0.8003846406936646
+
+00:18:59.760 --> 00:19:03.794
+I'm going to rerun it now because I this particular,
+
+NOTE Confidence: 0.8003846406936646
+
+00:19:03.872 --> 00:19:06.200
+you know, base one is not set.
+
+NOTE Confidence: 0.9615575075149536
+
+00:19:06.200 --> 00:19:07.974
+I'm going to have to do it manually, but it's
+
+NOTE Confidence: 0.9615575075149536
+
+00:19:08.014 --> 00:19:09.000
+not the end of the world.
+
+NOTE Confidence: 0.8110364675521851
+
+00:19:09.000 --> 00:19:10.840
+That's pretty, pretty manageable.
+
+NOTE Confidence: 0.8694049119949341
+
+00:19:11.680 --> 00:19:15.342
+Then I'm also going to, I can go and I
+
+NOTE Confidence: 0.8694049119949341
+
+00:19:15.438 --> 00:19:19.679
+can pull down what the value of after of the
+
+NOTE Confidence: 0.8694049119949341
+
+00:19:19.775 --> 00:19:23.919
+after was If I find that here and grab that
+
+NOTE Confidence: 0.8694049119949341
+
+00:19:24.016 --> 00:19:26.040
+and put that in here.
+
+NOTE Confidence: 0.8953813910484314
+
+00:19:27.160 --> 00:19:29.720
+If I run that now I see both files.
+
+NOTE Confidence: 0.8823955059051514
+
+00:19:29.760 --> 00:19:31.240
+OK, that seems like it was the problem.
+
+NOTE Confidence: 0.9450907707214355
+
+00:19:32.400 --> 00:19:34.383
+And what I can do is I can actually run
+
+NOTE Confidence: 0.9450907707214355
+
+00:19:34.434 --> 00:19:37.485
+through each individual step and go through and actually run
+
+NOTE Confidence: 0.9450907707214355
+
+00:19:37.536 --> 00:19:40.333
+everything and see all those values and see exactly how
+
+NOTE Confidence: 0.9450907707214355
+
+00:19:40.384 --> 00:19:42.519
+everything works and regenerate the files.
+
+NOTE Confidence: 0.9001749753952026
+
+00:19:42.520 --> 00:19:44.040
+Even try running all the steps at the end.
+
+NOTE Confidence: 0.9236202239990234
+
+00:19:44.440 --> 00:19:46.332
+But I know what the problem is now, so I
+
+NOTE Confidence: 0.9236202239990234
+
+00:19:46.379 --> 00:19:48.697
+can always go back and make that change and rerun
+
+NOTE Confidence: 0.9236202239990234
+
+00:19:48.744 --> 00:19:50.399
+it and be able to solve my problem.
+
+NOTE Confidence: 0.8953213691711426
+
+00:19:50.400 --> 00:19:52.261
+And now the debugger has told me exactly where I
+
+NOTE Confidence: 0.8953213691711426
+
+00:19:52.299 --> 00:19:54.044
+was looking for and I didn't have to commit a
+
+NOTE Confidence: 0.8953213691711426
+
+00:19:54.083 --> 00:19:56.138
+bunch of stuff, do a whole bunch of print statements,
+
+NOTE Confidence: 0.8953213691711426
+
+00:19:56.177 --> 00:19:57.999
+add in extra steps to try and figure stuff out.
+
+NOTE Confidence: 0.967609703540802
+
+00:19:58.200 --> 00:20:00.077
+I jumped in, I did some research and I was
+
+NOTE Confidence: 0.967609703540802
+
+00:20:00.122 --> 00:20:01.239
+able to find what I need.
+
+NOTE Confidence: 0.9487970471382141
+
+00:20:01.360 --> 00:20:02.400
+I can make my change commit.
+
+NOTE Confidence: 0.8255707025527954
+
+00:20:02.880 --> 00:20:03.200
+I'm done.
+
+NOTE Confidence: 0.7511097192764282
+
+00:20:03.320 --> 00:20:05.500
+So it is a real debugger basically for our runners,
+
+NOTE Confidence: 0.7511097192764282
+
+00:20:05.543 --> 00:20:05.800
+right?
+
+NOTE Confidence: 0.3112243711948395
+
+00:20:05.800 --> 00:20:06.440
+Exactly, Yeah.
+
+NOTE Confidence: 0.5513401627540588
+
+00:20:06.440 --> 00:20:07.120
+Jump over.
+
+NOTE Confidence: 0.8443924784660339
+
+00:20:07.440 --> 00:20:09.743
+I can, I can really play around and run, run
+
+NOTE Confidence: 0.8443924784660339
+
+00:20:09.796 --> 00:20:12.413
+commands and do all that within the context of any
+
+NOTE Confidence: 0.8443924784660339
+
+00:20:12.466 --> 00:20:13.879
+DAP accepting client, yeah.
+
+NOTE Confidence: 0.5782985091209412
+
+00:20:14.200 --> 00:20:16.601
+And and and we and and DAP is is designed
+
+NOTE Confidence: 0.5782985091209412
+
+00:20:16.660 --> 00:20:17.480
+for debugging.
+
+NOTE Confidence: 0.8898525238037109
+
+00:20:17.480 --> 00:20:20.085
+So it's designed to handle this sort of stepping over
+
+NOTE Confidence: 0.8898525238037109
+
+00:20:20.134 --> 00:20:23.280
+being able to return variables and and contain that information.
+
+NOTE Confidence: 0.7867448925971985
+
+00:20:23.400 --> 00:20:23.680
+Love it.
+
+NOTE Confidence: 0.7396795749664307
+
+00:20:24.320 --> 00:20:26.760
+So that's this.
+
+NOTE Confidence: 0.8278806805610657
+
+00:20:27.760 --> 00:20:30.330
+You know, one thing that you're probably all wondering is
+
+NOTE Confidence: 0.8278806805610657
+
+00:20:30.375 --> 00:20:32.945
+for both agentic workflows and for the debugger, when can
+
+NOTE Confidence: 0.8278806805610657
+
+00:20:32.991 --> 00:20:34.839
+you guys actually play around with these?
+
+NOTE Confidence: 0.8304357528686523
+
+00:20:35.520 --> 00:20:38.382
+Well, the exciting news with agentic workflows is that is
+
+NOTE Confidence: 0.8304357528686523
+
+00:20:38.432 --> 00:20:40.239
+going into public preview next week.
+
+NOTE Confidence: 0.7793845534324646
+
+00:20:40.760 --> 00:20:44.656
+You can, if you search for GitHub agentic workflows online,
+
+NOTE Confidence: 0.7793845534324646
+
+00:20:44.722 --> 00:20:47.759
+you can see our, the, the preview site online.
+
+NOTE Confidence: 0.914423406124115
+
+00:20:48.920 --> 00:20:52.707
+We can actually pull that out now and it'll look
+
+NOTE Confidence: 0.914423406124115
+
+00:20:52.786 --> 00:20:56.889
+like this and this has information about how you can
+
+NOTE Confidence: 0.914423406124115
+
+00:20:56.968 --> 00:21:00.598
+quick start with the CLI as well as being able
+
+NOTE Confidence: 0.914423406124115
+
+00:21:00.677 --> 00:21:03.359
+to see lots of different examples.
+
+NOTE Confidence: 0.7536108493804932
+
+00:21:03.520 --> 00:21:07.057
+So brought us on those before issue management and continuous
+
+NOTE Confidence: 0.7536108493804932
+
+00:21:07.115 --> 00:21:09.319
+documentation, continuous improvement.
+
+NOTE Confidence: 0.8495424389839172
+
+00:21:09.320 --> 00:21:12.192
+We're working on a lot of multi repository stuff too
+
+NOTE Confidence: 0.8495424389839172
+
+00:21:12.247 --> 00:21:15.727
+to help you coordinate different repositories, but you can find
+
+NOTE Confidence: 0.8495424389839172
+
+00:21:15.782 --> 00:21:18.710
+this information there and it will be going in public
+
+NOTE Confidence: 0.8495424389839172
+
+00:21:18.765 --> 00:21:19.760
+preview next week.
+
+NOTE Confidence: 0.9458339214324951
+
+00:21:20.080 --> 00:21:23.560
+Now with the debugger, this is still an internal project.
+
+NOTE Confidence: 0.8292025327682495
+
+00:21:23.560 --> 00:21:25.206
+This really was kind of a sneak peek at what
+
+NOTE Confidence: 0.8292025327682495
+
+00:21:25.243 --> 00:21:25.879
+we're working on.
+
+NOTE Confidence: 0.8798241019248962
+
+00:21:26.840 --> 00:21:28.865
+It's something that we know is very important for our
+
+NOTE Confidence: 0.8798241019248962
+
+00:21:28.903 --> 00:21:30.279
+customers and we want to get it out.
+
+NOTE Confidence: 0.9444481134414673
+
+00:21:30.840 --> 00:21:33.693
+However, given that this is allowing direct access to your
+
+NOTE Confidence: 0.9444481134414673
+
+00:21:33.742 --> 00:21:36.792
+runners, we are very concerned about security and abuse, which
+
+NOTE Confidence: 0.9444481134414673
+
+00:21:36.841 --> 00:21:39.005
+is why we're spending a lot of extra time to
+
+NOTE Confidence: 0.9444481134414673
+
+00:21:39.054 --> 00:21:41.809
+make sure that we've given this the appropriate level of
+
+NOTE Confidence: 0.9444481134414673
+
+00:21:41.858 --> 00:21:42.399
+protection.
+
+NOTE Confidence: 0.9387674331665039
+
+00:21:42.400 --> 00:21:44.824
+So that when you run this and when your teams
+
+NOTE Confidence: 0.9387674331665039
+
+00:21:44.878 --> 00:21:48.112
+are running this, they are getting the maximum value without
+
+NOTE Confidence: 0.9387674331665039
+
+00:21:48.166 --> 00:21:50.159
+risking any potential security holes.
+
+NOTE Confidence: 0.8952052593231201
+
+00:21:50.240 --> 00:21:52.582
+And that's something that we're working, spending a lot of
+
+NOTE Confidence: 0.8952052593231201
+
+00:21:52.623 --> 00:21:54.359
+time trying to make sure we have done well.
+
+NOTE Confidence: 0.8622788786888123
+
+00:21:55.080 --> 00:21:56.924
+And so I don't have a date on when it's
+
+NOTE Confidence: 0.8622788786888123
+
+00:21:56.972 --> 00:21:59.668
+going to be released, but since security is so paramount,
+
+NOTE Confidence: 0.8622788786888123
+
+00:21:59.716 --> 00:22:01.655
+you know, if we want to, but we also want
+
+NOTE Confidence: 0.8622788786888123
+
+00:22:01.703 --> 00:22:04.068
+to show you what we're working on because we think
+
+NOTE Confidence: 0.8622788786888123
+
+00:22:04.115 --> 00:22:04.919
+it's pretty cool.
+
+NOTE Confidence: 0.8418713212013245
+
+00:22:05.119 --> 00:22:07.464
+If there is any feedback you have, any thoughts, any
+
+NOTE Confidence: 0.8418713212013245
+
+00:22:07.510 --> 00:22:10.441
+of the agentic workflows debugger, please please please reach out
+
+NOTE Confidence: 0.8418713212013245
+
+00:22:10.486 --> 00:22:12.199
+on any of the public forums on GitHub.
+
+NOTE Confidence: 0.8892969489097595
+
+00:22:13.080 --> 00:22:14.666
+Best way for us to kind of look at that
+
+NOTE Confidence: 0.8892969489097595
+
+00:22:14.707 --> 00:22:17.067
+and understand even for stuff like the debugger that we're
+
+NOTE Confidence: 0.8892969489097595
+
+00:22:17.108 --> 00:22:17.799
+actively working.
+
+NOTE Confidence: 0.7958837151527405
+
+00:22:17.800 --> 00:22:19.775
+On still and in particular agentic work flows, this is
+
+NOTE Confidence: 0.7958837151527405
+
+00:22:19.811 --> 00:22:21.896
+something that's being iterated on and like I said, we're
+
+NOTE Confidence: 0.7958837151527405
+
+00:22:21.933 --> 00:22:23.360
+it's going in public preview next week.
+
+NOTE Confidence: 0.8360134363174438
+
+00:22:23.359 --> 00:22:26.118
+So getting feedback and also learning about the cases where
+
+NOTE Confidence: 0.8360134363174438
+
+00:22:26.164 --> 00:22:28.595
+you think you might use agentic work flows is really
+
+NOTE Confidence: 0.8360134363174438
+
+00:22:28.642 --> 00:22:30.933
+valuable to us because it means we can help build
+
+NOTE Confidence: 0.8360134363174438
+
+00:22:30.979 --> 00:22:33.504
+some of those pre built agentic work flows, help speed
+
+NOTE Confidence: 0.8360134363174438
+
+00:22:33.550 --> 00:22:34.999
+up and accelerate your process.
+
+NOTE Confidence: 0.3791203200817108
+
+00:22:36.200 --> 00:22:36.640
+Fantastic.
+
+NOTE Confidence: 0.7988812923431396
+
+00:22:37.760 --> 00:22:38.040
+Lovely.
+
+NOTE Confidence: 0.8053248524665833
+
+00:22:39.160 --> 00:22:39.640
+Thanks everyone.
+
+NOTE Confidence: 0.8229126334190369
+
+00:22:39.680 --> 00:22:39.920
+Thank you.
+

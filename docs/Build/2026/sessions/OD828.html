@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OD828 - Latest Cobalt VMs and Azure Boost enhancements​</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; OD828</nav>
+        <h1>OD828 &mdash; Latest Cobalt VMs and Azure Boost enhancements​</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">OD828 &middot; Pre-recorded</span>
+    <h1>Latest Cobalt VMs and Azure Boost enhancements​</h1>
+    <div class="speakers">Amar Dhamdhere, Niko Pamboukas</div>
+    <div class="meta">
+        <span>Pre-recorded</span>
+    </div>
+    <div class="tags"><span class="tag">Cloud platform &amp; data</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/OD828?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/928b0d8e-af20-4b87-a5b6-8becc44e2911" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/928b0d8e-af20-4b87-a5b6-8becc44e2911" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Learn about the latest Cobalt VMs, the use cases they support, and how they compare to our previous generation Arm based VMs. Learn how these VMs are designed for cloud-native, scale-out applications using Linux, AKS, and other open-source software. Then explore recent performance and feature enhancements for Azure Boost, as well as recently announced general compute and confidential computing VMs that rely on Azure Boost. Learn how they can support your most latency sensitive applications.​</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>A four-part Azure Compute session covering Microsoft&#39;s Arm-based Cobalt silicon, the Azure Boost offload platform, new Intel and AMD general-compute VMs, and confidential computing security. The throughline is price-performance and efficiency gains for cloud-native, agentic AI, and security-sensitive workloads.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Cobalt 200 unveiled</strong> [00:00:40] — Azure&#39;s next Microsoft-designed Arm CPU, delivering up to 50% higher performance over Cobalt 100 and positioned as Azure&#39;s leading performance offering.</li>
+<li><strong>New Cobalt 200 VM families</strong> [00:11:43] — A high-memory MP series (16 GB/vCPU, up to 1.3 TB) and a dense local-storage LP series (up to 23 TB NVMe local storage) join the refreshed DP, DPL, and EP families.</li>
+<li><strong>Cobalt 200 regional launch</strong> [00:14:10] — Launching in West US 3, East US 2, Central US, and Sweden Central, with more regions to follow.</li>
+<li><strong>Next-generation Azure Boost GA</strong> [00:15:23] — Generally available with the first VMs (Intel-based V7), delivering up to 400 Gbps networking bandwidth and 1 million remote-storage IOPS.</li>
+<li><strong>Guest RDMA on Azure Boost</strong> [00:23:48] — Limited preview kicking off June 2026, enabling direct memory-to-memory transfers between VMs via the Microsoft Azure Network Adapter.</li>
+<li><strong>Intel DSv7/ESv7 GA</strong> [00:24:59] — Built on Intel Xeon 6 Granite Rapids with up to 15% CPU gains, scaling to 372 vCPUs and 2.8 TB memory.</li>
+<li><strong>AMD DA/EA/FAv7 VMs</strong> [00:27:43] — Powered by 5th-gen AMD EPYC Turin, up to 35% CPU improvement, in 11 regions with broader expansion in 2026.</li>
+<li><strong>Azure Integrated HSM GA</strong> [00:37:50] — A first-party security ASIC acting as a local key vault meeting FIPS 140-3 Level 3, keeping keys inside the HSM boundary.</li>
+<li><strong>Confidential VM live migration</strong> [00:36:35] — Coming to Intel TDX, providing near-zero downtime for maintenance on confidential VMs.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Cobalt 100 production adoption by first-party services (Teams, Cosmos DB, Azure SQL, Defender) and reported efficiency gains.</li>
+<li>Agentic AI workload density: agent sandbox spin-up time, time-to-interact, and concurrency per VM.</li>
+<li>Arm migration tooling, porting frameworks, and recompile-and-go modernization for Java, Python, .NET, and Go.</li>
+<li>Azure Boost server offload architecture: host isolation, servicing, networking, and storage throughput.</li>
+<li>RDMA versus TCP for disaggregated AI inference (prefill/decode), benchmarked with a Llama 3.1 70B model.</li>
+<li>Intel network-optimized and EBSv6 storage-optimized VMs; AMD LASv5 and LAOSv local-storage VMs.</li>
+<li>Confidential computing via AMD SEV-SNP and Intel TDX trusted execution environments and attestation.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;We run our own business on it before we ever ask a customer to.&quot; — Amar Dhamdhere</p>
+</blockquote>
+<blockquote>
+<p>&quot;Protecting that data when it is in use in memory has not yet been solved at scale by industry, until now.&quot; — Vikas Bhatia</p>
+</blockquote>
+<blockquote>
+<p>&quot;With RDMA we can push up to 200 gigabytes per second of throughput on a single connection, while still holding onto very tight predictable latency characteristics.&quot; — Niko Pamboukas</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Azure Cobalt 100 and Cobalt 200</li>
+<li>Azure Boost</li>
+<li>Guest RDMA / Microsoft Azure Network Adapter</li>
+<li>Azure Kubernetes Service (AKS)</li>
+<li>Intel Xeon 6 Granite Rapids; Intel Emerald Rapids</li>
+<li>AMD EPYC Turin (5th generation)</li>
+<li>Intel DSv7/ESv7, EBSv6; AMD DA/EA/FAv7, LASv5, LAOSv</li>
+<li>Azure ND GB200 v6 cluster</li>
+<li>Llama 3.1 70B Instruct; vLLM (bench serve)</li>
+<li>Azure Integrated HSM; Azure Key Vault; Azure Managed HSM</li>
+<li>AMD SEV-SNP; Intel TDX; Caliptra root of trust</li>
+<li>Microsoft Azure Attestation; Microsoft Entra ID</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Amar Dhamdhere — Product Manager, VM Sizes Team, Azure Compute</li>
+<li>Niko Pamboukas — Principal Product Manager, Azure Boost Team</li>
+<li>Vikas Bhatia — Head of Product, Azure Compute Security and Confidential Computing</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>Azure blog — Cobalt 100 customer stories and Cobalt 200 announcement</li>
+<li>Arm migration overview and Arm learning paths</li>
+<li>Arm Software Ecosystem Dashboard</li>
+<li>Azure Cobalt VM documentation on Microsoft Learn</li>
+<li>Product availability by region (Azure)</li>
+<li>Guest RDMA preview sign-up form</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (50,114 chars)</summary>
+        <pre class="transcript-body">[00:00:07] AMAR DHAMDHERE: Hello, everyone, I&#39;m Amar Dhamdhere,
+[00:00:09] and I&#39;m a Project Manager in the VM Sizes Team in Azure Compute.
+[00:00:13] The team responsible for delivering our optimized
+[00:00:15] and Cobalt VM portfolio.
+[00:00:17] Put simply, when a customer picks the right VM
+[00:00:20] for the right workload at the right price,
+[00:00:22] that is our team&#39;s job.
+[00:00:23] Today, I want to talk about the work I&#39;m proudest of, Cobalt.
+[00:00:27] It is Azure&#39;s all silicon purposed built for the cloud
+[00:00:31] and it is reshaping the price performance conversation
+[00:00:34] for our customers.
+[00:00:35] The customer excitement behind Cobalt 100 has been remarkable
+[00:00:39] and what is coming next
+[00:00:40] with Cobalt 200 is the most exciting roadmap I have worked
+[00:00:45] on in years.
+[00:00:46] So thank you for being here, let&#39;s get into it.
+[00:00:50] Here&#39;s how we&#39;ll spend the next 20 minutes together.
+[00:00:53] First, I will walk you through the customer excitement
+[00:00:55] and feedback we are seeing from Cobalt customers today
+[00:00:59] and who are running on it and the kinds
+[00:01:01] of workloads it is winning.
+[00:01:03] That sets the stage for everything that follows.
+[00:01:06] Second, I will introduce Cobalt 200,
+[00:01:08] Azure&#39;s leading performance offering
+[00:01:10] and the new VM family taking shape around it.
+[00:01:13] Third, we will go a layer deeper into workload performance.
+[00:01:17] I will share our early benchmark data
+[00:01:19] from Microsoft related workloads,
+[00:01:21] industry benchmarks and agentic AI.
+[00:01:24] Fourth, I will walk you through the full Cobalt 200 VMs,
+[00:01:27] their lineups and the specs.
+[00:01:29] And, finally, we will wrap up with deployment scenarios,
+[00:01:33] separate guest operating systems and reasonable availability,
+[00:01:35] everything you need a plan to roll out your workloads.
+[00:01:39] We have plenty to cover, so let us dive in.
+[00:01:42] In 2024 we made Azure Cobalt 100 generally available,
+[00:01:46] our first ever Microsoft designed CPU purpose built
+[00:01:49] for the cloud and it set a new bar
+[00:01:52] for Arm 64 price performance.
+[00:01:55] The numbers tell the story, up to 2X, the.NET performance
+[00:01:58] of our prior generation, up to 20% lower cost
+[00:02:01] than comparable VMs in Azure, and for developers,
+[00:02:04] this is the part that matters,
+[00:02:06] it is running real production workloads at scale today.
+[00:02:10] Customers, including our own Microsoft teams are already
+[00:02:13] on Cobalt and they are seeing up to 45% better performance
+[00:02:17] on real-world workloads.
+[00:02:19] Because of that uplift, they need roughly 35% fewer cores,
+[00:02:22] and VMs to do the same amount of work.
+[00:02:25] That translates directly into lower bills, smaller fleets
+[00:02:29] and a small carbon footprint.
+[00:02:31] Let me show who is building on it.
+[00:02:34] So here&#39;s the customer excitement we are seeing and,
+[00:02:36] frankly, the demand has exceeded what we planned for.
+[00:02:39] Look at the breadth of customers already in flight.
+[00:02:42] Every segment that matters
+[00:02:43] in modern cloud workloads is represented here.
+[00:02:46] These customers are migrating production workloads
+[00:02:48] and consistently reporting meaningful price performance
+[00:02:51] gains in many cases, the kind of gains
+[00:02:54] that change the map on their roadmap.
+[00:02:58] Our first party services, some of the largest scale workloads
+[00:03:01] on the planet, including, Teams, CosmosDB, Azure SQL
+[00:03:05] and Defender, are now standardized on Cobalt 100.
+[00:03:09] That is an endorsement we do not take lightly,
+[00:03:12] because we run our own business
+[00:03:13] on it before we ever ask a customer to.
+[00:03:17] So let me talk about where Cobalt VMs really shine,
+[00:03:20] digital and cloud data.
+[00:03:22] This is the heart of where customers are deploying Cobalt
+[00:03:24] today, scale out and web DS services, microservices,
+[00:03:27] containers, the engine room of modern cloud applications.
+[00:03:30] Plus, developers building for Windows 11 on Arm,
+[00:03:34] who use Cobalt as a native cloud target
+[00:03:37] that mirrors the client experience their users will
+[00:03:39] run on.
+[00:03:40] So the loop from DEV to deploy stays tight.
+[00:03:44] And increasingly agentic AI lives squarely in this bucket.
+[00:03:47] Agent runtimes, sandboxes, vector search,
+[00:03:50] retrieval pipelines, model orchestration,
+[00:03:53] these are cloud native by their very nature.
+[00:03:56] With Cobalt 200 we can now address agentic AI workloads
+[00:03:59] with the per-core performance density
+[00:04:01] and cost-efficiency data mod.
+[00:04:03] The same Cobalt VMs you build cloud needed services on today,
+[00:04:06] part of the ones your agentic systems will turn on tomorrow.
+[00:04:09] Cobalt also shines
+[00:04:11] in modernizing the enterprise estate.
+[00:04:13] This is where customers with established workloads,
+[00:04:15] most of them easily portable to Arm can move them onto Cobalt
+[00:04:18] and unlock a step change in performance and efficiency.
+[00:04:21] If your workload is built on Java, Python,
+[00:04:24] .NET or Go, it boards cleanly.
+[00:04:26] Open source databases, in memory caches, data processing
+[00:04:30] and analytic engines will run beautifully here.
+[00:04:33] For most teams this is a recompile and go.
+[00:04:37] The heavy lift you may be imagining is rarely there.
+[00:04:40] And to make that motion as easily as possible,
+[00:04:42] we have partnered deeply with Arm&#39;s holdings
+[00:04:44] on migration tooling through Azure&#39;s own porting frameworks
+[00:04:48] and the on-partnership, the migration guides,
+[00:04:50] dependency analyzers and runtime support
+[00:04:52] across the major languages are available today.
+[00:04:55] So that is where Cobalt VM shine, cloud native
+[00:04:58] and agentic AI on one side,
+[00:05:00] modernizing enterprise on the other.
+[00:05:02] This is the work we did Cobalt 100
+[00:05:05] and the work we are extending now with Cobalt 200.
+[00:05:08] We started this journey with Cobalt 100,
+[00:05:10] our first Microsoft designed CPU for the cloud.
+[00:05:12] The impact on external customers
+[00:05:14] and their own Microsoft Teams has been real,
+[00:05:16] measureable and consistent.
+[00:05:18] That performance and feedback
+[00:05:20] from this customers it is what has shaped Cobalt 200.
+[00:05:24] The headline result, up to 50% higher performance
+[00:05:28] over Cobalt 100, and it will be Azure&#39;s leading performance
+[00:05:31] offering in the market.
+[00:05:33] Building on what Cobalt 100 delivered,
+[00:05:35] Cobalt 200 takes the next step, a new architecture,
+[00:05:38] a refined design and a real step change in performance.
+[00:05:42] And on top of that foundation,
+[00:05:44] we are introducing entirely VM families engineered
+[00:05:47] to run a wide variety of workloads.
+[00:05:50] Cobalt 200 is built for the workloads that define this era
+[00:05:52] of cloud computing, cloud data services and agentic AI.
+[00:05:57] These are the workloads where developers are spending most
+[00:05:59] of their time today, containerized microservices,
+[00:06:02] distributed data pipelines, vector search,
+[00:06:04] retrieval model orchestration and the agent runtimes
+[00:06:07] that sit on top of them.
+[00:06:08] They are concurrent, they are memory aware,
+[00:06:11] they are IO sensitive and they need
+[00:06:13] to be cheap to run at scale.
+[00:06:15] That is exactly what we design for.
+[00:06:18] And that is what Cobalt 200 achieves not as a single skew,
+[00:06:21] but of the full set of VMs, expanding our portfolio from DP,
+[00:06:25] DPL, EP, Cobalt 100, to which we are adding high memory optimized
+[00:06:30] VMs and dense local storage optimized VMs.
+[00:06:33] With the breadth to match a VM to the workload,
+[00:06:36] you can actually run in Azure.
+[00:06:39] Cobalt 200 runs on Azure Boost
+[00:06:41] and it is our most power efficient Azure computer
+[00:06:43] offering yet.
+[00:06:45] Now this is the slide that matters most to developers
+[00:06:47] and it is the one I&#39;m proudest of.
+[00:06:49] What you are looking
+[00:06:50] at is Cobalt 200 per-core performance measured relative
+[00:06:53] to Cobalt 100 across three different lenses.
+[00:06:56] On the left, industry standard benchmarks,
+[00:06:59] the kind of vendor neutral repeatable measurements your
+[00:07:01] engineering teams already trust.
+[00:07:04] Across the board Cobalt 200 delivers a meaningful
+[00:07:06] generational leap over Cobalt 100.
+[00:07:09] In the middle, our own Microsoft benchmarks, broader,
+[00:07:13] more diverse workload coverage,
+[00:07:15] the kind that mirrors what actually runs
+[00:07:17] in production environments.
+[00:07:18] Same story, a clear, consistent step up.
+[00:07:22] And on the right, the strongest signal
+[00:07:24] of all Microsoft&#39;s own products.
+[00:07:26] These are first party services running at hyper scale
+[00:07:28] on real customer&#39;s traffic every single day.
+[00:07:32] When those workloads see this kind of uplift,
+[00:07:34] you know it is not a synthetic number, it is real.
+[00:07:38] I want you to focus on the shape
+[00:07:39] of this chart, not on any one bar.
+[00:07:42] Workloads are different and your workload will land somewhere
+[00:07:45] along this distribution, where the headline is consistent.
+[00:07:48] Whether it is an industry benchmark,
+[00:07:51] a Microsoft benchmark, or a real Microsoft product,
+[00:07:54] every single bar through the right
+[00:07:56] of Cobalt 100 tells the same story,
+[00:07:58] Cobalt 200 raises the floor on per-core performance.
+[00:08:02] For developers that means, more work done per core,
+[00:08:04] fewer core supervision, lower bills
+[00:08:07] and real headroom to scale.
+[00:08:09] This is where Cobalt 200 starts to matter most for the next wave
+[00:08:12] of cloud workloads, the way we are building towards right now,
+[00:08:15] agentic AI.
+[00:08:17] There are three things that I want you
+[00:08:19] to take away from this slide.
+[00:08:20] First, why this matters.
+[00:08:22] The industry is converging on a new way of thinking
+[00:08:24] about performance for agentic workloads.
+[00:08:26] It is no longer just about through put on a single request.
+[00:08:30] It is about how fast you can spin up an agent sandbox,
+[00:08:34] how quickly that agent becomes responsive and how many
+[00:08:37] of them you can run concurrently on a single machine.
+[00:08:40] That is the metric that translates per-core performance
+[00:08:43] into real product and customer value
+[00:08:46] and it is the latency we have built our benchmarks around.
+[00:08:49] Second, what we are seeing on Cobalt 200.
+[00:08:53] Our internal agentic benchmarks,
+[00:08:56] time to interact the moment you request an agent sandbox
+[00:08:58] to the moment it can start doing useful work is meaningfully
+[00:09:02] faster than on Cobalt 100.
+[00:09:04] Respond rates are up.
+[00:09:07] The latency story is consistent
+[00:09:08] with the per-core performance story we showed earlier.
+[00:09:11] The platform is faster end-to-end
+[00:09:13] and the developer experience reflects that.
+[00:09:16] Third, density.
+[00:09:18] Because Cobalt 200 delivers more useful workload per core,
+[00:09:22] you can pack more agent sandboxes onto the same VM
+[00:09:25] and more agents onto the same fleet.
+[00:09:27] It translates directly into lower cost per agent,
+[00:09:30] higher concurrency for your end users and real headroom
+[00:09:33] as your agentic workloads scale.
+[00:09:36] Per core performance translating into real product
+[00:09:38] and customer value, Cobalt 200 is the platform we want you
+[00:09:41] running your agentic workloads on
+[00:09:43] and the benchmarks back that up.
+[00:09:46] Let&#39;s go over Azure&#39;s VM offerings that enable developers
+[00:09:49] and users to bring their workloads to run on Cobalt 200.
+[00:09:53] Our two foundational VM families,
+[00:09:55] general purpose and memory optimized.
+[00:09:57] These are the what causes that have powered the bulk
+[00:09:59] of customer deployments on Cobalt 100 today.
+[00:10:02] And we are now refreshing them end-to-end
+[00:10:05] on the new generation.
+[00:10:07] On general purpose you have two profiles, our DPLS and DPLDS,
+[00:10:11] CDs with 2 gigabytes of memory per VCPU, scaling from one,
+[00:10:15] up to a 128 VCPUs and up to 256 gigabytes of memory,
+[00:10:20] purposeful for media encoding, gaming servers,
+[00:10:23] microservices and small databases.
+[00:10:26] And a DPS and DPDS series, at 4 gigabytes of memory per VCPU,
+[00:10:30] also scaling up to 128 VCPUs and up to 512 gigabytes of memory,
+[00:10:36] the natural home for application servers, web servers
+[00:10:39] and small to medium databases.
+[00:10:42] On memory optimize, the EPS and EPDS series, at 8 gigabytes
+[00:10:46] of memory per VCPU, also up to 128 VCPUs and up to a terabyte
+[00:10:52] of memory for the larger in-memory databases,
+[00:10:56] caches and analytics workloads.
+[00:10:58] Across all of these,
+[00:10:59] the platform underneath has been leveled up, up to 7 terabytes
+[00:11:04] of NVM local storage, up to 85 gigabytes per second
+[00:11:08] of network bandwidth and up to 70 gigabytes per second
+[00:11:12] of remote storage throughput.
+[00:11:14] And as always, you can attach standard premium SSD v2
+[00:11:18] and ultra disks based on reasonable availability.
+[00:11:21] The takeaway, the Cobalt VM families you have been deploying
+[00:11:24] are still here, same shape, same ergonomics, same workload, fit,
+[00:11:28] and now with the meaningful step up in performance
+[00:11:31] because of Cobalt 200 underneath.
+[00:11:33] This is where Cobalt 200 generation gets
+[00:11:35] really interesting.
+[00:11:36] These are not refreshes of existing skews,
+[00:11:38] these are entirely new VM types, built directly in response
+[00:11:41] to what customers have been asking us for.
+[00:11:43] First, a new high memory profile MP series.
+[00:11:48] This is built for workloads that need a lot of memory per-core,
+[00:11:51] large in-memory databases, caches, big analytics workloads,
+[00:11:55] relational databases and ERP.
+[00:11:57] We have set the ratio at 16 gigabytes of memory per vCPU,
+[00:12:01] scaling up to 84 vCPU and offering 1.3 terabytes
+[00:12:05] of memory in a single VM.
+[00:12:07] Customers have been asking us for this profile for years.
+[00:12:09] Cobalt 200 makes it possible to deliver it at the kind
+[00:12:13] of price performance the rest of the family is known for.
+[00:12:16] Additionally, a brand new dense local storage profile,
+[00:12:20] the LP series.
+[00:12:22] This one is for customers running data preprocessing,
+[00:12:24] storage caching, relational and no SQL databases,
+[00:12:27] big data analytics and search and index engines.
+[00:12:31] At 8 gigabytes of memory per vCPU, with up to 128 vCPUs
+[00:12:35] and a terabyte of memory and up to 23 terabytes
+[00:12:38] of NVM local storage sitting right next to compute.
+[00:12:42] This is for storage [inaudible], latency sensitive workloads
+[00:12:46] where the math fundamentally changes.
+[00:12:48] Both of these additions are the clearest example of what we mean
+[00:12:51] when we say, Cobalt 200 was shaped by customer feedback.
+[00:12:55] Each one fills a gap customers told us mattered
+[00:12:58] and each one is enabled by the new silicon
+[00:13:00] and the new platform working together.
+[00:13:03] On guest OS the short version is,
+[00:13:04] we support a broad set of distributions.
+[00:13:07] All the major Linux families, plus Windows 11 Client,
+[00:13:10] for our developer scenarios.
+[00:13:12] Whatever your team runs today is almost certainly on the list.
+[00:13:16] Make certain you&#39;re using the latest patches, kernels
+[00:13:19] and libraries to get the most performance
+[00:13:21] out of the Cobalt VMs.
+[00:13:23] On feature parity, Cobalt 200 supports the full set
+[00:13:25] of Azure capabilities you depend on across management, security,
+[00:13:29] core platform and developer tooling.
+[00:13:32] And support for newer capabilities continues to grow.
+[00:13:35] One question I get a lot,
+[00:13:37] do I have to learn a new way to operate Arm VMs?
+[00:13:40] The answer is, no.
+[00:13:42] Arm based VMs are built
+[00:13:43] into Azure exactly the way RX56 VMs are,
+[00:13:46] so there is no difference in how customers consume them.
+[00:13:49] The same Azure control plane, the same tools,
+[00:13:51] the same workflows, everything you see on the slide Arm,
+[00:13:56] portal, CLI, marketplace, skill sets, Spark, monitor, backup,
+[00:14:00] AKS, it all just works.
+[00:14:03] If you know how to run a VM in Azure today,
+[00:14:06] you already know how to run a non-VM in Azure.
+[00:14:10] On regions, Cobalt 200 is launching in West US 3,
+[00:14:13] East US 2, Central US, and Sweden Central.
+[00:14:15] And we will continue to expand regions from here.
+[00:14:18] The key thing to remember is that the link at the bottom
+[00:14:20] of the slide, product availability region,
+[00:14:23] is the source of truth for the latest regional footprint,
+[00:14:27] so please bookmark it.
+[00:14:29] Before we wrap, here is a quick map of where to go next.
+[00:14:33] We have collected the resources you need to start building
+[00:14:36] on Cobalt today and to get ready for Cobalt 200.
+[00:14:39] You will find real-world Cobalt 100 customer stories
+[00:14:42] on the Azure block.
+[00:14:43] The Cobalt 200 announcement block
+[00:14:45] for deeper technical narrative.
+[00:14:48] A full Arm migration overview from Arm learning paths,
+[00:14:52] the Arm Software Ecosystem Dashboard,
+[00:14:53] so you can confirm the libraries and runtimes your stack relies
+[00:14:57] on and the Azure Cobalt VM documentation
+[00:14:59] on Microsoft learn, for hands-on guidance.
+[00:15:02] We are humbled by the developer community building alongside us
+[00:15:04] and incredibly excited
+[00:15:06] to see what you build next on Cobalt 200.
+[00:15:09] Thank you.
+[00:15:10] [ Music ]
+[00:15:18] NIKO PAMBOUKAS: Hello, everyone, I&#39;m Niko Pamboukas,
+[00:15:20] Principal Product Manager on the Azure Boost Team.
+[00:15:23] Today I&#39;m excited to talk to you about the latest generation
+[00:15:25] of Azure Boost, Azure&#39;s server offload technology,
+[00:15:29] which has recently become generally available
+[00:15:31] with the general availability
+[00:15:32] of the first VMs using this technology
+[00:15:35] to Intel based V7 VMs.
+[00:15:38] I&#39;ll give an overview of what Azure Boost is and specs
+[00:15:41] of this latest generation.
+[00:15:43] And then I will do a deep dive on one
+[00:15:44] of Azure Boost&#39;s powerful features, Guest RDMA,
+[00:15:48] which always direct memory to memory data transfers
+[00:15:50] between VMs, without involving the CPU
+[00:15:53] or operating system.so let&#39;s dive in.
+[00:15:56] So what is Azure Boost?
+[00:15:57] Azure Boost is a Microsoft designed system
+[00:16:00] that offloads virtualization tasks traditionally handled
+[00:16:03] by the hypervisor and host OS
+[00:16:06] onto specialized hardware and software.
+[00:16:08] This gives us the ability to optimize performance
+[00:16:11] across various workloads, increase host isolation
+[00:16:14] from customer virtual machines, improve servicing,
+[00:16:18] allowing us to maintain the platform in the background
+[00:16:21] without a visible impact to customers,
+[00:16:23] improve networking performance and storage access,
+[00:16:26] especially as we dive into Guest RDMA.
+[00:16:29] This has multi-dimensional improvements across isolation,
+[00:16:32] minimizing maintenance impact, performance
+[00:16:35] and enabling bare metal functionality.
+[00:16:37] This advancement is enabling industry leading remote storage
+[00:16:40] through input in IOPS,
+[00:16:42] significantly improving performance for data intensive
+[00:16:45] and network heavy workloads.
+[00:16:47] Relative to build 25, with the next generation of Boost,
+[00:16:51] you can see dramatic increase in storage throughput, IOPS,
+[00:16:55] confidential device support, increase saturation of greater
+[00:16:58] than 25% and total networking bandwidth
+[00:17:01] of 400 gigabytes per second.
+[00:17:04] This is aiding in advancement
+[00:17:05] of confidentiality across the fleet.
+[00:17:08] You can experience these new capabilities
+[00:17:10] in our latest optimized V7, VM skews, featuring a 3X increase
+[00:17:15] in networking bandwidth, 400,000 connections per second
+[00:17:18] across 2 million concurrent connections.
+[00:17:21] And on the remote storage front, the system can achieve
+[00:17:23] up to 20 gigabytes a second of throughput and 1 million IOPS,
+[00:17:27] capabilities the latest VMs will be able
+[00:17:29] to support in the future.
+[00:17:31] These performance gains are available
+[00:17:32] on the latest versions of Azure Boost.
+[00:17:36] Now let&#39;s talk about how traditional networking works
+[00:17:38] today and how Azure Boost Guest RDMA changes that.
+[00:17:41] With TCP, every data transfer is CPU intensive.
+[00:17:46] Every single packet has to travel
+[00:17:47] through the full networking stack and along the way,
+[00:17:50] you&#39;re paying for protocol overhead, contact switches
+[00:17:53] and processing delays at each layer.
+[00:17:55] The end result, TCP consumes a significant amount of CPU,
+[00:18:00] and it introduces extra latency that&#39;s hard to avoid.
+[00:18:03] Now, let&#39;s look at how this changes with Guest RDMA.
+[00:18:07] Guest RDMA allows direct access to memory,
+[00:18:10] it bypasses the operating system layers and removes all
+[00:18:13] of those intermediate steps in the networking stack.
+[00:18:16] So instead of data moving through the TCP/IP layers,
+[00:18:19] it&#39;s transferred directly between application memory
+[00:18:22] and the network interface, and the impact
+[00:18:24] of that is significantly lower latency
+[00:18:27] and dramatically reduced CPU overhead.
+[00:18:30] Now to talk about RDMA and why it matters
+[00:18:32] for network application developers.
+[00:18:34] At its core, RDMA gives you an alternative path,
+[00:18:38] one that&#39;s far less CPU intensive
+[00:18:40] than traditional networking, things you&#39;d normally handle
+[00:18:43] in software message packetization and reassembly,
+[00:18:46] reliability, flow control, congestion control,
+[00:18:49] and all of that gets offloaded to the NIC.
+[00:18:52] That means your applications can bypass the traditional
+[00:18:55] networking overhead entirely.
+[00:18:57] And the result is a significant reduction in both latency
+[00:19:00] and jitter, because the heavy lifting moves
+[00:19:02] out of software and into hardware.
+[00:19:05] This becomes especially important for workloads
+[00:19:07] that demand both high bandwidth and very consistent latency,
+[00:19:11] think large scale AI distributed inference and HPC workloads.
+[00:19:17] These are scenarios where every micro second counts.
+[00:19:20] With RDMA we can push up to 200 gigabytes per second
+[00:19:23] of throughput on a single connection, while still holding
+[00:19:26] onto very tight predictable latency characteristics.
+[00:19:30] Now on Azure we take this a step further
+[00:19:32] with RDMA network virtualization.
+[00:19:35] What this means is, RDMA traffic now works seamlessly inside the
+[00:19:38] cloud native constructs, you already know
+[00:19:41] and use in virtual networks.
+[00:19:44] So you don&#39;t have to choose between RDMA performance
+[00:19:46] and the cloud native features
+[00:19:48] that your architecture depends on, you get both,
+[00:19:51] and this capability is available today on Azure Boost instances
+[00:19:54] through the Microsoft Azure network adapter,
+[00:19:57] which brings high performance
+[00:19:58] and full virtualization support together in one place.
+[00:20:02] So with that foundation in mind,
+[00:20:04] let&#39;s look at how this actually shows up in a real workload.
+[00:20:07] On the next slide you&#39;ll see a distributed inference example
+[00:20:11] and that&#39;s exactly what we&#39;ll be demonstrating live
+[00:20:13] in just a moment.
+[00:20:15] This demo shows the impact of RDMA
+[00:20:18] for distributed AI inference
+[00:20:19] by directly comparing resource utilization
+[00:20:22] across the two transport paths, TCP and RDMA.
+[00:20:26] In this setup we just aggregate the inference pipeline
+[00:20:29] into two stages, prefill and decode, so they can run
+[00:20:32] on separate resources and scale independently.
+[00:20:36] We&#39;re running a disaggregated inference workload
+[00:20:38] across two VMs on the same Azure ND GB200 V6 cluster,
+[00:20:43] once over TCP, and once over RDMA.
+[00:20:47] We&#39;re running the Lama 3.1 70 billion instruct model using the
+[00:20:51] VLLM benchmarking tools specifically, VLLM bench serve
+[00:20:56] with synthetic prompt generation
+[00:20:58] to drive consistent repeatable inference traffic.
+[00:21:01] These two VMs, prefill and decoder, are configured exactly
+[00:21:05] like a typical inference backend for AI prompt processing.
+[00:21:09] VM1, the prefill VM on the left, this is the VM
+[00:21:13] that processes the user&#39;s input prompts, it builds up context
+[00:21:17] and memory for token generation creating,
+[00:21:20] what we call the KV cache, focused on prompt processing.
+[00:21:24] VM2, the decoder VM, this is the memory intensive VM,
+[00:21:29] it takes the context generated by the prefill VM and it uses it
+[00:21:32] to generate tokens producing the actual response
+[00:21:35] to the chat prompt.
+[00:21:36] The GPU here drives the inferencing engine
+[00:21:39] and the results are streamed back to the client in real-time.
+[00:21:42] In this disaggregated architecture,
+[00:21:44] the choice of transport, TCP versus RDMA,
+[00:21:47] really starts to matter.
+[00:21:49] This benchmark window is where we collect all
+[00:21:51] of our performance metrics.
+[00:21:53] We&#39;re focusing on three key metrics.
+[00:21:56] First, throughput, how many tokens the system can generate
+[00:21:59] per second, second, time to first token, or TTFT,
+[00:22:04] how quickly users see that very first response and, third,
+[00:22:08] time per output token or TPOT,
+[00:22:11] how efficiently tokens are generated
+[00:22:13] after the first ones lands and together,
+[00:22:15] these three metrics give us a complete picture
+[00:22:17] of how RDMA changes a performance profile
+[00:22:20] of distributed inference.
+[00:22:22] Let me walk you through the demo screens.
+[00:22:25] On the left side of the screen the top window is the prefilled
+[00:22:28] VM and the bottom window is the decoder VM,
+[00:22:31] the same two VM setup we just walked through.
+[00:22:34] On the right, we have two views.
+[00:22:36] At the top you&#39;ll see the benchmark results
+[00:22:38] as they come in.
+[00:22:39] And at the bottom right, we have the RDMA stats, these light up
+[00:22:43] and update in real-time whenever RDMA traffic is flowing.
+[00:22:46] So when RDMA is enabled,
+[00:22:48] you&#39;ll see those counters actively ticking,
+[00:22:50] that&#39;s your visual confirmation that the data path is going
+[00:22:53] through the RDMA fabric, not TCP.
+[00:22:56] And the demo has two runs, one after another,
+[00:22:59] on the same inferencing workload.
+[00:23:01] In the first run, the transport is TCP.
+[00:23:04] In the second run, the transport is RDMA.
+[00:23:07] This gives us an apples to apples comparison, same model,
+[00:23:11] same prompts, same VMs, only the transport path changes.
+[00:23:15] Now when we compare the results in the benchmark window
+[00:23:18] across the two runs, RDMA versus TCP, we see clear,
+[00:23:22] measurable improvements across all three of our key metrics,
+[00:23:26] up to 2.2 times higher throughput, a 3 times reduction
+[00:23:30] in time to first token, and about 20
+[00:23:33] to 25% faster token generation after that first response lands.
+[00:23:38] So across the board, throughput, responsiveness
+[00:23:41] and per token efficiency,
+[00:23:42] RDMA delivers a meaningful step change in performance
+[00:23:45] for distributed AI inference on Azure.
+[00:23:48] We&#39;re excited to share that the preview program kicks off
+[00:23:51] in June 2026.
+[00:23:53] This will start as a limited preview, so we can work closely
+[00:23:55] with early customers and make sure the experience is rock
+[00:23:58] solid before we open it up more broadly.
+[00:24:01] If you&#39;d like to be part of it, please fill out the sign up form
+[00:24:04] to join the program and we&#39;d love to have you onboard.
+[00:24:07] To conclude, we have collected resources for you to learn more
+[00:24:11] about Azure Boost and its unique features.
+[00:24:14] Here you will find blog posts and documentation
+[00:24:16] that explain more about our technology and we are excited
+[00:24:19] about this latest technology and look forward
+[00:24:21] to the developer community building
+[00:24:22] and creating their newest cloud services on these VMs.
+[00:24:22] Thank you for watching.
+[00:24:22] [ Music ]
+[00:24:34] AMAR DHAMDHERE: Hello, everyone.
+[00:24:35] I&#39;m Amar Dhamdhere, and I&#39;m a Product Manager
+[00:24:37] in the VM Sizes Team in Azure Compute, the team responsible
+[00:24:40] for delivering our optimized and Cobalt VM portfolio.
+[00:24:44] Today I&#39;ll talk to you about several recently announced Intel
+[00:24:47] and AMD based general compute VMs,
+[00:24:49] both generally available and in preview.
+[00:24:52] Let&#39;s begin with the new Intel VMs,
+[00:24:54] beginning with the generally availability
+[00:24:55] of DSV7 and ESV7 series VMs.
+[00:24:59] We are excited about the Intel DSV76 and ESV7 series VMs,
+[00:25:03] which have recently been made generally available.
+[00:25:06] These are the VMs that are bringing the performance
+[00:25:08] benefits of the latest generation of Azure Boost
+[00:25:10] to our customers and are based
+[00:25:12] on the Intel sixth generation Xeon 6 Granite Rapids processor.
+[00:25:16] We see up to 15% CPU performance improvements
+[00:25:19] over the previous generation.
+[00:25:21] Support for very large configurations, up to 372 vCPUs
+[00:25:25] and 2.8 terabytes of memory and turbo frequency
+[00:25:29] of up to 4.2 gigahertz.
+[00:25:32] And tanks are running on servers with the latest generation
+[00:25:35] of Azure Boost, we are also seeing
+[00:25:37] up to 400 gigabytes per second of networking bandwidth,
+[00:25:40] up to 800 K IOPS and 20 gigabytes per second throughput
+[00:25:45] to premium V2 and ultra disk remote storage.
+[00:25:49] And up to 9.6 million IOPS and 53 gigabytes throughput
+[00:25:52] to local and NVM temp disk.
+[00:25:55] Across workloads we are seeing consistent
+[00:25:58] and meaningful gains compared
+[00:25:59] to the previous generation Intel VMs.
+[00:26:01] CPU performance improves by up to 13% in memory cache workloads
+[00:26:06] by up to 18% and cryptography workloads by up to 20%.
+[00:26:11] For more specialized scenarios, such as, AI preprocessing
+[00:26:14] and video encoding, improvements range from up to 18%
+[00:26:18] and up to 24% respectively.
+[00:26:20] Here we talk about the Intel network optimized VM series.
+[00:26:24] Purpose built for high performance and VM workloads.
+[00:26:27] These VMs deliver storage price performance with up
+[00:26:30] to 4 NICs available at smaller 2 vCPU sizes and scaling
+[00:26:34] up to 15 v NICS on larger configurations.
+[00:26:37] For workloads with high connection churn,
+[00:26:40] larger sizes can support up to 400 K connections per second,
+[00:26:45] making them ideal for demanding network appliances.
+[00:26:48] Had the top in the 120 v CPU VM sizes,
+[00:26:51] enable up to 200 gigabytes per second bandwidth,
+[00:26:55] with significantly higher bandwidth ceilings
+[00:26:57] across all sizes compared to general purpose VMs.
+[00:27:01] This combination of high connections per second,
+[00:27:03] flexible v NIC scaling and elevated bandwidth,
+[00:27:06] makes the series well suited for firewalls, gateways
+[00:27:10] and other packet processing workloads.
+[00:27:12] For remote storage intensive workloads, like databases
+[00:27:15] and analytics types, we&#39;ve introduced the EBSV6 series.
+[00:27:19] These VMs run on the Intel Emerald Rapid CPU.
+[00:27:22] The key highlight here is not just CPU improvements,
+[00:27:25] but the integration with the Azure Boost,
+[00:27:27] which enables skill, remote storage, throughput
+[00:27:30] and IOPS significantly higher than general purpose VMs.
+[00:27:34] The chart shows the max throughput and IOPS
+[00:27:36] on these VMs, up to 14 gigabytes per second
+[00:27:39] and 800,000 IOPS respectively.
+[00:27:43] Here are Azure&#39;s AM debase DA, EA and FAV7 VMs.
+[00:27:48] These cover general purpose memory optimized
+[00:27:51] and compute optimized workload and have options with
+[00:27:54] and without local SSD.
+[00:27:56] They also include new constraint core sizes
+[00:27:58] for better cost control.
+[00:28:01] The new AMD VMs are powered
+[00:28:02] by fifth generation AMD epic Turin processors,
+[00:28:06] delivering up to 35% CPU performance improvement
+[00:28:10] over the prior generation.
+[00:28:12] They scale up to a 160 vCPUs and 1.25 terabytes of memory
+[00:28:16] and supporting boost frequencies up to 4.5 gigahertz.
+[00:28:21] These VMs already live in 11 regions,
+[00:28:23] the broader expansion planned in 2026.
+[00:28:26] This site focuses on gen over gen performance improvements
+[00:28:29] for AMD7 VMs compared to V6
+[00:28:32] across a representative set of benchmarks.
+[00:28:35] The blue bars represent V6 and the pink bars represent V7.
+[00:28:39] The key takeaway is that AMD7 provided material performance
+[00:28:42] gains and vary by workloads.
+[00:28:45] We are seeing up to 35% improvements in CPU performance,
+[00:28:48] up to 25% for JAVA based workloads and up to 65%
+[00:28:52] for in-memory caching and up to 80% for crypto workloads.
+[00:28:56] Up to 130% on web applications.
+[00:28:59] Now let&#39;s talk about our new AMD based LASV 5 VMs optimized
+[00:29:03] for local storage intensive workloads.
+[00:29:06] For these storage intensive scenarios, like caching layers,
+[00:29:09] and search that benefit from local NVM storage,
+[00:29:13] LASV5 VMs is the latest of our AMD offerings.
+[00:29:18] These VMs run on fifth generation AMD Epic Turin
+[00:29:21] processes and offer up to 35% CPU gains
+[00:29:24] and increased total local disk capacity and IOPS.
+[00:29:28] We are maintaining consistent ratios on disk to record,
+[00:29:31] while also expanding to larger sizes.
+[00:29:34] For even more local storage intensive scenarios,
+[00:29:36] like big data processing,
+[00:29:37] the LAOSV is our latest AMD based dense local storage
+[00:29:42] optimized VM series, with 3X, the local storage ratio,
+[00:29:46] as that of the LSV5 VMs.
+[00:29:49] These VMs offer significant increases
+[00:29:52] in maximum local disk capacity and IOPS,
+[00:29:54] compared to the previous generation of LAOSV4 VMs.
+[00:29:59] Before we wrap, here&#39;s a quick map of where to go next.
+[00:30:02] We have collected the resources for you to learn more
+[00:30:05] about these Intel and AMD VMs.
+[00:30:07] This includes blogs for all
+[00:30:09] of the VM series we discussed today.
+[00:30:12] We are excited by the release of these new VM series
+[00:30:14] and hope they will match up well
+[00:30:16] for the various general computer workloads you plan
+[00:30:18] to build on Azure.
+[00:30:20] Thank you for watching.
+[00:30:21] [ Music ]
+[00:30:28] VIKAS BHATIA: Hello, everyone, I&#39;m Vikas Bhatia,
+[00:30:31] Head of Product for Azure Compute Security
+[00:30:33] and Confidential Computing.
+[00:30:35] Today I&#39;ll be discussing how Azure secures compute
+[00:30:38] on our servers and the VMs and containers
+[00:30:41] that run on these servers.
+[00:30:43] I&#39;ll discuss how we enhance VM security
+[00:30:47] on select VMs using confidential computing, how we have innovated
+[00:30:51] with live migration for confidential VMs and, finally,
+[00:30:55] I&#39;ll discuss a general availability
+[00:30:57] of the latest compute security innovation Azure Integrated HSM.
+[00:31:01] So let&#39;s get started.
+[00:31:03] A secure hardware system architecture is not a single
+[00:31:06] security layer of defense, but it&#39;s rather a series
+[00:31:10] of security technologies applied at every layer of the stack.
+[00:31:15] The most effective security solution is constructed upon a
+[00:31:18] solid foundation.
+[00:31:20] And anchoring security in hardware forms that foundation.
+[00:31:25] The layer of Azure hardware system security architecture are
+[00:31:29] built on these following distinct technologies.
+[00:31:33] The first is the innovation that we&#39;ve done
+[00:31:34] with confidential computing, a silicon root of trust,
+[00:31:39] leveraging Azure Boost,
+[00:31:41] our secure host management infrastructure, and finally,
+[00:31:45] innovations that we&#39;ve done with Azure Integrated HSM
+[00:31:49] to meet the FIPS 140-3 level 3 standards.
+[00:31:53] While I won&#39;t have time to focus on all these,
+[00:31:55] we&#39;ll focus on just a few and see how far we get.
+[00:31:59] The next layer of defense is the compute that runs
+[00:32:02] on your virtual machines and containers and services
+[00:32:06] across the cloud environment.
+[00:32:08] Typically there&#39;s inconsistent isolation
+[00:32:10] between tenants and cloud providers.
+[00:32:12] We have done a ton of work in Azure to ensure
+[00:32:16] that the tenants themselves are isolated from each other
+[00:32:20] and the tenants are isolated from the cloud provider.
+[00:32:23] So we have security engineered into the platform,
+[00:32:26] ready to protect every workload.
+[00:32:28] So as I mentioned earlier, we ensure that tenants are isolated
+[00:32:32] from each other, so we provide capabilities, such as,
+[00:32:34] trusted launch, the transcription capabilities,
+[00:32:38] various key management offerings, verified boot chains,
+[00:32:42] controls with Azure Kubernetes service and just
+[00:32:45] in time memory access.
+[00:32:47] In addition to tenants doing the work to protect themselves,
+[00:32:51] we also ensure that the cloud provider, Azure,
+[00:32:55] is isolated from the tenant workloads.
+[00:32:58] Our investments in Azure Boost lead the way,
+[00:33:00] the work that we&#39;re doing with Azure Integrated HSM,
+[00:33:03] with confidential computing, the Caliptra root of trust,
+[00:33:06] these are just some parts of the assets that we&#39;ve put in Azure
+[00:33:09] to ensure that the cloud provider is isolated
+[00:33:12] from your workloads.
+[00:33:13] So while we work on isolating your workloads,
+[00:33:16] I want to talk a little bit about confidential computing.
+[00:33:19] So our industry has had encryption of data at rest
+[00:33:24] and in transit for quite a long time, but protecting that data
+[00:33:28] when it is in use in memory has not yet been solved at scale
+[00:33:32] by industry, until now.
+[00:33:34] What we&#39;ve done with confidential computing is,
+[00:33:37] we protect that data when it&#39;s in memory, when it is in use
+[00:33:41] from outside that trusted boundary that we call the TEE,
+[00:33:45] which is a trusted execution environment.
+[00:33:48] A TEE provides assurance of data encode integrity,
+[00:33:52] as well as, data confidentiality.
+[00:33:54] So confidential computing in the end is the ability
+[00:33:58] to protect your data when it is in use
+[00:34:01] from malicious actors and malicious code.
+[00:34:03] That&#39;s the first important takeaway.
+[00:34:05] The second important takeaway is,
+[00:34:07] now that we have confidential computing, your data
+[00:34:10] and code are protected during its entire lifecycle,
+[00:34:13] from the time it starts it&#39;s created until it is destroyed,
+[00:34:17] with the confidential key that you own.
+[00:34:19] Next I&#39;m going to talk about the innovations that we&#39;ve done
+[00:34:22] with our v6 confidential VMs built
+[00:34:25] on AMDs SEV-SNP technology.
+[00:34:28] AMD SEV-SNP provides hardware enforced memory encryption,
+[00:34:32] protecting data in use from the host, the hypervisor
+[00:34:36] and the other tenants.
+[00:34:37] The strong isolation model ensures both memory
+[00:34:40] and CPU state remain private,
+[00:34:42] even from privilege infrastructure layers.
+[00:34:45] The built-in attestation capability,
+[00:34:47] provided by our Microsoft Azure attestation service,
+[00:34:50] or using in guest attestation,
+[00:34:53] customers can verify the VM integrity before releasing
+[00:34:56] secrets or operating on sensitive workloads.
+[00:34:59] AMD SEV-SNP v6 confidential VMs,
+[00:35:03] support enterprise scale workloads with high core counts,
+[00:35:07] memory and make them practical for real production deployments.
+[00:35:11] We also have integrated with Kubernetes, cloud native tooling
+[00:35:15] and enabled secure containerized workloads without architecture.
+[00:35:19] They improve performance,
+[00:35:20] compared to previous generations,
+[00:35:22] reduces the additional tradeoff that you might have to do
+[00:35:25] between security and inefficiency.
+[00:35:27] In fact, with the AMD SEV-SNP,
+[00:35:30] we have moved our security critical workloads, such as,
+[00:35:33] Entra ID, to run entirely on confidential computing.
+[00:35:37] Next, I will talk about Intel TDX,
+[00:35:40] with our v6 confidential VMs.
+[00:35:42] Intel TDX, like AMD SEV-SNP, extends confidential computing
+[00:35:47] to a broader set of workloads,
+[00:35:48] with strong VM level isolation using TDs, or trusted domains.
+[00:35:54] Open at CL, which is our [inaudible],
+[00:35:57] supports increased transparency and trust
+[00:36:00] by enabling more visibility into the former stack.
+[00:36:03] High performance configurations with larger vCPU
+[00:36:07] and memory support, make it suitable for data intensive
+[00:36:10] and enterprise workloads.
+[00:36:13] And new capabilities, such as, accelerated storage
+[00:36:16] and infrastructure improvements,
+[00:36:18] will help close the performance gaps that reduce the asterisk
+[00:36:23] when operating with confidential VMs.
+[00:36:25] These enable customers to lift
+[00:36:28] and shift their sensitive workloads into Azure,
+[00:36:32] without exposing the error to the cloud operator.
+[00:36:35] And coming soon, we will be bringing confidential VM live
+[00:36:38] migration to Intel TDX.
+[00:36:41] Live migration on confidential VMs will provide near zero
+[00:36:45] downtime for maintenance and upgrades.
+[00:36:48] These eliminate outages and avoid operational disruptions
+[00:36:52] for mission critical workloads.
+[00:36:53] These also improve reliability and performance
+[00:36:56] by transparently moving workloads away from failures
+[00:37:00] and rebalancing capacity,
+[00:37:02] without requiring customer intervention.
+[00:37:04] Next I&#39;ll show you a demo.
+[00:37:07] &gt;&gt; In this demonstration we show confidential live migration.
+[00:37:10] We have two servers.
+[00:37:12] The left is the source and the right is the destination.
+[00:37:16] Up top I&#39;ve already P&#39;d into the CVM running on the source
+[00:37:20] and we&#39;re running a basic script that&#39;s printing hello
+[00:37:23] and the time.
+[00:37:25] On the destination machine we&#39;re showing attestation
+[00:37:28] and key exchange occurring.
+[00:37:33] Here you can see the live migration is progressing,
+[00:37:36] key exchange has complete and the hand-off is occurring.
+[00:37:40] The system has now moved the CVM from source to destination
+[00:37:45] and we can see here the time continues to print
+[00:37:47] with just a short blackout time.
+[00:37:50] &gt;&gt; Now I&#39;m excited to talk about Azure Integrated HSM.
+[00:37:54] AI HSM is our first party security ASIC that acts
+[00:37:58] as a secure hardware backed no local key vault.
+[00:38:02] Customers can use this to offload the keys
+[00:38:05] that they typically store in Azure Key Vault,
+[00:38:08] Azure Manage HSM or even an external key manager.
+[00:38:12] With Azure Integrated HSM, customer keys are never exposed
+[00:38:15] in the clear and keys remain in the AI HSM boundary while
+[00:38:20] in use, without any performance penalties.
+[00:38:23] They also benefit from compliance and testing,
+[00:38:26] because we have FIPS level 3,
+[00:38:28] 140-3 certification on these devices.
+[00:38:32] So the key difference here is that the keys no longer need
+[00:38:35] to sit in the VM memory and clear text.
+[00:38:38] With AI HSM, crypto operations are offloaded
+[00:38:41] to a local PCIE SRIOV device on the node.
+[00:38:46] Thus, enabling the keys to remain inside the HSM boundary
+[00:38:49] and the VM uses a local interface
+[00:38:51] to access them securely, as shown in the diagram.
+[00:38:54] This reduces exposure to memory based attacks,
+[00:38:57] while also improving performance,
+[00:38:59] combat with repeated remote HSM calls.
+[00:39:02] Now, practically this changes the threat model.
+[00:39:04] For example, even in cases, like, crash dumps
+[00:39:07] or memory inspection, sensitive material is not exposed,
+[00:39:10] because it never leaves the HSM boundary.
+[00:39:12] At the same time, because the interface is local to the VM,
+[00:39:16] customers get lower latency, higher [inaudible]
+[00:39:19] for cryptographic operations, making this viable
+[00:39:21] for high scale production workloads,
+[00:39:24] without forcing a tradeoff
+[00:39:25] between security and performance.
+[00:39:27] So in conclusion, building verifiable trust,
+[00:39:31] rooted in hardware, enables organizations
+[00:39:34] to develop new applications
+[00:39:35] and easily migrate their existing applications
+[00:39:38] that contain data that must be protected at all times.
+[00:39:42] We have prepared this list of resources on compute security
+[00:39:45] and confidential computing to help you learn more
+[00:39:47] and start using these technologies
+[00:39:49] to enhance the security posture of your workloads in Azure.
+[00:39:53] We look forward to help you bring your most sensitive
+[00:39:56] workloads and data to Azure.
+[00:39:59] Thank you.
+[00:39:59] [ Music ]
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

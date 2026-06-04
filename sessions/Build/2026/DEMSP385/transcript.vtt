@@ -1,0 +1,2230 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.796811044216156
+
+00:00:01.280 --> 00:00:02.120
+All right, thank you.
+
+NOTE Confidence: 0.7696139812469482
+
+00:00:02.279 --> 00:00:04.893
+So quick raise of hand just for me, how many
+
+NOTE Confidence: 0.7696139812469482
+
+00:00:04.953 --> 00:00:08.280
+people are familiar with elastic Elastic search Elastic.
+
+NOTE Confidence: 0.6077430248260498
+
+00:00:09.480 --> 00:00:10.000
+All right, cool.
+
+NOTE Confidence: 0.841514527797699
+
+00:00:10.760 --> 00:00:11.240
+It's pretty good.
+
+NOTE Confidence: 0.8476783037185669
+
+00:00:11.520 --> 00:00:14.077
+OK, so today I'm going to talk about how we
+
+NOTE Confidence: 0.8476783037185669
+
+00:00:14.137 --> 00:00:17.409
+can use elastic search with Code Review agency when you
+
+NOTE Confidence: 0.8476783037185669
+
+00:00:17.468 --> 00:00:18.479
+push PRS to help.
+
+NOTE Confidence: 0.9491168260574341
+
+00:00:18.480 --> 00:00:21.071
+Not we already do a lot of just is your
+
+NOTE Confidence: 0.9491168260574341
+
+00:00:21.138 --> 00:00:22.599
+code actually working?
+
+NOTE Confidence: 0.7219039797782898
+
+00:00:22.600 --> 00:00:23.840
+Is it syntactically correct?
+
+NOTE Confidence: 0.7328879237174988
+
+00:00:23.840 --> 00:00:24.320
+Things like that.
+
+NOTE Confidence: 0.9021482467651367
+
+00:00:24.680 --> 00:00:26.630
+We're going to tie it to if I push this
+
+NOTE Confidence: 0.9021482467651367
+
+00:00:26.680 --> 00:00:29.030
+PR, is it going to cause the same incident that
+
+NOTE Confidence: 0.9021482467651367
+
+00:00:29.080 --> 00:00:30.080
+happened last month?
+
+NOTE Confidence: 0.7876101732254028
+
+00:00:34.960 --> 00:00:35.360
+There we go.
+
+NOTE Confidence: 0.8811777234077454
+
+00:00:35.840 --> 00:00:38.923
+OK, So what happens right now is your code gets
+
+NOTE Confidence: 0.8811777234077454
+
+00:00:38.988 --> 00:00:41.940
+pushed and you you have a review and maybe it
+
+NOTE Confidence: 0.8811777234077454
+
+00:00:42.006 --> 00:00:42.400
+works.
+
+NOTE Confidence: 0.6866675615310669
+
+00:00:42.720 --> 00:00:43.720
+If it doesn't, it gets blocked.
+
+NOTE Confidence: 0.723090410232544
+
+00:00:43.720 --> 00:00:44.520
+Otherwise you merge it.
+
+NOTE Confidence: 0.8163301944732666
+
+00:00:44.520 --> 00:00:47.230
+So we're going to again, take these post mortem incidents
+
+NOTE Confidence: 0.8163301944732666
+
+00:00:47.277 --> 00:00:50.226
+that happen, open telemetry traces that are in elastic search,
+
+NOTE Confidence: 0.8163301944732666
+
+00:00:50.273 --> 00:00:52.888
+and we're going to have that automatically check in and
+
+NOTE Confidence: 0.8163301944732666
+
+00:00:52.936 --> 00:00:53.840
+make a code review.
+
+NOTE Confidence: 0.887950599193573
+
+00:00:54.560 --> 00:00:58.026
+So this is the most high level chart of this
+
+NOTE Confidence: 0.887950599193573
+
+00:00:58.105 --> 00:00:59.759
+I could put together.
+
+NOTE Confidence: 0.86693274974823
+
+00:01:00.160 --> 00:01:02.960
+So essentially you have your automated review process right now.
+
+NOTE Confidence: 0.8723433613777161
+
+00:01:02.960 --> 00:01:05.746
+So you push your PR and GitHub, GitHub actions, fire,
+
+NOTE Confidence: 0.8723433613777161
+
+00:01:05.799 --> 00:01:08.480
+they do whatever you know you normally have in your
+
+NOTE Confidence: 0.8723433613777161
+
+00:01:08.533 --> 00:01:09.479
+process right now.
+
+NOTE Confidence: 0.8586990237236023
+
+00:01:09.480 --> 00:01:12.900
+But we're going to add in calling Elastic Workflow, which
+
+NOTE Confidence: 0.8586990237236023
+
+00:01:12.960 --> 00:01:15.120
+in turn calls Elastic Agent Builder.
+
+NOTE Confidence: 0.6676928400993347
+
+00:01:15.120 --> 00:01:17.338
+Agent Builder is just our agent platform, but we run
+
+NOTE Confidence: 0.6676928400993347
+
+00:01:17.381 --> 00:01:17.679
+agents.
+
+NOTE Confidence: 0.8269979357719421
+
+00:01:17.680 --> 00:01:20.760
+We'll show it a little bit if it matches.
+
+NOTE Confidence: 0.876405656337738
+
+00:01:20.800 --> 00:01:24.952
+And you know, using semantic search, things about open telemetry,
+
+NOTE Confidence: 0.876405656337738
+
+00:01:25.016 --> 00:01:29.616
+similarities, anything in the incident post mortems that happened, it'll
+
+NOTE Confidence: 0.876405656337738
+
+00:01:29.680 --> 00:01:32.555
+push back a comment in your code and then you
+
+NOTE Confidence: 0.876405656337738
+
+00:01:32.619 --> 00:01:34.599
+can decide what you want to do.
+
+NOTE Confidence: 0.8496813178062439
+
+00:01:35.120 --> 00:01:36.842
+If you want to fix it, we can drop into
+
+NOTE Confidence: 0.8496813178062439
+
+00:01:36.886 --> 00:01:37.240
+VS Code.
+
+NOTE Confidence: 0.8089760541915894
+
+00:01:37.319 --> 00:01:40.194
+We can use Copilot and the MCP servers back to
+
+NOTE Confidence: 0.8089760541915894
+
+00:01:40.257 --> 00:01:42.319
+elastic search to make decisions.
+
+NOTE Confidence: 0.9347739815711975
+
+00:01:42.560 --> 00:01:44.040
+And we'll show all that in just a minute.
+
+NOTE Confidence: 0.8855020403862
+
+00:01:45.120 --> 00:01:47.744
+So really the high level is moving from now, it
+
+NOTE Confidence: 0.8855020403862
+
+00:01:47.800 --> 00:01:51.040
+looks good to it might be syntactically correct again, but
+
+NOTE Confidence: 0.8855020403862
+
+00:01:51.095 --> 00:01:54.000
+it hits a production issue that happened last month.
+
+NOTE Confidence: 0.8724748492240906
+
+00:01:54.680 --> 00:01:57.284
+So I'm not a big slide guy, so we're going
+
+NOTE Confidence: 0.8724748492240906
+
+00:01:57.346 --> 00:02:00.199
+to just drop over into an actual example here.
+
+NOTE Confidence: 0.8009424805641174
+
+00:02:00.200 --> 00:02:03.265
+So because this is a big event, I practice this
+
+NOTE Confidence: 0.8009424805641174
+
+00:02:03.331 --> 00:02:04.439
+a bunch of times.
+
+NOTE Confidence: 0.7809434533119202
+
+00:02:04.440 --> 00:02:06.089
+That's why you have a bunch of these PRS up
+
+NOTE Confidence: 0.7809434533119202
+
+00:02:06.128 --> 00:02:06.319
+here.
+
+NOTE Confidence: 0.8795662522315979
+
+00:02:06.320 --> 00:02:08.688
+But we're going to actually go, and we're going to
+
+NOTE Confidence: 0.8795662522315979
+
+00:02:08.736 --> 00:02:10.962
+go and create a pull request and we'll show the
+
+NOTE Confidence: 0.8795662522315979
+
+00:02:11.010 --> 00:02:13.000
+code and all the other things in a minute.
+
+NOTE Confidence: 0.8483021259307861
+
+00:02:13.600 --> 00:02:16.008
+So I'm going to go in and I have some
+
+NOTE Confidence: 0.8483021259307861
+
+00:02:16.073 --> 00:02:16.919
+code changes.
+
+NOTE Confidence: 0.90285724401474
+
+00:02:17.000 --> 00:02:20.391
+So what this does essentially is pretty small bit of
+
+NOTE Confidence: 0.90285724401474
+
+00:02:20.457 --> 00:02:21.239
+code change.
+
+NOTE Confidence: 0.9155585765838623
+
+00:02:21.240 --> 00:02:23.531
+We're going to take this reserve and we're going to
+
+NOTE Confidence: 0.9155585765838623
+
+00:02:23.576 --> 00:02:24.519
+split out the rights.
+
+NOTE Confidence: 0.8425520658493042
+
+00:02:24.520 --> 00:02:26.519
+And so I should mention a little bit of background
+
+NOTE Confidence: 0.8425520658493042
+
+00:02:26.559 --> 00:02:26.879
+in this.
+
+NOTE Confidence: 0.7221276760101318
+
+00:02:27.840 --> 00:02:30.680
+The application is a, it's called Wayfinder.
+
+NOTE Confidence: 0.5039066672325134
+
+00:02:30.680 --> 00:02:32.760
+It's a e-commerce store.
+
+NOTE Confidence: 0.7983666658401489
+
+00:02:32.760 --> 00:02:33.560
+So we're in California.
+
+NOTE Confidence: 0.9245597124099731
+
+00:02:33.560 --> 00:02:35.273
+I'm from Chicago, but I like to dream that I'm
+
+NOTE Confidence: 0.9245597124099731
+
+00:02:35.310 --> 00:02:37.097
+going to go climb all these mountains and do all
+
+NOTE Confidence: 0.9245597124099731
+
+00:02:37.135 --> 00:02:37.880
+the adventure stuff.
+
+NOTE Confidence: 0.9039429426193237
+
+00:02:37.880 --> 00:02:39.762
+So I go to like a, you know, an adventure
+
+NOTE Confidence: 0.9039429426193237
+
+00:02:39.808 --> 00:02:41.783
+store and you buy all the gear and then you
+
+NOTE Confidence: 0.9039429426193237
+
+00:02:41.829 --> 00:02:44.080
+don't really do it, but it's an e-commerce store.
+
+NOTE Confidence: 0.9046984314918518
+
+00:02:44.080 --> 00:02:45.976
+And so key part of this is when you go
+
+NOTE Confidence: 0.9046984314918518
+
+00:02:46.026 --> 00:02:48.771
+to purchase an inventory, an item, the inventory has to
+
+NOTE Confidence: 0.9046984314918518
+
+00:02:48.821 --> 00:02:49.720
+be correct, right?
+
+NOTE Confidence: 0.9494616985321045
+
+00:02:49.720 --> 00:02:52.216
+There's one pair of boots left, but three people are
+
+NOTE Confidence: 0.9494616985321045
+
+00:02:52.264 --> 00:02:53.080
+trying to buy it.
+
+NOTE Confidence: 0.9312501549720764
+
+00:02:53.639 --> 00:02:55.721
+You're going to have an issue there and you want
+
+NOTE Confidence: 0.9312501549720764
+
+00:02:55.764 --> 00:02:58.019
+to make sure that only one person actually gets that
+
+NOTE Confidence: 0.9312501549720764
+
+00:02:58.063 --> 00:02:58.279
+sale.
+
+NOTE Confidence: 0.8887136578559875
+
+00:02:59.000 --> 00:03:02.058
+But what we did here is we decided to change
+
+NOTE Confidence: 0.8887136578559875
+
+00:03:02.128 --> 00:03:05.604
+do some refactoring and trying to trying to make a
+
+NOTE Confidence: 0.8887136578559875
+
+00:03:05.673 --> 00:03:09.080
+change that helps the this under high throughput.
+
+NOTE Confidence: 0.4511328935623169
+
+00:03:10.120 --> 00:03:11.080
+Let's create a pull request.
+
+NOTE Confidence: 0.8242764472961426
+
+00:03:11.480 --> 00:03:13.664
+And again, I'll look at the files to change the
+
+NOTE Confidence: 0.8242764472961426
+
+00:03:13.711 --> 00:03:14.919
+key one that changed here.
+
+NOTE Confidence: 0.7114133834838867
+
+00:03:16.080 --> 00:03:19.010
+Again, the specific code changes isn't super important, but it's
+
+NOTE Confidence: 0.7114133834838867
+
+00:03:19.055 --> 00:03:19.879
+it's rather minor.
+
+NOTE Confidence: 0.8585930466651917
+
+00:03:19.880 --> 00:03:24.037
+Instead of doing an atomic checkout right here, we decided,
+
+NOTE Confidence: 0.8585930466651917
+
+00:03:24.107 --> 00:03:27.701
+you know what, let's just set the quantity once and
+
+NOTE Confidence: 0.8585930466651917
+
+00:03:27.772 --> 00:03:30.731
+then I'm going to use it a couple times to
+
+NOTE Confidence: 0.8585930466651917
+
+00:03:30.802 --> 00:03:33.479
+do in pre computed quantities in here.
+
+NOTE Confidence: 0.9390465617179871
+
+00:03:34.720 --> 00:03:36.080
+So it's a pretty minor change.
+
+NOTE Confidence: 0.8653802275657654
+
+00:03:36.080 --> 00:03:38.724
+We, you know, we're just kind of move some things
+
+NOTE Confidence: 0.8653802275657654
+
+00:03:38.777 --> 00:03:41.206
+around and decide to do this and it it passes
+
+NOTE Confidence: 0.8653802275657654
+
+00:03:41.260 --> 00:03:44.119
+normal checks because it's a valid change you can do.
+
+NOTE Confidence: 0.8832477927207947
+
+00:03:44.760 --> 00:03:47.491
+If I go over to the back to the conversation
+
+NOTE Confidence: 0.8832477927207947
+
+00:03:47.553 --> 00:03:50.160
+part, Scroll down, see some of the checks.
+
+NOTE Confidence: 0.9384799599647522
+
+00:03:51.280 --> 00:03:53.363
+So the checks are running and you can have whatever
+
+NOTE Confidence: 0.9384799599647522
+
+00:03:53.404 --> 00:03:55.447
+checks you normally would put in here, but we have
+
+NOTE Confidence: 0.9384799599647522
+
+00:03:55.488 --> 00:03:57.326
+this elastic PR agent and this is kind of the
+
+NOTE Confidence: 0.9384799599647522
+
+00:03:57.367 --> 00:03:58.919
+key to what we're talking about today.
+
+NOTE Confidence: 0.8067788481712341
+
+00:03:59.440 --> 00:04:01.527
+So if I look up, look up, we can see
+
+NOTE Confidence: 0.8067788481712341
+
+00:04:01.585 --> 00:04:04.253
+that we have a new comment on here and elastic
+
+NOTE Confidence: 0.8067788481712341
+
+00:04:04.311 --> 00:04:07.268
+agent builder ran through the code and it said, OK,
+
+NOTE Confidence: 0.8067788481712341
+
+00:04:07.326 --> 00:04:11.444
+the PR reintroduces this critical race condition that previously caused
+
+NOTE Confidence: 0.8067788481712341
+
+00:04:11.502 --> 00:04:12.720
+production incidents.
+
+NOTE Confidence: 0.9022306203842163
+
+00:04:12.720 --> 00:04:14.040
+So it's recommending you don't do it.
+
+NOTE Confidence: 0.766111433506012
+
+00:04:14.600 --> 00:04:17.494
+And key, it's not just using it's you know, it's
+
+NOTE Confidence: 0.766111433506012
+
+00:04:17.555 --> 00:04:20.691
+training or it's, you know, what has been trained on
+
+NOTE Confidence: 0.766111433506012
+
+00:04:20.751 --> 00:04:22.439
+about code and, and reviews.
+
+NOTE Confidence: 0.7289491295814514
+
+00:04:22.440 --> 00:04:24.200
+It's saying this actually caused an incident.
+
+NOTE Confidence: 0.7970940470695496
+
+00:04:24.200 --> 00:04:26.733
+You can see on April 7th, we had an an
+
+NOTE Confidence: 0.7970940470695496
+
+00:04:26.799 --> 00:04:29.599
+incident caused five O 4 gateway timeouts.
+
+NOTE Confidence: 0.7267789840698242
+
+00:04:29.960 --> 00:04:31.520
+It looks at hotel traces.
+
+NOTE Confidence: 0.8631559610366821
+
+00:04:31.520 --> 00:04:33.080
+It has specific trace examples.
+
+NOTE Confidence: 0.9410784244537354
+
+00:04:33.440 --> 00:04:35.600
+So again, it's saying if you do this, this is
+
+NOTE Confidence: 0.9410784244537354
+
+00:04:35.648 --> 00:04:36.320
+what happened.
+
+NOTE Confidence: 0.8674748539924622
+
+00:04:36.320 --> 00:04:38.606
+And when you made that change last time or now
+
+NOTE Confidence: 0.8674748539924622
+
+00:04:38.656 --> 00:04:41.539
+with all the coding agents, maybe the coding agent decided
+
+NOTE Confidence: 0.8674748539924622
+
+00:04:41.589 --> 00:04:43.975
+this was a good idea, but we broke production at
+
+NOTE Confidence: 0.8674748539924622
+
+00:04:44.025 --> 00:04:44.919
+least once before.
+
+NOTE Confidence: 0.9534164667129517
+
+00:04:45.360 --> 00:04:46.400
+Maybe you don't want to do it.
+
+NOTE Confidence: 0.8865001797676086
+
+00:04:47.480 --> 00:04:49.786
+It gives the root cause on why this is a
+
+NOTE Confidence: 0.8865001797676086
+
+00:04:49.844 --> 00:04:52.440
+bad idea and what caused the incident before.
+
+NOTE Confidence: 0.9044024348258972
+
+00:04:53.279 --> 00:04:56.334
+And it talks again about the PR removing and so
+
+NOTE Confidence: 0.9044024348258972
+
+00:04:56.399 --> 00:04:59.389
+it even gives a suggestion on how you can make
+
+NOTE Confidence: 0.9044024348258972
+
+00:04:59.454 --> 00:05:01.599
+this change not break production.
+
+NOTE Confidence: 0.7108574509620667
+
+00:05:01.600 --> 00:05:02.120
+That'd be great.
+
+NOTE Confidence: 0.9606832265853882
+
+00:05:02.920 --> 00:05:03.920
+We can take a look here.
+
+NOTE Confidence: 0.7982028722763062
+
+00:05:07.160 --> 00:05:08.560
+So it's a pretty simple setup.
+
+NOTE Confidence: 0.7596787810325623
+
+00:05:09.600 --> 00:05:13.289
+If we look at this is just calls this one
+
+NOTE Confidence: 0.7596787810325623
+
+00:05:13.379 --> 00:05:15.719
+workflow URL in real time.
+
+NOTE Confidence: 0.8260067701339722
+
+00:05:15.720 --> 00:05:17.652
+It takes about a minute to run depending on how
+
+NOTE Confidence: 0.8260067701339722
+
+00:05:17.694 --> 00:05:19.956
+much data you have, how large your production, how many
+
+NOTE Confidence: 0.8260067701339722
+
+00:05:19.997 --> 00:05:21.559
+incidents, RCA's and things like that.
+
+NOTE Confidence: 0.8824558258056641
+
+00:05:22.160 --> 00:05:24.573
+But the workflow file to set it up is again
+
+NOTE Confidence: 0.8824558258056641
+
+00:05:24.629 --> 00:05:25.920
+pretty straightforward.
+
+NOTE Confidence: 0.9286853075027466
+
+00:05:25.920 --> 00:05:29.787
+So we're calling Elastic Agent Builder, optionally posting a comment
+
+NOTE Confidence: 0.9286853075027466
+
+00:05:29.844 --> 00:05:32.120
+if it matches something that went wrong.
+
+NOTE Confidence: 0.9117271900177002
+
+00:05:32.720 --> 00:05:35.240
+We have to give it, you know, some environment variables.
+
+NOTE Confidence: 0.867017388343811
+
+00:05:35.240 --> 00:05:37.599
+So we have things like the PR, the title repo,
+
+NOTE Confidence: 0.867017388343811
+
+00:05:37.650 --> 00:05:40.626
+kind of whatever information that is needed for the agents
+
+NOTE Confidence: 0.867017388343811
+
+00:05:40.677 --> 00:05:41.960
+in Elastic search to run.
+
+NOTE Confidence: 0.9305723905563354
+
+00:05:42.520 --> 00:05:45.015
+And then we go through and all this really is
+
+NOTE Confidence: 0.9305723905563354
+
+00:05:45.070 --> 00:05:47.400
+just collecting data to send to the agent.
+
+NOTE Confidence: 0.8670529127120972
+
+00:05:47.839 --> 00:05:51.499
+Here it's talking about using the tools, searching hotel traces
+
+NOTE Confidence: 0.8670529127120972
+
+00:05:51.558 --> 00:05:52.719
+for for information.
+
+NOTE Confidence: 0.84943687915802
+
+00:05:53.880 --> 00:05:55.865
+And then all this is at the bottom is really
+
+NOTE Confidence: 0.84943687915802
+
+00:05:55.911 --> 00:05:58.393
+just if the agent didn't match something, it's going to
+
+NOTE Confidence: 0.84943687915802
+
+00:05:58.438 --> 00:06:00.559
+generate a comment that we saw depends it back.
+
+NOTE Confidence: 0.8556216955184937
+
+00:06:00.560 --> 00:06:01.760
+So this is just some parsing out.
+
+NOTE Confidence: 0.843350887298584
+
+00:06:01.760 --> 00:06:04.185
+So really all we're doing is gathering information about the
+
+NOTE Confidence: 0.843350887298584
+
+00:06:04.226 --> 00:06:06.288
+PR, getting the DIF, sending it off to Elastic, And
+
+NOTE Confidence: 0.843350887298584
+
+00:06:06.328 --> 00:06:08.471
+then when if something comes back, we'll parse it out
+
+NOTE Confidence: 0.843350887298584
+
+00:06:08.511 --> 00:06:09.280
+and make a comment.
+
+NOTE Confidence: 0.7155360579490662
+
+00:06:10.600 --> 00:06:11.880
+So that's on the the GitHub side.
+
+NOTE Confidence: 0.8316709995269775
+
+00:06:12.120 --> 00:06:15.643
+We can take a look if we hop over into
+
+NOTE Confidence: 0.8316709995269775
+
+00:06:15.736 --> 00:06:18.239
+Elastic and get it to jump.
+
+NOTE Confidence: 0.5639429688453674
+
+00:06:20.240 --> 00:06:20.880
+There we go.
+
+NOTE Confidence: 0.865533709526062
+
+00:06:20.880 --> 00:06:24.518
+OK, so this is Cabana, which is our UI on
+
+NOTE Confidence: 0.865533709526062
+
+00:06:24.607 --> 00:06:26.560
+top of Elastic search.
+
+NOTE Confidence: 0.9078043699264526
+
+00:06:26.839 --> 00:06:29.566
+And this is the agent builder or agent UI that's
+
+NOTE Confidence: 0.9078043699264526
+
+00:06:29.623 --> 00:06:32.520
+fairly new, depending on how familiar with Elastic.
+
+NOTE Confidence: 0.8348552584648132
+
+00:06:32.720 --> 00:06:35.385
+You know, we've been changing getting into agents and and
+
+NOTE Confidence: 0.8348552584648132
+
+00:06:35.432 --> 00:06:38.098
+making it embedded as much as possible like everyone else
+
+NOTE Confidence: 0.8348552584648132
+
+00:06:38.145 --> 00:06:38.800
+here at build.
+
+NOTE Confidence: 0.8596661686897278
+
+00:06:39.279 --> 00:06:41.544
+So you have your history of all the comments or
+
+NOTE Confidence: 0.8596661686897278
+
+00:06:41.592 --> 00:06:43.520
+all the conversations you've run before.
+
+NOTE Confidence: 0.793082594871521
+
+00:06:43.520 --> 00:06:45.160
+These include the automated ones.
+
+NOTE Confidence: 0.7821600437164307
+
+00:06:45.160 --> 00:06:47.832
+So when the automated test and GitHub run and and
+
+NOTE Confidence: 0.7821600437164307
+
+00:06:47.887 --> 00:06:50.560
+call this, it still stores the the history so you
+
+NOTE Confidence: 0.7821600437164307
+
+00:06:50.614 --> 00:06:52.360
+can go in and see what happened.
+
+NOTE Confidence: 0.9083669185638428
+
+00:06:52.920 --> 00:06:56.360
+Now, like most agent platforms, we have things like skills.
+
+NOTE Confidence: 0.8898164629936218
+
+00:06:56.800 --> 00:06:59.508
+Sure, most people here are familiar with this, but on
+
+NOTE Confidence: 0.8898164629936218
+
+00:06:59.559 --> 00:07:02.625
+the off chance, right, skills kind of provide information on
+
+NOTE Confidence: 0.8898164629936218
+
+00:07:02.676 --> 00:07:05.487
+an agent on how something should be done or information
+
+NOTE Confidence: 0.8898164629936218
+
+00:07:05.538 --> 00:07:07.786
+about a system or just ways to perform a set
+
+NOTE Confidence: 0.8898164629936218
+
+00:07:07.837 --> 00:07:08.400
+of actions.
+
+NOTE Confidence: 0.8168960809707642
+
+00:07:08.760 --> 00:07:11.160
+Whereas tools are actually providing functions.
+
+NOTE Confidence: 0.8616204857826233
+
+00:07:11.160 --> 00:07:13.680
+So we have things like querying elastic search, obviously for
+
+NOTE Confidence: 0.8616204857826233
+
+00:07:13.721 --> 00:07:15.539
+all your datas in there, you can query it to
+
+NOTE Confidence: 0.8616204857826233
+
+00:07:15.581 --> 00:07:18.225
+look for things, doing semantic search, vector search, all kinds
+
+NOTE Confidence: 0.8616204857826233
+
+00:07:18.266 --> 00:07:18.679
+of things.
+
+NOTE Confidence: 0.9267775416374207
+
+00:07:20.000 --> 00:07:23.080
+We have tools to reach out to MCP servers.
+
+NOTE Confidence: 0.7222151160240173
+
+00:07:23.080 --> 00:07:24.160
+We have workflows.
+
+NOTE Confidence: 0.8869603276252747
+
+00:07:24.520 --> 00:07:27.439
+And since you're doing a custom agent, we want to
+
+NOTE Confidence: 0.8869603276252747
+
+00:07:27.499 --> 00:07:30.239
+make sure we give it some custom instructions.
+
+NOTE Confidence: 0.9297810196876526
+
+00:07:30.560 --> 00:07:34.000
+So I have one for today.
+
+NOTE Confidence: 0.8229875564575195
+
+00:07:35.000 --> 00:07:36.445
+This is where you kind of explain to the agent
+
+NOTE Confidence: 0.8229875564575195
+
+00:07:36.477 --> 00:07:37.200
+what's going on, right?
+
+NOTE Confidence: 0.7840033173561096
+
+00:07:37.200 --> 00:07:39.316
+So in this one it's, you know, you're an AI
+
+NOTE Confidence: 0.7840033173561096
+
+00:07:39.366 --> 00:07:41.679
+pull request reviewer, wave Finder is my store.
+
+NOTE Confidence: 0.7809438705444336
+
+00:07:42.360 --> 00:07:46.118
+You have access to open telemetry data, historical incidents, post
+
+NOTE Confidence: 0.7809438705444336
+
+00:07:46.175 --> 00:07:47.200
+mortems and going.
+
+NOTE Confidence: 0.8241468667984009
+
+00:07:47.200 --> 00:07:49.460
+And so when you get invoked on the PR and
+
+NOTE Confidence: 0.8241468667984009
+
+00:07:49.516 --> 00:07:52.218
+you kind of just walk it through the steps, we're
+
+NOTE Confidence: 0.8241468667984009
+
+00:07:52.273 --> 00:07:55.140
+going to fetch the PR diffs, we're going to identify
+
+NOTE Confidence: 0.8241468667984009
+
+00:07:55.196 --> 00:07:57.732
+any routes that are being used and we have the
+
+NOTE Confidence: 0.8241468667984009
+
+00:07:57.787 --> 00:07:58.559
+tools in here.
+
+NOTE Confidence: 0.8425737619400024
+
+00:07:59.120 --> 00:08:01.027
+You don't have to hard code the tools in here
+
+NOTE Confidence: 0.8425737619400024
+
+00:08:01.069 --> 00:08:03.316
+because put it in there automatically, but so you can
+
+NOTE Confidence: 0.8425737619400024
+
+00:08:03.358 --> 00:08:04.799
+kind of see what's going on today.
+
+NOTE Confidence: 0.9104346036911011
+
+00:08:05.440 --> 00:08:07.680
+And we're looking for patterns, so not keywords.
+
+NOTE Confidence: 0.8865600824356079
+
+00:08:07.680 --> 00:08:09.040
+We're not just doing keyword matching.
+
+NOTE Confidence: 0.8283831477165222
+
+00:08:09.040 --> 00:08:10.879
+We're doing, you know, semantic look up and things like
+
+NOTE Confidence: 0.8283831477165222
+
+00:08:10.912 --> 00:08:11.079
+that.
+
+NOTE Confidence: 0.8512386679649353
+
+00:08:12.320 --> 00:08:14.164
+And then if you do find a match, this is
+
+NOTE Confidence: 0.8512386679649353
+
+00:08:14.210 --> 00:08:15.039
+kind of important.
+
+NOTE Confidence: 0.9000595211982727
+
+00:08:15.280 --> 00:08:18.009
+We want to explain, you know, what the match is,
+
+NOTE Confidence: 0.9000595211982727
+
+00:08:18.065 --> 00:08:21.022
+how we found it, specific examples so that we're not
+
+NOTE Confidence: 0.9000595211982727
+
+00:08:21.079 --> 00:08:23.978
+just, again, we're not just saying seems like a bad
+
+NOTE Confidence: 0.9000595211982727
+
+00:08:24.035 --> 00:08:24.320
+idea.
+
+NOTE Confidence: 0.8115698099136353
+
+00:08:24.320 --> 00:08:27.727
+We're saying, again, production broke probably don't, maybe don't do
+
+NOTE Confidence: 0.8115698099136353
+
+00:08:27.777 --> 00:08:29.080
+that and some other rules.
+
+NOTE Confidence: 0.7207425236701965
+
+00:08:30.080 --> 00:08:30.960
+We look at the skill.
+
+NOTE Confidence: 0.8692987561225891
+
+00:08:31.000 --> 00:08:33.322
+One of the things you can do if you have
+
+NOTE Confidence: 0.8692987561225891
+
+00:08:33.380 --> 00:08:36.399
+a reoccurring incident is, you know, as part of your
+
+NOTE Confidence: 0.8692987561225891
+
+00:08:36.458 --> 00:08:39.535
+postmortem is an RCA is creating an actual skill that
+
+NOTE Confidence: 0.8692987561225891
+
+00:08:39.593 --> 00:08:41.799
+looks for things like race conditions.
+
+NOTE Confidence: 0.7475427985191345
+
+00:08:41.800 --> 00:08:44.240
+So production broke a couple times or race condition.
+
+NOTE Confidence: 0.8089463710784912
+
+00:08:44.240 --> 00:08:46.869
+We're going to make sure that the the agent understands
+
+NOTE Confidence: 0.8089463710784912
+
+00:08:46.917 --> 00:08:48.399
+specifically what can go wrong.
+
+NOTE Confidence: 0.8853366374969482
+
+00:08:49.000 --> 00:08:51.633
+Obviously they, these agents are or these LMS are smart,
+
+NOTE Confidence: 0.8853366374969482
+
+00:08:51.681 --> 00:08:54.220
+they are aware of things like race conditions, but you
+
+NOTE Confidence: 0.8853366374969482
+
+00:08:54.267 --> 00:08:56.478
+can kind of be very specific if you really have
+
+NOTE Confidence: 0.8853366374969482
+
+00:08:56.525 --> 00:08:58.359
+things that you need the agent to know.
+
+NOTE Confidence: 0.9633374214172363
+
+00:08:59.720 --> 00:09:00.680
+And then tools.
+
+NOTE Confidence: 0.8498668074607849
+
+00:09:00.960 --> 00:09:03.137
+So I mentioned that this agent has access to a
+
+NOTE Confidence: 0.8498668074607849
+
+00:09:03.184 --> 00:09:03.799
+couple tools.
+
+NOTE Confidence: 0.8691915273666382
+
+00:09:05.160 --> 00:09:06.520
+This is always curious for me.
+
+NOTE Confidence: 0.7689924836158752
+
+00:09:07.840 --> 00:09:12.560
+Who here is familiar with Elastic's ES pipe QL language.
+
+NOTE Confidence: 0.7220680713653564
+
+00:09:12.680 --> 00:09:13.400
+It's newish.
+
+NOTE Confidence: 0.8223583102226257
+
+00:09:13.400 --> 00:09:14.200
+That's why I ask.
+
+NOTE Confidence: 0.8620424270629883
+
+00:09:14.400 --> 00:09:15.520
+No, fantastic.
+
+NOTE Confidence: 0.7883246541023254
+
+00:09:15.760 --> 00:09:18.530
+So it is a sequel like syntax, being able to
+
+NOTE Confidence: 0.7883246541023254
+
+00:09:18.593 --> 00:09:22.119
+query Elastic with, you know, again, sequel like syntax.
+
+NOTE Confidence: 0.8801770806312561
+
+00:09:22.120 --> 00:09:24.560
+I'll show it in a second, but we have access.
+
+NOTE Confidence: 0.9019791483879089
+
+00:09:24.560 --> 00:09:26.360
+It has access to a couple tools here.
+
+NOTE Confidence: 0.8710976839065552
+
+00:09:26.360 --> 00:09:30.404
+So we're looking for similar traces based on Http://routes, looking
+
+NOTE Confidence: 0.8710976839065552
+
+00:09:30.465 --> 00:09:33.664
+for latency spikes on those routes, and then this one
+
+NOTE Confidence: 0.8710976839065552
+
+00:09:33.724 --> 00:09:36.200
+where we're looking for actual incidents.
+
+NOTE Confidence: 0.7792282104492188
+
+00:09:36.200 --> 00:09:39.640
+So where are we matching POST or previous incidents?
+
+NOTE Confidence: 0.7992835640907288
+
+00:09:41.120 --> 00:09:44.000
+This is a dead simple ESQL query.
+
+NOTE Confidence: 0.808189332485199
+
+00:09:45.720 --> 00:09:48.710
+This match query function is a little deceptive in that
+
+NOTE Confidence: 0.808189332485199
+
+00:09:48.765 --> 00:09:52.245
+it's not just matching on keywords, it's actually doing semantic
+
+NOTE Confidence: 0.808189332485199
+
+00:09:52.299 --> 00:09:52.680
+search.
+
+NOTE Confidence: 0.7446680068969727
+
+00:09:52.680 --> 00:09:53.720
+It's doing vector search.
+
+NOTE Confidence: 0.7932332754135132
+
+00:09:54.080 --> 00:09:56.554
+We're using the Gina AI embeddings in the cluster where
+
+NOTE Confidence: 0.7932332754135132
+
+00:09:56.599 --> 00:09:59.344
+we generate embeddings on all these post mortem incidents and
+
+NOTE Confidence: 0.7932332754135132
+
+00:09:59.389 --> 00:10:00.919
+all the comments and all the data.
+
+NOTE Confidence: 0.8861865401268005
+
+00:10:01.240 --> 00:10:04.212
+And so then when we can match, you know, semantically
+
+NOTE Confidence: 0.8861865401268005
+
+00:10:04.268 --> 00:10:06.567
+on what was going on, give it a full text
+
+NOTE Confidence: 0.8861865401268005
+
+00:10:06.623 --> 00:10:06.959
+query.
+
+NOTE Confidence: 0.6741189956665039
+
+00:10:06.960 --> 00:10:09.080
+And again, you kind of give the short tool description.
+
+NOTE Confidence: 0.9096391201019287
+
+00:10:09.960 --> 00:10:12.280
+You can be more verbose in your real production environment.
+
+NOTE Confidence: 0.9125425219535828
+
+00:10:15.880 --> 00:10:17.660
+And then one other thing I want to show over,
+
+NOTE Confidence: 0.9125425219535828
+
+00:10:17.700 --> 00:10:19.520
+I'll show the agents in a second is workflows.
+
+NOTE Confidence: 0.8495548963546753
+
+00:10:20.000 --> 00:10:23.295
+So a couple of workflows for the production side, but
+
+NOTE Confidence: 0.8495548963546753
+
+00:10:23.357 --> 00:10:25.844
+the PR review that we saw, So in when we
+
+NOTE Confidence: 0.8495548963546753
+
+00:10:25.906 --> 00:10:28.641
+were in in GitHub side, we saw that the, the
+
+NOTE Confidence: 0.8495548963546753
+
+00:10:28.704 --> 00:10:32.869
+tool or the, the workflow there gathered some environment variables
+
+NOTE Confidence: 0.8495548963546753
+
+00:10:32.931 --> 00:10:35.978
+and then passed them over to Elastic and called a
+
+NOTE Confidence: 0.8495548963546753
+
+00:10:36.040 --> 00:10:36.600
+workflow.
+
+NOTE Confidence: 0.9023765921592712
+
+00:10:36.640 --> 00:10:39.558
+This is the other side of that GitHub workflow where
+
+NOTE Confidence: 0.9023765921592712
+
+00:10:39.614 --> 00:10:40.399
+we have these.
+
+NOTE Confidence: 0.9313845038414001
+
+00:10:40.640 --> 00:10:42.660
+I'll look at one that I ran last week when
+
+NOTE Confidence: 0.9313845038414001
+
+00:10:42.708 --> 00:10:43.959
+I was setting this all up.
+
+NOTE Confidence: 0.8026192784309387
+
+00:10:45.520 --> 00:10:46.560
+It's pretty straightforward.
+
+NOTE Confidence: 0.8148612976074219
+
+00:10:46.559 --> 00:10:49.135
+All it's doing is getting all these environment variables and
+
+NOTE Confidence: 0.8148612976074219
+
+00:10:49.177 --> 00:10:51.753
+information about the PR that we're we're pushing and looking
+
+NOTE Confidence: 0.8148612976074219
+
+00:10:51.795 --> 00:10:52.639
+for information for.
+
+NOTE Confidence: 0.8080366253852844
+
+00:10:53.120 --> 00:10:55.640
+And then I'm calling the agent in Elasticsearch.
+
+NOTE Confidence: 0.6833112239837646
+
+00:10:55.640 --> 00:10:57.520
+There's not much to see here.
+
+NOTE Confidence: 0.9033041596412659
+
+00:10:57.520 --> 00:11:01.005
+The input side is this body where again you can
+
+NOTE Confidence: 0.9033041596412659
+
+00:11:01.079 --> 00:11:04.119
+see it's the PR 37 and then all the other
+
+NOTE Confidence: 0.9033041596412659
+
+00:11:04.193 --> 00:11:07.160
+information we passed back to the agent.
+
+NOTE Confidence: 0.8951389789581299
+
+00:11:07.520 --> 00:11:10.075
+And the outcome in this case when I ran it
+
+NOTE Confidence: 0.8951389789581299
+
+00:11:10.136 --> 00:11:12.753
+was it did find because it's a demo, it did
+
+NOTE Confidence: 0.8951389789581299
+
+00:11:12.814 --> 00:11:16.039
+find a match to an incident that happened previously.
+
+NOTE Confidence: 0.8349463939666748
+
+00:11:16.360 --> 00:11:18.861
+So it says yeah, it ran for PR 37, the
+
+NOTE Confidence: 0.8349463939666748
+
+00:11:18.927 --> 00:11:22.284
+agent response to 200 and the the comment gets sent
+
+NOTE Confidence: 0.8349463939666748
+
+00:11:22.350 --> 00:11:22.679
+back.
+
+NOTE Confidence: 0.8354436755180359
+
+00:11:22.679 --> 00:11:25.025
+So we're not actually storing that right here, but it's
+
+NOTE Confidence: 0.8354436755180359
+
+00:11:25.067 --> 00:11:27.199
+saying that you know, it's inside GitHub MCP tool.
+
+NOTE Confidence: 0.8195510506629944
+
+00:11:28.360 --> 00:11:28.520
+Cool.
+
+NOTE Confidence: 0.8323890566825867
+
+00:11:29.240 --> 00:11:31.666
+So there's two things I can show example wise when
+
+NOTE Confidence: 0.8323890566825867
+
+00:11:31.715 --> 00:11:32.880
+you're talking to agent.
+
+NOTE Confidence: 0.8970648646354675
+
+00:11:32.880 --> 00:11:35.369
+So if you're just pushing code, you don't have to
+
+NOTE Confidence: 0.8970648646354675
+
+00:11:35.420 --> 00:11:37.706
+go in here, but you also because all the data
+
+NOTE Confidence: 0.8970648646354675
+
+00:11:37.757 --> 00:11:40.043
+is in there and it's it's an agent, you know,
+
+NOTE Confidence: 0.8970648646354675
+
+00:11:40.094 --> 00:11:42.431
+you as a developer can go in and ask questions
+
+NOTE Confidence: 0.8970648646354675
+
+00:11:42.482 --> 00:11:43.600
+to the agent directly.
+
+NOTE Confidence: 0.8161492347717285
+
+00:11:44.400 --> 00:11:47.288
+And so you can say, hey, I'm looking at APR
+
+NOTE Confidence: 0.8161492347717285
+
+00:11:47.355 --> 00:11:49.640
+that removes the and and quantity.
+
+NOTE Confidence: 0.8289980292320251
+
+00:11:49.880 --> 00:11:51.901
+So you can ask questions before you even submit the
+
+NOTE Confidence: 0.8289980292320251
+
+00:11:51.941 --> 00:11:53.725
+PR if you want and say, are they matching any
+
+NOTE Confidence: 0.8289980292320251
+
+00:11:53.765 --> 00:11:54.360
+known patterns?
+
+NOTE Confidence: 0.9346775412559509
+
+00:11:55.280 --> 00:11:58.326
+And so we're going to match the similar things we
+
+NOTE Confidence: 0.9346775412559509
+
+00:11:58.388 --> 00:12:00.440
+did for the GitHub automatically.
+
+NOTE Confidence: 0.7852227687835693
+
+00:12:00.440 --> 00:12:03.768
+So we roll back up, we can see it does
+
+NOTE Confidence: 0.7852227687835693
+
+00:12:03.855 --> 00:12:05.519
+a couple of things.
+
+NOTE Confidence: 0.8863277435302734
+
+00:12:05.520 --> 00:12:08.528
+So it has this search incident tool and it's saying,
+
+NOTE Confidence: 0.8863277435302734
+
+00:12:08.586 --> 00:12:12.000
+you know, it's looking for a specific concurrency patterns.
+
+NOTE Confidence: 0.796026349067688
+
+00:12:12.000 --> 00:12:15.275
+So it matches, it calls it three times, actually looks
+
+NOTE Confidence: 0.796026349067688
+
+00:12:15.336 --> 00:12:17.519
+for pattern terminology around that.
+
+NOTE Confidence: 0.9132372140884399
+
+00:12:17.520 --> 00:12:20.318
+So it's deciding, you know, phrases and things that could
+
+NOTE Confidence: 0.9132372140884399
+
+00:12:20.367 --> 00:12:22.919
+match potentially what you're asking about changing.
+
+NOTE Confidence: 0.8657910823822021
+
+00:12:23.160 --> 00:12:26.496
+It's finding 5 results, 5 results, different results and then
+
+NOTE Confidence: 0.8657910823822021
+
+00:12:26.551 --> 00:12:28.519
+it calls looking for similar traces.
+
+NOTE Confidence: 0.8887827396392822
+
+00:12:28.520 --> 00:12:31.586
+So it's looking for this endpoint to see if there
+
+NOTE Confidence: 0.8887827396392822
+
+00:12:31.648 --> 00:12:35.528
+were actually things that happened and latency spikes and then
+
+NOTE Confidence: 0.8887827396392822
+
+00:12:35.591 --> 00:12:38.720
+it gives you a nice kind of human friendly answer.
+
+NOTE Confidence: 0.7782444357872009
+
+00:12:39.320 --> 00:12:41.504
+But again, the key to all this is not just
+
+NOTE Confidence: 0.7782444357872009
+
+00:12:41.556 --> 00:12:43.480
+it's it's training and it's learning.
+
+NOTE Confidence: 0.675499677658081
+
+00:12:43.800 --> 00:12:49.671
+It's on April, April 7th, an incident, similar thing was
+
+NOTE Confidence: 0.675499677658081
+
+00:12:49.776 --> 00:12:53.760
+changed and we had to fix it happened.
+
+NOTE Confidence: 0.882054328918457
+
+00:12:54.040 --> 00:12:58.495
+And you know, the, the, the 847 lockout contention events
+
+NOTE Confidence: 0.882054328918457
+
+00:12:58.573 --> 00:13:03.498
+caused your production, you know, success rate to actually sell
+
+NOTE Confidence: 0.882054328918457
+
+00:13:03.576 --> 00:13:06.000
+items dropping from 99.7 to 76.
+
+NOTE Confidence: 0.9129163026809692
+
+00:13:06.000 --> 00:13:07.801
+So it's giving concrete examples on how this is going
+
+NOTE Confidence: 0.9129163026809692
+
+00:13:07.835 --> 00:13:08.719
+to affect your production.
+
+NOTE Confidence: 0.7780736088752747
+
+00:13:09.440 --> 00:13:11.857
+And then it gives the post mortem and it talks
+
+NOTE Confidence: 0.7780736088752747
+
+00:13:11.910 --> 00:13:15.011
+about the specific, an example, a sample of specific traces
+
+NOTE Confidence: 0.7780736088752747
+
+00:13:15.064 --> 00:13:15.799
+that happened.
+
+NOTE Confidence: 0.9536839127540588
+
+00:13:17.200 --> 00:13:19.600
+And then again it gives that kind of recommendation.
+
+NOTE Confidence: 0.9168270230293274
+
+00:13:21.160 --> 00:13:23.759
+And we can also ask about a specific endpoint saying
+
+NOTE Confidence: 0.9168270230293274
+
+00:13:23.809 --> 00:13:25.559
+I'm going to work on this endpoint.
+
+NOTE Confidence: 0.9417116045951843
+
+00:13:26.960 --> 00:13:29.477
+Is there anything in these post mortem incidents that may
+
+NOTE Confidence: 0.9417116045951843
+
+00:13:29.522 --> 00:13:32.039
+have happened in the past, similar thing that we've seen?
+
+NOTE Confidence: 0.7492469549179077
+
+00:13:32.040 --> 00:13:35.014
+Because it's the same in point and everything it's going
+
+NOTE Confidence: 0.7492469549179077
+
+00:13:35.067 --> 00:13:37.988
+to find these and say, Yep, there's recent telemetry it
+
+NOTE Confidence: 0.7492469549179077
+
+00:13:38.041 --> 00:13:38.359
+broke.
+
+NOTE Confidence: 0.9150717258453369
+
+00:13:38.360 --> 00:13:40.481
+So a lot of ways you can go about asking
+
+NOTE Confidence: 0.9150717258453369
+
+00:13:40.534 --> 00:13:43.399
+questions, but it's all being able to use these actual
+
+NOTE Confidence: 0.9150717258453369
+
+00:13:43.452 --> 00:13:47.218
+incidents, open telemetry, tracing post mortem information you have and
+
+NOTE Confidence: 0.9150717258453369
+
+00:13:47.271 --> 00:13:50.559
+then get ahead of your code from actually breaking production.
+
+NOTE Confidence: 0.7447535991668701
+
+00:13:51.480 --> 00:13:51.840
+So great.
+
+NOTE Confidence: 0.7277935147285461
+
+00:13:51.840 --> 00:13:54.394
+So we, we started out in this code, we pushed
+
+NOTE Confidence: 0.7277935147285461
+
+00:13:54.450 --> 00:13:57.856
+and pushed APR get out, ran automatically and called Elastic
+
+NOTE Confidence: 0.7277935147285461
+
+00:13:57.912 --> 00:14:00.921
+search and said, Oh yeah, this code change matches an
+
+NOTE Confidence: 0.7277935147285461
+
+00:14:00.977 --> 00:14:03.985
+incident that happened and left a comment and it's up
+
+NOTE Confidence: 0.7277935147285461
+
+00:14:04.042 --> 00:14:04.439
+to you.
+
+NOTE Confidence: 0.7739076614379883
+
+00:14:05.240 --> 00:14:07.768
+Here in Elastic side, we're calling the agent, we're asking
+
+NOTE Confidence: 0.7739076614379883
+
+00:14:07.811 --> 00:14:08.839
+the very similar things.
+
+NOTE Confidence: 0.8687615394592285
+
+00:14:08.840 --> 00:14:09.840
+So different ways you can do it.
+
+NOTE Confidence: 0.806395947933197
+
+00:14:10.160 --> 00:14:12.368
+But as a developer, you might just want to sit
+
+NOTE Confidence: 0.806395947933197
+
+00:14:12.416 --> 00:14:14.624
+in VS Code and never actually go into a combat
+
+NOTE Confidence: 0.806395947933197
+
+00:14:14.672 --> 00:14:15.200
+in Elastic.
+
+NOTE Confidence: 0.7489378452301025
+
+00:14:15.320 --> 00:14:16.480
+That's totally fine too.
+
+NOTE Confidence: 0.8582310080528259
+
+00:14:17.120 --> 00:14:20.701
+So in VS Code, I'm now using Copilot here and
+
+NOTE Confidence: 0.8582310080528259
+
+00:14:20.781 --> 00:14:24.283
+I do have though the MCP server hooked up to
+
+NOTE Confidence: 0.8582310080528259
+
+00:14:24.363 --> 00:14:25.000
+Elastic.
+
+NOTE Confidence: 0.8892502188682556
+
+00:14:25.360 --> 00:14:27.703
+So Elastic, all that data in there and all the
+
+NOTE Confidence: 0.8892502188682556
+
+00:14:27.754 --> 00:14:30.250
+tools that the agent has access to are exposed on
+
+NOTE Confidence: 0.8892502188682556
+
+00:14:30.301 --> 00:14:31.320
+MCP server protocol.
+
+NOTE Confidence: 0.9115232229232788
+
+00:14:31.760 --> 00:14:34.219
+And so you can just hook into the MCP and
+
+NOTE Confidence: 0.9115232229232788
+
+00:14:34.279 --> 00:14:38.119
+do things like call, find similar traces, search incidents, open
+
+NOTE Confidence: 0.9115232229232788
+
+00:14:38.179 --> 00:14:40.999
+telemetry, incident analysis, things like that.
+
+NOTE Confidence: 0.7489734292030334
+
+00:14:41.000 --> 00:14:43.520
+And you can do it right from get up.
+
+NOTE Confidence: 0.9004409313201904
+
+00:14:43.520 --> 00:14:45.925
+So I can say, you know, I got this PR
+
+NOTE Confidence: 0.9004409313201904
+
+00:14:45.990 --> 00:14:48.200
+comment for the inventory reserve.
+
+NOTE Confidence: 0.8574793934822083
+
+00:14:49.320 --> 00:14:51.321
+Can you actually tell me what's what was happening and
+
+NOTE Confidence: 0.8574793934822083
+
+00:14:51.358 --> 00:14:51.839
+what went on?
+
+NOTE Confidence: 0.8613976240158081
+
+00:14:52.160 --> 00:14:54.000
+And the very similar thing is going to happen here.
+
+NOTE Confidence: 0.8944225907325745
+
+00:14:54.000 --> 00:14:55.640
+Now we're just never leaving BS code.
+
+NOTE Confidence: 0.8902432918548584
+
+00:14:56.800 --> 00:15:00.400
+We're calling those same MCP server tools.
+
+NOTE Confidence: 0.7395544648170471
+
+00:15:00.400 --> 00:15:02.720
+Find similar traces, find latency spikes.
+
+NOTE Confidence: 0.6742084622383118
+
+00:15:03.080 --> 00:15:04.400
+It's analyzing all the information.
+
+NOTE Confidence: 0.803649365901947
+
+00:15:04.400 --> 00:15:08.727
+And Copilot itself is putting together a very similar response
+
+NOTE Confidence: 0.803649365901947
+
+00:15:08.797 --> 00:15:11.520
+on Yep, it was in a prepared statement.
+
+NOTE Confidence: 0.6585922241210938
+
+00:15:11.520 --> 00:15:12.920
+Hit the cash rate.
+
+NOTE Confidence: 0.791721761226654
+
+00:15:13.880 --> 00:15:16.786
+I was saying the comment itself a justification, but it's
+
+NOTE Confidence: 0.791721761226654
+
+00:15:16.837 --> 00:15:18.520
+exactly the pattern on April 7th.
+
+NOTE Confidence: 0.8824223279953003
+
+00:15:18.960 --> 00:15:20.825
+So you made this before or someone else made it
+
+NOTE Confidence: 0.8824223279953003
+
+00:15:20.865 --> 00:15:23.048
+before, or your coding agent decided it's going to make
+
+NOTE Confidence: 0.8824223279953003
+
+00:15:23.088 --> 00:15:24.160
+this, but it already broke.
+
+NOTE Confidence: 0.8846032023429871
+
+00:15:24.600 --> 00:15:27.328
+And So what you need to change again is giving
+
+NOTE Confidence: 0.8846032023429871
+
+00:15:27.388 --> 00:15:29.820
+an example on how to do this and when you
+
+NOTE Confidence: 0.8846032023429871
+
+00:15:29.879 --> 00:15:31.599
+can drop in here and give it.
+
+NOTE Confidence: 0.8734012842178345
+
+00:15:32.120 --> 00:15:35.089
+And because I don't want to actually make the change
+
+NOTE Confidence: 0.8734012842178345
+
+00:15:35.146 --> 00:15:38.001
+myself, I can just say yes, and copilot's going to
+
+NOTE Confidence: 0.8734012842178345
+
+00:15:38.058 --> 00:15:40.571
+go in and make that change for me and update
+
+NOTE Confidence: 0.8734012842178345
+
+00:15:40.628 --> 00:15:40.800
+it.
+
+NOTE Confidence: 0.8938241004943848
+
+00:15:41.160 --> 00:15:43.466
+So it's going to go in, it's going to figure
+
+NOTE Confidence: 0.8938241004943848
+
+00:15:43.518 --> 00:15:45.720
+out, you know, again, what changes to fix.
+
+NOTE Confidence: 0.8681357502937317
+
+00:15:45.720 --> 00:15:47.280
+It's a pretty simple code example.
+
+NOTE Confidence: 0.9157810807228088
+
+00:15:47.280 --> 00:15:49.553
+It's going to make those changes and then it's going
+
+NOTE Confidence: 0.9157810807228088
+
+00:15:49.597 --> 00:15:51.039
+to report back on on what it did.
+
+NOTE Confidence: 0.8200361728668213
+
+00:15:51.600 --> 00:15:56.173
+So I can show and again, it, you know, it
+
+NOTE Confidence: 0.8200361728668213
+
+00:15:56.285 --> 00:16:01.640
+describes as Scopilot does what changes it made.
+
+NOTE Confidence: 0.860687792301178
+
+00:16:01.640 --> 00:16:04.170
+So it removed that, you know, hard coding the new
+
+NOTE Confidence: 0.860687792301178
+
+00:16:04.221 --> 00:16:06.855
+quantity early on and it got rid of that misleading
+
+NOTE Confidence: 0.860687792301178
+
+00:16:06.906 --> 00:16:07.319
+comment.
+
+NOTE Confidence: 0.7857646346092224
+
+00:16:07.760 --> 00:16:11.524
+It changed the, the DB statement here on line 46
+
+NOTE Confidence: 0.7857646346092224
+
+00:16:11.603 --> 00:16:15.289
+to, you know, be more thread safe and check out
+
+NOTE Confidence: 0.7857646346092224
+
+00:16:15.367 --> 00:16:15.760
+safe.
+
+NOTE Confidence: 0.7949949502944946
+
+00:16:15.800 --> 00:16:17.600
+And then it said it added a second check.
+
+NOTE Confidence: 0.7906109094619751
+
+00:16:17.600 --> 00:16:19.755
+It even added a second check in here because it,
+
+NOTE Confidence: 0.7906109094619751
+
+00:16:19.800 --> 00:16:22.360
+it gives the mention that this isn't truly transactional.
+
+NOTE Confidence: 0.8662763833999634
+
+00:16:22.760 --> 00:16:25.240
+We're, we're doing our best with kind of managing it.
+
+NOTE Confidence: 0.7753230333328247
+
+00:16:25.240 --> 00:16:26.985
+If you really wanted to, you can make it an
+
+NOTE Confidence: 0.7753230333328247
+
+00:16:27.026 --> 00:16:27.960
+actual SQL transaction.
+
+NOTE Confidence: 0.9356688857078552
+
+00:16:27.960 --> 00:16:30.120
+But in the code, this is what we're doing.
+
+NOTE Confidence: 0.7995296716690063
+
+00:16:31.240 --> 00:16:32.780
+So I can go ahead and I can commit that
+
+NOTE Confidence: 0.7995296716690063
+
+00:16:32.820 --> 00:16:34.479
+and push it back and, and make the change.
+
+NOTE Confidence: 0.8822279572486877
+
+00:16:34.840 --> 00:16:38.463
+The last thing I want to show is with all
+
+NOTE Confidence: 0.8822279572486877
+
+00:16:38.551 --> 00:16:42.440
+that real quick, just in the terminal, Yeah.
+
+NOTE Confidence: 0.812090277671814
+
+00:16:42.440 --> 00:16:43.640
+And I can give a little test.
+
+NOTE Confidence: 0.6932997107505798
+
+00:16:43.920 --> 00:16:46.000
+So I have a harness that fires 20 requests.
+
+NOTE Confidence: 0.8960304260253906
+
+00:16:46.000 --> 00:16:48.876
+So again, it's kind of the thing of there's one
+
+NOTE Confidence: 0.8960304260253906
+
+00:16:48.937 --> 00:16:52.120
+pair of boots left, 20 people really want this boot.
+
+NOTE Confidence: 0.9214906096458435
+
+00:16:52.120 --> 00:16:53.825
+We want to make sure that only one person actually
+
+NOTE Confidence: 0.9214906096458435
+
+00:16:53.859 --> 00:16:54.439
+gets assigned it.
+
+NOTE Confidence: 0.8953214883804321
+
+00:16:54.760 --> 00:16:55.560
+So we're going to run it.
+
+NOTE Confidence: 0.9458959698677063
+
+00:16:55.560 --> 00:16:58.379
+So we made the change, run through this test real
+
+NOTE Confidence: 0.9458959698677063
+
+00:16:58.437 --> 00:16:58.840
+simple.
+
+NOTE Confidence: 0.9689249992370605
+
+00:16:59.160 --> 00:17:01.640
+And if everything works out, then we have.
+
+NOTE Confidence: 0.8799536228179932
+
+00:17:01.640 --> 00:17:02.560
+Yeah, we wanted one.
+
+NOTE Confidence: 0.9255337119102478
+
+00:17:02.560 --> 00:17:03.280
+We got one.
+
+NOTE Confidence: 0.7237710952758789
+
+00:17:03.600 --> 00:17:04.360
+Pretty straightforward.
+
+NOTE Confidence: 0.8168600797653198
+
+00:17:05.480 --> 00:17:08.862
+So what I'll leave you with is going back to
+
+NOTE Confidence: 0.8168600797653198
+
+00:17:08.939 --> 00:17:12.015
+which way I want to go by adding in, you
+
+NOTE Confidence: 0.8168600797653198
+
+00:17:12.091 --> 00:17:17.320
+know, post mortem information, RCA information, open telemetry data.
+
+NOTE Confidence: 0.9636883735656738
+
+00:17:17.480 --> 00:17:19.195
+You can do some of it, You can do all
+
+NOTE Confidence: 0.9636883735656738
+
+00:17:19.241 --> 00:17:19.520
+of it.
+
+NOTE Confidence: 0.9324652552604675
+
+00:17:19.520 --> 00:17:20.680
+You don't have to have it all together.
+
+NOTE Confidence: 0.8426483869552612
+
+00:17:20.680 --> 00:17:24.140
+But even just adding in open telemetry information to looking
+
+NOTE Confidence: 0.8426483869552612
+
+00:17:24.197 --> 00:17:26.863
+in for when spikes change by being able to call
+
+NOTE Confidence: 0.8426483869552612
+
+00:17:26.920 --> 00:17:30.324
+elastic search automatically as part of a GitHub action, you
+
+NOTE Confidence: 0.8426483869552612
+
+00:17:30.381 --> 00:17:34.182
+can get ahead of, you know, hopefully reoccurring production issues
+
+NOTE Confidence: 0.8426483869552612
+
+00:17:34.239 --> 00:17:34.919
+that happen.
+
+NOTE Confidence: 0.8226940035820007
+
+00:17:35.280 --> 00:17:37.493
+You can also load in some information if you were
+
+NOTE Confidence: 0.8226940035820007
+
+00:17:37.539 --> 00:17:39.662
+running in in dev and you run those post forums
+
+NOTE Confidence: 0.8226940035820007
+
+00:17:39.707 --> 00:17:41.605
+in dev and get ahead of them, you can load
+
+NOTE Confidence: 0.8226940035820007
+
+00:17:41.650 --> 00:17:43.954
+that in there so that these lessons learned in dev,
+
+NOTE Confidence: 0.8226940035820007
+
+00:17:44.000 --> 00:17:45.988
+you can store them in there and we can match
+
+NOTE Confidence: 0.8226940035820007
+
+00:17:46.033 --> 00:17:46.439
+that way.
+
+NOTE Confidence: 0.9528313875198364
+
+00:17:46.440 --> 00:17:48.480
+So thank you for hanging out.
+
+NOTE Confidence: 0.9139671325683594
+
+00:17:49.080 --> 00:17:50.960
+Elastic is over in the other building.
+
+NOTE Confidence: 0.8503350019454956
+
+00:17:51.040 --> 00:17:53.357
+We have these little you can build Legos and clicky
+
+NOTE Confidence: 0.8503350019454956
+
+00:17:53.402 --> 00:17:55.720
+things if you like fidgeting with things like I do.
+
+NOTE Confidence: 0.8379819393157959
+
+00:17:56.440 --> 00:17:58.680
+I appreciate everyone hanging out and thank you.
+

@@ -1,0 +1,365 @@
+**[00:00:04]** Hi everyone.
+**[00:00:04]** Welcome to how Foundry integrates with open source frameworks and
+**[00:00:08]** technology.
+**[00:00:09]** My name is Fakundo, Principal Product Manager at Microsoft, and
+**[00:00:12]** today I'm joined by Nakumar, Senior Software Engineer also at
+**[00:00:14]** Microsoft, who's going to be driving the keyboard.
+**[00:00:17]** So today question is super simple.
+**[00:00:19]** If you build an agent using an open source technology,
+**[00:00:22]** how you package and deploy that to production without having
+**[00:00:25]** to rewrite it.
+**[00:00:26]** And for that, we brought you hopefully an interesting setup.
+**[00:00:29]** So I'm pretty sure all of you are familiar with
+**[00:00:32]** Opencloth, these general purpose agents that can browse the web,
+**[00:00:36]** they can search for your emails, they can do stuff
+**[00:00:39]** for you and whatnot.
+**[00:00:40]** So today we're going to build our own Opencloth Live
+**[00:00:44]** using open source frameworks and technologies and then deploy it
+**[00:00:48]** to Microsoft Foundry to take you to production.
+**[00:00:52]** So let's get started.
+**[00:00:54]** Let's start from the bottom.
+**[00:00:55]** Nakumar, if I want to build an agent with no
+**[00:00:58]** magic platform, no foundry, what is the minimum of code
+**[00:01:02]** that I need to get it done?
+**[00:01:05]** At the core, we need a model and an agent
+**[00:01:08]** loop.
+**[00:01:09]** An agent loop is what keeps the agent moving.
+**[00:01:11]** It asks the model for the next step, runs tools
+**[00:01:15]** when needed, and uses each result to decide what happens
+**[00:01:18]** next.
+**[00:01:19]** This file is intentionally small.
+**[00:01:21]** The model comes from Lang chains in a chat model
+**[00:01:23]** and the loop is built with create deep agent.
+**[00:01:26]** The important point is that this is simple Lang chain
+**[00:01:29]** Lang graph style code.
+**[00:01:31]** Most of the foundry models expose open AI compatible APIs,
+**[00:01:35]** so Lang chain can talk to a foundry model using
+**[00:01:39]** the same protocol it understands.
+**[00:01:41]** Changing the model target is configuration, not a rewrite.
+**[00:01:46]** So you are saying that in this case LAN chain
+**[00:01:48]** owns the Asian loop via that create deep Asian function
+**[00:01:51]** and then Foundry provides the models via the open AI
+**[00:01:54]** compatible protocol, right?
+**[00:01:56]** Right.
+**[00:01:57]** I'll run the small local agent first and if I
+**[00:02:01]** see this and say hello, we can see that the
+**[00:02:06]** agent replied back.
+**[00:02:08]** OK, so this is useful, but of course like it
+**[00:02:10]** cannot do anything else out of what the model already
+**[00:02:13]** knows, right?
+**[00:02:14]** So one of the reasons agents like Openflow are so
+**[00:02:16]** popular is because they can't get things done, right?
+**[00:02:19]** So what's the open source pattern that we should use
+**[00:02:22]** to get this agent to do stuff for us?
+**[00:02:24]** The open source pattern is MCP Model Context Protocol is
+**[00:02:28]** an open protocol that lets an agent discover tools and
+**[00:02:32]** call them.
+**[00:02:33]** For this demo, the MCP server is Work IQ Mail
+**[00:02:36]** which gives the agent access to Microsoft 365 mail capabilities
+**[00:02:41]** through tool interface.
+**[00:02:43]** The agent does not need to know every Http://endpoint that
+**[00:02:48]** Microsoft 365 exposes.
+**[00:02:49]** It connects to the Work IQ MCP server, asks for
+**[00:02:53]** tools and then receives the tool schemas like search messages,
+**[00:02:57]** get message details, draft replies and so on to show
+**[00:03:00]** you how the code looks like.
+**[00:03:04]** So this is a different agent, but now with the
+**[00:03:06]** MCP.
+**[00:03:06]** Yeah, OK.
+**[00:03:08]** And then we see that the URL is being passed
+**[00:03:11]** from here and we go back to the same agent
+**[00:03:14]** loop and we are just adding them as tools.
+**[00:03:18]** So you are saying that I can take any land
+**[00:03:21]** graph agent that I already have pointing to these MCP
+**[00:03:24]** server using the open source protocol and get access to
+**[00:03:28]** work IQ mail capabilities, calendar capabilities, teams and whatnot, right?
+**[00:03:33]** Yes, let me show you how to run this.
+**[00:03:37]** So here's my agent with the MCP enabled and I'm
+**[00:03:40]** going to ask her to check my e-mail.
+**[00:03:44]** While the spinner is moving, watch the tool boundary.
+**[00:03:48]** The agent discovered that mail tools at runtime and chose
+**[00:03:52]** the right one.
+**[00:03:53]** We are also keeping the output kind of sort of
+**[00:03:56]** clean.
+**[00:03:57]** Now the same local agent can call Microsoft 365 through
+**[00:04:00]** MCP.
+**[00:04:01]** The tool boundary is inspectable and the agent is just
+**[00:04:04]** normal Python code.
+**[00:04:06]** Awesome yes we can.
+**[00:04:07]** Well we can see it came back like you find
+**[00:04:11]** 5 emails like through the work IQ MCP server.
+**[00:04:16]** So this is useful that the agent has hands.
+**[00:04:18]** But like this, this is not nothing interesting in the
+**[00:04:21]** sense of it doesn't save me time, right?
+**[00:04:23]** Knowing which are the emails that I haven't read is
+**[00:04:25]** not that special.
+**[00:04:26]** Maybe what I want is this agent to triage my
+**[00:04:28]** inbox, which require like knowing a bit more about how
+**[00:04:31]** to use each and every tool.
+**[00:04:33]** What's the open source pattern that we can use up
+**[00:04:36]** here to teach our agent how to use this?
+**[00:04:38]** This is where skills come in.
+**[00:04:40]** Tools are like verbs, search messages.
+**[00:04:43]** A skill is a playbook like triaging Inbox, which can
+**[00:04:46]** pull some fields, classify the emails into categories, assign part,
+**[00:04:51]** you know, priority, and draft some replies when asked.
+**[00:04:56]** I'm going to show you how to run the skills
+**[00:04:58]** agent.
+**[00:04:58]** So this one's my agent with skills, and I'm going
+**[00:05:01]** to ask it to triage my inbox.
+**[00:05:06]** And while this agent is running, we can also take
+**[00:05:09]** a look at Oh yeah.
+**[00:05:10]** We can say that it pick up the the triage
+**[00:05:13]** skill, but like we can see it started using some
+**[00:05:16]** some tools, but how the agent actually came across with
+**[00:05:20]** this skill that you're mentioning or how he discovered?
+**[00:05:24]** It.
+**[00:05:24]** So the agent uses this skill document.
+**[00:05:27]** This skill is just a markdown document with a small
+**[00:05:30]** formatting block.
+**[00:05:32]** There is no special service or proprietary schema.
+**[00:05:34]** The agent reads it when the prompt is relevant.
+**[00:05:38]** Now, if we look at the skills, you can see
+**[00:05:41]** that we mount the skills into a virtual skills path.
+**[00:05:45]** The agent can list it and look at it when
+**[00:05:48]** it needs guidance.
+**[00:05:50]** Now let's go back to the term or terminal and
+**[00:05:52]** see what's going on.
+**[00:05:54]** We can see that the agent still running but something
+**[00:05:56]** interesting to see now we see multiple tools being called
+**[00:05:59]** different from what we saw before.
+**[00:06:01]** The only one tool was go out and we can
+**[00:06:03]** even see like tools like get message which it looks
+**[00:06:06]** to be searching for the actual content of the of
+**[00:06:09]** the e-mail which makes sense, right?
+**[00:06:11]** Like you cannot triage an e-mail without knowing a bit
+**[00:06:15]** more about what is inside of it or what was
+**[00:06:17]** the specific request.
+**[00:06:19]** We can see it came back and now we got
+**[00:06:21]** a triage summary.
+**[00:06:23]** Which are the important things that I need to look
+**[00:06:25]** out?
+**[00:06:26]** Which is the category, which is the recommended action, and
+**[00:06:29]** which are the reasons for having on that action, right?
+**[00:06:31]** So this is way different because it's the same model,
+**[00:06:34]** it's the same tools, but the behavior is completely different,
+**[00:06:37]** right?
+**[00:06:37]** And this is coming from the power of this reusable
+**[00:06:39]** skill.
+**[00:06:40]** Yep, that's the big point.
+**[00:06:41]** Skills are a lightweight way to make agent behavior repeatable
+**[00:06:45]** without turning every instruction into a massive system prompt.
+**[00:06:50]** That's all.
+**[00:06:52]** Another thing that usually you can see in in agents
+**[00:06:54]** like Open Clue is the ability to browse the web
+**[00:06:57]** right, which opens you a doors for doing a lot
+**[00:06:59]** of other things.
+**[00:07:00]** What's our the the open source story if I want
+**[00:07:03]** to bring that capabilities to an agent using open source
+**[00:07:06]** technologies?
+**[00:07:07]** We can use something called Playwright.
+**[00:07:09]** Playwright is an open source framework which exposes the CLI
+**[00:07:14]** utility and we can also add the skill to kind
+**[00:07:17]** of teach the agent what to do using that playwright
+**[00:07:21]** CLI.
+**[00:07:22]** Now if we look at this agent dot PY here,
+**[00:07:24]** I've added my playwright tool to my get tools method
+**[00:07:28]** and send all the tools with it.
+**[00:07:30]** Now here's an agent which has that playwright tool setup
+**[00:07:33]** and I'm going to ask it to open Amazon and
+**[00:07:36]** tell me the price of the first Microsoft branded coffee
+**[00:07:39]** cup.
+**[00:07:40]** OK.
+**[00:07:40]** Yeah, we can see that now we pick up a
+**[00:07:42]** different skill.
+**[00:07:42]** The web browser is using that Playwright CLI tool that
+**[00:07:46]** you mentioned, plus the MCP server that we have today.
+**[00:07:50]** But actually, considering that like before we work IQ, we
+**[00:07:54]** connect our agent to an MCP server, now we're giving
+**[00:07:58]** the agent access to a CLI tool on the command
+**[00:08:01]** line.
+**[00:08:02]** Why did we took this different approach?
+**[00:08:04]** What is different here?
+**[00:08:05]** Yeah, we could have used the MCP server, but browser
+**[00:08:09]** work usually creates a large tool surface.
+**[00:08:12]** Here the command line is a simpler utility.
+**[00:08:15]** The Python tool has 1 ARC string and an optional
+**[00:08:17]** browser session.
+**[00:08:19]** Snapshots and command details only enter the context window when
+**[00:08:22]** the agent asks for them.
+**[00:08:25]** Nice, So what you're saying is that this is not
+**[00:08:28]** only easier for the model to use to use the
+**[00:08:30]** command line to navigate and open a browser, but it's
+**[00:08:33]** also more token efficient, right?
+**[00:08:35]** Because like the agent doesn't need to connect to an
+**[00:08:38]** MCP server.
+**[00:08:39]** Retrieve those big Jason files.
+**[00:08:41]** Sorry, instructions with the with the method description, the arguments
+**[00:08:46]** that need to be used, feedback to the model in
+**[00:08:49]** each other return and then generate generate a response.
+**[00:08:54]** So he came back, he said I couldn't find a
+**[00:08:57]** Microsoft branded cup, but the first non Microsoft bag that
+**[00:09:02]** he found is 1619.
+**[00:09:03]** We don't know what happened but I've learned to inspect
+**[00:09:07]** the trace to know why it didn't found it.
+**[00:09:09]** So now a fair question from the audience because everything
+**[00:09:13]** that you have done so far is running on the
+**[00:09:15]** terminal.
+**[00:09:16]** But if our production users probably don't want to be
+**[00:09:20]** SSH in like your laptop, right?
+**[00:09:23]** So what's our story to take this to production?
+**[00:09:25]** How can Foundry help us in this journey?
+**[00:09:28]** Exactly as you said, Foundry hosts the same land graph
+**[00:09:32]** agent as a hosted agent and exposes it through an
+**[00:09:36]** open AI compatible responses API.
+**[00:09:39]** This file is the adapter layer.
+**[00:09:42]** Notice that we call the same build agent that we
+**[00:09:45]** used earlier and there are two important things, the responses
+**[00:09:48]** host server.
+**[00:09:50]** It exposes the land graph agent as a responsible responses
+**[00:09:53]** compatible endpoint and then we initialize the Foundry server host
+**[00:09:57]** before we build the graph so the open telemetry land
+**[00:10:01]** chain instrumentation can attach before the graph is constructed.
+**[00:10:05]** Nice.
+**[00:10:06]** So if I'm reading this correctly, so we are wrapping
+**[00:10:10]** our agent in the responses API protocol.
+**[00:10:13]** So this technically speaking can run locally in my machine
+**[00:10:16]** but also on the cloud right?
+**[00:10:18]** So it's the same code but like I'm running both
+**[00:10:20]** places.
+**[00:10:21]** Correct.
+**[00:10:21]** For the sake of this demo, I had the agent
+**[00:10:24]** deployed and then I'm going to send my triage prompt
+**[00:10:28]** here.
+**[00:10:29]** Triage my inbox maybe?
+**[00:10:31]** Zoom in a bit so it's not that small.
+**[00:10:35]** There we go.
+**[00:10:38]** OK, so, so we see that the agent is is
+**[00:10:41]** running, but probably, I mean as it happened just with
+**[00:10:44]** the with the browser that we didn't found the the
+**[00:10:48]** answer that we were expecting.
+**[00:10:50]** How can I know exactly what the agent did were
+**[00:10:52]** the steps that it performed and be let's say more
+**[00:10:55]** insightful about how or where or what are the actions
+**[00:10:58]** that the agent is actually taking?
+**[00:11:00]** What can we do for that?
+**[00:11:02]** Foundry integrates with Application Insights and Open Telemetry.
+**[00:11:06]** The demo uses the Microsoft Open Telemetry distro and Open
+**[00:11:11]** Telemetry Gen.
+**[00:11:12]** AI semantic conventions.
+**[00:11:14]** So we can expect inspect the line graph, span model
+**[00:11:17]** calls, latencies, captured input and output.
+**[00:11:22]** So I can head out to the Traces tab and
+**[00:11:25]** in the Traces tab, once we will be able to
+**[00:11:29]** see all the requests that we've been sending to it.
+**[00:11:33]** And then we'll also see some more details around how
+**[00:11:36]** long the request took.
+**[00:11:38]** And the interesting thing about like you mentioned opens open
+**[00:11:41]** telemetry with semantic conventions.
+**[00:11:43]** The interesting thing about that is it's an open source
+**[00:11:48]** standard adopted widely adopted by the industry.
+**[00:11:52]** So I can use Foundry as we are using right
+**[00:11:55]** now, but I can use any other tool, Grafana or
+**[00:11:58]** any interesting Divaga tool that I want to use because
+**[00:12:02]** the data is open so I can only focus on
+**[00:12:04]** all its content, right?
+**[00:12:06]** Yes.
+**[00:12:07]** So here you can see the invoke agent span and
+**[00:12:10]** the chat span from one of the Foundry traces view.
+**[00:12:13]** You can also do a trace replay and so on.
+**[00:12:17]** We can also get to see a historical trace which
+**[00:12:19]** I had opened up which can showcase the user input,
+**[00:12:22]** the user output, all the tool actions that it took.
+**[00:12:25]** The interesting one is here it try to execute a
+**[00:12:29]** tool to read the skill which we had asked it
+**[00:12:31]** to read, to know how to, you know, triage my
+**[00:12:34]** e-mail.
+**[00:12:36]** Yeah, this is all because like when you are moving
+**[00:12:38]** things to production like this is when you get surprised
+**[00:12:40]** about like where the time that your agent is taking
+**[00:12:43]** is being spent and which is all your, your budget
+**[00:12:45]** being spent, right.
+**[00:12:46]** Like here we can see the amount of tokens that
+**[00:12:48]** each of the sections is taking.
+**[00:12:49]** So you can know exactly where your money is, is
+**[00:12:52]** going, which are the sections that require most of the
+**[00:12:56]** maybe improvement or or or adaptation for, for your use
+**[00:12:59]** case, Right.
+**[00:13:01]** OK.
+**[00:13:01]** So last question, I know that 2026 is all of
+**[00:13:04]** our like Asians calling other agents, composing and whatnot.
+**[00:13:09]** So what's the open source, let's say, approach here?
+**[00:13:15]** Can this agent that we just deployed be consumed by
+**[00:13:18]** other agent?
+**[00:13:18]** How that will work?
+**[00:13:19]** Yes, one of the most interesting things of hosting the
+**[00:13:23]** agent in Microsoft Foundry is that I get an A
+**[00:13:26]** to a endpoint that another A to a compatible client
+**[00:13:29]** can use to discover the agent card and send messages
+**[00:13:33]** to the hosted agent.
+**[00:13:34]** Let's see how this works with copilot CLI.
+**[00:13:40]** I have copilot CLI and asked it to talk to
+**[00:13:44]** the agent and I can ask it to triage my
+**[00:13:48]** inbox and while this is working we can see how
+**[00:13:52]** of the setup is being done.
+**[00:13:56]** Yeah, let's take a look about how how this copilot
+**[00:13:59]** session is is finding our agent and how is invoking
+**[00:14:02]** it.
+**[00:14:02]** Yeah.
+**[00:14:03]** So Copilot, in the Copilot agent, we expose a tiny
+**[00:14:07]** A to a directory as an MCP server.
+**[00:14:09]** And we added two tools, the search agent and the
+**[00:14:12]** call agent A to a tool.
+**[00:14:14]** This is the information that Copilot uses to search for
+**[00:14:18]** an agent in the directory and invoke the agent via
+**[00:14:21]** the A to A.
+**[00:14:23]** Now let's go back to the terminal to see what
+**[00:14:25]** Copilot is doing.
+**[00:14:27]** So let's pause here for a minute because like there
+**[00:14:30]** is a lot of composition happening here.
+**[00:14:32]** So we are in compiler studio, sorry in compiler CLI,
+**[00:14:35]** a completely different runtime.
+**[00:14:38]** This this compiler session.
+**[00:14:41]** It searched for an agent using our MCP server.
+**[00:14:44]** It looks through the directory with all the available agents
+**[00:14:47]** that are available there.
+**[00:14:48]** It found one.
+**[00:14:50]** If you see the line like a search agent, it
+**[00:14:52]** found one agent that can actually perform the tasks that
+**[00:14:55]** the user asked for.
+**[00:14:56]** It invoked the agent using the HOA protocol which is
+**[00:15:00]** actually hosted in Microsoft Foundry which under the hood is
+**[00:15:04]** the one that we just built, is using Landgraf as
+**[00:15:08]** the agent loop model for for Foundry is calling work
+**[00:15:11]** IQ which is hosted in an MCP server.
+**[00:15:15]** Is using that to get access to my inbox 3,
+**[00:15:18]** get all the emails, get all the content, use the
+**[00:15:22]** skill to triage all the content of that e-mail, reply
+**[00:15:26]** back and get that answer to compiler CLI that then
+**[00:15:30]** used to answer this question.
+**[00:15:33]** So the beauty of this is like none of these
+**[00:15:35]** components knew about each other, right?
+**[00:15:37]** Like so they will be in isolation, which is composing
+**[00:15:39]** all of them.
+**[00:15:40]** So that's the that's the story, that's the open source
+**[00:15:44]** story that we wanted to tell in this demo, how
+**[00:15:47]** you compose each of these these modules using open source
+**[00:15:50]** standards.
+**[00:15:51]** And then you can compose a bigger solution by using
+**[00:15:55]** those open interfaces.
+**[00:15:56]** So you are free to change them at any at
+**[00:15:59]** any time.
+**[00:15:59]** So that's the story we want to tell with open
+**[00:16:01]** source.
+**[00:16:01]** That's the story we want you to take away from
+**[00:16:03]** this session.
+**[00:16:04]** So I think it's a wrap.
+**[00:16:06]** Thank you everyone for for the time want to stick
+**[00:16:08]** around here for for questions if you have it.
+**[00:16:11]** But like you can check out the repo we have
+**[00:16:13]** there all the content that we were showing here, all
+**[00:16:16]** the different stages of the agent as we were moving
+**[00:16:18]** forward.
+**[00:16:19]** So you can play with that and and see see
+**[00:16:21]** the result.
+**[00:16:22]** Thank you.

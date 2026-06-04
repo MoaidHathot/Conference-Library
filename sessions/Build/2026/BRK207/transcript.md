@@ -1,0 +1,1036 @@
+**[00:00:00]** Hello, everybody, all right, welcome to this second to last
+**[00:00:07]** episode of of this room here.
+**[00:00:10]** At least I built.
+**[00:00:11]** So thank you for being here.
+**[00:00:12]** My name is Matt, I'm Nick and we're here from
+**[00:00:15]** the Visual Studio team to talk about Visual Studio and
+**[00:00:19]** copilot in Visual Studio specifically.
+**[00:00:22]** Now we could talk about all sorts of things Visual
+**[00:00:25]** Studio and features in Visual Studio, what's coming and all
+**[00:00:28]** that type of stuff, but this is specifically about the
+**[00:00:32]** copilot pieces and we have some cool demos and we're
+**[00:00:35]** going to talk about road map, what to expect, what's
+**[00:00:38]** coming down the Pike here over the summer.
+**[00:00:42]** And just to frame this a little bit for everybody
+**[00:00:44]** here when we're talking about Visual Studio, because we get
+**[00:00:47]** this question all the time.
+**[00:00:49]** We got it at the booth here through the conference
+**[00:00:51]** as well.
+**[00:00:53]** How does Visual Studio fit into this new agentic world?
+**[00:00:58]** And it worked great.
+**[00:01:01]** So if we look at what Visual Studio is and
+**[00:01:04]** how we see it and how we see its positioning,
+**[00:01:07]** it is the tool for professional C# and C++ developers
+**[00:01:11]** on Windows.
+**[00:01:12]** That's what it is.
+**[00:01:14]** So if you're doing that, this is the premier place
+**[00:01:17]** for you to do your development today and tomorrow, right?
+**[00:01:22]** Whether you're coding all day long or you're doing a
+**[00:01:24]** bunch of agents that do the work for you or
+**[00:01:26]** whatever it might be, this is for you.
+**[00:01:28]** OK, now we have a bunch of other tools.
+**[00:01:31]** If you're doing Python or Node JS and stuff, we
+**[00:01:33]** have a bunch of other tools for that.
+**[00:01:35]** VS Code is fantastic, and so are other tools.
+**[00:01:38]** You know, whatever makes you happy.
+**[00:01:39]** But if you're using C# and C++ as a professional
+**[00:01:42]** developer, Visual Studio is for you because there are certain
+**[00:01:46]** things that makes Visual Studio really, really good for professional
+**[00:01:50]** developers because the professional developer does things a little bit
+**[00:01:54]** differently.
+**[00:01:55]** Often we have to think about quality gates, what does
+**[00:01:59]** the code look like, like security, accessibility.
+**[00:02:03]** There's also the compliance and governance.
+**[00:02:06]** There's administration like IT admins that may have a say
+**[00:02:09]** on what the roll out of Visual Studio across their
+**[00:02:13]** fleet is supposed to behave, group policy and so on.
+**[00:02:16]** So this is something that's specific to pro developers and
+**[00:02:20]** it's something that Visual Studio is really, really good at,
+**[00:02:23]** and it will continue to be a high priority for
+**[00:02:26]** us.
+**[00:02:28]** And there's something to say about code quality, especially in
+**[00:02:32]** this new world of agentic development where you don't always
+**[00:02:36]** write the code, but you definitely review it, right?
+**[00:02:39]** So you might have an agent do some of your
+**[00:02:41]** work writing the code, but then how do you maintain
+**[00:02:44]** that code quality, coding standards, and so on.
+**[00:02:47]** And sometimes that matters and sometimes it doesn't.
+**[00:02:51]** The way we see it when we talk about this
+**[00:02:53]** distinction is, is code an asset?
+**[00:02:56]** Is the code something you have to maintain for years
+**[00:02:59]** to come?
+**[00:03:00]** Maybe a whole team is working on it.
+**[00:03:03]** Coding standards matter, formatting and quality, all sorts of things
+**[00:03:07]** because code itself is an asset versus the other one
+**[00:03:11]** where is OK, I'm, I'm writing some proof of concepts
+**[00:03:14]** or internal tools where the code is an artefact.
+**[00:03:18]** It's, it's the thing I'm producing and I don't really
+**[00:03:20]** need to read it that carefully or, you know, in
+**[00:03:22]** order to maintain it.
+**[00:03:24]** I'm fine with just the agent doing that.
+**[00:03:27]** That's when we say that the code is an artefact.
+**[00:03:30]** And from Visual Studio's point of view, if you see
+**[00:03:33]** code as an asset, then Visual Studio is for you.
+**[00:03:37]** OK.
+**[00:03:37]** This is where we are like very, very series and
+**[00:03:41]** where we're seeing our investment go for professional developers that
+**[00:03:46]** see code as an asset.
+**[00:03:49]** And we have some cool demos, Nick, he brought some
+**[00:03:51]** some really fancy stuff that I'm really excited for you
+**[00:03:54]** guys to see.
+**[00:03:55]** And so let's cut over to the demo.
+**[00:03:59]** Cool there.
+**[00:04:04]** We are.
+**[00:04:04]** So when Mads talked to me about coming in for
+**[00:04:07]** this talk, he said, you know, we got to show
+**[00:04:10]** something for the professional developer.
+**[00:04:12]** We got to show, you know, what is actually real,
+**[00:04:15]** what are people going to encounter every day.
+**[00:04:17]** And so I thought what more fun could we have
+**[00:04:21]** than to actually work on Visual Studio inside Visual Studio.
+**[00:04:26]** And so this solution that I have open is the
+**[00:04:29]** Diagnostics Hub solution, and this is the code name for
+**[00:04:32]** the Visual Studio Profiler itself.
+**[00:04:35]** This thing gets built, packaged into Visual Studio.
+**[00:04:38]** And this is what gives you access to all of
+**[00:04:40]** those profiling tools that you enjoy in Visual Studio.
+**[00:04:44]** In this solution.
+**[00:04:47]** This component is written in C++, it's written in C#,
+**[00:04:50]** it's written in JavaScript, it's written, it's got some assembly
+**[00:04:55]** and some IL.
+**[00:04:56]** If you look really deep down, there is a lot
+**[00:04:59]** to it.
+**[00:04:59]** And so we need professional tools to actually be able
+**[00:05:03]** to work on this.
+**[00:05:05]** And So what better way to demo the power of
+**[00:05:07]** Visual Studio than to do use this?
+**[00:05:10]** And so I want to walk through an actual bug
+**[00:05:13]** that came across my plate a couple of months ago.
+**[00:05:17]** And this was an internal telemetry bug that got filed
+**[00:05:21]** on us where we have this index out of range
+**[00:05:24]** in hybrid dictionary enum keys iterator.
+**[00:05:28]** We actually worked on a new feature on the profiler.
+**[00:05:30]** We added it in.
+**[00:05:32]** And then when some of our internal dogfooders started using
+**[00:05:34]** it, we started getting a couple of crash hits.
+**[00:05:37]** And this bug was filed and it was sent over
+**[00:05:40]** to me and I went and I had to go
+**[00:05:43]** fix it.
+**[00:05:43]** And normally I would, you know, look at the stack
+**[00:05:46]** trace.
+**[00:05:46]** I would start digging in and I would try and
+**[00:05:48]** figure out like, hey, how is this happening?
+**[00:05:51]** Why is this happening?
+**[00:05:52]** But now with a lot of the new agentic powers
+**[00:05:55]** that are in Visual Studio, I can use that to
+**[00:05:58]** help me be more efficient in actually working through this.
+**[00:06:02]** And so I copied that link real quick and I'm
+**[00:06:05]** going to hop over to the Copilot chat.
+**[00:06:08]** And one of my favorite new tools in Copilot is
+**[00:06:12]** access to the MCP servers.
+**[00:06:14]** Oh yeah, they're great.
+**[00:06:16]** I can basically, I have this tool that's super powerful
+**[00:06:19]** and I can use these MCP P servers to tie
+**[00:06:22]** into all these different endpoints.
+**[00:06:24]** And one of my favourites is this new ADO 1.
+**[00:06:26]** And so with this I can say, hey, we are
+**[00:06:32]** getting a crash noted by this bug.
+**[00:06:38]** And the nice part is I can just copy and
+**[00:06:41]** paste the bug link in and then I can say,
+**[00:06:44]** you know, write me a unit test that demonstrates this
+**[00:06:49]** bug.
+**[00:06:52]** And now Copilot's going to go ahead.
+**[00:06:54]** It's going to go and access that.
+**[00:06:59]** And right away you can see it tries to use
+**[00:07:02]** the MCP servers again.
+**[00:07:03]** Matt, just talking a little bit about that governance.
+**[00:07:05]** I can't just turn it on autopilot Yolo mode.
+**[00:07:09]** Like I have to be in control of what's actually
+**[00:07:12]** happening on my system.
+**[00:07:13]** It's using my credentials to access these things.
+**[00:07:15]** Well hang on, you could put in autopilot.
+**[00:07:17]** I could.
+**[00:07:18]** I could, I like to be in the loop.
+**[00:07:21]** I like to understand kind of what's happening.
+**[00:07:23]** And so you can see it's trying to do this
+**[00:07:26]** get work item.
+**[00:07:27]** I'm going to go ahead and I'm going to confirm
+**[00:07:29]** that and I'm going to say, hey, that's fine.
+**[00:07:33]** And so it's going to go, it's going to fetch
+**[00:07:35]** that work item.
+**[00:07:36]** You can see it just grabbed an auth token.
+**[00:07:39]** We'll go ahead and close that.
+**[00:07:40]** We'll flip back and it's already seeing like, hey, look
+**[00:07:44]** at the hybrid dictionary source and let's look at the
+**[00:07:47]** existing test structure.
+**[00:07:49]** So it already picked up on the stack trace that
+**[00:07:51]** was in there.
+**[00:07:51]** It noted that there's problems in hybrid dictionary and then
+**[00:07:55]** says, let me find the tests for it and let
+**[00:07:57]** me try and go and write those tests.
+**[00:08:00]** And so it's continuing to dig through.
+**[00:08:03]** It's just gathering more context and you can see it's
+**[00:08:06]** already implemented a test for me.
+**[00:08:09]** Now the interesting thing is this bug came with a
+**[00:08:12]** new feature.
+**[00:08:13]** We didn't actually have any tests for this hybrid dictionary
+**[00:08:16]** and these code paths where this is starting to crash.
+**[00:08:19]** It was in code that was never used and this
+**[00:08:21]** new feature made use of that code and that's why
+**[00:08:23]** it started to crash and that's why it was never
+**[00:08:26]** caught in code review.
+**[00:08:27]** We all have code like that.
+**[00:08:29]** Yeah.
+**[00:08:29]** Hanging out?
+**[00:08:30]** Yep.
+**[00:08:31]** So I'm going to go ahead.
+**[00:08:32]** I'm going to keep all these changes.
+**[00:08:33]** These look great.
+**[00:08:35]** And it gave me two new test methods, 1 to
+**[00:08:37]** enumerate the keys and one to enumerate the values.
+**[00:08:40]** And then I'm going to flip back over to my
+**[00:08:42]** solution.
+**[00:08:43]** I'm going to link over to where it is.
+**[00:08:44]** It found my Data Warehouse manage suites test project.
+**[00:08:49]** This hybrid dictionary was in our data warehouse component.
+**[00:08:52]** I'm going to go ahead.
+**[00:08:53]** I'm going to say build.
+**[00:08:59]** So this is the actual code that's in Visual Studio.
+**[00:09:02]** It's one of the many packages that make up, yeah,
+**[00:09:04]** all the different features of Visual.
+**[00:09:06]** Studio.
+**[00:09:06]** Yep, exactly.
+**[00:09:07]** And looks like there was a build issue.
+**[00:09:12]** Maybe just one more time.
+**[00:09:21]** One failed.
+**[00:09:21]** One failed.
+**[00:09:23]** Oh hey look at this.
+**[00:09:24]** The type string must be non nullable value type.
+**[00:09:29]** It looks like what's happening is this is supposed to
+**[00:09:32]** be using some sort of struct for the key.
+**[00:09:35]** That was nice and fast.
+**[00:09:37]** I can just tell copilot, hey, those don't compile.
+**[00:09:43]** It looks like it's the wrong key type and I
+**[00:09:48]** can kind of continue to have that conversation with it.
+**[00:09:55]** Hopefully it's going to go ahead and fix it.
+**[00:09:57]** It's going to look into what key constraints exist.
+**[00:10:01]** But what I really like about this, your approach here,
+**[00:10:03]** is that you're writing the test first, yes?
+**[00:10:06]** To reproduce the issue.
+**[00:10:08]** Why do you do that?
+**[00:10:09]** So I never actually believed in test driven development until
+**[00:10:13]** copilot came along.
+**[00:10:14]** Like it just felt awkward, like I wanted to write
+**[00:10:17]** the code and then afterwards I might write in a
+**[00:10:20]** couple of tests to see, you know, what can I
+**[00:10:22]** do to protect myself from code failing in the future.
+**[00:10:26]** Now I look at this more so in terms of
+**[00:10:28]** I can write these tests to kind of create this
+**[00:10:31]** nice test harness, and then I can let Copilot actually
+**[00:10:34]** help me write and author the code that's going to
+**[00:10:37]** fix those tests.
+**[00:10:38]** Yeah, it gives you like the safety of having to
+**[00:10:40]** harness the guardrail in place when you let loose the
+**[00:10:42]** agents to work on your code.
+**[00:10:44]** Exactly, exactly.
+**[00:10:46]** And the nice part is you get this like durable
+**[00:10:48]** artifact that goes with your repository.
+**[00:10:51]** So then in the future you start doing more refactoring
+**[00:10:53]** with Copilot or you're changing out different dependencies.
+**[00:10:57]** You have this nice test bed that you can then
+**[00:10:59]** fall back onto.
+**[00:11:00]** And now it looks like our build succeeded, which is
+**[00:11:03]** awesome.
+**[00:11:04]** So now let's go ahead and let's find this in
+**[00:11:07]** our test Explorer.
+**[00:11:09]** So I'm going to say I'm just going to copy
+**[00:11:16]** this.
+**[00:11:22]** So I have my test here.
+**[00:11:23]** I'm going to run it and hopefully with any luck
+**[00:11:26]** this test is going to fail and it's going to
+**[00:11:28]** reproduce the crash.
+**[00:11:38]** It's running.
+**[00:11:39]** So this is the challenge of working on large enterprise
+**[00:11:41]** software.
+**[00:11:42]** There are hundreds of projects and stuff isn't always instantaneous.
+**[00:11:49]** There we go, we can see it's running now.
+**[00:11:51]** The build succeeded, and sure enough, it failed.
+**[00:11:53]** So this is a success.
+**[00:11:55]** This is a success.
+**[00:11:55]** Yes, this is what we wanted.
+**[00:11:57]** But actually this is really interesting because the test detail
+**[00:12:00]** summary, if I look at that, my original bug was
+**[00:12:03]** it should throw an index out of range exception, right?
+**[00:12:06]** And it's not throwing that.
+**[00:12:07]** Instead it's saying it's failing an assert.
+**[00:12:10]** And so this is not what I would expect.
+**[00:12:12]** So I'm just going to go back to copilot and
+**[00:12:16]** say it's not throwing the exception it is failing with.
+**[00:12:23]** This is very real world type of stuff, right?
+**[00:12:25]** You go and you try to create a test to
+**[00:12:27]** reproduce and you discover other things that would be problematic.
+**[00:12:30]** This is literally what my day-to-day looks like.
+**[00:12:33]** It looks like it says it needs an extra element.
+**[00:12:36]** Would you like me to go ahead and apply the
+**[00:12:38]** fix?
+**[00:12:39]** Yes.
+**[00:12:40]** That's nice.
+**[00:12:48]** All right.
+**[00:12:52]** Yep, actually when I said yes.
+**[00:12:57]** It's fixing the test itself.
+**[00:12:59]** No, it's fixing the code.
+**[00:13:01]** OK, so I'm not.
+**[00:13:02]** Supposed to fix the code, yet it's.
+**[00:13:04]** Not supposed to fix the code yet.
+**[00:13:07]** Fix the test so it fails with index out of
+**[00:13:12]** range.
+**[00:13:16]** This is the thing when so you actually practiced it,
+**[00:13:19]** but because this is AI, you kind of never know.
+**[00:13:21]** Yeah.
+**[00:13:22]** No, you get different different runs every time.
+**[00:13:26]** This is the nature of it.
+**[00:13:28]** The working in the non deterministic right probabilistic.
+**[00:13:32]** It's a really good, it's a really good way of
+**[00:13:34]** looking at this because you were able to see what
+**[00:13:36]** was going on.
+**[00:13:37]** And so your skills, your expertise is what helps you
+**[00:13:41]** guide the agent to do the things that you know
+**[00:13:44]** that it needs to do.
+**[00:13:45]** So the the better you are at your job as
+**[00:13:47]** a developer you, the better you are at managing your
+**[00:13:50]** agent too.
+**[00:13:52]** So now it's gone ahead, it's updated those tests.
+**[00:13:55]** So let's run those tests one last time.
+**[00:14:02]** And with any luck, hey, we're failing with our index
+**[00:14:05]** out of range, which is awesome.
+**[00:14:08]** Nice.
+**[00:14:09]** Actually, I think that's the first time I said it's
+**[00:14:10]** awesome that our tests are failing.
+**[00:14:12]** But in this case, I'm actually happy, right?
+**[00:14:14]** And so now I can start to lean into even
+**[00:14:16]** more of the copilot features of it.
+**[00:14:18]** So I have this nice guardrail, I have this nice
+**[00:14:21]** test harness in place, and this is really where I
+**[00:14:23]** can let the agent cook.
+**[00:14:25]** I can say like, hey, this is the problem, go
+**[00:14:27]** ahead and fix it.
+**[00:14:28]** And we got to doing this so often in Visual
+**[00:14:32]** Studio that we're like, hey, go optimize this benchmark.
+**[00:14:36]** Hey, go fix this test that, hey, let's just go
+**[00:14:39]** put a nice shiny button for people to click and
+**[00:14:41]** let's just make it nice and easy.
+**[00:14:42]** So I'm going to do my clicky clicky in the
+**[00:14:45]** UI and I'm going to say hey, debug this test
+**[00:14:47]** with Copilot.
+**[00:14:48]** So you just right click the test and say debug
+**[00:14:50]** this test.
+**[00:14:50]** Exactly with Copilot?
+**[00:14:51]** Yep, exactly.
+**[00:14:54]** And so now it's switched over into our new debugger
+**[00:14:57]** agent.
+**[00:14:59]** And so we've gone from the regular agent mode.
+**[00:15:02]** We're now in this debugger agent.
+**[00:15:04]** And the debugger agent knows how to use the debugger.
+**[00:15:06]** It can set breakpoints, it can hit those breakpoints, evaluate
+**[00:15:11]** expressions, it can look at memory and really start to
+**[00:15:16]** understand the code In here.
+**[00:15:18]** It gave its hypothesis and it said, hey, the bug
+**[00:15:21]** is clear.
+**[00:15:21]** Turns out we had an off by 1 error.
+**[00:15:23]** And it's very specific on the number of elements that
+**[00:15:26]** are in that collection.
+**[00:15:28]** And so it went ahead and fixed it, but then
+**[00:15:31]** it went and it reran that unit test.
+**[00:15:33]** It ran under the debugger.
+**[00:15:34]** So if a problem did occur, it could catch it.
+**[00:15:37]** But after it applied the fix, it noticed that the
+**[00:15:40]** test passed and we're good to go.
+**[00:15:42]** And so this was legit a problem that we had.
+**[00:15:46]** It came out, I think I want to say it
+**[00:15:48]** was the 18-5 range and we caught it internally before
+**[00:15:51]** it started.
+**[00:15:51]** Affecting 18 five was was that the April update?
+**[00:15:54]** I believe it was the April update.
+**[00:15:55]** That sounds about right, yeah.
+**[00:15:57]** And so we caught it before it started affecting users.
+**[00:15:59]** It was affecting our internal users.
+**[00:16:02]** We're able to use Copilot to author that fix and
+**[00:16:04]** push out that fix.
+**[00:16:05]** Nice.
+**[00:16:06]** So.
+**[00:16:08]** And so this is so anyone like before, you could
+**[00:16:10]** also go in on right click and say I want
+**[00:16:12]** to debug the test, right?
+**[00:16:14]** And you could set your own break point.
+**[00:16:15]** You can do your own debugging.
+**[00:16:16]** Yep.
+**[00:16:16]** But you said, hey, instead of me doing that manually,
+**[00:16:18]** I'm going to let copilot do that.
+**[00:16:19]** And 1, you know, off by 1 errors.
+**[00:16:22]** I mean, we've all been there.
+**[00:16:23]** Sometimes they take forever to find even though they're simple
+**[00:16:25]** in nature.
+**[00:16:27]** And so something like this can really speed up even
+**[00:16:28]** the simplest things, right?
+**[00:16:30]** Exactly, exactly.
+**[00:16:32]** And so the the second demo I want to kind
+**[00:16:35]** of show is our new profiler agent experience.
+**[00:16:40]** So one of the awesome packages we recently added was
+**[00:16:44]** our VS Test Performance Collector.
+**[00:16:47]** And So what this is, is a Nugent package.
+**[00:16:50]** You can add this to your test runs.
+**[00:16:52]** We added this on to our Azure DevOps test runs
+**[00:16:55]** and so every time our unit tests run it automatically
+**[00:16:59]** collects A profiling trace for us adds it to the
+**[00:17:02]** test attachment.
+**[00:17:03]** What is a profiling trace?
+**[00:17:05]** So profiling trace.
+**[00:17:07]** But when that test is running, it'll start saying like,
+**[00:17:10]** hey, I'm about to execute the tests.
+**[00:17:12]** We will turn on the profiler and it's going to
+**[00:17:15]** start collecting information about where your program is periodically throughout
+**[00:17:20]** its run.
+**[00:17:21]** And then at the end it'll say, OK, I'm all
+**[00:17:24]** done.
+**[00:17:24]** It'll save all of that data that's collected along with
+**[00:17:28]** auxiliary data like debugger symbols, metadatafrom.net.
+**[00:17:33]** And then it can take all of that and it
+**[00:17:35]** can present a report to you that basically says, like,
+**[00:17:37]** here's where your program spent the most amount of time.
+**[00:17:40]** So like CPU cycles, memory allocations, object allocations, that type
+**[00:17:44]** of information.
+**[00:17:45]** Exactly, exactly.
+**[00:17:46]** So we can capture CPU data, like you said, we
+**[00:17:48]** can capture allocation data.
+**[00:17:50]** And we're going to demo this in Visual Studio where
+**[00:17:54]** we're going to use actual instrumentation and we're going to
+**[00:17:58]** use dynamic instrumentation.
+**[00:18:01]** So actually what's going to happen is that unit test
+**[00:18:04]** will start up, it's going to then hook into the
+**[00:18:07]** profiler and the profiler is going to instrument your code
+**[00:18:10]** with start and stops between all your method calls.
+**[00:18:14]** So we can get exact performance information that we can
+**[00:18:17]** use to then determine where we should apply fixes.
+**[00:18:21]** And so I was saying, we recently added this to
+**[00:18:24]** our Azure Dev OPS PR runs.
+**[00:18:26]** And we noticed that we had this express decode large
+**[00:18:33]** file.
+**[00:18:35]** Yeah, code large file.
+**[00:18:40]** We had this decode large file unit test or verify
+**[00:18:44]** large file, which basically compares how quickly we can compress
+**[00:18:50]** and decompress A diag session that has one of these
+**[00:18:55]** ETL files in it.
+**[00:18:57]** Diag session is the format of that trace file that
+**[00:19:00]** the profiler collects.
+**[00:19:01]** So whenever you open up a profile of Trace in
+**[00:19:03]** Visual Studio like it's reading that file.
+**[00:19:05]** Exactly to memory exactly.
+**[00:19:07]** And so when we started running those unit test trace,
+**[00:19:10]** it said, hey, you're spending most of your time in
+**[00:19:12]** here.
+**[00:19:13]** And so I want to go ahead and I want
+**[00:19:17]** to make that faster in the profiler.
+**[00:19:22]** So I'm just going to, again, I'm going to right
+**[00:19:24]** click and I'm going to save profile with Copilot because
+**[00:19:27]** again, I could specify like, hey, app profiler, I want
+**[00:19:30]** to go ahead and I want to run this unit
+**[00:19:32]** test and I want to make it faster.
+**[00:19:34]** We're doing that over and over and over.
+**[00:19:36]** And so let's make some clicky buttons that I can
+**[00:19:38]** click on stuff and I can get into my scenario.
+**[00:19:42]** OK.
+**[00:19:42]** And but so you said profile with Copilot, but you
+**[00:19:45]** can also just have said profile.
+**[00:19:47]** If you want to do all this yourself and dig
+**[00:19:49]** into the data and, you know, get your hands dirty,
+**[00:19:51]** you can totally do the same thing.
+**[00:19:52]** Totally do the same thing.
+**[00:19:54]** In fact, we technically don't have to show the UI
+**[00:19:57]** here.
+**[00:19:58]** Copilot doesn't necessarily care that the UI pops up and
+**[00:20:00]** that you can browse through it.
+**[00:20:02]** We present it because we want you to be able
+**[00:20:05]** to dig into the UI.
+**[00:20:06]** If you want, you can actually help steer the conversation
+**[00:20:08]** with Copilot.
+**[00:20:09]** Super important.
+**[00:20:10]** And you, you under you get to understand what's going
+**[00:20:12]** on as well.
+**[00:20:13]** Exactly, exactly.
+**[00:20:14]** And one of my favorite things that you can do
+**[00:20:16]** with Copilot, after it's done, one of the optimizations, you
+**[00:20:19]** can ask it why, Why is this faster?
+**[00:20:21]** And you can learn as a software engineer like oh
+**[00:20:24]** hey, I've learned so many tricks about the JIT, the
+**[00:20:26]** GC just asking copilot like why is this suddenly so
+**[00:20:29]** much faster if I do it this other?
+**[00:20:31]** Right, because it because it knows all the low level
+**[00:20:34]** stuff like I don't, I know how to write C#,
+**[00:20:37]** but I don't know unsafe C#, right?
+**[00:20:39]** I don't necessarily know why one type of list or
+**[00:20:41]** dictionary is faster than another type.
+**[00:20:43]** And so that it explains that to me is is
+**[00:20:45]** super helpful.
+**[00:20:46]** Yeah, yeah.
+**[00:20:48]** So we, we ran the trace and Copilot did a
+**[00:20:52]** initial analysis with the findings.
+**[00:20:56]** I can kind of look at the trace myself.
+**[00:20:58]** I can see, hey, this took exactly 3.88 seconds to
+**[00:21:02]** actually run the the unit test itself.
+**[00:21:05]** It was doing some express stream test stuff.
+**[00:21:09]** It was doing some hashing and you can see where
+**[00:21:11]** it's reading bytes.
+**[00:21:13]** And then in the key findings, it's saying like, hey,
+**[00:21:16]** the the hot path is dominated by this frame, this
+**[00:21:19]** express stream dot read block, and it's hitting this check
+**[00:21:23]** read enough bits function all the time.
+**[00:21:25]** And I'll be honest, I was the one who wrote
+**[00:21:28]** this code and I can tell you, I profiled this
+**[00:21:31]** code a ton.
+**[00:21:32]** I was the dev lead for the profiler.
+**[00:21:34]** I had to use it all the time.
+**[00:21:35]** And even though I profiled it in over and over
+**[00:21:38]** and over over the years, there's still optimizations to find
+**[00:21:42]** in it.
+**[00:21:43]** And so Copilot's gone ahead and it's given me helpful
+**[00:21:46]** suggestions here.
+**[00:21:47]** It says, hey, I can optimize this express stream reblock
+**[00:21:50]** to buffer reads and reduce the binary reader overhead.
+**[00:21:54]** I'm going to just click that and say, Yep, go
+**[00:21:56]** for it.
+**[00:21:58]** And so it's going to go off.
+**[00:21:59]** It's going to read the context on that.
+**[00:22:01]** It's going to try and find like, hey, where is
+**[00:22:04]** the source code?
+**[00:22:05]** It's going to look at the line information, match it
+**[00:22:08]** up with the profiling report, and it's going to know
+**[00:22:10]** exactly what it needs to go and optimize.
+**[00:22:13]** Yeah.
+**[00:22:13]** So what's really nice here is like it doesn't guess
+**[00:22:15]** from the code, like it doesn't just look at the
+**[00:22:17]** code and say, oh, this looks like it could run
+**[00:22:19]** faster if you do these things.
+**[00:22:21]** It looks that it's actually executing code to figure out
+**[00:22:24]** what the issue was, which is much stronger scientific case
+**[00:22:27]** for the optimization.
+**[00:22:28]** Right, exactly.
+**[00:22:28]** It's using actual data.
+**[00:22:29]** So one of my favorite sayings is if you're not
+**[00:22:32]** using data, you're not actually profiling or improving performance, you're
+**[00:22:37]** just refactoring.
+**[00:22:38]** Yeah, right.
+**[00:22:41]** So it's gone ahead, it's implementing some changes in express
+**[00:22:45]** stream.
+**[00:22:45]** You can see looks like it's creating this new byte
+**[00:22:50]** buffer, it's updating some Huffman table, read table.
+**[00:22:54]** So some really low level compression code that's used to
+**[00:22:58]** compress these big diag session files, it's adding that and
+**[00:23:02]** then with any luck, it'll go ahead, it'll build stuff,
+**[00:23:06]** it's going to run the test again to make sure
+**[00:23:10]** that it doesn't fail, and then it's going to reprofile
+**[00:23:14]** it again to validate that.
+**[00:23:16]** So with success Visual Studio will be faster after you
+**[00:23:19]** commit this code change.
+**[00:23:20]** Exactly, we've actually.
+**[00:23:22]** We all get to benefit from this.
+**[00:23:24]** We do, We do.
+**[00:23:25]** I think since we've added this new test collector, I
+**[00:23:28]** think we've had six or seven different PRS into this
+**[00:23:32]** diet session reader.
+**[00:23:34]** We've over doubled the performance of reading these files in
+**[00:23:37]** the latest versions of Visual Studio.
+**[00:23:39]** Yeah, I do remember back when I, when I started
+**[00:23:41]** using the profile, it's something you do after you do
+**[00:23:43]** your code and it can take minutes to run and
+**[00:23:45]** even just to open that file takes minutes.
+**[00:23:47]** And so it's something that becomes an afterthought.
+**[00:23:49]** It's not a part of your inner loop, you know,
+**[00:23:52]** dev test, you know, build, run, cycle.
+**[00:23:55]** It's something you may do after the fact if you
+**[00:23:57]** remember.
+**[00:23:58]** But because it's so fast now, I can do it
+**[00:23:59]** as part of my inner loop.
+**[00:24:01]** I can just start a new session and see whether
+**[00:24:03]** I had any regressions.
+**[00:24:04]** Yeah.
+**[00:24:06]** And like, I don't know, like a minute later it
+**[00:24:08]** wouldn't be like this long process, right?
+**[00:24:10]** And it's always, like you said, it's one of those
+**[00:24:13]** afterthoughts like people are interested in, you know, how do
+**[00:24:16]** I get new features out?
+**[00:24:17]** How do I fix bugs that are crashing?
+**[00:24:19]** And then we, we start to kind of let the
+**[00:24:21]** code degrade over time because I just got to add
+**[00:24:24]** more and more to it.
+**[00:24:25]** And people aren't screaming at me yet for performance.
+**[00:24:29]** And it takes time and it's a lot of data
+**[00:24:32]** to try and understand.
+**[00:24:33]** And now that you have kind of a partner to
+**[00:24:35]** help you dig through that and help you understand what
+**[00:24:38]** it is that you're looking at and suggest different optimizations
+**[00:24:41]** is just great.
+**[00:24:42]** So that Nougat package you were talking about that you
+**[00:24:45]** add to your project that you that helps you run
+**[00:24:47]** your CI runs to give you the benchmarks?
+**[00:24:48]** Yep, you get the DYAC sessions.
+**[00:24:50]** So you have data like on your CI runs, you
+**[00:24:52]** can now see if anything slowed down.
+**[00:24:54]** You have any regressions?
+**[00:24:55]** Exactly.
+**[00:24:56]** And you can then take that file, Yep.
+**[00:24:58]** And you can just open it in Visual Studio and
+**[00:24:59]** see exactly what the problem was.
+**[00:25:00]** And so I could download that file and I could
+**[00:25:02]** see it.
+**[00:25:03]** Yep, I could also use those ADOMCP tools that I
+**[00:25:06]** showed in the first demo to have it automatically go
+**[00:25:10]** out find that file for me in this test run.
+**[00:25:13]** Like I can say like here's the URL for the
+**[00:25:15]** test run or here's the URL for my pipeline.
+**[00:25:18]** Go find any diags sessions you can find.
+**[00:25:20]** Go analyze it in the profiler and tell me what
+**[00:25:22]** I can do to optimize my.
+**[00:25:23]** Code wow, that's amazing, amazing stuff, and this is something
+**[00:25:26]** everybody can just go ahead and do and we were
+**[00:25:28]** talking about this.
+**[00:25:29]** We've never heard of anyone that like on their own
+**[00:25:32]** if you go and to improve the performance of your
+**[00:25:34]** app like it's one of the few activities we can
+**[00:25:37]** do as developers without having to ask permission first, right?
+**[00:25:40]** It doesn't we don't need to have a ticket, a
+**[00:25:42]** Jira ticket or a GitHub ticket to go improve the
+**[00:25:44]** performance.
+**[00:25:45]** It's like good job.
+**[00:25:47]** Yep, thank you thank you for improving the performance right.
+**[00:25:49]** It's always a good thing.
+**[00:25:52]** So it's going through another build of the solution.
+**[00:25:53]** Again, this is the challenge of big enterprise code.
+**[00:26:00]** You could have used the solution filter for this one,
+**[00:26:02]** maybe Nick.
+**[00:26:03]** I was thinking about it.
+**[00:26:04]** It's something that we recently added.
+**[00:26:07]** The thing is it's like, I like showing that there's
+**[00:26:10]** 160 different projects and this is as real as it
+**[00:26:13]** gets.
+**[00:26:13]** You know, it's C++ code, it's C# JavaScript, so.
+**[00:26:18]** 160 projects and it's only the profiler and diagnostic hub.
+**[00:26:22]** Yeah, it's the profiler and it's the Diagnostic Tools window
+**[00:26:25]** that pops up when you do debugging.
+**[00:26:26]** You know the pretty graphs and.
+**[00:26:28]** So if we combine that with all the other parts
+**[00:26:29]** of Visual Studio, we have a lot of projects.
+**[00:26:32]** I think when we first did the conversion over from
+**[00:26:36]** TFs to git it was like 400 gig worth of
+**[00:26:39]** data inside of it.
+**[00:26:41]** It was just a massive amount.
+**[00:26:42]** Wow.
+**[00:26:47]** So it's running the build, it's.
+**[00:26:49]** Running the build, I'm hoping this is going to work
+**[00:26:52]** and pass.
+**[00:26:55]** While we're waiting for that, we can kind of review
+**[00:26:57]** some of the changes that it did.
+**[00:27:00]** So it looks like it did a pretty extensive amount
+**[00:27:03]** of changes.
+**[00:27:05]** And the interesting thing here is we were reading from
+**[00:27:08]** this input stream using a byte reader and that's really
+**[00:27:12]** fast.
+**[00:27:12]** Like it's the fastest way to access a byte stream
+**[00:27:16]** in.net.
+**[00:27:17]** And it's still like, hey, that it it thinks it
+**[00:27:20]** can do better.
+**[00:27:21]** And So what it ended up doing is it read
+**[00:27:24]** it into this new byte array that it then just
+**[00:27:27]** can directly read from, and it actually reduces the cost
+**[00:27:31]** of the calls into the byte reader.
+**[00:27:34]** That's amazing.
+**[00:27:35]** That's like stuff that you would probably never think of
+**[00:27:37]** yourself, right?
+**[00:27:37]** Yeah.
+**[00:27:39]** You would just see the profiling trace and be like,
+**[00:27:41]** Oh yeah.
+**[00:27:41]** But it's already optimized.
+**[00:27:42]** It's using that reader, and it's super optimized as it
+**[00:27:45]** is.
+**[00:27:45]** There's nothing for me to do.
+**[00:27:47]** OK, so the build succeeded.
+**[00:27:49]** There are some errors from unrelated projects.
+**[00:27:51]** Again, as real as it gets, it's now running the
+**[00:27:54]** tests and so it's actually profiling it again.
+**[00:27:58]** So it's profiling again.
+**[00:27:59]** Yes.
+**[00:28:00]** So that's one of the biggest thing.
+**[00:28:02]** I always say optimize twice or measure twice.
+**[00:28:05]** Optimize once.
+**[00:28:06]** You measure to establish a baseline, then you go and
+**[00:28:08]** you make some changes to your code, and then you
+**[00:28:11]** measure again because you want to see the impact of
+**[00:28:13]** the changes that you're making.
+**[00:28:15]** OK.
+**[00:28:15]** And so it was the one that now executed the
+**[00:28:18]** unit test again with the profiling attached or to create
+**[00:28:21]** the dyac session.
+**[00:28:22]** Exactly.
+**[00:28:23]** Yep.
+**[00:28:24]** So it's just one seamless flow basically.
+**[00:28:26]** Yep, Yep.
+**[00:28:26]** Because it knows that you need to, you need to,
+**[00:28:29]** in order to do a good scientific performance optimization, you
+**[00:28:33]** have to do that measure before and after, right?
+**[00:28:36]** You need to see the impact of the changes that
+**[00:28:38]** you're doing.
+**[00:28:39]** Yep, yeah, 160 projects.
+**[00:28:45]** Sometimes it takes a while, huh?
+**[00:28:47]** I know.
+**[00:28:53]** Think Test Explorer also kicked off a build unfortunately.
+**[00:28:58]** That's how it goes sometimes.
+**[00:29:00]** That's just how it is.
+**[00:29:01]** I like the way we're approaching this.
+**[00:29:03]** Where, you know, remember back in the day with HTML5
+**[00:29:05]** that came out, you had this idea of progressive enhancement.
+**[00:29:09]** You would have you create your website, it would be
+**[00:29:11]** basic.
+**[00:29:11]** You would have to be able to like click the
+**[00:29:13]** links, it would change to a new URL and it
+**[00:29:14]** would load everything.
+**[00:29:15]** And then Ajax came along and all of a sudden
+**[00:29:18]** we could partially load pages.
+**[00:29:19]** And then, you know, React and Angular and more and
+**[00:29:22]** more stuff came on top.
+**[00:29:23]** And if your browser was able, at the time browsers
+**[00:29:26]** weren't very able to do anything.
+**[00:29:28]** But as they become, it became better, you could take
+**[00:29:30]** advantage of all these features on top of the basic
+**[00:29:33]** layer.
+**[00:29:33]** And that's kind of what we're doing here.
+**[00:29:34]** I feel like with some of these copilot stuff where
+**[00:29:37]** we come in and you can be the driver.
+**[00:29:38]** You can do everything manually if you want to.
+**[00:29:41]** You can completely be in control of everything just like
+**[00:29:43]** you have so far.
+**[00:29:45]** But you can take that extra step atop that with
+**[00:29:48]** copilot to really push the limits.
+**[00:29:52]** I really, really enjoy that.
+**[00:29:53]** So you can.
+**[00:29:54]** Sometimes you may want to have the copilot experience and
+**[00:29:56]** sometimes you don't, and you can decide.
+**[00:30:01]** OK, so it just ran the three tests.
+**[00:30:05]** So here's the interesting part.
+**[00:30:07]** It ran the tests ahead of time because it wanted
+**[00:30:09]** to make sure it didn't regress any of the behavior.
+**[00:30:12]** And then it's profiling again.
+**[00:30:14]** So again, you get these really nice guardrails with it,
+**[00:30:17]** so you can really let it go and cook, if
+**[00:30:20]** you will.
+**[00:30:21]** And with this, it looks like we're getting another profiling
+**[00:30:26]** trace out and.
+**[00:30:28]** Give us a new chart that looks different.
+**[00:30:30]** It's more green now.
+**[00:30:31]** It is more green now.
+**[00:30:33]** Time has shifted in there and we're at 2 seconds
+**[00:30:36]** for running that performance test OK, when previously we're at
+**[00:30:39]** 3.8.
+**[00:30:40]** So we almost doubled the performance of running that test,
+**[00:30:43]** which is decoding one of these large files here on
+**[00:30:46]** stage.
+**[00:30:47]** Wow, awesome.
+**[00:30:49]** That is fantastic.
+**[00:30:49]** So this is something everybody can do.
+**[00:30:51]** You can go home and do this right on any
+**[00:30:53]** code base dot net C Yep, whole thing.
+**[00:30:56]** Dot net C whatever you have.
+**[00:30:59]** That's awesome.
+**[00:30:59]** So.
+**[00:31:00]** Wonderful.
+**[00:31:01]** This is great stuff.
+**[00:31:02]** So yeah, I encourage everyone to go try this if
+**[00:31:05]** you haven't already.
+**[00:31:06]** It's really, really powerful stuff.
+**[00:31:10]** All right, let's switch on back to the slides.
+**[00:31:15]** So Nick, you ran this, You told us you've run
+**[00:31:17]** this now on the Visual Studio Code base, but you
+**[00:31:20]** run it on other things too, right?
+**[00:31:22]** We ran it on.
+**[00:31:23]** So Visual Studio itself, like profiler, you were telling me
+**[00:31:26]** about the, was it the startup you found like 80,000
+**[00:31:29]** allocations recently or something?
+**[00:31:31]** 800,000 allocations in startup due to an Azure DevOps cache
+**[00:31:35]** file when it's loading the version control library.
+**[00:31:39]** The profiler agent actually found it in via startup.
+**[00:31:42]** I kind of.
+**[00:31:42]** I set up a Ralph loop and told it hey
+**[00:31:45]** run dev EMF allocation, profile it, see what you can
+**[00:31:49]** do and there is this XML deserialization of this cache
+**[00:31:53]** file trimmed 50 megabytes off of our initial heap 800,000
+**[00:31:57]** allocations.
+**[00:31:58]** Way less for the GC to do.
+**[00:32:00]** That's amazing.
+**[00:32:02]** We turned it on to the Azure App Service like
+**[00:32:04]** instead of just doing Visual Studio, what other parts of
+**[00:32:06]** of Microsoft products can we look at?
+**[00:32:08]** So an Azure App Service reduce the cost basically of
+**[00:32:11]** running Azure App Services by optimizing the performance there.
+**[00:32:16]** Roslyn.
+**[00:32:16]** What did you do with Roslyn, the compiler?
+**[00:32:18]** We literally just did the Roslyn compiler, I want to
+**[00:32:21]** say 2 maybe 3 weeks ago.
+**[00:32:24]** Roslyn compiler has tons of benchmarks.
+**[00:32:26]** People have been optimizing this thing for the longest time.
+**[00:32:29]** We found an optimization in switch case evaluation with SDE
+**[00:32:34]** 2 on the team.
+**[00:32:35]** It was like, oh, I just want to I'm going
+**[00:32:37]** to download Roslyn.
+**[00:32:37]** It's got some tests I'm going to run through it,
+**[00:32:39]** and I'm going to let the profiler try and chew
+**[00:32:41]** on it.
+**[00:32:42]** Sure enough, found and got his first contribution out to
+**[00:32:45]** Roslyn.
+**[00:32:45]** That's amazing.
+**[00:32:46]** So this works on a wide variety of different types
+**[00:32:49]** of applications and libraries and whatnot, whether it's UI or
+**[00:32:53]** APIs or, or, you know, DLLS or whatever it might
+**[00:32:56]** be across the board.
+**[00:32:58]** So that's that's pretty fantastic.
+**[00:33:01]** Now we got a bunch of stuff coming we do,
+**[00:33:04]** and we could talk about a bunch of the cool
+**[00:33:07]** stuff we got for like, what do we got come?
+**[00:33:09]** We got work tree support coming next week.
+**[00:33:12]** I think it is.
+**[00:33:12]** We have full support for git sub modules coming next
+**[00:33:15]** week in Visual Studio.
+**[00:33:16]** It's kind of nice, but we're not going to talk
+**[00:33:17]** about that.
+**[00:33:18]** Yes, finally, we're not going to talk about that.
+**[00:33:20]** We're going to talk about some of the cool things
+**[00:33:23]** we have for copilot in Visual Studio.
+**[00:33:27]** So a lot of us have to maintain old code,
+**[00:33:30]** right?
+**[00:33:31]** Whether it's old, you know, Winforms apps or web forms
+**[00:33:35]** of web applications.
+**[00:33:36]** And there's fewer of us left that are able to
+**[00:33:39]** maintain that kind of code because it's old.
+**[00:33:41]** You might have old web forms code that runs on
+**[00:33:43]** dot net 3 point O or something, and who's going
+**[00:33:46]** to maintain that and move that forward?
+**[00:33:49]** It's really hard to go and tell and ask your
+**[00:33:51]** manager or whatever and say, hey, can I get 6
+**[00:33:54]** months to convert this old web forms app to blazerorsomething.net
+**[00:33:58]** 10?
+**[00:34:00]** Probably no is the answer.
+**[00:34:01]** And we get that feedback all the time.
+**[00:34:04]** So what's really cool is that we've had some really
+**[00:34:07]** nice breakthroughs recently in our app modernization stories that now
+**[00:34:12]** allow us to convert web forms, including, you know, user
+**[00:34:15]** controls, server controls components into Blazer.
+**[00:34:19]** So you can take those old apps and modernize them
+**[00:34:22]** completely onto a modern stack.
+**[00:34:25]** You can put Aspire on them as well all through
+**[00:34:27]** this app modernization.
+**[00:34:28]** You can even upscale them to be something that can
+**[00:34:30]** run in the cloud if you want to and it's
+**[00:34:32]** all handled by the modernization agent.
+**[00:34:35]** So those are some really nice time saving things that
+**[00:34:38]** are coming for for particular this cohort and a lot
+**[00:34:41]** of enterprises out there have a lot of these old
+**[00:34:43]** apps.
+**[00:34:46]** Another thing we're looking at are agent skills.
+**[00:34:50]** Now, the thing about agent skills is that they really
+**[00:34:54]** make your agent workflows a lot more powerful.
+**[00:34:56]** It makes them more useful, the agents themselves when they
+**[00:35:00]** work on your code base.
+**[00:35:01]** The problem is, how do you find skills?
+**[00:35:05]** These are just markdown files that live in like some
+**[00:35:08]** plug and repositories or marketplace repositories scattered around the web.
+**[00:35:11]** But how do you know that when you work on
+**[00:35:14]** Win formsorsome.net scenario or whatever, what skills to use?
+**[00:35:18]** That is a real big problem that kind of everybody's
+**[00:35:20]** having.
+**[00:35:21]** And what we're doing in Visual Studio is that we're
+**[00:35:23]** automatically going to figure out like, hey, what is it
+**[00:35:26]** that you're doing?
+**[00:35:26]** What type of project are you working on?
+**[00:35:29]** And we have a bunch of skills that the individual
+**[00:35:31]** teams have created, like the Azure team, the wind Forms
+**[00:35:35]** team, and so on.
+**[00:35:36]** So if you're working on a wind forms project, we're
+**[00:35:38]** automatically going to include into the context a bunch of
+**[00:35:41]** these skills making your agent way more powerful, actually so
+**[00:35:45]** powerful because it's it's written by the Winform team themselves
+**[00:35:48]** at the absolute experts in the technology you're using.
+**[00:35:51]** And that's going to be applied automatically.
+**[00:35:53]** So all these skills are really fantastic.
+**[00:35:56]** They're out there, they're open source.
+**[00:35:57]** We actually take a bunch of contributions from the community
+**[00:35:59]** as well.
+**[00:36:00]** And so they're skills you can trust and we're going
+**[00:36:03]** to automatically apply them.
+**[00:36:05]** So very, very helpful to have this as well.
+**[00:36:14]** Build speed.
+**[00:36:15]** So one of the things that we do in when
+**[00:36:17]** we run anything in agents is that the agent will
+**[00:36:20]** sometimes have to do a build, right?
+**[00:36:22]** It happens quite frequently.
+**[00:36:24]** What's problematic sometimes is that it will, we can look
+**[00:36:27]** at the error list and we see, oh, there's a
+**[00:36:29]** couple of errors there, but it still tries to run
+**[00:36:31]** a build and that can take like 2 minutes to
+**[00:36:33]** run before it hits that error.
+**[00:36:34]** And it's, oh, build failed.
+**[00:36:35]** Like, yeah, I could have told you that I saw
+**[00:36:37]** that error before you started building.
+**[00:36:40]** So we're doing a bunch of optimizations around all of
+**[00:36:42]** it.
+**[00:36:43]** But one of the first ones coming here is the
+**[00:36:45]** build speed where it does something as simple as, hey,
+**[00:36:47]** let's just look at the error list and other indicators
+**[00:36:50]** to see whether or not we should take off a
+**[00:36:52]** build now or if we need to do a little
+**[00:36:53]** bit more work first.
+**[00:36:55]** So that's really nice that that will come.
+**[00:36:59]** That's going to speed up our experience.
+**[00:37:01]** That is just one out of a lot of different
+**[00:37:03]** performance optimizations that you're going to see around the chat
+**[00:37:07]** window and all that.
+**[00:37:12]** This is one of my favorite.
+**[00:37:13]** So merge conflicts.
+**[00:37:15]** How many people here love merge conflicts?
+**[00:37:19]** OK, there was OK, good for you.
+**[00:37:22]** So when we talk to a lot of developers, they
+**[00:37:25]** tell us that they actually get a fear and there's
+**[00:37:29]** a anxiety and a frustration when you have to commit
+**[00:37:33]** code and you realize, oops, I'm behind head and I
+**[00:37:36]** have to do a pull 1st.
+**[00:37:38]** And you're like almost shaking when you move the mouse
+**[00:37:41]** up to that pull button, right?
+**[00:37:43]** Oh, oh, can I do a clean pull with my
+**[00:37:45]** changes or what?
+**[00:37:46]** Right.
+**[00:37:47]** So there's, there's the whole frustration there.
+**[00:37:49]** And I get it, I get it.
+**[00:37:50]** We all experience this from time to time.
+**[00:37:53]** So what we're going to launch here very soon is
+**[00:37:56]** a way to click a button and have the AI
+**[00:37:59]** go and look and help us with our emerge conflict
+**[00:38:03]** resolution.
+**[00:38:04]** This is a huge, huge thing.
+**[00:38:06]** I think for me and others that are maybe except
+**[00:38:09]** for that handful of people that love this situation, but
+**[00:38:13]** but that it has that ability to figure this out.
+**[00:38:16]** And when we run the test against what would a
+**[00:38:18]** human do when you're when you're faced with a conflict
+**[00:38:21]** merge conflict, what would a human do?
+**[00:38:24]** How would a human solve that conflict?
+**[00:38:26]** And when we look at how would an agent do
+**[00:38:29]** it, it's almost the same like the agent is very,
+**[00:38:31]** very capable.
+**[00:38:32]** And if it can't do it, you can always do
+**[00:38:34]** the thing in that situation, you might have several merge
+**[00:38:37]** conflicts and only one of them is the one that
+**[00:38:40]** require your input.
+**[00:38:41]** Maybe none of them, right.
+**[00:38:42]** So it's a it really takes the kind of the
+**[00:38:44]** heartache away, which is very exciting.
+**[00:38:50]** All right, these are getting meatier and meatier These these
+**[00:38:53]** features here that we're going to roll out.
+**[00:38:57]** Have you ever thought about this as being a problem
+**[00:39:00]** that why is it that Visual Studio seems to be
+**[00:39:03]** getting copilot features later than everybody else, at least without
+**[00:39:07]** you don't have to put your hands up.
+**[00:39:10]** I kind of know the answer to this question.
+**[00:39:12]** You do right and we do as well and it's
+**[00:39:14]** kind of frustrating sometimes.
+**[00:39:16]** There's a lot of reasons for it, but one of
+**[00:39:19]** them is that we have our own implementation of copilot.
+**[00:39:22]** Like we talked to the copilot, the Visual Studio talks
+**[00:39:24]** to the copilot API them ourselves and we have to
+**[00:39:27]** like make it work with the profiler and the debugger
+**[00:39:30]** agent and app modernization and all these different aspects of
+**[00:39:33]** Visual Studio that a lot of other tools don't have.
+**[00:39:36]** So that's one aspect, but another one is that, you
+**[00:39:39]** know, we have our own implementation of the back end,
+**[00:39:42]** like we talk to the copilot service ourselves.
+**[00:39:46]** So what's really nice, what's going to roll out starting
+**[00:39:50]** next week on the Visual Studio insiders is that we're
+**[00:39:54]** finally going to make that move on to the copilot
+**[00:39:58]** CLI SDK, the GitHub copilot CLI SDK.
+**[00:40:01]** And what's really fantastic about this is that Visual Studio
+**[00:40:05]** VS Code, the CLI, like they're all gonna be using
+**[00:40:09]** the exact same base, the same SDK.
+**[00:40:11]** We're gonna have the features at the same time.
+**[00:40:14]** They're going to be implemented differently, right?
+**[00:40:15]** Because in Visual Studio, we can kick off when you
+**[00:40:18]** kick, when the agent kicks off a build, it uses
+**[00:40:21]** Visual Studio to do the build, which makes a lot
+**[00:40:23]** of sense because Ms.
+**[00:40:24]** Build is already warm, Rosslyn is already doing its thing,
+**[00:40:27]** and so that is actually executing faster than if we
+**[00:40:30]** ran the build on the command line.
+**[00:40:32]** So Visual Studio will still do its Visual Studio thing
+**[00:40:36]** even though it's on the shared component and SDK.
+**[00:40:39]** So this is very, very exciting.
+**[00:40:42]** I'm very excited to see what you think about this.
+**[00:40:44]** I've been running it for about a month full time
+**[00:40:46]** and I absolutely love this experience.
+**[00:40:48]** So can't wait for you to get your hands on
+**[00:40:50]** that.
+**[00:40:52]** We have one more, one more.
+**[00:40:57]** So we have a list of different models you can
+**[00:41:00]** use in Visual Studio.
+**[00:41:02]** All right, We got the Opus and the sonnets and
+**[00:41:05]** the GPTS and we allow you to add other models
+**[00:41:08]** like you can add, you know, XAI and a few
+**[00:41:10]** others got Gemini in there and so on.
+**[00:41:13]** You can bring your own key.
+**[00:41:14]** So if you have a subscription to some of these
+**[00:41:17]** providers from a list that we've set that you can
+**[00:41:20]** use, then you can do so, but you still need
+**[00:41:23]** to sign in with your copilot.
+**[00:41:25]** You get up copilot credentials in order to do this.
+**[00:41:30]** And so I'm very happy to announce that starting very
+**[00:41:33]** soon, you can start using any model in Visual Studio,
+**[00:41:37]** whether it's running local, whether it's on a cloud, anywhere.
+**[00:41:42]** Yeah, yes, thank you.
+**[00:41:45]** There were some, there were some clouds over there.
+**[00:41:46]** I'll take it.
+**[00:41:46]** I'll take it.
+**[00:41:47]** Thank you.
+**[00:41:49]** So this is a huge thing, especially for enterprises that
+**[00:41:53]** have like very strict security requirements and so on.
+**[00:41:57]** They maybe they can't run something that's in the cloud,
+**[00:41:59]** for instance.
+**[00:41:59]** Well, now you can run it local, whether it's on
+**[00:42:02]** your machine, it's on Prem somewhere, your own server room,
+**[00:42:04]** however you you want to do this, like there's not
+**[00:42:07]** going to be restrictions there.
+**[00:42:09]** But what the thing that makes Visual Studio, Visual Studio,
+**[00:42:12]** as I was telling you in the beginning is because
+**[00:42:14]** we are so focused on the professional developer segment, we
+**[00:42:17]** know that there are like trust boundaries and things that
+**[00:42:20]** are important to enterprises.
+**[00:42:22]** So of course we're going to have a kind of
+**[00:42:24]** a security layer there.
+**[00:42:25]** So you can lock it down for your organization to
+**[00:42:27]** say, hey, only these models are we mandate you use
+**[00:42:30]** this and that model, for instance.
+**[00:42:32]** And so you only use the local model or you
+**[00:42:34]** only use this cloud provider or whatever it might be,
+**[00:42:36]** right?
+**[00:42:37]** So you have that management layer on top.
+**[00:42:39]** So hopefully you'll start checking this out again next week
+**[00:42:44]** in the insiders build of Visual Studio 2026.
+**[00:42:50]** And I think we can, I think we can take
+**[00:42:55]** a question or maybe 2.
+**[00:42:57]** So if you have any questions, there's some mics up
+**[00:42:58]** here.
+**[00:42:59]** Come on up.
+**[00:43:00]** We're almost out of time, but we do have, we
+**[00:43:03]** do have a little bit here in case you're curious
+**[00:43:06]** about something.
+**[00:43:10]** No, All right.
+**[00:43:13]** It was the backroom that was having, but OK, let's
+**[00:43:14]** call it here.
+**[00:43:16]** Thank you so much, everybody.
+**[00:43:17]** I hope you're excited about what's coming over the summer.
+**[00:43:20]** Make sure to get the insiders next week.
+**[00:43:23]** You won't regret it.
+**[00:43:23]** It's a lot of huge new things.
+**[00:43:25]** So thank you very much.

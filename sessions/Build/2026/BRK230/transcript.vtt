@@ -1,0 +1,5875 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.9090899229049683
+
+00:00:00.040 --> 00:00:05.541
+Well, hello, welcome to building smart AI systems in Foundry
+
+NOTE Confidence: 0.9090899229049683
+
+00:00:05.633 --> 00:00:09.760
+as everything in the world evolves around us.
+
+NOTE Confidence: 0.8159167766571045
+
+00:00:10.720 --> 00:00:13.965
+I'm Yina, I lead product from Microsoft Foundry, and I'm
+
+NOTE Confidence: 0.8159167766571045
+
+00:00:14.023 --> 00:00:16.920
+joined today with Naomi, who does all the work for
+
+NOTE Confidence: 0.8159167766571045
+
+00:00:16.978 --> 00:00:19.760
+shipping all of the models in Microsoft Foundry.
+
+NOTE Confidence: 0.9509106874465942
+
+00:00:20.440 --> 00:00:23.433
+And in the next 45 minutes, we're going to talk
+
+NOTE Confidence: 0.9509106874465942
+
+00:00:23.497 --> 00:00:26.999
+about something that every team building with AI faces.
+
+NOTE Confidence: 0.9503257274627686
+
+00:00:27.440 --> 00:00:31.784
+You build the systems and the landscape around you keeps
+
+NOTE Confidence: 0.9503257274627686
+
+00:00:31.861 --> 00:00:32.560
+evolving.
+
+NOTE Confidence: 0.9083038568496704
+
+00:00:32.760 --> 00:00:36.659
+The models, the tools, the set of like capabilities around
+
+NOTE Confidence: 0.9083038568496704
+
+00:00:36.726 --> 00:00:39.079
+them, it's all shifting around you.
+
+NOTE Confidence: 0.8498787879943848
+
+00:00:40.720 --> 00:00:43.576
+And let's be honest, a year ago, building an AI
+
+NOTE Confidence: 0.8498787879943848
+
+00:00:43.637 --> 00:00:45.399
+app filled a lot more simple.
+
+NOTE Confidence: 0.831682026386261
+
+00:00:45.440 --> 00:00:47.317
+You pick the model, you wire it up and you
+
+NOTE Confidence: 0.831682026386261
+
+00:00:47.362 --> 00:00:47.720
+ship it.
+
+NOTE Confidence: 0.8427608609199524
+
+00:00:48.440 --> 00:00:51.602
+But now you're not building, no longer building just chat
+
+NOTE Confidence: 0.8427608609199524
+
+00:00:51.657 --> 00:00:55.374
+apps, your full on building authentic systems, long running systems
+
+NOTE Confidence: 0.8427608609199524
+
+00:00:55.430 --> 00:00:57.760
+that have to have to continuously improve.
+
+NOTE Confidence: 0.9551558494567871
+
+00:00:58.760 --> 00:01:02.240
+And that is a little bit more challenging.
+
+NOTE Confidence: 0.9270557165145874
+
+00:01:02.400 --> 00:01:05.365
+And here's what I see every single developer face that
+
+NOTE Confidence: 0.9270557165145874
+
+00:01:05.420 --> 00:01:08.112
+you know, run into, they have a hard time picking
+
+NOTE Confidence: 0.9270557165145874
+
+00:01:08.167 --> 00:01:09.759
+the right model for the task.
+
+NOTE Confidence: 0.9695823192596436
+
+00:01:10.160 --> 00:01:11.680
+There's a lot of models in the market.
+
+NOTE Confidence: 0.8842259645462036
+
+00:01:11.920 --> 00:01:13.440
+More keep coming every single day.
+
+NOTE Confidence: 0.9201674461364746
+
+00:01:14.040 --> 00:01:16.632
+The benchmarks look great in paper, but they don't tell
+
+NOTE Confidence: 0.9201674461364746
+
+00:01:16.679 --> 00:01:18.800
+you if their model is good for your scenario.
+
+NOTE Confidence: 0.9480485916137695
+
+00:01:19.520 --> 00:01:21.840
+And then the cluster really, really hard to predict.
+
+NOTE Confidence: 0.8800414800643921
+
+00:01:22.200 --> 00:01:25.039
+And then you can do like some analysis when you're
+
+NOTE Confidence: 0.8800414800643921
+
+00:01:25.095 --> 00:01:28.105
+building it, but like when you put it into production
+
+NOTE Confidence: 0.8800414800643921
+
+00:01:28.162 --> 00:01:30.319
+and see the bill, it's painful, right?
+
+NOTE Confidence: 0.9096224308013916
+
+00:01:31.040 --> 00:01:34.749
+So the moment that you have something that is fully
+
+NOTE Confidence: 0.9096224308013916
+
+00:01:34.821 --> 00:01:38.240
+built and out there, then the next model is in,
+
+NOTE Confidence: 0.9096224308013916
+
+00:01:38.312 --> 00:01:39.840
+the next tool is out.
+
+NOTE Confidence: 0.9046708345413208
+
+00:01:39.840 --> 00:01:42.474
+And all of these different things need to keep changing
+
+NOTE Confidence: 0.9046708345413208
+
+00:01:42.522 --> 00:01:45.204
+and you have to continuously be building this system and
+
+NOTE Confidence: 0.9046708345413208
+
+00:01:45.252 --> 00:01:47.360
+the landscape keeps keeps moving around you.
+
+NOTE Confidence: 0.9290571212768555
+
+00:01:48.520 --> 00:01:51.280
+Now what you want is a system that is simpler,
+
+NOTE Confidence: 0.9290571212768555
+
+00:01:51.340 --> 00:01:54.460
+that is better, that is more cost effective and that
+
+NOTE Confidence: 0.9290571212768555
+
+00:01:54.520 --> 00:01:57.160
+is scalable as you bring it into production.
+
+NOTE Confidence: 0.9555848240852356
+
+00:01:57.560 --> 00:01:59.600
+And that gives you the best outcome for your scenario.
+
+NOTE Confidence: 0.9490818977355957
+
+00:02:00.280 --> 00:02:02.436
+And today we're going to show you how you can
+
+NOTE Confidence: 0.9490818977355957
+
+00:02:02.484 --> 00:02:05.839
+actually get there using Microsoft Foundry as the underlying platform.
+
+NOTE Confidence: 0.8795531988143921
+
+00:02:06.800 --> 00:02:09.691
+What you need in order to get there is not
+
+NOTE Confidence: 0.8795531988143921
+
+00:02:09.760 --> 00:02:13.065
+just a better prompt system or a newer model or,
+
+NOTE Confidence: 0.8795531988143921
+
+00:02:13.134 --> 00:02:15.200
+you know, the latest MCP tool.
+
+NOTE Confidence: 0.8632128238677979
+
+00:02:15.400 --> 00:02:18.349
+What you need is a system that continuously improve over
+
+NOTE Confidence: 0.8632128238677979
+
+00:02:18.402 --> 00:02:21.035
+times and a platform that enables you from all the
+
+NOTE Confidence: 0.8632128238677979
+
+00:02:21.088 --> 00:02:23.879
+way from building to governing and managing at scale.
+
+NOTE Confidence: 0.876980185508728
+
+00:02:24.400 --> 00:02:27.126
+For that, you know, we start with building with GitHub
+
+NOTE Confidence: 0.876980185508728
+
+00:02:27.177 --> 00:02:29.550
+a compilot CLI grounding with all of the set of
+
+NOTE Confidence: 0.876980185508728
+
+00:02:29.601 --> 00:02:32.479
+information that you might have within your organization.
+
+NOTE Confidence: 0.8051804304122925
+
+00:02:32.480 --> 00:02:36.004
+Whether it is, you know, your productivity data in work
+
+NOTE Confidence: 0.8051804304122925
+
+00:02:36.068 --> 00:02:39.079
+IQ, your structured data in found in Fabric IQ.
+
+NOTE Confidence: 0.8508331179618835
+
+00:02:39.400 --> 00:02:41.767
+All of the context and knowledge you might want to
+
+NOTE Confidence: 0.8508331179618835
+
+00:02:41.815 --> 00:02:44.135
+bring to your agents using Foundry IQ, and all of
+
+NOTE Confidence: 0.8508331179618835
+
+00:02:44.182 --> 00:02:45.840
+the world's knowledge using Web IQ.
+
+NOTE Confidence: 0.8966369032859802
+
+00:02:46.280 --> 00:02:49.934
+Then running that in Foundry using Foundry hosted agents governing
+
+NOTE Confidence: 0.8966369032859802
+
+00:02:49.989 --> 00:02:52.591
+with a 365, and then improving over time with a
+
+NOTE Confidence: 0.8966369032859802
+
+00:02:52.647 --> 00:02:55.360
+set of platform capabilities that Foundry offers.
+
+NOTE Confidence: 0.8998626470565796
+
+00:02:56.320 --> 00:02:57.560
+And that's what Foundry comes in.
+
+NOTE Confidence: 0.8827636241912842
+
+00:02:58.000 --> 00:03:02.012
+It's the platform that enables you to take models, agent
+
+NOTE Confidence: 0.8827636241912842
+
+00:03:02.084 --> 00:03:06.526
+service, all of the grounding information, the tools, the post
+
+NOTE Confidence: 0.8827636241912842
+
+00:03:06.598 --> 00:03:10.610
+training capabilities and bring that all to bear for you
+
+NOTE Confidence: 0.8827636241912842
+
+00:03:10.682 --> 00:03:12.759
+to leverage in your scenario.
+
+NOTE Confidence: 0.8968360424041748
+
+00:03:13.680 --> 00:03:16.740
+And the platform is fully governed for the entire genetic
+
+NOTE Confidence: 0.8968360424041748
+
+00:03:16.794 --> 00:03:20.069
+life cycle, not just for running, inferencing or for building
+
+NOTE Confidence: 0.8968360424041748
+
+00:03:20.122 --> 00:03:21.679
+a specific point on solution.
+
+NOTE Confidence: 0.9369333982467651
+
+00:03:22.040 --> 00:03:24.630
+It's for you to be able to build, deploy and
+
+NOTE Confidence: 0.9369333982467651
+
+00:03:24.689 --> 00:03:28.279
+operate at scale and continuously improve your entire system.
+
+NOTE Confidence: 0.8690171241760254
+
+00:03:29.520 --> 00:03:33.040
+And this is what an important mental shift.
+
+NOTE Confidence: 0.8706589937210083
+
+00:03:33.040 --> 00:03:35.897
+And it's like if there's I will say one thing
+
+NOTE Confidence: 0.8706589937210083
+
+00:03:35.961 --> 00:03:38.882
+that you take out of this session today is how
+
+NOTE Confidence: 0.8706589937210083
+
+00:03:38.945 --> 00:03:41.803
+we need to evolve how we think about what was
+
+NOTE Confidence: 0.8706589937210083
+
+00:03:41.866 --> 00:03:43.200
+QA ING our solutions.
+
+NOTE Confidence: 0.8728873133659363
+
+00:03:43.720 --> 00:03:45.919
+So as a developer, you used to think about like,
+
+NOTE Confidence: 0.8728873133659363
+
+00:03:45.965 --> 00:03:48.027
+I'll build it and then I'll think about QA at
+
+NOTE Confidence: 0.8728873133659363
+
+00:03:48.073 --> 00:03:48.440
+the end.
+
+NOTE Confidence: 0.9363588094711304
+
+00:03:48.960 --> 00:03:51.880
+Actually, that needs to be entirely shift left.
+
+NOTE Confidence: 0.918070912361145
+
+00:03:51.960 --> 00:03:55.226
+And now you have to think about your success criteria
+
+NOTE Confidence: 0.918070912361145
+
+00:03:55.287 --> 00:03:58.553
+and evaluation first so that then you can think about
+
+NOTE Confidence: 0.918070912361145
+
+00:03:58.615 --> 00:04:02.128
+how you're going to continuously improve over time and be
+
+NOTE Confidence: 0.918070912361145
+
+00:04:02.189 --> 00:04:06.133
+a resilient solution that decouples from the model evolving from
+
+NOTE Confidence: 0.918070912361145
+
+00:04:06.195 --> 00:04:09.400
+tools changing and from the context evolving itself.
+
+NOTE Confidence: 0.9080984592437744
+
+00:04:09.880 --> 00:04:14.117
+That way you can actually build a solution that like
+
+NOTE Confidence: 0.9080984592437744
+
+00:04:14.198 --> 00:04:18.109
+it's more ready for the test of time and there's
+
+NOTE Confidence: 0.9080984592437744
+
+00:04:18.191 --> 00:04:20.880
+a set of optimization categories.
+
+NOTE Confidence: 0.9621618986129761
+
+00:04:20.880 --> 00:04:21.800
+I'll just go back for a second.
+
+NOTE Confidence: 0.9218268990516663
+
+00:04:21.800 --> 00:04:24.905
+But then once you have your evaluations defined, are actually
+
+NOTE Confidence: 0.9218268990516663
+
+00:04:24.956 --> 00:04:27.145
+going to tell you like, what are the set of
+
+NOTE Confidence: 0.9218268990516663
+
+00:04:27.196 --> 00:04:29.640
+levers that you can pull to optimise the system?
+
+NOTE Confidence: 0.9572281241416931
+
+00:04:29.880 --> 00:04:31.522
+And this is how we're going to structure the rest
+
+NOTE Confidence: 0.9572281241416931
+
+00:04:31.556 --> 00:04:32.160
+of the talk today.
+
+NOTE Confidence: 0.8591618537902832
+
+00:04:32.360 --> 00:04:35.956
+We're going to go through selection of evaluation, optimisation and
+
+NOTE Confidence: 0.8591618537902832
+
+00:04:36.010 --> 00:04:36.440
+scaling.
+
+NOTE Confidence: 0.9465577006340027
+
+00:04:38.080 --> 00:04:40.374
+OK, we're going to start and then we're going to
+
+NOTE Confidence: 0.9465577006340027
+
+00:04:40.422 --> 00:04:42.000
+do it around the model ecosystem.
+
+NOTE Confidence: 0.909065306186676
+
+00:04:42.000 --> 00:04:44.828
+So like we're going to have other sessions throughout the
+
+NOTE Confidence: 0.909065306186676
+
+00:04:44.878 --> 00:04:47.508
+the conference in which we're going to go deeper into
+
+NOTE Confidence: 0.909065306186676
+
+00:04:47.558 --> 00:04:50.039
+like more of the authentic side and then also more
+
+NOTE Confidence: 0.909065306186676
+
+00:04:50.089 --> 00:04:52.967
+of like deeper into the post training capabilities that we
+
+NOTE Confidence: 0.909065306186676
+
+00:04:53.017 --> 00:04:53.960
+have around models.
+
+NOTE Confidence: 0.9284499287605286
+
+00:04:55.560 --> 00:04:56.800
+OK, let's start with select.
+
+NOTE Confidence: 0.5209887027740479
+
+00:04:57.320 --> 00:04:58.440
+All right, awesome.
+
+NOTE Confidence: 0.9266560077667236
+
+00:04:58.440 --> 00:05:01.528
+So lots and lots of models available for you in
+
+NOTE Confidence: 0.9266560077667236
+
+00:05:01.594 --> 00:05:02.120
+Foundry.
+
+NOTE Confidence: 0.9500507116317749
+
+00:05:02.240 --> 00:05:04.472
+Hopefully that's really good news because you saw a great
+
+NOTE Confidence: 0.9500507116317749
+
+00:05:04.512 --> 00:05:06.823
+set of announcements this morning at the keynote, and we're
+
+NOTE Confidence: 0.9500507116317749
+
+00:05:06.862 --> 00:05:08.586
+going to build on that and tell you a little
+
+NOTE Confidence: 0.9500507116317749
+
+00:05:08.625 --> 00:05:09.840
+bit more about what's going on.
+
+NOTE Confidence: 0.8460454344749451
+
+00:05:10.200 --> 00:05:14.000
+Because every AI system really belongs with acting models, right?
+
+NOTE Confidence: 0.9043776988983154
+
+00:05:14.160 --> 00:05:16.342
+We want to think about not just looking at the
+
+NOTE Confidence: 0.9043776988983154
+
+00:05:16.390 --> 00:05:18.762
+specific model you need for all of your use cases,
+
+NOTE Confidence: 0.9043776988983154
+
+00:05:18.809 --> 00:05:21.751
+but instead actually looking at model choice is something that
+
+NOTE Confidence: 0.9043776988983154
+
+00:05:21.798 --> 00:05:23.080
+you need to define by task.
+
+NOTE Confidence: 0.8807475566864014
+
+00:05:23.400 --> 00:05:25.358
+And so you think about this as kind of an
+
+NOTE Confidence: 0.8807475566864014
+
+00:05:25.405 --> 00:05:26.600
+ongoing systems decision.
+
+NOTE Confidence: 0.6960517168045044
+
+00:05:26.760 --> 00:05:27.920
+You know, talked about it, right?
+
+NOTE Confidence: 0.8876324892044067
+
+00:05:27.920 --> 00:05:30.200
+That model life cycle is continuously accelerating.
+
+NOTE Confidence: 0.9258796572685242
+
+00:05:30.200 --> 00:05:32.514
+We're always bringing the best and latest to you, but
+
+NOTE Confidence: 0.9258796572685242
+
+00:05:32.557 --> 00:05:34.522
+we want to make sure that we're able to bring
+
+NOTE Confidence: 0.9258796572685242
+
+00:05:34.566 --> 00:05:36.400
+and optimise across these different areas.
+
+NOTE Confidence: 0.9528868198394775
+
+00:05:36.720 --> 00:05:39.238
+So let's think about how we approach model selection as
+
+NOTE Confidence: 0.9528868198394775
+
+00:05:39.284 --> 00:05:39.880
+part of this.
+
+NOTE Confidence: 0.9512167572975159
+
+00:05:40.600 --> 00:05:43.458
+So of course, in any AI application, models are kind
+
+NOTE Confidence: 0.9512167572975159
+
+00:05:43.513 --> 00:05:46.427
+of your raw materials, right, to get started with and
+
+NOTE Confidence: 0.9512167572975159
+
+00:05:46.482 --> 00:05:48.845
+you build so many big things on top of this
+
+NOTE Confidence: 0.9512167572975159
+
+00:05:48.900 --> 00:05:50.880
+and as part of your AI applications.
+
+NOTE Confidence: 0.9494300484657288
+
+00:05:51.279 --> 00:05:53.744
+But what matters is not just the model itself, but
+
+NOTE Confidence: 0.9494300484657288
+
+00:05:53.793 --> 00:05:55.864
+is it the right model for the job that you
+
+NOTE Confidence: 0.9494300484657288
+
+00:05:55.913 --> 00:05:56.159
+have?
+
+NOTE Confidence: 0.9304866790771484
+
+00:05:56.480 --> 00:05:59.890
+And of course, with foundry models, developers can access, explore,
+
+NOTE Confidence: 0.9304866790771484
+
+00:05:59.941 --> 00:06:02.945
+compare and do many things across the foundry model catalog
+
+NOTE Confidence: 0.9304866790771484
+
+00:06:02.996 --> 00:06:06.000
+with a consistent API and of course, an enterprise curation
+
+NOTE Confidence: 0.9304866790771484
+
+00:06:06.050 --> 00:06:07.680
+that's built in as part of this.
+
+NOTE Confidence: 0.8389394283294678
+
+00:06:08.000 --> 00:06:10.385
+And so of course, this means, you know, less thinking
+
+NOTE Confidence: 0.8389394283294678
+
+00:06:10.430 --> 00:06:13.580
+about more that, sorry, this means more around faster experimentation,
+
+NOTE Confidence: 0.8389394283294678
+
+00:06:13.625 --> 00:06:15.875
+being able to get to production faster and then be
+
+NOTE Confidence: 0.8389394283294678
+
+00:06:15.920 --> 00:06:18.440
+able to deploy this quickly of your as your requirements
+
+NOTE Confidence: 0.8389394283294678
+
+00:06:18.485 --> 00:06:18.800
+change.
+
+NOTE Confidence: 0.9041155576705933
+
+00:06:19.200 --> 00:06:20.910
+Now a couple of things that I want to mention
+
+NOTE Confidence: 0.9041155576705933
+
+00:06:20.948 --> 00:06:22.925
+on this slide in particular, we have, of course, our
+
+NOTE Confidence: 0.9041155576705933
+
+00:06:22.963 --> 00:06:23.799
+flagship models there.
+
+NOTE Confidence: 0.9125124216079712
+
+00:06:23.800 --> 00:06:25.946
+You see Open AI and Anthropic as we talk about
+
+NOTE Confidence: 0.9125124216079712
+
+00:06:25.993 --> 00:06:26.600
+all the time.
+
+NOTE Confidence: 0.8491563200950623
+
+00:06:26.800 --> 00:06:28.761
+I don't want to have a special call out with
+
+NOTE Confidence: 0.8491563200950623
+
+00:06:28.806 --> 00:06:31.570
+our amazing partnership with we have with Hugging Face because
+
+NOTE Confidence: 0.8491563200950623
+
+00:06:31.614 --> 00:06:33.977
+of course, if Jeff is sitting right there, go hugging
+
+NOTE Confidence: 0.8491563200950623
+
+00:06:34.022 --> 00:06:35.359
+face, love Hugging face folks.
+
+NOTE Confidence: 0.9221652746200562
+
+00:06:35.480 --> 00:06:37.120
+Yes, yes, thank you.
+
+NOTE Confidence: 0.9342305660247803
+
+00:06:37.360 --> 00:06:39.240
+So we love our OSS models.
+
+NOTE Confidence: 0.9441146850585938
+
+00:06:39.240 --> 00:06:41.516
+We have a great partnership with them populate so many
+
+NOTE Confidence: 0.9441146850585938
+
+00:06:41.558 --> 00:06:43.835
+things inside of the Foundry catalog and you know talk
+
+NOTE Confidence: 0.9441146850585938
+
+00:06:43.877 --> 00:06:46.070
+a little bit later on about one of the announcements
+
+NOTE Confidence: 0.9441146850585938
+
+00:06:46.112 --> 00:06:47.040
+we have there as well.
+
+NOTE Confidence: 0.9723674654960632
+
+00:06:47.440 --> 00:06:49.563
+And so really we can think about these new models
+
+NOTE Confidence: 0.9723674654960632
+
+00:06:49.606 --> 00:06:50.040
+coming in.
+
+NOTE Confidence: 0.8887033462524414
+
+00:06:50.040 --> 00:06:52.631
+You heard about NVIDIA this morning as well and being
+
+NOTE Confidence: 0.8887033462524414
+
+00:06:52.679 --> 00:06:55.515
+able to have access both the flagship capabilities and the
+
+NOTE Confidence: 0.8887033462524414
+
+00:06:55.564 --> 00:06:57.519
+best of the OSS models across the board.
+
+NOTE Confidence: 0.8145091533660889
+
+00:06:58.320 --> 00:06:59.920
+So let's talk about Claude.
+
+NOTE Confidence: 0.7941277027130127
+
+00:06:59.920 --> 00:07:01.280
+Claude is also out there.
+
+NOTE Confidence: 0.8692832589149475
+
+00:07:01.400 --> 00:07:04.313
+We launched Opus 4.8 last week as our newest model
+
+NOTE Confidence: 0.8692832589149475
+
+00:07:04.371 --> 00:07:06.120
+that's in our Foundry catalog.
+
+NOTE Confidence: 0.9655703902244568
+
+00:07:06.280 --> 00:07:08.040
+Please do check it out as part of this.
+
+NOTE Confidence: 0.865772008895874
+
+00:07:08.200 --> 00:07:10.776
+And I'm excited that today we can announce that Claude
+
+NOTE Confidence: 0.865772008895874
+
+00:07:10.824 --> 00:07:12.159
+is finally running on Azure.
+
+NOTE Confidence: 0.8620381355285645
+
+00:07:12.160 --> 00:07:14.713
+It is actually running on GB three hundreds, our highest
+
+NOTE Confidence: 0.8620381355285645
+
+00:07:14.758 --> 00:07:16.400
+end hardware that we have available.
+
+NOTE Confidence: 0.8871840834617615
+
+00:07:16.600 --> 00:07:18.384
+And it really gives us a great way to be
+
+NOTE Confidence: 0.8871840834617615
+
+00:07:18.429 --> 00:07:20.704
+able to bring that anthropic life cycle, all of the
+
+NOTE Confidence: 0.8871840834617615
+
+00:07:20.749 --> 00:07:23.559
+development tools and bringing them directly to you from Azure.
+
+NOTE Confidence: 0.8921527862548828
+
+00:07:23.800 --> 00:07:25.760
+So really exciting stuff as part of this too.
+
+NOTE Confidence: 0.9034034609794617
+
+00:07:25.800 --> 00:07:26.200
+Cool.
+
+NOTE Confidence: 0.8289429545402527
+
+00:07:26.960 --> 00:07:27.720
+Somebody's excited.
+
+NOTE Confidence: 0.8604289293289185
+
+00:07:27.720 --> 00:07:29.480
+One person at least was excited about Claude.
+
+NOTE Confidence: 0.7881088256835938
+
+00:07:29.600 --> 00:07:30.840
+People excited about Claude.
+
+NOTE Confidence: 0.867242693901062
+
+00:07:30.920 --> 00:07:32.440
+Yes, thank you.
+
+NOTE Confidence: 0.6883438229560852
+
+00:07:32.640 --> 00:07:35.000
+All right, so all good.
+
+NOTE Confidence: 0.8862318992614746
+
+00:07:35.360 --> 00:07:38.080
+All right, let's talk about Microsoft AI models, right?
+
+NOTE Confidence: 0.9373874068260193
+
+00:07:38.080 --> 00:07:40.159
+So we brought a lot of energy this morning in
+
+NOTE Confidence: 0.9373874068260193
+
+00:07:40.205 --> 00:07:40.759
+the keynote.
+
+NOTE Confidence: 0.8449246287345886
+
+00:07:40.760 --> 00:07:43.686
+If you saw with Mustafa there, we've announced different models
+
+NOTE Confidence: 0.8449246287345886
+
+00:07:43.732 --> 00:07:45.080
+that are coming onto Foundry.
+
+NOTE Confidence: 0.9209063649177551
+
+00:07:45.200 --> 00:07:46.320
+They are live this morning.
+
+NOTE Confidence: 0.9140625596046448
+
+00:07:46.320 --> 00:07:47.480
+My team just pushed them.
+
+NOTE Confidence: 0.799994707107544
+
+00:07:47.480 --> 00:07:49.400
+So go, go, all those folks.
+
+NOTE Confidence: 0.8880248665809631
+
+00:07:49.400 --> 00:07:49.960
+Amazing.
+
+NOTE Confidence: 0.8896942138671875
+
+00:07:49.960 --> 00:07:52.457
+So it's incredible to see that go live as Mustafa
+
+NOTE Confidence: 0.8896942138671875
+
+00:07:52.508 --> 00:07:53.120
+was talking.
+
+NOTE Confidence: 0.8334774971008301
+
+00:07:53.440 --> 00:07:55.563
+And so really you can think about this as being
+
+NOTE Confidence: 0.8334774971008301
+
+00:07:55.608 --> 00:07:57.279
+exciting for Microsoft itself, right?
+
+NOTE Confidence: 0.916919469833374
+
+00:07:57.480 --> 00:08:00.281
+It's not that we're building the amazing platform that we
+
+NOTE Confidence: 0.916919469833374
+
+00:08:00.330 --> 00:08:03.131
+have inside of Foundry, but it's also that we're bringing
+
+NOTE Confidence: 0.916919469833374
+
+00:08:03.180 --> 00:08:05.981
+these first party models to you, really bringing the best
+
+NOTE Confidence: 0.916919469833374
+
+00:08:06.030 --> 00:08:08.635
+to what we can do, running those efficiently and cost
+
+NOTE Confidence: 0.916919469833374
+
+00:08:08.684 --> 00:08:11.239
+optimization scenarios that are really well handled.
+
+NOTE Confidence: 0.9311392903327942
+
+00:08:11.400 --> 00:08:14.240
+Especially I would say, for example, on image 2.5.
+
+NOTE Confidence: 0.9138540029525757
+
+00:08:14.360 --> 00:08:16.056
+This is one of the latest models that are out
+
+NOTE Confidence: 0.9138540029525757
+
+00:08:16.093 --> 00:08:16.319
+there.
+
+NOTE Confidence: 0.8831848502159119
+
+00:08:16.480 --> 00:08:17.560
+Please go try it out.
+
+NOTE Confidence: 0.9663828015327454
+
+00:08:17.560 --> 00:08:18.640
+It's a great one as well.
+
+NOTE Confidence: 0.9481337070465088
+
+00:08:18.960 --> 00:08:22.139
+And we can really see across thinking across image, across
+
+NOTE Confidence: 0.9481337070465088
+
+00:08:22.194 --> 00:08:23.399
+code and audio models.
+
+NOTE Confidence: 0.8661721348762512
+
+00:08:23.480 --> 00:08:26.598
+We really have a full multimodal application stack that's really
+
+NOTE Confidence: 0.8661721348762512
+
+00:08:26.647 --> 00:08:28.839
+coming out with those first party models too.
+
+NOTE Confidence: 0.9457804560661316
+
+00:08:29.040 --> 00:08:31.468
+So lots and lots of goodness that's happening across the
+
+NOTE Confidence: 0.9457804560661316
+
+00:08:31.512 --> 00:08:32.639
+board with foundry models.
+
+NOTE Confidence: 0.8111616969108582
+
+00:08:33.800 --> 00:08:35.360
+So what was our strategy?
+
+NOTE Confidence: 0.9547101259231567
+
+00:08:35.360 --> 00:08:37.400
+So we've got lots of goodness in the catalog.
+
+NOTE Confidence: 0.8959509134292603
+
+00:08:37.400 --> 00:08:40.339
+We've got 11,000 plus models to look for, but there's
+
+NOTE Confidence: 0.8959509134292603
+
+00:08:40.394 --> 00:08:42.279
+even more that's part of this too.
+
+NOTE Confidence: 0.9383003115653992
+
+00:08:42.559 --> 00:08:45.881
+So with foundry models, our strategy really is to innovate
+
+NOTE Confidence: 0.9383003115653992
+
+00:08:45.939 --> 00:08:47.599
+across that full AI spectrum.
+
+NOTE Confidence: 0.9508819580078125
+
+00:08:47.840 --> 00:08:49.784
+And so you see here on the one side, you've
+
+NOTE Confidence: 0.9508819580078125
+
+00:08:49.829 --> 00:08:52.000
+really got the production grade frontier models.
+
+NOTE Confidence: 0.9363402724266052
+
+00:08:52.160 --> 00:08:54.765
+You can use those quickly inside of your applications and
+
+NOTE Confidence: 0.9363402724266052
+
+00:08:54.811 --> 00:08:57.280
+they have those strict operational requirements there.
+
+NOTE Confidence: 0.9412379860877991
+
+00:08:57.720 --> 00:08:59.865
+On the other side, we also want to bring you
+
+NOTE Confidence: 0.9412379860877991
+
+00:08:59.914 --> 00:09:03.279
+that cutting edge, that experimentation that really helps you unleash
+
+NOTE Confidence: 0.9412379860877991
+
+00:09:03.327 --> 00:09:06.156
+the research and develop that as part of your applications
+
+NOTE Confidence: 0.9412379860877991
+
+00:09:06.204 --> 00:09:06.400
+too.
+
+NOTE Confidence: 0.9603338837623596
+
+00:09:06.680 --> 00:09:08.800
+And so you can check out things like Foundry Labs.
+
+NOTE Confidence: 0.935800313949585
+
+00:09:08.920 --> 00:09:11.159
+We've got a new set of capabilities that are out
+
+NOTE Confidence: 0.935800313949585
+
+00:09:11.206 --> 00:09:13.119
+there, primarily from Microsoft Research.
+
+NOTE Confidence: 0.963917076587677
+
+00:09:13.280 --> 00:09:15.040
+The latest and greatest pieces are there.
+
+NOTE Confidence: 0.9706903100013733
+
+00:09:15.200 --> 00:09:17.318
+And then we basically have a great place to build
+
+NOTE Confidence: 0.9706903100013733
+
+00:09:17.361 --> 00:09:17.879
+your models.
+
+NOTE Confidence: 0.9354648590087891
+
+00:09:18.000 --> 00:09:20.613
+You can build them with confidence and then explore, you
+
+NOTE Confidence: 0.9354648590087891
+
+00:09:20.659 --> 00:09:23.319
+know, the frontiers of what could be really essential for
+
+NOTE Confidence: 0.9354648590087891
+
+00:09:23.366 --> 00:09:23.879
+the future.
+
+NOTE Confidence: 0.9083966612815857
+
+00:09:25.160 --> 00:09:28.259
+So next piece of this is understanding the shifts that
+
+NOTE Confidence: 0.9083966612815857
+
+00:09:28.316 --> 00:09:29.119
+we are seeing.
+
+NOTE Confidence: 0.9493314027786255
+
+00:09:29.120 --> 00:09:31.721
+So it's not just about 1 reasoning model or one
+
+NOTE Confidence: 0.9493314027786255
+
+00:09:31.777 --> 00:09:35.319
+frontier model happening across all of your different use cases.
+
+NOTE Confidence: 0.9569856524467468
+
+00:09:35.640 --> 00:09:37.757
+Instead, we really want to think about the shifts that
+
+NOTE Confidence: 0.9569856524467468
+
+00:09:37.796 --> 00:09:39.599
+are happening within those different segments.
+
+NOTE Confidence: 0.9237921237945557
+
+00:09:39.920 --> 00:09:42.353
+And so you can see now this increasingly is coming
+
+NOTE Confidence: 0.9237921237945557
+
+00:09:42.402 --> 00:09:43.959
+from these purpose built models.
+
+NOTE Confidence: 0.7964789271354675
+
+00:09:44.200 --> 00:09:47.200
+And so purpose built models that are for specific domains.
+
+NOTE Confidence: 0.9476920962333679
+
+00:09:47.559 --> 00:09:50.306
+And so not every problem warrants having the same general
+
+NOTE Confidence: 0.9476920962333679
+
+00:09:50.355 --> 00:09:51.560
+purpose model, of course.
+
+NOTE Confidence: 0.9022055864334106
+
+00:09:51.920 --> 00:09:56.324
+So geospatial, robotics, biomedical, material science, code, search, media, right,
+
+NOTE Confidence: 0.9022055864334106
+
+00:09:56.378 --> 00:09:59.332
+Lots and lots of different categories of models in here
+
+NOTE Confidence: 0.9022055864334106
+
+00:09:59.386 --> 00:10:01.319
+and you need specific ones for that.
+
+NOTE Confidence: 0.9256851077079773
+
+00:10:01.640 --> 00:10:04.261
+So as developers, you really think about the best system
+
+NOTE Confidence: 0.9256851077079773
+
+00:10:04.308 --> 00:10:06.788
+design that's being able to apply the models that you
+
+NOTE Confidence: 0.9256851077079773
+
+00:10:06.835 --> 00:10:08.239
+can within those domain areas.
+
+NOTE Confidence: 0.923663318157196
+
+00:10:08.720 --> 00:10:10.751
+And so one of the ones that I'll call out
+
+NOTE Confidence: 0.923663318157196
+
+00:10:10.800 --> 00:10:13.079
+here specifically that's newest is Aurora 1.5.
+
+NOTE Confidence: 0.9138531684875488
+
+00:10:13.080 --> 00:10:15.120
+You can see it here on our geospatial pieces.
+
+NOTE Confidence: 0.9263438582420349
+
+00:10:15.280 --> 00:10:17.400
+It's really an amazing weather modelling system.
+
+NOTE Confidence: 0.9151736497879028
+
+00:10:17.400 --> 00:10:19.615
+So if you have a great application for this, we
+
+NOTE Confidence: 0.9151736497879028
+
+00:10:19.662 --> 00:10:22.349
+really think this is the cutting edge, has that satellite
+
+NOTE Confidence: 0.9151736497879028
+
+00:10:22.397 --> 00:10:25.131
+imagery in their atmospheric data and can really scale out
+
+NOTE Confidence: 0.9151736497879028
+
+00:10:25.178 --> 00:10:26.639
+where traditional models can't.
+
+NOTE Confidence: 0.8591169714927673
+
+00:10:27.320 --> 00:10:29.694
+So lots and lots of goodness happening across here too,
+
+NOTE Confidence: 0.8591169714927673
+
+00:10:29.737 --> 00:10:30.040
+NVIDIA.
+
+NOTE Confidence: 0.8271089792251587
+
+00:10:30.080 --> 00:10:34.019
+Yeah, we're also are expanding our partnership with NVIDIA bringing
+
+NOTE Confidence: 0.8271089792251587
+
+00:10:34.077 --> 00:10:37.840
+in addition and models from NVIDIA and Emotron recenting models,
+
+NOTE Confidence: 0.8271089792251587
+
+00:10:37.899 --> 00:10:41.015
+models for physical AI like Cosmos and the new NVIDIA
+
+NOTE Confidence: 0.8271089792251587
+
+00:10:41.074 --> 00:10:43.719
+AI weather models like Earth .2 technologies.
+
+NOTE Confidence: 0.8871107697486877
+
+00:10:44.000 --> 00:10:48.045
+These models enable developers and enterprises to build systems that
+
+NOTE Confidence: 0.8871107697486877
+
+00:10:48.104 --> 00:10:50.959
+recent act and respond to real world conditions.
+
+NOTE Confidence: 0.8374382853507996
+
+00:10:51.160 --> 00:10:54.316
+And just going beyond software workloads into physical AI, we
+
+NOTE Confidence: 0.8374382853507996
+
+00:10:54.368 --> 00:10:57.163
+actually have a pre recorded session with a very, very
+
+NOTE Confidence: 0.8374382853507996
+
+00:10:57.214 --> 00:10:59.802
+cool demo of physical AI that I recommend that you
+
+NOTE Confidence: 0.8374382853507996
+
+00:10:59.854 --> 00:11:00.319
+catch on.
+
+NOTE Confidence: 0.8981469869613647
+
+00:11:00.960 --> 00:11:04.536
+Together with NVIDIA, we are enabling A unified platform where
+
+NOTE Confidence: 0.8981469869613647
+
+00:11:04.593 --> 00:11:07.593
+developers can build, run on a scale AI systems that
+
+NOTE Confidence: 0.8981469869613647
+
+00:11:07.651 --> 00:11:08.920
+spanned into physical.
+
+NOTE Confidence: 0.9238265156745911
+
+00:11:10.560 --> 00:11:15.120
+OK, so let's see our foundry models in action.
+
+NOTE Confidence: 0.8892075419425964
+
+00:11:15.120 --> 00:11:17.738
+I'm just going to give you a quick pointers as
+
+NOTE Confidence: 0.8892075419425964
+
+00:11:17.795 --> 00:11:19.560
+you land in the Foundry portal.
+
+NOTE Confidence: 0.9647884368896484
+
+00:11:19.559 --> 00:11:21.562
+So this is the foundry portal where you can see
+
+NOTE Confidence: 0.9647884368896484
+
+00:11:21.605 --> 00:11:23.948
+all of the different models that we have available, all
+
+NOTE Confidence: 0.9647884368896484
+
+00:11:23.991 --> 00:11:25.439
+of the different set of providers.
+
+NOTE Confidence: 0.8545929789543152
+
+00:11:26.720 --> 00:11:30.359
+We have a leaderboard where we benchmark models across different
+
+NOTE Confidence: 0.8545929789543152
+
+00:11:30.416 --> 00:11:33.999
+set of dimensions, quality, safety, throughput, bench and cost.
+
+NOTE Confidence: 0.9215937852859497
+
+00:11:34.360 --> 00:11:36.604
+And we bring all of the models and also have
+
+NOTE Confidence: 0.9215937852859497
+
+00:11:36.655 --> 00:11:38.848
+a set of trade off charts where you can use
+
+NOTE Confidence: 0.9215937852859497
+
+00:11:38.899 --> 00:11:41.960
+to select models based on your particular set of trade-offs.
+
+NOTE Confidence: 0.9084179401397705
+
+00:11:42.360 --> 00:11:45.540
+We also have the ability to compare models across different
+
+NOTE Confidence: 0.9084179401397705
+
+00:11:45.594 --> 00:11:48.883
+providers, whether it is open source models or closed models,
+
+NOTE Confidence: 0.9084179401397705
+
+00:11:48.937 --> 00:11:52.279
+and see how are they comparing across the different benchmarks
+
+NOTE Confidence: 0.9084179401397705
+
+00:11:52.333 --> 00:11:54.759
+that we have and running side by side models.
+
+NOTE Confidence: 0.9556623697280884
+
+00:11:55.320 --> 00:11:57.334
+If you want to see how they behave on a
+
+NOTE Confidence: 0.9556623697280884
+
+00:11:57.386 --> 00:11:59.917
+given set of prompts, how much time do they take,
+
+NOTE Confidence: 0.9556623697280884
+
+00:11:59.968 --> 00:12:01.880
+what is the responses that they have?
+
+NOTE Confidence: 0.7115248441696167
+
+00:12:01.880 --> 00:12:03.920
+You can do them this comparison side by side.
+
+NOTE Confidence: 0.9670754671096802
+
+00:12:04.120 --> 00:12:06.080
+This is really good when you're doing prototyping.
+
+NOTE Confidence: 0.9247816205024719
+
+00:12:06.400 --> 00:12:08.000
+You can also save as an agent.
+
+NOTE Confidence: 0.9033285975456238
+
+00:12:08.200 --> 00:12:10.375
+And when you save as an agent, of course, then
+
+NOTE Confidence: 0.9033285975456238
+
+00:12:10.422 --> 00:12:12.882
+new capabilities show up like you can add a specific
+
+NOTE Confidence: 0.9033285975456238
+
+00:12:12.929 --> 00:12:15.199
+set of tools, knowledge, memory and guard rails.
+
+NOTE Confidence: 0.8899946212768555
+
+00:12:15.960 --> 00:12:18.960
+And you can also set a specific set of metrics.
+
+NOTE Confidence: 0.9221375584602356
+
+00:12:19.080 --> 00:12:22.000
+In this particular case, I've set up task adherence, intend
+
+NOTE Confidence: 0.9221375584602356
+
+00:12:22.049 --> 00:12:25.365
+resolution and relevance as part of the out-of-the-box metrics that
+
+NOTE Confidence: 0.9221375584602356
+
+00:12:25.415 --> 00:12:28.286
+then foundry will do evaluations every time that the agent
+
+NOTE Confidence: 0.9221375584602356
+
+00:12:28.335 --> 00:12:28.879
+is invoked.
+
+NOTE Confidence: 0.9120057225227356
+
+00:12:29.160 --> 00:12:31.617
+So in this, when I go and run a request,
+
+NOTE Confidence: 0.9120057225227356
+
+00:12:31.679 --> 00:12:34.136
+it's going to do a trace that I can then
+
+NOTE Confidence: 0.9120057225227356
+
+00:12:34.198 --> 00:12:36.778
+go and watch and it's going to give me the
+
+NOTE Confidence: 0.9120057225227356
+
+00:12:36.840 --> 00:12:40.465
+specifics spans around duration, what each of the turns are
+
+NOTE Confidence: 0.9120057225227356
+
+00:12:40.527 --> 00:12:41.079
+going in.
+
+NOTE Confidence: 0.9413815140724182
+
+00:12:41.120 --> 00:12:43.729
+And then it's going to also give me the outputs
+
+NOTE Confidence: 0.9413815140724182
+
+00:12:43.785 --> 00:12:44.839
+of that evaluation.
+
+NOTE Confidence: 0.8425862789154053
+
+00:12:44.840 --> 00:12:47.011
+And it's going to in this, in in this case,
+
+NOTE Confidence: 0.8425862789154053
+
+00:12:47.061 --> 00:12:49.283
+it's doing LLMS as a judge and it's going to
+
+NOTE Confidence: 0.8425862789154053
+
+00:12:49.333 --> 00:12:50.999
+tell whether or not it's passing.
+
+NOTE Confidence: 0.8313921093940735
+
+00:12:51.000 --> 00:12:53.189
+And it's going to give me a specific set of
+
+NOTE Confidence: 0.8313921093940735
+
+00:12:53.239 --> 00:12:56.039
+verbatim on like what happened during during that call.
+
+NOTE Confidence: 0.8992724418640137
+
+00:12:56.640 --> 00:12:58.733
+So this is a great way into which you can
+
+NOTE Confidence: 0.8992724418640137
+
+00:12:58.784 --> 00:13:01.540
+take the models that are available in the catalog, run
+
+NOTE Confidence: 0.8992724418640137
+
+00:13:01.591 --> 00:13:03.991
+a set of like queries against them and it start
+
+NOTE Confidence: 0.8992724418640137
+
+00:13:04.042 --> 00:13:05.880
+get ready for prototyping with them.
+
+NOTE Confidence: 0.1625908464193344
+
+00:13:05.880 --> 00:13:06.040
+Awesome.
+
+NOTE Confidence: 0.2924511730670929
+
+00:13:09.400 --> 00:13:09.560
+Great.
+
+NOTE Confidence: 0.6184301376342773
+
+00:13:09.560 --> 00:13:12.640
+Oops, there we go.
+
+NOTE Confidence: 0.8830393552780151
+
+00:13:13.160 --> 00:13:15.553
+And then throughout the the session, what we're going to
+
+NOTE Confidence: 0.8830393552780151
+
+00:13:15.596 --> 00:13:17.604
+do is we're going to use a scenario where we're
+
+NOTE Confidence: 0.8830393552780151
+
+00:13:17.647 --> 00:13:19.400
+going to be building a tree planning app.
+
+NOTE Confidence: 0.8781858682632446
+
+00:13:20.120 --> 00:13:22.606
+And this one is basically, you know, typical scenario that
+
+NOTE Confidence: 0.8781858682632446
+
+00:13:22.649 --> 00:13:25.179
+you have in the enterprise where there's specific goal that
+
+NOTE Confidence: 0.8781858682632446
+
+00:13:25.222 --> 00:13:26.680
+you have to understand the intent.
+
+NOTE Confidence: 0.8629380464553833
+
+00:13:26.679 --> 00:13:29.492
+You have to like, then make sure that you're making
+
+NOTE Confidence: 0.8629380464553833
+
+00:13:29.547 --> 00:13:31.919
+a set of decisions based on the, on the, on
+
+NOTE Confidence: 0.8629380464553833
+
+00:13:31.974 --> 00:13:34.897
+the prompts that you're getting and then giving an an
+
+NOTE Confidence: 0.8629380464553833
+
+00:13:34.952 --> 00:13:35.999
+output to the user.
+
+NOTE Confidence: 0.8934699892997742
+
+00:13:36.520 --> 00:13:38.762
+As I mentioned at the beginning, the key part of
+
+NOTE Confidence: 0.8934699892997742
+
+00:13:38.808 --> 00:13:40.724
+that and that we want you to take away is
+
+NOTE Confidence: 0.8934699892997742
+
+00:13:40.770 --> 00:13:43.199
+that you need to start with what success looks like.
+
+NOTE Confidence: 0.9266464710235596
+
+00:13:43.400 --> 00:13:46.013
+What is your success criteria when it comes to correctness,
+
+NOTE Confidence: 0.9266464710235596
+
+00:13:46.058 --> 00:13:48.273
+when it comes to compliance, when it comes to like
+
+NOTE Confidence: 0.9266464710235596
+
+00:13:48.317 --> 00:13:50.533
+user behaviour and when it comes to like, what are
+
+NOTE Confidence: 0.9266464710235596
+
+00:13:50.577 --> 00:13:52.615
+you going to use in the application to take it
+
+NOTE Confidence: 0.9266464710235596
+
+00:13:52.659 --> 00:13:53.279
+to production?
+
+NOTE Confidence: 0.8119125962257385
+
+00:13:54.520 --> 00:13:57.238
+And in, in that concept comes in the notion of,
+
+NOTE Confidence: 0.8119125962257385
+
+00:13:57.296 --> 00:13:58.280
+of hill climbing.
+
+NOTE Confidence: 0.9470900893211365
+
+00:13:58.360 --> 00:14:00.929
+And you see, you saw this in the keynote where
+
+NOTE Confidence: 0.9470900893211365
+
+00:14:00.985 --> 00:14:04.002
+because you have a very clear understanding of what is
+
+NOTE Confidence: 0.9470900893211365
+
+00:14:04.058 --> 00:14:07.577
+your success criteria, then you can go and continuously improve
+
+NOTE Confidence: 0.9470900893211365
+
+00:14:07.633 --> 00:14:08.359
+on it, right?
+
+NOTE Confidence: 0.9188497066497803
+
+00:14:08.600 --> 00:14:09.748
+And this is what we're going to do in the
+
+NOTE Confidence: 0.9188497066497803
+
+00:14:09.776 --> 00:14:10.000
+session.
+
+NOTE Confidence: 0.8824993371963501
+
+00:14:10.000 --> 00:14:12.524
+We're going to create that benchmark and we're going to
+
+NOTE Confidence: 0.8824993371963501
+
+00:14:12.570 --> 00:14:14.039
+continuously improve on on that.
+
+NOTE Confidence: 0.8117950558662415
+
+00:14:14.679 --> 00:14:18.051
+the IT typically the developer workflow starts where like you
+
+NOTE Confidence: 0.8117950558662415
+
+00:14:18.106 --> 00:14:21.035
+have a scenario, you do have an understanding of what
+
+NOTE Confidence: 0.8117950558662415
+
+00:14:21.090 --> 00:14:24.351
+success looks like and then you're going to throw prototype
+
+NOTE Confidence: 0.8117950558662415
+
+00:14:24.407 --> 00:14:27.170
+it with what is the latest and greatest model that
+
+NOTE Confidence: 0.8117950558662415
+
+00:14:27.225 --> 00:14:29.160
+has been recently announced, right?
+
+NOTE Confidence: 0.9045323133468628
+
+00:14:29.840 --> 00:14:33.025
+With that, you can get a really good understanding of
+
+NOTE Confidence: 0.9045323133468628
+
+00:14:33.085 --> 00:14:36.391
+like this, the the how the scenario behaves and whether
+
+NOTE Confidence: 0.9045323133468628
+
+00:14:36.451 --> 00:14:39.937
+your particular application can you know what would be the
+
+NOTE Confidence: 0.9045323133468628
+
+00:14:39.998 --> 00:14:41.079
+baseline for that?
+
+NOTE Confidence: 0.8990928530693054
+
+00:14:42.000 --> 00:14:44.334
+This is what we're going to do at the first
+
+NOTE Confidence: 0.8990928530693054
+
+00:14:44.388 --> 00:14:47.265
+step and just shout out on like everything that we're
+
+NOTE Confidence: 0.8990928530693054
+
+00:14:47.319 --> 00:14:48.079
+going to show.
+
+NOTE Confidence: 0.9478793144226074
+
+00:14:48.320 --> 00:14:50.481
+Of course, we build it with agents and you can
+
+NOTE Confidence: 0.9478793144226074
+
+00:14:50.528 --> 00:14:51.280
+try it yourself.
+
+NOTE Confidence: 0.8151898384094238
+
+00:14:51.280 --> 00:14:52.720
+So this is the AKA dot Ms.
+
+NOTE Confidence: 0.8850452303886414
+
+00:14:52.720 --> 00:14:54.709
+link for all of the code that we're going to
+
+NOTE Confidence: 0.8850452303886414
+
+00:14:54.754 --> 00:14:55.840
+show during the session.
+
+NOTE Confidence: 0.8753153681755066
+
+00:14:56.400 --> 00:14:59.440
+And we're not going to go deeply super into code.
+
+NOTE Confidence: 0.8496387600898743
+
+00:14:59.480 --> 00:15:01.639
+We're just going to go show the outputs, but everything
+
+NOTE Confidence: 0.8496387600898743
+
+00:15:01.678 --> 00:15:03.328
+is right now in the GitHub repo for you to
+
+NOTE Confidence: 0.8496387600898743
+
+00:15:03.367 --> 00:15:03.760
+try along.
+
+NOTE Confidence: 0.7946560978889465
+
+00:15:04.440 --> 00:15:06.632
+And of course, I just want to just a shout
+
+NOTE Confidence: 0.7946560978889465
+
+00:15:06.685 --> 00:15:09.399
+out of gratitude for Nithya, who was the mastermind.
+
+NOTE Confidence: 0.7883895039558411
+
+00:15:09.400 --> 00:15:11.840
+We had all of the demos and she's done.
+
+NOTE Confidence: 0.8359616994857788
+
+00:15:12.000 --> 00:15:12.920
+She did a great job to it.
+
+NOTE Confidence: 0.9461842179298401
+
+00:15:12.920 --> 00:15:14.960
+So with that, let's jump into it.
+
+NOTE Confidence: 0.4851464629173279
+
+00:15:14.960 --> 00:15:16.760
+All right, sorry.
+
+NOTE Confidence: 0.8369404673576355
+
+00:15:17.000 --> 00:15:18.120
+#101 Thank you.
+
+NOTE Confidence: 0.5272958874702454
+
+00:15:18.760 --> 00:15:19.480
+All right, awesome.
+
+NOTE Confidence: 0.8476071953773499
+
+00:15:19.480 --> 00:15:22.440
+As Yina mentioned, so we have an incredible repo here.
+
+NOTE Confidence: 0.9102006554603577
+
+00:15:22.440 --> 00:15:24.906
+I do guys encourage you all to go check it
+
+NOTE Confidence: 0.9102006554603577
+
+00:15:24.965 --> 00:15:25.200
+out.
+
+NOTE Confidence: 0.8292261958122253
+
+00:15:25.440 --> 00:15:27.880
+You can see definitely all the code that's been generated.
+
+NOTE Confidence: 0.9466840028762817
+
+00:15:27.880 --> 00:15:29.865
+You can go through and follow these demos at the
+
+NOTE Confidence: 0.9466840028762817
+
+00:15:29.906 --> 00:15:30.319
+same time.
+
+NOTE Confidence: 0.9412170052528381
+
+00:15:30.600 --> 00:15:32.556
+But in the spirit of being able to make sure
+
+NOTE Confidence: 0.9412170052528381
+
+00:15:32.601 --> 00:15:35.091
+that we're using agentic workflows as part of what we're
+
+NOTE Confidence: 0.9412170052528381
+
+00:15:35.135 --> 00:15:37.092
+doing, I want to show you a little bit about
+
+NOTE Confidence: 0.9412170052528381
+
+00:15:37.136 --> 00:15:39.360
+the outcome and how we're generating these things.
+
+NOTE Confidence: 0.8989037275314331
+
+00:15:39.840 --> 00:15:41.160
+So we go through our scenario.
+
+NOTE Confidence: 0.6613417267799377
+
+00:15:41.160 --> 00:15:43.320
+So you know, mentioned we're doing a travel app, right?
+
+NOTE Confidence: 0.9449023604393005
+
+00:15:43.320 --> 00:15:45.029
+We need to build it for a robust set of
+
+NOTE Confidence: 0.9449023604393005
+
+00:15:45.073 --> 00:15:46.520
+employee queries as part of this.
+
+NOTE Confidence: 0.9353225827217102
+
+00:15:46.840 --> 00:15:49.198
+And so First off is just establishing what is our
+
+NOTE Confidence: 0.9353225827217102
+
+00:15:49.246 --> 00:15:49.679
+baseline.
+
+NOTE Confidence: 0.9399969577789307
+
+00:15:49.800 --> 00:15:52.000
+We can't improve unless we know what's going on.
+
+NOTE Confidence: 0.9078376889228821
+
+00:15:52.320 --> 00:15:54.880
+And so we've taken a model straight off the bat.
+
+NOTE Confidence: 0.9128209352493286
+
+00:15:54.880 --> 00:15:57.663
+So GPT 4.1, we're going to apply it basically to
+
+NOTE Confidence: 0.9128209352493286
+
+00:15:57.721 --> 00:16:00.679
+every task in here and just establish our baseline.
+
+NOTE Confidence: 0.911321759223938
+
+00:16:00.920 --> 00:16:02.883
+So you can see we're going to work through here
+
+NOTE Confidence: 0.911321759223938
+
+00:16:02.925 --> 00:16:05.391
+being able to understand a little bit about the evaluations
+
+NOTE Confidence: 0.911321759223938
+
+00:16:05.432 --> 00:16:05.600
+run.
+
+NOTE Confidence: 0.9356454014778137
+
+00:16:06.120 --> 00:16:08.000
+We just have a very simple data set, right?
+
+NOTE Confidence: 0.8109067678451538
+
+00:16:08.000 --> 00:16:10.520
+We're just starting this off, We're prototyping our application.
+
+NOTE Confidence: 0.9395015239715576
+
+00:16:10.520 --> 00:16:12.969
+So we're starting off with 20 or so seed rows
+
+NOTE Confidence: 0.9395015239715576
+
+00:16:13.023 --> 00:16:15.799
+of data and you can check out the different pieces.
+
+NOTE Confidence: 0.845375120639801
+
+00:16:16.160 --> 00:16:17.520
+So here's our scorecard.
+
+NOTE Confidence: 0.9028671383857727
+
+00:16:17.680 --> 00:16:19.400
+OK, it's not great, right?
+
+NOTE Confidence: 0.8806332349777222
+
+00:16:19.400 --> 00:16:20.000
+It's not great.
+
+NOTE Confidence: 0.9040762186050415
+
+00:16:20.000 --> 00:16:21.886
+We just have to accept it's the beginning of our
+
+NOTE Confidence: 0.9040762186050415
+
+00:16:21.925 --> 00:16:22.240
+journey.
+
+NOTE Confidence: 0.9396277070045471
+
+00:16:22.360 --> 00:16:24.605
+We're just starting our hill climb and so it's not
+
+NOTE Confidence: 0.9396277070045471
+
+00:16:24.650 --> 00:16:24.919
+great.
+
+NOTE Confidence: 0.8685960173606873
+
+00:16:25.200 --> 00:16:27.447
+So quality, you can see in this case is a
+
+NOTE Confidence: 0.8685960173606873
+
+00:16:27.502 --> 00:16:29.639
+lot lower than we wanted as our target.
+
+NOTE Confidence: 0.8818844556808472
+
+00:16:29.800 --> 00:16:32.348
+You can see that cost per task is actually pretty
+
+NOTE Confidence: 0.8818844556808472
+
+00:16:32.400 --> 00:16:32.920
+expensive.
+
+NOTE Confidence: 0.9605504274368286
+
+00:16:33.160 --> 00:16:34.560
+And we've got latency here.
+
+NOTE Confidence: 0.873522162437439
+
+00:16:34.560 --> 00:16:35.760
+So latency is not bad, right?
+
+NOTE Confidence: 0.8974248170852661
+
+00:16:35.760 --> 00:16:37.665
+Latency is not bad, but we know where we need
+
+NOTE Confidence: 0.8974248170852661
+
+00:16:37.708 --> 00:16:38.639
+to improve as part of.
+
+NOTE Confidence: 0.6276973485946655
+
+00:16:38.640 --> 00:16:38.760
+This.
+
+NOTE Confidence: 0.8532253503799438
+
+00:16:38.760 --> 00:16:41.611
+It's worth mentioning that here in quality, we're just using
+
+NOTE Confidence: 0.8532253503799438
+
+00:16:41.658 --> 00:16:45.175
+out-of-the-box evaluators like Task Adherence and Task completion in order
+
+NOTE Confidence: 0.8532253503799438
+
+00:16:45.222 --> 00:16:47.836
+to understand the quality, and then we'll like unpack a
+
+NOTE Confidence: 0.8532253503799438
+
+00:16:47.883 --> 00:16:50.022
+little bit more on how you can bring your own
+
+NOTE Confidence: 0.8532253503799438
+
+00:16:50.069 --> 00:16:50.639
+domain data.
+
+NOTE Confidence: 0.5660419464111328
+
+00:16:51.120 --> 00:16:51.320
+Yeah.
+
+NOTE Confidence: 0.8894535899162292
+
+00:16:51.320 --> 00:16:53.659
+So the big problem here is that we used one
+
+NOTE Confidence: 0.8894535899162292
+
+00:16:53.713 --> 00:16:56.596
+Model 1 Frontierish model in this case for every job,
+
+NOTE Confidence: 0.8894535899162292
+
+00:16:56.651 --> 00:16:59.479
+including basically what are the cheap ones in here.
+
+NOTE Confidence: 0.8297162652015686
+
+00:16:59.480 --> 00:17:02.117
+So essentially we used a Ferrari for a grocery run,
+
+NOTE Confidence: 0.8297162652015686
+
+00:17:02.169 --> 00:17:02.480
+right?
+
+NOTE Confidence: 0.9453975558280945
+
+00:17:02.480 --> 00:17:04.210
+So we need to not do that so we can
+
+NOTE Confidence: 0.9453975558280945
+
+00:17:04.260 --> 00:17:05.200
+think about, right.
+
+NOTE Confidence: 0.9297904372215271
+
+00:17:05.200 --> 00:17:07.647
+The eval data here helps us to understand where we
+
+NOTE Confidence: 0.9297904372215271
+
+00:17:07.696 --> 00:17:09.360
+need to go improve really quickly.
+
+NOTE Confidence: 0.8880817890167236
+
+00:17:09.640 --> 00:17:11.690
+So in this case, we can understand like, you know,
+
+NOTE Confidence: 0.8880817890167236
+
+00:17:11.731 --> 00:17:13.699
+how do we think about the model itself, What are
+
+NOTE Confidence: 0.8880817890167236
+
+00:17:13.741 --> 00:17:15.381
+we going to do for the next pieces of it
+
+NOTE Confidence: 0.8880817890167236
+
+00:17:15.422 --> 00:17:17.390
+and how are we going to route that content going
+
+NOTE Confidence: 0.8880817890167236
+
+00:17:17.431 --> 00:17:17.759
+forward?
+
+NOTE Confidence: 0.8919476270675659
+
+00:17:18.640 --> 00:17:20.817
+So a reality check, this is where we're starting on
+
+NOTE Confidence: 0.8919476270675659
+
+00:17:20.860 --> 00:17:21.799
+our hill climb, right?
+
+NOTE Confidence: 0.8747461438179016
+
+00:17:21.800 --> 00:17:24.580
+So we're at .8, sorry, we need to get to
+
+NOTE Confidence: 0.8747461438179016
+
+00:17:24.649 --> 00:17:27.360
+.8, and our baseline is sitting at .59.
+
+NOTE Confidence: 0.967635989189148
+
+00:17:27.680 --> 00:17:29.520
+So that gap is really helpful, right?
+
+NOTE Confidence: 0.9261818528175354
+
+00:17:29.520 --> 00:17:31.480
+It helps to understand where we need to go.
+
+NOTE Confidence: 0.9555314779281616
+
+00:17:31.480 --> 00:17:34.000
+And so our job is basically not to guess, right?
+
+NOTE Confidence: 0.9651517271995544
+
+00:17:34.000 --> 00:17:36.000
+We need to go through and look at this methodically.
+
+NOTE Confidence: 0.9132272601127625
+
+00:17:36.280 --> 00:17:38.048
+So This is why we use that whole loop that
+
+NOTE Confidence: 0.9132272601127625
+
+00:17:38.090 --> 00:17:39.480
+we talked about at the beginning.
+
+NOTE Confidence: 0.9072052240371704
+
+00:17:39.600 --> 00:17:41.760
+We're going to think about that baseline, we're going to
+
+NOTE Confidence: 0.9072052240371704
+
+00:17:41.799 --> 00:17:43.998
+measure it honestly, and then we're going to decide where
+
+NOTE Confidence: 0.9072052240371704
+
+00:17:44.036 --> 00:17:45.040
+that next game comes from.
+
+NOTE Confidence: 0.8653674125671387
+
+00:17:45.680 --> 00:17:47.759
+And so this is a really the piece here where
+
+NOTE Confidence: 0.8653674125671387
+
+00:17:47.807 --> 00:17:50.879
+we're decomposing that workflow so that employees travel request.
+
+NOTE Confidence: 0.9147430658340454
+
+00:17:50.880 --> 00:17:52.806
+It may look like a simple thing, we're all very
+
+NOTE Confidence: 0.9147430658340454
+
+00:17:52.847 --> 00:17:54.979
+familiar with this, but we want to decompose it into
+
+NOTE Confidence: 0.9147430658340454
+
+00:17:55.020 --> 00:17:55.839
+the different tasks.
+
+NOTE Confidence: 0.9644524455070496
+
+00:17:56.160 --> 00:17:58.044
+Essentially, we have a job to be done, and for
+
+NOTE Confidence: 0.9644524455070496
+
+00:17:58.085 --> 00:17:59.764
+each of these jobs to be done, we need to
+
+NOTE Confidence: 0.9644524455070496
+
+00:17:59.805 --> 00:18:01.649
+make sure that we have the right model and be
+
+NOTE Confidence: 0.9644524455070496
+
+00:18:01.690 --> 00:18:02.960
+able to use that directly here.
+
+NOTE Confidence: 0.8255639672279358
+
+00:18:03.240 --> 00:18:05.040
+So we don't want to over build for each step.
+
+NOTE Confidence: 0.9382290244102478
+
+00:18:05.040 --> 00:18:07.200
+We want to make sure that we're decomposing it correctly.
+
+NOTE Confidence: 0.9274795055389404
+
+00:18:07.400 --> 00:18:09.868
+Choose the right prompt, choose the right model, choose the
+
+NOTE Confidence: 0.9274795055389404
+
+00:18:09.910 --> 00:18:11.040
+right tool as part of this.
+
+NOTE Confidence: 0.9549543261528015
+
+00:18:11.240 --> 00:18:14.078
+And then of course, the right context decomposition in this
+
+NOTE Confidence: 0.9549543261528015
+
+00:18:14.126 --> 00:18:16.387
+case is really the way that we think about that
+
+NOTE Confidence: 0.9549543261528015
+
+00:18:16.436 --> 00:18:18.119
+first optimization move as part of.
+
+NOTE Confidence: 0.8680311441421509
+
+00:18:18.119 --> 00:18:20.358
+This yeah, think about it as like when you're building
+
+NOTE Confidence: 0.8680311441421509
+
+00:18:20.400 --> 00:18:22.970
+an enterprise solution, you want to think about micro services
+
+NOTE Confidence: 0.8680311441421509
+
+00:18:23.012 --> 00:18:25.458
+architecture and not using a single model for everything in
+
+NOTE Confidence: 0.8680311441421509
+
+00:18:25.499 --> 00:18:26.080
+your solution.
+
+NOTE Confidence: 0.7933833599090576
+
+00:18:26.600 --> 00:18:27.400
+Break it apart.
+
+NOTE Confidence: 0.9724498987197876
+
+00:18:27.400 --> 00:18:28.640
+What are the jobs to be done?
+
+NOTE Confidence: 0.908676028251648
+
+00:18:28.840 --> 00:18:30.491
+And for each of the jobs to be done, you
+
+NOTE Confidence: 0.908676028251648
+
+00:18:30.532 --> 00:18:32.679
+can optimise a specific model that you use for that.
+
+NOTE Confidence: 0.9015779495239258
+
+00:18:32.800 --> 00:18:34.719
+And the smaller the model, the faster you can do
+
+NOTE Confidence: 0.9015779495239258
+
+00:18:34.759 --> 00:18:36.759
+it and the more cost you can have on optimization.
+
+NOTE Confidence: 0.936745285987854
+
+00:18:37.680 --> 00:18:40.312
+Then one of the best ways and the simplest way
+
+NOTE Confidence: 0.936745285987854
+
+00:18:40.369 --> 00:18:43.116
+that you can use to like when you decompose into
+
+NOTE Confidence: 0.936745285987854
+
+00:18:43.173 --> 00:18:45.520
+multiple models is to use a model router.
+
+NOTE Confidence: 0.9105800986289978
+
+00:18:45.760 --> 00:18:49.082
+The model router takes automatically the prompts that you have
+
+NOTE Confidence: 0.9105800986289978
+
+00:18:49.136 --> 00:18:51.869
+and then it will analyse based on the prompt, which
+
+NOTE Confidence: 0.9105800986289978
+
+00:18:51.922 --> 00:18:54.120
+is the best model to send the request to.
+
+NOTE Confidence: 0.8699535131454468
+
+00:18:54.640 --> 00:18:58.677
+We have in foundry a model router and actually it
+
+NOTE Confidence: 0.8699535131454468
+
+00:18:58.760 --> 00:19:04.034
+supports 28 different models, including GPT 5.4, GPT 5.5, family
+
+NOTE Confidence: 0.8699535131454468
+
+00:19:04.116 --> 00:19:05.599
+cloud Opus models.
+
+NOTE Confidence: 0.9216998815536499
+
+00:19:05.600 --> 00:19:08.313
+And then it has also automatic failover to improve all
+
+NOTE Confidence: 0.9216998815536499
+
+00:19:08.363 --> 00:19:09.719
+of the customer experience.
+
+NOTE Confidence: 0.8839942216873169
+
+00:19:09.960 --> 00:19:13.041
+It has a genetic support and and also starting today,
+
+NOTE Confidence: 0.8839942216873169
+
+00:19:13.099 --> 00:19:16.064
+we're like now being able to govern the policies of
+
+NOTE Confidence: 0.8839942216873169
+
+00:19:16.122 --> 00:19:18.680
+which models are being used by model router.
+
+NOTE Confidence: 0.8076349496841431
+
+00:19:18.880 --> 00:19:21.233
+So that like you know, from a, from a governance
+
+NOTE Confidence: 0.8076349496841431
+
+00:19:21.282 --> 00:19:24.077
+perspective, you can auto select just the models that you
+
+NOTE Confidence: 0.8076349496841431
+
+00:19:24.126 --> 00:19:26.430
+want at your solution to or like that you might
+
+NOTE Confidence: 0.8076349496841431
+
+00:19:26.479 --> 00:19:27.999
+want your solution just to use.
+
+NOTE Confidence: 0.8488295674324036
+
+00:19:28.520 --> 00:19:31.323
+We're also investing more on model router so that like
+
+NOTE Confidence: 0.8488295674324036
+
+00:19:31.375 --> 00:19:34.178
+further down the line, we're going to open the ability
+
+NOTE Confidence: 0.8488295674324036
+
+00:19:34.230 --> 00:19:36.878
+to customise, to fine tune the router itself and to
+
+NOTE Confidence: 0.8488295674324036
+
+00:19:36.930 --> 00:19:38.280
+bring in fine tune models.
+
+NOTE Confidence: 0.8974595069885254
+
+00:19:39.440 --> 00:19:41.639
+The second way that you can do instead of using
+
+NOTE Confidence: 0.8974595069885254
+
+00:19:41.686 --> 00:19:44.120
+a model router is where you build a router yourself.
+
+NOTE Confidence: 0.9556700587272644
+
+00:19:44.160 --> 00:19:47.150
+And like, you know, you have a small model that
+
+NOTE Confidence: 0.9556700587272644
+
+00:19:47.214 --> 00:19:48.359
+routes the intent.
+
+NOTE Confidence: 0.8920854926109314
+
+00:19:48.440 --> 00:19:50.886
+And for example, you can use a 4.1 nano model
+
+NOTE Confidence: 0.8920854926109314
+
+00:19:50.940 --> 00:19:53.767
+or a Mistral small model to like just basically give
+
+NOTE Confidence: 0.8920854926109314
+
+00:19:53.821 --> 00:19:54.800
+it a set of rules.
+
+NOTE Confidence: 0.9539729356765747
+
+00:19:55.040 --> 00:19:56.897
+And you say like this is all of the different
+
+NOTE Confidence: 0.9539729356765747
+
+00:19:56.938 --> 00:19:57.640
+set of scenarios.
+
+NOTE Confidence: 0.8939872980117798
+
+00:19:57.640 --> 00:20:00.324
+This is all of the different jobs and then route
+
+NOTE Confidence: 0.8939872980117798
+
+00:20:00.380 --> 00:20:03.569
+to the models that are specifically treating the the jobs
+
+NOTE Confidence: 0.8939872980117798
+
+00:20:03.625 --> 00:20:04.519
+on the solution.
+
+NOTE Confidence: 0.9608744382858276
+
+00:20:05.360 --> 00:20:06.960
+Let's take a look at that in action.
+
+NOTE Confidence: 0.2084226906299591
+
+00:20:06.960 --> 00:20:07.320
+Yeah, OK.
+
+NOTE Confidence: 0.6114369034767151
+
+00:20:08.920 --> 00:20:09.160
+Thank you.
+
+NOTE Confidence: 0.9207510948181152
+
+00:20:10.160 --> 00:20:10.560
+Awesome.
+
+NOTE Confidence: 0.9700835943222046
+
+00:20:10.560 --> 00:20:11.960
+So let's take a look here.
+
+NOTE Confidence: 0.8895260095596313
+
+00:20:11.960 --> 00:20:13.967
+So you can see our simple router is coming here
+
+NOTE Confidence: 0.8895260095596313
+
+00:20:14.010 --> 00:20:16.359
+where we're helping to decompose those different tasks.
+
+NOTE Confidence: 0.9383742213249207
+
+00:20:16.600 --> 00:20:18.539
+So we look at the different intent as part of
+
+NOTE Confidence: 0.9383742213249207
+
+00:20:18.582 --> 00:20:20.263
+this and then be able to run this to be
+
+NOTE Confidence: 0.9383742213249207
+
+00:20:20.306 --> 00:20:22.375
+able to understand how to best use the the model
+
+NOTE Confidence: 0.9383742213249207
+
+00:20:22.418 --> 00:20:22.720
+itself.
+
+NOTE Confidence: 0.9022718071937561
+
+00:20:23.119 --> 00:20:25.213
+So once we've looked at those areas, I won't spend
+
+NOTE Confidence: 0.9022718071937561
+
+00:20:25.255 --> 00:20:27.348
+your time looking at code, but in this case, we'll
+
+NOTE Confidence: 0.9022718071937561
+
+00:20:27.390 --> 00:20:29.400
+understand and decompose these different pieces.
+
+NOTE Confidence: 0.9218711853027344
+
+00:20:29.840 --> 00:20:31.849
+So once we have run this, we can actually see
+
+NOTE Confidence: 0.9218711853027344
+
+00:20:31.894 --> 00:20:34.172
+that the agent has gone through, it's looked at the
+
+NOTE Confidence: 0.9218711853027344
+
+00:20:34.216 --> 00:20:36.628
+different intents, it has broken down where we need to
+
+NOTE Confidence: 0.9218711853027344
+
+00:20:36.673 --> 00:20:38.816
+have this and then be able to understand as well
+
+NOTE Confidence: 0.9218711853027344
+
+00:20:38.861 --> 00:20:41.139
+for things like for each task, which model is being
+
+NOTE Confidence: 0.9218711853027344
+
+00:20:41.184 --> 00:20:41.719
+recommended.
+
+NOTE Confidence: 0.9703991413116455
+
+00:20:42.080 --> 00:20:42.920
+So here we go.
+
+NOTE Confidence: 0.8869674801826477
+
+00:20:42.920 --> 00:20:45.103
+We can say that the quality results here, you can
+
+NOTE Confidence: 0.8869674801826477
+
+00:20:45.148 --> 00:20:47.599
+see we're actually optimising for quality in this case.
+
+NOTE Confidence: 0.944434404373169
+
+00:20:48.000 --> 00:20:50.897
+So we've got the recommendations coming through from this different
+
+NOTE Confidence: 0.944434404373169
+
+00:20:50.940 --> 00:20:51.200
+skill.
+
+NOTE Confidence: 0.9447034001350403
+
+00:20:51.359 --> 00:20:53.681
+We've configured and deployed it as part of all of
+
+NOTE Confidence: 0.9447034001350403
+
+00:20:53.727 --> 00:20:53.960
+this.
+
+NOTE Confidence: 0.9060421586036682
+
+00:20:54.119 --> 00:20:56.346
+And then we can see out of here, our synthetic
+
+NOTE Confidence: 0.9060421586036682
+
+00:20:56.394 --> 00:20:58.039
+data has now become a much bigger.
+
+NOTE Confidence: 0.7688990235328674
+
+00:20:58.040 --> 00:21:00.560
+So we've taken our 20 original seed rows.
+
+NOTE Confidence: 0.9400943517684937
+
+00:21:00.680 --> 00:21:03.600
+We've created more synthetic data directly from Foundry.
+
+NOTE Confidence: 0.9329442977905273
+
+00:21:03.800 --> 00:21:05.462
+So this is a great way of being able to
+
+NOTE Confidence: 0.9329442977905273
+
+00:21:05.504 --> 00:21:07.678
+just quickly use this to generate the data that you
+
+NOTE Confidence: 0.9329442977905273
+
+00:21:07.721 --> 00:21:08.999
+need to test your application.
+
+NOTE Confidence: 0.9218988418579102
+
+00:21:09.160 --> 00:21:11.281
+So you can see I've got a target of 170
+
+NOTE Confidence: 0.9218988418579102
+
+00:21:11.335 --> 00:21:11.879
+rows here.
+
+NOTE Confidence: 0.9319088459014893
+
+00:21:12.000 --> 00:21:14.169
+And then out of that 170, we're going to pick
+
+NOTE Confidence: 0.9319088459014893
+
+00:21:14.218 --> 00:21:15.520
+50 and use those correctly.
+
+NOTE Confidence: 0.8914141654968262
+
+00:21:15.840 --> 00:21:17.814
+So here's that 50, I'm going to take out my
+
+NOTE Confidence: 0.8914141654968262
+
+00:21:17.860 --> 00:21:20.157
+different task types and now I'm going to go ahead
+
+NOTE Confidence: 0.8914141654968262
+
+00:21:20.202 --> 00:21:20.800
+and run this.
+
+NOTE Confidence: 0.9458030462265015
+
+00:21:21.120 --> 00:21:23.680
+So once I've done these eval results, here we go.
+
+NOTE Confidence: 0.9670071005821228
+
+00:21:23.920 --> 00:21:25.200
+So we can actually check out.
+
+NOTE Confidence: 0.8394086360931396
+
+00:21:25.200 --> 00:21:26.520
+So where were we before?
+
+NOTE Confidence: 0.9216846823692322
+
+00:21:26.520 --> 00:21:29.144
+We were looking at our single Frontier model where we're
+
+NOTE Confidence: 0.9216846823692322
+
+00:21:29.191 --> 00:21:31.582
+just running 4.1 and now we've run that multi model
+
+NOTE Confidence: 0.9216846823692322
+
+00:21:31.628 --> 00:21:34.160
+router and you can see the results have improved here.
+
+NOTE Confidence: 0.9156547784805298
+
+00:21:34.320 --> 00:21:36.542
+So cost and task, right, we've really gotten down to
+
+NOTE Confidence: 0.9156547784805298
+
+00:21:36.585 --> 00:21:37.439
+where we need to be.
+
+NOTE Confidence: 0.7163486480712891
+
+00:21:37.600 --> 00:21:39.920
+Cost is significantly as proved as a part of this.
+
+NOTE Confidence: 0.9781125783920288
+
+00:21:40.080 --> 00:21:41.924
+And then we can still work on some of these
+
+NOTE Confidence: 0.9781125783920288
+
+00:21:41.967 --> 00:21:43.040
+other areas like latency.
+
+NOTE Confidence: 0.672203004360199
+
+00:21:43.040 --> 00:21:46.480
+Let's keep going.
+
+NOTE Confidence: 0.9662847518920898
+
+00:21:47.640 --> 00:21:50.306
+So when you think about model selection, it's really coming
+
+NOTE Confidence: 0.9662847518920898
+
+00:21:50.352 --> 00:21:52.160
+down to these three different questions.
+
+NOTE Confidence: 0.9350563287734985
+
+00:21:52.320 --> 00:21:54.733
+So often times we think about, you know, whether you're
+
+NOTE Confidence: 0.9350563287734985
+
+00:21:54.777 --> 00:21:57.629
+choosing that model, it's whether you think about that capability
+
+NOTE Confidence: 0.9350563287734985
+
+00:21:57.673 --> 00:21:59.340
+piece of it, can it even do the job at
+
+NOTE Confidence: 0.9350563287734985
+
+00:21:59.384 --> 00:21:59.560
+all?
+
+NOTE Confidence: 0.8867623209953308
+
+00:21:59.560 --> 00:22:01.470
+As part of this, we also want to think about
+
+NOTE Confidence: 0.8867623209953308
+
+00:22:01.513 --> 00:22:03.119
+what's the bar for production, right?
+
+NOTE Confidence: 0.9091094732284546
+
+00:22:03.280 --> 00:22:05.614
+When we're looking at latency, when we're looking at cost
+
+NOTE Confidence: 0.9091094732284546
+
+00:22:05.655 --> 00:22:07.785
+optimization, can it do the job that you need inside
+
+NOTE Confidence: 0.9091094732284546
+
+00:22:07.826 --> 00:22:08.400
+of production?
+
+NOTE Confidence: 0.9682230949401855
+
+00:22:08.600 --> 00:22:10.519
+And then of course, can you afford to run it
+
+NOTE Confidence: 0.9682230949401855
+
+00:22:10.563 --> 00:22:11.479
+at that scale, right?
+
+NOTE Confidence: 0.8401252031326294
+
+00:22:11.480 --> 00:22:14.093
+This is the other piece of like when people often
+
+NOTE Confidence: 0.8401252031326294
+
+00:22:14.146 --> 00:22:17.133
+look to these different areas, it's like, you know, cost
+
+NOTE Confidence: 0.8401252031326294
+
+00:22:17.186 --> 00:22:19.586
+and those pieces be a big factor into how you
+
+NOTE Confidence: 0.8401252031326294
+
+00:22:19.639 --> 00:22:20.119
+scale up.
+
+NOTE Confidence: 0.9557750821113586
+
+00:22:20.520 --> 00:22:22.760
+So benchmarks of course, can help you, right?
+
+NOTE Confidence: 0.957221269607544
+
+00:22:22.760 --> 00:22:24.866
+In this case, they can understand a little bit more
+
+NOTE Confidence: 0.957221269607544
+
+00:22:24.907 --> 00:22:27.468
+about where you're going, but they shouldn't make the decision
+
+NOTE Confidence: 0.957221269607544
+
+00:22:27.509 --> 00:22:27.839
+for you.
+
+NOTE Confidence: 0.9378393888473511
+
+00:22:27.920 --> 00:22:29.800
+And it's a really important piece of looking at this.
+
+NOTE Confidence: 0.8904356956481934
+
+00:22:30.000 --> 00:22:33.680
+The answer comes from your workload, what model to use.
+
+NOTE Confidence: 0.9425399899482727
+
+00:22:33.880 --> 00:22:36.861
+Evaluate on your workload, not the beautiful benchmarks that are
+
+NOTE Confidence: 0.9425399899482727
+
+00:22:36.908 --> 00:22:38.120
+out there as part of this.
+
+NOTE Confidence: 0.9517738223075867
+
+00:22:38.720 --> 00:22:41.801
+So let's go into evaluating and understanding a little bit
+
+NOTE Confidence: 0.9517738223075867
+
+00:22:41.854 --> 00:22:42.119
+more.
+
+NOTE Confidence: 0.9033307433128357
+
+00:22:42.240 --> 00:22:45.089
+Yeah, this is a great Segway because that's what we're
+
+NOTE Confidence: 0.9033307433128357
+
+00:22:45.142 --> 00:22:48.097
+saying is benchmarks is not necessarily what is going to
+
+NOTE Confidence: 0.9033307433128357
+
+00:22:48.150 --> 00:22:50.947
+lead your decision making in selecting a model is how
+
+NOTE Confidence: 0.9033307433128357
+
+00:22:51.000 --> 00:22:53.638
+do you evaluate on your data and that should drive
+
+NOTE Confidence: 0.9033307433128357
+
+00:22:53.691 --> 00:22:54.799
+your model selection.
+
+NOTE Confidence: 0.8291615843772888
+
+00:22:55.359 --> 00:22:58.628
+As part of Foundry, we have, you know, an extensive
+
+NOTE Confidence: 0.8291615843772888
+
+00:22:58.693 --> 00:23:00.679
+model of an evaluation catalog.
+
+NOTE Confidence: 0.8405115604400635
+
+00:23:01.080 --> 00:23:03.803
+But like the key again, the point of the session
+
+NOTE Confidence: 0.8405115604400635
+
+00:23:03.860 --> 00:23:07.604
+start with evaluations and in the improvement loop, the evaluation
+
+NOTE Confidence: 0.8405115604400635
+
+00:23:07.661 --> 00:23:09.080
+become your product spec.
+
+NOTE Confidence: 0.7916088104248047
+
+00:23:09.480 --> 00:23:12.480
+And as you're hill climbing, the evaluations become your IP.
+
+NOTE Confidence: 0.9216330647468567
+
+00:23:12.640 --> 00:23:15.728
+This is where you're going to have your data come
+
+NOTE Confidence: 0.9216330647468567
+
+00:23:15.791 --> 00:23:19.446
+in, your success criteria and the definition of like, what
+
+NOTE Confidence: 0.9216330647468567
+
+00:23:19.509 --> 00:23:21.400
+looks good looks like for you.
+
+NOTE Confidence: 0.9404047131538391
+
+00:23:21.920 --> 00:23:24.240
+It defines which trade-offs are going to matter for you.
+
+NOTE Confidence: 0.9141125679016113
+
+00:23:24.600 --> 00:23:27.287
+And it's the measuring stick for every single change that
+
+NOTE Confidence: 0.9141125679016113
+
+00:23:27.335 --> 00:23:29.928
+you're going to make to the system, whether that change
+
+NOTE Confidence: 0.9141125679016113
+
+00:23:29.975 --> 00:23:32.711
+is something that you're making or make something that you
+
+NOTE Confidence: 0.9141125679016113
+
+00:23:32.758 --> 00:23:33.559
+have to react to.
+
+NOTE Confidence: 0.7950584888458252
+
+00:23:33.560 --> 00:23:35.200
+Like for example, model life cycle.
+
+NOTE Confidence: 0.8673158884048462
+
+00:23:35.200 --> 00:23:37.400
+The like model is no longer available in the catalog.
+
+NOTE Confidence: 0.8859993815422058
+
+00:23:37.400 --> 00:23:40.632
+Now what you're going to do, you have to continuously
+
+NOTE Confidence: 0.8859993815422058
+
+00:23:40.693 --> 00:23:43.620
+run this set of evaluations to make sure that as
+
+NOTE Confidence: 0.8859993815422058
+
+00:23:43.681 --> 00:23:46.365
+you bring in a new set of components to your
+
+NOTE Confidence: 0.8859993815422058
+
+00:23:46.426 --> 00:23:49.719
+solution, you can continue to run as you're expecting.
+
+NOTE Confidence: 0.8696597814559937
+
+00:23:50.240 --> 00:23:53.013
+So for this a specific scenario that we're using on
+
+NOTE Confidence: 0.8696597814559937
+
+00:23:53.067 --> 00:23:57.199
+the planner trip evaluation like things like correctness, policy compliance.
+
+NOTE Confidence: 0.8397953510284424
+
+00:23:57.200 --> 00:23:59.511
+And when I say policy is like the companies, they
+
+NOTE Confidence: 0.8397953510284424
+
+00:23:59.558 --> 00:24:00.879
+always have a travel policy.
+
+NOTE Confidence: 0.8572386503219604
+
+00:24:00.880 --> 00:24:03.346
+You must only spend this amount of dollars per DM
+
+NOTE Confidence: 0.8572386503219604
+
+00:24:03.397 --> 00:24:03.800
+per day.
+
+NOTE Confidence: 0.8790766000747681
+
+00:24:03.960 --> 00:24:07.007
+You only can't have, you know this if if there's
+
+NOTE Confidence: 0.8790766000747681
+
+00:24:07.070 --> 00:24:09.927
+more than 7 hour trip, you can go do business
+
+NOTE Confidence: 0.8790766000747681
+
+00:24:09.991 --> 00:24:10.879
+or not, right?
+
+NOTE Confidence: 0.8696181774139404
+
+00:24:10.880 --> 00:24:13.499
+Like all of these different set of policies that are
+
+NOTE Confidence: 0.8696181774139404
+
+00:24:13.549 --> 00:24:16.924
+specific for the scenario, the tool called validity, the escalation
+
+NOTE Confidence: 0.8696181774139404
+
+00:24:16.974 --> 00:24:19.493
+accuracy when it doesn't go, doesn't need to go to
+
+NOTE Confidence: 0.8696181774139404
+
+00:24:19.543 --> 00:24:20.399
+a human when not.
+
+NOTE Confidence: 0.9684077501296997
+
+00:24:20.560 --> 00:24:22.880
+And of course safety and privacy as well.
+
+NOTE Confidence: 0.9693885445594788
+
+00:24:23.680 --> 00:24:26.638
+Now in Foundry, we have a set of evaluators that
+
+NOTE Confidence: 0.9693885445594788
+
+00:24:26.700 --> 00:24:27.440
+you can use.
+
+NOTE Confidence: 0.8828305602073669
+
+00:24:27.640 --> 00:24:31.433
+We have built in evaluators that like help measure around
+
+NOTE Confidence: 0.8828305602073669
+
+00:24:31.499 --> 00:24:35.160
+quality things like is the intent being adhered or not.
+
+NOTE Confidence: 0.8658854365348816
+
+00:24:35.760 --> 00:24:38.998
+It can help also mesh building evaluators around risk and
+
+NOTE Confidence: 0.8658854365348816
+
+00:24:39.055 --> 00:24:42.351
+safety and also identic evaluators that like will help you
+
+NOTE Confidence: 0.8658854365348816
+
+00:24:42.407 --> 00:24:45.930
+understand if the if the solution is actually following across
+
+NOTE Confidence: 0.8658854365348816
+
+00:24:45.987 --> 00:24:46.839
+multiple turns.
+
+NOTE Confidence: 0.9250656962394714
+
+00:24:47.480 --> 00:24:50.604
+We also have the ability to create custom evaluators prompt
+
+NOTE Confidence: 0.9250656962394714
+
+00:24:50.656 --> 00:24:53.516
+code and as we are announcing today at the conference,
+
+NOTE Confidence: 0.9250656962394714
+
+00:24:53.569 --> 00:24:54.840
+rubric based evaluators.
+
+NOTE Confidence: 0.767448365688324
+
+00:24:58.280 --> 00:24:59.280
+Oh, we're announcing today.
+
+NOTE Confidence: 0.7695155143737793
+
+00:24:59.920 --> 00:25:05.391
+Let me show you that OK, this is the evaluation
+
+NOTE Confidence: 0.7695155143737793
+
+00:25:05.508 --> 00:25:07.720
+catalog in Foundry.
+
+NOTE Confidence: 0.9510672688484192
+
+00:25:07.720 --> 00:25:10.587
+These are all of the out-of-the-box evaluators and the different
+
+NOTE Confidence: 0.9510672688484192
+
+00:25:10.631 --> 00:25:12.199
+set of categories that I have here.
+
+NOTE Confidence: 0.88006192445755
+
+00:25:12.440 --> 00:25:14.678
+If you come in and create an evaluator, you're going
+
+NOTE Confidence: 0.88006192445755
+
+00:25:14.721 --> 00:25:16.572
+to see that you can have a rubric prompt or
+
+NOTE Confidence: 0.88006192445755
+
+00:25:16.615 --> 00:25:17.519
+code based evaluator.
+
+NOTE Confidence: 0.866575300693512
+
+00:25:17.760 --> 00:25:19.857
+When I go with prompts like you know, it gives
+
+NOTE Confidence: 0.866575300693512
+
+00:25:19.903 --> 00:25:22.046
+you the ability to select the prompt to get the
+
+NOTE Confidence: 0.866575300693512
+
+00:25:22.091 --> 00:25:22.319
+code.
+
+NOTE Confidence: 0.9111506938934326
+
+00:25:22.520 --> 00:25:26.160
+When I go with rubric, I can select specific agent.
+
+NOTE Confidence: 0.8516156077384949
+
+00:25:26.160 --> 00:25:28.041
+It's going to take the definition of that agent and
+
+NOTE Confidence: 0.8516156077384949
+
+00:25:28.078 --> 00:25:29.850
+then it's going to generate it's going to take a
+
+NOTE Confidence: 0.8516156077384949
+
+00:25:29.887 --> 00:25:31.399
+little bit because it analysis the agent.
+
+NOTE Confidence: 0.8212619423866272
+
+00:25:31.400 --> 00:25:34.775
+So it's going to generate a specific set of rubrics
+
+NOTE Confidence: 0.8212619423866272
+
+00:25:34.841 --> 00:25:36.960
+and across different dimensions.
+
+NOTE Confidence: 0.9283573031425476
+
+00:25:36.960 --> 00:25:38.833
+So in this case, what I did is I took
+
+NOTE Confidence: 0.9283573031425476
+
+00:25:38.884 --> 00:25:41.771
+an agent, this is the concierge starter agent, the travel
+
+NOTE Confidence: 0.9283573031425476
+
+00:25:41.821 --> 00:25:43.239
+agent that we're working on.
+
+NOTE Confidence: 0.8280567526817322
+
+00:25:43.640 --> 00:25:46.338
+And then based on the definition and some of the
+
+NOTE Confidence: 0.8280567526817322
+
+00:25:46.394 --> 00:25:49.767
+seeding set of trajectories that the agent had, it generated
+
+NOTE Confidence: 0.8280567526817322
+
+00:25:49.823 --> 00:25:51.959
+7 different dimensions on this rubric.
+
+NOTE Confidence: 0.9097094535827637
+
+00:25:52.000 --> 00:25:54.223
+And I can come in further and do edits on
+
+NOTE Confidence: 0.9097094535827637
+
+00:25:54.277 --> 00:25:54.440
+it.
+
+NOTE Confidence: 0.9682219624519348
+
+00:25:54.440 --> 00:25:56.886
+So for example, if I say, you know, the policy
+
+NOTE Confidence: 0.9682219624519348
+
+00:25:56.939 --> 00:25:58.959
+compliance is actually more important.
+
+NOTE Confidence: 0.9022285342216492
+
+00:25:58.960 --> 00:26:00.729
+And so it's not like I'm not going to give
+
+NOTE Confidence: 0.9022285342216492
+
+00:26:00.771 --> 00:26:02.499
+it a weight of five, I'm going to give it
+
+NOTE Confidence: 0.9022285342216492
+
+00:26:02.541 --> 00:26:04.311
+a weight of 8 and then update this and run
+
+NOTE Confidence: 0.9022285342216492
+
+00:26:04.353 --> 00:26:04.480
+it.
+
+NOTE Confidence: 0.9148261547088623
+
+00:26:04.840 --> 00:26:06.594
+When I run it, I'm going to see all of
+
+NOTE Confidence: 0.9148261547088623
+
+00:26:06.640 --> 00:26:09.041
+the different set of results on all of the different
+
+NOTE Confidence: 0.9148261547088623
+
+00:26:09.087 --> 00:26:11.812
+dimensions that I have and including both successes and not
+
+NOTE Confidence: 0.9148261547088623
+
+00:26:11.858 --> 00:26:12.320
+successes.
+
+NOTE Confidence: 0.9426780343055725
+
+00:26:12.800 --> 00:26:14.960
+And I can do further analysis of these results.
+
+NOTE Confidence: 0.785865843296051
+
+00:26:14.960 --> 00:26:18.382
+And the founder will show me a cluster analysis across
+
+NOTE Confidence: 0.785865843296051
+
+00:26:18.445 --> 00:26:21.741
+all of the different set evaluators that run where I
+
+NOTE Confidence: 0.785865843296051
+
+00:26:21.805 --> 00:26:25.291
+can see where did the agent hallucinated, where did it,
+
+NOTE Confidence: 0.785865843296051
+
+00:26:25.354 --> 00:26:28.079
+It didn't produce an adequate final answer.
+
+NOTE Confidence: 0.9094626307487488
+
+00:26:28.160 --> 00:26:31.127
+And I can go deeper and understand what is happening
+
+NOTE Confidence: 0.9094626307487488
+
+00:26:31.184 --> 00:26:32.440
+across the the system.
+
+NOTE Confidence: 0.9152433276176453
+
+00:26:32.960 --> 00:26:35.924
+Everything that you see on the UI we can also
+
+NOTE Confidence: 0.9152433276176453
+
+00:26:35.990 --> 00:26:37.440
+do in code, of course.
+
+NOTE Confidence: 0.9027013182640076
+
+00:26:37.760 --> 00:26:38.760
+So let's take a look at code.
+
+NOTE Confidence: 0.8830434083938599
+
+00:26:39.560 --> 00:26:39.720
+Awesome.
+
+NOTE Confidence: 0.9189607501029968
+
+00:26:40.359 --> 00:26:42.353
+So just to show you a little bit about our
+
+NOTE Confidence: 0.9189607501029968
+
+00:26:42.401 --> 00:26:45.106
+travel policy, obviously this is just for the example for
+
+NOTE Confidence: 0.9189607501029968
+
+00:26:45.154 --> 00:26:47.195
+our demo here, but you can see in this case
+
+NOTE Confidence: 0.9189607501029968
+
+00:26:47.242 --> 00:26:49.995
+we've got a skill file, right, that outlines clearly where
+
+NOTE Confidence: 0.9189607501029968
+
+00:26:50.043 --> 00:26:51.039
+the travel policy is.
+
+NOTE Confidence: 0.9566092491149902
+
+00:26:51.240 --> 00:26:53.160
+And that's basically what we're grounding against.
+
+NOTE Confidence: 0.9240440130233765
+
+00:26:53.160 --> 00:26:55.289
+And so making sure that we have access to that
+
+NOTE Confidence: 0.9240440130233765
+
+00:26:55.335 --> 00:26:56.399
+to generate our rubric.
+
+NOTE Confidence: 0.9181131720542908
+
+00:26:57.000 --> 00:26:58.960
+So in this case, we've got a judge, right?
+
+NOTE Confidence: 0.9423474669456482
+
+00:26:58.960 --> 00:27:01.320
+We've got a generic judge that's operating here.
+
+NOTE Confidence: 0.936348557472229
+
+00:27:01.640 --> 00:27:04.061
+So we can see that that LLM is actually looking
+
+NOTE Confidence: 0.936348557472229
+
+00:27:04.112 --> 00:27:05.039
+at answer quality.
+
+NOTE Confidence: 0.9155836701393127
+
+00:27:05.200 --> 00:27:07.359
+But we need to make sure that we have that
+
+NOTE Confidence: 0.9155836701393127
+
+00:27:07.411 --> 00:27:09.519
+5 axis of the rubric to evaluate against.
+
+NOTE Confidence: 0.9678670167922974
+
+00:27:09.720 --> 00:27:11.360
+And so you can see it outlines here.
+
+NOTE Confidence: 0.9600071907043457
+
+00:27:11.480 --> 00:27:13.230
+We can check it out and make sure that it's
+
+NOTE Confidence: 0.9600071907043457
+
+00:27:13.270 --> 00:27:13.800
+part of here.
+
+NOTE Confidence: 0.9059226512908936
+
+00:27:13.800 --> 00:27:16.009
+So right now, you know, the score is the mean
+
+NOTE Confidence: 0.9059226512908936
+
+00:27:16.058 --> 00:27:17.039
+as part of this too.
+
+NOTE Confidence: 0.9695255756378174
+
+00:27:17.040 --> 00:27:19.880
+And so it doesn't really qualify everything that we need.
+
+NOTE Confidence: 0.9329251646995544
+
+00:27:20.440 --> 00:27:22.712
+So in this case, we're going to rerun with both
+
+NOTE Confidence: 0.9329251646995544
+
+00:27:22.760 --> 00:27:25.129
+of those agents with all of those 3 evaluators as
+
+NOTE Confidence: 0.9329251646995544
+
+00:27:25.178 --> 00:27:25.999
+part of this too.
+
+NOTE Confidence: 0.9510188698768616
+
+00:27:26.240 --> 00:27:29.024
+You can see here, it's grinding through, crunching through all
+
+NOTE Confidence: 0.9510188698768616
+
+00:27:29.069 --> 00:27:31.359
+the data, making sure we have that eval piece done.
+
+NOTE Confidence: 0.936800479888916
+
+00:27:31.600 --> 00:27:34.350
+And then here's our scorecard that gets resulted at the
+
+NOTE Confidence: 0.936800479888916
+
+00:27:34.399 --> 00:27:34.600
+end.
+
+NOTE Confidence: 0.9202175736427307
+
+00:27:34.800 --> 00:27:37.440
+So again, comparing to where we were versus now, where
+
+NOTE Confidence: 0.9202175736427307
+
+00:27:37.488 --> 00:27:39.640
+we're going to be in the in the future here.
+
+NOTE Confidence: 0.9235168099403381
+
+00:27:39.880 --> 00:27:41.937
+So you can see in this case, we've got policy
+
+NOTE Confidence: 0.9235168099403381
+
+00:27:41.982 --> 00:27:42.439
+adherence.
+
+NOTE Confidence: 0.850655734539032
+
+00:27:42.440 --> 00:27:45.043
+And before we were striking it red, still pretty red
+
+NOTE Confidence: 0.850655734539032
+
+00:27:45.093 --> 00:27:47.295
+on this, but you can see now our multi multi
+
+NOTE Confidence: 0.850655734539032
+
+00:27:47.345 --> 00:27:50.149
+router has actually made that even better from a quality
+
+NOTE Confidence: 0.850655734539032
+
+00:27:50.199 --> 00:27:50.800
+perspective.
+
+NOTE Confidence: 0.938648521900177
+
+00:27:50.800 --> 00:27:52.440
+But our target has been missed still.
+
+NOTE Confidence: 0.8837393522262573
+
+00:27:52.760 --> 00:27:54.528
+So we still got a bit of hell climbing to
+
+NOTE Confidence: 0.8837393522262573
+
+00:27:54.572 --> 00:27:56.600
+do, but we're definitely making an improvement.
+
+NOTE Confidence: 0.8922390937805176
+
+00:27:56.840 --> 00:27:58.805
+But we can see that that LLM judge has not
+
+NOTE Confidence: 0.8922390937805176
+
+00:27:58.852 --> 00:28:01.240
+been able to take it on from a generic perspective.
+
+NOTE Confidence: 0.8489992618560791
+
+00:28:03.400 --> 00:28:05.663
+There's an important call out there, which is like at
+
+NOTE Confidence: 0.8489992618560791
+
+00:28:05.706 --> 00:28:07.969
+the beginning we did an assessment on quality on like
+
+NOTE Confidence: 0.8489992618560791
+
+00:28:08.012 --> 00:28:09.079
+just baseline evaluators.
+
+NOTE Confidence: 0.7631314992904663
+
+00:28:09.080 --> 00:28:11.320
+It gave us is like, OK, you're about halfway there.
+
+NOTE Confidence: 0.9596408605575562
+
+00:28:11.760 --> 00:28:14.075
+And then we looked at like, is it really following
+
+NOTE Confidence: 0.9596408605575562
+
+00:28:14.122 --> 00:28:15.280
+the travel policy, right?
+
+NOTE Confidence: 0.9550389647483826
+
+00:28:15.560 --> 00:28:16.240
+And it wasn't.
+
+NOTE Confidence: 0.9617933630943298
+
+00:28:16.359 --> 00:28:19.702
+We needed to create a custom evaluator specific for that
+
+NOTE Confidence: 0.9617933630943298
+
+00:28:19.762 --> 00:28:22.746
+travel policy to see if it is following the policy
+
+NOTE Confidence: 0.9617933630943298
+
+00:28:22.806 --> 00:28:24.000
+continuously or not.
+
+NOTE Confidence: 0.9482303857803345
+
+00:28:24.320 --> 00:28:26.376
+And this is where it says like, OK, now that
+
+NOTE Confidence: 0.9482303857803345
+
+00:28:26.423 --> 00:28:28.901
+particular angle of the scenario is not being met and
+
+NOTE Confidence: 0.9482303857803345
+
+00:28:28.947 --> 00:28:31.098
+you need to figure out how do you optimize for
+
+NOTE Confidence: 0.9482303857803345
+
+00:28:31.145 --> 00:28:32.079
+that outcome, right?
+
+NOTE Confidence: 0.9297531247138977
+
+00:28:32.080 --> 00:28:35.301
+Like that's where the quality definition that you have, it's
+
+NOTE Confidence: 0.9297531247138977
+
+00:28:35.355 --> 00:28:38.040
+so important and might also shift over time as you
+
+NOTE Confidence: 0.9297531247138977
+
+00:28:38.094 --> 00:28:39.919
+get more details on your scenario.
+
+NOTE Confidence: 0.1777259260416031
+
+00:28:39.920 --> 00:28:40.040
+Yeah.
+
+NOTE Confidence: 0.4552750289440155
+
+00:28:40.880 --> 00:28:41.040
+Awesome.
+
+NOTE Confidence: 0.9612107276916504
+
+00:28:41.760 --> 00:28:42.920
+So let's keep going.
+
+NOTE Confidence: 0.8135061264038086
+
+00:28:43.120 --> 00:28:44.360
+I think as part of this too.
+
+NOTE Confidence: 0.9258303046226501
+
+00:28:44.920 --> 00:28:47.961
+So we've got our custom evaluator essentially here and now
+
+NOTE Confidence: 0.9258303046226501
+
+00:28:48.014 --> 00:28:49.640
+our hill climb has to continue.
+
+NOTE Confidence: 0.7834007740020752
+
+00:28:53.600 --> 00:28:55.720
+All right, so let's talk about optimization.
+
+NOTE Confidence: 0.9367523193359375
+
+00:28:55.720 --> 00:28:58.196
+So this is really that section where we find the
+
+NOTE Confidence: 0.9367523193359375
+
+00:28:58.248 --> 00:28:59.279
+biggest wins, right?
+
+NOTE Confidence: 0.9393323063850403
+
+00:28:59.280 --> 00:29:00.960
+This is across your whole application.
+
+NOTE Confidence: 0.9528933763504028
+
+00:29:00.960 --> 00:29:02.560
+We've gone through these different segments.
+
+NOTE Confidence: 0.8752231001853943
+
+00:29:02.800 --> 00:29:05.325
+And so we want to make sure that cost reduction
+
+NOTE Confidence: 0.8752231001853943
+
+00:29:05.378 --> 00:29:08.279
+in AI really comes from just choosing a cheaper model.
+
+NOTE Confidence: 0.9712021946907043
+
+00:29:08.360 --> 00:29:10.040
+I see customers doing this all the time.
+
+NOTE Confidence: 0.9470237493515015
+
+00:29:10.040 --> 00:29:11.760
+I'm sure you all have tried this as well.
+
+NOTE Confidence: 0.9503670334815979
+
+00:29:12.000 --> 00:29:13.800
+Don't think about it as being a cheaper model.
+
+NOTE Confidence: 0.8554361462593079
+
+00:29:13.800 --> 00:29:16.702
+It is about the architectural decisions that you are making
+
+NOTE Confidence: 0.8554361462593079
+
+00:29:16.751 --> 00:29:18.080
+inside of your application.
+
+NOTE Confidence: 0.8491351008415222
+
+00:29:19.200 --> 00:29:21.400
+So optimization is that hill climb.
+
+NOTE Confidence: 0.9577154517173767
+
+00:29:21.480 --> 00:29:23.756
+You can see that we've got the categories on the
+
+NOTE Confidence: 0.9577154517173767
+
+00:29:23.804 --> 00:29:26.840
+side here that helps us to understand these multiple dimensions.
+
+NOTE Confidence: 0.9444060921669006
+
+00:29:27.120 --> 00:29:29.379
+So we're not just pushing on cost in this case,
+
+NOTE Confidence: 0.9444060921669006
+
+00:29:29.427 --> 00:29:32.359
+we're actually pushing on quality or just pushing on latency.
+
+NOTE Confidence: 0.966997504234314
+
+00:29:32.600 --> 00:29:34.847
+We need to find a way to improve the system
+
+NOTE Confidence: 0.966997504234314
+
+00:29:34.900 --> 00:29:37.200
+meaningfully across all of these dimensions.
+
+NOTE Confidence: 0.907283365726471
+
+00:29:37.520 --> 00:29:39.880
+And so that's why we want to think about optimization
+
+NOTE Confidence: 0.907283365726471
+
+00:29:39.924 --> 00:29:41.839
+as a really iterative process through this.
+
+NOTE Confidence: 0.9493668675422668
+
+00:29:42.200 --> 00:29:45.310
+You start off with things like prompt improvements, you're going
+
+NOTE Confidence: 0.9493668675422668
+
+00:29:45.359 --> 00:29:48.130
+to carry on with better context and then essentially have
+
+NOTE Confidence: 0.9493668675422668
+
+00:29:48.178 --> 00:29:49.880
+decomposition routing as we showed.
+
+NOTE Confidence: 0.7334538698196411
+
+00:29:49.880 --> 00:29:53.000
+And then of course, a deeper architectural relatency here, levers
+
+NOTE Confidence: 0.7334538698196411
+
+00:29:53.048 --> 00:29:53.480
+are here.
+
+NOTE Confidence: 0.9222841262817383
+
+00:29:53.760 --> 00:29:55.799
+So you want to think about maybe the goal is
+
+NOTE Confidence: 0.9222841262817383
+
+00:29:55.845 --> 00:29:57.559
+not having a perfect endpoint, right?
+
+NOTE Confidence: 0.9151598215103149
+
+00:29:57.680 --> 00:30:00.259
+It's really about how do we make that system really
+
+NOTE Confidence: 0.9151598215103149
+
+00:30:00.310 --> 00:30:03.395
+operate and measurable of faster and better with every single
+
+NOTE Confidence: 0.9151598215103149
+
+00:30:03.445 --> 00:30:03.799
+choice.
+
+NOTE Confidence: 0.9035254120826721
+
+00:30:05.080 --> 00:30:07.295
+So when teams talk about AI cost and I'm sure
+
+NOTE Confidence: 0.9035254120826721
+
+00:30:07.344 --> 00:30:08.919
+you all think about cost, right?
+
+NOTE Confidence: 0.857005774974823
+
+00:30:08.920 --> 00:30:11.244
+Can I show hands folks who are thinking about cost
+
+NOTE Confidence: 0.857005774974823
+
+00:30:11.291 --> 00:30:13.755
+in their applications almost I would say at least 3/4
+
+NOTE Confidence: 0.857005774974823
+
+00:30:13.802 --> 00:30:14.360
+of the room.
+
+NOTE Confidence: 0.8311699032783508
+
+00:30:14.520 --> 00:30:16.554
+The rest of you are obviously bowlers for all of
+
+NOTE Confidence: 0.8311699032783508
+
+00:30:16.597 --> 00:30:17.360
+your AI token use.
+
+NOTE Confidence: 0.4819033741950989
+
+00:30:17.520 --> 00:30:18.520
+So it's all good.
+
+NOTE Confidence: 0.8510934114456177
+
+00:30:18.840 --> 00:30:21.243
+So when teams talk about this AI cost piece of
+
+NOTE Confidence: 0.8510934114456177
+
+00:30:21.295 --> 00:30:23.856
+this, it's really the instinct is to ask for that
+
+NOTE Confidence: 0.8510934114456177
+
+00:30:23.908 --> 00:30:24.639
+cheaper model.
+
+NOTE Confidence: 0.9089301228523254
+
+00:30:24.840 --> 00:30:27.514
+But in practice, it's actually the biggest wins are coming
+
+NOTE Confidence: 0.9089301228523254
+
+00:30:27.560 --> 00:30:28.759
+from those system designs.
+
+NOTE Confidence: 0.8732634782791138
+
+00:30:29.000 --> 00:30:32.000
+We have a full stack of levers inside our foundry.
+
+NOTE Confidence: 0.9300276637077332
+
+00:30:32.160 --> 00:30:34.496
+And so I often think about here, hey, can I
+
+NOTE Confidence: 0.9300276637077332
+
+00:30:34.550 --> 00:30:35.800
+do routing by workload?
+
+NOTE Confidence: 0.9623575210571289
+
+00:30:35.960 --> 00:30:38.080
+Can I make sure I'm using batch inference, right?
+
+NOTE Confidence: 0.9781298041343689
+
+00:30:38.080 --> 00:30:39.703
+That can save you lots of money as part of
+
+NOTE Confidence: 0.9781298041343689
+
+00:30:39.742 --> 00:30:40.399
+what we're doing.
+
+NOTE Confidence: 0.9801861643791199
+
+00:30:40.520 --> 00:30:41.240
+You can think about that.
+
+NOTE Confidence: 0.9292783737182617
+
+00:30:41.240 --> 00:30:44.515
+Async jobs, you've got structured outputs here for wasted tokens,
+
+NOTE Confidence: 0.9292783737182617
+
+00:30:44.566 --> 00:30:47.337
+caching here to help you avoid those repeated work, and
+
+NOTE Confidence: 0.9292783737182617
+
+00:30:47.388 --> 00:30:50.159
+distillation that brings down some of the cost as well.
+
+NOTE Confidence: 0.9404972791671753
+
+00:30:50.560 --> 00:30:53.603
+The important point is for every single one of these
+
+NOTE Confidence: 0.9404972791671753
+
+00:30:53.662 --> 00:30:55.359
+levers, those gains compound.
+
+NOTE Confidence: 0.9296243190765381
+
+00:30:55.360 --> 00:30:58.387
+So think about it across that spectrum, you're basically not
+
+NOTE Confidence: 0.9296243190765381
+
+00:30:58.437 --> 00:30:59.800
+just doing one magical fix.
+
+NOTE Confidence: 0.8870769739151001
+
+00:30:59.800 --> 00:31:01.849
+As much as we would all love that to happen,
+
+NOTE Confidence: 0.8870769739151001
+
+00:31:01.896 --> 00:31:04.552
+you basically need an architecture that helps you to take
+
+NOTE Confidence: 0.8870769739151001
+
+00:31:04.598 --> 00:31:06.881
+advantage of that and lets you stack all of those
+
+NOTE Confidence: 0.8870769739151001
+
+00:31:06.928 --> 00:31:07.999
+optimizations together.
+
+NOTE Confidence: 0.9065080285072327
+
+00:31:08.880 --> 00:31:10.560
+So that brings me into caching.
+
+NOTE Confidence: 0.9224069714546204
+
+00:31:10.600 --> 00:31:12.560
+Caching is a big area, right, For all of us.
+
+NOTE Confidence: 0.9367038011550903
+
+00:31:12.560 --> 00:31:15.040
+We've been on this journey for implicit caching.
+
+NOTE Confidence: 0.9274610877037048
+
+00:31:15.040 --> 00:31:17.501
+We've been into this expanding out as we think about
+
+NOTE Confidence: 0.9274610877037048
+
+00:31:17.548 --> 00:31:20.436
+different areas of caching and how they've been improved over
+
+NOTE Confidence: 0.9274610877037048
+
+00:31:20.483 --> 00:31:20.720
+time.
+
+NOTE Confidence: 0.8457233309745789
+
+00:31:21.040 --> 00:31:23.763
+And so today we're really excited to have an optimization
+
+NOTE Confidence: 0.8457233309745789
+
+00:31:23.811 --> 00:31:26.200
+that's coming to caching that's new and different.
+
+NOTE Confidence: 0.9052942395210266
+
+00:31:26.680 --> 00:31:29.680
+So caching has really evolved from that low level optimization.
+
+NOTE Confidence: 0.8882330656051636
+
+00:31:29.840 --> 00:31:31.834
+And we want to make sure as part of this,
+
+NOTE Confidence: 0.8882330656051636
+
+00:31:31.883 --> 00:31:33.439
+we have explicit prompt caching.
+
+NOTE Confidence: 0.838941216468811
+
+00:31:33.680 --> 00:31:36.953
+Explicit prompt caching is a newer service where we're really
+
+NOTE Confidence: 0.838941216468811
+
+00:31:37.007 --> 00:31:40.120
+looking at core system capabilities into that AI platform.
+
+NOTE Confidence: 0.905052661895752
+
+00:31:40.400 --> 00:31:42.671
+And so it's not just about, you know, here's one
+
+NOTE Confidence: 0.905052661895752
+
+00:31:42.719 --> 00:31:45.511
+lever we can pull, but instead about understanding not just
+
+NOTE Confidence: 0.905052661895752
+
+00:31:45.558 --> 00:31:48.114
+where the request lands, but delivering where we can a
+
+NOTE Confidence: 0.905052661895752
+
+00:31:48.161 --> 00:31:49.960
+consistent and guaranteed performance.
+
+NOTE Confidence: 0.9703319072723389
+
+00:31:50.120 --> 00:31:52.360
+Make sure that you have the savings that you need.
+
+NOTE Confidence: 0.8876528739929199
+
+00:31:52.800 --> 00:31:55.074
+Now, the cool thing here is you have that Azure
+
+NOTE Confidence: 0.8876528739929199
+
+00:31:55.122 --> 00:31:55.799
+context cache.
+
+NOTE Confidence: 0.9474261999130249
+
+00:31:56.040 --> 00:31:58.167
+And so this is not owned by us, the inference
+
+NOTE Confidence: 0.9474261999130249
+
+00:31:58.214 --> 00:31:58.640
+provider.
+
+NOTE Confidence: 0.9681879878044128
+
+00:31:58.640 --> 00:32:00.520
+This is owned by you, right?
+
+NOTE Confidence: 0.8841915726661682
+
+00:32:00.520 --> 00:32:03.595
+Exciting, right, that you have this context cache, It is
+
+NOTE Confidence: 0.8841915726661682
+
+00:32:03.650 --> 00:32:04.200
+your data.
+
+NOTE Confidence: 0.8963381052017212
+
+00:32:04.400 --> 00:32:06.751
+You get to look at your deployments and your savings
+
+NOTE Confidence: 0.8963381052017212
+
+00:32:06.796 --> 00:32:07.519
+as part of this.
+
+NOTE Confidence: 0.8894351124763489
+
+00:32:07.760 --> 00:32:09.916
+And so you can think about this as really having
+
+NOTE Confidence: 0.8894351124763489
+
+00:32:09.961 --> 00:32:11.039
+better privacy controls.
+
+NOTE Confidence: 0.9258455634117126
+
+00:32:11.200 --> 00:32:14.753
+It has better operational availability across long running tasks and
+
+NOTE Confidence: 0.9258455634117126
+
+00:32:14.805 --> 00:32:16.999
+it is available for private preview today.
+
+NOTE Confidence: 0.9501630663871765
+
+00:32:17.120 --> 00:32:17.720
+Exciting.
+
+NOTE Confidence: 0.92282634973526
+
+00:32:18.080 --> 00:32:18.520
+Yes.
+
+NOTE Confidence: 0.4747953712940216
+
+00:32:18.720 --> 00:32:19.320
+Yeah, that's cool.
+
+NOTE Confidence: 0.5004708766937256
+
+00:32:20.560 --> 00:32:20.840
+Awesome, I.
+
+NOTE Confidence: 0.6278296709060669
+
+00:32:21.840 --> 00:32:22.040
+Love it.
+
+NOTE Confidence: 0.9539140462875366
+
+00:32:22.600 --> 00:32:24.000
+So I'm excited about this one.
+
+NOTE Confidence: 0.9104055762290955
+
+00:32:24.000 --> 00:32:24.960
+It's a big piece of this.
+
+NOTE Confidence: 0.8112775683403015
+
+00:32:25.200 --> 00:32:27.749
+All right, let's carry on on our journey latency so
+
+NOTE Confidence: 0.8112775683403015
+
+00:32:27.799 --> 00:32:28.999
+we can think about that.
+
+NOTE Confidence: 0.9657138586044312
+
+00:32:29.160 --> 00:32:31.840
+It's not just about, again, picking that faster model.
+
+NOTE Confidence: 0.9509552121162415
+
+00:32:31.960 --> 00:32:34.638
+It's actually about how we design A faster system as
+
+NOTE Confidence: 0.9509552121162415
+
+00:32:34.689 --> 00:32:35.719
+part of all of this.
+
+NOTE Confidence: 0.9301766753196716
+
+00:32:35.960 --> 00:32:38.772
+And so you can improve the responsiveness here at multiple
+
+NOTE Confidence: 0.9301766753196716
+
+00:32:38.820 --> 00:32:39.160
+stages.
+
+NOTE Confidence: 0.9511007070541382
+
+00:32:39.360 --> 00:32:41.070
+And so we want to make sure that you can
+
+NOTE Confidence: 0.9511007070541382
+
+00:32:41.113 --> 00:32:43.080
+route each task essentially to a faster model.
+
+NOTE Confidence: 0.7507792711257935
+
+00:32:43.080 --> 00:32:44.560
+You saw us demo some of that too.
+
+NOTE Confidence: 0.9237905144691467
+
+00:32:44.720 --> 00:32:47.578
+You can think about reserve capacity with things like PTU
+
+NOTE Confidence: 0.9237905144691467
+
+00:32:47.628 --> 00:32:50.637
+as part of this consistency, having that consistency under a
+
+NOTE Confidence: 0.9237905144691467
+
+00:32:50.687 --> 00:32:51.440
+large workload.
+
+NOTE Confidence: 0.9197766184806824
+
+00:32:51.640 --> 00:32:54.336
+And then of course, use priority processing where you need
+
+NOTE Confidence: 0.9197766184806824
+
+00:32:54.382 --> 00:32:55.079
+that toll road.
+
+NOTE Confidence: 0.9488852620124817
+
+00:32:55.080 --> 00:32:57.320
+Basically that helps you quickly with low latency.
+
+NOTE Confidence: 0.9348332285881042
+
+00:32:57.600 --> 00:32:59.440
+And so we want to make sure that you can
+
+NOTE Confidence: 0.9348332285881042
+
+00:32:59.486 --> 00:33:01.280
+remove wasted work with prompt caching.
+
+NOTE Confidence: 0.9194462299346924
+
+00:33:01.600 --> 00:33:04.968
+We talked about predicted outputs as well, structured outputs and
+
+NOTE Confidence: 0.9194462299346924
+
+00:33:05.019 --> 00:33:06.159
+tighter token budgets.
+
+NOTE Confidence: 0.7799858450889587
+
+00:33:06.160 --> 00:33:07.999
+So again, for all of those that you're on that
+
+NOTE Confidence: 0.7799858450889587
+
+00:33:08.039 --> 00:33:08.559
+token budget.
+
+NOTE Confidence: 0.7895785570144653
+
+00:33:08.560 --> 00:33:11.039
+So the part here, streaming of course, helps us here
+
+NOTE Confidence: 0.7895785570144653
+
+00:33:11.086 --> 00:33:13.280
+with making sure that we have perceived speed.
+
+NOTE Confidence: 0.9201480150222778
+
+00:33:13.440 --> 00:33:15.793
+And then API gateways as part of this can help
+
+NOTE Confidence: 0.9201480150222778
+
+00:33:15.844 --> 00:33:18.759
+you to optimise that traffic across all of these regions.
+
+NOTE Confidence: 0.9598932266235352
+
+00:33:19.200 --> 00:33:21.908
+So the whole idea here, that whole premise in all
+
+NOTE Confidence: 0.9598932266235352
+
+00:33:21.963 --> 00:33:25.058
+of this is to make sure production latency is engineered
+
+NOTE Confidence: 0.9598932266235352
+
+00:33:25.114 --> 00:33:27.656
+for it is not something you just hope and wish
+
+NOTE Confidence: 0.9598932266235352
+
+00:33:27.711 --> 00:33:28.319
+for, right?
+
+NOTE Confidence: 0.8682557940483093
+
+00:33:28.640 --> 00:33:30.200
+Really important piece of all of this.
+
+NOTE Confidence: 0.8411200642585754
+
+00:33:31.080 --> 00:33:33.520
+All right, last one, let's talk about quality.
+
+NOTE Confidence: 0.8168224096298218
+
+00:33:33.800 --> 00:33:36.307
+So quality levers, you've got the idea now you've got
+
+NOTE Confidence: 0.8168224096298218
+
+00:33:36.355 --> 00:33:37.679
+lots of levers you can pull.
+
+NOTE Confidence: 0.9431223273277283
+
+00:33:37.680 --> 00:33:40.400
+All these levers do amazing things inside of your applications.
+
+NOTE Confidence: 0.8918929100036621
+
+00:33:40.760 --> 00:33:43.240
+And so in this case where quality is our constraint,
+
+NOTE Confidence: 0.8918929100036621
+
+00:33:43.288 --> 00:33:45.959
+there's really a progression of levers that you can use.
+
+NOTE Confidence: 0.944145679473877
+
+00:33:46.120 --> 00:33:48.594
+You can think about how we go from lightweight essentially
+
+NOTE Confidence: 0.944145679473877
+
+00:33:48.637 --> 00:33:50.600
+to heavyweight on the other side of the slide.
+
+NOTE Confidence: 0.8952178955078125
+
+00:33:50.920 --> 00:33:53.003
+So in this case, prompt design, number one thing I
+
+NOTE Confidence: 0.8952178955078125
+
+00:33:53.045 --> 00:33:54.920
+would say is always start with prompt design.
+
+NOTE Confidence: 0.8730061650276184
+
+00:33:55.080 --> 00:33:58.010
+Make sure that you're basically you're doing something that's faster
+
+NOTE Confidence: 0.8730061650276184
+
+00:33:58.053 --> 00:33:59.949
+and cheapest as you can do, and then you can
+
+NOTE Confidence: 0.8730061650276184
+
+00:33:59.992 --> 00:34:02.320
+basically ground that system with a retrieval or tool.
+
+NOTE Confidence: 0.866642415523529
+
+00:34:02.320 --> 00:34:04.400
+Use other pieces that you need as part of this.
+
+NOTE Confidence: 0.943670392036438
+
+00:34:04.800 --> 00:34:06.558
+If you need to go stronger, then you can go
+
+NOTE Confidence: 0.943670392036438
+
+00:34:06.599 --> 00:34:08.480
+into things like fine tuning and distillation.
+
+NOTE Confidence: 0.9362964630126953
+
+00:34:08.480 --> 00:34:10.040
+We'll talk about those in just a second.
+
+NOTE Confidence: 0.8742796778678894
+
+00:34:10.280 --> 00:34:13.043
+And for a really highly specialised phases, you could go
+
+NOTE Confidence: 0.8742796778678894
+
+00:34:13.092 --> 00:34:15.560
+into your domain and have a custom model training.
+
+NOTE Confidence: 0.9360427856445312
+
+00:34:15.560 --> 00:34:17.854
+In this case, the key is not to jump to
+
+NOTE Confidence: 0.9360427856445312
+
+00:34:17.912 --> 00:34:19.559
+the heaviest solution first.
+
+NOTE Confidence: 0.9407385587692261
+
+00:34:19.560 --> 00:34:20.400
+I know it's tempting.
+
+NOTE Confidence: 0.9619686603546143
+
+00:34:20.520 --> 00:34:21.200
+Don't do it.
+
+NOTE Confidence: 0.9328199028968811
+
+00:34:21.320 --> 00:34:22.960
+Start with the prompt pieces first.
+
+NOTE Confidence: 0.8492645621299744
+
+00:34:23.120 --> 00:34:24.576
+Go all the way to the other end of the
+
+NOTE Confidence: 0.8492645621299744
+
+00:34:24.614 --> 00:34:24.959
+spectrum.
+
+NOTE Confidence: 0.9626086950302124
+
+00:34:25.160 --> 00:34:27.894
+Use as you need and again, incrementally stack all of
+
+NOTE Confidence: 0.9626086950302124
+
+00:34:27.946 --> 00:34:28.720
+those benefits.
+
+NOTE Confidence: 0.6291082501411438
+
+00:34:29.240 --> 00:34:31.000
+Alright, and we're going to start with the headiest.
+
+NOTE Confidence: 0.8339624404907227
+
+00:34:31.000 --> 00:34:33.785
+We're going to do the model, of course, but but
+
+NOTE Confidence: 0.8339624404907227
+
+00:34:33.844 --> 00:34:37.104
+but there's a full session on agent optimization that I
+
+NOTE Confidence: 0.8339624404907227
+
+00:34:37.164 --> 00:34:39.119
+totally recommend that you go to.
+
+NOTE Confidence: 0.8973573446273804
+
+00:34:39.120 --> 00:34:43.280
+We're going to show how you can automatically analyse what
+
+NOTE Confidence: 0.8973573446273804
+
+00:34:43.352 --> 00:34:45.719
+the is happening with your agent.
+
+NOTE Confidence: 0.8495824933052063
+
+00:34:46.040 --> 00:34:48.358
+Look at the how you can optimize your prompts and
+
+NOTE Confidence: 0.8495824933052063
+
+00:34:48.405 --> 00:34:49.919
+how you can optimize your tools.
+
+NOTE Confidence: 0.9625900387763977
+
+00:34:50.360 --> 00:34:54.160
+Please also go to that session as well, OK.
+
+NOTE Confidence: 0.941937267780304
+
+00:34:54.400 --> 00:34:57.737
+So for the policy itself, what we're going to do
+
+NOTE Confidence: 0.941937267780304
+
+00:34:57.806 --> 00:35:01.491
+is we're going to use distillation and fine tuning to
+
+NOTE Confidence: 0.941937267780304
+
+00:35:01.560 --> 00:35:05.523
+improve on that travel policy adherence issue that we saw
+
+NOTE Confidence: 0.941937267780304
+
+00:35:05.593 --> 00:35:06.079
+before.
+
+NOTE Confidence: 0.9246432781219482
+
+00:35:06.520 --> 00:35:07.560
+Why we're doing this?
+
+NOTE Confidence: 0.9129730463027954
+
+00:35:07.560 --> 00:35:10.125
+Well, because like we're going to take this this knowledge
+
+NOTE Confidence: 0.9129730463027954
+
+00:35:10.169 --> 00:35:12.292
+of the travel policy and we're going to embed it
+
+NOTE Confidence: 0.9129730463027954
+
+00:35:12.336 --> 00:35:12.999
+into the model.
+
+NOTE Confidence: 0.944343626499176
+
+00:35:13.120 --> 00:35:15.758
+We're going to use a bigger teacher model and then
+
+NOTE Confidence: 0.944343626499176
+
+00:35:15.810 --> 00:35:18.396
+teach that into a smaller model to make sure that
+
+NOTE Confidence: 0.944343626499176
+
+00:35:18.448 --> 00:35:21.245
+we can maintain the cost optimization that we want to
+
+NOTE Confidence: 0.944343626499176
+
+00:35:21.297 --> 00:35:21.720
+achieve.
+
+NOTE Confidence: 0.8126548528671265
+
+00:35:22.600 --> 00:35:26.760
+And we're let's kind of see that in in code.
+
+NOTE Confidence: 0.9225600957870483
+
+00:35:27.200 --> 00:35:30.217
+So first of all, fine tuning is super simple for
+
+NOTE Confidence: 0.9225600957870483
+
+00:35:30.279 --> 00:35:32.857
+the set of models that we have as part of
+
+NOTE Confidence: 0.9225600957870483
+
+00:35:32.919 --> 00:35:34.239
+like supervised fine.
+
+NOTE Confidence: 0.866566002368927
+
+00:35:34.400 --> 00:35:35.640
+We actually have multiple techniques.
+
+NOTE Confidence: 0.6830938458442688
+
+00:35:35.640 --> 00:35:38.200
+We have supervised fine tuning that are preference optimization.
+
+NOTE Confidence: 0.8674750924110413
+
+00:35:38.200 --> 00:35:38.960
+We have RL.
+
+NOTE Confidence: 0.9101513028144836
+
+00:35:39.160 --> 00:35:40.962
+We have all of these as part of like a
+
+NOTE Confidence: 0.9101513028144836
+
+00:35:41.009 --> 00:35:42.479
+managed service within Foundry.
+
+NOTE Confidence: 0.9520215392112732
+
+00:35:42.680 --> 00:35:45.093
+It's a few clicks in the UI or a few
+
+NOTE Confidence: 0.9520215392112732
+
+00:35:45.160 --> 00:35:47.440
+lines of code in your Python code.
+
+NOTE Confidence: 0.9292551279067993
+
+00:35:47.600 --> 00:35:49.920
+Let me just quickly share how that looks like.
+
+NOTE Confidence: 0.84426349401474
+
+00:35:50.440 --> 00:35:54.312
+First you're selecting your endpoint, then you're selecting your data
+
+NOTE Confidence: 0.84426349401474
+
+00:35:54.368 --> 00:35:57.118
+set, Then you're also looking at like what is the
+
+NOTE Confidence: 0.84426349401474
+
+00:35:57.174 --> 00:35:57.959
+set of models?
+
+NOTE Confidence: 0.8900901675224304
+
+00:35:57.960 --> 00:35:58.920
+What is your base model?
+
+NOTE Confidence: 0.8933271169662476
+
+00:35:58.920 --> 00:36:00.080
+What is your training model?
+
+NOTE Confidence: 0.9089639186859131
+
+00:36:00.239 --> 00:36:03.476
+And then within like less than 100 lines of code,
+
+NOTE Confidence: 0.9089639186859131
+
+00:36:03.542 --> 00:36:06.383
+you have the job ready to submit for a, for
+
+NOTE Confidence: 0.9089639186859131
+
+00:36:06.449 --> 00:36:07.439
+a training run.
+
+NOTE Confidence: 0.8526063561439514
+
+00:36:08.800 --> 00:36:09.720
+Once you do that.
+
+NOTE Confidence: 0.8684594035148621
+
+00:36:10.080 --> 00:36:12.821
+So what we did here is like we did that
+
+NOTE Confidence: 0.8684594035148621
+
+00:36:12.891 --> 00:36:15.983
+the training run and then we went in and did
+
+NOTE Confidence: 0.8684594035148621
+
+00:36:16.054 --> 00:36:19.919
+pull the, the deployment of that into a developer tier.
+
+NOTE Confidence: 0.8888403177261353
+
+00:36:19.920 --> 00:36:22.538
+Developer tier is a way into which you can try
+
+NOTE Confidence: 0.8888403177261353
+
+00:36:22.595 --> 00:36:25.839
+multiple models that you are fine tuning, deploy them in.
+
+NOTE Confidence: 0.8571836948394775
+
+00:36:26.120 --> 00:36:27.360
+It's super cheap to run.
+
+NOTE Confidence: 0.89995938539505
+
+00:36:27.400 --> 00:36:29.470
+And then like you can find like you can test
+
+NOTE Confidence: 0.89995938539505
+
+00:36:29.517 --> 00:36:31.399
+them against your, your particular data.
+
+NOTE Confidence: 0.8826730251312256
+
+00:36:32.280 --> 00:36:34.604
+In this particular case, we see these are the two
+
+NOTE Confidence: 0.8826730251312256
+
+00:36:34.652 --> 00:36:36.359
+prior, 2 prior runs that we've done.
+
+NOTE Confidence: 0.8833170533180237
+
+00:36:36.680 --> 00:36:39.713
+And then with the fine tune model in a 1.2
+
+NOTE Confidence: 0.8833170533180237
+
+00:36:39.785 --> 00:36:42.602
+GBT for one nano, we got all the way up
+
+NOTE Confidence: 0.8833170533180237
+
+00:36:42.674 --> 00:36:47.079
+into the quality that we wanted for that particular scenario.
+
+NOTE Confidence: 0.9272412061691284
+
+00:36:47.360 --> 00:36:50.336
+So in a very simple fine tuning run, we got
+
+NOTE Confidence: 0.9272412061691284
+
+00:36:50.406 --> 00:36:53.798
+to the quality that we wanted and the output that
+
+NOTE Confidence: 0.9272412061691284
+
+00:36:53.867 --> 00:36:56.359
+we wanted on on that particular set.
+
+NOTE Confidence: 0.9309160709381104
+
+00:36:57.040 --> 00:36:59.466
+We can also see this is the fine tuning experience
+
+NOTE Confidence: 0.9309160709381104
+
+00:36:59.515 --> 00:37:01.748
+here in foundry where we can see like the last
+
+NOTE Confidence: 0.9309160709381104
+
+00:37:01.796 --> 00:37:04.223
+curve and the token accuracy that we got from that
+
+NOTE Confidence: 0.9309160709381104
+
+00:37:04.271 --> 00:37:05.000
+particular run.
+
+NOTE Confidence: 0.9039038419723511
+
+00:37:05.440 --> 00:37:08.303
+And then we can continuously fine tune like basically as
+
+NOTE Confidence: 0.9039038419723511
+
+00:37:08.354 --> 00:37:10.911
+we get new, new set of trajectories coming in, the
+
+NOTE Confidence: 0.9039038419723511
+
+00:37:10.962 --> 00:37:13.621
+model will continuously tune and then we can see all
+
+NOTE Confidence: 0.9039038419723511
+
+00:37:13.673 --> 00:37:16.741
+of the different checkpoints and look at the checkpoints and
+
+NOTE Confidence: 0.9039038419723511
+
+00:37:16.792 --> 00:37:18.480
+and bring in checkpoints as well.
+
+NOTE Confidence: 0.9115738272666931
+
+00:37:19.840 --> 00:37:20.160
+OK.
+
+NOTE Confidence: 0.8412598371505737
+
+00:37:21.000 --> 00:37:24.639
+Let's go back to the up the, the specific set
+
+NOTE Confidence: 0.8412598371505737
+
+00:37:24.719 --> 00:37:28.116
+of like you know, this is what we where we
+
+NOTE Confidence: 0.8412598371505737
+
+00:37:28.197 --> 00:37:32.159
+are in terms of the optimization of the scenario.
+
+NOTE Confidence: 0.8662684559822083
+
+00:37:32.520 --> 00:37:35.114
+But in terms of Foundry I mentioned there's we have
+
+NOTE Confidence: 0.8662684559822083
+
+00:37:35.165 --> 00:37:37.760
+multiple ways into which you can post train models.
+
+NOTE Confidence: 0.8709970712661743
+
+00:37:38.200 --> 00:37:40.953
+There's managed fine tuning, which is what we what I
+
+NOTE Confidence: 0.8709970712661743
+
+00:37:41.006 --> 00:37:43.548
+showed just now, which is the simplest way to do
+
+NOTE Confidence: 0.8709970712661743
+
+00:37:43.601 --> 00:37:43.759
+it.
+
+NOTE Confidence: 0.9338500499725342
+
+00:37:43.760 --> 00:37:46.420
+You bring your data and Foundry handles everything that there
+
+NOTE Confidence: 0.9338500499725342
+
+00:37:46.463 --> 00:37:49.559
+is, the data preparation, the training, the monitoring, the deployment.
+
+NOTE Confidence: 0.9242196083068848
+
+00:37:49.880 --> 00:37:53.360
+It has the highest likelihood of success.
+
+NOTE Confidence: 0.8801889419555664
+
+00:37:53.360 --> 00:37:56.158
+If you are not a machine learning professional or a
+
+NOTE Confidence: 0.8801889419555664
+
+00:37:56.213 --> 00:37:58.792
+data scientist that has done ML in the past and
+
+NOTE Confidence: 0.8801889419555664
+
+00:37:58.847 --> 00:38:00.000
+it's very low effort.
+
+NOTE Confidence: 0.8199198842048645
+
+00:38:00.000 --> 00:38:02.243
+You can pick whether you want to do supervised fine
+
+NOTE Confidence: 0.8199198842048645
+
+00:38:02.287 --> 00:38:05.279
+tuning, direct preference optimization, or or reinforce fine tuning.
+
+NOTE Confidence: 0.7665002346038818
+
+00:38:06.040 --> 00:38:08.160
+We also have a serverless API.
+
+NOTE Confidence: 0.8878262042999268
+
+00:38:11.040 --> 00:38:14.569
+We also have a serverless API that we're launching here
+
+NOTE Confidence: 0.8878262042999268
+
+00:38:14.633 --> 00:38:17.521
+as part of a build where you can have control
+
+NOTE Confidence: 0.8878262042999268
+
+00:38:17.585 --> 00:38:21.436
+of your rewards and the hyper parameters and Foundry handles
+
+NOTE Confidence: 0.8878262042999268
+
+00:38:21.500 --> 00:38:22.720
+the infrastructure.
+
+NOTE Confidence: 0.8745207190513611
+
+00:38:22.880 --> 00:38:25.257
+It produces a set of lower weights where then like
+
+NOTE Confidence: 0.8745207190513611
+
+00:38:25.304 --> 00:38:27.301
+we overlay on top of like the set, the set
+
+NOTE Confidence: 0.8745207190513611
+
+00:38:27.348 --> 00:38:28.680
+of deployments that we have.
+
+NOTE Confidence: 0.9329319000244141
+
+00:38:29.000 --> 00:38:30.840
+There's no cluster management that you have to do.
+
+NOTE Confidence: 0.9050071835517883
+
+00:38:31.320 --> 00:38:34.297
+And finally, we also offer full control RL where you
+
+NOTE Confidence: 0.9050071835517883
+
+00:38:34.355 --> 00:38:37.963
+can have full ownership of the code, the distributed strategies
+
+NOTE Confidence: 0.9050071835517883
+
+00:38:38.020 --> 00:38:42.029
+that you're using, the algorithms that you're bringing, whether you're
+
+NOTE Confidence: 0.9050071835517883
+
+00:38:42.086 --> 00:38:44.320
+what type of GPU clusters you're using.
+
+NOTE Confidence: 0.7618901133537292
+
+00:38:44.680 --> 00:38:47.123
+And then it foundry managers for you, the compute and
+
+NOTE Confidence: 0.7618901133537292
+
+00:38:47.170 --> 00:38:48.000
+the orchestration.
+
+NOTE Confidence: 0.8500580787658691
+
+00:38:48.000 --> 00:38:50.378
+And you can use frameworks like Slime on Viral in
+
+NOTE Confidence: 0.8500580787658691
+
+00:38:50.426 --> 00:38:51.639
+order to do the training.
+
+NOTE Confidence: 0.9379479289054871
+
+00:38:52.160 --> 00:38:54.749
+Of course, my recommendation is that you start at the
+
+NOTE Confidence: 0.9379479289054871
+
+00:38:54.798 --> 00:38:57.436
+simplest one, see what you get because again, you have
+
+NOTE Confidence: 0.9379479289054871
+
+00:38:57.485 --> 00:38:58.560
+the evaluations right.
+
+NOTE Confidence: 0.9586774110794067
+
+00:38:58.560 --> 00:39:01.922
+Like this is the importance of defining your success criteria
+
+NOTE Confidence: 0.9586774110794067
+
+00:39:01.977 --> 00:39:05.120
+and then move towards the right as your scenario demands.
+
+NOTE Confidence: 0.8745773434638977
+
+00:39:07.920 --> 00:39:11.595
+Once you have your customized model, then you can bring
+
+NOTE Confidence: 0.8745773434638977
+
+00:39:11.662 --> 00:39:13.600
+it in Foundry and and run it.
+
+NOTE Confidence: 0.8846992254257202
+
+00:39:13.840 --> 00:39:16.576
+If it is an open source model, we have Foundry
+
+NOTE Confidence: 0.8846992254257202
+
+00:39:16.635 --> 00:39:20.145
+managed compute and the partnership that we announced in GA
+
+NOTE Confidence: 0.8846992254257202
+
+00:39:20.205 --> 00:39:23.060
+today with Fireworks and then like or or you can
+
+NOTE Confidence: 0.8846992254257202
+
+00:39:23.120 --> 00:39:25.440
+deploy it on your own compute clusters.
+
+NOTE Confidence: 0.8946455121040344
+
+00:39:26.800 --> 00:39:31.077
+Speaking of fireworks, this we are announcing the general availability
+
+NOTE Confidence: 0.8946455121040344
+
+00:39:31.138 --> 00:39:33.887
+and that what it brings to customers is 0 day
+
+NOTE Confidence: 0.8946455121040344
+
+00:39:33.949 --> 00:39:37.981
+access to optimised frontier models, the best in class inferencing
+
+NOTE Confidence: 0.8946455121040344
+
+00:39:38.043 --> 00:39:41.892
+performance and making sure that it has that native integration
+
+NOTE Confidence: 0.8946455121040344
+
+00:39:41.953 --> 00:39:44.519
+into Azure for that enterprise foundation.
+
+NOTE Confidence: 0.8593520522117615
+
+00:39:44.520 --> 00:39:47.725
+So like that's the key differentiation when it comes to
+
+NOTE Confidence: 0.8593520522117615
+
+00:39:47.783 --> 00:39:52.387
+leveraging Fireworks directly versus leverage micro fireworks on Foundry, which
+
+NOTE Confidence: 0.8593520522117615
+
+00:39:52.446 --> 00:39:55.535
+means like it, it deeply integrates across all of the
+
+NOTE Confidence: 0.8593520522117615
+
+00:39:55.593 --> 00:39:57.399
+enterprise stack that we offer.
+
+NOTE Confidence: 0.8630155324935913
+
+00:39:59.440 --> 00:40:02.559
+We also have manage compute in Microsoft Foundry, which basically
+
+NOTE Confidence: 0.8630155324935913
+
+00:40:02.607 --> 00:40:05.247
+is that for teams that are standardising on open models
+
+NOTE Confidence: 0.8630155324935913
+
+00:40:05.295 --> 00:40:07.503
+and making sure that they want to have a broad
+
+NOTE Confidence: 0.8630155324935913
+
+00:40:07.551 --> 00:40:08.319
+model selection.
+
+NOTE Confidence: 0.9004129767417908
+
+00:40:08.560 --> 00:40:11.430
+This is where our partnership with Hugging Face shines in
+
+NOTE Confidence: 0.9004129767417908
+
+00:40:11.480 --> 00:40:13.847
+like all of the different set of models that we
+
+NOTE Confidence: 0.9004129767417908
+
+00:40:13.897 --> 00:40:16.466
+are are coming in from thousands of models that are
+
+NOTE Confidence: 0.9004129767417908
+
+00:40:16.516 --> 00:40:19.839
+coming in from Hugging Face, from NVIDIA, from Microsoft Research.
+
+NOTE Confidence: 0.785403847694397
+
+00:40:20.520 --> 00:40:23.913
+Then you can use optimised runtimes like VLLMSG, LAN, the
+
+NOTE Confidence: 0.785403847694397
+
+00:40:23.973 --> 00:40:27.664
+NVIDIA names, runtime as well for efficient execution and then
+
+NOTE Confidence: 0.785403847694397
+
+00:40:27.724 --> 00:40:31.117
+like have all of the flexibility on compute where foundry
+
+NOTE Confidence: 0.785403847694397
+
+00:40:31.177 --> 00:40:34.809
+managers the accelerators and you can bring your own capacity
+
+NOTE Confidence: 0.785403847694397
+
+00:40:34.868 --> 00:40:38.559
+to have this full seam seamlessly integrated across the stack.
+
+NOTE Confidence: 0.8943228125572205
+
+00:40:38.840 --> 00:40:41.265
+It uses the same auth, it uses the same API
+
+NOTE Confidence: 0.8943228125572205
+
+00:40:41.322 --> 00:40:44.199
+endpoints, it uses the same SDK, and then you don't
+
+NOTE Confidence: 0.8943228125572205
+
+00:40:44.256 --> 00:40:46.399
+have to manage all of that separately.
+
+NOTE Confidence: 0.8243849873542786
+
+00:40:48.960 --> 00:40:51.291
+All right, we can talk about operations a little bit
+
+NOTE Confidence: 0.8243849873542786
+
+00:40:51.335 --> 00:40:51.559
+more.
+
+NOTE Confidence: 0.9048627614974976
+
+00:40:51.560 --> 00:40:54.093
+So this is where our AI systems are really looking
+
+NOTE Confidence: 0.9048627614974976
+
+00:40:54.143 --> 00:40:55.359
+like production systems.
+
+NOTE Confidence: 0.9387637376785278
+
+00:40:55.640 --> 00:40:58.687
+And so once you have selection, evaluation and optimization done,
+
+NOTE Confidence: 0.9387637376785278
+
+00:40:58.734 --> 00:41:01.171
+the next challenge is really making sure that we are
+
+NOTE Confidence: 0.9387637376785278
+
+00:41:01.218 --> 00:41:02.999
+operating that system with discipline.
+
+NOTE Confidence: 0.9121776819229126
+
+00:41:03.240 --> 00:41:05.040
+So that really means observability.
+
+NOTE Confidence: 0.9195979237556458
+
+00:41:05.120 --> 00:41:07.089
+And so I won't show too much of a demo
+
+NOTE Confidence: 0.9195979237556458
+
+00:41:07.140 --> 00:41:07.400
+here.
+
+NOTE Confidence: 0.7407711744308472
+
+00:41:07.400 --> 00:41:08.000
+What's in there?
+
+NOTE Confidence: 0.9073566198348999
+
+00:41:08.000 --> 00:41:10.288
+It's available for you in the primary portal with lots
+
+NOTE Confidence: 0.9073566198348999
+
+00:41:10.331 --> 00:41:10.839
+of goodness.
+
+NOTE Confidence: 0.9489777088165283
+
+00:41:11.040 --> 00:41:14.709
+But really when you're taking something from prototype into production,
+
+NOTE Confidence: 0.9489777088165283
+
+00:41:14.760 --> 00:41:18.120
+really that observability piece is critical to what you're doing.
+
+NOTE Confidence: 0.8621391654014587
+
+00:41:18.400 --> 00:41:20.457
+And so we want to make sure we understand not
+
+NOTE Confidence: 0.8621391654014587
+
+00:41:20.502 --> 00:41:23.062
+just what our AI system is actually outputting here, but
+
+NOTE Confidence: 0.8621391654014587
+
+00:41:23.108 --> 00:41:25.805
+ensuring essentially as part of this, we are tracing, we're
+
+NOTE Confidence: 0.8621391654014587
+
+00:41:25.851 --> 00:41:27.040
+evaluating and monitoring.
+
+NOTE Confidence: 0.8927547335624695
+
+00:41:27.280 --> 00:41:29.319
+And so tracing lets you see that end to end
+
+NOTE Confidence: 0.8927547335624695
+
+00:41:29.366 --> 00:41:30.599
+visibility across prompts.
+
+NOTE Confidence: 0.8345181941986084
+
+00:41:30.719 --> 00:41:33.000
+We also make sure that we're tracing is giving you
+
+NOTE Confidence: 0.8345181941986084
+
+00:41:33.046 --> 00:41:35.920
+that information that you need for tools evaluation, of course,
+
+NOTE Confidence: 0.8345181941986084
+
+00:41:35.966 --> 00:41:38.840
+that lets us understand quality and safety and agent behaviour.
+
+NOTE Confidence: 0.8219726085662842
+
+00:41:39.040 --> 00:41:41.520
+And then monitoring of course, is worth Azure monitor.
+
+NOTE Confidence: 0.9135811924934387
+
+00:41:41.520 --> 00:41:43.848
+You can see that brings in the real time signals
+
+NOTE Confidence: 0.9135811924934387
+
+00:41:43.897 --> 00:41:46.080
+that you need for cost and latency and all of
+
+NOTE Confidence: 0.9135811924934387
+
+00:41:46.129 --> 00:41:46.759
+those pieces.
+
+NOTE Confidence: 0.9078112244606018
+
+00:41:47.120 --> 00:41:49.135
+So if you want to make sure your AI system
+
+NOTE Confidence: 0.9078112244606018
+
+00:41:49.183 --> 00:41:51.631
+is really great, right, we want to think about this
+
+NOTE Confidence: 0.9078112244606018
+
+00:41:51.679 --> 00:41:53.119
+from a confidence perspective.
+
+NOTE Confidence: 0.8618021607398987
+
+00:41:53.440 --> 00:41:57.000
+Really think about building observability into your loop straight away.
+
+NOTE Confidence: 0.9248964786529541
+
+00:41:57.719 --> 00:41:59.372
+Now we have a great demo that's part of this
+
+NOTE Confidence: 0.9248964786529541
+
+00:41:59.409 --> 00:41:59.559
+too.
+
+NOTE Confidence: 0.9544926881790161
+
+00:41:59.560 --> 00:42:01.433
+We won't go through this too much but just to
+
+NOTE Confidence: 0.9544926881790161
+
+00:42:01.475 --> 00:42:03.515
+show you what this looks like very quickly on the
+
+NOTE Confidence: 0.9544926881790161
+
+00:42:03.556 --> 00:42:05.680
+foundry portal, you can see these directly in here.
+
+NOTE Confidence: 0.8342176675796509
+
+00:42:05.800 --> 00:42:07.980
+You can see the the different areas and then this
+
+NOTE Confidence: 0.8342176675796509
+
+00:42:08.025 --> 00:42:10.027
+case I'm picking on the time to the last bite
+
+NOTE Confidence: 0.8342176675796509
+
+00:42:10.072 --> 00:42:12.519
+and I'm actually going to ask copilot directly in here.
+
+NOTE Confidence: 0.9720399379730225
+
+00:42:12.520 --> 00:42:13.760
+How do I improve this right?
+
+NOTE Confidence: 0.9234034419059753
+
+00:42:13.880 --> 00:42:15.840
+And it actually shows it to me directly in here.
+
+NOTE Confidence: 0.9024994969367981
+
+00:42:15.840 --> 00:42:17.755
+So just a really great way of being able to
+
+NOTE Confidence: 0.9024994969367981
+
+00:42:17.799 --> 00:42:20.650
+check out all of these different capabilities and having copilot
+
+NOTE Confidence: 0.9024994969367981
+
+00:42:20.694 --> 00:42:22.120
+assistance directly in here too.
+
+NOTE Confidence: 0.7294445633888245
+
+00:42:23.160 --> 00:42:24.760
+All right, take us home.
+
+NOTE Confidence: 0.9262679815292358
+
+00:42:25.280 --> 00:42:25.560
+Yeah.
+
+NOTE Confidence: 0.8505816459655762
+
+00:42:25.719 --> 00:42:29.261
+So, so multiple steps, multiple levers throughout the session we
+
+NOTE Confidence: 0.8505816459655762
+
+00:42:29.316 --> 00:42:31.861
+showed an end to end scenario and what are the
+
+NOTE Confidence: 0.8505816459655762
+
+00:42:31.916 --> 00:42:34.296
+set of things that you can do is to improve
+
+NOTE Confidence: 0.8505816459655762
+
+00:42:34.351 --> 00:42:34.960
+in quality.
+
+NOTE Confidence: 0.9340636134147644
+
+00:42:35.320 --> 00:42:37.927
+So at every step, this is the notion of hill
+
+NOTE Confidence: 0.9340636134147644
+
+00:42:37.986 --> 00:42:40.949
+climbing that you saw us talk about in the keynote
+
+NOTE Confidence: 0.9340636134147644
+
+00:42:41.008 --> 00:42:43.320
+today, the quality improving over time.
+
+NOTE Confidence: 0.8692160248756409
+
+00:42:43.640 --> 00:42:46.156
+But the key set of thing, and again, the key
+
+NOTE Confidence: 0.8692160248756409
+
+00:42:46.213 --> 00:42:49.245
+take away is start with your evals, the definition of
+
+NOTE Confidence: 0.8692160248756409
+
+00:42:49.302 --> 00:42:49.760
+success.
+
+NOTE Confidence: 0.9546093940734863
+
+00:42:49.840 --> 00:42:52.160
+How do you define that success criteria?
+
+NOTE Confidence: 0.8177494406700134
+
+00:42:52.760 --> 00:42:55.863
+Foundry helps you along the way with Robert, like the
+
+NOTE Confidence: 0.8177494406700134
+
+00:42:55.921 --> 00:42:59.142
+new capabilities that we have, whether you can bring in
+
+NOTE Confidence: 0.8177494406700134
+
+00:42:59.201 --> 00:43:02.245
+your code, bring in your prompt or have Foundry help
+
+NOTE Confidence: 0.8177494406700134
+
+00:43:02.304 --> 00:43:05.232
+you this like build up those rubrics using now the
+
+NOTE Confidence: 0.8177494406700134
+
+00:43:05.290 --> 00:43:08.160
+new set of rubric based based evals capabilities.
+
+NOTE Confidence: 0.9256923198699951
+
+00:43:09.239 --> 00:43:11.042
+So at the end of the day, make sure that
+
+NOTE Confidence: 0.9256923198699951
+
+00:43:11.087 --> 00:43:13.160
+you're building the system, not just a prompt.
+
+NOTE Confidence: 0.7972801923751831
+
+00:43:13.640 --> 00:43:16.819
+Long gone, long gone are the days of just prompt
+
+NOTE Confidence: 0.7972801923751831
+
+00:43:16.885 --> 00:43:17.679
+engineering.
+
+NOTE Confidence: 0.9580526351928711
+
+00:43:18.200 --> 00:43:20.543
+You need to make sure that you're picking up the
+
+NOTE Confidence: 0.9580526351928711
+
+00:43:20.592 --> 00:43:21.960
+best model for the workload.
+
+NOTE Confidence: 0.9270052909851074
+
+00:43:21.960 --> 00:43:24.240
+Decompose the set of scenarios that you have.
+
+NOTE Confidence: 0.8599199652671814
+
+00:43:24.239 --> 00:43:28.451
+Think about old school micro services architecture when you're building
+
+NOTE Confidence: 0.8599199652671814
+
+00:43:28.510 --> 00:43:29.400
+your solutions.
+
+NOTE Confidence: 0.9628629088401794
+
+00:43:30.080 --> 00:43:32.520
+Evaluate on your particular scenario.
+
+NOTE Confidence: 0.8409992456436157
+
+00:43:32.760 --> 00:43:36.359
+Think about the all of the different set of optimization
+
+NOTE Confidence: 0.8409992456436157
+
+00:43:36.423 --> 00:43:40.279
+capabilities that you have across quality, latency and cost.
+
+NOTE Confidence: 0.8749852776527405
+
+00:43:40.680 --> 00:43:44.112
+And then like understanding that understanding of your scenario, as
+
+NOTE Confidence: 0.8749852776527405
+
+00:43:44.163 --> 00:43:46.827
+I mentioned before becomes your IP that then you can
+
+NOTE Confidence: 0.8749852776527405
+
+00:43:46.879 --> 00:43:48.159
+further cost optimise on.
+
+NOTE Confidence: 0.9742156267166138
+
+00:43:49.360 --> 00:43:50.680
+You need to operate with control.
+
+NOTE Confidence: 0.8048819899559021
+
+00:43:50.680 --> 00:43:54.836
+Make sure that like you know, monitoring, versioning, governing, being
+
+NOTE Confidence: 0.8048819899559021
+
+00:43:54.896 --> 00:43:58.400
+able to rollback, fully integrate into your CCICD pipeline.
+
+NOTE Confidence: 0.9201303720474243
+
+00:43:58.719 --> 00:44:01.193
+All of those different pieces we enable and support as
+
+NOTE Confidence: 0.9201303720474243
+
+00:44:01.239 --> 00:44:03.713
+part of Foundry with the integration that we have with
+
+NOTE Confidence: 0.9201303720474243
+
+00:44:03.759 --> 00:44:04.079
+GitHub.
+
+NOTE Confidence: 0.9217325448989868
+
+00:44:04.400 --> 00:44:08.157
+And then as we show during the session, continuously improve
+
+NOTE Confidence: 0.9217325448989868
+
+00:44:08.220 --> 00:44:11.601
+so that like you can actually build not only solutions
+
+NOTE Confidence: 0.9217325448989868
+
+00:44:11.664 --> 00:44:15.171
+that meet the goal, but that continuously meet that goal
+
+NOTE Confidence: 0.9217325448989868
+
+00:44:15.234 --> 00:44:18.240
+over time as everything else changes around you.
+
+NOTE Confidence: 0.5859610438346863
+
+00:44:20.320 --> 00:44:20.560
+All right.
+
+NOTE Confidence: 0.9373177886009216
+
+00:44:20.560 --> 00:44:23.172
+So if we step back, this is your value proposition
+
+NOTE Confidence: 0.9373177886009216
+
+00:44:23.225 --> 00:44:23.799
+on Foundry.
+
+NOTE Confidence: 0.9449145197868347
+
+00:44:24.000 --> 00:44:25.440
+Of course, we think about this, right?
+
+NOTE Confidence: 0.8070123195648193
+
+00:44:25.440 --> 00:44:27.836
+We're basically having a great way to select the model
+
+NOTE Confidence: 0.8070123195648193
+
+00:44:27.881 --> 00:44:28.679
+to start off with.
+
+NOTE Confidence: 0.9143782258033752
+
+00:44:28.840 --> 00:44:30.812
+You can think about how you scale that model as
+
+NOTE Confidence: 0.9143782258033752
+
+00:44:30.854 --> 00:44:31.399
+part of this.
+
+NOTE Confidence: 0.9124747514724731
+
+00:44:31.400 --> 00:44:34.025
+You can then optimize it, take it out globally, think
+
+NOTE Confidence: 0.9124747514724731
+
+00:44:34.075 --> 00:44:36.800
+about how you think about changes and demand over time.
+
+NOTE Confidence: 0.8973526358604431
+
+00:44:36.920 --> 00:44:39.040
+How do I iterate across this entire process?
+
+NOTE Confidence: 0.9144633412361145
+
+00:44:39.200 --> 00:44:42.751
+And then of course, keep control, security, compliance operations all
+
+NOTE Confidence: 0.9144633412361145
+
+00:44:42.803 --> 00:44:45.428
+the way through really is that it's not about model
+
+NOTE Confidence: 0.9144633412361145
+
+00:44:45.479 --> 00:44:45.839
+choice.
+
+NOTE Confidence: 0.8567158579826355
+
+00:44:45.920 --> 00:44:49.005
+This is about the entire platform value that we're delivering
+
+NOTE Confidence: 0.8567158579826355
+
+00:44:49.055 --> 00:44:51.685
+as you're part of Foundry and really having that way
+
+NOTE Confidence: 0.8567158579826355
+
+00:44:51.736 --> 00:44:54.719
+to build smarter systems as models and costs keep evolving.
+
+NOTE Confidence: 0.8613075017929077
+
+00:44:55.480 --> 00:44:56.440
+So what else should we learn?
+
+NOTE Confidence: 0.9629040360450745
+
+00:44:56.800 --> 00:44:59.213
+Well, there's a lot of other sessions that we have
+
+NOTE Confidence: 0.9629040360450745
+
+00:44:59.261 --> 00:45:01.239
+at the conference for you to take a look.
+
+NOTE Confidence: 0.9029825329780579
+
+00:45:01.440 --> 00:45:03.680
+Please join or watch the recordings.
+
+NOTE Confidence: 0.9227353930473328
+
+00:45:04.160 --> 00:45:06.292
+This is part of the end to end set of
+
+NOTE Confidence: 0.9227353930473328
+
+00:45:06.350 --> 00:45:08.079
+solutions that Foundry offers.
+
+NOTE Confidence: 0.8705790638923645
+
+00:45:08.480 --> 00:45:11.647
+We talked about in this session more about models, but
+
+NOTE Confidence: 0.8705790638923645
+
+00:45:11.705 --> 00:45:14.931
+there's other sessions that are going to go deeper into
+
+NOTE Confidence: 0.8705790638923645
+
+00:45:14.990 --> 00:45:19.037
+post training, deeper into identic solutions, deeper into safety and,
+
+NOTE Confidence: 0.8705790638923645
+
+00:45:19.096 --> 00:45:20.680
+and responsible AI as well.
+
+NOTE Confidence: 0.9135228395462036
+
+00:45:21.480 --> 00:45:23.640
+And we're here to help you along the way.
+
+NOTE Confidence: 0.9482358694076538
+
+00:45:23.640 --> 00:45:24.840
+Please connect with us.
+
+NOTE Confidence: 0.9235871434211731
+
+00:45:24.960 --> 00:45:28.412
+Start building with foundryai.azure.com is the one thing that you
+
+NOTE Confidence: 0.9235871434211731
+
+00:45:28.465 --> 00:45:31.227
+need to remember the session code where you can find
+
+NOTE Confidence: 0.9235871434211731
+
+00:45:31.281 --> 00:45:33.565
+the link where you can find all of the code
+
+NOTE Confidence: 0.9235871434211731
+
+00:45:33.618 --> 00:45:34.839
+that we shared as well.
+
+NOTE Confidence: 0.9448375701904297
+
+00:45:34.840 --> 00:45:37.520
+And then we have a very active Discord community.
+
+NOTE Confidence: 0.9354295134544373
+
+00:45:37.520 --> 00:45:38.480
+Please join us there.
+
+NOTE Confidence: 0.9636783599853516
+
+00:45:38.920 --> 00:45:41.360
+And thank you for joining us today.
+
+NOTE Confidence: 0.9019742608070374
+
+00:45:41.800 --> 00:45:43.320
+We appreciate that you're all here.
+
+NOTE Confidence: 0.8937984704971313
+
+00:45:43.320 --> 00:45:46.111
+And I hope that you had a great time learning
+
+NOTE Confidence: 0.8937984704971313
+
+00:45:46.173 --> 00:45:49.399
+with us how to continuously improve your AI systems.
+
+NOTE Confidence: 0.3051452040672302
+
+00:45:49.880 --> 00:45:50.720
+Thank you folks.
+

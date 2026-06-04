@@ -1,0 +1,1017 @@
+**[00:00:00]** Hi everyone.
+**[00:00:02]** My name is Tina Schackman, Corporate Vice President on Microsoft
+**[00:00:05]** Foundry.
+**[00:00:06]** Along with me is Jeff Holland, Partner Director on our
+**[00:00:10]** Foundry agent platform.
+**[00:00:12]** We're super excited to be with you today.
+**[00:00:14]** For the next 45 minutes, we're going to walk you
+**[00:00:18]** through building an agent locally hosted in a sandbox, having
+**[00:00:23]** run production workload and and operate it to see itself
+**[00:00:27]** improve.
+**[00:00:27]** So get excited before we get started.
+**[00:00:31]** I would love to ground us on where we are
+**[00:00:33]** today.
+**[00:00:34]** We have entered a new era of AI agents.
+**[00:00:38]** Three things are true.
+**[00:00:40]** One, building is no longer the hard part.
+**[00:00:44]** With coding agents such as Get Up Copilot, Get Up
+**[00:00:48]** Copilot, CLI, and Cloud Code, any developer is able to
+**[00:00:52]** stand up a powerful agent within minutes.
+**[00:00:56]** The question has shifted from can I build it to
+**[00:01:00]** can I run a reliably and enterprise scale 2 agents
+**[00:01:05]** capabilities have exploded.
+**[00:01:08]** We're no longer building agents that are static routers shuffling
+**[00:01:12]** requests between a fixed set of tools.
+**[00:01:15]** Today's agents can spawn off new agents that have full
+**[00:01:19]** access to their compute environment.
+**[00:01:22]** They can create new skills.
+**[00:01:24]** They can generate new memory.
+**[00:01:26]** They can't get things done that they were never programmed
+**[00:01:29]** to do to start with.
+**[00:01:31]** They are general purpose systems.
+**[00:01:35]** And the third shift, which may be the biggest shift
+**[00:01:38]** of all, agents are teammates, not tools.
+**[00:01:41]** We're no longer building chat bots.
+**[00:01:44]** We're building agents that take on significant, significant business outcome
+**[00:01:48]** and they do whatever is needed to get that outcome
+**[00:01:52]** done.
+**[00:01:52]** Outcome done by chatting not only with people, but also
+**[00:01:56]** with other agents.
+**[00:01:59]** Now let's put that in the context of your entire
+**[00:02:03]** business, across every single function, compliance, finance, supply chain support.
+**[00:02:10]** Businesses that win don't just build 1 super powerful agent.
+**[00:02:15]** They have AI at the core of every single function.
+**[00:02:20]** They have a coordinated system of agents that are all
+**[00:02:23]** carrying out business, business critical tasks.
+**[00:02:28]** They have all of these agents that are long running
+**[00:02:32]** and they are having, they are carrying out long high
+**[00:02:36]** value actions.
+**[00:02:38]** So your team of agents become a team of operators
+**[00:02:42]** continuously learning, continuously improving.
+**[00:02:46]** So that demands not just a build platform, it demands
+**[00:02:51]** that entire operating system for your enterprise AI transformation.
+**[00:02:57]** And that is what Foundry gives you.
+**[00:03:00]** And that's where our systems advantage comes in.
+**[00:03:04]** Microsoft offers the most complete system for any enterprise.
+**[00:03:10]** Foundry, Azure, GitHub, Microsoft 365, Microsoft Security, all working as
+**[00:03:17]** a holistic system, not siloed tools.
+**[00:03:22]** One insight we have is that AI systems are never
+**[00:03:26]** done.
+**[00:03:27]** They run on production learning loops, so you may build
+**[00:03:31]** your agent in GitHub.
+**[00:03:33]** With GitHub CLI.
+**[00:03:35]** You define the evals to tell us what good looks
+**[00:03:38]** like.
+**[00:03:39]** You then deploy it right into Foundry so it runs
+**[00:03:42]** on production workloads.
+**[00:03:45]** Every single action, every single cost signal is then set
+**[00:03:50]** into the evaluation and optimization service, which then continuously learns,
+**[00:03:55]** continuously improves the system compounds the more it runs.
+**[00:04:01]** So it's no longer about fine tuning a specific model,
+**[00:04:06]** it is about improving the entire system through tuning your
+**[00:04:10]** models, tuning your harness, your contacts, your memory, all with
+**[00:04:15]** developer in control for every single change.
+**[00:04:20]** So you, your enterprise, can continue evolving its production agents
+**[00:04:24]** rather than having to rebuild from scratch every single time.
+**[00:04:29]** This is how you transform your enterprise with agents.
+**[00:04:35]** Now let's let's talk about our demo scenario.
+**[00:04:39]** Microsoft runs the world's largest cloud infrastructure.
+**[00:04:44]** Sometimes bad things happen, such as a fiber cable gets
+**[00:04:48]** cut near one of our data centers.
+**[00:04:51]** When that happens today, we need an agentic system that
+**[00:04:56]** is able to respond, dispatch, resolve really fast.
+**[00:05:01]** Today we have our Azure networking operations team who has
+**[00:05:05]** built such an agentic system that are not only coordinating
+**[00:05:10]** with humans, but also other agentic systems to resolve incidents
+**[00:05:14]** like this.
+**[00:05:17]** We're going to build one such agent today, Autonomous fiber
+**[00:05:21]** outage response agent.
+**[00:05:23]** I know it's a handful, but so the sensor made
+**[00:05:27]** the sensor detects the fiber outage and then it sends
+**[00:05:32]** a signal to trigger the agent.
+**[00:05:36]** The agent wakes up and then it looks up all
+**[00:05:39]** the information in Foundry Toolbox.
+**[00:05:43]** It looks up the worksite reliability information as well as
+**[00:05:47]** the location information in Fabric IQ.
+**[00:05:52]** It looks up the supplier conversations information in Work IQ.
+**[00:05:57]** It looks up all the specific work orders as well
+**[00:06:00]** as supplier agreement information in wrong documents through our document
+**[00:06:05]** intelligence and content understanding service.
+**[00:06:09]** It then dispatches a field Rep to go respond to
+**[00:06:12]** the incident.
+**[00:06:14]** It files a ticket to be tracked in D365, and
+**[00:06:17]** then it publishes the latest status right into Teams so
+**[00:06:21]** everyone is aware of what's going on.
+**[00:06:27]** So we're going to show you the demo through 3
+**[00:06:29]** developer phases.
+**[00:06:31]** Build, deploy and operate all, you know, continuous learning and
+**[00:06:35]** continuous improvement loop.
+**[00:06:38]** So that is a what and the why.
+**[00:06:40]** Let us now show you the how, Jeff, Let's show
+**[00:06:42]** what a developer can do.
+**[00:06:44]** Great, awesome.
+**[00:06:45]** Thanks so much, Tina.
+**[00:06:46]** And as she mentioned, we actually want to spend the
+**[00:06:48]** majority of today showing you this in action.
+**[00:06:51]** As much as everybody loves looking at slides created by
+**[00:06:53]** our amazing marketing team, we're going to spend the majority
+**[00:06:56]** of the session actually building this live.
+**[00:06:58]** So let's go ahead and talk about some of the
+**[00:07:01]** problems that we're going to surface on here on the
+**[00:07:03]** next slide in this build phase, the part of the
+**[00:07:06]** phase that has to do with actually reading these agents,
+**[00:07:09]** because as a developer, I have a bunch of pieces
+**[00:07:11]** in the next slide.
+**[00:07:13]** Oh, we're showing my screen.
+**[00:07:14]** That's fine.
+**[00:07:14]** I'll talk to this screen for a second.
+**[00:07:16]** I'll just tell you the challenges.
+**[00:07:17]** Don't worry.
+**[00:07:17]** Visualize this slide in your mind.
+**[00:07:19]** Our marketing team made a great one.
+**[00:07:21]** There's a few challenges on the build phase.
+**[00:07:22]** It's like, how do I choose the right framework?
+**[00:07:25]** How do I choose the right model?
+**[00:07:26]** How do I make sure that my agent has access
+**[00:07:28]** to the right context?
+**[00:07:29]** Think of all the knowledge and information in your organization
+**[00:07:33]** that is helping your agent be powered.
+**[00:07:35]** How do you get all of that integrated, secured with
+**[00:07:39]** the right identity, and ready to run even in natural
+**[00:07:42]** interfaces?
+**[00:07:43]** Sometimes that might be through chat experiences.
+**[00:07:45]** Other times that might be through voice.
+**[00:07:47]** Now, part of what I want you to pay attention
+**[00:07:49]** to as we go through building this today as well,
+**[00:07:52]** many of these pieces exist in the ecosystem.
+**[00:07:54]** What we really want to provide for you here in
+**[00:07:57]** Foundry is a single platform that brings it all together.
+**[00:08:01]** So I'm not going to have to jump between a
+**[00:08:03]** whole bunch of different tools and platforms to do what
+**[00:08:05]** we've described and making sure that we are repairing our
+**[00:08:08]** fiber optics lines if something was to ever happen at
+**[00:08:10]** one of our regional centers.
+**[00:08:12]** So let's get started.
+**[00:08:13]** You can see here I just have a blank canvas.
+**[00:08:16]** You can use any tool that you want when working
+**[00:08:19]** with Foundry, whether you like Cloud Code, GitHub Copilot, CLI,
+**[00:08:23]** cursor, Visual Studio.
+**[00:08:24]** My personal favorite combo is Visual Studio Code with GitHub
+**[00:08:28]** Copilot.
+**[00:08:29]** Now, one of the reasons that I like it is
+**[00:08:32]** because we have this Foundry Toolkit extension.
+**[00:08:34]** This is now generally available.
+**[00:08:36]** You can see this actually gives me a bunch of
+**[00:08:38]** pieces that I need for this entire flow.
+**[00:08:40]** It's not just about creating agents.
+**[00:08:42]** You can see I have information here about tracing and
+**[00:08:45]** evaluations, making sure I have the right models.
+**[00:08:48]** All of this is right here integrated for me.
+**[00:08:51]** Now, if I want to go ahead and create a
+**[00:08:53]** new agent, I have a few different options.
+**[00:08:55]** I could use one of our samples if I'm just
+**[00:08:58]** trying to get a feel for what's possible or my
+**[00:09:01]** personal preference is to generate with Copilot.
+**[00:09:04]** Now we can help give you an idea right here,
+**[00:09:06]** but let's go ahead and build the scenario that's closer
+**[00:09:09]** to what we want, which is, hey, help me create
+**[00:09:12]** an agent that can act with our field operations team.
+**[00:09:14]** When somebody goes on site to try to repair one
+**[00:09:17]** of these fiber optic lines.
+**[00:09:19]** I want to make sure that they have the right
+**[00:09:21]** information, whether it's from Work IQ or Fabric IQ or
+**[00:09:24]** Foundry IQ to actually go do this.
+**[00:09:26]** Now, let's go ahead and not install a new model.
+**[00:09:29]** No, but this will go ahead and work behind the
+**[00:09:32]** scenes.
+**[00:09:33]** One of the things that I love about this extension,
+**[00:09:35]** which we're just going to let this play nicely.
+**[00:09:38]** Sure.
+**[00:09:38]** Just download it if it's going to make you happy.
+**[00:09:40]** Let's go ahead and download this.
+**[00:09:42]** OK, so one of the things that I love about
+**[00:09:44]** this extension, this is how you know, by the way,
+**[00:09:47]** this is as live as it gets, is that this
+**[00:09:50]** actually integrates with it best practices automatically from Foundry.
+**[00:09:54]** So this includes if I get rid of all of
+**[00:09:57]** these pop ups, Oh my goodness, this AI agent expert.
+**[00:10:00]** This has baked in a bunch of skills out-of-the-box based
+**[00:10:04]** on Foundry best practices.
+**[00:10:06]** So you can install these skills stand alone into your
+**[00:10:09]** coding agent, but this extension will actually integrate them automatically
+**[00:10:12]** with my workload so that as it's generating the agent,
+**[00:10:15]** it's able to do so with the right best practices.
+**[00:10:18]** OK, let's go back here.
+**[00:10:20]** Get this desktop out of the way.
+**[00:10:21]** Let's jump ahead.
+**[00:10:23]** Hey, copilot, you generated this amazing agent.
+**[00:10:25]** It pulled it out of the oven a little bit.
+**[00:10:26]** That's fine.
+**[00:10:27]** All right, a few things here I want to call
+**[00:10:29]** out.
+**[00:10:29]** Like I said, Foundry, you can use any framework that
+**[00:10:32]** you want.
+**[00:10:33]** I'm personally here using Microsoft's agent framework inside of Python.
+**[00:10:38]** Now agent framework is phenomenal at doing things like multi
+**[00:10:41]** step or multi agent workflows.
+**[00:10:43]** One of the new capabilities that we're actually leveraging in
+**[00:10:47]** this is the new harness inside of agent framework.
+**[00:10:50]** This gives a secure environment for your agent to be
+**[00:10:53]** able to do things like execute shell commands, read, write,
+**[00:10:56]** and execute code, all with a harness that's operating and
+**[00:11:00]** managing with it.
+**[00:11:01]** I can even plug in the GitHub copilot SDK is
+**[00:11:03]** an additional harness as I want now.
+**[00:11:06]** This makes these agents much more capable.
+**[00:11:08]** Agents today are no longer just about executing the predefined
+**[00:11:11]** tools that you've configured.
+**[00:11:13]** It can actually dynamically do investigations, code writing, and code
+**[00:11:16]** authoring along the way.
+**[00:11:18]** You're going to see that as we go throughout the
+**[00:11:20]** rest of this demo.
+**[00:11:21]** Now, one critical piece of any agent is having access
+**[00:11:24]** to the right tools.
+**[00:11:26]** So I'm going to show you here, right inside of
+**[00:11:28]** Visual Studio Code, how I can go ahead and start
+**[00:11:30]** to add and integrate with various tools.
+**[00:11:32]** Now, if there's one feature that I want you to
+**[00:11:35]** remember when it comes to tools, it is Foundry Toolbox.
+**[00:11:39]** Now, I can actually manage this right here in Visual
+**[00:11:41]** Studio Code.
+**[00:11:42]** This gives me a bunch of stuff automatically.
+**[00:11:44]** First, I can configure for this agent or a collection
+**[00:11:48]** of agents, a set of tools that I want to
+**[00:11:51]** configure for my task to be done.
+**[00:11:54]** Now, what Toolbox is going to do is it gives
+**[00:11:55]** me a single spot to manage them all.
+**[00:11:57]** It's handling authentication between things like Foundry IQ, where I
+**[00:12:01]** have different documents that I've indexed around like our supplier
+**[00:12:04]** contracts or our supplier agreements.
+**[00:12:07]** It integrates with things like Web IQ and web search.
+**[00:12:10]** You can see here I've integrated Fabric IQ.
+**[00:12:12]** I have a bunch of site reliability data.
+**[00:12:14]** Hey, how are my sites in terms of uptime and
+**[00:12:17]** reliability?
+**[00:12:18]** That's all surfaced through Fabric, which I'm using Fabric IQ
+**[00:12:21]** to integrate with, and I also want to make sure
+**[00:12:24]** I have a history and access to integrate with things
+**[00:12:27]** like tools from Teams and Outlook so I'm able to
+**[00:12:30]** add work IQ here.
+**[00:12:31]** Toolbox gives me this one spot.
+**[00:12:33]** It's going to manage the authentication.
+**[00:12:35]** I can set guardrails as well.
+**[00:12:37]** So if I want to make sure that I'm specifying
+**[00:12:39]** and making sure that personally identifiable information doesn't leak from
+**[00:12:43]** any of these tools, I can configure that right away.
+**[00:12:45]** I love this specific feature of Toolbox, which is called
+**[00:12:48]** tool search.
+**[00:12:49]** If you think about all of the context required for
+**[00:12:52]** my agent to reason around all of these tools, not
+**[00:12:55]** all of them might be relevant.
+**[00:12:57]** So if I turn on tool search, whenever I talk
+**[00:13:00]** to Toolbox through this single MCP compatible endpoint, it will
+**[00:13:04]** only return back the tools that are relevant for that
+**[00:13:08]** specific task.
+**[00:13:10]** Now this allows me to really optimize my context utilization
+**[00:13:13]** and my context window so I can keep my agent
+**[00:13:15]** focused on its most immediate needs.
+**[00:13:18]** Now one more thing I'll just slip in here very
+**[00:13:19]** quickly.
+**[00:13:20]** I could add additional tools.
+**[00:13:21]** We have thousands of them.
+**[00:13:23]** One of the cool ones here is actually content Understanding.
+**[00:13:27]** There's a session later tomorrow on content understanding I'd recommend
+**[00:13:30]** you check out.
+**[00:13:31]** But what content understanding lets me do is like, I
+**[00:13:33]** have a document here, This is actually a PDF document.
+**[00:13:36]** You can see it's a PDF, but it has tabular
+**[00:13:39]** data.
+**[00:13:39]** It's not very agent readable, not without additional analysis.
+**[00:13:43]** What content understanding will do is it will use a
+**[00:13:47]** specialized model to turn a PDF of a document, a
+**[00:13:50]** contract, a specification, you name it, and it will actually
+**[00:13:54]** convert it into an agent and AI ID format.
+**[00:13:57]** So I can pull out the tables, the markdown, the
+**[00:14:00]** figures, or even get the raw Jason.
+**[00:14:02]** So that's what I've connected my agent to do.
+**[00:14:04]** So now I have this fiber operations agent.
+**[00:14:07]** I've got everything that I need here.
+**[00:14:08]** I've connected the right tools.
+**[00:14:10]** The other thing that I love about working right here
+**[00:14:13]** inside of Visual Studio Code is I can do this
+**[00:14:15]** magical gesture.
+**[00:14:16]** When we think about, you know, Sacha's keynote today and
+**[00:14:18]** we were showing how cool it is, but now you
+**[00:14:20]** can have UI and code working together.
+**[00:14:21]** Well, in Foundry, I can F5 debug my agent.
+**[00:14:25]** So it's actually spinning up my agent locally.
+**[00:14:28]** It's going to connect to Toolbox.
+**[00:14:30]** In fact, I can show you how simple the line
+**[00:14:32]** is to integrate with Toolbox.
+**[00:14:34]** It's a single MCP compatible endpoint that I can integrate
+**[00:14:38]** with.
+**[00:14:39]** And this is now spun up for me on my
+**[00:14:41]** local host, my agent that I can start to interact
+**[00:14:44]** with.
+**[00:14:45]** So let's go ahead and ask this a question, say
+**[00:14:47]** hey, you know, I'm on site.
+**[00:14:49]** I'm trying to figure out why there's some downtime.
+**[00:14:51]** Can you help me understand why this or what is
+**[00:14:53]** the right connection type that I should use?
+**[00:14:56]** Now you'll notice ahead of time, I actually set a
+**[00:14:58]** break point.
+**[00:14:59]** My break point was hit.
+**[00:15:00]** If I wanted to inspect a little bit more of
+**[00:15:02]** the request or the response.
+**[00:15:04]** I have all of the tools and debugging that I
+**[00:15:06]** would need to make sure the agent is behaving how
+**[00:15:08]** I want to and right here, all inside of Visual
+**[00:15:11]** Studio Code.
+**[00:15:11]** This has been my home the entire time.
+**[00:15:14]** I can see the different events that are streaming in
+**[00:15:16]** and out of the agent and how it's working to
+**[00:15:18]** answer this question.
+**[00:15:20]** So this gives me this building flow, pulling in the
+**[00:15:22]** right tools from the right context, whether it's web or
+**[00:15:26]** Foundry or Fabric or the Microsoft Graph with Work IQ,
+**[00:15:29]** connecting them with a framework that has a harness to
+**[00:15:32]** actually go in, understand things like the specification that it
+**[00:15:35]** needs to look up.
+**[00:15:37]** There's one more thing I want to show here, which
+**[00:15:39]** is that while this is useful, if I was, you
+**[00:15:41]** know, deploying this as a chat application that maybe I
+**[00:15:44]** want one of these contractors to use when they're repairing
+**[00:15:47]** the site, they're also on the job, right?
+**[00:15:49]** When I'm asking a question about the Quincy Northside connection
+**[00:15:52]** type, I'm probably wearing something like work gloves.
+**[00:15:55]** My hands are probably occupied using a chat interface with
+**[00:15:58]** gloves.
+**[00:15:59]** Leather gloves is not a good experience.
+**[00:16:01]** OK, so I want to now voice enable this agent
+**[00:16:04]** and in Foundry we'll want to make that very easy
+**[00:16:06]** as well.
+**[00:16:07]** I can go ahead and choose now to deploy this
+**[00:16:10]** agent into Foundry.
+**[00:16:12]** So this will take all of the code that I've
+**[00:16:14]** run here and deploy it into my Foundry account.
+**[00:16:17]** And what I can do here now is I'm going
+**[00:16:18]** to switch to a version I deployed ahead.
+**[00:16:20]** This is my favorite part of this demo.
+**[00:16:22]** How easy is it to make your agent voice enabled?
+**[00:16:25]** Watch this.
+**[00:16:26]** Here's the magic voice mode.
+**[00:16:29]** Done.
+**[00:16:29]** OK, we will automatically wrap industry leading voice models.
+**[00:16:33]** I can configure them over here if I want to
+**[00:16:35]** specialize them, choose the right voice model.
+**[00:16:38]** But this has now taken what was built as a
+**[00:16:40]** Microsoft Agent Framework agent, and I put this voice interface
+**[00:16:44]** on it.
+**[00:16:44]** So now this is the real moment of truth.
+**[00:16:47]** I'm going to go ahead and unmute my speakers and
+**[00:16:49]** we're going to try to talk to our agent friend
+**[00:16:51]** here through voice.
+**[00:16:52]** Let's give it a shot.
+**[00:16:54]** Hey, can you pull up the fiber termination spec for
+**[00:16:57]** the Quincy N site and tell me which connector I
+**[00:17:00]** should use on the B side panel?
+**[00:17:03]** Let's hope that the volume.
+**[00:17:04]** Just a SEC.
+**[00:17:05]** OK, great.
+**[00:17:06]** So you can hear it starting to answer back.
+**[00:17:07]** It's even has is the responses are streaming back in
+**[00:17:10]** real time.
+**[00:17:11]** This is open to web socket with that voice connection.
+**[00:17:14]** So it's now.
+**[00:17:14]** Open pulling that up now.
+**[00:17:17]** Thank you for pulling that up now.
+**[00:17:19]** So it's reaching into those tools, right?
+**[00:17:21]** It's iterating through toolbox and giving me little updates.
+**[00:17:23]** Getting the spec now.
+**[00:17:25]** This might not happen in in instantly right with agents
+**[00:17:28]** like clod code or Copilot SDK.
+**[00:17:30]** Pull up the spec now.
+**[00:17:31]** Here are the fiber termination specifications for the Quincy, N
+**[00:17:34]** sites.
+**[00:17:35]** B side panel connector family.
+**[00:17:37]** LCUPC duplex required on B side panel.
+**[00:17:42]** Great.
+**[00:17:42]** That's pretty cool, right?
+**[00:17:44]** Not not bad that I was able to turn this
+**[00:17:46]** agent into a voice optimized agent in no time at
+**[00:17:50]** all.
+**[00:17:51]** All right, So I'm going to bring Tina back on
+**[00:17:53]** to take us into the next chapter of how we're
+**[00:17:55]** going to take this agent that I just developed quickly
+**[00:17:57]** in Visual Studio Code and deploy at scale with Foundry.
+**[00:18:00]** Thank you, Jeff.
+**[00:18:02]** That was fantastic.
+**[00:18:03]** Let's take a look at the features that Jeff just
+**[00:18:06]** showed us.
+**[00:18:10]** OK, first is Microsoft Agent Framework now in version 1.0
+**[00:18:15]** production ready.
+**[00:18:17]** As Jeff mentioned, Microsoft Agent Framework now has a built
+**[00:18:21]** in harness that's well integrated with skills memory middleware.
+**[00:18:26]** It also has plug insurance integrations with harnesses such as
+**[00:18:30]** GitHub copilot SDK and Cloud Agent SDK.
+**[00:18:34]** Foundry Toolkit for VS Code is now generally available.
+**[00:18:39]** Foundry Toolkit provides a purpose built developer experience for building
+**[00:18:44]** Foundry agents without you having to ever leave the editor.
+**[00:18:49]** Tool boxes in Foundry is generally available soon.
+**[00:18:54]** Tool boxes provide one single managed endpoint for all the
+**[00:18:58]** tools that are making the agents powerful, all with the
+**[00:19:01]** right governance and policy in place.
+**[00:19:05]** Skills are now a first class integration with tool boxes
+**[00:19:08]** as well.
+**[00:19:10]** Voice live integration with Foundry Agent Service is generally available
+**[00:19:16]** today for prompt agents and in public preview for hosted
+**[00:19:20]** agents to support our sweet speech and voice scenarios.
+**[00:19:26]** I'm super excited to announce that Hosted agents in Foundry
+**[00:19:30]** Agent Service is generally available soon.
+**[00:19:34]** Procession sandbox isolation, sub second Co start 0 idle time
+**[00:19:40]** cost framework agnostic.
+**[00:19:43]** That's Foundry hosted agents now even supports long running autonomous
+**[00:19:49]** agents such as Open Claw and Hermes agents, all with
+**[00:19:53]** durable state execution and file system access.
+**[00:19:58]** Super exciting.
+**[00:19:59]** And now that we have a local agent we scaffolded
+**[00:20:02]** on a laptop, how do we now get it into
+**[00:20:04]** production, Jeff?
+**[00:20:06]** All right, let's check it out.
+**[00:20:08]** So if we want to think of the next set
+**[00:20:10]** of challenges that we have that Tina addressed, if I
+**[00:20:12]** think of the agents today that are really transforming even
+**[00:20:15]** how I work, these are not just reactive based agents
+**[00:20:18]** that I go to with a question in a chat
+**[00:20:20]** window and they come back to me with an answer.
+**[00:20:22]** These are agents that I need to be long running
+**[00:20:24]** that are maintaining and building context over time, accomplishing tasks
+**[00:20:28]** that might take days or even weeks.
+**[00:20:30]** Now I need to be able to do that in
+**[00:20:32]** a secure way.
+**[00:20:32]** If we think about these types of agents that I
+**[00:20:34]** mentioned that have this agent harness, these might be reading
+**[00:20:37]** and writing code.
+**[00:20:38]** I want to make sure that I'm isolating these instances
+**[00:20:40]** from each other.
+**[00:20:42]** Now.
+**[00:20:42]** I want to make sure that I'm getting these also
+**[00:20:44]** in front of users through the interfaces that they care
+**[00:20:46]** about.
+**[00:20:47]** I don't want to make everybody add 10 new bookmarks
+**[00:20:49]** to their browser to remember the 10 cool agents that
+**[00:20:52]** the team is building.
+**[00:20:53]** And each one of these agents starts to become a
+**[00:20:56]** lot more like a teammate, somebody who is helping alongside
+**[00:20:59]** being proactive, giving me suggestions as I go.
+**[00:21:02]** So we want to bring those same capabilities into this
+**[00:21:04]** agent that we started here.
+**[00:21:06]** So I'm going to show now on my laptop a
+**[00:21:08]** different flavor of our agent friend.
+**[00:21:10]** And this is my agent called Phi B.
+**[00:21:12]** Now Phi B is a claw like agent.
+**[00:21:14]** Phi B is monitoring our telemetry and our up time
+**[00:21:18]** for our networking over time.
+**[00:21:21]** And I'm going to show you some of the capabilities
+**[00:21:23]** in Foundry that allow me to build these claw like
+**[00:21:25]** agents right here and we'll talk about more.
+**[00:21:27]** There's a whole session that goes into this tomorrow morning,
+**[00:21:30]** so you can go in.
+**[00:21:31]** One of the coolest pieces here is this new feature
+**[00:21:33]** in Foundry called Routines.
+**[00:21:35]** This is really what makes my agents become proactive instead
+**[00:21:38]** of reactive.
+**[00:21:39]** I can set up different events that can actually proactively
+**[00:21:43]** wake my agent on different tasks.
+**[00:21:45]** So you can see here I configured a simple heartbeat.
+**[00:21:47]** We'll go ahead and open this up.
+**[00:21:49]** So I've told this thing, hey, every hour I want
+**[00:21:51]** you to wake up and I need you to do
+**[00:21:53]** a few things.
+**[00:21:54]** I want you to check the investigation log.
+**[00:21:57]** I want you to see if there's any anomalies, if
+**[00:21:59]** there's any anomalies.
+**[00:22:00]** I need you to follow the different skills that you
+**[00:22:02]** have to make sure that you're alerting the right person,
+**[00:22:05]** that you're issuing the right subcontractor.
+**[00:22:07]** The Azure networking team actually does this in real life.
+**[00:22:09]** When an incident happens that affects some of our networking,
+**[00:22:13]** an agent can automatically interact, wait for human approval as
+**[00:22:16]** necessary, and start to get somebody on site to go
+**[00:22:18]** repair the site.
+**[00:22:19]** So this heartbeat, this routine is part of what enables
+**[00:22:22]** this thing to be proactive because it's going to check
+**[00:22:25]** for these anomalies on its own.
+**[00:22:26]** So you can see that over the last bit, this
+**[00:22:28]** is actually been firing off a number of these different
+**[00:22:31]** routines.
+**[00:22:32]** Now, one piece that's critical here for these long running
+**[00:22:34]** agents is around security.
+**[00:22:36]** So of course, if you're thinking about Claw Lake agents,
+**[00:22:38]** you probably have in your mind like a dedicated Windows
+**[00:22:40]** machine or maybe a dedicated Mac mini.
+**[00:22:42]** The reason that folks do that is you want to
+**[00:22:44]** make sure as this agent works in its workspace that
+**[00:22:47]** it's doing so in a secure way.
+**[00:22:49]** Imagine that I have subcontractor A and subcontractor B and
+**[00:22:52]** they're both interacting with Fibe in different ways.
+**[00:22:56]** Well, what if IB is reading and writing files that
+**[00:22:59]** has subcontractor A specific or sensitive data in it, and
+**[00:23:02]** it's actually saving those files locally?
+**[00:23:05]** Well, what if that same process, that same agent, Subcontractor
+**[00:23:08]** B's agent gets a little bit creative and it goes
+**[00:23:11]** and pulls some of those files, right?
+**[00:23:13]** You can start to leak context.
+**[00:23:14]** You can start to leak code execution.
+**[00:23:16]** It becomes a nightmare.
+**[00:23:17]** We want to make that easy for everyone to solve.
+**[00:23:20]** So this new hosted agent capability that Tina mentioned becomes
+**[00:23:23]** generally available soon.
+**[00:23:25]** The way that this works is every single conversation, every
+**[00:23:30]** single routine, if I want, can kick off its own
+**[00:23:34]** dedicated session.
+**[00:23:35]** So you can see here I have a number of
+**[00:23:37]** sessions that have kicked off.
+**[00:23:38]** Each one of these is its own isolated workspace.
+**[00:23:42]** So everything the agent does happens separate from every other
+**[00:23:45]** conversation.
+**[00:23:46]** But I still have durable persistent state.
+**[00:23:49]** So for instance, I can open this one that's been
+**[00:23:51]** idle since 11:00 AM this morning.
+**[00:23:53]** It looks like I can see the logs of this
+**[00:23:56]** routine and I can actually inspect what was the state
+**[00:23:59]** of the file system when this went idle.
+**[00:24:02]** So as this floats up, you can see this actually
+**[00:24:05]** saved a number of files to its file system.
+**[00:24:07]** You can see it had some anomaly analysis, some vendor
+**[00:24:10]** contact, some investigation.
+**[00:24:11]** This is all bread crumbs that the agent is able
+**[00:24:14]** to write just like a claw like agent on my
+**[00:24:16]** machine, but it's now doing so securely in the cloud.
+**[00:24:19]** Now I mentioned this is idle, which is awesome because
+**[00:24:22]** this is waiting for an approval or maybe it didn't
+**[00:24:25]** find any event.
+**[00:24:25]** Right now I'm not paying any money when this is
+**[00:24:28]** idle, but what happens when it needs to wake up
+**[00:24:30]** again?
+**[00:24:31]** Well, when it wakes up, we will resume the session.
+**[00:24:34]** We will take all of the state of that session,
+**[00:24:36]** all of those investigation files, we will give it back
+**[00:24:39]** to the agent to continue its work.
+**[00:24:41]** In fact, I've extended these out-of-the-box sessions with the durable
+**[00:24:46]** Task Scheduler.
+**[00:24:47]** This allows me to monitor the state even when all
+**[00:24:50]** of my sessions are idle.
+**[00:24:51]** So let me give you an example.
+**[00:24:53]** Let's say 5B wakes up, it finds something and it
+**[00:24:55]** needs to wait for human approval.
+**[00:24:57]** This has been sitting here for I think two or
+**[00:24:59]** three hours at this point waiting for me to click
+**[00:25:01]** approve.
+**[00:25:02]** All of my sessions are idle.
+**[00:25:04]** But right now Durable Task is saying, hey, you have
+**[00:25:07]** this instance that is sitting here waiting for approval.
+**[00:25:10]** Now this is all serverlessly running.
+**[00:25:12]** So again, my sessions not running, but Durable Task has
+**[00:25:15]** some additional state that I integrated using the Microsoft Agent
+**[00:25:19]** Framework extension for Durable Task.
+**[00:25:21]** Now watch what happens.
+**[00:25:22]** I'm going to go ahead and click approve.
+**[00:25:24]** When I click approve, a few things are going to
+**[00:25:26]** happen all at once.
+**[00:25:27]** I'll go ahead and refresh this view in Durable Tasks.
+**[00:25:29]** You can see I had this long wait.
+**[00:25:31]** Where it was waiting.
+**[00:25:32]** Well, now Durable Task said, oh, I got my approval,
+**[00:25:35]** go resume the session.
+**[00:25:37]** So now it comes over here and let's do another
+**[00:25:39]** refresh.
+**[00:25:39]** Let's refresh over here on the Foundry session view and
+**[00:25:42]** we'll see.
+**[00:25:43]** Hey, this woke back up that session.
+**[00:25:46]** My session resumed.
+**[00:25:47]** It had all of the investigation files from before and
+**[00:25:50]** it went ahead and continued the work.
+**[00:25:52]** So I have this long running secure way to manage
+**[00:25:54]** agents at scale where I can do these things like
+**[00:25:57]** human intervention without worrying about rehydrating and restarting the state
+**[00:26:01]** every single time.
+**[00:26:02]** Now the last piece here that I want to show,
+**[00:26:04]** and you might have seen this a bit in the
+**[00:26:05]** keynote this morning.
+**[00:26:06]** Any of these agents that I built I can make
+**[00:26:08]** easily available to my entire team, not just setting up
+**[00:26:11]** routines or through custom apps like that 5B portal that
+**[00:26:14]** you saw.
+**[00:26:15]** I can publish these easily to Teams and Microsoft 365
+**[00:26:18]** Copilot.
+**[00:26:19]** So if I go ahead and choose this option, this
+**[00:26:21]** will walk me through all the steps that I need
+**[00:26:23]** to deploy it.
+**[00:26:24]** Now you can see this is actually already deployed, so
+**[00:26:26]** I'll go ahead and switch over here.
+**[00:26:28]** This is actually working as an autonomous agent right now
+**[00:26:31]** in Teams.
+**[00:26:31]** It has its own identity.
+**[00:26:32]** It even has its own e-mail address, youcanseefibe@notareal.co.
+**[00:26:37]** I'm pretty sure it's a real company though.
+**[00:26:38]** Don't worry about it.
+**[00:26:40]** And I can come in here and go ahead and
+**[00:26:42]** ask Fibe a question.
+**[00:26:43]** And I'm saying like, hey, Fibe, what are some of
+**[00:26:45]** the active incidents that you're working on right now?
+**[00:26:47]** That same agent that I was showing you before running
+**[00:26:51]** inside of Foundry, it's now either resumed my session or
+**[00:26:54]** started a new one.
+**[00:26:55]** And you can see Phibia is now doing the work
+**[00:26:58]** required to come back and give me an update on
+**[00:27:00]** my status.
+**[00:27:00]** So I have this possibility to build these claw like
+**[00:27:03]** agents, integrate them into services like teams with all of
+**[00:27:06]** the critical building blocks that I made all within Foundry.
+**[00:27:09]** So with that, Tina, back to you for our next
+**[00:27:11]** chapter.
+**[00:27:12]** Thank you, Jeff.
+**[00:27:14]** Now let's take a look at the features Jeff just
+**[00:27:16]** showed.
+**[00:27:17]** Number one routines.
+**[00:27:19]** Now you found your agent service in public preview.
+**[00:27:23]** Routines is what makes your agent from reactive to proactive
+**[00:27:27]** and makes it long running.
+**[00:27:30]** You as the developer decides what need to happen.
+**[00:27:33]** 1 Foundry then queues, executes and tracks every single run.
+**[00:27:38]** This is how you turn your reactive one off task
+**[00:27:42]** into a proactive continuous agent.
+**[00:27:47]** Published Microsoft 365 Teams and copilot is generally available soon.
+**[00:27:54]** Now you can publish all your Foundry agents right into
+**[00:27:57]** Teams and copilot where all your teams are already doing
+**[00:28:00]** work.
+**[00:28:01]** Identity policy permissions all flow through automatically.
+**[00:28:08]** In addition, developers now can publish Foundry agents as Autopilot
+**[00:28:13]** agents right into Teams.
+**[00:28:15]** This is now in public preview so these Autopilot agents
+**[00:28:19]** can take out onto IDs, e-mail addresses, and even Teams
+**[00:28:24]** presence so they can start initiate.
+**[00:28:27]** They can initiate a conversation or follow up on action
+**[00:28:30]** items.
+**[00:28:31]** All governed end to end in Agent 365.
+**[00:28:36]** So now we have built an agent locally, we have
+**[00:28:39]** hosted in a sandbox, we have published as an autopilot
+**[00:28:43]** agent right inside of teams.
+**[00:28:46]** Now let's enter the hard part, which is operate.
+**[00:28:49]** How do we make sure the agent runs well and
+**[00:28:51]** they can self improve, Jeff?
+**[00:28:55]** This is the last and if I might say maybe
+**[00:28:57]** the best chapter of it all.
+**[00:28:59]** I'm a little under the weather.
+**[00:29:00]** I'm going to hope my voice holds out for another
+**[00:29:02]** 10 minutes, but I'm feeding off of your energy.
+**[00:29:05]** OK, so let's take a look about some of the
+**[00:29:07]** challenges that come on this optimization phase as well.
+**[00:29:10]** Right here.
+**[00:29:11]** This is really where the work begins.
+**[00:29:12]** I can go build and prototype really cool agents in
+**[00:29:15]** a number of hours or days, but how do I
+**[00:29:18]** actually go make this thing trusted in production?
+**[00:29:21]** How do I make sure I'm understanding?
+**[00:29:22]** How are people using my agent?
+**[00:29:24]** What are the signals that are happening?
+**[00:29:25]** What's being successful or what's not successful?
+**[00:29:28]** How do I understand where I need to improve it?
+**[00:29:30]** Now this is also very challenging because if you think
+**[00:29:33]** of all of the components involved with like the agents
+**[00:29:35]** that we've been building, I've got the underlying model.
+**[00:29:38]** I have my toolbox and all the tools that are
+**[00:29:40]** there.
+**[00:29:41]** I've got my own code.
+**[00:29:42]** I've got the instructions in my code.
+**[00:29:44]** If I'm having an issue with my agent, which one
+**[00:29:47]** of those variables should I tune and tweak?
+**[00:29:49]** It can become very overwhelming and very time consuming.
+**[00:29:52]** So I want to show you how Foundry is helping
+**[00:29:54]** you in this last mile to really make these things
+**[00:29:56]** robust.
+**[00:29:57]** Now, the first piece here is visibility.
+**[00:29:59]** I want to understand what is happening and why it's
+**[00:30:01]** happening.
+**[00:30:02]** So in our 5B agent right here, I can come
+**[00:30:04]** over here to see all of the conversations that are
+**[00:30:07]** happening across this agent.
+**[00:30:09]** But one of my favorite features here is I can
+**[00:30:10]** click any of these.
+**[00:30:11]** Let's just go ahead and try this request right here.
+**[00:30:14]** And we have this new view that is rolled out,
+**[00:30:16]** which is called the trace replay view.
+**[00:30:18]** So check this out.
+**[00:30:19]** I see the conversation that has happened.
+**[00:30:21]** I can understand from a basic thing what was the
+**[00:30:23]** question that was asked and what was the answer, but
+**[00:30:26]** I can understand the trajectory that this specific request took.
+**[00:30:30]** So I can understand.
+**[00:30:31]** Okay, I got asked this agent at first had to
+**[00:30:34]** do some reasoning on this model that took about 20
+**[00:30:37]** seconds.
+**[00:30:38]** It then called this tool, then it reasoned, then it
+**[00:30:40]** called this tool.
+**[00:30:41]** Any of these I can click in to understand the
+**[00:30:43]** exact inputs and outputs that went along the way.
+**[00:30:45]** If I'm feeling extra fancy, I can not only just
+**[00:30:48]** see this from a time perspective, but a token perspective.
+**[00:30:52]** Where are my tokens being consumed throughout the process of
+**[00:30:55]** this request?
+**[00:30:56]** And if I want to get especially fancy, check this
+**[00:30:59]** out.
+**[00:30:59]** I'm actually going to replay this.
+**[00:31:00]** Let's do this at 8 times the speed and let's
+**[00:31:03]** actually watch it as this plays through the entire conversation.
+**[00:31:06]** So I can understand each of the phases that went
+**[00:31:09]** through what the agent was doing and get a view
+**[00:31:11]** into what the user saw throughout this process.
+**[00:31:14]** So I'm able to dive deeper to understand the specifics
+**[00:31:17]** of what's happening and get that observability view right at
+**[00:31:20]** my fingertips.
+**[00:31:21]** Now let's say that I see something that I want
+**[00:31:23]** to improve for our agent.
+**[00:31:24]** I'll tell you a real piece of feedback that we
+**[00:31:26]** saw as we were building this, which was, if you
+**[00:31:29]** remember back to that demo we did with the voice
+**[00:31:31]** enabled agent at the beginning, right where I said, hey,
+**[00:31:33]** give me that specification.
+**[00:31:35]** I'm showing you the answer now.
+**[00:31:37]** How the agent is answering is a very LLM way
+**[00:31:39]** of doing things.
+**[00:31:40]** It actually returned a bullet point list.
+**[00:31:42]** It said, hey, you want to know the connection?
+**[00:31:44]** Here's a bullet point list of all that stuff.
+**[00:31:46]** But some of you might have been listening in that
+**[00:31:48]** first demo and you were like, wow, this sounds a
+**[00:31:50]** little bit robotic as the voice just reads through a
+**[00:31:53]** bullet point list of topics.
+**[00:31:54]** So I actually want to optimize my agent.
+**[00:31:57]** I want to make it so that it's returning a
+**[00:31:59]** more voice natural response.
+**[00:32:01]** But how do I go about doing that?
+**[00:32:02]** Which of all these things should I be tuning or
+**[00:32:04]** adjusting?
+**[00:32:05]** So let's actually walk through that process here.
+**[00:32:07]** I'm actually going to jump over here to my terminal,
+**[00:32:09]** which is my best friend in the world.
+**[00:32:11]** Let's zoom in here really, really, really tight.
+**[00:32:14]** And I'm going to kick this off with the first
+**[00:32:17]** command, which is AZD, which is the Azure Developer CLI
+**[00:32:21]** AI agent eval init.
+**[00:32:23]** Now this will take our agent project and it's going
+**[00:32:26]** to initialize it and get it ready to run evaluations
+**[00:32:29]** so that I have a benchmark evaluation that I can
+**[00:32:32]** improve this thing against.
+**[00:32:33]** Now the voice enabled agent was this filled operations facing
+**[00:32:36]** agent.
+**[00:32:36]** So we'll go ahead and choose this one, and this
+**[00:32:38]** is going to do a few things for me.
+**[00:32:40]** Now, I've generated these ahead of time, but the first
+**[00:32:42]** thing it's going to do is, hey, do you already
+**[00:32:44]** have an eval data set?
+**[00:32:46]** Now, many of you love to talk about evals, but
+**[00:32:48]** you don't actually have an eval data set.
+**[00:32:50]** And that's OK.
+**[00:32:51]** I'm not going to judge you.
+**[00:32:52]** I'm often in the same boat here.
+**[00:32:54]** You can actually ask us to help you generate an
+**[00:32:56]** eval data set automatically.
+**[00:32:58]** How that works is we'll go look through all of
+**[00:33:00]** those historic traces, additional signals that we have about your
+**[00:33:03]** agent, and we will go ahead and suggest using an
+**[00:33:05]** LLM, an initial starting point data set based on how
+**[00:33:08]** your agent is actually being interacted with.
+**[00:33:10]** So this can help you actually practice what you preach
+**[00:33:13]** if you are in that camp of talking about evals
+**[00:33:15]** but not having them.
+**[00:33:16]** Now, the other piece here is how do I have
+**[00:33:19]** the right evaluation logic though?
+**[00:33:21]** How do I have the right evaluator?
+**[00:33:22]** Now?
+**[00:33:22]** What do I mean when I say that?
+**[00:33:24]** Well, out-of-the-box inside a foundry, we have a number of
+**[00:33:27]** built in evaluators.
+**[00:33:29]** There's one that can evaluate tool selection, tool output, tool
+**[00:33:33]** input retrieval, evaluation, fluency evaluator.
+**[00:33:36]** Sometimes I look at this list though, when I get
+**[00:33:38]** a little bit overwhelmed, right?
+**[00:33:39]** My agent is this filled operations facing agent.
+**[00:33:42]** What's the right combination of built in evaluators?
+**[00:33:44]** Well, the answer is actually, you might even sometimes want
+**[00:33:47]** a custom rubric.
+**[00:33:48]** So this will actually go through and help you generate
+**[00:33:52]** the right combination of evaluators for your specific agent.
+**[00:33:56]** So once I do that, this will initialize my project.
+**[00:33:58]** Let's actually show you the custom rubric that this generated
+**[00:34:02]** for my agent.
+**[00:34:03]** So you can see here, this isn't just a single
+**[00:34:05]** dimension.
+**[00:34:06]** This is actually used in LLM to suggest for me
+**[00:34:09]** a few different dimensions that it recognizes are likely important.
+**[00:34:12]** So it said, hey, you probably want to make sure
+**[00:34:14]** that this is calling the right tools.
+**[00:34:16]** When I ask about uptime, I want to make sure
+**[00:34:18]** I'm using Fabric IQ.
+**[00:34:19]** So let's make the highest way to think correct tool
+**[00:34:21]** use safety warning is probably a big one, right?
+**[00:34:24]** Like this is custom unique to me.
+**[00:34:25]** This is now personalized for my specific agent.
+**[00:34:28]** Now I can modify this too.
+**[00:34:29]** In this case, you can see it actually suggested this
+**[00:34:33]** voice optimized conciseness.
+**[00:34:35]** Right now it gives this a weight of 3 based
+**[00:34:37]** on the feedback that I'm hearing, I actually want to
+**[00:34:39]** bump that up to 10.
+**[00:34:40]** I want it to weigh much more heavily on making
+**[00:34:42]** sure that this thing is voice optimized based on the
+**[00:34:45]** feedback that I've gotten.
+**[00:34:46]** So I can go ahead and update this evaluator so
+**[00:34:48]** that now it is doing voice optimized in that custom
+**[00:34:51]** rubric.
+**[00:34:51]** So now I have this personalized evaluator for my specific
+**[00:34:55]** scenario that's looking at these pieces.
+**[00:34:57]** And again, I can modify this and customize this as
+**[00:34:59]** I need.
+**[00:35:00]** Now where do I go from here?
+**[00:35:02]** Well, I have my data set.
+**[00:35:04]** So this is the data set that I had used
+**[00:35:06]** to generate ahead of time.
+**[00:35:07]** This has a few questions that people might ask as
+**[00:35:10]** well as some answers.
+**[00:35:11]** And now I have my custom evaluator and I can
+**[00:35:14]** pull them all together now with what is probably my
+**[00:35:18]** favorite CLI command in the world, which is AZB AI
+**[00:35:22]** Agent Optimize.
+**[00:35:23]** Now let me walk you through what Optimize is going
+**[00:35:25]** to do.
+**[00:35:25]** I'm going to choose this agent.
+**[00:35:27]** It says, hey, you've already initialized this for evaluation, so
+**[00:35:29]** you want to use that configuration.
+**[00:35:31]** So what this is going to do is it says,
+**[00:35:33]** OK, I see the system prompts, the instructions that this
+**[00:35:35]** agent has, the instructions that you gave it in its
+**[00:35:37]** code.
+**[00:35:38]** I see any skills that you might have configured for
+**[00:35:40]** this agent to have.
+**[00:35:42]** I see the tool configuration that you have.
+**[00:35:44]** I can even look at things like the target model.
+**[00:35:48]** Am I using GPT 5.5?
+**[00:35:50]** Am I using Anthropic Opus 4.8?
+**[00:35:52]** Do I want to use that as a variable?
+**[00:35:54]** I can specify what are the variables that I want
+**[00:35:57]** to have.
+**[00:35:57]** And then here I'm going to choose a model to
+**[00:35:59]** help drive the optimization process.
+**[00:36:01]** I'm just going to leave this at GPT 5 right
+**[00:36:03]** now.
+**[00:36:04]** Now what this kicks off for me.
+**[00:36:06]** This will actually take a while.
+**[00:36:07]** This kicks off an automatic optimization loop.
+**[00:36:11]** This is going to go through and adjust all of
+**[00:36:13]** those different variables.
+**[00:36:14]** It's going to say, OK, what if I modify your
+**[00:36:16]** system prompts?
+**[00:36:17]** What if I modify your tool descriptions?
+**[00:36:19]** What if we use a different model?
+**[00:36:20]** This is going to use leading data science techniques to
+**[00:36:24]** go find some potential candidates for better versions of my
+**[00:36:28]** agent based on my custom rubric that we defined.
+**[00:36:31]** Now, rather than us waiting here for the next however
+**[00:36:33]** long, this takes a couple dozen minutes.
+**[00:36:36]** Let's actually just jump ahead quickly to where I have
+**[00:36:38]** all my desktops are all out of whack.
+**[00:36:40]** Let's see if we can find this.
+**[00:36:41]** Everyone cross your fingers it's here somewhere.
+**[00:36:44]** Oh, you know where it was.
+**[00:36:45]** It was in Chrome that I closed earlier.
+**[00:36:48]** OK, hold on.
+**[00:36:49]** It's here.
+**[00:36:49]** It's here.
+**[00:36:50]** Nobody doubts that it is here.
+**[00:36:52]** Where is it?
+**[00:36:53]** Oh, no.
+**[00:36:54]** OK, well, I have the URLs here in a second
+**[00:36:56]** if I need to use it.
+**[00:36:57]** That that Chrome thing before it threw me out.
+**[00:36:58]** OK, watch this live demo.
+**[00:37:01]** Live demo.
+**[00:37:02]** Gods, please be on our side for this last piece.
+**[00:37:04]** All right, let me copy this URL, paste it in
+**[00:37:07]** here, and we'll let this load up.
+**[00:37:09]** OK, so this hey, it's live.
+**[00:37:11]** OK, So this is the evaluation that I ran a
+**[00:37:13]** little bit ago.
+**[00:37:14]** You can see it ran through and it said, hey,
+**[00:37:17]** we actually found a candidate that will boost your evaluator
+**[00:37:21]** 11%.
+**[00:37:21]** You will get 11% better performance just by me sitting
+**[00:37:23]** and waiting for that thing to finish.
+**[00:37:25]** You can see here that I actually identified 4 candidates.
+**[00:37:28]** Each of them had different pros and cons.
+**[00:37:30]** If I want to, I can understand well, what did
+**[00:37:32]** you change?
+**[00:37:33]** You can see here, hey, this was your existing system
+**[00:37:35]** prompt.
+**[00:37:35]** Here's a new system prompt that if you use this
+**[00:37:37]** system prompt, you actually get better behavior.
+**[00:37:40]** So I can go ahead and dive into the results.
+**[00:37:42]** I can dive really deep into all of the score
+**[00:37:45]** details, all of those eval sets that it tested against.
+**[00:37:48]** And once I'm ready to go, I can go ahead
+**[00:37:51]** now and deploy this as the new version of my
+**[00:37:53]** agent and make this candidate the default candidate.
+**[00:37:56]** So I get that improvement on voice conciseness.
+**[00:37:59]** So all of this loop, we were able to use
+**[00:38:01]** AI to automatically power a bunch of that for me,
+**[00:38:04]** just running this optimization loop.
+**[00:38:06]** That's the same power we want to put into all
+**[00:38:08]** of your hands as you're building your agents.
+**[00:38:10]** So with that, Tina, we'll bring it on out to
+**[00:38:12]** wrap things up.
+**[00:38:13]** Thank you, Jeff.
+**[00:38:15]** Now let's recap on operate tracing.
+**[00:38:19]** An evaluation for hosted agents is generally available soon.
+**[00:38:23]** Every single LLM call, 2 invocation, sub, second hop, hand
+**[00:38:28]** off is all logged in one open telemetry pipeline.
+**[00:38:33]** Rubric for custom evaluation is now in public preview.
+**[00:38:38]** Rubric Auto generates context aware criteria and weighted scoring to
+**[00:38:42]** define what good good looks like for both evaluation and
+**[00:38:46]** optimization so the developer doesn't have to start from scratch.
+**[00:38:52]** Agent Optimizer for Foundry Agent service is now in private
+**[00:38:56]** preview.
+**[00:38:58]** Agent Optimizer turns production traces and evals into a set
+**[00:39:03]** of ranked candidates by tweaking skills, prompt, tool configuration, and
+**[00:39:09]** even models these rank candidate.
+**[00:39:12]** These ranked candidates are then shown side by side across
+**[00:39:17]** quality, cost, and latency.
+**[00:39:20]** Then you developer in are in control to choose the
+**[00:39:24]** exact winning variant to promote with.
+**[00:39:27]** Fold, trace back and lineage rollback is right there when
+**[00:39:31]** you need it.
+**[00:39:32]** The platform finds optimization developers in control on every single
+**[00:39:37]** change.
+**[00:39:39]** Procedural memory in Foundry Agent service is now in public
+**[00:39:43]** preview.
+**[00:39:45]** Procedural memory empowers the agent to learn the playbook across
+**[00:39:49]** all sessions, so the agent doesn't have to Start learning
+**[00:39:53]** from scratch in every single conversation.
+**[00:39:57]** As you can see, there's no manual rewrite or prompt
+**[00:40:01]** or skills.
+**[00:40:02]** The agent becomes smarter, safer and cheaper the more it
+**[00:40:06]** runs all with developer in control for every single change.
+**[00:40:12]** So let me now close out what that all means.
+**[00:40:16]** This is not just a road map promise.
+**[00:40:19]** Over 80,000 customers are running on Foundry today and they're
+**[00:40:23]** already taking advantage of production agents driving significant business outcome
+**[00:40:30]** Ebola, escalating their mission critical energy operations across 14 countries.
+**[00:40:36]** They're leveraging identity, memory, governance, observability, all right from the
+**[00:40:43]** Foundry agent service with full control over regulated operations.
+**[00:40:49]** Twilio has deployed the Twilio Agent Connect, which is their
+**[00:40:53]** open source framework that connects AI agents with the Twilio
+**[00:40:57]** platform, all running on hosted agents in Foundry.
+**[00:41:02]** KPMG is building their global KPMG Workbench platform on hosted
+**[00:41:07]** agents.
+**[00:41:09]** They're leveraging tools and skills in Foundry Toolbox, supercharging their
+**[00:41:14]** interaction with clients worldwide.
+**[00:41:18]** Now let's recap on what just happened in the last
+**[00:41:21]** 45 minutes.
+**[00:41:22]** We started with a scenario our Azure networking operations team
+**[00:41:27]** faces on a daily basis.
+**[00:41:29]** A fiber got cut near one of our data centers.
+**[00:41:32]** We then built an agent locally with Microsoft Agent Framework
+**[00:41:36]** as the orchestrator.
+**[00:41:39]** We connected to the Foundry Toolbox, Foundry IQ, memory, voice,
+**[00:41:44]** document intelligence and constant understanding.
+**[00:41:48]** We then host it as a hosted agent so it
+**[00:41:52]** runs in an isolated secure execution runtime.
+**[00:41:57]** We then publish it into teams as a copilot agent.
+**[00:42:01]** We then operated the agent that works autonomously traced end
+**[00:42:05]** to end cover in production, and it's meaningfully getting better
+**[00:42:10]** through every single run.
+**[00:42:13]** This is the power of Microsoft Foundry, seamless hosting, connected
+**[00:42:19]** intelligence, enterprise trust and reach all in one runtime.
+**[00:42:25]** So it's super easy for you to scale your locally
+**[00:42:28]** scaffolded agent from your laptop to scale through thousands of
+**[00:42:33]** conversations running in production.
+**[00:42:38]** This is Microsoft Foundry build.
+**[00:42:40]** Simply deploy powerfully, operate with trust.
+**[00:42:45]** That's the promise we just walked you through and it's
+**[00:42:48]** available to every single developer in this room today.
+**[00:42:53]** Here are a few sessions that you may want to
+**[00:42:55]** check out at Build.
+**[00:42:58]** I am super excited to see what you can build
+**[00:43:01]** with Microsoft Foundry.
+**[00:43:03]** Thank you.
+**[00:43:03]** Have a great build.
+**[00:43:05]** Thanks, everyone.
+**[00:43:06]** We'll stick.
+**[00:43:07]** We'll, we have about 5 minutes where we can come
+**[00:43:09]** down here if anyone has any questions, if we're not
+**[00:43:11]** able to answer your question before the next session, which
+**[00:43:13]** you should stick around for, I think it's on observability.
+**[00:43:16]** The Foundry booth is just back here and we've got
+**[00:43:18]** the team here all week.
+**[00:43:19]** So we'll, we'll answer what we can here.
+**[00:43:21]** And yeah, thanks so much for coming, everyone.

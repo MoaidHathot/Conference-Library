@@ -1,0 +1,636 @@
+**[00:00:03]** Hi everybody.
+**[00:00:05]** How's everyone doing?
+**[00:00:06]** Hey guys, doing well.
+**[00:00:09]** Oh my God, ready for dinner I feel like.
+**[00:00:11]** Yeah, it's a long day.
+**[00:00:13]** OK.
+**[00:00:13]** So our session is about how to build Windows applications
+**[00:00:16]** with Copilot or with clock code using agents, as well
+**[00:00:19]** as how to use AI inside of your applications running
+**[00:00:22]** on on Windows and using the Windows platform APIs to
+**[00:00:25]** make your applications real to leverage a lot of these
+**[00:00:28]** things.
+**[00:00:29]** That's right.
+**[00:00:29]** We're going to stay outside of PowerPoint.
+**[00:00:32]** I hope that's OK.
+**[00:00:33]** We're going to be doing mostly demos.
+**[00:00:34]** We'll be staying mostly in the terminal here.
+**[00:00:37]** Is that OK?
+**[00:00:38]** Yeah, of course.
+**[00:00:38]** You're fine with that?
+**[00:00:39]** Go ahead.
+**[00:00:39]** Yeah.
+**[00:00:39]** I'm good, I'm a developer, he's a PM, so I
+**[00:00:41]** have to check with.
+**[00:00:41]** The PM.
+**[00:00:41]** I'm not used to a presentation without a deck, but
+**[00:00:44]** I'll get used to that.
+**[00:00:46]** So I work on skills and agents.
+**[00:00:50]** What do you work on?
+**[00:00:51]** I work on Windows AI platforms.
+**[00:00:53]** We'll go figure out how to use AI as well
+**[00:00:55]** as with AI.
+**[00:00:56]** There you go.
+**[00:00:57]** So we have everything covered.
+**[00:00:58]** So you have any questions after the fact come by
+**[00:00:59]** and then we'll have a lot of fun.
+**[00:01:01]** So First things first, I'm going to show you an
+**[00:01:04]** application that we built.
+**[00:01:05]** This is a sample application that we used GitHub Copilot
+**[00:01:09]** and some of our skills to build it for Windows.
+**[00:01:12]** It's all built with Win UI.
+**[00:01:14]** And the idea here is that you can take a
+**[00:01:16]** media file, let's say you're a YouTube, and you want
+**[00:01:19]** to do some processing on your file before you can
+**[00:01:21]** upload it to YouTube or whatever platform you're using.
+**[00:01:25]** You might want to do things like generating transcripts, You
+**[00:01:27]** might want to do things like generating the summary.
+**[00:01:30]** You might want to do things like, hey, I want
+**[00:01:32]** to burn the captions into my video or whatever types
+**[00:01:35]** of effects or processes you might want to do as
+**[00:01:37]** part of your process.
+**[00:01:39]** So we've built this application to be able to handle
+**[00:01:41]** those type of things fully offline.
+**[00:01:43]** So it's using things like AI models, it's using things
+**[00:01:46]** like fondue local.
+**[00:01:48]** What are the things that we're using?
+**[00:01:49]** In here, yeah, I can see myself using that actually.
+**[00:01:51]** Yeah, you just did some name drop there, so I'll
+**[00:01:53]** just explain it real quick.
+**[00:01:54]** I mean, Foundry, local, Microsoft Foundry on Windows, those are
+**[00:01:57]** the names for stuff that we offer as part of
+**[00:01:59]** the Windows AI stack.
+**[00:02:01]** So all we're really trying to do here is whether
+**[00:02:03]** you're bringing your own model, whether you're looking for models
+**[00:02:07]** on Hugging Face or use some of these primitives, primitives
+**[00:02:10]** that we provide as part of the Windows SDK.
+**[00:02:12]** We're trying to make it easy for you to effectively
+**[00:02:14]** run AI models on Windows, right?
+**[00:02:17]** So for example, here we're using Whisper for for transcription
+**[00:02:21]** runs completely offline.
+**[00:02:22]** Here we're using Foundry local, we're using the Quen the
+**[00:02:26]** what is it?
+**[00:02:27]** A three 14 billion parameter.
+**[00:02:29]** This is a razor blade device.
+**[00:02:31]** It comes with a really nice GPU, I think a
+**[00:02:34]** 5080.
+**[00:02:34]** That's right.
+**[00:02:35]** You can run this 14 billion model on here.
+**[00:02:37]** You can.
+**[00:02:38]** You can generate this completely offline as part of that.
+**[00:02:41]** Well, let's be honest, how?
+**[00:02:42]** How long did it take for you to build this
+**[00:02:43]** this app though, right?
+**[00:02:45]** So we started about a month ago, but All in
+**[00:02:47]** all completely I've been working on this about a day
+**[00:02:50]** full of working on this all through Copilot.
+**[00:02:53]** We have not looked at the code for this application
+**[00:02:55]** at all.
+**[00:02:55]** It's only be done with Copilot 100%.
+**[00:02:58]** So you see a lie the whole time.
+**[00:03:00]** I think we threw out the UI like 4 times.
+**[00:03:02]** We started like OK that doesn't look like let's change
+**[00:03:04]** it to this.
+**[00:03:04]** Let's try a Jupiter type look.
+**[00:03:06]** We're just experimenting and trying things out.
+**[00:03:09]** What I want to do for the rest of the
+**[00:03:11]** session is show you the tooling that copilot uses to
+**[00:03:14]** build applications like this and how we can how you
+**[00:03:16]** can use the same things yourself.
+**[00:03:17]** So First things first here.
+**[00:03:20]** Admin copilot, GitHub copilot.
+**[00:03:22]** We have a plug in installed called Win UI.
+**[00:03:26]** So if I do a plug in list you can
+**[00:03:28]** see here we have the Win UI plugin installed on
+**[00:03:31]** here copilot.
+**[00:03:32]** You can install it yourself quickly through just plugin install
+**[00:03:35]** Win UI Awesome Copilot.
+**[00:03:37]** That's coming here.
+**[00:03:37]** What's awesome Copilot by the way, Can you tell me
+**[00:03:39]** real quick?
+**[00:03:40]** Yeah, awesome.
+**[00:03:40]** Copilot is just a repository of all the plugins and
+**[00:03:42]** skills and things you can do for Copilot.
+**[00:03:44]** You can download a bunch of different ones.
+**[00:03:46]** Very cool.
+**[00:03:47]** If you want to learn more about this one, you
+**[00:03:48]** can just go to our repo here and we have
+**[00:03:50]** links at the end where you can go and take
+**[00:03:52]** a picture of that as well.
+**[00:03:54]** But when it comes, once you install it, it comes
+**[00:03:56]** with several skills.
+**[00:03:57]** Like for example, I'll do skills list here.
+**[00:04:01]** And you can see here we have all these Win
+**[00:04:02]** UI skills.
+**[00:04:03]** Let me do just skills.
+**[00:04:04]** It's going to do a better list.
+**[00:04:07]** Sorry, let me stop that.
+**[00:04:10]** There you go.
+**[00:04:11]** So you can see here we have several skills for
+**[00:04:14]** design that workflow, packaging, code review, session report setup.
+**[00:04:18]** So all the things that an agent needs to know
+**[00:04:20]** to understand how to build Win UI applications.
+**[00:04:22]** That's awesome.
+**[00:04:23]** I'm so happy to see packaging there because that's where
+**[00:04:25]** I stock the most.
+**[00:04:27]** Exactly.
+**[00:04:27]** You know what The thing is that anybody can build
+**[00:04:29]** a skill that's just markdown files.
+**[00:04:31]** What we've actually done here, we've also shipping a set
+**[00:04:34]** of tools that come as part of the skills that
+**[00:04:36]** make it possible for agents to actually build when your
+**[00:04:39]** applications, for example, let me show you see the ones
+**[00:04:41]** we've done.
+**[00:04:43]** First things first, we have now new set of templates
+**[00:04:46]** for Win UI.
+**[00:04:47]** For example, this is something we released about few weeks
+**[00:04:51]** ago.
+**[00:04:52]** It's called Net New Win UI templates.
+**[00:04:55]** And.
+**[00:04:56]** Sorry.net runsorry.net new Win UI.
+**[00:05:02]** It's on net.
+**[00:05:04]** You know what happens when you're nervous and you present
+**[00:05:06]** to people?
+**[00:05:07]** You tend to make mistakes.
+**[00:05:08]** Understandable.
+**[00:05:09]** And I'm so grateful for Elaine.
+**[00:05:11]** Thank you SO.
+**[00:05:11]** Much, Yes.
+**[00:05:12]** I'm just here to catch all the typos.
+**[00:05:15]** So we have new templates for Win UI that allows
+**[00:05:17]** agents to get started quickly so they don't have to
+**[00:05:19]** guess how to make all the manifest files, all the
+**[00:05:22]** XAML files, all CS files.
+**[00:05:23]** It will just work for them.
+**[00:05:25]** So this is same as if you open up Visual
+**[00:05:27]** Studio and start a new template from there my.
+**[00:05:30]** Agents, it's easier for them to use CLI tooling instead
+**[00:05:33]** of Visual Studio.
+**[00:05:34]** So we're making a lot of these CLI tooling so
+**[00:05:35]** agents can actually use them and do the same things
+**[00:05:37]** that humans can do.
+**[00:05:38]** I don't think that's new.
+**[00:05:40]** That wasn't possible before.
+**[00:05:41]** Is icanjust.net run this, win your application now and it's
+**[00:05:44]** going to run fully packaged on on my machine here.
+**[00:05:47]** And that's something you couldn't do before.
+**[00:05:49]** It's like hitting F5 right?
+**[00:05:50]** But in the CLI you.
+**[00:05:51]** Hit F5 and you go to the play button, Visual
+**[00:05:53]** Studio.
+**[00:05:54]** But there was no way to run a packaged application
+**[00:05:56]** through the command line.
+**[00:05:58]** And now you can do that here through through this.
+**[00:06:01]** The way we've achieved this is we have a new
+**[00:06:04]** CLI called Winapp.
+**[00:06:06]** There it is.
+**[00:06:07]** It's just Win app.
+**[00:06:08]** You can get it through Win Gap or whatever.
+**[00:06:10]** It has a lot of different commands that have to
+**[00:06:12]** do with Windows application development.
+**[00:06:15]** Things like giving applications package identity so they can call
+**[00:06:18]** about a lot of the APIs that require identity like
+**[00:06:21]** notification.
+**[00:06:22]** So a lot of the AI AP is like my
+**[00:06:24]** Silica or any of the shell integrations as part of
+**[00:06:27]** that.
+**[00:06:27]** That's right, it knows how to look out for docs,
+**[00:06:29]** right?
+**[00:06:30]** As well.
+**[00:06:30]** So that's exactly so for example, other things that we've
+**[00:06:33]** done as part of these skills, we've added tools to
+**[00:06:36]** help agents once they've created the applications that can run
+**[00:06:39]** them.
+**[00:06:39]** What controls did they use?
+**[00:06:41]** What APS did they use?
+**[00:06:42]** They need to know this.
+**[00:06:43]** And instead of trying to feed off this as far
+**[00:06:45]** as skills and poison the the context window, because it's
+**[00:06:48]** going to be a lot, a lot of content, we
+**[00:06:50]** have the CLI tools that agents can just call into
+**[00:06:52]** to get more permission on what control to use or
+**[00:06:55]** what API to use.
+**[00:06:56]** For example, if we call the Win UI search tool
+**[00:07:00]** here and I can just search for let's say a
+**[00:07:03]** tab.
+**[00:07:03]** To tab yeah.
+**[00:07:04]** Right.
+**[00:07:05]** It will find all the different samples that we have
+**[00:07:08]** as part of the Win UI gallery or the AI
+**[00:07:11]** Dev gallery or the Community Toolkit gallery.
+**[00:07:14]** And as an agent, I can just get the code
+**[00:07:17]** for those samples and I'll be able to know exactly
+**[00:07:21]** how to use a tab, for example, a tab in
+**[00:07:24]** this case the XAML code, the.net code, also a lot
+**[00:07:27]** of.
+**[00:07:28]** Important stuffs at the end.
+**[00:07:30]** Agents, we found that they get stuck on some random
+**[00:07:32]** things and they spent a lot of times on those
+**[00:07:34]** things.
+**[00:07:34]** So we've put a lot of different information for agents
+**[00:07:37]** to know how to handle certain situations.
+**[00:07:39]** What we found is by providing these type of tools
+**[00:07:42]** to agents is that we're able to save over 70%
+**[00:07:44]** of token usage for for agents.
+**[00:07:46]** So as you're using these skills and building these applications,
+**[00:07:48]** you're also saving on how many tokens you're using to
+**[00:07:50]** build those type of applications.
+**[00:07:53]** The other tool that we have here is for example
+**[00:07:56]** is Win MD that is able to search for APIs
+**[00:07:58]** like.
+**[00:07:59]** In this case, we're building an AI powered application.
+**[00:08:01]** Let's look out for some AIAPIS then, so.
+**[00:08:03]** Use ML models.
+**[00:08:05]** Also search for use ML models and you'll be able
+**[00:08:07]** to find OK, here's APIs that it might be good
+**[00:08:10]** for you to if you want to use ML models.
+**[00:08:12]** For example, we found the Machine learning namespace here, the
+**[00:08:15]** Onyx runtime namespace, maybe the five silica namespace for AI
+**[00:08:19]** text.
+**[00:08:20]** See, our language model shows up there.
+**[00:08:21]** Exactly.
+**[00:08:22]** So it's able to go like, OK, now I need
+**[00:08:24]** more information about this and it's going to get all
+**[00:08:26]** the information directly to code and how to use it
+**[00:08:28]** and when to use it.
+**[00:08:30]** So this way instead of shipping everything an agent needs
+**[00:08:33]** to know, the agent can just look for it whenever
+**[00:08:35]** it needs it.
+**[00:08:36]** So that way it's actively what it's building and how
+**[00:08:38]** it's building.
+**[00:08:39]** That's pretty sweet.
+**[00:08:40]** The last tool I want to show you here is
+**[00:08:42]** the.
+**[00:08:43]** Once it's done building the application, it needs to be
+**[00:08:45]** able to go test it and verify that it's working.
+**[00:08:47]** So we also added tooling for called UI for an
+**[00:08:50]** agent to be able to launch applications, inspect the application,
+**[00:08:53]** check out the visual tree, click button, stick screenshots.
+**[00:08:57]** So for example, now I can do win your UI
+**[00:09:00]** inspect.
+**[00:09:01]** Let's say I want to inspect the terminal and I
+**[00:09:04]** want all the interactive elements.
+**[00:09:07]** So I can say, OK, here's the live visual tree
+**[00:09:09]** for the terminal I'm running in right now.
+**[00:09:11]** And here's the new tab button.
+**[00:09:13]** And an agent could just take this and just click
+**[00:09:15]** it.
+**[00:09:15]** So I can say Winapp UI invoke that button on
+**[00:09:20]** the terminal app and then it creates a new terminal.
+**[00:09:25]** So an agent can now actually use applications and interact
+**[00:09:28]** with them, take screenshots and knows they functionally work and
+**[00:09:31]** they can do this end to end 100%.
+**[00:09:34]** So actually the final tool that we want to dive
+**[00:09:37]** into.
+**[00:09:37]** So that was not the final tool.
+**[00:09:38]** That was not.
+**[00:09:38]** The final tool alive, the final tool that I wanted
+**[00:09:41]** to get into is actually a tool that we just
+**[00:09:43]** announced today.
+**[00:09:44]** It's called Win ML.
+**[00:09:46]** This is a tool that you shared with me a
+**[00:09:48]** few weeks ago and said OK, use this tool.
+**[00:09:50]** Sorry my microphone I think is falling out.
+**[00:09:52]** Use this tool to add a model and a feature.
+**[00:09:57]** Maybe you can tell us more about how this tool
+**[00:09:59]** works and how the agent actually used this tool.
+**[00:10:01]** Absolutely.
+**[00:10:02]** I mean, you've seen Phytelica, right?
+**[00:10:03]** So we've got Phytelica or a local language model that's
+**[00:10:06]** already integrated into the app, which is great.
+**[00:10:08]** I mean for primitives like language models, some video processing,
+**[00:10:12]** audio processing capabilities, we kind of try to bake that
+**[00:10:15]** into Windows.
+**[00:10:15]** So we have a really handy turnkey API level solution
+**[00:10:18]** that you can just go ahead and use.
+**[00:10:21]** But for capabilities where it's not part of the primitives,
+**[00:10:24]** like for example, right, like in your app, I remember
+**[00:10:28]** we were trying to add captions on a frame per
+**[00:10:31]** frame basis.
+**[00:10:31]** So we can like start searching for video content.
+**[00:10:34]** We can grab the highlights from the videos, which is
+**[00:10:36]** kind of cool, right?
+**[00:10:37]** But we don't have that yet as part of the
+**[00:10:38]** Windows AI APIs.
+**[00:10:39]** So I did whatever everybody does when they can't find
+**[00:10:42]** a model, which is go up to Hugging Face, right,
+**[00:10:45]** and try to find the right solution.
+**[00:10:47]** And I think there is a good clip model, right?
+**[00:10:49]** Like a vision transformer model that we saw there.
+**[00:10:52]** Let's see that real quick.
+**[00:10:53]** Yeah, that's the one that we found.
+**[00:10:55]** But finding that model on Hugging Face doesn't mean that
+**[00:10:58]** you have a model that you can effectively run on
+**[00:11:01]** Windows devices just yet, right?
+**[00:11:03]** So there's a whole bunch of steps that you have
+**[00:11:04]** to take.
+**[00:11:05]** You have to convert the model format first.
+**[00:11:07]** So most of these models that's sort of published our
+**[00:11:10]** pipe torch and you have to make sure it's Windows
+**[00:11:13]** friendly, you have to convert them to Onyx.
+**[00:11:15]** So they run with Onyx runtime.
+**[00:11:17]** And after that there's a bunch of optimizations, maybe quantizations
+**[00:11:21]** that you want it to do because the model size
+**[00:11:23]** is too big and you want it to compile them
+**[00:11:26]** potentially because you want it to have them run on
+**[00:11:28]** a specific hardware configuration.
+**[00:11:31]** So all of those steps feels pretty fragmented or complex
+**[00:11:34]** at this point, right?
+**[00:11:35]** That's kind of the reason why we introduced Win ML
+**[00:11:38]** CLI, which is this 2 chain that you can do
+**[00:11:41]** all of that things in a streamlined manner.
+**[00:11:44]** So if we go back to our terminal real quick.
+**[00:11:47]** So can we just walk through it maybe step by
+**[00:11:49]** step of what the agent actually does to get it
+**[00:11:51]** from?
+**[00:11:52]** I have this model, a Hank face.
+**[00:11:54]** I need this model in a format that's going to
+**[00:11:56]** run on this device that has and NVIDIA GPU.
+**[00:11:59]** It has a really nice NPU too from the Intel,
+**[00:12:02]** but how do we get into that?
+**[00:12:03]** Part I would love to leverage NPU on this device.
+**[00:12:06]** It's a great Copilot Plus device.
+**[00:12:08]** And so before doing that though, just real quick, there's
+**[00:12:11]** like 3 top level approaches where you would use the
+**[00:12:14]** CLI, right?
+**[00:12:15]** There's this build command where you see right there, if
+**[00:12:17]** we're able to highlight that real quick, that build command
+**[00:12:20]** is able to help you streamline the entire process.
+**[00:12:23]** So when you run build with a specific build configuration,
+**[00:12:26]** you're able to export model locally and then analyze the
+**[00:12:29]** model over its graph and then be able to optimize
+**[00:12:32]** the model, optionally quantize the model, do everything that I've
+**[00:12:35]** mentioned earlier, right, in a streamlined matter.
+**[00:12:38]** But there's also this way for you to do step
+**[00:12:41]** by step, right?
+**[00:12:43]** Which is basically like, have you ordered pizza online before,
+**[00:12:45]** right?
+**[00:12:45]** Like if you order pizza and they kind of sit
+**[00:12:47]** back, you know, it's ready when it's ready, right?
+**[00:12:50]** But you can also just kind of go into the
+**[00:12:52]** app, see how the toppings are added and then put
+**[00:12:54]** it into the oven, right?
+**[00:12:55]** Like, so in this case, we're actually going to do
+**[00:12:57]** the step by step so that people can understand how
+**[00:12:59]** the pizza is made, you know?
+**[00:13:01]** What teach me?
+**[00:13:01]** What do I do?
+**[00:13:02]** So let's start with exporting the model, which is 1
+**[00:13:07]** ML export, OK.
+**[00:13:08]** And then all we have to do is go back
+**[00:13:10]** to hugging face real quick and then grab the model
+**[00:13:12]** ID like that.
+**[00:13:13]** Yeah.
+**[00:13:14]** And then we do Dash M for the model name
+**[00:13:16]** and then we just paste it there.
+**[00:13:18]** And then we specify Dash O.
+**[00:13:20]** That's the output.
+**[00:13:21]** And then we just give it a name and then
+**[00:13:24]** Onyx so we can start to run that.
+**[00:13:27]** But since we're on the demo network, we're not going
+**[00:13:30]** to wait for pulling this model down from the cloud.
+**[00:13:32]** Instead, we have the model already pre downloaded, right?
+**[00:13:36]** So let's take a look at the model.
+**[00:13:37]** It's the click vision transformer model that's already converted to
+**[00:13:40]** Onyx on disk.
+**[00:13:41]** So the next step that we would do is analyze.
+**[00:13:43]** So let's go ahead and take a look which of
+**[00:13:46]** those operators are able to leverage the specific hardware configuration
+**[00:13:50]** that we pointed to and which of the ones that
+**[00:13:52]** has optimization opportunity, right?
+**[00:13:54]** So let's run Winml analyze so.
+**[00:13:56]** We're checking if this model can work on this device.
+**[00:13:58]** Essentially, that's right what we're doing.
+**[00:14:00]** OK, let's do Winml analyze Dash M, and then we'll
+**[00:14:02]** pass in the Onyx file that we just downloaded.
+**[00:14:05]** And then let's also add a oh, actually let's stop
+**[00:14:08]** that real quick.
+**[00:14:10]** And before we hit enter, let's also add Dash Dash
+**[00:14:14]** Optim config and give it a Jason file name.
+**[00:14:18]** Jason.
+**[00:14:21]** Yeah, that's perfect.
+**[00:14:22]** So what this is trying to do is it's going
+**[00:14:25]** to analyze the entire model graph operator by operator, and
+**[00:14:28]** it's going to figure out like which of the operators
+**[00:14:31]** has opportunity to be fused together so that later on
+**[00:14:34]** in the optimization step, we're able to actually combine operators,
+**[00:14:38]** for example, into a single operator.
+**[00:14:40]** And then that would improve the performance of the model.
+**[00:14:45]** I see here what's using open vino here.
+**[00:14:47]** So that's the on the CPU, but also the GPU
+**[00:14:50]** one.
+**[00:14:50]** So the different providers for different.
+**[00:14:53]** OK, there's the NPU one as well, exactly everything on
+**[00:14:55]** this device.
+**[00:14:56]** So it's testing everything that's able to run a model
+**[00:14:59]** on this device, including obviously all the open vino EP
+**[00:15:02]** based ones.
+**[00:15:02]** So a lot of the Intel chips, but also at
+**[00:15:04]** the same time, I know this has a NVIDIA GPU
+**[00:15:07]** on it as well right here.
+**[00:15:08]** So you're able to see the TRT RTX EP there
+**[00:15:10]** as well.
+**[00:15:11]** Yeah, exactly.
+**[00:15:12]** So you see, all these operators are well supported, but
+**[00:15:15]** let's open up that Jason file real quick and see
+**[00:15:19]** what's the output of our optimization script.
+**[00:15:24]** Sweet.
+**[00:15:25]** So I mean, it's not a whole lot, but as
+**[00:15:27]** you can see here, what is pointing out, it's a
+**[00:15:29]** tiny file.
+**[00:15:30]** Yeah, exactly.
+**[00:15:30]** But what it does is it's pointing out something important,
+**[00:15:33]** right?
+**[00:15:33]** Like it's basically saying after Matt Mao operator, which is
+**[00:15:37]** a matrix multiplication, when it's followed by an ad, there's
+**[00:15:41]** an opportunity to fuse those operators into one, which is
+**[00:15:44]** jam.
+**[00:15:44]** I believe what we do next is then we're able
+**[00:15:47]** to pass this as a recipe to our next step,
+**[00:15:50]** which is to optimize the model so that we'll end
+**[00:15:53]** up with less compute notes, hopefully so that we can
+**[00:15:56]** improve the performance of the model.
+**[00:15:58]** So let's run that real quick.
+**[00:15:59]** Let's do win ML, optimize, optimize, OK, sweet, good job.
+**[00:16:06]** And let's do Dash M and then let's pass in
+**[00:16:08]** that Onyx model, OK?
+**[00:16:12]** Onyx.
+**[00:16:13]** Exactly.
+**[00:16:14]** And then let's do A-C for passing in the config
+**[00:16:17]** file that was outputted exactly.
+**[00:16:19]** And after that I think we can just hit enter.
+**[00:16:22]** It's going to figure out output I'm.
+**[00:16:24]** Being careful hitting enter now I want.
+**[00:16:25]** To just wait for everything, wait for all that wait.
+**[00:16:27]** For you to.
+**[00:16:28]** Say, sounds good, OK.
+**[00:16:31]** So I see it did an optimization here and optimized
+**[00:16:33]** the notes.
+**[00:16:34]** Exactly.
+**[00:16:35]** So after optimization, what we're going to do here, I
+**[00:16:39]** think let's test and see if it runs fast enough.
+**[00:16:44]** How does this work though?
+**[00:16:44]** Is it optimizing for all of my devices?
+**[00:16:47]** Like which device is it optimizing it for?
+**[00:16:49]** So that's a good question.
+**[00:16:51]** So right now it's still after the optimization, it's still
+**[00:16:54]** a platform agnostic means that this will still run all
+**[00:16:58]** the on all the different chips that you have on
+**[00:17:01]** this device and you're able to have good portability as
+**[00:17:04]** well.
+**[00:17:05]** If you wanted to move this Onyx file to a
+**[00:17:07]** different device, you have the option to compile this to
+**[00:17:10]** the sort of to the hardware graph layer so that
+**[00:17:12]** it's really pretty compelled.
+**[00:17:14]** It's ready to go for a specific hardware configuration.
+**[00:17:17]** But we're not going to do that this time.
+**[00:17:18]** Instead, what we're going to do is to just test
+**[00:17:20]** this performance.
+**[00:17:21]** So let's run Winml and perf, and we'll pass in
+**[00:17:25]** the model after the optimization.
+**[00:17:31]** Sounds good and let's just hit enter for now.
+**[00:17:35]** It's going to by default run 100 iterations of test
+**[00:17:38]** cases for all the popular model categories that's on Hugging
+**[00:17:41]** Face.
+**[00:17:42]** We've prepared like test cases for you, so we're able
+**[00:17:44]** to run this preliminary test and just get a sense
+**[00:17:46]** of whether it's going to run while on this device.
+**[00:17:49]** So it's.
+**[00:17:50]** Testing it on the MPU I.
+**[00:17:51]** See exactly when you don't specify a device target?
+**[00:17:54]** In this case we want it to run MPU, which
+**[00:17:56]** is perfect.
+**[00:17:57]** But since this is a Copilot Plus device, we default
+**[00:18:00]** it to MPU.
+**[00:18:00]** And that actually works well for our use case, right?
+**[00:18:02]** Because we wanted to leave GPU for all the the
+**[00:18:05]** video processing that we're gonna do.
+**[00:18:07]** That's right.
+**[00:18:07]** That's a good call out.
+**[00:18:08]** So you can have different models running on different devices
+**[00:18:10]** and they can run at the same time without actually
+**[00:18:12]** impacting performance for what they're doing.
+**[00:18:14]** Absolutely.
+**[00:18:14]** And the model inferences on like 3 millisecond average, that's
+**[00:18:18]** pretty good.
+**[00:18:19]** So we're able to process like over 300 frames per
+**[00:18:22]** second that's.
+**[00:18:24]** Really cool.
+**[00:18:25]** So when you shared this with me, I actually gave
+**[00:18:27]** it to Copilot.
+**[00:18:28]** I said, here's the CLI, I need to use this
+**[00:18:30]** model that you also shared with me.
+**[00:18:32]** Can we build a feature where we're actually able to
+**[00:18:34]** search through a video?
+**[00:18:35]** It took about 20 minutes, 25 minutes and I was
+**[00:18:38]** able to build a whole new effect called Fine Frames
+**[00:18:42]** right here.
+**[00:18:43]** Look at that.
+**[00:18:43]** Allows me to search for something in a video.
+**[00:18:45]** So in this case, what we're searching for this is
+**[00:18:49]** a build keynote demo from Master.
+**[00:18:51]** It's about two hours long, so it's a very long
+**[00:18:53]** video and I want to search for a person.
+**[00:18:57]** The NVIDIA CEO was wearing a very nice leather jacket.
+**[00:19:00]** Leather jacket.
+**[00:19:01]** I want to remember.
+**[00:19:02]** That's pretty vague.
+**[00:19:02]** Yes, I'm.
+**[00:19:03]** Going to search for that a person.
+**[00:19:04]** Who could that person be?
+**[00:19:06]** Leather.
+**[00:19:07]** Jacket so we can run this.
+**[00:19:09]** So what this effect does actually samples different key frames
+**[00:19:12]** from that video.
+**[00:19:13]** It gets the embeddings for each one, and then it
+**[00:19:15]** does the comparison with the string that we're searching for.
+**[00:19:18]** Then when it's able to do that, it's going to
+**[00:19:19]** do a person and then find the top five that
+**[00:19:21]** actually match what we're looking.
+**[00:19:22]** For awesome.
+**[00:19:23]** In this case you found the top five and then
+**[00:19:25]** the first one.
+**[00:19:26]** It was Jensen with his.
+**[00:19:28]** Look at that, Jensen.
+**[00:19:30]** That's his name.
+**[00:19:30]** You.
+**[00:19:32]** Can see here that friend completely on the NPU and
+**[00:19:34]** was really fast doing all those embeddings for on all
+**[00:19:36]** those frames, two hours worth of video, which is great.
+**[00:19:40]** OK, before we move on now it's not going to
+**[00:19:43]** be a session without doing a A deck.
+**[00:19:46]** So we're going to we're going to deal with a
+**[00:19:48]** bit of a recap.
+**[00:19:50]** We're going to go back to our deck.
+**[00:19:51]** We're going to stay in our CLI still again, because
+**[00:19:53]** I refuse to go to PowerPoint because I'm a developer.
+**[00:19:56]** OK, so I built a my presentation in in the
+**[00:20:01]** terminal present.
+**[00:20:04]** There we go.
+**[00:20:04]** So we can actually run our presentation here.
+**[00:20:06]** So again, hello folks.
+**[00:20:09]** That's our name presentation without having our names.
+**[00:20:11]** That's me, that's him.
+**[00:20:13]** I think we look alike.
+**[00:20:16]** Just as a recap, a lot of the stuff that
+**[00:20:18]** we showed today is.
+**[00:20:20]** How are we enabling agents to build Windows applications by
+**[00:20:24]** providing them tools and skills to go to duties as
+**[00:20:28]** a user?
+**[00:20:29]** I'm if I want to create a new application and
+**[00:20:30]** go to file new, I don't create files from scratch.
+**[00:20:33]** Agents did the same things.
+**[00:20:34]** If I go.
+**[00:20:35]** Ask you to build me a house.
+**[00:20:36]** You're not going to go manifest, you know a house.
+**[00:20:39]** You're going to need to get all the tools to
+**[00:20:41]** build the house.
+**[00:20:41]** Same thing with agents.
+**[00:20:42]** Everything a human requires to learn there is a matching
+**[00:20:45]** agent skill.
+**[00:20:46]** By making it easier for agents, we also make it
+**[00:20:48]** easier for humans to build to build applications.
+**[00:20:50]** With this, we were able to now take something that
+**[00:20:53]** was completely a Visual Studio experience, take it down to
+**[00:20:55]** the terminal and felt both humans and users able to
+**[00:20:58]** do this.
+**[00:20:59]** Like for example, humans need to go look up AP
+**[00:21:01]** is agents should be able to do the same thing.
+**[00:21:04]** Humans need to be able to get stuck traces able
+**[00:21:06]** to figure out why something crashed and agents should have
+**[00:21:09]** the same tools to be able to do this same
+**[00:21:11]** thing with models.
+**[00:21:12]** You know, we have the tools to go optimize models.
+**[00:21:14]** Agents should have the exact same tools to be able
+**[00:21:16]** to.
+**[00:21:16]** Do that.
+**[00:21:16]** That's right.
+**[00:21:19]** And the fun thing about agents, about doing this through
+**[00:21:21]** copilot is so quick to go and test things out
+**[00:21:24]** like it's fun.
+**[00:21:24]** It's not a fun example of this.
+**[00:21:26]** I built this presentation style also with the copilot and
+**[00:21:30]** it's all in markdown.
+**[00:21:32]** But I hated having to edit markdown myself.
+**[00:21:34]** So I also asked copilot to build me an application
+**[00:21:36]** to edit my presentation.
+**[00:21:38]** So in a way I asked copilot to go build
+**[00:21:40]** me a whole new PowerPoint without me having to spend
+**[00:21:42]** a lot of time.
+**[00:21:43]** I'm very busy, I have no time but yet I
+**[00:21:45]** have found the time to be able to build this
+**[00:21:47]** deck and be able to do.
+**[00:21:48]** This thing feel like I'm an inception at this point.
+**[00:21:51]** It's so cheap now to build applications it's crazy and
+**[00:21:53]** this is great.
+**[00:21:54]** I've been using this for all my presentation anyway, so
+**[00:21:57]** we really appreciate you guys spending some time with us.
+**[00:22:00]** There's a lot of links here for the stuff that
+**[00:22:02]** we've talked about, so go ahead and take a picture.
+**[00:22:07]** OK, good.
+**[00:22:08]** And then I think that's it.
+**[00:22:10]** That's it.
+**[00:22:11]** Thanks folks.
+**[00:22:11]** Thank you all.
+**[00:22:12]** Enjoy your rest of your day.
+**[00:22:13]** Bye.

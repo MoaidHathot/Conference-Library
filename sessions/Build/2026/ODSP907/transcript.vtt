@@ -1,0 +1,1029 @@
+WEBVTT
+
+00:00:01.320 --> 00:00:03.180
+SPEAKER 1: Welcome to
+Beyond Golden Signals,
+
+00:00:03.180 --> 00:00:06.960
+Monitoring in the Age
+of Generative AI.
+
+00:00:06.960 --> 00:00:10.140
+What makes GenAI applications
+fundamentally different
+
+00:00:10.140 --> 00:00:12.150
+from the traditional software
+we've been monitoring
+
+00:00:12.150 --> 00:00:13.560
+for decades?
+
+00:00:13.560 --> 00:00:15.570
+There are four key shifts.
+
+00:00:15.570 --> 00:00:18.750
+The first is
+non-deterministic behavior.
+
+00:00:18.750 --> 00:00:22.740
+The second is the
+variable cost structure.
+
+00:00:22.740 --> 00:00:26.430
+Third, we're facing
+new attack vectors.
+
+00:00:26.430 --> 00:00:30.460
+And finally, quality
+is subjective.
+
+00:00:32.250 --> 00:00:35.430
+Now that we've established why
+the traditional approaches fall
+
+00:00:35.430 --> 00:00:37.620
+short and what the
+new challenges are,
+
+00:00:37.620 --> 00:00:39.510
+we'll start with the
+fundamental building block
+
+00:00:39.510 --> 00:00:46.140
+of all monitoring, the
+golden signals, or LETS.
+
+00:00:46.140 --> 00:00:49.770
+We'll dive into the first of
+the Golden Signals, latency.
+
+00:00:49.770 --> 00:00:52.350
+Latency answers that
+fundamental question:
+
+00:00:52.350 --> 00:00:54.870
+How long does each request take?
+
+00:00:54.870 --> 00:00:56.430
+In traditional
+monitoring, we often look
+
+00:00:56.430 --> 00:00:58.110
+at that median latency,
+
+00:00:58.110 --> 00:01:00.660
+which tells us what the
+average user experiences,
+
+00:01:00.660 --> 00:01:03.630
+for example, 850 milliseconds.
+
+00:01:03.630 --> 00:01:06.780
+But we'd also look at
+those extremes, the P95
+
+00:01:06.780 --> 00:01:10.200
+or P99 latencies, to
+catch the slower requests
+
+00:01:10.200 --> 00:01:13.770
+and identify the true
+outliers and bottlenecks.
+
+00:01:13.770 --> 00:01:15.540
+But for GenAI, you
+need to track latency
+
+00:01:15.540 --> 00:01:17.610
+at a more granular level.
+
+00:01:17.610 --> 00:01:20.610
+It's not just about the total
+time from the user clicking send
+
+00:01:20.610 --> 00:01:22.410
+to the response appearing.
+
+00:01:22.410 --> 00:01:24.870
+You've got to instrument the
+latency at multiple stages
+
+00:01:24.870 --> 00:01:26.910
+within the GenAI pipeline.
+
+00:01:26.910 --> 00:01:28.800
+For example, the time it
+takes your RAG retrieval
+
+00:01:28.800 --> 00:01:30.780
+to find relevant documents,
+
+00:01:30.780 --> 00:01:33.600
+or the time for the LLM
+call itself, and finally,
+
+00:01:33.600 --> 00:01:35.880
+that total request time.
+
+00:01:35.880 --> 00:01:38.190
+Understanding the latency
+breakdown is critical
+
+00:01:38.190 --> 00:01:39.600
+for optimizing and pinpointing
+
+00:01:39.600 --> 00:01:41.910
+where users are
+experiencing delays.
+
+00:01:41.910 --> 00:01:45.240
+In summary, for generative
+AI, track latency
+
+00:01:45.240 --> 00:01:48.210
+at multiple stages -- LLM calls,
+
+00:01:48.210 --> 00:01:51.520
+external API calls,
+total request time.
+
+00:01:53.010 --> 00:01:56.070
+Now let's move on to the
+second Golden Signal, errors.
+
+00:01:56.070 --> 00:01:57.450
+Errors are fundamental.
+
+00:01:57.450 --> 00:02:00.210
+We need to know what is the
+error rate and what types
+
+00:02:00.210 --> 00:02:01.530
+of errors are occurring.
+
+00:02:01.530 --> 00:02:02.940
+In the world of GenAI, you need
+
+00:02:02.940 --> 00:02:07.110
+to segment your errors beyond
+the classic HTTP status codes.
+
+00:02:07.110 --> 00:02:09.900
+While traditional monitoring
+would cover things like 400
+
+00:02:09.900 --> 00:02:14.280
+or 500 server errors, we must
+also now track a new category,
+
+00:02:14.280 --> 00:02:16.290
+that's LLM model errors.
+
+00:02:16.290 --> 00:02:17.610
+These are errors
+returned directly
+
+00:02:17.610 --> 00:02:18.720
+from the model provider,
+
+00:02:18.720 --> 00:02:21.450
+like the context
+length being exceeded
+
+00:02:21.450 --> 00:02:24.900
+or the model safety
+filter being triggered,
+
+00:02:24.900 --> 00:02:27.090
+or the model simply
+being overloaded.
+
+00:02:27.090 --> 00:02:29.880
+But the takeaway here is to
+track error rates by endpoint,
+
+00:02:29.880 --> 00:02:33.630
+by model, and by user segment
+to quickly identify patterns
+
+00:02:33.630 --> 00:02:38.540
+and to prevent small issues from
+turning into major outages.
+
+00:02:38.540 --> 00:02:41.090
+The third signal that we
+traditionally monitor
+
+00:02:41.090 --> 00:02:42.770
+is traffic.
+
+00:02:42.770 --> 00:02:47.340
+Traffic simply measures how much
+demand is the system handling.
+
+00:02:47.340 --> 00:02:50.910
+We typically track this as
+request per second, or RPS,
+
+00:02:50.910 --> 00:02:53.850
+over time, as you
+see in this chart.
+
+00:02:53.850 --> 00:02:55.470
+Now, the goal of
+traffic monitoring is
+
+00:02:55.470 --> 00:02:57.150
+to understand usage patterns.
+
+00:02:57.150 --> 00:03:00.480
+That's when your system is
+busy and by how much in order
+
+00:03:00.480 --> 00:03:04.350
+to ensure that you have the
+capacity to handle that load.
+
+00:03:04.350 --> 00:03:06.930
+And for GenAI
+applications, this is more
+
+00:03:06.930 --> 00:03:09.570
+than just the total
+number of API calls.
+
+00:03:09.570 --> 00:03:11.760
+You've got to also segment
+your traffic analysis
+
+00:03:11.760 --> 00:03:13.530
+to be truly effective.
+
+00:03:13.530 --> 00:03:15.630
+This means monitoring
+request patterns not just
+
+00:03:15.630 --> 00:03:17.790
+by time, but by feature.
+
+00:03:17.790 --> 00:03:19.710
+For example, is it
+the internal chatbot
+
+00:03:19.710 --> 00:03:22.890
+or the external facing
+summarization tool?
+
+00:03:22.890 --> 00:03:24.210
+Also the user type.
+
+00:03:24.210 --> 00:03:29.370
+Are premium users or new users
+driving the most traffic?
+
+00:03:29.370 --> 00:03:30.750
+And finally, by model.
+
+00:03:30.750 --> 00:03:32.700
+Which specific model?
+
+00:03:32.700 --> 00:03:35.430
+Is it a big model, a small
+model, a more expensive
+
+00:03:35.430 --> 00:03:38.820
+or cheaper model that's handling
+the majority of your volume?
+
+00:03:38.820 --> 00:03:42.030
+And by segmenting this traffic,
+you can optimize capacity,
+
+00:03:42.030 --> 00:03:44.580
+manage your model-specific
+rate limits effectively,
+
+00:03:44.580 --> 00:03:47.580
+and ultimately
+control your costs.
+
+00:03:47.580 --> 00:03:49.710
+The final signal is saturation.
+
+00:03:49.710 --> 00:03:51.990
+Saturation is all about
+answering the question,
+
+00:03:51.990 --> 00:03:54.060
+how constrained are
+your resources?
+
+00:03:54.060 --> 00:03:56.160
+It's generally measured by
+looking at the utilization
+
+00:03:56.160 --> 00:03:58.500
+of your critical infra.
+
+00:03:58.500 --> 00:04:02.070
+However, for GenAI apps, the
+bottlenecks have shifted.
+
+00:04:02.070 --> 00:04:05.160
+You must pay special
+attention to two new areas.
+
+00:04:05.160 --> 00:04:07.740
+The first one is
+GPU utilization.
+
+00:04:07.740 --> 00:04:10.530
+The second is API rate limits.
+
+00:04:10.530 --> 00:04:11.820
+But in the world of GenAI,
+
+00:04:11.820 --> 00:04:13.830
+your primary saturation
+warnings will come
+
+00:04:13.830 --> 00:04:16.830
+from watching
+infrastructure utilization
+
+00:04:16.830 --> 00:04:20.520
+and model serving capacity and
+associated API rate limits.
+
+00:04:20.520 --> 00:04:23.430
+This is nothing new, but they're
+new critical bottlenecks
+
+00:04:23.430 --> 00:04:25.410
+that you need to monitor
+in order to ensure
+
+00:04:25.410 --> 00:04:29.100
+that you can handle
+your increased traffic.
+
+00:04:29.100 --> 00:04:30.960
+All right, let's
+move to the first
+
+00:04:30.960 --> 00:04:34.440
+of our three critical new
+dimensions, cost monitoring.
+
+00:04:34.440 --> 00:04:38.850
+As we established, traditional
+LETS metrics completely miss the
+
+00:04:38.850 --> 00:04:41.250
+financial implications of GenAI.
+
+00:04:41.250 --> 00:04:44.250
+The cost structure is highly
+dynamic and unpredictable.
+
+00:04:44.250 --> 00:04:47.370
+That means if you don't have
+visibility, your spending can,
+
+00:04:47.370 --> 00:04:49.920
+and often will, spiral
+out of control.
+
+00:04:49.920 --> 00:04:52.470
+And in this section, we'll cover
+why this is a critical problem
+
+00:04:52.470 --> 00:04:55.020
+and, more importantly,
+the essential metrics
+
+00:04:55.020 --> 00:04:58.110
+and strategies you need to
+implement to track your spending
+
+00:04:58.110 --> 00:05:00.510
+and maintain a healthy budget.
+
+00:05:00.510 --> 00:05:01.320
+All right, let's look
+
+00:05:01.320 --> 00:05:03.600
+at why cost monitoring
+is absolutely critical,
+
+00:05:03.600 --> 00:05:06.210
+and it all boils down to
+the unpredictable nature
+
+00:05:06.210 --> 00:05:07.950
+of GenAI spent.
+
+00:05:07.950 --> 00:05:10.560
+We've identified three major
+ways cost can escalate
+
+00:05:10.560 --> 00:05:12.530
+without warning.
+
+00:05:12.530 --> 00:05:15.020
+The first is token creep.
+
+00:05:15.020 --> 00:05:17.210
+This happens when
+maybe your engineers
+
+00:05:17.210 --> 00:05:19.520
+or product managers are
+trying to improve quality,
+
+00:05:19.520 --> 00:05:23.580
+but they quietly increase the
+context window for the model.
+
+00:05:23.580 --> 00:05:26.790
+Without financial review, and
+because cost is directly tied
+
+00:05:26.790 --> 00:05:31.170
+to token count, this can result
+in a cost increase overnight.
+
+00:05:31.170 --> 00:05:33.270
+Second, we've got model drift.
+
+00:05:33.270 --> 00:05:35.820
+This is when your team, or
+myself, somebody like me,
+
+00:05:35.820 --> 00:05:39.660
+an engineer on your team, might
+take a faster, cheaper model
+
+00:05:39.660 --> 00:05:41.340
+and then move into
+something a little bit more
+
+00:05:41.340 --> 00:05:43.050
+but perhaps a little bit slower
+
+00:05:43.050 --> 00:05:46.710
+under the premise
+of better quality.
+
+00:05:46.710 --> 00:05:49.380
+This change in model, even if
+the usage volume stays the same,
+
+00:05:49.380 --> 00:05:52.140
+can escalate your spending.
+
+00:05:52.140 --> 00:05:55.380
+And finally, there
+are uncached calls.
+
+00:05:55.380 --> 00:05:58.350
+In GenAI, the same query
+can hit the API repeatedly
+
+00:05:58.350 --> 00:06:01.680
+if you haven't implemented
+an effective caching layer.
+
+00:06:01.680 --> 00:06:05.070
+And we've seen cases where
+your spend is redundant
+
+00:06:05.070 --> 00:06:07.230
+because the system is paying
+for the exact same expense
+
+00:06:07.230 --> 00:06:10.530
+of model completion
+over and over again.
+
+00:06:10.530 --> 00:06:13.080
+And without granular visibility
+into these three areas --
+
+00:06:13.080 --> 00:06:16.290
+that's token creep, model
+drift, and uncached calls --
+
+00:06:16.290 --> 00:06:19.030
+your costs can escalate rapidly.
+
+00:06:20.160 --> 00:06:21.540
+So now we know what to track,
+
+00:06:21.540 --> 00:06:23.880
+but how do we get
+that granular data?
+
+00:06:23.880 --> 00:06:26.760
+The answer is a robust
+cost attribution strategy.
+
+00:06:26.760 --> 00:06:30.420
+Which means one thing: You've
+got to tag everything.
+
+00:06:30.420 --> 00:06:32.760
+First, feature level tagging.
+
+00:06:32.760 --> 00:06:35.910
+That means by tagging your
+feature like summarization
+
+00:06:35.910 --> 00:06:40.140
+or text to speech, basically
+going in and adding
+
+00:06:40.140 --> 00:06:41.610
+that feature level
+tag will tell you
+
+00:06:41.610 --> 00:06:44.460
+which feature is
+costing the most.
+
+00:06:44.460 --> 00:06:45.840
+Secondly, user level tagging.
+
+00:06:45.840 --> 00:06:50.040
+So using tags like user ID
+or tagging by organization,
+
+00:06:50.040 --> 00:06:52.980
+it's essential for
+chargeback, accurate billing,
+
+00:06:52.980 --> 00:06:54.480
+and quickly identifying patterns
+
+00:06:54.480 --> 00:06:58.800
+of abusive usage before
+they drain your budget.
+
+00:06:58.800 --> 00:07:00.930
+Third, model level tagging.
+
+00:07:00.930 --> 00:07:04.890
+Tags like model or provider
+give you immediate visibility
+
+00:07:04.890 --> 00:07:08.430
+into the high leverage areas
+for cost optimization.
+
+00:07:08.430 --> 00:07:10.020
+You can benchmark
+the true expense
+
+00:07:10.020 --> 00:07:12.540
+of using one model
+versus another.
+
+00:07:12.540 --> 00:07:15.000
+Finally, endpoint level tagging.
+
+00:07:15.000 --> 00:07:17.940
+Attributing costs to a
+region, environment,
+
+00:07:17.940 --> 00:07:20.340
+or provider helps
+your infra planning.
+
+00:07:20.340 --> 00:07:22.170
+You can see how regional
+distribution of staging
+
+00:07:22.170 --> 00:07:25.620
+versus prod can impact
+your total spend.
+
+00:07:25.620 --> 00:07:29.010
+By making tagging mandatory, you
+gain the necessary visibility
+
+00:07:29.010 --> 00:07:32.670
+to understand where your money
+is going and more importantly,
+
+00:07:32.670 --> 00:07:34.780
+how to control your spend.
+
+00:07:36.090 --> 00:07:37.980
+All right, we're going
+to move on to our second
+
+00:07:37.980 --> 00:07:41.860
+of the three new dimensions,
+safety and security.
+
+00:07:43.050 --> 00:07:47.310
+Let's dive into the specifics
+of the GenAI threat landscape.
+
+00:07:47.310 --> 00:07:49.740
+We've categorized them
+based on their risk level,
+
+00:07:49.740 --> 00:07:53.370
+starting with the two that we
+deem critical, PII leakage
+
+00:07:53.370 --> 00:07:56.070
+and data exfiltration.
+
+00:07:56.070 --> 00:07:59.100
+Next, we have two attacks
+at the high risk level,
+
+00:07:59.100 --> 00:08:02.010
+prompt injection, which is
+probably the most common,
+
+00:08:02.010 --> 00:08:06.090
+and the next which is
+related is jailbreaking.
+
+00:08:06.090 --> 00:08:09.120
+Finally, there are two at
+the medium risk level.
+
+00:08:09.120 --> 00:08:10.530
+The first is denial of wallet.
+
+00:08:10.530 --> 00:08:12.630
+That's an attack
+against your budget.
+
+00:08:12.630 --> 00:08:14.430
+And the next is
+model extraction.
+
+00:08:14.430 --> 00:08:17.250
+And that involves sustained
+systematic probing of the model
+
+00:08:17.250 --> 00:08:20.440
+with queries to
+reverse engineer it.
+
+00:08:22.680 --> 00:08:26.100
+After identifying those threats,
+the next critical step is
+
+00:08:26.100 --> 00:08:29.490
+to implement the right metrics
+to detect and stop them.
+
+00:08:29.490 --> 00:08:32.100
+Simply put, we need to
+monitor for security breaches
+
+00:08:32.100 --> 00:08:34.170
+that don't look like errors.
+
+00:08:34.170 --> 00:08:36.570
+We focus on four
+key metrics here.
+
+00:08:36.570 --> 00:08:40.050
+First, the prompt
+injection rate.
+
+00:08:40.050 --> 00:08:44.880
+Second, the PII detection rate.
+
+00:08:44.880 --> 00:08:48.300
+Third, the content
+moderation score.
+
+00:08:48.300 --> 00:08:51.550
+And finally, jailbreak attempts.
+
+00:08:53.430 --> 00:08:55.680
+We now arrive at arguably
+the most crucial
+
+00:08:55.680 --> 00:08:59.460
+of our three new critical
+dimensions, quality monitoring.
+
+00:08:59.460 --> 00:09:02.220
+As we've seen, LETS tells
+you if the service is up,
+
+00:09:02.220 --> 00:09:03.360
+cost and safety will tell you
+
+00:09:03.360 --> 00:09:05.940
+if the service is budget
+compliant and secure.
+
+00:09:05.940 --> 00:09:09.090
+But ultimately, for a generative
+AI application, the only thing
+
+00:09:09.090 --> 00:09:13.210
+that truly matters is
+whether the output is good.
+
+00:09:14.790 --> 00:09:17.130
+GenAI presents a deep
+challenge when it comes
+
+00:09:17.130 --> 00:09:18.840
+to quality measurement.
+
+00:09:18.840 --> 00:09:22.080
+It's because quality in GenAI
+is inherently subjective,
+
+00:09:22.080 --> 00:09:25.980
+context-dependent, and as a
+result, difficult to quantify
+
+00:09:25.980 --> 00:09:28.320
+with traditional metrics.
+
+00:09:28.320 --> 00:09:31.170
+Let's look at the four core
+reasons for the difficulty.
+
+00:09:31.170 --> 00:09:34.620
+First, there's no ground truth.
+
+00:09:34.620 --> 00:09:38.430
+Second, context matters.
+
+00:09:38.430 --> 00:09:42.450
+Third, hallucinations
+are a major challenge.
+
+00:09:42.450 --> 00:09:46.110
+And finally, we're dealing
+with subjective satisfaction.
+
+00:09:46.110 --> 00:09:48.360
+That means that we've moved
+on from a binary world
+
+00:09:48.360 --> 00:09:51.300
+where it either works or
+it doesn't to a spectrum.
+
+00:09:51.300 --> 00:09:53.490
+Users are judging the
+response on how helpful,
+
+00:09:53.490 --> 00:09:56.080
+accurate, and complete it is.
+
+00:09:57.540 --> 00:09:59.940
+Now that we understand the
+challenge of measuring quality,
+
+00:09:59.940 --> 00:10:01.980
+let's look at the essential
+metrics you must implement
+
+00:10:01.980 --> 00:10:04.860
+to move beyond the simple
+"it works" status codes
+
+00:10:04.860 --> 00:10:08.250
+and truly measure the
+output of your GenAI app.
+
+00:10:08.250 --> 00:10:11.670
+We'd recommend tracking
+these six key metrics.
+
+00:10:11.670 --> 00:10:14.970
+First, the hallucination rate.
+
+00:10:14.970 --> 00:10:18.270
+Second, the relevance score.
+
+00:10:18.270 --> 00:10:22.080
+Third, user satisfaction.
+
+00:10:22.080 --> 00:10:25.640
+Fourth, we move on to
+answer completeness.
+
+00:10:25.640 --> 00:10:28.730
+And before last, we've got
+retrieval augmented generating.
+
+00:10:28.730 --> 00:10:31.490
+You must get back your
+retrieval quality.
+
+00:10:31.490 --> 00:10:34.550
+And finally, your
+response coherence.
+
+00:10:34.550 --> 00:10:35.910
+By implementing these metrics,
+
+00:10:35.910 --> 00:10:37.980
+you gain the complete
+multi-dimensional view
+
+00:10:37.980 --> 00:10:42.310
+of the quality necessary
+to optimize your app.
+
+00:10:43.620 --> 00:10:45.060
+All right, so let's
+bring it all together.
+
+00:10:45.060 --> 00:10:48.360
+To achieve that comprehensive
+GenAI observability,
+
+00:10:48.360 --> 00:10:52.770
+we've got to move on beyond the
+traditional Golden Signals.
+
+00:10:52.770 --> 00:10:54.420
+This is a complete
+monitoring stack
+
+00:10:54.420 --> 00:10:58.410
+that combines the fundamental
+LETS metrics, which tell you
+
+00:10:58.410 --> 00:10:59.850
+if the system is running,
+
+00:10:59.850 --> 00:11:02.250
+and then it integrates
+three new dimensions
+
+00:11:02.250 --> 00:11:03.990
+that tell you how it's running.
+
+00:11:03.990 --> 00:11:06.720
+The first is cost, how
+much are we spending?
+
+00:11:06.720 --> 00:11:09.030
+Second is safety or security.
+
+00:11:09.030 --> 00:11:10.620
+The third is quality.
+
+00:11:10.620 --> 00:11:13.710
+And by uniting these LETS
+metrics with cost, safety,
+
+00:11:13.710 --> 00:11:15.990
+and quality, we can
+gain visibility
+
+00:11:15.990 --> 00:11:18.930
+into our application's
+health, financial spend,
+
+00:11:18.930 --> 00:11:22.470
+security posture, as well as
+the quality of the output
+
+00:11:22.470 --> 00:11:25.200
+that your users are receiving.
+
+00:11:25.200 --> 00:11:28.290
+Now, of course, Datadog's been
+working on this problem already.
+
+00:11:28.290 --> 00:11:30.600
+We cover the standard Golden
+Signals and how they apply
+
+00:11:30.600 --> 00:11:34.290
+to your app, but we've
+also got cost, security,
+
+00:11:34.290 --> 00:11:37.800
+and quality monitoring that will
+help you monitor all of this
+
+00:11:37.800 --> 00:11:39.930
+in one central application,
+
+00:11:39.930 --> 00:11:43.440
+Datadog Large Language
+Model Observability.
+
+00:11:43.440 --> 00:11:47.130
+Here's a quick summary
+of LLM Observability.
+
+00:11:47.130 --> 00:11:49.200
+We've got standard metrics
+that we mentioned before.
+
+00:11:49.200 --> 00:11:51.480
+So we automatically capture
+and visualize key metrics
+
+00:11:51.480 --> 00:11:54.600
+like latency, errors,
+tokens per second,
+
+00:11:54.600 --> 00:11:58.590
+and API rate limit usage
+directly from your LLM calls.
+
+00:11:58.590 --> 00:12:00.390
+But we also give you
+quality and cost.
+
+00:12:00.390 --> 00:12:01.530
+The platform allows you to track
+
+00:12:01.530 --> 00:12:03.870
+and analyze those
+costs associated
+
+00:12:03.870 --> 00:12:05.370
+with different models.
+
+00:12:05.370 --> 00:12:07.140
+It also helps you
+evaluate prompt
+
+00:12:07.140 --> 00:12:10.500
+and response quality via
+integrated eval tools
+
+00:12:10.500 --> 00:12:12.900
+and tracing tool usage.
+
+00:12:12.900 --> 00:12:14.280
+Safety and security.
+
+00:12:14.280 --> 00:12:17.220
+Datadog provides capabilities
+to monitor for security risks,
+
+00:12:17.220 --> 00:12:19.830
+including identifying and
+masking PII in prompts
+
+00:12:19.830 --> 00:12:22.980
+and responses and detecting
+potential prompt injections
+
+00:12:22.980 --> 00:12:26.010
+or unsafe content.
+
+00:12:26.010 --> 00:12:27.420
+And that brings us to
+the end of our session.
+
+00:12:27.420 --> 00:12:29.550
+Thank you so much for your time.
+
+00:12:29.550 --> 00:12:30.870
+To recap the journey, we started
+
+00:12:30.870 --> 00:12:32.340
+by acknowledging
+the Golden Signals.
+
+00:12:32.340 --> 00:12:33.870
+That's latency, errors, traffic
+
+00:12:33.870 --> 00:12:36.780
+and saturation are the
+bedrock of monitoring.
+
+00:12:36.780 --> 00:12:38.190
+They're not going anywhere.
+
+00:12:38.190 --> 00:12:41.100
+But for GenAI apps, LETS
+alone leaves you blind
+
+00:12:41.100 --> 00:12:42.630
+to the things that matter most.
+
+00:12:42.630 --> 00:12:46.140
+A perfect 200 OK means nothing
+if your model is hallucinating,
+
+00:12:46.140 --> 00:12:50.680
+leaking PII, or burning through
+your budget one token at a time.

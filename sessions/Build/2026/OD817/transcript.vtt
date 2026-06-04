@@ -1,0 +1,1836 @@
+WEBVTT
+
+00:00:03.510 --> 00:00:04.620
+EMILY LISA: Hello, everyone.
+
+00:00:04.620 --> 00:00:07.350
+We're excited today to talk
+about agentic analytics
+
+00:00:07.350 --> 00:00:10.320
+with Power BI and
+Microsoft Fabric.
+
+00:00:10.320 --> 00:00:13.710
+My name is Emily Lisa, and I'm a
+Principal Group Product Manager
+
+00:00:13.710 --> 00:00:15.240
+at Microsoft.
+
+00:00:15.240 --> 00:00:16.410
+SUJATA NARAYANA: And
+I'm Sujata Narayana.
+
+00:00:16.410 --> 00:00:19.410
+I'm also a Principal Group
+Product Manager at Microsoft.
+
+00:00:19.410 --> 00:00:22.080
+And we're really excited to
+get into some new innovation
+
+00:00:22.080 --> 00:00:23.160
+and hopefully some things
+
+00:00:23.160 --> 00:00:25.650
+that you guys will really
+enjoy seeing here.
+
+00:00:25.650 --> 00:00:26.070
+EMILY LISA: Great.
+
+00:00:26.070 --> 00:00:27.660
+So we will start
+off this session
+
+00:00:27.660 --> 00:00:31.560
+with a quick introduction to the
+concept of agentic analytics.
+
+00:00:31.560 --> 00:00:35.070
+Then we will go over in more
+detail end-to-end agentic
+
+00:00:35.070 --> 00:00:37.950
+analytics with Power BI
+and Microsoft Fabric.
+
+00:00:37.950 --> 00:00:39.420
+Then I'll hand it off to Sujata,
+
+00:00:39.420 --> 00:00:42.990
+who will cover analytics
+with Fabric apps.
+
+00:00:42.990 --> 00:00:44.820
+So to go ahead and get started,
+
+00:00:44.820 --> 00:00:47.010
+what really is
+agentic development
+
+00:00:47.010 --> 00:00:49.380
+for Power BI and
+Fabric creators?
+
+00:00:49.380 --> 00:00:52.770
+What this really means is it's a
+way to use agentic experiences
+
+00:00:52.770 --> 00:00:57.420
+with AI agents, skills, and
+MCP servers to help do all
+
+00:00:57.420 --> 00:01:00.360
+of those different creator
+activities that you know
+
+00:01:00.360 --> 00:01:04.970
+and love today, but with
+the power of AI using LLMs.
+
+00:01:04.970 --> 00:01:07.400
+And so what we really
+are looking to support
+
+00:01:07.400 --> 00:01:10.790
+with agentic development with
+Power BI is both greenfield
+
+00:01:10.790 --> 00:01:12.390
+and brownfield scenarios.
+
+00:01:12.390 --> 00:01:14.850
+So these are just
+simple examples,
+
+00:01:14.850 --> 00:01:17.040
+but what we really mean by
+greenfield is those creating
+
+00:01:17.040 --> 00:01:18.810
+from scratch experiences,
+
+00:01:18.810 --> 00:01:22.200
+such as creating a net new
+semantic model, that you bring
+
+00:01:22.200 --> 00:01:26.670
+in data, transform, do ETL on
+top of it, shape the model,
+
+00:01:26.670 --> 00:01:28.860
+and then build a
+report afterwards.
+
+00:01:28.860 --> 00:01:31.890
+Similarly, an example of
+a brownfield scenario is
+
+00:01:31.890 --> 00:01:33.990
+when you're enhancing
+something that already exists.
+
+00:01:33.990 --> 00:01:36.660
+So you might already have
+your Power BI semantic model
+
+00:01:36.660 --> 00:01:39.090
+or your Power BI report,
+and there's some kind
+
+00:01:39.090 --> 00:01:41.790
+of new requirement that comes
+in from your leadership chain
+
+00:01:41.790 --> 00:01:44.880
+or a customer, and you want to
+adjust what you already have
+
+00:01:44.880 --> 00:01:47.910
+to be in a shape that
+meets new incoming changes
+
+00:01:47.910 --> 00:01:49.140
+and requirements.
+
+00:01:49.140 --> 00:01:51.420
+So we can also help
+those scenarios
+
+00:01:51.420 --> 00:01:53.400
+with agentic
+development as well.
+
+00:01:53.400 --> 00:01:56.130
+So we're really looking to
+support both of these kind
+
+00:01:56.130 --> 00:02:00.660
+of scenarios using AI to
+help experts do even more,
+
+00:02:00.660 --> 00:02:03.610
+even faster than they can today.
+
+00:02:04.710 --> 00:02:06.600
+And so let's take a
+look at what we mean
+
+00:02:06.600 --> 00:02:10.560
+by end-to-end agentic analytics.
+
+00:02:10.560 --> 00:02:14.220
+So, a few months ago, there
+was a GitHub repository
+
+00:02:14.220 --> 00:02:16.320
+that was shared called
+Skills for Fabric.
+
+00:02:16.320 --> 00:02:19.200
+And what this is is it's
+essentially a repository
+
+00:02:19.200 --> 00:02:22.770
+that supports all sorts of
+different agent skills for all
+
+00:02:22.770 --> 00:02:25.290
+of your different Microsoft
+Fabric scenarios for you
+
+00:02:25.290 --> 00:02:28.590
+to be able to use
+agents to do all sorts
+
+00:02:28.590 --> 00:02:30.750
+of different Fabric
+development tasks.
+
+00:02:30.750 --> 00:02:34.950
+So this spans across things like
+lakehouses, notebooks, reports,
+
+00:02:34.950 --> 00:02:39.240
+semantic models, really the
+whole Fabric ecosystem for you
+
+00:02:39.240 --> 00:02:42.830
+to be more productive and
+move faster using AI.
+
+00:02:42.830 --> 00:02:45.530
+And there's tons of flexibility
+with using this repository.
+
+00:02:45.530 --> 00:02:47.060
+You could use it in all sorts
+
+00:02:47.060 --> 00:02:49.430
+of different developer
+environments, such as things
+
+00:02:49.430 --> 00:02:52.740
+like GitHub Copilot
+CLI or VS Code.
+
+00:02:52.740 --> 00:02:55.980
+And this really helps you move
+even faster and allows you
+
+00:02:55.980 --> 00:02:59.160
+to focus more on defining
+the context and really the
+
+00:02:59.160 --> 00:03:01.080
+"why" behind what you're
+trying to create,
+
+00:03:01.080 --> 00:03:03.990
+rather than spending
+hours and hours clicking
+
+00:03:03.990 --> 00:03:06.750
+through every single step
+to implement the solution.
+
+00:03:06.750 --> 00:03:10.110
+Really helps the LLM do some
+of that heavy lifting work
+
+00:03:10.110 --> 00:03:15.480
+and allows you to focus on those
+high-level goals and outcomes.
+
+00:03:15.480 --> 00:03:17.250
+And so we have this link
+here to try it out.
+
+00:03:17.250 --> 00:03:20.010
+I'd highly recommend trying out
+the Fabric Skills repository
+
+00:03:20.010 --> 00:03:21.600
+for all of your Fabric needs.
+
+00:03:21.600 --> 00:03:24.390
+But what we really want to focus
+on here is how you can use this
+
+00:03:24.390 --> 00:03:26.910
+for Power BI creation scenarios.
+
+00:03:26.910 --> 00:03:30.030
+Starting with our modeling
+experiences, which we support
+
+00:03:30.030 --> 00:03:33.210
+with the Power BI
+modeling MCP server.
+
+00:03:33.210 --> 00:03:35.310
+Now, in the Fabric
+Skills repository,
+
+00:03:35.310 --> 00:03:38.250
+there is a skill called
+Power BI model authoring.
+
+00:03:38.250 --> 00:03:42.300
+And what this really does is
+help you craft your semantic
+
+00:03:42.300 --> 00:03:46.470
+models in a way using natural
+language to really speed
+
+00:03:46.470 --> 00:03:48.510
+up things that used
+to take a long time
+
+00:03:48.510 --> 00:03:50.460
+through clicks or scripting.
+
+00:03:50.460 --> 00:03:51.510
+Now you can do it easier
+
+00:03:51.510 --> 00:03:54.810
+than ever using the
+modeling MCP server.
+
+00:03:54.810 --> 00:03:57.660
+So the skill in the Fabric
+Skills repository calls the
+
+00:03:57.660 --> 00:04:01.860
+modeling MCP server and has
+knowledge in the markdown files
+
+00:04:01.860 --> 00:04:05.700
+to help you enhance your models
+to follow best practices.
+
+00:04:05.700 --> 00:04:07.800
+And one additional
+enhancement on top
+
+00:04:07.800 --> 00:04:10.770
+of that is we now make
+it easier than ever
+
+00:04:10.770 --> 00:04:13.290
+to get started using
+the modeling MCP server
+
+00:04:13.290 --> 00:04:15.300
+from the web modeling view.
+
+00:04:15.300 --> 00:04:17.730
+All you have to do is click
+on the "Copilot" button
+
+00:04:17.730 --> 00:04:22.290
+in web model view, and this
+will pop up a Copilot side chat
+
+00:04:22.290 --> 00:04:24.930
+where you can use this to give
+your natural language prompts
+
+00:04:24.930 --> 00:04:27.930
+to make changes to your semantic
+model, to make changes such as
+
+00:04:27.930 --> 00:04:30.420
+to your DAX measures,
+relationships,
+
+00:04:30.420 --> 00:04:34.110
+your column properties, all of
+those different rich semantics,
+
+00:04:34.110 --> 00:04:37.050
+being able to modify them
+using natural language.
+
+00:04:37.050 --> 00:04:40.440
+You can even get suggestions on
+how to make your model better
+
+00:04:40.440 --> 00:04:43.980
+for your reports and
+optimize better for AI.
+
+00:04:43.980 --> 00:04:48.060
+So you can both use all these
+really rich modeling experiences
+
+00:04:48.060 --> 00:04:49.650
+in your developer environments,
+
+00:04:49.650 --> 00:04:53.620
+and even coming soon
+in web modeling.
+
+00:04:54.780 --> 00:04:56.760
+Now, the next skill
+that we support
+
+00:04:56.760 --> 00:05:00.000
+in the Fabric Skills repository
+is the much-anticipated report
+
+00:05:00.000 --> 00:05:01.410
+authoring skill.
+
+00:05:01.410 --> 00:05:03.540
+We're really excited
+to ship this live
+
+00:05:03.540 --> 00:05:04.950
+for the first time at Build.
+
+00:05:04.950 --> 00:05:07.860
+And what this really does is
+help you both create net new
+
+00:05:07.860 --> 00:05:11.910
+reports as well as edit your
+existing Power BI reports.
+
+00:05:11.910 --> 00:05:16.770
+What this does is you use the
+PBIP file and desktop to be able
+
+00:05:16.770 --> 00:05:19.260
+to create and edit your reports.
+
+00:05:19.260 --> 00:05:21.390
+And it really helps you a
+lot of the heavy lifting
+
+00:05:21.390 --> 00:05:24.900
+of all those operations that
+traditionally take a long time
+
+00:05:24.900 --> 00:05:26.610
+with doing draggy,
+clicky, clicky,
+
+00:05:26.610 --> 00:05:28.650
+draggy, droppy operations.
+
+00:05:28.650 --> 00:05:31.950
+Now you can use natural
+language for all of them.
+
+00:05:31.950 --> 00:05:35.010
+Some key things that you can do
+is update report themes based
+
+00:05:35.010 --> 00:05:37.260
+on requirements, maybe
+even a screenshot,
+
+00:05:37.260 --> 00:05:40.500
+as well as modify different
+visuals and report elements
+
+00:05:40.500 --> 00:05:44.430
+to meet all the requirements
+that you have for your reports.
+
+00:05:44.430 --> 00:05:44.760
+All right.
+
+00:05:44.760 --> 00:05:46.440
+Well, enough talking
+about these skills.
+
+00:05:46.440 --> 00:05:47.940
+Let's see what it
+looks like actually
+
+00:05:47.940 --> 00:05:50.160
+in action with some demos.
+
+00:05:50.160 --> 00:05:52.650
+So, in the first demo that I
+want to show, this is going
+
+00:05:52.650 --> 00:05:54.210
+to be a greenfield scenario.
+
+00:05:54.210 --> 00:05:57.210
+So in this case, I'm creating
+a net new semantic model
+
+00:05:57.210 --> 00:06:00.240
+and report completely from
+scratch with the assistance
+
+00:06:00.240 --> 00:06:03.330
+of AI using the Fabric
+Skills repository.
+
+00:06:03.330 --> 00:06:05.040
+So here in my setup, I have
+
+00:06:05.040 --> 00:06:08.190
+on the left-hand side
+an empty PBIP file open
+
+00:06:08.190 --> 00:06:09.720
+in Power BI Desktop.
+
+00:06:09.720 --> 00:06:10.800
+And on the right-hand side,
+
+00:06:10.800 --> 00:06:13.260
+I have GitHub Copilot
+CLI connected
+
+00:06:13.260 --> 00:06:15.570
+to this instance of
+Power BI Desktop.
+
+00:06:15.570 --> 00:06:18.420
+Now, to create a net new
+semantic model within this file,
+
+00:06:18.420 --> 00:06:20.820
+all I have to do is give a
+really simple prompt, such as,
+
+00:06:20.820 --> 00:06:24.600
+"Create a new semantic model
+using data at ISQL database,"
+
+00:06:24.600 --> 00:06:25.740
+and it'll just go ahead
+
+00:06:25.740 --> 00:06:28.320
+and create this new
+semantic model for me.
+
+00:06:28.320 --> 00:06:32.280
+I'm able to see all the changes
+validated on Power BI Desktop
+
+00:06:32.280 --> 00:06:35.760
+on the left-hand side, while
+the LLM is also giving updates
+
+00:06:35.760 --> 00:06:38.130
+of all the changes it's making
+on the right-hand side,
+
+00:06:38.130 --> 00:06:40.170
+including a helpful summary.
+
+00:06:40.170 --> 00:06:42.360
+Now I'm able to see I have
+a beautiful star schema,
+
+00:06:42.360 --> 00:06:44.670
+but I want to take
+this one step further.
+
+00:06:44.670 --> 00:06:47.880
+My organization defines our
+semantic modeling best practices
+
+00:06:47.880 --> 00:06:49.350
+in a shared markdown file.
+
+00:06:49.350 --> 00:06:52.740
+So I just give this file as
+context to the LLM and ask it
+
+00:06:52.740 --> 00:06:55.080
+to update my semantic
+model to follow all
+
+00:06:55.080 --> 00:06:57.870
+of those well-known best
+practices, which it goes ahead
+
+00:06:57.870 --> 00:06:59.820
+and does for me, giving
+helpful summaries.
+
+00:06:59.820 --> 00:07:01.680
+And I even see a
+description added
+
+00:07:01.680 --> 00:07:04.710
+to my column matching
+the best practices.
+
+00:07:04.710 --> 00:07:06.870
+Now, as a next step, I want
+to create a report off
+
+00:07:06.870 --> 00:07:08.250
+of this semantic model.
+
+00:07:08.250 --> 00:07:09.870
+What I do is I define each
+
+00:07:09.870 --> 00:07:12.030
+of the report pages the
+requirements I have
+
+00:07:12.030 --> 00:07:13.860
+for that page of what
+I want it to look
+
+00:07:13.860 --> 00:07:17.160
+like within these two
+different markdown files.
+
+00:07:17.160 --> 00:07:21.390
+And then I go ahead and give it
+as context to the LLM and say,
+
+00:07:21.390 --> 00:07:24.060
+"Go and make this
+report for me."
+
+00:07:24.060 --> 00:07:24.990
+And then what I'm able
+
+00:07:24.990 --> 00:07:28.650
+to see afterwards is it creates
+this beautiful new report,
+
+00:07:28.650 --> 00:07:30.930
+all based off of my written --
+
+00:07:30.930 --> 00:07:33.630
+the requirements within
+my markdown files.
+
+00:07:33.630 --> 00:07:36.990
+Now I want to take this one step
+further and style this report
+
+00:07:36.990 --> 00:07:38.580
+to match theming and branding
+
+00:07:38.580 --> 00:07:41.100
+that I desire for
+my organization.
+
+00:07:41.100 --> 00:07:44.430
+So I give it a reference
+image of a sample report page
+
+00:07:44.430 --> 00:07:46.560
+that I want the rest of
+my report to look like,
+
+00:07:46.560 --> 00:07:50.220
+as well as my company's logo,
+for it to follow as theming
+
+00:07:50.220 --> 00:07:52.350
+and styling best practices.
+
+00:07:52.350 --> 00:07:55.200
+All it took was a really simple
+prompt and these two pieces
+
+00:07:55.200 --> 00:07:58.020
+of information as context,
+and it was able to modify
+
+00:07:58.020 --> 00:08:01.020
+that entire report for me
+to match all the styling
+
+00:08:01.020 --> 00:08:05.010
+and theming guidance that I
+really wanted for this report.
+
+00:08:05.010 --> 00:08:07.740
+All of these tasks, as many of
+you Power BI creators know,
+
+00:08:07.740 --> 00:08:12.420
+often take many hours to do
+fine-tuning and clicking
+
+00:08:12.420 --> 00:08:13.560
+and moving things around.
+
+00:08:13.560 --> 00:08:17.280
+Now it's easier than ever,
+thanks to the help of AI
+
+00:08:17.280 --> 00:08:19.230
+and the Fabric
+Skills repository,
+
+00:08:19.230 --> 00:08:22.620
+making it so I could focus on
+defining the what of what I want
+
+00:08:22.620 --> 00:08:24.870
+for my data solution,
+rather than going
+
+00:08:24.870 --> 00:08:29.730
+through all the manual processes
+of making those things happen.
+
+00:08:29.730 --> 00:08:32.940
+So that was a greenfield
+scenario, creating completely
+
+00:08:32.940 --> 00:08:37.140
+from scratch using AI, a net
+new semantic model and report.
+
+00:08:37.140 --> 00:08:39.090
+But as we talked about earlier,
+
+00:08:39.090 --> 00:08:41.000
+it's not just greenfield
+scenarios we support.
+
+00:08:41.000 --> 00:08:43.700
+We also support brownfield
+scenarios of being able
+
+00:08:43.700 --> 00:08:46.160
+to edit existing things
+that you already have.
+
+00:08:46.160 --> 00:08:48.680
+We know many of you already
+have existing semantic models
+
+00:08:48.680 --> 00:08:50.510
+and reports that you
+either want to fine-tune
+
+00:08:50.510 --> 00:08:53.450
+for new requirements or
+just want to modify based
+
+00:08:53.450 --> 00:08:55.860
+on any new preferences you have.
+
+00:08:55.860 --> 00:08:58.230
+Let's take a look at what a
+brownfield scenario looks
+
+00:08:58.230 --> 00:09:01.260
+like for a report.
+
+00:09:01.260 --> 00:09:04.470
+So in this case, I want to level
+up one of my existing reports
+
+00:09:04.470 --> 00:09:08.580
+in one prompt using the same
+Fabric Skills repository.
+
+00:09:08.580 --> 00:09:09.900
+Here, I have my report page,
+
+00:09:09.900 --> 00:09:13.350
+which maybe could be a bit
+more visually appealing.
+
+00:09:13.350 --> 00:09:16.380
+It's not following some of
+the reporting best practices.
+
+00:09:16.380 --> 00:09:19.410
+I want to make it better
+and more executive-ready.
+
+00:09:19.410 --> 00:09:22.230
+So all I do is I ask Copilot
+
+00:09:22.230 --> 00:09:24.150
+to help improve my
+Adventure Works report.
+
+00:09:24.150 --> 00:09:25.950
+I want to have a
+more modern feel,
+
+00:09:25.950 --> 00:09:28.380
+have a clean editorial
+landing page
+
+00:09:28.380 --> 00:09:30.390
+with intuitive page navigation,
+
+00:09:30.390 --> 00:09:33.360
+and really look more polished
+and executive-ready.
+
+00:09:33.360 --> 00:09:36.990
+In Plan mode in GitHub Copilot
+CLI, I'm given different options
+
+00:09:36.990 --> 00:09:38.760
+of what this page can look like.
+
+00:09:38.760 --> 00:09:41.940
+I review these and I go ahead
+and go with one of the options
+
+00:09:41.940 --> 00:09:43.500
+that was suggested to me.
+
+00:09:43.500 --> 00:09:45.960
+And then the LLM goes ahead
+and makes the changes
+
+00:09:45.960 --> 00:09:48.930
+to my report based on that
+plan, and it looks beautiful
+
+00:09:48.930 --> 00:09:51.060
+with consistent
+styling and theme.
+
+00:09:51.060 --> 00:09:54.300
+I had that really nice landing
+page at the beginning.
+
+00:09:54.300 --> 00:09:57.030
+This is in a much better state,
+where I'm ready to share it
+
+00:09:57.030 --> 00:09:59.850
+with my executives
+and my larger team.
+
+00:09:59.850 --> 00:10:02.760
+And it was so easy to get
+started, all in one prompt,
+
+00:10:02.760 --> 00:10:05.610
+thanks to the assistance of
+the Fabric Skills repository
+
+00:10:05.610 --> 00:10:09.920
+with the Power BI report
+authoring skill within there.
+
+00:10:09.920 --> 00:10:13.430
+So that was really it for the
+end-to-end agentic analytics
+
+00:10:13.430 --> 00:10:14.900
+part of the presentation.
+
+00:10:14.900 --> 00:10:17.390
+Now I'm going to hand
+it off to Sujata
+
+00:10:17.390 --> 00:10:20.310
+to cover the next section.
+
+00:10:20.310 --> 00:10:20.670
+SUJATA NARAYANA: All right.
+
+00:10:20.670 --> 00:10:21.990
+Thank you, Emily, so much
+
+00:10:21.990 --> 00:10:24.300
+for showing us all the
+innovation that's happening
+
+00:10:24.300 --> 00:10:27.360
+around agentic development
+in Power BI reports
+
+00:10:27.360 --> 00:10:29.400
+and Power BI semantic models.
+
+00:10:29.400 --> 00:10:32.340
+Now let's switch gears here
+a little bit, because I want
+
+00:10:32.340 --> 00:10:34.950
+to talk about something
+that is brand new, in fact,
+
+00:10:34.950 --> 00:10:37.170
+released just at this
+conference, which,
+
+00:10:37.170 --> 00:10:38.880
+let's look at Fabric apps.
+
+00:10:38.880 --> 00:10:40.350
+And specifically, I want to talk
+
+00:10:40.350 --> 00:10:44.130
+about analytics use cases
+within Fabric apps.
+
+00:10:44.130 --> 00:10:47.460
+So AI is really democratizing
+a lot that's happening
+
+00:10:47.460 --> 00:10:48.960
+with web app development.
+
+00:10:48.960 --> 00:10:51.750
+We're seeing all kinds
+of scenarios where MVPs
+
+00:10:51.750 --> 00:10:55.710
+like Injae Park, Reid Havens are
+building end-to-end web apps
+
+00:10:55.710 --> 00:10:57.870
+for enterprise analytics.
+
+00:10:57.870 --> 00:11:00.750
+And because AI is making it
+so much easier to do this,
+
+00:11:00.750 --> 00:11:03.420
+we're even seeing citizen
+developers being able
+
+00:11:03.420 --> 00:11:06.780
+to achieve so much more here.
+
+00:11:06.780 --> 00:11:11.490
+Now, where custom web apps
+add value beyond reports is
+
+00:11:11.490 --> 00:11:13.950
+that developers that
+need more flexibility
+
+00:11:13.950 --> 00:11:17.400
+or have higher custom
+requirements can really take
+
+00:11:17.400 --> 00:11:20.190
+advantage of going the
+custom web app route.
+
+00:11:20.190 --> 00:11:23.670
+Because with a custom web app,
+you're getting full custom UX.
+
+00:11:23.670 --> 00:11:26.070
+So if you want things
+like responsive layouts,
+
+00:11:26.070 --> 00:11:30.750
+unlimited UI controls, or even
+full-blown multi-step workflows,
+
+00:11:30.750 --> 00:11:32.970
+you can get that with
+a custom web app.
+
+00:11:32.970 --> 00:11:34.590
+And also, if you have scenarios
+
+00:11:34.590 --> 00:11:37.770
+where you want fully
+customizable actions,
+
+00:11:37.770 --> 00:11:40.230
+these web apps can be really
+helpful for that as well,
+
+00:11:40.230 --> 00:11:42.870
+because you're getting a much
+more seamless integration
+
+00:11:42.870 --> 00:11:44.820
+for building things
+like decision loops,
+
+00:11:44.820 --> 00:11:48.000
+supporting custom code
+and custom integrations,
+
+00:11:48.000 --> 00:11:49.140
+because at the end of the day,
+
+00:11:49.140 --> 00:11:53.130
+custom web apps
+are all just code.
+
+00:11:53.130 --> 00:11:54.780
+And now, here's the caveat.
+
+00:11:54.780 --> 00:11:57.390
+Even though AI is
+democratizing a lot
+
+00:11:57.390 --> 00:12:00.840
+of web app development today,
+the reality is that a lot
+
+00:12:00.840 --> 00:12:04.020
+of these vibe-coded apps
+never reach production.
+
+00:12:04.020 --> 00:12:08.010
+So majority of these apps, let's
+say if you built on Lovable,
+
+00:12:08.010 --> 00:12:11.820
+Streamlit, or other surface
+areas, may not reach production
+
+00:12:11.820 --> 00:12:15.090
+because they may miss things
+like enterprise-grade security,
+
+00:12:15.090 --> 00:12:19.290
+governance, reliability, and
+more operational controls.
+
+00:12:19.290 --> 00:12:22.560
+And so even though AI helps
+you get 80% of the way,
+
+00:12:22.560 --> 00:12:26.370
+that additional 20% of making
+it ready for production,
+
+00:12:26.370 --> 00:12:29.460
+if it's not there, it's
+just not enough to have
+
+00:12:29.460 --> 00:12:32.430
+to your customers
+or your end users.
+
+00:12:32.430 --> 00:12:34.770
+And so this is something
+that we want to tackle
+
+00:12:34.770 --> 00:12:36.960
+with Microsoft Fabric.
+
+00:12:36.960 --> 00:12:39.660
+And that's now
+introducing Fabric apps.
+
+00:12:39.660 --> 00:12:41.640
+So you may have seen in
+some of the other sessions,
+
+00:12:41.640 --> 00:12:44.280
+we made a huge announcement
+around Fabric apps,
+
+00:12:44.280 --> 00:12:46.950
+which basically what that
+is, is a Fabric backend
+
+00:12:46.950 --> 00:12:49.530
+for building
+enterprise-grade apps.
+
+00:12:49.530 --> 00:12:52.680
+Now, let's talk about this
+a little bit more detail.
+
+00:12:52.680 --> 00:12:55.830
+So what this is, is Rayfin
+is the project name,
+
+00:12:55.830 --> 00:12:58.860
+which is allows for a
+CLI-based experience.
+
+00:12:58.860 --> 00:13:00.600
+So not only is this
+developer-friendly,
+
+00:13:00.600 --> 00:13:02.670
+but it's very AI-friendly too.
+
+00:13:02.670 --> 00:13:06.090
+So here, you see an example
+from our NPM package,
+
+00:13:06.090 --> 00:13:09.600
+which you can connect to your
+CLI experiences in order
+
+00:13:09.600 --> 00:13:12.660
+to have your coding
+agent of choice be able
+
+00:13:12.660 --> 00:13:16.650
+to build end-to-end apps that
+are all backed in Fabric.
+
+00:13:16.650 --> 00:13:20.850
+Now, what does this relate to
+Power BI or semantic models?
+
+00:13:20.850 --> 00:13:24.120
+Well, to start with, is
+Fabric apps can be built
+
+00:13:24.120 --> 00:13:25.230
+on semantic models.
+
+00:13:25.230 --> 00:13:28.140
+So that same foundation
+that you're getting
+
+00:13:28.140 --> 00:13:30.900
+to build your reports
+from your analyst,
+
+00:13:30.900 --> 00:13:35.490
+your developers can now build
+custom web apps on that as well.
+
+00:13:35.490 --> 00:13:38.340
+And so what this
+unlocks is really good
+
+00:13:38.340 --> 00:13:40.710
+for enterprise analytics.
+
+00:13:40.710 --> 00:13:42.120
+So not only are you able
+
+00:13:42.120 --> 00:13:45.210
+to build entirely
+blown custom web apps,
+
+00:13:45.210 --> 00:13:48.750
+but these web apps are
+live -- using live data.
+
+00:13:48.750 --> 00:13:50.820
+They are using
+optimized queries.
+
+00:13:50.820 --> 00:13:54.120
+And, of course, we are using
+visuals that are very consistent
+
+00:13:54.120 --> 00:13:57.060
+and meet enterprise-grade
+requirements while
+
+00:13:57.060 --> 00:13:58.590
+being AI-first.
+
+00:13:58.590 --> 00:14:02.610
+And by being secure connection
+to your Fabric data,
+
+00:14:02.610 --> 00:14:05.460
+and also the enterprise scale
+and governance that you expect,
+
+00:14:05.460 --> 00:14:07.140
+you can more safely deploy this
+
+00:14:07.140 --> 00:14:11.050
+to your enterprise
+customers and end users.
+
+00:14:13.380 --> 00:14:17.040
+So let's talk a bit about how
+to get started with this.
+
+00:14:17.040 --> 00:14:20.340
+So Fabric apps includes
+a data app template.
+
+00:14:20.340 --> 00:14:23.580
+So, to start with, is you can
+either choose the template
+
+00:14:23.580 --> 00:14:25.350
+within the CLI experience.
+
+00:14:25.350 --> 00:14:28.110
+So when you do your
+NPM create command,
+
+00:14:28.110 --> 00:14:31.380
+you'll need to add a statement
+that says template data app.
+
+00:14:31.380 --> 00:14:34.980
+Or if you're in Fabric, you can
+also initiate the creation of it
+
+00:14:34.980 --> 00:14:36.150
+through Fabric as well.
+
+00:14:36.150 --> 00:14:38.760
+So you can pick the
+template called Data App.
+
+00:14:38.760 --> 00:14:39.690
+And let's talk a little bit
+
+00:14:39.690 --> 00:14:41.760
+of what's happening
+behind the scenes.
+
+00:14:41.760 --> 00:14:44.370
+So the data app template
+is really comprised
+
+00:14:44.370 --> 00:14:46.140
+of three key things.
+
+00:14:46.140 --> 00:14:48.240
+First is a data package
+that allows you
+
+00:14:48.240 --> 00:14:51.120
+to securely connect
+to your Fabric data.
+
+00:14:51.120 --> 00:14:52.680
+And next is a visual package,
+
+00:14:52.680 --> 00:14:57.420
+which is using a Vega-Lite
+component and React components
+
+00:14:57.420 --> 00:14:59.610
+so that you're getting
+visualizations
+
+00:14:59.610 --> 00:15:02.580
+that are really optimized
+for AI, make it really great
+
+00:15:02.580 --> 00:15:06.390
+for building a ton of
+different flexible visuals,
+
+00:15:06.390 --> 00:15:07.830
+while also staying true
+
+00:15:07.830 --> 00:15:10.680
+to certain
+enterprise-grade defaults.
+
+00:15:10.680 --> 00:15:13.740
+And then, of course, we
+have a set of agent skills
+
+00:15:13.740 --> 00:15:17.520
+that are helping teach the LLM
+how to properly query the data,
+
+00:15:17.520 --> 00:15:21.810
+how to handle Fabric formats,
+write Vega-Lite visual specs,
+
+00:15:21.810 --> 00:15:24.510
+and, of course, apply
+design best practices
+
+00:15:24.510 --> 00:15:27.810
+so that these applications
+look really polished
+
+00:15:27.810 --> 00:15:29.160
+and professional.
+
+00:15:29.160 --> 00:15:32.670
+And all of these templates
+are built directly on Rayfin,
+
+00:15:32.670 --> 00:15:35.700
+so directly on Fabric apps,
+so that you can leverage it
+
+00:15:35.700 --> 00:15:39.210
+with your Rayfin experiences.
+
+00:15:39.210 --> 00:15:43.260
+Now, let's take a look at a
+demo of what this looks like.
+
+00:15:43.260 --> 00:15:47.040
+So let's see a scenario where
+I'm going to use a few prompts
+
+00:15:47.040 --> 00:15:51.120
+and an MD file to generate
+a production-ready app.
+
+00:15:51.120 --> 00:15:54.270
+So starting with my semantic
+model, you can see here,
+
+00:15:54.270 --> 00:15:56.130
+it's using a lot of
+different tables,
+
+00:15:56.130 --> 00:15:57.660
+a lot of different data here.
+
+00:15:57.660 --> 00:16:01.830
+I want to take this data that is
+in the form of a semantic model.
+
+00:16:01.830 --> 00:16:03.450
+I want to build an app from it.
+
+00:16:03.450 --> 00:16:06.060
+So, to start with,
+is I'll have a spec
+
+00:16:06.060 --> 00:16:09.930
+that actually AI helped me
+create around my requirements.
+
+00:16:09.930 --> 00:16:11.670
+And even though AI
+helped me create it,
+
+00:16:11.670 --> 00:16:13.830
+I can always go
+manually tweak this.
+
+00:16:13.830 --> 00:16:17.010
+So here's an example where
+I want to add a hover card.
+
+00:16:17.010 --> 00:16:19.530
+So let's say I want
+a image, an email.
+
+00:16:19.530 --> 00:16:22.650
+I can go add those hover
+card tooltips there.
+
+00:16:22.650 --> 00:16:25.440
+And the next part, I'm going
+to go scaffold that project.
+
+00:16:25.440 --> 00:16:27.480
+So I use that NPM
+create command,
+
+00:16:27.480 --> 00:16:31.140
+and I make sure I specify
+the template of data app.
+
+00:16:31.140 --> 00:16:35.610
+So as you see here, the CLI
+experience is creating --
+
+00:16:35.610 --> 00:16:37.320
+scaffolding the project for me,
+
+00:16:37.320 --> 00:16:41.070
+and now I have the files
+all available on my local.
+
+00:16:41.070 --> 00:16:43.050
+And so once I have
+this available,
+
+00:16:43.050 --> 00:16:45.180
+I'm going to navigate
+to that file.
+
+00:16:45.180 --> 00:16:49.080
+So if I go here, I navigate
+to my project file,
+
+00:16:49.080 --> 00:16:50.760
+and then I'm going to
+go and publish this
+
+00:16:50.760 --> 00:16:52.290
+to my Fabric workspace.
+
+00:16:52.290 --> 00:16:54.420
+So, at this point, I've
+just provisioned the app.
+
+00:16:54.420 --> 00:16:57.930
+I haven't yet created the
+exact app idea I have.
+
+00:16:57.930 --> 00:16:59.700
+And this is where the
+fun part happens.
+
+00:16:59.700 --> 00:17:02.730
+So, at this point, I'm going
+to give my coding agent
+
+00:17:02.730 --> 00:17:08.250
+of choice a link to my spec file
+and a link to my semantic model.
+
+00:17:08.250 --> 00:17:10.980
+So once it has these
+two critical details,
+
+00:17:10.980 --> 00:17:14.970
+I ask it to go build the app
+and deploy it when it's ready.
+
+00:17:14.970 --> 00:17:17.460
+So this takes roughly
+about 20 minutes or so
+
+00:17:17.460 --> 00:17:20.460
+of your coding agent
+processing this request.
+
+00:17:20.460 --> 00:17:24.510
+And when it's done, you get a
+full-blown production-ready
+
+00:17:24.510 --> 00:17:27.870
+application that matches the
+requirements that you put
+
+00:17:27.870 --> 00:17:30.720
+out in your spec. And
+so here, for example,
+
+00:17:30.720 --> 00:17:34.830
+I have a three-page application
+here that includes things
+
+00:17:34.830 --> 00:17:39.060
+like filtering, tooltips, like
+I mentioned, that hover card
+
+00:17:39.060 --> 00:17:42.870
+that appears, even having
+more customization
+
+00:17:42.870 --> 00:17:45.780
+like adding a
+full-blown dark mode.
+
+00:17:45.780 --> 00:17:48.660
+And so it's really quite
+powerful of the type
+
+00:17:48.660 --> 00:17:51.960
+of data application that
+you can create here.
+
+00:17:51.960 --> 00:17:56.100
+Now, let's say you want to
+customize this even further.
+
+00:17:56.100 --> 00:17:58.500
+And that's the beauty
+with working with AI,
+
+00:17:58.500 --> 00:18:02.130
+is you really just need
+to update that MD spec.
+
+00:18:02.130 --> 00:18:03.780
+So let's see an example of this.
+
+00:18:03.780 --> 00:18:06.000
+So let's say I want to add
+a little bit more features
+
+00:18:06.000 --> 00:18:07.260
+to this application.
+
+00:18:07.260 --> 00:18:08.940
+Let's say I want a landing page,
+
+00:18:08.940 --> 00:18:11.820
+I want persona-specific
+selection,
+
+00:18:11.820 --> 00:18:13.860
+and I even want a calendar tab.
+
+00:18:13.860 --> 00:18:16.200
+So I can go add all
+these requirements
+
+00:18:16.200 --> 00:18:18.360
+to the spec and update it.
+
+00:18:18.360 --> 00:18:20.640
+And then I just hand
+Copilot that updated spec.
+
+00:18:20.640 --> 00:18:24.500
+So I just say, "Hey, update the
+app using the latest spec."
+
+00:18:24.500 --> 00:18:28.160
+And as it's going to go process
+through that request again --
+
+00:18:28.160 --> 00:18:31.040
+again, takes about
+20 minutes or so,
+
+00:18:31.040 --> 00:18:35.330
+and you have your updated
+application right here.
+
+00:18:35.330 --> 00:18:39.240
+So you see the
+persona-specific selection.
+
+00:18:39.240 --> 00:18:42.660
+So you have different set
+of pages for each persona.
+
+00:18:42.660 --> 00:18:45.840
+So the executive page is a
+little bit more focused.
+
+00:18:45.840 --> 00:18:47.190
+And then, of course, you have
+
+00:18:47.190 --> 00:18:49.350
+that calendar view
+like I mentioned.
+
+00:18:49.350 --> 00:18:55.200
+So this is really bringing in a
+lot more of actionable elements
+
+00:18:55.200 --> 00:18:58.740
+to this application because I
+can now track the calendars
+
+00:18:58.740 --> 00:19:01.980
+for the different collaborations
+I have coming up.
+
+00:19:01.980 --> 00:19:04.710
+And I can even go and add
+those calendar events
+
+00:19:04.710 --> 00:19:07.560
+to my Outlook calendar itself.
+
+00:19:07.560 --> 00:19:10.140
+So you're really kind of
+combining the elements
+
+00:19:10.140 --> 00:19:12.990
+of both the analytics
+with also the elements
+
+00:19:12.990 --> 00:19:15.750
+of the action-orientated apps.
+
+00:19:15.750 --> 00:19:18.810
+So it's really about
+bringing your data alive
+
+00:19:18.810 --> 00:19:22.140
+and really customizing
+your app however you want,
+
+00:19:22.140 --> 00:19:24.090
+and doing so in a
+prompt-based way.
+
+00:19:24.090 --> 00:19:27.180
+So leveraging AI with
+what it's best for,
+
+00:19:27.180 --> 00:19:30.480
+especially the coding agents,
+to really generate that code
+
+00:19:30.480 --> 00:19:32.700
+from you, completely
+from scratch.
+
+00:19:32.700 --> 00:19:34.890
+And so this is really
+showing the value
+
+00:19:34.890 --> 00:19:39.450
+of what the data app template
+can offer as you are trying
+
+00:19:39.450 --> 00:19:43.340
+out the new Rayfin and
+Fabric apps experience.
+
+00:19:43.340 --> 00:19:46.820
+So now let's recap what you
+get with data apps in Fabric.
+
+00:19:46.820 --> 00:19:49.070
+So, to start off with,
+is that connection
+
+00:19:49.070 --> 00:19:51.860
+to semantic models
+is so critical.
+
+00:19:51.860 --> 00:19:53.120
+Right out of the
+box, you're going
+
+00:19:53.120 --> 00:19:56.810
+to get a secure authentication
+to your semantic models,
+
+00:19:56.810 --> 00:19:59.870
+which I'm sure many of you
+have tons of semantic models
+
+00:19:59.870 --> 00:20:02.990
+where you're eager to try
+this new experience with.
+
+00:20:02.990 --> 00:20:04.970
+Next, you're going
+to get the AI-driven
+
+00:20:04.970 --> 00:20:06.560
+analytics capabilities.
+
+00:20:06.560 --> 00:20:10.190
+So out of the box, being able
+to have AI understand how
+
+00:20:10.190 --> 00:20:11.820
+to write DAX queries,
+
+00:20:11.820 --> 00:20:13.680
+making sure you're
+getting optimized queries
+
+00:20:13.680 --> 00:20:17.190
+so that you're visualizing the
+right data, the right insights,
+
+00:20:17.190 --> 00:20:20.160
+and, of course, formulating
+that really well in visuals.
+
+00:20:20.160 --> 00:20:23.400
+And then speaking of our
+visuals, like I mentioned,
+
+00:20:23.400 --> 00:20:28.350
+these visuals use the Vega-Lite
+visualization library,
+
+00:20:28.350 --> 00:20:32.310
+which make it really easy
+to build AI-first visuals
+
+00:20:32.310 --> 00:20:34.590
+and using enterprise-grade
+defaults.
+
+00:20:34.590 --> 00:20:37.770
+And so we've added additional
+customizations on top of that
+
+00:20:37.770 --> 00:20:40.770
+to make sure there's
+consistency in tooltips,
+
+00:20:40.770 --> 00:20:42.240
+make sure there's accessibility,
+
+00:20:42.240 --> 00:20:45.090
+and all the enterprise-grade
+requirements
+
+00:20:45.090 --> 00:20:46.590
+that you would expect.
+
+00:20:46.590 --> 00:20:50.010
+And more coming soon is that
+we want to add more sources.
+
+00:20:50.010 --> 00:20:53.760
+So we know that there's a lot
+of other sources in Fabric
+
+00:20:53.760 --> 00:20:55.560
+where you may not want
+to connect directly
+
+00:20:55.560 --> 00:20:57.450
+to a semantic model, but you
+may want to connect directly
+
+00:20:57.450 --> 00:21:01.080
+to other sources, let's
+say, a SQL DB directly,
+
+00:21:01.080 --> 00:21:03.810
+or maybe a lakehouse or
+a warehouse directly.
+
+00:21:03.810 --> 00:21:07.050
+So we do plan to add more
+sources coming soon.
+
+00:21:07.050 --> 00:21:10.440
+We also want to have more
+out-of-the-box signal detection.
+
+00:21:10.440 --> 00:21:14.490
+Of course, because web apps are
+just code, you can always prompt
+
+00:21:14.490 --> 00:21:17.340
+that yourself, but we want to
+make it way easier for you
+
+00:21:17.340 --> 00:21:21.180
+to get that signal detection
+right out of the box.
+
+00:21:21.180 --> 00:21:24.240
+And same goes for
+custom actions as well.
+
+00:21:24.240 --> 00:21:27.390
+So integration with things
+like user data functions,
+
+00:21:27.390 --> 00:21:30.180
+integration with things
+like operational agents.
+
+00:21:30.180 --> 00:21:32.550
+We want to enable a little bit
+more streamlined integration
+
+00:21:32.550 --> 00:21:35.790
+with any sort of custom actions
+or custom agents that you want
+
+00:21:35.790 --> 00:21:37.650
+to bring into the picture.
+
+00:21:37.650 --> 00:21:39.510
+And last but not least,
+we want to make sure
+
+00:21:39.510 --> 00:21:41.910
+that you also support
+embedded scenarios.
+
+00:21:41.910 --> 00:21:45.150
+So in the first release -- right
+now, the data app is limited
+
+00:21:45.150 --> 00:21:48.000
+to just being hosted within
+Fabric, and you see it
+
+00:21:48.000 --> 00:21:49.890
+within the Fabric portal.
+
+00:21:49.890 --> 00:21:53.040
+But we want to also make sure
+that in the future releases,
+
+00:21:53.040 --> 00:21:55.590
+you can be able to embed
+this in your own application
+
+00:21:55.590 --> 00:21:58.260
+or embed it in other areas.
+
+00:21:58.260 --> 00:22:01.950
+So with that, we hope this
+gave you a good insight
+
+00:22:01.950 --> 00:22:04.650
+into what we're doing
+in terms of innovation
+
+00:22:04.650 --> 00:22:06.930
+for our analytics experiences,
+
+00:22:06.930 --> 00:22:10.140
+both across Power BI
+and Microsoft Fabric.
+
+00:22:10.140 --> 00:22:13.200
+And for those that are
+interested in learning more
+
+00:22:13.200 --> 00:22:16.980
+about any of the things you've
+seen here check out our blog
+
+00:22:16.980 --> 00:22:21.150
+at aka.ms/Azure-Data-Build26,
+
+00:22:21.150 --> 00:22:23.370
+and also explore
+our documentation
+
+00:22:23.370 --> 00:22:26.190
+and our community
+site to learn more
+
+00:22:26.190 --> 00:22:28.320
+and engage with the community.
+
+00:22:28.320 --> 00:22:29.010
+Thank you so much.
+
+00:22:29.010 --> 00:22:32.460
+We hope you enjoyed this
+presentation and looking forward
+
+00:22:32.460 --> 00:22:35.860
+to your feedback on all
+this new innovation.

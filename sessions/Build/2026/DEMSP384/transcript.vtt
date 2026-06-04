@@ -1,0 +1,2640 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.8135637044906616
+
+00:00:00.160 --> 00:00:02.400
+All right, good afternoon, everybody.
+
+NOTE Confidence: 0.7743597030639648
+
+00:00:04.400 --> 00:00:05.760
+My name is Freddy Chu.
+
+NOTE Confidence: 0.8317972421646118
+
+00:00:05.800 --> 00:00:07.760
+I'm an AI frameworks engineer at Intel.
+
+NOTE Confidence: 0.7988077402114868
+
+00:00:08.119 --> 00:00:12.287
+This is Vasant Tobinkere is an Intel Principal engineer, and
+
+NOTE Confidence: 0.7988077402114868
+
+00:00:12.356 --> 00:00:16.246
+we're here today to talk about profiling your agentic AI
+
+NOTE Confidence: 0.7988077402114868
+
+00:00:16.315 --> 00:00:17.079
+on Windows.
+
+NOTE Confidence: 0.8227856159210205
+
+00:00:17.600 --> 00:00:20.830
+So the agenda today is going to be why profiling
+
+NOTE Confidence: 0.8227856159210205
+
+00:00:20.897 --> 00:00:23.319
+agentic AI workflows it's important.
+
+NOTE Confidence: 0.8264973163604736
+
+00:00:23.840 --> 00:00:26.582
+Then we're going to go and profile a simple agentic
+
+NOTE Confidence: 0.8264973163604736
+
+00:00:26.636 --> 00:00:27.119
+workflow.
+
+NOTE Confidence: 0.6780333518981934
+
+00:00:27.600 --> 00:00:30.253
+And as I think think work flows go, they use
+
+NOTE Confidence: 0.6780333518981934
+
+00:00:30.314 --> 00:00:31.399
+a lot of AI tools.
+
+NOTE Confidence: 0.8664053678512573
+
+00:00:31.400 --> 00:00:34.045
+So we're going to look at profiling AI tools, we're
+
+NOTE Confidence: 0.8664053678512573
+
+00:00:34.097 --> 00:00:36.276
+going to do a demo and then we're going to
+
+NOTE Confidence: 0.8664053678512573
+
+00:00:36.328 --> 00:00:38.040
+wrap it up, summarize and go Q&A.
+
+NOTE Confidence: 0.9613196849822998
+
+00:00:39.240 --> 00:00:41.320
+So why is it important?
+
+NOTE Confidence: 0.8745172023773193
+
+00:00:41.960 --> 00:00:45.458
+You know, we're in a very interesting inflection point where
+
+NOTE Confidence: 0.8745172023773193
+
+00:00:45.516 --> 00:00:48.548
+some of these very powerful models are running on AI
+
+NOTE Confidence: 0.8745172023773193
+
+00:00:48.606 --> 00:00:48.839
+PCs.
+
+NOTE Confidence: 0.8264705538749695
+
+00:00:49.040 --> 00:00:52.107
+So foreign factors like this ones, laptops, there's a lot
+
+NOTE Confidence: 0.8264705538749695
+
+00:00:52.161 --> 00:00:54.529
+of power now that you can do, you know, with
+
+NOTE Confidence: 0.8264705538749695
+
+00:00:54.583 --> 00:00:54.959
+AI PCs.
+
+NOTE Confidence: 0.9372666478157043
+
+00:00:55.240 --> 00:00:58.343
+So the productivity is really going to be measured based
+
+NOTE Confidence: 0.9372666478157043
+
+00:00:58.398 --> 00:01:01.279
+on the iterations that you can do with your prompts.
+
+NOTE Confidence: 0.9025604128837585
+
+00:01:01.520 --> 00:01:03.715
+Because as we all know, getting the right prompts is
+
+NOTE Confidence: 0.9025604128837585
+
+00:01:03.757 --> 00:01:05.319
+the key to getting the right outputs.
+
+NOTE Confidence: 0.8722637295722961
+
+00:01:05.800 --> 00:01:08.977
+But when you're running these things locally, the key and
+
+NOTE Confidence: 0.8722637295722961
+
+00:01:09.033 --> 00:01:11.653
+the function of success is going to be how many
+
+NOTE Confidence: 0.8722637295722961
+
+00:01:11.708 --> 00:01:14.607
+iterations of these prompts can you do on the system
+
+NOTE Confidence: 0.8722637295722961
+
+00:01:14.663 --> 00:01:16.279
+and how fast can you do them?
+
+NOTE Confidence: 0.7597024440765381
+
+00:01:16.640 --> 00:01:19.040
+And that's why it's important to optimize your workflows.
+
+NOTE Confidence: 0.8565233945846558
+
+00:01:20.480 --> 00:01:24.400
+So let me show you here a simple agentic workflow.
+
+NOTE Confidence: 0.938442587852478
+
+00:01:24.760 --> 00:01:27.676
+And what this thing is doing is I asked it
+
+NOTE Confidence: 0.938442587852478
+
+00:01:27.746 --> 00:01:29.759
+to do a 3D model for a wheel.
+
+NOTE Confidence: 0.8665633201599121
+
+00:01:29.920 --> 00:01:33.335
+It has specific, you know, sizes like 5 inch in
+
+NOTE Confidence: 0.8665633201599121
+
+00:01:33.407 --> 00:01:36.750
+diameter, 2 inches wide and you know, a a bore
+
+NOTE Confidence: 0.8665633201599121
+
+00:01:36.822 --> 00:01:37.840
+in the middle.
+
+NOTE Confidence: 0.7518407106399536
+
+00:01:38.200 --> 00:01:40.994
+And So what this thing is doing is it's running
+
+NOTE Confidence: 0.7518407106399536
+
+00:01:41.053 --> 00:01:43.788
+locally on an AIPC is powered by open Veno and
+
+NOTE Confidence: 0.7518407106399536
+
+00:01:43.847 --> 00:01:44.680
+Open Veno Gen.
+
+NOTE Confidence: 0.6989852786064148
+
+00:01:44.680 --> 00:01:48.392
+AI and the latest Pental a generation and it's running
+
+NOTE Confidence: 0.6989852786064148
+
+00:01:48.461 --> 00:01:51.279
+a Quint 3.6 model, 35 billion parameters.
+
+NOTE Confidence: 0.8277488350868225
+
+00:01:51.800 --> 00:01:54.587
+And as this is reasoning is creating a plan for
+
+NOTE Confidence: 0.8277488350868225
+
+00:01:54.646 --> 00:01:55.239
+execution.
+
+NOTE Confidence: 0.6665087938308716
+
+00:01:55.240 --> 00:01:56.360
+It's creating code.
+
+NOTE Confidence: 0.896082878112793
+
+00:01:56.880 --> 00:01:59.510
+And as part of the tool calling, it's going to
+
+NOTE Confidence: 0.896082878112793
+
+00:01:59.567 --> 00:02:02.312
+use Openscat to render that code into a 3D model
+
+NOTE Confidence: 0.896082878112793
+
+00:02:02.369 --> 00:02:04.600
+that you can then take to a 3D printer.
+
+NOTE Confidence: 0.9127556085586548
+
+00:02:05.360 --> 00:02:07.617
+Now after that, the agent is going to create a
+
+NOTE Confidence: 0.9127556085586548
+
+00:02:07.666 --> 00:02:10.119
+stylized version of that image so that you can get
+
+NOTE Confidence: 0.9127556085586548
+
+00:02:10.168 --> 00:02:12.720
+a photorealistic version of what it could look like.
+
+NOTE Confidence: 0.8930456042289734
+
+00:02:13.360 --> 00:02:16.571
+And finally, once the prompt turn is towards the end,
+
+NOTE Confidence: 0.8930456042289734
+
+00:02:16.632 --> 00:02:19.722
+it creates a summary of the conversation so that as
+
+NOTE Confidence: 0.8930456042289734
+
+00:02:19.782 --> 00:02:22.994
+you continue to interact with the agent, it will have
+
+NOTE Confidence: 0.8930456042289734
+
+00:02:23.055 --> 00:02:25.599
+the ability to remember the conversations.
+
+NOTE Confidence: 0.9496102333068848
+
+00:02:26.200 --> 00:02:30.240
+Now this is a very typical pattern of agents.
+
+NOTE Confidence: 0.8524086475372314
+
+00:02:30.720 --> 00:02:33.870
+You know, it reasons about your request, it creates a
+
+NOTE Confidence: 0.8524086475372314
+
+00:02:33.929 --> 00:02:36.842
+plan for executing to the request that you ask it
+
+NOTE Confidence: 0.8524086475372314
+
+00:02:36.901 --> 00:02:37.080
+to.
+
+NOTE Confidence: 0.8328918218612671
+
+00:02:37.639 --> 00:02:40.369
+And then as part of that plan execution, it carries
+
+NOTE Confidence: 0.8328918218612671
+
+00:02:40.423 --> 00:02:41.439
+out a set of tasks.
+
+NOTE Confidence: 0.8685331344604492
+
+00:02:41.840 --> 00:02:45.140
+And this task, increasingly, they are becoming more and more
+
+NOTE Confidence: 0.8685331344604492
+
+00:02:45.195 --> 00:02:46.680
+complex and more elaborate.
+
+NOTE Confidence: 0.790647566318512
+
+00:02:47.120 --> 00:02:49.318
+Some of these tasks may call tools as simple as
+
+NOTE Confidence: 0.790647566318512
+
+00:02:49.365 --> 00:02:49.880
+write file.
+
+NOTE Confidence: 0.9068266749382019
+
+00:02:50.120 --> 00:02:53.146
+Some others may be as complex as embedded several models
+
+NOTE Confidence: 0.9068266749382019
+
+00:02:53.200 --> 00:02:55.200
+that are chained as part of the tool.
+
+NOTE Confidence: 0.8498373031616211
+
+00:02:55.760 --> 00:02:58.480
+And so now that we know, you know, what agent
+
+NOTE Confidence: 0.8498373031616211
+
+00:02:58.541 --> 00:03:01.140
+apps do and how to, you know, look at their
+
+NOTE Confidence: 0.8498373031616211
+
+00:03:01.201 --> 00:03:04.405
+workflows, how do we now start profiling them so that
+
+NOTE Confidence: 0.8498373031616211
+
+00:03:04.466 --> 00:03:06.279
+we can actually optimize them?
+
+NOTE Confidence: 0.8890397548675537
+
+00:03:06.680 --> 00:03:08.120
+So I'm going to pass it on to my colleague.
+
+NOTE Confidence: 0.9375025629997253
+
+00:03:10.720 --> 00:03:12.080
+Hi, can you guys hear me?
+
+NOTE Confidence: 0.917019248008728
+
+00:03:14.440 --> 00:03:17.523
+So this next section is more about how to get
+
+NOTE Confidence: 0.917019248008728
+
+00:03:17.592 --> 00:03:21.223
+the necessary data for you guys to make the decisions
+
+NOTE Confidence: 0.917019248008728
+
+00:03:21.292 --> 00:03:22.800
+that you have to make.
+
+NOTE Confidence: 0.9279015064239502
+
+00:03:23.840 --> 00:03:26.975
+And typically what happens is for you to understand the
+
+NOTE Confidence: 0.9279015064239502
+
+00:03:27.032 --> 00:03:30.053
+software and the system behavior, you need to be able
+
+NOTE Confidence: 0.9279015064239502
+
+00:03:30.110 --> 00:03:32.903
+to get the right kind of telemetry from the right
+
+NOTE Confidence: 0.9279015064239502
+
+00:03:32.960 --> 00:03:33.359
+places.
+
+NOTE Confidence: 0.8596152663230896
+
+00:03:34.000 --> 00:03:36.160
+You cannot optimize what you cannot see.
+
+NOTE Confidence: 0.9415582418441772
+
+00:03:36.520 --> 00:03:39.360
+So basically there are two streams of data.
+
+NOTE Confidence: 0.8689411282539368
+
+00:03:39.360 --> 00:03:44.897
+You have the platform and infrastructure based telemetry that is
+
+NOTE Confidence: 0.8689411282539368
+
+00:03:44.983 --> 00:03:49.915
+specifically coming from all the various IP blocks on the
+
+NOTE Confidence: 0.8689411282539368
+
+00:03:50.001 --> 00:03:54.759
+system, CPUGPUNPU, power, networking, Encore and so on.
+
+NOTE Confidence: 0.9021215438842773
+
+00:03:55.360 --> 00:03:58.884
+This kind of data is very structured and you know
+
+NOTE Confidence: 0.9021215438842773
+
+00:03:58.956 --> 00:04:03.560
+these are system metrics, these counters have been well defined.
+
+NOTE Confidence: 0.9141977429389954
+
+00:04:03.880 --> 00:04:07.238
+So the data that you get is structured and it's
+
+NOTE Confidence: 0.9141977429389954
+
+00:04:07.309 --> 00:04:11.240
+low volume generally and it also has very low overhead.
+
+NOTE Confidence: 0.8911096453666687
+
+00:04:11.240 --> 00:04:13.314
+So if you want to get the platform telemetry, it's
+
+NOTE Confidence: 0.8911096453666687
+
+00:04:13.355 --> 00:04:14.599
+less than 1% most of the time.
+
+NOTE Confidence: 0.8230596780776978
+
+00:04:16.560 --> 00:04:20.022
+And when it, when it goes to the application and
+
+NOTE Confidence: 0.8230596780776978
+
+00:04:20.095 --> 00:04:23.630
+middleware, this is a little bit, you know it, it
+
+NOTE Confidence: 0.8230596780776978
+
+00:04:23.702 --> 00:04:24.640
+varies a bit.
+
+NOTE Confidence: 0.9274557828903198
+
+00:04:24.680 --> 00:04:27.746
+It depends on how much of the code is instrumented,
+
+NOTE Confidence: 0.9274557828903198
+
+00:04:27.806 --> 00:04:30.993
+whether it's instrumented well or not, or it's just a
+
+NOTE Confidence: 0.9274557828903198
+
+00:04:31.053 --> 00:04:33.880
+lot of, you know, data that's coming out of it.
+
+NOTE Confidence: 0.839867353439331
+
+00:04:34.160 --> 00:04:38.794
+This data is primarily unstructured, it's higher volume and has
+
+NOTE Confidence: 0.839867353439331
+
+00:04:38.868 --> 00:04:40.559
+higher overhead, right.
+
+NOTE Confidence: 0.9594081044197083
+
+00:04:40.560 --> 00:04:42.656
+So how do you combine the two and try to
+
+NOTE Confidence: 0.9594081044197083
+
+00:04:42.708 --> 00:04:43.599
+make sense of it?
+
+NOTE Confidence: 0.8901538848876953
+
+00:04:46.360 --> 00:04:49.506
+When you're getting these kinds of data, you need to
+
+NOTE Confidence: 0.8901538848876953
+
+00:04:49.567 --> 00:04:53.803
+bridge the physical hardware performance with the software layers that
+
+NOTE Confidence: 0.8901538848876953
+
+00:04:53.863 --> 00:04:55.800
+are executing at a higher level.
+
+NOTE Confidence: 0.7610320448875427
+
+00:04:56.440 --> 00:04:57.520
+So you have to correlate.
+
+NOTE Confidence: 0.7933359146118164
+
+00:04:57.720 --> 00:04:59.320
+The correlation part is a key.
+
+NOTE Confidence: 0.9161874651908875
+
+00:05:00.520 --> 00:05:03.910
+And when you look at it, the platform infrastructure is
+
+NOTE Confidence: 0.9161874651908875
+
+00:05:03.972 --> 00:05:05.760
+coming from multiple drivers.
+
+NOTE Confidence: 0.8682847023010254
+
+00:05:06.360 --> 00:05:09.560
+The drivers are operating in different time domains many times.
+
+NOTE Confidence: 0.8426240682601929
+
+00:05:10.960 --> 00:05:13.857
+So what we have in this particular demo as we
+
+NOTE Confidence: 0.8426240682601929
+
+00:05:13.922 --> 00:05:17.786
+are using, we have something called a unified telemetry that
+
+NOTE Confidence: 0.8426240682601929
+
+00:05:17.850 --> 00:05:20.040
+puts them in the same time domain.
+
+NOTE Confidence: 0.7871869206428528
+
+00:05:20.040 --> 00:05:21.280
+It's all time correlated.
+
+NOTE Confidence: 0.8384672403335571
+
+00:05:21.760 --> 00:05:25.080
+You get the data from the CPUGPUNPU and power.
+
+NOTE Confidence: 0.8889589309692383
+
+00:05:26.520 --> 00:05:28.943
+And if you want to get some OS specific stuff
+
+NOTE Confidence: 0.8889589309692383
+
+00:05:28.996 --> 00:05:30.720
+you can incorporate ETW as well.
+
+NOTE Confidence: 0.8515433669090271
+
+00:05:31.640 --> 00:05:36.314
+From the application side, we are going to incorporate the
+
+NOTE Confidence: 0.8515433669090271
+
+00:05:36.394 --> 00:05:42.520
+tracing through ITT or Intel Tracing instrumentation and tracing technology.
+
+NOTE Confidence: 0.9361977577209473
+
+00:05:43.080 --> 00:05:46.260
+This is an open source project that's been around for
+
+NOTE Confidence: 0.9361977577209473
+
+00:05:46.320 --> 00:05:48.720
+a long time and a lot of the Intel stack
+
+NOTE Confidence: 0.9361977577209473
+
+00:05:48.780 --> 00:05:51.120
+has been instrumented with this, right?
+
+NOTE Confidence: 0.8100383877754211
+
+00:05:51.120 --> 00:05:53.577
+You know, your Open window stack 1, DNN and other
+
+NOTE Confidence: 0.8100383877754211
+
+00:05:53.627 --> 00:05:55.784
+things that are a part of the AI stack have
+
+NOTE Confidence: 0.8100383877754211
+
+00:05:55.834 --> 00:05:57.439
+all been instrumented with this.
+
+NOTE Confidence: 0.8516414761543274
+
+00:05:59.400 --> 00:06:01.486
+And over time we're going to be enabling more and
+
+NOTE Confidence: 0.8516414761543274
+
+00:06:01.529 --> 00:06:02.040
+more layers.
+
+NOTE Confidence: 0.8812835812568665
+
+00:06:02.040 --> 00:06:05.834
+So this is where we're getting some of the software
+
+NOTE Confidence: 0.8812835812568665
+
+00:06:05.909 --> 00:06:10.894
+telemetry in addition to whatever has already been instrumented and
+
+NOTE Confidence: 0.8812835812568665
+
+00:06:10.969 --> 00:06:15.210
+that is the capability that unified telemetry is going to
+
+NOTE Confidence: 0.8812835812568665
+
+00:06:15.284 --> 00:06:15.879
+provide.
+
+NOTE Confidence: 0.8549494743347168
+
+00:06:17.200 --> 00:06:19.219
+So how is it different from what we have today,
+
+NOTE Confidence: 0.8549494743347168
+
+00:06:19.262 --> 00:06:19.520
+Right.
+
+NOTE Confidence: 0.8510728478431702
+
+00:06:19.520 --> 00:06:23.013
+So unified telemetry is in previous starting this week, but
+
+NOTE Confidence: 0.8510728478431702
+
+00:06:23.072 --> 00:06:25.560
+previous to this week, what was different?
+
+NOTE Confidence: 0.8882788419723511
+
+00:06:26.000 --> 00:06:30.019
+We would get data from different drivers at different rates
+
+NOTE Confidence: 0.8882788419723511
+
+00:06:30.087 --> 00:06:32.199
+with in different time domains.
+
+NOTE Confidence: 0.8963844776153564
+
+00:06:32.400 --> 00:06:35.029
+And it was the responsibility of a tool chain or
+
+NOTE Confidence: 0.8963844776153564
+
+00:06:35.084 --> 00:06:37.439
+a tool to put them in the same time domain.
+
+NOTE Confidence: 0.8829590678215027
+
+00:06:37.440 --> 00:06:39.000
+And that was always a complex problem.
+
+NOTE Confidence: 0.892757773399353
+
+00:06:39.000 --> 00:06:42.082
+So if you wanted to do it yourself problem, right,
+
+NOTE Confidence: 0.892757773399353
+
+00:06:42.144 --> 00:06:44.240
+because you had to rely on a tool.
+
+NOTE Confidence: 0.8224448561668396
+
+00:06:44.520 --> 00:06:46.120
+So it was tightly coupled with the tool.
+
+NOTE Confidence: 0.8297276496887207
+
+00:06:46.320 --> 00:06:48.080
+So we are decoupling it.
+
+NOTE Confidence: 0.7574781179428101
+
+00:06:48.080 --> 00:06:52.034
+So you get the data from the the the platform
+
+NOTE Confidence: 0.7574781179428101
+
+00:06:52.122 --> 00:06:54.320
+and it's time correlated.
+
+NOTE Confidence: 0.9288539290428162
+
+00:06:58.279 --> 00:07:02.456
+And for the software introspection, you know, there are multiple
+
+NOTE Confidence: 0.9288539290428162
+
+00:07:02.522 --> 00:07:04.479
+ways to get the data you want.
+
+NOTE Confidence: 0.9074212908744812
+
+00:07:04.480 --> 00:07:07.724
+When an important event happens, you can walk the call
+
+NOTE Confidence: 0.9074212908744812
+
+00:07:07.784 --> 00:07:11.389
+stack, figure out who's executing, or you can instrument the
+
+NOTE Confidence: 0.9074212908744812
+
+00:07:11.449 --> 00:07:15.173
+relevant portions that are important so that you can correlate
+
+NOTE Confidence: 0.9074212908744812
+
+00:07:15.234 --> 00:07:19.379
+the platform telemetry with what's important that's happening in your
+
+NOTE Confidence: 0.9074212908744812
+
+00:07:19.439 --> 00:07:19.800
+stack.
+
+NOTE Confidence: 0.965549647808075
+
+00:07:20.280 --> 00:07:23.360
+And that way you can get the right visibility.
+
+NOTE Confidence: 0.7700777053833008
+
+00:07:23.760 --> 00:07:27.139
+So in order to do that, you know this relies
+
+NOTE Confidence: 0.7700777053833008
+
+00:07:27.216 --> 00:07:29.981
+on the ITT API which has a C API, AC
+
+NOTE Confidence: 0.7700777053833008
+
+00:07:30.058 --> 00:07:32.440
+API and a Python API and so on.
+
+NOTE Confidence: 0.8186831474304199
+
+00:07:32.840 --> 00:07:35.783
+But that's an open source project where which is used
+
+NOTE Confidence: 0.8186831474304199
+
+00:07:35.838 --> 00:07:37.560
+in majority of the Intel stack.
+
+NOTE Confidence: 0.7292098999023438
+
+00:07:40.360 --> 00:07:43.791
+So, yeah, so based on the information that we just
+
+NOTE Confidence: 0.7292098999023438
+
+00:07:43.859 --> 00:07:47.359
+learned from us, and let's take this into practice.
+
+NOTE Confidence: 0.8299249410629272
+
+00:07:47.880 --> 00:07:50.197
+The example that we showed earlier with the 3D printing,
+
+NOTE Confidence: 0.8299249410629272
+
+00:07:50.238 --> 00:07:52.348
+you know, agent, if we were to instrument it, let's
+
+NOTE Confidence: 0.8299249410629272
+
+00:07:52.390 --> 00:07:53.880
+look at, you know, what we're doing.
+
+NOTE Confidence: 0.7517910003662109
+
+00:07:54.240 --> 00:07:56.718
+First thing we asked it to create, you know, the
+
+NOTE Confidence: 0.7517910003662109
+
+00:07:56.770 --> 00:07:57.079
+wheel.
+
+NOTE Confidence: 0.8963378667831421
+
+00:07:57.080 --> 00:08:01.037
+So the agent is processing the request and it's generating
+
+NOTE Confidence: 0.8963378667831421
+
+00:08:01.105 --> 00:08:01.719
+the code.
+
+NOTE Confidence: 0.8401522636413574
+
+00:08:02.040 --> 00:08:04.835
+The first tool call is going to be writing the
+
+NOTE Confidence: 0.8401522636413574
+
+00:08:04.896 --> 00:08:05.199
+file.
+
+NOTE Confidence: 0.8477353453636169
+
+00:08:05.200 --> 00:08:07.429
+So the code that it generated writes it into a
+
+NOTE Confidence: 0.8477353453636169
+
+00:08:07.477 --> 00:08:07.720
+file.
+
+NOTE Confidence: 0.8728544116020203
+
+00:08:08.600 --> 00:08:11.240
+And then after that it's calling a stylizer.
+
+NOTE Confidence: 0.8520004749298096
+
+00:08:11.240 --> 00:08:14.666
+So after the, you know, code is created, it rendered,
+
+NOTE Confidence: 0.8520004749298096
+
+00:08:14.731 --> 00:08:16.800
+it passes it through a stylizer.
+
+NOTE Confidence: 0.77935791015625
+
+00:08:16.800 --> 00:08:20.100
+In this case, it's running an LCM Dream shaper diffuser
+
+NOTE Confidence: 0.77935791015625
+
+00:08:20.160 --> 00:08:21.840
+model and everything so far.
+
+NOTE Confidence: 0.8337346911430359
+
+00:08:21.840 --> 00:08:24.504
+If you notice the lower line that is indicating the
+
+NOTE Confidence: 0.8337346911430359
+
+00:08:24.556 --> 00:08:26.959
+power usage, everything is running on the GPU.
+
+NOTE Confidence: 0.9572622776031494
+
+00:08:26.960 --> 00:08:29.330
+So we'll talk more about, you know, how to fix
+
+NOTE Confidence: 0.9572622776031494
+
+00:08:29.382 --> 00:08:29.640
+this.
+
+NOTE Confidence: 0.9398286938667297
+
+00:08:29.640 --> 00:08:32.200
+But right now, everything is running on the GPU.
+
+NOTE Confidence: 0.8531463742256165
+
+00:08:32.320 --> 00:08:36.999
+And so as the stylizer is running, that generation, that
+
+NOTE Confidence: 0.8531463742256165
+
+00:08:37.083 --> 00:08:40.760
+orange bar that you see took a pause, right?
+
+NOTE Confidence: 0.8359373211860657
+
+00:08:40.760 --> 00:08:43.040
+Because it's computing the stylizer.
+
+NOTE Confidence: 0.9234210848808289
+
+00:08:43.440 --> 00:08:46.075
+And then after that, once it's done, it'll go back
+
+NOTE Confidence: 0.9234210848808289
+
+00:08:46.128 --> 00:08:48.763
+and, you know, create a response to respond to the
+
+NOTE Confidence: 0.9234210848808289
+
+00:08:48.816 --> 00:08:49.080
+chat.
+
+NOTE Confidence: 0.8974201679229736
+
+00:08:49.920 --> 00:08:52.660
+And what you're seeing now is that we're about to
+
+NOTE Confidence: 0.8974201679229736
+
+00:08:52.716 --> 00:08:55.960
+finish and this summarization part of the prompt kicks in.
+
+NOTE Confidence: 0.8138359785079956
+
+00:08:56.200 --> 00:08:59.145
+So now it switches the model to run a quint
+
+NOTE Confidence: 0.8138359785079956
+
+00:08:59.214 --> 00:09:02.640
+three 8 billion, and it's also running on the GPU.
+
+NOTE Confidence: 0.9002131819725037
+
+00:09:03.080 --> 00:09:05.346
+And so from the user point of view, you enter
+
+NOTE Confidence: 0.9002131819725037
+
+00:09:05.397 --> 00:09:08.016
+the chat prompt and then now you're waiting for, you
+
+NOTE Confidence: 0.9002131819725037
+
+00:09:08.066 --> 00:09:10.585
+know, the agent to finish before you can start the
+
+NOTE Confidence: 0.9002131819725037
+
+00:09:10.635 --> 00:09:11.240
+next prompt.
+
+NOTE Confidence: 0.8726465702056885
+
+00:09:12.360 --> 00:09:14.517
+And so now you see that little gap right in
+
+NOTE Confidence: 0.8726465702056885
+
+00:09:14.567 --> 00:09:16.874
+the middle where as I type, you know, the next
+
+NOTE Confidence: 0.8726465702056885
+
+00:09:16.925 --> 00:09:19.734
+prompt, that's when you process again and then you know,
+
+NOTE Confidence: 0.8726465702056885
+
+00:09:19.784 --> 00:09:21.440
+summarize and so on and so forth.
+
+NOTE Confidence: 0.9075875282287598
+
+00:09:22.040 --> 00:09:25.839
+So understanding how you know, hardware and software is behaving
+
+NOTE Confidence: 0.9075875282287598
+
+00:09:25.898 --> 00:09:28.867
+at a system level is super important because as we
+
+NOTE Confidence: 0.9075875282287598
+
+00:09:28.926 --> 00:09:33.260
+start looking into possible optimizations, let's apply some simple tweaks
+
+NOTE Confidence: 0.9075875282287598
+
+00:09:33.319 --> 00:09:35.160
+and see how we can change this.
+
+NOTE Confidence: 0.8836216330528259
+
+00:09:36.040 --> 00:09:38.738
+So now you know, a simple set of optimizations that
+
+NOTE Confidence: 0.8836216330528259
+
+00:09:38.790 --> 00:09:39.319
+we can do.
+
+NOTE Confidence: 0.9113854765892029
+
+00:09:40.000 --> 00:09:42.280
+The first thing you know, everything stays the same.
+
+NOTE Confidence: 0.8887088298797607
+
+00:09:42.320 --> 00:09:44.834
+We ask for the prompt, the file gets created and
+
+NOTE Confidence: 0.8887088298797607
+
+00:09:44.886 --> 00:09:46.720
+the tool gets called for rendering.
+
+NOTE Confidence: 0.9060701131820679
+
+00:09:47.160 --> 00:09:50.280
+Now for the stylizer.
+
+NOTE Confidence: 0.9160774946212769
+
+00:09:50.760 --> 00:09:53.859
+Now instead of running that on the GPU, we're delegating
+
+NOTE Confidence: 0.9160774946212769
+
+00:09:53.914 --> 00:09:54.799
+that to the MPU.
+
+NOTE Confidence: 0.8487069606781006
+
+00:09:55.040 --> 00:09:57.428
+So now you see the spike in power usage at
+
+NOTE Confidence: 0.8487069606781006
+
+00:09:57.485 --> 00:09:59.760
+the bottom because the MPU is activated.
+
+NOTE Confidence: 0.9686919450759888
+
+00:10:00.040 --> 00:10:01.080
+So that's one benefit.
+
+NOTE Confidence: 0.8907998204231262
+
+00:10:01.360 --> 00:10:03.952
+But the other benefit is that the agent, the orange
+
+NOTE Confidence: 0.8907998204231262
+
+00:10:04.003 --> 00:10:06.646
+line that you see towards the top, now, it continues
+
+NOTE Confidence: 0.8907998204231262
+
+00:10:06.697 --> 00:10:09.543
+to generate because as soon as it delegated that offload
+
+NOTE Confidence: 0.8907998204231262
+
+00:10:09.594 --> 00:10:12.085
+to the MPU, now it's creating the response to get
+
+NOTE Confidence: 0.8907998204231262
+
+00:10:12.135 --> 00:10:13.000
+back to the chat.
+
+NOTE Confidence: 0.7614679336547852
+
+00:10:14.240 --> 00:10:16.280
+So the next phase is a summarization.
+
+NOTE Confidence: 0.8524796962738037
+
+00:10:16.440 --> 00:10:19.410
+As the turn essentially completes, the agent kicks off the
+
+NOTE Confidence: 0.8524796962738037
+
+00:10:19.462 --> 00:10:22.381
+summarization of the conversation and that is done in the
+
+NOTE Confidence: 0.8524796962738037
+
+00:10:22.433 --> 00:10:23.559
+background by the MPU.
+
+NOTE Confidence: 0.9494853019714355
+
+00:10:24.200 --> 00:10:26.947
+And right at that point, the agent is ready to
+
+NOTE Confidence: 0.9494853019714355
+
+00:10:27.006 --> 00:10:28.439
+process the next prompt.
+
+NOTE Confidence: 0.895760178565979
+
+00:10:28.800 --> 00:10:31.430
+And so the end effect is that we can shorten
+
+NOTE Confidence: 0.895760178565979
+
+00:10:31.490 --> 00:10:34.419
+the time from a user experience point of view and
+
+NOTE Confidence: 0.895760178565979
+
+00:10:34.479 --> 00:10:37.528
+the agent is able to respond quicker while the same
+
+NOTE Confidence: 0.895760178565979
+
+00:10:37.587 --> 00:10:40.576
+time because the MPU is designed for low power and
+
+NOTE Confidence: 0.895760178565979
+
+00:10:40.636 --> 00:10:44.522
+high efficiency processing of AI while these things are happening
+
+NOTE Confidence: 0.895760178565979
+
+00:10:44.582 --> 00:10:47.870
+in the background, overall you get the same effect, you
+
+NOTE Confidence: 0.895760178565979
+
+00:10:47.930 --> 00:10:50.680
+know, faster turn around and also lower power.
+
+NOTE Confidence: 0.9067305326461792
+
+00:10:50.679 --> 00:10:53.471
+So when you're working on a laptop like this, this
+
+NOTE Confidence: 0.9067305326461792
+
+00:10:53.527 --> 00:10:56.653
+translates to, you know, higher number of turns that you
+
+NOTE Confidence: 0.9067305326461792
+
+00:10:56.709 --> 00:10:59.444
+can do, you know, before the battery runs out and
+
+NOTE Confidence: 0.9067305326461792
+
+00:10:59.500 --> 00:11:00.840
+just faster experiences.
+
+NOTE Confidence: 0.8541101217269897
+
+00:11:01.880 --> 00:11:05.408
+So, you know, we talked about the tuning that we
+
+NOTE Confidence: 0.8541101217269897
+
+00:11:05.482 --> 00:11:08.716
+can do at a system level and how this impact
+
+NOTE Confidence: 0.8541101217269897
+
+00:11:08.790 --> 00:11:10.039
+your agent flows.
+
+NOTE Confidence: 0.9356943368911743
+
+00:11:10.440 --> 00:11:13.692
+Now let's look at, you know, the tool calling because
+
+NOTE Confidence: 0.9356943368911743
+
+00:11:13.754 --> 00:11:16.577
+a lot of the tools that agents are starting to
+
+NOTE Confidence: 0.9356943368911743
+
+00:11:16.638 --> 00:11:18.479
+use are more and more complex.
+
+NOTE Confidence: 0.8424725532531738
+
+00:11:18.720 --> 00:11:21.994
+So, you know, invoking a a billion parameter model, diffuser
+
+NOTE Confidence: 0.8424725532531738
+
+00:11:22.049 --> 00:11:24.560
+model, and they can get more and more complex.
+
+NOTE Confidence: 0.832438051700592
+
+00:11:24.559 --> 00:11:27.233
+And increasingly these tools, it really boils down to the
+
+NOTE Confidence: 0.832438051700592
+
+00:11:27.279 --> 00:11:29.859
+end profiling the inferences because it's going to be a
+
+NOTE Confidence: 0.832438051700592
+
+00:11:29.906 --> 00:11:32.719
+series of pipelines probably in your application, the tools.
+
+NOTE Confidence: 0.9075075387954712
+
+00:11:33.120 --> 00:11:35.447
+And so let's look at what we can do for
+
+NOTE Confidence: 0.9075075387954712
+
+00:11:35.506 --> 00:11:36.759
+optimizing the tools.
+
+NOTE Confidence: 0.7965214252471924
+
+00:11:37.120 --> 00:11:40.335
+And so for that, let's dive deeper into tracing and
+
+NOTE Confidence: 0.7965214252471924
+
+00:11:40.398 --> 00:11:40.839
+Vasant.
+
+NOTE Confidence: 0.8789637088775635
+
+00:11:44.240 --> 00:11:49.200
+So, you know, we talked about the two different telemetries.
+
+NOTE Confidence: 0.8274878859519958
+
+00:11:49.200 --> 00:11:52.801
+So when you're, when you're tracing software, I said it's
+
+NOTE Confidence: 0.8274878859519958
+
+00:11:52.864 --> 00:11:54.760
+generally unstructured, right?
+
+NOTE Confidence: 0.9005590677261353
+
+00:11:55.040 --> 00:11:58.269
+How do you bring some structure to the software traces,
+
+NOTE Confidence: 0.9005590677261353
+
+00:11:58.327 --> 00:11:58.679
+right?
+
+NOTE Confidence: 0.9568819403648376
+
+00:11:58.720 --> 00:12:01.981
+If you can bring some structure, you can then run
+
+NOTE Confidence: 0.9568819403648376
+
+00:12:02.047 --> 00:12:05.109
+your AI models on it to get the necessary, you
+
+NOTE Confidence: 0.9568819403648376
+
+00:12:05.176 --> 00:12:07.039
+know, analysis done for you.
+
+NOTE Confidence: 0.8528437614440918
+
+00:12:07.520 --> 00:12:09.947
+So in this case, open, this is how open Veeno
+
+NOTE Confidence: 0.8528437614440918
+
+00:12:10.001 --> 00:12:11.079
+has been structured.
+
+NOTE Confidence: 0.9600037932395935
+
+00:12:11.080 --> 00:12:14.320
+So there are different layers of the software.
+
+NOTE Confidence: 0.8604537844657898
+
+00:12:14.320 --> 00:12:17.826
+The top level layer is where the phases of open
+
+NOTE Confidence: 0.8604537844657898
+
+00:12:17.900 --> 00:12:22.750
+Veeno execution happens and they're generally under the OV phases
+
+NOTE Confidence: 0.8604537844657898
+
+00:12:22.824 --> 00:12:23.720
+domain name.
+
+NOTE Confidence: 0.8355526328086853
+
+00:12:23.720 --> 00:12:26.558
+So when you're doing a query, even in Jason, if
+
+NOTE Confidence: 0.8355526328086853
+
+00:12:26.619 --> 00:12:29.216
+you can ask like any of the AI models, say,
+
+NOTE Confidence: 0.8355526328086853
+
+00:12:29.277 --> 00:12:31.995
+look at the domain OV phases and then give me
+
+NOTE Confidence: 0.8355526328086853
+
+00:12:32.055 --> 00:12:34.773
+a report and it can give you the breakdown of
+
+NOTE Confidence: 0.8355526328086853
+
+00:12:34.834 --> 00:12:35.679
+the top level.
+
+NOTE Confidence: 0.9419710040092468
+
+00:12:35.679 --> 00:12:37.554
+And then you can go deeper and deeper with it,
+
+NOTE Confidence: 0.9419710040092468
+
+00:12:37.595 --> 00:12:37.840
+right?
+
+NOTE Confidence: 0.8748026490211487
+
+00:12:37.840 --> 00:12:41.108
+So, so the idea is organising the software traces in
+
+NOTE Confidence: 0.8748026490211487
+
+00:12:41.171 --> 00:12:44.314
+some fashion so it becomes friendly for AI and for
+
+NOTE Confidence: 0.8748026490211487
+
+00:12:44.377 --> 00:12:45.760
+queries in the future.
+
+NOTE Confidence: 0.9020279049873352
+
+00:12:47.360 --> 00:12:49.699
+So if you look at a sample, this is the
+
+NOTE Confidence: 0.9020279049873352
+
+00:12:49.759 --> 00:12:52.639
+data from, you know, one of the model execution.
+
+NOTE Confidence: 0.7976533770561218
+
+00:12:53.200 --> 00:12:57.626
+This is what it'll translate to from a software traces
+
+NOTE Confidence: 0.7976533770561218
+
+00:12:57.708 --> 00:13:02.873
+perspective with open, we know using the unified telemetry, the
+
+NOTE Confidence: 0.7976533770561218
+
+00:13:02.955 --> 00:13:06.479
+top part is the, the NP, the GPU execution.
+
+NOTE Confidence: 0.8659275770187378
+
+00:13:07.120 --> 00:13:10.848
+And you're seeing the same kind of behaviour where there's
+
+NOTE Confidence: 0.8659275770187378
+
+00:13:10.912 --> 00:13:14.705
+an inference I've, I've taken an inference snapshot and the
+
+NOTE Confidence: 0.8659275770187378
+
+00:13:14.769 --> 00:13:17.919
+bottom portion is an inference on the NPU, right?
+
+NOTE Confidence: 0.8949101567268372
+
+00:13:17.920 --> 00:13:19.480
+So you'll see the data is very different.
+
+NOTE Confidence: 0.8972145318984985
+
+00:13:20.000 --> 00:13:22.596
+The GPU is less chatty, NPU is a lot, lot
+
+NOTE Confidence: 0.8972145318984985
+
+00:13:22.660 --> 00:13:26.333
+more populated because it has different units that are all
+
+NOTE Confidence: 0.8972145318984985
+
+00:13:26.396 --> 00:13:27.600
+pipelined together.
+
+NOTE Confidence: 0.8618707060813904
+
+00:13:27.960 --> 00:13:30.675
+And, and so this is the kind of data you're
+
+NOTE Confidence: 0.8618707060813904
+
+00:13:30.738 --> 00:13:31.559
+going to get.
+
+NOTE Confidence: 0.8978888988494873
+
+00:13:32.160 --> 00:13:35.809
+You're looking at the top level analysis to figure out
+
+NOTE Confidence: 0.8978888988494873
+
+00:13:35.877 --> 00:13:38.039
+how efficient your queries were.
+
+NOTE Confidence: 0.7788941264152527
+
+00:13:38.080 --> 00:13:40.280
+You know how efficient your inferences were.
+
+NOTE Confidence: 0.9026134014129639
+
+00:13:40.640 --> 00:13:43.543
+You know time to 1st token and then decoding rate
+
+NOTE Confidence: 0.9026134014129639
+
+00:13:43.602 --> 00:13:46.269
+and so on easily can be computed from the top
+
+NOTE Confidence: 0.9026134014129639
+
+00:13:46.328 --> 00:13:47.040
+level query.
+
+NOTE Confidence: 0.8432143330574036
+
+00:13:47.320 --> 00:13:49.723
+But if you want to get to the operator level
+
+NOTE Confidence: 0.8432143330574036
+
+00:13:49.777 --> 00:13:53.327
+specifics or the layer level level, layer level specifics, you'll
+
+NOTE Confidence: 0.8432143330574036
+
+00:13:53.382 --> 00:13:55.840
+have to go into the the next level of detail.
+
+NOTE Confidence: 0.8280600309371948
+
+00:13:59.000 --> 00:14:01.640
+Then how does it tie with the platform telemetry, right.
+
+NOTE Confidence: 0.8525228500366211
+
+00:14:01.640 --> 00:14:04.315
+So this is how, this is the kind of platform
+
+NOTE Confidence: 0.8525228500366211
+
+00:14:04.375 --> 00:14:06.199
+telemetry you're going to get.
+
+NOTE Confidence: 0.9552599787712097
+
+00:14:06.200 --> 00:14:09.453
+This is basically displaying about a 10th of what you
+
+NOTE Confidence: 0.9552599787712097
+
+00:14:09.514 --> 00:14:09.759
+get.
+
+NOTE Confidence: 0.9502092003822327
+
+00:14:10.120 --> 00:14:11.840
+You get a lot of platform telemetry.
+
+NOTE Confidence: 0.8188624978065491
+
+00:14:11.840 --> 00:14:15.208
+You get the memory reads, memory writes to DRAM, IP
+
+NOTE Confidence: 0.8188624978065491
+
+00:14:15.274 --> 00:14:19.038
+block to IP block, you know, bandwidth, you'll get power,
+
+NOTE Confidence: 0.8188624978065491
+
+00:14:19.104 --> 00:14:21.680
+you will get the utilisation and so on.
+
+NOTE Confidence: 0.8903617858886719
+
+00:14:21.680 --> 00:14:25.407
+So you can correlate your AI model execution with any
+
+NOTE Confidence: 0.8903617858886719
+
+00:14:25.477 --> 00:14:28.923
+of these metrics to figure out how you would want
+
+NOTE Confidence: 0.8903617858886719
+
+00:14:28.993 --> 00:14:30.400
+want to optimize it.
+
+NOTE Confidence: 0.8645265102386475
+
+00:14:34.600 --> 00:14:39.305
+So, so from from that perspective, you know, unified telemetry
+
+NOTE Confidence: 0.8645265102386475
+
+00:14:39.380 --> 00:14:42.720
+gives you a mechanism to get data from both.
+
+NOTE Confidence: 0.9160252213478088
+
+00:14:43.200 --> 00:14:46.289
+Of course, when I say data from the software side,
+
+NOTE Confidence: 0.9160252213478088
+
+00:14:46.351 --> 00:14:49.749
+it's still based on the ITT tracing information and the
+
+NOTE Confidence: 0.9160252213478088
+
+00:14:49.811 --> 00:14:51.479
+telemetry from the drivers.
+
+NOTE Confidence: 0.9113402366638184
+
+00:14:52.000 --> 00:14:55.763
+It combines both of them into a single time domain
+
+NOTE Confidence: 0.9113402366638184
+
+00:14:55.838 --> 00:14:57.719
+time synchronized output.
+
+NOTE Confidence: 0.8018152117729187
+
+00:14:58.200 --> 00:14:59.400
+Currently in Jason.
+
+NOTE Confidence: 0.9018489718437195
+
+00:15:00.080 --> 00:15:03.640
+This is the first preview of it starting this week.
+
+NOTE Confidence: 0.8557496666908264
+
+00:15:03.640 --> 00:15:06.895
+And over time it'll probably have a database around it
+
+NOTE Confidence: 0.8557496666908264
+
+00:15:06.955 --> 00:15:09.909
+as well, a vector, you know, a column database so
+
+NOTE Confidence: 0.8557496666908264
+
+00:15:09.969 --> 00:15:12.079
+that queries can be more efficient.
+
+NOTE Confidence: 0.8038036227226257
+
+00:15:14.120 --> 00:15:17.953
+And right now on the open window runtime is fully
+
+NOTE Confidence: 0.8038036227226257
+
+00:15:18.031 --> 00:15:22.568
+instrumented and we are trying to add additional layers on
+
+NOTE Confidence: 0.8038036227226257
+
+00:15:22.647 --> 00:15:22.960
+top.
+
+NOTE Confidence: 0.9119221568107605
+
+00:15:23.560 --> 00:15:26.862
+And so the next section is going to look at
+
+NOTE Confidence: 0.9119221568107605
+
+00:15:26.939 --> 00:15:31.547
+what would happen if you, you know, instrumented the Windows
+
+NOTE Confidence: 0.9119221568107605
+
+00:15:31.624 --> 00:15:33.160
+ML layers and so on.
+
+NOTE Confidence: 0.9340404272079468
+
+00:15:33.160 --> 00:15:34.920
+And then how do you combine the data together.
+
+NOTE Confidence: 0.8522989749908447
+
+00:15:34.920 --> 00:15:39.930
+So that's what the next section's going to look at
+
+NOTE Confidence: 0.8522989749908447
+
+00:15:40.030 --> 00:15:44.839
+to instrument your own software with the ITTAPI.
+
+NOTE Confidence: 0.9005530476570129
+
+00:15:44.920 --> 00:15:48.479
+The the open source project builds a static library that
+
+NOTE Confidence: 0.9005530476570129
+
+00:15:48.543 --> 00:15:51.785
+you can link in with your application and causes no
+
+NOTE Confidence: 0.9005530476570129
+
+00:15:51.848 --> 00:15:55.535
+overhead until you attach a tool like unified telemetry to
+
+NOTE Confidence: 0.9005530476570129
+
+00:15:55.599 --> 00:15:56.680
+collect the data.
+
+NOTE Confidence: 0.9362387657165527
+
+00:15:57.120 --> 00:16:01.138
+So it's basically putting certain markers in place that are
+
+NOTE Confidence: 0.9362387657165527
+
+00:16:01.206 --> 00:16:04.271
+there when a tool attaches for you to get the
+
+NOTE Confidence: 0.9362387657165527
+
+00:16:04.339 --> 00:16:04.680
+data.
+
+NOTE Confidence: 0.8833698034286499
+
+00:16:05.320 --> 00:16:08.283
+And in this case we are, you know, creating a
+
+NOTE Confidence: 0.8833698034286499
+
+00:16:08.349 --> 00:16:11.839
+domain called Win ML samples and then creating a task
+
+NOTE Confidence: 0.8833698034286499
+
+00:16:11.905 --> 00:16:16.120
+underneath that called session creation, which is what will show
+
+NOTE Confidence: 0.8833698034286499
+
+00:16:16.186 --> 00:16:17.239
+up in your data.
+
+NOTE Confidence: 0.7900732755661011
+
+00:16:18.280 --> 00:16:22.270
+So there are two different tasks that are shown here,
+
+NOTE Confidence: 0.7900732755661011
+
+00:16:22.345 --> 00:16:24.680
+session creation and inference.
+
+NOTE Confidence: 0.8963993787765503
+
+00:16:24.680 --> 00:16:28.252
+So this is how most of the Intel software stack
+
+NOTE Confidence: 0.8963993787765503
+
+00:16:28.328 --> 00:16:30.000
+has been instrumented.
+
+NOTE Confidence: 0.8289564251899719
+
+00:16:30.000 --> 00:16:32.559
+And if you want to extend it beyond the layers
+
+NOTE Confidence: 0.8289564251899719
+
+00:16:32.615 --> 00:16:36.120
+that are currently visible, you're welcome to, you know, extend
+
+NOTE Confidence: 0.8289564251899719
+
+00:16:36.176 --> 00:16:38.680
+it to the layers that are of interest to you.
+
+NOTE Confidence: 0.925419270992279
+
+00:16:40.880 --> 00:16:43.040
+So that brings us to the demo.
+
+NOTE Confidence: 0.802444577217102
+
+00:16:43.040 --> 00:16:45.000
+And Freddy will take over.
+
+NOTE Confidence: 0.487684428691864
+
+00:16:45.920 --> 00:16:46.480
+All right.
+
+NOTE Confidence: 0.8367756605148315
+
+00:16:47.360 --> 00:16:51.060
+So what we are going to do is I have
+
+NOTE Confidence: 0.8367756605148315
+
+00:16:51.163 --> 00:16:57.125
+an agent running, it's a 3.6 billion parameter model, it's
+
+NOTE Confidence: 0.8367756605148315
+
+00:16:57.227 --> 00:17:01.545
+a Quinn 3.6, it is running on a Core Ultra
+
+NOTE Confidence: 0.8367756605148315
+
+00:17:01.647 --> 00:17:05.040
+Series 3 all locally at the time.
+
+NOTE Confidence: 0.7573106288909912
+
+00:17:05.480 --> 00:17:09.950
+And let's say that you have a tool that was
+
+NOTE Confidence: 0.7573106288909912
+
+00:17:10.054 --> 00:17:14.524
+built with Windows ML and I am going to ask
+
+NOTE Confidence: 0.7573106288909912
+
+00:17:14.628 --> 00:17:20.761
+it to essentially profile Windows ML tool running Conf Next
+
+NOTE Confidence: 0.7573106288909912
+
+00:17:20.865 --> 00:17:24.919
+V2 on GPU if it's 16 for 50 iterations.
+
+NOTE Confidence: 0.9033719301223755
+
+00:17:25.920 --> 00:17:29.634
+So what this will do is we have equipped the
+
+NOTE Confidence: 0.9033719301223755
+
+00:17:29.718 --> 00:17:34.614
+agent to use tools to basically enable the tracing session
+
+NOTE Confidence: 0.9033719301223755
+
+00:17:34.698 --> 00:17:37.400
+that Vasant talked to you about.
+
+NOTE Confidence: 0.858474612236023
+
+00:17:38.000 --> 00:17:41.035
+And it's going to profile, you know, the tool that
+
+NOTE Confidence: 0.858474612236023
+
+00:17:41.096 --> 00:17:44.861
+you developed that is instrumented now also with those markers
+
+NOTE Confidence: 0.858474612236023
+
+00:17:44.922 --> 00:17:46.439
+at the application level.
+
+NOTE Confidence: 0.8853307366371155
+
+00:17:46.840 --> 00:17:49.975
+And it's going to correlate all the hardware events, all
+
+NOTE Confidence: 0.8853307366371155
+
+00:17:50.032 --> 00:17:51.879
+the underlying frameworks, right?
+
+NOTE Confidence: 0.8435013294219971
+
+00:17:51.880 --> 00:17:54.568
+The open vino events, all that stuff is going to
+
+NOTE Confidence: 0.8435013294219971
+
+00:17:54.624 --> 00:17:55.240
+be created.
+
+NOTE Confidence: 0.827839732170105
+
+00:17:55.560 --> 00:17:57.840
+And then data is going to start surfacing.
+
+NOTE Confidence: 0.9119748473167419
+
+00:17:57.840 --> 00:18:00.289
+The agent is going to process the data that comes
+
+NOTE Confidence: 0.9119748473167419
+
+00:18:00.339 --> 00:18:00.839
+out of it.
+
+NOTE Confidence: 0.8898224234580994
+
+00:18:01.480 --> 00:18:03.800
+And it's going to give you a summary right now.
+
+NOTE Confidence: 0.8897588849067688
+
+00:18:04.200 --> 00:18:07.080
+The data generator is going to be super helpful to
+
+NOTE Confidence: 0.8897588849067688
+
+00:18:07.138 --> 00:18:11.056
+start dissecting like whether this model is sufficient, whether this
+
+NOTE Confidence: 0.8897588849067688
+
+00:18:11.113 --> 00:18:13.937
+model, you know, consumes a lot of power, will it
+
+NOTE Confidence: 0.8897588849067688
+
+00:18:13.994 --> 00:18:15.319
+be good for your usage?
+
+NOTE Confidence: 0.9156559109687805
+
+00:18:15.480 --> 00:18:18.012
+And depending on, you know, what you're trying to accomplish
+
+NOTE Confidence: 0.9156559109687805
+
+00:18:18.054 --> 00:18:20.839
+with your application, there's different ways to tackle it, right?
+
+NOTE Confidence: 0.7362347841262817
+
+00:18:20.840 --> 00:18:24.280
+And different ways to to optimise.
+
+NOTE Confidence: 0.8346514105796814
+
+00:18:24.480 --> 00:18:28.367
+So in this case, what it did is it created
+
+NOTE Confidence: 0.8346514105796814
+
+00:18:28.459 --> 00:18:33.919
+a summary and it's tallying the performance of the latency.
+
+NOTE Confidence: 0.8779561519622803
+
+00:18:34.200 --> 00:18:37.350
+It is also giving you some level of variance, so
+
+NOTE Confidence: 0.8779561519622803
+
+00:18:37.415 --> 00:18:40.960
+the maximum and it's giving you the average inference.
+
+NOTE Confidence: 0.8394051194190979
+
+00:18:40.960 --> 00:18:44.837
+So running this model itself and this tool, you know,
+
+NOTE Confidence: 0.8394051194190979
+
+00:18:44.910 --> 00:18:49.007
+took about, you know, 9 milliwatts and for more details,
+
+NOTE Confidence: 0.8394051194190979
+
+00:18:49.081 --> 00:18:49.520
+right?
+
+NOTE Confidence: 0.9356512427330017
+
+00:18:50.720 --> 00:18:52.890
+It also provides links so that you can see a
+
+NOTE Confidence: 0.9356512427330017
+
+00:18:52.939 --> 00:18:55.800
+more detailed report of the execution of the model itself.
+
+NOTE Confidence: 0.8881103992462158
+
+00:18:56.240 --> 00:18:59.774
+But it also, you know, interpreted this data and provided
+
+NOTE Confidence: 0.8881103992462158
+
+00:18:59.836 --> 00:19:03.061
+you some, you know, summary like latency if you care
+
+NOTE Confidence: 0.8881103992462158
+
+00:19:03.123 --> 00:19:06.719
+about it, right, you may have some considerations to make.
+
+NOTE Confidence: 0.8895024061203003
+
+00:19:06.720 --> 00:19:10.400
+So let's look at the the trace file.
+
+NOTE Confidence: 0.9407309293746948
+
+00:19:13.560 --> 00:19:16.147
+Now this is the tool and application that, you know,
+
+NOTE Confidence: 0.9407309293746948
+
+00:19:16.197 --> 00:19:17.639
+we have already instrumented.
+
+NOTE Confidence: 0.8409563302993774
+
+00:19:17.840 --> 00:19:20.226
+And so if you zoom in, you can now see
+
+NOTE Confidence: 0.8409563302993774
+
+00:19:20.289 --> 00:19:23.807
+some of the Windows ML application events that we traced
+
+NOTE Confidence: 0.8409563302993774
+
+00:19:23.870 --> 00:19:25.880
+and we added to the application.
+
+NOTE Confidence: 0.9476332068443298
+
+00:19:26.200 --> 00:19:29.266
+So you can clearly see now there's a correlation between
+
+NOTE Confidence: 0.9476332068443298
+
+00:19:29.320 --> 00:19:32.277
+what the app is doing and then the underlying hardware
+
+NOTE Confidence: 0.9476332068443298
+
+00:19:32.332 --> 00:19:32.880
+execution.
+
+NOTE Confidence: 0.8868380784988403
+
+00:19:33.280 --> 00:19:36.367
+And you'll notice that there's a bit of time that
+
+NOTE Confidence: 0.8868380784988403
+
+00:19:36.430 --> 00:19:38.320
+is spent on model compilation.
+
+NOTE Confidence: 0.9244721531867981
+
+00:19:38.720 --> 00:19:41.349
+And then there's all these little events over here that
+
+NOTE Confidence: 0.9244721531867981
+
+00:19:41.397 --> 00:19:43.691
+if we zoom in, we can actually determine and see
+
+NOTE Confidence: 0.9244721531867981
+
+00:19:43.739 --> 00:19:44.599
+what is happening.
+
+NOTE Confidence: 0.7632739543914795
+
+00:19:44.960 --> 00:19:47.036
+And from a software stack point of view, this is
+
+NOTE Confidence: 0.7632739543914795
+
+00:19:47.080 --> 00:19:49.200
+what Open Venus doing is handling your inference.
+
+NOTE Confidence: 0.9302034974098206
+
+00:19:49.920 --> 00:19:53.253
+If we zoom out, you can now correlate the hardware
+
+NOTE Confidence: 0.9302034974098206
+
+00:19:53.319 --> 00:19:53.919
+activity.
+
+NOTE Confidence: 0.7549399137496948
+
+00:19:54.320 --> 00:19:58.040
+So let's collapse the host trace.
+
+NOTE Confidence: 0.9681714177131653
+
+00:19:58.120 --> 00:20:00.400
+And if we look at the GPU.
+
+NOTE Confidence: 0.9568760395050049
+
+00:20:02.119 --> 00:20:05.772
+We see that these are the corresponding hardware events and
+
+NOTE Confidence: 0.9568760395050049
+
+00:20:05.834 --> 00:20:09.610
+these are all the different kernels that are getting executed
+
+NOTE Confidence: 0.9568760395050049
+
+00:20:09.672 --> 00:20:09.920
+Now.
+
+NOTE Confidence: 0.9289660453796387
+
+00:20:10.680 --> 00:20:13.833
+Why is this useful for a developer having seen this,
+
+NOTE Confidence: 0.9289660453796387
+
+00:20:13.894 --> 00:20:17.290
+knowing that there's a capable GPU sitting on, you know,
+
+NOTE Confidence: 0.9289660453796387
+
+00:20:17.350 --> 00:20:20.140
+on your device, one of the things that you can
+
+NOTE Confidence: 0.9289660453796387
+
+00:20:20.201 --> 00:20:22.809
+do to optimize this is you want to get, you
+
+NOTE Confidence: 0.9289660453796387
+
+00:20:22.869 --> 00:20:25.719
+know, to the inference part as soon as you can.
+
+NOTE Confidence: 0.8462161421775818
+
+00:20:25.920 --> 00:20:28.828
+And so one way to, for instance, to get rid
+
+NOTE Confidence: 0.8462161421775818
+
+00:20:28.896 --> 00:20:32.007
+of the compilation time or reduce it is to pre
+
+NOTE Confidence: 0.8462161421775818
+
+00:20:32.074 --> 00:20:33.360
+compile your model.
+
+NOTE Confidence: 0.8661957383155823
+
+00:20:33.359 --> 00:20:35.755
+So if you pre compile it, you can reduce significantly
+
+NOTE Confidence: 0.8661957383155823
+
+00:20:35.799 --> 00:20:37.839
+this model compilation time that you see here.
+
+NOTE Confidence: 0.8361794352531433
+
+00:20:38.120 --> 00:20:40.280
+And so your tool will execute faster, right?
+
+NOTE Confidence: 0.9043133854866028
+
+00:20:41.000 --> 00:20:43.560
+So this is now very powerful.
+
+NOTE Confidence: 0.8404216766357422
+
+00:20:44.840 --> 00:20:48.353
+And the next question might be, OK, so you optimize
+
+NOTE Confidence: 0.8404216766357422
+
+00:20:48.422 --> 00:20:52.280
+the compilation part, but is this model the right model?
+
+NOTE Confidence: 0.9383561015129089
+
+00:20:52.720 --> 00:20:55.290
+And if you are dealing with model optimization, you know
+
+NOTE Confidence: 0.9383561015129089
+
+00:20:55.336 --> 00:20:56.760
+that you have a lot of choices.
+
+NOTE Confidence: 0.6985548138618469
+
+00:20:57.160 --> 00:21:00.600
+There's different data types like FP16 int date.
+
+NOTE Confidence: 0.7260093092918396
+
+00:21:01.000 --> 00:21:03.534
+Now we have NP us and so he's picking the
+
+NOTE Confidence: 0.7260093092918396
+
+00:21:03.596 --> 00:21:06.439
+NPU, the right device is GPU the right device.
+
+NOTE Confidence: 0.9389028549194336
+
+00:21:07.000 --> 00:21:09.338
+So now we can ask the agent to also do
+
+NOTE Confidence: 0.9389028549194336
+
+00:21:09.400 --> 00:21:12.600
+this profiling across, you know, multiple workloads.
+
+NOTE Confidence: 0.9082841277122498
+
+00:21:13.280 --> 00:21:16.600
+So let's ask it to do a comparison.
+
+NOTE Confidence: 0.7231290936470032
+
+00:21:23.220 --> 00:21:24.780
+Let's do a tiny yoga.
+
+NOTE Confidence: 0.7346848845481873
+
+00:21:38.480 --> 00:21:41.240
+So I'm going to ask it to profile Yolo V-11.
+
+NOTE Confidence: 0.8546091914176941
+
+00:21:42.000 --> 00:21:44.400
+I have an MP16 version and an intake version.
+
+NOTE Confidence: 0.776953935623169
+
+00:21:45.000 --> 00:21:47.000
+I have an MPU and a GPU.
+
+NOTE Confidence: 0.9472865462303162
+
+00:21:47.280 --> 00:21:49.520
+And so there's four combinations, right?
+
+NOTE Confidence: 0.8748650550842285
+
+00:21:49.800 --> 00:21:53.651
+So the agent is reasoning in this case and conducting
+
+NOTE Confidence: 0.8748650550842285
+
+00:21:53.724 --> 00:21:57.212
+a plan it will ultimately execute for and I will
+
+NOTE Confidence: 0.8748650550842285
+
+00:21:57.285 --> 00:22:00.991
+bring up the task manager so that you can correlate
+
+NOTE Confidence: 0.8748650550842285
+
+00:22:01.063 --> 00:22:03.680
+what the agent is doing at the time.
+
+NOTE Confidence: 0.8514306545257568
+
+00:22:14.760 --> 00:22:17.265
+OK, So what you will see is that as the
+
+NOTE Confidence: 0.8514306545257568
+
+00:22:17.329 --> 00:22:20.991
+agent creates a plan and starts the collector session and
+
+NOTE Confidence: 0.8514306545257568
+
+00:22:21.055 --> 00:22:24.653
+the workload session to start tracing, it'll do that one
+
+NOTE Confidence: 0.8514306545257568
+
+00:22:24.717 --> 00:22:28.315
+at a time because every time it collects traces, there's
+
+NOTE Confidence: 0.8514306545257568
+
+00:22:28.379 --> 00:22:31.719
+a lot of data points that gets, you know, generated.
+
+NOTE Confidence: 0.7966955900192261
+
+00:22:31.880 --> 00:22:34.381
+So it has to process some of the binary files,
+
+NOTE Confidence: 0.7966955900192261
+
+00:22:34.435 --> 00:22:37.262
+the log files that get created, it creates a summary
+
+NOTE Confidence: 0.7966955900192261
+
+00:22:37.317 --> 00:22:40.688
+and then it'll aggregate the combination of all those results,
+
+NOTE Confidence: 0.7966955900192261
+
+00:22:40.742 --> 00:22:43.461
+right, and give you a summary of all the workloads
+
+NOTE Confidence: 0.7966955900192261
+
+00:22:43.515 --> 00:22:44.440
+that we just run.
+
+NOTE Confidence: 0.8991435766220093
+
+00:22:44.720 --> 00:22:47.836
+So you'll notice that the GPU, you know, ran for
+
+NOTE Confidence: 0.8991435766220093
+
+00:22:47.900 --> 00:22:48.679
+a long time.
+
+NOTE Confidence: 0.93037348985672
+
+00:22:48.720 --> 00:22:50.320
+It was processing and doing the planning.
+
+NOTE Confidence: 0.859696626663208
+
+00:22:50.640 --> 00:22:52.520
+Then you'll see a short spike after that.
+
+NOTE Confidence: 0.7932425737380981
+
+00:22:52.520 --> 00:22:55.811
+That's essentially the agent profiling the GPU scenarios for these
+
+NOTE Confidence: 0.7932425737380981
+
+00:22:55.861 --> 00:22:56.360
+workloads.
+
+NOTE Confidence: 0.8601406216621399
+
+00:22:56.760 --> 00:22:59.446
+You'll see a couple of tiny spikes on the MPU
+
+NOTE Confidence: 0.8601406216621399
+
+00:22:59.506 --> 00:23:02.849
+and each one of those instances is essentially the agent
+
+NOTE Confidence: 0.8601406216621399
+
+00:23:02.908 --> 00:23:05.893
+running that, you know, FP16 model on MPU and then
+
+NOTE Confidence: 0.8601406216621399
+
+00:23:05.953 --> 00:23:08.639
+again running it on the MPO, but with intake.
+
+NOTE Confidence: 0.8504597544670105
+
+00:23:08.960 --> 00:23:11.388
+And for each of these sessions, you have to start,
+
+NOTE Confidence: 0.8504597544670105
+
+00:23:11.437 --> 00:23:13.962
+you know, and stop the session because the amount of
+
+NOTE Confidence: 0.8504597544670105
+
+00:23:14.011 --> 00:23:16.440
+data generated is just, you know, incredibly high.
+
+NOTE Confidence: 0.9238720536231995
+
+00:23:16.800 --> 00:23:20.910
+So once that is available, there's all this operator information
+
+NOTE Confidence: 0.9238720536231995
+
+00:23:20.974 --> 00:23:24.314
+that gets extracted and now we can start looking at,
+
+NOTE Confidence: 0.9238720536231995
+
+00:23:24.378 --> 00:23:25.920
+you know, their profile.
+
+NOTE Confidence: 0.9203977584838867
+
+00:23:26.600 --> 00:23:28.440
+So let's see what the agent generated.
+
+NOTE Confidence: 0.8946756720542908
+
+00:23:31.000 --> 00:23:33.925
+So it's compiling a table of the inference latency for
+
+NOTE Confidence: 0.8946756720542908
+
+00:23:33.979 --> 00:23:36.687
+each of these devices and also the power used, you
+
+NOTE Confidence: 0.8946756720542908
+
+00:23:36.742 --> 00:23:39.558
+know, for each of these devices, the energy and then
+
+NOTE Confidence: 0.8946756720542908
+
+00:23:39.613 --> 00:23:42.754
+the peak, you know, wattage, right during those periods of
+
+NOTE Confidence: 0.8946756720542908
+
+00:23:42.809 --> 00:23:43.080
+time.
+
+NOTE Confidence: 0.8529748916625977
+
+00:23:43.760 --> 00:23:47.935
+And based on the results, it's also giving you real
+
+NOTE Confidence: 0.8529748916625977
+
+00:23:48.017 --> 00:23:49.000
+time, right?
+
+NOTE Confidence: 0.8829731345176697
+
+00:23:49.520 --> 00:23:52.650
+The recommendation like some things to consider, if you are
+
+NOTE Confidence: 0.8829731345176697
+
+00:23:52.703 --> 00:23:55.939
+looking at speed that is more important for your application,
+
+NOTE Confidence: 0.8829731345176697
+
+00:23:55.992 --> 00:23:57.160
+then consider the GPU.
+
+NOTE Confidence: 0.8634941577911377
+
+00:23:57.560 --> 00:24:00.079
+If you want more energy efficiency, maybe it's a task
+
+NOTE Confidence: 0.8634941577911377
+
+00:24:00.127 --> 00:24:02.219
+or a tool that you can do in the background,
+
+NOTE Confidence: 0.8634941577911377
+
+00:24:02.266 --> 00:24:03.359
+then the MPU is better.
+
+NOTE Confidence: 0.8790073990821838
+
+00:24:03.920 --> 00:24:07.191
+And so with all this information, now you can do
+
+NOTE Confidence: 0.8790073990821838
+
+00:24:07.259 --> 00:24:11.279
+a lot of trade-offs and optimization points for your tools.
+
+NOTE Confidence: 0.769730269908905
+
+00:24:14.160 --> 00:24:17.120
+OK, I'm going to switch back to my slides.
+
+NOTE Confidence: 0.8319528698921204
+
+00:24:21.960 --> 00:24:26.843
+OK, So the summary is for agentic workloads, we need
+
+NOTE Confidence: 0.8319528698921204
+
+00:24:26.937 --> 00:24:28.440
+to profile them.
+
+NOTE Confidence: 0.9269061088562012
+
+00:24:28.560 --> 00:24:31.309
+We need to understand what they're doing and what the
+
+NOTE Confidence: 0.9269061088562012
+
+00:24:31.361 --> 00:24:33.436
+system is doing as a as a result of your
+
+NOTE Confidence: 0.9269061088562012
+
+00:24:33.488 --> 00:24:33.800
+agent.
+
+NOTE Confidence: 0.8917705416679382
+
+00:24:34.359 --> 00:24:37.250
+Then you can start analysing right where the time is
+
+NOTE Confidence: 0.8917705416679382
+
+00:24:37.306 --> 00:24:37.640
+spent.
+
+NOTE Confidence: 0.7622265815734863
+
+00:24:38.160 --> 00:24:41.880
+And finally you can start tuning and optimising their workflows.
+
+NOTE Confidence: 0.8340039849281311
+
+00:24:42.240 --> 00:24:43.760
+Where can you paralyze some of these?
+
+NOTE Confidence: 0.8913769721984863
+
+00:24:43.760 --> 00:24:44.600
+Where can you offload?
+
+NOTE Confidence: 0.921932578086853
+
+00:24:44.600 --> 00:24:45.560
+Where does it make sense?
+
+NOTE Confidence: 0.8838585615158081
+
+00:24:46.000 --> 00:24:48.228
+And then you can optimise their tools, which is where
+
+NOTE Confidence: 0.8838585615158081
+
+00:24:48.270 --> 00:24:49.867
+a lot of the time is going to be spent
+
+NOTE Confidence: 0.8838585615158081
+
+00:24:49.909 --> 00:24:50.120
+also.
+
+NOTE Confidence: 0.8802448511123657
+
+00:24:51.200 --> 00:24:54.398
+So the call to action is start adding traces to
+
+NOTE Confidence: 0.8802448511123657
+
+00:24:54.466 --> 00:24:55.759
+your agentic flows.
+
+NOTE Confidence: 0.8740181922912598
+
+00:24:56.560 --> 00:24:59.817
+And you know, using the unified telemetry, you can now,
+
+NOTE Confidence: 0.8740181922912598
+
+00:24:59.876 --> 00:25:02.719
+you know, take this data and put it into action.
+
+NOTE Confidence: 0.8046807050704956
+
+00:25:03.920 --> 00:25:08.660
+There's more information here about the Intel Unified Telemetry framework,
+
+NOTE Confidence: 0.8046807050704956
+
+00:25:08.724 --> 00:25:12.439
+the ITTAPI for instrumenting your apps, Open Veno and Open
+
+NOTE Confidence: 0.8046807050704956
+
+00:25:12.503 --> 00:25:13.080
+Veno Gen.
+
+NOTE Confidence: 0.8400768637657166
+
+00:25:13.080 --> 00:25:16.370
+AI, and then Windows ML, which underneath uses open Veno
+
+NOTE Confidence: 0.8400768637657166
+
+00:25:16.429 --> 00:25:17.839
+for powerful inferences.
+
+NOTE Confidence: 0.8241568207740784
+
+00:25:18.080 --> 00:25:20.789
+And last but not least, you know Windows MLCLI, which
+
+NOTE Confidence: 0.8241568207740784
+
+00:25:20.840 --> 00:25:24.113
+gives you the capability to do operator profiling, Onyx operator
+
+NOTE Confidence: 0.8241568207740784
+
+00:25:24.164 --> 00:25:24.879
+compatibility.
+
+NOTE Confidence: 0.8346050381660461
+
+00:25:26.600 --> 00:25:29.240
+And we'll be on later on tonight.
+
+NOTE Confidence: 0.878478467464447
+
+00:25:29.440 --> 00:25:31.440
+We're hosting a party, so please join us.
+
+NOTE Confidence: 0.7259778380393982
+
+00:25:31.960 --> 00:25:35.320
+It's going to be at the SF Brewery at 7:00.
+
+NOTE Confidence: 0.7009469866752625
+
+00:25:35.600 --> 00:25:37.320
+So looking forward to see you all.
+
+NOTE Confidence: 0.5825860500335693
+
+00:25:38.480 --> 00:25:38.880
+Thank you you.
+
+NOTE Confidence: 0.9586151242256165
+
+00:25:40.960 --> 00:25:42.120
+Guys have more questions.
+
+NOTE Confidence: 0.8714916706085205
+
+00:25:44.000 --> 00:25:46.502
+If you guys have more questions, you know we are
+
+NOTE Confidence: 0.8714916706085205
+
+00:25:46.554 --> 00:25:49.005
+at the demo booth and we probably have the same
+
+NOTE Confidence: 0.8714916706085205
+
+00:25:49.057 --> 00:25:51.559
+demos now we have access to Unified Telemetries.
+
+NOTE Confidence: 0.9113451838493347
+
+00:25:51.600 --> 00:25:53.651
+If you want more about it, you can come and
+
+NOTE Confidence: 0.9113451838493347
+
+00:25:53.699 --> 00:25:54.319
+check it out.
+

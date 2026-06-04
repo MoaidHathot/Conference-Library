@@ -1,0 +1,3291 @@
+WEBVTT
+
+00:00:02.430 --> 00:00:03.120
+CHET HUSK: Hey, folks.
+
+00:00:03.120 --> 00:00:06.000
+Welcome to Build, and especially
+welcome to this session
+
+00:00:06.000 --> 00:00:09.660
+on simplifying.NET
+installs with dotnetup.
+
+00:00:09.660 --> 00:00:11.250
+I'm Chet Husk, and
+I've been working
+
+00:00:11.250 --> 00:00:14.100
+on the.NET SDK for
+a few years now.
+
+00:00:14.100 --> 00:00:17.220
+And I'm excited to show you this
+new product we've been working
+
+00:00:17.220 --> 00:00:21.210
+on and show you how it might
+help tackle some problems
+
+00:00:21.210 --> 00:00:26.730
+that you have been facing
+managing.NET itself.
+
+00:00:26.730 --> 00:00:28.290
+Before we really
+get into things,
+
+00:00:28.290 --> 00:00:31.770
+I want to take a few minutes to
+let you know what we're going
+
+00:00:31.770 --> 00:00:32.970
+to be looking at today.
+
+00:00:32.970 --> 00:00:37.020
+So first, I want to shape
+the problem for you
+
+00:00:37.020 --> 00:00:41.810
+and let you see how I see
+getting.NET on your machine
+
+00:00:41.810 --> 00:00:44.270
+and managing versions over time.
+
+00:00:44.270 --> 00:00:46.790
+And then I want to briefly
+sketch out the outline
+
+00:00:46.790 --> 00:00:49.980
+of our plan on how we'd
+like to solve this.
+
+00:00:49.980 --> 00:00:53.250
+And then we'll get right
+into the meat of some demos
+
+00:00:53.250 --> 00:00:58.920
+of what's coming in our initial
+preview versions of dotnetup.
+
+00:00:58.920 --> 00:01:01.470
+Finally, we'll come back,
+and we'll talk about what's
+
+00:01:01.470 --> 00:01:04.680
+on the roadmap for dotnetup
+and when you can expect to see
+
+00:01:04.680 --> 00:01:07.290
+and use it and get
+hands on yourself.
+
+00:01:07.290 --> 00:01:09.270
+Okay. Are you ready?
+
+00:01:09.270 --> 00:01:12.210
+Let's take a look at what
+we're dealing with here.
+
+00:01:12.210 --> 00:01:16.500
+So if you install.NET
+today, we think you fall
+
+00:01:16.500 --> 00:01:18.930
+into basically one
+of two buckets.
+
+00:01:18.930 --> 00:01:21.960
+You are either using
+Visual Studio on Windows,
+
+00:01:21.960 --> 00:01:26.100
+where Visual Studio manages the
+toolchain for you and updates
+
+00:01:26.100 --> 00:01:29.820
+on a frequent cadence and brings
+you all of those feature band
+
+00:01:29.820 --> 00:01:33.240
+and servicing bug fixes
+that you know and love,
+
+00:01:33.240 --> 00:01:36.300
+or you're everyone else.
+
+00:01:36.300 --> 00:01:40.080
+And that's exactly the problem
+that we'd like to solve.
+
+00:01:40.080 --> 00:01:44.760
+If you look at installing.NET
+on different platforms,
+
+00:01:44.760 --> 00:01:50.130
+it's a very, shall we say,
+heterogeneous situation.
+
+00:01:50.130 --> 00:01:52.650
+Here's a short list of a
+bunch of the different ways
+
+00:01:52.650 --> 00:01:56.130
+that you can install.NET today.
+
+00:01:56.130 --> 00:01:58.320
+If you break these
+into categories,
+
+00:01:58.320 --> 00:02:02.310
+what you have is
+IDE-based distribution,
+
+00:02:02.310 --> 00:02:04.560
+a package-manager-based
+distribution,
+
+00:02:04.560 --> 00:02:10.050
+and then you have manual
+distribution of various kinds.
+
+00:02:10.050 --> 00:02:13.260
+For IDE-based
+distributions on Windows,
+
+00:02:13.260 --> 00:02:15.510
+you have primarily
+Visual Studio,
+
+00:02:15.510 --> 00:02:18.480
+and then across platform,
+you have Visual Studio Code,
+
+00:02:18.480 --> 00:02:23.070
+where my team owns a Visual
+Studio Code extension whose job
+
+00:02:23.070 --> 00:02:26.610
+is to get you the SDK
+versions that your projects
+
+00:02:26.610 --> 00:02:28.890
+and tools need to run.
+
+00:02:28.890 --> 00:02:32.820
+Outside of the IDEs, you
+have package managers,
+
+00:02:32.820 --> 00:02:37.470
+things like WinGet or
+Homebrew on macOS or Linux,
+
+00:02:37.470 --> 00:02:39.900
+and we'll get there
+in just a second.
+
+00:02:39.900 --> 00:02:43.290
+And these tools use the
+system's capabilities
+
+00:02:43.290 --> 00:02:45.900
+to acquire.NET packages.
+
+00:02:45.900 --> 00:02:49.380
+These are really nice
+for a number of reasons,
+
+00:02:49.380 --> 00:02:52.110
+the most interesting
+of which is the kind
+
+00:02:52.110 --> 00:02:55.230
+of centralized
+management you get.
+
+00:02:55.230 --> 00:02:58.530
+But for some people, that
+model is not a good fit,
+
+00:02:58.530 --> 00:03:03.930
+and so they reach for more
+manual ways of installing macOS.
+
+00:03:03.930 --> 00:03:08.220
+Some of the most common of these
+include the actual.NET website,
+
+00:03:08.220 --> 00:03:11.160
+which is get.dot.net,
+which is one
+
+00:03:11.160 --> 00:03:13.440
+of my favorite things to say.
+
+00:03:13.440 --> 00:03:16.890
+We have a set of install
+scripts for PowerShell
+
+00:03:16.890 --> 00:03:21.420
+and various POSIX shells
+that people often use
+
+00:03:21.420 --> 00:03:25.530
+to manage their CLI
+and SDK installations.
+
+00:03:25.530 --> 00:03:29.340
+And then there's a whole
+ecosystem of tools
+
+00:03:29.340 --> 00:03:32.910
+that exist specifically
+to manage versions
+
+00:03:32.910 --> 00:03:36.300
+of various software
+development toolchains.
+
+00:03:36.300 --> 00:03:39.390
+For.NET, there's a community
+project named DNVM
+
+00:03:39.390 --> 00:03:41.520
+or.NET Version Manager.
+
+00:03:41.520 --> 00:03:46.410
+But there are also more
+extensible or pluggable systems
+
+00:03:46.410 --> 00:03:50.370
+for this, like
+Mise-en-Place or ASDF.
+
+00:03:50.370 --> 00:03:53.130
+There are too many to count
+here, but these are some
+
+00:03:53.130 --> 00:03:57.180
+of the most familiar or
+most frequently used.
+
+00:03:57.180 --> 00:03:59.400
+I haven't talked about
+Linux yet, though.
+
+00:03:59.400 --> 00:04:02.430
+But I do want to point out that
+all of the mechanisms here
+
+00:04:02.430 --> 00:04:06.300
+on this slide that you see with
+an asterisk are not mechanisms
+
+00:04:06.300 --> 00:04:09.000
+that are owned and
+operated by Microsoft.
+
+00:04:09.000 --> 00:04:12.720
+These are community mechanisms
+in a bunch of different ways.
+
+00:04:12.720 --> 00:04:16.020
+And sometimes they use
+packages under the hood.
+
+00:04:16.020 --> 00:04:19.560
+And sometimes they use
+just zips or tarballs.
+
+00:04:19.560 --> 00:04:22.410
+And in some cases, like
+Homebrew, they can use both,
+
+00:04:22.410 --> 00:04:24.540
+depending on your preferences.
+
+00:04:24.540 --> 00:04:29.400
+So already you can see it's
+a very mixed bag of ways
+
+00:04:29.400 --> 00:04:34.350
+to get.NET and the pros and
+cons of each mechanism.
+
+00:04:34.350 --> 00:04:38.700
+And we're about to get even more
+complex as we enter the world
+
+00:04:38.700 --> 00:04:41.730
+of Linux distributions.
+
+00:04:41.730 --> 00:04:43.380
+You have a bunch
+of different ways:
+
+00:04:43.380 --> 00:04:46.500
+those same three categories
+of package managers,
+
+00:04:46.500 --> 00:04:48.210
+the dotnet-install scripts,
+
+00:04:48.210 --> 00:04:53.790
+and then the manual
+installation tools.
+
+00:04:53.790 --> 00:04:57.510
+But this is coupled
+with the fact that,
+
+00:04:57.510 --> 00:05:00.720
+for the package managers,
+there's been this long arc
+
+00:05:00.720 --> 00:05:04.080
+of history where sometimes
+Microsoft provided packages
+
+00:05:04.080 --> 00:05:05.670
+for your package manager,
+
+00:05:05.670 --> 00:05:09.030
+and sometimes your
+distro provided packages
+
+00:05:09.030 --> 00:05:10.650
+for your package manager.
+
+00:05:10.650 --> 00:05:12.780
+And sometimes you had both.
+
+00:05:12.780 --> 00:05:15.840
+So there's a long list of
+decision trees that you have
+
+00:05:15.840 --> 00:05:19.260
+to go through just to
+install our software.
+
+00:05:19.260 --> 00:05:23.400
+You have to decide if you're
+okay with certain restrictions
+
+00:05:23.400 --> 00:05:26.880
+on the feature bands that you
+will have available to you
+
+00:05:26.880 --> 00:05:30.210
+because the.NET SDK
+ships four times a year.
+
+00:05:30.210 --> 00:05:34.380
+And each quarterly shipment
+contains net new features
+
+00:05:34.380 --> 00:05:36.220
+and enhancements.
+
+00:05:37.470 --> 00:05:41.130
+So do you want those, or do you
+want the centralized update
+
+00:05:41.130 --> 00:05:45.150
+mechanism that the distros'
+package manager give you?
+
+00:05:45.150 --> 00:05:48.960
+Do you need different versions
+across your different repos?
+
+00:05:48.960 --> 00:05:53.310
+If so, the package managers may
+not be a good fit for that.
+
+00:05:53.310 --> 00:05:57.630
+So it's pretty easy to, as you
+start looking at the needs
+
+00:05:57.630 --> 00:06:01.290
+of your individual repos or
+your individual developers,
+
+00:06:01.290 --> 00:06:02.880
+that you find that
+the happy path
+
+00:06:02.880 --> 00:06:04.770
+of package managers
+doesn't work for you.
+
+00:06:04.770 --> 00:06:06.540
+And you start having to reach
+
+00:06:06.540 --> 00:06:12.210
+for these local management
+solutions like dotnet-install
+
+00:06:12.210 --> 00:06:17.820
+or DNVM, Mise-en-Place,
+etc. These tools are great.
+
+00:06:17.820 --> 00:06:21.390
+They do the job, but in the
+case of the install scripts,
+
+00:06:21.390 --> 00:06:26.370
+there's no central management so
+you can keep track of what SDKs
+
+00:06:26.370 --> 00:06:29.730
+and toolchains are installed
+where on your system.
+
+00:06:29.730 --> 00:06:34.260
+There's no way to easily update
+individual installations or all
+
+00:06:34.260 --> 00:06:36.540
+of the installations
+on your system.
+
+00:06:36.540 --> 00:06:41.550
+And in addition, often these
+local mechanisms tend to clash
+
+00:06:41.550 --> 00:06:44.760
+with any global or
+system-level installs.
+
+00:06:44.760 --> 00:06:47.880
+And all of these
+statements are true even
+
+00:06:47.880 --> 00:06:51.210
+on other platforms than Linux.
+
+00:06:51.210 --> 00:06:55.620
+So there's this very complex
+installation problem
+
+00:06:55.620 --> 00:06:57.540
+that users have to solve.
+
+00:06:57.540 --> 00:07:01.890
+And then when you guys find
+bugs or gaps in our software,
+
+00:07:01.890 --> 00:07:04.470
+and you want us to consider
+making enhancements
+
+00:07:04.470 --> 00:07:07.620
+or fixing those bugs,
+it's difficult on our end
+
+00:07:07.620 --> 00:07:11.340
+to categorize how that
+installation occurred
+
+00:07:11.340 --> 00:07:14.070
+and validate that that
+installation is correct
+
+00:07:14.070 --> 00:07:15.690
+in the first place.
+
+00:07:15.690 --> 00:07:17.370
+So there's pain on both ends.
+
+00:07:17.370 --> 00:07:20.040
+Believe me on that.
+
+00:07:20.040 --> 00:07:23.400
+So what do we, as
+a tooling team,
+
+00:07:23.400 --> 00:07:25.860
+want to do to solve
+this big problem?
+
+00:07:25.860 --> 00:07:27.870
+Well, there's all those
+different installation
+
+00:07:27.870 --> 00:07:31.380
+mechanisms, and we discovered
+we would make another one.
+
+00:07:31.380 --> 00:07:33.570
+And this is the one that
+will solve all the problems.
+
+00:07:33.570 --> 00:07:35.580
+And I'm only half joking here.
+
+00:07:35.580 --> 00:07:38.040
+We'll take a look in a little
+bit more detail in a moment
+
+00:07:38.040 --> 00:07:42.600
+and see how we plan on tackling
+some of these problems.
+
+00:07:42.600 --> 00:07:45.720
+But I could not resist
+the opportunity to call
+
+00:07:45.720 --> 00:07:48.510
+out to Randall
+Munroe's comic here.
+
+00:07:48.510 --> 00:07:54.960
+Our plan for solving this
+platform-specific and managed
+
+00:07:54.960 --> 00:07:59.010
+versus unmanaged split
+is to make a tool
+
+00:07:59.010 --> 00:08:02.190
+that behaves the same
+on every platform.
+
+00:08:02.190 --> 00:08:07.470
+And that leans into
+global installations
+
+00:08:07.470 --> 00:08:11.700
+that do not require
+user elevation.
+
+00:08:11.700 --> 00:08:13.920
+So in this case,
+when we say global,
+
+00:08:13.920 --> 00:08:15.960
+we don't mean system global.
+
+00:08:15.960 --> 00:08:19.290
+We mean user global,
+installations of.NET
+
+00:08:19.290 --> 00:08:22.500
+that are scoped to your user
+directory or a location
+
+00:08:22.500 --> 00:08:25.860
+where you specifically manage
+
+00:08:25.860 --> 00:08:28.920
+and that don't impact
+others on your system.
+
+00:08:28.920 --> 00:08:31.800
+So we want to make this
+tool and make it fast,
+
+00:08:31.800 --> 00:08:36.270
+make it lightweight, use
+native AOT to make it execute
+
+00:08:36.270 --> 00:08:39.090
+as quickly as possible
+and get out of your way.
+
+00:08:39.090 --> 00:08:42.360
+We want it to leverage
+the existing mechanisms
+
+00:08:42.360 --> 00:08:48.180
+that users use to describe
+what SDKs and tools you want.
+
+00:08:48.180 --> 00:08:50.100
+Today, that's global JSON.
+
+00:08:50.100 --> 00:08:55.230
+But the hope is that with a
+shared way of interacting
+
+00:08:55.230 --> 00:09:00.120
+with SDK installs, we
+could potentially evolve
+
+00:09:00.120 --> 00:09:04.610
+that file format or its purpose
+into something more ergonomic.
+
+00:09:04.610 --> 00:09:07.850
+Along the way, we want this
+tool to cover features
+
+00:09:07.850 --> 00:09:12.080
+and functionality gaps that
+system-level install users have
+
+00:09:12.080 --> 00:09:16.320
+that user-level installs do not.
+
+00:09:16.320 --> 00:09:19.650
+So earlier, when we were talking
+about some of the pros and cons
+
+00:09:19.650 --> 00:09:23.790
+of the installation methods, I
+mentioned that package managers
+
+00:09:23.790 --> 00:09:27.750
+and installers, like the
+ones that Visual Studio use,
+
+00:09:27.750 --> 00:09:32.280
+have central management and
+auditability kind of baked in
+
+00:09:32.280 --> 00:09:36.440
+and the current mechanisms for
+user-level installs don't.
+
+00:09:36.440 --> 00:09:39.890
+So we want our tool to bring
+that level of audibility
+
+00:09:39.890 --> 00:09:42.360
+and safety to everyone.
+
+00:09:42.360 --> 00:09:45.000
+And so to enable this,
+we've been working
+
+00:09:45.000 --> 00:09:50.370
+with the.NET releases teams to
+sign all of the binaries and all
+
+00:09:50.370 --> 00:09:55.590
+of the manifests involved so
+that you know that the binaries
+
+00:09:55.590 --> 00:09:58.260
+that you are using are the ones
+that we intended to deliver
+
+00:09:58.260 --> 00:10:01.380
+to you and all the way down.
+
+00:10:01.380 --> 00:10:04.740
+And then finally, we didn't
+want this tool to exist
+
+00:10:04.740 --> 00:10:07.320
+in isolation, to be in a bubble.
+
+00:10:07.320 --> 00:10:11.040
+We wanted to create this tool
+and create a library around it
+
+00:10:11.040 --> 00:10:15.690
+so that other tools that
+needed to behave similarly
+
+00:10:15.690 --> 00:10:20.940
+or that needed to interact
+with installs had the option
+
+00:10:20.940 --> 00:10:24.840
+of using a library that would
+do things correctly and safely.
+
+00:10:24.840 --> 00:10:29.850
+So this will play a little bit
+more into the long-term plans.
+
+00:10:29.850 --> 00:10:33.000
+But we hope that if this tool
+takes off, the manifests
+
+00:10:33.000 --> 00:10:36.420
+and bookkeeping that it uses
+become a shared resource
+
+00:10:36.420 --> 00:10:41.070
+for a constellation of tools
+like Dependabot and Renovate
+
+00:10:41.070 --> 00:10:43.650
+and this whole audibility
+
+00:10:43.650 --> 00:10:45.930
+and automated compliance
+infrastructure
+
+00:10:45.930 --> 00:10:49.530
+that many developers use today
+for their package references
+
+00:10:49.530 --> 00:10:51.870
+and their Docker
+file references.
+
+00:10:51.870 --> 00:10:54.210
+So we want to fit in that world.
+
+00:10:54.210 --> 00:10:57.660
+And part of fitting in that
+world is providing tools to plug
+
+00:10:57.660 --> 00:11:01.600
+in easily into those systems.
+
+00:11:02.640 --> 00:11:04.950
+So from this point on, we're
+going to talk about some
+
+00:11:04.950 --> 00:11:07.830
+of the specifics of dotnetup
+and show it to you.
+
+00:11:07.830 --> 00:11:09.840
+But I want to be super clear.
+
+00:11:09.840 --> 00:11:12.180
+Everything you're
+seeing from here
+
+00:11:12.180 --> 00:11:15.870
+on is internal preview level.
+
+00:11:15.870 --> 00:11:17.520
+We'll talk about some
+of the milestones
+
+00:11:17.520 --> 00:11:20.340
+in this release process
+a little bit later on.
+
+00:11:20.340 --> 00:11:22.350
+But I wanted to show
+you what we have today
+
+00:11:22.350 --> 00:11:26.220
+so you can see the vision of how
+it all works together and so
+
+00:11:26.220 --> 00:11:31.020
+that you can see where we're
+aiming for and give us feedback,
+
+00:11:31.020 --> 00:11:32.820
+because the earlier
+we get your feedback,
+
+00:11:32.820 --> 00:11:34.170
+the earlier we can
+incorporate it,
+
+00:11:34.170 --> 00:11:36.360
+and the better the
+end product will be.
+
+00:11:36.360 --> 00:11:39.300
+So big giant "Under
+Construction" label here.
+
+00:11:39.300 --> 00:11:42.150
+If this were like the early
+2000s, on a web page,
+
+00:11:42.150 --> 00:11:44.700
+you'd see the big
+blinking marquee
+
+00:11:44.700 --> 00:11:46.410
+"Under Construction" sign.
+
+00:11:46.410 --> 00:11:49.590
+So just be aware of that.
+
+00:11:49.590 --> 00:11:51.030
+We're going to lean
+into some demos now.
+
+00:11:51.030 --> 00:11:52.980
+And I'm sure the first
+question on your mind is,
+
+00:11:52.980 --> 00:11:54.660
+how do I get this thing?
+
+00:11:54.660 --> 00:11:57.840
+So we're going to talk about the
+acquisition and initialization
+
+00:11:57.840 --> 00:12:00.690
+of dotnetup on
+different systems.
+
+00:12:00.690 --> 00:12:03.600
+Then we're going to show
+how you can use dotnetup
+
+00:12:03.600 --> 00:12:05.580
+to easily get
+started in a couple
+
+00:12:05.580 --> 00:12:08.730
+of different kinds
+of repo shapes.
+
+00:12:08.730 --> 00:12:12.090
+And then finally, we'll talk
+about how you can use dotnetup
+
+00:12:12.090 --> 00:12:14.790
+to tackle one of the
+more annoying problems
+
+00:12:14.790 --> 00:12:17.320
+of toolchain management today.
+
+00:12:18.480 --> 00:12:20.010
+So let's get into it.
+
+00:12:20.010 --> 00:12:24.990
+I'm going to "Alt-Tab"
+over to my terminal here.
+
+00:12:24.990 --> 00:12:28.350
+And where we are is in a repo
+that I'll give you the link
+
+00:12:28.350 --> 00:12:30.210
+to a little bit later.
+
+00:12:30.210 --> 00:12:33.540
+I've got a repo where I've
+put together some scenarios,
+
+00:12:33.540 --> 00:12:35.880
+some example repository patterns
+
+00:12:35.880 --> 00:12:38.910
+that might benefit
+from dotnetup.
+
+00:12:38.910 --> 00:12:41.820
+So if we look in my
+scenarios folder,
+
+00:12:41.820 --> 00:12:45.060
+I've got three scenarios here:
+a "cross-platform-webapp,"
+
+00:12:45.060 --> 00:12:48.360
+a "multi-runtime-testing"
+application,
+
+00:12:48.360 --> 00:12:50.850
+and then an application
+that has up-to-date
+
+00:12:50.850 --> 00:12:54.300
+or outdated.NET
+SDK installations.
+
+00:12:54.300 --> 00:12:57.030
+I want to start with the most
+straightforward one, but first,
+
+00:12:57.030 --> 00:12:59.040
+I need to get dotnetup.
+
+00:12:59.040 --> 00:13:02.280
+And that's where we've tried
+to make this really easy.
+
+00:13:02.280 --> 00:13:05.850
+We have aka.ms links that I will
+again show a little bit later
+
+00:13:05.850 --> 00:13:07.950
+to make it easy to get dotnetup.
+
+00:13:07.950 --> 00:13:12.090
+You can go to
+"aka.ms/dotnetup/get-dotnetup,"
+
+00:13:12.090 --> 00:13:13.770
+and there will be a Shell
+
+00:13:13.770 --> 00:13:17.370
+or PowerShell script
+that you can use.
+
+00:13:17.370 --> 00:13:20.460
+And we'll have examples
+for both of these
+
+00:13:20.460 --> 00:13:23.160
+in the documentation links
+that you'll see later.
+
+00:13:23.160 --> 00:13:25.980
+But it's as easy as
+running this script.
+
+00:13:25.980 --> 00:13:28.830
+And this script is going to
+look at the platform you're on
+
+00:13:28.830 --> 00:13:32.370
+and determine which version of
+dotnetup it should download.
+
+00:13:32.370 --> 00:13:36.060
+Because remember, this is an AOT
+platform-specific application.
+
+00:13:36.060 --> 00:13:38.820
+We want this to be
+as fast as possible.
+
+00:13:38.820 --> 00:13:42.450
+We will download it, verify
+it, and then install it
+
+00:13:42.450 --> 00:13:45.090
+into your home
+directory by default.
+
+00:13:45.090 --> 00:13:48.150
+Though, as always,
+you have 100% control
+
+00:13:48.150 --> 00:13:50.580
+over where this thing goes.
+
+00:13:50.580 --> 00:13:55.110
+So path isn't configured because
+that's a little hard to do
+
+00:13:55.110 --> 00:13:58.110
+in a script that you
+source like this on Linux.
+
+00:13:58.110 --> 00:14:03.090
+So we'll just start by
+invoking it manually.
+
+00:14:03.090 --> 00:14:07.500
+And the first time
+you run dotnetup
+
+00:14:07.500 --> 00:14:11.460
+or when you run the init command
+specifically, you'll get run
+
+00:14:11.460 --> 00:14:13.680
+through a configuration
+walkthrough
+
+00:14:13.680 --> 00:14:16.800
+where dotnetup itself will
+help you set your system
+
+00:14:16.800 --> 00:14:18.870
+up for success.
+
+00:14:18.870 --> 00:14:21.420
+So I just want to call
+out here that dotnetup,
+
+00:14:21.420 --> 00:14:24.270
+like the.NET CLI, collects
+the usage telemetry
+
+00:14:24.270 --> 00:14:26.610
+to help us understand
+how you use it.
+
+00:14:26.610 --> 00:14:29.130
+But just like the.NET
+CLI, you can use all
+
+00:14:29.130 --> 00:14:33.030
+of the existing telemetry
+opt-out flags that we have
+
+00:14:33.030 --> 00:14:35.640
+in the.NET CLI to
+control that experience.
+
+00:14:35.640 --> 00:14:37.920
+So just a heads up there.
+
+00:14:37.920 --> 00:14:39.780
+The first time you run
+dotnetup, like I said,
+
+00:14:39.780 --> 00:14:41.430
+you'll get this walkthrough.
+
+00:14:41.430 --> 00:14:44.400
+And it wants to ensure
+that you are set
+
+00:14:44.400 --> 00:14:47.580
+up with a viable
+installation.NET
+
+00:14:47.580 --> 00:14:50.400
+that you can use to
+start development.
+
+00:14:50.400 --> 00:14:53.100
+It's going to prompt you
+for the different channels
+
+00:14:53.100 --> 00:14:54.420
+that you might want to use.
+
+00:14:54.420 --> 00:14:57.030
+And because I'm a
+bleeding-edge kind of person,
+
+00:14:57.030 --> 00:14:58.620
+I'm going to choose "latest"
+
+00:14:58.620 --> 00:15:00.690
+so that we will get the
+latest stable release
+
+00:15:00.690 --> 00:15:02.040
+that exists today.
+
+00:15:02.040 --> 00:15:05.610
+And then we will stay
+up to date over time.
+
+00:15:05.610 --> 00:15:09.780
+The next question is how you
+would like to use dotnetup.
+
+00:15:09.780 --> 00:15:13.950
+This could be a bit
+of a deep dive,
+
+00:15:13.950 --> 00:15:17.190
+but the way that
+matches most closely
+
+00:15:17.190 --> 00:15:20.490
+to how you might be expecting
+this to work from tools
+
+00:15:20.490 --> 00:15:24.060
+like DNVM or Mise-en-Place
+is terminal mode.
+
+00:15:24.060 --> 00:15:25.050
+So I'm going to use this.
+
+00:15:25.050 --> 00:15:28.980
+And in this mode, dotnetup
+is going to configure itself
+
+00:15:28.980 --> 00:15:31.380
+to add itself to the path
+
+00:15:31.380 --> 00:15:33.870
+and to add the.NET
+installation location
+
+00:15:33.870 --> 00:15:36.540
+that it manages to the path.
+
+00:15:36.540 --> 00:15:40.980
+And I'm going to skip that last
+question because dotnetup saw
+
+00:15:40.980 --> 00:15:44.280
+that I had global installs
+and offered to port them
+
+00:15:44.280 --> 00:15:46.440
+over to the new world for me.
+
+00:15:46.440 --> 00:15:51.210
+But when I told it what to
+install, it went to grab it,
+
+00:15:51.210 --> 00:15:54.600
+it went to install it
+into its managed.NET
+
+00:15:54.600 --> 00:15:56.130
+installation location.
+
+00:15:56.130 --> 00:15:58.320
+And then it gave me
+some nice UI and UX
+
+00:15:58.320 --> 00:16:01.980
+around the downloading
+installation of that SDK.
+
+00:16:01.980 --> 00:16:06.330
+So at this point, it has
+downloaded the latest.NET SDK
+
+00:16:06.330 --> 00:16:11.610
+for me, and it has updated
+my shell profile so that
+
+00:16:11.610 --> 00:16:18.510
+on subsequent indications,
+my shell will include all
+
+00:16:18.510 --> 00:16:23.940
+of the environment variables
+and configuration necessary
+
+00:16:23.940 --> 00:16:26.910
+to successfully run dotnetup.
+
+00:16:26.910 --> 00:16:29.730
+So if we go look at the
+command that it inserted
+
+00:16:29.730 --> 00:16:33.180
+into my profile, this is
+a shell-specific script.
+
+00:16:33.180 --> 00:16:37.650
+It detected I'm using Z
+shell, that sets up.NET
+
+00:16:37.650 --> 00:16:41.130
+to use the installation
+that dotnetup manages
+
+00:16:41.130 --> 00:16:44.730
+and then ensures that
+dotnetup and the.NET XE are
+
+00:16:44.730 --> 00:16:46.920
+on my path, which is great.
+
+00:16:46.920 --> 00:16:51.630
+That means I can now
+do "dotnetup -- info."
+
+00:16:51.630 --> 00:16:55.980
+Well, if I were in a new shell
+session, I could do that.
+
+00:16:55.980 --> 00:17:00.210
+So I can do "dotnetup -- info"
+here, and I can see that I'm
+
+00:17:00.210 --> 00:17:02.730
+on a specific
+version of dotnetup.
+
+00:17:02.730 --> 00:17:07.440
+And then I can
+do.NET info as well.
+
+00:17:07.440 --> 00:17:10.050
+And because this is the
+first time that version
+
+00:17:10.050 --> 00:17:12.150
+of that is run, it will
+do some crunching.
+
+00:17:12.150 --> 00:17:13.770
+And then it will
+tell me everything
+
+00:17:13.770 --> 00:17:21.660
+about this installation, which,
+as we asked for, is 10.0.300,
+
+00:17:21.660 --> 00:17:27.450
+is on macOS, is installed to a
+location that dotnetup manages,
+
+00:17:27.450 --> 00:17:31.650
+and comes with the ASP.NET
+and NETCORE runtimes.
+
+00:17:31.650 --> 00:17:35.820
+So this is exactly what anyone
+coming to.NET would need.
+
+00:17:35.820 --> 00:17:41.310
+And it was as easy as "dotnetup
+init," and we're good.
+
+00:17:41.310 --> 00:17:45.150
+So now that I have dotnetup,
+I'm prepared to work
+
+00:17:45.150 --> 00:17:47.940
+on any repo that I want.
+
+00:17:47.940 --> 00:17:52.110
+So if we go into the
+"cross-platform-webapp"
+
+00:17:52.110 --> 00:17:58.170
+that I wanted to show you all,
+this web app is very simple.
+
+00:17:58.170 --> 00:18:02.880
+It has a library and a web app
+that consumes that library.
+
+00:18:02.880 --> 00:18:08.790
+But it also has a "global.json"
+file that I want to show you.
+
+00:18:08.790 --> 00:18:11.460
+And this global JSON
+has something different
+
+00:18:11.460 --> 00:18:13.320
+to what I just installed.
+
+00:18:13.320 --> 00:18:16.710
+This global JSON says
+that this repo expects
+
+00:18:16.710 --> 00:18:20.220
+to use 10.0.100 of the.NET SDK.
+
+00:18:20.220 --> 00:18:21.510
+Why? I don't know.
+
+00:18:21.510 --> 00:18:23.970
+But this is what the
+developer has chosen.
+
+00:18:23.970 --> 00:18:25.890
+But it's okay with
+rolling forward
+
+00:18:25.890 --> 00:18:27.750
+to the latestFeature band.
+
+00:18:27.750 --> 00:18:30.000
+So we're going to we're
+going to use that.
+
+00:18:30.000 --> 00:18:32.790
+And it turns out dotnet
+up understands that.
+
+00:18:32.790 --> 00:18:45.750
+If we run "dotnetup sdk
+install" here -- Yeah.
+
+00:18:45.750 --> 00:18:48.150
+Oh, it rolled forward to
+the latestFeature band
+
+00:18:48.150 --> 00:18:50.730
+because that's what's
+in the global JSON.
+
+00:18:50.730 --> 00:18:55.500
+But if we open up our
+"global.json" in VS Code here
+
+00:18:55.500 --> 00:18:59.610
+and we change this to
+be something like,
+
+00:18:59.610 --> 00:19:03.240
+we'll do "latestPatch"
+instead, and then we come back
+
+00:19:03.240 --> 00:19:07.350
+to run our install, then we can
+see that dotnetup has chosen
+
+00:19:07.350 --> 00:19:13.170
+to install 1xx, so meaning
+the 100 feature band.
+
+00:19:13.170 --> 00:19:16.800
+And it even tells us why,
+because the global JSON
+
+00:19:16.800 --> 00:19:20.040
+in our project
+specifies that version.
+
+00:19:20.040 --> 00:19:22.740
+And so here we can also see
+the download and the install
+
+00:19:22.740 --> 00:19:27.390
+of this new version of
+the.NET SDK, and we're good.
+
+00:19:27.390 --> 00:19:34.620
+So now that we are in our repo,
+we can go run our web app
+
+00:19:34.620 --> 00:19:38.670
+or build it, and
+everything will just work.
+
+00:19:38.670 --> 00:19:42.000
+It'll use the SDK
+that we told it to,
+
+00:19:42.000 --> 00:19:43.980
+and it will build the app.
+
+00:19:43.980 --> 00:19:47.130
+And I didn't have to
+do anything crazy.
+
+00:19:47.130 --> 00:19:50.060
+All I had to do was
+run "dotnetup install"
+
+00:19:50.060 --> 00:19:52.830
+or "dotnetup sdk install."
+
+00:19:52.830 --> 00:19:56.370
+And with that one command,
+I was good to go.
+
+00:19:56.370 --> 00:20:01.530
+This is the core value
+proposition that we see.
+
+00:20:01.530 --> 00:20:06.180
+And so here's me proving
+that we used the 108 SDK.
+
+00:20:06.180 --> 00:20:08.730
+This is the core value
+proposition of dotnetup.
+
+00:20:08.730 --> 00:20:11.090
+You could do that same gesture:
+
+00:20:11.090 --> 00:20:13.220
+grabbing the dotnetup
+installation,
+
+00:20:13.220 --> 00:20:17.090
+running "dotnetup init" to
+get a dotnetup install going,
+
+00:20:17.090 --> 00:20:23.420
+and then "dotnetup install" on
+any repo and have a.NET SDK
+
+00:20:23.420 --> 00:20:25.710
+that will work for that repo.
+
+00:20:27.710 --> 00:20:29.000
+That's great.
+
+00:20:29.000 --> 00:20:32.550
+It is very frustrating to have
+to manage those things today.
+
+00:20:32.550 --> 00:20:36.240
+And while there are some helpers
+that will use a global JSON
+
+00:20:36.240 --> 00:20:39.960
+in CI/CD, for example,
+like in GitHub actions,
+
+00:20:39.960 --> 00:20:44.910
+the actions/setup-dotnet
+action will do that for you.
+
+00:20:44.910 --> 00:20:49.470
+There's been nothing supported
+locally that you could use
+
+00:20:49.470 --> 00:20:54.000
+on your developer box or that an
+agent could use on your behalf.
+
+00:20:54.000 --> 00:20:57.720
+So we're trying to fill that
+need here in a supported way.
+
+00:20:57.720 --> 00:21:01.470
+Dotnetup does more than just
+SDK installations, though.
+
+00:21:01.470 --> 00:21:04.890
+If you list this, if you run
+the dotnetup list command,
+
+00:21:04.890 --> 00:21:08.940
+you can see that it's actually
+tracking those decisions
+
+00:21:08.940 --> 00:21:11.490
+that you made and why
+you've made them.
+
+00:21:11.490 --> 00:21:13.770
+So it knows that it
+has two versions
+
+00:21:13.770 --> 00:21:16.200
+of the.NET SDK installed.
+
+00:21:16.200 --> 00:21:20.430
+And it knows what channels
+you are tracking.
+
+00:21:20.430 --> 00:21:23.040
+So it's tracking
+the latest channel
+
+00:21:23.040 --> 00:21:27.510
+because I explicitly told
+it to on that startup.
+
+00:21:27.510 --> 00:21:32.370
+It's tracking the 1xx
+channel because our webapp,
+
+00:21:32.370 --> 00:21:34.440
+"global.json," told it to.
+
+00:21:34.440 --> 00:21:41.790
+And that's good because it means
+that when a new 109 is released
+
+00:21:41.790 --> 00:21:46.410
+in May or a 110 in June, and
+so on, I guess 108 was May,
+
+00:21:46.410 --> 00:21:51.180
+so a 109 in June and a 110
+in July, and so forth,
+
+00:21:51.180 --> 00:21:52.590
+dotnetup will understand that.
+
+00:21:52.590 --> 00:21:59.850
+And a dotnetup update will
+do those updates for you.
+
+00:21:59.850 --> 00:22:01.590
+So this is the real beauty.
+
+00:22:01.590 --> 00:22:04.620
+It's not just installations.
+
+00:22:04.620 --> 00:22:08.970
+It's understanding what
+you need and what you have
+
+00:22:08.970 --> 00:22:12.420
+and what is available and
+making those things all
+
+00:22:12.420 --> 00:22:14.730
+align consistently.
+
+00:22:14.730 --> 00:22:20.220
+So that's the first end-to-end
+example I wanted to show you.
+
+00:22:20.220 --> 00:22:24.510
+And this is something that, if
+you are engaged in open source
+
+00:22:24.510 --> 00:22:27.240
+or if you are using
+agents to help contribute
+
+00:22:27.240 --> 00:22:29.640
+to open source repos
+that you use at work
+
+00:22:29.640 --> 00:22:31.830
+or whatever your pattern is,
+
+00:22:31.830 --> 00:22:33.750
+that's a pattern you
+probably had to do before.
+
+00:22:33.750 --> 00:22:36.900
+You had to go clone the
+repo and then figure out,
+
+00:22:36.900 --> 00:22:39.840
+like you just try a normal
+dot net build, and the builds
+
+00:22:39.840 --> 00:22:43.560
+or the SDKs you have don't
+match with what's in the repo.
+
+00:22:43.560 --> 00:22:48.750
+So that problem, we can say,
+is solved definitively.
+
+00:22:48.750 --> 00:22:52.440
+The next scenario is a little
+more interesting and, I think,
+
+00:22:52.440 --> 00:22:57.840
+shows off more of the potential
+future direction for dotnetup.
+
+00:22:57.840 --> 00:22:59.190
+And for this one,
+I'm going to need
+
+00:22:59.190 --> 00:23:02.520
+to show you a little bit
+of code to set it up.
+
+00:23:02.520 --> 00:23:05.580
+So we have a repo here,
+
+00:23:05.580 --> 00:23:12.870
+a workspace where we have
+a source code library
+
+00:23:12.870 --> 00:23:15.600
+that provides some utility
+that we care about.
+
+00:23:15.600 --> 00:23:19.860
+And then we have a test
+project that consumes it.
+
+00:23:19.860 --> 00:23:23.370
+So we have a really cool
+truncation string helper here
+
+00:23:23.370 --> 00:23:25.470
+and a string helper
+that can check
+
+00:23:25.470 --> 00:23:30.060
+if a given string is only
+alphanumeric ASCII characters.
+
+00:23:30.060 --> 00:23:31.740
+So kind of basic stuff.
+
+00:23:31.740 --> 00:23:34.650
+And like responsible developers,
+
+00:23:34.650 --> 00:23:37.890
+we've created a set
+of test cases for it.
+
+00:23:37.890 --> 00:23:41.790
+And so we want to be
+able to test this.
+
+00:23:41.790 --> 00:23:46.110
+Well, what's interesting is
+that, like many library authors,
+
+00:23:46.110 --> 00:23:51.120
+we might want to do some
+customization of that library
+
+00:23:51.120 --> 00:23:53.220
+for different target frameworks.
+
+00:23:53.220 --> 00:23:54.990
+For example, in.NET 10,
+
+00:23:54.990 --> 00:24:00.600
+maybe there is a new span-based
+overload of index of string
+
+00:24:00.600 --> 00:24:04.740
+that we want to make use
+of that we can't on.NET 8.
+
+00:24:04.740 --> 00:24:08.850
+And so in our library, we might
+have an #ifdef that we add
+
+00:24:08.850 --> 00:24:14.400
+in here that we use a different
+execution path on 10 versus 8.
+
+00:24:14.400 --> 00:24:17.850
+But we still want to build for 8
+because we want people that are
+
+00:24:17.850 --> 00:24:21.000
+on 8 to be able to
+use our library.
+
+00:24:21.000 --> 00:24:22.950
+We call this multi-targeting.
+
+00:24:22.950 --> 00:24:25.530
+And from a library perspective,
+
+00:24:25.530 --> 00:24:28.410
+it doesn't actually matter
+what you target here.
+
+00:24:28.410 --> 00:24:31.740
+So here in my library,
+I'm using NetStandard 2.0
+
+00:24:31.740 --> 00:24:36.810
+because my library doesn't do
+any per runtime specialization.
+
+00:24:36.810 --> 00:24:40.200
+But as a library author, I want
+to make sure that everyone
+
+00:24:40.200 --> 00:24:42.690
+on the latest and
+greatest versions
+
+00:24:42.690 --> 00:24:45.570
+of.NET can use my library.
+
+00:24:45.570 --> 00:24:51.390
+And so a way we could do that
+is by making sample projects
+
+00:24:51.390 --> 00:24:54.060
+that consume my
+library and use it.
+
+00:24:54.060 --> 00:24:56.430
+But a more integrated
+way is to write tests.
+
+00:24:56.430 --> 00:24:57.660
+And so that's what
+we've done here.
+
+00:24:57.660 --> 00:24:59.220
+We have a test library
+
+00:24:59.220 --> 00:25:02.700
+that targets these three
+different in-support runtimes
+
+00:25:02.700 --> 00:25:04.750
+and just has these tests.
+
+00:25:06.120 --> 00:25:11.550
+Something I've struggled with
+often in my career is I want
+
+00:25:11.550 --> 00:25:18.210
+to use the latest.NET SDK.
+
+00:25:18.210 --> 00:25:23.040
+Because the SDK is where all
+the tooling features come from.
+
+00:25:23.040 --> 00:25:27.030
+So, regardless of what runtime
+I'm building assets for,
+
+00:25:27.030 --> 00:25:30.630
+I want to use a 10 SDK right now
+
+00:25:30.630 --> 00:25:33.600
+because that's the latest
+major version out there.
+
+00:25:33.600 --> 00:25:37.050
+So I end up in a situation
+where I have one SDK,
+
+00:25:37.050 --> 00:25:41.400
+but I need multiple
+runtimes to run my tests.
+
+00:25:41.400 --> 00:25:48.060
+And if I try this right now and
+I come over to my test and I try
+
+00:25:48.060 --> 00:25:50.310
+and run -- Well, before
+we get into this,
+
+00:25:50.310 --> 00:25:52.560
+I'm going to go "--
+list-runtimes."
+
+00:25:52.560 --> 00:25:56.130
+And you can see here that
+we just have 10 runtimes.
+
+00:25:56.130 --> 00:25:59.070
+And I'm going to run
+"dotnet test" on my test,
+
+00:25:59.070 --> 00:26:02.460
+which targets 8, 9, and 10.
+
+00:26:02.460 --> 00:26:04.680
+And that took no
+time at all to run,
+
+00:26:04.680 --> 00:26:06.180
+but it didn't run successfully.
+
+00:26:06.180 --> 00:26:08.460
+I'm going to zoom out a
+little bit so you can see it.
+
+00:26:08.460 --> 00:26:12.360
+But what happened was
+on.NET 8, no tests ran
+
+00:26:12.360 --> 00:26:18.060
+because we did not have a.NET
+Core Runtime for version 8.
+
+00:26:18.060 --> 00:26:21.390
+And then for.NET 9, no tests ran
+
+00:26:21.390 --> 00:26:26.070
+because we did not have
+a.NET Core Runtime for 9.
+
+00:26:26.070 --> 00:26:30.840
+And then on.NET 10, our tests
+did run, and they passed.
+
+00:26:30.840 --> 00:26:33.060
+This is something I
+see all the time.
+
+00:26:33.060 --> 00:26:36.750
+And when people see this,
+the way they fix it is
+
+00:26:36.750 --> 00:26:38.700
+in their CI/CD providers,
+
+00:26:38.700 --> 00:26:44.340
+they install entirely
+parallel SDK installations.
+
+00:26:44.340 --> 00:26:50.310
+So if you ran this command
+on their CI setups,
+
+00:26:50.310 --> 00:26:55.710
+you would see an 8 SDK, a 9
+SDK, and one or more 10 SDKs.
+
+00:26:55.710 --> 00:26:58.530
+And to me, that's not necessary
+
+00:26:58.530 --> 00:27:00.870
+because new SDKs
+include new tooling
+
+00:27:00.870 --> 00:27:04.440
+and fully support
+building older runtimes.
+
+00:27:04.440 --> 00:27:08.400
+So instead, what I would
+like to do is just be able
+
+00:27:08.400 --> 00:27:12.930
+to get runtimes that I need to
+actually run my application.
+
+00:27:12.930 --> 00:27:16.350
+And this is not something
+that you can do easily today.
+
+00:27:16.350 --> 00:27:19.950
+So one of the things
+that dotnetup kind
+
+00:27:19.950 --> 00:27:22.350
+of makes easy is
+installing runtimes.
+
+00:27:22.350 --> 00:27:25.290
+And so I've done a
+little shenanigans here,
+
+00:27:25.290 --> 00:27:28.530
+and I've made a fake
+extension to Global JSON,
+
+00:27:28.530 --> 00:27:30.930
+where I can say I
+need some runtimes,
+
+00:27:30.930 --> 00:27:34.350
+and I want the.NET runtime,
+and I need 8, 9, and 10.
+
+00:27:34.350 --> 00:27:36.930
+This syntax is not
+final by any means.
+
+00:27:36.930 --> 00:27:40.560
+This is just something that
+might happen in the future.
+
+00:27:40.560 --> 00:27:44.100
+And there's a world where
+dotnetup would understand that.
+
+00:27:44.100 --> 00:27:48.450
+And it would, when you
+ran dotnetup install,
+
+00:27:48.450 --> 00:27:51.180
+it would do that for you.
+
+00:27:51.180 --> 00:27:54.510
+It would install both the SDKs
+and the runtimes that you need.
+
+00:27:54.510 --> 00:27:56.610
+We're not in that world today.
+
+00:27:56.610 --> 00:27:58.710
+And so instead, what you
+can do is you can do
+
+00:27:58.710 --> 00:28:03.990
+"dotnet runtime
+install 8.0 9.0 10.0,"
+
+00:28:03.990 --> 00:28:05.940
+and it will do them
+all at the same time.
+
+00:28:05.940 --> 00:28:09.120
+It'll go find the latest
+ones of each of those bands,
+
+00:28:09.120 --> 00:28:11.340
+download them, and install them.
+
+00:28:11.340 --> 00:28:15.840
+In this case, I just
+said 8.0, 9.0, and 10.0,
+
+00:28:15.840 --> 00:28:19.650
+and dotnetup got me the latest
+one of each of those bands.
+
+00:28:19.650 --> 00:28:23.730
+If I had specific needs, I
+could say specific versions.
+
+00:28:23.730 --> 00:28:25.350
+That's not a problem.
+
+00:28:25.350 --> 00:28:29.460
+But it's very easy now to
+acquire these runtimes.
+
+00:28:29.460 --> 00:28:32.040
+And now that I have
+these runtimes,
+
+00:28:32.040 --> 00:28:37.050
+I can go run my tests
+again, and they'll work.
+
+00:28:37.050 --> 00:28:41.880
+And I didn't have to install
+entire new SDKs at hundreds
+
+00:28:41.880 --> 00:28:45.420
+of megabytes apiece just
+to make my tests run.
+
+00:28:45.420 --> 00:28:47.460
+This, to me, is the
+best of both worlds.
+
+00:28:47.460 --> 00:28:50.910
+You're on the latest tooling,
+but you're able to do the things
+
+00:28:50.910 --> 00:28:55.350
+that you need to do in ways that
+you couldn't before easily.
+
+00:28:55.350 --> 00:28:57.390
+So this is exciting to me.
+
+00:28:57.390 --> 00:28:59.280
+It's bringing some of the
+convenience of things
+
+00:28:59.280 --> 00:29:01.890
+that you could do in
+your CI/CD setups
+
+00:29:01.890 --> 00:29:03.870
+to your local development.
+
+00:29:03.870 --> 00:29:07.890
+So that's another example of
+the kinds of functionality
+
+00:29:07.890 --> 00:29:09.660
+that dotnetup can provide.
+
+00:29:09.660 --> 00:29:13.710
+And even though I'm just
+showing the.NET runtime here,
+
+00:29:13.710 --> 00:29:18.580
+you can specify all kinds of
+different specifiers here.
+
+00:29:19.710 --> 00:29:21.970
+You can do ASP.NET.
+
+00:29:24.000 --> 00:29:26.250
+So here's an example
+of aspnetcore.
+
+00:29:26.250 --> 00:29:31.560
+You can also do Windows desktop
+on Windows in that case.
+
+00:29:31.560 --> 00:29:32.580
+So that would look like
+
+00:29:32.580 --> 00:29:37.270
+"dotnetup runtime
+install aspnetcore@8.0."
+
+00:29:38.670 --> 00:29:42.030
+And this pattern of component
+name @version is one
+
+00:29:42.030 --> 00:29:46.200
+that we've been fleshing out
+over a few SDK releases here.
+
+00:29:46.200 --> 00:29:48.540
+And now we have that runtime.
+
+00:29:48.540 --> 00:29:51.570
+So if we run "dotnet
+-- list-runtimes" now,
+
+00:29:51.570 --> 00:29:55.500
+you'll see that we have the
+core runtimes for 8, 9, and 10,
+
+00:29:55.500 --> 00:29:58.110
+and the ASP.NET
+runtimes for 8 and 10.
+
+00:29:58.110 --> 00:30:01.290
+Easy peasy.
+
+00:30:01.290 --> 00:30:02.040
+That's it.
+
+00:30:02.040 --> 00:30:05.970
+So that's the core value prop.
+
+00:30:05.970 --> 00:30:09.150
+Can I get tooling more easily?
+
+00:30:09.150 --> 00:30:11.010
+But it's also
+interesting to note
+
+00:30:11.010 --> 00:30:13.620
+that getting the tooling
+is only half the battle.
+
+00:30:13.620 --> 00:30:16.380
+There is a long tail of
+maintenance and upgrades
+
+00:30:16.380 --> 00:30:20.520
+that responsible development
+teams have to adhere to.
+
+00:30:20.520 --> 00:30:23.610
+And dotnetup makes
+that possible as well.
+
+00:30:23.610 --> 00:30:27.030
+So we saw dotnetup list before,
+but I just want to call
+
+00:30:27.030 --> 00:30:28.320
+that up here again to note
+
+00:30:28.320 --> 00:30:32.970
+that those explicit runtimes
+are also tracked here.
+
+00:30:32.970 --> 00:30:35.250
+And you can see what is
+currently installed,
+
+00:30:35.250 --> 00:30:38.970
+and you can see the
+requests here as well.
+
+00:30:38.970 --> 00:30:42.180
+So when new versions of
+the runtimes release,
+
+00:30:42.180 --> 00:30:48.600
+a simple "dotnetup update"
+will cover them as well.
+
+00:30:48.600 --> 00:30:51.870
+And because I just
+installed all of these,
+
+00:30:51.870 --> 00:30:53.130
+they're all already up to date.
+
+00:30:53.130 --> 00:30:58.170
+But if any one of these were out
+of date compared to the requests
+
+00:30:58.170 --> 00:31:02.220
+that we had, dotnetup would have
+installed them right there.
+
+00:31:02.220 --> 00:31:03.840
+This is all happening
+under the covers
+
+00:31:03.840 --> 00:31:06.690
+because dotnetup is
+keeping a manifest,
+
+00:31:06.690 --> 00:31:11.430
+an installation tracker
+in your user directory
+
+00:31:11.430 --> 00:31:12.990
+in a data directory there.
+
+00:31:12.990 --> 00:31:16.680
+So you can think of it as a
+lock file for the declared
+
+00:31:16.680 --> 00:31:18.930
+or desired state of your system.
+
+00:31:18.930 --> 00:31:21.810
+It's not necessarily something
+that we intend to share
+
+00:31:21.810 --> 00:31:24.180
+across repos or
+across developers.
+
+00:31:24.180 --> 00:31:25.650
+You should still use global JSON
+
+00:31:25.650 --> 00:31:29.430
+to describe your requirements
+for development.
+
+00:31:29.430 --> 00:31:31.530
+But that manifests as
+what's powering a lot
+
+00:31:31.530 --> 00:31:34.800
+of this update
+information as well.
+
+00:31:34.800 --> 00:31:36.990
+So those are some of the
+core functionalities there.
+
+00:31:36.990 --> 00:31:39.030
+There are a few other
+interesting things
+
+00:31:39.030 --> 00:31:43.050
+about dotnetup that I
+want to call out here.
+
+00:31:43.050 --> 00:31:47.520
+The "print-env-script" is a
+helper command that can be used
+
+00:31:47.520 --> 00:31:51.780
+to make sure your shell
+is configured correctly
+
+00:31:51.780 --> 00:31:53.850
+to just natively use dotnetup.
+
+00:31:53.850 --> 00:31:57.180
+This is what is used
+when you do that init
+
+00:31:57.180 --> 00:32:00.270
+to configure your
+system to use dotnetup.
+
+00:32:00.270 --> 00:32:06.420
+Right now, this print-env-script
+is supported for Bash and Zsh
+
+00:32:06.420 --> 00:32:09.810
+and other POSIX shells only.
+
+00:32:09.810 --> 00:32:11.220
+PowerShell support is coming.
+
+00:32:11.220 --> 00:32:13.290
+We have that in PR.
+
+00:32:13.290 --> 00:32:15.360
+And hopefully, within a
+week or two from the time
+
+00:32:15.360 --> 00:32:16.920
+that you're seeing
+this, you'll be able
+
+00:32:16.920 --> 00:32:20.470
+to grab dotnetup yourself
+and give that a try.
+
+00:32:21.630 --> 00:32:23.550
+The other thing
+that's interesting
+
+00:32:23.550 --> 00:32:28.500
+that has been missing from SDK
+management is uninstallations.
+
+00:32:28.500 --> 00:32:33.360
+So when you do these updates,
+new versions of SDKs
+
+00:32:33.360 --> 00:32:36.240
+and runtimes will be
+installed on your system.
+
+00:32:36.240 --> 00:32:40.410
+But that means the old ones
+may not actually be needed
+
+00:32:40.410 --> 00:32:42.330
+by any tools anymore.
+
+00:32:42.330 --> 00:32:46.350
+So an update will remove
+out-of-date installations
+
+00:32:46.350 --> 00:32:49.740
+that are no longer needed
+by the set of requirements
+
+00:32:49.740 --> 00:32:51.300
+that you have declared.
+
+00:32:51.300 --> 00:32:54.600
+You can also manually
+uninstall SDKs
+
+00:32:54.600 --> 00:32:57.180
+and runtimes if you need them.
+
+00:32:57.180 --> 00:32:59.340
+Architecturally, I
+want to call out here
+
+00:32:59.340 --> 00:33:02.430
+that dotnetup has a
+top-level install update
+
+00:33:02.430 --> 00:33:03.720
+and uninstall command.
+
+00:33:03.720 --> 00:33:07.290
+But it also has
+component-level commands,
+
+00:33:07.290 --> 00:33:09.600
+"dotnetup sdk install,"
+
+00:33:09.600 --> 00:33:13.050
+"dotnetup sdk update,"
+and so forth.
+
+00:33:13.050 --> 00:33:16.560
+This is because we are
+seeing dotnetup as a way
+
+00:33:16.560 --> 00:33:21.780
+to start thinking about
+the entire.NET toolchain
+
+00:33:21.780 --> 00:33:23.700
+in terms of components.
+
+00:33:23.700 --> 00:33:26.070
+Right now, the two
+clean lines we have
+
+00:33:26.070 --> 00:33:28.950
+for components are
+SDKs and runtimes.
+
+00:33:28.950 --> 00:33:32.880
+But there are features and
+functionality of the SDK
+
+00:33:32.880 --> 00:33:34.260
+that might make more sense
+
+00:33:34.260 --> 00:33:37.230
+as discrete components
+for you to use.
+
+00:33:37.230 --> 00:33:39.000
+Those of you who are
+familiar with tools
+
+00:33:39.000 --> 00:33:42.270
+like rustup may see
+where this is going.
+
+00:33:42.270 --> 00:33:46.200
+You can imagine a world where
+pieces of the SDK might be able
+
+00:33:46.200 --> 00:33:49.680
+to release at
+different cadences.
+
+00:33:49.680 --> 00:33:51.780
+And instead of
+drowning in a bunch
+
+00:33:51.780 --> 00:33:55.290
+of different update
+notifications and inability
+
+00:33:55.290 --> 00:33:58.500
+to control that rate of
+change, you, as a developer,
+
+00:33:58.500 --> 00:34:02.220
+could use dotnetup to stay on
+top of that and have one command
+
+00:34:02.220 --> 00:34:06.750
+to manage all of your
+updates and components.
+
+00:34:06.750 --> 00:34:12.690
+So that's where I think we'll
+stop with the demos themselves.
+
+00:34:12.690 --> 00:34:16.020
+And we'll switch back over
+to go talk a little bit more
+
+00:34:16.020 --> 00:34:20.730
+about what the future of
+dotnetup will look like.
+
+00:34:20.730 --> 00:34:23.190
+And to talk about future
+development, first,
+
+00:34:23.190 --> 00:34:26.250
+I want to talk about who
+we're designing this for.
+
+00:34:26.250 --> 00:34:29.600
+There are two primary
+consumers here.
+
+00:34:29.600 --> 00:34:33.740
+The first is humans, and the
+second is agents of all kinds.
+
+00:34:33.740 --> 00:34:36.740
+Not just the AI or
+LLM style of agent,
+
+00:34:36.740 --> 00:34:42.090
+but CI/CD systems are
+agents in a way as well.
+
+00:34:42.090 --> 00:34:46.740
+So really, it's humans
+and automated use cases.
+
+00:34:46.740 --> 00:34:49.560
+We want humans to be
+able to use this tool.
+
+00:34:49.560 --> 00:34:52.650
+And we want their expectations
+from other ecosystems
+
+00:34:52.650 --> 00:34:54.210
+to carry over broadly.
+
+00:34:54.210 --> 00:34:59.760
+We want to fill a need
+for simple management
+
+00:34:59.760 --> 00:35:03.300
+and consistent management of
+the parts of our platform.
+
+00:35:03.300 --> 00:35:06.090
+We don't want someone to have to
+learn a bunch of new concepts.
+
+00:35:06.090 --> 00:35:08.580
+We want them to just be
+able to clone a repo,
+
+00:35:08.580 --> 00:35:11.910
+run dotnetup install,
+and be good to go.
+
+00:35:11.910 --> 00:35:15.990
+And we want that user experience
+to be something that someone
+
+00:35:15.990 --> 00:35:18.810
+on any OS platform can use.
+
+00:35:18.810 --> 00:35:23.430
+So this entire time I've been
+talking about users using this.
+
+00:35:23.430 --> 00:35:26.490
+I'm meaning developers
+specifically.
+
+00:35:26.490 --> 00:35:28.020
+This is a developer time tool
+
+00:35:28.020 --> 00:35:31.050
+to make developer time
+use cases more simple
+
+00:35:31.050 --> 00:35:33.600
+and easy and straightforward.
+
+00:35:33.600 --> 00:35:35.700
+For your production use
+cases, you would still want
+
+00:35:35.700 --> 00:35:40.830
+to use your package manager
+to grab.NET runtimes
+
+00:35:40.830 --> 00:35:43.050
+for your framework-dependent
+applications.
+
+00:35:43.050 --> 00:35:44.700
+Or you'd want to
+bundle self-contained
+
+00:35:44.700 --> 00:35:47.370
+if that's the deployment
+mechanism you prefer.
+
+00:35:47.370 --> 00:35:51.720
+Both of those are better options
+for production deployments
+
+00:35:51.720 --> 00:35:54.210
+because with package
+manager packages,
+
+00:35:54.210 --> 00:35:56.910
+you can get cross-system-wide
+security updates
+
+00:35:56.910 --> 00:35:58.920
+as soon as they're available.
+
+00:35:58.920 --> 00:36:00.690
+Those of you doing
+self-contained deployments
+
+00:36:00.690 --> 00:36:03.570
+already know that you have to
+be on the ball every month
+
+00:36:03.570 --> 00:36:06.390
+for security releases to
+roll out new versions.
+
+00:36:06.390 --> 00:36:09.720
+So production is not what we're
+talking about with this tool.
+
+00:36:09.720 --> 00:36:14.070
+We're talking about developer
+time use cases for humans.
+
+00:36:14.070 --> 00:36:18.510
+Agents similarly
+bring expectations.
+
+00:36:18.510 --> 00:36:20.610
+In their case, their
+expectations are a combination
+
+00:36:20.610 --> 00:36:23.070
+of what they were trained
+on and what the skills
+
+00:36:23.070 --> 00:36:25.770
+and context they've
+been given say.
+
+00:36:25.770 --> 00:36:28.320
+And so we want agents to
+have something that looks
+
+00:36:28.320 --> 00:36:31.620
+and feels similar to other tools
+
+00:36:31.620 --> 00:36:35.070
+but adapts itself a little
+bit more cleanly to some
+
+00:36:35.070 --> 00:36:37.380
+of the specific needs
+of our ecosystems.
+
+00:36:37.380 --> 00:36:39.210
+So we want to give it a tool
+
+00:36:39.210 --> 00:36:43.410
+that the agent can use
+successfully, quickly,
+
+00:36:43.410 --> 00:36:46.890
+and importantly, so
+that it can do setup
+
+00:36:46.890 --> 00:36:48.900
+and management the right way.
+
+00:36:48.900 --> 00:36:51.870
+Because it's very possible for
+an agent to go look at some docs
+
+00:36:51.870 --> 00:36:56.430
+and get half the story and unzip
+a zip install on your system
+
+00:36:56.430 --> 00:37:00.720
+in a way that negatively impacts
+your development experience.
+
+00:37:00.720 --> 00:37:05.130
+So we hope this tool can provide
+guardrails for those agents
+
+00:37:05.130 --> 00:37:10.410
+in a way that ad hoc downloading
+and execution wouldn't do.
+
+00:37:10.410 --> 00:37:13.860
+Agents also tend to work
+best without admin rights,
+
+00:37:13.860 --> 00:37:16.680
+in sandboxes with guardrails.
+
+00:37:16.680 --> 00:37:20.480
+And so we needed a tool
+that would work outside
+
+00:37:20.480 --> 00:37:22.550
+of a user elevation context,
+
+00:37:22.550 --> 00:37:26.270
+which then leads naturally
+towards using your user
+
+00:37:26.270 --> 00:37:28.740
+directory in this way.
+
+00:37:28.740 --> 00:37:32.040
+Both of these categories of
+agents need to stay up to date
+
+00:37:32.040 --> 00:37:34.440
+to get security fixes and
+tooling enhancements.
+
+00:37:34.440 --> 00:37:37.950
+And they need to be able
+to exercise better control
+
+00:37:37.950 --> 00:37:39.330
+over their environments.
+
+00:37:39.330 --> 00:37:42.060
+They need to be able
+to say semantically,
+
+00:37:42.060 --> 00:37:45.120
+I want whatever the
+latest stable version is,
+
+00:37:45.120 --> 00:37:48.990
+or I have a constraint
+that says I need to stay
+
+00:37:48.990 --> 00:37:53.430
+on the latest 10
+series of tools.
+
+00:37:53.430 --> 00:37:59.400
+So we want you to be able to
+express those constraints
+
+00:37:59.400 --> 00:38:02.310
+and then have tooling respect
+them locally the same way
+
+00:38:02.310 --> 00:38:06.480
+that CI/CD tooling
+respects them today.
+
+00:38:06.480 --> 00:38:10.230
+So I've shown some things
+that it can do today.
+
+00:38:10.230 --> 00:38:12.330
+I want to look a little bit
+more towards the future
+
+00:38:12.330 --> 00:38:14.610
+as we get closer to
+internal and public preview
+
+00:38:14.610 --> 00:38:17.120
+and beyond milestones.
+
+00:38:17.120 --> 00:38:20.660
+What I showed today was
+management of stable SDKs
+
+00:38:20.660 --> 00:38:24.320
+and manual management
+of runtimes.
+
+00:38:24.320 --> 00:38:27.690
+The runtime installations,
+
+00:38:27.690 --> 00:38:30.180
+you didn't have a global JSON
+way of dealing with that.
+
+00:38:30.180 --> 00:38:33.920
+So you had to explicitly
+say, I need this version.
+
+00:38:33.920 --> 00:38:38.690
+So we want to, in internal
+preview, focus on managing SDKs.
+
+00:38:38.690 --> 00:38:40.280
+And we have a PR in the pipeline
+
+00:38:40.280 --> 00:38:44.330
+that will even let you
+manage daily SDKs.
+
+00:38:44.330 --> 00:38:48.900
+So those of you who are
+leading edge may know
+
+00:38:48.900 --> 00:38:51.180
+that we have these
+monthly previews
+
+00:38:51.180 --> 00:38:54.000
+of the next major
+version of.NET.
+
+00:38:54.000 --> 00:38:59.550
+So this month we released.NET
+11, Preview 5, for example,
+
+00:38:59.550 --> 00:39:01.080
+or I guess 4, actually.
+
+00:39:01.080 --> 00:39:03.460
+We're working on 5 right now.
+
+00:39:04.610 --> 00:39:07.490
+Those previews, we
+consider them stable
+
+00:39:07.490 --> 00:39:11.490
+from a release management
+process perspective.
+
+00:39:11.490 --> 00:39:16.440
+Separately from those previews,
+every build that goes
+
+00:39:16.440 --> 00:39:21.150
+into the.NET unified build
+system produces a workable,
+
+00:39:21.150 --> 00:39:23.490
+usable SDK.
+
+00:39:23.490 --> 00:39:26.160
+And those can sometimes
+provide bug fixes
+
+00:39:26.160 --> 00:39:29.010
+or sometimes provide new
+features and functionality
+
+00:39:29.010 --> 00:39:31.740
+that we would like
+fast feedback on.
+
+00:39:31.740 --> 00:39:34.470
+And so one of the things that
+we want the internal preview
+
+00:39:34.470 --> 00:39:39.030
+to enable you to do
+is to try that out.
+
+00:39:39.030 --> 00:39:41.790
+We would like you to be able
+to say, in your global JSON
+
+00:39:41.790 --> 00:39:46.470
+or at the command line, hey,
+give me the 11 nightlies.
+
+00:39:46.470 --> 00:39:50.790
+Give me the hot builds for 11,
+and just let me have a way
+
+00:39:50.790 --> 00:39:53.880
+to try those out easily.
+
+00:39:53.880 --> 00:39:55.290
+But we also want
+to give you a way
+
+00:39:55.290 --> 00:39:58.740
+to easily A-B compare behaviors.
+
+00:39:58.740 --> 00:40:01.500
+And so I call this
+one-shot execution.
+
+00:40:01.500 --> 00:40:04.760
+We want there to be a
+command called dotnetup.NET
+
+00:40:04.760 --> 00:40:09.290
+that you can use to specify
+a specific version of.NET
+
+00:40:09.290 --> 00:40:11.540
+to run a given command on.
+
+00:40:11.540 --> 00:40:15.260
+So, in your case, it may be
+as simple as "dotnet build."
+
+00:40:15.260 --> 00:40:19.560
+But you want to validate
+that.NET build on 10.0.300.
+
+00:40:19.560 --> 00:40:24.480
+Works the same for you that.NET
+build on 11, Preview 5 does.
+
+00:40:24.480 --> 00:40:28.020
+With this one-shot execution,
+you could specifically say, hey,
+
+00:40:28.020 --> 00:40:32.300
+dotnetup, run.NET
+build on 10.0.300,
+
+00:40:32.300 --> 00:40:37.320
+and then run.NET build on 11,
+Preview 5, and you could compare
+
+00:40:37.320 --> 00:40:39.450
+and contrast those experiences.
+
+00:40:39.450 --> 00:40:41.310
+Maybe there's a UX
+change to the way
+
+00:40:41.310 --> 00:40:43.410
+that the MSBuild Terminal
+Logger shows things
+
+00:40:43.410 --> 00:40:45.360
+that you need to react to.
+
+00:40:45.360 --> 00:40:49.590
+Or maybe there's a behavioral
+change in the SDK targets.
+
+00:40:49.590 --> 00:40:52.740
+Or maybe there's just a CLI tool
+that is tweaked that you want
+
+00:40:52.740 --> 00:40:55.020
+to try out a bug fix on.
+
+00:40:55.020 --> 00:40:58.860
+One-shot execution should make
+it easier for you to A-B test
+
+00:40:58.860 --> 00:41:03.390
+and do so in a way that doesn't
+impact your global installation.
+
+00:41:03.390 --> 00:41:07.380
+So I'm very excited for that,
+for people to try ad hoc fixes
+
+00:41:07.380 --> 00:41:09.960
+and give us even
+faster feedback.
+
+00:41:09.960 --> 00:41:13.380
+So all of that is internal
+preview: daily builds,
+
+00:41:13.380 --> 00:41:16.290
+one-shot execution, stable SDKs.
+
+00:41:16.290 --> 00:41:19.290
+The next milestone that we're
+aiming for is public preview.
+
+00:41:19.290 --> 00:41:20.940
+In this milestone, it's more
+
+00:41:20.940 --> 00:41:24.740
+about helping you
+stay compliant.
+
+00:41:24.740 --> 00:41:27.470
+The public preview
+will have the ability
+
+00:41:27.470 --> 00:41:31.250
+for dotnetup itself
+to update itself.
+
+00:41:31.250 --> 00:41:34.100
+Those of you who have used the
+Aspire CLI have seen how useful
+
+00:41:34.100 --> 00:41:36.360
+this can be in practice.
+
+00:41:36.360 --> 00:41:38.520
+But dotnetup, once
+installed, should be able
+
+00:41:38.520 --> 00:41:41.730
+to just take control of its
+own updating from there,
+
+00:41:41.730 --> 00:41:45.030
+with all appropriate signing
+and validation there.
+
+00:41:45.030 --> 00:41:47.490
+In addition, we want
+dotnetup to be able
+
+00:41:47.490 --> 00:41:52.630
+to give you update checks
+and notifications as well.
+
+00:41:53.970 --> 00:41:57.540
+Those of you who have used tools
+like Oh My Posh or Oh My Zsh,
+
+00:41:57.540 --> 00:42:00.480
+when you start up a terminal,
+when you're using these tools,
+
+00:42:00.480 --> 00:42:04.020
+once a day or once a week,
+they do a check to see
+
+00:42:04.020 --> 00:42:06.720
+if there's a new version
+and then let you know.
+
+00:42:06.720 --> 00:42:09.450
+We want to do the same
+both for dotnetup as well
+
+00:42:09.450 --> 00:42:12.750
+as your installed
+SDKs so that you know
+
+00:42:12.750 --> 00:42:15.390
+when there are security
+updates or feature updates,
+
+00:42:15.390 --> 00:42:18.360
+and you can hop on board those
+trains and take advantage
+
+00:42:18.360 --> 00:42:20.760
+of them as soon as possible.
+
+00:42:20.760 --> 00:42:23.610
+Public preview will also have
+full signature verification
+
+00:42:23.610 --> 00:42:28.800
+of all stable releases, both
+the.NET SDK and runtime tooling,
+
+00:42:28.800 --> 00:42:31.290
+as well as dotnetup
+itself, again,
+
+00:42:31.290 --> 00:42:34.310
+for that provenance stuff
+I mentioned earlier on.
+
+00:42:34.310 --> 00:42:36.680
+When you use this tool, we
+want you to be confident
+
+00:42:36.680 --> 00:42:39.230
+that you are using the bits
+
+00:42:39.230 --> 00:42:43.100
+that Microsoft intended
+for you to use here.
+
+00:42:43.100 --> 00:42:44.480
+It's about safety, security,
+
+00:42:44.480 --> 00:42:47.130
+and managing your supply
+chain in that way.
+
+00:42:47.130 --> 00:42:48.600
+For public preview,
+I'd also like us
+
+00:42:48.600 --> 00:42:51.390
+to have agent skills
+available and published
+
+00:42:51.390 --> 00:42:54.960
+to the dotnet/skills repo
+so that those of you
+
+00:42:54.960 --> 00:42:59.310
+who are using LLMs to
+do automated updates
+
+00:42:59.310 --> 00:43:04.740
+or do A-B testing, compare and
+contrast between versions,
+
+00:43:04.740 --> 00:43:08.670
+can have good ways of using
+dotnetup easily without having
+
+00:43:08.670 --> 00:43:11.730
+to write a bunch of skills
+in context yourself.
+
+00:43:11.730 --> 00:43:15.690
+For GA, we want to focus on fit
+and finish of the tool itself,
+
+00:43:15.690 --> 00:43:19.920
+official docs up on the.NET
+website, mentioning
+
+00:43:19.920 --> 00:43:23.880
+and supporting dotnetup as
+an official install method
+
+00:43:23.880 --> 00:43:28.250
+on the.NET website itself,
+and also expanding the usage
+
+00:43:28.250 --> 00:43:31.070
+of global JSON to
+manage those runtimes,
+
+00:43:31.070 --> 00:43:34.650
+that hypothetical
+I showed earlier.
+
+00:43:35.960 --> 00:43:40.620
+In the far future, dotnetup,
+I hope, is a vehicle for us
+
+00:43:40.620 --> 00:43:44.310
+to radically change the
+way we ship the SDK
+
+00:43:44.310 --> 00:43:48.690
+and enable faster updates
+of all of our tooling.
+
+00:43:48.690 --> 00:43:51.210
+I don't know if you've
+noticed, but with AI
+
+00:43:51.210 --> 00:43:54.510
+and LLMs exploding the way
+they have, there's a push
+
+00:43:54.510 --> 00:43:59.130
+to release earlier and more
+often and more incrementally.
+
+00:43:59.130 --> 00:44:06.180
+The way you manage risk is by
+broad testing and faster rollout
+
+00:44:06.180 --> 00:44:09.450
+so that if there is a problem,
+you can react to it faster.
+
+00:44:09.450 --> 00:44:11.550
+We want that for
+not just dotnetup,
+
+00:44:11.550 --> 00:44:13.830
+but the entire.NET toolchain.
+
+00:44:13.830 --> 00:44:15.600
+But it can be hard
+to do with some
+
+00:44:15.600 --> 00:44:18.660
+of these delivery mechanisms
+that I've talked about earlier.
+
+00:44:18.660 --> 00:44:23.070
+We think dotnetup can help us
+accelerate our delivery as well
+
+00:44:23.070 --> 00:44:26.970
+as help factor out the SDK
+itself into components
+
+00:44:26.970 --> 00:44:30.720
+that may be able to
+update more rapidly
+
+00:44:30.720 --> 00:44:32.940
+through those
+traditional channels.
+
+00:44:32.940 --> 00:44:36.030
+We also want to focus longer
+term on integrating dotnetup
+
+00:44:36.030 --> 00:44:38.340
+into the existing
+CI/CD integrations
+
+00:44:38.340 --> 00:44:41.610
+that you use to
+manage.NET today.
+
+00:44:41.610 --> 00:44:43.500
+Action/setup.net
+for GitHub Actions,
+
+00:44:43.500 --> 00:44:47.970
+and the usedotnet 2 action on
+Azure DevOps are great tools
+
+00:44:47.970 --> 00:44:51.930
+to have, but their features
+subtly differ sometimes.
+
+00:44:51.930 --> 00:44:54.780
+And they may not have all
+of the same capabilities.
+
+00:44:54.780 --> 00:44:57.900
+They may not be, necessarily,
+investing in the same amount
+
+00:44:57.900 --> 00:44:59.760
+of caching or performance.
+
+00:44:59.760 --> 00:45:05.250
+We are hopeful that by using
+dotnetup as the implementation
+
+00:45:05.250 --> 00:45:09.120
+of those tools, that we can
+bring consistency of experience
+
+00:45:09.120 --> 00:45:11.820
+and a single place to
+improve performance
+
+00:45:11.820 --> 00:45:15.870
+across environments
+there as well.
+
+00:45:15.870 --> 00:45:18.270
+So that's a brief glimpse
+into the roadmap.
+
+00:45:18.270 --> 00:45:20.790
+Timeline-wise, we hope to
+have an internal preview
+
+00:45:20.790 --> 00:45:24.810
+in the next couple weeks and
+public preview before the end
+
+00:45:24.810 --> 00:45:26.370
+of the summer, ideally.
+
+00:45:26.370 --> 00:45:29.880
+This tool, dotnetup,
+is not locked
+
+00:45:29.880 --> 00:45:33.510
+to the.NET SDK ship
+cycle or timeframe.
+
+00:45:33.510 --> 00:45:36.090
+It ships what we
+call out of band.
+
+00:45:36.090 --> 00:45:39.690
+And so with it, all of these
+gates are going to be based both
+
+00:45:39.690 --> 00:45:43.050
+on feature functionality as well
+as feedback that you give us
+
+00:45:43.050 --> 00:45:45.420
+about its quality
+and usefulness.
+
+00:45:45.420 --> 00:45:48.930
+So the more feedback you can
+give us, trying this stuff out
+
+00:45:48.930 --> 00:45:50.190
+and kicking the tires, even
+
+00:45:50.190 --> 00:45:53.460
+on these internal nightly
+bits, the better.
+
+00:45:53.460 --> 00:45:57.240
+Which leads us into what
+I'd like you to do now
+
+00:45:57.240 --> 00:46:00.630
+that you've sat through
+this whole talk with me.
+
+00:46:00.630 --> 00:46:04.260
+The first thing I'd like you to
+do is to get dotnetup itself.
+
+00:46:04.260 --> 00:46:06.600
+Here are those aka.ms
+links that you can use
+
+00:46:06.600 --> 00:46:08.250
+to easily get started.
+
+00:46:08.250 --> 00:46:10.410
+I'd start on the docs link here.
+
+00:46:10.410 --> 00:46:14.850
+So aka.ms/dotnetup/docs, that
+is a Getting Started doc
+
+00:46:14.850 --> 00:46:19.800
+that will give you the exact
+copy-paste shell script snippet
+
+00:46:19.800 --> 00:46:21.480
+that you can use.
+
+00:46:21.480 --> 00:46:24.900
+For the shell script, it's
+exactly what I did earlier,
+
+00:46:24.900 --> 00:46:27.450
+curling the script and
+piping it into SH.
+
+00:46:27.450 --> 00:46:30.030
+For the PowerShell one, it's
+the PowerShell equivalent,
+
+00:46:30.030 --> 00:46:33.870
+invoke web request into
+invoke expression.
+
+00:46:33.870 --> 00:46:35.820
+That's all you need
+to get started there.
+
+00:46:35.820 --> 00:46:38.010
+For those of you who want to
+dive a little bit deeper,
+
+00:46:38.010 --> 00:46:40.650
+there's a link to the
+dotnetup design spec
+
+00:46:40.650 --> 00:46:44.010
+that we created several months
+ago and have been iterating
+
+00:46:44.010 --> 00:46:46.560
+on as we add new features.
+
+00:46:46.560 --> 00:46:50.400
+If you have feedback about the
+tool, the appropriate place
+
+00:46:50.400 --> 00:46:53.730
+for it is at this link,
+dotnetup/feedback.
+
+00:46:53.730 --> 00:46:55.740
+That will take you to
+the discussion board
+
+00:46:55.740 --> 00:46:58.770
+on the.NET SDK repo in
+a special category just
+
+00:46:58.770 --> 00:47:00.360
+for dotnetup that I and the rest
+
+00:47:00.360 --> 00:47:04.980
+of the team will be
+interacting with on.
+
+00:47:04.980 --> 00:47:07.320
+And then finally, all of
+the samples that I showed
+
+00:47:07.320 --> 00:47:10.500
+in the demo today, as
+well as GitHub actions
+
+00:47:10.500 --> 00:47:13.590
+that automatically hook up
+dotnetup and do the things
+
+00:47:13.590 --> 00:47:18.270
+that I was doing today, can be
+found at the sample repo I made:
+
+00:47:18.270 --> 00:47:22.500
+github.com/baronfell/
+dotnetup-repo-patterns-demo.
+
+00:47:22.500 --> 00:47:25.170
+So everything I did,
+you can clone this repo
+
+00:47:25.170 --> 00:47:27.720
+and get started and
+try it yourself.
+
+00:47:27.720 --> 00:47:29.460
+We'd love you to get the tool,
+
+00:47:29.460 --> 00:47:32.310
+try it on the samples,
+try it on your repo.
+
+00:47:32.310 --> 00:47:35.490
+Let us know what
+you think of it.
+
+00:47:35.490 --> 00:47:36.450
+Does it flow well?
+
+00:47:36.450 --> 00:47:37.590
+Is it performant enough?
+
+00:47:37.590 --> 00:47:40.170
+Does it have the
+features that you want?
+
+00:47:40.170 --> 00:47:41.730
+Let us know at the
+feedback link.
+
+00:47:41.730 --> 00:47:44.070
+And thank you so
+much for watching.
+
+00:47:44.070 --> 00:47:47.950
+Have a great rest of the time
+at Build, and happy hacking.

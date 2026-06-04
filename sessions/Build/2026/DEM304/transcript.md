@@ -1,0 +1,718 @@
+**[00:00:00]** Yeah.
+**[00:00:03]** Lower is yours, it is ours.
+**[00:00:04]** It is ours OK, but the timer is going.
+**[00:00:07]** The time is going OK.
+**[00:00:09]** Matt Torgeson here, lead designer of C#.
+**[00:00:16]** And I'm Dustin Campbell.
+**[00:00:17]** I'm an engineer also on the C# team.
+**[00:00:21]** And we do C#.
+**[00:00:22]** We do C#.
+**[00:00:23]** And today we'll talk about just one tiny little feature
+**[00:00:25]** that we're adding to C# called Unions.
+**[00:00:28]** Union Types.
+**[00:00:29]** C# 15.
+**[00:00:30]** C# 15, it's coming out November.
+**[00:00:34]** Stuff is already in preview.
+**[00:00:35]** We can talk a little bit at at the end
+**[00:00:37]** about how to try it.
+**[00:00:40]** Unions is a thing that other languages have.
+**[00:00:44]** TypeScript has unions.
+**[00:00:46]** Most functional programming languages have some sort of discriminated unions,
+**[00:00:50]** and they're all different.
+**[00:00:51]** And we're now adding unions to C# and they're different
+**[00:00:54]** again.
+**[00:00:55]** They're our own little we call it Goldilocks, but you
+**[00:00:58]** can also call it compromise version of it.
+**[00:01:01]** So if you know unions already, this will be different.
+**[00:01:05]** If you don't, you don't have to worry about it
+**[00:01:06]** because we're just going to show you how unions should
+**[00:01:09]** be.
+**[00:01:11]** And as this is a demo session, there's your slide
+**[00:01:15]** moving over to demo.
+**[00:01:16]** OK, so we have code here, right?
+**[00:01:20]** And it's a, it's some modern C# code with top
+**[00:01:23]** level statements.
+**[00:01:25]** And what it is, we've got a series of records
+**[00:01:28]** down here.
+**[00:01:29]** Well, not all records, just a bunch of types that
+**[00:01:32]** represent pets or animals, right?
+**[00:01:34]** Animals like animals.
+**[00:01:35]** And let's imagine they're not really here like in the
+**[00:01:37]** real world scenario.
+**[00:01:38]** They're just types all around.
+**[00:01:39]** There's a dog library.
+**[00:01:40]** There's a cat library.
+**[00:01:41]** Yeah, but they don't talk to each other because dog
+**[00:01:44]** and cat people and yeah.
+**[00:01:45]** And we want to talk about pets.
+**[00:01:47]** Pets, right?
+**[00:01:48]** So up here we have if we want to talk
+**[00:01:50]** about pets, we have to they don't really have anything
+**[00:01:53]** in common these types, right?
+**[00:01:55]** So the best we can do is go all the
+**[00:01:57]** way to the top and go, well, we have to
+**[00:01:59]** treat them all as object, right?
+**[00:02:01]** So we have a list of object of pets, right?
+**[00:02:03]** And then we for each over these pets, we produce
+**[00:02:06]** it as we got a switch expression over each pet
+**[00:02:09]** to kind of deconstruct those values out and turn them
+**[00:02:12]** into a description.
+**[00:02:13]** And then we write to the console, OK, and this
+**[00:02:17]** will in fact demonstrate that there are 4 pets in
+**[00:02:22]** this.
+**[00:02:23]** Right, the four somethings.
+**[00:02:25]** Yeah, and one of them is not what I would
+**[00:02:28]** consider a pet.
+**[00:02:30]** OK, we're in San Francisco, so hey, to each his
+**[00:02:32]** own.
+**[00:02:33]** But maybe sharks or pets here in San?
+**[00:02:35]** Francisco not with that many teeth, but yeah, so we
+**[00:02:38]** have in here, we have a shark as well.
+**[00:02:40]** And so they there's no type safety, right?
+**[00:02:43]** You want a certain set of types, but there's no
+**[00:02:46]** way to protect against the other ones either in when
+**[00:02:49]** you're constructing that list or when we're switching against them
+**[00:02:53]** after.
+**[00:02:53]** And you can actually also see there's a little squiggle
+**[00:02:56]** on the switch there saying and you are not checking
+**[00:02:58]** all the other things an object could be, You're not
+**[00:03:01]** checking for crocodiles and so on.
+**[00:03:02]** Go down the list.
+**[00:03:03]** Yeah, I mean all the other natural pets like crocodiles
+**[00:03:06]** and snails.
+**[00:03:06]** So there's really, yeah, Keep, Yeah, like we only have
+**[00:03:09]** 25 minutes, I guess.
+**[00:03:11]** But yeah, so, so this is not great, but this
+**[00:03:14]** is sort of the best we can do in C#
+**[00:03:16]** up until now.
+**[00:03:17]** Yeah.
+**[00:03:18]** But wouldn't it be nice if even they, even though
+**[00:03:21]** these types were not created in a context where there
+**[00:03:23]** was a notion of pet, why can't we create a
+**[00:03:25]** notion of pet that they can belong to?
+**[00:03:28]** And that's what union types are in C#.
+**[00:03:30]** Right.
+**[00:03:30]** And so we create them with just typing union and
+**[00:03:33]** then we can say we're creating a union of pets
+**[00:03:37]** and I can just put the different types that make
+**[00:03:40]** up that set of that thing, that set of types
+**[00:03:43]** that is pet.
+**[00:03:45]** OK.
+**[00:03:45]** And it's that simple, right?
+**[00:03:47]** Then I can take pet and I don't have to
+**[00:03:50]** talk to these as object anymore.
+**[00:03:51]** I can say, well, no, this is a list of
+**[00:03:53]** pet.
+**[00:03:54]** And now we get an error because shark not a
+**[00:03:58]** pet shark saying and.
+**[00:04:00]** It says, if you look at the error there, it
+**[00:04:03]** says cannot implicitly convert type shark to pet.
+**[00:04:06]** So that's good.
+**[00:04:07]** But and that says something important and we can, it
+**[00:04:10]** means we should go and delete that line.
+**[00:04:12]** But what it also says is that you can implicitly
+**[00:04:15]** convert the other types to heads.
+**[00:04:18]** So one of the things that a union type apparently
+**[00:04:21]** can do in C# is you can convert from the
+**[00:04:24]** case types, the things in the list down there to
+**[00:04:27]** the union type.
+**[00:04:28]** That makes sense, right?
+**[00:04:29]** So OK, implicit conversions, right?
+**[00:04:32]** Check.
+**[00:04:33]** And then as we come down, we're doing our pattern
+**[00:04:36]** matching here.
+**[00:04:36]** It's our switch expression.
+**[00:04:38]** And then and then, you know, decomposing each of these
+**[00:04:40]** shark again has the error.
+**[00:04:42]** Hey, look, it can't you know, expression of type pet
+**[00:04:44]** cannot be handled by a pattern of type shark.
+**[00:04:47]** It.
+**[00:04:47]** Yeah, not a pet.
+**[00:04:49]** Doesn't.
+**[00:04:49]** Match so we can take rid of this.
+**[00:04:50]** But what's really cool here is that warning that was
+**[00:04:53]** on the switch that said that it was not, could
+**[00:04:56]** not be proven to be exhaustive.
+**[00:04:58]** It is now we've covered all the cases, right?
+**[00:05:02]** Everything that's a pet is covered by the switch.
+**[00:05:04]** And we now get compiler support.
+**[00:05:06]** We get compiler help to let us know that yes,
+**[00:05:08]** we have correctly handled everything.
+**[00:05:10]** Yeah, and to prove the point, let's comment out one
+**[00:05:13]** of the actual case types.
+**[00:05:15]** Yeah, we get that back.
+**[00:05:15]** Right, so you get the warning back.
+**[00:05:18]** So it's really helping you make sure you hit all
+**[00:05:20]** the cases and nothing but the cases.
+**[00:05:22]** That's part of the strong typing you get here.
+**[00:05:26]** Yeah.
+**[00:05:26]** And it's smart, right?
+**[00:05:27]** Like you could actually have like we could say pet
+**[00:05:30]** is actually a union of dog and cat and maybe
+**[00:05:32]** a bird, right?
+**[00:05:33]** So you could say it's like a nullable bird.
+**[00:05:35]** And now again, the warnings back because now that null
+**[00:05:38]** should be handled as well as one of the possible
+**[00:05:40]** cases.
+**[00:05:40]** So it's now not exhaustive.
+**[00:05:41]** So it's very smart around these kinds of things.
+**[00:05:44]** It's cool.
+**[00:05:45]** That's the feature.
+**[00:05:46]** Yeah.
+**[00:05:47]** Thank you very much and have a good have a
+**[00:05:49]** good conference.
+**[00:05:50]** It is.
+**[00:05:50]** It's the feature.
+**[00:05:51]** So, so, so far is this.
+**[00:05:53]** Do you like it?
+**[00:05:53]** It's OK, yeah.
+**[00:05:55]** Some nodding.
+**[00:05:56]** OK.
+**[00:05:56]** Yeah, yeah, I guess.
+**[00:05:57]** Smiling.
+**[00:05:58]** Yeah.
+**[00:05:58]** OK.
+**[00:05:59]** Thank you.
+**[00:06:01]** I, I we should do more crowd.
+**[00:06:02]** Work, I feel like one of the things we get,
+**[00:06:05]** we get a lot of feedback that we always do
+**[00:06:07]** these demos that are like a a domain of like
+**[00:06:10]** something like not really like the code you're trying to
+**[00:06:13]** write.
+**[00:06:14]** Like we're always doing person and student and here we're
+**[00:06:17]** doing pets and dogs and cats and birds.
+**[00:06:20]** We should probably try something that is more in that
+**[00:06:23]** domain.
+**[00:06:24]** Let's do.
+**[00:06:25]** The Let's Show Do we want to show members on?
+**[00:06:28]** Oh yeah.
+**[00:06:29]** We should do that first.
+**[00:06:29]** Actually, I want to do show one more thing here
+**[00:06:33]** now before we dig into that union itself.
+**[00:06:36]** Like it's a very, very short description, but of course,
+**[00:06:38]** you know, you could actually write a class or instruct
+**[00:06:40]** that way.
+**[00:06:41]** It's just not very useful.
+**[00:06:42]** What we usually do, right is we put braces on
+**[00:06:44]** it and then you declare members, right?
+**[00:06:47]** So we can declare a member in here.
+**[00:06:48]** We can actually declare this whole description thing.
+**[00:06:51]** This whole description calculation could just copy down here and
+**[00:06:55]** we could say, well, let's make this like a public
+**[00:06:59]** property, strict, not strict.
+**[00:07:01]** We don't even.
+**[00:07:02]** That's C#.
+**[00:07:02]** We don't even have.
+**[00:07:03]** That in that world, yeah.
+**[00:07:05]** And we can make it like, you know, a calculated
+**[00:07:08]** property.
+**[00:07:08]** But I can't switch on pet anymore.
+**[00:07:11]** I mean, I have to switch on this.
+**[00:07:12]** What kind of pet is this right now?
+**[00:07:15]** So now I can switch on that and then we
+**[00:07:17]** can come up here and we can just get rid
+**[00:07:20]** of that.
+**[00:07:22]** Yeah, just say pet the description.
+**[00:07:23]** Yeah.
+**[00:07:24]** So, so you can add your own function members to
+**[00:07:26]** it that compute stuff or whatever.
+**[00:07:28]** We we do draw a line at things that introduce
+**[00:07:31]** more state because we think you should think of it
+**[00:07:34]** as the state of this thing is just the actual
+**[00:07:37]** dog or cattle bird that's inside it shouldn't have additional
+**[00:07:41]** state, right that.
+**[00:07:42]** So we we prevent you from that.
+**[00:07:44]** But as long as it's just a function member, a
+**[00:07:46]** computer property, method, whatever, whatever static members you want, that's
+**[00:07:50]** totally fine.
+**[00:07:51]** So you can still do abstraction here and and the
+**[00:07:54]** kind, some of the common things you want to do
+**[00:07:56]** across the types in this concept you just created implement
+**[00:08:00]** them there.
+**[00:08:01]** OK, so that's that's how that's pretty much how I
+**[00:08:04]** think most people will use the feature.
+**[00:08:06]** I hope so.
+**[00:08:06]** I hope this is useful.
+**[00:08:07]** Yeah.
+**[00:08:09]** Because it is really great for collecting together these things.
+**[00:08:11]** And I was kind of alluding trying to head there
+**[00:08:13]** just a second ago.
+**[00:08:13]** Yeah, right.
+**[00:08:14]** I'd like, we'd like to just show you again, but
+**[00:08:17]** like kind of in a in a domain that's like
+**[00:08:19]** closer to what?
+**[00:08:20]** Like maybe you might be using this in normal code
+**[00:08:22]** that isn't all about cats and dogs.
+**[00:08:23]** That is about in fact one of the things that
+**[00:08:26]** almost everyone who asked us to add unions to C#
+**[00:08:28]** been asking about, specifically at the.
+**[00:08:31]** Scenario.
+**[00:08:31]** So let's go there.
+**[00:08:32]** What you see here is like.
+**[00:08:34]** This is nothing right now, sorry.
+**[00:08:36]** You want to go back?
+**[00:08:37]** No.
+**[00:08:37]** And it's good.
+**[00:08:38]** It's good.
+**[00:08:38]** OK, let's start over.
+**[00:08:40]** So let's do another, let's do a slightly different kind
+**[00:08:43]** of union scenario here.
+**[00:08:45]** Yeah.
+**[00:08:46]** So stuff on the wire, you get something back on
+**[00:08:50]** the wire, either there's something or maybe you get an
+**[00:08:55]** error, right so.
+**[00:08:57]** There's like you get like a success, right?
+**[00:09:01]** You get back, you're going to model that data as
+**[00:09:04]** like you get a success and that could be like
+**[00:09:06]** anything in there.
+**[00:09:07]** Yeah, it has some kind of payload.
+**[00:09:08]** So put in like, yeah, data T, yeah, make that
+**[00:09:11]** generic.
+**[00:09:12]** That's what you want, that's what you want.
+**[00:09:13]** What you get is.
+**[00:09:14]** Yeah, and and an error.
+**[00:09:16]** And then you want an error or you get an
+**[00:09:18]** error.
+**[00:09:18]** So you need to model this as well, right?
+**[00:09:20]** So we'd say it could be one of these two
+**[00:09:22]** things, right?
+**[00:09:24]** And then we can come in here.
+**[00:09:25]** Yeah, these are just records that are in the language
+**[00:09:27]** today, right?
+**[00:09:28]** Yeah, you can just write these already.
+**[00:09:29]** These are not new features.
+**[00:09:30]** These are old features that you're not using yet.
+**[00:09:33]** It's fine, but with unions now I can bring these
+**[00:09:36]** together and connect them, kind of glue them together.
+**[00:09:39]** So the compiler knows if these are related things, right?
+**[00:09:42]** And I can use those generics within it, right?
+**[00:09:45]** So I can say, you know, let's say we'll call
+**[00:09:48]** this like result, OK.
+**[00:09:50]** And that has two cases, right?
+**[00:09:52]** It has success of T and it has error and
+**[00:09:55]** now I could have a method that returns result of
+**[00:09:58]** T and it can return one of these two things.
+**[00:10:00]** Yeah, you.
+**[00:10:01]** Make it sound so cool I.
+**[00:10:02]** I do try to make it sound cool, actually.
+**[00:10:06]** Let's put together some data that we can kind of
+**[00:10:08]** model this.
+**[00:10:08]** Like I'm getting stuff off the wire, right?
+**[00:10:11]** So we'll say like, we'll make a queue of of
+**[00:10:13]** like results of say like like we're getting ints off
+**[00:10:16]** the wire.
+**[00:10:17]** Yeah, we're not heading totally into like realistic scenario territory
+**[00:10:20]** here.
+**[00:10:20]** We still got to have ints inside.
+**[00:10:22]** But like, it's the stuff where we're like, well, let's
+**[00:10:25]** in queue a couple of things that come from like,
+**[00:10:27]** you know, the data, we'll say we we want to
+**[00:10:29]** get a, let's get a success, say like, yeah, 42's
+**[00:10:32]** returned, that'd be successful.
+**[00:10:35]** And then like a new error like the error that
+**[00:10:39]** I couldn't type, nothing happened.
+**[00:10:43]** That's a good error.
+**[00:10:44]** Yeah, sorry.
+**[00:10:46]** Yeah.
+**[00:10:46]** OK.
+**[00:10:47]** So we've got some results and then we went to
+**[00:10:49]** like loop over these results.
+**[00:10:50]** So I could like do a while loop and you
+**[00:10:53]** know in there we could try and dequeue and grab
+**[00:10:56]** out the result and then come down in here.
+**[00:10:59]** And do a switch.
+**[00:11:00]** Again and do a switch to get that data out.
+**[00:11:02]** So switching on result.
+**[00:11:03]** So say switch and what's the first switch going to
+**[00:11:09]** be?
+**[00:11:09]** It's going to be a.
+**[00:11:10]** Success, right?
+**[00:11:10]** Yeah.
+**[00:11:10]** So assuming it's a success of int of int.
+**[00:11:14]** But now we can deconstruct it.
+**[00:11:15]** Because it's a record, yeah.
+**[00:11:17]** Which is.
+**[00:11:18]** That's why you should use records.
+**[00:11:19]** See.
+**[00:11:19]** You can deconstruct the data right out of it.
+**[00:11:21]** Yeah, and.
+**[00:11:22]** I can just pull out the D, right?
+**[00:11:24]** Pull out that data and then down here we're going.
+**[00:11:26]** To do notice.
+**[00:11:27]** Yeah.
+**[00:11:28]** Oh, and now I have the.
+**[00:11:29]** Switch on the switch.
+**[00:11:30]** Because I haven't.
+**[00:11:31]** You haven't.
+**[00:11:32]** Dealt with the errors.
+**[00:11:33]** So it's reminding us to deal with the errors, which
+**[00:11:35]** is what you've always wanted, right?
+**[00:11:36]** Yeah.
+**[00:11:38]** OK, so let's go ahead and do that.
+**[00:11:39]** We'll grab out that message and you know, we'll just
+**[00:11:43]** throw it.
+**[00:11:44]** Throw it, fine, bad things happen.
+**[00:11:46]** Sorry.
+**[00:11:47]** And I think that's what do we want to do.
+**[00:11:50]** No, we should write it.
+**[00:11:51]** We should write the like, you know, do.
+**[00:11:52]** It like write it and.
+**[00:11:54]** Then we should run it.
+**[00:11:55]** OK, let's make sure Dustin typed everything right.
+**[00:12:01]** There you go.
+**[00:12:01]** Gets 42, throws the exception.
+**[00:12:04]** And so, yeah, we're really in the business.
+**[00:12:06]** It's funny, right?
+**[00:12:06]** We're in the business of giving you more errors and
+**[00:12:09]** you and you love us for giving us more, for
+**[00:12:11]** giving you more errors, right.
+**[00:12:13]** It's like because you're getting a a tighter control of
+**[00:12:16]** your scenario here again.
+**[00:12:17]** Yeah, One thing I so now you've seen this union
+**[00:12:21]** type can be generic.
+**[00:12:23]** They can so we they can have members, they can
+**[00:12:24]** be generic.
+**[00:12:25]** They can do most things that other types can do.
+**[00:12:28]** The the case types themselves can be most things as
+**[00:12:30]** long as they can, as long as they convert to
+**[00:12:33]** object, they can be case types.
+**[00:12:34]** It's fine if they overlap or whatever.
+**[00:12:36]** There's no like restrictions on that.
+**[00:12:37]** They can be interfaces or type parameters or whatever.
+**[00:12:40]** So it's a pretty general feature.
+**[00:12:42]** But I wanted, I want you just to call out
+**[00:12:44]** this scenario is subtly different than the one we had
+**[00:12:47]** before in that it's not working on existing types that
+**[00:12:49]** were already in the system.
+**[00:12:51]** It's not trying to bring stuff together that others declared
+**[00:12:54]** it.
+**[00:12:55]** We are declaring the case types afresh here together with
+**[00:12:59]** the union type and that is sort of like that's
+**[00:13:02]** the kind of usage that functional people would call discriminated
+**[00:13:06]** unions that we're essentially emulating that here where you are,
+**[00:13:10]** where the you are modeling the whole package, so to
+**[00:13:13]** speak.
+**[00:13:14]** You're modeling the kinds of thing, things it can be
+**[00:13:17]** and the union saying that it can be those kinds
+**[00:13:20]** together.
+**[00:13:21]** And and I think that's going to be a common
+**[00:13:23]** pattern of usage as well.
+**[00:13:24]** Yeah, well, and one thing that stuck with me.
+**[00:13:28]** So I love this.
+**[00:13:29]** I think it's cool.
+**[00:13:30]** I think I will find it useful.
+**[00:13:32]** OK, but how is the sausage made?
+**[00:13:36]** Yeah, what's under the hood, Right.
+**[00:13:38]** What's actually happening here?
+**[00:13:39]** Because it seems like, I mean, if you work with
+**[00:13:42]** T sharp type systems, this feels kind of magical in
+**[00:13:45]** a way.
+**[00:13:45]** If you've ever tried to write this sort of thing,
+**[00:13:47]** it requires a lot of boilerplate.
+**[00:13:49]** So what are we doing here?
+**[00:13:51]** It's actually.
+**[00:13:53]** So it's actually in some ways fairly simple.
+**[00:13:56]** Well, then the feature is there's a whole like language
+**[00:13:59]** feature on top.
+**[00:14:00]** But you, if you're wondering what's underneath, what is that
+**[00:14:03]** union actually in terms that you you already have today.
+**[00:14:06]** We can actually show you.
+**[00:14:07]** We can, we can comment that out and we can
+**[00:14:10]** write it in a long form instead.
+**[00:14:12]** That actually also works.
+**[00:14:14]** Yeah, because unions, under the hood, there's they're they're structs.
+**[00:14:18]** When we create them, we give you kind of a,
+**[00:14:22]** a very, very like like prescriptive form, very opinionated form
+**[00:14:26]** of what a union should be.
+**[00:14:28]** When we produce 1 and what that prescription is, it's
+**[00:14:31]** like we're going to create a struct, right?
+**[00:14:35]** And that struct, what's that?
+**[00:14:37]** Yeah, we want to tell the compiler so.
+**[00:14:41]** So what are we saying here is you can build
+**[00:14:43]** your own union types that are different from what we
+**[00:14:46]** produce from the syntax.
+**[00:14:47]** And it's just, it just takes a little more work,
+**[00:14:50]** but not that much.
+**[00:14:51]** So we're going to use that little more work to
+**[00:14:53]** actually produce exactly the same thing.
+**[00:14:54]** But you could have done made different choices.
+**[00:14:57]** You have to tell the compiler, hey, I know this
+**[00:14:59]** is just a struct or a class or whatever, but
+**[00:15:02]** I mean for it to be a union.
+**[00:15:04]** So we do that by putting an attribute on it.
+**[00:15:06]** It's really complicated attribute.
+**[00:15:08]** It's already in.net 11 Preview 4.
+**[00:15:12]** There is a union attribute that makes us work with
+**[00:15:16]** five errors.
+**[00:15:17]** Actually more than that, there's more.
+**[00:15:18]** There's two errors on the spot.
+**[00:15:20]** And these are just errors.
+**[00:15:21]** The compilers giving you to say like this doesn't work,
+**[00:15:23]** right?
+**[00:15:24]** Because you're saying this is a result, but nothing connects
+**[00:15:26]** success and error with this any anymore because we've commented
+**[00:15:29]** that down below.
+**[00:15:30]** So we need to do that, right?
+**[00:15:32]** First of all, the very bottom warning or error says,
+**[00:15:35]** hey, a union member like it must have have a
+**[00:15:38]** public instance, right?
+**[00:15:40]** Like if if this is a, this is a union,
+**[00:15:42]** it must have a public instance value property of type
+**[00:15:45]** object.
+**[00:15:45]** And that's actually something that I didn't poke into up
+**[00:15:48]** here, but when we just had the union earlier, if
+**[00:15:51]** I dotted into that, you'd see that value property, right?
+**[00:15:54]** So we need to have one too.
+**[00:15:56]** And it looks really complicated.
+**[00:15:59]** No.
+**[00:16:00]** It's like that.
+**[00:16:01]** OK, and that gets rid of one of those errors.
+**[00:16:04]** So that's just a oh, and you're hiding it right
+**[00:16:06]** now I'm hiding it.
+**[00:16:07]** But that's just an auto property.
+**[00:16:09]** It's just it has a field behind it of type
+**[00:16:11]** object that contains whatever it is that this union actually
+**[00:16:14]** is now wrapped in this struct.
+**[00:16:16]** But let's get rid of these other errors up here.
+**[00:16:18]** Yeah, let's start.
+**[00:16:19]** How would it connect success and error?
+**[00:16:22]** Well, it says it needs at least one union creation
+**[00:16:25]** member.
+**[00:16:25]** How do you create things?
+**[00:16:27]** Constructors.
+**[00:16:28]** Constructors.
+**[00:16:28]** Right.
+**[00:16:28]** So we'll add a constructor to this type that takes
+**[00:16:32]** first one will take a success of int.
+**[00:16:35]** We'll call that parameter, we'll call it value.
+**[00:16:37]** And then we'll just kind of assign the, we'll assign
+**[00:16:40]** the big value property to the little value down there.
+**[00:16:44]** And if you look, you see that the success errors
+**[00:16:47]** went away, Yes.
+**[00:16:48]** And now we just have one on.
+**[00:16:49]** Error and the error on the result went away as
+**[00:16:52]** well because now it does have one case type.
+**[00:16:55]** So now it's a union of one thing.
+**[00:16:57]** And we just need to add the other, right?
+**[00:16:59]** Just another constructive for each case type.
+**[00:17:01]** Yeah.
+**[00:17:01]** And so we'll just add.
+**[00:17:02]** Error in here and.
+**[00:17:04]** Now we have a Union.
+**[00:17:05]** You need to go now.
+**[00:17:06]** We've constructed everything the compiler is going to look for
+**[00:17:09]** in treating this as a union.
+**[00:17:11]** Yeah, we do add one more thing when we generate
+**[00:17:13]** from the syntax, which is it implements an interface called
+**[00:17:16]** I union.
+**[00:17:17]** It's also already in.net 11.
+**[00:17:19]** And which just says it has the value property that's.
+**[00:17:22]** All it does is all it does is have the
+**[00:17:23]** value property.
+**[00:17:24]** So if you want to check for unions or you
+**[00:17:26]** know to do a runtime check and call that and
+**[00:17:28]** and some just like generic runtime code you can so.
+**[00:17:31]** Yeah, but so why are we doing this?
+**[00:17:33]** Why are we letting you do it this way as
+**[00:17:34]** well?
+**[00:17:35]** It is so that you can make other implementation choices
+**[00:17:37]** for your union.
+**[00:17:38]** If you don't like our our default that our syntax
+**[00:17:42]** generates that takes whatever case types and boxes them into
+**[00:17:46]** an object field and so on, then they're kind of
+**[00:17:49]** two major reasons why you might want a different implementation.
+**[00:17:54]** 1 is you are like really performance, you know, in
+**[00:17:58]** a very sort of tight loop or whatever, really performance
+**[00:18:03]** aware.
+**[00:18:04]** And you have, you want a union of two little
+**[00:18:06]** value types and you don't like that they get boxed
+**[00:18:08]** every time you create a union value from that's an
+**[00:18:10]** allocation that's expensive, whatever.
+**[00:18:12]** Well, choose your own form of storage.
+**[00:18:14]** Like have a field of the one type of field
+**[00:18:16]** of the other type and a third field that says
+**[00:18:18]** which one of them that is inside.
+**[00:18:20]** And you can avoid the boxing.
+**[00:18:21]** And there are extra things we're not going to show
+**[00:18:23]** you.
+**[00:18:23]** You can have the compiler generate different code and usage
+**[00:18:27]** that also avoids the box.
+**[00:18:28]** So the ways that you can make it non boxing
+**[00:18:31]** at at significant expense like it's going to be more
+**[00:18:34]** complicated from a like a developer point of view.
+**[00:18:38]** But if you want to save, save those extra allocations
+**[00:18:42]** or whatever, that's a way to do it.
+**[00:18:44]** And Copilot's going to write that part anyway, so that's
+**[00:18:46]** fine.
+**[00:18:47]** Yeah, right.
+**[00:18:47]** As long as you all teach it.
+**[00:18:49]** Yeah, it'll be fine.
+**[00:18:51]** So that is.
+**[00:18:52]** That's one scenario, yeah.
+**[00:18:53]** And the other one is, hey, we had we haven't
+**[00:18:56]** had unions for 20 some years in C#.
+**[00:18:59]** And so you did your best to write your own
+**[00:19:01]** union types.
+**[00:19:01]** Some of you, you have your own things that represent
+**[00:19:04]** unions.
+**[00:19:04]** You're like comment, do not derive from this class or
+**[00:19:08]** comment, do not assign any other types to you know,
+**[00:19:11]** you're trying your best.
+**[00:19:13]** And now here we are with a brand new language
+**[00:19:14]** feature and we're stomping all over you and saying, Nah,
+**[00:19:17]** Alice is better.
+**[00:19:18]** So instead you can put that union attribute on your
+**[00:19:21]** existing types that you want to be unions and maybe
+**[00:19:25]** add a few more members and stuff to make the
+**[00:19:27]** compiler happy.
+**[00:19:29]** And now your existing type can also become a union.
+**[00:19:31]** Types in the eyes of C# in the eyes of
+**[00:19:34]** the compiler can get that exhaustiveness in the switch and
+**[00:19:38]** the implicit conversions and all of that for free.
+**[00:19:42]** So that is, those are the reasons why the underpinnings
+**[00:19:46]** of the syntax itself are exposed for you to to
+**[00:19:49]** do whichever way you like, yeah.
+**[00:19:52]** It's sort of like, I mean, there's a lot of
+**[00:19:54]** features in C really starting with, I mean starting from
+**[00:19:57]** the beginning.
+**[00:19:58]** But we've had a lot of features that like that
+**[00:20:01]** are built on patterns, right?
+**[00:20:03]** Things convention that we put in that you can go
+**[00:20:06]** and implement yourself.
+**[00:20:07]** They're not necessarily.
+**[00:20:09]** You know, in the type system per SE, but the
+**[00:20:11]** compiler will triple them specially, right?
+**[00:20:13]** And so that's what we've done with unions.
+**[00:20:15]** And this is just kind of like the basics and
+**[00:20:17]** you can go deep, you can go far, and it's
+**[00:20:19]** pretty cool.
+**[00:20:20]** And most of you will never need to do this
+**[00:20:23]** manual union writing stuff, but it's probably good for you
+**[00:20:26]** to see how our default one what that looks like
+**[00:20:28]** inside.
+**[00:20:29]** Now you know that it is in fact a struct
+**[00:20:31]** with a single reference field inside that it, that it
+**[00:20:34]** puts the whatever values they're into and boxes and casts
+**[00:20:38]** on the way in and out.
+**[00:20:40]** Good to know for like when you're thinking about performance
+**[00:20:43]** or whatnot.
+**[00:20:44]** So that's pretty much it for the.
+**[00:20:50]** Unions in C#?
+**[00:20:51]** Unions in C#, Yeah, that we would love to take
+**[00:20:54]** questions, but we'll probably only like get to 1 and
+**[00:20:59]** then we have a final slide we'll say.
+**[00:21:02]** Exhaustive.
+**[00:21:02]** It's huge.
+**[00:21:03]** Yeah, but we before we do the questions like I
+**[00:21:06]** know more, more of you might want to talk to
+**[00:21:09]** us about it.
+**[00:21:10]** We'll try to sneak away far enough that we're not
+**[00:21:14]** upsetting the next session here when we're done, and then
+**[00:21:17]** we will do our best to make it over to
+**[00:21:20]** the experts zone over the.
+**[00:21:22]** Pavilion over there the.
+**[00:21:23]** Pavilion over there, that's the green dev tools area.
+**[00:21:27]** That's like a big cube.
+**[00:21:28]** We'll be hanging over here.
+**[00:21:29]** We'll try to be there.
+**[00:21:31]** So come talk to us about unions there.
+**[00:21:32]** OK.
+**[00:21:33]** All right.
+**[00:21:34]** Let's take the question though.
+**[00:21:35]** Yeah.
+**[00:21:52]** Excellent.
+**[00:21:53]** You're gonna have to say it again, but you got
+**[00:21:54]** to.
+**[00:21:54]** You have to practice and.
+**[00:21:55]** That's OK, Fantastic case.
+**[00:21:57]** I'll even stand up for you.
+**[00:21:58]** So can you.
+**[00:21:59]** Obviously this exists in TypeScript JavaScript, which is probably what
+**[00:22:02]** many people are familiar with, and it's used kind of
+**[00:22:04]** in a different way.
+**[00:22:05]** A lot of times because it doesn't support overloads, you
+**[00:22:07]** end up using that with inbound parameters and things like
+**[00:22:10]** that.
+**[00:22:11]** I'm sure you had tons of discussion about how this
+**[00:22:14]** should be done here.
+**[00:22:15]** Can you just like expose us to a little bit
+**[00:22:17]** of that internal dialogue from your team?
+**[00:22:19]** Yeah, we'll do so.
+**[00:22:21]** So in TypeScript, union types are they're kind of structural.
+**[00:22:26]** You don't have to declare them by name.
+**[00:22:27]** You can just sort of cook them up on the
+**[00:22:29]** spot.
+**[00:22:29]** Like, you know, you can say dog or cat or
+**[00:22:31]** bird and like it just in as a type of
+**[00:22:33]** something and it'll figure it out.
+**[00:22:36]** And we were really like, we had some envy of
+**[00:22:38]** that.
+**[00:22:39]** Took a stab at it I think.
+**[00:22:41]** Yeah, we tried designing down that, down that path, but
+**[00:22:45]** what we found was TypeScript has it easy because all
+**[00:22:49]** the types in TypeScript go away at compile time.
+**[00:22:53]** They don't exist at runtime.
+**[00:22:54]** Types don't have to exist at runtime.
+**[00:22:56]** But if we do union types in C#, they have
+**[00:22:58]** to mean something at runtime too.
+**[00:23:00]** You have to be able to, to ask questions about
+**[00:23:03]** them at runtime.
+**[00:23:05]** That's just how.net works.
+**[00:23:07]** So we can't just throw them away.
+**[00:23:08]** And for that, it's better to have types at the
+**[00:23:11]** end of the day, it's just better to have types
+**[00:23:13]** that you then declare and give a name like if
+**[00:23:15]** you want, you can create a, a library and maybe
+**[00:23:18]** we will one day that is union of T, union
+**[00:23:20]** of T1, T2 and so on that you can kind
+**[00:23:22]** of get some of that structuralness back with generics.
+**[00:23:25]** We haven't done that yet, but that's a, that's a
+**[00:23:27]** possibility.
+**[00:23:27]** So we kind of had to, we like the TypeScript
+**[00:23:30]** is a, is unions of types.
+**[00:23:32]** They are type unions and we took that, but these
+**[00:23:36]** are, these are like nominal declared unions of types.
+**[00:23:39]** We couldn't do the other thing we made.
+**[00:23:42]** I think we may come back to it.
+**[00:23:43]** We.
+**[00:23:44]** May come back to it at some point.
+**[00:23:45]** There might be a layer on top of this or
+**[00:23:46]** something.
+**[00:23:47]** That's their proposals.
+**[00:23:48]** But for now, the compromise is this is more like
+**[00:23:52]** delegates that you know some some languages have function types.
+**[00:23:57]** We don't have anonymous function types, but we have ways
+**[00:24:00]** you can declare.
+**[00:24:01]** Them and and in a functional programming language where you
+**[00:24:04]** have discriminated unions, that's very different, right, Where everything's nominal
+**[00:24:08]** than that.
+**[00:24:08]** And so this is kind of like going right in
+**[00:24:10]** the middle and trying to say like, can we do
+**[00:24:12]** kind of both?
+**[00:24:13]** Yeah.
+**[00:24:14]** And now we're right.
+**[00:24:15]** So let's put that slide up.
+**[00:24:16]** But now you've got a taste of what will happen
+**[00:24:18]** if you ask us a question after.
+**[00:24:20]** Yeah.
+**[00:24:21]** So we're going to, we're going to do something like
+**[00:24:23]** that.
+**[00:24:24]** We, it took us five years roughly to get to
+**[00:24:27]** this very simple design.
+**[00:24:29]** So we, we went down a lot of paths and
+**[00:24:31]** we were happy to talk about it at length here,
+**[00:24:33]** though just a few resources.
+**[00:24:36]** The preview of Visual Studio for instance that's out has
+**[00:24:41]** support for uniontypesthe.net 11 preview VS Code, especially if you
+**[00:24:48]** run the C# extension in pre.
+**[00:24:50]** And the insiders are pre release.
+**[00:24:52]** Extension, Yeah, it will get what we showed will be
+**[00:24:54]** there in about a couple of weeks, I think, so
+**[00:24:57]** it will get even better.
+**[00:24:58]** There's some bugs in there, but that's it.
+**[00:24:59]** So go try it.
+**[00:25:00]** Thank you for listening.
+**[00:25:01]** Come ask questions.
+**[00:25:03]** See you all later.
+**[00:25:04]** Hope you like it.
+**[00:25:04]** Yeah.

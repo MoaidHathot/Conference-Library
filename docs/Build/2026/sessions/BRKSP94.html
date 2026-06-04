@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRKSP94 - Orchestrate special agents with NVIDIA Nemotron models on Foundry</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRKSP94</nav>
+        <h1>BRKSP94 &mdash; Orchestrate special agents with NVIDIA Nemotron models on Foundry</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRKSP94 &middot; Breakout</span>
+    <h1>Orchestrate special agents with NVIDIA Nemotron models on Foundry</h1>
+    <div class="speakers">Joey Conway, AYSEN Ilkbahar, Stephen McCullough</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(300) Advanced</span>
+<span>Festival Pavilion, Breakout 3</span>
+<span>2026-06-02 22:45 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">Agents</span> <span class="tag">Agents &amp; apps</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRKSP94?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/6c7fb279-6292-41b9-8bf5-5d5b12d9eb25" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/6c7fb279-6292-41b9-8bf5-5d5b12d9eb25" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Optimize enterprise Agentic AI with a tiered system-of-models architecture in Microsoft Foundry. This session demonstrates a plan-and-execute pattern routing tasks across frontier models for reasoning, NVIDIA Nemotron for complex sub-tasks, and local models for latency-sensitive execution. Learn to route workloads across cloud and edge tiers to minimize cost-per-task while maximizing quality. Dive into using special agents and post-trained open-source models to achieve faster task completion.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>NVIDIA&#39;s Nemotron team presents a tiered &quot;system-of-models&quot; approach to enterprise agentic AI, anchored by the newly announced Nemotron 3 Ultra open reasoning model and the Hermes agent harness. The session pairs an overview of NVIDIA&#39;s open-model strategy with a live demonstration of running these agents inside Microsoft Foundry hosted agents, governed through Microsoft Entra ID.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Nemotron 3 Ultra, NVIDIA&#39;s largest and most capable open model</strong> — Announced Sunday with 550 billion total / 55 billion active parameters, targeting frontier reasoning and orchestration; general availability stated for Tuesday (08:07).</li>
+<li><strong>Multi-teacher on-policy distillation</strong> — Knowledge from multiple task-specialized teacher models is distilled into Nemotron 3 Ultra to consolidate capabilities (00:09:11).</li>
+<li><strong>Unified NVFP4 [inferred] checkpoint</strong> — A single downloadable checkpoint runs in NVFP4 on Blackwell and falls back to run on Hopper, eliminating separate per-precision files (00:10:00).</li>
+<li><strong>Roughly 5x faster inference at frontier accuracy</strong> — Per third-party artificial analysis benchmarks, Nemotron 3 Ultra reaches frontier-level accuracy with about 5x faster inference speed versus the March release (00:14:05).</li>
+<li><strong>Foundry hosted agents demo</strong> — Hermes Agent on Nemotron 3 Super completes a real email-to-pull-request task and retains a learned skill across separate sessions and services (00:22:07).</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>The progression from large language models to reasoning models to agents, and the reason-act agent loop (context, plan, act, memory, orchestration).</li>
+<li>The &quot;system of models&quot; thesis: enterprises need multiple specialized models of varying sizes, modalities, and deployment locations.</li>
+<li>The Nemotron family pillars: reasoning, vision, information retrieval (embedding and re-ranking), safety/content moderation, and speech.</li>
+<li>The three reasoning model sizes mapped to GPU footprint: Nano (MoE, ~30B/3B active), Super, and Ultra.</li>
+<li>Architectural features: hybrid MoE, latent MoE for long context, multi-token prediction, and 1,000,000-token context length.</li>
+<li>Agentic benchmarks including tool-use productivity, long-horizon planning (ServiceNow Enterprise Ops Gym), coding, instruction following, and knowledge work.</li>
+<li>A cost-per-task Pareto &quot;cost-efficient frontier&quot; using CoreWeave and DeepInfra pricing.</li>
+<li>Foundry hosted agents: bring-your-own-container/harness, isolated sessions, agent identity via Entra ID, the Foundry managed toolbox, observability/audit traces, OAuth pass-through, and publishing agents to Microsoft 365 (Teams).</li>
+<li>Hermes self-learning skills: corrections captured as reusable skills, curated and generalized across a company.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;Every method captured by 1 lifts the rest of the team across the company. Every colleague&#39;s improvement makes everyone&#39;s work better. That&#39;s the power of Hermes.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;I&#39;m talking to this agent in the same way that I might talk to a colleague.&quot; — Stephen McCullough</p>
+</blockquote>
+<blockquote>
+<p>&quot;The agent now has an identity that can be retrieved and managed and governed across your company.&quot; — Stephen McCullough</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>NVIDIA Nemotron 3 Ultra</li>
+<li>NVIDIA Nemotron 3 Super</li>
+<li>NVIDIA Nemotron Nano</li>
+<li>Hermes Agent (Nous Research)</li>
+<li>Microsoft Foundry hosted agents / Foundry Agent Service</li>
+<li>Foundry managed compute endpoints</li>
+<li>Foundry managed toolbox</li>
+<li>Microsoft Entra ID</li>
+<li>Microsoft 365 / Microsoft Teams</li>
+<li>Microsoft Outlook</li>
+<li>GitHub</li>
+<li>NVIDIA CUDA</li>
+<li>NVIDIA Blackwell, Hopper, and Ampere GPUs; B200, H100 [inferred]</li>
+<li>NVFP4 precision format [inferred]</li>
+<li>Nemo Gym [inferred] (RL environments and skills)</li>
+<li>OpenCode and other open agent harnesses [inferred]</li>
+<li>Artificial Analysis (third-party benchmarking)</li>
+<li>CoreWeave, DeepInfra (pricing references)</li>
+<li>ServiceNow Enterprise Ops Gym</li>
+<li>Azure Blob Storage, MongoDB, Cosmos DB</li>
+<li>Comparison models: GLM [inferred], Kimi K2 [inferred], Qwen [inferred]</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Joey Conway — NVIDIA (Nemotron open model family)</li>
+<li>Stephen McCullough — AI Solutions Architect, NVIDIA</li>
+<li>AYSEN Ilkbahar — listed in session metadata</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>In-person demo and experts at the NVIDIA booth in the 308 space.</li>
+<li>NVIDIA open models, Nemo skills, and research available online.</li>
+<li>Session survey via on-screen QR code.</li>
+</ul>
+
+    </div>
+</section>
+
+<section class="section">
+    <h2>Frames</h2>
+    <div class="frames-grid">
+<figure><img loading="lazy" src="../frames/BRKSP94/frame-001-07-30.jpg" alt="Frame at 07:30"><figcaption>07:30</figcaption></figure>
+<figure><img loading="lazy" src="../frames/BRKSP94/frame-002-15-00.jpg" alt="Frame at 15:00"><figcaption>15:00</figcaption></figure>
+<figure><img loading="lazy" src="../frames/BRKSP94/frame-003-22-30.jpg" alt="Frame at 22:30"><figcaption>22:30</figcaption></figure>
+<figure><img loading="lazy" src="../frames/BRKSP94/frame-004-30-00.jpg" alt="Frame at 30:00"><figcaption>30:00</figcaption></figure>
+<figure><img loading="lazy" src="../frames/BRKSP94/frame-005-37-30.jpg" alt="Frame at 37:30"><figcaption>37:30</figcaption></figure>
+    </div>
+</section>
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (48,762 chars)</summary>
+        <pre class="transcript-body">[00:00:00] All right, we&#39;re good to go.
+[00:00:02] OK, getting started now, you guys hear me?
+[00:00:05] OK, all right, perfect.
+[00:00:07] So we&#39;re going to cover a bit today around some
+[00:00:10] new announcements from NVIDIA and work we&#39;ve done with some
+[00:00:13] partners, including Microsoft and some orchestration of agents.
+[00:00:18] So to kind of get a quick agenda here, I&#39;ll
+[00:00:20] talk about a little bit of the history of the
+[00:00:23] journey we&#39;ve been on the last few years and where
+[00:00:26] we&#39;re at today.
+[00:00:27] I&#39;ll talk about some new work from NVIDIA and the
+[00:00:29] Nemotron open model family.
+[00:00:31] And then we&#39;ll talk about the ecosystem and how we&#39;re
+[00:00:34] trying to help out and contribute more there.
+[00:00:37] So taking a little bit a trip on the journey
+[00:00:40] we&#39;ve been on.
+[00:00:41] So going back about 3 1/2 four years, I&#39;m hoping
+[00:00:44] many of you remember the ChatGPT moment.
+[00:00:46] We&#39;re all very excited to see that these large language
+[00:00:49] models we had known about and been working on for
+[00:00:52] years now, we&#39;re much, much more capable.
+[00:00:54] And it was an amazing interface.
+[00:00:56] We could ask complex questions and get complex answers back.
+[00:01:01] And so that was an exciting moment.
+[00:01:02] And then Fast forward about a year and a half,
+[00:01:05] DeepSeek published open models that were able to reason.
+[00:01:09] And in terms of open models, this was a breakthrough.
+[00:01:12] Previous to that, the ability to reason wasn&#39;t a common
+[00:01:15] thing in the open community.
+[00:01:16] And so that change enabled many, many more open models
+[00:01:20] and abilities to go through complex problems, things like math
+[00:01:24] and coding, scientific question answer.
+[00:01:28] And then moving forward even further to a few months
+[00:01:31] back at the beginning of this year, we now were
+[00:01:34] able to see agents, meaning software where we could interact
+[00:01:37] with models in the background.
+[00:01:39] But we&#39;re able to get a lot more work done
+[00:01:42] and focus more on the tasks and the outcome and
+[00:01:44] a little bit less on just simple question answer exchanges.
+[00:01:48] And that breakthrough enabled many, many more use cases.
+[00:01:52] And that&#39;s where we&#39;re going to spend most of our
+[00:01:55] time today to give a quick overview of how we
+[00:01:57] think about these agents and the work they do in
+[00:02:00] the in the kind of upper left, you can see
+[00:02:03] the prompt, which is often a request.
+[00:02:05] It could be work to get done, a job to
+[00:02:08] do.
+[00:02:09] And as that goes into the center, we think about
+[00:02:12] an agent and essentially this kind of a loop where
+[00:02:15] there&#39;s some context or background, some knowledge, either what the
+[00:02:18] agent needs to go do, what it has access to,
+[00:02:21] what its skills might be.
+[00:02:23] And then as it starts to proceed, it looks and
+[00:02:25] observes, it looks at what&#39;s available, it looks at what
+[00:02:29] it can do, likely can create a plan.
+[00:02:31] It starts to reason through that plan how it makes
+[00:02:34] progress, what are some of the tasks to be done.
+[00:02:37] And then it goes and starts acting and doing that
+[00:02:39] actual work.
+[00:02:40] And it&#39;ll loop through that until it gets the job
+[00:02:42] done.
+[00:02:43] And then in the upper right, you can see things
+[00:02:45] like tools and skills that we&#39;ll have access to.
+[00:02:48] And so often you can configure these things.
+[00:02:51] An enterprise Oregon company might provide some of them.
+[00:02:53] There&#39;s also security and governance.
+[00:02:55] Just like employees have access to things today, we expect
+[00:02:59] agents to also have access as well.
+[00:03:01] And then in the bottom, of course, there&#39;s memory.
+[00:03:03] Can be short term memory, can be long term memory.
+[00:03:06] The idea is, is allowing it to know what work
+[00:03:08] it&#39;s done, what work needs to happen, and also perhaps
+[00:03:11] even broader knowledge of other work other agents are doing
+[00:03:14] as well too.
+[00:03:15] And then on the far left under prompt, you can
+[00:03:17] see orchestration.
+[00:03:18] And so the idea here is that one agent is
+[00:03:20] running through this loop, getting work done.
+[00:03:22] It could even work with other agents and be able
+[00:03:25] to orchestrate workloads with them and across a fleet of
+[00:03:28] agents.
+[00:03:29] And so we think about this idea of these agents
+[00:03:31] being powered by a harness as well as large language
+[00:03:35] models.
+[00:03:35] And so to get even more specific, here we overlaid
+[00:03:38] some icons of where we see large language models running.
+[00:03:41] You can see a lot of it in the center.
+[00:03:43] So they power a lot of the, we&#39;ll say context
+[00:03:45] of their reason act essentially the work the agent&#39;s doing.
+[00:03:49] There&#39;s skills, and skills often can run on a CPU.
+[00:03:53] They can also run on a GPU.
+[00:03:55] We have our CUDA software stack there as well as
+[00:03:57] large language models.
+[00:03:58] There&#39;s security and governance that could be access to network
+[00:04:02] protocols or content across a company.
+[00:04:05] At the bottom there&#39;s memory.
+[00:04:06] Memory can take place in many different locations.
+[00:04:09] It can be across the network, it could be local,
+[00:04:12] it could be on CPUGPU.
+[00:04:14] And there&#39;s also some memory inside the LLM as well
+[00:04:17] too.
+[00:04:20] To to take a step now into how NVIDIA, how
+[00:04:22] we think about these long running agentic systems and what
+[00:04:25] are some of the key pillars we think are essential.
+[00:04:28] So the first one, we think about our systems of
+[00:04:31] models, meaning our view is that in order for enterprises
+[00:04:34] to be the most successful agents, they will likely need
+[00:04:37] more than one model.
+[00:04:39] And these models might be different languages, different modalities, they
+[00:04:43] might be different sizes, they can run in different locations.
+[00:04:46] And so in this world of a system of models,
+[00:04:49] you can imagine many of these working together in the
+[00:04:52] center.
+[00:04:52] We think about agents as being secialized, meaning there&#39;s a
+[00:04:55] certain skill or set of knowledge that they have and
+[00:04:58] often inside enterrises.
+[00:05:00] Today, just like many of us secialize, you can imagine
+[00:05:03] these agents also gaining secialized skills and knowledge.
+[00:05:06] And you can see some fun graphics we have there
+[00:05:09] of our our CEO, we call it toy Jensen, but
+[00:05:11] you can see them, they&#39;re having different outfits, showing different
+[00:05:15] skill sets and you can imagine being post trained or
+[00:05:18] having the knowledge and capabilities and access to certain systems
+[00:05:21] to take tasks and do things.
+[00:05:23] And then on the right, we always think about efficiency.
+[00:05:26] And so we think about pre training, post training and
+[00:05:29] inference or runtime or test time thinking.
+[00:05:32] And on the X axis we think about compute.
+[00:05:35] And so we&#39;re constantly trying to move the curve to
+[00:05:37] the left, meaning we want to improve the intelligence and
+[00:05:40] reduce the amount of compute that it takes.
+[00:05:42] So things are able to get done faster.
+[00:05:46] In terms of NVIDIA Nemotron, to give a quick overview,
+[00:05:49] we think of Nemotron as a family of models, meaning
+[00:05:53] checkpoints as well as data as well as tools.
+[00:05:56] And inside the Nemotron family, we have some key pillars
+[00:06:00] and across kind of the center there reasoning is one
+[00:06:03] of the more common and popular ones.
+[00:06:05] We&#39;ll talk a bit about that today.
+[00:06:07] We also have vision capabilities.
+[00:06:09] We have information retrieval, meaning things like embedding and re
+[00:06:12] ranking.
+[00:06:13] We also have content moderation under safety and we have
+[00:06:16] work under speech.
+[00:06:17] So think about speech to text and text to speech.
+[00:06:20] All of these are part of the family in terms
+[00:06:22] of being open models with open data sets as well
+[00:06:24] as the training techniques we use to create them and
+[00:06:27] software to allow you to customize them.
+[00:06:30] And across the bottom, you can see kind of those
+[00:06:32] families of content that we publish to to be a
+[00:06:35] bit more specific now in terms of the the reasoning
+[00:06:38] side where we&#39;ll spend more time today and now moving
+[00:06:41] into the agentic world, we have three main sizes of
+[00:06:44] Nemotron models.
+[00:06:46] And we think of these in terms of the GPU
+[00:06:48] type of footprint or infrastructure that is needed to run
+[00:06:52] them as well as the capabilities of the model and
+[00:06:54] the size and the speed.
+[00:06:57] And so nano is our smallest and that focuses on
+[00:07:00] a very small data center GPU.
+[00:07:02] It&#39;s a small mixture of experts, model A30B, active 3B.
+[00:07:06] We then have super that we published in March.
+[00:07:08] The Nano is from December and in March when we
+[00:07:11] published super.
+[00:07:12] Think of this as say one or two H 180
+[00:07:16] gig type of data center GPUs and then ultra.
+[00:07:20] Think of this as the largest open model we have
+[00:07:23] and I&#39;ll talk more about it on the next slide,
+[00:07:26] but this will be thinking about say 2B200.
+[00:07:29] So in the data center side, also taking a few
+[00:07:31] GPUs, but being able to provide the best capabilities and
+[00:07:35] this will be available on Tuesday.
+[00:07:37] And then repeating across the bottom, just emphasizing all of
+[00:07:41] these models, we have open data sets which includes pre
+[00:07:44] training data, post training data, also the RL environments and
+[00:07:47] skills under Nemo Jim, as well as the research.
+[00:07:49] We continue to publish that as well too.
+[00:07:52] And then the announcement that we made on Sunday and
+[00:07:55] we want to be able to share more here is
+[00:07:58] around Nemotron 3 Ultra.
+[00:07:59] And so this is our largest model we published to
+[00:08:02] date.
+[00:08:02] It&#39;s also our most capable model.
+[00:08:05] And Nemotron 3 Ultra, you can think of this as
+[00:08:07] I&#39;ll go into more detail, but essentially frontier reasoning and
+[00:08:11] orchestration capabilities that&#39;s 550 billion and active 55 billion.
+[00:08:16] And across the bottom, we have some of the highlights.
+[00:08:18] So because we focus a bit on the inference and
+[00:08:21] the runtime, you&#39;ll see great task completion times, meaning we
+[00:08:24] focus a lot on the output generation as well as
+[00:08:27] the ability to prefill quickly and be able to run
+[00:08:30] through turns quickly on agentic tasks.
+[00:08:32] We also focus a bit on making sure that these
+[00:08:35] translate to lower costs so we can get more work
+[00:08:37] done in less time.
+[00:08:39] And we also spent time thinking about the agentic harnesses
+[00:08:42] in the ecosystem, and we&#39;ll have a demo video coming
+[00:08:45] up about that.
+[00:08:47] But we spent time making sure that Nemotron Ultra runs
+[00:08:49] well across the ecosystem of harnesses.
+[00:08:52] And then the last piece to emphasize is everything is
+[00:08:55] open here.
+[00:08:55] So we publish as much as we can and we
+[00:08:57] do that.
+[00:08:58] So it allows people to be able to go look
+[00:09:00] through it, gain confidence in it and build their business
+[00:09:03] on it.
+[00:09:05] Some of the breakthroughs in Nemotron 3 Ultra that we
+[00:09:08] want to celebrate.
+[00:09:09] The 1st is in terms of training techniques.
+[00:09:11] We&#39;ve improved over the years from things like supervised fine
+[00:09:15] tuning and then say late last year a lot of
+[00:09:18] it was around reinforcement learning.
+[00:09:20] And now we have multi teacher on olicy distillation, meaning
+[00:09:24] we&#39;re able to use multiple large teacher models.
+[00:09:28] You can think of them as we have various Ultra
+[00:09:31] models that are trained on specific tasks and then we
+[00:09:34] use these teachers and distill their knowledge down into Nemotron
+[00:09:38] 3 Ultra.
+[00:09:39] And so we spent quite a bit of time making
+[00:09:41] sure that that our Ultra model learns well from across
+[00:09:44] all the teachers and gains those capabilities and skills.
+[00:09:48] The second is that we have NBFP 4 as a
+[00:09:50] precision format that&#39;s optimized to run on Blackwell that allows
+[00:09:54] us to not only reduce the memory footprint, but also
+[00:09:58] accelerate the compute.
+[00:10:00] And one unique thing we&#39;ve done in Ultra is rather
+[00:10:03] than having separate checkpoints or files for different formats.
+[00:10:08] So previously if we were on Hopper, we would do
+[00:10:10] be float, we would do floating .8.
+[00:10:12] And if we&#39;re on Ampere, we do be float 16
+[00:10:15] and with Blackwell, we do NVFB 4.
+[00:10:17] With Ultra, we&#39;re now able to fit one checkpoint, meaning
+[00:10:20] one file, for example, can download from Hugging Face, and
+[00:10:24] that checkpoint runs both in NVFB 4 and Blackwell, but
+[00:10:27] also can fall back and run well on Hopper.
+[00:10:29] In addition, making it much easier to select the right
+[00:10:32] checkpoint because there&#39;s fewer options.
+[00:10:35] Then the third piece I mentioned briefly on the previous
+[00:10:37] slide is we spent quite a bit of time thinking
+[00:10:39] through open harnesses and the ecosystem.
+[00:10:41] And so these are things like Open Code and Hermes
+[00:10:43] Agent, Open Claw and Pie, making sure that Nemotron runs
+[00:10:46] well across all of them.
+[00:10:48] And then the far right, there&#39;s some architecture and features
+[00:10:51] that we&#39;ve added in Nemotron 3 Ultra that we also
+[00:10:54] had in Nemotron 3 Super.
+[00:10:56] So there&#39;s a hybrid Moe architecture where we made sure
+[00:10:59] that this was compute efficient in the data center also
+[00:11:01] that it was memory efficient.
+[00:11:03] In terms of long context, we have a latent Moe
+[00:11:06] architecture allowing us to be able to reach more experts
+[00:11:10] with less compute.
+[00:11:11] We have multi token prediction which allows us that with
+[00:11:14] one inference query we&#39;re able to we&#39;re able to predict
+[00:11:17] multiple tokens instead of 1, which improves the throughput.
+[00:11:21] And then the last piece is we have 1,000,000 context
+[00:11:24] length, meaning that on the input side we can fit
+[00:11:27] up to 1,000,000 tokens that the model can use to
+[00:11:30] then run through agentic tasks and keep in its memory.
+[00:11:35] To go through some details for Nemotron 3 Ultra, we
+[00:11:38] think of it as it&#39;s smaller and smarter, bringing the
+[00:11:41] frontier intelligence.
+[00:11:43] And you can see some references to the right here,
+[00:11:46] Nemotron 3 Ultra running down some tasks on the left.
+[00:11:49] So across the right, we have GLM 51, Kimi K26,
+[00:11:52] and Clen 35.
+[00:11:53] These are amazing open models.
+[00:11:55] They&#39;ve been great in the community, and we love seeing
+[00:11:58] the progress on the NVIDIA side.
+[00:11:59] For Nemotron, we looked at more agentic tasks this time
+[00:12:02] around than we have in the past.
+[00:12:05] And so things like pinch bench where we look at
+[00:12:07] the productivity of an agent, meaning is it able to
+[00:12:10] call the right tools?
+[00:12:11] Is it able to get the work done?
+[00:12:12] Is it able to do that efficiently?
+[00:12:14] And so you can see some great scores there.
+[00:12:16] We also looked at long horizon planning and this was
+[00:12:19] a, a data set or eval from service now called
+[00:12:22] Enterprise OPS Gym.
+[00:12:23] And this looks at being able to take a complex
+[00:12:26] task.
+[00:12:27] So say it&#39;s something like a password reset that might
+[00:12:29] need to reach many systems, might need to record information
+[00:12:32] and might need to send responses back and perhaps things
+[00:12:35] don&#39;t work and iterate.
+[00:12:37] And so we also looked at how to make sure
+[00:12:38] that we&#39;re running well in, in that type of environment
+[00:12:40] for an enterprise.
+[00:12:42] Then there&#39;s other things on here like coding, which has
+[00:12:44] become a lot more common and popular.
+[00:12:45] And we&#39;re excited to see that things like instruction following.
+[00:12:48] So make sure that when we give directions to the
+[00:12:50] model, it adheres to them strictly.
+[00:12:53] And then some more agentic tasks around knowledge work.
+[00:12:55] So think of these like, say more common tasks in
+[00:12:59] common industries like say manufacturing and healthcare and then professional
+[00:13:04] work tasks, things like PhD level work as well as
+[00:13:07] MBA level work.
+[00:13:09] And then of course, at the bottom we have our
+[00:13:10] our 1,000,000 context length.
+[00:13:11] We&#39;re really excited to see the next slide.
+[00:13:16] We think about both these tasks, tasks and accuracy on
+[00:13:20] the Y axis.
+[00:13:21] And so this is from a third party called artificial
+[00:13:24] analysis.
+[00:13:25] And they do a great job being able to measure
+[00:13:28] the capabilities of models as well as their throughput or
+[00:13:31] output speed.
+[00:13:32] And so on the Y axis, you have an index,
+[00:13:34] which is a combination of some of the previous tasks.
+[00:13:38] And then you can see the scores from these models
+[00:13:40] across the open ecosystem.
+[00:13:42] And then on the X axis, you can see the
+[00:13:44] speed or meaning the output, the speed at which the
+[00:13:46] model is able to generate tokens, which essentially means it&#39;s
+[00:13:49] speed.
+[00:13:50] It&#39;s able to think and answer questions.
+[00:13:52] And so you can see in the upper right the
+[00:13:54] idea of being able to have both the frontier accuracy
+[00:13:56] as well as having the throughput and speed.
+[00:13:59] And then for reference, we have NVIDIA and Emotron 3
+[00:14:01] down there as well.
+[00:14:02] That was our release in March.
+[00:14:05] And so what&#39;s exciting here is to see that with
+[00:14:07] that Frontier level accuracy, we&#39;re able to have 5X faster
+[00:14:10] inference speed and we expect that we&#39;ll likely be able
+[00:14:12] to push this further as well over the next few
+[00:14:14] weeks.
+[00:14:17] The the last slide here on the Motron 3 Ultra,
+[00:14:19] we wanted to think about things slightly differently.
+[00:14:23] And so we have a new chart here that we
+[00:14:25] haven&#39;t shared as much in the past.
+[00:14:26] And our first time was our CE OS Keynote GTCA
+[00:14:29] few days back.
+[00:14:31] And so in the upper right or I guess upper
+[00:14:33] left, we&#39;re thinking about the cost efficient frontier, meaning the
+[00:14:37] target of where we&#39;d like to see all models move
+[00:14:40] to.
+[00:14:40] And on the Y axis, it&#39;s accuracy, which specifically here
+[00:14:43] means the ability of the model to complete a coding
+[00:14:46] task correctly.
+[00:14:48] And then on the X axis, we have the cost
+[00:14:50] to complete the task, meaning the query goes in and
+[00:14:53] the model does a lot of work, calls some tools,
+[00:14:55] modifies files for some of these, might run a compiler,
+[00:14:58] might edit some text files, might grep and search, and
+[00:15:01] then comes back and delivers the correct answer.
+[00:15:04] And at the end of that, we want to measure
+[00:15:06] the amount of tokens and time it takes to then
+[00:15:08] put a price on it.
+[00:15:10] And so we use prices from COR Weave and deep
+[00:15:12] infra and pick the lowest price across these different models.
+[00:15:15] And we essentially priced out how long it took and
+[00:15:18] how much it costs for each task to complete.
+[00:15:21] And so then on the Pareto curve, what you can
+[00:15:23] see here is that at different cost footprints, so say
+[00:15:26] if you had a smaller budget or a larger budget,
+[00:15:29] you can then trade off and select the accuracy or
+[00:15:31] the capabilities of the model.
+[00:15:33] And what we&#39;re excited to see here is, is with
+[00:15:36] Nemotron 3 Ultra, we&#39;re moving to the upper left.
+[00:15:38] And we would expect to see over time, all of
+[00:15:40] these models start to move more and more to the
+[00:15:42] upper left.
+[00:15:46] And I think going forward, we have a demo that
+[00:15:49] we can show here and in, in all the contexts
+[00:15:51] of everything we shared about Nemotron 3 Ultra.
+[00:15:54] What we wanted to show is, is not just the
+[00:15:57] models capabilities, but show it actually running inside an open
+[00:16:00] harness as think of it as essentially the brains or
+[00:16:03] a backbone to an agent and being able to do
+[00:16:05] some work and get some tasks done.
+[00:16:08] And so I&#39;ll, I&#39;ll play the demo here and it&#39;ll
+[00:16:10] walk through a business scenario and show being able to
+[00:16:12] complete some business outcomes and Nemotron running in the background
+[00:16:16] to make that possible.
+[00:16:20] 4 senior leads are working on the launch with a
+[00:16:22] two week.
+[00:16:23] Are you guys able to hear the audio?
+[00:16:24] Every senior lead works alongside Hermes.
+[00:16:28] Agent on.
+[00:16:29] Neotron 3 Ultra bringing reasoning, writing and judgement to every
+[00:16:33] task.
+[00:16:34] When one of them corrects Hermes, the correction is saved
+[00:16:37] as a reusable skill the team can apply.
+[00:16:40] Maybe I&#39;ll pause it real quick and give the intro.
+[00:16:42] So the intro here is that we&#39;re taking a look
+[00:16:44] at a small company.
+[00:16:46] They want to do a product launch and there&#39;s four
+[00:16:48] different people working in four different functions at the company.
+[00:16:51] They have a two week window to get all the
+[00:16:53] content ready for that launch.
+[00:16:55] And then you&#39;ll see that inside each of these boxes
+[00:16:58] represent workflows that those people are working on.
+[00:17:01] And so I&#39;ll go ahead and continue now.
+[00:17:06] The Hermes Curator runs on Mimotron 3 super processing skills,
+[00:17:10] continuously merging, deduping, rewriting, testing and promoting only what&#39;s ready
+[00:17:15] to share.
+[00:17:16] Anything shared goes through enterprise review and approval.
+[00:17:20] The method is what gets shared, while the launch data
+[00:17:23] stays private.
+[00:17:25] Once approved, the skill joins Hermes Collective Wisdom, the company&#39;s
+[00:17:29] growing library of proven methods.
+[00:17:32] Months later, the team is moving faster, not from their
+[00:17:35] own work alone, but from each other&#39;s.
+[00:17:38] Every method captured by 1 lifts the rest of the
+[00:17:41] team across the company.
+[00:17:42] Every colleague&#39;s improvement makes everyone&#39;s work better.
+[00:17:45] That&#39;s the power of Hermes.
+[00:17:47] From News Research on NVIDIA Nematron 3 Ultra.
+[00:17:52] Perfect.
+[00:17:53] I&#39;ll go ahead and wrap up here and leave some
+[00:17:55] thoughts with you and then I&#39;ll hand it over to
+[00:17:57] my colleague here.
+[00:17:58] So I think what&#39;s exciting about the demo, and it
+[00:18:01] might not seem yet because we&#39;re just beginning in this
+[00:18:04] journey, but the idea that individual people can create skills
+[00:18:08] essentially ways for the agents to get their work done.
+[00:18:11] What&#39;s exciting is that as these people finish those skills,
+[00:18:14] the agents can now think about these skills and look
+[00:18:16] at ways to generalize them across a company.
+[00:18:19] And then you can imagine that as these skills get
+[00:18:21] generalized, more people are able to pick them up and
+[00:18:23] use them.
+[00:18:24] And you can imagine these skills representing things like experts
+[00:18:27] or subject matter experts across a company.
+[00:18:29] And you can imagine them becoming so great that people
+[00:18:32] are excited to work with these different agents or skills
+[00:18:34] inside a company.
+[00:18:35] You can even think forward to the future of a
+[00:18:37] world where a company builds these great skills or digital
+[00:18:40] employees to help get your work done.
+[00:18:42] That maybe when you look at potential job offers, you
+[00:18:44] might ask what type of agents or skills are available
+[00:18:47] at that company.
+[00:18:48] Because the better the agents and the better the skills,
+[00:18:50] the easier it will be to get your work done.
+[00:18:52] So I think we&#39;re just at the beginning of this
+[00:18:53] journey and we&#39;re super excited.
+[00:18:54] And Hermes agent, they have some great work happening there
+[00:18:57] in terms of being able to orchestrate these skills.
+[00:18:59] So with that, I&#39;ll hand over to my colleague.
+[00:19:01] Let&#39;s see.
+[00:19:06] Thank you, Joey.
+[00:19:07] Thanks.
+[00:19:09] All right.
+[00:19:10] Can you hear me well?
+[00:19:13] Awesome.
+[00:19:13] Hi, everyone.
+[00:19:14] My name is Steven McCullough.
+[00:19:16] I&#39;m an AI solutions architect with NVIDIA.
+[00:19:18] And essentially that means I work with Microsoft every day
+[00:19:21] to help integrate our hardware and our software together and
+[00:19:24] make it better for our customers.
+[00:19:27] So we&#39;ve talked a lot about the intelligence and the
+[00:19:31] agentic environment and how we can bring our agents to
+[00:19:34] the real world, and I wanted to show you exactly
+[00:19:38] what that looks like.
+[00:19:40] Now, we&#39;ve worked a lot with Microsoft to think about
+[00:19:44] how these agents can be best used and best implemented
+[00:19:47] into real world scenarios.
+[00:19:50] And a big part of this answer is Microsoft Foundry
+[00:19:54] hosted agents.
+[00:19:56] So I have some of the key features highlighted here.
+[00:19:59] One of the most important is that you&#39;re able to
+[00:20:02] bring your own container, your own harness, your own environment,
+[00:20:06] deploy it into Foundry hosted agents.
+[00:20:08] You can give it access to resources just like you
+[00:20:11] would with a regular colleague because it&#39;s given an agent
+[00:20:15] identity that&#39;s recognized across your environment.
+[00:20:19] You can implement it with a isolated session.
+[00:20:25] So any code that it writes, any documents that it
+[00:20:28] produces can be isolated to just a single session, helping
+[00:20:32] improve security and ensuring that any work done is isolated
+[00:20:36] to a certain user or environment.
+[00:20:40] And lastly, the life cycle and compliance of hosted agents
+[00:20:43] helps you ensure that you&#39;re meeting your auditing requirements, you&#39;re
+[00:20:47] meeting your versioning requirements, and you can make sure that
+[00:20:51] whatever agents you deploy in your environment can be utilized
+[00:20:54] to their best ability.
+[00:20:57] So in a real deployment, this is about what it
+[00:21:00] might look like.
+[00:21:02] We have Hermes agent running in Foundry hosted agents.
+[00:21:06] We have our Nemotron Super and our Nemotron Nano models
+[00:21:10] running in Foundry managed compute endpoints.
+[00:21:14] And we are using intra ID to give this agent
+[00:21:17] access to our external data.
+[00:21:20] So anything from GitHub to teams to our emails can
+[00:21:24] all be granted through intra ID to our agents.
+[00:21:29] And this is a massive helper.
+[00:21:31] And I&#39;m going to show you what this looks like
+[00:21:33] in a scenario in just a second.
+[00:21:35] But being able to tell your agent, hey, check my
+[00:21:37] e-mail and take care of this task.
+[00:21:40] Look through my teams at what my boss said yesterday
+[00:21:42] and, and you know, go ahead and take care of
+[00:21:45] it.
+[00:21:46] Being able to do that through Foundry hosted agents is
+[00:21:49] just such a big improvement and how we can leverage
+[00:21:53] agents and how we can work a lot more efficiently.
+[00:21:57] So without further ado, I&#39;ll show exactly what this looks
+[00:22:02] like in a real world scenario.
+[00:22:07] So here I have a Foundry hosted agent deployment running
+[00:22:11] in running Hermes Agent that&#39;s powered by Nemotron 3 Super,
+[00:22:16] and I just started a new session here in Foundry
+[00:22:19] Agent service.
+[00:22:21] So the first thing I&#39;m going to do is just
+[00:22:23] go ahead and ask it about itself.
+[00:22:25] What agent is it running?
+[00:22:26] What model is it running?
+[00:22:28] And you&#39;ll see that in just a few seconds it
+[00:22:31] spins up my new agent session and we get our
+[00:22:33] first response.
+[00:22:35] It tells me it&#39;s running in Nematron 3 Super and
+[00:22:37] that it&#39;s using the Hermes Agent harness.
+[00:22:40] Perfect.
+[00:22:41] All right, so let&#39;s see how this agent performs with
+[00:22:45] a real world task.
+[00:22:46] Now my colleague Alex, he sent me an e-mail this
+[00:22:49] morning about a new feature request in LLM Perf Bench,
+[00:22:53] one of our internal LLM testing repos.
+[00:22:56] Specifically, we need to add some support for the chat
+[00:22:59] completions endpoint to our benchmarking tool.
+[00:23:01] And this is pretty complex, but I believe in my
+[00:23:05] new agent.
+[00:23:06] So I&#39;m going to go ahead and delegate the task
+[00:23:09] to my agent.
+[00:23:11] Because my hosted Hermes agent is connected to my Outlook
+[00:23:15] and my GitHub through Foundry, it&#39;s able to find the
+[00:23:19] relevant e-mail, make the code changes and open APR all
+[00:23:23] by itself without my intervention.
+[00:23:26] And a key thing to notice here is that I&#39;m
+[00:23:29] not pasting in the e-mail directly into the context.
+[00:23:33] I&#39;m not including it in my prompt or as a
+[00:23:35] file.
+[00:23:35] Anything like that I&#39;m giving.
+[00:23:37] I&#39;m talking to this agent in the same way that
+[00:23:39] I might talk to a colleague.
+[00:23:42] I&#39;m telling it that my manager sent me an e-mail
+[00:23:46] and I want it to go find the e-mail and
+[00:23:49] to do its thing.
+[00:23:52] So because it has access to Outlook and GitHub, it&#39;s
+[00:23:55] going to go ahead and create this PR on our
+[00:23:58] behalf so we can go work on other things.
+[00:24:02] Now, while the agent is working on this PR, let&#39;s
+[00:24:05] take a look at exactly what our agent is doing
+[00:24:08] to pull in the context like this.
+[00:24:11] So my hosted Hermes agent has access to several different
+[00:24:15] services.
+[00:24:16] And this workflow in particular, of course, it&#39;s using Outlook
+[00:24:20] for e-mail, it&#39;s using GitHub, and it&#39;s using a coding
+[00:24:23] sandbox for its code testing.
+[00:24:26] And instead of wiring up each service, each authentication flow,
+[00:24:30] each MCP endpoint, and each permission model separately for each
+[00:24:34] individual server and each service, I can simply connect all
+[00:24:39] of these services to the agent through a single Foundry
+[00:24:42] managed toolbox.
+[00:24:44] And I can control all of those capabilities through the
+[00:24:48] single toolbox.
+[00:24:49] And this makes it very easy to grant your agent
+[00:24:53] access to all sorts of different tools across your company
+[00:24:57] and built into Foundry.
+[00:24:59] So if we look in the Foundry catalog, all of
+[00:25:02] these services are built in.
+[00:25:03] So we have Mongo DB, we have access to Teams,
+[00:25:07] we have access to Cosmos DB, all sorts of MCP
+[00:25:11] servers are built into the Foundry toolbox.
+[00:25:15] So we can get up and running very, very quickly.
+[00:25:17] And on top of that, if you want to bring
+[00:25:20] your own MCP tool, your own agent into into your
+[00:25:24] hosted agents environment, you can easily do that through this
+[00:25:28] toolbox.
+[00:25:32] And when teams have their own internal systems, they can
+[00:25:36] grant them access to the agent and control exactly the
+[00:25:40] functions that this agent can call through this toolbox as
+[00:25:45] well.
+[00:25:45] So this makes it very, very helpful for administrators to
+[00:25:49] ensure that their agent is not doing anything it&#39;s not
+[00:25:52] supposed to.
+[00:25:54] So in this example, I&#39;ve given access for it to
+[00:25:57] read from teams, but I do not want it sending
+[00:26:01] a message to my manager or sending an e-mail to,
+[00:26:04] you know, whoever.
+[00:26:06] So I am only very specifically listing exactly what it
+[00:26:09] can and cannot do.
+[00:26:11] So this makes it very easy to control all of
+[00:26:14] these permissions, all of these tools from a single endpoint.
+[00:26:19] And that matters more and more over time as because
+[00:26:22] as our workloads become more and more complex, our agents
+[00:26:24] start using more tools.
+[00:26:26] Having the single plaintiff management is only going to become
+[00:26:29] more and more impactful.
+[00:26:31] So it looks like our hosted Hermes agent has successfully
+[00:26:35] created the PR for LLM Perf Bench.
+[00:26:38] And one of the things I really like here is
+[00:26:40] that Foundry makes it easy to see exactly what happened
+[00:26:44] during this agent&#39;s task.
+[00:26:46] We can expect we can inspect exactly what tools and
+[00:26:49] which MCP servers the agent used, exactly what steps it
+[00:26:53] took along the way, and how it moved all the
+[00:26:55] way from the original e-mail to the final PR.
+[00:26:59] And this observability is really critical for enterprise level agents.
+[00:27:03] It gives developers a way to debug and to improve
+[00:27:06] workflows, and it gives organizations a much clearer audit trail
+[00:27:11] that shows how the agent acted on behalf of the
+[00:27:14] user.
+[00:27:15] So all of this is very traceable and very easy
+[00:27:18] to monitor.
+[00:27:19] So let&#39;s look at the PR.
+[00:27:21] Everything looks pretty good.
+[00:27:22] All of the code checks passed successfully.
+[00:27:26] The code files look great as well.
+[00:27:28] But there&#39;s some things I want to change.
+[00:27:31] 1st I want to add Alex, who was the original
+[00:27:34] requester as a reviewer.
+[00:27:36] If you see, there&#39;s no reviewers attached to this PR
+[00:27:40] and I want to make sure that it includes doc
+[00:27:43] strings and its function.
+[00:27:45] Just part of how we work as a company.
+[00:27:48] And more importantly, I want to make sure that anytime
+[00:27:52] the agent works with this repo in the future, it
+[00:27:55] remembers this feedback and it can implement docstrings.
+[00:27:59] It can add Alex as a reviewer anytime it works
+[00:28:02] with this repo, and this is a good example of
+[00:28:06] the sort of self learning skill mechanism inside a Hermes
+[00:28:10] agent.
+[00:28:11] Instead of treating every interaction as a one off request
+[00:28:14] and forgetting it later, the agent can turn this feedback
+[00:28:18] into a reusable behavior.
+[00:28:21] And in this case, it&#39;s learning that whenever it works
+[00:28:24] with this particular repo, LLM perf bench, it can learn
+[00:28:27] that Alex is always supposed to be the reviewer and
+[00:28:30] that docstrings are always supposed to be included.
+[00:28:34] So I can tell this agent to create the skill
+[00:28:38] and it goes and edits the PR successfully and it
+[00:28:42] creates the skill for us.
+[00:28:44] And you&#39;ll see that if I open the traces here
+[00:28:47] that it used the skill manage function.
+[00:28:51] So this is an eternal function within Hermes that Hermes
+[00:28:54] calls anytime it wants to essentially create a skill, delete
+[00:28:58] a skill, update a skill.
+[00:29:00] Anytime it works with its skills, it uses this skill
+[00:29:04] manage function to control those skills.
+[00:29:09] So let&#39;s verify that the agent updated the PR successfully
+[00:29:13] after our feedback.
+[00:29:15] Remember it should have Alex as the reviewer and it
+[00:29:18] should have the doc strings in the code.
+[00:29:21] So perfect, looks like Alex was added as the reviewer
+[00:29:25] and it looks like the there was a commit added
+[00:29:29] to add doc strings into the PR Perfect.
+[00:29:33] And notice here I&#39;m using my Oauth pass through to
+[00:29:37] the agent so the agent is able to inherit my
+[00:29:41] identity with the GitHub PR, so all of its commits
+[00:29:45] show as coming from myself.
+[00:29:50] Now with Foundry hosted agents, you have the full power
+[00:29:53] to customize these skills that your agent uses.
+[00:29:56] You have the full power to manage them across agents,
+[00:29:59] and these capabilities that are running inside your agent are
+[00:30:03] only going to grow over time.
+[00:30:04] They&#39;re only going to be more accustomed to how you
+[00:30:08] work, how your team works, and how your entire organization
+[00:30:11] works.
+[00:30:12] And that&#39;s what&#39;s great about these long running agents and
+[00:30:15] how they&#39;re going to make such a big impact across
+[00:30:19] all companies.
+[00:30:21] So not only does Foundry enable your agents with tools,
+[00:30:25] but Foundry also allows us to govern these agents through
+[00:30:30] Microsoft Intra ID.
+[00:30:32] So this integration with Intra ID essentially lets you manage
+[00:30:36] an agent&#39;s access essentially the same way that you would
+[00:30:39] manage access for a person at your company.
+[00:30:42] I can find this Intra ID from the Foundry UI
+[00:30:46] and I can grant it access to, for example, a
+[00:30:49] BLOB storage.
+[00:30:51] So I can go to my storage account, go into
+[00:30:55] IM and exactly the same way that I would grant
+[00:30:58] access to to Alex or or to another colleague, I
+[00:31:02] can look up this agent and I can add it
+[00:31:05] as a reader.
+[00:31:06] So that&#39;s exactly what I&#39;m doing this in this example,
+[00:31:10] I&#39;m giving it read access and you see I type
+[00:31:13] in that hash that it Foundry had for the agent
+[00:31:16] ID and I add it here and then I can
+[00:31:19] grant you access exactly like I would with any colleague.
+[00:31:24] So this is great.
+[00:31:25] For example, if you have data that you want the
+[00:31:29] agent to read or if you have a database that
+[00:31:32] you want this agent to maintain for you, you can
+[00:31:36] control very granularly what this agent can and cannot do
+[00:31:40] through intra IDs permissions.
+[00:31:44] Now the key point here is that the agent now
+[00:31:47] has an identity that can be retrieved and managed and
+[00:31:51] governed across your company.
+[00:31:53] And now your agent can be granted access.
+[00:31:55] It can be restricted access, it can be audited, it
+[00:31:58] can be governed using the same kind of controls that
+[00:32:01] enterprises already rely on.
+[00:32:04] And this capability extends far beyond only Azure resources too,
+[00:32:08] as agents become closer collaborators and day-to-day work.
+[00:32:14] We&#39;re implementing our agents and across the Microsoft 365 ecosystem.
+[00:32:20] And this built in identity and authentication and access management
+[00:32:23] is really the core of that.
+[00:32:25] It&#39;s only becoming more and more essential, like as I
+[00:32:28] said earlier, as our agents become more complex and more
+[00:32:31] intelligent.
+[00:32:34] So, so far, we&#39;ve looked at how Foundry helps control
+[00:32:37] what services and resources your agents can access.
+[00:32:40] But Foundry can also make it easy to integrate your
+[00:32:42] agents into your tools themselves.
+[00:32:45] So now that my agents configured and I like how
+[00:32:47] it&#39;s working, I can publish it and make it available
+[00:32:50] through Microsoft 365.
+[00:32:53] Now after I fill out some information, I can publish
+[00:32:56] it and make it available to my Microsoft 365 apps
+[00:32:59] and such as Microsoft Teams.
+[00:33:02] So let&#39;s open up Teams and look at our new
+[00:33:05] agent and verify that we can talk to this agent
+[00:33:09] #1 and verify that most importantly, it&#39;s remembering the skill
+[00:33:13] this conversation that we had from an entirely different session.
+[00:33:19] So if I go to Teams, I can pull up
+[00:33:21] the hosted Hermes agent and I can talk to it
+[00:33:24] directly in the Teams UI.
+[00:33:27] So let&#39;s go ahead and ask it if it has
+[00:33:29] the skill for working with the LLM Perf Vent repo.
+[00:33:33] Remember this is the skill that it just created about
+[00:33:36] 5-10 minutes ago so that it remembers that anytime we
+[00:33:40] any time that we are working with the LLM perf
+[00:33:43] bench repo.
+[00:33:45] So this means that I can manage these long running
+[00:33:50] agentic tasks from the same place.
+[00:33:53] I already collaborate with my colleagues.
+[00:33:55] I can go into teams, talk to this agent, it
+[00:33:58] can remember these skills, it can remember this context and
+[00:34:02] I can use it to essentially help as you know,
+[00:34:06] my copilot, my partner, and as we can see here,
+[00:34:09] the agent is remembering the specific guidance from our previous
+[00:34:14] interaction.
+[00:34:15] So perfect.
+[00:34:16] So this means it&#39;s not confined to a single chat
+[00:34:18] interaction.
+[00:34:19] This hosted agent can retain useful skills across interactions, across
+[00:34:23] sessions, across different services.
+[00:34:26] So over time it becomes more and more aligned to
+[00:34:29] the way that you and your team and your company
+[00:34:32] all collaborate.
+[00:34:35] So to recap, Foundry hosted agents help solve some of
+[00:34:39] the key problems that typically slow down agentic development.
+[00:34:43] With hosted Hermes, we saw this agent take a real
+[00:34:46] task from an e-mail.
+[00:34:47] We saw it go find that e-mail.
+[00:34:49] We saw it leverage the built in tooling from Foundry.
+[00:34:52] We saw it create its own PR, expose its tools
+[00:34:55] through observability, and learn a very specific skill that it
+[00:34:59] can remember across sessions and across services.
+[00:35:03] So the value here, it&#39;s not just that your model
+[00:35:06] can reason or that your model can write code, it&#39;s
+[00:35:10] that Foundry gives you this infrastructure and this tooling and
+[00:35:14] observability that you can use to customize your agent and
+[00:35:18] turn that model into a useful enterprise agent.
+[00:35:22] Now, there&#39;s so many great features about Foundry hosted agents
+[00:35:26] and Hermes and Nemotron.
+[00:35:27] So definitely come visit us at the booth and we&#39;ll
+[00:35:30] help you get started.
+[00:35:33] Now I want to recap some of the key points
+[00:35:36] that you know this combination of Nemotron and Foundry agent
+[00:35:41] service and Hermes bring to the table for enterprises.
+[00:35:45] So with Nemotron we&#39;re getting the highest token efficiency provided,
+[00:35:49] we&#39;re getting Frontier Intelligence, we&#39;re getting open models and training
+[00:35:54] data and open research.
+[00:35:55] And this is post trained like Joey said for agent
+[00:35:59] take use.
+[00:36:01] Now Hermes is coming in and it&#39;s helping us get
+[00:36:04] the most out of this model with the Hermes agent
+[00:36:07] wrapper or Hermes agent plus Nemotron with Hermes wrapping around
+[00:36:12] Nemotron, we have multi model orchestration.
+[00:36:15] Our agent is able to continuously learn over time, continuously
+[00:36:18] improve and become more of an asset to the organization.
+[00:36:22] Now Foundry comes in here and provides the infrastructure to
+[00:36:26] run this and to support it and to bring it
+[00:36:29] out to our entire company with the agent identities through
+[00:36:32] Intra ID.
+[00:36:33] This is a big part because we can now treat
+[00:36:35] this agent like we would a regular colleague.
+[00:36:38] We can grant access, revoke access, and integrate it into
+[00:36:42] our different tools such as Teams.
+[00:36:45] As you saw earlier, the toolbox helps you manage all
+[00:36:48] of the tools and MCP servers that your agent can
+[00:36:52] access and a single control plane.
+[00:36:55] And the secure session management helps you ensure that you
+[00:36:58] don&#39;t have any data leaving your session and that every
+[00:37:02] agent, every user gets a fresh session where they have
+[00:37:05] full control over their environment.
+[00:37:09] So if you&#39;d like to learn more, we have this
+[00:37:12] demo running at our booth in the three O 8
+[00:37:14] space.
+[00:37:16] So please come by, talk to the experts and we&#39;d
+[00:37:19] love to talk more.
+[00:37:21] Also check out our NVIDIA models and our Nemo skills.
+[00:37:27] We have tons of resources online for free that you
+[00:37:30] can go use, not just our models, our open source,
+[00:37:32] but all of the research and information about the models
+[00:37:36] as well.
+[00:37:37] So feel free to come find us, ask us questions.
+[00:37:40] We&#39;d be glad to come help.
+[00:37:44] All right, now I have a QR code for you.
+[00:37:46] So please, if you have a chance, you know, fill
+[00:37:49] out the survey, let us know what you think.
+[00:37:51] All right.
+[00:37:52] Thank you everyone.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

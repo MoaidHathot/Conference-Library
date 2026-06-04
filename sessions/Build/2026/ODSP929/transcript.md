@@ -1,0 +1,451 @@
+**[00:00:00]** SAM BASU: Hey, folks.
+**[00:00:01]** Welcome to Microsoft Build 2026
+**[00:00:03]** in beautiful San Francisco or online.
+**[00:00:06]** And welcome to modern "Cross-Platform.NET Development
+**[00:00:09]** with AI and Visual Tools", all powered by Uno Platform.
+**[00:00:12]** Now, I am Sam Basu, one of the Developer Advocates
+**[00:00:15]** at Uno Platform, and we are delighted to be here at Build
+**[00:00:18]** and connecting with you all.
+**[00:00:19]** But first up, let me show you what we can do
+**[00:00:21]** for you, the developer.
+**[00:00:23]** So modern.NET is great until you realize you have
+**[00:00:26]** to take your.NET apps to all the places,
+**[00:00:28]** and that's where you need a foundational platform
+**[00:00:30]** and some tooling to keep you productive.
+**[00:00:32]** That's exactly where Uno Platform comes in.
+**[00:00:34]** It's a flexible opensource stack for you
+**[00:00:36]** to build modern cross-platform.NET apps.
+**[00:00:39]** From a single shared code base of C# and XAML,
+**[00:00:42]** I get to build an app that runs everywhere, iOS or Android
+**[00:00:45]** for mobile, web browsers through WebAssembly, and Windows, macOS,
+**[00:00:49]** Linux for desktop and embedded systems.
+**[00:00:51]** I have my choice of UI rendering stack.
+**[00:00:54]** I have themes and extensions and toolkits and lots of UI
+**[00:00:58]** to help me build my.NET app.
+**[00:01:00]** Now, we do think about the entire lifecycle
+**[00:01:02]** of you building your cross-platform.NET app.
+**[00:01:05]** You can start from any OS and any ID
+**[00:01:07]** like Visual Studio or VS Code.
+**[00:01:09]** Setup is super simple, and I have lots of tools and utilities
+**[00:01:13]** to build my applications efficiently.
+**[00:01:15]** And then I have lots of guidance to be able to run
+**[00:01:18]** and deploy my apps to any platform and any device.
+**[00:01:21]** Now, on top of this foundational base, we have built
+**[00:01:24]** up Uno Platform Studio.
+**[00:01:25]** This is a collection of AI and design tools meant
+**[00:01:28]** to supercharge your productivity.
+**[00:01:30]** I have Hot Design, which is a runtime visual designer
+**[00:01:33]** for cross-platform.NET apps.
+**[00:01:35]** So while my app is running, I have a design canvas
+**[00:01:38]** to be able to tweak my UI.
+**[00:01:39]** I have a custom AI agent to be able to build me some UI.
+**[00:01:43]** And with Hot Reload, everything stays in sync
+**[00:01:45]** between my running app, my design surface,
+**[00:01:47]** and my code in my IDE.
+**[00:01:49]** Now, if you're a modern developer like me,
+**[00:01:51]** you're probably using agentic workflows
+**[00:01:53]** between your terminal or your IDE.
+**[00:01:56]** Let us bring the context that AI desperately needs,
+**[00:01:59]** and we do that through MCP tools, model context protocol,
+**[00:02:02]** which provides the grounding through our documentation,
+**[00:02:05]** and also gives you a way to be able to validate the UI
+**[00:02:08]** that AI is generating for you.
+**[00:02:10]** Now, having said all that, you don't need
+**[00:02:12]** to take my word for it.
+**[00:02:13]** We have plenty of examples of enterprise success stories.
+**[00:02:17]** With us here at Build is our partner Kahua.
+**[00:02:19]** This is a fantastic example of cross-platform.NET apps built
+**[00:02:24]** with Uno Platform, but deployed to an enterprise scale with lots
+**[00:02:27]** of mission-critical apps.
+**[00:02:29]** Kahua is using Uno Platform's AI and design tools
+**[00:02:32]** to build modern.NET apps, and also including AI
+**[00:02:35]** in the user experience.
+**[00:02:36]** So overall, a great story of how to modernize a.NET code base
+**[00:02:40]** and deploy it cross-platform with lots of AI and design help.
+**[00:02:45]** So enough of the talking, let's actually see some things
+**[00:02:48]** in action with Uno Platform.
+**[00:02:50]** All right, so I am here on my desktop, and if you're new
+**[00:02:54]** to this, the best place to start is often platform.uno.
+**[00:02:57]** That's our website that tells you all about what we do.
+**[00:03:00]** From here on, you can get into the docs.
+**[00:03:02]** This is great for getting situated, getting started.
+**[00:03:05]** And if you look at the setup guide here,
+**[00:03:07]** we are fairly agnostic.
+**[00:03:08]** So you can do this from any OS, any ID, or any command line,
+**[00:03:12]** any agentic workflow of your choice.
+**[00:03:14]** If you pick an ID, sometimes like Visual Studio,
+**[00:03:17]** there is an Uno Platform extension that's there
+**[00:03:19]** to make your life a little bit easier.
+**[00:03:22]** So let's actually look at the dev experience.
+**[00:03:23]** I'm going to hop into my Windows machine here,
+**[00:03:26]** and let's pull up Visual Studio.
+**[00:03:29]** Now, if you are doing this for the first time,
+**[00:03:31]** there's a terminal command tool called Uno Check that's going
+**[00:03:34]** to install all the dependencies and SDKs
+**[00:03:36]** so you can be up and running.
+**[00:03:38]** I have the extension installed, so this is saying, hey,
+**[00:03:41]** do you want to create a new app?
+**[00:03:42]** Let's just call it test, and I'm going to hit "Create" here.
+**[00:03:45]** So, next up what you see here is a quick little wizard.
+**[00:03:48]** This essentially steps you through all the things
+**[00:03:50]** that you may want to add in your cross-platform.NET app.
+**[00:03:53]** So what's your app runtime?
+**[00:03:56]** What are all the platforms you want to target, iOS, Android,
+**[00:03:58]** WebAssembly, and desktops?
+**[00:04:00]** What's your presentation layer?
+**[00:04:01]** What's your markup of choice?
+**[00:04:04]** What theme do you want in your app?
+**[00:04:05]** What are some extensions?
+**[00:04:07]** What are some app features?
+**[00:04:08]** All the way down to CI/CD pipelines.
+**[00:04:10]** So you can tweak this and you can change things up later on.
+**[00:04:13]** I'm just going to accept the defaults here and hit "Create".
+**[00:04:16]** And at this point, essentially it's scaffolding a
+**[00:04:19]** cross-platform.NET project that is all Uno Platform.
+**[00:04:22]** And it's, again, meant to be cross-platform from the get-go.
+**[00:04:26]** So Visual Studio is loading things up
+**[00:04:29]** and it's trying to read the.csproj.
+**[00:04:32]** Let's cancel out of a couple of things and close things
+**[00:04:36]** down so we can actually run this thing.
+**[00:04:38]** Now, this is a true cross-platform project,
+**[00:04:40]** so there is a lot going on here,
+**[00:04:43]** but it's all true single-shared code base.
+**[00:04:46]** So all of these platforms, these are essentially just folders.
+**[00:04:49]** So in case I wanted to do any platform-specific things,
+**[00:04:52]** I could.
+**[00:04:53]** So before even looking at anything else,
+**[00:04:56]** here is all the places where my app can run.
+**[00:04:58]** Let's just run this really quickly on desktop.
+**[00:05:01]** And again, this is a fresh build, so it's going to pull
+**[00:05:04]** down all of my NuGet dependencies
+**[00:05:06]** and hopefully do a quick build.
+**[00:05:09]** Again, you can run this on iOS, Android, WebAssembly,
+**[00:05:12]** and all of the desktop solutions.
+**[00:05:13]** This is Visual Studio just pulling it up for the first time
+**[00:05:16]** and trying to give me a cross-platform app
+**[00:05:18]** that I can run on all of the places.
+**[00:05:21]** So we'll give Visual Studio here just a second to load it up.
+**[00:05:24]** But in the meantime, why don't we keep going over here to --
+**[00:05:29]** Oh, actually, there's the app before I was switching over.
+**[00:05:32]** So this is, again, a super simple app, and it's trying
+**[00:05:34]** to show you some things about Hot Design, which we'll step
+**[00:05:36]** into in just a second.
+**[00:05:37]** So I'm going to exit out of that.
+**[00:05:38]** But that's your app, and it's got Hot Reload
+**[00:05:41]** and Hot Design wired up from the get-go.
+**[00:05:43]** This is, again, a super simple app.
+**[00:05:45]** It just has an empty shell so I can go navigate
+**[00:05:47]** between Page 1 and Page 2.
+**[00:05:49]** So it's really simple.
+**[00:05:50]** how you get started in Visual Studio.
+**[00:05:52]** Now, let me actually come back over here to the Mac side
+**[00:05:56]** and show you what the experience looks like in Visual Studio Code
+**[00:05:59]** with a slightly more advanced app.
+**[00:06:01]** This is an app called Uno Chefs.
+**[00:06:03]** It's actually one of our showcase apps
+**[00:06:07]** in our sample gallery.
+**[00:06:08]** Everything is opensource here so you can look at it.
+**[00:06:10]** So this is VS Code, and I have it open here.
+**[00:06:13]** You can notice here I'm deploying it to my desktop
+**[00:06:17]** in this case, but I can also do iOS, Android, or WebAssembly.
+**[00:06:20]** So let's go ahead and run this really quick.
+**[00:06:22]** It's a slightly more complicated app.
+**[00:06:25]** It's a showcase app meant
+**[00:06:26]** to show you different types of recipes.
+**[00:06:30]** So it's doing a quick build here.
+**[00:06:32]** And out comes the Uno Chefs app.
+**[00:06:34]** Now it's running on desktop.
+**[00:06:36]** I'm going to skip past a couple of things.
+**[00:06:38]** So this is an app.
+**[00:06:40]** And again, up front you can see that I have the same Hot Reload
+**[00:06:43]** and Hot Design wired up.
+**[00:06:44]** So I'm good to go.
+**[00:06:46]** So what I can do is get into Hot Design.
+**[00:06:49]** This is my runtime visual designer while my app is
+**[00:06:52]** still running.
+**[00:06:53]** So in this mode, I have a couple of things.
+**[00:06:55]** I can have a custom AI agent.
+**[00:06:57]** So here is an agent, and I can ask it to tweak my UI or build
+**[00:07:01]** up some new UI, again, while my app is running.
+**[00:07:04]** I can go into design mode,
+**[00:07:07]** in which case I can truly tweak all of my app UI design.
+**[00:07:10]** I have a canvas here.
+**[00:07:11]** I have a toolbox with all the UI that I can drag and drop.
+**[00:07:15]** I can have a nice visual design tree of all of the UI elements,
+**[00:07:20]** and I can really drill down into which parts
+**[00:07:22]** of the UI I want to change.
+**[00:07:24]** Notice how it's keeping track of my visual tree.
+**[00:07:27]** I can drill down further.
+**[00:07:28]** This looks like a feed view.
+**[00:07:30]** I can get into the value template, and I can drill
+**[00:07:33]** down even further into the actual item template.
+**[00:07:35]** So this is data binding.
+**[00:07:37]** And just to showcase that this is real data
+**[00:07:39]** that we are showing you, nothing fake.
+**[00:07:41]** So there is no design time or runtime.
+**[00:07:43]** It's all together.
+**[00:07:44]** And at any point, like if I'm done, I can just hit the
+**[00:07:47]** "Hot Design" button and I'm out of my design mode,
+**[00:07:49]** but my app is still running, which is really nice.
+**[00:07:52]** And then I can go back into Hot Design,
+**[00:07:54]** and let's just say you are building an app
+**[00:07:56]** where you're trying to create something several layers down.
+**[00:07:59]** So I can go into "Interactive Mode",
+**[00:08:01]** and now I can use the app exactly how my users would.
+**[00:08:04]** So I can tap on a single thing here, I can navigate around.
+**[00:08:08]** Let's go into "Nutrition" here.
+**[00:08:10]** And let's just say I want
+**[00:08:10]** to change this thing really quick here.
+**[00:08:12]** So from this page, I can now go back into design.
+**[00:08:16]** I can highlight that exact thing I want to change,
+**[00:08:18]** and that looks like a chart view.
+**[00:08:21]** And all of the properties of the UI show up here
+**[00:08:23]** on the right-hand side.
+**[00:08:25]** These are some brushes that we are using to paint the color.
+**[00:08:27]** So what if I wanted to actually change things up here
+**[00:08:30]** to let's just say aqua?
+**[00:08:32]** So you can see immediately it picks up
+**[00:08:34]** and it's changed the color here.
+**[00:08:37]** And if I can go back to the design,
+**[00:08:39]** the app is still running.
+**[00:08:41]** Everything is interactive.
+**[00:08:42]** And if I actually go all the way back and close
+**[00:08:45]** out the app here entirely and come back to my
+**[00:08:48]** "Recipe Details" page, this was one of the changes that we made.
+**[00:08:52]** We changed the brush, and you can see the protein brush is now
+**[00:08:55]** aqua, which is exactly what we changed.
+**[00:08:56]** So that's Hot Design and Hot Reload working together
+**[00:09:00]** to give you a nice experience between your IDE,
+**[00:09:04]** which has your code, and your running app
+**[00:09:07]** with a design canvas.
+**[00:09:08]** So again, that's just a quick look
+**[00:09:09]** at Hot Design with Hot Reload.
+**[00:09:12]** All right, now let's switch things up to looking
+**[00:09:15]** at a different way of building
+**[00:09:16]** with Uno Platform, and now it's with AI.
+**[00:09:18]** So I'm going to change up the project that I'm on,
+**[00:09:21]** and just open up a different app that I've been working on.
+**[00:09:25]** And this one here is going to be an enterprise dashboard
+**[00:09:27]** because it's very common for developers to be asked
+**[00:09:30]** to build a Salesforce or an ERP-type system
+**[00:09:34]** with a nice dashboard.
+**[00:09:35]** So that's what this is.
+**[00:09:36]** It is still an Uno Platform app,
+**[00:09:38]** so you can see it runs in all the places.
+**[00:09:40]** I'm going to choose "Desktop" as the quickest way to run it.
+**[00:09:42]** However, this one here is different
+**[00:09:44]** because I did not hand code all of the UI,
+**[00:09:47]** because I have AI agents who can do much of the work for me.
+**[00:09:51]** So I am going to switch up here
+**[00:09:53]** to "GitHub Copilot" in my AI chat.
+**[00:09:56]** But keep in mind, I can do this from Visual Studio, VS Code,
+**[00:10:00]** I have GitHub Copilot right there,
+**[00:10:01]** but I also have Claude Code.
+**[00:10:03]** I can also do the same thing with Codex or Gemini or Cursor,
+**[00:10:07]** any of those AI agents, it's all the same.
+**[00:10:10]** So here is GitHub Copilot, and in here I can use any model
+**[00:10:13]** if I want, any agent or plan mode if I want.
+**[00:10:17]** But if I look at the configurations here
+**[00:10:20]** that the AI agent harness is reading, it's all driven
+**[00:10:24]** by an mcp.json file, and you're going
+**[00:10:26]** to notice a couple of things in here.
+**[00:10:28]** Because we noticed that it's a Uno Platform project,
+**[00:10:30]** we have wired up a few things for you already.
+**[00:10:33]** These are two MCP servers that we offer right out of the box.
+**[00:10:37]** So the first one is an Uno MCP.
+**[00:10:39]** And what this one does is it brings the context of all
+**[00:10:42]** of our latest docs to the AI agent.
+**[00:10:45]** So the AI agent can search through our documentation,
+**[00:10:48]** it can fetch multiple pages, it can summarize,
+**[00:10:51]** and it can initialize itself with the best practices
+**[00:10:54]** for building on a platform app.
+**[00:10:55]** So again, the agent is kind of falling
+**[00:10:57]** into a bit of success here.
+**[00:10:58]** And then we have Uno App MCP.
+**[00:11:01]** This is what we like saying gives the AI agents eyes
+**[00:11:04]** and hands so that the agent is not guessing anymore.
+**[00:11:07]** The UI that you build should be able
+**[00:11:10]** to validate it by the agent itself.
+**[00:11:13]** So this is where the agent can actually take a screenshot
+**[00:11:16]** of your app.
+**[00:11:17]** You may have heard of Playwright.
+**[00:11:18]** This is Playwright for cross-platform.NET apps.
+**[00:11:21]** So the agent can click on things in your app.
+**[00:11:23]** It can look at the visual tree structure.
+**[00:11:25]** It looks at the PR default action.
+**[00:11:27]** It can paste text.
+**[00:11:28]** It can take a screenshot or do a key press.
+**[00:11:32]** So all of those things that a human tester can do,
+**[00:11:35]** now the AI agent can do as well.
+**[00:11:37]** So with those two MCP tools in action, you're going to find
+**[00:11:41]** that you have a lot more confidence
+**[00:11:42]** in whichever AI agent that you use.
+**[00:11:46]** So I have those two things wired up, and this was an app
+**[00:11:49]** where someone had a very nice design of a dashboard.
+**[00:11:51]** So that's where I started.
+**[00:11:53]** If you are working with design systems, you could bring things
+**[00:11:56]** over from let's say Figma or Pencil.
+**[00:11:59]** We can bring things over and have our MCPs talk
+**[00:12:02]** to those MCPs, or you can just start with a screenshot.
+**[00:12:05]** And again, with the MCP tools, we can pretty much make sure
+**[00:12:08]** that the UI looks and behaves exactly the way you want it to.
+**[00:12:13]** So this is me essentially running this through an AI agent
+**[00:12:17]** and building up an app.
+**[00:12:18]** So let me actually start up a fresh chat here.
+**[00:12:20]** Because I have those MCPs wired up,
+**[00:12:23]** I could do simple things like, "Launch the app on desktop
+**[00:12:30]** and tell me the total lead count".
+**[00:12:38]** The number of leads that I have may be from an ERP system here.
+**[00:12:41]** I happen to know that this is a sales dashboard.
+**[00:12:43]** So essentially we are asking the agent to go figure
+**[00:12:47]** out what it's going to be.
+**[00:12:49]** It's a.NET project.
+**[00:12:50]** It's probably going to be the.csproj.
+**[00:12:52]** And then it's going to start figuring out that I need
+**[00:12:54]** to do a build, and how do I launch the app,
+**[00:12:57]** and then how do I interact with the app.
+**[00:12:58]** So it's going to get to work and it's going
+**[00:13:01]** to try to see how I do this.
+**[00:13:03]** I have approved this on a couple of places in the workspace,
+**[00:13:06]** so it's not asking me for every tool invocation.
+**[00:13:10]** Build is green, so now you can see it's launching the Uno
+**[00:13:12]** app server.
+**[00:13:13]** And here comes the app.
+**[00:13:14]** The app is running.
+**[00:13:15]** I'm taking a visual tree snapshot
+**[00:13:18]** so I can read the total lead count here.
+**[00:13:21]** So again, it's getting to work.
+**[00:13:23]** It's doing the visual things.
+**[00:13:25]** And here you can see it's trying to get a visual snapshot here.
+**[00:13:29]** I'm going to approve this on the workspace
+**[00:13:31]** or you can approve this for all things.
+**[00:13:33]** But essentially it got a snapshot and it's trying
+**[00:13:35]** to read a whole bunch of things.
+**[00:13:36]** But while it does that, let me actually pull up the app here.
+**[00:13:40]** So this is, again, a cross-platform app
+**[00:13:43]** and it's a sales dashboard in here as well.
+**[00:13:45]** Even though AI built it, I still have my Hot Reload
+**[00:13:50]** and Hot Design in here and wired up.
+**[00:13:52]** So I can change up the design as I go.
+**[00:13:54]** If I don't like something, I can tweak as I go.
+**[00:13:57]** This one here is a pretty nice sales dashboard,
+**[00:13:59]** all with fake data, but you can get the idea.
+**[00:14:02]** And this, in fact, happens to be like a responsive app as well.
+**[00:14:04]** So this is running on desktop.
+**[00:14:06]** I can run it on web.
+**[00:14:07]** But as I shrink the app UI interface area,
+**[00:14:12]** you can now see it becomes responsive,
+**[00:14:14]** kind of more suitable for a mobile form factor here.
+**[00:14:18]** So again, beautiful app UI built entirely with AI agents,
+**[00:14:22]** again, with the grounding.
+**[00:14:23]** And eventually you can see the agent comes back and says, hey,
+**[00:14:25]** 2847 is your total lead count, which is accurate.
+**[00:14:28]** So, you can see this is the kind of thing you can pull off
+**[00:14:31]** when you have MCPs working for you.
+**[00:14:34]** So, everything that I do is grounded in docs.
+**[00:14:37]** So, again, to that point,
+**[00:14:39]** let me do another agentic interaction here.
+**[00:14:43]** So, if I say, "Tell me about MV UX design pattern
+**[00:14:50]** in Uno Platform apps", right?
+**[00:14:54]** MVVM is a design pattern that works very commonly with C$
+**[00:14:58]** and XAML codebases, but we can also do MVU
+**[00:15:01]** with an extended MVUX pattern.
+**[00:15:04]** So shorter dev loop, kind of a cleaner way of doing things.
+**[00:15:09]** And again, it's going
+**[00:15:10]** to do these documentation search-and-fetches over
+**[00:15:13]** and over again, trying to figure
+**[00:15:14]** out how exactly should you be doing this.
+**[00:15:18]** So again, you, the developer, never needs to leave the ID.
+**[00:15:21]** So I should bypass all approvals, I'll enable that.
+**[00:15:25]** I might still need to do this one at a time.
+**[00:15:29]** But you get the idea.
+**[00:15:29]** You can be in YOLO mode, where you allow all the things.
+**[00:15:32]** So, again, for a simple search,
+**[00:15:34]** it has to fetch three different pages, and then it's trying
+**[00:15:37]** to summarize to figure out how exactly does one do MVUX design
+**[00:15:41]** pattern with C$ and XAML for Uno Platform apps.
+**[00:15:44]** So, again, it's finding all the context, more doc searches,
+**[00:15:48]** and this is the benefit.
+**[00:15:49]** You, the developer, never needs to leave the ID.
+**[00:15:51]** It's all right there.
+**[00:15:53]** And it's now trying to give me back a summary
+**[00:15:56]** of exactly what it's going to take for me to do MVUX.
+**[00:15:59]** Here's the core idea.
+**[00:16:00]** Here's why we recommend it.
+**[00:16:03]** Here are the building blocks.
+**[00:16:04]** Here's the state management.
+**[00:16:06]** MVUX and MVVM, just a little bit of a rundown.
+**[00:16:08]** So all of this is power to you, the developer,
+**[00:16:11]** to never leave the IDE or your terminal access.
+**[00:16:16]** And I can do this if I close down this app.
+**[00:16:18]** I can do the exact same thing from Claude Code
+**[00:16:22]** or any other terminal-based agentic workflow.
+**[00:16:26]** So if I go in and do Copilot here in my terminal,
+**[00:16:31]** you're going to see GitHub Copilot come up here,
+**[00:16:34]** and I'm going to hit "Yes".
+**[00:16:35]** And in here, you'll also notice that already it has loaded
+**[00:16:38]** up a couple of skills and some MCP servers.
+**[00:16:40]** If I look at WAC MCP, those are exactly the same MCP tools
+**[00:16:46]** that I showed you from Visual Studio or VS Code.
+**[00:16:48]** So it's all the same.
+**[00:16:50]** Your AI agents are always grounded in factual docs,
+**[00:16:54]** no hallucinations, and what we are trying
+**[00:16:57]** to offer is more context
+**[00:16:59]** so the AI agents can test app interactive features while your
+**[00:17:03]** app is running so you can validate the UI.
+**[00:17:06]** So if you needed proof that all of this really, really works
+**[00:17:10]** and makes you super productive,
+**[00:17:11]** let me go back to my browser here.
+**[00:17:14]** So this was Uno Platform website.
+**[00:17:16]** If I head down here into "Resources",
+**[00:17:18]** we have a whole AI gallery.
+**[00:17:19]** These are amazing UI apps with incredible interactive,
+**[00:17:25]** and beautiful UX that we have built up.
+**[00:17:28]** Any of these apps and any of this UI will take us weeks
+**[00:17:31]** and weeks of coding to do this by hand,
+**[00:17:33]** like a matrix digital rain or like a Winamp classic player.
+**[00:17:37]** All of this is done with AI.
+**[00:17:39]** Because if you give it the right specs,
+**[00:17:41]** if you give it the right requirements document,
+**[00:17:44]** and you can also test out the UI with the help of MCPs,
+**[00:17:48]** the world is your oyster.
+**[00:17:49]** You can build a lot with AI agents being kind
+**[00:17:53]** of your sidekick to generate a lot of code and then being able
+**[00:17:55]** to validate what you're doing.
+**[00:17:57]** So take a look at this AI gallery.
+**[00:17:59]** Hopefully this is a lot of inspiration for you folks
+**[00:18:02]** to start building amazing apps.
+**[00:18:05]** All right, so that's it in terms of just a quick look at our AI
+**[00:18:10]** and design tools with Uno Platform.
+**[00:18:13]** Let me head back to where we had started.
+**[00:18:15]** So hopefully you see some of these things
+**[00:18:17]** that I'm promising you,
+**[00:18:19]** but nothing beats playing with it yourself.
+**[00:18:22]** All right, so coming back to Microsoft Build here,
+**[00:18:26]** this is an open invitation for you all to come and join us.
+**[00:18:30]** So like I said, we have a big presence here and if you look
+**[00:18:33]** at the Microsoft Build session catalog, do a search for.NET
+**[00:18:36]** or enterprise.NET, we have a session and we are here
+**[00:18:40]** with our partners Kahua.
+**[00:18:41]** You can see us and Kahua onstage live and we're going
+**[00:18:44]** to show you a lot more of what I just showed you here is
+**[00:18:47]** a preview.
+**[00:18:48]** And we might just have a very big announcement
+**[00:18:51]** and a surprise waiting on the cards here.
+**[00:18:53]** So if you wanted to build.NET fast with AI and visual tools,
+**[00:18:57]** come and join us for the theater session.
+**[00:18:59]** And then anywhere in the Expo area, look for us.
+**[00:19:03]** We're going to have a booth.
+**[00:19:04]** So come and talk to us about the latest tech and all things AI.
+**[00:19:08]** And while you're at it,
+**[00:19:09]** you might as well grab some cool swag.
+**[00:19:10]** So come and join us and let's connect here at Microsoft Build.
+**[00:19:15]** That's it from me.
+**[00:19:17]** Hopefully this was a whirlwind tour of all
+**[00:19:19]** that Uno Platform can do.
+**[00:19:21]** So, the bottom line is more than cross-platform.NET with AI
+**[00:19:25]** and visual tools to aid your productivity.
+**[00:19:28]** So start today at platform.uno.
+**[00:19:30]** We can't wait to see what you build.
+**[00:19:32]** And thanks for joining us here at Microsoft Build.
+**[00:19:35]** Bye.

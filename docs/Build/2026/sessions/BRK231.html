@@ -1,0 +1,1249 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRK231 - Deploy. Observe. Learn. Reinforcement learning for production agents</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRK231</nav>
+        <h1>BRK231 &mdash; Deploy. Observe. Learn. Reinforcement learning for production agents</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRK231 &middot; Breakout</span>
+    <h1>Deploy. Observe. Learn. Reinforcement learning for production agents</h1>
+    <div class="speakers">Alicia Frame, Omkar More, Long Chen</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(200) Intermediate</span>
+<span>Festival Pavilion, Breakout 2</span>
+<span>2026-06-02 22:45 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">Working with models</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRK231?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/2e2fd0b4-5960-4c31-b9d2-946486fbbe5f" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/2e2fd0b4-5960-4c31-b9d2-946486fbbe5f" target="_blank" rel="noopener">Download MP4</a>
+<a href="https://medius.microsoft.com/video/asset/PPT/2e2fd0b4-5960-4c31-b9d2-946486fbbe5f" target="_blank" rel="noopener">Slide deck</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Agents don&#39;t fail in demos — they fail in production. In this breakout, see how teams use fine-tuning and reinforcement learning on Microsoft Foundry to improve production agents using real usage signals. We cover when fine-tuning reduces cost and latency, when RL delivers deeper gains, and how Foundry makes it easy to train, evaluate, and redeploy safely. 
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>A demonstration of how Microsoft Foundry&#39;s model customization tools — distillation, supervised fine-tuning, reinforcement fine-tuning, and a new low-level training API — let teams turn production agent traces into cheaper, faster, and smarter models. Using a retail refund-processing customer service agent as a running example, the presenters climb an evaluation leaderboard from base models through to a fine-tuned open-source model that beats a frontier teacher.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Interactive low-level training API (preview)</strong> — Described as &quot;PyTorch as a service&quot; [00:01:26], it exposes training primitives (forward/backward pass, sampling, loss computation, grader and algorithm control) while Foundry manages the GPU compute.</li>
+<li><strong>Developer tier training</strong> — A spot/low-priority SKU offering training at 50% off standard-tier cost, with the median supervised fine-tuning job costing about a dollar [00:18:21].</li>
+<li><strong>Data zone SKU</strong> — Introduced at Build for residency guarantees in the US [00:18:37].</li>
+<li><strong>Developer tier hosting</strong> — Hosting with no hosting fee to make experimentation cheaper [00:46:47].</li>
+<li><strong>Fine-tuning skill for coding agents</strong> — A skill, available in GitHub Copilot for Azure or as a standalone download, that lets users describe fine-tuning goals in natural language and runs an autopilot flow that picks models, graders, and hyperparameters [00:41:16].</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>The cost pressure of agents, which consume 20–30x more tokens per turn than chat interactions.</li>
+<li>Fine-tuning as a shortcut into the foundation-model build process (pre-training, instruction tuning, alignment tuning).</li>
+<li>Distillation: capturing a large model&#39;s traces to train a smaller, cheaper model.</li>
+<li>Building evaluation graders in Foundry — out-of-the-box LLM graders (task/intent resolution) and custom Python graders with weighted scoring.</li>
+<li>Converting raw agent traces into datasets with deduplication and PII redaction.</li>
+<li>Reinforcement fine-tuning: rollouts, grader-driven rewards, and tool invocation during training.</li>
+<li>Reward hacking detection via telemetry (tool-calls-per-rollout, KL divergence, entropy, grad norm).</li>
+<li>The contrast between managed fine-tuning and the new interactive training API, including GRPO, curriculum learning, and alternatives like PPO/DPO.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;Fine tuning is really just your cheat code to building a foundation model.&quot; — Alicia Frame</p>
+</blockquote>
+<blockquote>
+<p>&quot;You&#39;re really never going to get smarter than your teacher... that&#39;s where reinforcement learning comes in.&quot; — Alicia Frame</p>
+</blockquote>
+<blockquote>
+<p>&quot;The more effort you put in, the more value you get.&quot; — Omkar More</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Microsoft Foundry</li>
+<li>GPT-5.4 [inferred]</li>
+<li>GPT-4.1 mini and GPT-4.1 nano</li>
+<li>o4-mini</li>
+<li>GPT-3.5 Turbo</li>
+<li>Qwen3 32B [inferred]</li>
+<li>Semantic Kernel</li>
+<li>LangGraph [inferred]</li>
+<li>Azure Functions / function app</li>
+<li>MCP servers</li>
+<li>GitHub Copilot for Azure</li>
+<li>Copilot CLI / Claude</li>
+<li>vLLM [inferred]</li>
+<li>Azure Virtual Machines</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Alicia Frame — Product lead, model customization</li>
+<li>Omkar More — Engineering counterpart, model customization</li>
+<li>Long Chen</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>Sample notebooks repository for the demos shown (referenced on the closing resources slide [00:47:13]).</li>
+<li>Sign-up for the preview of the training API (referenced on the closing resources slide).</li>
+<li>Three hands-on labs running the following day covering the demo example and reinforcement learning.</li>
+</ul>
+
+    </div>
+</section>
+
+<section class="section">
+    <h2>Frames</h2>
+    <div class="frames-grid">
+<figure><img loading="lazy" src="../frames/BRK231/frame-001-07-30.jpg" alt="Frame at 07:30"><figcaption>07:30</figcaption></figure>
+<figure><img loading="lazy" src="../frames/BRK231/frame-002-15-00.jpg" alt="Frame at 15:00"><figcaption>15:00</figcaption></figure>
+<figure><img loading="lazy" src="../frames/BRK231/frame-003-22-30.jpg" alt="Frame at 22:30"><figcaption>22:30</figcaption></figure>
+<figure><img loading="lazy" src="../frames/BRK231/frame-004-30-00.jpg" alt="Frame at 30:00"><figcaption>30:00</figcaption></figure>
+<figure><img loading="lazy" src="../frames/BRK231/frame-005-37-30.jpg" alt="Frame at 37:30"><figcaption>37:30</figcaption></figure>
+    </div>
+</section>
+
+<section class="section">
+    <h2>References</h2>
+    <ul class="refs-list">
+<li><a href="@{link=https://aka.ms/build/foundrydiscord; backpackLink=; label=Microsoft Foundry in Discord; category=Web link}" target="_blank" rel="noopener">Microsoft Foundry in Discord</a></li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (61,961 chars)</summary>
+        <pre class="transcript-body">[00:00:00] For coming, I&#39;m Alicia Frame and I&#39;m joined by Omkar
+[00:00:03] Moore, and we are here to tell you about fine
+[00:00:07] tuning and reinforcement learning.
+[00:00:10] So I am the product lead for model customization.
+[00:00:13] Omkar is my engineering counterpart.
+[00:00:16] And what we&#39;re going to tell you about today is
+[00:00:19] how you can deploy, observe, and learn from your production
+[00:00:22] agents to get better, smarter, cheaper, and faster models.
+[00:00:27] One thing just to call out before I get started
+[00:00:29] is it&#39;s a little noisy in here.
+[00:00:31] If you&#39;re having trouble hearing, there are headsets in the
+[00:00:34] back that you can get so that you can kind
+[00:00:36] of cut through the background noise.
+[00:00:39] But I will try to be super loud so you
+[00:00:41] can hear me.
+[00:00:42] And with that, let&#39;s get started.
+[00:00:45] And So what are we going to cover today?
+[00:00:48] We&#39;re going to start with the basics, 5 minutes of
+[00:00:51] slides and we&#39;re going to talk about what is fine
+[00:00:54] tuning, why fine tune, and what does this have to
+[00:00:57] do with production agents.
+[00:00:59] From there we&#39;re going to get started with the demos.
+[00:01:01] The first demo we&#39;re going to show you is how
+[00:01:04] you can use a technique called distillation to create cheaper
+[00:01:08] and faster agents.
+[00:01:09] Next, we&#39;re going to deal with what if your teacher
+[00:01:12] isn&#39;t smart enough?
+[00:01:13] How can we use reinforcement learning to learn from our
+[00:01:17] mistakes?
+[00:01:18] After that one level harder, we&#39;re going to talk about
+[00:01:22] interactive reinforcement learning and you&#39;re all going to get a
+[00:01:26] preview of our new low level training API.
+[00:01:29] Think of it as pie Torch as a service.
+[00:01:31] You get access to the low level training primitives, we
+[00:01:35] manage the compute, we build better models for you.
+[00:01:38] And then after you&#39;ve kind of had a little bit
+[00:01:41] of a panic attack of, wow, that was a lot
+[00:01:44] of content, we&#39;re going to end with coding agents for
+[00:01:47] fine tuning and show you how you can use our
+[00:01:50] fine tuning skill to really use natural language to describe
+[00:01:54] your goals and create better models in minutes.
+[00:01:57] And with that, let&#39;s get started.
+[00:02:00] So before we dive in, I want to kind of
+[00:02:03] situate you in the bigger picture.
+[00:02:05] We&#39;re part of the Microsoft Foundry team, and Foundry gives
+[00:02:09] you your agent platform.
+[00:02:11] The foundation is models, so there are over 11,000 models
+[00:02:15] in Foundry, and these models power.
+[00:02:18] Our agent runtime lets you deploy and host your agents,
+[00:02:22] observe them, give them tools.
+[00:02:24] And once you&#39;ve got those agents, we want them to
+[00:02:27] be better and smarter.
+[00:02:29] So we offer tooling to evaluate them, know if they&#39;re
+[00:02:32] doing what you want them to do and optimize them,
+[00:02:35] improve their performance based on what you&#39;ve observed.
+[00:02:40] This talk is really going to be focusing on the
+[00:02:43] evaluate and optimize box, but I want to kind of
+[00:02:46] motivate this talk and explain why we&#39;re here.
+[00:02:50] We&#39;ve been working on fine tuning for a while and
+[00:02:53] I feel like people are finally starting to listen to
+[00:02:56] like there is a reason to customize models.
+[00:02:59] And what we&#39;re seeing now is agents have taken off.
+[00:03:04] Agents helped us make the slide deck.
+[00:03:05] Agents helped us make this demo.
+[00:03:08] 1/3 of enterprise software apps say they&#39;re going to embed
+[00:03:11] a Gentek AI within two years.
+[00:03:13] I think that&#39;s wrong.
+[00:03:14] I think the number is higher and sooner.
+[00:03:16] Half of teams already have some kind of production agent
+[00:03:20] today.
+[00:03:22] The problem?
+[00:03:23] Agents consume 20 to 30 times more tokens per turn
+[00:03:27] than an old, old fashioned chat interaction.
+[00:03:32] And so all of a sudden we have way more
+[00:03:35] models being deployed for way more use cases, consuming way
+[00:03:39] more tokens.
+[00:03:40] And all of a sudden we&#39;ve broken the bank.
+[00:03:43] You&#39;ve run out of tokens, your credit card is maxed
+[00:03:45] out.
+[00:03:46] What do we do?
+[00:03:48] And so if agents are token consuming machines, fine tuning
+[00:03:52] lets you create a reliable agent without breaking the bank.
+[00:03:57] And So what does fine tuning do?
+[00:04:00] When you customize the model, you can create a cheaper,
+[00:04:03] faster, smarter model.
+[00:04:05] So historically, I think when people think about fine tuning,
+[00:04:09] they think about improving model quality.
+[00:04:11] Two years ago, a lot of people said like, wow,
+[00:04:14] I need to fine tune GPT 35 Turbo to teach
+[00:04:17] it about my domain.
+[00:04:20] Today, when we talk about improving quality, especially in the
+[00:04:24] context of agents, it&#39;s really about call the right tool
+[00:04:27] at the right time with the right inputs.
+[00:04:31] Improving quality is really about baking in those instructions from
+[00:04:35] your prompt into the weights of the model itself.
+[00:04:37] And that is super important, but it&#39;s not the full
+[00:04:41] story.
+[00:04:42] What we&#39;re seeing more and more of, and you saw
+[00:04:45] this probably in sessions where we talked about Harvey or
+[00:04:49] UI path.
+[00:04:50] Many companies are fine tuning smaller, cheaper, faster models to
+[00:04:55] power their production agents for their use cases with the
+[00:04:59] same quality as a Frontier model at a fraction of
+[00:05:03] the price.
+[00:05:04] So the targets of fine tuning are often 10 to
+[00:05:07] 30 times cheaper than a Frontier model.
+[00:05:10] So we&#39;re talking about replacing GPT 5 four with four,
+[00:05:15] one Nano or a Quinn model, something much cheaper.
+[00:05:19] And so when you&#39;re looking at something 30 times cheaper,
+[00:05:23] even if it&#39;s consuming 30 times the tokens, your budget
+[00:05:26] still balances.
+[00:05:28] The other thing we worry about with agents is they&#39;re
+[00:05:31] chatty, but we&#39;re impatient.
+[00:05:33] The big frontier models can be slow.
+[00:05:35] We&#39;ve all sat there and kind of watched Claude churn
+[00:05:38] and you&#39;re like, I&#39;m bored, I&#39;m bored.
+[00:05:40] Come on, small models stream tokens faster.
+[00:05:43] So you&#39;re agentic workflows, once you&#39;ve got that smaller model,
+[00:05:47] it responds more quickly.
+[00:05:48] So you really now have kind of the perfect solution,
+[00:05:51] right?
+[00:05:52] You&#39;ve got a model that knows what tools to call
+[00:05:55] and how to behave and it&#39;s cheaper and it&#39;s faster.
+[00:05:58] And so because of this, we&#39;re seeing a lot more
+[00:06:00] traction for fine tuning and customization.
+[00:06:04] When we talk about optimization, it&#39;s really a journey.
+[00:06:07] So in Foundry, you often start from, I built my
+[00:06:09] agent, I&#39;ve got to get the prompt, right?
+[00:06:12] Can I give it instructions to make it do what
+[00:06:14] I want?
+[00:06:15] Step 2 is OK, I need to add context management
+[00:06:18] to my agent runtime.
+[00:06:20] I&#39;m going to give it data grounding and memory, and
+[00:06:24] then I can give it tools so it can take
+[00:06:26] actions and call external things.
+[00:06:29] And then all this time I&#39;m evaluating it.
+[00:06:31] I&#39;m checking if it&#39;s doing what I want.
+[00:06:33] I&#39;m checking how it&#39;s performing.
+[00:06:36] Once we&#39;ve got that though, now it becomes time to
+[00:06:39] optimize.
+[00:06:40] Is my model doing the wrong stuff?
+[00:06:42] Is it too expensive?
+[00:06:44] Is it too slow?
+[00:06:46] And that&#39;s where fine tuning comes in.
+[00:06:47] And so this talk today is really going to focus
+[00:06:50] on this right hand side of this optimization curve.
+[00:06:55] And I already said, you know, fine tuning is becoming
+[00:06:57] more popular as we see the rise of agents and
+[00:07:00] we&#39;re seeing this in kind of the developer world.
+[00:07:03] About half of developers say that they want to replace
+[00:07:06] their out-of-the-box models with fine tuning.
+[00:07:10] Three years ago, people, maybe four years ago, people were
+[00:07:12] like, I&#39;m going to build my own foundation model.
+[00:07:15] And then we kind of moved on and everyone said,
+[00:07:17] you know what, out-of-the-box models are amazing.
+[00:07:19] I&#39;m good, I don&#39;t need to do this.
+[00:07:21] Now people are starting to look at their balance sheets
+[00:07:25] or their CSAT and they&#39;re saying, actually maybe fine tuning
+[00:07:29] is for me.
+[00:07:30] And this really gets back to the cost compounding in
+[00:07:33] the agency loop and it ends up being about quality,
+[00:07:37] latency, and cost all driving people towards this decision.
+[00:07:42] And now I&#39;ve said the word fine tuning like 30
+[00:07:45] times.
+[00:07:45] And some of you, probably anyone who is not a
+[00:07:48] data scientist, is like, what is fine tuning?
+[00:07:51] So I got to this a little late, but fine
+[00:07:53] tuning is really just your cheat code to building a
+[00:07:56] foundation model.
+[00:07:57] So if we go back to like where do these
+[00:07:59] models come from?
+[00:08:01] The way you build the foundation model is you start
+[00:08:04] with pre training, you have a massive amount of unlabeled
+[00:08:07] data and you start off by figuring out next token
+[00:08:09] prediction.
+[00:08:10] So I&#39;ve got one word, what&#39;s the next most likely
+[00:08:12] word?
+[00:08:13] Once you&#39;ve got that, you often use instruction tuning where
+[00:08:17] you give prompt response data, task specific data to teach
+[00:08:21] the model how to respond.
+[00:08:23] And then the final step is going to be alignment
+[00:08:25] tuning where you give the model human preference data, reward
+[00:08:29] models to really steer how you want it to respond.
+[00:08:32] You put these three steps together, you get your frontier
+[00:08:36] model fine tuning let&#39;s you kind of skip the most
+[00:08:39] expensive, hardest complicated part.
+[00:08:41] You pick up your generic off the shelf model.
+[00:08:44] That&#39;s pretty good.
+[00:08:46] And then you get to choose, do I want to
+[00:08:48] do supervised fine tuning, so teach it to behave in
+[00:08:51] a certain way, give it data to copy and learn
+[00:08:54] from, or do I want to align it or do
+[00:08:56] I want to do both?
+[00:08:57] And so you kind of get a head start in
+[00:09:00] the customization journey, add your data and create your own
+[00:09:03] IP.
+[00:09:04] And so with that, we&#39;ve kind of given you the
+[00:09:06] crash course and fine tuning, and we&#39;re going to get
+[00:09:09] to the first demo, which is I&#39;m sure what you
+[00:09:10] all care about.
+[00:09:12] And so .1 is we&#39;re going to do cheaper and
+[00:09:15] faster.
+[00:09:16] So a really common technique in the world of model
+[00:09:19] customization and fine tuning is distillation.
+[00:09:21] And this is where you take a large smart model
+[00:09:25] like GPT 55 and you capture its traffic and use
+[00:09:28] that as your training data.
+[00:09:31] What we&#39;re going to show you is how you take
+[00:09:34] traces from your production agent, filter and curate them, create
+[00:09:38] a training set, and from that generate your small fine-tuned
+[00:09:42] model that is just as good as your high quality
+[00:09:45] frontier model.
+[00:09:47] So with that, we&#39;re going to switch to the demo.
+[00:09:50] All right, so throughout this demo and throughout the talk
+[00:09:53] today, we&#39;re going to see, we&#39;re going to show you
+[00:09:56] a variety of techniques for post training with the intention
+[00:09:59] of making all your models faster, cheaper and smarter.
+[00:10:04] So across all of these that most we&#39;re going to
+[00:10:07] concentrate on a single customer scenario.
+[00:10:11] This customer scenario is about building a custom customer service
+[00:10:16] agent for a retail scenario.
+[00:10:18] So let&#39;s say you have a retailer and you have
+[00:10:22] a customer service agent that processes refunds.
+[00:10:25] So customer calls in, asks for a refund for a
+[00:10:28] particular item.
+[00:10:29] The agent has to go ahead and decide whether the
+[00:10:32] request was valid.
+[00:10:33] It has to decide whether the item could be returned.
+[00:10:36] It also has to decide whether the item should be
+[00:10:38] replaced or refunded.
+[00:10:40] So these are complex scenarios that the agent has to
+[00:10:43] navigate.
+[00:10:44] The agent can look at the order details in that
+[00:10:47] via tool.
+[00:10:48] It could also go and look at the fulfillment status.
+[00:10:51] It could go and look at the policy details and
+[00:10:53] then process the payments.
+[00:10:55] But what if it gets wrong?
+[00:10:57] If it gets it wrong, it could lead to the
+[00:10:59] retailer losing a lot of money and as you know.
+[00:11:03] Or a lot of customers.
+[00:11:04] Or a lot of customers and online returns is about
+[00:11:08] $900 billion a business in US last year.
+[00:11:11] So it&#39;s very critical for us to get this scenario
+[00:11:13] right.
+[00:11:14] So with that set up, let&#39;s go ahead and look
+[00:11:17] at how we can do distillation from a larger model
+[00:11:20] like a 5.4 model to a smaller 41 or 41
+[00:11:22] mini model and see if we can get the models
+[00:11:24] to be faster and cheaper.
+[00:11:26] OK, All right, so I have over here.
+[00:11:30] Let me go over to All right, so let&#39;s go
+[00:11:36] to our agents.
+[00:11:40] And so as you&#39;re pulling this up for folks who
+[00:11:42] haven&#39;t used it before, this is our Foundry UI.
+[00:11:45] This is a really simple, kind of no code way
+[00:11:48] to build agents, fine tune models.
+[00:11:50] But this is also all possible from code, absolutely so.
+[00:11:54] To start with, I have built a hosted agent.
+[00:11:56] So Foundry allows you to use any, any platform that
+[00:12:00] you want to any agent platform like semantic kernel.
+[00:12:05] If you want to use land graph and host your
+[00:12:07] agents on Foundry.
+[00:12:08] So I have done that over here.
+[00:12:10] This is an agent that is using GPT 5.4 as
+[00:12:13] its base model.
+[00:12:15] And let&#39;s try it out with an example, not this
+[00:12:23] one, maybe this one.
+[00:12:29] All right.
+[00:12:30] So the customer is asking to return a yoga mat,
+[00:12:32] which they have not used and see if they can
+[00:12:34] process a refund.
+[00:12:36] Foundry agents, Foundry hosted agents allowed you to actually capture
+[00:12:40] all the traces so that you can use that to
+[00:12:43] evaluate and further use it to fine tune as well.
+[00:12:46] So as you can see, the request has been resolved
+[00:12:49] and you can look at the traces to see what
+[00:12:51] exactly happened during the entire process.
+[00:12:55] So can you show us the tools that your agent
+[00:12:57] is calling in here?
+[00:12:58] Absolutely.
+[00:12:59] So here&#39;s what has happened.
+[00:13:00] So if you see, the user view shows you what
+[00:13:03] the request was and what the final outcome was, but
+[00:13:06] the trajectories actually show you which all tools were invoked.
+[00:13:09] In this case, the get order details was invoked.
+[00:13:12] After that, we had the fulfillment status invoked and then
+[00:13:16] the check resolution policy, and then the final outcome was
+[00:13:19] resulted.
+[00:13:20] So this is really rich data that you can use
+[00:13:22] to evaluate your models and also use it to improve
+[00:13:24] them.
+[00:13:26] So going back, let&#39;s go ahead and look at the
+[00:13:29] traces tab in hosted agents.
+[00:13:32] You will see that this agent has been working for
+[00:13:34] the last few days and we have about, I think
+[00:13:37] about 1000 odd traces that have been captured and we
+[00:13:40] will use these to actually go ahead and evaluate the
+[00:13:43] model.
+[00:13:44] Now the first step to think about this is can
+[00:13:46] I just replace my large model with a smaller model
+[00:13:49] and see how it performs?
+[00:13:50] So let&#39;s go ahead and build up an evaluation scenario
+[00:13:53] and see how how do they stack up in the
+[00:13:55] 1st place before we do any fine tuning whatsoever.
+[00:13:58] So really, you&#39;re basically showing us that we&#39;re not, we&#39;re
+[00:14:01] not lying.
+[00:14:01] We&#39;re going to start with no fine tuning, just smaller
+[00:14:04] and cheaper.
+[00:14:05] Let&#39;s see how well it works out.
+[00:14:06] All right.
+[00:14:07] And this I&#39;m going to do it with the SDK,
+[00:14:10] so let&#39;s go ahead and start that up.
+[00:14:14] So a few things to talk about over here is
+[00:14:19] so let me just start off this and then.
+[00:14:27] So are you loading up all of your evals to
+[00:14:30] be able to check how well the models perform?
+[00:14:33] Yes.
+[00:14:34] So now Foundry allows you to have different graders.
+[00:14:37] So it allows out-of-the-box graders like task resolution, intent resolution.
+[00:14:43] So these are LLM based graders that can look at
+[00:14:45] the trajectory and tell what the intent was and was
+[00:14:48] it actually done or not.
+[00:14:49] So you could use that or you could get more
+[00:14:52] control by writing your own graders and we allow you
+[00:14:55] to write graders for backed by an LLM or using
+[00:14:57] pure Python code itself.
+[00:14:59] So in this case, I have written a Python grader
+[00:15:02] which allows me to grade the score the responses on
+[00:15:05] three fronts, whether the decision was right, whether like in
+[00:15:09] case the refund was supposed to be done or was
+[00:15:12] it rejected.
+[00:15:12] So that&#39;s I give 50% weightage to that.
+[00:15:16] How accurate was it?
+[00:15:17] Like if I was from the dollar amount, So if
+[00:15:20] it was $50 item was was I refunding $500.00?
+[00:15:23] So that kind of thing.
+[00:15:24] And then it also grades about 20% weight for the
+[00:15:27] format itself because this is important because your down streams
+[00:15:31] are dependent upon how the model format is is given.
+[00:15:34] And really, without this, we have no way of knowing,
+[00:15:37] one, if the agent works or not, but two, whether
+[00:15:40] fine tuning makes anything better or worse.
+[00:15:43] So this is really kind of the most foundational step.
+[00:15:45] Yes.
+[00:15:46] And then I build a evaluation which has all of
+[00:15:50] these three graders and then submit, eval, run for the
+[00:15:54] base models.
+[00:15:56] And let&#39;s go ahead and have a look at the
+[00:15:58] evaluations themselves.
+[00:16:01] And so whenever you&#39;re generating something from the SDK, it&#39;s
+[00:16:04] automatically registered in the UI.
+[00:16:06] So if you want a beautiful view of your eval,
+[00:16:08] you can just click over here and see it.
+[00:16:10] Yeah, so as you can see, the O4 Mini and
+[00:16:13] GPT 5.4 do reasonably OK, 65% quality score, but the
+[00:16:17] smaller models, which is 4.1 mini and nano perform really
+[00:16:22] poor and you don&#39;t want to replace them as is
+[00:16:25] just to save cost and latency.
+[00:16:28] So what do we do?
+[00:16:30] Cry.
+[00:16:31] Well founded to the rescue.
+[00:16:32] You can actually use the traces that we have just
+[00:16:35] captured to fine tune a smaller model and see how
+[00:16:37] it performs now.
+[00:16:39] And they make it so simple that you can actually
+[00:16:41] do it through the UI directly.
+[00:16:44] So let me go ahead and show you just that.
+[00:16:47] So go to retail, this is my agent.
+[00:16:50] We go back to the traces that we saw earlier
+[00:16:53] and then click on the create data set button.
+[00:16:57] This allows you to convert your traces from raw traces
+[00:17:00] into data sets that you can use for evaluation, for
+[00:17:04] reinforcement fine tuning or for supervised fine tuning.
+[00:17:07] So it does a little bit more smarter things here.
+[00:17:09] It removes all the duplicates your trajectories might have non
+[00:17:13] interesting conversation that it can be taken off.
+[00:17:17] It will redact some of the PII information as well
+[00:17:19] before it uses it for training.
+[00:17:22] So I am going to go and try to do
+[00:17:23] supervised fine tuning over here.
+[00:17:26] You will see that we have, Let me see, hold
+[00:17:32] on.
+[00:17:40] All right.
+[00:17:40] So as you can see, I have about 1400 traces
+[00:17:43] here, supervised fine tuning, and we suggest you at least
+[00:17:47] have about 1000 samples.
+[00:17:49] When you go to reinforcement fine tuning, you will see
+[00:17:51] that we can do a lot of lot more with
+[00:17:53] the smaller data set as well.
+[00:17:54] So I&#39;m going to use thousand samples for the year
+[00:17:58] and then click on start fine tuning to start the
+[00:18:01] wizard right here.
+[00:18:03] Let&#39;s go ahead and select maybe GPD 4.1 Mini or
+[00:18:07] Nano.
+[00:18:08] You&#39;ll see a few options that you can select while
+[00:18:11] you stick off an SFT run as well.
+[00:18:13] So for instance, the training type gives you different SKUs
+[00:18:17] that you can use to govern data residency and your
+[00:18:20] cost.
+[00:18:21] My favorite over here is the developer preview, which allows
+[00:18:24] you to do training at half of the cost of
+[00:18:25] a standard tier job.
+[00:18:27] So if you&#39;re worried about fine tuning being expensive developer
+[00:18:30] tier, 50% off.
+[00:18:32] It it runs on a low priority VM so it
+[00:18:34] could take a little longer, but for developers it&#39;s it&#39;s
+[00:18:36] pretty good.
+[00:18:37] We also introduced Adbuild today, the data zone SKU that
+[00:18:41] allows you to have residency guarantees in US.
+[00:18:44] So I am going to use maybe just the standard
+[00:18:46] for now.
+[00:18:47] Also you will see that the data sets are already
+[00:18:50] preloaded from the converted from the traces into here.
+[00:18:52] So you don&#39;t need to go ahead and add any
+[00:18:54] data sets.
+[00:18:55] Then you can click on over here to have an
+[00:18:58] automatically deployed to a model after job completion.
+[00:19:01] I will skip that for now and you will see
+[00:19:03] that we have a few hyper parameters that you can
+[00:19:05] tweak and for higher and more control you might need
+[00:19:08] more hyper parameters.
+[00:19:09] We will show in the next few demos how you
+[00:19:11] can get more control onto your fine tuning process.
+[00:19:14] But here is really just easy mode.
+[00:19:15] Right.
+[00:19:16] So you can just go ahead and click, just a
+[00:19:18] few clicks and then your training is started.
+[00:19:21] Let&#39;s go ahead and open up a run that is
+[00:19:23] already completed.
+[00:19:26] So this is a distillation run that we did earlier
+[00:19:30] and you can go ahead on the monitor tab to
+[00:19:33] see the scores.
+[00:19:34] You will see that there is the the loss is
+[00:19:37] reducing accuracy is increasing.
+[00:19:38] Everything looking good.
+[00:19:40] You can see that we not just the final model.
+[00:19:43] You will also get checkpoints for interesting cases wherein the
+[00:19:47] reward might have increased before the last step.
+[00:19:49] You can use that to deploy and have a model
+[00:19:51] as well.
+[00:19:52] Or if you think that you need to further fine
+[00:19:55] tune this with more data, you can use continuous fine
+[00:19:57] tuning and go ahead and submit another run.
+[00:20:00] In this case, the run looks pretty good.
+[00:20:03] I have actually gone ahead and deployed this earlier.
+[00:20:05] I have created an agent on top of it and
+[00:20:07] ran the evaluation just in the interest of time, and
+[00:20:10] we can go ahead and look at that evaluation run
+[00:20:13] right now to see how it stacks up.
+[00:20:14] All right.
+[00:20:21] And let&#39;s go ahead and sort it by retail order.
+[00:20:25] OK, so as you can see, we have a new
+[00:20:27] winner.
+[00:20:28] So GBT 4.1 mini fine tune actually outperforms O4 Mini
+[00:20:32] and 5.4 as well, so which is amazing.
+[00:20:35] Now you have your agents.
+[00:20:36] Fraction of the cost.
+[00:20:37] Fraction of the cost you your agents are faster and
+[00:20:41] cheaper and I guess.
+[00:20:42] Maybe farther.
+[00:20:44] And the other thing I want to call out is
+[00:20:45] you did include those default graders, right?
+[00:20:48] Then resolution pass completion and what we can see there
+[00:20:51] is like we&#39;re not trying to fine tune to improve
+[00:20:54] those, but our fine tuning hasn&#39;t eroded the base models
+[00:20:57] capabilities.
+[00:20:58] So like one fear with fine tuning is like maybe
+[00:21:01] I made it better at this but worse at other
+[00:21:03] stuff.
+[00:21:04] We kind of have those guardrails in place to make
+[00:21:06] sure that didn&#39;t happen.
+[00:21:08] So that was awesome.
+[00:21:10] Thank you.
+[00:21:10] So we&#39;ve what is our current leaderboard 74%, that&#39;s an
+[00:21:15] improvement, right?
+[00:21:16] We&#39;ve brought down our budget.
+[00:21:18] We&#39;re still kind of holding with that Frontier model standard,
+[00:21:22] but $900 billion, Seventy 4% of that, we&#39;re still losing
+[00:21:26] over $100 billion with spurious refunds.
+[00:21:29] So what do we need to do?
+[00:21:33] Sometimes your teacher isn&#39;t smart enough.
+[00:21:35] So with distillation, what we, what we just showed you
+[00:21:38] where you have your teacher model, Frontier class, generate a
+[00:21:42] bunch of data, fine tune a small model using supervised
+[00:21:46] fine tuning with those techniques, super easy to do, but
+[00:21:49] you&#39;re really never going to get smarter than your teacher.
+[00:21:53] The source of the training data, the mark you&#39;re trying
+[00:21:56] to hit is the teacher performance.
+[00:21:58] But for us, if we look at this and say
+[00:22:01] 74% is really not good enough for our business, we
+[00:22:04] need a new technique.
+[00:22:06] And that&#39;s where reinforcement learning comes in.
+[00:22:08] And so in this scenario, what you&#39;re doing is the
+[00:22:12] model itself learns from its own mistakes.
+[00:22:16] So we define a grader.
+[00:22:17] And so all the work we put into evaluating the
+[00:22:20] baseline, evaluating our fine-tuned models comes in handy.
+[00:22:24] We use that same grader to score the models own
+[00:22:27] responses and learn from those scores.
+[00:22:31] So your model generates sample results, you score them, you
+[00:22:35] learn from the best performing results, and the model overtime
+[00:22:39] learns how to reason, in this case through multiple different
+[00:22:43] tool calls that it has to chain and put together.
+[00:22:47] The one caveat though for reinforcement learning is most of
+[00:22:51] the time it needs to be a verifiable task.
+[00:22:54] So what you&#39;re doing is you&#39;re grading if the response
+[00:22:57] is good or not and learning from that signal.
+[00:23:00] If you can&#39;t grade it, you can&#39;t learn from it.
+[00:23:03] But the good news is like refunds are gradable.
+[00:23:05] You can look at it and say, yes, you should
+[00:23:07] have refunded that or no, that was terrible.
+[00:23:10] And so this is a perfect scenario where we can
+[00:23:12] score whether it&#39;s getting better or worse.
+[00:23:15] So next demo, reinforcement learning, learning from the agents mistakes.
+[00:23:22] And so before we dive into the tech again, I&#39;m
+[00:23:24] going to just spend 30 seconds explaining kind of what&#39;s
+[00:23:27] happening under the hood.
+[00:23:29] So with reinforcement learning, you send your prompt to the
+[00:23:33] model and the model generates multiple samples.
+[00:23:35] These are called rollouts, and so here the model has
+[00:23:38] generated 3 possible samples.
+[00:23:41] The greater you defined scores the samples and the quality
+[00:23:44] of your grader is basically going to determine whether this
+[00:23:48] works or not.
+[00:23:49] If there&#39;s no signal, if your grader is just like
+[00:23:52] everything is wrong or everything is right, there&#39;s nowhere to
+[00:23:55] go.
+[00:23:56] So you need a greater that one grades the outcome
+[00:23:59] you want, and two leaves room for improvement.
+[00:24:02] So you need an initial signal, and then you need
+[00:24:05] to iterate from there.
+[00:24:06] Once you&#39;ve got your quality score from your grader, that
+[00:24:09] information is fed into your trainer.
+[00:24:12] You reinforce the correct answers, you learn from them, and
+[00:24:16] the model learns to reason about a new domain.
+[00:24:19] And if that sounds a little complicated, Omkar is going
+[00:24:22] to show you how simple it is to do in
+[00:24:24] our UI.
+[00:24:24] Thank you, Alicia.
+[00:24:25] So let&#39;s go ahead and look at reinforcement fine tuning.
+[00:24:30] So we saw in the previous demo we took a
+[00:24:32] T-shirt model.
+[00:24:34] The T-shirt model had the entire trajectories spelled out.
+[00:24:37] So what tools were supposed to be called?
+[00:24:39] What was the responses?
+[00:24:40] All of this was spelled out.
+[00:24:41] And that was the training data set that was used
+[00:24:43] for fine tuning.
+[00:24:44] Supervised fine tuning is like learning by seeing or copying
+[00:24:48] what a smarter person is doing.
+[00:24:51] But in reinforcement fine tuning, what we do is we,
+[00:24:53] we, we don&#39;t give the exact trajectories or description of
+[00:24:56] these are the tools that needs to be called.
+[00:24:59] Instead, we give ability for the training process itself to
+[00:25:02] invoke these tools on the family.
+[00:25:05] And then take the responses of those tools and use
+[00:25:08] that to grade against the grader that we wrote in,
+[00:25:11] in the evaluation flow and see which of these responses
+[00:25:15] are giving better results and then continuously trying to find
+[00:25:19] out or reason about it to make better decisions.
+[00:25:22] So you&#39;re giving the models the tools to answer the
+[00:25:25] questions, and the model figures it out on its own.
+[00:25:27] Exactly.
+[00:25:28] So now let&#39;s go ahead and see how you can
+[00:25:30] do this in Foundry.
+[00:25:32] So I&#39;m here with the SDK.
+[00:25:34] So let&#39;s go step by step.
+[00:25:36] So we&#39;re going to have the configuration done.
+[00:25:40] And one thing that you want to know over here
+[00:25:42] is look at the training and the validation data.
+[00:25:46] This data is again coming from the traces itself, but
+[00:25:48] the training data right now doesn&#39;t have the entire tool
+[00:25:51] call history.
+[00:25:52] It only has the message, the actual message that the
+[00:25:56] user had asked.
+[00:25:58] And then it has some ground truth that will be
+[00:26:01] used by the grader to grade this.
+[00:26:03] So instead, for instance, you will have the final score
+[00:26:06] that has to be defended, but it wouldn&#39;t have which
+[00:26:08] tools to be called to get to that thing.
+[00:26:11] It wouldn&#39;t have the the message body itself that needs
+[00:26:14] to be written and so on.
+[00:26:16] So we do this, we upload it to Foundry and
+[00:26:20] then let us go ahead and look at the most
+[00:26:23] important part, which is the RFT grader.
+[00:26:27] So you can use the evaluation grader that we already
+[00:26:29] wrote itself or you could tweak it as well.
+[00:26:32] So in this case, I have added some coverage to
+[00:26:34] tools itself, which exact tools are getting called.
+[00:26:37] So for instance, I do not want to have a
+[00:26:40] high score for a response where the get orders is
+[00:26:43] not even invoked.
+[00:26:45] So in those cases I can have control over how
+[00:26:47] I want the grader to behave.
+[00:26:50] And this is really important for avoiding things like reward
+[00:26:53] hacking.
+[00:26:54] So like a failure mode when we were working on
+[00:26:56] putting this together was the model would get things wrong
+[00:26:59] and just learn.
+[00:26:59] I will never call a tool because it was getting
+[00:27:02] penalized for calling the.
+[00:27:04] Yes.
+[00:27:04] And you&#39;ll see that, Yeah.
+[00:27:05] And the, and when we will see the run itself,
+[00:27:07] you will see how you can avoid this by looking
+[00:27:10] at our telemetry and the metrics that will tell you
+[00:27:12] when such a thing does happen.
+[00:27:15] All right, so now we said we need, we need
+[00:27:17] to give access to the tools to the training run
+[00:27:20] itself.
+[00:27:20] How do you do that?
+[00:27:21] So in this case, I have hosted all of these
+[00:27:24] tools on a, on a function app and these function
+[00:27:27] apps can be invoked.
+[00:27:29] These are real tool calls that can be made.
+[00:27:31] It has some of these information.
+[00:27:33] It&#39;s like your RL harness or RL environment, so to
+[00:27:36] say.
+[00:27:37] You could also use MCP servers or anywhere else you
+[00:27:41] have your tools hosted and let us go ahead and
+[00:27:45] kick off a run and let us go ahead and
+[00:27:48] look at this run through Foundry to see what were
+[00:27:51] the hyperparameters and how an earlier run has performed.
+[00:28:03] OK, this is queued.
+[00:28:08] So here is a completed run.
+[00:28:11] So you get a few more things here.
+[00:28:12] So you get access to a few more hyper parameters
+[00:28:15] that are specific to reinforcement fine tuning, especially to a
+[00:28:18] reasoning model like O4 mini.
+[00:28:20] You get to choose what is the reasoning effort the
+[00:28:23] model has to put in.
+[00:28:24] You can set it to low, medium, or high.
+[00:28:26] This tells you how much chain of thought the model
+[00:28:28] has to do so that it can come to the
+[00:28:30] right answer.
+[00:28:31] And this has implications on what your token cost is
+[00:28:33] going to be as well.
+[00:28:36] Next up, you can also change the number of epochs,
+[00:28:39] evaluation interval and and things there about you will see
+[00:28:42] this is how I have configured the tools to be
+[00:28:45] called to the function app.
+[00:28:48] And so this really tells the training run.
+[00:28:50] These are the tools you can use.
+[00:28:51] Yes, this is the real training run.
+[00:28:52] When when the training is happening, the tools are getting
+[00:28:55] invoked and then those results are what is getting used
+[00:28:58] rather than just copying like in supervised fine tune.
+[00:29:02] Let us go ahead and look at the monitor tab
+[00:29:04] to see what the results look like.
+[00:29:07] So the the primary metric that you want to look
+[00:29:10] at is rewards.
+[00:29:12] Are the rewards increasing over time and are the rewards
+[00:29:14] increasing for your validation set over time?
+[00:29:17] As you can see, we are that looks good.
+[00:29:19] Both the train and validation rewards are increasing.
+[00:29:23] The other interesting thing to notice here is the reasoning
+[00:29:26] token means per step.
+[00:29:28] You can see that the model was trying to spend
+[00:29:30] a lot of reasoning effort early on in the training
+[00:29:33] process, but as it goes on, the reasoning effort comes
+[00:29:36] down.
+[00:29:36] So this is again has the implications in terms of
+[00:29:39] how much tokens will be used by a fine-tuned model,
+[00:29:42] because now the final checkpoint will use a lot less
+[00:29:45] reasoning than the base model itself.
+[00:29:47] And so early on it is just calling a whole
+[00:29:49] bunch of different tools trying to figure it out.
+[00:29:52] And the other thing you would look at is the
+[00:29:54] number of tool calls per rollout.
+[00:29:55] So in case if it determine that hey I do
+[00:29:57] not want to a penalize tool calling itself and then
+[00:30:00] stop calling tools altogether.
+[00:30:01] You will notice a dip over here and then say
+[00:30:04] that, hey, there is something wrong with this run and
+[00:30:07] you would want to iterate on top of your grader
+[00:30:09] to tweak these things.
+[00:30:11] So with that done, let us go ahead and look
+[00:30:14] at the evaluations on how this model fares amongst our
+[00:30:17] leader board.
+[00:30:19] So we have done the distillation.
+[00:30:20] We have looked at the RFT evals.
+[00:30:22] Let us go and check it out.
+[00:30:29] So again, we have a new winner.
+[00:30:31] We have O4 Mini coming up at 84%, so that
+[00:30:35] is a huge pump up from where it was at
+[00:30:39] 7573%.
+[00:30:40] And the intent resolution and task completion are also increasing
+[00:30:44] or maybe staying stable.
+[00:30:46] So this is how you can use like the more
+[00:30:48] effort that you put in, the better what you get.
+[00:30:50] So for instance, reinforcement learning can be a bit of
+[00:30:53] an effort to kind of get it right, making sure
+[00:30:56] that your model graders are correct.
+[00:30:58] The runs can take a little longer, but the outcome
+[00:31:00] is also substantial.
+[00:31:02] And imortantly we&#39;re still keeping true to that better, cheaper,
+[00:31:05] faster, right?
+[00:31:06] Because 04 mini is still a smaller model than 54,
+[00:31:09] which is our.
+[00:31:10] Teacher.
+[00:31:10] Yeah, it&#39;s substantially cheaper than 54.
+[00:31:12] So going back to if you saw in the keynote
+[00:31:14] that hill climbing narrative, we&#39;re kind of on our way
+[00:31:16] up the hill.
+[00:31:18] And before we kind of dive back into more demos,
+[00:31:21] I do like to take one moment to share like
+[00:31:24] some real world use cases.
+[00:31:26] This is not just demo where this is not just
+[00:31:28] us making up a new, new use for some stuff
+[00:31:30] we think is cool.
+[00:31:31] We have customers using this in production.
+[00:31:34] So Decagon AI, they build actually customer support agent as
+[00:31:40] a service.
+[00:31:41] They used distillation and fine tuning on Foundry to power
+[00:31:45] their service, switching to smaller, cheaper, faster models.
+[00:31:50] Discovery Bank used distillation and fine tuning to create a
+[00:31:54] smaller, faster, lower latency model to power their banking app.
+[00:31:58] This was a scenario where customers were texting the app
+[00:32:02] and getting a response, and they went from six seconds
+[00:32:05] down to 1 1/2 seconds.
+[00:32:07] And for like customer satisfaction, that&#39;s huge.
+[00:32:10] And DocuSign is probably one of our biggest token customers.
+[00:32:15] They were able to distill and see a 50% reduction
+[00:32:18] in cost for AI document processing.
+[00:32:21] So distillation, fine tuning, reinforcement learning are really critical tools
+[00:32:27] in the toolbox for making agents economically viable and delightful
+[00:32:32] to use.
+[00:32:34] So we&#39;re still only at 84%, that&#39;s still maybe $90
+[00:32:40] billion lost.
+[00:32:41] So what if we need more control?
+[00:32:43] Mostly what we&#39;ve showed you so far was super simple
+[00:32:47] UI based high level APIs.
+[00:32:49] Some of you, if anyone here is a data scientist
+[00:32:52] and AI scientist is like, I want to define my
+[00:32:55] own rollout environment.
+[00:32:57] I want to define my own algorithm.
+[00:32:59] I want full control over the hyperparameters.
+[00:33:02] And if that is you get excited, we&#39;re going to
+[00:33:05] give you a sneak peek of our new interactive training
+[00:33:08] API.
+[00:33:09] Before we show you what it is, it&#39;s helpful to
+[00:33:12] just kind of compare and contrast how the two different
+[00:33:15] services work.
+[00:33:16] So everything we&#39;ve shown you so far is really managed
+[00:33:20] fine tuning.
+[00:33:21] You are the user, you pick your model, you pick
+[00:33:24] your technique, SFTRFT, you provide your data and you submit
+[00:33:28] it to the service.
+[00:33:30] And the service does the rollouts, grades the responses, does
+[00:33:33] the loss computation, updates the weights, and kind of iterates
+[00:33:37] as a closed loop before it returns a checkpoint.
+[00:33:41] You can&#39;t mess with what&#39;s happening in that service boundary.
+[00:33:45] Our new training API actually gives you much more control.
+[00:33:49] You as the practitioner set up the config, the recipe,
+[00:33:52] you invoke the rollout engine, you compute the loss, you
+[00:33:56] update the weights, and then look, we&#39;re back outside that
+[00:33:59] service boundary.
+[00:34:01] So you update the grader itself.
+[00:34:03] And the big difference here is you&#39;re controlling the algorithm,
+[00:34:08] the training primitives, every aspect of the fine tuning job
+[00:34:12] except the GPU infrastructure.
+[00:34:14] So if anyone here has used VRL or attempted to
+[00:34:17] use VRL and failed, we&#39;re abstracting away all the pain
+[00:34:21] of figuring out how do I set up these GPU
+[00:34:24] clusters, How do I orchestrate this?
+[00:34:26] Is this synchronous?
+[00:34:27] Is it asynchronous?
+[00:34:28] Is it aggregated or disaggregated?
+[00:34:30] We manage that for you.
+[00:34:32] You focus on the algorithm, the problem you&#39;re trying to
+[00:34:35] solve, and we manage the compute.
+[00:34:38] And with that, I&#39;m going to pass it off to
+[00:34:39] Omkar to show you what this actually looks like.
+[00:34:41] All right.
+[00:34:42] Thank you.
+[00:34:42] So in the previous first 2 demos, we&#39;ve looked at
+[00:34:45] the high level APIs that Foundry provides.
+[00:34:47] These are great for most of the cases and for
+[00:34:50] most of the people, they are scenarios where you just
+[00:34:53] do fire and forget.
+[00:34:55] You give up the tool, you give the tools, you
+[00:34:57] give the configuration, you give the data set and then
+[00:34:59] let Foundry do its job.
+[00:35:01] But as I said, the more effort you put in,
+[00:35:03] the more value you get.
+[00:35:05] So if you put in a little bit more effort
+[00:35:07] and want to do it yourself, we allow you to
+[00:35:10] do that with these low level APIs wherein you write
+[00:35:13] your own code.
+[00:35:14] And you can use these smaller primitives for doing forward
+[00:35:18] pass, backward pass, optimum stage sampling, things that are inherent
+[00:35:22] that require GPUs.
+[00:35:24] You leave that to us and you can write your
+[00:35:27] own recipes that will give you a lot more control.
+[00:35:30] So in this demo, I am going to use are
+[00:35:33] fine tuning fine grain APIs to fine tune OSS model
+[00:35:36] Quen 332 B and see how it performs and stacks
+[00:35:40] with a scenario.
+[00:35:41] All right, so let us get started.
+[00:35:43] But before that just to kind of give you a
+[00:35:46] visualization, what does a recipe really look like?
+[00:35:50] A recipe has specific steps like hey, first you are
+[00:35:53] going to take the data set, you are going to
+[00:35:56] generate multiple samples out of it.
+[00:35:59] So essentially let us say one conversation request you could
+[00:36:02] have 10s or 20 samples generated.
+[00:36:04] That is our different options that the model is emitting
+[00:36:08] out.
+[00:36:09] For that you are going to call our sample API
+[00:36:12] which actually which runs on GPUs where we have pre
+[00:36:16] loaded base LLM model and give you the responses.
+[00:36:20] You take these samples and then go ahead and write
+[00:36:23] your own grader.
+[00:36:24] You can invoke your own grader to see how these
+[00:36:26] samples were behaving.
+[00:36:28] And earlier the grader was supposed to be limited to
+[00:36:31] what we support.
+[00:36:31] Let us say you want to write AC sharp grader.
+[00:36:33] Let us say you want to write something completely different.
+[00:36:36] You can use that the tools.
+[00:36:38] For instance we required you to update the tools or
+[00:36:41] upload the tools on an MCP server or something.
+[00:36:44] Say you don&#39;t want to do that.
+[00:36:45] Say you have your tools are in some format that
+[00:36:47] are not compatible with our high level APS.
+[00:36:50] You can use that now because you have full control
+[00:36:52] over invoking of the tools in the sampling process.
+[00:36:54] Or I could even have interactions with an environment.
+[00:36:58] So like exactly execute the rollout, call real tools in
+[00:37:01] the real world and see what happens.
+[00:37:04] Correct.
+[00:37:05] And then once you do that, this is the GRPO
+[00:37:07] step where you compute the advantages like basically take the
+[00:37:10] mean of the samples and see which ones are better
+[00:37:12] and then use the forward backward pass to go ahead
+[00:37:15] and change the compute the gradients.
+[00:37:17] Behind the scenes we have two nodes, 1 is the
+[00:37:20] one is called the training node and one is the
+[00:37:23] sampling node.
+[00:37:24] And in the training node, we run the forward backward
+[00:37:27] pass, compute the gradients and then when you call sync,
+[00:37:30] we actually sync these Lauras to the to the sampling
+[00:37:34] node.
+[00:37:34] And all of this requires a lot of telemetry.
+[00:37:37] Listen, it is a hard work that you do not
+[00:37:38] have to do if you have to do it yourself,
+[00:37:40] let us say you could very much build it this
+[00:37:42] way, but you have to deal with nickel issues, you
+[00:37:44] would have to deal with VLLM issues, as you said.
+[00:37:47] So we abstract all of this out for you.
+[00:37:50] And once you are done, you can go ahead and
+[00:37:52] call sync checkpoint and save the checkpoint for training later
+[00:37:55] on.
+[00:37:55] And the great thing about this is this is not
+[00:37:58] outside of foundry.
+[00:37:59] All of this is within Foundry.
+[00:38:01] So you will see this as a run on Foundry.
+[00:38:04] You can use the models as any other model in
+[00:38:07] Foundry.
+[00:38:07] You can use it for with hosted agents, you can
+[00:38:10] use it with evaluation.
+[00:38:11] The entire ecosystem is right there for you.
+[00:38:14] So with that, let me quickly run this demo and
+[00:38:17] we will see.
+[00:38:20] So I have this as a.
+[00:38:28] So in here I have a launcher script that actually
+[00:38:31] launches the script the the recipe and it starts as
+[00:38:34] a team up session that you can go ahead and
+[00:38:36] look at.
+[00:38:37] All of this is happening locally on your own CPU
+[00:38:41] machine.
+[00:38:42] You could run it on on your own laptop.
+[00:38:44] This is what I am doing over here or you
+[00:38:46] could be use an Azure VM if you want to
+[00:38:48] have long running sessions.
+[00:38:51] Now when this is going on, you can go ahead
+[00:38:54] and we have we ship a small local dashboard.
+[00:38:58] This is because the training entirely is happening on your
+[00:39:01] machines.
+[00:39:01] All the logs, fine grained logs are there on your
+[00:39:04] machine itself and you can use that to see how
+[00:39:06] things are performing.
+[00:39:08] So with that, let me just open up the local
+[00:39:12] dashboard that is running and let me just select existed
+[00:39:18] run.
+[00:39:20] So this is a completed run with our low level
+[00:39:23] API&#39;s.
+[00:39:24] You can see hopefully it is visible.
+[00:39:28] You can see that the reward and accuracy is increasing
+[00:39:30] overtime just like we saw in the previous one.
+[00:39:33] But you also get more details here.
+[00:39:35] So for instance, you see that the entropy is reducing
+[00:39:37] down.
+[00:39:37] You will see that the grand norm is reducing down
+[00:39:39] South.
+[00:39:39] All of this information is much more fine grain that
+[00:39:42] you get with with this setup.
+[00:39:44] You will also see the KL divergent.
+[00:39:45] You will see the group composition becoming better over time
+[00:39:49] as well, so.
+[00:39:50] I have a lot more control over what I can
+[00:39:52] even see about this run.
+[00:39:53] So like KL Divergent is kind of #1 investigation for
+[00:39:57] reward hacking.
+[00:39:59] Couldn&#39;t see that before, now I can.
+[00:40:01] Yeah.
+[00:40:02] And and this allows you to have the full control
+[00:40:05] of all the telemetry on your side.
+[00:40:08] You can tweak like say your your recipe is ongoing
+[00:40:11] and you midway decide that hey, I want to change
+[00:40:13] this to use a different sampling strategy.
+[00:40:16] You can do that.
+[00:40:16] And that&#39;s where the interactive you can use.
+[00:40:20] Curriculum Learning.
+[00:40:20] You can use curriculum learning to start with a very
+[00:40:23] simple task and then graduated to a larger and larger
+[00:40:25] task.
+[00:40:26] You can do that too.
+[00:40:27] Say you don&#39;t like GRPO, you want to experiment with
+[00:40:31] some other mechanism, PPO or DPO and things like that.
+[00:40:34] You can change that and you can still use the
+[00:40:36] same primitives to tweak the way you want.
+[00:40:40] So with that, let me get back to the leaderboard
+[00:40:45] to see how this stacks up with our runs and
+[00:40:50] this is my final evaluation board where you will see
+[00:40:55] hopefully that we have been able to beat even the
+[00:41:01] O4 mini fine-tuned version with Quen 332 B.
+[00:41:06] So much cheaper, smaller model and your agents are faster,
+[00:41:10] cheaper and smarter.
+[00:41:13] Amazing.
+[00:41:15] Thank you.
+[00:41:16] And so we&#39;ve now gone like full hard mode, right?
+[00:41:20] We went from simple UI to, congratulations, you are writing
+[00:41:23] the training algorithm yourself.
+[00:41:26] And so some of you who are not data scientists
+[00:41:28] might start to feel a little anxious.
+[00:41:30] Me, I, I hear fine tuning is great, but this
+[00:41:33] sounds really hard.
+[00:41:36] One common complaint we hear is like, I don&#39;t even
+[00:41:39] have the data to train these models or something.
+[00:41:42] I hear a lot is, you know what?
+[00:41:43] I tried fine tuning work once.
+[00:41:45] I made the model worse.
+[00:41:47] I am never doing this again.
+[00:41:49] And the good news is we hear you and we&#39;ve
+[00:41:51] added a fine tuning skill so you can use your
+[00:41:54] favorite coding agent and natural language to tell it what
+[00:41:58] you want to do and it&#39;s going to figure that
+[00:42:01] out.
+[00:42:02] And since I said it&#39;s APM skill, I am going
+[00:42:05] to do this demo.
+[00:42:07] And I actually don&#39;t trust Claude and copilot CLI to
+[00:42:10] do this on the fly.
+[00:42:12] And because I am not running a fine-tuned model, it&#39;s
+[00:42:14] a little slow.
+[00:42:15] So I ran this ahead of time.
+[00:42:17] But basically you can see what I did is I
+[00:42:19] said, hey, I&#39;ve got a hosted agent here.
+[00:42:22] I gave it the address of my hosted agent and
+[00:42:24] I told it what I wanted it to do.
+[00:42:26] This is Omkar&#39;s first demo, right?
+[00:42:28] I have an agent.
+[00:42:30] I want to figure out how well it does.
+[00:42:32] So step one is I need to make a grader.
+[00:42:35] I want it to grade to make sure it&#39;s calling
+[00:42:37] the right tools.
+[00:42:38] I want it to give partial credit.
+[00:42:40] Please come up with that grader and then report how
+[00:42:43] well the model performs.
+[00:42:44] And I don&#39;t have to learn the API, the SDKI
+[00:42:46] don&#39;t have to click around in that UI.
+[00:42:50] All it&#39;s going to do is use the fine tuning
+[00:42:52] skill.
+[00:42:53] It knows how to build graders.
+[00:42:54] It knows how to call our AP is and great.
+[00:42:58] It&#39;s done the baseline for me.
+[00:43:00] It came up with the grader.
+[00:43:02] So it gives full credit if it asks for clarification
+[00:43:05] or if it gets the answer right, gives partial credit
+[00:43:08] if it gets some of the tool calls.
+[00:43:10] And then we go ahead and we grade the teacher
+[00:43:13] model.
+[00:43:13] So this is our 54.
+[00:43:15] It&#39;s a little different because this is a little different
+[00:43:19] every time I run it, but it gives a mean
+[00:43:23] score of 8.37, pass rate at 8 of about 78%.
+[00:43:26] Teacher models doing pretty well.
+[00:43:28] Good.
+[00:43:29] OK, Step 2.
+[00:43:30] I want to create my fine-tuned model, so I&#39;m going
+[00:43:33] to go ahead and kick off a distillation run.
+[00:43:37] To do that, all I say is let&#39;s kick off
+[00:43:38] a distillation run.
+[00:43:40] I do say my goal is I want it to
+[00:43:42] be cheaper and faster, and that&#39;s going to help it
+[00:43:44] pick which models to fine tune for me.
+[00:43:47] I want it to take my agent traces from that
+[00:43:50] agent I shared, export them, filter them, dedupe them, and
+[00:43:53] kick off a fine tuning autopilot run.
+[00:43:56] What that&#39;s going to do is it&#39;s going to decide
+[00:43:59] based on my data and what I&#39;ve described which models
+[00:44:02] to run, which algorithm to pick and run a couple
+[00:44:05] different experiments and see how it goes.
+[00:44:08] And So what it&#39;s going to do is I had
+[00:44:11] to submit those jobs and in parallel, I wanted the
+[00:44:14] same kind of honesty check that the base models, the
+[00:44:17] smaller, cheaper base models are not just great on their
+[00:44:20] own.
+[00:44:21] So I asked it to do the same thing we
+[00:44:23] showed you earlier.
+[00:44:24] Let&#39;s evaluate the smaller, cheaper base models and we&#39;ll see
+[00:44:27] how we do.
+[00:44:28] And so it ran, it kicked off the baseline and
+[00:44:31] I ran this before the session, but you can see
+[00:44:34] it got the base model evals first.
+[00:44:37] Then it finished training.
+[00:44:40] And just like before, we have our leaderboard.
+[00:44:43] I had a winner.
+[00:44:44] I came up with a fine-tuned for one mini.
+[00:44:47] It picked mini and nano because I said smaller and
+[00:44:50] cheaper and it picked the hyperparameters on its own.
+[00:44:53] And I can see that the fine tune for one
+[00:44:56] mini gets almost the same mean score, actually a slightly
+[00:45:00] higher pass at 8:00.
+[00:45:02] And so I was able to do that same distillation
+[00:45:05] flow, but with totally just natural language.
+[00:45:07] And this is part of the GitHub copilot for Azure
+[00:45:11] skill.
+[00:45:12] Or you can download a separate fine tuning skill if
+[00:45:14] you just want it as a standalone.
+[00:45:16] And this really makes fine tuning accessible and super easy.
+[00:45:21] So anyone can fine tune.
+[00:45:22] And the cool thing is what it&#39;ll do is if
+[00:45:25] these all actually just made it worse, it&#39;ll look at
+[00:45:27] the logs and decide what it needs to do next.
+[00:45:30] Generate more data, try a different experiment and iterate until
+[00:45:34] it gets it right.
+[00:45:36] And so just to end, we want to kind of
+[00:45:39] take take home message.
+[00:45:40] One thing we hear a lot, we&#39;re going to dispel
+[00:45:43] 2 Mets.
+[00:45:43] The 1st is that I don&#39;t need to fine tune
+[00:45:46] anymore because Frontier models keep getting smarter.
+[00:45:49] Why would I need to fine tune?
+[00:45:51] And the real answer is yes, they&#39;re getting smarter, but
+[00:45:54] they&#39;re also getting bigger, slower, and more expensive.
+[00:45:56] And you saw in the keynote today, we can fine
+[00:46:00] tune small, cheap models to outperform Frontier class models.
+[00:46:04] And the advantage when you fine tune is your IP,
+[00:46:08] your business knowledge, your domain goes into your custom model.
+[00:46:12] It&#39;s not going into that.
+[00:46:13] Frontier Labs waits for them to make money off of
+[00:46:16] you.
+[00:46:17] You keep your IP, you get a smarter model and
+[00:46:19] better performance.
+[00:46:21] The other thing I want to touch on is often
+[00:46:24] people say, OK, that was cool.
+[00:46:25] You showed me some cost savings.
+[00:46:27] It costs a lot to fine tune.
+[00:46:29] You have to pay to train, you have to pay
+[00:46:31] to host.
+[00:46:32] I don&#39;t want to do this.
+[00:46:34] The real answer is Omkar already showed you developer tier
+[00:46:37] training.
+[00:46:38] That spot capacity, 50% off the median supervised fine tuning
+[00:46:42] job on our platform costs about a dollar.
+[00:46:45] It&#39;s not super expensive.
+[00:46:47] And we&#39;ve introduced things like developer tier hosting where there
+[00:46:51] is no hosting fee.
+[00:46:52] So experimentation is really easy.
+[00:46:54] It gives you the bridge to get to production.
+[00:46:57] And from there, as your usage ramps up, you see
+[00:47:00] substantial cost savings.
+[00:47:03] And so with that, we&#39;re kind of at the end
+[00:47:05] of our talk.
+[00:47:06] We&#39;re going to take questions afterwards.
+[00:47:07] Feel free to come up to us, but if you
+[00:47:09] want to get started, here are some resources.
+[00:47:13] The sample notebooks we showed you today are in this
+[00:47:16] repo.
+[00:47:16] You can sign up for the preview of what Omkar
+[00:47:19] showed you with the training API, or you can learn
+[00:47:22] more.
+[00:47:23] And with that, we thank you for your time.
+[00:47:25] And if you want to see other sessions, you can
+[00:47:28] come to our lab.
+[00:47:29] We&#39;re running three of them tomorrow.
+[00:47:30] You&#39;ll get to do hands on with the example we
+[00:47:33] showed you in the demo.
+[00:47:34] Learn how to do reinforcement learning yourselves.
+[00:47:37] And there are some other great demos, breakout sessions and
+[00:47:40] lightning talks that you should check out, so thank you
+[00:47:43] so much.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

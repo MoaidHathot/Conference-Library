@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ODSP934 - Unlock Claude in Microsoft Foundry</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; ODSP934</nav>
+        <h1>ODSP934 &mdash; Unlock Claude in Microsoft Foundry</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">ODSP934 &middot; Pre-recorded</span>
+    <h1>Unlock Claude in Microsoft Foundry</h1>
+    <div class="speakers">Keiji Kanazawa, Caroline Matthews</div>
+    <div class="meta">
+        <span>Pre-recorded</span>
+<span>(100) Foundational</span>
+    </div>
+    <div class="tags"><span class="tag">AI</span> <span class="tag">Agents</span> <span class="tag">Developer</span> <span class="tag">Microsoft Foundry</span> <span class="tag">Responsible AI</span> <span class="tag">MCP</span> <span class="tag">Foundry Agents</span> <span class="tag">Agentic SDLC</span> <span class="tag">Enterprise</span> <span class="tag">Working with models</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/ODSP934?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/247dbe41-92a0-46c1-9426-8834c4c349d5" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/247dbe41-92a0-46c1-9426-8834c4c349d5" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>This session introduces enterprise developers and IT leaders to Claude models now available in Microsoft Foundry. Hear from Anthropic and Microsoft experts on deploying frontier AI within existing Azure infrastructure to build agents and automate complex workflows. See a live demo of Claude in action, plus a walkthrough of Claude model selection and how to get started with billing through MACC.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>A foundational walkthrough of how Anthropic&#39;s Claude models are now deployed within Microsoft Foundry to build enterprise-grade agentic applications. Microsoft and Anthropic experts cover the agent lifecycle, the Claude model family, the Claude Agent SDK, and Foundry&#39;s governance, hosting, and evaluation capabilities, anchored by two live demos.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Claude model family available in Microsoft Foundry</strong> [00:11:11] — Claude Opus, Claude Sonnet, and Claude Haiku are deployable in Foundry with shared safety, prompting strategies, API patterns, and identical environment across the three models.</li>
+<li><strong>Claude Agent SDK as a supported harness</strong> [00:25:13] — The same agent loop, tools, and context management behind Claude Code is programmable in Python and TypeScript and can run inside Foundry.</li>
+<li><strong>Foundry hosted agents</strong> [00:23:28] — Custom-code agents (built with the Claude Agent SDK, GitHub Copilot SDK, LangChain, or LangGraph) can be moved from a local machine into an automatically secured cloud sandbox in Foundry Agent Service.</li>
+<li><strong>Claude availability through GitHub Copilot</strong> [00:10:14] — Claude is reachable through GitHub Copilot and Azure AI Foundry, working with existing M365 identity and data without changing developer environments.</li>
+<li><strong>Built-in evaluation and observability</strong> [00:30:00] — Foundry records agent sessions, traces, tool calls, and offers evaluators (groundedness, coherence, relevance, task adherence, code vulnerability) plus custom evaluators, accessible via UI and programmatically.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>The agentic application model: long-running, goal-driven loops that gather context, act, verify, and repeat.</li>
+<li>The agent AI lifecycle: build, deploy, operate, evaluate, mitigate, and optimize under secure governance.</li>
+<li>Model selection guidance: prototype on Sonnet, escalate to Opus for hard reasoning and long-horizon tasks, drop to Haiku for high-volume, well-defined work like classification, extraction, and routing.</li>
+<li>Anthropic&#39;s constitutional AI approach and safety trained into the model rather than added afterward.</li>
+<li>MCP (Model Context Protocol) for connecting agents to internal and external systems, including public and authenticated private MCP servers.</li>
+<li>Foundry governance via Microsoft Entra, Microsoft Purview, and Microsoft Defender.</li>
+<li>The Claude Agent SDK&#39;s built-in infrastructure: context management, sessions/memory, permissions, lifecycle hooks, sub-agents, and observability.</li>
+<li>Evaluation pillars: quality, risk and safety, and agent-specific metrics, with emphasis on setting up evals early.</li>
+<li>Two demos: the &quot;Sparkles&quot; cupcake-ordering agent (Sonnet 4.6 via VS Code and an MCP server) and a customer support/live-site triage agent running a weekly ops workflow.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;Safety is part of how Claude is actually built. The models are trained with it... It&#39;s not just a layer that&#39;s added at the end.&quot; — Caroline Matthews</p>
+</blockquote>
+<blockquote>
+<p>&quot;Most teams are really surprised by how far Sonnet alone takes them. So treat them as your baseline and reach for something else when the task truly needs it.&quot; — Caroline Matthews</p>
+</blockquote>
+<blockquote>
+<p>&quot;Reasoning quality is doing real production work, not demo work.&quot; — Caroline Matthews</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Microsoft Foundry</li>
+<li>Foundry Agent Service</li>
+<li>Foundry IQ</li>
+<li>Claude Opus</li>
+<li>Claude Sonnet (Claude Sonnet 4.6)</li>
+<li>Claude Haiku</li>
+<li>Claude Code</li>
+<li>Claude Agent SDK</li>
+<li>Agent Framework Foundry SDK</li>
+<li>Model Context Protocol (MCP)</li>
+<li>VS Code</li>
+<li>GitHub Copilot / GitHub Copilot CLI / GitHub Copilot SDK</li>
+<li>Microsoft Entra</li>
+<li>Microsoft Purview</li>
+<li>Microsoft Defender</li>
+<li>Microsoft 365 / Microsoft 365 Graph</li>
+<li>Agent 365</li>
+<li>Azure AI Foundry</li>
+<li>LangChain</li>
+<li>LangGraph</li>
+<li>Constitutional AI</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Keiji Kanazawa — Principal Product Manager, Microsoft Foundry</li>
+<li>Caroline Matthews — Applied AI Architect, Anthropic</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (42,425 chars)</summary>
+        <pre class="transcript-body">[00:00:00] KEIJI KANAZAWA: Welcome to the Microsoft
+[00:00:02] and Anthropic webinar on how to build smarter agents
+[00:00:06] and how you can unlock Claude in Microsoft Foundry
+[00:00:10] to build agents that match your business needs.
+[00:00:13] I&#39;m Keiji Kanazawa.
+[00:00:15] I&#39;m a Principal Product Manager at Microsoft working
+[00:00:19] on the Microsoft Foundry.
+[00:00:20] And I&#39;m going to introduce Caroline from Anthropic next.
+[00:00:24] CAROLINE MATTHEWS: Thank you, Keiji.
+[00:00:26] I am Caroline Matthews.
+[00:00:27] I&#39;m an Applied AI Architect with Anthropic.
+[00:00:31] So I help engineering teams
+[00:00:32] that are putting Claude into production.
+[00:00:35] KEIJI KANAZAWA: Today, unlocking AI
+[00:00:38] for your business needs means asking a few
+[00:00:40] important questions.
+[00:00:42] How can it help you grow?
+[00:00:43] How can it help increase customer satisfaction?
+[00:00:47] How can AI accelerate and optimize your workflows?
+[00:00:51] The answer increasingly comes from applications
+[00:00:55] and agents built on top of an AI platform like Microsoft Foundry.
+[00:01:01] That&#39;s because enterprises, startups need the right models,
+[00:01:05] agents, and tools to build enterprise-ready AI agents
+[00:01:09] and apps.
+[00:01:10] You need to be able
+[00:01:11] to orchestrate multiple agents together with support
+[00:01:15] for interoperability and open frameworks.
+[00:01:18] You need access to the best models
+[00:01:21] like Claude for your use case.
+[00:01:23] And then you need to connect the agents
+[00:01:26] to different knowledge sources and tools
+[00:01:29] like your enterprise data, like Microsoft 365 or your databases.
+[00:01:34] Once you&#39;ve built those agents,
+[00:01:36] you need to continuously monitor, observe,
+[00:01:39] and evaluate your solutions through every stage
+[00:01:42] of the AI development lifecycle with proper content safety,
+[00:01:46] observability, and evaluation tools in every layer
+[00:01:51] of your AI apps and agents.
+[00:01:54] And AI agents should be able to tune, customize,
+[00:01:59] and improve over time continuously using things
+[00:02:03] like optimizing your skills and prompts,
+[00:02:06] as well as fine-tuning models when that&#39;s available.
+[00:02:11] And last but not least, you need to deploy your apps to the local
+[00:02:15] and to the edge in order for you or your customers to be able
+[00:02:19] to take advantage of the agents.
+[00:02:26] Now, agentic applications are not just
+[00:02:29] about calling a model once and getting a response back.
+[00:02:33] Agentic applications increasingly involve
+[00:02:35] long-running systems that reason and act
+[00:02:39] and then continuously learn from context and execution.
+[00:02:44] These are goal-driven processes
+[00:02:46] where agents automatically execute tasks
+[00:02:50] and optimize the outcomes towards general goal rubrics
+[00:02:54] that describe the desired outcomes.
+[00:02:57] For example, let&#39;s say I&#39;m observing a spike in traffic
+[00:03:02] or a dip in success rates.
+[00:03:04] Before agents, you might go look at dashboards yourself,
+[00:03:08] write and run queries, use Excel,
+[00:03:10] come up with some hypotheses.
+[00:03:12] With agents, once I set it up with the right models,
+[00:03:16] the right contacts, things like lifecycle metrics,
+[00:03:20] support tickets, CRM databases, and email messages,
+[00:03:25] they can take a question.
+[00:03:27] What&#39;s causing the spike?
+[00:03:29] And the agent will create a plan, execute it,
+[00:03:32] and loop until it has some answers and generate,
+[00:03:35] for example, a nice HTML report for you instead
+[00:03:38] of you having to do it.
+[00:03:39] So that involves coordinating models and tools,
+[00:03:44] being able to reason through complex, long-running processes,
+[00:03:48] coordinating multiple models with different capabilities,
+[00:03:52] like maybe there&#39;s a good model that&#39;s really skilled
+[00:03:55] at parsing PDFs.
+[00:03:57] We all work with PDFs daily.
+[00:04:00] Turns out PDF is still not a small problem.
+[00:04:04] So you might need to do special handling depending
+[00:04:07] on your domain for how you process those documents.
+[00:04:10] And so the power really comes from giving the agent access
+[00:04:14] to your deep business context, things like Microsoft 365 Graph,
+[00:04:21] enterprise data in Azure, and other systems
+[00:04:23] across your organization.
+[00:04:24] Increasingly, agentic applications also use concepts
+[00:04:28] like memory and involve self-learning
+[00:04:32] and self-improving loops, where based on observing the outcomes
+[00:04:37] of the agents, you can improve the skills,
+[00:04:40] you can improve the workflows,
+[00:04:42] so that they stay relevant over time.
+[00:04:47] And so that comes with the agent AI lifecycle,
+[00:04:51] which involves building the agent, deploying it,
+[00:04:55] operating it, all in a secure governed framework,
+[00:05:00] suited for enterprises, and requires evaluating
+[00:05:04] and monitoring your agents over time.
+[00:05:07] As you observe the agent&#39;s operation, you need to be able
+[00:05:12] to mitigate if there are any issues,
+[00:05:14] and then optimize the agent over time.
+[00:05:18] So it&#39;s not a one-shot thing
+[00:05:20] where you just deploy the agent once.
+[00:05:22] You need to continually iterate.
+[00:05:24] You need to continually evolve with your customers,
+[00:05:28] with the data, and with the marketplace in order
+[00:05:31] to get the most effective use of the AI agents for your domain.
+[00:05:37] And this is why Microsoft is excited to partner
+[00:05:41] with Anthropic, the leading company in agentic AI.
+[00:05:46] Anthropic created things like MCP, agent skills,
+[00:05:51] and has the leading agent harness in Claude Code.
+[00:05:55] These are all innovations really tied to building agents,
+[00:06:00] which produce business outcomes and business value.
+[00:06:04] So we&#39;re really excited to partner with Anthropic.
+[00:06:07] In just the last several months, frontier models
+[00:06:09] like Claude Opus have unlocked a new level
+[00:06:13] of autonomous agentic capability.
+[00:06:15] You&#39;ve probably heard that since last November of 2025,
+[00:06:20] agentic capabilities have gotten to a new level
+[00:06:25] to taking rich context, reason over data, call tools,
+[00:06:29] and then act on your behalf.
+[00:06:31] For our customers, Microsoft and Anthropic are thrilled
+[00:06:36] to be able to combine the power of Claude
+[00:06:38] with Microsoft&#39;s trusted enterprise foundations.
+[00:06:42] Customers can create enterprise-grade agents built
+[00:06:46] for real-world deployment from day one.
+[00:06:52] And that brings us to Microsoft Foundry.
+[00:06:54] Microsoft Foundry is the control plane
+[00:06:57] for running agent workflows and AI-based applications
+[00:07:02] in a secure, compliant platform.
+[00:07:05] It starts with best-in-class tools for creating agents
+[00:07:09] like GitHub Copilot CLI and VS Code.
+[00:07:12] You can also use other coding agents to build your agents.
+[00:07:18] And the agents that you build start with the best models
+[00:07:21] like Claude Opus, like Claude Sonnet, and Claude Haiku,
+[00:07:25] built to run in the agent service, accessing data
+[00:07:30] from Foundry IQ and other forces,
+[00:07:33] and tools from a wide variety of partners.
+[00:07:37] Foundry helps you combine the models, data,
+[00:07:40] and tools that you need to build useful agents securely.
+[00:07:45] Your agents are managed with Microsoft Entra,
+[00:07:49] Microsoft Purview for governance,
+[00:07:53] and Microsoft Defender for security.
+[00:07:56] You can manage all of your agents, whether they&#39;re built
+[00:07:59] in Foundry or not, from the management layer
+[00:08:02] of Microsoft Foundry.
+[00:08:04] This means that organizations can build
+[00:08:06] with powerful frontier models while maintaining the security
+[00:08:11] compliance and governance that they expect from Microsoft.
+[00:08:17] So at this point, I&#39;m going to hand it over to Caroline,
+[00:08:21] who&#39;s going to go deeper into what Claude unlocks
+[00:08:26] for the power of agents running in Microsoft Foundry.
+[00:08:32] CAROLINE MATTHEWS: Thank you, Keiji.
+[00:08:33] So Microsoft gives us the platform, the scale,
+[00:08:36] and the enterprise reach that developers already trust.
+[00:08:38] But the next question is what you&#39;re going
+[00:08:40] to build on top of it.
+[00:08:41] And today, I&#39;m going to walk through what
+[00:08:44] that looks like with Claude.
+[00:08:46] So four reasons why this matters.
+[00:08:49] First, frontier intelligence
+[00:08:52] that performs on truly hard work.
+[00:08:54] So reasoning, coding, analysis.
+[00:08:57] It&#39;s not autocomplete or surface-level summarization.
+[00:09:01] This is the model being able
+[00:09:02] to carry the work you&#39;d normally hand
+[00:09:04] to your most experienced engineers or analysts.
+[00:09:07] So when the model is strong on the hard 20%,
+[00:09:10] everything downstream gets simpler.
+[00:09:13] The next thing is safety and governance.
+[00:09:16] This is built in.
+[00:09:18] It&#39;s not bolted on.
+[00:09:19] And what we mean by that is safety is part
+[00:09:22] of how Claude is actually built.
+[00:09:23] The models are trained with it.
+[00:09:26] You&#39;ve heard of our constitutional AI.
+[00:09:28] That is critical to the way that the models are trained
+[00:09:31] and how they will behave.
+[00:09:32] It&#39;s not just a layer that&#39;s added at the end.
+[00:09:36] So the model is trained to be helpful
+[00:09:37] and to decline appropriately.
+[00:09:39] And on Azure, it also sits inside governance
+[00:09:42] that you already trust.
+[00:09:43] So there&#39;s data handling, access controls,
+[00:09:45] content filtering, audit, compliance.
+[00:09:48] So you&#39;re not trading capability for control.
+[00:09:51] You get the frontier model and the enterprise guardrails
+[00:09:54] in the same deployment, governed the same way
+[00:09:56] as everything else that you run.
+[00:10:00] Three, native integration with the Microsoft stack
+[00:10:03] that you&#39;re already using.
+[00:10:04] This runs where your teams already work.
+[00:10:07] So Claude is available in Azure AI Foundry.
+[00:10:10] It works with the identity
+[00:10:11] and data you&#39;re already managing in M365.
+[00:10:14] And it&#39;s available through GitHub Copilot.
+[00:10:16] Your developers don&#39;t change their environment.
+[00:10:19] And your security and platform teams don&#39;t take
+[00:10:21] on a new vendor surface they have to review.
+[00:10:23] Claude meets you where you are.
+[00:10:26] And last, it&#39;s a short path from pilot to production.
+[00:10:31] The path is short because evaluation
+[00:10:33] and observability live in the same place as everything else.
+[00:10:37] So you can test a prompt, you can measure it
+[00:10:39] against your own evals, you can watch it in production
+[00:10:41] and catch regressions, all without having
+[00:10:44] to stitch five separate tools together.
+[00:10:46] And that&#39;s the real difference between a demo that lands
+[00:10:49] in a meeting and something
+[00:10:50] that you can actually ship and stand behind.
+[00:10:53] And that&#39;s the through line for these next few slides.
+[00:10:55] You focus on your product, and the platform is going
+[00:10:58] to handle the scaffolding.
+[00:11:00] The model, the governance, the integration, evals,
+[00:11:02] observability, all of it is there.
+[00:11:04] So your team will spend time
+[00:11:06] on what&#39;s differentiated, not on the plumbing.
+[00:11:11] So here&#39;s the lineup.
+[00:11:13] This is what&#39;s available in Foundry.
+[00:11:15] Some of our best models for coding and agentic workflows,
+[00:11:18] including Claude Opus, Claude Summit, and Claude Haiku.
+[00:11:23] I&#39;m going to get a little more detail now
+[00:11:26] about this entire Claude model family that&#39;s available
+[00:11:28] in Foundry.
+[00:11:30] So the nice thing about this, when I talk about a family
+[00:11:32] of models, the nice thing is you get all of those things
+[00:11:35] that I just spoke about natively within all of them,
+[00:11:37] including safety, the same sorts of prompting strategies,
+[00:11:41] and overall, the same environment and API calls
+[00:11:44] that you would use for any of these three models,
+[00:11:47] which allows you to be able to work amongst them depending
+[00:11:49] on what the use cases are.
+[00:11:52] So Claude Opus, this is our most intelligent model.
+[00:11:55] This is where you go for genuinely hard problems.
+[00:11:57] So this is complex reasoning, really deep coding
+[00:12:01] across a very large or unfamiliar code base
+[00:12:03] or very long-horizon agentic tasks.
+[00:12:07] And what sets it apart isn&#39;t just its raw intelligence
+[00:12:10] for a single prompt.
+[00:12:11] It is that ability to stay coherent over an extended run.
+[00:12:15] So it can hold a goal across many steps.
+[00:12:18] It can recover when something goes wrong partway through.
+[00:12:21] And it keeps its reasoning consistent instead of drifting.
+[00:12:24] And that&#39;s what makes it a great choice for work
+[00:12:26] that you can&#39;t cleanly break into small pieces.
+[00:12:30] In fact, that&#39;s what Opus can do is help you break
+[00:12:32] into those smaller pieces
+[00:12:34] that you could then deliver to other models.
+[00:12:37] For example, Sonnet.
+[00:12:39] So Sonnet is a really strong default.
+[00:12:41] And note what I said there.
+[00:12:42] That is actually a great spot to start that we do recommend.
+[00:12:46] It&#39;s a great starting point
+[00:12:47] for most enterprise work and most coding.
+[00:12:49] It&#39;s fast.
+[00:12:50] It&#39;s highly capable.
+[00:12:51] And the gap to Opus is small enough that the large majority
+[00:12:55] of tasks never really need to leave it.
+[00:12:57] So most teams are really surprised
+[00:12:59] by how far Sonnet alone takes them.
+[00:13:01] So treat them as your baseline and reach for something else
+[00:13:04] when the task truly needs it.
+[00:13:07] Then we have Claude Haiku.
+[00:13:09] This is your high-throughput option.
+[00:13:12] Haiku is built for low latency and high volume.
+[00:13:15] It&#39;s for the work where speed and cost matter most.
+[00:13:18] So things like classification, extraction, routing, tagging.
+[00:13:22] Anywhere there&#39;s a well-defined task
+[00:13:24] that sits underneath a larger system.
+[00:13:26] So when you pin down exactly what a task needs to do
+[00:13:29] and you&#39;re running it at a very high volume, Haiku gives you
+[00:13:32] that throughput without giving up the quality
+[00:13:35] that the job requires.
+[00:13:37] So the rule of thumb, prototype on Sonnet.
+[00:13:40] It&#39;s capable enough to tell you quickly whether the idea works
+[00:13:43] at all.
+[00:13:44] Then move up to Opus when Sonnet starts to strain,
+[00:13:48] when the reasoning gets really hard
+[00:13:49] or the agent runs get really long
+[00:13:51] and it can&#39;t hold together as well.
+[00:13:53] And you would move down to Haiku once the task is well-defined
+[00:13:56] and the priority shifts more to speed and cost.
+[00:13:59] So the goal here is to match the model to the job, not just reach
+[00:14:03] for the biggest one by default.
+[00:14:07] And now to show some of these Claude models in action,
+[00:14:10] we&#39;re going to take a look at a cupcake factory demo.
+[00:14:14] Here I am just at the opening screen
+[00:14:17] where you can see my project is already set up.
+[00:14:20] I&#39;m going to click into the build area and then you&#39;ll see
+[00:14:23] under deployments where we have our models available.
+[00:14:27] And I&#39;ve deployed a few of the different Claude models.
+[00:14:29] Today we&#39;re going to take a look at Claude Sonnet 4.6.
+[00:14:34] This is a great model in particular
+[00:14:36] for coding tasks and things like that.
+[00:14:38] A very good balance in terms
+[00:14:40] of the capabilities and frontier model.
+[00:14:42] But it has a good price point as well as latency
+[00:14:47] that will make it a great option for you
+[00:14:49] as you&#39;re building things like this agent I&#39;m
+[00:14:51] about to demonstrate to you.
+[00:14:54] So first, let&#39;s just make sure the model&#39;s up and running
+[00:14:56] and everything is going well.
+[00:14:58] So I&#39;ve opened it into the playground within Foundry
+[00:15:01] and I&#39;ll just say hello.
+[00:15:03] We&#39;ll get just a generic response back
+[00:15:05] because at the moment, the instructions it has are just
+[00:15:08] to help people find information.
+[00:15:10] Pretty generic.
+[00:15:11] I&#39;m going to adjust it slightly
+[00:15:13] for what we&#39;re going to do today.
+[00:15:15] So now I&#39;m going to tell it that it is going
+[00:15:18] to help people order cupcakes.
+[00:15:21] And it will need to answer everything
+[00:15:23] with cupcake puns and emojis.
+[00:15:25] So let&#39;s start a new chat.
+[00:15:27] We&#39;ll see how this affects the results.
+[00:15:31] I&#39;ll tell it I&#39;m hungry.
+[00:15:32] A little bit of a hint there.
+[00:15:37] Great. And we get some fairly ridiculous responses,
+[00:15:40] but it is following our instructions,
+[00:15:42] which was to use cupcake puns and emojis.
+[00:15:44] So we see that the model is up and running
+[00:15:47] and we&#39;re able to work with it.
+[00:15:49] Now you&#39;ll see here, you do have an option right directly
+[00:15:52] within Foundry.
+[00:15:53] You could save it as an agent and be able
+[00:15:54] to run it using those services, which is great.
+[00:15:58] But today we&#39;re going to take a look
+[00:15:59] at how we would do this within code.
+[00:16:02] So I&#39;m going to switch over to VS Code.
+[00:16:06] And you&#39;ll see on my screen,
+[00:16:08] I have set up Sparkles the cupcake ordering agent.
+[00:16:11] And so a few things we&#39;ll walk through.
+[00:16:13] First, so the way we connect to this, you&#39;ll see here,
+[00:16:16] is with this Anthropic Foundry client that is part
+[00:16:19] of the agent framework Foundry SDK.
+[00:16:22] So that&#39;s available to us.
+[00:16:24] We have a couple of configurations.
+[00:16:25] So the model, API key, and base URL.
+[00:16:28] These can all be found in the Details tab over there
+[00:16:31] in Foundry, where we just were.
+[00:16:33] So you can load those up.
+[00:16:35] You also do have the option as well
+[00:16:37] that you could use keyless deployment.
+[00:16:40] So the next step is we&#39;re going to take a look at,
+[00:16:42] we have created a Cupcake Store MCP.
+[00:16:45] So this is a publicly available MCP,
+[00:16:48] and what the MCP encapsulates is essentially the instructions
+[00:16:52] that we&#39;re going to give to our agent, as well as sets of tools
+[00:16:54] that it&#39;s going to use to be able to process cupcake orders,
+[00:16:58] answer questions, all of the things that we&#39;re about to see.
+[00:17:01] And so as I mentioned, this MCP server is set up as a public one
+[00:17:05] for us to use for this type of demonstration.
+[00:17:07] But you also can have private MCPs
+[00:17:09] where you would pass authorization headers.
+[00:17:11] So certainly a great way to be able to connect
+[00:17:14] to internal and external systems.
+[00:17:16] So the first thing we&#39;re going to do is, from the MCP,
+[00:17:20] we are going to get the instructions and welcome banner.
+[00:17:23] This is literally just instructions, the system prompt,
+[00:17:26] and explaining to the agent how it should behave.
+[00:17:28] And then we just have a cute welcome banner
+[00:17:29] that you&#39;ll see in just a moment.
+[00:17:32] So then we create the agent,
+[00:17:34] passing in those instructions, the tools.
+[00:17:36] And at this point, this is where I&#39;ve named a cupcake agent.
+[00:17:40] And you&#39;ll see then that the way we&#39;re going
+[00:17:42] to demonstrate it today is to go ahead and kick off the session.
+[00:17:45] So this is just going to run in a loop, awaiting responses
+[00:17:48] and interactions from us as a user, and being able to interact
+[00:17:52] with both that MCP tool, as well
+[00:17:54] as the instructions that we give it.
+[00:17:56] So let&#39;s give it a whirl.
+[00:18:04] And there&#39;s our cute banner that I mentioned
+[00:18:06] that we were going to get.
+[00:18:07] I&#39;ll scoop this up so we can see a little bit more.
+[00:18:10] So you see here, the first thing is,
+[00:18:11] do I already have a customer ID?
+[00:18:13] And I don&#39;t.
+[00:18:14] I&#39;m going to say that I need a new one.
+[00:18:17] And first, it&#39;s going to ask me all the information it needs
+[00:18:20] in order to set me up for this.
+[00:18:23] So I&#39;m going to go ahead and give it my name.
+[00:18:26] And it will go back.
+[00:18:27] It still needs a little bit more information.
+[00:18:29] So again, pretty interactive.
+[00:18:31] And at that point, we also need to go
+[00:18:34] through our actual order process.
+[00:18:36] So I&#39;ve got everything set up for my customer.
+[00:18:39] And the way we do the ordering is we have a little dashboard
+[00:18:42] that is running off of that same MCP server that is going
+[00:18:46] to have vouchers for us.
+[00:18:48] And this is what lets us actually be able
+[00:18:50] to do the order.
+[00:18:50] So we&#39;ll show this to you in just a second.
+[00:18:53] So I have decided I would like a lemon sponge today.
+[00:19:00] So I&#39;m going to go ahead and catch that one.
+[00:19:02] And what we&#39;re going to see is there is a six-character voucher
+[00:19:05] code that we need.
+[00:19:06] I&#39;m just going to go ahead and type that in
+[00:19:08] because I&#39;ve got mine already.
+[00:19:14] Looks like we&#39;ve already got ours ready.
+[00:19:16] I am going to actually do this as a real order.
+[00:19:20] We&#39;ll see.
+[00:19:22] And then once I do that, we will pop back over.
+[00:19:26] And there it is.
+[00:19:28] There&#39;s my order for the lemon sponge cupcake.
+[00:19:32] So I hope you&#39;ve enjoyed this.
+[00:19:34] This is just a fun way to show how you get all the amazing
+[00:19:37] things with Azure in terms
+[00:19:39] of enterprise capabilities and scale.
+[00:19:42] And you also get the ability
+[00:19:44] to now build your applications using Anthropic Claude models
+[00:19:48] as well.
+[00:19:50] KEIJI KANAZAWA: Thanks, Caroline.
+[00:19:52] Now let&#39;s get into a little bit deeper
+[00:19:55] into what an agent actually does.
+[00:19:57] An agent is built using frontier models
+[00:20:01] like the Claude series inside what you may have heard called
+[00:20:06] a harness.
+[00:20:07] We&#39;ll come back to that a little bit.
+[00:20:08] A harness drives model inference and allows the model
+[00:20:12] to write code, invoke tools, receive inputs, process them,
+[00:20:18] and iterate in a loop.
+[00:20:20] This is often called the agentic loop.
+[00:20:23] The agent takes the input, reasons about what needs
+[00:20:26] to happen, calls tools or retrieves information,
+[00:20:30] and then continues until it can produce what it considers the
+[00:20:34] right output.
+[00:20:37] Foundry Agent Service is the part
+[00:20:39] of Microsoft Foundry that&#39;s designed to be the best place
+[00:20:43] to build and run AI apps and agents that scale.
+[00:20:49] It&#39;s open by design.
+[00:20:50] You can work with different frameworks and protocols,
+[00:20:53] including the agent-to-agent protocol, MCP,
+[00:20:57] and other emerging standards.
+[00:20:59] It&#39;s built for multi-agent workflows
+[00:21:02] and supports the agent framework of your choice.
+[00:21:06] With Foundry agent service, you can access models in Foundry,
+[00:21:10] connect to Foundry IQ, and other data sources, leverage tools,
+[00:21:15] and deploy them in production
+[00:21:18] in a secure enterprise-grade platform that you can observe,
+[00:21:22] monitor, and optimize and improve over time.
+[00:21:26] You can deploy your agents, not just within Foundry,
+[00:21:30] but also to Microsoft 365 and Agent 365.
+[00:21:37] And you get that end-to-end observability
+[00:21:40] and simplified governance that&#39;s underpinning everything
+[00:21:45] in Microsoft Foundry.
+[00:21:49] Now, that&#39;s enough of our slides, let&#39;s show another demo
+[00:21:53] to show you agents using Claude in action in Microsoft Foundry.
+[00:22:00] So let me show you again what running an agent looks
+[00:22:04] like in practice with Claude on Microsoft Foundry.
+[00:22:09] Here&#39;s an example of an agent I built with Claude
+[00:22:13] in the Foundry Agent Service.
+[00:22:15] It&#39;s running in what&#39;s called a hosted agent,
+[00:22:18] which we&#39;ll come back to in a little bit.
+[00:22:20] It&#39;s a customer support
+[00:22:23] and live-side triage system using the Claude agent SDK
+[00:22:28] running in Microsoft Foundry inside a hosted
+[00:22:32] container sandbox.
+[00:22:34] This agent can access my data
+[00:22:37] and execute an operational workflow.
+[00:22:39] So I can give it a command like, run the weekly ops flow.
+[00:22:50] And it&#39;s going to kick off the workflow that it has for looking
+[00:22:56] at live-side incidents, customer support calls, any messages
+[00:23:02] or emails that people have been sending
+[00:23:05] about the live-side status, looking at the data,
+[00:23:09] and putting it all together.
+[00:23:13] And so, let me switch over while this is running back to talking
+[00:23:20] about what hosted agents are and what the Claude agent SDK is.
+[00:23:28] So that agent, the support agent is running as a hosted agent
+[00:23:32] within Microsoft Foundry.
+[00:23:34] These are agents that you build with custom code that you build
+[00:23:39] in any framework that you want, including GitHub Copilot SDK,
+[00:23:44] LangChain, LangGraph, or the Claude agent SDK.
+[00:23:50] You build your agent, starting on your local machine,
+[00:23:54] make sure it&#39;s working correctly, and then you can move
+[00:23:59] that application up into the cloud sandbox,
+[00:24:02] hosted in Foundry Agent Service.
+[00:24:05] What&#39;s great about running your agents
+[00:24:09] in the Foundry Agent Service hosted agent,
+[00:24:13] is that that sandbox is automatically secured and set
+[00:24:19] up with the authentication that you need
+[00:24:21] to access Foundry resources, like calling Claude models
+[00:24:27] in Microsoft Foundry for the agent to use
+[00:24:32] in doing its reasoning and operation.
+[00:24:35] And also, the hosted agent service facilitates the
+[00:24:39] authentication that you need to connect to the tools and MCPs
+[00:24:45] that host your enterprise data and to use those securely.
+[00:24:52] Now, let&#39;s switch over to Caroline,
+[00:24:56] who&#39;s going to share a little bit more
+[00:24:59] about the Claude agent SDK that I&#39;m using in that demo.
+[00:25:05] CAROLINE MATTHEWS: Great.
+[00:25:06] Thanks, Keiji.
+[00:25:07] This is one of my favorite things to talk about.
+[00:25:10] So let&#39;s chat about the Claude agent SDK.
+[00:25:13] First, what is it?
+[00:25:15] This is the harness behind Claude code.
+[00:25:17] So it&#39;s the same agent loop, it&#39;s the same tools,
+[00:25:20] context management that powers the product millions
+[00:25:22] of developers are using every day, and it&#39;s programmable
+[00:25:26] in both Python and TypeScript.
+[00:25:28] So it is the production harness.
+[00:25:29] We&#39;ve talked about harnesses already in this webinar,
+[00:25:32] and you are building on the exact thing we use ourselves.
+[00:25:36] So first, the loop is fairly simple,
+[00:25:38] but it is the whole model.
+[00:25:40] You will gather context, take action, verify the work,
+[00:25:44] and repeat until the task is done.
+[00:25:46] That&#39;s it.
+[00:25:47] So every capable agent comes back to those four steps.
+[00:25:52] What makes an agent good is not a clever prompt.
+[00:25:54] It&#39;s doing each of those steps well, and the SDK is built
+[00:25:58] to do them well by default.
+[00:26:00] So out of the box, here&#39;s what you get.
+[00:26:03] You have code execution, a file system, web search,
+[00:26:07] a to-do list, and MCP, plus your own custom tools.
+[00:26:11] So the agent can run code, it can read and write files,
+[00:26:14] look things up, keep track of a multi-step plan,
+[00:26:17] and reach into your systems through MCP.
+[00:26:19] So if you have an internal API or a proprietary data source,
+[00:26:22] you can expose that as a tool,
+[00:26:24] and the agent uses it like any other.
+[00:26:27] And then there&#39;s the layer that a lot of people underestimate,
+[00:26:30] the infrastructure around the loop.
+[00:26:32] So context management, so the agent doesn&#39;t run
+[00:26:35] out of room on long tasks.
+[00:26:37] Sessions in memory, so it can pick work back up.
+[00:26:40] Permissions, so it only does what you&#39;ve allowed.
+[00:26:43] Lifecycle hooks, so you can insert your own logic
+[00:26:46] at each step that will always run.
+[00:26:50] And sub-agents that let you fan work out and parallelize.
+[00:26:53] Plus, you have error handling and observability,
+[00:26:55] so you can see what it did and why.
+[00:26:58] And this is the part that teams always think they&#39;ll knock
+[00:27:01] out in a week, but it really takes a long time.
+[00:27:04] So the takeaway is the last line on the slide.
+[00:27:07] You don&#39;t need to worry about the plumbing.
+[00:27:09] You ship the agent.
+[00:27:11] Most teams build a version
+[00:27:12] of this harness themselves before they find the SDK.
+[00:27:15] They write the loop.
+[00:27:16] They do the tool, the wiring, the context handling.
+[00:27:18] They might hit a permissions and observability issue,
+[00:27:21] and they realize that they&#39;re really maintaining a whole
+[00:27:23] separate platform instead of building their product.
+[00:27:25] That is the work you can now skip with the Claude Agent SDK.
+[00:27:30] And now, we&#39;re going to go back and take a look
+[00:27:32] at what Keiji built with it.
+[00:27:34] KEIJI KANAZAWA: So the agent has come back with its report.
+[00:27:40] It&#39;s done the weekly ops review.
+[00:27:43] Turns out, situation is red.
+[00:27:45] We&#39;ve had a lot of errors and support cases this week, 40% up.
+[00:27:52] And so, what the agent has done is looked at all of the data
+[00:27:56] in terms of the life sites, the support tickets,
+[00:28:00] any communication that&#39;s happened.
+[00:28:03] And it&#39;s done these multiple steps,
+[00:28:08] like also generating a trend forecast.
+[00:28:11] So it gives you that report.
+[00:28:12] And again, it ran that agentic loop
+[00:28:16] where you basically gave it an idea of what we want,
+[00:28:20] running the weekly ops review.
+[00:28:23] And it has a prompt that underlines what that means.
+[00:28:26] But after that, it goes and executes the workflow itself
+[00:28:30] until it knows it&#39;s met what this workflow is supposed to do,
+[00:28:34] which includes things like what are the top impacting things,
+[00:28:39] forecasting what it&#39;s going to look like this coming week.
+[00:28:44] And then, some artifacts to capture the whole analysis
+[00:28:49] that you can go back and look at it later, not just locked
+[00:28:53] into this chat window.
+[00:28:56] And where do you get all of that?
+[00:28:58] So that&#39;s where Microsoft Foundry comes in.
+[00:29:02] And so, this is where you find that agent in Microsoft Foundry.
+[00:29:07] I&#39;m already on a page that shows the particular agent
+[00:29:11] that I&#39;m running in the project, the Claude Agent SDK running
+[00:29:15] for the support intelligence case in the hosted agent.
+[00:29:19] So you can see all of the sessions
+[00:29:21] that have been running for this agent.
+[00:29:24] When I click on it, you can see all of the steps that it took.
+[00:29:28] I can open this session,
+[00:29:31] and what you can see here is those articles
+[00:29:35] that I pointed to, the summary and forecast that it produced,
+[00:29:40] it&#39;s available right here in the Foundry.
+[00:29:43] And you can programmatically access these as well.
+[00:29:46] So for example, it has a weekly forecast.
+[00:29:51] It puts that in a nice chart.
+[00:29:54] It also has the executive summary as a markdown
+[00:29:58] that you can refer back to.
+[00:30:00] This is basically what the agent printed
+[00:30:03] out in the user experience.
+[00:30:07] And I can also go and look at the trace
+[00:30:12] of what the agent was doing.
+[00:30:16] So I&#39;ll click on this, which is the latest agent session.
+[00:30:23] And what you can see is all of the different turns
+[00:30:27] and all the tool calls that the Claude Agent SDK made in running
+[00:30:33] that weekly ops workflow.
+[00:30:37] And this is something that I actually wired up.
+[00:30:41] I used Claude Code to basically tell it, hey,
+[00:30:47] I want to record all of the events
+[00:30:50] that the Claude Agent is doing while it&#39;s running
+[00:30:54] that ops workflow.
+[00:30:56] And I said, please go look up the documentation on how to wire
+[00:31:00] up traces for the Foundry hosted agents
+[00:31:04] so that I can see it in Microsoft Foundry.
+[00:31:07] And it just took a few minutes,
+[00:31:08] wired it all up, one shot as they say.
+[00:31:12] And now I can see all of the activity
+[00:31:15] of that agent in the Foundry.
+[00:31:17] And then you can look at all of the, you know, steps,
+[00:31:22] kind of metadata, each of the steps.
+[00:31:25] And in the Foundry, we also have this nice view
+[00:31:28] where you can kind of play back in time all of the actions
+[00:31:32] that that agent took for that particular session.
+[00:31:39] Now, we also have a monitoring view, the observability piece
+[00:31:44] that we talked about, where we are recording all
+[00:31:48] of the different runs that this agent has made and to be able
+[00:31:52] to do things like evaluations as well.
+[00:31:56] So that&#39;s the power of combining Claude SDK, Claude Agent SDK,
+[00:32:01] running in an agent in a workflow,
+[00:32:05] running on Microsoft Foundry.
+[00:32:08] CAROLINE MATTHEWS: And on that note, evaluations.
+[00:32:11] This is one of the most critical things.
+[00:32:13] We talk about this all the time with all of our customers
+[00:32:16] and partners about how critical it is to set
+[00:32:20] up evaluations very early and very well
+[00:32:23] when you&#39;re building these sorts of applications.
+[00:32:25] And what we mean by that is the evaluations are the way
+[00:32:28] that you can add a little bit more determinism to what is,
+[00:32:32] as we all know, a very probabilistic use case.
+[00:32:35] And so the types of things that we talk
+[00:32:38] about with evaluations range
+[00:32:39] across these three different pillars,
+[00:32:41] four different pillars, actually.
+[00:32:42] But we have quality, which is really about the types
+[00:32:46] of output you&#39;re getting.
+[00:32:48] And there&#39;s some great evaluation scores
+[00:32:50] that are available kind of intrinsically
+[00:32:52] or are intrinsically on Azure, such as groundedness,
+[00:32:55] which is how close is it to the expectation, coherence
+[00:32:59] and fluency about how the models are responding and the types
+[00:33:03] of answers that you&#39;re getting, relevance to the answers,
+[00:33:07] being able to see how similar something is
+[00:33:09] to a very expected output.
+[00:33:12] So quality is around the outputs coming from the agents,
+[00:33:16] but we have to be very careful about risk and safety.
+[00:33:18] We have this kind of broken into two areas, but risk
+[00:33:20] and safety is all of the things that we hear
+[00:33:23] about in the news, frankly.
+[00:33:24] Anything around unsafe or less protected types of ways
+[00:33:30] that you would interact with the models that you&#39;re using.
+[00:33:33] And we also have to be careful just about things
+[00:33:35] that might be ungrounded.
+[00:33:37] This is where we can get some really bad information
+[00:33:39] that can get out there because it wasn&#39;t properly grounded.
+[00:33:42] So we kind of classify that in terms of risk and safety as well
+[00:33:45] as quality along those same lines with code vulnerability.
+[00:33:49] And overall with agents, we kind of introduce a whole new set
+[00:33:52] of types of evaluations where we want
+[00:33:54] to understand did the overall agentic process,
+[00:33:56] especially as we get into multi-agent,
+[00:33:59] did it understand the intent properly?
+[00:34:01] How accurately did it make those tool calls
+[00:34:04] and how well were the responses handled by those?
+[00:34:07] Task adherence, is it able to complete the full task?
+[00:34:10] Again, as we talk about very long-running agents,
+[00:34:12] we need to evaluate how well it can work over time.
+[00:34:16] And in addition to these that come sort of out of the box,
+[00:34:19] we also have custom evaluators, which is an excellent way
+[00:34:22] to then extend this into things
+[00:34:23] that are very specific for your use cases.
+[00:34:27] And the great thing is, as I mentioned,
+[00:34:29] is a lot of these evaluators are available for you
+[00:34:32] within Azure automatically, or you can build your custom ones.
+[00:34:35] And all of them can be measured and evaluated
+[00:34:38] within the Azure Foundry interfaces
+[00:34:41] as well as programmatically.
+[00:34:43] So you have all those evaluation metrics available
+[00:34:45] for your agents to use.
+[00:34:46] This allows you to automate and be able to review things
+[00:34:50] in real time, as well as being able to look over a period
+[00:34:53] of time, which will really help as you&#39;re looking
+[00:34:55] at drift and as things change.
+[00:34:56] Or if you need to make a change, switch to the latest,
+[00:34:59] a new model that&#39;s come out, a new version of a model,
+[00:35:02] or make a change within your code.
+[00:35:04] These evaluations are what let you see how well it will perform
+[00:35:08] your full agentic system, even if you&#39;re making changes.
+[00:35:12] And so, again, this is why we think evaluations are
+[00:35:15] so important, and we really need
+[00:35:17] to see those early on in the process.
+[00:35:19] Don&#39;t wait till the end.
+[00:35:20] This is something that should be built all the way
+[00:35:22] through as you&#39;re building out your agentic solutions.
+[00:35:27] So we&#39;ve shown a lot today, and we opened
+[00:35:29] with some customer quotes, but we also want
+[00:35:31] to close with a few more.
+[00:35:33] I&#39;m not going to read all of these, but just looking
+[00:35:35] at a pattern across all of the customers
+[00:35:38] that we&#39;ve been working with.
+[00:35:39] Adobe values being able to evaluate frontier models
+[00:35:43] with the governance intact.
+[00:35:45] You saw Denton sees better reasoning translate
+[00:35:47] into less rework for lawyers.
+[00:35:49] Macroscope catches the bugs
+[00:35:51] that matter before they reach production.
+[00:35:53] So all these different industries, including the ones
+[00:35:56] from Momentic and Everstar, have the same conclusion.
+[00:35:59] Reasoning quality is doing real production work, not demo work.
+[00:36:06] KEIJI KANAZAWA: Today,
+[00:36:07] you learn how you can take the advanced reasoning agentic
+[00:36:12] capabilities of the Claude models combined
+[00:36:16] with Microsoft Foundry to build agentic workflows
+[00:36:21] that can accelerate your business.
+[00:36:26] Here are some resources that you can use to continue to learn
+[00:36:30] about how to build agents with Claude and Microsoft Foundry.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

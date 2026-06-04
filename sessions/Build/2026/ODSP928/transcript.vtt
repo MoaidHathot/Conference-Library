@@ -1,0 +1,783 @@
+WEBVTT
+
+00:00:00.480 --> 00:00:01.260
+NATAN YELLIN: Hello, everyone.
+
+00:00:01.260 --> 00:00:04.230
+I'm Natan, and today, I'm going
+to talk about SRE agents and how
+
+00:00:04.230 --> 00:00:07.110
+to build affordable SRE agents
+that you can actually run
+
+00:00:07.110 --> 00:00:08.700
+on all your production alerts.
+
+00:00:08.700 --> 00:00:11.970
+So it seems like everyone's
+building SRE agents nowadays,
+
+00:00:11.970 --> 00:00:16.350
+and the math on them is
+actually fairly challenging
+
+00:00:16.350 --> 00:00:18.180
+to make this work at scale.
+
+00:00:18.180 --> 00:00:20.190
+So I'm going to walk through
+some of that and why they cost
+
+00:00:20.190 --> 00:00:22.530
+so much and what you
+can do to fix that.
+
+00:00:22.530 --> 00:00:25.500
+As background, I'm the CEO
+and co-founder of Robusta.
+
+00:00:25.500 --> 00:00:28.020
+So we've been building SRE
+agents and shipping them
+
+00:00:28.020 --> 00:00:30.150
+to customers from the
+Fortune 500 all the way
+
+00:00:30.150 --> 00:00:32.850
+to tiny, tiny startups.
+
+00:00:32.850 --> 00:00:34.590
+And we've been doing that
+now for quite some time.
+
+00:00:34.590 --> 00:00:36.060
+So I'm going to share
+some of the lessons
+
+00:00:36.060 --> 00:00:39.080
+that we've learned on that.
+
+00:00:39.080 --> 00:00:43.760
+Okay. So the naive cost, if we
+take a typical Fortune 500,
+
+00:00:43.760 --> 00:00:45.800
+you're going to have at least
+a thousand alerts per day
+
+00:00:45.800 --> 00:00:47.240
+across different teams.
+
+00:00:47.240 --> 00:00:51.540
+And if you want to run an AI
+SRE on all of those alerts,
+
+00:00:51.540 --> 00:00:54.690
+the total cost on that with a
+naive solution is just too high.
+
+00:00:54.690 --> 00:00:56.250
+I'm going to walk through all
+the numbers and how I get
+
+00:00:56.250 --> 00:00:59.910
+to this giant figure here
+for $730,000 a year,
+
+00:00:59.910 --> 00:01:02.130
+but it's fairly realistic.
+
+00:01:02.130 --> 00:01:04.530
+And it matches what
+we tend to see
+
+00:01:04.530 --> 00:01:07.020
+in enterprise after enterprise.
+
+00:01:07.020 --> 00:01:10.320
+And the math behind
+this is you're looking
+
+00:01:10.320 --> 00:01:14.640
+at a cost per investigation
+of around $2,
+
+00:01:14.640 --> 00:01:18.900
+and you're looking at, say,
+a thousand alerts per day.
+
+00:01:18.900 --> 00:01:20.670
+And if you run the
+math on that, I mean,
+
+00:01:20.670 --> 00:01:23.850
+you very rapidly reach
+this massive figure.
+
+00:01:23.850 --> 00:01:27.210
+So I'm going to walk through all
+those numbers in more detail.
+
+00:01:27.210 --> 00:01:28.140
+And, of course, this number
+
+00:01:28.140 --> 00:01:32.640
+for most enterprises is more
+expensive than the cost
+
+00:01:32.640 --> 00:01:35.460
+of having humans triage
+alerts manually.
+
+00:01:35.460 --> 00:01:37.320
+So it tends to be a non-starter.
+
+00:01:37.320 --> 00:01:40.680
+So we're going to look at how
+you can bring that cost down.
+
+00:01:40.680 --> 00:01:42.690
+So just to walk through
+more of the math.
+
+00:01:42.690 --> 00:01:49.140
+So the typical cost for most
+vendors doing SRE agent
+
+00:01:49.140 --> 00:01:52.560
+investigations is in the
+50-cent to $5 range,
+
+00:01:52.560 --> 00:01:55.410
+depending on how complex
+the underlying issue is.
+
+00:01:55.410 --> 00:01:57.420
+Most of the vendors are
+charging a markup on that.
+
+00:01:57.420 --> 00:01:59.820
+So most of the observability
+vendors, for example,
+
+00:01:59.820 --> 00:02:03.780
+are charging around
+$25 per investigation.
+
+00:02:03.780 --> 00:02:07.080
+And then you have vendors
+going all the way down to $15
+
+00:02:07.080 --> 00:02:09.300
+or $5 per investigation.
+
+00:02:09.300 --> 00:02:11.790
+But if you ignore for a
+second the vendor markup,
+
+00:02:11.790 --> 00:02:17.460
+then just the underlying cost on
+this tends to be 50 cents to $5
+
+00:02:17.460 --> 00:02:21.570
+for surprisingly almost
+everyone across the industry,
+
+00:02:21.570 --> 00:02:24.450
+where that's driven by
+how complex the alert is.
+
+00:02:24.450 --> 00:02:27.990
+So a simple investigation that's
+pulling relatively little data
+
+00:02:27.990 --> 00:02:31.560
+would be 50 cents, complex
+investigation goes up to $5.
+
+00:02:31.560 --> 00:02:33.510
+And very interestingly,
+these are all driven
+
+00:02:33.510 --> 00:02:35.340
+by the cost on input tokens.
+
+00:02:35.340 --> 00:02:39.360
+So like an SRE agent is pulling
+a ton of logs, ton of metrics,
+
+00:02:39.360 --> 00:02:42.900
+ton of observability data, you
+pay a lot on the input token.
+
+00:02:42.900 --> 00:02:45.450
+You tend to not pay at
+all on output tokens.
+
+00:02:45.450 --> 00:02:47.520
+Or, I mean, you pay something,
+but it tends to be very,
+
+00:02:47.520 --> 00:02:51.060
+very minimal in what you
+pay on output tokens.
+
+00:02:51.060 --> 00:02:56.670
+Now, if we look at this, then
+just taking these two ranges,
+
+00:02:56.670 --> 00:02:59.760
+you get this range of
+180k to 1.8 million,
+
+00:02:59.760 --> 00:03:01.770
+depending on the cost
+per investigation.
+
+00:03:01.770 --> 00:03:04.920
+And taking a midpoint
+there of around $2,
+
+00:03:04.920 --> 00:03:07.170
+then you get to that $730k.
+
+00:03:07.170 --> 00:03:09.930
+And these numbers are,
+for most companies,
+
+00:03:09.930 --> 00:03:12.270
+non-starters at that midpoint.
+
+00:03:12.270 --> 00:03:14.640
+It's just not -- it doesn't
+really pay to do it
+
+00:03:14.640 --> 00:03:18.750
+at that range, even though
+you're getting like faster MTTR.
+
+00:03:18.750 --> 00:03:20.220
+It's cheaper to hire
+an offshore team
+
+00:03:20.220 --> 00:03:22.110
+and to have them
+triage the alerts.
+
+00:03:22.110 --> 00:03:23.550
+So we want to play
+with this math,
+
+00:03:23.550 --> 00:03:26.160
+and we want to make
+that more attractive.
+
+00:03:26.160 --> 00:03:30.840
+One thing you can do, it doesn't
+help as much as people think,
+
+00:03:30.840 --> 00:03:34.380
+but one thing you can do
+is to use cheaper models.
+
+00:03:34.380 --> 00:03:37.470
+So all this assumes Opus 4.7.
+
+00:03:37.470 --> 00:03:40.950
+And Opus 4.7 is
+fantastic, or 4.6, right?
+
+00:03:40.950 --> 00:03:42.660
+Really fantastic model.
+
+00:03:42.660 --> 00:03:45.630
+If you look at the Chinese
+models and you look at models
+
+00:03:45.630 --> 00:03:49.590
+like DeepSeek V4, then
+that's actually nearly three
+
+00:03:49.590 --> 00:03:50.790
+times cheaper.
+
+00:03:50.790 --> 00:03:52.260
+They're not as good.
+
+00:03:52.260 --> 00:03:55.260
+We see accuracy does go down
+on the really complex things,
+
+00:03:55.260 --> 00:03:57.180
+but they're fairly decent.
+
+00:03:57.180 --> 00:04:00.060
+The math on this is
+still not good enough
+
+00:04:00.060 --> 00:04:01.980
+to really get you
+where you need to be.
+
+00:04:01.980 --> 00:04:04.920
+And what we do, we
+run with customers.
+
+00:04:04.920 --> 00:04:07.260
+We actually don't use
+the Chinese models.
+
+00:04:07.260 --> 00:04:12.780
+We use almost exclusively Opus
+family models because they give
+
+00:04:12.780 --> 00:04:14.640
+that extra result and
+because we can get the cost
+
+00:04:14.640 --> 00:04:17.280
+down in other ways.
+
+00:04:17.280 --> 00:04:18.360
+But if you do look at this,
+
+00:04:18.360 --> 00:04:20.130
+this is like a first
+really optimization,
+
+00:04:20.130 --> 00:04:22.480
+just take a cheaper
+model, right?
+
+00:04:24.600 --> 00:04:26.210
+So one other interesting,
+non-intuitive part
+
+00:04:26.210 --> 00:04:29.390
+on this is actually sometimes
+the cheaper models,
+
+00:04:29.390 --> 00:04:31.760
+even though the cost per
+token is going down,
+
+00:04:31.760 --> 00:04:33.750
+what we see repeatedly
+in benchmarks is
+
+00:04:33.750 --> 00:04:36.420
+that the overall price
+doesn't go down by as much
+
+00:04:36.420 --> 00:04:39.210
+because the models tend to
+have to pull more data.
+
+00:04:39.210 --> 00:04:40.350
+They're like trying
+to pull logs,
+
+00:04:40.350 --> 00:04:42.030
+but they'll pull the
+wrong logs first.
+
+00:04:42.030 --> 00:04:42.870
+So then they have to try again.
+
+00:04:42.870 --> 00:04:44.400
+So they end up actually
+using more tokens,
+
+00:04:44.400 --> 00:04:47.580
+even though the cost
+per token is cheaper.
+
+00:04:47.580 --> 00:04:48.870
+Okay. Other optimizations.
+
+00:04:48.870 --> 00:04:51.660
+So we spoke about switching
+to a cheaper model.
+
+00:04:51.660 --> 00:04:56.040
+And then one other really common
+optimization is doing context
+
+00:04:56.040 --> 00:04:56.820
+and runbooks.
+
+00:04:56.820 --> 00:04:59.610
+So if you look at an SRE agent,
+
+00:04:59.610 --> 00:05:04.770
+an SRE agent is
+investigating an alert.
+
+00:05:04.770 --> 00:05:08.040
+And in a simple architecture
+with no memory and no learning
+
+00:05:08.040 --> 00:05:11.640
+across investigations, then
+you need to rediscover
+
+00:05:11.640 --> 00:05:13.470
+in every alert
+(inaudible) information
+
+00:05:13.470 --> 00:05:16.740
+about the customer environment
+and their observability data,
+
+00:05:16.740 --> 00:05:21.240
+and you have to rediscover
+how do you actually query
+
+00:05:21.240 --> 00:05:21.660
+their tools.
+
+00:05:21.660 --> 00:05:24.270
+What data lives in different
+observability vendors?
+
+00:05:24.270 --> 00:05:27.000
+If you have multiple time series
+database -- one for the infra,
+
+00:05:27.000 --> 00:05:29.040
+one for the applications
+-- what lives where?
+
+00:05:29.040 --> 00:05:31.080
+So you end up having to
+rediscover that context
+
+00:05:31.080 --> 00:05:32.340
+in each investigation.
+
+00:05:32.340 --> 00:05:35.250
+So if you either give the
+agent context on its own,
+
+00:05:35.250 --> 00:05:38.100
+or you have it auto-learn that
+context and generate memories
+
+00:05:38.100 --> 00:05:40.770
+or auto-build skills, then
+you can actually get the cost
+
+00:05:40.770 --> 00:05:43.950
+on that down by quite a bit,
+
+00:05:43.950 --> 00:05:48.030
+typically as in the
+20 to 30% range.
+
+00:05:48.030 --> 00:05:51.390
+And you can get that down
+because the agent doesn't have
+
+00:05:51.390 --> 00:05:53.460
+to relearn everything
+in each investigation.
+
+00:05:53.460 --> 00:05:56.190
+So that's another
+good optimization.
+
+00:05:56.190 --> 00:05:59.700
+But the big, big area where we
+see the biggest optimization is
+
+00:05:59.700 --> 00:06:01.710
+that most alerts are
+actually duplicates.
+
+00:06:01.710 --> 00:06:04.770
+So if you look at 500
+alerts that are coming
+
+00:06:04.770 --> 00:06:07.230
+in when there's a big
+production outage,
+
+00:06:07.230 --> 00:06:10.830
+most of those are actually
+really duplicates
+
+00:06:10.830 --> 00:06:12.150
+of the same cause.
+
+00:06:12.150 --> 00:06:14.220
+So if you're running
+investigations naively
+
+00:06:14.220 --> 00:06:15.930
+on each individual alert,
+
+00:06:15.930 --> 00:06:18.420
+then you're just paying
+a linear cost on that.
+
+00:06:18.420 --> 00:06:20.490
+But if you're able
+to do grouping,
+
+00:06:20.490 --> 00:06:24.300
+then you're actually able to
+reduce that down dramatically.
+
+00:06:24.300 --> 00:06:28.230
+Now, there's a lot of different
+ways that you can do grouping.
+
+00:06:28.230 --> 00:06:30.540
+And the tricky part is
+to do grouping with LLM,
+
+00:06:30.540 --> 00:06:33.900
+to do grouping that's LLM-native
+as opposed to doing --
+
+00:06:33.900 --> 00:06:35.100
+you don't want to do grouping
+
+00:06:35.100 --> 00:06:38.460
+with old-school
+deterministic rules.
+
+00:06:38.460 --> 00:06:40.920
+Because if you do that, then
+you're losing the whole benefit
+
+00:06:40.920 --> 00:06:42.720
+of the AI SRE agent,
+and then you end
+
+00:06:42.720 --> 00:06:44.700
+up grouping either
+too aggressively
+
+00:06:44.700 --> 00:06:46.770
+where you're grouping
+together different things
+
+00:06:46.770 --> 00:06:48.630
+that appear the same, but
+they're actually different
+
+00:06:48.630 --> 00:06:50.280
+and have different root causes,
+
+00:06:50.280 --> 00:06:52.230
+or you're not grouping
+aggressively enough
+
+00:06:52.230 --> 00:06:53.550
+because you have different
+alerts that are coming
+
+00:06:53.550 --> 00:06:57.000
+in with different names and from
+different observability systems,
+
+00:06:57.000 --> 00:06:58.530
+and you'd want to group them,
+
+00:06:58.530 --> 00:07:00.480
+but they don't match the
+deterministic rules.
+
+00:07:00.480 --> 00:07:04.140
+So what we do, for example,
+is LLM-native grouping.
+
+00:07:04.140 --> 00:07:07.200
+So we essentially let the LLM
+generate the grouping rules
+
+00:07:07.200 --> 00:07:09.780
+and then persist those for
+a certain period of time.
+
+00:07:09.780 --> 00:07:12.810
+And then we do a bunch of other
+optimizations on top of that.
+
+00:07:12.810 --> 00:07:15.750
+But the core idea is to let
+the LLM actually control the
+
+00:07:15.750 --> 00:07:19.020
+grouping mechanism and then to
+let the LLM control the policy
+
+00:07:19.020 --> 00:07:21.180
+on what triggers
+reinvestigations
+
+00:07:21.180 --> 00:07:22.930
+and what does not.
+
+00:07:25.140 --> 00:07:28.470
+There are other optimizations
+also that tie into this.
+
+00:07:28.470 --> 00:07:30.930
+So, for example, if
+you're doing it this way,
+
+00:07:30.930 --> 00:07:34.500
+then you really have one
+context window per root cause.
+
+00:07:34.500 --> 00:07:36.270
+And then even when
+new information comes
+
+00:07:36.270 --> 00:07:39.120
+in on a different alert that
+retriggers an investigation,
+
+00:07:39.120 --> 00:07:41.910
+you can reuse that
+previous context window.
+
+00:07:41.910 --> 00:07:44.040
+And if that context window
+is hot, meaning it's still
+
+00:07:44.040 --> 00:07:48.030
+in Anthropic's cache, Anthropic
+has a five-minute cache
+
+00:07:48.030 --> 00:07:50.850
+hierarchy, so if the context
+window is still hot,
+
+00:07:50.850 --> 00:07:51.660
+then that actually is way,
+
+00:07:51.660 --> 00:07:54.180
+way cheaper than doing
+a clean context window.
+
+00:07:54.180 --> 00:07:57.360
+So there are lots and lots
+of associated optimizations
+
+00:07:57.360 --> 00:07:59.380
+that you can do around this.
+
+00:08:00.750 --> 00:08:02.400
+When you start to apply these,
+
+00:08:02.400 --> 00:08:05.730
+then you can actually get
+the numbers down to a very,
+
+00:08:05.730 --> 00:08:07.350
+very reasonable range.
+
+00:08:07.350 --> 00:08:09.390
+And the outcome of this is
+
+00:08:09.390 --> 00:08:12.030
+that you can run AI
+SRE investigations
+
+00:08:12.030 --> 00:08:13.080
+on every single alert.
+
+00:08:13.080 --> 00:08:16.230
+So when you're at $5 per
+investigation, now you have
+
+00:08:16.230 --> 00:08:17.940
+to start being really
+selective and choose
+
+00:08:17.940 --> 00:08:19.800
+where you investigate
+and where you don't.
+
+00:08:19.800 --> 00:08:23.280
+When you can get the
+per-investigation cost down,
+
+00:08:23.280 --> 00:08:24.390
+then it's a no-brainer.
+
+00:08:24.390 --> 00:08:25.860
+You just run it on everything.
+
+00:08:25.860 --> 00:08:29.100
+And then the agent can then
+go and automatically escalate
+
+00:08:29.100 --> 00:08:31.110
+to human when there's something
+that's really important
+
+00:08:31.110 --> 00:08:34.020
+but initially looks like
+a low-priority alert.
+
+00:08:34.020 --> 00:08:36.480
+So there are all these benefits
+if you can actually get this
+
+00:08:36.480 --> 00:08:39.810
+in the range where you can
+run it on every single alert
+
+00:08:39.810 --> 00:08:41.400
+because now you
+can drive outcomes
+
+00:08:41.400 --> 00:08:42.600
+like having the AI do all sorts
+
+00:08:42.600 --> 00:08:46.800
+of predictive stuff before
+problems become P1s.
+
+00:08:46.800 --> 00:08:51.630
+Okay. So just to wrap up, AI
+SREs are extremely accurate.
+
+00:08:51.630 --> 00:08:53.430
+We see that again and again.
+
+00:08:53.430 --> 00:08:56.940
+But they can be extremely
+expensive, even more expensive
+
+00:08:56.940 --> 00:08:58.740
+than having humans triage.
+
+00:08:58.740 --> 00:09:02.100
+So to make this economic
+and to run this at scale,
+
+00:09:02.100 --> 00:09:05.160
+you really have to start to
+apply those optimizations.
+
+00:09:05.160 --> 00:09:07.170
+And if you're interested,
+please reach out to me.
+
+00:09:07.170 --> 00:09:09.660
+My email is here, and
+I'd love to talk to you
+
+00:09:09.660 --> 00:09:12.090
+about how we do this and
+how you can apply this
+
+00:09:12.090 --> 00:09:13.840
+to your environment.

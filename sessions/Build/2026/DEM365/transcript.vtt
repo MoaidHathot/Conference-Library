@@ -1,0 +1,3385 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.7918036580085754
+
+00:00:00.800 --> 00:00:02.000
+All right, hello, hello.
+
+NOTE Confidence: 0.8735356330871582
+
+00:00:02.840 --> 00:00:04.735
+As you heard, my name is Jared Rhodes and we
+
+NOTE Confidence: 0.8735356330871582
+
+00:00:04.778 --> 00:00:07.363
+have these like rehearsal sessions that we do with Microsoft
+
+NOTE Confidence: 0.8735356330871582
+
+00:00:07.406 --> 00:00:09.000
+or they're supposed to give feedback.
+
+NOTE Confidence: 0.9609353542327881
+
+00:00:09.280 --> 00:00:11.680
+So they said that because I called it Beyond REST.
+
+NOTE Confidence: 0.9499479532241821
+
+00:00:11.680 --> 00:00:13.693
+I need to let you know that this isn't about
+
+NOTE Confidence: 0.9499479532241821
+
+00:00:13.738 --> 00:00:16.621
+REST, it's about using hardware, not about like web development
+
+NOTE Confidence: 0.9499479532241821
+
+00:00:16.667 --> 00:00:18.040
+or REST or anything like that.
+
+NOTE Confidence: 0.8050742149353027
+
+00:00:18.320 --> 00:00:19.880
+So that that was their first bit of feedback.
+
+NOTE Confidence: 0.8850002288818359
+
+00:00:20.800 --> 00:00:22.754
+So what we're going to talk about today is we're
+
+NOTE Confidence: 0.8850002288818359
+
+00:00:22.795 --> 00:00:25.320
+going to 1st talkabout.net development as it touches hardware.
+
+NOTE Confidence: 0.9031481742858887
+
+00:00:25.840 --> 00:00:28.160
+We're going to talk about a few different hardware protocols.
+
+NOTE Confidence: 0.8895350098609924
+
+00:00:28.200 --> 00:00:31.312
+We're going to talk about a testing harness for hardware
+
+NOTE Confidence: 0.8895350098609924
+
+00:00:31.367 --> 00:00:33.924
+and how we can actually use that in an agentic
+
+NOTE Confidence: 0.8895350098609924
+
+00:00:33.979 --> 00:00:34.480
+workflow.
+
+NOTE Confidence: 0.924283504486084
+
+00:00:34.760 --> 00:00:36.360
+And then we're going to show some demos.
+
+NOTE Confidence: 0.8966097831726074
+
+00:00:36.560 --> 00:00:37.840
+And that's not the exact order.
+
+NOTE Confidence: 0.9061247110366821
+
+00:00:37.840 --> 00:00:39.481
+I've rearranged it a little bit, but you get the
+
+NOTE Confidence: 0.9061247110366821
+
+00:00:39.515 --> 00:00:39.959
+general idea.
+
+NOTE Confidence: 0.9488425254821777
+
+00:00:41.080 --> 00:00:41.920
+Let's meet Jason.
+
+NOTE Confidence: 0.7473812699317932
+
+00:00:42.440 --> 00:00:42.680
+All right.
+
+NOTE Confidence: 0.9348220229148865
+
+00:00:42.920 --> 00:00:44.742
+The second bit of feedback I got was I was
+
+NOTE Confidence: 0.9348220229148865
+
+00:00:44.785 --> 00:00:46.824
+making a joke that Jason wanted to learn how to
+
+NOTE Confidence: 0.9348220229148865
+
+00:00:46.867 --> 00:00:49.427
+become a hardware developer because he was scared about all
+
+NOTE Confidence: 0.9348220229148865
+
+00:00:49.470 --> 00:00:51.640
+the agents coding, you know, writing all the code.
+
+NOTE Confidence: 0.9354257583618164
+
+00:00:51.880 --> 00:00:54.591
+And they said that there's some real anxiety about that
+
+NOTE Confidence: 0.9354257583618164
+
+00:00:54.640 --> 00:00:56.119
+and I needed to cut that joke.
+
+NOTE Confidence: 0.9166640639305115
+
+00:00:56.120 --> 00:00:56.600
+So I did.
+
+NOTE Confidence: 0.90736985206604
+
+00:00:56.840 --> 00:00:57.560
+I cut that joke.
+
+NOTE Confidence: 0.9560383558273315
+
+00:00:57.560 --> 00:01:00.436
+That's not what Jason is doing, and he needs to
+
+NOTE Confidence: 0.9560383558273315
+
+00:01:00.498 --> 00:01:03.558
+justify this fear to management so that he can get
+
+NOTE Confidence: 0.9560383558273315
+
+00:01:03.620 --> 00:01:05.640
+some budget to work through this.
+
+NOTE Confidence: 0.8723474740982056
+
+00:01:06.880 --> 00:01:10.099
+I stole some slides or I borrowed or they gave
+
+NOTE Confidence: 0.8723474740982056
+
+00:01:10.169 --> 00:01:14.019
+them to me from James Montemagno and Sam about.net Maui
+
+NOTE Confidence: 0.8723474740982056
+
+00:01:14.089 --> 00:01:15.559
+and the Uno platform.
+
+NOTE Confidence: 0.9027636647224426
+
+00:01:15.959 --> 00:01:18.288
+Uno has a booth here and I'm sure somebody will
+
+NOTE Confidence: 0.9027636647224426
+
+00:01:18.337 --> 00:01:21.359
+talk to you about.net Maui if you ask enough peopleinfact.net
+
+NOTE Confidence: 0.9027636647224426
+
+00:01:21.408 --> 00:01:23.687
+Maui in the code base that I'm using, that was
+
+NOTE Confidence: 0.9027636647224426
+
+00:01:23.736 --> 00:01:25.519
+the base that I started building on.
+
+NOTE Confidence: 0.8762804865837097
+
+00:01:25.800 --> 00:01:28.240
+This is a code base.
+
+NOTE Confidence: 0.8297505378723145
+
+00:01:28.240 --> 00:01:31.439
+I've been doing this demo set for like a decade
+
+NOTE Confidence: 0.8297505378723145
+
+00:01:31.507 --> 00:01:34.979
+now and I started, you know, copilot started to get
+
+NOTE Confidence: 0.8297505378723145
+
+00:01:35.047 --> 00:01:35.320
+big.
+
+NOTE Confidence: 0.6418999433517456
+
+00:01:35.440 --> 00:01:37.120
+You're supposed to program with GitHub Copilot.
+
+NOTE Confidence: 0.8719173073768616
+
+00:01:37.120 --> 00:01:38.360
+And I was like, let's see how this works.
+
+NOTE Confidence: 0.9536092281341553
+
+00:01:39.080 --> 00:01:41.096
+And so I started to write it from scratch with
+
+NOTE Confidence: 0.9536092281341553
+
+00:01:41.140 --> 00:01:41.359
+that.
+
+NOTE Confidence: 0.8696137070655823
+
+00:01:41.480 --> 00:01:44.288
+And the first thing I did was I used mauiandthisis.net
+
+NOTE Confidence: 0.8696137070655823
+
+00:01:44.340 --> 00:01:44.600
+talk.
+
+NOTE Confidence: 0.8640470504760742
+
+00:01:44.600 --> 00:01:47.480
+So guys, youknow.net, it runs all of it, right?
+
+NOTE Confidence: 0.7903996109962463
+
+00:01:47.480 --> 00:01:51.240
+They've got it where it can run theyvegotlike.netpackagesor.net frameworks.
+
+NOTE Confidence: 0.872475266456604
+
+00:01:51.240 --> 00:01:52.880
+They can run on very limited hardware.
+
+NOTE Confidence: 0.6957272291183472
+
+00:01:53.080 --> 00:01:54.040
+It it runs everywhere.
+
+NOTE Confidence: 0.9245470762252808
+
+00:01:56.240 --> 00:01:58.661
+And if you use Maui, it can run on Win
+
+NOTE Confidence: 0.9245470762252808
+
+00:01:58.725 --> 00:02:02.040
+UI on the Mac, on iOS and on Android out-of-the-box.
+
+NOTE Confidence: 0.9419788718223572
+
+00:02:02.840 --> 00:02:05.254
+And the reason we're going to be using Maui and
+
+NOTE Confidence: 0.9419788718223572
+
+00:02:05.305 --> 00:02:07.514
+Uno is because we are going to be using the
+
+NOTE Confidence: 0.9419788718223572
+
+00:02:07.565 --> 00:02:10.133
+hardware on the phone to talk to other hardware or
+
+NOTE Confidence: 0.9419788718223572
+
+00:02:10.185 --> 00:02:12.239
+to give a better experience to the user.
+
+NOTE Confidence: 0.8783073425292969
+
+00:02:12.440 --> 00:02:15.674
+And out-of-the-box we get all kinds of things on the
+
+NOTE Confidence: 0.8783073425292969
+
+00:02:15.736 --> 00:02:18.348
+on the mobile phones or on any of the the,
+
+NOTE Confidence: 0.8783073425292969
+
+00:02:18.410 --> 00:02:21.644
+I don't even know what to call desktop, laptop, form
+
+NOTE Confidence: 0.8783073425292969
+
+00:02:21.707 --> 00:02:22.640
+factor, tablet.
+
+NOTE Confidence: 0.9601963758468628
+
+00:02:22.960 --> 00:02:24.800
+But they do have things like accelerometers.
+
+NOTE Confidence: 0.8820205926895142
+
+00:02:24.800 --> 00:02:27.265
+They do have things like Geo location things are a
+
+NOTE Confidence: 0.8820205926895142
+
+00:02:27.314 --> 00:02:30.026
+part of the physical world that add an additional layer
+
+NOTE Confidence: 0.8820205926895142
+
+00:02:30.075 --> 00:02:32.441
+to the user experience that you don't get from a
+
+NOTE Confidence: 0.8820205926895142
+
+00:02:32.491 --> 00:02:33.280
+web app usually.
+
+NOTE Confidence: 0.8570939302444458
+
+00:02:35.120 --> 00:02:37.440
+If you haven't saw Uno, go check them out.
+
+NOTE Confidence: 0.7971268892288208
+
+00:02:37.440 --> 00:02:37.920
+They've got a booth.
+
+NOTE Confidence: 0.9368320107460022
+
+00:02:37.920 --> 00:02:39.360
+They'll talk to you way more than I will.
+
+NOTE Confidence: 0.9667825698852539
+
+00:02:39.360 --> 00:02:40.720
+Just know they have this.
+
+NOTE Confidence: 0.9201784133911133
+
+00:02:40.960 --> 00:02:43.080
+They've got some new release for their studio.
+
+NOTE Confidence: 0.8745102286338806
+
+00:02:43.360 --> 00:02:46.880
+It's agent first, so they've got all these predefined skills.
+
+NOTE Confidence: 0.9453190565109253
+
+00:02:46.880 --> 00:02:49.430
+They have an MCP server for development, so you can
+
+NOTE Confidence: 0.9453190565109253
+
+00:02:49.480 --> 00:02:50.680
+just kind of run studio.
+
+NOTE Confidence: 0.942484438419342
+
+00:02:50.920 --> 00:02:52.760
+It has MCP, it has skills.
+
+NOTE Confidence: 0.9381365180015564
+
+00:02:52.880 --> 00:02:54.823
+You can point it at a design and it can
+
+NOTE Confidence: 0.9381365180015564
+
+00:02:54.872 --> 00:02:57.613
+build a very robust app that runs on multiple different
+
+NOTE Confidence: 0.9381365180015564
+
+00:02:57.663 --> 00:02:58.560
+platforms and web.
+
+NOTE Confidence: 0.9574035406112671
+
+00:02:59.920 --> 00:03:00.960
+Yeah, it's got all kinds of stuff.
+
+NOTE Confidence: 0.8725453019142151
+
+00:03:00.960 --> 00:03:02.280
+If you want to know more, they've got a booth.
+
+NOTE Confidence: 0.9670684337615967
+
+00:03:02.280 --> 00:03:03.360
+I'm sure they'll talk to you about it.
+
+NOTE Confidence: 0.8815551996231079
+
+00:03:04.880 --> 00:03:07.711
+OK, so Jason wants to get started making some IoT
+
+NOTE Confidence: 0.8815551996231079
+
+00:03:07.768 --> 00:03:10.426
+use cases because he needs to sell this to his
+
+NOTE Confidence: 0.8815551996231079
+
+00:03:10.484 --> 00:03:11.119
+management.
+
+NOTE Confidence: 0.8978897333145142
+
+00:03:12.320 --> 00:03:14.704
+Like I was saying earlier, I I've been doing this
+
+NOTE Confidence: 0.8978897333145142
+
+00:03:14.753 --> 00:03:17.479
+for a long time and, and what these hardware experience,
+
+NOTE Confidence: 0.8978897333145142
+
+00:03:17.527 --> 00:03:20.009
+what what the hardware actually allows you to do is
+
+NOTE Confidence: 0.8978897333145142
+
+00:03:20.058 --> 00:03:22.199
+add a new experience that is very different.
+
+NOTE Confidence: 0.864376425743103
+
+00:03:23.720 --> 00:03:26.799
+Who here currently has to scan AQR code to login
+
+NOTE Confidence: 0.864376425743103
+
+00:03:26.863 --> 00:03:27.119
+now?
+
+NOTE Confidence: 0.9020987749099731
+
+00:03:27.400 --> 00:03:29.826
+Like who here has had to that that new key
+
+NOTE Confidence: 0.9020987749099731
+
+00:03:29.884 --> 00:03:32.311
+form factor that you have to do a bunch of
+
+NOTE Confidence: 0.9020987749099731
+
+00:03:32.368 --> 00:03:33.119
+people right?
+
+NOTE Confidence: 0.915510356426239
+
+00:03:33.600 --> 00:03:35.901
+What you may not know and that I didn't know
+
+NOTE Confidence: 0.915510356426239
+
+00:03:35.953 --> 00:03:38.464
+until it was on my desktop is that actually uses
+
+NOTE Confidence: 0.915510356426239
+
+00:03:38.516 --> 00:03:39.720
+a Bluetooth connection.
+
+NOTE Confidence: 0.9194299578666687
+
+00:03:40.080 --> 00:03:42.223
+So when you scan that QR code, your phone is
+
+NOTE Confidence: 0.9194299578666687
+
+00:03:42.272 --> 00:03:45.439
+actually connecting to the other machine over Bluetooth to verify
+
+NOTE Confidence: 0.9194299578666687
+
+00:03:45.488 --> 00:03:47.876
+that you are Co located and it sends secrets that
+
+NOTE Confidence: 0.9194299578666687
+
+00:03:47.925 --> 00:03:48.119
+way.
+
+NOTE Confidence: 0.9230444431304932
+
+00:03:48.640 --> 00:03:51.072
+I learned that because my desktop didn't have a Bluetooth
+
+NOTE Confidence: 0.9230444431304932
+
+00:03:51.115 --> 00:03:53.249
+adapter and when I finally got it updated at home,
+
+NOTE Confidence: 0.9230444431304932
+
+00:03:53.292 --> 00:03:55.255
+I couldn't log into work for like 4 days until
+
+NOTE Confidence: 0.9230444431304932
+
+00:03:55.298 --> 00:03:56.920
+they shipped me the Bluetooth adapter.
+
+NOTE Confidence: 0.9105238318443298
+
+00:03:57.720 --> 00:04:01.218
+So it gives a different experience in a different knowledge
+
+NOTE Confidence: 0.9105238318443298
+
+00:04:01.277 --> 00:04:04.479
+of how the user is interacting with what you're doing.
+
+NOTE Confidence: 0.8212865591049194
+
+00:04:04.480 --> 00:04:06.640
+So again, trust and identity, right?
+
+NOTE Confidence: 0.8785950541496277
+
+00:04:06.960 --> 00:04:08.879
+Right Now for my workflow, if I wanted to set
+
+NOTE Confidence: 0.8785950541496277
+
+00:04:08.922 --> 00:04:10.671
+it up right, I can log into my phone with
+
+NOTE Confidence: 0.8785950541496277
+
+00:04:10.714 --> 00:04:12.890
+my face, log into my authenticator, and just take a
+
+NOTE Confidence: 0.8785950541496277
+
+00:04:12.933 --> 00:04:15.151
+picture of AQR code and behind the scenes without me
+
+NOTE Confidence: 0.8785950541496277
+
+00:04:15.194 --> 00:04:15.919
+knowing about it.
+
+NOTE Confidence: 0.883069634437561
+
+00:04:16.120 --> 00:04:19.298
+There's underlying connections and hardware that's being used to verify
+
+NOTE Confidence: 0.883069634437561
+
+00:04:19.342 --> 00:04:21.760
+that all of these things are secure behind the scenes.
+
+NOTE Confidence: 0.7687090635299683
+
+00:04:23.200 --> 00:04:24.560
+Or also trust and identity.
+
+NOTE Confidence: 0.8872440457344055
+
+00:04:24.800 --> 00:04:25.400
+You can set it up.
+
+NOTE Confidence: 0.8895039558410645
+
+00:04:25.400 --> 00:04:27.340
+Or if I want to join a Wi-Fi network, I
+
+NOTE Confidence: 0.8895039558410645
+
+00:04:27.390 --> 00:04:29.430
+can just tap my phone to an NFC that does
+
+NOTE Confidence: 0.8895039558410645
+
+00:04:29.480 --> 00:04:31.967
+the exchange of the SSID and password or any other
+
+NOTE Confidence: 0.8895039558410645
+
+00:04:32.017 --> 00:04:33.560
+credentials, and it just works.
+
+NOTE Confidence: 0.8321946859359741
+
+00:04:33.560 --> 00:04:36.024
+And I know that they're where they are because they're
+
+NOTE Confidence: 0.8321946859359741
+
+00:04:36.070 --> 00:04:37.440
+physically touching the Wi-Fi.
+
+NOTE Confidence: 0.8797591924667358
+
+00:04:38.160 --> 00:04:40.032
+It can be context to where I can know if
+
+NOTE Confidence: 0.8797591924667358
+
+00:04:40.079 --> 00:04:42.092
+my user is moving, I can know where my user
+
+NOTE Confidence: 0.8797591924667358
+
+00:04:42.139 --> 00:04:42.280
+is.
+
+NOTE Confidence: 0.9556020498275757
+
+00:04:42.480 --> 00:04:44.720
+I can know a lot of different things about my
+
+NOTE Confidence: 0.9556020498275757
+
+00:04:44.770 --> 00:04:47.159
+user that I wouldn't have as easily through web.
+
+NOTE Confidence: 0.8814452290534973
+
+00:04:47.520 --> 00:04:50.025
+And you can actually do, it always feels like magic
+
+NOTE Confidence: 0.8814452290534973
+
+00:04:50.074 --> 00:04:52.923
+when your app actually interacts with the real world, when
+
+NOTE Confidence: 0.8814452290534973
+
+00:04:52.972 --> 00:04:55.379
+it will unlock a door, when it will interact with
+
+NOTE Confidence: 0.8814452290534973
+
+00:04:55.428 --> 00:04:57.982
+a machine or something where you just press a button
+
+NOTE Confidence: 0.8814452290534973
+
+00:04:58.031 --> 00:04:59.800
+and physical things actually change.
+
+NOTE Confidence: 0.9181956052780151
+
+00:05:01.360 --> 00:05:03.643
+And as I actually got very lucky that the keynote
+
+NOTE Confidence: 0.9181956052780151
+
+00:05:03.690 --> 00:05:05.881
+was all about moving to the edge because I made
+
+NOTE Confidence: 0.9181956052780151
+
+00:05:05.927 --> 00:05:06.999
+this slide a while ago.
+
+NOTE Confidence: 0.8663621544837952
+
+00:05:07.600 --> 00:05:09.990
+But yeah, we've got a lot of inference that we're
+
+NOTE Confidence: 0.8663621544837952
+
+00:05:10.039 --> 00:05:12.040
+running and we go through cycles of this.
+
+NOTE Confidence: 0.7905934453010559
+
+00:05:12.040 --> 00:05:13.840
+I, again, I've been doing this talk for a decade.
+
+NOTE Confidence: 0.9285823702812195
+
+00:05:13.839 --> 00:05:16.441
+Around 2017, I had the same run the AI on
+
+NOTE Confidence: 0.9285823702812195
+
+00:05:16.505 --> 00:05:19.995
+the edge portion of this because that's where we always
+
+NOTE Confidence: 0.9285823702812195
+
+00:05:20.059 --> 00:05:20.439
+go to.
+
+NOTE Confidence: 0.94127357006073
+
+00:05:20.440 --> 00:05:22.392
+The models get too big and then you can't run
+
+NOTE Confidence: 0.94127357006073
+
+00:05:22.435 --> 00:05:23.000
+them locally.
+
+NOTE Confidence: 0.8590220212936401
+
+00:05:23.000 --> 00:05:25.694
+We get these like token shortages type situations that we
+
+NOTE Confidence: 0.8590220212936401
+
+00:05:25.741 --> 00:05:26.120
+are now.
+
+NOTE Confidence: 0.9656740427017212
+
+00:05:26.360 --> 00:05:28.283
+So we run it locally and it's just a cycle
+
+NOTE Confidence: 0.9656740427017212
+
+00:05:28.329 --> 00:05:29.200
+that we go through.
+
+NOTE Confidence: 0.9547724723815918
+
+00:05:29.200 --> 00:05:31.992
+So things constantly move from the cloud to the edge
+
+NOTE Confidence: 0.9547724723815918
+
+00:05:32.046 --> 00:05:34.194
+and you want your apps to be able to use
+
+NOTE Confidence: 0.9547724723815918
+
+00:05:34.248 --> 00:05:35.000
+that properly.
+
+NOTE Confidence: 0.9144719839096069
+
+00:05:35.280 --> 00:05:37.480
+And knowing how to use that hardware is key.
+
+NOTE Confidence: 0.8646739721298218
+
+00:05:38.520 --> 00:05:40.080
+We're looking at on device intelligence.
+
+NOTE Confidence: 0.9260919094085693
+
+00:05:40.080 --> 00:05:42.018
+We don't have to start with the cloud is the
+
+NOTE Confidence: 0.9260919094085693
+
+00:05:42.062 --> 00:05:43.119
+1st place that we go to.
+
+NOTE Confidence: 0.854885995388031
+
+00:05:43.440 --> 00:05:45.317
+And if you ever do, if you ever have been
+
+NOTE Confidence: 0.854885995388031
+
+00:05:45.363 --> 00:05:48.202
+in the world where you've shipped apps with physical hardware,
+
+NOTE Confidence: 0.854885995388031
+
+00:05:48.248 --> 00:05:50.079
+there's a there's a bit of a Moat there.
+
+NOTE Confidence: 0.8630878925323486
+
+00:05:50.080 --> 00:05:52.989
+If you're thinking about this in terms of market fit
+
+NOTE Confidence: 0.8630878925323486
+
+00:05:53.044 --> 00:05:55.786
+or or I guess a startup, because it's really hard
+
+NOTE Confidence: 0.8630878925323486
+
+00:05:55.842 --> 00:05:59.366
+to copy your competitors hardware quickly much it's much harder
+
+NOTE Confidence: 0.8630878925323486
+
+00:05:59.422 --> 00:06:01.660
+to do that than it is to point a copilot
+
+NOTE Confidence: 0.8630878925323486
+
+00:06:01.716 --> 00:06:04.737
+at your competitor software and say, can you make that
+
+NOTE Confidence: 0.8630878925323486
+
+00:06:04.793 --> 00:06:05.800
+for me real quick?
+
+NOTE Confidence: 0.8577317595481873
+
+00:06:09.800 --> 00:06:11.800
+Have you ever got hardware that didn't work?
+
+NOTE Confidence: 0.7958239316940308
+
+00:06:12.320 --> 00:06:14.000
+They like you bought it, it got shipped to you,
+
+NOTE Confidence: 0.7958239316940308
+
+00:06:14.036 --> 00:06:15.360
+you open the box and there was a bug.
+
+NOTE Confidence: 0.9614862203598022
+
+00:06:15.680 --> 00:06:17.120
+It feels like you bought a brick.
+
+NOTE Confidence: 0.7198038101196289
+
+00:06:17.160 --> 00:06:18.800
+Like it feels like the nut like nut.
+
+NOTE Confidence: 0.831918478012085
+
+00:06:18.800 --> 00:06:21.059
+The hardware could do 99% of what it's supposed to
+
+NOTE Confidence: 0.831918478012085
+
+00:06:21.104 --> 00:06:21.239
+do.
+
+NOTE Confidence: 0.9173464775085449
+
+00:06:21.520 --> 00:06:23.985
+But if there's a bug, you're like, oh, I guess
+
+NOTE Confidence: 0.9173464775085449
+
+00:06:24.038 --> 00:06:27.039
+it doesn't work And that's what hardware bugs feel like.
+
+NOTE Confidence: 0.8893439173698425
+
+00:06:27.040 --> 00:06:29.140
+So if we want to do that, we need to
+
+NOTE Confidence: 0.8893439173698425
+
+00:06:29.198 --> 00:06:31.765
+again, when I wrote this, when I, when I was
+
+NOTE Confidence: 0.8893439173698425
+
+00:06:31.824 --> 00:06:34.916
+getting started with this, I decided to start it from
+
+NOTE Confidence: 0.8893439173698425
+
+00:06:34.974 --> 00:06:38.533
+scratch using the Copilot and other coding agents and nothing
+
+NOTE Confidence: 0.8893439173698425
+
+00:06:38.591 --> 00:06:39.000
+worked.
+
+NOTE Confidence: 0.8979884386062622
+
+00:06:39.360 --> 00:06:40.991
+When I wrote it the first time I wrote it,
+
+NOTE Confidence: 0.8979884386062622
+
+00:06:41.029 --> 00:06:43.359
+it was like, yes, that's the exact Bluetooth implementation.
+
+NOTE Confidence: 0.9671618342399597
+
+00:06:43.560 --> 00:06:44.280
+That's how it works.
+
+NOTE Confidence: 0.9436377286911011
+
+00:06:44.280 --> 00:06:45.920
+Yes, that's exactly how NFC works.
+
+NOTE Confidence: 0.9257327914237976
+
+00:06:46.200 --> 00:06:47.880
+And then I would go and I would like touch
+
+NOTE Confidence: 0.9257327914237976
+
+00:06:47.920 --> 00:06:49.560
+2 phones together and nothing would work.
+
+NOTE Confidence: 0.9539459347724915
+
+00:06:49.839 --> 00:06:51.845
+So I had to figure out exactly how I was
+
+NOTE Confidence: 0.9539459347724915
+
+00:06:51.895 --> 00:06:54.602
+going to make this something that a coding agent could
+
+NOTE Confidence: 0.9539459347724915
+
+00:06:54.652 --> 00:06:57.360
+actually program for instead of me saying do this tap.
+
+NOTE Confidence: 0.8948465585708618
+
+00:06:57.520 --> 00:06:58.960
+No, that didn't work tap.
+
+NOTE Confidence: 0.947300910949707
+
+00:06:59.160 --> 00:07:01.320
+So what I did was I built a test harness.
+
+NOTE Confidence: 0.8927918672561646
+
+00:07:01.560 --> 00:07:04.360
+So what that really is I'll show you.
+
+NOTE Confidence: 0.8523856997489929
+
+00:07:04.360 --> 00:07:05.640
+And I've actually, I don't have it here.
+
+NOTE Confidence: 0.9509738087654114
+
+00:07:05.640 --> 00:07:07.636
+I've got it in my basement and I've got some
+
+NOTE Confidence: 0.9509738087654114
+
+00:07:07.681 --> 00:07:08.680
+cameras pointed at it.
+
+NOTE Confidence: 0.9660977721214294
+
+00:07:08.960 --> 00:07:11.935
+But it is the box that I'm developing on or
+
+NOTE Confidence: 0.9660977721214294
+
+00:07:12.005 --> 00:07:16.019
+a box for testing physically connected to the hardware and
+
+NOTE Confidence: 0.9660977721214294
+
+00:07:16.088 --> 00:07:17.680
+it knows how to use it.
+
+NOTE Confidence: 0.9224337339401245
+
+00:07:17.680 --> 00:07:19.923
+So it's not a unit test framework, it's not a
+
+NOTE Confidence: 0.9224337339401245
+
+00:07:19.972 --> 00:07:23.212
+mocking layer and it's not like continuous integration, though it
+
+NOTE Confidence: 0.9224337339401245
+
+00:07:23.262 --> 00:07:24.159
+can be used in it.
+
+NOTE Confidence: 0.9543008208274841
+
+00:07:24.480 --> 00:07:27.560
+It's just the orchestration that connects to the real system.
+
+NOTE Confidence: 0.8182754516601562
+
+00:07:28.600 --> 00:07:30.976
+So what I can do, and I'll, I'll show it
+
+NOTE Confidence: 0.8182754516601562
+
+00:07:31.035 --> 00:07:32.640
+in a very quick slick demo.
+
+NOTE Confidence: 0.909767210483551
+
+00:07:32.640 --> 00:07:34.433
+You'll have to see the repo to really understand what's
+
+NOTE Confidence: 0.909767210483551
+
+00:07:34.466 --> 00:07:34.759
+going on.
+
+NOTE Confidence: 0.949586808681488
+
+00:07:35.160 --> 00:07:37.349
+But it composes the inputs of what's going to be
+
+NOTE Confidence: 0.949586808681488
+
+00:07:37.394 --> 00:07:39.766
+allowed or what's going to be used in the particular
+
+NOTE Confidence: 0.949586808681488
+
+00:07:39.811 --> 00:07:40.039
+test.
+
+NOTE Confidence: 0.8724277019500732
+
+00:07:41.360 --> 00:07:43.755
+And then it can drive the software or drive the
+
+NOTE Confidence: 0.8724277019500732
+
+00:07:43.806 --> 00:07:45.079
+system that's under test.
+
+NOTE Confidence: 0.8952912092208862
+
+00:07:45.080 --> 00:07:48.347
+So it can actually run the test, deploy and everything,
+
+NOTE Confidence: 0.8952912092208862
+
+00:07:48.406 --> 00:07:50.604
+and it has a way to print out line by
+
+NOTE Confidence: 0.8952912092208862
+
+00:07:50.664 --> 00:07:53.397
+line so that the agent can see what's going on
+
+NOTE Confidence: 0.8952912092208862
+
+00:07:53.456 --> 00:07:55.120
+as it runs through the test.
+
+NOTE Confidence: 0.8519646525382996
+
+00:07:55.120 --> 00:07:57.611
+Because as it's debugging the hardware, there is always the
+
+NOTE Confidence: 0.8519646525382996
+
+00:07:57.653 --> 00:07:59.679
+possibility that the hardware itself has failed.
+
+NOTE Confidence: 0.868679940700531
+
+00:07:59.880 --> 00:08:01.502
+So it needs sort of a line by line to
+
+NOTE Confidence: 0.868679940700531
+
+00:08:01.546 --> 00:08:03.870
+see exactly what steps were taken and what worked and
+
+NOTE Confidence: 0.868679940700531
+
+00:08:03.913 --> 00:08:04.440
+what didn't.
+
+NOTE Confidence: 0.8331712484359741
+
+00:08:05.600 --> 00:08:07.080
+So it's not unit test, right?
+
+NOTE Confidence: 0.8679613471031189
+
+00:08:07.120 --> 00:08:09.227
+We're all used to that where you can mock everything
+
+NOTE Confidence: 0.8679613471031189
+
+00:08:09.267 --> 00:08:10.200
+and it's not manual QA.
+
+NOTE Confidence: 0.8769166469573975
+
+00:08:10.400 --> 00:08:12.703
+It's something in the middle that's scripted and it's on
+
+NOTE Confidence: 0.8769166469573975
+
+00:08:12.744 --> 00:08:13.319
+real hardware.
+
+NOTE Confidence: 0.8839619755744934
+
+00:08:13.320 --> 00:08:15.493
+And it allows me to actually work with all of
+
+NOTE Confidence: 0.8839619755744934
+
+00:08:15.541 --> 00:08:17.280
+these different hardware components.
+
+NOTE Confidence: 0.9565698504447937
+
+00:08:17.520 --> 00:08:19.465
+So it will run on my dev box and it
+
+NOTE Confidence: 0.9565698504447937
+
+00:08:19.521 --> 00:08:21.911
+is able to deploy the apps to the phone and
+
+NOTE Confidence: 0.9565698504447937
+
+00:08:21.967 --> 00:08:24.690
+then it can cross communicate with the app on the
+
+NOTE Confidence: 0.9565698504447937
+
+00:08:24.746 --> 00:08:25.080
+phone.
+
+NOTE Confidence: 0.8924437165260315
+
+00:08:25.080 --> 00:08:27.296
+So it can actually send commands on what it's trying
+
+NOTE Confidence: 0.8924437165260315
+
+00:08:27.339 --> 00:08:27.680
+to test.
+
+NOTE Confidence: 0.8807528018951416
+
+00:08:28.480 --> 00:08:29.600
+That looks a little bit like this.
+
+NOTE Confidence: 0.8504785299301147
+
+00:08:29.760 --> 00:08:31.000
+It's USB connected.
+
+NOTE Confidence: 0.8888395428657532
+
+00:08:31.240 --> 00:08:33.880
+It can do ADB on the Android.
+
+NOTE Confidence: 0.9607090353965759
+
+00:08:33.880 --> 00:08:36.044
+I have a Python file that will let me do
+
+NOTE Confidence: 0.9607090353965759
+
+00:08:36.098 --> 00:08:36.639
+it on iOS.
+
+NOTE Confidence: 0.8149740695953369
+
+00:08:36.840 --> 00:08:38.641
+And then there are Raspberry Pi's that are set up
+
+NOTE Confidence: 0.8149740695953369
+
+00:08:38.677 --> 00:08:39.559
+to connect over console.
+
+NOTE Confidence: 0.7623075246810913
+
+00:08:39.559 --> 00:08:41.705
+Then it can communicate with those because it can iterate
+
+NOTE Confidence: 0.7623075246810913
+
+00:08:41.743 --> 00:08:42.119
+over them.
+
+NOTE Confidence: 0.9123188257217407
+
+00:08:42.480 --> 00:08:44.050
+And this is what it would look like just to
+
+NOTE Confidence: 0.9123188257217407
+
+00:08:44.086 --> 00:08:45.620
+run the test and you'll see it in the code
+
+NOTE Confidence: 0.9123188257217407
+
+00:08:45.657 --> 00:08:45.839
+base.
+
+NOTE Confidence: 0.9620383977890015
+
+00:08:46.040 --> 00:08:48.360
+I can ask what hardware is connected.
+
+NOTE Confidence: 0.8936390280723572
+
+00:08:48.679 --> 00:08:51.322
+I can then have different ways in which I test
+
+NOTE Confidence: 0.8936390280723572
+
+00:08:51.379 --> 00:08:53.619
+as I go through because if I ask it, if
+
+NOTE Confidence: 0.8936390280723572
+
+00:08:53.677 --> 00:08:56.549
+I tell it make these specific changes and it makes
+
+NOTE Confidence: 0.8936390280723572
+
+00:08:56.606 --> 00:08:59.765
+any changes to like let's say the Bluetooth module, the
+
+NOTE Confidence: 0.8936390280723572
+
+00:08:59.823 --> 00:09:02.408
+coding agent then knows why I need to run the
+
+NOTE Confidence: 0.8936390280723572
+
+00:09:02.465 --> 00:09:05.279
+hardware test against the Bluetooth test harness.
+
+NOTE Confidence: 0.9712802767753601
+
+00:09:05.560 --> 00:09:07.480
+Otherwise, I won't know if this actually works.
+
+NOTE Confidence: 0.9663663506507874
+
+00:09:07.679 --> 00:09:10.013
+So I can see what is available to the system,
+
+NOTE Confidence: 0.9663663506507874
+
+00:09:10.065 --> 00:09:11.880
+deploy it to the system and run it.
+
+NOTE Confidence: 0.788775622844696
+
+00:09:12.120 --> 00:09:13.440
+So I've talked about it enough.
+
+NOTE Confidence: 0.960671067237854
+
+00:09:14.559 --> 00:09:16.294
+Let's see how much stuff is actually still running in
+
+NOTE Confidence: 0.960671067237854
+
+00:09:16.327 --> 00:09:16.719
+my basement.
+
+NOTE Confidence: 0.8622559309005737
+
+00:09:19.200 --> 00:09:23.760
+All right, we'll launch it here.
+
+NOTE Confidence: 0.9588084816932678
+
+00:09:28.040 --> 00:09:31.120
+So this is the machine that everything is connected to.
+
+NOTE Confidence: 0.9375984072685242
+
+00:09:31.120 --> 00:09:35.560
+I've got 2 phones connected to it.
+
+NOTE Confidence: 0.9403122663497925
+
+00:09:35.559 --> 00:09:37.756
+So what we'll do is they're not running anything right
+
+NOTE Confidence: 0.9403122663497925
+
+00:09:37.797 --> 00:09:37.960
+now.
+
+NOTE Confidence: 0.78800368309021
+
+00:09:38.240 --> 00:09:41.680
+I'll just tell copilot run the no.
+
+NOTE Confidence: 0.8656671643257141
+
+00:09:43.000 --> 00:09:47.221
+How do I get how do I get my screen
+
+NOTE Confidence: 0.8656671643257141
+
+00:09:47.342 --> 00:09:50.720
+so I'm not fuck Uno momento.
+
+NOTE Confidence: 0.690900981426239
+
+00:09:56.120 --> 00:09:56.800
+OK, this will work.
+
+NOTE Confidence: 0.6956591010093689
+
+00:09:56.920 --> 00:09:57.320
+This will work.
+
+NOTE Confidence: 0.8186331391334534
+
+00:09:59.480 --> 00:10:02.240
+OK, I hope you used your imagination on that.
+
+NOTE Confidence: 0.959813117980957
+
+00:10:03.280 --> 00:10:04.600
+Let's get that pulled back up.
+
+NOTE Confidence: 0.9503068327903748
+
+00:10:05.600 --> 00:10:07.240
+It doesn't like it when we change monitors.
+
+NOTE Confidence: 0.8923322558403015
+
+00:10:07.360 --> 00:10:09.972
+OK, so this is the actual machine that's running the
+
+NOTE Confidence: 0.8923322558403015
+
+00:10:10.022 --> 00:10:11.479
+IT connected to the hardware.
+
+NOTE Confidence: 0.9610140323638916
+
+00:10:11.679 --> 00:10:14.373
+These are two physically connected phones that you're seeing streaming
+
+NOTE Confidence: 0.9610140323638916
+
+00:10:14.412 --> 00:10:14.720
+up here.
+
+NOTE Confidence: 0.8864971995353699
+
+00:10:14.960 --> 00:10:18.193
+And all I'm going to do is I'm going to
+
+NOTE Confidence: 0.8864971995353699
+
+00:10:18.276 --> 00:10:22.173
+ask Hopilot to run the run the Android NFC test
+
+NOTE Confidence: 0.8864971995353699
+
+00:10:22.256 --> 00:10:22.919
+harness.
+
+NOTE Confidence: 0.9153690934181213
+
+00:10:24.600 --> 00:10:27.269
+OK, so because watching coding agents is real fun as
+
+NOTE Confidence: 0.9153690934181213
+
+00:10:27.321 --> 00:10:29.683
+it iterates through the 1st 10, as it tries to
+
+NOTE Confidence: 0.9153690934181213
+
+00:10:29.734 --> 00:10:32.301
+remember exactly what I was saying when I said run
+
+NOTE Confidence: 0.9153690934181213
+
+00:10:32.353 --> 00:10:35.279
+the test harness, we'll quickly hop over to another view.
+
+NOTE Confidence: 0.8792665004730225
+
+00:10:36.280 --> 00:10:39.640
+So this is the hardware setup in the basement.
+
+NOTE Confidence: 0.8728687763214111
+
+00:10:39.640 --> 00:10:41.932
+So the Mac mini is what you just saw me
+
+NOTE Confidence: 0.8728687763214111
+
+00:10:41.991 --> 00:10:42.520
+log into.
+
+NOTE Confidence: 0.8366984128952026
+
+00:10:42.800 --> 00:10:45.631
+And the actual NFC tests are the phones over here
+
+NOTE Confidence: 0.8366984128952026
+
+00:10:45.688 --> 00:10:46.960
+farthest to the right.
+
+NOTE Confidence: 0.8107452988624573
+
+00:10:47.200 --> 00:10:49.600
+That's why they're stacked one on top of another.
+
+NOTE Confidence: 0.8899679183959961
+
+00:10:50.400 --> 00:10:53.360
+The test actually won't work because they're not stacked correctly.
+
+NOTE Confidence: 0.8397730588912964
+
+00:10:53.960 --> 00:10:56.093
+So what it'll do is it'll run through it, it'll
+
+NOTE Confidence: 0.8397730588912964
+
+00:10:56.139 --> 00:10:58.499
+deploy the apps, and then it'll attach to those apps
+
+NOTE Confidence: 0.8397730588912964
+
+00:10:58.545 --> 00:10:59.679
+through the test harness.
+
+NOTE Confidence: 0.9613004922866821
+
+00:11:00.520 --> 00:11:04.640
+So let me go back, take a look here.
+
+NOTE Confidence: 0.9071013331413269
+
+00:11:04.840 --> 00:11:07.263
+So I'm going to try to entertain you because I
+
+NOTE Confidence: 0.9071013331413269
+
+00:11:07.316 --> 00:11:09.845
+don't know exactly how long it'll take for it to
+
+NOTE Confidence: 0.9071013331413269
+
+00:11:09.898 --> 00:11:10.319
+realize.
+
+NOTE Confidence: 0.9065744280815125
+
+00:11:10.640 --> 00:11:13.440
+So it is running the test harness, it's seeing the
+
+NOTE Confidence: 0.9065744280815125
+
+00:11:13.496 --> 00:11:16.352
+NFC tier, and it should now start launching the app
+
+NOTE Confidence: 0.9065744280815125
+
+00:11:16.408 --> 00:11:18.648
+and we should see it run up on the phone
+
+NOTE Confidence: 0.9065744280815125
+
+00:11:18.704 --> 00:11:21.784
+because it worked 10 minutes ago before we started this
+
+NOTE Confidence: 0.9065744280815125
+
+00:11:21.840 --> 00:11:22.120
+talk.
+
+NOTE Confidence: 0.9545382261276245
+
+00:11:22.400 --> 00:11:24.416
+I'm very much hoping we see the app launched now
+
+NOTE Confidence: 0.9545382261276245
+
+00:11:24.458 --> 00:11:26.560
+that I'm doing the talk in front of everyone here.
+
+NOTE Confidence: 0.899700403213501
+
+00:11:29.760 --> 00:11:32.248
+And then once we're through with that, we're going to
+
+NOTE Confidence: 0.899700403213501
+
+00:11:32.295 --> 00:11:34.736
+take a look at the different protocols, get a little
+
+NOTE Confidence: 0.899700403213501
+
+00:11:34.783 --> 00:11:37.083
+bit of understanding of what we can do with those
+
+NOTE Confidence: 0.899700403213501
+
+00:11:37.130 --> 00:11:37.599
+and do it.
+
+NOTE Confidence: 0.7198185324668884
+
+00:11:37.600 --> 00:11:37.840
+OK.
+
+NOTE Confidence: 0.7948962450027466
+
+00:11:37.880 --> 00:11:39.640
+So yeah, so it is launching the apps.
+
+NOTE Confidence: 0.9651495218276978
+
+00:11:39.640 --> 00:11:40.960
+It now has an ability.
+
+NOTE Confidence: 0.8944064378738403
+
+00:11:40.960 --> 00:11:43.359
+So this is what Copilot built for me over the
+
+NOTE Confidence: 0.8944064378738403
+
+00:11:43.413 --> 00:11:45.279
+over like the past year and a half.
+
+NOTE Confidence: 0.9267256259918213
+
+00:11:45.720 --> 00:11:48.169
+This nice UI, you're not going to see the actual
+
+NOTE Confidence: 0.9267256259918213
+
+00:11:48.220 --> 00:11:48.679
+test run.
+
+NOTE Confidence: 0.8950696587562561
+
+00:11:48.679 --> 00:11:52.213
+It is feeding the information back to Copilot who is
+
+NOTE Confidence: 0.8950696587562561
+
+00:11:52.280 --> 00:11:56.425
+launching the NFC radios and putting one into reader, putting
+
+NOTE Confidence: 0.8950696587562561
+
+00:11:56.493 --> 00:11:59.822
+one into writer, trying to send a pre made random
+
+NOTE Confidence: 0.8950696587562561
+
+00:11:59.890 --> 00:12:03.423
+packet between the two and seeing if the receiver or
+
+NOTE Confidence: 0.8950696587562561
+
+00:12:03.491 --> 00:12:07.024
+the reader has the exact same packet that the writer
+
+NOTE Confidence: 0.8950696587562561
+
+00:12:07.092 --> 00:12:07.840
+is sending.
+
+NOTE Confidence: 0.9061812162399292
+
+00:12:08.400 --> 00:12:10.000
+OK, so it returns false.
+
+NOTE Confidence: 0.8743709325790405
+
+00:12:10.120 --> 00:12:12.793
+It sees that it can't see that it says that
+
+NOTE Confidence: 0.8743709325790405
+
+00:12:12.855 --> 00:12:15.839
+the Pixel B never actually received that packet.
+
+NOTE Confidence: 0.946732759475708
+
+00:12:15.840 --> 00:12:17.240
+So there may be some problem in there.
+
+NOTE Confidence: 0.9474001526832581
+
+00:12:17.679 --> 00:12:19.908
+Now, I'm not going to show you a full debugging
+
+NOTE Confidence: 0.9474001526832581
+
+00:12:19.955 --> 00:12:22.753
+of hardware that is physically disconnected from me all the
+
+NOTE Confidence: 0.9474001526832581
+
+00:12:22.800 --> 00:12:24.981
+way back in Atlanta, but you get the idea that
+
+NOTE Confidence: 0.9474001526832581
+
+00:12:25.029 --> 00:12:27.399
+if I want to start making changes through a coding
+
+NOTE Confidence: 0.9474001526832581
+
+00:12:27.447 --> 00:12:29.960
+agent, this will tell me if my actual hardware works.
+
+NOTE Confidence: 0.9451327919960022
+
+00:12:32.559 --> 00:12:36.131
+And so now that we've gone through that, let's go
+
+NOTE Confidence: 0.9451327919960022
+
+00:12:36.204 --> 00:12:40.360
+back and actually learn a little bit about the protocols.
+
+NOTE Confidence: 0.8801173567771912
+
+00:12:41.520 --> 00:12:42.800
+So I'll cover three main protocols.
+
+NOTE Confidence: 0.8566344380378723
+
+00:12:42.800 --> 00:12:46.480
+I'll cover Bluetooth low energy, NFC and Wi-Fi.
+
+NOTE Confidence: 0.9142411947250366
+
+00:12:46.679 --> 00:12:49.566
+So for Bluetooth low energy, it came out in about
+
+NOTE Confidence: 0.9142411947250366
+
+00:12:49.625 --> 00:12:49.919
+2014.
+
+NOTE Confidence: 0.946082353591919
+
+00:12:50.080 --> 00:12:51.784
+It was supposed to be a way in which you
+
+NOTE Confidence: 0.946082353591919
+
+00:12:51.827 --> 00:12:52.680
+could use Bluetooth.
+
+NOTE Confidence: 0.8540217876434326
+
+00:12:52.679 --> 00:12:54.819
+And I'll call it a rest like faction since we
+
+NOTE Confidence: 0.8540217876434326
+
+00:12:54.866 --> 00:12:55.959
+have rest in the title.
+
+NOTE Confidence: 0.9539941549301147
+
+00:12:56.240 --> 00:12:58.936
+So I'll go through the heart rate service from the
+
+NOTE Confidence: 0.9539941549301147
+
+00:12:58.990 --> 00:12:59.799
+Bluetooth spec.
+
+NOTE Confidence: 0.9104631543159485
+
+00:13:00.200 --> 00:13:02.578
+So the way the Bluetooth spec works is if I
+
+NOTE Confidence: 0.9104631543159485
+
+00:13:02.634 --> 00:13:05.400
+go to the Bluetooth website, which has the spec in
+
+NOTE Confidence: 0.9104631543159485
+
+00:13:05.455 --> 00:13:07.446
+it, I can look for a pre made set of
+
+NOTE Confidence: 0.9104631543159485
+
+00:13:07.502 --> 00:13:08.000
+services.
+
+NOTE Confidence: 0.925634503364563
+
+00:13:08.000 --> 00:13:10.240
+Those services all have a unique UUID.
+
+NOTE Confidence: 0.8306544423103333
+
+00:13:10.679 --> 00:13:13.493
+If my app has that UUID, or let me say
+
+NOTE Confidence: 0.8306544423103333
+
+00:13:13.567 --> 00:13:17.639
+instead of my hardware returns that UUIDI now know that
+
+NOTE Confidence: 0.8306544423103333
+
+00:13:17.714 --> 00:13:21.119
+it's compliant to a specific set of endpoints.
+
+NOTE Confidence: 0.9204643368721008
+
+00:13:21.440 --> 00:13:23.353
+So if I want a heart rate service and I'm
+
+NOTE Confidence: 0.9204643368721008
+
+00:13:23.399 --> 00:13:25.826
+compliant to the spec, any device that has the heart
+
+NOTE Confidence: 0.9204643368721008
+
+00:13:25.873 --> 00:13:26.759
+rate service works.
+
+NOTE Confidence: 0.830979585647583
+
+00:13:27.160 --> 00:13:29.409
+That's how it's so easy for your device to know
+
+NOTE Confidence: 0.830979585647583
+
+00:13:29.456 --> 00:13:31.945
+or you're apartment to know the battery of all these
+
+NOTE Confidence: 0.830979585647583
+
+00:13:31.993 --> 00:13:34.673
+different things you connect to because the battery is a
+
+NOTE Confidence: 0.830979585647583
+
+00:13:34.720 --> 00:13:37.352
+premade battery, is a pre made service in the Bluetooth
+
+NOTE Confidence: 0.830979585647583
+
+00:13:37.400 --> 00:13:37.640
+spec.
+
+NOTE Confidence: 0.7578465938568115
+
+00:13:37.920 --> 00:13:39.480
+OK, so let's go over these real quick.
+
+NOTE Confidence: 0.9291824698448181
+
+00:13:39.480 --> 00:13:41.689
+This is what the diagram looks like from the Bluetooth
+
+NOTE Confidence: 0.9291824698448181
+
+00:13:41.730 --> 00:13:43.039
+spec for the heart rate service.
+
+NOTE Confidence: 0.9423020482063293
+
+00:13:43.480 --> 00:13:46.225
+So at the highest level under the device is the
+
+NOTE Confidence: 0.9423020482063293
+
+00:13:46.284 --> 00:13:47.920
+set of services that it has.
+
+NOTE Confidence: 0.8946520686149597
+
+00:13:48.160 --> 00:13:50.863
+So it's the logical collection of data and associated behavior
+
+NOTE Confidence: 0.8946520686149597
+
+00:13:50.906 --> 00:13:52.519
+for a particular function or feature.
+
+NOTE Confidence: 0.9061525464057922
+
+00:13:52.520 --> 00:13:54.779
+We're going to relate this back to web development because
+
+NOTE Confidence: 0.9061525464057922
+
+00:13:54.818 --> 00:13:56.688
+that's the easiest way for me to get these ideas
+
+NOTE Confidence: 0.9061525464057922
+
+00:13:56.727 --> 00:13:56.999
+across.
+
+NOTE Confidence: 0.9442108869552612
+
+00:13:57.480 --> 00:14:00.078
+So if I were to have a service equivalent for
+
+NOTE Confidence: 0.9442108869552612
+
+00:14:00.135 --> 00:14:02.849
+Bluetooth in the web, that would be the root of
+
+NOTE Confidence: 0.9442108869552612
+
+00:14:02.907 --> 00:14:03.599
+an API path.
+
+NOTE Confidence: 0.9060498476028442
+
+00:14:03.840 --> 00:14:06.990
+So if I wanted a heart rate service in in
+
+NOTE Confidence: 0.9060498476028442
+
+00:14:07.067 --> 00:14:10.294
+the web, I would have it at slash heart or
+
+NOTE Confidence: 0.9060498476028442
+
+00:14:10.370 --> 00:14:13.982
+heart rate service or right here in my notes V1
+
+NOTE Confidence: 0.9060498476028442
+
+00:14:14.058 --> 00:14:14.519
+heart.
+
+NOTE Confidence: 0.8744605779647827
+
+00:14:14.600 --> 00:14:16.790
+So it can host multiple services and that would be
+
+NOTE Confidence: 0.8744605779647827
+
+00:14:16.834 --> 00:14:17.359
+one of them.
+
+NOTE Confidence: 0.9242984652519226
+
+00:14:17.600 --> 00:14:20.216
+And the way I'm going to discover that is I
+
+NOTE Confidence: 0.9242984652519226
+
+00:14:20.277 --> 00:14:23.442
+can actually just pull in a open source library that
+
+NOTE Confidence: 0.9242984652519226
+
+00:14:23.503 --> 00:14:26.119
+has the ability for me to scan for devices.
+
+NOTE Confidence: 0.9639944434165955
+
+00:14:26.320 --> 00:14:28.240
+If I see one, I can connect to it.
+
+NOTE Confidence: 0.9508803486824036
+
+00:14:28.480 --> 00:14:30.877
+I can actually see all the different services that are
+
+NOTE Confidence: 0.9508803486824036
+
+00:14:30.921 --> 00:14:32.119
+available from that device.
+
+NOTE Confidence: 0.9154202342033386
+
+00:14:32.400 --> 00:14:33.905
+And if I see one that I like, I can
+
+NOTE Confidence: 0.9154202342033386
+
+00:14:33.948 --> 00:14:35.840
+go ahead and say that it's compliant to use.
+
+NOTE Confidence: 0.8923531174659729
+
+00:14:36.360 --> 00:14:39.000
+Now I'm showing a different service here as the example.
+
+NOTE Confidence: 0.8270937204360962
+
+00:14:39.000 --> 00:14:43.360
+I've actually got one that's humidity, temperature and an LED.
+
+NOTE Confidence: 0.9389980435371399
+
+00:14:43.600 --> 00:14:45.891
+And that's just because it's really hard to do a
+
+NOTE Confidence: 0.9389980435371399
+
+00:14:45.939 --> 00:14:47.705
+like, if I want you to go and take my
+
+NOTE Confidence: 0.9389980435371399
+
+00:14:47.753 --> 00:14:49.806
+code base, it's really hard for you to do a
+
+NOTE Confidence: 0.9389980435371399
+
+00:14:49.854 --> 00:14:50.999
+heart rate like example.
+
+NOTE Confidence: 0.8654934167861938
+
+00:14:51.160 --> 00:14:53.620
+It's a lot easier if I give you one that's
+
+NOTE Confidence: 0.8654934167861938
+
+00:14:53.679 --> 00:14:55.320
+just A11 sensor and one LED.
+
+NOTE Confidence: 0.9292234778404236
+
+00:14:55.840 --> 00:14:57.720
+So first we'll go and we'll see the service.
+
+NOTE Confidence: 0.7838089466094971
+
+00:14:58.120 --> 00:14:59.760
+We see all the different UUI DS.
+
+NOTE Confidence: 0.9448446035385132
+
+00:14:59.760 --> 00:15:01.581
+I know which one is for the service that I'm
+
+NOTE Confidence: 0.9448446035385132
+
+00:15:01.623 --> 00:15:02.120
+looking for.
+
+NOTE Confidence: 0.9323719143867493
+
+00:15:02.280 --> 00:15:04.806
+So I connect to that or I get that service
+
+NOTE Confidence: 0.9323719143867493
+
+00:15:04.866 --> 00:15:07.452
+and then I can use that service to then use
+
+NOTE Confidence: 0.9323719143867493
+
+00:15:07.513 --> 00:15:10.280
+the characteristics to edit the functionality.
+
+NOTE Confidence: 0.8289295434951782
+
+00:15:11.840 --> 00:15:13.640
+Well, Jared, what are the characteristics?
+
+NOTE Confidence: 0.8844658732414246
+
+00:15:14.000 --> 00:15:16.000
+Well, the characteristics sit under the service.
+
+NOTE Confidence: 0.862834095954895
+
+00:15:16.040 --> 00:15:17.520
+They are resource endpoints.
+
+NOTE Confidence: 0.9115385413169861
+
+00:15:17.520 --> 00:15:20.219
+Each characteristics is like the heart rate or the heart
+
+NOTE Confidence: 0.9115385413169861
+
+00:15:20.267 --> 00:15:21.280
+rate sensor location.
+
+NOTE Confidence: 0.9781846404075623
+
+00:15:21.520 --> 00:15:22.440
+Think about that.
+
+NOTE Confidence: 0.9180866479873657
+
+00:15:22.440 --> 00:15:24.952
+If we're talking about it in web terms, right now
+
+NOTE Confidence: 0.9180866479873657
+
+00:15:25.003 --> 00:15:28.079
+I have the different endpoints that I want underneath heart.
+
+NOTE Confidence: 0.8497872352600098
+
+00:15:28.080 --> 00:15:30.745
+So I have one for heart slash rate and one
+
+NOTE Confidence: 0.8497872352600098
+
+00:15:30.809 --> 00:15:32.839
+for heart slash sensor location.
+
+NOTE Confidence: 0.8864670991897583
+
+00:15:34.280 --> 00:15:37.543
+To break it down even more, you'll have a characteristic
+
+NOTE Confidence: 0.8864670991897583
+
+00:15:37.601 --> 00:15:38.999
+which we just described.
+
+NOTE Confidence: 0.574604868888855
+
+00:15:39.000 --> 00:15:40.040
+You'll have AUUID.
+
+NOTE Confidence: 0.8352938294410706
+
+00:15:40.160 --> 00:15:42.516
+So each one will have its own unique UUID so
+
+NOTE Confidence: 0.8352938294410706
+
+00:15:42.569 --> 00:15:46.104
+that when you're spec compliant, you instantly know which endpoint
+
+NOTE Confidence: 0.8352938294410706
+
+00:15:46.158 --> 00:15:46.640
+is which.
+
+NOTE Confidence: 0.9118034839630127
+
+00:15:47.320 --> 00:15:49.244
+There's going to be an in memory pointer, don't worry
+
+NOTE Confidence: 0.9118034839630127
+
+00:15:49.280 --> 00:15:49.679
+about that.
+
+NOTE Confidence: 0.935914933681488
+
+00:15:50.000 --> 00:15:52.768
+And then you'll have permissions and properties described on the
+
+NOTE Confidence: 0.935914933681488
+
+00:15:52.811 --> 00:15:55.060
+characteristic, as you can see up here where it says
+
+NOTE Confidence: 0.935914933681488
+
+00:15:55.103 --> 00:15:55.319
+read.
+
+NOTE Confidence: 0.9211897253990173
+
+00:15:55.880 --> 00:15:59.150
+So those are going to be equivalent to my Http://verbs
+
+NOTE Confidence: 0.9211897253990173
+
+00:15:59.211 --> 00:16:02.239
+or authorization because it's not exactly A1 to 1.
+
+NOTE Confidence: 0.8067882061004639
+
+00:16:02.440 --> 00:16:04.087
+So a read is going to be equivalent to a
+
+NOTE Confidence: 0.8067882061004639
+
+00:16:04.128 --> 00:16:05.899
+GET, a write is going to be equivalent to a
+
+NOTE Confidence: 0.8067882061004639
+
+00:16:05.940 --> 00:16:06.599
+put in the post.
+
+NOTE Confidence: 0.8827256560325623
+
+00:16:07.040 --> 00:16:09.347
+And then there's a little bit difference where we have
+
+NOTE Confidence: 0.8827256560325623
+
+00:16:09.390 --> 00:16:12.039
+the notifier indicate, and that's more of a streaming service.
+
+NOTE Confidence: 0.9531906843185425
+
+00:16:12.240 --> 00:16:14.294
+If I'm looking for a heart rate service, I kind
+
+NOTE Confidence: 0.9531906843185425
+
+00:16:14.337 --> 00:16:16.129
+of want it to stream the heart rate to me
+
+NOTE Confidence: 0.9531906843185425
+
+00:16:16.173 --> 00:16:18.445
+rather than for me to constantly request what is the
+
+NOTE Confidence: 0.9531906843185425
+
+00:16:18.489 --> 00:16:19.320
+current heart rate.
+
+NOTE Confidence: 0.8734773397445679
+
+00:16:20.520 --> 00:16:22.843
+Or if I, if I want something like a notification
+
+NOTE Confidence: 0.8734773397445679
+
+00:16:22.891 --> 00:16:25.215
+of the battery life at a certain level or yadda,
+
+NOTE Confidence: 0.8734773397445679
+
+00:16:25.263 --> 00:16:28.119
+yadda, yadda, that's how I can do it through notifications.
+
+NOTE Confidence: 0.9042259454727173
+
+00:16:28.720 --> 00:16:31.481
+And then finally, the actual value itself is obviously going
+
+NOTE Confidence: 0.9042259454727173
+
+00:16:31.527 --> 00:16:33.829
+to be equivalent to the response body of that HTTP
+
+NOTE Confidence: 0.9042259454727173
+
+00:16:33.875 --> 00:16:34.520
+REST endpoint.
+
+NOTE Confidence: 0.9177466630935669
+
+00:16:34.960 --> 00:16:37.317
+And it's important to know that because we are at
+
+NOTE Confidence: 0.9177466630935669
+
+00:16:37.365 --> 00:16:38.279
+the low level here.
+
+NOTE Confidence: 0.8969106674194336
+
+00:16:38.400 --> 00:16:40.817
+So I need to know the values type so that
+
+NOTE Confidence: 0.8969106674194336
+
+00:16:40.876 --> 00:16:43.707
+I can understand exactly like is it, you know, 2
+
+NOTE Confidence: 0.8969106674194336
+
+00:16:43.766 --> 00:16:44.119
+bytes?
+
+NOTE Confidence: 0.7866626381874084
+
+00:16:44.120 --> 00:16:45.789
+What are those two bytes mean and how do they
+
+NOTE Confidence: 0.7866626381874084
+
+00:16:45.826 --> 00:16:46.160
+map back?
+
+NOTE Confidence: 0.9717560410499573
+
+00:16:47.960 --> 00:16:48.920
+And this is what it looks like.
+
+NOTE Confidence: 0.9265199303627014
+
+00:16:48.920 --> 00:16:50.999
+If I want to read or write, I just once
+
+NOTE Confidence: 0.9265199303627014
+
+00:16:51.053 --> 00:16:53.719
+I have that characteristic that we saw in the last
+
+NOTE Confidence: 0.9265199303627014
+
+00:16:53.773 --> 00:16:56.013
+slide, well, it just lets me read it and I
+
+NOTE Confidence: 0.9265199303627014
+
+00:16:56.066 --> 00:16:58.519
+can take it and I can convert it into whatever
+
+NOTE Confidence: 0.9265199303627014
+
+00:16:58.573 --> 00:17:00.279
+value equivalent it needs to be.
+
+NOTE Confidence: 0.8080613017082214
+
+00:17:00.400 --> 00:17:02.942
+In this case, I'm reading a, I'm reading a float,
+
+NOTE Confidence: 0.8080613017082214
+
+00:17:02.994 --> 00:17:05.017
+or excuse me, an N 16 that I'm going to
+
+NOTE Confidence: 0.8080613017082214
+
+00:17:05.069 --> 00:17:07.975
+converting into a float because that's just how it works
+
+NOTE Confidence: 0.8080613017082214
+
+00:17:08.027 --> 00:17:09.479
+for that particular service.
+
+NOTE Confidence: 0.9054487943649292
+
+00:17:09.720 --> 00:17:12.055
+And then for the toggling of the LED, if I
+
+NOTE Confidence: 0.9054487943649292
+
+00:17:12.111 --> 00:17:14.279
+want to write, I'm just writing for it.
+
+NOTE Confidence: 0.8525485396385193
+
+00:17:14.280 --> 00:17:15.880
+It's a byte array of 1 byte.
+
+NOTE Confidence: 0.8611745834350586
+
+00:17:16.119 --> 00:17:18.236
+It's either a high or a low, and that determines
+
+NOTE Confidence: 0.8611745834350586
+
+00:17:18.281 --> 00:17:19.559
+whether the LED is on or off.
+
+NOTE Confidence: 0.8485926985740662
+
+00:17:19.760 --> 00:17:21.927
+But I just call write async and I give it
+
+NOTE Confidence: 0.8485926985740662
+
+00:17:21.980 --> 00:17:24.200
+the expected body of that as a byte array.
+
+NOTE Confidence: 0.862830638885498
+
+00:17:24.840 --> 00:17:26.928
+And then finally, a little last little bit is the
+
+NOTE Confidence: 0.862830638885498
+
+00:17:26.971 --> 00:17:27.439
+descriptor.
+
+NOTE Confidence: 0.7813757658004761
+
+00:17:27.440 --> 00:17:29.640
+So the descriptor provides additional information.
+
+NOTE Confidence: 0.8609424233436584
+
+00:17:29.800 --> 00:17:32.240
+So you can think about that as like an Http://header.
+
+NOTE Confidence: 0.8082744479179382
+
+00:17:32.400 --> 00:17:35.733
+It's just more information about the characteristic, like can it
+
+NOTE Confidence: 0.8082744479179382
+
+00:17:35.786 --> 00:17:36.879
+enable notifications?
+
+NOTE Confidence: 0.9003370404243469
+
+00:17:36.880 --> 00:17:40.996
+Does it have different capabilities that aren't exposed in the
+
+NOTE Confidence: 0.9003370404243469
+
+00:17:41.062 --> 00:17:43.320
+upper level of the characteristic?
+
+NOTE Confidence: 0.9360188245773315
+
+00:17:44.640 --> 00:17:48.320
+OK, so that's going to be the Bluetooth low energy.
+
+NOTE Confidence: 0.9267542958259583
+
+00:17:48.320 --> 00:17:50.554
+That's how you would use it if you want to
+
+NOTE Confidence: 0.9267542958259583
+
+00:17:50.608 --> 00:17:53.641
+set up something that utilizes a device that is Bluetooth
+
+NOTE Confidence: 0.9267542958259583
+
+00:17:53.694 --> 00:17:54.119
+capable.
+
+NOTE Confidence: 0.9199399352073669
+
+00:17:54.600 --> 00:17:57.044
+And then Jason's wondering, he heard that you could do
+
+NOTE Confidence: 0.9199399352073669
+
+00:17:57.090 --> 00:17:58.720
+like indoor GPS and stuff like that.
+
+NOTE Confidence: 0.8215259313583374
+
+00:17:58.720 --> 00:18:00.604
+And I mean, at this point, I've seen it to
+
+NOTE Confidence: 0.8215259313583374
+
+00:18:00.649 --> 00:18:03.072
+where you can do X-rays of people's bodies through the
+
+NOTE Confidence: 0.8215259313583374
+
+00:18:03.117 --> 00:18:03.879
+wall using Wi-Fi.
+
+NOTE Confidence: 0.9564197659492493
+
+00:18:04.000 --> 00:18:06.537
+So yes, with Bluetooth you can do indoor GPS, but
+
+NOTE Confidence: 0.9564197659492493
+
+00:18:06.589 --> 00:18:09.178
+you can basically do that with any system that has
+
+NOTE Confidence: 0.9564197659492493
+
+00:18:09.230 --> 00:18:10.680
+access points over distance.
+
+NOTE Confidence: 0.9415406584739685
+
+00:18:10.880 --> 00:18:13.360
+So you can see the strength of the signal.
+
+NOTE Confidence: 0.7548438906669617
+
+00:18:13.920 --> 00:18:16.709
+All right, So near field communication, it's where you tap,
+
+NOTE Confidence: 0.7548438906669617
+
+00:18:16.756 --> 00:18:17.040
+right?
+
+NOTE Confidence: 0.6653977632522583
+
+00:18:17.040 --> 00:18:17.800
+Everyone's used tap.
+
+NOTE Confidence: 0.9278593063354492
+
+00:18:17.960 --> 00:18:20.259
+In fact, most people know it as the like tap
+
+NOTE Confidence: 0.9278593063354492
+
+00:18:20.311 --> 00:18:21.199
+to pay for Apple.
+
+NOTE Confidence: 0.939905047416687
+
+00:18:21.880 --> 00:18:24.743
+In fact, the reason NFC, in my opinion, isn't as
+
+NOTE Confidence: 0.939905047416687
+
+00:18:24.803 --> 00:18:28.442
+prolific across the industry is because Apple, for nearly the
+
+NOTE Confidence: 0.939905047416687
+
+00:18:28.501 --> 00:18:31.604
+first decade of the iPhone, didn't expose NFC to the
+
+NOTE Confidence: 0.939905047416687
+
+00:18:31.663 --> 00:18:32.319
+user layer.
+
+NOTE Confidence: 0.9177412986755371
+
+00:18:32.520 --> 00:18:35.192
+So Apple could use it for tap to pay, but
+
+NOTE Confidence: 0.9177412986755371
+
+00:18:35.257 --> 00:18:38.908
+as a user, you couldn't actually invoke the NFC hardware
+
+NOTE Confidence: 0.9177412986755371
+
+00:18:38.973 --> 00:18:42.167
+until about 2018 or 2019, which was a little late
+
+NOTE Confidence: 0.9177412986755371
+
+00:18:42.232 --> 00:18:44.839
+for people to start adopting it in mass.
+
+NOTE Confidence: 0.9108255505561829
+
+00:18:45.080 --> 00:18:46.390
+But now we have it as a bunch of different
+
+NOTE Confidence: 0.9108255505561829
+
+00:18:46.421 --> 00:18:46.639
+things.
+
+NOTE Confidence: 0.9546790719032288
+
+00:18:46.640 --> 00:18:48.176
+You can use it for ID, you can use it
+
+NOTE Confidence: 0.9546790719032288
+
+00:18:48.217 --> 00:18:50.459
+for access points, you can use it for payment systems,
+
+NOTE Confidence: 0.9546790719032288
+
+00:18:50.500 --> 00:18:52.119
+you can use it for all kinds of things.
+
+NOTE Confidence: 0.8375003933906555
+
+00:18:54.800 --> 00:18:57.689
+If you've ever used RFID, which I'm sure some of
+
+NOTE Confidence: 0.8375003933906555
+
+00:18:57.750 --> 00:19:01.121
+you have, it was the, you know, previous widely accepted
+
+NOTE Confidence: 0.8375003933906555
+
+00:19:01.181 --> 00:19:04.613
+TAP protocol due to time constraints, we'll just say that
+
+NOTE Confidence: 0.8375003933906555
+
+00:19:04.673 --> 00:19:06.480
+RFID is like a barcode, right?
+
+NOTE Confidence: 0.7927979826927185
+
+00:19:06.640 --> 00:19:09.152
+You got a bit of a limited set of information,
+
+NOTE Confidence: 0.7927979826927185
+
+00:19:09.207 --> 00:19:11.392
+whereas NFC is going to be more of a AQR
+
+NOTE Confidence: 0.7927979826927185
+
+00:19:11.446 --> 00:19:11.719
+code.
+
+NOTE Confidence: 0.9616819620132446
+
+00:19:12.320 --> 00:19:14.080
+It is much more complex.
+
+NOTE Confidence: 0.9464511871337891
+
+00:19:14.359 --> 00:19:16.791
+There are different tag types that you can write and
+
+NOTE Confidence: 0.9464511871337891
+
+00:19:16.838 --> 00:19:17.680
+you can read from.
+
+NOTE Confidence: 0.8771129846572876
+
+00:19:19.119 --> 00:19:21.706
+To give an idea of even further into that, like
+
+NOTE Confidence: 0.8771129846572876
+
+00:19:21.761 --> 00:19:24.954
+the Japanese payment system uses a different tag type than
+
+NOTE Confidence: 0.8771129846572876
+
+00:19:25.009 --> 00:19:25.999
+the US pay system.
+
+NOTE Confidence: 0.8679478764533997
+
+00:19:26.240 --> 00:19:28.807
+They're just, they're just different tag types for whatever reason
+
+NOTE Confidence: 0.8679478764533997
+
+00:19:28.846 --> 00:19:30.907
+when they're writing all the specs out and people are
+
+NOTE Confidence: 0.8679478764533997
+
+00:19:30.946 --> 00:19:33.358
+adopting it, payment systems there work different than here by
+
+NOTE Confidence: 0.8679478764533997
+
+00:19:33.397 --> 00:19:34.720
+a small deviation of the tag type.
+
+NOTE Confidence: 0.8401774168014526
+
+00:19:35.000 --> 00:19:35.960
+And you can have everything.
+
+NOTE Confidence: 0.8327354192733765
+
+00:19:36.320 --> 00:19:36.920
+You can even have it.
+
+NOTE Confidence: 0.8967108130455017
+
+00:19:37.080 --> 00:19:39.796
+My, my nephew came to visit, he was like, he's
+
+NOTE Confidence: 0.8967108130455017
+
+00:19:39.855 --> 00:19:42.100
+like 2 years old and I had an NFC card
+
+NOTE Confidence: 0.8967108130455017
+
+00:19:42.159 --> 00:19:44.639
+and I set it up just to be different URLs.
+
+NOTE Confidence: 0.7668623328208923
+
+00:19:44.840 --> 00:19:47.095
+So he would tap it and oh, it's a new
+
+NOTE Confidence: 0.7668623328208923
+
+00:19:47.156 --> 00:19:47.399
+URL.
+
+NOTE Confidence: 0.8285490274429321
+
+00:19:47.400 --> 00:19:48.629
+And he loved it because he liked to do it
+
+NOTE Confidence: 0.8285490274429321
+
+00:19:48.659 --> 00:19:49.199
+at the hotel room.
+
+NOTE Confidence: 0.7817728519439697
+
+00:19:49.200 --> 00:19:50.999
+We could scan and he was just loving it every
+
+NOTE Confidence: 0.7817728519439697
+
+00:19:51.039 --> 00:19:51.999
+time he go to a new URL.
+
+NOTE Confidence: 0.9442248344421387
+
+00:19:52.000 --> 00:19:54.080
+And that's kind of stuff you can do with NFC.
+
+NOTE Confidence: 0.9379075765609741
+
+00:19:55.040 --> 00:19:55.960
+So this is what it looks like.
+
+NOTE Confidence: 0.9627091288566589
+
+00:19:55.960 --> 00:19:57.982
+If I want to read a message, I basically just
+
+NOTE Confidence: 0.9627091288566589
+
+00:19:58.027 --> 00:20:00.095
+say I have a certain tag type that I'm looking
+
+NOTE Confidence: 0.9627091288566589
+
+00:20:00.140 --> 00:20:00.319
+for.
+
+NOTE Confidence: 0.955400288105011
+
+00:20:00.600 --> 00:20:03.103
+I would like to turn on the radio and if
+
+NOTE Confidence: 0.955400288105011
+
+00:20:03.166 --> 00:20:06.421
+you receive a message of this type, please notify me
+
+NOTE Confidence: 0.955400288105011
+
+00:20:06.483 --> 00:20:07.360
+that you have.
+
+NOTE Confidence: 0.8865079879760742
+
+00:20:07.640 --> 00:20:09.614
+And then you have to play with the funky.net wiring
+
+NOTE Confidence: 0.8865079879760742
+
+00:20:09.652 --> 00:20:11.588
+of events back to callbacks and make sure that you
+
+NOTE Confidence: 0.8865079879760742
+
+00:20:11.627 --> 00:20:12.439
+capture that message.
+
+NOTE Confidence: 0.962073802947998
+
+00:20:14.560 --> 00:20:15.000
+Similar.
+
+NOTE Confidence: 0.9588795900344849
+
+00:20:15.000 --> 00:20:16.717
+If I want to write, I'm going to say, hey,
+
+NOTE Confidence: 0.9588795900344849
+
+00:20:16.758 --> 00:20:18.640
+I would like to publish this message and then.
+
+NOTE Confidence: 0.8825377225875854
+
+00:20:19.240 --> 00:20:21.548
+At any point which you see that radio has connected
+
+NOTE Confidence: 0.8825377225875854
+
+00:20:21.593 --> 00:20:24.580
+and actually sent that message and received a confirmation, please
+
+NOTE Confidence: 0.8825377225875854
+
+00:20:24.625 --> 00:20:25.439
+inform me of that.
+
+NOTE Confidence: 0.8607185482978821
+
+00:20:25.600 --> 00:20:27.609
+And then that's how I write and I can say,
+
+NOTE Confidence: 0.8607185482978821
+
+00:20:27.657 --> 00:20:29.907
+OK, as you see, I've got this on tag discovered
+
+NOTE Confidence: 0.8607185482978821
+
+00:20:29.954 --> 00:20:30.959
+and start publishing.
+
+NOTE Confidence: 0.9040725827217102
+
+00:20:31.119 --> 00:20:33.211
+You just literally say please start and then someone's got
+
+NOTE Confidence: 0.9040725827217102
+
+00:20:33.247 --> 00:20:35.050
+to figure out just like when you're tapping to pay
+
+NOTE Confidence: 0.9040725827217102
+
+00:20:35.086 --> 00:20:35.879
+with your credit card.
+
+NOTE Confidence: 0.8089084029197693
+
+00:20:36.080 --> 00:20:40.276
+Have I actually invoked this OK in the instance of
+
+NOTE Confidence: 0.8089084029197693
+
+00:20:40.360 --> 00:20:44.137
+in the For time's sake, we're going to skip a
+
+NOTE Confidence: 0.8089084029197693
+
+00:20:44.221 --> 00:20:45.479
+lot of the NFC.
+
+NOTE Confidence: 0.8860069513320923
+
+00:20:45.480 --> 00:20:47.858
+And Jason says I bet I can set this up
+
+NOTE Confidence: 0.8860069513320923
+
+00:20:47.921 --> 00:20:51.927
+as a communication protocol for large data exchange, because why
+
+NOTE Confidence: 0.8860069513320923
+
+00:20:51.989 --> 00:20:52.240
+not?
+
+NOTE Confidence: 0.850348174571991
+
+00:20:52.240 --> 00:20:54.249
+We always try to extend things well beyond what the
+
+NOTE Confidence: 0.850348174571991
+
+00:20:54.288 --> 00:20:54.839
+usefulness is.
+
+NOTE Confidence: 0.8723628520965576
+
+00:20:55.080 --> 00:20:58.516
+And technically within the NFC spec, you can, there's NFC
+
+NOTE Confidence: 0.8723628520965576
+
+00:20:58.576 --> 00:20:59.359
+peer-to-peer.
+
+NOTE Confidence: 0.8633313179016113
+
+00:20:59.560 --> 00:21:01.604
+If you think about it, when I tap to pay
+
+NOTE Confidence: 0.8633313179016113
+
+00:21:01.655 --> 00:21:04.211
+with my phone, I'm writing whenever I tap the card
+
+NOTE Confidence: 0.8633313179016113
+
+00:21:04.262 --> 00:21:06.000
+and it gives me a URL I'm reading.
+
+NOTE Confidence: 0.9340159893035889
+
+00:21:06.240 --> 00:21:07.280
+So it can do both.
+
+NOTE Confidence: 0.9376478791236877
+
+00:21:07.520 --> 00:21:09.800
+So I can toggle between reader and writer mode.
+
+NOTE Confidence: 0.8110467195510864
+
+00:21:10.000 --> 00:21:12.580
+And technically I can have long payloads in, in writer
+
+NOTE Confidence: 0.8110467195510864
+
+00:21:12.627 --> 00:21:14.825
+mode that gets read and then toggle a swap and
+
+NOTE Confidence: 0.8110467195510864
+
+00:21:14.873 --> 00:21:15.160
+write.
+
+NOTE Confidence: 0.8257835507392883
+
+00:21:15.359 --> 00:21:17.782
+And it is a part of the spec where they
+
+NOTE Confidence: 0.8257835507392883
+
+00:21:17.844 --> 00:21:20.639
+can communicate 22 phones and or two devices.
+
+NOTE Confidence: 0.9316744804382324
+
+00:21:20.800 --> 00:21:22.567
+And the good thing there is you know that they
+
+NOTE Confidence: 0.9316744804382324
+
+00:21:22.606 --> 00:21:24.719
+are physically connected, they are physically touching.
+
+NOTE Confidence: 0.9707052111625671
+
+00:21:24.920 --> 00:21:27.560
+So you know where the wireless communication is coming from.
+
+NOTE Confidence: 0.46328574419021606
+
+00:21:28.040 --> 00:21:28.720
+Just interesting.
+
+NOTE Confidence: 0.9286707043647766
+
+00:21:28.720 --> 00:21:31.283
+If you ever want to set something like that up,
+
+NOTE Confidence: 0.9286707043647766
+
+00:21:31.338 --> 00:21:32.319
+we've got the USB.
+
+NOTE Confidence: 0.8095433712005615
+
+00:21:32.359 --> 00:21:33.837
+So I'll go over this real quick because we're running
+
+NOTE Confidence: 0.8095433712005615
+
+00:21:33.865 --> 00:21:34.199
+out of time.
+
+NOTE Confidence: 0.8754163980484009
+
+00:21:34.640 --> 00:21:36.719
+Whenever you plug something in for USB, you hear the
+
+NOTE Confidence: 0.8754163980484009
+
+00:21:36.759 --> 00:21:37.199
+boop, boop.
+
+NOTE Confidence: 0.9060812592506409
+
+00:21:37.840 --> 00:21:39.600
+There's actually a set of things that's happening.
+
+NOTE Confidence: 0.9177631139755249
+
+00:21:39.600 --> 00:21:43.631
+First the the machine is sending the device the reset
+
+NOTE Confidence: 0.9177631139755249
+
+00:21:43.707 --> 00:21:44.239
+signal.
+
+NOTE Confidence: 0.9433789849281311
+
+00:21:44.520 --> 00:21:46.880
+It's saying, hey, thank you, I saw that reset signal.
+
+NOTE Confidence: 0.9590668082237244
+
+00:21:47.200 --> 00:21:49.273
+And then it's sending, hey, I need you to tell
+
+NOTE Confidence: 0.9590668082237244
+
+00:21:49.318 --> 00:21:50.400
+me a lot about yourself.
+
+NOTE Confidence: 0.9121968150138855
+
+00:21:50.640 --> 00:21:52.560
+And it'll say, OK, here's my descriptor.
+
+NOTE Confidence: 0.9157556295394897
+
+00:21:52.920 --> 00:21:54.040
+The descriptor is important.
+
+NOTE Confidence: 0.9619495868682861
+
+00:21:54.040 --> 00:21:56.713
+If we go back to that video of my basement,
+
+NOTE Confidence: 0.9619495868682861
+
+00:21:56.776 --> 00:21:59.449
+I've got like 3 or 4 different USB hubs all
+
+NOTE Confidence: 0.9619495868682861
+
+00:21:59.512 --> 00:22:00.880
+wired into each other.
+
+NOTE Confidence: 0.7914390563964844
+
+00:22:00.880 --> 00:22:02.630
+So the descriptor is going to have to tell it,
+
+NOTE Confidence: 0.7914390563964844
+
+00:22:02.668 --> 00:22:04.799
+hey, here's my address here, here, here, here, and here.
+
+NOTE Confidence: 0.9471319317817688
+
+00:22:05.000 --> 00:22:06.480
+And that's how you're going to send me a message.
+
+NOTE Confidence: 0.8677117824554443
+
+00:22:07.359 --> 00:22:09.469
+It'll assign it an address based on what it received
+
+NOTE Confidence: 0.8677117824554443
+
+00:22:09.509 --> 00:22:10.239
+in the descriptor.
+
+NOTE Confidence: 0.9498528838157654
+
+00:22:10.720 --> 00:22:11.880
+You'll get a confirmation.
+
+NOTE Confidence: 0.9192273020744324
+
+00:22:12.080 --> 00:22:14.283
+And then finally, you'll send the device config and it
+
+NOTE Confidence: 0.9192273020744324
+
+00:22:14.323 --> 00:22:16.159
+will acknowledge the config that you sent it.
+
+NOTE Confidence: 0.8446781635284424
+
+00:22:16.840 --> 00:22:19.270
+OK, I've got a basic demo in the code base
+
+NOTE Confidence: 0.8446781635284424
+
+00:22:19.328 --> 00:22:22.106
+where we talk about how to take two devices that
+
+NOTE Confidence: 0.8446781635284424
+
+00:22:22.164 --> 00:22:24.479
+can use USB open and do a bulk transfer.
+
+NOTE Confidence: 0.8148601055145264
+
+00:22:24.760 --> 00:22:27.283
+USB has similar to NFC where there are so many
+
+NOTE Confidence: 0.8148601055145264
+
+00:22:27.338 --> 00:22:28.600
+different device types.
+
+NOTE Confidence: 0.9310522079467773
+
+00:22:28.920 --> 00:22:30.887
+If I were to tell a coding agent to go
+
+NOTE Confidence: 0.9310522079467773
+
+00:22:30.939 --> 00:22:33.735
+through, iterate and prepare them all in my code base,
+
+NOTE Confidence: 0.9310522079467773
+
+00:22:33.787 --> 00:22:36.013
+I would run out of tokens before the end of
+
+NOTE Confidence: 0.9310522079467773
+
+00:22:36.065 --> 00:22:36.480
+the day.
+
+NOTE Confidence: 0.9638504385948181
+
+00:22:37.240 --> 00:22:40.360
+So don't worry about getting all the devices.
+
+NOTE Confidence: 0.9079880118370056
+
+00:22:40.760 --> 00:22:43.597
+Just know that you can program for USB and it's
+
+NOTE Confidence: 0.9079880118370056
+
+00:22:43.658 --> 00:22:43.959
+nice.
+
+NOTE Confidence: 0.8112523555755615
+
+00:22:43.960 --> 00:22:45.160
+It has heavy data utilization.
+
+NOTE Confidence: 0.8540056347846985
+
+00:22:45.160 --> 00:22:46.160
+Most devices support it.
+
+NOTE Confidence: 0.7977343797683716
+
+00:22:47.080 --> 00:22:49.240
+All right, real quick on that.
+
+NOTE Confidence: 0.8774943351745605
+
+00:22:49.240 --> 00:22:51.438
+Just because I've been doing this talk forever, I want
+
+NOTE Confidence: 0.8774943351745605
+
+00:22:51.479 --> 00:22:53.311
+you to know that Android, in the case of USB,
+
+NOTE Confidence: 0.8774943351745605
+
+00:22:53.352 --> 00:22:53.800
+is not iOS.
+
+NOTE Confidence: 0.9284909963607788
+
+00:22:54.080 --> 00:22:56.400
+It is not equivalent to iOS.
+
+NOTE Confidence: 0.8670237064361572
+
+00:22:56.600 --> 00:22:59.096
+It is not equal to iOS when it comes to
+
+NOTE Confidence: 0.8670237064361572
+
+00:22:59.160 --> 00:23:02.552
+USB because you need an MFI certification if you want
+
+NOTE Confidence: 0.8670237064361572
+
+00:23:02.616 --> 00:23:06.136
+to be able to connect USB's devices compliant with iOS,
+
+NOTE Confidence: 0.8670237064361572
+
+00:23:06.200 --> 00:23:09.272
+which is a process that I'm sure adds a security
+
+NOTE Confidence: 0.8670237064361572
+
+00:23:09.336 --> 00:23:09.720
+layer.
+
+NOTE Confidence: 0.848031759262085
+
+00:23:09.720 --> 00:23:11.658
+It gets you, I think it gives you a special
+
+NOTE Confidence: 0.848031759262085
+
+00:23:11.703 --> 00:23:14.407
+piece of hardware that has the certificate store that you're
+
+NOTE Confidence: 0.848031759262085
+
+00:23:14.452 --> 00:23:15.760
+going to need to communicate.
+
+NOTE Confidence: 0.9592669010162354
+
+00:23:16.160 --> 00:23:18.381
+But either way, you need to come up with a
+
+NOTE Confidence: 0.9592669010162354
+
+00:23:18.434 --> 00:23:20.866
+lot of money and deal with Apple a whole bunch
+
+NOTE Confidence: 0.9592669010162354
+
+00:23:20.919 --> 00:23:23.564
+if you want USB compliant devices to work with iOS
+
+NOTE Confidence: 0.9592669010162354
+
+00:23:23.616 --> 00:23:24.040
+and Mac.
+
+NOTE Confidence: 0.8815622329711914
+
+00:23:24.480 --> 00:23:26.640
+OK, Jason's ready.
+
+NOTE Confidence: 0.878959596157074
+
+00:23:26.640 --> 00:23:28.350
+He got that budget that we were talking about, so
+
+NOTE Confidence: 0.878959596157074
+
+00:23:28.385 --> 00:23:30.199
+he's going to go through that certification process.
+
+NOTE Confidence: 0.9622490406036377
+
+00:23:30.760 --> 00:23:32.114
+I had to do it once and I'll never do
+
+NOTE Confidence: 0.9622490406036377
+
+00:23:32.150 --> 00:23:32.480
+it again.
+
+NOTE Confidence: 0.9639760255813599
+
+00:23:32.840 --> 00:23:34.680
+I don't care how much money you come back with.
+
+NOTE Confidence: 0.9222201108932495
+
+00:23:35.680 --> 00:23:36.480
+So I want to wrap up.
+
+NOTE Confidence: 0.8654611706733704
+
+00:23:36.520 --> 00:23:38.223
+I know I was kind of all over the place
+
+NOTE Confidence: 0.8654611706733704
+
+00:23:38.267 --> 00:23:40.539
+where we talked about getting the hardware set up so
+
+NOTE Confidence: 0.8654611706733704
+
+00:23:40.583 --> 00:23:42.199
+that I can use it with coding agents.
+
+NOTE Confidence: 0.9010499715805054
+
+00:23:43.119 --> 00:23:45.070
+But what I would like you to do is I
+
+NOTE Confidence: 0.9010499715805054
+
+00:23:45.124 --> 00:23:47.563
+want you to know that that having an app that
+
+NOTE Confidence: 0.9010499715805054
+
+00:23:47.617 --> 00:23:50.489
+can actually interact with the real world is is very,
+
+NOTE Confidence: 0.9010499715805054
+
+00:23:50.543 --> 00:23:52.440
+very, very, I don't know, it's fun.
+
+NOTE Confidence: 0.7980384826660156
+
+00:23:53.160 --> 00:23:54.901
+I don't, I don't you get tired of making web
+
+NOTE Confidence: 0.7980384826660156
+
+00:23:54.941 --> 00:23:56.722
+apps after a while and I have to make another
+
+NOTE Confidence: 0.7980384826660156
+
+00:23:56.762 --> 00:23:57.000
+agent.
+
+NOTE Confidence: 0.9450209140777588
+
+00:23:57.000 --> 00:23:59.435
+I don't know if I'll be able to continue going
+
+NOTE Confidence: 0.9450209140777588
+
+00:23:59.488 --> 00:24:01.394
+on, but what I can do when I have my
+
+NOTE Confidence: 0.9450209140777588
+
+00:24:01.447 --> 00:24:04.199
+actual hardware integrated, real world interactions.
+
+NOTE Confidence: 0.9077244997024536
+
+00:24:04.440 --> 00:24:06.440
+I have a physical device, I have a physical product.
+
+NOTE Confidence: 0.9370563626289368
+
+00:24:06.440 --> 00:24:08.974
+It actually feels like magic when things change, and it
+
+NOTE Confidence: 0.9370563626289368
+
+00:24:09.020 --> 00:24:10.680
+feels like that to the user as well.
+
+NOTE Confidence: 0.9007846117019653
+
+00:24:11.800 --> 00:24:14.190
+So if you check out this refill, you'll see how
+
+NOTE Confidence: 0.9007846117019653
+
+00:24:14.241 --> 00:24:16.885
+it runs the test harness, how it actually can deploy
+
+NOTE Confidence: 0.9007846117019653
+
+00:24:16.936 --> 00:24:19.072
+the device, set up a server so that it can
+
+NOTE Confidence: 0.9007846117019653
+
+00:24:19.123 --> 00:24:21.513
+communicate with it, how you can add it to your
+
+NOTE Confidence: 0.9007846117019653
+
+00:24:21.564 --> 00:24:22.480
+CI if you want to.
+
+NOTE Confidence: 0.9248407483100891
+
+00:24:22.640 --> 00:24:24.548
+So that if you make changes that need to run
+
+NOTE Confidence: 0.9248407483100891
+
+00:24:24.592 --> 00:24:25.719
+against existing hardware.
+
+NOTE Confidence: 0.8875317573547363
+
+00:24:25.920 --> 00:24:28.419
+If you've ever done a device farm where you're testing
+
+NOTE Confidence: 0.8875317573547363
+
+00:24:28.465 --> 00:24:31.381
+out all the different devices for your mobile development, it's
+
+NOTE Confidence: 0.8875317573547363
+
+00:24:31.427 --> 00:24:32.399
+very similar to that.
+
+NOTE Confidence: 0.9506377577781677
+
+00:24:32.520 --> 00:24:34.880
+You just need one harness to test out that hardware.
+
+NOTE Confidence: 0.8179296851158142
+
+00:24:35.160 --> 00:24:37.635
+And then I only, I only have the the stuff
+
+NOTE Confidence: 0.8179296851158142
+
+00:24:37.694 --> 00:24:40.760
+physically connected in my basement set up for this.
+
+NOTE Confidence: 0.8857900500297546
+
+00:24:40.760 --> 00:24:42.647
+And if you want to take this as a standard
+
+NOTE Confidence: 0.8857900500297546
+
+00:24:42.692 --> 00:24:45.119
+for how you're doing your hardware, you can extend it.
+
+NOTE Confidence: 0.7674820423126221
+
+00:24:45.119 --> 00:24:47.236
+I've got a a buddy of mine works in medical
+
+NOTE Confidence: 0.7674820423126221
+
+00:24:47.286 --> 00:24:47.679
+devices.
+
+NOTE Confidence: 0.894737184047699
+
+00:24:47.840 --> 00:24:50.668
+We're testing it out with Fpgas so that you can
+
+NOTE Confidence: 0.894737184047699
+
+00:24:50.728 --> 00:24:54.519
+configure circuits through the FPGA to test against, but that's
+
+NOTE Confidence: 0.894737184047699
+
+00:24:54.579 --> 00:24:54.759
+it.
+
+NOTE Confidence: 0.919197678565979
+
+00:24:54.760 --> 00:24:56.287
+If you have any questions, we can take it over
+
+NOTE Confidence: 0.919197678565979
+
+00:24:56.320 --> 00:24:56.520
+there.
+
+NOTE Confidence: 0.9747817516326904
+
+00:24:56.760 --> 00:24:57.360
+Thank you for coming.
+

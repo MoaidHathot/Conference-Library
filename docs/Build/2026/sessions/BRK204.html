@@ -1,0 +1,1272 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRK204 - What we learned shipping VS Code weekly (without breaking everything)</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRK204</nav>
+        <h1>BRK204 &mdash; What we learned shipping VS Code weekly (without breaking everything)</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRK204 &middot; Breakout</span>
+    <h1>What we learned shipping VS Code weekly (without breaking everything)</h1>
+    <div class="speakers">Pierce Boggan, Josh Spicer, Anna Soracco</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(400) Expert</span>
+<span>Festival Pavilion, Breakout 1</span>
+<span>2026-06-03 17:15 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">Developer</span> <span class="tag">GitHub Copilot</span> <span class="tag">GitHub</span> <span class="tag">Visual Studio Code</span> <span class="tag">GitHub Actions</span> <span class="tag">VS Code</span> <span class="tag">GitHub Copilot CLI</span> <span class="tag">DevTools</span> <span class="tag">Developer tools &amp; frameworks</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRK204?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/8e6c2160-2e93-40ac-8b17-a731909983b0" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Shipping faster sounds great until test gaps, review bottlenecks, and triage backlog scale with it. The VS Code team hit all of that going from monthly to weekly releases, and agents made it work. This session breaks down the real patterns: agent sessions before meetings, conversations that become PRs instead of specs, automated triage across one of GitHub&#39;s largest repos, and harnesses that keep quality high when 100+ commits land daily. Concrete workflows you can take back to your team.
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>The VS Code team describes how moving from monthly to weekly releases—driven by AI adoption and competitive pressure—forced a re-architecture of their inner loop, engineering systems, and planning model. Shipping faster generated roughly 3x more issues and pull requests since January, which the team manages through agentic tooling for UI validation, automated triage, self-healing error pipelines, and temporary planning work streams.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Move from monthly to weekly stable releases (February)</strong> — Adopted to keep pace with the rapidly turning AI space and to land smaller, lower-risk batches rather than large monthly drops [00:04:37].</li>
+<li><strong>Component browser for agent-driven UI validation</strong> — Extracts VS Code components so agents can render, screenshot, and compare changes with-and-without a diff directly in a PR without a full product build [00:07:30].</li>
+<li><strong>VSC bench, a purpose-built offline evaluation stack</strong> — Runs many daily evaluations of models and prompts against custom cases, plotting total tokens against resolution rate to inform reasoning-effort and shipping decisions [00:23:16].</li>
+<li><strong>Automated issue triage and AI duplicate detection</strong> — Agentic workflows infer owners, classify issues as bugs or feature requests, and semantically dedupe issues hourly via an internal Chrome extension [00:31:43].</li>
+<li><strong>Self-healing error pipeline</strong> — An agent scans telemetry for unhandled errors, identifies root causes across processes, opens issues, and proposes fixes for human review [00:34:52].</li>
+<li><strong>Staged/incremental rollouts with freeze capability</strong> — Replaces the previous all-at-once deployment, letting the team freeze a build after catching a problem at 8% rollout [00:38:56].</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Code-survival (committed-code) as a model-quality proxy, rising from ~55% with GPT-4.1 to 86% with Opus 4.6 [inferred]</li>
+<li>The hidden cost of AI success: growth in issues, pull requests, and on-call risk</li>
+<li>Prototyping in place of written specs; PRs functioning as the spec</li>
+<li>Encoding expert knowledge (e.g. chat performance benchmarks) into reusable skills</li>
+<li>The pre- and post-launch model onboarding process via Copilot API, including prompt tuning and AB experiments</li>
+<li>Prompt-improvement experiments run as online AB tests on telemetry-enabled instances</li>
+<li>Reasoning-effort and token-cost trade-offs in model shipping decisions</li>
+<li>Prompt-injection and untrusted-input concerns when running AI on community issues</li>
+<li>Replacing durable code-ownership areas with temporary, DRI-led work streams</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;Using AI successfully does create more challenges for you.&quot; — Pierce Boggan</p>
+</blockquote>
+<blockquote>
+<p>&quot;The point is not necessarily that you merge our PR, but that almost becomes actually the spec.&quot; — Pierce Boggan</p>
+</blockquote>
+<blockquote>
+<p>&quot;We&#39;re like 40-ish people. I think people assume we&#39;re a thousand-person org. We&#39;re not.&quot; — Josh Spicer</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Visual Studio Code</li>
+<li>VS Code Insiders</li>
+<li>GitHub Copilot</li>
+<li>Copilot API</li>
+<li>VSC bench</li>
+<li>Component browser</li>
+<li>GitHub / GitHub Actions</li>
+<li>GitHub mobile app</li>
+<li>Internal Chrome/Edge extension for triage and dedupe</li>
+<li>GPT-4.1</li>
+<li>GPT-5.5 [inferred]</li>
+<li>Claude Opus 4.6 [inferred]</li>
+<li>MAI coding model [inferred]</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Pierce Boggan — Lead of the PM team, VS Code</li>
+<li>Josh Spicer — Engineer on the VS Code team (agent integrations, customizations, UI)</li>
+<li>Anna Soracco — Listed speaker (does not appear in the transcript)</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (65,629 chars)</summary>
+        <pre class="transcript-body">[00:00:00] Hello everybody.
+[00:00:01] I am Pierce from the BS Code team and we&#39;re
+[00:00:04] here to talk about what we learned shifting BS Code
+[00:00:07] from monthly to weekly releases.
+[00:00:10] So I hope everybody&#39;s having an amazing build.
+[00:00:12] So far.
+[00:00:13] There&#39;s been a lot of great announcements.
+[00:00:15] And I think something unique that we want to show
+[00:00:17] you in this talk is like everybody in their session
+[00:00:20] is probably telling you, here&#39;s the thing, we announced some
+[00:00:23] AI product you need to go try immediately.
+[00:00:25] And that&#39;s like most of the sessions, right?
+[00:00:28] For this session, we want to talk a little bit
+[00:00:30] about like how our team had to evolve over the
+[00:00:33] last year and a half as we actually adopted AI
+[00:00:35] because there&#39;s a lot of changes to our planning process
+[00:00:38] to use to our inner loop, to our engineering system
+[00:00:41] that were necessary with this change.
+[00:00:43] So like I said, I&#39;m Pierce.
+[00:00:44] I lead the PM team on VS Code.
+[00:00:46] Josh, you want to introduce yourself?
+[00:00:47] Yes, I have been on the team, on the VS
+[00:00:49] Code team for a few years now and I have
+[00:00:51] seen our old process and our new process and excited
+[00:00:54] to show you guys all the cool work that we&#39;ve
+[00:00:56] done.
+[00:00:57] Great, So like I said, like I think you know,
+[00:01:00] probably everyone&#39;s boss is like you should use more AI
+[00:01:04] and you&#39;re like, great, we&#39;re doing that.
+[00:01:08] And then I think we started realizing like almost like
+[00:01:11] starting to use AI, use agents, right, Starting in the
+[00:01:15] editor, going from ghost text to copilot edits to full
+[00:01:18] on agent mode inside of ES code.
+[00:01:21] That was kind of like the easy part quote, UN
+[00:01:23] quote.
+[00:01:24] But then like as you actually are successful with agents,
+[00:01:27] like I always ask like, OK, you adopted agents like
+[00:01:29] now what?
+[00:01:30] What actually is the implications of being successful with AI?
+[00:01:33] And in VS Code, we really had to evolve the
+[00:01:36] product significantly.
+[00:01:37] We knew that like VS Code has always evolved to
+[00:01:40] meet the needs of what developers require, right?
+[00:01:43] It started as a very simple editor.
+[00:01:45] We added extensions, we added remote development.
+[00:01:48] The latest evolution of this is AI and you know,
+[00:01:51] that evolution was what like 7-8 years to get to
+[00:01:53] that point.
+[00:01:54] And then we had AI and we rapidly had to,
+[00:01:56] to evolve the product over the last couple of years
+[00:01:59] to be what it needed to be.
+[00:02:01] And agents were really one of the keys for that.
+[00:02:03] But I think like when, when I first started on
+[00:02:06] this team in, in 2024, I think the model capabilities
+[00:02:09] weren&#39;t quite what they are today, right?
+[00:02:12] So this is an interesting graph that&#39;s basically a code
+[00:02:16] survival metric.
+[00:02:18] So our team, one of the things we track is
+[00:02:20] essentially like for a given model, right, what percentage of
+[00:02:24] the code produced by that state-of-the-art coding model is actually
+[00:02:29] committed?
+[00:02:30] Not that that&#39;s the most perfect metric, but it is
+[00:02:32] a reasonable signal that like the developer has some level
+[00:02:35] of confidence that this code should make it into the
+[00:02:37] code base, right?
+[00:02:38] And so maybe like a year or should go state-of-the-art
+[00:02:42] was GPD, for one.
+[00:02:43] And so we were seeing roughly 55% of code generated
+[00:02:46] from GPD 41 making its way back into code bases,
+[00:02:49] which is still really, really good.
+[00:02:51] Like that was a massive improvement over what we had
+[00:02:53] previously.
+[00:02:54] But this chart is even a little behind.
+[00:02:56] You can see Opus 46, we&#39;re at 86% of code
+[00:02:58] generated by the agent making its way into a commit.
+[00:03:02] And so when these models started getting better, you obviously
+[00:03:05] can lean on them to do significantly more.
+[00:03:07] That&#39;s the progress we saw in one year.
+[00:03:09] Like it makes me wonder where we&#39;re going to be
+[00:03:11] a year from now, right?
+[00:03:12] And so of course, like, not again, not that commits
+[00:03:15] are the best metric, but it is a good proxy.
+[00:03:17] You can see kind of how our commits drastically started
+[00:03:21] ramping up, particularly like later in the year, like, OK,
+[00:03:24] we had December, we had some, you know, vacations and
+[00:03:27] things like that.
+[00:03:28] But as we enter 2026, you see the ramp just
+[00:03:31] continuing to go up on commits on the team.
+[00:03:34] OK, so we&#39;re, we&#39;re doing more things, right.
+[00:03:37] We do feel like we weren&#39;t just, it wasn&#39;t performative,
+[00:03:39] like we&#39;re just committing more great.
+[00:03:41] We&#39;re using more AI like I, I really do feel
+[00:03:43] like VS Code got so much better over the last
+[00:03:45] six months with all of that work that we were
+[00:03:47] able to do thanks to agents.
+[00:03:49] But the thing that maybe you won&#39;t hear in many
+[00:03:52] of these talks is using AI successfully does create more
+[00:03:55] challenges for you, right?
+[00:03:57] So this, this is a metric just from January of
+[00:04:00] this year.
+[00:04:01] So you can see VS Code has way more issues
+[00:04:04] than it did roughly 3X more issues, right?
+[00:04:07] And way more open pull requests since January.
+[00:04:10] And this, this chart is continuing to grow, right?
+[00:04:13] And so yes, we&#39;re shipping more, but we&#39;re also getting
+[00:04:15] more issues we have to deal with.
+[00:04:16] We have more pull requests we have to go through.
+[00:04:19] And so there was this moment we got to in
+[00:04:22] January as we&#39;re starting to like deliver the product functionality
+[00:04:26] much quicker.
+[00:04:26] When we realized like, you know, this monthly planning thing
+[00:04:29] was always like a big part of VS Code culture.
+[00:04:32] We were so proud we ship every month and that
+[00:04:34] we had this realization like that&#39;s actually now not good
+[00:04:36] enough anymore.
+[00:04:37] So then we had to move to weekly releases.
+[00:04:39] We did that back in February.
+[00:04:40] And there was a couple reasons, like 1 was just
+[00:04:43] the AI space was turning over so quickly, right?
+[00:04:45] So we would have features that we would ship to
+[00:04:47] VS Code Insiders, which is our daily build of VS
+[00:04:49] Code at the beginning of the month.
+[00:04:51] And then a competitor would ship it two weeks later.
+[00:04:54] But we only ship VS Code to stable once a
+[00:04:56] month.
+[00:04:57] And so we were hearing like, oh, well, VS Code
+[00:04:58] doesn&#39;t have this thing.
+[00:04:59] So there was certainly competitive pressure to, to do more
+[00:05:02] frequent releases.
+[00:05:04] The model games, really, we were doing a lot of
+[00:05:06] special things for prompting and things like that.
+[00:05:08] We needed to get out there.
+[00:05:09] So I&#39;ll talk a little bit about that later.
+[00:05:11] And then of course, like I used to work in
+[00:05:14] Azure and we had deploy freezes right, all over the
+[00:05:17] holidays.
+[00:05:17] And so all the engineers are still working.
+[00:05:19] Then you get back from holidays, January, like second or
+[00:05:22] third, you&#39;re back from New Year&#39;s and everyone has all
+[00:05:24] their awesome features that they&#39;ve been working on for the
+[00:05:27] past month and a half, since before Thanksgiving and Black
+[00:05:30] Friday and all the deploy freezes.
+[00:05:32] And you want to know what happened, what happened that
+[00:05:33] week?
+[00:05:34] You don&#39;t want to be on call incidents, right?
+[00:05:37] And so like when you have these large batches you&#39;re
+[00:05:39] landing, that&#39;s an incredible amount of risk.
+[00:05:41] And so because the team was doing more every single
+[00:05:44] month, we also felt like we needed to like, get
+[00:05:46] these smaller batches out there so we could validate and
+[00:05:48] make sure that nothing terrible was happening where we weren&#39;t
+[00:05:51] trumping a ton of things all at once.
+[00:05:54] And so the rest of this talk is really like,
+[00:05:56] sure, like you can adopt AI, you&#39;ll move faster, you&#39;ll
+[00:05:59] deliver greater value to your customers more rapidly, But you
+[00:06:03] also have to think about how you work.
+[00:06:06] You can&#39;t just tell your teams like use more AI.
+[00:06:08] You have to think about all your engineering systems and
+[00:06:10] processes and how those things need to evolve with AI.
+[00:06:12] And so we&#39;re going to hit on a couple of
+[00:06:14] different parts of that in our talk today, starting with
+[00:06:16] kind of the developer inner loop inside of VS Code.
+[00:06:19] Josh is going to show us that we&#39;ll talk about
+[00:06:21] some of the specific bespoke tooling that we built inside
+[00:06:24] of VS Code for AI native engineering system.
+[00:06:26] And then finally, like a little bit more on like
+[00:06:28] how we actually decide what work goes into VS Code
+[00:06:31] in terms of planning and collaboration and our model there
+[00:06:33] and how that&#39;s had to evolve.
+[00:06:35] So with that, I&#39;m going to pass over to Josh
+[00:06:38] to show switch over to three the inner loop for
+[00:06:41] VS Code engineers.
+[00:06:43] Yeah, Thank you.
+[00:06:44] Yeah.
+[00:06:44] So as I said, I&#39;m an engineer on the VS
+[00:06:46] Code team.
+[00:06:47] I&#39;ve seen the process before AI was a thing, and
+[00:06:50] I&#39;ve seen how our team has evolved over the past
+[00:06:53] few years to really take advantage of all of the
+[00:06:57] benefits.
+[00:06:58] So I want to show a few different tools.
+[00:07:00] There&#39;s a lot of tools.
+[00:07:01] I think that we&#39;ve built some that our entire team
+[00:07:04] uses, some that only a few people use kind of
+[00:07:06] bespoke to their work flows.
+[00:07:08] I want to show a few that I find really
+[00:07:10] valuable for the work that I&#39;ve been doing.
+[00:07:12] I work a lot on the agents, I guess a
+[00:07:14] lot on the agents integrations in VS Code.
+[00:07:17] I work a lot on the customizations pieces of that
+[00:07:22] and a lot of UI, right.
+[00:07:24] So one tool that I really love and this is
+[00:07:27] APR from April that I wrote.
+[00:07:30] And this was a change where we, we had, we
+[00:07:33] had, we had just rolled out this new feature called
+[00:07:36] component browser, which allows us to slice up components in
+[00:07:41] VS Code in a way that the agent can work
+[00:07:43] really well on them.
+[00:07:45] And I really like, I really like this example because
+[00:07:50] this was a change that would have taken time to,
+[00:07:54] to build, to test, to run inside of our local
+[00:07:58] environment.
+[00:08:00] And all of this was done with a single prompt.
+[00:08:03] And I was able to do all the validation that
+[00:08:06] I needed right in the PR really.
+[00:08:08] And the change was simple.
+[00:08:10] I just wanted to add a back button.
+[00:08:11] You can see there&#39;s no back button.
+[00:08:13] There&#39;s back button now.
+[00:08:14] And the way that this has been written is that
+[00:08:17] this is both.
+[00:08:19] This is both the change that&#39;s useful or this this
+[00:08:22] tool is both really useful for a new feature and
+[00:08:25] also for actually catching problems and regressions that are introduced
+[00:08:29] as a side effect to a different change.
+[00:08:32] So this is basically running VS Code with your change
+[00:08:34] and without your change and taking screenshots and then putting
+[00:08:37] those in the PR.
+[00:08:38] So it&#39;s even more kind of simple than that.
+[00:08:40] We&#39;ve, we have rewritten a lot of how our components
+[00:08:44] are built in VS Code so that they can, so
+[00:08:47] that they can run outside of, so that we can
+[00:08:50] actually inspect and inject data inside to the components outside
+[00:08:54] of the product.
+[00:08:55] So we don&#39;t need to run a full build of
+[00:08:58] the product and have that overhead right in for like
+[00:09:01] I said, for every single PR with the hundreds of
+[00:09:05] PRS that we see a day, that&#39;s a lot of
+[00:09:07] overhead, a lot of compute, a lot of time.
+[00:09:10] This is how we&#39;ve kind of extracted that out to
+[00:09:12] make it a lot easier.
+[00:09:13] And you know, it is a simple change here, but
+[00:09:16] it saves a ton of time.
+[00:09:17] It really boosts your confidence in the changes that you
+[00:09:20] are making.
+[00:09:22] And yeah, we have different.
+[00:09:24] There&#39;s, there&#39;s a whole, whole lot of ways to slice
+[00:09:26] this.
+[00:09:28] And you can see all all of the fixtures that
+[00:09:31] I&#39;ve created here and all of the ways that it
+[00:09:34] validated that this change was correct.
+[00:09:36] And I like that it&#39;s just in APR.
+[00:09:38] So like if you&#39;re on the go, right, like you&#39;re
+[00:09:40] not at your machine, you can like quickly open like
+[00:09:42] the GitHub mobile app you&#39;re scrolling through and you&#39;re validating
+[00:09:45] the behavior there as well.
+[00:09:46] You don&#39;t just have to be on your machine.
+[00:09:47] Totally and I&#39;m showing a change that I made, but
+[00:09:50] from the community these these also run right.
+[00:09:52] So if there&#39;s a community PR that changes, say they
+[00:09:55] wanted to add a back button or they fixed a
+[00:09:58] bug that they they, you know, they found they were
+[00:10:00] inspired to fix the bug, but didn&#39;t know how to
+[00:10:03] run OSS locally on their machine and actually test it
+[00:10:06] end to end.
+[00:10:07] They&#39;re able to use AI and we&#39;re able to use
+[00:10:10] AI as code reviewers to understand what those changes will
+[00:10:14] have an effect on downstream.
+[00:10:16] So, so this is just one thing that saves us
+[00:10:17] all of this time for all these community PRS that
+[00:10:19] are coming in.
+[00:10:22] And yeah, we have it running in VS Code as
+[00:10:25] well here.
+[00:10:25] So you can see all the components that we have
+[00:10:28] extracted out, we have buttons, we have toggles.
+[00:10:32] Anything in VS Code where we don&#39;t want the UI
+[00:10:34] to change or regress without us knowing about it, we&#39;ve
+[00:10:37] extracted that out and it&#39;s a simple change.
+[00:10:40] But I think the mindset of how we use it
+[00:10:43] really accelerates our development.
+[00:10:45] Totally, Yeah.
+[00:10:46] And I mean, we have BS code wide on on
+[00:10:49] every operating system web.
+[00:10:50] So it runs everywhere.
+[00:10:51] And so there&#39;s a large test matrix that&#39;s necessary for
+[00:10:54] each of these components.
+[00:10:55] Exactly.
+[00:10:56] And yeah, we have I think I&#39;ll just open this
+[00:10:59] back up and I&#39;ll just show you in chat how
+[00:11:02] I I just asked chat earlier to swap the button
+[00:11:06] from blue to green and you can see how this
+[00:11:09] works.
+[00:11:10] Is that what it did is it took a screenshot
+[00:11:12] beforehand.
+[00:11:13] It was able to find the fixture because I gave
+[00:11:14] it the name of the fixture that I wanted it
+[00:11:16] to update.
+[00:11:17] I said keep iterating until it looks correct and then
+[00:11:20] go take a screenshot to show me that it&#39;s correct
+[00:11:23] and it turned green.
+[00:11:25] And this is all in chat and line here.
+[00:11:27] It was able to reload the component browser here.
+[00:11:29] So it&#39;s interactive.
+[00:11:30] You can see you can collapse these or highlight and
+[00:11:33] all of these UI interactions work the same as they
+[00:11:36] would in the product.
+[00:11:39] It&#39;s one thing that I really find valuable that I
+[00:11:41] don&#39;t think I expected to find some valuable, which is
+[00:11:43] why I wanted to highlight it.
+[00:11:45] And it&#39;s running like you said, like this is all
+[00:11:47] running in your agent loop.
+[00:11:48] So for some reason the change doesn&#39;t produce what you
+[00:11:50] want because it&#39;s looping over the screenshots and the output
+[00:11:53] from the component explorer.
+[00:11:55] Like it can actually go fix that as well, which
+[00:11:57] is nice.
+[00:11:57] Totally you get like the built in verification they.
+[00:11:59] Have from the agent and that&#39;s the that&#39;s when you
+[00:12:02] when you are using agents to do to make a
+[00:12:05] change in UI.
+[00:12:06] It&#39;s just kind of guessing right there is there is
+[00:12:09] this kind of feedback loop that is missing and that&#39;s
+[00:12:12] what this tool really solves.
+[00:12:14] Cool, cool.
+[00:12:16] So that&#39;s, yeah, I love this tool.
+[00:12:18] I have this running all day long here.
+[00:12:21] The other ways that we&#39;ve been collaborating a lot these
+[00:12:25] days is just using the agent to build prototypes, right.
+[00:12:29] So you saw what I was building before, which is
+[00:12:32] agent customizations UI, where we are extending that to kind
+[00:12:36] of be a hub for other kinds of agent configurations
+[00:12:40] across all copilot surfaces right now.
+[00:12:43] And me and Harold, someone on our team, have been
+[00:12:45] kind of collaborating back and forth on this prototype that&#39;s
+[00:12:48] up on this GitHub and just using agents just to
+[00:12:51] prototype as well.
+[00:12:52] This kind of prototype is written in a way that
+[00:12:54] it can easily be translated back into VS Code.
+[00:12:57] So it&#39;s not just kind of wasted work.
+[00:12:59] This is, this is the work that&#39;s helpful for us
+[00:13:01] to communicate to each other, to other stakeholders on the
+[00:13:03] team.
+[00:13:03] Here&#39;s what our vision is for the product.
+[00:13:06] And then this really translates nicely right back into VS
+[00:13:08] Code.
+[00:13:08] So it saves us a lot of work.
+[00:13:10] It saves us a lot of back and forth on
+[00:13:12] writing a spec say or on meetings.
+[00:13:14] I think with our shipped weekly releases, we have to
+[00:13:17] talk more.
+[00:13:17] We have to communicate more.
+[00:13:21] I guess kind of we have, we have to talk
+[00:13:23] more like we have to talk every single day to
+[00:13:26] make sure that we&#39;re and this makes it a lot
+[00:13:29] easier to do that.
+[00:13:31] Yeah.
+[00:13:31] I think like the prototyping thing is very interesting because
+[00:13:35] like as a PM, like I would always go write
+[00:13:37] these specs, right?
+[00:13:38] We never really did that on the BS code team,
+[00:13:40] but like a lot of teams do work that way,
+[00:13:41] right?
+[00:13:42] You go write some doc and no one wants to
+[00:13:43] read this doc, right?
+[00:13:45] And the thing I always found unsatisfactory about that is
+[00:13:49] it&#39;s all it&#39;s all hypothetical, right?
+[00:13:52] Like you don&#39;t actually know until you get your hands
+[00:13:55] on an experience and you spend time with it.
+[00:13:57] Oh, I like this.
+[00:13:58] I don&#39;t like that.
+[00:13:59] There&#39;s this edge case we didn&#39;t think about.
+[00:14:01] And like, of course, pre AI you could prototype, but
+[00:14:03] in many cases it was very expensive.
+[00:14:05] And so like, I think that&#39;s been a big shift
+[00:14:07] for us on our team is like very often we&#39;re
+[00:14:10] doing things like using this prototyping tool to like explore
+[00:14:13] new ideas, sometimes even doing the prototype itself inside of
+[00:14:16] VS Code.
+[00:14:17] And then you know what, the PM team will even
+[00:14:20] sometimes send you PRS.
+[00:14:21] And the point not is not necessarily that you merge
+[00:14:24] our PR, but that all almost becomes actually the spec,
+[00:14:27] right?
+[00:14:27] Yeah, and our team uses insiders every day, of course.
+[00:14:30] And we ship insiders at least twice a day.
+[00:14:32] We do often more and with a monthly release that
+[00:14:35] gave us enough time to feel out certain changes in
+[00:14:38] the product.
+[00:14:39] Now with a weekly release cycle, we need a kind
+[00:14:41] of, we need a faster iteration loop and that&#39;s, that&#39;s
+[00:14:44] what this kind of accomplishes.
+[00:14:47] There&#39;s a few other kind of inner loop things that
+[00:14:50] I&#39;ve really kind of kind of picked out in the
+[00:14:52] sea of changes that we have.
+[00:14:55] We have skills, of course, like everyone else does.
+[00:14:58] These are all inside of VS Code repos, open source.
+[00:15:01] Anything that you find interesting here you can use yourself.
+[00:15:04] One that I find interesting or that I found really
+[00:15:07] useful is the chat performance skill that we&#39;ve built.
+[00:15:10] So we&#39;ve built a lot of tooling around being able
+[00:15:13] to mock out complex scenarios in our chat renderer.
+[00:15:17] And we&#39;ve encoded all this into skills that we use
+[00:15:20] throughout the development process.
+[00:15:24] And this, it explains here how it works.
+[00:15:29] We have some tooling, but really the key to it
+[00:15:32] is that we can use the skill to allow the
+[00:15:35] agent to understand if our change is going to regress
+[00:15:39] any kind of performance benchmarks that we&#39;ve already captured here.
+[00:15:43] And the outputs are really nice.
+[00:15:47] The way that we can have the agent query.
+[00:15:49] I just have this other chat prepped.
+[00:15:53] All I did was run the skill slash chat dash
+[00:15:55] perf in the VS Code repo.
+[00:15:58] I of course didn&#39;t make any changes in this branch,
+[00:16:00] so it won&#39;t find anything kind of funny.
+[00:16:03] But what it does and what we use it for
+[00:16:05] is if we&#39;re making a complex change to the renderer
+[00:16:08] or to a portion of the code base that we
+[00:16:11] think could be risky, or if the agent thinks that
+[00:16:14] it could be risky, it knows to use the skill
+[00:16:16] to identify if we should make any more considerations essentially.
+[00:16:20] And this is really nice again for the weekly releases,
+[00:16:22] right?
+[00:16:22] This is something that we don&#39;t have time as a
+[00:16:24] development team to sit with it for an entire month
+[00:16:27] like we used to an insiders.
+[00:16:29] So allowing the agent or I guess teaching the agent
+[00:16:33] the, I guess the angles in the aspects that we
+[00:16:36] care about is really important and it&#39;s really helpful, right?
+[00:16:41] This explains, we&#39;ve got a set of benchmarks of like
+[00:16:44] the timings that we expect and it&#39;s very easy for
+[00:16:47] a human to read.
+[00:16:48] It&#39;s really easy to kind of query the results with
+[00:16:53] a lot of SQL.
+[00:16:55] We have a few in our skill that we encode
+[00:16:57] that are very that we found very useful.
+[00:17:01] And it&#39;s really easy for a human to read and
+[00:17:03] understand this and for the agent to iterate on a
+[00:17:05] fix or at least say hey this part is a
+[00:17:07] little funny looking.
+[00:17:09] Yeah, I, I like stuff like this because I think
+[00:17:11] people are like, oh, I used AI to add, you
+[00:17:13] know, more features to the product.
+[00:17:15] But I, I, I think like for us in VS
+[00:17:17] Code, performance has always been like, so central to like
+[00:17:20] what we&#39;re trying to do there.
+[00:17:22] And like, obviously we want to move faster with AI,
+[00:17:25] but you also want to make sure that in doing
+[00:17:27] so, you don&#39;t degrade the quality and performance of the
+[00:17:29] product.
+[00:17:30] And so I love like these examples on how we&#39;re
+[00:17:32] able to like still make sure that we have like
+[00:17:34] a super high performance product that we&#39;re shipping, but we&#39;re
+[00:17:37] still able to do so while moving fast.
+[00:17:38] Yeah, yeah.
+[00:17:39] And, and there&#39;s one, I think I have it here.
+[00:17:43] There&#39;s one recently that was really cool that this had
+[00:17:49] snuck into our product.
+[00:17:51] We then we then we then started introducing this tool.
+[00:17:55] We ran these benchmarks.
+[00:17:56] We saw that there was a problem with, I think
+[00:18:00] this was tool parsing.
+[00:18:02] Yeah, yeah.
+[00:18:03] This was a tool parsing bug that was found and
+[00:18:06] saved a couple thousand milliseconds off of chat on every
+[00:18:10] single tool call that came in, which is huge, right?
+[00:18:15] And this was entirely AI generated.
+[00:18:17] Both what we found as the problem and the fix
+[00:18:20] was at least kind of partially written by AI and
+[00:18:23] then also of course reviewed here by Paul.
+[00:18:27] But it&#39;s just really fascinating to see what the agent
+[00:18:30] could find.
+[00:18:31] And this was across a few different processes within VS
+[00:18:34] Code.
+[00:18:35] This is not kind of simple, straightforward, you know, bug
+[00:18:42] cool.
+[00:18:43] And that I think are the 2 main agentic interloop
+[00:18:47] changes that I find interesting.
+[00:18:50] But there are so many of those, like a dozen
+[00:18:53] or so skills that we&#39;ve added in the past month
+[00:18:55] that our teams are experimenting with.
+[00:18:57] And yeah, there&#39;s a lot more that I don&#39;t have
+[00:18:59] time to show you as well.
+[00:19:01] And, and the cool thing about these skills, right?
+[00:19:03] Like it&#39;s certainly true, like on every team, there is
+[00:19:06] someone who&#39;s like, I know all about performance, right?
+[00:19:08] And, and that is the trusted expert on the team.
+[00:19:11] And I think pre AI, the problem is that person
+[00:19:13] was a bottleneck, right, for every single performance related thing.
+[00:19:17] And now if you can take like that knowledge of
+[00:19:20] what our expectation is and maybe encapsulate as much as
+[00:19:23] you can from that person&#39;s brain, it&#39;s impossible to fully
+[00:19:26] do so.
+[00:19:26] But like if you can take the key things and
+[00:19:29] create skills or tools like that, then now like your
+[00:19:32] whole team has access to this performance person that they
+[00:19:35] can be running continuously.
+[00:19:36] Right.
+[00:19:37] And I mean, these skills were actually written by those
+[00:19:39] experts, right?
+[00:19:39] So it&#39;s encoded exactly what they think is important and
+[00:19:43] allows us to all have agency and be able to
+[00:19:45] take ownership of these bugs instead of just handing them
+[00:19:49] up to someone else.
+[00:19:50] Totally.
+[00:19:51] OK.
+[00:19:51] Was that your last demo for this section?
+[00:19:54] All right, switching over like a pro.
+[00:19:57] OK, so like another thing I wanted to talk about,
+[00:20:00] it&#39;s like, I think that when people are like, oh,
+[00:20:02] there&#39;s new models in GitHub copilot, I think they just
+[00:20:04] assume like, oh, there&#39;s an API and you just wire
+[00:20:07] it up and then the right things happen, right?
+[00:20:10] But the reality is actually that there isn&#39;t an immense
+[00:20:13] amount of of effort, maybe like, I don&#39;t know, at
+[00:20:16] least 15 to 20 people who are involved in these
+[00:20:18] sorts of launches.
+[00:20:20] From different disciplines, whether it&#39;s engineering, product, marketing, obviously data
+[00:20:25] science, right, to get these models into your hands.
+[00:20:28] And so we spend a significant portion of our time
+[00:20:31] doing this, especially now that there&#39;s seemingly a new model
+[00:20:34] being released from one of the providers that is supported
+[00:20:36] in copilot every week, right?
+[00:20:39] So typically the way this works is before launch, we
+[00:20:41] have the providers, you know, come to us, they, you
+[00:20:44] know, under NDA, they say there&#39;s a new model coming.
+[00:20:47] They give us a ton of information about the model
+[00:20:49] we onboarded to this thing called copilot API, which is
+[00:20:52] like our essentially API gateway for all of our models
+[00:20:55] in the product.
+[00:20:56] And then we basically like over basically several weeks, we
+[00:20:59] continuously loop over like, how can we get the harness
+[00:21:03] to do really well for this model?
+[00:21:05] I think there&#39;s like an assumption that like you don&#39;t
+[00:21:07] have to do anything in the prompting.
+[00:21:09] But actually if you go VS Code is open source,
+[00:21:11] if you go into VS Code and you type like
+[00:21:13] open AI prompt, you can see actually the dynamic construction
+[00:21:15] of all the prompts we do in the product.
+[00:21:17] And every single word in that has a purpose.
+[00:21:20] And so we spend a lot of time in offline
+[00:21:22] evaluation, improving that, working with the model providers, going back
+[00:21:26] and forth, how can we make this better to get
+[00:21:28] resolution rates up and also token efficiency improve.
+[00:21:31] And so we also have like internal dog food groups
+[00:21:33] that we&#39;re getting the qualitative feedback as well.
+[00:21:35] And and so there&#39;s like a whole bunch of things
+[00:21:36] that happened and then we finally launched the model.
+[00:21:39] So that&#39;s kind of like what happens before we launch.
+[00:21:42] But then after launch, we&#39;ve also done a lot of
+[00:21:45] investment and kind of our experimentation infrastructure inside of BS
+[00:21:49] Code.
+[00:21:50] So we have, if you have telemetry enabled in VS
+[00:21:53] Code, we do run AB experiments at any given point
+[00:21:55] in time, we might be running, you know, many of
+[00:21:58] these experiments, we specifically run prompt improvement experiments.
+[00:22:02] And so of course, like I, I love offline evaluations,
+[00:22:05] but they do have flaws, right?
+[00:22:07] There&#39;s a lot of things you can&#39;t fully encapsulate in
+[00:22:09] an offline evaluation.
+[00:22:10] And so online experiments help us to have real data
+[00:22:13] and actually make decisions about our prompts.
+[00:22:15] And so very often if you&#39;re snooping on the VS
+[00:22:17] Code repo and you go to pull requests after a
+[00:22:20] model launch, you&#39;ll sometimes see us have two 3-4 versions
+[00:22:23] of these prompts that are being AB tested in the
+[00:22:26] wild.
+[00:22:26] And we can measure a lot of the, the metrics
+[00:22:28] we were talking about earlier.
+[00:22:29] We can say like, OK, how does this impact token
+[00:22:31] efficiency?
+[00:22:32] How does this impact, you know, retain code?
+[00:22:34] The thing we had earlier.
+[00:22:36] And so like usually like 2 weeks after a model
+[00:22:38] launch is when we have done all the offline work,
+[00:22:40] we&#39;ve done the online work, we have the experiment results
+[00:22:42] and we&#39;ve made decisions about like what we&#39;re actually going
+[00:22:45] to ship.
+[00:22:46] And so that&#39;s usually actually ironically the best experience we&#39;ll
+[00:22:49] get with that model is usually about two post launch
+[00:22:51] because we&#39;ve had time to do both the offline and
+[00:22:53] online evaluation experiments.
+[00:22:56] So I mentioned evals like personally we we found like
+[00:23:00] the evaluation, both the infrastructure and also the benchmarks insufficient
+[00:23:05] that are available in the public.
+[00:23:08] And so obviously like with all the model ships and
+[00:23:10] everything, we wanted to make like objective decisions about what
+[00:23:14] we&#39;re doing in the product.
+[00:23:16] And so we built this thing called BSE bench and
+[00:23:18] that&#39;s essentially like our our purpose built offline evaluation stack
+[00:23:21] for VS Code.
+[00:23:23] And so that&#39;s the thing I was referencing earlier where
+[00:23:26] like we have our own cases, we have our own
+[00:23:28] kind of infrastructure for running these evaluations.
+[00:23:30] And we are running many, many, many of these every
+[00:23:33] single day with different variations to understand the impact of
+[00:23:36] different changes on metrics like tokens and resolution rate.
+[00:23:40] So here&#39;s like a sample plot for total tokens over
+[00:23:44] resolution rate.
+[00:23:46] And you can see how that kind of changes like
+[00:23:48] yes, of course, GBD 55, you do have a better
+[00:23:51] resolution rate, but sometimes at the cost of more tokens.
+[00:23:55] You can see like the different reasoning efforts are also
+[00:23:57] overlaid here.
+[00:23:57] So it&#39;s an interesting product decision we have to make
+[00:24:00] is not just like, did we optimize the prompts, but
+[00:24:02] like what reasoning effort do we ship with?
+[00:24:05] And so like, of course, you know, you could say,
+[00:24:06] OK, extra high for everything, it&#39;s going to always give
+[00:24:08] you the best results.
+[00:24:09] But I think the interesting thing is actually that&#39;s untrue,
+[00:24:13] at least in our offline evaluation stack for GBD 55.
+[00:24:16] And then there&#39;s also trade-offs, of course, with costs and
+[00:24:18] things like that.
+[00:24:19] So would you be willing to trade like, you know,
+[00:24:22] 1% boost in resolution rate for a 20% increase in
+[00:24:26] token cost like most people would not, right?
+[00:24:29] And so those are the sorts of decisions you have
+[00:24:31] to rationalize pre launch.
+[00:24:33] So that&#39;s VSC bench, that&#39;s our inner loop and kind
+[00:24:36] of the things we do day-to-day.
+[00:24:38] But next, I want Josh to kind of walk through
+[00:24:41] the engineering system itself.
+[00:24:43] And we always, I feel like had a more advanced
+[00:24:45] like bespoke engineering system that we had built for VS
+[00:24:48] Code, but we really had to evolve this thing in
+[00:24:50] particular over the last couple months.
+[00:24:52] So I&#39;ll pass to you to kind of go through
+[00:24:54] that.
+[00:24:55] Thanks, Chris.
+[00:24:56] Yeah.
+[00:24:56] So I think we have had a lot of very
+[00:24:59] specific VS Code tooling since I joined the team, a
+[00:25:03] lot of issue automations.
+[00:25:06] We had a model trained for a long, long time
+[00:25:10] that I&#39;m going to try and infer who is the
+[00:25:13] owner of an issue and other kinds of really simple
+[00:25:18] tasks.
+[00:25:19] But that has been so accelerated with the advent of
+[00:25:23] AI and through agentic workflows, which is what a lot
+[00:25:27] of this I want to show you is built on.
+[00:25:30] But first, this really overwhelming graphic here kind of gives
+[00:25:34] you a good idea of how the system is interconnected
+[00:25:38] with each other.
+[00:25:40] We have kind of three inputs, right?
+[00:25:41] We have events from GitHub.
+[00:25:43] So these are issues and PRS and all those signals.
+[00:25:47] And those are kind of the, I guess like the
+[00:25:49] signals that we always used in the past.
+[00:25:51] This is kind of the entry point to any change
+[00:25:55] in VS Code is is an issue to start.
+[00:25:59] But nowadays we have a lot of scheduled jobs that
+[00:26:02] just you can see do all sorts of stuff that
+[00:26:05] I that go through all of I guess all of
+[00:26:08] the all of the data that we have and tries
+[00:26:11] to find and understand errors and even fixes them.
+[00:26:15] So that&#39;s one that I&#39;ll go through the errors agent,
+[00:26:17] which is really interesting.
+[00:26:20] A lot of self healing.
+[00:26:22] Yeah, this is a, this is work that we&#39;ve done
+[00:26:26] to heal our other work flows so that the engineering
+[00:26:30] system as a whole stays healthy, right?
+[00:26:33] Because that&#39;s something that I think you can build a
+[00:26:35] lot with AI, but you need to make sure that
+[00:26:37] as soon as you move on to the next thing,
+[00:26:39] it continues to work and operate the way that you
+[00:26:41] expect it to.
+[00:26:42] And we found that at our scale with the amount
+[00:26:44] of issues that come in, with the amount of changes
+[00:26:46] that we make, that&#39;s actually a bit more complicated than
+[00:26:48] actually building these tools is making sure that it&#39;s resilient
+[00:26:51] and able to handle the load that we handed.
+[00:26:54] So a lot of thought has gone in there.
+[00:26:57] And then we, of course, we can also, we can
+[00:26:59] also run these ourselves.
+[00:27:00] We have a, we have a Chrome extension up here,
+[00:27:02] which I&#39;ll highlight a bit of some of these like
+[00:27:04] dashboards that are, that are built into the Chrome Edge
+[00:27:06] extension.
+[00:27:07] But this allows some kind of some kind of manual
+[00:27:10] work to be done on an issue to automate some
+[00:27:13] of the manual processes.
+[00:27:14] You know, as, as I think any engineer on the
+[00:27:17] BS code team can tell you, a lot of our
+[00:27:19] time in the past and even now is spent on
+[00:27:21] just understanding and triaging issues and sending them to the
+[00:27:25] right place.
+[00:27:27] And the whole goal of our new engineering system is
+[00:27:30] to save our engineers time so we can focus on
+[00:27:32] actually writing code and actually building the product.
+[00:27:36] So super high level overview of our engineering system these
+[00:27:40] days.
+[00:27:40] I think we made updates to this yesterday, right?
+[00:27:44] So this is continually changing it&#39;s shape as we as
+[00:27:49] we learn more 1.
+[00:27:52] So I&#39;ll go into a bit of some of the
+[00:27:54] triaging of the of the influx of the, I guess
+[00:27:57] the influx of GitHub issues that we get because that&#39;s,
+[00:28:00] that is definitely our biggest signal when something goes wrong
+[00:28:04] or when the community wants something changed.
+[00:28:08] Well, and I think like, you know, obviously we&#39;re using
+[00:28:11] more AI, which generates more issues for us, but also
+[00:28:14] like our community is also using more AI, which generates
+[00:28:18] more things, more, more stuff for us to deal with,
+[00:28:21] right?
+[00:28:22] And so it&#39;s not even just our own volume of
+[00:28:23] issues we&#39;re generating.
+[00:28:25] We&#39;re one of the world&#39;s largest open source projects and
+[00:28:27] we&#39;re also getting a massive influx of community contributions.
+[00:28:31] Absolutely.
+[00:28:32] Yeah.
+[00:28:32] And then understanding if an issue that comes in is
+[00:28:35] something that is actionable by us or something actionable by
+[00:28:38] maybe it&#39;s a service outage or something like that.
+[00:28:42] There&#39;s a whole new kind of realm of issues that
+[00:28:45] are that US as like a client application did not
+[00:28:47] have four or five years ago.
+[00:28:49] Yeah.
+[00:28:49] I mean, we talked about the Copilot API thing, like
+[00:28:52] obviously we have a massive like dependency to make sure
+[00:28:55] that thing stays up for us.
+[00:28:56] And like you said, like we were just a client
+[00:28:59] app, like there was no connectivity risk really at all.
+[00:29:02] Maybe the updater service was the only one we had,
+[00:29:04] right.
+[00:29:05] And now like to use the product, if you&#39;re using
+[00:29:07] any of the AI features, of course, you know, we
+[00:29:09] use local models for some things, but the overall majority
+[00:29:11] of those things are going to some sort of online
+[00:29:13] service.
+[00:29:13] Totally, Yeah.
+[00:29:14] So we built a lot of tooling around this to
+[00:29:17] do auto triggering for us.
+[00:29:20] We have a lot of data that we&#39;re collecting and
+[00:29:23] trying to understand, like if this is successful when when
+[00:29:26] someone when we have an issue that&#39;s auto triage, is
+[00:29:30] it successful or has it been modified by a human
+[00:29:33] afterwards?
+[00:29:34] A lot of really interesting data that we&#39;re collecting here.
+[00:29:37] So we&#39;re learning more.
+[00:29:38] You can see just like how it works, which is
+[00:29:41] really cool in here.
+[00:29:42] So this went through, I guess maybe two hours ago
+[00:29:46] that ran through an issue that it saw kind of
+[00:29:50] peeked through.
+[00:29:51] This is see if there&#39;s some interesting ones here.
+[00:29:56] Yeah.
+[00:29:56] But you can see like we are going through all
+[00:29:58] our issues and trying to find the owners for them.
+[00:30:01] This is, I think this this one shows you.
+[00:30:03] Yeah.
+[00:30:03] So we had we had a problem come in or
+[00:30:05] we had an issue come in four hours ago.
+[00:30:08] It found the assignees that were responsible for it, the
+[00:30:11] areas that make sense.
+[00:30:13] It identified that it was a feature request and then
+[00:30:17] we had, we had some tooling to if it&#39;s a
+[00:30:20] bug or a some kind of like regression to actually
+[00:30:23] fix that for us.
+[00:30:24] So how does it actually decide like these people are
+[00:30:27] the owners for this particular issue?
+[00:30:29] Right.
+[00:30:29] So we have a, we have a few sources of
+[00:30:32] data for that.
+[00:30:32] So of course the code base, right, If that&#39;s like
+[00:30:35] the source of truth, right, If anyone&#39;s been committing in
+[00:30:39] that area of the code base, that&#39;s a good signal.
+[00:30:42] Obviously we have a few other data sources where we
+[00:30:45] manually say I am the owner of X experience, so
+[00:30:49] I want all issues to come to me so that
+[00:30:51] I can fix them or triage them appropriately.
+[00:30:54] So we have many kind of sources of that and
+[00:30:57] you can see here it gave 3 owners, which is
+[00:31:00] probably not the ideal way that we would divvy it
+[00:31:03] up.
+[00:31:04] But I like that we could actually go in and
+[00:31:06] see what happens because like we also have to go
+[00:31:08] and debug our actual engineering system for like, OK, you&#39;re
+[00:31:11] saying you should have gotten 3 owners here.
+[00:31:13] That&#39;s probably not ideal.
+[00:31:14] OK, now we can actually see the full log for
+[00:31:17] that agent, what happened?
+[00:31:18] Go diagnose that and figure out how we can get
+[00:31:20] it down so there&#39;s not the multi owner problem.
+[00:31:22] Yeah.
+[00:31:22] And it also is really good at finding a duplicate
+[00:31:25] issue and identifying that.
+[00:31:26] And we, we can see that both on the automation
+[00:31:29] side and then also as a human that goes into
+[00:31:32] an issue.
+[00:31:32] So this is this is injected by our Chrome extension
+[00:31:35] that we use internally on our team.
+[00:31:37] So this is not a feature of GitHub, but kind
+[00:31:39] of one that we wish was a feature of GitHub.
+[00:31:41] So we made it ourselves.
+[00:31:43] So this allows us to dedupe different issues.
+[00:31:46] And it we use AI, it runs every, I think
+[00:31:49] hour with the latest set of GitHub issues and tries
+[00:31:53] to match duplicates.
+[00:31:54] If if it had been certain, it would have just
+[00:31:57] automatically closed that as a duplicate so that again, our
+[00:32:01] team is focused on not not having to triage 203040
+[00:32:04] issues that are the same root cause.
+[00:32:07] We can focus on what&#39;s important and this has saved
+[00:32:09] a ton of time to our team.
+[00:32:11] Well, yeah, and it&#39;s very, it sounds easy, like just
+[00:32:13] mark things as duplicates.
+[00:32:15] But like there&#39;s so many issues that you can&#39;t just
+[00:32:18] like from lexical search immediately find like the exact same
+[00:32:21] issue.
+[00:32:22] And so that&#39;s the cool thing is like this workflow
+[00:32:24] is actually looking into all the issues, all the text
+[00:32:26] in it.
+[00:32:27] It&#39;s not just the the, you know, keyword matching, but
+[00:32:29] also the semantic understanding of the issues right and how
+[00:32:32] they all fit together.
+[00:32:33] Absolutely.
+[00:32:33] And I mean here like this was a like one
+[00:32:35] that I randomly pulled.
+[00:32:36] This is a great issue, right?
+[00:32:37] This is super detailed.
+[00:32:38] It kind of suggests what this author thinks we should
+[00:32:42] do, but there&#39;s a lot that we don&#39;t get that
+[00:32:45] have this much detail.
+[00:32:46] So to actually do the deduplication is a lot more
+[00:32:49] complicated and.
+[00:32:52] Yeah.
+[00:32:52] You mentioned that this like wasn&#39;t natively a feature in
+[00:32:54] GitHub.
+[00:32:55] And I actually think like 1 cool thing that I&#39;m
+[00:32:57] kind of hoping is like, as a result of our
+[00:33:00] work of like being one of the world&#39;s largest open
+[00:33:03] source projects and having this massive influx and having to
+[00:33:06] reinvent our engineering system.
+[00:33:08] I think the hope is actually that, you know, we&#39;re
+[00:33:10] going to try, we try a lot of things that
+[00:33:12] don&#39;t work as well.
+[00:33:13] And the things that do work, like I would love
+[00:33:15] to see make it make its way back into GitHub
+[00:33:17] as a platform construct, right?
+[00:33:19] Like, there&#39;s no reason that eventually this duplicate detection shouldn&#39;t
+[00:33:22] just be something you have in GitHub.
+[00:33:24] Right.
+[00:33:24] And this whole work is built on a lot of
+[00:33:27] the work that is offered by GitHub, a lot of
+[00:33:30] like the agentic workflow tooling that comes out of GitHub
+[00:33:34] so that we can run these issues against an AI
+[00:33:38] with about fear that there will be kind of prompt
+[00:33:41] injection from the issue or any other kinds of concerns.
+[00:33:45] There&#39;s a lot of consideration that goes into actually running
+[00:33:49] AI on untrusted issues right from the community.
+[00:33:52] So there&#39;s a lot that we built on it and
+[00:33:54] a lot I think that we could share back.
+[00:33:57] We also, like I said, we care a lot about
+[00:34:00] the health of our pipeline so that we understand that
+[00:34:03] all of our automations are actually working the way that
+[00:34:06] we expect.
+[00:34:07] So these are all of our, I just chose ones
+[00:34:10] that are Cron, Cron jobs here.
+[00:34:14] The ones that I&#39;m going to show next are these
+[00:34:16] error, these 3 error pipelines here.
+[00:34:19] So I showed you how we do the auto triaging.
+[00:34:21] We have a lot of information that we can infer
+[00:34:24] from a from an individual GitHub issue.
+[00:34:27] And then there&#39;s a lot that are actually actionable that
+[00:34:31] we don&#39;t really need a human to go spend an
+[00:34:33] afternoon working on if there is a clear way to
+[00:34:36] reproduce the bug clear goal.
+[00:34:38] So we have this running every so often, a lot
+[00:34:42] of times a day that goes through all of our
+[00:34:46] telemetry and I&#39;ll show a little sneak peek of our
+[00:34:51] errors page here.
+[00:34:52] So this goes through any unhandled error and there&#39;s a
+[00:34:56] few other ways we can slice it and it goes
+[00:34:58] through and tries to identify the root cause.
+[00:35:01] If it&#39;s able to identify some kind of &#39;cause it&#39;s
+[00:35:05] actionable, it&#39;ll create a GitHub issue for us.
+[00:35:09] And then we&#39;re, I&#39;m now rolling out ways that the
+[00:35:12] experience here can go and actually fix the bug for
+[00:35:15] you and tag the correct owner, which is super cool,
+[00:35:19] right &#39;cause we, I, I just found this one randomly
+[00:35:22] from five days ago.
+[00:35:23] This was an error that our bot found, ran through,
+[00:35:30] and shared the stack trace.
+[00:35:34] There&#39;s really no other data that we had from our
+[00:35:37] telemetry here.
+[00:35:38] And I just peeked and I saw that it had
+[00:35:40] gone through and actually fixed it for us, Right.
+[00:35:43] So this was a regression from May that we detected.
+[00:35:50] It explained to us it was kind of Osmaldo.
+[00:35:53] Oh, no, sorry, buddy.
+[00:35:58] Yeah.
+[00:35:58] And it, and it kind of ran through.
+[00:35:59] And I think the interesting part of this bug is
+[00:36:02] that you can see from this nice diagram here is
+[00:36:05] that the actual bug spanned a few different processes throughout
+[00:36:09] VS Code, the extension host, and it went through to
+[00:36:12] the main thread.
+[00:36:13] There&#39;s there&#39;s like this kind of back and forth of
+[00:36:16] like serialization of data that caused the bug to happen.
+[00:36:19] And it was able to step back and understand the
+[00:36:22] sequence of events that were causing the exception to be
+[00:36:26] thrown and then actually fix it for us, right?
+[00:36:29] So it identified the files across various parts of the
+[00:36:33] code base, across various processes and was able to suggest
+[00:36:36] the fix for us.
+[00:36:37] And it was accepted by Rob, so I&#39;m sure it
+[00:36:39] was great.
+[00:36:40] Rob would prove that it&#39;s all good.
+[00:36:42] Rob knows all, but this is this is cool.
+[00:36:44] This is like full loop, right?
+[00:36:45] Like so we have, we have an issue, right?
+[00:36:49] It shows up in our error site right from our
+[00:36:51] our workflow that we were just talking about.
+[00:36:54] There&#39;s an initial investigation done.
+[00:36:56] We get an issue open with that investigation.
+[00:36:58] And then if, if copilot thinks it can go tackle
+[00:37:01] it like it did in this case, then it proactively
+[00:37:04] proposes a fix.
+[00:37:04] And then, you know, you saw that like we have,
+[00:37:07] you know, many, many 10s of millions of users using
+[00:37:10] BS code every single month.
+[00:37:11] Like exactly There is, there is a lot of like
+[00:37:13] small little things that can crop up.
+[00:37:15] And you know, before, unless it was something major, it&#39;s
+[00:37:18] hard to prioritize the time for that.
+[00:37:19] And now this is just happening automatically in the background.
+[00:37:21] Absolutely.
+[00:37:22] And I mean, we&#39;re still a really small team, right?
+[00:37:24] Yep.
+[00:37:24] Like we don&#39;t have, yeah, 100 engineers working on this.
+[00:37:27] Exactly, we&#39;re like 40 ish people.
+[00:37:29] I think people assume we&#39;re like.
+[00:37:31] Thousand person org absolutely.
+[00:37:32] Yeah, we&#39;re not right.
+[00:37:33] So it&#39;s like we don&#39;t have the time of the
+[00:37:35] day if we work 24 hours to go and fix
+[00:37:37] all these bugs.
+[00:37:37] We really need AI here to make the product stable.
+[00:37:45] Yeah.
+[00:37:46] The last thing I want to just kind of talk
+[00:37:47] over a bit is yeah, like the weekly releases have
+[00:37:49] been huge for us.
+[00:37:50] This has been a big shift in how we develop,
+[00:37:53] how we communicate.
+[00:37:55] That was nice.
+[00:37:55] We just saw an update here.
+[00:37:56] So this is live kind of data from our from
+[00:37:59] I guess like the update server that every day when
+[00:38:02] you open like the insiders, every week when you open
+[00:38:06] stable, you&#39;ll get an update.
+[00:38:07] And this is the same data that is actually driving
+[00:38:11] the update server as well.
+[00:38:13] So you can see kind of all of the versions
+[00:38:15] of VS Code that we have actually released.
+[00:38:18] You can see the rollout.
+[00:38:19] We now do staged rollouts kind of slowly so we
+[00:38:22] can observe the effects of that in the wild because
+[00:38:25] of course in insiders and from us using the product
+[00:38:28] is of course very different from the whole world using
+[00:38:31] it from like the 40 + 1,000,000 users.
+[00:38:34] You can see the version that we&#39;re actively rolling out
+[00:38:38] and then the version we&#39;re actively developing.
+[00:38:41] So yeah, in this page is growing every day and
+[00:38:44] like the kinds of data that we&#39;re presenting.
+[00:38:47] We&#39;ve got a whole bunch of tools to understand the
+[00:38:51] code that we&#39;re rolling out and to make it really
+[00:38:55] easy to can see.
+[00:38:56] This was frozen for a tiny bit of time because
+[00:38:59] of a problem after we got to 8%, right?
+[00:39:01] So we were able to catch something really quickly before
+[00:39:04] it became a problem for most people, right?
+[00:39:06] So.
+[00:39:06] And we, we incremental rollout is kind of a newish
+[00:39:09] thing for us.
+[00:39:10] We used to just like Yolo to 100% right?
+[00:39:13] Totally, Yeah.
+[00:39:14] And we, yeah, we have built in the process of
+[00:39:17] incremental rollouts and being able to freeze builds to fall
+[00:39:21] back to previous builds all on our build site, which
+[00:39:24] we&#39;ve used for a while.
+[00:39:26] But this has grown a lot as we&#39;ve as the
+[00:39:29] needs that we&#39;ve seen have expanded.
+[00:39:32] So yeah, able to start rollouts, freeze, do the do
+[00:39:35] the specific rollout for a specific version of the code
+[00:39:38] incrementally, a lot of those kind of nuances we never
+[00:39:42] had to really think about and now we do and
+[00:39:45] we&#39;ve had built a lot of tooling around it.
+[00:39:49] Cool.
+[00:39:49] Yeah.
+[00:39:50] So that I think is a lot of our process
+[00:39:53] changes.
+[00:39:53] Of course, as I said, there&#39;s a lot more that
+[00:39:55] I didn&#39;t cover and there&#39;s a lot more scary diagrams
+[00:39:58] here that I didn&#39;t cover as well.
+[00:40:00] But yeah, for our next talks, maybe.
+[00:40:04] Yeah.
+[00:40:04] I mean, I think like, you know, it&#39;s easy for
+[00:40:07] teams not to prioritize this sort of work, but like
+[00:40:11] on our team, this is literally people&#39;s jobs, right?
+[00:40:15] Is to go and build these systems Because if we
+[00:40:17] didn&#39;t have these things even pre AI, that that would
+[00:40:20] be scary, right?
+[00:40:21] And now with all of us moving faster, there&#39;s obviously
+[00:40:24] much more risk in the system.
+[00:40:25] So you really need to like make a very conscious
+[00:40:27] effort, no matter how hard to invest in your engineering
+[00:40:30] systems.
+[00:40:30] And that&#39;s something I&#39;ve always appreciated about the BS code
+[00:40:32] team.
+[00:40:33] OK, for the last little bit here, since we only
+[00:40:36] got 5 minutes left, I wanted to quickly talk about
+[00:40:38] like some of the, the changes on our collaboration model
+[00:40:41] on the team.
+[00:40:42] And so I think there&#39;s this interesting thing that&#39;s like,
+[00:40:45] you know, when I first joined Microsoft, I would write
+[00:40:48] like a quarterly plan and or a six month plan.
+[00:40:51] And I would review this our yearly plan, right?
+[00:40:53] And now then that became OK, you need to produce
+[00:40:55] monthly plan.
+[00:40:56] And then it was like, OK, you need to produce
+[00:40:58] weekly plan.
+[00:40:58] And in some cases daily plan because the delivery life
+[00:41:01] cycles are so collapsed.
+[00:41:03] And of course, with AI, there&#39;s the temptation.
+[00:41:05] You can literally do anything, right?
+[00:41:07] We can add any feature to BS code, but the
+[00:41:09] discernment to add the right set of features to BS
+[00:41:11] code is very challenging.
+[00:41:13] And especially even at our size 40 people, like if
+[00:41:15] you know 40 people, managing that size team is challenging.
+[00:41:18] And then now if everyone&#39;s supercharged with AI, that becomes
+[00:41:20] its own risk, right?
+[00:41:21] And so the way we used to work, I don&#39;t
+[00:41:23] know if all of you have have gone to the
+[00:41:25] VS Code repo.
+[00:41:25] We pin like our monthly plan, it&#39;s assigned owners from
+[00:41:28] our team.
+[00:41:28] We have like issues and they link out to different
+[00:41:30] things with more details.
+[00:41:31] And so the way that used to work pre AI
+[00:41:34] is like the leads would basically say, OK, you know,
+[00:41:37] we think we need to add XYZ thing, the space
+[00:41:39] is going this way.
+[00:41:40] So you kind of have like that setting from the
+[00:41:42] from top down and then obviously the people closest to
+[00:41:44] the work, right, working on individual features have sets of
+[00:41:47] things that are like, I think it&#39;s really important.
+[00:41:49] We had this.
+[00:41:50] And so during our in game week, which is like
+[00:41:52] the week when we&#39;re doing testing, planning for the next
+[00:41:54] week, We&#39;re we&#39;re that&#39;s when we&#39;re actually going and reconciling
+[00:41:57] all these things before we produce a plan that you
+[00:41:59] all see the next Monday.
+[00:42:01] So that was kind of our process and you had
+[00:42:03] like areas, you know, it&#39;s I work on the workbench.
+[00:42:06] So like workbench things are coming in or I work
+[00:42:08] on chat and so chat things are here, agents are
+[00:42:10] MCP and you would have these like very predictable sections
+[00:42:13] that would live on the plan month to month to
+[00:42:16] month.
+[00:42:17] But I think like I was saying, like that whole
+[00:42:19] model broke for us because AI is moving so fast,
+[00:42:21] right?
+[00:42:22] You know, if someone asked me, I, I think we
+[00:42:24] have directional like vision, but like I, I can&#39;t tell
+[00:42:27] you exactly in three months from now, what is the
+[00:42:29] exact feature we&#39;re going to land in BS code.
+[00:42:31] That&#39;s not how it works anymore, right?
+[00:42:33] Our, our delivery life cycles are so collapsed that that&#39;s
+[00:42:35] just not how it works.
+[00:42:36] So that&#39;s a problem alignment.
+[00:42:38] I already mentioned that, like how do you keep 40
+[00:42:40] people aligned when they&#39;re all moving faster and then the,
+[00:42:43] the compressed life cycle for delivery.
+[00:42:45] And so like the really tricky thing is like, how
+[00:42:47] do you make sure that your judgement is still exercised
+[00:42:49] in this whole process so that you&#39;re not just adding
+[00:42:52] random things to your product because you can, you&#39;re actually
+[00:42:55] applying this.
+[00:42:56] And so basically what we knew we had to do
+[00:42:58] on the team is we had to basically totally re
+[00:43:01] change like how our whole collaboration and planning model works.
+[00:43:05] And so basically, rather than having these kind of durable,
+[00:43:08] like I work on this thing and I&#39;ve always worked
+[00:43:10] on this thing as my code ownership area, we have
+[00:43:12] work streams.
+[00:43:13] So we still kind of have like the top down
+[00:43:16] bottoms up, but like we have things that&#39;s like, hey,
+[00:43:19] like for build, we are launching this new Mai coding
+[00:43:22] model.
+[00:43:22] We need to go make sure that we have, it&#39;s
+[00:43:24] an awesome experience in the product.
+[00:43:25] The prompts are tuned, the infrastructure is good.
+[00:43:28] OK, let&#39;s go literally stand up a group of folks
+[00:43:30] who focus on that problem for like a week or
+[00:43:32] two or like the website or the docs, even things
+[00:43:35] like that, those need an update.
+[00:43:36] OK, what is the goal for that?
+[00:43:38] Let&#39;s stand up something for that.
+[00:43:39] And so you have these like temporary work streams that
+[00:43:41] are built up and torn down based on priority.
+[00:43:43] Each one has ADRI, that person&#39;s responsible for planning the
+[00:43:46] work for that area.
+[00:43:48] Each of those groups meets in some cases daily, sometimes
+[00:43:51] multiple times a week, depending on the pace of the
+[00:43:54] work stream.
+[00:43:54] And so like that&#39;s how we&#39;re staying in alignment.
+[00:43:56] You&#39;re breaking down into groups of two or three.
+[00:43:58] You&#39;re meeting in the morning, saying what do we need
+[00:44:00] to do today?
+[00:44:00] You work all day, you meet again in the afternoon,
+[00:44:02] maybe asynchronously.
+[00:44:03] And you say, this is what we got to.
+[00:44:05] And so this is, you know, we don&#39;t know if
+[00:44:06] this is going to work for us.
+[00:44:08] We&#39;re two months into this exploration.
+[00:44:10] I do think it&#39;s made us much more agile.
+[00:44:11] It&#39;s created other issues, right?
+[00:44:13] Because if we&#39;re creating these like work streams that we&#39;re
+[00:44:15] building up and tearing down all the time, then that
+[00:44:17] that obviously creates its own challenges, which we&#39;re dealing with
+[00:44:19] as well.
+[00:44:21] So, yeah, like we really kind of had to totally
+[00:44:24] rethink how we actually plan VS Code and deliver features
+[00:44:27] to you because of because of AI.
+[00:44:31] Yeah.
+[00:44:31] I guess like the last thing I want to leave
+[00:44:33] you with is like, you know, many of these talks
+[00:44:35] are going to say you should use better AI.
+[00:44:37] You should, right?
+[00:44:38] Like all of us are extremely AI pilled on the
+[00:44:40] BS code team.
+[00:44:40] But you also have to consider, OK, what happens if
+[00:44:43] I&#39;m successful with AI?
+[00:44:44] You&#39;re going to have to evolve the way that your
+[00:44:46] team works as well.
+[00:44:47] And we were excited that we were able to share
+[00:44:49] a couple strategies that work for us on the VS
+[00:44:51] Code team, but we&#39;ll be hanging up here after the
+[00:44:53] talk.
+[00:44:54] So we&#39;d love to hear about your stories and any
+[00:44:56] suggestions you have for us.
+[00:44:57] And we can definitely share lessons learned for sure.
+[00:44:59] So thanks for coming to our talk.
+[00:45:01] Thank you.
+[00:45:01] Wow, that was right on the money.
+[00:45:06] On the money.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

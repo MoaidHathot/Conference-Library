@@ -1,0 +1,1762 @@
+WEBVTT
+
+00:00:00.510 --> 00:00:05.690
+[ Music ]
+
+00:00:05.690 --> 00:00:06.320
+DIVYA SWARNKAR: Hello, everyone.
+
+00:00:06.320 --> 00:00:09.710
+I'm Divya Swarnkar, Product
+Manager in Azure Logic Apps.
+
+00:00:09.710 --> 00:00:12.080
+And today, I'm very
+excited to be here to talk
+
+00:00:12.080 --> 00:00:14.570
+about how Logic Apps is evolving
+
+00:00:14.570 --> 00:00:17.420
+from an enterprise-proven
+integration platform
+
+00:00:17.420 --> 00:00:19.940
+to an AI automation platform.
+
+00:00:19.940 --> 00:00:22.490
+We've got a lot of
+things to share today,
+
+00:00:22.490 --> 00:00:24.290
+including a lot of demos.
+
+00:00:24.290 --> 00:00:26.490
+So let's get into it.
+
+00:00:26.490 --> 00:00:27.720
+So here is the agenda.
+
+00:00:27.720 --> 00:00:29.790
+We have three parts
+to the session.
+
+00:00:29.790 --> 00:00:32.490
+First, I'll talk about
+a brand new platform
+
+00:00:32.490 --> 00:00:36.390
+that we are announcing at
+Build: Logic Apps Automation.
+
+00:00:36.390 --> 00:00:38.250
+Second, we'll talk
+about knowledge
+
+00:00:38.250 --> 00:00:39.870
+as a service capability,
+
+00:00:39.870 --> 00:00:42.390
+where you can do managed
+RAG built directly
+
+00:00:42.390 --> 00:00:43.980
+within the workflows.
+
+00:00:43.980 --> 00:00:47.340
+And third, we'll talk
+about how Azure AI Foundry
+
+00:00:47.340 --> 00:00:50.310
+and Logic Apps are
+coming together to build
+
+00:00:50.310 --> 00:00:53.430
+and orchestrate
+real-world AI agents.
+
+00:00:53.430 --> 00:00:56.790
+And yes, there are demos
+after every section.
+
+00:00:56.790 --> 00:01:00.180
+So let's talk more
+about AI automation.
+
+00:01:00.180 --> 00:01:03.180
+Before we talk about what's
+new, a quick grounding
+
+00:01:03.180 --> 00:01:06.030
+in what Logic Apps
+platform already is.
+
+00:01:06.030 --> 00:01:09.900
+It's a platform proven across
+a decade of enterprise use,
+
+00:01:09.900 --> 00:01:12.630
+operating at planetary scale.
+
+00:01:12.630 --> 00:01:14.310
+Today, the platform
+supports more
+
+00:01:14.310 --> 00:01:18.420
+than 100,000 customers running
+millions of workflow executions
+
+00:01:18.420 --> 00:01:21.990
+and trillions of connector
+operations every month.
+
+00:01:21.990 --> 00:01:26.340
+And these span across more than
+1,400 connectors connecting
+
+00:01:26.340 --> 00:01:30.600
+to different SaaS applications,
+databases, AI services,
+
+00:01:30.600 --> 00:01:32.670
+and on-prem applications.
+
+00:01:32.670 --> 00:01:35.550
+The token usage and
+rapid growth, again,
+
+00:01:35.550 --> 00:01:37.770
+comes from agentic
+workflows running
+
+00:01:37.770 --> 00:01:40.380
+in production and at scale.
+
+00:01:40.380 --> 00:01:43.680
+That matters because it tells
+us something important.
+
+00:01:43.680 --> 00:01:47.280
+Customers, including most
+of Fortune 500 companies,
+
+00:01:47.280 --> 00:01:50.640
+are already running enterprise
+workflows on Logic Apps
+
+00:01:50.640 --> 00:01:53.100
+in production and at scale.
+
+00:01:53.100 --> 00:01:54.510
+And it's not just scale.
+
+00:01:54.510 --> 00:01:58.260
+It's everything you need to ship
+production-grade applications.
+
+00:01:58.260 --> 00:02:03.330
+And that includes dedicated
+compute, VNet support, security,
+
+00:02:03.330 --> 00:02:06.360
+identity, networking,
+compliance,
+
+00:02:06.360 --> 00:02:09.030
+and all the other
+capabilities are required
+
+00:02:09.030 --> 00:02:12.660
+to build enterprise-grade,
+production-ready application.
+
+00:02:12.660 --> 00:02:15.930
+And these capabilities
+aren't supported as add-ons;
+
+00:02:15.930 --> 00:02:20.870
+they are built into the platform
+from the start, from day zero.
+
+00:02:20.870 --> 00:02:23.300
+And here is the part
+that matters today.
+
+00:02:23.300 --> 00:02:28.440
+Every one of these enterprise
+foundations now extend to AI.
+
+00:02:28.440 --> 00:02:31.110
+On top of the same
+platform foundations,
+
+00:02:31.110 --> 00:02:34.560
+Logic Apps offers workflows
+and AI capabilities,
+
+00:02:34.560 --> 00:02:39.060
+including agents, tools,
+human-in-the-loop controls.
+
+00:02:39.060 --> 00:02:42.030
+So when customers ask
+us, "What's our path
+
+00:02:42.030 --> 00:02:44.610
+from AI demo to production?"
+
+00:02:44.610 --> 00:02:48.300
+Increasingly, the answer is they
+already have the platform they
+
+00:02:48.300 --> 00:02:49.320
+can trust.
+
+00:02:49.320 --> 00:02:51.900
+Because in production,
+success isn't just
+
+00:02:51.900 --> 00:02:54.120
+about building
+intelligent agents;
+
+00:02:54.120 --> 00:02:56.280
+it's about operating
+them reliably,
+
+00:02:56.280 --> 00:02:59.340
+securely, and under governance.
+
+00:02:59.340 --> 00:03:02.610
+And why having an enterprise
+platform matters.
+
+00:03:02.610 --> 00:03:06.810
+Most companies at this point
+have built an AI agent demo,
+
+00:03:06.810 --> 00:03:10.170
+but very few have one
+running in production.
+
+00:03:10.170 --> 00:03:12.870
+Because for demos, the
+happy path is enough.
+
+00:03:12.870 --> 00:03:14.190
+You don't need retries.
+
+00:03:14.190 --> 00:03:15.510
+You don't need error handling.
+
+00:03:15.510 --> 00:03:17.310
+You don't need logs.
+
+00:03:17.310 --> 00:03:21.060
+However, in production, you
+need consistent outcomes.
+
+00:03:21.060 --> 00:03:24.990
+You need the platform where
+networking, identity, security,
+
+00:03:24.990 --> 00:03:28.410
+and governance are
+on from day one.
+
+00:03:28.410 --> 00:03:31.530
+That's the distance between
+a demo or a prototype
+
+00:03:31.530 --> 00:03:35.370
+and a business-critical workflow
+which requires governance.
+
+00:03:35.370 --> 00:03:37.530
+And this is not magic.
+
+00:03:37.530 --> 00:03:41.910
+Logic Apps, as a platform, is
+built for the right column.
+
+00:03:41.910 --> 00:03:43.170
+But here is the catch.
+
+00:03:43.170 --> 00:03:47.790
+The same things that make Logic
+Apps powerful and offers control
+
+00:03:47.790 --> 00:03:51.480
+to the customers also
+makes it heavy to start.
+
+00:03:51.480 --> 00:03:53.730
+There are multiple
+friction points.
+
+00:03:53.730 --> 00:03:55.740
+Procurement process
+to get approvals
+
+00:03:55.740 --> 00:03:59.250
+for multiple Azure
+services and AI models.
+
+00:03:59.250 --> 00:04:02.250
+The provisioning and management
+overhead of the services
+
+00:04:02.250 --> 00:04:04.380
+and the infrastructure.
+
+00:04:04.380 --> 00:04:08.310
+And since these capabilities
+ship as separate Azure services,
+
+00:04:08.310 --> 00:04:10.530
+you're wiring them
+together yourself,
+
+00:04:10.530 --> 00:04:13.710
+and that sometimes
+can be the real cost.
+
+00:04:13.710 --> 00:04:16.800
+Developers either burn weeks
+getting to the "hello,
+
+00:04:16.800 --> 00:04:19.740
+world" or getting to
+the basic prototype,
+
+00:04:19.740 --> 00:04:23.430
+or they pick a lighter-weight
+tool that doesn't actually fit,
+
+00:04:23.430 --> 00:04:27.120
+but just because it's faster
+and easier to get started.
+
+00:04:27.120 --> 00:04:30.420
+Either way, the platform we
+built isn't reaching the people
+
+00:04:30.420 --> 00:04:32.460
+we need it most.
+
+00:04:32.460 --> 00:04:34.470
+So why now?
+
+00:04:34.470 --> 00:04:36.930
+Historically,
+automation was limited
+
+00:04:36.930 --> 00:04:39.360
+by folks who could write code.
+
+00:04:39.360 --> 00:04:40.530
+The people closest
+
+00:04:40.530 --> 00:04:43.530
+to the business problems often
+couldn't build the solutions
+
+00:04:43.530 --> 00:04:48.240
+themselves, which created the IT
+bottlenecks every company knows.
+
+00:04:48.240 --> 00:04:50.790
+However, AI changes
+that dynamic.
+
+00:04:50.790 --> 00:04:54.840
+Now, an operation lead, an
+analyst, an AI builder,
+
+00:04:54.840 --> 00:04:57.420
+or a knowledge worker
+can describe a workflow
+
+00:04:57.420 --> 00:05:01.410
+in natural language and actually
+participate in building it.
+
+00:05:01.410 --> 00:05:03.480
+That's a massive shift.
+
+00:05:03.480 --> 00:05:07.860
+Automation is no longer confined
+to central integration teams,
+
+00:05:07.860 --> 00:05:11.250
+and that creates a clear
+need, a platform with power
+
+00:05:11.250 --> 00:05:14.790
+and reliability to run
+production workloads,
+
+00:05:14.790 --> 00:05:19.380
+but one that doesn't require you
+to be an Azure expert to use it.
+
+00:05:19.380 --> 00:05:23.540
+That's the opportunity behind
+Logic Apps Automation.
+
+00:05:23.540 --> 00:05:25.100
+So that's what we did.
+
+00:05:25.100 --> 00:05:29.030
+We combined the two problems
+with two changes, and one thing
+
+00:05:29.030 --> 00:05:31.730
+that we deliberately
+did not change.
+
+00:05:31.730 --> 00:05:34.670
+Problem one was
+infrastructure overhead.
+
+00:05:34.670 --> 00:05:37.320
+We took out the
+infrastructure management,
+
+00:05:37.320 --> 00:05:40.560
+but we kept the Azure so that
+you get full Azure-grade
+
+00:05:40.560 --> 00:05:42.840
+reliability and scale.
+
+00:05:42.840 --> 00:05:45.480
+Problem two was the
+barrier to entry.
+
+00:05:45.480 --> 00:05:49.200
+We took the Azure portal
+dependency out of the picture.
+
+00:05:49.200 --> 00:05:52.710
+You can sign in with your
+Entra ID and start building.
+
+00:05:52.710 --> 00:05:55.680
+No Azure access or
+expertise is required.
+
+00:05:55.680 --> 00:06:00.420
+Yet, whatever you are building
+is being built on Azure.
+
+00:06:00.420 --> 00:06:03.810
+These two things almost
+never come together.
+
+00:06:03.810 --> 00:06:08.850
+They do now, and that's what
+led to this next announcement.
+
+00:06:08.850 --> 00:06:12.600
+Today, we are introducing
+Azure Logic Apps Automation,
+
+00:06:12.600 --> 00:06:15.270
+enterprise-ready
+automation platform built
+
+00:06:15.270 --> 00:06:17.820
+for developers of every kind.
+
+00:06:17.820 --> 00:06:21.990
+It offers low barrier to entry
+with the same enterprise rigor.
+
+00:06:21.990 --> 00:06:26.760
+It's available in public preview
+today at auto.azure.com.
+
+00:06:26.760 --> 00:06:29.190
+Four things that
+define this offering.
+
+00:06:29.190 --> 00:06:32.790
+It's the same enterprise-ready
+platform that runs trillions
+
+00:06:32.790 --> 00:06:35.340
+of action executions per month,
+
+00:06:35.340 --> 00:06:39.030
+which means that it's
+production-ready from day one.
+
+00:06:39.030 --> 00:06:43.050
+All your day zero friction goes
+away because all the compute,
+
+00:06:43.050 --> 00:06:44.970
+infrastructure, and provisioning
+
+00:06:44.970 --> 00:06:48.360
+of services is hosted
+on your behalf.
+
+00:06:48.360 --> 00:06:51.690
+You sign in, and you're ready
+to build the workflows.
+
+00:06:51.690 --> 00:06:55.170
+Thirdly, you don't need
+Azure portal to get started.
+
+00:06:55.170 --> 00:06:56.820
+It's hosted outside Azure,
+
+00:06:56.820 --> 00:07:01.680
+and all you need is Microsoft
+Entra ID to log in.
+
+00:07:01.680 --> 00:07:04.800
+And fourthly, this is still
+built for enterprises.
+
+00:07:04.800 --> 00:07:06.270
+All the production-ready
+
+00:07:06.270 --> 00:07:09.030
+and enterprise controls
+are still built in.
+
+00:07:09.030 --> 00:07:13.950
+You get isolated compute, RBAC,
+auditability, VNet support,
+
+00:07:13.950 --> 00:07:16.110
+and everything else
+that Logic Apps
+
+00:07:16.110 --> 00:07:19.200
+as an enterprise platform
+offers you today.
+
+00:07:19.200 --> 00:07:21.330
+The goal was simple here.
+
+00:07:21.330 --> 00:07:25.740
+We wanted to remove the
+friction, but not the rigor.
+
+00:07:25.740 --> 00:07:29.160
+So let's see this in
+action through a demo.
+
+00:07:29.160 --> 00:07:30.390
+SPEAKER 1: In this demo,
+
+00:07:30.390 --> 00:07:33.390
+let's automate using
+Logic Apps Automation.
+
+00:07:33.390 --> 00:07:36.060
+Remember those prerequisites
+we just talked about?
+
+00:07:36.060 --> 00:07:38.430
+Watch what it takes
+to get started now.
+
+00:07:38.430 --> 00:07:42.060
+I open my browser, go
+to auto.azure.com,
+
+00:07:42.060 --> 00:07:43.830
+as it's hosted outside of Azure.
+
+00:07:43.830 --> 00:07:45.840
+The landing page gives
+you a quick glimpse
+
+00:07:45.840 --> 00:07:47.640
+into the product capabilities.
+
+00:07:47.640 --> 00:07:48.810
+Let's sign in.
+
+00:07:48.810 --> 00:07:51.120
+All you need is your Entra ID.
+
+00:07:51.120 --> 00:07:55.260
+After login, you land in a page
+that shows all your projects.
+
+00:07:55.260 --> 00:07:58.290
+Inside project, you can have
+one or more applications
+
+00:07:58.290 --> 00:08:01.020
+and other shared
+resources like sandbox,
+
+00:08:01.020 --> 00:08:03.030
+models, network policies.
+
+00:08:03.030 --> 00:08:05.670
+Project admins can add
+developers to the projects
+
+00:08:05.670 --> 00:08:07.950
+and give them permissions
+depending on their role
+
+00:08:07.950 --> 00:08:10.240
+and required activity.
+
+00:08:12.570 --> 00:08:14.220
+Let's talk about sandbox.
+
+00:08:14.220 --> 00:08:17.580
+It's an isolated environment
+to run GitHub Copilot agents
+
+00:08:17.580 --> 00:08:20.460
+with native file, shell,
+and web operations
+
+00:08:20.460 --> 00:08:22.410
+with isolated execution.
+
+00:08:22.410 --> 00:08:24.360
+These agents have
+native capabilities
+
+00:08:24.360 --> 00:08:27.810
+to write code dynamically
+and support skills and MCPs
+
+00:08:27.810 --> 00:08:29.760
+for their reasoning and actions.
+
+00:08:29.760 --> 00:08:33.300
+The sandbox is configured at
+the project with repositories,
+
+00:08:33.300 --> 00:08:36.040
+skills, and other context.
+
+00:08:37.830 --> 00:08:41.370
+Inside a project, you have
+one or more applications.
+
+00:08:41.370 --> 00:08:43.740
+Apps are where developers build.
+
+00:08:43.740 --> 00:08:47.250
+Each app holds its workflows,
+connections, parameters,
+
+00:08:47.250 --> 00:08:50.640
+and analytics dashboard, and
+its own permission model,
+
+00:08:50.640 --> 00:08:53.190
+reader or contributor,
+so you can collaborate
+
+00:08:53.190 --> 00:08:55.470
+without exposing the
+rest of the project.
+
+00:08:55.470 --> 00:08:59.310
+Let's go ahead and create
+workflow inside the application.
+
+00:08:59.310 --> 00:09:01.290
+So I'll first create my workflow
+
+00:09:01.290 --> 00:09:03.660
+by describing it in
+natural language.
+
+00:09:03.660 --> 00:09:07.710
+The agent will analyze this
+request and scaffold a workflow.
+
+00:09:07.710 --> 00:09:10.800
+The generated workflow still
+needs its connections updated,
+
+00:09:10.800 --> 00:09:14.370
+but a lot of the work is already
+taken care of by Copilot,
+
+00:09:14.370 --> 00:09:15.360
+picking the connectors
+
+00:09:15.360 --> 00:09:17.790
+and configuring many
+of the parameters.
+
+00:09:17.790 --> 00:09:21.270
+From here, I can iteratively
+build and test the workflow
+
+00:09:21.270 --> 00:09:23.130
+with Copilot's assistance.
+
+00:09:23.130 --> 00:09:26.400
+When asked to write code,
+Copilot added the action
+
+00:09:26.400 --> 00:09:30.180
+and wrote JavaScript code with
+appropriate exception handling.
+
+00:09:30.180 --> 00:09:33.570
+Developers can make updates
+at the workflow scope or go
+
+00:09:33.570 --> 00:09:35.850
+to the action scope
+and have Copilot make
+
+00:09:35.850 --> 00:09:37.620
+action-specific updates.
+
+00:09:37.620 --> 00:09:40.350
+We use a default LLM
+that's hosted for you,
+
+00:09:40.350 --> 00:09:42.150
+but you can use your
+GitHub account to bring
+
+00:09:42.150 --> 00:09:44.610
+in additional models,
+including both first-party
+
+00:09:44.610 --> 00:09:47.050
+and third-party models.
+
+00:09:52.050 --> 00:09:55.350
+Here's a workflow I've already
+built for invoice processing.
+
+00:09:55.350 --> 00:09:58.020
+Real-world problems most of
+the time need to be solved
+
+00:09:58.020 --> 00:09:58.830
+with a combination
+
+00:09:58.830 --> 00:10:01.650
+of deterministic steps
+and AI reasoning.
+
+00:10:01.650 --> 00:10:04.560
+That's the power of
+workflow automation here.
+
+00:10:04.560 --> 00:10:07.320
+In this workflow,
+ServiceNow ticket creation
+
+00:10:07.320 --> 00:10:10.740
+and Salesforce update
+are deterministic steps.
+
+00:10:10.740 --> 00:10:14.130
+The invoice agent is provided
+a system prompt describing
+
+00:10:14.130 --> 00:10:15.140
+its goals.
+
+00:10:15.140 --> 00:10:19.250
+The agent here is built on the
+GitHub Copilot SDK and runs
+
+00:10:19.250 --> 00:10:22.670
+on a sandbox, the isolated
+compute per workflow configured
+
+00:10:22.670 --> 00:10:23.790
+at project.
+
+00:10:23.790 --> 00:10:25.860
+The business context
+like invoice,
+
+00:10:25.860 --> 00:10:27.510
+and skills for validation
+
+00:10:27.510 --> 00:10:30.360
+and notification are
+provided to the agent here.
+
+00:10:30.360 --> 00:10:34.280
+You can even provide GitHub
+or Azure DevOps repositories.
+
+00:10:34.280 --> 00:10:36.950
+After the invoice validation
+process completes,
+
+00:10:36.950 --> 00:10:39.470
+we again have a set of
+deterministic steps
+
+00:10:39.470 --> 00:10:41.780
+to update Salesforce
+and close the ticket
+
+00:10:41.780 --> 00:10:43.700
+if the invoice was approved.
+
+00:10:43.700 --> 00:10:45.680
+Alongside the visual workflow,
+
+00:10:45.680 --> 00:10:49.310
+the code view shows an editable
+view into the same workflow.
+
+00:10:49.310 --> 00:10:51.170
+You can make updates
+in code view
+
+00:10:51.170 --> 00:10:54.630
+and see the workflow
+update in real time.
+
+00:11:01.500 --> 00:11:04.110
+Copilot assistant can
+be used here, too,
+
+00:11:04.110 --> 00:11:06.720
+to write JavaScript
+expressions or code.
+
+00:11:06.720 --> 00:11:08.340
+Being able to scope Copilot
+
+00:11:08.340 --> 00:11:11.220
+to a specific action
+lets you make targeted,
+
+00:11:11.220 --> 00:11:12.930
+action-specific updates.
+
+00:11:12.930 --> 00:11:15.120
+Here, the agent is
+responding with code
+
+00:11:15.120 --> 00:11:17.430
+in the scope of
+JavaScript action.
+
+00:11:17.430 --> 00:11:19.350
+I can have multi-turn
+conversations
+
+00:11:19.350 --> 00:11:22.080
+with agent to iterate over code.
+
+00:11:22.080 --> 00:11:25.110
+When an invoice is received,
+the workflow triggers
+
+00:11:25.110 --> 00:11:27.660
+and the run history
+shows full traceability
+
+00:11:27.660 --> 00:11:30.270
+and auditability
+into every step.
+
+00:11:30.270 --> 00:11:33.300
+With real-time streaming
+capabilities, you can view
+
+00:11:33.300 --> 00:11:35.460
+into each step while
+it's happening.
+
+00:11:35.460 --> 00:11:39.000
+For an agent node, you can
+visually see, in real time,
+
+00:11:39.000 --> 00:11:41.700
+the tools it's using
+to accomplish tasks.
+
+00:11:41.700 --> 00:11:45.750
+Every step of the workflow is
+logged with inputs and outputs,
+
+00:11:45.750 --> 00:11:48.270
+execution time, and status.
+
+00:11:48.270 --> 00:11:49.860
+Agent outcomes are logged,
+
+00:11:49.860 --> 00:11:52.860
+including the token
+utilization at each step.
+
+00:11:52.860 --> 00:11:55.200
+That's Logic Apps Automation.
+
+00:11:55.200 --> 00:11:58.800
+Low barrier to entry with
+same enterprise rigor.
+
+00:11:58.800 --> 00:12:01.800
+Preview is live today,
+and we can't wait
+
+00:12:01.800 --> 00:12:03.850
+to see you build with it.
+
+00:12:06.210 --> 00:12:07.860
+DIVYA SWARNKAR: So now that
+we have watched the demo,
+
+00:12:07.860 --> 00:12:09.720
+let's take a quick
+look under the hood
+
+00:12:09.720 --> 00:12:13.440
+so that we can understand
+the underlying model better.
+
+00:12:13.440 --> 00:12:15.870
+The topmost construct
+is a project.
+
+00:12:15.870 --> 00:12:18.360
+This is something where
+an admin operates.
+
+00:12:18.360 --> 00:12:20.580
+You can think of projects
+as environments,
+
+00:12:20.580 --> 00:12:23.610
+and these can be scoped by
+your development environments
+
+00:12:23.610 --> 00:12:25.500
+or by your business domains.
+
+00:12:25.500 --> 00:12:28.560
+It's up to you how you want
+to think about organization
+
+00:12:28.560 --> 00:12:30.510
+of your business workflows.
+
+00:12:30.510 --> 00:12:32.040
+Projects is how your platform
+
+00:12:32.040 --> 00:12:34.950
+and infrastructure
+team controls access,
+
+00:12:34.950 --> 00:12:38.100
+networking policies,
+and shared resources.
+
+00:12:38.100 --> 00:12:41.070
+Inside a project, developers
+create applications,
+
+00:12:41.070 --> 00:12:44.070
+one or multiple,
+however many they need.
+
+00:12:44.070 --> 00:12:47.250
+And then at the project level,
+you have shared resources
+
+00:12:47.250 --> 00:12:51.630
+that the platform team manages,
+and every app can consume.
+
+00:12:51.630 --> 00:12:54.630
+These can include things like
+knowledge for grounding,
+
+00:12:54.630 --> 00:12:57.960
+sandboxes for your
+isolated agent compute,
+
+00:12:57.960 --> 00:13:00.570
+policies for governance
+and guardrails,
+
+00:13:00.570 --> 00:13:04.290
+and ability to include
+and exclude connectors.
+
+00:13:04.290 --> 00:13:09.120
+Each app has its own workflows,
+connections, files, and skills.
+
+00:13:09.120 --> 00:13:12.150
+This is what builders
+work in day-to-day.
+
+00:13:12.150 --> 00:13:14.190
+They don't need Azure
+access anymore,
+
+00:13:14.190 --> 00:13:16.710
+and so this offers
+a clear separation
+
+00:13:16.710 --> 00:13:18.750
+where admins govern
+the platform,
+
+00:13:18.750 --> 00:13:21.990
+and developers build on the top.
+
+00:13:21.990 --> 00:13:23.880
+The platform offers two layers
+
+00:13:23.880 --> 00:13:26.610
+of governance mapped
+to two roles.
+
+00:13:26.610 --> 00:13:28.320
+Layer one is for project.
+
+00:13:28.320 --> 00:13:32.190
+This is an Azure resource
+governed by ARM RBAC.
+
+00:13:32.190 --> 00:13:36.030
+The project admin owns it,
+and they manage members,
+
+00:13:36.030 --> 00:13:40.620
+permissions, policies, quotas,
+knowledge, sandboxes, models,
+
+00:13:40.620 --> 00:13:42.690
+scoped at the project level.
+
+00:13:42.690 --> 00:13:45.990
+Layer two is where
+developers or builder lives.
+
+00:13:45.990 --> 00:13:48.810
+They build apps, which
+includes workflows,
+
+00:13:48.810 --> 00:13:51.030
+connections, files, and skills.
+
+00:13:51.030 --> 00:13:53.220
+Here, no Azure
+access is required;
+
+00:13:53.220 --> 00:13:55.320
+no Azure permissions are needed.
+
+00:13:55.320 --> 00:13:58.740
+They consume project-scoped
+resources within the policies
+
+00:13:58.740 --> 00:14:01.680
+that the admin set for them.
+
+00:14:01.680 --> 00:14:03.720
+So as you can clearly see,
+
+00:14:03.720 --> 00:14:06.600
+one team governs while
+another team builds,
+
+00:14:06.600 --> 00:14:10.350
+and both of them inside
+the same secure boundary.
+
+00:14:10.350 --> 00:14:14.490
+Building a RAG pipeline
+today is quite complex.
+
+00:14:14.490 --> 00:14:16.230
+There are multiple
+steps involved,
+
+00:14:16.230 --> 00:14:20.160
+including preparing the vector
+store and data to be ingested,
+
+00:14:20.160 --> 00:14:22.950
+and then building the
+pipeline to parse, chunk,
+
+00:14:22.950 --> 00:14:25.980
+and tokenize the documents.
+
+00:14:25.980 --> 00:14:29.700
+We have collapsed this process
+into few simple steps.
+
+00:14:29.700 --> 00:14:31.320
+You upload the files.
+
+00:14:31.320 --> 00:14:34.140
+Logic Apps automatically
+ingests, chunks,
+
+00:14:34.140 --> 00:14:36.240
+and vectorizes the content.
+
+00:14:36.240 --> 00:14:38.070
+There is no pipeline
+to configure.
+
+00:14:38.070 --> 00:14:40.860
+There is no infrastructure
+to maintain by you.
+
+00:14:40.860 --> 00:14:44.490
+Retrieval is also a
+native workflow step.
+
+00:14:44.490 --> 00:14:47.760
+For anyone building grounded,
+personalized agents,
+
+00:14:47.760 --> 00:14:50.190
+this dramatically
+lowers the barrier.
+
+00:14:50.190 --> 00:14:52.830
+Let me show you how this works.
+
+00:14:52.830 --> 00:14:55.260
+SPEAKER 1: Here we are in a
+Logic App where we'll set
+
+00:14:55.260 --> 00:14:58.920
+up a knowledge base and then use
+it from an agent in a workflow.
+
+00:14:58.920 --> 00:15:01.260
+The knowledge base is
+scoped at the app level,
+
+00:15:01.260 --> 00:15:04.020
+so you can share it across
+workflows in the same app.
+
+00:15:04.020 --> 00:15:06.780
+Before you start, there's
+a one-time setup.
+
+00:15:06.780 --> 00:15:10.380
+This capability is built on
+Cosmos DB as the vector store
+
+00:15:10.380 --> 00:15:12.870
+and uses Azure
+OpenAI for models.
+
+00:15:12.870 --> 00:15:14.520
+That's what we configure here.
+
+00:15:14.520 --> 00:15:17.880
+You connect the knowledge
+base to a Cosmos DB instance,
+
+00:15:17.880 --> 00:15:20.520
+then provide model for
+embedding generation
+
+00:15:20.520 --> 00:15:23.470
+and another for
+chat completions.
+
+00:15:27.450 --> 00:15:30.360
+Here's an app where I've
+already completed that setup.
+
+00:15:30.360 --> 00:15:33.450
+Once configured, you can add
+files to your knowledge base
+
+00:15:33.450 --> 00:15:35.400
+and organize them into groups.
+
+00:15:35.400 --> 00:15:38.070
+The groups are the unit of
+reference from an agent,
+
+00:15:38.070 --> 00:15:40.110
+so you can logically
+group your files based
+
+00:15:40.110 --> 00:15:42.510
+on the scenario and
+desired outcome.
+
+00:15:42.510 --> 00:15:45.630
+When you upload a file, you
+choose the group it belongs to
+
+00:15:45.630 --> 00:15:48.630
+and add metadata like
+name and description.
+
+00:15:48.630 --> 00:15:52.230
+Since each file goes through
+tokenization, chunking,
+
+00:15:52.230 --> 00:15:54.990
+and embedding, we show
+the status so you know
+
+00:15:54.990 --> 00:15:57.130
+when it's ready to use.
+
+00:16:08.400 --> 00:16:10.020
+Here's a workflow with an agent
+
+00:16:10.020 --> 00:16:12.300
+that classifies
+incoming documents,
+
+00:16:12.300 --> 00:16:14.400
+and if it's a contract,
+then validates
+
+00:16:14.400 --> 00:16:17.850
+against the organization's
+approval rules and policies.
+
+00:16:17.850 --> 00:16:20.730
+Naturally, it needs to be
+grounded in those rules.
+
+00:16:20.730 --> 00:16:23.790
+In the agent, you'll see
+a "Knowledge" section.
+
+00:16:23.790 --> 00:16:26.190
+The connection is
+already set up.
+
+00:16:26.190 --> 00:16:28.380
+Here, you select the specific
+knowledge group you want
+
+00:16:28.380 --> 00:16:30.030
+to make available to the agent,
+
+00:16:30.030 --> 00:16:33.090
+and you can add files
+directly from this view.
+
+00:16:33.090 --> 00:16:36.300
+Below that are the instructions
+guiding the agent's behavior.
+
+00:16:36.300 --> 00:16:39.570
+Behind the scenes, the agent
+performs semantic search
+
+00:16:39.570 --> 00:16:41.850
+and retrieval against your
+knowledge group based
+
+00:16:41.850 --> 00:16:42.870
+on the query.
+
+00:16:42.870 --> 00:16:45.330
+What would normally take
+significant effort to build
+
+00:16:45.330 --> 00:16:46.650
+as a custom ingestion
+
+00:16:46.650 --> 00:16:50.260
+and retrieval pipeline is
+fully handled for you.
+
+00:16:52.110 --> 00:16:54.960
+We have uploaded a document
+classification guide
+
+00:16:54.960 --> 00:16:58.630
+and contract processing
+guide for this scenario.
+
+00:17:04.200 --> 00:17:07.260
+Let's run the workflow
+with a sample contract.
+
+00:17:07.260 --> 00:17:10.620
+In the run history, you'll see
+the agents first classified the
+
+00:17:10.620 --> 00:17:13.650
+document and identified
+as a contract.
+
+00:17:13.650 --> 00:17:16.530
+It then went through the
+contract validation steps.
+
+00:17:16.530 --> 00:17:19.260
+All the agent processing
+and responses are grounded
+
+00:17:19.260 --> 00:17:22.140
+in the classification
+and validation document,
+
+00:17:22.140 --> 00:17:24.000
+with references to
+knowledge surfaced
+
+00:17:24.000 --> 00:17:26.790
+in both the agent chat
+and the run history.
+
+00:17:26.790 --> 00:17:29.700
+The agent node also shows
+the specific knowledge group
+
+00:17:29.700 --> 00:17:32.100
+that was used, along
+with token utilization,
+
+00:17:32.100 --> 00:17:33.810
+so you can track usage.
+
+00:17:33.810 --> 00:17:36.420
+And that's knowledge
+in Logic Apps.
+
+00:17:36.420 --> 00:17:38.670
+Now available in public preview.
+
+00:17:38.670 --> 00:17:41.730
+Give it a try and bring your
+organization's documents
+
+00:17:41.730 --> 00:17:47.010
+into your agents without writing
+a single line of pipeline code.
+
+00:17:47.010 --> 00:17:48.210
+DIVYA SWARNKAR:
+Next, I want to talk
+
+00:17:48.210 --> 00:17:50.670
+about how we are bringing
+the capabilities
+
+00:17:50.670 --> 00:17:54.750
+of two Azure services into
+a cohesive experience.
+
+00:17:54.750 --> 00:17:57.390
+On the left, we have
+Azure AI Foundry.
+
+00:17:57.390 --> 00:17:59.760
+This is the Microsoft's
+AI platform
+
+00:17:59.760 --> 00:18:02.160
+where agents are
+built and hosted.
+
+00:18:02.160 --> 00:18:06.030
+You define agents with
+models, tools, instructions,
+
+00:18:06.030 --> 00:18:09.780
+and you ground the responses in
+knowledge and enterprise data.
+
+00:18:09.780 --> 00:18:11.160
+You evaluate, version,
+
+00:18:11.160 --> 00:18:14.970
+and observe your agent's
+behavior in Microsoft Foundry.
+
+00:18:14.970 --> 00:18:17.610
+Foundry is where
+your agent lives.
+
+00:18:17.610 --> 00:18:19.500
+On the right, we have
+Azure Logic Apps.
+
+00:18:19.500 --> 00:18:23.100
+This becomes your automation
+and orchestration platform.
+
+00:18:23.100 --> 00:18:26.550
+This is where agents are
+invoked and orchestrated.
+
+00:18:26.550 --> 00:18:30.960
+You trigger agents from any
+event or schedule using hundreds
+
+00:18:30.960 --> 00:18:34.620
+of connectors that Logic
+Apps offers natively.
+
+00:18:34.620 --> 00:18:36.240
+We bring improved experience
+
+00:18:36.240 --> 00:18:39.870
+to smoothly use these
+services together to automate
+
+00:18:39.870 --> 00:18:43.050
+and operationalize your
+AI agents and run them
+
+00:18:43.050 --> 00:18:44.880
+in production at scale.
+
+00:18:44.880 --> 00:18:47.760
+So let's take a look at this
+demo where we build agents
+
+00:18:47.760 --> 00:18:51.480
+in Microsoft Foundry, and we
+orchestrate and invoke them
+
+00:18:51.480 --> 00:18:53.610
+from Azure Logic Apps.
+
+00:18:53.610 --> 00:18:55.500
+All of this is demonstrated
+
+00:18:55.500 --> 00:18:58.530
+through an auto loan approval
+process, which allows you
+
+00:18:58.530 --> 00:19:02.010
+to bring together both
+deterministic steps as well
+
+00:19:02.010 --> 00:19:05.850
+as agent reasoning in
+a single workflow.
+
+00:19:05.850 --> 00:19:07.230
+SPEAKER 1: Here in Logic Apps,
+
+00:19:07.230 --> 00:19:11.400
+we start by creating a workflow
+and adding an agent node.
+
+00:19:11.400 --> 00:19:14.700
+The agent connects to a Foundry
+project, and from here,
+
+00:19:14.700 --> 00:19:18.470
+we can pick any model or
+existing agent in that project.
+
+00:19:18.470 --> 00:19:19.670
+See the drop-down.
+
+00:19:19.670 --> 00:19:23.330
+Every agent in Foundry
+shows up, ready to invoke.
+
+00:19:23.330 --> 00:19:26.630
+And if the one we need doesn't
+exist yet, we can create it
+
+00:19:26.630 --> 00:19:28.530
+without leaving Logic Apps.
+
+00:19:28.530 --> 00:19:30.840
+The deep link to
+Foundry lets us jump
+
+00:19:30.840 --> 00:19:32.790
+between portals when we need to.
+
+00:19:32.790 --> 00:19:35.130
+Let's create a new
+agent right here.
+
+00:19:35.130 --> 00:19:37.770
+All we need is a
+name and a model.
+
+00:19:37.770 --> 00:19:41.250
+Behind the scenes, Logic
+Apps calls the Foundry APIs
+
+00:19:41.250 --> 00:19:42.940
+to provision it.
+
+00:19:48.300 --> 00:19:50.700
+And there it is in
+our Foundry project.
+
+00:19:50.700 --> 00:19:52.650
+Let's update the instructions.
+
+00:19:52.650 --> 00:19:55.800
+Any change we make here flows
+straight back to Logic Apps.
+
+00:19:55.800 --> 00:19:58.240
+The agent stays in sync.
+
+00:20:06.720 --> 00:20:10.590
+Now, a real-world scenario, an
+auto loan approval workflow
+
+00:20:10.590 --> 00:20:13.800
+that handles incoming loan
+requests autonomously.
+
+00:20:13.800 --> 00:20:17.490
+It runs in real time using
+a triage agent in Foundry
+
+00:20:17.490 --> 00:20:20.100
+for duplicate checks,
+then an auto loan agent
+
+00:20:20.100 --> 00:20:21.540
+for the approval decision.
+
+00:20:21.540 --> 00:20:24.690
+With Logic Apps workflows
+alongside agents,
+
+00:20:24.690 --> 00:20:26.670
+we combined deterministic
+business steps
+
+00:20:26.670 --> 00:20:30.060
+with AI reasoning, which is
+what most real-world solutions
+
+00:20:30.060 --> 00:20:31.900
+actually need.
+
+00:20:33.090 --> 00:20:35.190
+Both agents live in Foundry.
+
+00:20:35.190 --> 00:20:37.650
+But look at the tools
+the loan agent is using.
+
+00:20:37.650 --> 00:20:42.000
+These are native Logic Apps
+connectors, APIs, and workflows.
+
+00:20:42.000 --> 00:20:43.200
+That's the unlock.
+
+00:20:43.200 --> 00:20:47.070
+Foundry as your AI platform and
+the full Logic Apps ecosystem
+
+00:20:47.070 --> 00:20:51.210
+with 1,400 plus connectors,
+your APIs, your custom code,
+
+00:20:51.210 --> 00:20:55.810
+as your agent's tools, all on
+a proven enterprise platform.
+
+00:20:56.850 --> 00:20:59.700
+Let's kick it off by
+submitting a loan request.
+
+00:20:59.700 --> 00:21:02.370
+This particular request will
+need human approval before it
+
+00:21:02.370 --> 00:21:04.060
+can complete.
+
+00:21:07.170 --> 00:21:10.800
+In Logic Apps run history,
+we can see every step
+
+00:21:10.800 --> 00:21:13.020
+of the workflow
+with full detail.
+
+00:21:13.020 --> 00:21:16.530
+Right now, the agent is paused,
+waiting on human approval.
+
+00:21:16.530 --> 00:21:19.380
+With Logic Apps workflows,
+you can build long-running,
+
+00:21:19.380 --> 00:21:22.650
+human-in-the-loop processes
+with your Foundry agents.
+
+00:21:22.650 --> 00:21:25.350
+The approval request
+lands in Teams.
+
+00:21:25.350 --> 00:21:28.740
+Once the approval responds,
+the workflow resumes,
+
+00:21:28.740 --> 00:21:31.260
+the loan agent
+finalizes the decision,
+
+00:21:31.260 --> 00:21:34.020
+and the customer gets their
+approval notification.
+
+00:21:34.020 --> 00:21:36.570
+Start to finish,
+autonomous, with a human
+
+00:21:36.570 --> 00:21:39.730
+in the loop exactly
+where it matters.
+
+00:21:40.890 --> 00:21:42.840
+The run completes,
+and every step
+
+00:21:42.840 --> 00:21:45.420
+of the workflow is
+captured end-to-end:
+
+00:21:45.420 --> 00:21:48.270
+inputs, outputs, token usage.
+
+00:21:48.270 --> 00:21:50.520
+This is the operational
+view your platform
+
+00:21:50.520 --> 00:21:53.860
+and automation teams
+need for governance.
+
+00:21:55.710 --> 00:21:58.680
+In Foundry, you get the
+agent's own traces and logs,
+
+00:21:58.680 --> 00:22:01.530
+the reasoning, the tool
+calls, the thread history.
+
+00:22:01.530 --> 00:22:04.530
+This is the view your developers
+need to tune prompts,
+
+00:22:04.530 --> 00:22:08.070
+debug agent behavior, and
+track quality over time.
+
+00:22:08.070 --> 00:22:12.030
+Same execution, two lenses,
+correlated by run ID
+
+00:22:12.030 --> 00:22:14.430
+across both portals, so
+you get the right view
+
+00:22:14.430 --> 00:22:18.010
+in the right place without
+losing the thread between them.
+
+00:22:22.740 --> 00:22:24.450
+DIVYA SWARNKAR: So this
+brings us towards the end
+
+00:22:24.450 --> 00:22:28.590
+of this session, and I want
+to give a quick recap on some
+
+00:22:28.590 --> 00:22:32.460
+of the key capabilities that I
+touched in this session today.
+
+00:22:32.460 --> 00:22:35.550
+We announced Logic Apps
+Automation, a new platform
+
+00:22:35.550 --> 00:22:39.960
+for building automations on the
+same enterprise-grade platform,
+
+00:22:39.960 --> 00:22:42.870
+but at scale, with
+low barrier to entry.
+
+00:22:42.870 --> 00:22:45.270
+We also talked about
+knowledge as a service
+
+00:22:45.270 --> 00:22:48.480
+to manage RAG directly
+inside your workflows.
+
+00:22:48.480 --> 00:22:51.360
+And finally, we talked
+about deep integration
+
+00:22:51.360 --> 00:22:56.700
+between Foundry agents and Logic
+App workflows for orchestration.
+
+00:22:56.700 --> 00:22:59.370
+The goal across all
+three is common.
+
+00:22:59.370 --> 00:23:02.940
+We want to make AI automation
+easier to build and easier
+
+00:23:02.940 --> 00:23:05.070
+to trust in production.
+
+00:23:05.070 --> 00:23:07.980
+You can learn more about
+all these announcements
+
+00:23:07.980 --> 00:23:10.410
+through our documents,
+blogs, and demos,
+
+00:23:10.410 --> 00:23:12.570
+which are provided here.
+
+00:23:12.570 --> 00:23:14.760
+Thank you so much for
+listening to this session.
+
+00:23:14.760 --> 00:23:17.940
+I hope you found the content
+useful, and I can't wait
+
+00:23:17.940 --> 00:23:21.520
+to see what you build out
+of these capabilities.
+
+00:23:21.520 --> 00:23:26.690
+[ Music ]

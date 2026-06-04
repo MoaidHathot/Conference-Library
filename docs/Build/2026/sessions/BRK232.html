@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRK232 - Post-Training and Deploying Open Source Reasoning Models in Foundry</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRK232</nav>
+        <h1>BRK232 &mdash; Post-Training and Deploying Open Source Reasoning Models in Foundry</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRK232 &middot; Breakout</span>
+    <h1>Post-Training and Deploying Open Source Reasoning Models in Foundry</h1>
+    <div class="speakers">Vijay Aski, Manoj Bableshwar, Chris Lauren</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(300) Advanced</span>
+<span>Festival Pavilion, Breakout 2</span>
+<span>2026-06-03 21:45 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">Working with models</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRK232?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/b7ec6cc5-da1b-46e4-bce5-748e0e07c737" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Open-source reasoning models are powerful out of the box, but production performance comes from closing the loop. Learn how to use Microsoft Foundry to collect production traces, curate them into datasets, and post-train reasoning models with RL using frameworks like slime, verl, and TRL. We&#39;ll cover when RL drives real gains and how to redeploy improved models without managing infrastructure.
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>This advanced session demonstrates how Microsoft Foundry closes the loop between deployment and continuous improvement for open-source reasoning models in agentic workflows. The presenters walk through capturing production traces, curating datasets, and post-training smaller open-source models with supervised fine-tuning (SFT) and reinforcement fine-tuning (RFT) to match frontier-model quality at roughly a tenth of the cost, then redeploying them without managing infrastructure.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Code-first post-training in Foundry [00:23:58]</strong> — A new capability providing a managed workbench/compute instance with VS Code, GPU clusters, and a Ray-based distributed engine so data scientists can bring their own training code for SFT and RFT.</li>
+<li><strong>Lower-level training API, codenamed &quot;Loom&quot; [00:32:40]</strong> — A higher-level/lower-GPU-construct interface that lets users run RL logic from a laptop CPU while the server manages GPU clusters, images, and networking, exposing four core GPU primitives (forward pass, backward pass, and loss optimization).</li>
+<li><strong>Foundry Managed Compute [00:36:55]</strong> — A serverless, auto-scaling deployment offering for open-source and custom models that lets users bring their own weights regardless of where they were trained, with support for custom containers, speculative decoding, and draft models.</li>
+<li><strong>Private preview sign-up</strong> — The new code-first and lower-level API capabilities are entering private preview, with a sign-up link provided at the end of the session.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>The three stages of model training: pre-training, mid-training, and post-training, and how they differ in data, compute, and parameter scope.</li>
+<li>Token consumption and cost growth in agentic workloads versus chatbots, and using post-training to keep costs flat while maintaining or improving quality.</li>
+<li>Defining success criteria upfront with built-in and custom evaluators rather than only monitoring post-deployment; limitations of published benchmarks.</li>
+<li>Distilling production traces into datasets for fine-tuning.</li>
+<li>Supervised fine-tuning (mimicking expert demonstrations via a loss function) versus reinforcement fine-tuning (rewarding verifiable multi-step trajectories).</li>
+<li>RFT sampling, rollouts, and trajectory grading, with side-by-side inspection of why individual rollouts score higher or lower based on tool-call sequences.</li>
+<li>Ray cluster and node-level observability for training jobs.</li>
+<li>Deploying base and fine-tuned models via provisioned throughput units or managed compute, including GPU-count/context-length tradeoffs.</li>
+<li>Importing externally trained models by specifying the base model architecture (full weight or adapter).</li>
+<li>Adding deployed models to agents for tool calling and state management; post-deployment cost and token monitoring.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;Deploying a model into production is just the beginning.&quot; — Chris Lauren</p>
+</blockquote>
+<blockquote>
+<p>&quot;Benchmarks are only information that someone else has decided they should publish. It is a good starting point to learn from, but you have to test the models on your own scenarios on your own data.&quot; — Chris Lauren</p>
+</blockquote>
+<blockquote>
+<p>&quot;Clearly, training models without deploying them is a waste of time.&quot; — Chris Lauren</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Microsoft Foundry</li>
+<li>Foundry Managed Compute</li>
+<li>Loom (lower-level training API codename)</li>
+<li>GPT-5.2 [inferred]</li>
+<li>Qwen 14B / Qwen 32B (open-source models) [inferred]</li>
+<li>slime [inferred]</li>
+<li>verl [inferred]</li>
+<li>TRL</li>
+<li>Ray</li>
+<li>Fireworks models</li>
+<li>VS Code</li>
+<li>Provisioned Throughput Units</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Chris Lauren — product manager (Microsoft Foundry)</li>
+<li>Vijay Aski</li>
+<li>Manoj Bableshwar</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>Repository samples published for getting started (referenced in closing; exact URL not stated in transcript).</li>
+<li>Private preview sign-up link for code-first and lower-level API capabilities (referenced at end of session; URL not stated in transcript).</li>
+<li>Session slides available from the standard Build session location.</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+<section class="section">
+    <h2>References</h2>
+    <ul class="refs-list">
+<li><a href="@{link=https://aka.ms/build/foundrydiscord; backpackLink=; label=Microsoft Foundry in Discord; category=Web link}" target="_blank" rel="noopener">Microsoft Foundry in Discord</a></li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (55,486 chars)</summary>
+        <pre class="transcript-body">[00:00:00] Thank you all so much for joining this afternoon.
+[00:00:02] I&#39;m going to speak loudly because I know the room
+[00:00:05] is a little loud, but really appreciate you joining our
+[00:00:09] session and hopefully you&#39;re going to walk away here and
+[00:00:12] expert in post training open source models and deploying them
+[00:00:16] in agents to scale your AI across your company.
+[00:00:19] As you all know, agents are extremely impactful.
+[00:00:23] They&#39;re changing the way we all work.
+[00:00:25] And I&#39;ve had the pleasure of working with many of
+[00:00:28] you, many customers, both outside of Microsoft enterprises and startups
+[00:00:32] alike, as well as Teams inside Microsoft shipping some of
+[00:00:36] the agents that you might have used in your daily
+[00:00:39] work.
+[00:00:40] And one of the things that we are consistently learning
+[00:00:44] is that deploying a model into production is just the
+[00:00:47] beginning.
+[00:00:49] We all, just like every software application we deployed, need
+[00:00:53] to focus on continuously learning and improving them to make
+[00:00:57] sure that they perform at scale on all the different
+[00:01:00] edge cases that we might not have thought about.
+[00:01:04] And So what we&#39;re going to do today is show
+[00:01:07] you exactly how to do that, to learn and improve,
+[00:01:10] to drive down your costs and improve your quality, to
+[00:01:14] get faster, better, cheaper agents using Foundry.
+[00:01:17] I&#39;m really excited to walk you through this because one
+[00:01:21] of the other things that we&#39;ve been learning is that
+[00:01:24] agents are extremely token hungry.
+[00:01:27] As we offload all of our cognitive processing, our thinking,
+[00:01:32] our work to the cloud to agents, we&#39;re seeing a
+[00:01:36] substantial increase in the token consumption as compared to regular
+[00:01:41] chat bots.
+[00:01:42] And this makes sense because agents are doing multiple iterative
+[00:01:46] tool calls.
+[00:01:47] They&#39;re rationing, rationalizing over the data that they fetch from
+[00:01:51] our enterprise systems, our databases, and validating our policies.
+[00:01:56] And they need to think about what to do with
+[00:01:58] this information.
+[00:01:59] And in doing so, the costs increase.
+[00:02:02] So as you scale your agents, you&#39;re scaling up your
+[00:02:06] bill as well.
+[00:02:07] So one of the things that we&#39;re going to show
+[00:02:10] you is that how to potentially reduce that cost by
+[00:02:14] learning from your production agents, using the power of reinforcement
+[00:02:18] learning to make sure that your cost remain flat while
+[00:02:22] your quality is also flat or in even increases over
+[00:02:25] time.
+[00:02:27] Now to do that, one of the powerful techniques that
+[00:02:31] you can employ is post training or fine tuning.
+[00:02:34] People use these terms interchangeably, and fine tuning is extremely
+[00:02:39] important because it teaches your models to think and act
+[00:02:44] the way that you want them to.
+[00:02:46] Not only can you teach them your business domain, you
+[00:02:50] can teach them how to use your tools to interact
+[00:02:53] with your systems that are required to take action on
+[00:02:57] your behalf.
+[00:02:58] And in doing so, you can eliminate potentially erroneous interactions,
+[00:03:03] which are costly.
+[00:03:05] Now, we&#39;ve all been leveraging the power of the latest
+[00:03:09] frontier models, and they&#39;re extremely intelligent.
+[00:03:12] They can learn how to use your tools and usually
+[00:03:15] perform pretty darn well.
+[00:03:17] But while they&#39;re rationalizing all of the different potential tools
+[00:03:21] that you might have given to your agents, their thinking
+[00:03:25] and their course correcting is costing you money.
+[00:03:28] And so by fine tuning your models, you can ensure
+[00:03:32] that they are choosing the best tools for the job
+[00:03:35] in the right order to achieve the best outcome at
+[00:03:38] the lowest price.
+[00:03:41] And one of the ways that you can do that
+[00:03:44] by using Foundry is to facilitate not only selecting the
+[00:03:49] best models, but then also ensuring that you have the
+[00:03:53] right tools in your agent and you bring in the
+[00:03:57] right evals into the whole process.
+[00:04:00] And this is critically important.
+[00:04:02] And we&#39;re going to explain how all of these come
+[00:04:05] together by using Foundry to facilitate getting faster, better and
+[00:04:10] cheaper find, using fine tuning and deploying the models and
+[00:04:15] agents to production that continuously learn.
+[00:04:19] So the first step in this whole process is figuring
+[00:04:23] out which models are appropriate for your workload.
+[00:04:27] And that&#39;s getting increasingly complicated because there are new models
+[00:04:31] coming out all the time.
+[00:04:34] The good thing is Foundry has all of the models
+[00:04:37] you could possibly want to choose from and maybe even
+[00:04:41] more, and we&#39;re adding to them continuously.
+[00:04:45] The key to making sure that you&#39;ve got the right
+[00:04:48] model for your agent is the scientific method, which is
+[00:04:52] guess and check.
+[00:04:54] Now we&#39;re going to show you how to do that
+[00:04:56] checking process, which is the most critical step.
+[00:05:00] And that&#39;s in scientific terms here is called evaluation.
+[00:05:04] So by evaluating the the models, you can ensure that
+[00:05:08] you have the best one for the job.
+[00:05:11] Now let me show you precisely how we can go
+[00:05:14] through and select different models and then we&#39;ll show you
+[00:05:18] how to evaluate them and then improve them over time.
+[00:05:22] So here I have Microsoft Foundry and I&#39;m in the
+[00:05:26] context of an agent for a customer service retail scenario.
+[00:05:31] And a customer wants to be able to return a
+[00:05:33] particular product that they purchased recently.
+[00:05:37] And in doing so, we need to not only sure
+[00:05:40] ensure that we interact with the agent or the customer
+[00:05:44] in a friendly way.
+[00:05:46] We need to make sure that all of our policies
+[00:05:49] are honored, maybe do order look UPS, make sure that
+[00:05:52] they actually got their product, that that sort of thing.
+[00:05:56] And so we can do that with a frontier model
+[00:05:59] like the GPT 5 Series.
+[00:06:01] And it&#39;s extremely good at figuring all these things out.
+[00:06:05] We can also do that same thing with a smaller
+[00:06:08] model like the Quen 314B model, which is an open
+[00:06:12] source model.
+[00:06:13] And it&#39;s also capable of thinking and figuring things out.
+[00:06:17] It may not necessarily be as powerful as the GPT
+[00:06:21] 5 model, but we can see that it can still
+[00:06:24] kind of reason over what it should do.
+[00:06:28] Now the question is, how do we make sure that
+[00:06:31] these models consistently do what they&#39;re supposed to do?
+[00:06:36] If we look at how these actually work, we can
+[00:06:39] dig in and Microsoft Foundry collects not only all of
+[00:06:43] the telemetry that is required to continuously monitor how well
+[00:06:48] things perform in production, but we can drill in and
+[00:06:53] we can see the details of any given particular trace.
+[00:06:57] So we can see that for the particular request to
+[00:07:00] the agent, we can see it kind of went back
+[00:07:03] and forth multiple times.
+[00:07:04] It executed some of the tools that I gave it,
+[00:07:07] which are needed to understand the context of the customer,
+[00:07:11] the order and what&#39;s appropriate.
+[00:07:14] And then it reasoned over that data.
+[00:07:16] It did a loop a couple of times.
+[00:07:19] And we can see for each one of these chat
+[00:07:22] scenarios, each one of these tool calls, the costs are
+[00:07:25] increasing.
+[00:07:26] And so the smaller of a model that we can
+[00:07:29] run with to achieve the scenario, achieve the quality bar
+[00:07:33] that you&#39;re looking for, the higher the probability we can
+[00:07:37] do so in a cost efficient manner.
+[00:07:41] Now, what I&#39;m going to show you as well is
+[00:07:44] how to evaluate the quality, because this is the key
+[00:07:48] thing.
+[00:07:49] You should only choose the models that are going to
+[00:07:52] hit your quality bar.
+[00:07:53] And you would not deploy any sort of application to
+[00:07:56] production without ensuring that&#39;s true.
+[00:07:58] Now in Foundry, we have this collection of evaluators that
+[00:08:04] are built in as well as custom evaluations.
+[00:08:09] And So what are evals exactly?
+[00:08:13] Let me explain.
+[00:08:15] So evaluators are the product spec.
+[00:08:20] As a product manager, this is extremely important to me
+[00:08:24] and it&#39;s incredibly important to everyone to make sure that
+[00:08:28] you define your success criteria before you deploy anything to
+[00:08:32] production.
+[00:08:34] Doesn&#39;t mean just hitting your quality bar, but making sure
+[00:08:37] that your policies are honored, making sure that the right
+[00:08:41] tools are called, and more.
+[00:08:42] This is a multi dimensional optimization technique.
+[00:08:47] You can use the built in evaluators or create custom
+[00:08:51] evaluators in Foundry to facilitate complex analysis of how all
+[00:08:56] of these things are interacting.
+[00:09:00] But first, in order to do that, you have to
+[00:09:02] define what does good mean to you and that is
+[00:09:05] what an eval is.
+[00:09:07] So I want you to think about this a little
+[00:09:10] bit differently than teams have in the past.
+[00:09:13] In the past, people have thought about this as when
+[00:09:16] I deploy the production that I&#39;m going to monitor whether
+[00:09:19] things are going well.
+[00:09:21] I want you to shift that on its head.
+[00:09:23] Define what going well looks like to you and that
+[00:09:28] enables you to continuously hill climb to get to a
+[00:09:33] high quality output.
+[00:09:35] And we&#39;re going to show you today why that is
+[00:09:38] extremely important.
+[00:09:40] Benchmarks for any model, whether they&#39;re provided by a frontier
+[00:09:45] lab, an open source initiative, doesn&#39;t matter.
+[00:09:48] Benchmarks are only information that someone else has decided they
+[00:09:55] should publish.
+[00:09:57] It is a good starting point to learn from, but
+[00:10:01] you have to test the models on your own scenarios
+[00:10:05] on your own data to make sure that then you
+[00:10:08] can hit your success criteria when shipping to production.
+[00:10:13] And that is what evaluators enable.
+[00:10:16] We have a bunch of them in Foundry that are
+[00:10:19] built in as a good place to start.
+[00:10:22] But your custom evaluators are what is going to help
+[00:10:26] you ensure that you can continuously hill climb in a
+[00:10:30] way that matters to you.
+[00:10:33] And so the way that we do that in Foundry,
+[00:10:36] you can see we&#39;ve got several of these custom eval
+[00:10:41] jobs that have run and I&#39;ll open one up and
+[00:10:45] we can see that my definition of quality, these different
+[00:10:49] evaluators, I&#39;ve interactively tested these against multiple different agents that
+[00:10:57] I&#39;ve deployed in production.
+[00:10:59] And I&#39;ve created a unified metric retail quality that we
+[00:11:03] want to optimize for.
+[00:11:05] And we can see that my first set of agents
+[00:11:08] that I&#39;ve deployed and tested, the first versions weren&#39;t really
+[00:11:11] that great.
+[00:11:12] The model quality was good like that on its own
+[00:11:16] can be used for many things.
+[00:11:18] But in the context of this agent and in the
+[00:11:21] context of the way I&#39;ve defined quality with my evals,
+[00:11:25] I can actually tell that it&#39;s not doing that great.
+[00:11:28] And so the question is how to improve it.
+[00:11:32] And that is the whole point of the talk today
+[00:11:35] is we&#39;re going to go through how exactly to optimize
+[00:11:39] these agents based on your custom evaluators using the power
+[00:11:44] of post training on these open source models.
+[00:11:48] So what we&#39;re going to show you is to how
+[00:11:51] to we started with, in this particular case, a particular
+[00:11:56] Frontier model that was pretty good out-of-the-box, didn&#39;t have to
+[00:12:01] do any work at 76% quality, not bad, not great.
+[00:12:05] We want to get to 90% or better in order
+[00:12:08] to ship to production.
+[00:12:10] And the question is how.
+[00:12:12] We started with choosing a very small, very cost efficient,
+[00:12:17] 10X lower costs than the Frontier model, but the quality
+[00:12:22] was a little bit worse.
+[00:12:24] That&#39;s going in the wrong direction.
+[00:12:26] Then we&#39;ll show you how to use the power of
+[00:12:28] both supervised fine tuning and reinforcement learning based fine tuning
+[00:12:33] on that open source model to eventually get to the
+[00:12:36] quality bar that we&#39;re looking for.
+[00:12:39] And to do that, I&#39;m going to ask Vijay ask
+[00:12:41] you to come up to the stage and he&#39;ll walk
+[00:12:43] you through how to use Foundry to achieve this scenario.
+[00:12:54] OK.
+[00:12:54] Thank you everybody for coming.
+[00:12:56] So we&#39;ll learn couple important keywords today.
+[00:13:01] Post training, this is a word that&#39;s popularized by labs
+[00:13:05] like Open AI and Tropic, etcetera, and you don&#39;t get
+[00:13:08] to hear more often.
+[00:13:10] So usually you talk about fine tuning and reinforcement, fine
+[00:13:14] fine tuning or RLHF.
+[00:13:16] Post training is an umbrella term that encompass all of
+[00:13:19] those things.
+[00:13:20] But let&#39;s talk about post training in the context of
+[00:13:22] how a model is trained.
+[00:13:24] So anytime a model is trained, take any model that
+[00:13:26] you have like open AI model, open source, open source
+[00:13:29] models, Mai model, anthropic models.
+[00:13:31] They go through three distinct stages of how the model
+[00:13:34] is getting ready.
+[00:13:35] 1 is called pre training, mid training and post training.
+[00:13:40] They are three different cycles independently varying from each other.
+[00:13:44] It is not a contiguous thing.
+[00:13:46] You can start from anywhere and continue with anywhere and
+[00:13:49] what you do in each of the stages matters and
+[00:13:51] how expensive they are matters, right.
+[00:13:54] So there are three things that you vary when you
+[00:13:57] are training a model data and you have your compute
+[00:14:00] and you have your model architecture or parameters.
+[00:14:04] So if you look at what is happening in the
+[00:14:07] pre training is orders magnitude more data is orders magnitude
+[00:14:10] more compute and the parameter is pretty like the models
+[00:14:14] parameter can be pretty huge and all of the weights
+[00:14:17] are being changed.
+[00:14:19] That&#39;s where the model is learning about the world and
+[00:14:22] it knows how to be intelligent, so to speak.
+[00:14:25] The mid training is very infused specialized knowledge.
+[00:14:29] The specialized knowledge could be anything from language to coding
+[00:14:32] or anything of that matter.
+[00:14:33] That&#39;s what you do.
+[00:14:35] Post training is where the model gets good at doing
+[00:14:38] the work that you need it to do in terms
+[00:14:40] of agent workflow, for example.
+[00:14:42] So when you&#39;re trying to get your agents to work,
+[00:14:45] the agents need to know how to kind of, let&#39;s
+[00:14:47] say, get everything right.
+[00:14:49] So, and most of the models are inherently good and
+[00:14:51] they&#39;re trained in the post training phase.
+[00:14:53] And today we&#39;re going to talk about post training as
+[00:14:57] a specialized topic.
+[00:14:59] So in post training, what&#39;s happening?
+[00:15:00] So just like how the models are being trained in
+[00:15:04] the Super, the labs, you can do post training by
+[00:15:07] yourself.
+[00:15:08] What does it mean to be post training?
+[00:15:10] So you see on the left side you have various
+[00:15:13] different ways where you distill your data.
+[00:15:17] Your data can be distilled from.
+[00:15:19] That&#39;s the agent that we have in production.
+[00:15:23] The traces, which is what we are going to talk
+[00:15:26] about Oregon, they could be human preferences or we call
+[00:15:30] sometimes, sometimes RLHF.
+[00:15:32] We have synthetic data that you could be picking data
+[00:15:35] from.
+[00:15:36] So you could get the data from any different ways.
+[00:15:39] And then on the right side, you see what do
+[00:15:41] you want to get the model to do.
+[00:15:43] You want the model to be, let us say safe,
+[00:15:45] safer than what it is as a base model or
+[00:15:48] do you want it to be good at particular task
+[00:15:50] bit coding or your agentic workflow?
+[00:15:53] Even though the base models keep getting better and better,
+[00:15:57] they do not know the rules that you are engaging
+[00:16:00] the model for.
+[00:16:01] Let us say if you want to have a support
+[00:16:03] ticket that you want somebody to handle or you have
+[00:16:07] any kind of workflow in a manufacturing unit or a
+[00:16:10] healthcare unit or anything for that matter, you the model
+[00:16:13] trainers or the base model does not know your specific
+[00:16:17] sequence.
+[00:16:18] So the way to get that right is kind of
+[00:16:20] do the same techniques that the labs do in your
+[00:16:23] setup.
+[00:16:24] But when you&#39;re doing that, you have you can have
+[00:16:26] two objectives.
+[00:16:27] 1 is you want to get the model to be
+[00:16:29] like accurate and then task complete better for you guys
+[00:16:33] and also cheaper.
+[00:16:35] So when you take a large model, they are pretty
+[00:16:37] good at doing what they are doing, but because they
+[00:16:40] are trying to kind of discover the right thing, they
+[00:16:42] can be pretty expensive too.
+[00:16:44] And the model size, parameter size is very huge.
+[00:16:47] They need like lot more compute to kind of serve.
+[00:16:49] So they can be very expensive.
+[00:16:50] So as you kind of get into CLI or any
+[00:16:52] of these things, when you start coding and when you
+[00:16:54] start doing tasks, you realize that your token cost can
+[00:16:56] go up pretty fast.
+[00:16:57] And you heard a lot of examples in different these
+[00:17:00] days where somebody unwittingly spend like $1,000,000 or some cases
+[00:17:03] $5,000,000 without knowing that they are spending that much because
+[00:17:07] the token cost is that high.
+[00:17:08] And you want to basically reduce and post training is
+[00:17:10] the way to do that.
+[00:17:12] So what we are going to talk about here.
+[00:17:15] So post training has multiple recipes and the recipes.
+[00:17:18] So let us go back to the previous slide.
+[00:17:20] So, so the post training here, you can combine the
+[00:17:23] data in any of these data and try to optimize
+[00:17:26] for any of the skills on the left side, on
+[00:17:29] the right side.
+[00:17:30] And what you&#39;re doing there is you&#39;re basically doing one
+[00:17:33] at a time.
+[00:17:34] And when you&#39;re doing that, you&#39;re picking a recipe.
+[00:17:36] So today we&#39;re going to talk about one recipe that
+[00:17:39] includes fine distillation from the traces, fine tuning and RFT.
+[00:17:43] So fine tuning, this is something that most of the
+[00:17:45] people are familiar with.
+[00:17:46] So what&#39;s happening in fine tuning is you basically bring
+[00:17:50] in an expert and say, hey, here is a pattern
+[00:17:52] that I wanted to mimic.
+[00:17:54] So basically when you bring in customer response agent, you
+[00:17:57] want to say, hey, you want to have the tone
+[00:18:00] to be this way.
+[00:18:01] You want to have the format to be this way.
+[00:18:02] You kind of basically helping the agent know how to
+[00:18:06] kind of mimic.
+[00:18:08] The mimic can be the expert here, can be a
+[00:18:10] real expert, a human or the data, which basically is
+[00:18:13] formulated by an expert, right?
+[00:18:14] That&#39;s an example that we are choosing here in the
+[00:18:17] Box 1, which is demonstration.
+[00:18:18] And what you see happening in the Box 3, then
+[00:18:20] the tokens, you see the pink grading that&#39;s happening there.
+[00:18:23] It&#39;s basically grading the loss.
+[00:18:25] It&#39;s trying to figure out how close to the actual
+[00:18:29] expert answer the model answer is and it&#39;s grading it.
+[00:18:34] It is a loss function which says, hey, if it
+[00:18:36] is basically exactly the same or it is like partially
+[00:18:39] same and it rewards both of them, right?
+[00:18:42] And then you basically have the model weights get shifted
+[00:18:46] based on what is the right behavior that is SFT.
+[00:18:49] So SFT is basically telling you like mimic or the
+[00:18:53] kind of what to do, right?
+[00:18:56] So in terms of RFT, this is a order magnitude
+[00:19:01] more complex process and but it has the biggest bang
+[00:19:06] for the buck because these tasks are for verifiable tasks.
+[00:19:12] All the coding that you see the when the agents
+[00:19:15] are doing good at coding or math, for example, anything
+[00:19:18] that is like something that you can actually go and
+[00:19:21] verify and prove RFT is a way to teacher.
+[00:19:24] So let&#39;s say in the bottom here you&#39;re showing, let&#39;s
+[00:19:29] say to get a refund going, the model needs to
+[00:19:33] go get lot of sequences right, lot of policies, right?
+[00:19:37] And then make sure that each one of them is
+[00:19:39] hitting in the right order.
+[00:19:41] And the way to do that is by basically having
+[00:19:44] in the reinforcement fine tuning, each of the steps be
+[00:19:48] rewarded so that the model learns not just to mimic
+[00:19:51] but to also navigate paths that helps it get to
+[00:19:55] the right answer intuitively.
+[00:19:58] So that is what reinforcement fine tuning is.
+[00:20:00] So we are going to combine both reinforcement, fine tuning
+[00:20:04] and fine tuning with the distillation to get us to
+[00:20:08] where we need to so.
+[00:20:32] It&#39;s got locked up.
+[00:20:36] Yeah, I got it.
+[00:20:42] Yeah.
+[00:20:44] OK, so I have kicked off some jobs here.
+[00:20:47] So before that, let&#39;s go back to agents.
+[00:20:50] So Chris talked about the agents.
+[00:20:52] So let&#39;s say we have multiple agents.
+[00:20:54] So we see our agent, GPT 52.
+[00:20:57] So this is a powerful model and the agent is
+[00:20:59] using this model.
+[00:21:01] Now you&#39;re more likely that GPT 52 is probably giving
+[00:21:04] the best performance.
+[00:21:05] And now we 55 if you were to use and
+[00:21:07] you want to learn from how the best models do.
+[00:21:09] So you take you go and then figure out the
+[00:21:11] production traces.
+[00:21:15] And then production traces basically allows you to kind of
+[00:21:19] create a data set from that.
+[00:21:21] Let&#39;s say if you want to do reinforcement fine tuning
+[00:21:26] or fine tuning, you basically say, hey, I want to
+[00:21:31] distill expensive large model and then I want to potentially
+[00:21:37] kick off fine tuning itself.
+[00:21:40] I can start a fine tuning job right here.
+[00:21:42] So I&#39;ve done something similar where I&#39;ve created these data
+[00:21:49] sets previously.
+[00:21:51] So you could create.
+[00:21:52] So that&#39;s a continuous loop that we&#39;re talking about closing
+[00:21:55] the loop, you put the agent in production, see what
+[00:21:58] the agent does, take the traces and then kind of
+[00:22:00] start fine tuning those things.
+[00:22:02] So now if you so how do you basically start
+[00:22:05] your job?
+[00:22:06] So I will show you 2 two things today.
+[00:22:08] 1 is a custom jobs.
+[00:22:09] The other one is a API that we are shipping
+[00:22:11] low level API.
+[00:22:12] Before that, if you want to do a custom jobs,
+[00:22:15] what we, you want to get yourself a box in
+[00:22:17] the cloud, what we call workbench or compute instance, where
+[00:22:20] you come in the machine is set up for you.
+[00:22:22] The workbench is set up for you so that you
+[00:22:24] don&#39;t have to worry about PIP installing all the dependencies
+[00:22:26] and everything else connected.
+[00:22:28] So you go in and say connect and then it
+[00:22:31] opens up a VS Code for you.
+[00:22:32] And then you basically start it on your core right
+[00:22:35] away.
+[00:22:36] And I already have something set up here that.
+[00:22:48] So this is a recipe that we talked about.
+[00:22:50] So here we are trying to teach the model how
+[00:22:55] to do your task better.
+[00:22:57] So we are starting with the base model and the
+[00:22:59] traces from there we are getting the agent traces and
+[00:23:02] then you are doing SFT and then you are doing
+[00:23:03] RFT and then you got to monitor and evaluate.
+[00:23:06] So in the traces.
+[00:23:07] So you take all the production traces, you filter down,
+[00:23:10] distill down, exactly what you want.
+[00:23:12] You pick the right traces and then figure out your
+[00:23:15] data set.
+[00:23:15] That&#39;s what the data set creation process that I just
+[00:23:17] showed is doing default.
+[00:23:18] But you can do it by yourself.
+[00:23:20] And then RFT is basically each of the examples, the
+[00:23:22] prompt that you have, you&#39;re rolling out, you&#39;re picking like
+[00:23:26] multiple samples based on different what the model response, pick
+[00:23:29] one of them and then follow the trajectory and then
+[00:23:32] reward the trajectory.
+[00:23:33] And you can kind of do that.
+[00:23:35] So, and then the ingredients that you have in your
+[00:23:37] setting up as you, for example, the business APIs that
+[00:23:40] you want to call, the graders that you want to
+[00:23:43] choose, the GPU clusters that you want to set up,
+[00:23:45] how many nodes that defines how fast the job runs,
+[00:23:48] how quickly the job runs.
+[00:23:49] You can do all of those things.
+[00:23:52] And then you kind of install the SDK, configure the
+[00:23:56] job, and then you kick off the job.
+[00:23:58] So let&#39;s do that.
+[00:23:59] I&#39;ve done that already, but let&#39;s, I can run them
+[00:24:13] in any order.
+[00:24:20] So we have the setup as complete.
+[00:24:22] Then I can kick off a SFT job.
+[00:24:25] In the SFT job that I&#39;m doing, you see that
+[00:24:27] you have the data that comes from the data set
+[00:24:30] that we just trained and the code you can bring
+[00:24:32] the code to.
+[00:24:34] So if you&#39;re an expert code or a data scientist,
+[00:24:36] you can bring the code.
+[00:24:38] You set up your computer clusters, you pick the model
+[00:24:41] of your choice, and you set up the SFT job.
+[00:24:47] And the SFT job generally creates a model that you
+[00:24:50] feed to the reinforcement fine tuning.
+[00:24:52] But for the sake of demo, we&#39;re not going to
+[00:24:54] wait for that to happen.
+[00:24:55] So once you kick off, it will actually show you
+[00:24:58] the job link that you can kind of go navigate
+[00:25:01] to in the RFT.
+[00:25:03] It is something different in reinforcement fine tuning, unlike SFT
+[00:25:06] like we talked about, it is more sophisticated.
+[00:25:09] So you can basically configure how the reward verification happens
+[00:25:14] and how basically how to arrive at the best answer.
+[00:25:18] So there is a concept of sampling training and roll
+[00:25:22] out.
+[00:25:23] So what that basically means is you take a prompt
+[00:25:26] that the customer agent prompt one of the prompts that
+[00:25:29] you have.
+[00:25:29] And then you create multiple samples, pick a sample and
+[00:25:32] then have multiple trajectories in which the model responds like
+[00:25:36] different orders, different sequence of calls, different ways it responds.
+[00:25:40] And then each one of them you pick and then
+[00:25:41] you grade them like we saw in the slide deck.
+[00:25:44] So you can set up all of those things in
+[00:25:46] here.
+[00:25:46] You can figure out how how many GPUs you want,
+[00:25:49] how many, like what kind of a topology that you
+[00:25:52] want for the clusters and then you submit your job
+[00:25:55] and then basically it&#39;ll give the link for you to
+[00:25:58] kind of go and navigate.
+[00:26:00] So I have done that previously.
+[00:26:02] So let&#39;s go back to our jobs and let&#39;s pick
+[00:26:07] RFT job in here.
+[00:26:14] And we have a authenticated ray endpoint where it&#39;s a
+[00:26:18] ray cluster which is running your all the GPUs and
+[00:26:23] CPU nodes.
+[00:26:24] And then you have a ray as a distributed engine
+[00:26:27] that&#39;s basically taking your Python code and distribute across the
+[00:26:30] different nodes.
+[00:26:31] And you can basically run your ray dashboard.
+[00:26:34] You can see that all the nodes are active and
+[00:26:37] the resource that is being used, both CPU resource and
+[00:26:40] GPU resources.
+[00:26:41] Let&#39;s say if you go look at your jobs in
+[00:26:45] here.
+[00:26:52] You can look at the jobs and see what&#39;s going
+[00:26:54] on in the job.
+[00:26:56] You see for each of the notes, each of the
+[00:26:58] actors, everything that&#39;s being run.
+[00:27:00] So you can kind of go further deep.
+[00:27:03] And then we basically see what each of the actors
+[00:27:05] are doing, what methods are calling, what functions calling.
+[00:27:07] So you can have complete visibility into what your job
+[00:27:10] is doing.
+[00:27:11] It&#39;s not just a fight and forget API.
+[00:27:13] So for advanced users, data scientists and developers, you can
+[00:27:18] actually be extremely meticulous about knowing what&#39;s happening at each
+[00:27:23] node in each cluster.
+[00:27:24] So you can actually go find that out.
+[00:27:26] And similarly for the cluster, if you want to see,
+[00:27:29] hey, how many nodes there are, they&#39;re all like, this
+[00:27:32] is at a cluster job level monitoring.
+[00:27:34] You can do that.
+[00:27:35] Now, if you go back like what we talked about,
+[00:27:37] the more interesting stuff is the rollouts that we talked
+[00:27:39] about, like what&#39;s happening with the rollouts?
+[00:27:41] Like why is the model behaving the way it&#39;s behaving
+[00:27:44] or grading the way it&#39;s grading?
+[00:27:46] So let&#39;s say see these are the rollouts in progress.
+[00:27:49] So we pick, let&#39;s say the rewards is kind of
+[00:27:52] increasing and some someones, someones are rated, rated well or
+[00:27:56] graded well, rather someones are not.
+[00:27:58] If you want to see why something is not graded
+[00:28:01] well, if you look at let&#39;s say the prompt 8,
+[00:28:03] so we&#39;ve chosen 8 here.
+[00:28:05] So in here you will see for this particular sample
+[00:28:10] that&#39;s picked, what are the tools that it called and
+[00:28:15] in what order.
+[00:28:16] You see clearly it kind of missed calling each of
+[00:28:19] the functions in here.
+[00:28:21] So if it missed, obviously going to get lower rewards
+[00:28:24] and it&#39;s created lower.
+[00:28:26] That&#39;s why the grade was lower.
+[00:28:27] If you want to basically do a side by side
+[00:28:30] comparison with what a good run will look like.
+[00:28:33] So you basically have something here graded higher, and this
+[00:28:40] is not a good example.
+[00:28:45] So you can actually see a tool comparison with what
+[00:28:47] something went well, like let&#39;s pick a different one which
+[00:28:49] probably highlights it better.
+[00:28:54] Roll out 16.
+[00:28:59] So here you see one of them is the reason
+[00:29:04] for cancellation.
+[00:29:07] Expected outcome is to basically look for the reason for
+[00:29:10] cancellation.
+[00:29:12] Here you will see the tool calls a particular one
+[00:29:15] got it right, the other one didn&#39;t.
+[00:29:18] So you can actually see for each rollout why a
+[00:29:22] particular rollout is getting rewarded higher or lower.
+[00:29:26] So you kind of understand how the model is behaving.
+[00:29:28] So that&#39;s basically of the power of using, let&#39;s say
+[00:29:31] foundry where you get complete visibility into what what&#39;s happening
+[00:29:35] there.
+[00:29:36] And once you do that, so like Chris said, you
+[00:29:39] want to eval.
+[00:29:40] So like I have a eval in here, which basically
+[00:29:44] shows that each of the samples that you you evaluated,
+[00:29:48] what&#39;s the pass rate or the quality of your evals
+[00:29:51] that&#39;s happening against each of the samples.
+[00:29:55] So you kind of get, so you pick the particular
+[00:29:57] model that you&#39;re trained and you see that this is
+[00:29:59] looking like a good number for you.
+[00:30:01] And if you want to eventually compare across the different
+[00:30:04] models that Chris talked about the saving cost.
+[00:30:07] So here is this shows the demonstration of the fact
+[00:30:11] that 5.2 GBT 5.2 does better base model then you
+[00:30:16] the Quen 14B would do.
+[00:30:19] But then as you start taking the smaller model, which
+[00:30:22] is like significantly cheaper and faster, and then you start
+[00:30:26] basically doing post training on it that includes distillation, fine
+[00:30:31] tuning and RFT it you can start seeing the score
+[00:30:34] go up subsequently, right?
+[00:30:35] So it&#39;s, it&#39;s getting better.
+[00:30:37] You see that the pass rate of the models which
+[00:30:40] are post trained are better than the ones that are
+[00:30:43] not.
+[00:30:43] The rewards are better as well.
+[00:30:46] And then here, let&#39;s say if you particularly pick one
+[00:30:51] particular sample here, it will show that the score it
+[00:30:55] got like the 14B initially didn&#39;t score as well or
+[00:30:59] it almost zero and then failed 52 did OK, it
+[00:31:03] still failed the better score.
+[00:31:06] So now you start doing SFT of the smaller model,
+[00:31:08] you start seeing this go up.
+[00:31:10] So basically you get your score eventually to where you
+[00:31:13] want it to be.
+[00:31:14] So this post training can be done in a loop,
+[00:31:16] like every step can be done individually and it can
+[00:31:18] be done in a loop and you monitor and you
+[00:31:20] kind of get it right.
+[00:31:21] So that&#39;s that&#39;s where your evals is now.
+[00:31:26] So this is all of this is fantastic.
+[00:31:28] This is a code first experience that we saw in
+[00:31:33] the in foundry.
+[00:31:35] So here you&#39;re provisioning a cluster, you&#39;re like Manoj to
+[00:31:37] come and talk about the cluster as well.
+[00:31:39] So you&#39;re provisioning a cluster, you&#39;re managing your array, you&#39;re
+[00:31:42] bringing in the code, you&#39;re doing all the infrastructure.
+[00:31:45] That basically means when you see that the node is
+[00:31:47] not talking to each other or is the network topology
+[00:31:50] across the different nodes not as good, you are to
+[00:31:52] debug the data streaming performance in the network performance and
+[00:31:56] all of those things.
+[00:31:57] So it is it is an expert heavy duty work.
+[00:32:00] But if you want to do something more easier, we
+[00:32:03] are launching something called we, we, we not named it
+[00:32:07] yet and I will show you a notebook where this
+[00:32:10] work.
+[00:32:11] So the previous one you need to have GPU&#39;s.
+[00:32:14] So everybody in the organization may not have GPU&#39;s but
+[00:32:16] everybody has a laptop.
+[00:32:18] So here this API that we are doing is a
+[00:32:21] lower level GPU construct where you are able to just
+[00:32:25] bring in your RL logic on your laptop, on your
+[00:32:28] CPU and kick off a job and the job is
+[00:32:31] kicked off in the server and the server manages all
+[00:32:35] the infra and everything else it&#39;s doing.
+[00:32:39] So that&#39;s.
+[00:32:40] So in this case, it&#39;s a code word.
+[00:32:43] We&#39;re calling it Loom.
+[00:32:44] It manages the GPU cluster, the images, the environments, like
+[00:32:48] everything it manages for you and the networking, etc.
+[00:32:52] And all you have to do is understand four different
+[00:32:56] GPU constructs.
+[00:32:58] When you&#39;re doing a model training, most of you guys
+[00:33:01] know it&#39;s a forward pass, backward pass where you&#39;re optimizing
+[00:33:04] for a loss function.
+[00:33:05] So you have access to those core GPU primitives just
+[00:33:08] like those four.
+[00:33:09] And that&#39;s all you need.
+[00:33:11] You don&#39;t need to worry about how the cluster and
+[00:33:13] everything else works.
+[00:33:14] So that&#39;s something that you can kind of outsource to
+[00:33:18] the service.
+[00:33:19] And then you basically kind of like, so everything on
+[00:33:22] the left side runs on CPU and your client on
+[00:33:24] the right side, it runs on the GPU cluster.
+[00:33:28] And these are the four calls that you basically have
+[00:33:31] to export and manage.
+[00:33:32] So now, so the reason why it helps for you
+[00:33:35] to kind of have this control is, let&#39;s say if
+[00:33:37] you&#39;re trying to teach a model linear algebra or mathematics,
+[00:33:41] right?
+[00:33:42] You don&#39;t want to throw the hardest problem to the
+[00:33:45] model the fastest.
+[00:33:46] You want to teach the model how to do basic
+[00:33:48] arithmetic.
+[00:33:49] You want to show how to do addition, subtraction, and
+[00:33:51] gradually kind of climb up the hill to kind of
+[00:33:54] show linear algebra, calculus, and all of those things.
+[00:33:56] And you kind of do that in your client.
+[00:34:00] And the code sample, if you were to do use
+[00:34:03] this higher level API would look something like this.
+[00:34:07] This is pretty basic to understand and but it gives
+[00:34:10] you the maximum control because all you have to say
+[00:34:14] no cluster, no nothing.
+[00:34:16] You&#39;re just bringing this code in your laptop, in your
+[00:34:18] notebook and then kind of variation of this.
+[00:34:20] And you can do both SFT and RFT using this
+[00:34:22] API and then you set it up.
+[00:34:24] So that&#39;s a notebook.
+[00:34:26] And then so the jobs, when you submit those jobs
+[00:34:30] using this API, it&#39;ll show up in.
+[00:34:32] So like the previous jobs that I showed you, it
+[00:34:35] shows up under train because it&#39;s a custom training.
+[00:34:38] So this the training harness that we have and the
+[00:34:40] canvas that we have, it allows you to do all
+[00:34:42] pre training, mid training and everything else is very powerful.
+[00:34:45] But for the higher level API, these show up in
+[00:34:48] fine tune.
+[00:34:49] It&#39;s like fine tuning.
+[00:34:50] So even if you just submit your CPU like script,
+[00:34:53] it just shows up as a fine tuning both SFT
+[00:34:56] and RFT.
+[00:34:57] And then everything about it is like exactly the same.
+[00:35:00] You can look at the logs, you can see all
+[00:35:01] the checkpoints that you have.
+[00:35:02] It takes some time to load, but every single checkpoint.
+[00:35:05] So when the model is training all the checkpoints, you
+[00:35:07] can deploy these checkpoints, they all show up here and
+[00:35:09] you can deploy those checkpoints.
+[00:35:11] And similarly, just like how we did with code first,
+[00:35:14] you will have a similar experience for you to dashboard
+[00:35:18] and then figure out how to basically compare runs across
+[00:35:21] different things.
+[00:35:22] And you see here you use any of the highly
+[00:35:25] APIs, create a job, the reward function goes up.
+[00:35:29] You see the entropy going down like this is like
+[00:35:32] what you want to see the group composition climbing up.
+[00:35:35] So you basically can monitor even again here you can
+[00:35:38] basically get all the lowest level of visibility that you
+[00:35:41] want to get for your job.
+[00:35:43] It&#39;s as rich a telemetry and monitoring that you can
+[00:35:46] got in the code first.
+[00:35:48] You can get that in the API first as well.
+[00:35:50] So that&#39;s basically the demo.
+[00:35:54] And then so if you look at now the surface
+[00:35:57] area of Foundry, So what we are, So what we
+[00:36:01] are showing you here is the fact that we had
+[00:36:04] the higher level API today in Foundry.
+[00:36:07] You have it today where you take a job fire
+[00:36:10] and forget.
+[00:36:11] We are introducing 2 new capabilities, which is code first
+[00:36:14] and the lower level APIs.
+[00:36:15] They are coming in.
+[00:36:16] We have a link at the end of it for
+[00:36:17] private preview.
+[00:36:18] You guys can sign up.
+[00:36:19] So anybody who wants to basically come and train using
+[00:36:22] any of these methods, you can come and train now.
+[00:36:24] Chris will take over from here and then talk about
+[00:36:26] desktops.
+[00:36:31] Vijay, so we talked a lot about training the models,
+[00:36:37] improving the models.
+[00:36:39] Now the question is how do you go from a
+[00:36:41] model that you trained to be able to incorporate it
+[00:36:44] in an agent?
+[00:36:45] And the answer is you need to deploy it so
+[00:36:47] that it can run as an API that gets integrated
+[00:36:50] with your agent.
+[00:36:51] And one of the key things that we&#39;re proud to
+[00:36:55] announce at Build today is our foundry managed compute.
+[00:37:00] What this enables is deploying models, both the serverless trained
+[00:37:04] models, models that you might have trained on your laptop
+[00:37:09] or in another model platform, and bring the weights to
+[00:37:13] Foundry and you can deploy them using Foundry managed compute.
+[00:37:17] It&#39;s a serverless, scalable solution that enables deploying any open
+[00:37:22] source models or custom models.
+[00:37:25] And we automatically optimize those.
+[00:37:28] We scale them out so you can bring your own
+[00:37:30] weights regardless of where they&#39;re trained.
+[00:37:32] Or you can bring custom models with custom containers that
+[00:37:36] have highly optimized run times using things like speculative decoding
+[00:37:41] or draft models to facilitate speeding up the the inference
+[00:37:45] of these custom models as well.
+[00:37:48] And so to show you how to do that, I&#39;m
+[00:37:50] going to ask Manoj to come on stage and walk
+[00:37:52] you through that.
+[00:38:05] Hey everyone, I am Manoj.
+[00:38:07] So we saw how training is done.
+[00:38:10] I will now talk about deployments.
+[00:38:12] You need to deploy both base models and fine tune
+[00:38:15] models, deploy base models to do evals and like see
+[00:38:18] where the performances and then improve that performance and do
+[00:38:21] fine tune model deployments.
+[00:38:23] So here this is the model catalog.
+[00:38:25] Let&#39;s take a quick look at how you deploy base
+[00:38:27] models.
+[00:38:29] So I can probably like go to collections and look
+[00:38:33] at the fireworks models here and the fireworks models like
+[00:38:38] they let me deploy to a provision throughput unit which
+[00:38:43] which is our managed offering that gives you predictable performance
+[00:38:48] at a guaranteed throughput SLA.
+[00:38:51] So that is the way you deploy, you know, the
+[00:38:55] models that are available to the fireworks.
+[00:38:59] And the other option is like what Chris just now
+[00:39:02] introduced is the managed compute.
+[00:39:05] So this is basically, yeah.
+[00:39:11] So this is this will enable you to deploy models
+[00:39:15] to Foundry managed GPU.
+[00:39:16] So let me pick up like a model and try
+[00:39:20] to show you how to deploy it.
+[00:39:30] I&#39;m trying to find the Quen 32 billion.
+[00:39:32] Here it is.
+[00:39:41] When I try to deploy this model I&#39;ll pick the
+[00:39:44] deployment option as managed compute.
+[00:39:47] This is what we are talking now.
+[00:39:49] Since the since you are paying for these GPU&#39;s you
+[00:39:52] have couple of options on like how you want to
+[00:39:54] manage the deployments and how you want to pay for
+[00:39:57] it.
+[00:39:57] So here there&#39;s an option where you can like run
+[00:40:00] this model on 2 GPU&#39;s and this deploys it with
+[00:40:03] like.
+[00:40:04] Enough KV cache to maximize the context length and the
+[00:40:08] different option is like you, you could probably deploy it
+[00:40:11] on only one GPU, which is like you know, if
+[00:40:14] you see here, there is just one GPU is being
+[00:40:16] used and this is the smallest footprint the model can
+[00:40:19] run with.
+[00:40:20] And that is like a just the 40K context length.
+[00:40:24] I can select both of these and go ahead and
+[00:40:26] deploy.
+[00:40:28] But for now, let us switch context a little bit.
+[00:40:32] You, you saw how to deploy base models.
+[00:40:35] What about fine-tuned models?
+[00:40:36] So the fine-tuned models, they show up here in this
+[00:40:38] list.
+[00:40:39] When our job runs them, the job automatically registers the
+[00:40:41] model here.
+[00:40:42] But if you have trained your fine-tuned model somewhere else
+[00:40:45] in a different environment, you could import it into the
+[00:40:48] project.
+[00:40:49] And we have a command to do that.
+[00:40:51] And when you import the model to the project, the
+[00:40:54] most important thing you need to tell us is what
+[00:40:56] is the base model associated with the model architecture that
+[00:40:59] you are bringing.
+[00:41:00] This helps us to identify the right containers and the
+[00:41:03] right deployment configuration for us to deploy these models.
+[00:41:06] So you specify the base model, you tell us the
+[00:41:09] model name, model version, and then you tell us whether
+[00:41:13] it is a full weight model or adapter that generates
+[00:41:17] a command and you can copy, paste and run this
+[00:41:20] command and that model will be imported.
+[00:41:23] So now that I have the fine-tuned model, I can
+[00:41:26] go ahead and deploy, sorry, I can deploy this model,
+[00:41:29] deploying the base model and the fine-tuned model is identical,
+[00:41:34] no difference whatsoever.
+[00:41:37] And I can select global managed compute and again the
+[00:41:40] deployment templates and the same flow where you select the
+[00:41:43] accelerators, it is the same flow that you I showed
+[00:41:45] you for the base model.
+[00:41:47] So I can go ahead and deploy this model as
+[00:41:51] well.
+[00:41:52] So this deployment is going to take a couple of
+[00:41:54] minutes.
+[00:41:54] So let&#39;s let&#39;s go look at a model that I
+[00:41:58] have already already deployed.
+[00:42:03] Yeah.
+[00:42:03] So if I come back here to deployments, if I
+[00:42:06] come back here to deployments, you see that this got
+[00:42:09] kicked off.
+[00:42:10] But this is a model at pre deployed.
+[00:42:13] I can click this model and try out this model
+[00:42:16] in the playground.
+[00:42:17] This works great.
+[00:42:19] We can call this model programmatically.
+[00:42:21] Here&#39;s the code snippet.
+[00:42:23] This is a chat completions API which means it is
+[00:42:26] stateless.
+[00:42:27] So you have to manage the state on your end.
+[00:42:31] But basically we want to use these models in agent
+[00:42:33] side what we were showing before.
+[00:42:36] And to do that you could add this model to
+[00:42:38] an agent where you get like state management and all
+[00:42:42] the other capabilities.
+[00:42:44] I have added that model to an agent here.
+[00:42:46] So if I if I come to this place the
+[00:42:50] same fine-tuned model that I showed you, I have already
+[00:42:56] added it to an agent and now I can again
+[00:43:00] chat with this.
+[00:43:02] But the benefit here is that I get like tool
+[00:43:05] calling so I can say like NBA games, then it
+[00:43:09] should be able to like pull up real time information
+[00:43:14] and answer those those queries for me.
+[00:43:18] So let&#39;s look if that happens.
+[00:43:20] Yeah, so looks like there is a there is a
+[00:43:24] game today evening.
+[00:43:26] Yeah.
+[00:43:28] Now you can see here that this model supports chat
+[00:43:32] completion like the responses API, which means it will be
+[00:43:36] able to track your responses.
+[00:43:39] For example, here as a sample query I had run
+[00:43:41] where I just said like remember what&#39;s my favorite color
+[00:43:44] and now even though I don&#39;t pass the chat history,
+[00:43:47] I am just passing the previous response, it is able
+[00:43:49] to recollect that what my favorite color was and informed
+[00:43:53] me.
+[00:43:55] So once you have deployed, what becomes important is observability
+[00:43:58] monitoring and cost management.
+[00:44:00] So the cost management with managed compute is like available
+[00:44:04] out-of-the-box.
+[00:44:05] All deployments can be, you know, all metrics can be
+[00:44:08] tracked.
+[00:44:09] So here is a chart where I am tracking the
+[00:44:12] total tokens consumed by the by the Quen model.
+[00:44:15] I can add these charts to a dashboard and get
+[00:44:19] rich monitoring as well.
+[00:44:21] And finally, when it comes to cost management, I am
+[00:44:25] able to track and monitor costs for this model.
+[00:44:28] So here I have focused on the Quen model, I
+[00:44:30] have filtered by the Quen model and I am able
+[00:44:33] to see the cost.
+[00:44:34] Back to you, Chris.
+[00:44:41] Clearly, training models without deploying them is a waste of
+[00:44:45] time, so having multiple ways to deploy those models to
+[00:44:48] do so in a cost efficient and scalable manner is
+[00:44:51] critically important today.
+[00:44:53] I hope you&#39;ve learned several things.
+[00:44:55] One, there are many models available for your workload.
+[00:44:59] Foundry has them all, open source and proprietary models.
+[00:45:03] You can choose them, add them to your agent and
+[00:45:06] evaluate them on your workload.
+[00:45:08] So this is critically important.
+[00:45:10] If it&#39;s if it&#39;s good enough and it&#39;s hitting your
+[00:45:12] price for performance, fantastic, deploy it.
+[00:45:15] If not, you can fine tune it.
+[00:45:17] You can iterate and improve continuously.
+[00:45:20] You can leverage the new reinforcement learning capabilities, both the
+[00:45:25] lower level API, full control code of any open source
+[00:45:29] framework like Slime Girl, TRL, leverage the power of ray
+[00:45:34] for distribution and monitoring.
+[00:45:37] You can browse and monitor the quality of the rollouts,
+[00:45:40] the samples.
+[00:45:41] You can deeply understand how well the models are performing
+[00:45:45] and and deploy them in cost efficient manner.
+[00:45:48] And then you can operate them with control, either leveraging
+[00:45:52] the new serverless Foundry managed compute offerings on one or
+[00:45:56] many GPU&#39;s, auto scaling with different context lengths and Foundry
+[00:46:00] makes it easy to configure, deploy and scale to meet
+[00:46:04] your goals.
+[00:46:05] And then most importantly, we&#39;re automatically collecting all the telemetry
+[00:46:10] You need to both monitor the costs to create new
+[00:46:13] data sets to learn from once you&#39;ve deployed in production
+[00:46:17] to continuously improve the models.
+[00:46:21] So you can get started tonight.
+[00:46:22] We&#39;ve got all the repo samples published.
+[00:46:26] You can get the slides later from the same location
+[00:46:29] that you can get from all the sessions.
+[00:46:31] Thank you so much.
+[00:46:32] We&#39;ve got many other sessions on Foundry to learn how
+[00:46:36] to deploy it, manage agents and models, all available here.
+[00:46:39] Thank you for coming tonight.
+[00:46:40] Appreciate it.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

@@ -1,0 +1,454 @@
+**[00:00:19]** Hello everyone.
+**[00:00:20]** Can everyone hear me?
+**[00:00:21]** OK?
+**[00:00:22]** OK, cool.
+**[00:00:23]** Yeah.
+**[00:00:23]** Welcome to Day 2 of Build, I guess.
+**[00:00:26]** How has day 2 been going for everyone so far?
+**[00:00:29]** Good, good.
+**[00:00:30]** Cool.
+**[00:00:30]** Yeah, yeah.
+**[00:00:32]** Like I was introduced, I'm a software engineering manager on
+**[00:00:36]** the Foundry of the Ability team, and I'm excited to
+**[00:00:40]** share with you today how you can run consistent, high
+**[00:00:44]** quality and actionable agent observability in Foundry no matter what
+**[00:00:49]** agent framework you use or whether your agents are running.
+**[00:00:54]** OK, quick show of hands.
+**[00:00:57]** How many of you build or operate agents in production?
+**[00:01:01]** OK, cool, some of you.
+**[00:01:04]** And so keep your hands up if all of the
+**[00:01:07]** agents, like either your agents or your team agents are
+**[00:01:11]** running on the same cloud provider using the same programming
+**[00:01:16]** language and same agent framework, anyone OK, I guess 1
+**[00:01:20]** lucky person there.
+**[00:01:22]** OK, So what we hear from customers again and again
+**[00:01:26]** is that the production reality is that big companies like
+**[00:01:31]** enterprise companies, they really have this heterogeneous agent set up
+**[00:01:36]** right like that.
+**[00:01:38]** You mean, you know, like maybe a sorry, so maybe
+**[00:01:43]** a product team, you know, like they picked foundries, prompt
+**[00:01:49]** agents because it's easier to iterate on the portal, right?
+**[00:01:55]** And then a back end team might picked up land
+**[00:01:58]** Graph and run it on AWS because land graph is
+**[00:02:02]** the agent framework they are most familiar with.
+**[00:02:06]** And the third team might have adopted ADK from Google
+**[00:02:10]** because they are already on GCP.
+**[00:02:13]** We're on Gemini, right?
+**[00:02:15]** And then all of a sudden maybe someone asks for
+**[00:02:17]** Copilot SDK as a catch all because that's a new
+**[00:02:20]** thing they have recently heard about.
+**[00:02:23]** And very quickly you run into this mess that, you
+**[00:02:26]** know, different agent framework, different hosting stack, different metrics and
+**[00:02:32]** different dashboard.
+**[00:02:35]** And then like all of a sudden maybe like a
+**[00:02:38]** bad response came up from your agentic system in production
+**[00:02:42]** and you are waiting to start to ask scary questions
+**[00:02:45]** like, oh, which agent did that?
+**[00:02:47]** Why did the agent return this bad answer?
+**[00:02:50]** And how do we prevent bad behaviors from happening in
+**[00:02:53]** the future, right?
+**[00:02:55]** Today I'm going to show you how to answer those
+**[00:02:58]** questions in one place.
+**[00:03:00]** Foundry observability.
+**[00:03:02]** Not by rewriting your agents into one agent framework, but
+**[00:03:08]** by adopting open AI, sorry, open telemetry instrumentation with a
+**[00:03:14]** few lines of code and without changing your existing agent
+**[00:03:19]** logic.
+**[00:03:21]** And everything we show in this demo are live and
+**[00:03:24]** available on Foundry.
+**[00:03:26]** You can check out the code and reproduce everything we
+**[00:03:30]** show with the repository we will share at the end
+**[00:03:33]** of the talk.
+**[00:03:36]** Let's start with a simple agent before bringing multi agent,
+**[00:03:42]** multi cloud setup.
+**[00:03:44]** OK, you guys can see this right?
+**[00:03:47]** OK, so if this is the first time you are
+**[00:03:50]** saying this, this is Microsoft Foundry portal and this is
+**[00:03:55]** a playground view that allow me to quickly configure and
+**[00:03:59]** test out my agents, right?
+**[00:04:02]** And the story here is that, you know, I grew
+**[00:04:05]** up in Xi'an, a famous tourist destination in China, and
+**[00:04:10]** often get asked by friends for travel recommendations.
+**[00:04:14]** So I went ahead and built a travel expert agent
+**[00:04:18]** with Foundry's no code offering called Prompt agent, right?
+**[00:04:24]** And what I did is that I picked a model
+**[00:04:27]** for my agent.
+**[00:04:29]** I gave it some judge prompt, sorry, system prompt.
+**[00:04:33]** And you know, it can be even like multi language
+**[00:04:36]** if you want.
+**[00:04:37]** And the secret sauce here is that I have this
+**[00:04:42]** kind of travel notes in PDF file, right?
+**[00:04:46]** With even pictures and different links and everything.
+**[00:04:49]** I uploaded it to the Foundry here as an index
+**[00:04:53]** so that my agent can access that travel notes when
+**[00:04:58]** it needs to.
+**[00:05:00]** OK, and I can send a question here.
+**[00:05:03]** For example, plan a three day trip in Xian for
+**[00:05:06]** two people.
+**[00:05:07]** Focus on history and the food you can see the
+**[00:05:11]** agent started to return detailed itinerary, which shouldn't be a
+**[00:05:16]** surprise today, right?
+**[00:05:18]** It calls out, you know, famous places to visit again
+**[00:05:24]** in multi languages and also restaurant recommendations, right.
+**[00:05:31]** We can take a closer look here again, like, you
+**[00:05:33]** know, three day, like day by day plan and like
+**[00:05:36]** with all the details calling out like interesting places, right?
+**[00:05:40]** But again, like we're in 2026, this shouldn't be a
+**[00:05:42]** surprise, right?
+**[00:05:44]** What's more interesting is that I can go to the
+**[00:05:48]** traces view to see like how the agent was able
+**[00:05:53]** to get to that answer, right?
+**[00:05:56]** Here is a list of all the previous conversations I've
+**[00:05:59]** had with this agent.
+**[00:06:01]** And like there are different dimensions you can see here,
+**[00:06:05]** like token cost, token in, token out, maybe estimated cost,
+**[00:06:08]** right?
+**[00:06:09]** And I can do sort and filtering if I want
+**[00:06:12]** to.
+**[00:06:12]** And maybe we can also like dig into a specific
+**[00:06:17]** trace.
+**[00:06:19]** OK, let's try a different one.
+**[00:06:26]** OK, Yeah, this is a good one.
+**[00:06:28]** And Foundry provides also this like clear view to allow
+**[00:06:33]** me to understand the behavior of my agents, right?
+**[00:06:37]** I can even maximize it a little bit at the
+**[00:06:40]** upper right corner.
+**[00:06:42]** It's a little bit small.
+**[00:06:43]** But I think these are key metrics about this conversation
+**[00:06:47]** like number of spans, number of chat calls, number of
+**[00:06:50]** tool calls, latency and token consumption, right?
+**[00:06:54]** So it's very clear those are the key metrics.
+**[00:06:56]** And if you look at this tree view, everything is
+**[00:07:00]** rooted under a single invoke agent spam that has the
+**[00:07:05]** system message, the input from the customer and the output
+**[00:07:09]** from the agent.
+**[00:07:12]** And following that is a executed tool spam that the
+**[00:07:17]** agent uses to look up my travel notes right?
+**[00:07:21]** If we look take a closer look at the metadata
+**[00:07:24]** tab here, we'll be able to see like, oh the
+**[00:07:28]** this is a query the agent used to retrieve content
+**[00:07:31]** from my PDF file, right?
+**[00:07:33]** And this is like the final answer the tool was
+**[00:07:37]** able to retrieve to give back to the agent.
+**[00:07:41]** This is kind of a classic RAG pattern if you
+**[00:07:44]** guys have heard about that and in case you know
+**[00:07:47]** like if the agent running into any hallucination problem or
+**[00:07:51]** groundliness problem, this is likely we will where I will
+**[00:07:54]** start my debugging from and eventually everything is fed into
+**[00:07:58]** an LM for the final answer.
+**[00:08:03]** You can see that we have a replay button here
+**[00:08:06]** that, you know, I can choose the speed if I
+**[00:08:09]** do this, you know, I see like how the agent
+**[00:08:12]** is actually being executed.
+**[00:08:16]** And if I go to the user view, I can
+**[00:08:18]** even experience what an end user will see from this
+**[00:08:22]** agent, right?
+**[00:08:23]** Pretty cool.
+**[00:08:25]** OK, yeah, this really gives me a very clear view
+**[00:08:29]** to help me to deeply understand my agent behavior and
+**[00:08:33]** debug issues when I need to, right.
+**[00:08:36]** And at this point, you might be wondering, does this
+**[00:08:39]** only come with Foundry native agents?
+**[00:08:42]** What about my agents running somewhere else, right?
+**[00:08:45]** Do I get the same experience?
+**[00:08:47]** To answer that question, let me bring in my colleague
+**[00:08:49]** like Kumar.
+**[00:08:51]** Hi, talk about that.
+**[00:08:52]** Hi, I'm Nak Kumar and what I did along with
+**[00:08:56]** Hanshi was to build a similar travel agent about the
+**[00:08:59]** place that I'm from Bangalore and I call it the
+**[00:09:03]** Bangalore travel agent.
+**[00:09:05]** Unlike Hanshi's agent, Mind runs on GCP using the Google,
+**[00:09:09]** Google's ADK, and after registering it on the Foundry as
+**[00:09:14]** an external agent, we'll get to see the same rich
+**[00:09:18]** trace experience that you saw earlier.
+**[00:09:22]** So this is my trace experience screen, and I can
+**[00:09:25]** click on a screen on a trace and then look
+**[00:09:28]** at the responses.
+**[00:09:29]** But while we do that, I want to also send
+**[00:09:33]** a request to my GCP agent via curl.
+**[00:09:35]** So you can see it's running on Run dot app,
+**[00:09:39]** which is DCP.
+**[00:09:41]** And then we can take a look at the response
+**[00:09:42]** as soon as it's up here.
+**[00:09:43]** Yeah.
+**[00:09:44]** So that we know this is a real agent running
+**[00:09:46]** on GCP, right?
+**[00:09:47]** We're not like picking anything.
+**[00:09:49]** Yeah, I guess it will take a little bit to
+**[00:09:51]** come back because of network.
+**[00:09:52]** OK, here it comes back.
+**[00:09:53]** Yeah, you can see the city there.
+**[00:09:55]** And what?
+**[00:09:56]** OK, like this is a real agent running on GCP,
+**[00:09:58]** right?
+**[00:09:59]** We were able to send the HP request and get
+**[00:10:01]** this response back.
+**[00:10:03]** And to make this even more interesting, because like Kumar
+**[00:10:08]** and I both live in Seattle currently, so we even
+**[00:10:11]** build a third agent for Seattle Travel Tips and we
+**[00:10:15]** have it using the land graph and running on AWS.
+**[00:10:20]** Yeah, so I'm doing the same thing, sending out a
+**[00:10:24]** call to my agent on AWS with a question about
+**[00:10:28]** Seattle.
+**[00:10:30]** And while this is running, I'll explain the whole magic
+**[00:10:33]** behind it.
+**[00:10:34]** We also built another agent which acts as an orchestrator.
+**[00:10:39]** And that agent was built with Microsoft found is deployed
+**[00:10:43]** on the Foundry as hosted agent and uses our Microsoft
+**[00:10:46]** agent framework.
+**[00:10:48]** The way it works is it routes intelligently based on
+**[00:10:51]** the city that you ask it to.
+**[00:10:54]** And then all of them would emit open telemetry traces.
+**[00:10:58]** We can.
+**[00:11:00]** Here's the difference for the Seattle agent, and we can
+**[00:11:03]** jump into showcasing how the trace looks like that.
+**[00:11:06]** Sounds great.
+**[00:11:08]** Let's do that.
+**[00:11:10]** So this is the same agent that I told you
+**[00:11:13]** about, the orchestrator that we have.
+**[00:11:16]** This is the one.
+**[00:11:17]** That will invoke multiple agents across multiple.
+**[00:11:20]** Clouds, right?
+**[00:11:20]** Yep.
+**[00:11:21]** And if you see my message, I'm asking about Seattle,
+**[00:11:23]** Bangalore and Lisbon.
+**[00:11:25]** Lisbon is not one of the countries that we built
+**[00:11:27]** an agent for.
+**[00:11:27]** So there is a copilot SDK which acts as a
+**[00:11:29]** fall back for cities that we don't have data about
+**[00:11:32]** or we don't have like a specialized agent for.
+**[00:11:35]** While this is running, I can head on over to
+**[00:11:38]** the traces tab and show you an open trace from
+**[00:11:40]** earlier.
+**[00:11:41]** So this was the invoke agent span earlier I asked
+**[00:11:45]** it about like Seattle and Berlin and the city router
+**[00:11:48]** kind of decided to route this to like the Bangalore
+**[00:11:52]** and the Seattle agent.
+**[00:11:54]** And then you can see it invoke the Seattle specialist
+**[00:11:58]** to get all the details about Seattle and then goes
+**[00:12:01]** back into the copilot fall back for our Berlin related
+**[00:12:04]** data.
+**[00:12:09]** Yeah, that is super cool.
+**[00:12:11]** And to recap, right, So here is a bird's eye
+**[00:12:15]** view of what has just happened.
+**[00:12:20]** It's actually the next slide.
+**[00:12:25]** Yeah.
+**[00:12:26]** So what we saw from the playground is that a
+**[00:12:30]** user asked a question to the orchestrator and the orchestrator
+**[00:12:35]** runs in a foundry hosted agent.
+**[00:12:38]** That's kind of the pro code agent that will talk
+**[00:12:41]** a little bit more like in a little bit, right.
+**[00:12:43]** But that agent serves as orchestrator and route the question
+**[00:12:48]** to the right sub agent that is the specialist of
+**[00:12:52]** that specific city.
+**[00:12:54]** And you can see that each sub agent is running
+**[00:12:57]** on a different cloud running with different agent framework.
+**[00:13:02]** But because of all of them are emitting open telemetry
+**[00:13:07]** traces, Foundry observability was able to stitch together the end
+**[00:13:13]** to end execution and put everything in one uniform unified
+**[00:13:18]** trace.
+**[00:13:20]** And and that's why, like even though they are running
+**[00:13:24]** across multiple clouds, it feels like everything is in one
+**[00:13:28]** system.
+**[00:13:31]** OK, yeah, now let's talk about the key ingredients that
+**[00:13:36]** made this possible.
+**[00:13:40]** OK, first is Microsoft's agent platform.
+**[00:13:44]** We showcase like a foundry agent, foundry prompt agent, right?
+**[00:13:49]** That's the no code agents I demoed at the beginning
+**[00:13:52]** of the talk.
+**[00:13:54]** And Foundry also has like hosted agent, that's our orchestrator
+**[00:13:59]** agent.
+**[00:13:59]** That's the pro code.
+**[00:14:00]** You submit your code or your container to Foundry and
+**[00:14:03]** Foundry helps you to manage that and run your code
+**[00:14:06]** right so that we have full control of the agent
+**[00:14:08]** behavior.
+**[00:14:09]** And Foundry's hosted agent is what really shines for enterprise
+**[00:14:15]** scenarios because it has enterprise grade VM isolation.
+**[00:14:19]** It has agent identity that from Ontree that really guarantees
+**[00:14:24]** security and it has like key features like long running
+**[00:14:28]** operation routines, right, that are all like no very nice
+**[00:14:33]** features for enterprise customers.
+**[00:14:36]** But you know, like pro code or no code, I
+**[00:14:38]** think it's up to you.
+**[00:14:40]** But like foundry got to cover like you can choose
+**[00:14:42]** another one that fits your needs, right?
+**[00:14:44]** And once you have that, you can have the your
+**[00:14:48]** agent built in GitHub with code and prompt check in
+**[00:14:52]** to GitHub right?
+**[00:14:54]** You can run your agent in Foundry with beauty in
+**[00:14:58]** observability, evaluation and optimization.
+**[00:15:02]** And once you are ready, you can distribute your agents
+**[00:15:06]** to users on M-65.
+**[00:15:08]** The second ingredient is open telemetry is Gen.
+**[00:15:11]** AI Semantic conventions.
+**[00:15:13]** Think of this as a common telemetry schema across frameworks.
+**[00:15:17]** Whether it's the Foundry Prompt agent, a land graph app,
+**[00:15:21]** or an ADK service, they emit spans with consistent attributes
+**[00:15:26]** for agent names, model calls, and key events.
+**[00:15:29]** That consistency gives you a strong compatibility with downstream observability
+**[00:15:34]** and evaluation features on Microsoft Foundry.
+**[00:15:37]** Microsoft heavily contributes to the standards and we actively add
+**[00:15:41]** new scenarios to support.
+**[00:15:43]** Yeah, that sounds great.
+**[00:15:45]** Now, Kumar, can you show us what code change that
+**[00:15:47]** you need to make to adopt open telemetry instrumentation?
+**[00:15:51]** So Microsoft Open Telemetry Distro is the unified SDK that
+**[00:15:55]** can instrument most agent frameworks in multiple programming languages.
+**[00:16:00]** Foundry native agents have Microsoft Open Telemetry Distro instrumentation built
+**[00:16:06]** in, so I didn't have to make any code changes.
+**[00:16:10]** But for agents outside of Foundry, the distro supports auto
+**[00:16:13]** instrumentation and it's just a few lines of initialization code
+**[00:16:17]** to set up the SDK.
+**[00:16:19]** Let me hop on over to VS Code.
+**[00:16:23]** So this is my agent and all I have to
+**[00:16:26]** do is say use open telemetry and enable using it
+**[00:16:30]** with Azure Monitor and pass the Azure Monitor connection string,
+**[00:16:34]** tell it what framework I'm using and give it the
+**[00:16:38]** agent ID.
+**[00:16:39]** This is the same agent ID that I used to
+**[00:16:41]** register the agent on Foundry so it can pull up
+**[00:16:44]** the traces and correlate them.
+**[00:16:46]** Yeah, great.
+**[00:16:47]** One thing to call here is that Foundry Observability is
+**[00:16:51]** powered by Azure Monitor and Azure Application Insights, right?
+**[00:16:55]** And all of the foundry's traces are stored in Azure
+**[00:16:58]** Monitor.
+**[00:16:58]** So if you are an existing Azure Monitor users, maybe
+**[00:17:02]** for like other part of your nonagentic workflows and architecture,
+**[00:17:06]** you can keep using existing Azure Monitor features that you
+**[00:17:09]** might be already familiar with.
+**[00:17:14]** Cool.
+**[00:17:15]** Now that we will see unified traces from O3 clouds,
+**[00:17:18]** let's talk about why this matters in production, right?
+**[00:17:22]** Because, you know, seeing all the traces is great, but
+**[00:17:27]** the real value is operational that you want to, you
+**[00:17:31]** know, debug issues and monitor patterns and evaluate quality in
+**[00:17:35]** one workflow.
+**[00:17:37]** So traces are only useful if they can answer questions
+**[00:17:41]** quickly, right?
+**[00:17:42]** In production and for example like questions people may want
+**[00:17:46]** to ask in the demo setup we had is you
+**[00:17:48]** know did the routing agent route the question to the
+**[00:17:51]** right sub agents right?
+**[00:17:53]** Did the retrieval return like weak contacts that might have
+**[00:17:57]** caused hallucination problem or maybe like the did the latency
+**[00:18:02]** come from a cold start network, slow network or the
+**[00:18:05]** model itself?
+**[00:18:07]** And over time, we want to probably monitor if there's
+**[00:18:11]** any trend that the agent behavior is shifting.
+**[00:18:15]** We touched based on debug ability earlier in the talk.
+**[00:18:19]** Let me show you how the Monitor tab works.
+**[00:18:22]** Here you can see the live traffic patterns, latency distribution
+**[00:18:26]** and a few evaluation results.
+**[00:18:29]** One of the interesting things is the estimated cost, the
+**[00:18:32]** total token usage, the type of evaluations which ran on
+**[00:18:36]** the agent scheduled evals.
+**[00:18:38]** There were a few and then scheduled red teams as
+**[00:18:41]** well.
+**[00:18:42]** If we Scroll down, you can see some operational metrics
+**[00:18:46]** and one of the things I noticed is the error
+**[00:18:49]** rate went up earlier.
+**[00:18:50]** I should probably should get that checked out.
+**[00:18:53]** And if you keep scrolling down, you can see more
+**[00:18:56]** scheduled evaluation results and what the human evaluator did on
+**[00:18:59]** this as well.
+**[00:19:02]** Yeah, one of the tool called Successes also went down
+**[00:19:04]** recently.
+**[00:19:05]** I guess we should take a look at it soon.
+**[00:19:09]** OK, now let's take a look at the fleet wheel.
+**[00:19:14]** On the Operate tab, you can look at all your
+**[00:19:18]** agents in a particular Foundry project and take a look
+**[00:19:22]** at everything that pops up.
+**[00:19:25]** One of the things you can see is our Active
+**[00:19:28]** Alerts Foundry.
+**[00:19:29]** If you have an agent on Foundry, by default you
+**[00:19:32]** have a security workflow running, so you get alerts on,
+**[00:19:35]** you know, things like malicious URLs were detected or a
+**[00:19:38]** jailbreak attempt was made on your prompt and things like
+**[00:19:41]** that.
+**[00:19:42]** You can also set up alerts on evaluation results.
+**[00:19:46]** So let's say your agent stops working the way it's
+**[00:19:50]** supposed to do.
+**[00:19:51]** Then you can be alerted on it and you can
+**[00:19:54]** see things like agent success rate, agent volume, which was
+**[00:19:58]** the most used volume agent over time, and so on.
+**[00:20:02]** Yeah, that's very cool.
+**[00:20:03]** Definitely feel more confident in production operations with low small
+**[00:20:07]** interviews.
+**[00:20:09]** Now maybe let's talk about evaluation.
+**[00:20:11]** Yeah.
+**[00:20:11]** So for evaluations, let me pull up some code that
+**[00:20:15]** I wrote.
+**[00:20:16]** You can set up evaluations on traces using the Foundry
+**[00:20:19]** project line and select what evaluator you want to add
+**[00:20:23]** into the testing criteria.
+**[00:20:24]** Here I have intent resolution evaluator, and then we run
+**[00:20:28]** this on a particular agent ID.
+**[00:20:31]** So once you set this up and create an eval,
+**[00:20:33]** you get to see eval results which kind of look
+**[00:20:36]** like this.
+**[00:20:38]** So this one ran a bunch of different metrics, and
+**[00:20:42]** I can see that there was some trace which didn't
+**[00:20:45]** work well.
+**[00:20:46]** So I'll click on this trace and we'll be directly
+**[00:20:49]** taken into the trace view of that particular agent.
+**[00:20:52]** And once you click on it, you'll be able to
+**[00:20:54]** identify what went wrong.
+**[00:20:56]** The first thing that I want to see is oh,
+**[00:20:58]** this was a the users intent was to compare Bengaluru
+**[00:21:01]** and Barcelona for an after work evening and keeping the
+**[00:21:05]** plan concise.
+**[00:21:07]** But when I see the eval results which show up
+**[00:21:10]** here and the task adherence was when we saw the
+**[00:21:14]** failure.
+**[00:21:15]** So the user asked for a concise comparison, but the
+**[00:21:19]** response material did not cover both cities and hence the
+**[00:21:22]** task adherence came out to be a failure.
+**[00:21:25]** Let's see what the response was.
+**[00:21:28]** Well, yeah, there is no comparison.
+**[00:21:30]** There is description about both of them.
+**[00:21:32]** I guess the evaluator was looking for a table.
+**[00:21:37]** Yeah, that's pretty cool.
+**[00:21:39]** And yeah, so the the loop we want to draw
+**[00:21:42]** here is very simple, right?
+**[00:21:44]** Like instrument your code with open telemetry, debug, evaluate and
+**[00:21:49]** optimize in production with live traffic and then like again
+**[00:21:54]** fleet level visibility if you want to manage and control
+**[00:21:58]** them and everything are done on like 1 observability plane.
+**[00:22:04]** OK, cool.
+**[00:22:08]** And like there are like so many great foundry features
+**[00:22:11]** that we cannot cover due to like time constraints in
+**[00:22:14]** this session, but want to call out on them so
+**[00:22:16]** that you guys can check out check on them later.
+**[00:22:19]** So rubric evaluators like creates customized evaluation plan tailored to
+**[00:22:25]** your agent, right?
+**[00:22:27]** So that solves your evaluation code start problem.
+**[00:22:30]** Agent optimization improves your agent by you know, fine tuning
+**[00:22:34]** your system prompt, trying out the different models and maybe
+**[00:22:38]** leveraging like a few new tools for customers who want
+**[00:22:42]** to leverage or opt in for 865.
+**[00:22:44]** Foundry natively supports that.
+**[00:22:46]** And as much as we like and support and recommend
+**[00:22:49]** open telemetry is generative in AI semantic conversions, we understand
+**[00:22:54]** like some customers might be using another trace format today
+**[00:22:58]** and may not be easy for them to switch.
+**[00:23:01]** That's why we want to meet customers where they are.
+**[00:23:03]** So we support these two popular frameworks, popular format open
+**[00:23:07]** inference and open elementary for like trace viewing and trace
+**[00:23:11]** evaluation.
+**[00:23:13]** Exactly, We recommend you to check out recordings of other
+**[00:23:17]** Foundry sessions.
+**[00:23:18]** R Wizard Foundry's public documentation.
+**[00:23:20]** Here's the QR code that connects to you to our
+**[00:23:23]** repo where with all our agents that we had showcased
+**[00:23:26]** earlier.
+**[00:23:27]** Yeah, that's great.
+**[00:23:28]** And we are really proud of the breadth and depth
+**[00:23:31]** of what Foundry has to offer to help you to
+**[00:23:35]** run consistent, high quality and actionable of agent observability, right
+**[00:23:41]** and build what you want, run it where you need
+**[00:23:44]** and observe it all in one place, any agent, any
+**[00:23:48]** cloud, one observability plane.
+**[00:23:51]** Thank you.

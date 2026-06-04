@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OD821 - Building Azure DocumentDB on Open-Source Foundations</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; OD821</nav>
+        <h1>OD821 &mdash; Building Azure DocumentDB on Open-Source Foundations</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">OD821 &middot; Pre-recorded</span>
+    <h1>Building Azure DocumentDB on Open-Source Foundations</h1>
+    <div class="speakers"></div>
+    <div class="meta">
+        <span>Pre-recorded</span>
+<span>(300) Advanced</span>
+    </div>
+    <div class="tags"><span class="tag">CosmosDB</span> <span class="tag">Azure Cosmos DB</span> <span class="tag">CP&amp;D</span> <span class="tag">Cloud platform &amp; data</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/OD821?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/53a4c270-d41b-4a8f-b8a5-224f64d1bf02" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/53a4c270-d41b-4a8f-b8a5-224f64d1bf02" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>How do you turn a high-performance open-source database engine into a globally distributed, fully managed cloud service? In this session, we go under the hood of Azure DocumentDB (prev. Azure Cosmos DB for MongoDB vCore) and explore how it is powered by the open-source DocumentDB engine. You&#39;ll learn how Microsoft built a multi-tenant cloud architecture around this core, including service orchestration, elastic scaling, workload isolation, and API compatibility.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>This advanced session traces how Microsoft transformed Azure DocumentDB (formerly Azure Cosmos DB for MongoDB vCore) from a managed service into an open-source project and back again, building the managed offering atop the open-source, Postgres-backed DocumentDB engine. Product Manager Abinav Rameesh details the project-versus-product distinction, the rationale for open-sourcing under MIT and joining the Linux Foundation, and how the managed service competes on being cheaper, faster, and better—demonstrated through multicloud and hybrid-cloud replication.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>DocumentDB went open source under the MIT license (Jan 2025)</strong> — After beginning the effort in January 2024, the team released the project to strong media coverage, GitHub stars, forks, and adoption [00:01:48–00:05:32].</li>
+<li><strong>Joining the Linux Foundation</strong> — The team joined the foundation to give the developer community assurance that the project would persist independently of Microsoft and not have &quot;the rug pulled from underneath them&quot; [00:14:47–00:16:20].</li>
+<li><strong>32TB disks today with a roadmap to 64TB and 160TB</strong> — Decoupling storage from compute lets large workloads run on far fewer compute nodes (e.g., ~13 instead of 100 for 200TB) [00:23:10–00:23:58].</li>
+<li><strong>12x performance boost via SSD v2 at no extra cost</strong> — IOPS caps moved from 20,000 to 80,000, so a workload that once cost $4,500/month delivers the same performance at $280/month [00:30:57–00:32:25].</li>
+<li><strong>1 million sustained writes per second on a single node</strong> — Achieved on a 32-core machine with a 2TB disk at 80,000 IOPS, reaching nearly 200,000 transactions per dollar [00:32:48–00:34:00].</li>
+<li><strong>Multicloud and hybrid-cloud replication demos</strong> — Globally distributed setup across Azure, AWS, and GCP with managed failover and zero data loss, plus on-prem-to-Azure sync replication [00:35:22–00:41:25].</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>The distinction between an open-source project (user and contributor cohorts) and a revenue-driving managed product</li>
+<li>Licensing decisions and the choice of the three-paragraph MIT license for frictionless adoption</li>
+<li>Open-source health metrics: elephant factor, bus factor, and heartbeat factor</li>
+<li>Internal mentorship from Citus, Postgres contributors, TypeScript, and VS Code teams</li>
+<li>Why Postgres: extensibility, maturity, and extensions like Citus and pgVector for vector search/RAG</li>
+<li>Building a MongoDB-compatible query protocol on top of Postgres rather than reinventing indexing, query performance, and high availability</li>
+<li>TCO drivers: separating storage and compute cost, and eliminating charges for support, licensing, backups, networking egress, and observability</li>
+<li>Customer migrations from DB2 (262TB, ~$9M/year savings), HBase (bill cut more than half), and a 200TB competitor migration</li>
+<li>Global strong consistency with acknowledgment from primary plus at least one remote replica</li>
+<li>Hybrid-cloud resilience when the replication pipe breaks and resyncs</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;We started with a managed service, went back into building an opensource engine from the managed service, but then funneled all of our opensource learnings from the project back into the managed service.&quot; — Abinav Rameesh</p>
+</blockquote>
+<blockquote>
+<p>&quot;We didn&#39;t want the community to feel that at any point we could pull the rug from underneath them.&quot;— Abinav Rameesh</p>
+</blockquote>
+<blockquote>
+<p>&quot;You start at $280 a month, stay at $280 a month, and you get the same performance that you previously would have needed $4,500 for.&quot; — Abinav Rameesh</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Azure DocumentDB (formerly Azure Cosmos DB for MongoDB vCore)</li>
+<li>DocumentDB (open-source engine)</li>
+<li>PostgreSQL</li>
+<li>Citus</li>
+<li>pgVector</li>
+<li>MongoDB (API compatibility)</li>
+<li>Azure Premium SSD v2 managed disks</li>
+<li>Kubernetes / DocumentDB Kubernetes operator</li>
+<li>VS Code DocumentDB extension</li>
+<li>Prometheus and Grafana</li>
+<li>AWS and GCP (Kubernetes clusters)</li>
+<li>Linux Foundation</li>
+<li>MIT License</li>
+<li>TypeScript</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Abinav Rameesh — Product Manager, Azure DocumentDB team</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>documentdb.io — open-source project, events, and updates (also hosts the community-driven samples gallery and skills.md)</li>
+<li>Link to the Azure managed service for feature, performance, and TCO updates (referenced at the end of the session)</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (54,223 chars)</summary>
+        <pre class="transcript-body">[00:00:03] ABINAV RAMEESH: Thank you all for joining my session today.
+[00:00:06] My name is Abinav Rameesh.
+[00:00:07] I am a Product Manager on the Azure DocumentDB team.
+[00:00:12] And today I&#39;m going to talk to you all
+[00:00:13] about how we built Azure DocumentDB
+[00:00:16] on opensource foundations.
+[00:00:18] Essentially, the theme of this conversation is going
+[00:00:20] to be how we started with a managed service,
+[00:00:23] went back into building an opensource engine
+[00:00:27] from the managed service, but then funneled all
+[00:00:29] of our opensource learnings from the project back
+[00:00:33] into the managed service.
+[00:00:34] So hope you all enjoy this talk.
+[00:00:37] For a little bit about who we are and what we do as a product,
+[00:00:40] we are an opensource, fully MongoDB compatible,
+[00:00:44] NoSQL document database.
+[00:00:47] We are Postgres-backed,
+[00:00:48] and that&#39;s where the major fundamentals
+[00:00:51] of our opensource fundamentals kick in.
+[00:00:54] We are obviously fully opensource,
+[00:00:57] and what that means is we are also able
+[00:00:59] to provide multicloud functionality.
+[00:01:01] And multicloud here means several things.
+[00:01:03] It could actually be across multiple cloud providers,
+[00:01:07] but it could also be a hybrid cloud setup,
+[00:01:09] where you&#39;re running with one foot on-prem
+[00:01:11] and one foot on Azure and so on.
+[00:01:14] And of course, at the end of the day,
+[00:01:15] we did build a managed service around this foundation.
+[00:01:19] And so what you do get with Azure DocumentDB is all
+[00:01:22] of the managed bells and whistles, the knobs and levers
+[00:01:25] that come with being built around that engine
+[00:01:29] in the opensource, but fully managed in Azure.
+[00:01:32] I wanted to start a little bit about what our journey
+[00:01:36] to opensource actually looked like.
+[00:01:38] And this is a very high-level view of what that one
+[00:01:42] and a half year process, actually a little bit more
+[00:01:44] than that, ended up entailing.
+[00:01:48] And as I called out, we actually started with Azure DocumentDB.
+[00:01:52] We were called something before that.
+[00:01:54] This was before January 2024.
+[00:01:56] We went GA.
+[00:01:57] We had the managed service, but then what we thought was
+[00:02:00] because we are already built on an opensource database,
+[00:02:04] why not opensource our product in itself
+[00:02:07] and have an opensource project
+[00:02:09] that people can actually look at, see what we&#39;re building,
+[00:02:12] see how we&#39;re doing it, and bring the developer community
+[00:02:15] into that building process.
+[00:02:18] So in January 2024, we began thinking
+[00:02:21] about what opensource would mean for us.
+[00:02:25] And interestingly, the name DocumentDB actually showed
+[00:02:28] up in the opensource project before we even started calling
+[00:02:31] ourselves that.
+[00:02:32] That&#39;s a whole different story.
+[00:02:34] But that started a little
+[00:02:35] over two years ago the entire conversation for us.
+[00:02:40] And obviously being part of Microsoft,
+[00:02:42] there were several opensource projects
+[00:02:44] that we had already heard of, several teams
+[00:02:46] that had built around opensource.
+[00:02:49] And so we got a lot of advice.
+[00:02:51] And because of our background in Postgres,
+[00:02:54] and because of Citus having been acquired in 2019,
+[00:02:57] and having built a scale-out Postgres database of their own,
+[00:03:02] we got a lot of insight and feedback even about the approach
+[00:03:06] that we were starting to take, the right mindset,
+[00:03:09] the right perspective to have on really building truly
+[00:03:13] with an opensource engine, and then putting all
+[00:03:15] of the managed components around it.
+[00:03:19] And their recommendation, which is something
+[00:03:20] that took us a while to get to,
+[00:03:22] was essentially having a very clear idea if we&#39;re looking
+[00:03:26] to build around opensource on what the project should look
+[00:03:29] like and what the product should look like.
+[00:03:32] And I&#39;ll actually get into a little bit
+[00:03:33] about what this distinction meant, but this was something
+[00:03:36] that we had no idea about.
+[00:03:38] And this was a huge learning for us and actually continues
+[00:03:41] to be a learning even as we look well beyond this journey
+[00:03:44] and clearly have our feet wet
+[00:03:47] in both the project and the product.
+[00:03:51] What came very quickly after that was of course figuring
+[00:03:53] out what the licensing model should look like.
+[00:03:56] And obviously, because we&#39;re built in Azure,
+[00:03:58] because we are a subscription-based service,
+[00:04:01] we certainly don&#39;t have any licenses
+[00:04:02] for the managed product.
+[00:04:04] But at the end of the day,
+[00:04:05] opensource does entail having a license.
+[00:04:08] It could actually entail having multiple licenses,
+[00:04:10] depending on the nature of your project.
+[00:04:12] And we actually had to have long, lengthy conversations
+[00:04:15] around what is the best license
+[00:04:18] that the opensource community could actually consume.
+[00:04:21] And so we landed on the MIT license, and that was actually
+[00:04:24] because we wanted this to be as simple
+[00:04:27] and as frictionless as possible.
+[00:04:29] For anyone familiar with this,
+[00:04:30] the MIT license is three paragraphs.
+[00:04:32] There&#39;s absolutely no restrictions
+[00:04:34] on a user, on a contributor.
+[00:04:36] You can take the project, do whatever you want, run with it,
+[00:04:39] build around it, build on top of it, build next to it.
+[00:04:43] Essentially no restrictions at all.
+[00:04:45] And it&#39;ll take you about 10 seconds to finish reading
+[00:04:47] through the entire thing.
+[00:04:48] And so that&#39;s essentially what we landed on.
+[00:04:51] No regrets, clearly the right decision.
+[00:04:53] In September, we then started having legal discussions,
+[00:04:57] because obviously we&#39;re talking about a product that&#39;s part
+[00:04:59] of the Microsoft ecosystem in Azure,
+[00:05:02] a project that&#39;s essentially sitting independently
+[00:05:05] of Microsoft but still run by Microsoft.
+[00:05:08] So what does that separation look
+[00:05:09] like of project and product?
+[00:05:11] And there were a lot of things that we had
+[00:05:13] to learn along the way.
+[00:05:15] But these were really more about do&#39;s and don&#39;ts,
+[00:05:17] as opposed to things that were specific to the technical nature
+[00:05:20] of building around opensource.
+[00:05:22] So by this point, it&#39;s getting close to a year.
+[00:05:24] End of December, we said, okay, we have to launch,
+[00:05:27] scramble to the finish line.
+[00:05:28] And by Jan 2025, we made the big announcement.
+[00:05:32] DocumentDB went to opensource.
+[00:05:34] And it was actually very well received.
+[00:05:36] A lot of media coverage, a lot of press.
+[00:05:40] A lot of adoption and all of the typical metrics that come
+[00:05:44] with opensource, the GitHub stars, the forks, the clones,
+[00:05:48] we saw all of that take a very sharp rise,
+[00:05:50] and it was very promising.
+[00:05:52] And a couple of months in, so now we&#39;re looking at a little
+[00:05:55] over a year ago, there was a good amount
+[00:05:57] of external interest as well.
+[00:05:59] So there were a lot of people, and I mean external companies
+[00:06:03] that had expressed verbal support, public verbal support,
+[00:06:07] and we got up to 10 organizations
+[00:06:08] that said they would, on the one hand be willing
+[00:06:11] to use our opensource project, but also build on top of it
+[00:06:16] to see what they could do just in terms
+[00:06:18] of opensource contributions.
+[00:06:20] And the last piece in all of this, we had to gain true,
+[00:06:23] true credibility in the opensource community.
+[00:06:26] No better way to do that than to join an opensource foundation.
+[00:06:31] And that&#39;s essentially where the Linux Foundation came into play.
+[00:06:34] And I&#39;ll talk a little bit about what that means
+[00:06:35] and of course how that ties in to the product that&#39;s built
+[00:06:40] around the project as a whole.
+[00:06:43] So the first decision that we had to make was essentially
+[00:06:47] if we want to build around an opensource project,
+[00:06:51] what is that separation of project
+[00:06:53] and product going to look like?
+[00:06:56] And these are completely different cohorts.
+[00:06:58] So when we think about an opensource project,
+[00:07:01] this is really developers that are out in the open,
+[00:07:03] developers that are in GitHub, that either have projects
+[00:07:07] of their own that they want a database for,
+[00:07:10] or looking to build projects of their own
+[00:07:12] and they&#39;re looking for a platform.
+[00:07:14] And so the first bucket there was essentially the user cohort.
+[00:07:18] And this we assumed was going to be the biggest bucket,
+[00:07:22] the overwhelmingly largest favorite bucket.
+[00:07:26] And what this really means is these are people looking
+[00:07:29] to consume a database for their project,
+[00:07:32] but not necessarily looking to build a database of their own.
+[00:07:35] And it&#39;s really, if you were to think of any application,
+[00:07:38] anything and everything needs data.
+[00:07:40] It needs data to be housed somewhere, and obviously
+[00:07:43] that means having a database of some kind.
+[00:07:46] And so as expected, this was the largest cohort.
+[00:07:50] And we also were reasonably accurate
+[00:07:54] in that initial assumption, that this was going to be based
+[00:07:57] on enthusiasts that were already familiar with Postgres.
+[00:08:00] But the biggest component in all
+[00:08:02] of this is they wanted a NoSQL database.
+[00:08:04] They wanted a Mongo database.
+[00:08:07] And by virtue of being fully permissive,
+[00:08:10] we now provided them a free,
+[00:08:13] no-restrictions-based opensource project
+[00:08:16] that was Mongo compatible.
+[00:08:19] The much smaller bucket, and we assumed at least 1 in every 50,
+[00:08:24] hence that 98-2 split, but the reality of it was it ended
+[00:08:29] up being a lot more users per contributor.
+[00:08:32] The contributors are the ones that are actually looking
+[00:08:35] to build either a database of their own and they&#39;re looking
+[00:08:38] for a platform on top of which they want to do this.
+[00:08:40] Which if you think about it,
+[00:08:41] is exactly what we were doing on top of Postgres.
+[00:08:44] So Postgres is an opensource database, has been opensource
+[00:08:47] for a long time, has been around for a long time, and by virtue
+[00:08:51] of us building DocumentDB on top of Postgres,
+[00:08:53] we would actually be a contributor
+[00:08:56] in the Postgres space.
+[00:08:58] And what we were now trying to figure out is how many
+[00:09:01] such contributors would we have building on top of DocumentDB.
+[00:09:05] And this was the smaller cohort that were looking
+[00:09:08] to build managed services of their own,
+[00:09:12] contribute to opensource projects, and so on.
+[00:09:15] The second bucket, and this is the revenue-driving bucket,
+[00:09:19] which is the product side of things.
+[00:09:22] And at this point, what we&#39;re saying is these are companies.
+[00:09:24] This is anybody that&#39;s building a product of their own
+[00:09:27] that needs a database.
+[00:09:29] And at this point, it&#39;s not just about contributions.
+[00:09:31] You&#39;re actually looking for all
+[00:09:32] of the management functionality that comes around it.
+[00:09:35] So yes, you want a database, but you don&#39;t want
+[00:09:38] to manage elasticity yourself.
+[00:09:39] You don&#39;t want to manage storage and compute yourself.
+[00:09:43] You don&#39;t want to be managing high availability
+[00:09:45] and disaster recovery.
+[00:09:47] You don&#39;t want to be in the business
+[00:09:48] of injecting your own security guardrails.
+[00:09:51] You want a service, a full-blown product, not just a database,
+[00:09:56] to manage all of this for you.
+[00:09:58] And so these were the two clear buckets that we had to look at
+[00:10:02] and say, how do we cater to both?
+[00:10:03] But more importantly, how do we build Azure DocumentDB on top
+[00:10:07] of the opensource project?
+[00:10:10] And really, in addition to Citus, we also had a whole bunch
+[00:10:14] of other experts inhouse that we were able to get learnings from.
+[00:10:19] Citus was one of them,
+[00:10:20] but we also have contributors actively contributing
+[00:10:23] to opensource Postgres that weren&#39;t just inspirations,
+[00:10:27] but were actually mentors to us in terms of how we wanted
+[00:10:30] to manage both project and product.
+[00:10:32] TypeScript, for anyone that&#39;s familiar
+[00:10:35] with the programming language, has now become one
+[00:10:37] of the most popular programming languages.
+[00:10:40] It&#39;s right up there with Python and Node.
+[00:10:42] And that&#39;s an opensource project that started inhouse,
+[00:10:45] and so a lot of feedback and learnings from them.
+[00:10:49] And of course Visual Studio with VS Code, it&#39;s now one
+[00:10:53] of the most popular developer platforms.
+[00:10:55] That&#39;s exactly the cohort
+[00:10:57] that we&#39;re looking to cater to anyways.
+[00:10:59] So essentially, lots of really good feedback.
+[00:11:03] And this was actually something that was interesting.
+[00:11:06] So when we&#39;re looking to build around opensource,
+[00:11:09] the key in all of this is we&#39;ve got a project on one side,
+[00:11:13] we&#39;ve got a product on the other side.
+[00:11:15] And now the idea was, how do we measure success
+[00:11:18] of both while trying to have both of them coexist?
+[00:11:23] And so when you think of a product, when you think
+[00:11:24] of an Azure-managed service, it&#39;s very clear you&#39;re looking
+[00:11:27] at the number of customers you have, you&#39;re looking
+[00:11:29] at the number of clusters you have, you&#39;re looking
+[00:11:32] at core counts and how much storage I have under management.
+[00:11:35] How many revenue and profits and there&#39;s all
+[00:11:40] of those typical business metrics that come into play.
+[00:11:44] When you think of opensource, it&#39;s actually very,
+[00:11:47] very different, right?
+[00:11:48] It&#39;s really you&#39;re assessing the popularity
+[00:11:51] of an opensource project.
+[00:11:53] And there were three very interesting metrics
+[00:11:56] that we learned of, these were all new to us.
+[00:11:59] And one is called an elephant factor, which is really,
+[00:12:01] we spoke about the 10 organizations
+[00:12:03] that had publicly supported us and verbally supported us.
+[00:12:06] But how many of those organizations are actually
+[00:12:09] contributing, right?
+[00:12:10] How many organizations account for at least half
+[00:12:13] of the contributions going into your project?
+[00:12:15] And the idea is you want this number to be large.
+[00:12:17] So the more organizations that are contributing
+[00:12:19] to at least 50% means you have a larger community.
+[00:12:24] And the fewer that you have means a lot
+[00:12:26] of the contributions are still heavily focused
+[00:12:28] around one organization, right?
+[00:12:30] Which is still fine, but there&#39;s not a lot of diversity
+[00:12:34] in the contributor pool essentially is what this means.
+[00:12:38] The second one is called a bus factor.
+[00:12:40] Now this one&#39;s as ridiculous as it sounds.
+[00:12:42] What it really means is how many
+[00:12:44] of the vital contributors can actually get hit
+[00:12:47] by a bus before the project actually stalls?
+[00:12:51] So now this number, you obviously want it to be as low
+[00:12:53] as possible because that actually means you have a lot
+[00:12:56] of diversity.
+[00:12:57] There&#39;s a lot of people contributing to it.
+[00:12:58] There&#39;s a lot of people that are going to be able to pick
+[00:13:00] up the slack if someone leaves the team,
+[00:13:02] if someone leaves the organization, if someone decides
+[00:13:05] to do their own thing,
+[00:13:06] if someone decides they&#39;ve had enough.
+[00:13:08] So the idea is how resilient is the project
+[00:13:11] to members actually leaving the project itself.
+[00:13:15] Now, the last one, this is really more of a general health
+[00:13:19] of the project, which is the heartbeat factor.
+[00:13:22] How many commits do you have?
+[00:13:23] How many pull requests do you have?
+[00:13:25] How many releases do you have?
+[00:13:26] These could be minor version releases.
+[00:13:28] These could be major version releases.
+[00:13:30] So things of that nature, which is obviously as this continues
+[00:13:34] to grow over time, what it means is that there&#39;s more momentum.
+[00:13:38] It&#39;s not just one of those projects
+[00:13:39] that nobody cares about.
+[00:13:40] This is something that the community is truly building,
+[00:13:43] and it is something that we&#39;re taking seriously, right?
+[00:13:47] And as you can see, building a product
+[00:13:49] around this was very different
+[00:13:50] because the product is ultimately going to be
+[00:13:52] about business metrics, but the project is actually more
+[00:13:56] about community engagement and involvement metrics,
+[00:14:00] which is very different.
+[00:14:05] What we wanted to showcase here is
+[00:14:07] that both actually are completely independent entities.
+[00:14:11] So we do have a website, DocumentDB.io, and if you go
+[00:14:15] to it, you&#39;ll actually see that it lives completely outside.
+[00:14:18] It&#39;s community driven.
+[00:14:19] You can actually contribute
+[00:14:21] to the website&#39;s repository yourself,
+[00:14:24] and we&#39;ve actually gotten things like a samples gallery.
+[00:14:26] These are all AI built.
+[00:14:28] We&#39;ve got our own skills.md that you can use
+[00:14:31] to build samples on top of DocumentDB.
+[00:14:34] These can be vibe coded.
+[00:14:36] Essentially, it makes the developer&#39;s life very,
+[00:14:38] very simple.
+[00:14:40] But it does live as an independent entity of its own.
+[00:14:47] Now, the last step in this process was really us joining
+[00:14:52] the Linux Foundation.
+[00:14:53] Now, a lot of people actually asked us,
+[00:14:54] what is your purpose in all of this?
+[00:14:57] And the idea was when we launched the project,
+[00:15:00] we got a lot of press, a lot of great feedback,
+[00:15:03] a lot of users jumping in.
+[00:15:05] People wanted to try it out immediately.
+[00:15:07] And a lot of Postgres enthusiasts in particular,
+[00:15:09] which we were hoping to gain a lot of traction from because
+[00:15:14] of how popular Postgres in itself is, but then the idea
+[00:15:18] of it was why the foundation?
+[00:15:20] What is your angle here?
+[00:15:23] And our take on this was when we think about something
+[00:15:26] like an elephant factor,
+[00:15:27] which is how many organizations are actually contributing
+[00:15:29] to this, in the beginning,
+[00:15:31] this was still very heavily driven by us.
+[00:15:33] And we didn&#39;t want the community to feel
+[00:15:36] that at any point we could pull the rug from underneath them.
+[00:15:39] We could just say, oh, sorry, you have to go
+[00:15:41] and use the Azure-managed service
+[00:15:43] and we&#39;re no longer going
+[00:15:45] to support the opensource project anymore.
+[00:15:49] That could take a lot of independence and power away
+[00:15:52] from the developers, but that&#39;s something
+[00:15:54] that the developers would be protected by just by virtue
+[00:15:58] of us joining a foundation, especially a foundation
+[00:16:00] as credible as the Linux Foundation,
+[00:16:03] where even if we then think about the bus factor,
+[00:16:06] where if everybody were to leave tomorrow
+[00:16:08] and suddenly there&#39;s absolutely nobody looking at the project,
+[00:16:11] just by virtue of being in the foundation,
+[00:16:14] developers have this sense of comfort, the security
+[00:16:17] that the project itself is not going to go away.
+[00:16:20] It will be picked up by the foundation, and it will continue
+[00:16:23] to live on and continue to be supported
+[00:16:27] in whatever state it is.
+[00:16:29] In the worst case, it&#39;ll just be there, but it won&#39;t go away.
+[00:16:32] And it&#39;s something that the developer community will
+[00:16:34] continue to be able to use and build on top of and all
+[00:16:38] of the permissive components
+[00:16:40] of the project will continue to exist.
+[00:16:45] Now, the real question in all of this is why Postgres?
+[00:16:49] Now, we live in the era of AI.
+[00:16:52] So when we&#39;re thinking of building something
+[00:16:54] as fundamental as a database, we don&#39;t have the luxury of time
+[00:16:58] to go back and start from scratch
+[00:16:59] and build every single component by itself.
+[00:17:02] Now, Postgres has been around for a long, long time.
+[00:17:05] It has solved a lot of problems.
+[00:17:07] And if you just look at the popularity of Postgres,
+[00:17:09] there&#39;s over a million developers worldwide.
+[00:17:11] And I&#39;m pretty sure this is a massive, massive underestimate.
+[00:17:15] There&#39;s over 100,000 contributors
+[00:17:18] that Postgres has had.
+[00:17:19] And we have over bunch of them here on our team as well.
+[00:17:22] If you just look at the commits in the last year,
+[00:17:25] there&#39;s almost 45,000-plus commits, 50k-plus GitHub stars,
+[00:17:29] 300 million-plus downloads.
+[00:17:31] All this to say it&#39;s an incredibly popular opensource
+[00:17:34] database, and it&#39;s been the fastest-growing opensource
+[00:17:37] database over the last decade.
+[00:17:40] And the beauty of Postgres, and this is something
+[00:17:42] that we have leveraged in Azure DocumentDB as well
+[00:17:46] as opensource DocumentDB, is it&#39;s what we call extensible.
+[00:17:51] So if a new solution had to be added in Postgres, yes,
+[00:17:54] you can add something that&#39;s very,
+[00:17:55] very fundamental to the engine itself.
+[00:17:57] But you can add these extensions on top of Postgres
+[00:18:01] that solve a whole bunch of problems.
+[00:18:03] If you&#39;re looking to add replication
+[00:18:06] and high availability, we spoke about Citus.
+[00:18:08] Citus is actually a Postgres extension that&#39;s built
+[00:18:11] on top of Postgres.
+[00:18:12] You wanted to build a graph component to it.
+[00:18:15] That can be an extension on top of Postgres, and it actually is.
+[00:18:18] We are in the era of AI.
+[00:18:21] So AI, when it comes to a database, is all about RAG,
+[00:18:24] and it&#39;s all about vector search.
+[00:18:26] pgVector is an extension that&#39;s built on top of Postgres
+[00:18:30] that allows users to do vector search on top of their database
+[00:18:34] for more semantically meaningful results, right?
+[00:18:40] And so what this now meant is
+[00:18:42] when we were building a NoSQL database on top of Postgres
+[00:18:46] as a foundation, as a platform, we didn&#39;t have
+[00:18:49] to reinvent the wheel when it came to indexing.
+[00:18:51] We didn&#39;t have to reinvent the wheel
+[00:18:53] when it came to query performance.
+[00:18:55] We didn&#39;t have to reinvent the wheel when it came to throughput
+[00:18:57] and high availability.
+[00:18:58] A lot of these were solutions
+[00:19:00] and extensions that already existed.
+[00:19:02] And so what we focused
+[00:19:04] on heavily was building the Mongo query protocol on top
+[00:19:09] of Postgres that we could then just funnel into Postgres
+[00:19:12] and leverage all the goodness
+[00:19:13] that Postgres brings to the table.
+[00:19:18] Great. So all of that
+[00:19:20] to say that&#39;s what our opensource journey was like
+[00:19:22] and that&#39;s what our decision-making process
+[00:19:24] into the opensource project looked like,
+[00:19:27] why we chose Postgres, why we chose the Linux Foundation
+[00:19:30] as a foundation to join, and how we separated product
+[00:19:33] and project.
+[00:19:34] But now when we&#39;re looking at the managed service in itself
+[00:19:38] with Azure DocumentDB that we built
+[00:19:39] around opensource DocumentDB, there were three primary pillars
+[00:19:44] that we had to target.
+[00:19:45] The first one, and the most obvious one,
+[00:19:47] is we had to be cheaper.
+[00:19:49] So we had to provide the lowest entry point, particularly
+[00:19:53] in a NoSQL space, in a document database space,
+[00:19:56] in a Mongo API compatibility space.
+[00:19:59] So TCO was something that we focused on heavily.
+[00:20:02] And that is one of our biggest claims to fame, if I can say so.
+[00:20:08] And then obviously in addition to that,
+[00:20:09] that&#39;s the first entry point in decision making is, okay, great,
+[00:20:12] I need to find the cheapest option.
+[00:20:14] That&#39;s fantastic.
+[00:20:15] But cheap and low TCO should not compromise quality.
+[00:20:20] So how do we ensure that we&#39;re also better?
+[00:20:22] Better in itself could mean several things.
+[00:20:24] Better than the prior versions of ourself.
+[00:20:26] Better than competing products out there in the market.
+[00:20:30] And how do we ensure that we provide developers,
+[00:20:33] and in today&#39;s world, agents,
+[00:20:35] the best possible Mongo-compatible,
+[00:20:39] NoSQL database experience built
+[00:20:42] on opensource platforms and projects?
+[00:20:46] And the last bucket in all of that is, well,
+[00:20:49] Azure through management components might provide a
+[00:20:52] better solution, but everything has to be fast.
+[00:20:56] Everything has to keep continuing to be faster
+[00:20:58] and faster and faster.
+[00:20:59] So again, faster could mean faster than our prior selves.
+[00:21:03] Faster could mean faster than competing products out there,
+[00:21:07] faster than competing projects out there.
+[00:21:10] And faster also means lower latency and higher throughput.
+[00:21:13] So these were obviously the three fundamental components
+[00:21:16] that we had when building this managed service.
+[00:21:20] So when we think about cheaper, there were a few things
+[00:21:23] that we had to hit right away, right?
+[00:21:26] When we built a managed service around this,
+[00:21:30] the earliest decisions that we made were storage
+[00:21:33] and compute typically go hand in hand.
+[00:21:35] It&#39;s hard to get rid of one in the presence
+[00:21:38] of the other and so on.
+[00:21:40] But we could still separate the cost of the two of them
+[00:21:44] and not make them dependent.
+[00:21:46] What we really mean by that is there&#39;s a whole bunch
+[00:21:49] of competitive products out there
+[00:21:50] where if you say I want a larger machine,
+[00:21:53] that means you need a larger storage disk.
+[00:21:56] Or you could say, they might say the disk is only
+[00:21:59] of a certain size, and so if you need more storage,
+[00:22:03] you cannot just get a bigger disk.
+[00:22:05] You also have to throw another machine on top of that
+[00:22:08] to get your larger storage component.
+[00:22:11] And so this was something that was a fairly large pain point
+[00:22:15] that we wanted to address for our users.
+[00:22:18] So when you look at this example right here,
+[00:22:19] this is actually an example of a real customer that moved 200TB
+[00:22:24] from a competing database into Azure DocumentDB.
+[00:22:30] So the first row that you see there is actually what it looked
+[00:22:33] like for competitors that say, well,
+[00:22:35] we&#39;re going to cap you at 4000G or 4TB.
+[00:22:39] What that means is if I have 200TB and I want
+[00:22:42] to leave enough headroom on my storage layer for things
+[00:22:46] like compaction and so on,
+[00:22:48] that means I would need 100 compute nodes.
+[00:22:53] A hundred compute nodes is insane.
+[00:22:57] That&#39;s an absurd amount of compute power
+[00:23:00] that unless you&#39;re building the most complex
+[00:23:02] and the largest service in the world, you really wouldn&#39;t need.
+[00:23:07] And so what we said was, why do we need to cap you at 4TB?
+[00:23:10] What if we do 32TB?
+[00:23:13] And that&#39;s actually what we have today.
+[00:23:15] And of course the question that might come up is, well,
+[00:23:17] I am paying for eight times the amount of storage,
+[00:23:20] even if that means I&#39;ve dropped to effectively 1/8th
+[00:23:24] of the amount of compute, which is right around where we are
+[00:23:27] when you think about 13 nodes versus 100.
+[00:23:30] But here&#39;s the difference.
+[00:23:31] Storage increments are much cheaper than compute increments.
+[00:23:35] So even though we&#39;ve gone up in storage by 8x, the drop by 8x
+[00:23:40] in compute saves us a significant amount
+[00:23:44] because compute ends up being far more expensive than storage.
+[00:23:48] And the direction in which we&#39;re headed is we are working
+[00:23:50] on having 64 terabyte disks.
+[00:23:52] And eventually, this is going to take a while
+[00:23:54] but we&#39;ll actually get to 160 terabyte disks.
+[00:23:58] And that means the number of nodes that you now have is going
+[00:24:01] to be much, much fewer.
+[00:24:03] And these are still six fairly beefy,
+[00:24:06] fairly compute-intensive machines.
+[00:24:09] And so you can still achieve a lot with six machines.
+[00:24:12] But if that&#39;s far fewer than you would need, somewhere between 6
+[00:24:16] and 12 or 13 is going to be far, far within the range
+[00:24:19] of what you would actually need for your service as opposed
+[00:24:22] to something that&#39;s like 100,
+[00:24:24] which would just be unnecessarily
+[00:24:26] and massively overprovisioned.
+[00:24:28] So, separating the cost of storage
+[00:24:30] and compute was a significant driver for us.
+[00:24:34] Now, the other piece in all of this is when you look
+[00:24:36] at competitive database products,
+[00:24:38] we wanted the decision making to be as simple as possible.
+[00:24:42] There&#39;s a whole bunch of components here
+[00:24:45] that simply don&#39;t exist in our product.
+[00:24:47] So we don&#39;t even charge for them.
+[00:24:49] We eat up the cost and you will not even see this
+[00:24:52] in your invoice, right?
+[00:24:54] So we don&#39;t actually charge for product support.
+[00:24:56] It&#39;s a whole bunch of products that will actually,
+[00:24:58] despite you being an Azure customer, also charge you
+[00:25:02] for product support for using their product.
+[00:25:05] It&#39;s not true for first-party managed services,
+[00:25:08] which is exactly what we are.
+[00:25:10] So, no additional cost there.
+[00:25:12] We covered the license when we were talking
+[00:25:14] about opensource projects.
+[00:25:16] Now, that&#39;s a very different concept.
+[00:25:17] That&#39;s just a license in terms of how permissive it is for you
+[00:25:20] to use it and consume it and build a product over it
+[00:25:24] and sell your product that&#39;s built on top
+[00:25:26] of the project and so on.
+[00:25:27] But when it comes to a license to use the managed service,
+[00:25:31] we have no such thing.
+[00:25:33] It&#39;s a subscription-based model.
+[00:25:35] As soon as you tear down your cluster,
+[00:25:36] you&#39;re no longer being billed for anything
+[00:25:38] because there&#39;s nothing.
+[00:25:39] We don&#39;t charge for backups.
+[00:25:42] So that example that we just looked
+[00:25:43] at with a 200-terabyte workload, there is no cost
+[00:25:47] for backups per month.
+[00:25:49] That&#39;s an enormous amount of savings.
+[00:25:52] So the more you bring in, the more you will actually continue
+[00:25:56] to save when you look at the cheaper bucket
+[00:25:59] that we are trying to hit as a product.
+[00:26:01] No networking charges.
+[00:26:02] This is also a big, big thing.
+[00:26:04] Typically what happens is when you&#39;re building an application
+[00:26:08] in Azure, your application runs in a VNet, the database is
+[00:26:11] in another VNet, and there&#39;s data that is going
+[00:26:14] out of the database from the database&#39;s VNet
+[00:26:17] and entering the customer&#39;s application VNet.
+[00:26:21] That data egress is typically transferred onto a user
+[00:26:26] and shows up on their invoice.
+[00:26:28] Now, the more you pull out of the database as VNet,
+[00:26:31] the more you end up getting charged.
+[00:26:33] We said that doesn&#39;t make sense.
+[00:26:34] We&#39;re a first-party Azure product.
+[00:26:36] We will not charge our customers.
+[00:26:39] This is at least 20% of an invoice
+[00:26:42] from a competitive product that you would just see wiped away.
+[00:26:45] And the last piece, this is really something
+[00:26:47] that we just wanted to call out.
+[00:26:48] Obviously, when you&#39;re building any system,
+[00:26:50] whether it&#39;s agent-based, AI-based, developer-based,
+[00:26:53] human-based, you always want to have some sort of telemetry.
+[00:26:56] You need to know that your system is healthy,
+[00:26:59] it&#39;s working fine.
+[00:27:00] If it isn&#39;t healthy, do I have a mitigation step that&#39;s
+[00:27:03] kicked in?
+[00:27:04] And so the database being at the bottom
+[00:27:05] of the stack obviously plays a huge role in all of that.
+[00:27:09] There&#39;s no cost associated with our metrics, with our charts.
+[00:27:12] It&#39;s completely free.
+[00:27:13] We believe that you shouldn&#39;t have to pay for observability
+[00:27:17] for something that you need to use.
+[00:27:21] And now here&#39;s an interesting customer story.
+[00:27:23] And this was actually a customer that migrated from DB2
+[00:27:26] on premise to Azure DocumentDB in Azure, obviously.
+[00:27:33] This was a 262-terabyte migration from DB2 to Azure.
+[00:27:40] And the biggest selling point in all of this was the fact
+[00:27:43] that we had 32-terabyte disks.
+[00:27:46] And when we compared our cost to what DB2 ended
+[00:27:50] up costing them on-prem in addition to the backups
+[00:27:53] that they were maintaining, data transfer costs,
+[00:27:57] their own data center costs, and the compute machines
+[00:28:00] that they needed, they ended up saving close
+[00:28:02] to $9 million a year, not just over their current expense,
+[00:28:09] but even when compared to competitive products that were
+[00:28:14] in the NoSQL Mongo-compatible space.
+[00:28:18] So this ended up being an absolute no-brainer,
+[00:28:21] and large disks and the Azure-managed components
+[00:28:24] around it, particularly everything
+[00:28:25] that Azure DocumentDB provided from a TCO standpoint,
+[00:28:29] ended up being a no-brainer for them.
+[00:28:32] Now, here&#39;s another example.
+[00:28:34] In this case, it wasn&#39;t DB2.
+[00:28:35] This was actually a customer moving from HBase
+[00:28:38] into Azure DocumentDB.
+[00:28:40] And this was fascinating.
+[00:28:41] So you obviously have your obvious components
+[00:28:45] like compute and storage.
+[00:28:47] And sure, they&#39;re reasonably close.
+[00:28:50] We ended up being a good amount cheaper in storage as well.
+[00:28:54] But what&#39;s interesting here is you also have a licensing
+[00:28:59] component, and we just covered that.
+[00:29:01] In our case we&#39;ve got no license,
+[00:29:04] and we didn&#39;t even factor in the cost of backups on HBase
+[00:29:07] because we didn&#39;t even see it on this customer&#39;s invoice.
+[00:29:11] And we&#39;re actually ignoring the fact
+[00:29:14] that that backups would have shown up.
+[00:29:15] But even in the absence of that,
+[00:29:17] what we saw was a customer cut their bill in more than half.
+[00:29:21] And more than anything, yes, there was a cost play here.
+[00:29:26] But the biggest, the most meaningful impact was the fact
+[00:29:30] that they had to make fewer decisions, right?
+[00:29:32] You&#39;re only thinking of the size of your machine
+[00:29:34] and the size of your disk.
+[00:29:36] You don&#39;t have to worry about licensing.
+[00:29:37] You don&#39;t have to worry about backups.
+[00:29:38] You don&#39;t have to worry about networking.
+[00:29:40] You don&#39;t have to worry about a whole bunch of other things
+[00:29:42] that are going to require some kind of rocket science for you
+[00:29:45] to actually figure out how much it will cost you at the end.
+[00:29:48] There&#39;s just two things, and two things only.
+[00:29:50] Here&#39;s how much it will come out to.
+[00:29:52] It&#39;s predictable, and that&#39;s the end of it.
+[00:29:56] Now, the next step, once we solved the cheaper bucket,
+[00:29:59] was obviously addressing the faster bucket, right?
+[00:30:03] And this was a very interesting journey for us.
+[00:30:06] So by virtue of being built in Azure as a managed service,
+[00:30:10] there&#39;s obviously components in the Azure ecosystem
+[00:30:13] that we can leverage for our own product.
+[00:30:16] And premium managed disks, SSD v2, which has been all the rage
+[00:30:20] over the last year at the very least but has started
+[00:30:23] to become a lot more mainstream now,
+[00:30:26] essentially came to the rescue.
+[00:30:28] In this case, we actually said, well,
+[00:30:29] let&#39;s compare our former selves to our current selves,
+[00:30:34] and then see how much better we&#39;re doing.
+[00:30:36] And obviously this has to make sense not just
+[00:30:39] from a performance perspective,
+[00:30:40] but this should not cost the user anything more.
+[00:30:43] So it doesn&#39;t make any sense if we&#39;re saying, well,
+[00:30:45] we can actually give you 12x the performance that we used
+[00:30:48] to have, but we actually want you to pay 12x
+[00:30:50] of what you used to pay as well.
+[00:30:51] Nobody&#39;s ever going to go for that.
+[00:30:54] In the end, what we said was, if we look at where we used to be,
+[00:30:57] the biggest selling point with SSD v2 is
+[00:31:00] that it can get you far more IOPS, far more bandwidth,
+[00:31:04] and you don&#39;t have to keep provisioning larger
+[00:31:06] and larger disks.
+[00:31:07] So we said that&#39;s something
+[00:31:08] that our users should actually benefit from.
+[00:31:12] In that example where we said our competitors actually cap you
+[00:31:15] out at 4TB while we go up to 32TB today,
+[00:31:19] we wanted to make the same claim
+[00:31:20] about performance as well, right?
+[00:31:23] In a prior scenario, we used to be capped at 20,000 IOPS
+[00:31:27] and you had to move to the largest possible disk.
+[00:31:30] But today what we&#39;re saying is that we can go
+[00:31:32] up to 80,000 IOPS, you don&#39;t have to go
+[00:31:34] to the largest possible disk, and we actually eat up the cost
+[00:31:39] of those IOPS ourselves.
+[00:31:42] So effectively what that means is in all of this,
+[00:31:45] you&#39;ve now gotten a 12x performance boost
+[00:31:49] at no configuration change, no scale up,
+[00:31:54] and we&#39;ve truly decoupled performance from the size
+[00:31:58] of your configuration.
+[00:32:00] This was a massive, massive, massive reduction.
+[00:32:03] So in the past, what this would have meant is you had to start
+[00:32:07] at $280 a month and go up to $4,500 a month.
+[00:32:13] What we&#39;re now saying is you start at $280 a month,
+[00:32:17] stay at $280 a month, and you get the same performance
+[00:32:22] that you previously would have needed $4,500 for.
+[00:32:25] And so this was a pretty, pretty significant boost.
+[00:32:28] And it&#39;s faster because the IOPS essentially mean your writes are
+[00:32:32] faster, your reads are faster, your latencies
+[00:32:34] on queries are faster.
+[00:32:36] So there&#39;s a lot of benefits.
+[00:32:38] And because this was an internal optimization,
+[00:32:41] we felt that you should not be charged as a user for this.
+[00:32:46] And here&#39;s something else that was interesting.
+[00:32:48] We did an experiment recently.
+[00:32:50] And with SSD v2, we were able
+[00:32:53] to achieve 1 million writes per second on a single node.
+[00:33:00] And the details of it are really what we&#39;ve put in here.
+[00:33:02] We had a certain machine.
+[00:33:03] It was a 32-core machine.
+[00:33:07] The disk was small.
+[00:33:08] This was just a 2TB disk.
+[00:33:10] In the past, we would have needed a 32TB disk
+[00:33:13] to get to 20,000 IOPS.
+[00:33:15] In this particular case, we had a 2TB disk,
+[00:33:18] and we got to 80,000 IOPS.
+[00:33:21] Let&#39;s just think about that for a second.
+[00:33:23] And we achieved a million writes per second on a single node.
+[00:33:30] This is a huge, huge, huge milestone.
+[00:33:35] And more so than anything, when people look at this, again,
+[00:33:38] the usual question that comes up is, well, are you asking me
+[00:33:42] to provision an absurd number of machines, an absurd amount
+[00:33:46] of compute to achieve a million writes per second?
+[00:33:49] And so the best way to quantify this is
+[00:33:51] to actually translate this into transactions per dollar.
+[00:33:55] And we&#39;re almost at 200,000 transactions per dollar.
+[00:34:00] If we compare a very similar setup on a competitor product,
+[00:34:07] what we can actually see is they get to only 80%
+[00:34:12] of what we&#39;re able to.
+[00:34:13] And we&#39;re also cheaper.
+[00:34:14] And so what that means is even though we&#39;re looking at a 20%
+[00:34:18] to 25% difference in the actual throughput, we&#39;re looking
+[00:34:21] at a nearly 2x difference in transactions per dollar.
+[00:34:26] And all this to say, by the way, we still had headroom.
+[00:34:29] So we could have gone beyond a million.
+[00:34:31] But a million is where we were able to get truly sustained
+[00:34:34] and consistent results.
+[00:34:38] And with that, we have a demo to show the next piece in all
+[00:34:43] of this, which is the better bucket.
+[00:34:46] And the better bucket is all about how we&#39;re now able
+[00:34:49] to achieve multicloud replication.
+[00:34:52] Because we are built on an opensource foundation,
+[00:34:55] and as we spoke about earlier,
+[00:34:57] the opensource foundation essentially means we can run
+[00:35:00] within Azure, we can run outside of Azure,
+[00:35:03] and we&#39;ve got a managed service in Azure.
+[00:35:05] But what we are able to do is actually connect the managed
+[00:35:09] component in Azure to pieces outside of Azure as well
+[00:35:13] in a different Cloud, in a hybrid Cloud,
+[00:35:15] and that&#39;s essentially what we are going
+[00:35:17] to showcase right here.
+[00:35:22] Hello. In this demo, we will showcase multicloud
+[00:35:24] functionality for DocumentDB using the opensource engine
+[00:35:27] coupled with the Kubernetes operator
+[00:35:28] for the database provision across Azure, AWS,
+[00:35:31] and GCP Kubernetes clusters.
+[00:35:34] You can see here on the plugin that the state of the system
+[00:35:37] at the start is that Azure hosts the primary
+[00:35:39] and it replicates to GCP and AWS.
+[00:35:43] All three are using Kubernetes
+[00:35:45] with our opensource operator and database engine.
+[00:35:48] There&#39;s one instance each for our replicas on AWS and GCP,
+[00:35:52] while there are three instances on Azure.
+[00:35:55] This setup ensures globally strong data consistency
+[00:35:58] and local high availability.
+[00:35:59] Using our VS Code extension for DocumentDB,
+[00:36:01] we have on the left the three separate connections.
+[00:36:04] Those each connect
+[00:36:05] to the cluster individually on each cloud.
+[00:36:07] But in our application, we use a global connection string,
+[00:36:09] which points to the primary and automatically changes
+[00:36:12] when a failover is triggered to point
+[00:36:13] to the new primary region for the database.
+[00:36:15] So right now, it&#39;ll point to AKS.
+[00:36:18] But after we do our promotion later in the demo,
+[00:36:20] that connection string will start pointing to AWS.
+[00:36:22] We&#39;re inserting data into DocumentDB on AKS.
+[00:36:25] But I&#39;m pulling up the collection on GCP,
+[00:36:27] and you&#39;ll be able to see the records are being replicated
+[00:36:29] to GCP and also to AWS.
+[00:36:34] With our global strong consistency setup,
+[00:36:36] any database insert operation made
+[00:36:37] to the primary will only return a successful response
+[00:36:40] to the client if the ingest data has been acknowledged
+[00:36:42] by both the primary and at least one remote replica.
+[00:36:45] This ensures that if the primary goes down, all writes confirmed
+[00:36:48] by DocumentDB can reliably be assumed to be safe
+[00:36:51] with absolutely no data loss.
+[00:36:53] I&#39;m going to pause for a moment now to allow some of the inserts
+[00:36:57] to propagate to our data collection through Prometheus
+[00:37:00] and Grafana so that we can view the chart.
+[00:37:03] Now that that&#39;s done, you can see all the writes on Azure here
+[00:37:06] in green, and we can now promote AWS to be our new primary.
+[00:37:11] The promotion that we&#39;re doing here is a managed promotion.
+[00:37:14] So the primary on Azure is first demoted,
+[00:37:17] rights are all committed, and then the AWS replica is promoted
+[00:37:21] to be the new primary.
+[00:37:23] A similar process is triggered when a regional failover occurs,
+[00:37:26] wherein the replica is promoted after we lose access
+[00:37:28] to the primary, and data loss would still be prevented
+[00:37:30] by our global strong guarantee.
+[00:37:33] Now, I&#39;ll let this run for a while as well
+[00:37:36] so that we can see the failover in the Grafana charts.
+[00:37:39] As you can see here, because it was a managed failover,
+[00:37:41] all pending writes are committed on AKS,
+[00:37:44] so you get that lower level, and then our rights start
+[00:37:46] to increase on AWS as the failover is over, seen in green.
+[00:37:50] As you can see, there was only a small blip for the failover
+[00:37:53] and no application site intervention was needed
+[00:37:55] to restore availability on a different cloud.
+[00:37:58] And there we have it, a globally distributed setup for DocumentDB
+[00:38:01] across three clouds, with a quick,
+[00:38:03] fully managed failover and zero data loss.
+[00:38:08] So in that demo, what we showcased was multicloud
+[00:38:12] replication for Azure DocumentDB,
+[00:38:14] where you have Azure DocumentDB obviously running in Azure,
+[00:38:16] and we&#39;re able to highlight replication to AWS and GCP
+[00:38:22] with absolutely no data loss
+[00:38:24] and multicloud failover functionality as well.
+[00:38:27] Now, in this demo, what we have is a hybrid cloud setup
+[00:38:33] where the entire purpose is the ability
+[00:38:36] to run opensource DocumentDB in a hybrid cloud,
+[00:38:39] and this could be on-prem, this could be on IaaS,
+[00:38:42] and then connect that to Azure DocumentDB.
+[00:38:47] And also provide functionality
+[00:38:49] where your opensource version could continue to exist.
+[00:38:53] So the hybrid cloud running on-prem
+[00:38:55] or wherever it is could continue to exist even
+[00:38:57] when the replication pipe to Azure let&#39;s say is broken
+[00:39:02] and steady state continues.
+[00:39:04] And when that replication pipe picks up again
+[00:39:06] and connectivity has been re-established,
+[00:39:09] the sync simply picks up from where it last left off,
+[00:39:13] and we&#39;re right back
+[00:39:14] to replicating into the cloud again.
+[00:39:16] So with that, here&#39;s the demo.
+[00:39:19] In this video, we will highlight sync replication
+[00:39:22] in a hybrid cloud deployment
+[00:39:24] for Azure DocumentDB using opensource DocumentDB running
+[00:39:27] on-prem using the Kubernetes operator,
+[00:39:29] which is the first connection that you see
+[00:39:31] in the top left corner of our VS Code extension,
+[00:39:34] to Azure DocumentDB running in the cloud.
+[00:39:37] What you see in the terminal output is a sync service
+[00:39:40] that has been triggered to keep the two in sync.
+[00:39:44] Both have no documents at the moment, and we will start
+[00:39:48] by making a single document insert on-prem.
+[00:39:52] And we will then validate that the sync service,
+[00:39:55] after persisting the document locally,
+[00:39:57] replicated the change to Azure as well.
+[00:40:01] And when we click on Azure DocumentDB,
+[00:40:03] we see the new document has made its way here.
+[00:40:06] Next, we will make a change to update the document on-prem.
+[00:40:12] We will make changes to two fields specifically.
+[00:40:16] And once again, after persisting the update locally,
+[00:40:19] we now want to validate that the sync service was also able
+[00:40:23] to replicate the change to this document to Azure.
+[00:40:27] And when we click on Azure DocumentDB,
+[00:40:29] we see both fields changed here as well.
+[00:40:32] Now, the last step that we want
+[00:40:33] to validate is steady state operations continue undisturbed
+[00:40:38] even when the replication sync service is down.
+[00:40:42] So to do this, we&#39;ve stopped the replication service,
+[00:40:45] we go back in to our on-prem deployment of Azure DocumentDB.
+[00:40:50] And what we want to do is we want
+[00:40:52] to make three document inserts, and we want to validate
+[00:40:56] that there were no errors in persisting the data locally.
+[00:41:00] And of course then we want to validate
+[00:41:03] that the changes did not make it to Azure DocumentDB
+[00:41:06] because our sync service is down.
+[00:41:08] And here we can see that there was only one document
+[00:41:11] in Azure while there were four on-prem.
+[00:41:14] We&#39;ll then go back, restart the sync service.
+[00:41:18] And once it&#39;s restarted and we go back into Azure DocumentDB,
+[00:41:22] we should see the three additional documents have now
+[00:41:25] made their way here as well.
+[00:41:31] And that&#39;s all we have today.
+[00:41:33] Thank you for being a part of my session.
+[00:41:35] Thank you for listening to our long winding story
+[00:41:38] on how we built Azure DocumentDB on top of opensource foundations
+[00:41:43] and on top of an opensource project.
+[00:41:46] What we have here are a couple of links.
+[00:41:47] As I mentioned, we have our opensource project
+[00:41:50] as an independent entity.
+[00:41:52] And if you&#39;d like to stay up-to-date with events,
+[00:41:56] with updates, anything to do with opensource DocumentDB,
+[00:41:59] you can go to documentdb.io.
+[00:42:02] And of course at the bottom is a link to our managed service
+[00:42:05] in Azure to keep up-to-date on new features, new components
+[00:42:09] to our product, performance improvements, TCO benefits,
+[00:42:14] anything that continues to change over time, that&#39;s exactly
+[00:42:17] where you can find all of it.
+[00:42:19] And thank you for listening.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

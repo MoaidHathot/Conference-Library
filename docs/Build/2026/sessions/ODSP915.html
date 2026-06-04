@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ODSP915 - Resolve support cases with multi-agent workflows</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; ODSP915</nav>
+        <h1>ODSP915 &mdash; Resolve support cases with multi-agent workflows</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">ODSP915 &middot; Pre-recorded</span>
+    <h1>Resolve support cases with multi-agent workflows</h1>
+    <div class="speakers">Carlos Camacho</div>
+    <div class="meta">
+        <span>Pre-recorded</span>
+<span>(200) Intermediate</span>
+    </div>
+    <div class="tags"><span class="tag">AI</span> <span class="tag">Azure</span> <span class="tag">Observability</span> <span class="tag">Platform Engineering</span> <span class="tag">Vector Embeddings</span> <span class="tag">Agents</span> <span class="tag">Developer</span> <span class="tag">MCP</span> <span class="tag">Data</span> <span class="tag">OSS</span> <span class="tag">App Developers</span> <span class="tag">ISV</span> <span class="tag">Open Ecosystem</span> <span class="tag">Agentic Security</span> <span class="tag">Agents &amp; apps</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/ODSP915?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/95943165-d73d-4156-8561-753ad666eb99" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/95943165-d73d-4156-8561-753ad666eb99" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>See how a multi-agent system diagnoses and resolves support cases across partner ecosystems. This demo showcases the Agentic Partners Integration AI quickstarts, built on Azure and Red Hat OpenShift AI (ARO) with MCP and open-source components. Learn how agents share context, orchestrate actions, and automate resolution. Leave with a reference architecture and patterns to build your own agentic workflows.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>This five-minute live demo from Red Hat shows a multi-agent system that diagnoses and resolves support cases across partner ecosystems, built on Azure and Red Hat OpenShift AI. The session walks through deploying an MCP server from a catalog and consuming it within an agentic application that handles routing, role-based access, and auditing.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Deploying an Azure MCP server from the OpenShift AI MCP catalog [00:01:38]</strong> — The catalog provides pre-built MCP servers that can be browsed, picked, and deployed to a cluster, handling the container image, configuration, and authentication via managed identity without custom glue code.</li>
+<li><strong>Multi-agent support resolution quickstart [00:00:24]</strong> — An open-source multi-agentic system that diagnoses and resolves problems across partners in the same ecosystem, leveraging the Azure MCP server and Red Hat AI secure MCP catalog.</li>
+<li><strong>Role-based access enforcement with audit logging [00:04:38]</strong> — A user without department membership (Josh) is denied access to all agents, with the denial recorded in the audit log and trail.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Layered architecture: user access layer, orchestration and security layer, routing agent, and support agents</li>
+<li>PatternFly web application providing the chat interface</li>
+<li>Routing agent intent detection and delegation to specific support agents</li>
+<li>A2A as the inter-agent communication layer and ADK for developing the agents</li>
+<li>Deploying MCP servers to an OpenShift cluster via operator</li>
+<li>Querying the Azure Well-Architected Framework for AKS and Azure web application best practices</li>
+<li>Authentication, authorization, and audit handling</li>
+<li>OpenTelemetry-based event storage and audit trail for security events</li>
+<li>Demonstrating access control by comparing an authorized user against an unauthorized user</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;We will just deploy from the catalog the MCP server, and we will consume that as a regular workload.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;Josh doesn&#39;t belong to any department, so any of the agents will be able to answer his requests.&quot;</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Azure MCP server</li>
+<li>Red Hat OpenShift AI (ARO)</li>
+<li>Red Hat AI secure MCP catalog</li>
+<li>OpenShift AI MCP catalog</li>
+<li>PatternFly</li>
+<li>A2A (Agent-to-Agent)</li>
+<li>ADK (Agent Development Kit) [inferred]</li>
+<li>Azure Kubernetes Service (AKS)</li>
+<li>Azure Well-Architected Framework</li>
+<li>OpenTelemetry</li>
+<li>Azure managed identity</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Carlos Camacho — Red Hat</li>
+<li>Sharon — Red Hat (named as co-presenter in the demo)</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (5,946 chars)</summary>
+        <pre class="transcript-body">[00:00:01] CARLOS CAMACHO: Hello, everyone.
+[00:00:02] We&#39;re Carlos and Sharon from Red Hat, and today we&#39;re going
+[00:00:05] to show you how to deploy an MCP server from the MCP catalog
+[00:00:09] and then use it in a multi-agent application that will diagnose
+[00:00:14] and resolve support cases across different partner ecosystems.
+[00:00:19] It will be only five minutes, all live.
+[00:00:22] Let&#39;s go.
+[00:00:24] What are we going to address in this demo?
+[00:00:27] We&#39;re going to facilitate a support resolution
+[00:00:29] across different partners within the same ecosystem.
+[00:00:33] We created a simple yet powerful open-source multi-agentic system
+[00:00:38] that is designed to allow agentic workflows
+[00:00:40] to diagnose and resolve problems.
+[00:00:42] We&#39;re leveraging the Azure MCP server
+[00:00:45] and Red Hat AI secure MCP catalog within this solution.
+[00:00:50] We have different layers.
+[00:00:52] The first one is the user access layer,
+[00:00:54] which is a PatternFly web application that allow us
+[00:00:58] to interact with a chat interface
+[00:01:00] with the different routing and support agents.
+[00:01:04] The first part is the orchestration
+[00:01:06] and security layer, which will be handling all the
+[00:01:10] authentication, authorization, and audit.
+[00:01:14] Then, we have the routing agent, which is in charge
+[00:01:17] of routing the requests from the users to the specific agent
+[00:01:22] that is helping you on troubleshooting your issues.
+[00:01:26] In this particular case, we have A2A as the communication layer,
+[00:01:31] and we use ADK to develop all the agents we have in this demo.
+[00:01:38] So let&#39;s start with the MCP catalog.
+[00:01:41] The OpenShift AI MCP catalog gives you pre-built MCP servers
+[00:01:44] that you can browse, pick, and deploy to your cluster.
+[00:01:48] In this case, we will be deploying the Azure MCP server
+[00:01:51] to our Red Hat OpenShift cluster.
+[00:01:53] You just have to pick the deployment name, the project,
+[00:01:56] and set up all the configurations details
+[00:01:58] to connect to your Azure tenant.
+[00:02:01] The catalog will handle the containerd image,
+[00:02:04] the configuration, and all the authentication
+[00:02:06] through managed identity.
+[00:02:08] In this case, we will not be writing any glue code.
+[00:02:11] We won&#39;t be building any custom integration.
+[00:02:14] We will just deploy from the catalog the MCP server,
+[00:02:17] and we will consume that as a regular workload.
+[00:02:20] Once you configure all the details, you just have to click
+[00:02:23] on &quot;Deploy the Azure MCP server,&quot; and you just need
+[00:02:27] to wait until the operator runs the deployment, and you have it
+[00:02:31] up and running for you to use.
+[00:02:36] Now, we will log in into our quickstart.
+[00:02:39] I will use a user with enough access
+[00:02:41] to our Azure support agent to show how it works.
+[00:02:45] In this case, you can see that I have access to three
+[00:02:48] out of four agents, including the Azure support agent,
+[00:02:51] and we are going to start asking questions out of the box.
+[00:02:55] In this case, I&#39;m asking
+[00:02:56] about the Well-Architected Framework for AKS.
+[00:03:00] The routing agent is detecting the intent of our request,
+[00:03:04] and it&#39;s delegating the execution
+[00:03:07] to the Azure support agent,
+[00:03:08] which is wrapping the Azure MCP server,
+[00:03:12] and we can see the output
+[00:03:14] and all the MCP tools that were executed.
+[00:03:16] Usually, the first one is about the intent of our request,
+[00:03:20] and the second one is the actual execution of the MCP tool,
+[00:03:25] giving the correct answer.
+[00:03:27] We can ask for other things, like, for example,
+[00:03:30] best practices for developing Azure web applications.
+[00:03:35] In the same way, the routing agent is detecting the intent.
+[00:03:39] It&#39;s doing the routing of the request.
+[00:03:42] And then we have the specific MCP tools being executed.
+[00:03:47] In this case, we can see that the output is a markdown file
+[00:03:51] with all these best practices we were asking about.
+[00:03:55] We can see that the routing agent delegated the execution
+[00:03:59] to the Azure support agent, we see the output,
+[00:04:02] and then at the end, we see the MCP tools that were called.
+[00:04:06] Again, the first one about the intent, and second one
+[00:04:09] with the actual output we&#39;re seeing in the chat window.
+[00:04:13] We can also see the audit log of the applications
+[00:04:16] because we store all the events using OpenTelemetry.
+[00:04:21] And we have the Audit Trail with all the security events stored,
+[00:04:25] and we can see, for example, all the users have access
+[00:04:29] to specific groups, and we can see
+[00:04:34] if the requests were accepted or denied.
+[00:04:38] Now, we will test again the quickstart, but using a user
+[00:04:43] without access to any of the agents.
+[00:04:45] I will log in as Josh.
+[00:04:48] You can see here that Josh doesn&#39;t have access to any
+[00:04:51] of the agents, and when we ask a question,
+[00:04:55] the routing agent will deny this request.
+[00:04:59] In the same way, we can see this event in the audit log,
+[00:05:04] or we can see the traces in the audit trail.
+[00:05:10] In this case, you can see that Josh doesn&#39;t belong
+[00:05:13] to any department, so any of the agents will be able
+[00:05:16] to answer his requests.
+[00:05:20] And this is all.
+[00:05:22] Thank you.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

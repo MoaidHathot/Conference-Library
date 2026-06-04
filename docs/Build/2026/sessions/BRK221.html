@@ -1,0 +1,1199 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRK221 - Idea to production-ready agent in seconds on AI-native runtime</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRK221</nav>
+        <h1>BRK221 &mdash; Idea to production-ready agent in seconds on AI-native runtime</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRK221 &middot; Breakout</span>
+    <h1>Idea to production-ready agent in seconds on AI-native runtime</h1>
+    <div class="speakers">Simon Jakesch, Devanshi Joshi, Gopi Prashanth</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(300) Advanced</span>
+<span>Building B, Level 3, BATS Improv</span>
+<span>2026-06-03 21:45 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">App Mod</span> <span class="tag">CP&amp;D</span> <span class="tag">Reserve</span> <span class="tag">Cloud platform &amp; data</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRK221?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/8508448f-e225-4efd-b0ae-f89c2c2b91b5" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Agentic apps behave differently from traditional services. They make decisions, coordinate steps, and react to changing inputs. This session shows how to run agentic workloads on a fast, AI native runtime on Azure Container Apps. The focus is on reliability and speed so you can move from idea to production‑ready agents. We’ll cover patterns for deployment, configuration, safe scaling for bursty traffic, and observability so teams can run agentic systems in production without surprises.
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>This session argues that most failures of agentic applications stem from the runtime, not the model, and positions Azure Container Apps sandboxes as an AI-native execution layer addressing isolation, cold starts, state persistence, and cost control. Through a live multi-agent voice demo and a customer story from Auger, it shows how to move from idea to production-ready agents in seconds.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Azure Container Apps Sandboxes enter public preview</strong> — Fast, isolated, stateful on-demand compute that executes untrusted workloads securely by default and resumes near-instantly while preserving disk and memory state (~00:16:17, ~00:40:59).</li>
+<li><strong>Sub-second cold start and resume</strong> — Sandboxes wake from sleep in roughly a second or two, retaining running scripts and context to avoid the environment setup tax (~00:17:38).</li>
+<li><strong>Sandbox groups with inherited connectors, volumes, snapshots, and disk images</strong> — Settings such as credentials and connectors propagate automatically to sandboxes created within a group (~00:16:54).</li>
+<li><strong>Layer 7 firewall and network isolation per sandbox</strong> — Operators can control which hosts and routes are allowed or denied for each agent (~00:20:21).</li>
+<li><strong>Snapshotting and instant restore</strong> — An entire sandbox disk can be snapshotted and used to spin up an exact new instance (~00:22:22).</li>
+<li><strong>Serverless GPUs for custom model inference</strong> — T4 and A100 GPUs scale to zero across 15 regions, used in the demo to run speech-to-text and text-to-speech models (~00:14:42).</li>
+<li><strong>Azure Container Apps Express</strong> — An environment-less, fast deployment target for web apps and APIs, built on the same sandbox foundation, launched roughly a month prior (~00:26:52, ~00:43:33).</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Why agentic workloads fail in production: budget burn from runaway loops, untrusted code on dev machines, cold-start throttling, lost workspace state, and brittle glue code between runtimes.</li>
+<li>Five runtime requirements: fast start/resume, native tool-calling execution, persistent state, strong per-task isolation, and runtime-level governance.</li>
+<li>Architecture of a multi-agent voice application: a multi-agent broker, proxy bridges, and a Twilio call gateway on Azure Container Apps.</li>
+<li>Sandbox lifecycle operations: sleep/resume with memory capture, template-based creation, port exposure, and snapshot-based cloning.</li>
+<li>Six emerging sandbox patterns: multi-tenancy, platform-for-execution, agent workflows, AI code execution, platform building, and interactive user sessions.</li>
+<li>Auger&#39;s autonomous supply chain: agentic data integration, the OSCO world model, the connecting &quot;bus,&quot; and real-time what-if simulation pipelines.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;It&#39;s not because of the models, it&#39;s because of what you&#39;re running, where you&#39;re running, how you&#39;re running.&quot; — Devanshi Joshi</p>
+</blockquote>
+<blockquote>
+<p>&quot;It is an agent first platform for agents to use.&quot; — Simon Jakesch</p>
+</blockquote>
+<blockquote>
+<p>&quot;We basically have like closed on like publicly to customers today... we have 40 plus services that are literally running on Azure Container Apps and we have thousands of agents that are running on top of it.&quot; — Gopi Prashanth</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Azure Container Apps</li>
+<li>Azure Container Apps Sandboxes</li>
+<li>Azure Container Apps Express</li>
+<li>Azure Serverless GPUs (T4, A100)</li>
+<li>Azure SRE Agent</li>
+<li>Azure AI Foundry (Foundry Hosted Agent service)</li>
+<li>GitHub Copilot CLI</li>
+<li>GitHub Copilot Cloud Sandboxes</li>
+<li>Whisper (speech-to-text) [inferred]</li>
+<li>Twilio</li>
+<li>Voice Live API</li>
+<li>Azure Container Registry</li>
+<li>Azure Log Analytics</li>
+<li>Snowflake</li>
+<li>Hugging Face</li>
+<li>vLLM [inferred]</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Devanshi Joshi — Product Marketing Manager, Azure Container Apps</li>
+<li>Simon Jakesch — Microsoft product team</li>
+<li>Gopi Prashanth — Auger (customer)</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>Azure Container Apps product blog (with samples)</li>
+<li>Demo code repository (released by the team)</li>
+<li>Sandboxes portal: aka.ms/ACA-sandboxes [inferred]</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (54,108 chars)</summary>
+        <pre class="transcript-body">[00:00:00] Alright, hello everyone, let&#39;s get started.
+[00:00:04] With the next improv show.
+[00:00:06] Here in the Bats improv.
+[00:00:07] Theatre well.
+[00:00:10] I wish I did improv, but we&#39;re gonna do a
+[00:00:12] session at Microsoft.
+[00:00:14] Build.
+[00:00:14] I hope you guys.
+[00:00:16] Are having an amazing build.
+[00:00:17] Day one was awesome.
+[00:00:18] Today is day 2.
+[00:00:20] Right after lunch.
+[00:00:21] Not sleepy.
+[00:00:22] Let&#39;s wake up the room a little bit.
+[00:00:24] So here to get your ideas to.
+[00:00:26] Production in seconds, so little bit of.
+[00:00:29] Energy out there.
+[00:00:30] Hi, everyone.
+[00:00:31] Are you awake?
+[00:00:32] Give me a cheer.
+[00:00:32] Hey.
+[00:00:35] I&#39;m Devanshi Joshi, I&#39;m the Product Marketing Manager for Azure
+[00:00:39] Container Apps and we will be taking you.
+[00:00:41] Through.
+[00:00:42] Getting your agents in production in seconds on an AI
+[00:00:45] native runtime and I will be joined by Simon from
+[00:00:48] the Microsoft product team here.
+[00:00:50] Say hi, Simon, alright.
+[00:00:53] And Gopi, our customer Augur.
+[00:00:55] Hello.
+[00:00:57] So the plan here is to.
+[00:00:59] Cover why?
+[00:01:00] Agents break between demo setups and getting to production, followed
+[00:01:05] by a live demo on getting you set up from
+[00:01:08] scratch.
+[00:01:09] What are the decisions you take to get that flawless
+[00:01:13] infrastructure to code, to deployment, to optimization?
+[00:01:17] Putting piercing things together and why they matter and.
+[00:01:21] How container apps is actually?
+[00:01:23] Delivering on these experiences.
+[00:01:25] Stitching.
+[00:01:25] Across all the threads.
+[00:01:26] For your agent runtime, with Auger finally coming on stage
+[00:01:30] to highlight this in action in their production.
+[00:01:33] Alright, so with a quick show of.
+[00:01:36] Hands.
+[00:01:36] Can you tell me how many of you are already
+[00:01:39] deploying agents in the last three months in the room?
+[00:01:42] OK, how many keep your hands up.
+[00:01:45] How many of your agents are still doing what you
+[00:01:47] wanted them to do when you deployed them?
+[00:01:52] Alright, that&#39;s the room.
+[00:01:54] Pretty much 50 to 70% of the hands went down
+[00:01:57] South.
+[00:01:58] Gartner&#39;s predicting over over 40% of these agentic AI projects
+[00:02:03] will be cancelled by 2027.
+[00:02:06] And it&#39;s not because of the models, it&#39;s because of
+[00:02:09] what you&#39;re running, where you&#39;re running, how you&#39;re running.
+[00:02:12] So the runtime and one bad.
+[00:02:16] Tool call that your.
+[00:02:17] Agent is making brings down your workspace, what you&#39;re connecting
+[00:02:21] to you&#39;re restarting, rebuilding and that call start throttle in
+[00:02:25] their agent loop all of.
+[00:02:27] This adds to that toil for your.
+[00:02:29] Execution environment leading to sometime.
+[00:02:33] Even leaks for your data so.
+[00:02:37] Every time you&#39;re trying to build from your from scratch,
+[00:02:40] whether you&#39;re connecting to existing pieces of code or you&#39;re
+[00:02:44] trying to bring in new experiences for your setup, these
+[00:02:47] are five things we believe the runtime must deliver on
+[00:02:50] for you to be successful.
+[00:02:52] Not once, not sometimes, but all the time.
+[00:02:55] So first of all your.
+[00:02:58] Budget is being burnt when left unattended.
+[00:03:02] So someone on a popular news channel.
+[00:03:04] Actually put it really well.
+[00:03:06] Agents are extremely good at burning through budgets and get
+[00:03:10] even better when left unattended.
+[00:03:13] So the runaway loop overnight can torch a month of
+[00:03:17] your budget for token spent even before you even, you
+[00:03:21] know, notice it.
+[00:03:22] Get a hang of it.
+[00:03:23] So next one is untrusted code on your dev laptop.
+[00:03:28] Your agent has access to your environment.
+[00:03:32] Which is already.
+[00:03:33] Hosting your SSH.
+[00:03:34] Keys.
+[00:03:35] Browser cookies.
+[00:03:37] And even your prod credentials, maybe not the right idea
+[00:03:40] to be doing this on the same machine right then.
+[00:03:44] Not a sandbox, definitely a liability.
+[00:03:46] Across all of this Co.
+[00:03:48] Start throttles of your agent loop.
+[00:03:52] There are infrastructure startups right now.
+[00:03:55] Just.
+[00:03:55] Provisioning and helping customers for hitting sub second startup time.
+[00:04:00] So cold start is no longer acceptable at all.
+[00:04:03] Like when your agent is sitting and justice waiting for
+[00:04:06] provisioning.
+[00:04:06] That&#39;s that&#39;s a big No 10 second startup was old
+[00:04:11] time technology.
+[00:04:13] Now we&#39;re talking less than 100 milliseconds.
+[00:04:16] That&#39;s where we are and.
+[00:04:19] For your workspaces that are.
+[00:04:21] Dying based on every restart, losing context, cash, intermediate states,
+[00:04:28] all gone.
+[00:04:29] Every restart is paying that environment setup tax and long
+[00:04:35] running agents cannot be long running agents if that floor
+[00:04:40] of context is taken away.
+[00:04:43] 2 links stitched together by hand.
+[00:04:46] Well, every runtime ships its own configs, packaging its own
+[00:04:51] rules and porting between your runtimes as you go.
+[00:04:55] Go from development of tooling and agents and all these
+[00:04:58] pieces.
+[00:04:59] Together.
+[00:05:00] That&#39;s another headache to take.
+[00:05:01] Care of SO.
+[00:05:02] None of these are model problems.
+[00:05:04] These are all runtime.
+[00:05:06] Issues so it&#39;s less about.
+[00:05:11] Which model to pick?
+[00:05:12] All the time, but more about having a reliable experience
+[00:05:16] for your agent creation, hosting, production, observing, and all the
+[00:05:20] time.
+[00:05:21] So the real question is what would that runtime actually
+[00:05:25] look like?
+[00:05:27] Definitely a fast start up and resume.
+[00:05:30] Agents are even driven.
+[00:05:32] They wake up, they do their tasks.
+[00:05:34] They go back to.
+[00:05:35] Idle, they wake up again.
+[00:05:37] So taking that 10 seconds too much, nobody cares.
+[00:05:40] It&#39;s it&#39;s too hard for the.
+[00:05:42] Agent to come back on and continue with the user&#39;s
+[00:05:45] interest.
+[00:05:46] We leave the window.
+[00:05:48] Cold starts have to be sub.
+[00:05:50] 2nd every time.
+[00:05:51] Not a tuning exercise, not something that you get right
+[00:05:55] on the 5th day.
+[00:05:57] Second, every agent tool calling execution should.
+[00:06:01] Be easily stitched together with your rest of the apps
+[00:06:06] the.
+[00:06:06] Agents.
+[00:06:07] Everything all together.
+[00:06:08] So agents are only useful when they are acting, calling
+[00:06:13] API&#39;s, running code, talking to other cloud services.
+[00:06:17] All of that must be inside the runtime itself and
+[00:06:21] not in a fragile glue code experience that just comes
+[00:06:24] on and lights up.
+[00:06:26] 3rd persistent store state.
+[00:06:28] So long running agents reasoning across hours all of us
+[00:06:32] would have seen folks running around with open laptop lids.
+[00:06:37] Thumbs are at.
+[00:06:39] Full exercise throttle.
+[00:06:40] So yeah.
+[00:06:42] We need that persistence across, We need the agent live
+[00:06:45] and running, and no one wants to pay the environment
+[00:06:49] setup tax.
+[00:06:51] Finally, the strong isolation for the agent task.
+[00:06:55] Every execution landing across its own fresh sandbox while retaining
+[00:07:00] the security boundaries, preventing any data leaks, any other system
+[00:07:06] leaks, permissions leaks, access leaks, all of that always maintained
+[00:07:11] and.
+[00:07:12] Always secure by default.
+[00:07:14] Not just at identity level or data level.
+[00:07:17] The access control, what and which systems that your tool
+[00:07:21] calling is connecting the agent to everything governed together.
+[00:07:25] It&#39;s not even at every agent or every project.
+[00:07:29] Level.
+[00:07:29] It&#39;s at the runtime level and these aren&#39;t 5 optimization.
+[00:07:34] They are the spec that you build with so.
+[00:07:39] Get them right and you would not be the 40%
+[00:07:42] that gets cancelled by 2027.
+[00:07:44] So with that, I would like to actually invite Simon
+[00:07:47] to take us through building this in action.
+[00:07:49] Simon.
+[00:07:51] Thank you.
+[00:07:55] Hello everyone, I&#39;m the guy that call on stage when
+[00:07:58] the high wire out goes, so we will have a
+[00:08:00] high wire act.
+[00:08:02] I&#39;m going to explain some of this today for you
+[00:08:05] first and then we&#39;ll dive into the more exciting part
+[00:08:08] for me, especially the demo.
+[00:08:10] First, this is.
+[00:08:12] This demo is to show many of the features.
+[00:08:15] That Davanchi has just advertised we&#39;re going to look at.
+[00:08:19] The scalability, the individual sandboxing.
+[00:08:22] We&#39;re going to look at.
+[00:08:24] The.
+[00:08:24] Flexibility that Azure Container apps.
+[00:08:26] Offers with serverless.
+[00:08:27] TP US and sandboxes.
+[00:08:30] And so I&#39;m going to just.
+[00:08:31] Walk you through this.
+[00:08:33] Let&#39;s 1st pay.
+[00:08:33] Attention to this top part in this top.
+[00:08:36] Part we have.
+[00:08:37] A container apps environment.
+[00:08:39] This is what all of you are.
+[00:08:40] Very familiar with here we run 2 models on serverless
+[00:08:44] GPU.
+[00:08:45] One is Whisper and one is Cocoro.
+[00:08:47] These are speech to text as well as text.
+[00:08:51] To speech models.
+[00:08:52] And then we run a multi agent broker.
+[00:08:54] That basically takes every.
+[00:08:56] Prompt that comes in and.
+[00:08:58] Out of every agent and translates it from.
+[00:09:01] Text to audio.
+[00:09:03] So that&#39;s the first part of this.
+[00:09:05] Demo And then on the bottom part you can see.
+[00:09:08] All of the agent infrastructure.
+[00:09:10] And so you can see there is a sandbox.
+[00:09:15] We call this sandbox or this agent.
+[00:09:16] Aria, it runs copilot.
+[00:09:18] CLI there is a sandbox.
+[00:09:21] Called Nova, it runs.
+[00:09:22] Copilot CLI and then I&#39;ve also added Azure SRE agent
+[00:09:26] as well.
+[00:09:27] As part of this.
+[00:09:28] Stema and.
+[00:09:29] There&#39;s a series of proxy bridges that will basically go.
+[00:09:34] And interface with the multi agent.
+[00:09:36] Broker to go in and out.
+[00:09:38] With both to these agents.
+[00:09:40] And then we will interact.
+[00:09:41] With this and this is what I&#39;m going to switch
+[00:09:43] to next is.
+[00:09:44] The browser.
+[00:09:45] Where we have this conversation with our agents and then
+[00:09:48] as extra credit and this is where I&#39;m really going
+[00:09:51] to be sweating.
+[00:09:51] The phone as well via.
+[00:09:54] The.
+[00:09:54] Call gateway that was developed.
+[00:09:56] And runs on Azure container.
+[00:09:59] Apps via by Twilio.
+[00:10:01] So let&#39;s get going.
+[00:10:10] And I&#39;m told I&#39;m pushing demo one.
+[00:10:12] There we go.
+[00:10:12] OK cool, so here we are.
+[00:10:15] This is our browser view.
+[00:10:17] We have our demos agents here.
+[00:10:20] And we can just get.
+[00:10:21] Started and just to take off the edge for these
+[00:10:25] guys.
+[00:10:26] I&#39;m going to just do a mic check for him.
+[00:10:29] Can you do a mic check?
+[00:10:30] You&#39;re actually on stage?
+[00:10:31] Can you say hello to the audience for us?
+[00:10:41] And there is a little bit of a delay.
+[00:10:44] Everyone, so great to be here with you all tonight.
+[00:10:47] Let&#39;s have an amazing time together.
+[00:10:50] All right, so let&#39;s give.
+[00:10:52] Aria a job so.
+[00:10:54] There&#39;s actually three agents.
+[00:10:56] Aria is just a regular.
+[00:10:57] Copilot slash developer for us.
+[00:11:01] We have Nova, who is personal assistant.
+[00:11:04] She has access.
+[00:11:04] To.
+[00:11:05] My calendar, my Teams meetings and all my emails.
+[00:11:09] And then there&#39;s SRE Agent which actually monitors this application
+[00:11:12] and can.
+[00:11:13] Tell us about the health.
+[00:11:14] Of all of this infrastructure.
+[00:11:16] So let&#39;s give.
+[00:11:16] Aria a job and see how she does.
+[00:11:18] I have no idea whether or not this will work
+[00:11:20] or not.
+[00:11:21] Hey Aria, can you?
+[00:11:22] Build a tic tac toe.
+[00:11:24] Game and tell me the.
+[00:11:25] Port that it&#39;s.
+[00:11:26] Listening on once you&#39;re done.
+[00:11:32] So she&#39;s going to go off and do this.
+[00:11:33] Work.
+[00:11:34] This will likely take a couple.
+[00:11:36] Of minutes and.
+[00:11:38] While we do that.
+[00:11:39] Why don&#39;t we ask Nova to tell me what important
+[00:11:42] build related meetings I have today?
+[00:11:45] Hey Nova, can you tell?
+[00:11:47] Me what build related.
+[00:11:49] Meetings are on my calendar.
+[00:11:50] Today and you can.
+[00:11:56] See, I could have these.
+[00:11:56] Doors open and then have just a natural conversation with
+[00:11:59] all of these agents.
+[00:12:01] I can just like literally run this in the browser
+[00:12:03] and kind of keep going back and forth.
+[00:12:05] I find these Omni channel experiences a lot more natural
+[00:12:08] than constantly typing.
+[00:12:10] Kind of feels silly.
+[00:12:14] So this will also.
+[00:12:15] Take a little while.
+[00:12:16] Looks like you&#39;ve got 2 clear build related ones today.
+[00:12:19] Microsoft Build expert, shift, Calendar hold and a couple of
+[00:12:22] Microsoft build sessions.
+[00:12:24] TECHB RK221 and BRK 221.
+[00:12:28] Sounds like a busy build day.
+[00:12:31] Can you also tell me what my last teams message
+[00:12:34] was?
+[00:12:38] So you see these work through.
+[00:12:40] The Sandbox connectors sandboxes natively come with the ability to
+[00:12:45] connect up to an endless number of endpoints.
+[00:12:49] And it can.
+[00:12:50] They can.
+[00:12:50] Utilize them very easily.
+[00:12:53] Your most recent Teams messages from Viam Nagrani in the
+[00:12:57] Twilio Plus Voice Live API plus SRE Agent chat sent
+[00:13:00] just moments ago letting folks know that Simon is presenting
+[00:13:05] live at the Build BRK 221 session right now.
+[00:13:08] OK, this is was not rehearsed.
+[00:13:11] Anyway, let&#39;s ask SRE.
+[00:13:13] Agent.
+[00:13:14] Hey SRE agent, can you tell me briefly what application
+[00:13:17] you&#39;re watching?
+[00:13:18] You&#39;re welcome, let me know anytime you need help with
+[00:13:22] Voice Connect or anything else.
+[00:13:25] Voice Connect is a real time multi agent voice communication
+[00:13:29] platform.
+[00:13:30] It connects users via web socket based audio sessions to
+[00:13:34] AI agents including Claude, an SRE agent and a sandboxed
+[00:13:39] code execution agent with speech to text and text to
+[00:13:43] speech services handling the audio pipeline.
+[00:13:47] The infrastructure runs on Azure Container Apps, ACR Log Analytics
+[00:13:52] and I&#39;m here to help monitor, troubleshoot, and maintain it.
+[00:13:57] All right, so.
+[00:13:58] We&#39;ll check in with these.
+[00:13:59] Later before we go off.
+[00:14:01] I&#39;m going to ask Aria one more time how the
+[00:14:03] the tic Tac toe game is going, and then I&#39;ll
+[00:14:05] show you some of the infrastructure behind this.
+[00:14:11] Hey Aria, can you give?
+[00:14:12] Me an update.
+[00:14:13] On the tic tac toe game and which port it&#39;s
+[00:14:14] running on.
+[00:14:22] All right, she will.
+[00:14:24] Eventually chime in, all right.
+[00:14:25] So let&#39;s dive into this.
+[00:14:27] This is our.
+[00:14:29] Great news, the Tic Tac Toe game is up and
+[00:14:31] running on port 80.
+[00:14:35] Cool.
+[00:14:35] So we&#39;ll revisit.
+[00:14:36] This here in a little.
+[00:14:37] Bit so this our.
+[00:14:38] Azure Container Apps environment.
+[00:14:40] These are all the.
+[00:14:41] Applications that are running you can see.
+[00:14:42] The workload profiles if you.
+[00:14:44] Haven&#39;t tried our serverless GPU offering, I highly recommend it
+[00:14:49] it.
+[00:14:49] Is the easiest.
+[00:14:50] Way to run your custom models.
+[00:14:52] Anything from Hugging Face via Llama or any other model
+[00:14:56] hosting container.
+[00:14:59] It&#39;s the easiest way to.
+[00:15:00] Get a handle on.
+[00:15:01] GPU&#39;s We offer a set of GPU&#39;s T fours.
+[00:15:04] And a series of A1 hundreds and they&#39;re available in
+[00:15:08] 15 different regions and you can see.
+[00:15:10] That these.
+[00:15:10] Applications are running on these.
+[00:15:13] So here we have the STT.
+[00:15:15] Application and then the other one runs the TTS application
+[00:15:19] and again.
+[00:15:20] This is just serverless.
+[00:15:21] So I&#39;m only paying for this when the application is
+[00:15:24] actually running, and when it&#39;s not running, there&#39;s a scale
+[00:15:27] to zero event that takes place next.
+[00:15:29] Let&#39;s take a look at SRE Agent.
+[00:15:32] Also, this is a is a great tool if you.
+[00:15:36] Haven&#39;t used SRE agent before.
+[00:15:39] I highly recommend it in our.
+[00:15:41] Case I&#39;ve.
+[00:15:41] Wired it up to audio.
+[00:15:43] But you can of course.
+[00:15:44] See that it is a.
+[00:15:45] Regular agent.
+[00:15:46] It has a full feature set of.
+[00:15:49] All kinds of things of different connectors.
+[00:15:52] You can connect it to your knowledge base.
+[00:15:55] It can do complete check insurance and checkouts.
+[00:15:58] Of various pieces of code.
+[00:16:00] And so on and so.
+[00:16:00] Forth SO.
+[00:16:01] Highly recommended and we can, you know, just interact with
+[00:16:07] it normally here as you know, we all know so
+[00:16:11] next.
+[00:16:12] Let&#39;s take a look at.
+[00:16:14] The interesting part of this demo and we&#39;re going to
+[00:16:16] spend.
+[00:16:17] Most of.
+[00:16:17] The rest of this demo on ACA Sandboxes ACA Sandboxes
+[00:16:22] are a new offering they&#39;re being launched into.
+[00:16:25] Public preview, as Davanci has.
+[00:16:28] Explained it is a agent.
+[00:16:31] First platform.
+[00:16:33] This doesn&#39;t just.
+[00:16:33] Mean it is an agent first platform to run your
+[00:16:36] agent.
+[00:16:37] It is an agent first platform for agents to use.
+[00:16:41] We&#39;re going to go through some of these underlying features
+[00:16:45] that I kind of elevated.
+[00:16:47] At earlier, so first let&#39;s.
+[00:16:51] Dive into sandbox groups.
+[00:16:54] This is a sandbox group.
+[00:16:56] A sandbox group.
+[00:16:57] Has a set.
+[00:16:59] Of entities such as connectors and volumes and snapshots and
+[00:17:04] disk images, this is.
+[00:17:05] All supported by essentially, yeah.
+[00:17:12] So connectors.
+[00:17:14] Inside the sandbox groups run the sandboxes and they inherit
+[00:17:18] from the settings of the sandbox groups.
+[00:17:21] So what does this look?
+[00:17:22] Like I&#39;m going to dive in so.
+[00:17:25] First, let&#39;s see.
+[00:17:28] You know, we talked about resume being really quick and
+[00:17:31] the best.
+[00:17:32] Part here is actually our.
+[00:17:33] Resume captures memory.
+[00:17:34] State as well.
+[00:17:36] So let&#39;s take a look at what this looks like.
+[00:17:38] I earlier just.
+[00:17:39] Before this demo kind of resume a set.
+[00:17:42] Of a sleep a it&#39;s.
+[00:17:44] Still running, unfortunately.
+[00:17:45] OK, well, you&#39;re going to have to take my word
+[00:17:48] for it.
+[00:17:51] Here we go.
+[00:17:52] We have a Oh no, it&#39;s not OK, Cool.
+[00:17:54] So this was a.
+[00:17:56] Sandbox that I just left.
+[00:17:58] Running and I set up a very simple kind of
+[00:18:01] behind the scenes script to run and it continues to
+[00:18:05] run.
+[00:18:05] At the moment it&#39;s not running because the sandbox went
+[00:18:09] to sleep, but I&#39;m going to wake this sandbox up
+[00:18:12] and you can see it&#39;s here.
+[00:18:14] I think this was probably a second or two and
+[00:18:18] now we can actually connect.
+[00:18:20] Back to this script and see that this sandbox resumed.
+[00:18:26] And was sleeping for roughly, you know, 2025 minutes.
+[00:18:31] Right here.
+[00:18:32] And now it&#39;s continuing to run exactly like it went
+[00:18:36] to sleep.
+[00:18:37] You can configure sandboxes to.
+[00:18:40] Capture disk.
+[00:18:42] And memory or just disk when they go to sleep.
+[00:18:47] So that&#39;s cool.
+[00:18:49] And now?
+[00:18:50] Let&#39;s take a look at.
+[00:18:51] How?
+[00:18:52] Easy and quick it is.
+[00:18:54] To create a new sandbox.
+[00:18:56] We actually.
+[00:18:56] Have a set of templates already pre configured for you
+[00:19:00] and you have to pay really close attention.
+[00:19:03] I&#39;m pushing the create button now and the sandbox is
+[00:19:08] created and I can now connect to the sandbox and
+[00:19:13] I&#39;m inside the sandbox and if I could spell I
+[00:19:18] can launch copilot and copilot launches and the credentials that
+[00:19:25] I explained earlier that was set on the sandbox.
+[00:19:30] Group are.
+[00:19:31] Automatically passed into the sandbox and my copilot is now
+[00:19:36] authenticated with my kitab token and I can start using
+[00:19:41] it right away all right next let&#39;s visit Nova we
+[00:19:45] already saw what Nova did on the browser let&#39;s go
+[00:19:49] visit Nova in the background and see what she looks
+[00:19:54] like behind the scenes let&#39;s see if I.
+[00:20:00] Can here she is.
+[00:20:02] And so this is Nova and you know, we could
+[00:20:05] launch Copilot here and we can actually go and see
+[00:20:09] the prior session that we ran.
+[00:20:13] You can see here they are, but we&#39;re.
+[00:20:15] Not going to use that or waste any time on
+[00:20:17] that.
+[00:20:18] Secondly, you can actually see.
+[00:20:21] Sandboxes are a controlled entity, right?
+[00:20:24] Just like we kind of shared earlier, this isn&#39;t just
+[00:20:27] about process isolation, this is all about also about network
+[00:20:31] isolation.
+[00:20:32] So in this case.
+[00:20:33] You can actually go and isolate all the traffic.
+[00:20:37] You get a layer 7.
+[00:20:38] Firewall here that&#39;s basically added.
+[00:20:41] And you can.
+[00:20:43] Control exactly which hosts are.
+[00:20:45] Allowed what routes on which host are denied?
+[00:20:49] And so on.
+[00:20:50] And then Nova also as you remember.
+[00:20:56] Has access to.
+[00:20:59] All of my calendaring and e-mail and teams and these
+[00:21:02] connectors right here again get inherited from the sandbox group.
+[00:21:07] So because I created Nova.
+[00:21:09] With.
+[00:21:09] These connectors she has access.
+[00:21:12] To my calendar, my teams and my e-mail.
+[00:21:17] And that&#39;s.
+[00:21:17] How she gets access?
+[00:21:22] Let&#39;s go and visit Aria.
+[00:21:28] Come on, sandboxes.
+[00:21:32] So Arya, here she is, and we&#39;re going to go.
+[00:21:39] And remember, she developed a tic tac toe game for.
+[00:21:41] Us so this.
+[00:21:43] Game should now be and you know you can all
+[00:21:45] like cross your fingers and all that.
+[00:21:47] Should be running on port 80.
+[00:21:49] So what?
+[00:21:50] We&#39;re going to do now is we&#39;re.
+[00:21:51] Actually going to expose this port, so this should be
+[00:21:54] pretty straightforward.
+[00:21:55] We can just say.
+[00:21:56] Hey.
+[00:21:57] You know, go add this port, we&#39;re going to add
+[00:22:00] port 80.
+[00:22:02] Expose this port.
+[00:22:03] Here&#39;s port 80 and hopefully there&#39;s a tic tac toe.
+[00:22:07] Game now that I can play boom boom boom I
+[00:22:10] missed unfortunately a word about autonomous.
+[00:22:15] Otherwise we could watch the computers play, but unfortunately that
+[00:22:19] was.
+[00:22:20] I missed the opportunity.
+[00:22:21] Cool.
+[00:22:22] So lastly I wanted to show off the snapshots.
+[00:22:27] So because your agents.
+[00:22:30] Do work that.
+[00:22:31] Constantly has to be.
+[00:22:33] Undone and redone.
+[00:22:35] It&#39;s very important to kind of snapshot the entire environment,
+[00:22:37] right?
+[00:22:38] It works great, but.
+[00:22:40] Really, we all know stuff gets missed all the time
+[00:22:44] when your agents do work, and so snapshotting an entire.
+[00:22:48] Disk and replaying it or.
+[00:22:51] Using it as a point of reference to go forward
+[00:22:54] from is always a great.
+[00:22:55] Process so here.
+[00:22:56] For example, we can snapshot.
+[00:22:58] This trivially.
+[00:23:00] We can create a snapshot.
+[00:23:01] Once the snapshot is created, I can actually use that
+[00:23:05] snapshot to then create a new instance from.
+[00:23:08] So we&#39;ll wait a few.
+[00:23:09] Seconds here, here we are.
+[00:23:14] D91 is all a snapshot and so in here we
+[00:23:17] can see here&#39;s the snapshot and I can create a
+[00:23:21] new sandbox and before I know it my snapshot becomes
+[00:23:26] a new sandbox and.
+[00:23:29] I basically have Aria copied copilot and I forgot to.
+[00:23:41] Resume so we&#39;re going to have to do this and
+[00:23:45] here all the sessions.
+[00:23:48] To prove.
+[00:23:49] That this was an exact.
+[00:23:50] Copy of Aria as she was before.
+[00:23:54] All right, so this is.
+[00:23:55] What I wanted to show you, and now we&#39;re going
+[00:23:57] to go for the extra.
+[00:23:58] Credit, which is a little.
+[00:24:00] Bit of a moment of sweating again this now.
+[00:24:04] Gives us the call gateway.
+[00:24:05] So we&#39;re going to.
+[00:24:06] Call our.
+[00:24:07] Agent room our agent trio well and for some reason
+[00:24:13] this does not pipe out through the same.
+[00:24:31] Hey, SRE.
+[00:24:32] Can you give me the details?
+[00:24:33] On the last check in.
+[00:24:49] Simon it&#39;s commit 68 CEAB 7 titled Client Phase seven
+[00:24:54] UI Polish which includes a door closed state drop mode
+[00:24:59] banner and a new Nova avatar.
+[00:25:08] Hey Nova, can you send?
+[00:25:10] Vyom Nagrani an.
+[00:25:12] E-mail to tell him that the demo went well.
+[00:25:18] I&#39;m sorry but I don&#39;t have the ability to send
+[00:25:21] emails.
+[00:25:23] I&#39;m an SRE agent focused on infrastructure.
+[00:25:26] Anyway, I think you get the idea.
+[00:25:30] I think that was the.
+[00:25:31] Entire demo.
+[00:25:33] And with that, I&#39;m going to hand it back to
+[00:25:35] Davanci.
+[00:25:36] Thank you all.
+[00:25:36] How do I go back to the deck?
+[00:25:37] You watched it?
+[00:25:53] Alright, did you guys blink the eye when he was
+[00:25:56] showing the sandbox reaction resume startup?
+[00:25:59] Did you miss it?
+[00:26:00] Did anybody miss it in the room?
+[00:26:03] OK, every.
+[00:26:03] Thank you for the warning, Simon.
+[00:26:05] That was awesome.
+[00:26:06] Thank you.
+[00:26:06] For to Arya senior.
+[00:26:09] Agent and Noah for.
+[00:26:10] Bringing us together.
+[00:26:12] OK, so.
+[00:26:14] Simon covered end to end on how every runtime hurdle
+[00:26:19] was solved, from instant isolation tasks being created with sandboxes
+[00:26:25] to cold.
+[00:26:26] Starts the verse that we saw with respect to the.
+[00:26:31] Scale outs for concurrent sandboxes.
+[00:26:33] At.
+[00:26:33] Creation and scale serverless GPU&#39;s that were provisioned for inferencing
+[00:26:39] and of.
+[00:26:40] Course the.
+[00:26:41] Snapshotting.
+[00:26:42] I&#39;m sure nobody missed that here.
+[00:26:44] So we have the pre.
+[00:26:45] Warned pools available for that cold start in sandboxes and
+[00:26:49] also Azure Container Apps Express.
+[00:26:52] Express is the fast.
+[00:26:53] Experience for Azure Container apps that&#39;s built on top of
+[00:26:57] sandboxes and.
+[00:26:57] Before I go deeper to.
+[00:26:59] Cover the right.
+[00:26:59] Side of this table.
+[00:27:00] Let me first explain and introduce what Azure Container apps
+[00:27:05] and boxes.
+[00:27:06] Are.
+[00:27:08] The engine that&#39;s making all.
+[00:27:09] Of this demo work.
+[00:27:10] So I&#39;m happy to announce the Azure Container apps and
+[00:27:14] boxes.
+[00:27:14] Fast isolated stateful compute infrastructure on demand, executing securely by
+[00:27:19] default, isolated for all your untrusted workloads, not just AI
+[00:27:24] generated code, but even extending for your multi tenant scenarios
+[00:27:29] and more.
+[00:27:29] Which we will see shortly.
+[00:27:31] Resuming instantly for all your contexts, preserving it end to
+[00:27:36] end, and of course bursting to hyperscale going from.
+[00:27:40] Zero to.
+[00:27:40] Thousands in instant seconds and dying back down.
+[00:27:45] For your idle state.
+[00:27:46] Without having to get you paying because all your money
+[00:27:49] is going for tokens.
+[00:27:50] Right, so this.
+[00:27:51] Is the foundation layer that&#39;s already powering a lot of
+[00:27:55] experiences at Microsoft itself.
+[00:27:57] Like get up Co pilots.
+[00:27:58] Cloud Sandboxes that we also launched at Build Foundry Hosted
+[00:28:02] Agent service and Container Apps Express.
+[00:28:06] Now that I&#39;ve called out Container Apps Express.
+[00:28:08] Just a note, Container Apps Express is fast container apps
+[00:28:12] so when you are building everything that is not about
+[00:28:17] agents you would be hosting it on.
+[00:28:19] Application layers like regular APIs.
+[00:28:21] And apps.
+[00:28:22] And that&#39;s what you use.
+[00:28:24] Container apps Express for we have we already have a
+[00:28:28] lot of interest from customers.
+[00:28:30] Some have tried, tested.
+[00:28:32] Here are some quotes something I want to call out.
+[00:28:34] It&#39;s not about a particular industry that connects for using
+[00:28:39] container app sandboxes or the sandbox technology, no matter whether
+[00:28:43] you are a net.
+[00:28:44] Tech you are.
+[00:28:46] In services as an ISV.
+[00:28:50] A startup the.
+[00:28:51] Experience that you are extending for your existing applications or
+[00:28:55] new experiences that you&#39;re bringing out.
+[00:28:58] Either an environment you want to.
+[00:29:00] Expose like how?
+[00:29:01] Ed Tech does with Ed chat for from Department of
+[00:29:05] Education in South.
+[00:29:07] Australia for a safe.
+[00:29:09] Experience for every student.
+[00:29:11] That they work.
+[00:29:13] With to provide environments to build and test out the
+[00:29:17] technology and and they can work with providing AI democratized.
+[00:29:22] Experience or site core AI?
+[00:29:26] Running long lived agent executions safely securely through their production
+[00:29:31] environments on their S site core AI platform, right?
+[00:29:35] Doing real production work end to end without losing or
+[00:29:39] doubting control for their agents.
+[00:29:43] We see six of these patterns emerging across different scenarios.
+[00:29:46] We saw two for multi tenancy with site core AI.
+[00:29:50] We saw edtech as a.
+[00:29:51] Platform for E for execution of student environments, but there
+[00:29:56] are also agent workflows.
+[00:29:58] That&#39;s what Simon demoed on.
+[00:30:00] For us.
+[00:30:01] AI code executions.
+[00:30:02] So your agent is running.
+[00:30:03] Your agent needs to based on your.
+[00:30:06] Task your ask.
+[00:30:07] Needs to execute and build more code and run it.
+[00:30:11] But your agent is part of a production scenario that&#39;s
+[00:30:14] already in place.
+[00:30:16] You don&#39;t want to risk your production environments.
+[00:30:18] You don&#39;t want to.
+[00:30:19] Risk your data.
+[00:30:21] And more so, that&#39;s why the agent becomes the user
+[00:30:24] to ask a sandbox to.
+[00:30:26] Get up.
+[00:30:27] Get alive and go back, die, die down platform building.
+[00:30:31] Whether you&#39;re a startup building AI platforms, agent platforms, your
+[00:30:36] own version of copilots, you build them on sandboxes or
+[00:30:40] you extend it for multi tenant ISV experiences and even
+[00:30:45] interactive user sessions.
+[00:30:48] And with that, let&#39;s actually invite one of container apps
+[00:30:51] customers, Augur.
+[00:30:53] Gopi from.
+[00:30:54] Augur will be sharing how Augur is building out the
+[00:30:57] supply chain autonomously with agents.
+[00:30:59] Thank.
+[00:30:59] You.
+[00:31:01] Thanks, Devanshi.
+[00:31:04] All right, Let&#39;s see.
+[00:31:07] OK.
+[00:31:07] There&#39;s an old photo.
+[00:31:11] Should I point?
+[00:31:13] There you go.
+[00:31:14] All right, first question, how many of you started your
+[00:31:17] career actually writing code?
+[00:31:19] OK, I would say about 60%.
+[00:31:23] How many of you still write code?
+[00:31:27] See, every time I ask this question, the people who
+[00:31:30] are writing code today is more than the people who
+[00:31:33] started writing code, right?
+[00:31:35] And that&#39;s only going to get better because people who
+[00:31:37] basically use agents to write code kind of fake it
+[00:31:40] and say that they write code.
+[00:31:42] And that&#39;s what&#39;s happening, right?
+[00:31:43] So it&#39;s agents are everywhere.
+[00:31:45] So everybody&#39;s writing code now, like my, my 15 year
+[00:31:47] old daughter is writing code, right?
+[00:31:50] So now let&#39;s come back to what a supply chain
+[00:31:53] is, right?
+[00:31:53] So when I started out at Augur, I basically went
+[00:31:56] and pieced out the supply chain.
+[00:31:58] And the first example that I picked was literally like
+[00:32:01] that of a pen.
+[00:32:02] I&#39;m sure like most of you, actually this crowd might
+[00:32:05] not, but most of you would carry a pen around.
+[00:32:08] And when you do carry a pen around, like the
+[00:32:10] complexity of that supply chain is insane because starting with
+[00:32:13] the raw materials, like, you know, you basically have all
+[00:32:15] these raw materials.
+[00:32:17] Those raw materials need to get processed into some form
+[00:32:19] of consumable manufacturing parts like, you know, ink and like,
+[00:32:23] you know, ball inside the balls of the pan and
+[00:32:25] stuff like that.
+[00:32:26] So everything needs to basically be created into some form
+[00:32:29] or shape.
+[00:32:30] Then it goes to a component assembler who basically assembles
+[00:32:34] those components and then it gets shipped, stored in warehouses,
+[00:32:37] transport to retail outlets from the retail outlets.
+[00:32:40] If somebody gives that to you and then it comes
+[00:32:42] to you, right?
+[00:32:42] So that&#39;s basically the entirety of the supply chain.
+[00:32:45] Now, we are very finicky people, right?
+[00:32:48] So it&#39;s not just this is this in itself is
+[00:32:50] very complex.
+[00:32:51] Now, in addition to that, we want a pink pen
+[00:32:54] that writes in blue.
+[00:32:55] We want a pen that basically writes like a pencil.
+[00:32:59] We want a pencil that writes like a pen.
+[00:33:00] And we have a name for it called a pen
+[00:33:02] pencil.
+[00:33:03] And we have all of these like, you know, insane
+[00:33:05] combinatorics of like, you know, supply chains that basically make
+[00:33:08] it all the more complex over time.
+[00:33:11] And as that becomes more and more complex, this is
+[00:33:13] just for a pen.
+[00:33:14] Imagine what it would look like for an iPhone or
+[00:33:17] an NVIDIA GPU, right?
+[00:33:18] The supply chains that basically run these are like super
+[00:33:21] complex.
+[00:33:22] And that&#39;s the opportunity that Auger is basically trying to
+[00:33:25] conquer using agents.
+[00:33:26] So we&#39;re trying to build autonomous supply chains, basically using
+[00:33:31] agents to kind of coordinate across this gamut of boxes
+[00:33:35] in a way that basically eliminates coordination tax.
+[00:33:42] So I&#39;m going to talk about 3 specific aspects of
+[00:33:46] Auger.
+[00:33:46] 1 is it&#39;s basically built on what we call as
+[00:33:49] Auger&#39;s universal supply chain ontology.
+[00:33:51] I&#39;ll come to it why that happens.
+[00:33:53] We are AI native, which basically means that like you
+[00:33:57] know, every layer of our stack basically shares the same
+[00:34:00] terminology for agents to comfortably act and we don&#39;t try
+[00:34:04] to reinvent the wheel and try to build foundational models
+[00:34:08] yet.
+[00:34:09] I cannot disclose anything more than that.
+[00:34:10] But there&#39;s basically we are very heavily context driven because
+[00:34:14] most of the supply chains that are operators who are
+[00:34:17] sitting inside of these big companies who operated supply chains
+[00:34:20] for decades and they know a lot of information that
+[00:34:23] is buried inside of institutional knowledge.
+[00:34:26] It&#39;s not documented, it&#39;s not in public domain.
+[00:34:28] So that context is super important for for supply chains
+[00:34:32] to actually operate effectively, right?
+[00:34:35] So the main thing, the first problem that we encounter
+[00:34:39] is that like, you know, data lives in silos and
+[00:34:42] unstructured knowledge is basically primarily lost, right?
+[00:34:46] Unless you basically figure out a way to go and
+[00:34:49] pull that knowledge out of wherever the sources are.
+[00:34:52] That is every deployment that most companies do is bespoke,
+[00:34:55] right?
+[00:34:56] So they&#39;re trying to pull stuff out of like specific
+[00:34:58] things.
+[00:34:59] They&#39;re trying to build a stack vertically for that.
+[00:35:01] So, and that doesn&#39;t scale.
+[00:35:03] And then like, you know, there are too many edge
+[00:35:05] cases and that&#39;s basically death by 1000 cuts.
+[00:35:07] Like this doesn&#39;t work.
+[00:35:08] That doesn&#39;t work.
+[00:35:09] And then like once you solve like the 1st 20%
+[00:35:12] of the problem, the remaining 80% becomes edge cases.
+[00:35:14] So these are like primarily like, you know, the data
+[00:35:17] integration issues that we have when we bring data into
+[00:35:20] our system.
+[00:35:21] So what we do, we basically build something called agentic
+[00:35:24] data integration, right?
+[00:35:25] So what this does is using ACA, it basically has
+[00:35:30] like thousands of agents that are running across.
+[00:35:34] So let&#39;s say a customer comes to us and says,
+[00:35:36] here&#39;s a snowflake account, go and look at it, right?
+[00:35:38] So we pulled in the pull in all the data
+[00:35:40] and then we&#39;re looking at it.
+[00:35:41] There are 900 tables.
+[00:35:43] Each table has thousand plus columns in them and millions
+[00:35:46] of rows in them.
+[00:35:47] How do you make sense of this data?
+[00:35:49] Right, Like a human team trying to actually organize and
+[00:35:52] make sense of this data would take forever.
+[00:35:55] A single deployment to a single customer will probably take
+[00:35:58] you like, you know, 12 months at least to even
+[00:36:01] start making some progress.
+[00:36:03] So what we do is we basically build a identic
+[00:36:06] harness.
+[00:36:07] This harness goes and figures out all of this data.
+[00:36:10] It figures out what each table semantically means, how it
+[00:36:12] is related to another table, how the column features look
+[00:36:15] like.
+[00:36:16] It basically creates a whole sequence of information.
+[00:36:20] And this information then percolates to the higher level agents
+[00:36:23] which are now reasoning and joining these tables and predicting
+[00:36:26] how these tables interoperate amongst themselves.
+[00:36:28] And final layer of that is a human in the
+[00:36:31] loop system.
+[00:36:31] So this is where like, you know, for the long
+[00:36:33] running agents to sleep and then for them to wake
+[00:36:36] up through like, you know, human and the loop approval
+[00:36:38] workflow and like an information workflow, collect the context, bring
+[00:36:41] it back into the system, use that context to do
+[00:36:43] the next level of work.
+[00:36:45] And this entire process basically is completely agentic, which allows
+[00:36:49] us to literally like take one year of like, you
+[00:36:52] know, a data integration system and run it in days.
+[00:36:57] So the second one that without a world model like
+[00:36:59] agents basically break.
+[00:37:01] If you say that I&#39;m going to hyper customize every
+[00:37:04] single supply chain problem into a specific solution for a
+[00:37:07] user, we&#39;d be building solutions like one year every day,
+[00:37:10] every every solution just doesn&#39;t work.
+[00:37:13] So in order to do that, what we have built
+[00:37:15] is something called OSCO.
+[00:37:16] It&#39;s a auger unified supply chain ontology.
+[00:37:19] When people talk about ontology, usually they talk about data
+[00:37:21] schema.
+[00:37:22] R is much richer than a data schema, which means
+[00:37:25] like, you know, it has codified into it, like, you
+[00:37:27] know, common mathematical operations, common functions, the physics of our
+[00:37:31] supply chain operates, how products move, processes, buffers and everything.
+[00:37:35] All of that is codified into the system.
+[00:37:37] So we try not to do deterministic stuff with agents
+[00:37:39] and we kind of split that apart.
+[00:37:41] So it means agents basically do the decision making, they
+[00:37:44] do the reasoning primarily and then the deterministic stuff always
+[00:37:48] happens within like very strong deterministic blocks which are available
+[00:37:51] as tools for those agents.
+[00:37:53] So that world model now scales across multiple customers.
+[00:37:57] So we have the data first, we have this world
+[00:38:00] model.
+[00:38:00] We need to somehow connect these two.
+[00:38:02] And that connectivity is what we refer to as the
+[00:38:05] bus, right?
+[00:38:05] So the world model is there.
+[00:38:06] We bring in the data and because our ADI system
+[00:38:09] is completely aware of the higher level layer that it
+[00:38:12] needs to report into, it connects all this data automatically,
+[00:38:15] builds all the ETL pipelines, automatically builds the machine learning
+[00:38:19] notebooks.
+[00:38:19] It does all of this stuff and connects all the
+[00:38:22] data coming in into interoperable useful intelligence that then connects
+[00:38:26] into our Osco layer.
+[00:38:27] Once the Osco layer is connected, then on top of
+[00:38:31] it we need to add context, right?
+[00:38:35] On top of that, we need to add context.
+[00:38:36] So the context is important because this is specific to
+[00:38:39] how every company makes decisions.
+[00:38:41] What is important to them.
+[00:38:42] Like, you know, they have Tier 1 customers, they have
+[00:38:45] Tier 1, Tier 2 customers, Tier 1 customers can never
+[00:38:47] go hungry.
+[00:38:47] Tier 2 customers, it is OK if they starve a
+[00:38:49] little.
+[00:38:50] So those are all decisions that like, you know, are
+[00:38:52] contextual information that is buried inside of every company.
+[00:38:55] We need to be able to take that and pull
+[00:38:58] that in real time.
+[00:38:59] So far what you saw the 1st 2:00 slides that
+[00:39:02] I presented to you was primarily around like you know,
+[00:39:05] offline workflows that use thousands of agents to actually come
+[00:39:09] to a solution.
+[00:39:10] This one is actually a real time workflow.
+[00:39:13] What that means is when a customer basically comes in
+[00:39:17] and says that I want to ask a specific question
+[00:39:20] as to what happens if I put a warehouse in
+[00:39:22] this specific location.
+[00:39:24] That is a what if scenario.
+[00:39:25] We need to run through like a modeling pipeline, a
+[00:39:28] simulation pipeline and get the results to them.
+[00:39:30] But in order to do that, we need to parameterize
+[00:39:32] that pipeline.
+[00:39:33] We need to identify the right input information that goes
+[00:39:36] in and push it into it.
+[00:39:37] Doing all of that stuff in real time requires like
+[00:39:40] very fast ACA agents that can basically open up sandboxes,
+[00:39:43] run it, send it to, send it to like, you
+[00:39:45] know, other agents.
+[00:39:46] They make their local decisions, they pull the data.
+[00:39:49] All of this happens in within a matter of 10
+[00:39:51] seconds, right?
+[00:39:52] So that level of reasoning and speed is super critical
+[00:39:55] for the real time experience.
+[00:39:57] So the back end experiences can take time, but they
+[00:40:00] are long running events.
+[00:40:01] The front end experience are like really fast, right.
+[00:40:04] So that basically leads to my final slide which is
+[00:40:08] over like till March of last year is when we
+[00:40:12] started writing the first line of code.
+[00:40:15] And thanks to ACA and Azure and Azure Foundry, we
+[00:40:19] basically have like closed on like publicly to customers today,
+[00:40:24] right?
+[00:40:24] So that&#39;s the speed at which we are able to
+[00:40:26] develop an enterprise level solution at scale.
+[00:40:29] And we have 40 plus services that are literally running
+[00:40:32] on Azure Container Apps and we have thousands of agents
+[00:40:35] that are running on top of it on a day-to-day
+[00:40:37] basis, right.
+[00:40:38] So that&#39;s the autonomy that we are building into the
+[00:40:40] supply chain system.
+[00:40:41] Yeah.
+[00:40:44] So thanks Devanshu.
+[00:40:49] Thank you, Gopi.
+[00:40:51] Alright, so.
+[00:40:52] We&#39;re in the final leg of the session.
+[00:40:53] Let me leave you with three things.
+[00:40:55] First, container apps as we saw with August demonstration from
+[00:40:59] Gopi is delivering that cohesive agent runtime already for customers
+[00:41:04] in action apps, sandboxes, everything put together and container apps
+[00:41:08] sandboxes are now in public preview.
+[00:41:12] And we are not just exposing things for our customers
+[00:41:15] to try out, we are using it ourselves.
+[00:41:18] Microsoft is building on top of our own technology at
+[00:41:21] the speed of innovation that we are delivering them for
+[00:41:24] our customers itself.
+[00:41:25] So GitHub.
+[00:41:26] Foundry Container Apps and Azure.
+[00:41:28] Other Azure services are also.
+[00:41:30] Using the same agent runtime experiences building agents and delivering
+[00:41:34] agents for our custom agenting experiences for our customers.
+[00:41:40] For you to get started, you should.
+[00:41:42] Check out the Azure Container All Up product blog, the
+[00:41:45] demo that Simon showcased.
+[00:41:47] Today it&#39;s the code is available.
+[00:41:49] Here and the code repository, and as you go out
+[00:41:53] you can access the sandboxes portal in.
+[00:41:57] ACA AKA.
+[00:41:59] Miss ACA sandboxes and then.
+[00:42:03] Portal for the direct access to portal.
+[00:42:06] There&#39;s a blog with samples.
+[00:42:08] For you to already get.
+[00:42:09] Started end to end and of course express to now
+[00:42:13] with.
+[00:42:13] That I&#39;ll take a pause, open it for at least.
+[00:42:16] One question in the room before we are.
+[00:42:17] Cut off, but let&#39;s.
+[00:42:19] Let&#39;s bring back all the speakers.
+[00:42:21] Simon, go peek.
+[00:42:22] Join me.
+[00:42:24] Any questions?
+[00:42:27] Yes, please.
+[00:42:28] Can you please give him the microphone?
+[00:42:32] Yes.
+[00:42:36] OK, all right.
+[00:42:39] As.
+[00:42:40] How about now?
+[00:42:41] Let me give you some space.
+[00:42:43] OK, so as folks are.
+[00:42:47] Taking on the code sample, Simon, do you want to
+[00:42:50] talk about what and why express and when sandboxes?
+[00:42:54] Sure, Yeah, maybe there is some confusion about.
+[00:42:56] That so sandboxes are a.
+[00:43:00] Fast iteration environment.
+[00:43:02] Right, they are built for.
+[00:43:04] Agents to be used.
+[00:43:06] To run agents, but also for agents to use in
+[00:43:10] their development and then once you and so they&#39;re.
+[00:43:15] Very.
+[00:43:15] Transient in their nature.
+[00:43:17] In some way you can think of them.
+[00:43:19] You know if you&#39;ve ever run with your.
+[00:43:20] Laptop through the lab, through the airport with like still.
+[00:43:24] Open because you&#39;re finishing up, you&#39;re having your agent finishing
+[00:43:27] something up in some way.
+[00:43:29] Both of.
+[00:43:30] Sandboxes are basically your laptop and then express.
+[00:43:33] Becomes a thing that you.
+[00:43:35] Deploy to Express is similarly speedy.
+[00:43:38] We didn&#39;t really have the time to go and dive
+[00:43:40] into that.
+[00:43:41] We launched at about a month ago.
+[00:43:43] Express is kind of the best of.
+[00:43:46] Container apps.
+[00:43:47] It is a environment less.
+[00:43:49] There&#39;s no more, you know, physical cluster behind it.
+[00:43:53] It is essentially just an app.
+[00:43:55] The best for web apps so you deploy.
+[00:43:57] On Express.
+[00:43:58] And you develop with your.
+[00:44:00] Agents on sandboxes.
+[00:44:04] OK.
+[00:44:04] With that, Any questions?
+[00:44:05] Out there.
+[00:44:07] Yes, please.
+[00:44:08] Can you please?
+[00:44:09] Get him a microphone.
+[00:44:11] Thank you.
+[00:44:19] This is Gopi.
+[00:44:20] First of all, I&#39;d like to understand which layer does
+[00:44:24] your OSCO world model stand on right so and what
+[00:44:28] format is it?
+[00:44:29] Are you hosting it in a markdown or or is
+[00:44:31] is it running in an agent in itself?
+[00:44:34] A bit more on how you are doing.
+[00:44:36] It is actually code.
+[00:44:38] It&#39;s actually a object oriented representation inside of our code.
+[00:44:43] And because like we want as much as possible as
+[00:44:46] to be deterministic, but our agents are actually registered with
+[00:44:50] OSCO as well, right?
+[00:44:51] So every agent is registered at OSCO, every object.
+[00:44:54] So the data schema is also OSCO, common functions at
+[00:44:56] OSCO, everything is registered in there.
+[00:44:58] So it&#39;s basically like, think about it as the world
+[00:45:01] model, not just in terms of data, but in terms
+[00:45:04] of how supply chains operate, right?
+[00:45:09] OK, we&#39;re at time.
+[00:45:10] Thank you so much for joining us and have a.
+[00:45:12] Great rest of the world.
+[00:45:14] See ya.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

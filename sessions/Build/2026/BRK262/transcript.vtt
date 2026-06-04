@@ -1,0 +1,3145 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.7262471318244934
+
+00:00:01.520 --> 00:00:02.840
+All right, Welcome, everyone.
+
+NOTE Confidence: 0.9685811400413513
+
+00:00:02.880 --> 00:00:03.240
+Welcome.
+
+NOTE Confidence: 0.9082526564598083
+
+00:00:03.240 --> 00:00:05.434
+Great to see you all in person as well to
+
+NOTE Confidence: 0.9082526564598083
+
+00:00:05.487 --> 00:00:07.040
+those of you watching online.
+
+NOTE Confidence: 0.9095927476882935
+
+00:00:07.600 --> 00:00:08.520
+So here's the thing.
+
+NOTE Confidence: 0.8994780778884888
+
+00:00:09.040 --> 00:00:11.880
+Agents today, they're no longer confined to a chat box.
+
+NOTE Confidence: 0.9164748787879944
+
+00:00:12.039 --> 00:00:14.165
+They're not waiting for you and I to tell them
+
+NOTE Confidence: 0.9164748787879944
+
+00:00:14.211 --> 00:00:14.719
+what to do.
+
+NOTE Confidence: 0.94178706407547
+
+00:00:15.120 --> 00:00:15.960
+They're taking action.
+
+NOTE Confidence: 0.8680064678192139
+
+00:00:16.280 --> 00:00:17.280
+They're calling tools.
+
+NOTE Confidence: 0.8868805766105652
+
+00:00:17.480 --> 00:00:20.427
+They're running workflows end to end that are pretty complex,
+
+NOTE Confidence: 0.8868805766105652
+
+00:00:20.475 --> 00:00:23.278
+that would have been almost unimaginable just a few months
+
+NOTE Confidence: 0.8868805766105652
+
+00:00:23.326 --> 00:00:23.520
+ago.
+
+NOTE Confidence: 0.8661811947822571
+
+00:00:24.040 --> 00:00:27.560
+So the problem is this, it's not about capabilities anymore.
+
+NOTE Confidence: 0.9150874614715576
+
+00:00:27.800 --> 00:00:31.001
+Agents are plenty capable, and we're a lot more productive
+
+NOTE Confidence: 0.9150874614715576
+
+00:00:31.056 --> 00:00:32.159
+as a result of that.
+
+NOTE Confidence: 0.8441625237464905
+
+00:00:32.440 --> 00:00:34.988
+Now what we want is we want agents to run
+
+NOTE Confidence: 0.8441625237464905
+
+00:00:35.050 --> 00:00:36.480
+safely and predictably.
+
+NOTE Confidence: 0.9163587093353271
+
+00:00:36.720 --> 00:00:39.293
+And in this session we're going to learn all about
+
+NOTE Confidence: 0.9163587093353271
+
+00:00:39.345 --> 00:00:42.433
+the capabilities Windows is providing to help your agents do
+
+NOTE Confidence: 0.9163587093353271
+
+00:00:42.485 --> 00:00:42.999
+just that.
+
+NOTE Confidence: 0.8411014080047607
+
+00:00:43.360 --> 00:00:44.240
+My name is Krupa.
+
+NOTE Confidence: 0.8477526307106018
+
+00:00:44.680 --> 00:00:46.858
+I'm a product manager on the Windows Platform and Developer
+
+NOTE Confidence: 0.8477526307106018
+
+00:00:46.895 --> 00:00:47.079
+team.
+
+NOTE Confidence: 0.8273385167121887
+
+00:00:47.400 --> 00:00:50.423
+I'm joined by Stuart, an architect also on the Windows
+
+NOTE Confidence: 0.8273385167121887
+
+00:00:50.479 --> 00:00:53.951
+Platform and Developer team, and Patrick, a product manager at
+
+NOTE Confidence: 0.8273385167121887
+
+00:00:54.007 --> 00:00:54.399
+GitHub.
+
+NOTE Confidence: 0.8562021255493164
+
+00:00:54.760 --> 00:00:57.916
+You'll be hearing plenty from Stuart and Patrick throughout this
+
+NOTE Confidence: 0.8562021255493164
+
+00:00:57.965 --> 00:00:58.360
+session.
+
+NOTE Confidence: 0.9142104983329773
+
+00:00:59.000 --> 00:01:01.861
+Now before we go into the technical details, I want
+
+NOTE Confidence: 0.9142104983329773
+
+00:01:01.917 --> 00:01:03.040
+to take a step back.
+
+NOTE Confidence: 0.9215595126152039
+
+00:01:03.480 --> 00:01:06.047
+As you can see from these headlines, the way agents
+
+NOTE Confidence: 0.9215595126152039
+
+00:01:06.097 --> 00:01:07.959
+are being used today, it's not great.
+
+NOTE Confidence: 0.8517383337020874
+
+00:01:08.080 --> 00:01:11.881
+As agents are gaining more capabilities and working with greater
+
+NOTE Confidence: 0.8517383337020874
+
+00:01:11.941 --> 00:01:15.564
+autonomy, they're causing real problems either in the wild or
+
+NOTE Confidence: 0.8517383337020874
+
+00:01:15.623 --> 00:01:17.999
+maybe even within our own organizations.
+
+NOTE Confidence: 0.8229677677154541
+
+00:01:18.360 --> 00:01:22.226
+And if I would generalize, the reason is that we're
+
+NOTE Confidence: 0.8229677677154541
+
+00:01:22.302 --> 00:01:26.548
+moving very quickly from AI that response and answers to
+
+NOTE Confidence: 0.8229677677154541
+
+00:01:26.624 --> 00:01:28.519
+AI that acts with agency.
+
+NOTE Confidence: 0.8748713731765747
+
+00:01:28.840 --> 00:01:31.733
+So when an agent makes a small mistake like sending
+
+NOTE Confidence: 0.8748713731765747
+
+00:01:31.790 --> 00:01:34.797
+an unwanted e-mail or modifying a file or even making
+
+NOTE Confidence: 0.8748713731765747
+
+00:01:34.854 --> 00:01:38.372
+something public it shouldn't, it gets amplified, it creates a
+
+NOTE Confidence: 0.8748713731765747
+
+00:01:38.428 --> 00:01:39.279
+chain reaction.
+
+NOTE Confidence: 0.7621023654937744
+
+00:01:39.560 --> 00:01:42.200
+The blast radius of the damage it causes is much
+
+NOTE Confidence: 0.7621023654937744
+
+00:01:42.255 --> 00:01:42.640
+larger.
+
+NOTE Confidence: 0.7726119756698608
+
+00:01:42.880 --> 00:01:45.360
+Here's a great example where you're using an agent is
+
+NOTE Confidence: 0.7726119756698608
+
+00:01:45.406 --> 00:01:47.840
+doing some coding, deletes your production database.
+
+NOTE Confidence: 0.8680718541145325
+
+00:01:48.200 --> 00:01:51.025
+Not great even in situations where you might have seen
+
+NOTE Confidence: 0.8680718541145325
+
+00:01:51.077 --> 00:01:53.903
+this example hitting your news feeds a short while ago
+
+NOTE Confidence: 0.8680718541145325
+
+00:01:53.955 --> 00:01:57.042
+where the agent is operating on your e-mail, you're telling
+
+NOTE Confidence: 0.8680718541145325
+
+00:01:57.094 --> 00:01:58.559
+it to stop, don't delete it.
+
+NOTE Confidence: 0.6157630681991577
+
+00:01:58.880 --> 00:02:01.040
+Agent acknowledges, go ahead and deletes it anyway.
+
+NOTE Confidence: 0.9018227458000183
+
+00:02:01.520 --> 00:02:04.320
+These are the kinds of examples that we need to
+
+NOTE Confidence: 0.9018227458000183
+
+00:02:04.379 --> 00:02:07.716
+close at a platform layer because when agent can operate
+
+NOTE Confidence: 0.9018227458000183
+
+00:02:07.775 --> 00:02:10.933
+on the things that matter to us, files, code, e-mail,
+
+NOTE Confidence: 0.9018227458000183
+
+00:02:10.992 --> 00:02:13.614
+all the systems you and I rely on, we cannot
+
+NOTE Confidence: 0.9018227458000183
+
+00:02:13.673 --> 00:02:15.639
+rely on the agent to self govern.
+
+NOTE Confidence: 0.9168526530265808
+
+00:02:15.919 --> 00:02:19.040
+We cannot rely on the agent to basically follow good
+
+NOTE Confidence: 0.9168526530265808
+
+00:02:19.100 --> 00:02:19.760
+intentions.
+
+NOTE Confidence: 0.7772672772407532
+
+00:02:20.080 --> 00:02:21.600
+It's even best effort.
+
+NOTE Confidence: 0.8630813956260681
+
+00:02:21.600 --> 00:02:24.400
+Prompting and prompt engineering can't solve this either.
+
+NOTE Confidence: 0.946366548538208
+
+00:02:24.720 --> 00:02:26.960
+It really requires a more holistic solution.
+
+NOTE Confidence: 0.9551051259040833
+
+00:02:27.280 --> 00:02:30.480
+And also because it's not just the agent itself.
+
+NOTE Confidence: 0.823939859867096
+
+00:02:30.680 --> 00:02:33.793
+The entire environment the agent operates in is a potential
+
+NOTE Confidence: 0.823939859867096
+
+00:02:33.846 --> 00:02:34.479
+risk vector.
+
+NOTE Confidence: 0.8615358471870422
+
+00:02:34.680 --> 00:02:37.963
+An agent can be talking to humans, and there's risk
+
+NOTE Confidence: 0.8615358471870422
+
+00:02:38.027 --> 00:02:41.696
+agent to tools, agent to applications, agent to agent, or
+
+NOTE Confidence: 0.8615358471870422
+
+00:02:41.761 --> 00:02:42.920
+even agent to LLM.
+
+NOTE Confidence: 0.8779540061950684
+
+00:02:43.160 --> 00:02:45.701
+All of these are risk vectors and each of them
+
+NOTE Confidence: 0.8779540061950684
+
+00:02:45.756 --> 00:02:48.795
+has a risk profile that we cannot possibly account for,
+
+NOTE Confidence: 0.8779540061950684
+
+00:02:48.850 --> 00:02:50.840
+all from just our own vantage point.
+
+NOTE Confidence: 0.8704729676246643
+
+00:02:51.320 --> 00:02:53.840
+And this is not just a a theoretical problem.
+
+NOTE Confidence: 0.9103584289550781
+
+00:02:53.840 --> 00:02:56.631
+So I'm going to move away from examples and headlines
+
+NOTE Confidence: 0.9103584289550781
+
+00:02:56.684 --> 00:02:59.159
+to something that teams are actively exploring.
+
+NOTE Confidence: 0.752461314201355
+
+00:02:59.160 --> 00:03:01.331
+And I'm going to turn over to Patrick to talk
+
+NOTE Confidence: 0.752461314201355
+
+00:03:01.379 --> 00:03:03.840
+about what he and the Copilot team have identified.
+
+NOTE Confidence: 0.4899042844772339
+
+00:03:04.440 --> 00:03:05.760
+Wonderful, thanks Krupa.
+
+NOTE Confidence: 0.8756663203239441
+
+00:03:07.280 --> 00:03:10.186
+At GitHub we get the unique opportunity to see where
+
+NOTE Confidence: 0.8756663203239441
+
+00:03:10.242 --> 00:03:14.098
+modern model performance intersects with user behaviour and how those
+
+NOTE Confidence: 0.8756663203239441
+
+00:03:14.154 --> 00:03:15.440
+trends alter over time.
+
+NOTE Confidence: 0.8933895230293274
+
+00:03:16.080 --> 00:03:18.344
+If you take a look at the copilot CLI, one
+
+NOTE Confidence: 0.8933895230293274
+
+00:03:18.398 --> 00:03:21.417
+of the most common occurrences that happens over time is
+
+NOTE Confidence: 0.8933895230293274
+
+00:03:21.471 --> 00:03:24.921
+users start auto approving, removing the gates and letting their
+
+NOTE Confidence: 0.8933895230293274
+
+00:03:24.975 --> 00:03:27.240
+agents run for longer and longer sessions.
+
+NOTE Confidence: 0.8246602416038513
+
+00:03:27.919 --> 00:03:30.344
+When you scale it up to the copilot SDK, it
+
+NOTE Confidence: 0.8246602416038513
+
+00:03:30.400 --> 00:03:32.599
+rides on top of our copilot CLI server.
+
+NOTE Confidence: 0.8516612648963928
+
+00:03:33.000 --> 00:03:35.723
+But one of the unique differences that we did when
+
+NOTE Confidence: 0.8516612648963928
+
+00:03:35.778 --> 00:03:38.338
+we built the Copilot SDK was designing in a way
+
+NOTE Confidence: 0.8516612648963928
+
+00:03:38.393 --> 00:03:41.280
+that was made for SDK integrators and not for Copilot
+
+NOTE Confidence: 0.8516612648963928
+
+00:03:41.335 --> 00:03:41.879
+CLI users.
+
+NOTE Confidence: 0.9396658539772034
+
+00:03:42.280 --> 00:03:45.568
+What that led to was a mismatch between our permissions
+
+NOTE Confidence: 0.9396658539772034
+
+00:03:45.628 --> 00:03:48.200
+model inside of our SDK and one in our CLI.
+
+NOTE Confidence: 0.9341121912002563
+
+00:03:48.360 --> 00:03:51.710
+Certain integrators expected our SDK to be fully configurable, come
+
+NOTE Confidence: 0.9341121912002563
+
+00:03:51.760 --> 00:03:53.760
+with nothing out-of-the-box already set.
+
+NOTE Confidence: 0.9518416523933411
+
+00:03:54.120 --> 00:03:57.072
+All the CLI users expected it to protect their current
+
+NOTE Confidence: 0.9518416523933411
+
+00:03:57.127 --> 00:04:00.080
+working directory and other artifacts on their system.
+
+NOTE Confidence: 0.8815600275993347
+
+00:04:01.000 --> 00:04:03.843
+When you look a little bit farther into the orchestration
+
+NOTE Confidence: 0.8815600275993347
+
+00:04:03.893 --> 00:04:06.687
+side, our orchestrator inside of the Copilot CLI and SDK
+
+NOTE Confidence: 0.8815600275993347
+
+00:04:06.737 --> 00:04:09.680
+has become much more powerful, especially over the last six
+
+NOTE Confidence: 0.8815600275993347
+
+00:04:09.730 --> 00:04:10.079
+months.
+
+NOTE Confidence: 0.9217602014541626
+
+00:04:10.480 --> 00:04:12.965
+Where jobs typically ran from three to five to 10
+
+NOTE Confidence: 0.9217602014541626
+
+00:04:13.016 --> 00:04:15.350
+minutes or so, they can now run for 30 minutes
+
+NOTE Confidence: 0.9217602014541626
+
+00:04:15.400 --> 00:04:17.988
+or more, which means that the problems in these two
+
+NOTE Confidence: 0.9217602014541626
+
+00:04:18.039 --> 00:04:21.742
+first segments compound exponentially with time, especially as agents get
+
+NOTE Confidence: 0.9217602014541626
+
+00:04:21.793 --> 00:04:22.960
+more and more powerful.
+
+NOTE Confidence: 0.9669391512870789
+
+00:04:25.880 --> 00:04:26.520
+Thank you, Patrick.
+
+NOTE Confidence: 0.9622128009796143
+
+00:04:26.880 --> 00:04:28.800
+So the problem is very clear.
+
+NOTE Confidence: 0.896386981010437
+
+00:04:29.040 --> 00:04:32.196
+Agents are operating with high agency and they're running with
+
+NOTE Confidence: 0.896386981010437
+
+00:04:32.247 --> 00:04:33.520
+limited to no guardrails.
+
+NOTE Confidence: 0.8093647360801697
+
+00:04:33.800 --> 00:04:36.927
+Then the question then shifts to what does the platform
+
+NOTE Confidence: 0.8093647360801697
+
+00:04:36.984 --> 00:04:39.600
+need to provide to make agents safe by design?
+
+NOTE Confidence: 0.9312512874603271
+
+00:04:40.080 --> 00:04:41.320
+That's where Windows comes in.
+
+NOTE Confidence: 0.7987319231033325
+
+00:04:41.600 --> 00:04:45.064
+From its very beginning, Windows has always evolved to handle
+
+NOTE Confidence: 0.7987319231033325
+
+00:04:45.120 --> 00:04:46.199
+needs of its users.
+
+NOTE Confidence: 0.8103537559509277
+
+00:04:46.560 --> 00:04:48.200
+The part that's changed is this.
+
+NOTE Confidence: 0.8969566822052002
+
+00:04:48.480 --> 00:04:50.320
+The definition of a user is changing.
+
+NOTE Confidence: 0.9471115469932556
+
+00:04:50.480 --> 00:04:52.200
+What is a user today?
+
+NOTE Confidence: 0.9462896585464478
+
+00:04:52.440 --> 00:04:55.964
+They now include agents acting on their behalf, and that
+
+NOTE Confidence: 0.9462896585464478
+
+00:04:56.027 --> 00:05:00.119
+detail fundamentally changes how Windows and the platform need to
+
+NOTE Confidence: 0.9462896585464478
+
+00:05:00.182 --> 00:05:00.560
+react.
+
+NOTE Confidence: 0.9074938893318176
+
+00:05:00.920 --> 00:05:04.075
+And to account for this, there are three key platform
+
+NOTE Confidence: 0.9074938893318176
+
+00:05:04.134 --> 00:05:08.183
+capabilities that we're introducing that when agents adopt, they can
+
+NOTE Confidence: 0.9074938893318176
+
+00:05:08.242 --> 00:05:10.743
+work with agents as a new type of user and
+
+NOTE Confidence: 0.9074938893318176
+
+00:05:10.802 --> 00:05:13.719
+also ensuring agents can run safely and reliably.
+
+NOTE Confidence: 0.7987233400344849
+
+00:05:13.960 --> 00:05:16.400
+Let's walk through very quickly what these primitives are.
+
+NOTE Confidence: 0.6840688586235046
+
+00:05:16.400 --> 00:05:18.138
+I'm going to go into more detail in a few
+
+NOTE Confidence: 0.6840688586235046
+
+00:05:18.180 --> 00:05:18.519
+moments.
+
+NOTE Confidence: 0.8028316497802734
+
+00:05:18.840 --> 00:05:20.840
+First, it's agent identity.
+
+NOTE Confidence: 0.9366583824157715
+
+00:05:21.080 --> 00:05:24.038
+The agent needs to have an identity distinct from that
+
+NOTE Confidence: 0.9366583824157715
+
+00:05:24.093 --> 00:05:25.079
+of the human user.
+
+NOTE Confidence: 0.9322405457496643
+
+00:05:25.680 --> 00:05:27.320
+Second is containment.
+
+NOTE Confidence: 0.9120652675628662
+
+00:05:27.600 --> 00:05:30.572
+We don't want our agent to have full access to
+
+NOTE Confidence: 0.9120652675628662
+
+00:05:30.636 --> 00:05:33.803
+all the capabilities that our that we have as, as
+
+NOTE Confidence: 0.9120652675628662
+
+00:05:33.867 --> 00:05:34.319
+people.
+
+NOTE Confidence: 0.8674938678741455
+
+00:05:34.320 --> 00:05:36.571
+You know, we can't give it unfair access to all
+
+NOTE Confidence: 0.8674938678741455
+
+00:05:36.619 --> 00:05:38.200
+of our files and all of our data.
+
+NOTE Confidence: 0.8555091619491577
+
+00:05:38.400 --> 00:05:40.720
+What we need is we need to have agents running
+
+NOTE Confidence: 0.8555091619491577
+
+00:05:40.771 --> 00:05:44.000
+in a controlled environment where their blast radius is limited.
+
+NOTE Confidence: 0.9142152070999146
+
+00:05:44.480 --> 00:05:46.760
+And the last one is manageability.
+
+NOTE Confidence: 0.9434460401535034
+
+00:05:47.000 --> 00:05:49.701
+For many of us, that means an IT admin can
+
+NOTE Confidence: 0.9434460401535034
+
+00:05:49.765 --> 00:05:54.010
+deploy, monitor, govern and enforce the policies that dictate what
+
+NOTE Confidence: 0.9434460401535034
+
+00:05:54.074 --> 00:05:56.839
+an agent can do and also what it cannot do.
+
+NOTE Confidence: 0.856142520904541
+
+00:05:57.200 --> 00:05:59.943
+So to dive deeper into this, starting with identity, I'm
+
+NOTE Confidence: 0.856142520904541
+
+00:05:59.992 --> 00:06:01.560
+going to turn it over to Stuart.
+
+NOTE Confidence: 0.6910754442214966
+
+00:06:01.880 --> 00:06:02.080
+Great.
+
+NOTE Confidence: 0.7935957908630371
+
+00:06:02.160 --> 00:06:02.880
+Thank you, Krupa.
+
+NOTE Confidence: 0.931244432926178
+
+00:06:03.880 --> 00:06:06.490
+So as Krupa said, one of the most interesting things
+
+NOTE Confidence: 0.931244432926178
+
+00:06:06.540 --> 00:06:09.000
+about agents is what is the identity of an agent?
+
+NOTE Confidence: 0.9715882539749146
+
+00:06:09.160 --> 00:06:13.042
+I'm here to tell you, agents aren't you, no matter
+
+NOTE Confidence: 0.9715882539749146
+
+00:06:13.119 --> 00:06:14.439
+what we do today.
+
+NOTE Confidence: 0.9209995269775391
+
+00:06:14.440 --> 00:06:17.577
+The funny thing about where we got to is most
+
+NOTE Confidence: 0.9209995269775391
+
+00:06:17.647 --> 00:06:19.599
+agents run as you, the user.
+
+NOTE Confidence: 0.91103595495224
+
+00:06:19.640 --> 00:06:22.640
+If you use ACLI, they're running in your session.
+
+NOTE Confidence: 0.8961457014083862
+
+00:06:22.640 --> 00:06:24.040
+They have access to all your data.
+
+NOTE Confidence: 0.946157693862915
+
+00:06:24.600 --> 00:06:27.445
+The program itself is controlling what they do, but they're
+
+NOTE Confidence: 0.946157693862915
+
+00:06:27.494 --> 00:06:27.880
+not you.
+
+NOTE Confidence: 0.9508676528930664
+
+00:06:28.320 --> 00:06:31.387
+Imagine what would happen if the agent could get access
+
+NOTE Confidence: 0.9508676528930664
+
+00:06:31.443 --> 00:06:34.399
+to almost anything from you and do whatever it wants.
+
+NOTE Confidence: 0.9658699035644531
+
+00:06:34.640 --> 00:06:37.758
+We need the system to be able to enforce a
+
+NOTE Confidence: 0.9658699035644531
+
+00:06:37.833 --> 00:06:41.620
+separation between an agent and you, and to be able
+
+NOTE Confidence: 0.9658699035644531
+
+00:06:41.694 --> 00:06:46.149
+to enforce the capabilities and promises that define what an
+
+NOTE Confidence: 0.9658699035644531
+
+00:06:46.223 --> 00:06:49.119
+agent is different than what a user is.
+
+NOTE Confidence: 0.9373677968978882
+
+00:06:49.480 --> 00:06:51.737
+In general, what a user is and what they do
+
+NOTE Confidence: 0.9373677968978882
+
+00:06:51.790 --> 00:06:54.152
+on a machine today can have a lot more rights
+
+NOTE Confidence: 0.9373677968978882
+
+00:06:54.205 --> 00:06:56.410
+than some of what we want our agents to be
+
+NOTE Confidence: 0.9373677968978882
+
+00:06:56.462 --> 00:06:57.040
+able to do.
+
+NOTE Confidence: 0.9626237750053406
+
+00:06:57.520 --> 00:06:59.562
+Do you want your agent to be admin on your
+
+NOTE Confidence: 0.9626237750053406
+
+00:06:59.610 --> 00:07:00.000
+machine?
+
+NOTE Confidence: 0.8589732050895691
+
+00:07:00.240 --> 00:07:01.600
+It's a question that you should ask.
+
+NOTE Confidence: 0.9403403401374817
+
+00:07:02.000 --> 00:07:04.010
+So for us, the way we think about it is
+
+NOTE Confidence: 0.9403403401374817
+
+00:07:04.062 --> 00:07:04.320
+this.
+
+NOTE Confidence: 0.9091418385505676
+
+00:07:04.440 --> 00:07:07.400
+Agents are a new type of identity in the system.
+
+NOTE Confidence: 0.9417442083358765
+
+00:07:07.800 --> 00:07:11.618
+When you think about users and devices and applications, we
+
+NOTE Confidence: 0.9417442083358765
+
+00:07:11.683 --> 00:07:13.560
+identify those on the system.
+
+NOTE Confidence: 0.8964824676513672
+
+00:07:13.760 --> 00:07:17.099
+Agents aren't just the processes of the CLI that you're
+
+NOTE Confidence: 0.8964824676513672
+
+00:07:17.160 --> 00:07:20.560
+using or whatever agentic application that you're using.
+
+NOTE Confidence: 0.9090918898582458
+
+00:07:20.760 --> 00:07:24.450
+They themselves are an intrinsic first class entity on the
+
+NOTE Confidence: 0.9090918898582458
+
+00:07:24.514 --> 00:07:24.959
+system.
+
+NOTE Confidence: 0.8868924379348755
+
+00:07:25.320 --> 00:07:27.160
+Just like users, apps and devices.
+
+NOTE Confidence: 0.878548264503479
+
+00:07:27.320 --> 00:07:29.760
+They need to have a security principle.
+
+NOTE Confidence: 0.9483157396316528
+
+00:07:30.000 --> 00:07:33.151
+We need to be able to make assertions about them,
+
+NOTE Confidence: 0.9483157396316528
+
+00:07:33.216 --> 00:07:37.461
+things that define security permissions that the system itself can
+
+NOTE Confidence: 0.9483157396316528
+
+00:07:37.525 --> 00:07:38.040
+enforce.
+
+NOTE Confidence: 0.9384477138519287
+
+00:07:38.280 --> 00:07:41.460
+We need to be able to author policies that define
+
+NOTE Confidence: 0.9384477138519287
+
+00:07:41.525 --> 00:07:44.577
+what are the things that they are allowed to be
+
+NOTE Confidence: 0.9384477138519287
+
+00:07:44.641 --> 00:07:48.082
+members of, to join, to understand in general what an
+
+NOTE Confidence: 0.9384477138519287
+
+00:07:48.147 --> 00:07:51.328
+agent is allowed to do in the system and whatever
+
+NOTE Confidence: 0.9384477138519287
+
+00:07:51.393 --> 00:07:54.119
+they do needs to be audited by the system.
+
+NOTE Confidence: 0.9606826901435852
+
+00:07:54.120 --> 00:07:56.583
+We need to have logs that show what an agent
+
+NOTE Confidence: 0.9606826901435852
+
+00:07:56.639 --> 00:07:59.271
+does so that we can separate the actions of the
+
+NOTE Confidence: 0.9606826901435852
+
+00:07:59.327 --> 00:08:01.679
+agent from the actions of the user itself.
+
+NOTE Confidence: 0.8724409341812134
+
+00:08:02.200 --> 00:08:05.590
+So with that, we're going to do a quick demonstration
+
+NOTE Confidence: 0.8724409341812134
+
+00:08:05.654 --> 00:08:08.660
+here that will show you we have worked with the
+
+NOTE Confidence: 0.8724409341812134
+
+00:08:08.724 --> 00:08:11.731
+Open Claw team to work on showing how an agent,
+
+NOTE Confidence: 0.8724409341812134
+
+00:08:11.795 --> 00:08:15.185
+like Open Claw, an agentic system, can function in an
+
+NOTE Confidence: 0.8724409341812134
+
+00:08:15.249 --> 00:08:19.280
+operating environment where it is separated from you, the user.
+
+NOTE Confidence: 0.7699589729309082
+
+00:08:21.720 --> 00:08:24.866
+In this demo, what we'll see is this is a
+
+NOTE Confidence: 0.7699589729309082
+
+00:08:24.943 --> 00:08:28.780
+Teams chat, and in Karupa's Teams chat, he will go
+
+NOTE Confidence: 0.7699589729309082
+
+00:08:28.856 --> 00:08:32.079
+in and talk to his Open Clog Gateway node.
+
+NOTE Confidence: 0.9395424723625183
+
+00:08:32.320 --> 00:08:35.464
+The Open Clog Gateway node is running in a separate
+
+NOTE Confidence: 0.9395424723625183
+
+00:08:35.526 --> 00:08:38.793
+session on the same machine, but has a different user
+
+NOTE Confidence: 0.9395424723625183
+
+00:08:38.855 --> 00:08:42.184
+account and in a different session, which means all of
+
+NOTE Confidence: 0.9395424723625183
+
+00:08:42.246 --> 00:08:46.130
+its processes are separated from the desktop, from the windows,
+
+NOTE Confidence: 0.9395424723625183
+
+00:08:46.192 --> 00:08:48.720
+and from all the processes that are here.
+
+NOTE Confidence: 0.8781465888023376
+
+00:08:48.720 --> 00:08:52.142
+And by default, everything that it tries to accomplish has
+
+NOTE Confidence: 0.8781465888023376
+
+00:08:52.201 --> 00:08:54.679
+no access to what Karupa himself is doing.
+
+NOTE Confidence: 0.8975082635879517
+
+00:08:54.800 --> 00:08:57.747
+So as he interacts with the agent, it is fully
+
+NOTE Confidence: 0.8975082635879517
+
+00:08:57.811 --> 00:09:01.079
+separated, fully identified by Windows at its core.
+
+NOTE Confidence: 0.9563086628913879
+
+00:09:01.560 --> 00:09:04.480
+So that is how we look at agent identity.
+
+NOTE Confidence: 0.9559251666069031
+
+00:09:04.640 --> 00:09:07.604
+It is not you, and it should run separated from
+
+NOTE Confidence: 0.9559251666069031
+
+00:09:07.667 --> 00:09:07.919
+you.
+
+NOTE Confidence: 0.6779891848564148
+
+00:09:07.920 --> 00:09:17.000
+How do we so with a after agent identity?
+
+NOTE Confidence: 0.7327566742897034
+
+00:09:17.000 --> 00:09:19.680
+The next thing that we that Krupp introduced was containment.
+
+NOTE Confidence: 0.8629136085510254
+
+00:09:19.960 --> 00:09:22.922
+A really important thing about agents is, is that when
+
+NOTE Confidence: 0.8629136085510254
+
+00:09:22.977 --> 00:09:26.049
+agents operate as Kruppa said, they need a blast radius,
+
+NOTE Confidence: 0.8629136085510254
+
+00:09:26.104 --> 00:09:28.079
+the things that they can accomplish.
+
+NOTE Confidence: 0.931659996509552
+
+00:09:28.360 --> 00:09:31.703
+What's really important is, is that for us to understand
+
+NOTE Confidence: 0.931659996509552
+
+00:09:31.762 --> 00:09:35.703
+agents are non deterministic, different than the software that you
+
+NOTE Confidence: 0.931659996509552
+
+00:09:35.762 --> 00:09:36.360
+run today.
+
+NOTE Confidence: 0.8537893891334534
+
+00:09:36.360 --> 00:09:40.206
+When we install an application at compile time, what the
+
+NOTE Confidence: 0.8537893891334534
+
+00:09:40.275 --> 00:09:42.680
+software can do is already defined.
+
+NOTE Confidence: 0.9487419128417969
+
+00:09:43.120 --> 00:09:45.760
+Our agents today write their own software.
+
+NOTE Confidence: 0.9357629418373108
+
+00:09:45.880 --> 00:09:49.861
+They evolve, they change on a very frequent basis, and
+
+NOTE Confidence: 0.9357629418373108
+
+00:09:49.935 --> 00:09:54.359
+as they operate with agency, they make decisions themselves.
+
+NOTE Confidence: 0.9541085362434387
+
+00:09:54.400 --> 00:09:57.717
+Not your mouse clicks, but the decision of the software
+
+NOTE Confidence: 0.9541085362434387
+
+00:09:57.777 --> 00:09:58.200
+itself.
+
+NOTE Confidence: 0.9541330933570862
+
+00:09:58.520 --> 00:10:01.618
+That non determinism is something that we need to think
+
+NOTE Confidence: 0.9541330933570862
+
+00:10:01.675 --> 00:10:03.759
+about how that happens in the system.
+
+NOTE Confidence: 0.9146474599838257
+
+00:10:03.880 --> 00:10:06.730
+When an agent can choose its own actions at runtime,
+
+NOTE Confidence: 0.9146474599838257
+
+00:10:06.785 --> 00:10:08.319
+that makes it unpredictable.
+
+NOTE Confidence: 0.9619219303131104
+
+00:10:08.640 --> 00:10:12.320
+But because it's unpredictable, it doesn't mean that it's uncontrollable.
+
+NOTE Confidence: 0.9569323062896729
+
+00:10:12.720 --> 00:10:16.028
+It means that what it needs is a boundary around
+
+NOTE Confidence: 0.9569323062896729
+
+00:10:16.097 --> 00:10:20.025
+what it can do, a boundary that's understandable, that we
+
+NOTE Confidence: 0.9569323062896729
+
+00:10:20.094 --> 00:10:22.920
+can understand what it can and cannot do.
+
+NOTE Confidence: 0.9324797987937927
+
+00:10:23.360 --> 00:10:27.584
+That isolation boundary allows us to control risk and to
+
+NOTE Confidence: 0.9324797987937927
+
+00:10:27.659 --> 00:10:31.732
+understand what is the profile of risk that that agent
+
+NOTE Confidence: 0.9324797987937927
+
+00:10:31.808 --> 00:10:33.920
+can have against our system.
+
+NOTE Confidence: 0.9368082284927368
+
+00:10:34.960 --> 00:10:38.452
+Also, what's really interesting is once you put an agent
+
+NOTE Confidence: 0.9368082284927368
+
+00:10:38.514 --> 00:10:41.570
+inside of one of these sandboxes, it allows us to
+
+NOTE Confidence: 0.9368082284927368
+
+00:10:41.633 --> 00:10:45.001
+enforce the design of least privilege, which is we can
+
+NOTE Confidence: 0.9368082284927368
+
+00:10:45.063 --> 00:10:48.680
+take the actions of an agent, it's individual actions, and
+
+NOTE Confidence: 0.9368082284927368
+
+00:10:48.743 --> 00:10:51.424
+put it inside of a sandbox and let that one
+
+NOTE Confidence: 0.9368082284927368
+
+00:10:51.487 --> 00:10:55.042
+sandbox for that one action have policy that defines just
+
+NOTE Confidence: 0.9368082284927368
+
+00:10:55.104 --> 00:10:56.040
+what it can do.
+
+NOTE Confidence: 0.95018070936203
+
+00:10:56.320 --> 00:10:59.278
+And then when the agent decides to do something else,
+
+NOTE Confidence: 0.95018070936203
+
+00:10:59.334 --> 00:11:01.400
+we'll build another sandbox for that.
+
+NOTE Confidence: 0.8235024213790894
+
+00:11:01.960 --> 00:11:04.730
+What that means is is that the sandboxes that we're
+
+NOTE Confidence: 0.8235024213790894
+
+00:11:04.784 --> 00:11:06.360
+going to build need to scale.
+
+NOTE Confidence: 0.9216283559799194
+
+00:11:06.520 --> 00:11:09.618
+The isolation boundary needs to be proportionate to the risk
+
+NOTE Confidence: 0.9216283559799194
+
+00:11:09.669 --> 00:11:12.199
+and proportionate to the action that's happening.
+
+NOTE Confidence: 0.9205547571182251
+
+00:11:12.679 --> 00:11:16.353
+For that, we've introduced what we call the Microsoft Execution
+
+NOTE Confidence: 0.9205547571182251
+
+00:11:16.412 --> 00:11:17.520
+Containers Library.
+
+NOTE Confidence: 0.9180530309677124
+
+00:11:18.080 --> 00:11:22.080
+The MXC Library is a library that's designed to help
+
+NOTE Confidence: 0.9180530309677124
+
+00:11:22.156 --> 00:11:25.080
+you create containers based on policy.
+
+NOTE Confidence: 0.8792235255241394
+
+00:11:25.640 --> 00:11:29.601
+The developer and the agent can declare the security requirements
+
+NOTE Confidence: 0.8792235255241394
+
+00:11:29.662 --> 00:11:32.039
+of their agent and the agent's actions.
+
+NOTE Confidence: 0.9072071313858032
+
+00:11:32.480 --> 00:11:36.499
+The library will then compile that together and match that
+
+NOTE Confidence: 0.9072071313858032
+
+00:11:36.569 --> 00:11:40.658
+against the policies of the system and the policies defined
+
+NOTE Confidence: 0.9072071313858032
+
+00:11:40.727 --> 00:11:44.054
+by IT, governed by tools that were used to using
+
+NOTE Confidence: 0.9072071313858032
+
+00:11:44.123 --> 00:11:47.520
+to deploy things to manage them and monitor them.
+
+NOTE Confidence: 0.906166136264801
+
+00:11:47.840 --> 00:11:51.719
+Once that match has occurred, the MXC library will then
+
+NOTE Confidence: 0.906166136264801
+
+00:11:51.790 --> 00:11:55.317
+look at the native OS platform and try to assemble
+
+NOTE Confidence: 0.906166136264801
+
+00:11:55.387 --> 00:11:58.279
+together the right container for the job.
+
+NOTE Confidence: 0.8931394815444946
+
+00:11:58.840 --> 00:12:02.440
+That process is something we call dynamic composition.
+
+NOTE Confidence: 0.965286135673523
+
+00:12:03.200 --> 00:12:06.704
+That means that when an agent runs, there isn't a
+
+NOTE Confidence: 0.965286135673523
+
+00:12:06.775 --> 00:12:07.920
+fixed container.
+
+NOTE Confidence: 0.9530695080757141
+
+00:12:08.200 --> 00:12:12.269
+The MXC library allows you to create the container on
+
+NOTE Confidence: 0.9530695080757141
+
+00:12:12.345 --> 00:12:12.960
+the fly.
+
+NOTE Confidence: 0.9641695618629456
+
+00:12:13.440 --> 00:12:16.118
+It will, as I said, take the definition of the
+
+NOTE Confidence: 0.9641695618629456
+
+00:12:16.176 --> 00:12:19.319
+application that you want to run or the actual action.
+
+NOTE Confidence: 0.8300338983535767
+
+00:12:19.640 --> 00:12:22.600
+It will take the user's consent and permissions.
+
+NOTE Confidence: 0.8336483836174011
+
+00:12:23.000 --> 00:12:26.102
+It will take the policy defined by it and try
+
+NOTE Confidence: 0.8336483836174011
+
+00:12:26.171 --> 00:12:30.240
+to from that craft together a configuration of a container.
+
+NOTE Confidence: 0.9446593523025513
+
+00:12:30.679 --> 00:12:34.349
+With that configuration it will then look at the operating
+
+NOTE Confidence: 0.9446593523025513
+
+00:12:34.413 --> 00:12:37.640
+system primitives that are available for it to use.
+
+NOTE Confidence: 0.8828333020210266
+
+00:12:38.559 --> 00:12:43.166
+It's not just Windows, it's Windows, WSL, Linux, a full
+
+NOTE Confidence: 0.8828333020210266
+
+00:12:43.250 --> 00:12:49.448
+cross-platform library that can scale everything from tiny small processes
+
+NOTE Confidence: 0.8828333020210266
+
+00:12:49.532 --> 00:12:54.138
+to VMS, micro VMS, firecracker style micro VMS, all the
+
+NOTE Confidence: 0.8828333020210266
+
+00:12:54.222 --> 00:12:56.399
+way up to cloud based PCs.
+
+NOTE Confidence: 0.8922299146652222
+
+00:12:56.679 --> 00:12:59.851
+So MXC really allows us to define a security boundary
+
+NOTE Confidence: 0.8922299146652222
+
+00:12:59.911 --> 00:13:03.382
+that's designed and proportionate to the task that we want
+
+NOTE Confidence: 0.8922299146652222
+
+00:13:03.442 --> 00:13:04.280
+to accomplish.
+
+NOTE Confidence: 0.944998562335968
+
+00:13:05.280 --> 00:13:07.880
+So what does that really mean for us as developers?
+
+NOTE Confidence: 0.9758082032203674
+
+00:13:07.880 --> 00:13:09.240
+How do we use this?
+
+NOTE Confidence: 0.9543884992599487
+
+00:13:09.240 --> 00:13:11.240
+Well, let's dive in a little bit deeper.
+
+NOTE Confidence: 0.8142480850219727
+
+00:13:12.160 --> 00:13:14.640
+MXC as I said is a declarative approach.
+
+NOTE Confidence: 0.8463770151138306
+
+00:13:14.760 --> 00:13:17.282
+What is really designed to say is let's look at
+
+NOTE Confidence: 0.8463770151138306
+
+00:13:17.336 --> 00:13:19.643
+the guard rails we want to put in place for
+
+NOTE Confidence: 0.8463770151138306
+
+00:13:19.697 --> 00:13:21.200
+the components of our agent.
+
+NOTE Confidence: 0.9159752130508423
+
+00:13:21.480 --> 00:13:24.372
+What is the composition of the container, what are the
+
+NOTE Confidence: 0.9159752130508423
+
+00:13:24.425 --> 00:13:27.800
+security requirements and what is the workload shape look like.
+
+NOTE Confidence: 0.9260601997375488
+
+00:13:28.200 --> 00:13:31.090
+So as we dig into a little detail, this can
+
+NOTE Confidence: 0.9260601997375488
+
+00:13:31.157 --> 00:13:33.039
+see this is a Python script.
+
+NOTE Confidence: 0.9546054601669312
+
+00:13:33.240 --> 00:13:36.219
+That Python script needs to be able to access my
+
+NOTE Confidence: 0.9546054601669312
+
+00:13:36.281 --> 00:13:40.440
+certificates, certificates to authenticate somewhere in the system.
+
+NOTE Confidence: 0.8490176200866699
+
+00:13:40.880 --> 00:13:43.319
+It needs to be able to run within a certain
+
+NOTE Confidence: 0.8490176200866699
+
+00:13:43.376 --> 00:13:44.000
+time frame.
+
+NOTE Confidence: 0.925915002822876
+
+00:13:44.400 --> 00:13:48.530
+It can only access read write locations very much specified
+
+NOTE Confidence: 0.925915002822876
+
+00:13:48.600 --> 00:13:49.160
+by here.
+
+NOTE Confidence: 0.950350821018219
+
+00:13:49.200 --> 00:13:51.560
+Everything else is denied by default.
+
+NOTE Confidence: 0.9514561891555786
+
+00:13:52.240 --> 00:13:54.080
+What network am I allowed to talk to?
+
+NOTE Confidence: 0.9504203796386719
+
+00:13:54.080 --> 00:13:56.882
+I can only talk to the GitHub API server, and
+
+NOTE Confidence: 0.9504203796386719
+
+00:13:56.944 --> 00:14:00.369
+even more restrictive, I can't touch the UI of anything
+
+NOTE Confidence: 0.9504203796386719
+
+00:14:00.431 --> 00:14:03.357
+else on the system, but I can see the clipboard
+
+NOTE Confidence: 0.9504203796386719
+
+00:14:03.420 --> 00:14:06.159
+and read from it if something has done that.
+
+NOTE Confidence: 0.9295920133590698
+
+00:14:06.520 --> 00:14:10.028
+That allows me to specify with very fine grain detail
+
+NOTE Confidence: 0.9295920133590698
+
+00:14:10.095 --> 00:14:13.273
+what the container is and what the action of the
+
+NOTE Confidence: 0.9295920133590698
+
+00:14:13.339 --> 00:14:14.200
+agent can do.
+
+NOTE Confidence: 0.9538407921791077
+
+00:14:14.840 --> 00:14:16.840
+So let's do a quick demo.
+
+NOTE Confidence: 0.9588634967803955
+
+00:14:16.960 --> 00:14:19.500
+I'm going to escape out of here and do something
+
+NOTE Confidence: 0.9588634967803955
+
+00:14:19.552 --> 00:14:22.039
+really dangerous and bring up a command prompt.
+
+NOTE Confidence: 0.9612059593200684
+
+00:14:23.080 --> 00:14:25.625
+So the first thing I'm going to show you here
+
+NOTE Confidence: 0.9612059593200684
+
+00:14:25.682 --> 00:14:27.039
+is a really simple demo.
+
+NOTE Confidence: 0.871399462223053
+
+00:14:27.480 --> 00:14:30.760
+This is a where's the?
+
+NOTE Confidence: 0.7332296967506409
+
+00:14:34.080 --> 00:14:35.320
+It's only showing PowerPoint only.
+
+NOTE Confidence: 0.3653348982334137
+
+00:14:35.720 --> 00:14:35.960
+Showing.
+
+NOTE Confidence: 0.605072021484375
+
+00:14:38.440 --> 00:14:39.000
+That's a problem.
+
+NOTE Confidence: 0.6942816376686096
+
+00:14:39.480 --> 00:14:41.160
+That's great, duplicating the screen page.
+
+NOTE Confidence: 0.7610198259353638
+
+00:14:47.080 --> 00:14:47.680
+Oh, there we go.
+
+NOTE Confidence: 0.9517985582351685
+
+00:14:47.880 --> 00:14:48.480
+Fantastic.
+
+NOTE Confidence: 0.9744560718536377
+
+00:14:48.480 --> 00:14:48.880
+Awesome.
+
+NOTE Confidence: 0.9663880467414856
+
+00:14:48.880 --> 00:14:49.240
+Thank you.
+
+NOTE Confidence: 0.8222398161888123
+
+00:14:49.760 --> 00:14:52.720
+All right, so here is my command prompt.
+
+NOTE Confidence: 0.9004062414169312
+
+00:14:53.200 --> 00:14:56.537
+So from the command prompt, what I'll show you here
+
+NOTE Confidence: 0.9004062414169312
+
+00:14:56.602 --> 00:15:00.201
+quickly is this is essentially that script here I built
+
+NOTE Confidence: 0.9004062414169312
+
+00:15:00.266 --> 00:15:03.799
+for here, a script that will create a PowerPoint file.
+
+NOTE Confidence: 0.9596571922302246
+
+00:15:04.240 --> 00:15:08.200
+That PowerPoint slide will be generated using a Python script.
+
+NOTE Confidence: 0.8632451295852661
+
+00:15:08.480 --> 00:15:12.059
+That Python script will launch and create a Python, sorry,
+
+NOTE Confidence: 0.8632451295852661
+
+00:15:12.121 --> 00:15:14.960
+the PowerPoint file in this build demo folder.
+
+NOTE Confidence: 0.8223471641540527
+
+00:15:15.280 --> 00:15:18.520
+So if I come over here and I will tell
+
+NOTE Confidence: 0.8223471641540527
+
+00:15:18.606 --> 00:15:22.443
+the oops this to run like you'll see here is,
+
+NOTE Confidence: 0.8223471641540527
+
+00:15:22.529 --> 00:15:24.320
+oh, I have a mistake.
+
+NOTE Confidence: 0.9533764123916626
+
+00:15:24.600 --> 00:15:25.920
+It says I can't do it.
+
+NOTE Confidence: 0.9179198145866394
+
+00:15:26.280 --> 00:15:29.400
+The agent is run that script inside of the container.
+
+NOTE Confidence: 0.9392502307891846
+
+00:15:29.400 --> 00:15:30.600
+The container has failed.
+
+NOTE Confidence: 0.8664212226867676
+
+00:15:30.920 --> 00:15:31.880
+Why is it failed?
+
+NOTE Confidence: 0.8878572583198547
+
+00:15:32.120 --> 00:15:34.841
+Because it said access to the build demo folder is
+
+NOTE Confidence: 0.8878572583198547
+
+00:15:34.895 --> 00:15:35.440
+read only.
+
+NOTE Confidence: 0.9132851362228394
+
+00:15:35.880 --> 00:15:36.760
+Let's come in here.
+
+NOTE Confidence: 0.8551054000854492
+
+00:15:36.760 --> 00:15:45.000
+We'll change that quickly and we'll run it again.
+
+NOTE Confidence: 0.8881362080574036
+
+00:15:46.360 --> 00:15:49.373
+And what you see here is this is PowerPoint file
+
+NOTE Confidence: 0.8881362080574036
+
+00:15:49.436 --> 00:15:50.880
+generated by my script.
+
+NOTE Confidence: 0.6217959523200989
+
+00:15:51.920 --> 00:15:52.280
+Awesome.
+
+NOTE Confidence: 0.9166373014450073
+
+00:15:52.640 --> 00:15:55.574
+OK, so that's a simple demo, but the reality of
+
+NOTE Confidence: 0.9166373014450073
+
+00:15:55.637 --> 00:15:57.759
+it is what are we really here for?
+
+NOTE Confidence: 0.949874758720398
+
+00:15:57.920 --> 00:16:01.746
+We're here to contain an agent that may have written
+
+NOTE Confidence: 0.949874758720398
+
+00:16:01.819 --> 00:16:03.880
+scripts that aren't perfect.
+
+NOTE Confidence: 0.9540002942085266
+
+00:16:04.400 --> 00:16:08.879
+So what I did here is I created a demo
+
+NOTE Confidence: 0.9540002942085266
+
+00:16:08.997 --> 00:16:14.654
+that shows an agent running and a monitor of the
+
+NOTE Confidence: 0.9540002942085266
+
+00:16:14.772 --> 00:16:15.479
+agent.
+
+NOTE Confidence: 0.9184296131134033
+
+00:16:15.600 --> 00:16:19.627
+This agent is purposefully malicious and will try to escape
+
+NOTE Confidence: 0.9184296131134033
+
+00:16:19.695 --> 00:16:20.719
+its boundaries.
+
+NOTE Confidence: 0.8766637444496155
+
+00:16:21.000 --> 00:16:23.176
+The first thing it's going to do is try to
+
+NOTE Confidence: 0.8766637444496155
+
+00:16:23.228 --> 00:16:25.612
+see if it can get around the file system right
+
+NOTE Confidence: 0.8766637444496155
+
+00:16:25.664 --> 00:16:26.960
+to the the user Sam hive.
+
+NOTE Confidence: 0.7546685934066772
+
+00:16:26.960 --> 00:16:28.951
+See if it can steal into user dot DAT, see
+
+NOTE Confidence: 0.7546685934066772
+
+00:16:28.998 --> 00:16:30.799
+if it can grab the user's credentials.
+
+NOTE Confidence: 0.9439212083816528
+
+00:16:31.040 --> 00:16:32.895
+And what we'll see here is this on the right
+
+NOTE Confidence: 0.9439212083816528
+
+00:16:32.938 --> 00:16:33.359
+hand side.
+
+NOTE Confidence: 0.8770060539245605
+
+00:16:33.360 --> 00:16:36.637
+Those red things are it firing and hitting the boundaries
+
+NOTE Confidence: 0.8770060539245605
+
+00:16:36.695 --> 00:16:37.960
+of the sandbox itself.
+
+NOTE Confidence: 0.8901329636573792
+
+00:16:38.240 --> 00:16:41.152
+So listening to events from the sandbox, we can tell
+
+NOTE Confidence: 0.8901329636573792
+
+00:16:41.208 --> 00:16:44.120
+that the sandbox is in forcing the constraints here.
+
+NOTE Confidence: 0.9081209301948547
+
+00:16:44.360 --> 00:16:47.879
+So this is in live, this running demo pounding against
+
+NOTE Confidence: 0.9081209301948547
+
+00:16:47.944 --> 00:16:50.160
+the sandbox, US listening to that.
+
+NOTE Confidence: 0.9615783095359802
+
+00:16:50.160 --> 00:16:51.680
+What can a developer do with that?
+
+NOTE Confidence: 0.9722623229026794
+
+00:16:51.880 --> 00:16:52.520
+Two things.
+
+NOTE Confidence: 0.9331009387969971
+
+00:16:52.680 --> 00:16:56.479
+One, you can monitor and observe what actually is happening
+
+NOTE Confidence: 0.9331009387969971
+
+00:16:56.543 --> 00:16:58.991
+to the agent 2 If you want to know why
+
+NOTE Confidence: 0.9331009387969971
+
+00:16:59.055 --> 00:17:02.017
+did my agent fail, you can pull that data back
+
+NOTE Confidence: 0.9331009387969971
+
+00:17:02.082 --> 00:17:05.237
+in for the next loop around and understand how to
+
+NOTE Confidence: 0.9331009387969971
+
+00:17:05.302 --> 00:17:08.200
+evolve and make better policy for your agent.
+
+NOTE Confidence: 0.7395989894866943
+
+00:17:08.560 --> 00:17:10.640
+So there's that.
+
+NOTE Confidence: 0.9182614684104919
+
+00:17:10.680 --> 00:17:12.686
+The last thing I want to show you quickly is
+
+NOTE Confidence: 0.9182614684104919
+
+00:17:12.731 --> 00:17:12.959
+this.
+
+NOTE Confidence: 0.9580302238464355
+
+00:17:12.960 --> 00:17:17.015
+As I said before, we have many different sizes and
+
+NOTE Confidence: 0.9580302238464355
+
+00:17:17.096 --> 00:17:18.800
+shapes of containers.
+
+NOTE Confidence: 0.8903671503067017
+
+00:17:19.119 --> 00:17:22.484
+The smallest one is based on a technology we call
+
+NOTE Confidence: 0.8903671503067017
+
+00:17:22.553 --> 00:17:23.239
+Hyperlite.
+
+NOTE Confidence: 0.9065984487533569
+
+00:17:23.600 --> 00:17:27.251
+Hyperlite is a small VMM that will start here, a
+
+NOTE Confidence: 0.9065984487533569
+
+00:17:27.327 --> 00:17:31.359
+container which is a hardware backed virtual machine.
+
+NOTE Confidence: 0.9008185863494873
+
+00:17:31.760 --> 00:17:35.779
+The hardware backed virtual machine runs a tiny operating system
+
+NOTE Confidence: 0.9008185863494873
+
+00:17:35.842 --> 00:17:38.920
+called Nanvix that is about 10 megabytes in size.
+
+NOTE Confidence: 0.9300501942634583
+
+00:17:39.200 --> 00:17:43.593
+It will start up and run that same PowerPoint file
+
+NOTE Confidence: 0.9300501942634583
+
+00:17:43.681 --> 00:17:44.559
+very fast.
+
+NOTE Confidence: 0.7188035249710083
+
+00:17:46.400 --> 00:17:46.720
+Boom.
+
+NOTE Confidence: 0.906007707118988
+
+00:17:47.119 --> 00:17:50.156
+And if you look, that is the same exact script
+
+NOTE Confidence: 0.906007707118988
+
+00:17:50.222 --> 00:17:54.050
+of the other side that generated the same PowerPoint file,
+
+NOTE Confidence: 0.906007707118988
+
+00:17:54.116 --> 00:17:57.746
+loaded incredibly fast in a very small amount of memory
+
+NOTE Confidence: 0.906007707118988
+
+00:17:57.812 --> 00:18:00.320
+and fully protected by the hypervisor.
+
+NOTE Confidence: 0.881171464920044
+
+00:18:01.920 --> 00:18:08.680
+So with that, my demos actually succeeded, which is fantastic.
+
+NOTE Confidence: 0.8658837080001831
+
+00:18:08.680 --> 00:18:09.320
+Exactly.
+
+NOTE Confidence: 0.9104193449020386
+
+00:18:12.560 --> 00:18:16.619
+So given all that, as Krupa said, all those things
+
+NOTE Confidence: 0.9104193449020386
+
+00:18:16.700 --> 00:18:21.815
+put together are useful ingredients, but the agent itself still
+
+NOTE Confidence: 0.9104193449020386
+
+00:18:21.896 --> 00:18:23.519
+needs to be managed.
+
+NOTE Confidence: 0.9420745372772217
+
+00:18:26.800 --> 00:18:29.590
+Platform that we operate in needs to make sure that
+
+NOTE Confidence: 0.9420745372772217
+
+00:18:29.644 --> 00:18:32.763
+the management system that we have can guarantee that the
+
+NOTE Confidence: 0.9420745372772217
+
+00:18:32.818 --> 00:18:35.280
+agents are operating within defined policies.
+
+NOTE Confidence: 0.9352236986160278
+
+00:18:35.600 --> 00:18:38.092
+So IT or you, the user, need to be able
+
+NOTE Confidence: 0.9352236986160278
+
+00:18:38.156 --> 00:18:41.352
+to specify what you do and don't allow your agents
+
+NOTE Confidence: 0.9352236986160278
+
+00:18:41.416 --> 00:18:41.799
+to do.
+
+NOTE Confidence: 0.9095714092254639
+
+00:18:42.160 --> 00:18:44.633
+The policies need to be able to control what can
+
+NOTE Confidence: 0.9095714092254639
+
+00:18:44.685 --> 00:18:47.519
+the agent access, what are the actions they are allowed
+
+NOTE Confidence: 0.9095714092254639
+
+00:18:47.570 --> 00:18:47.879
+to do.
+
+NOTE Confidence: 0.9687252640724182
+
+00:18:47.960 --> 00:18:50.888
+And as we showed, how do we observe those actions
+
+NOTE Confidence: 0.9687252640724182
+
+00:18:50.948 --> 00:18:53.039
+to make sure that they are correct?
+
+NOTE Confidence: 0.9554778933525085
+
+00:18:54.080 --> 00:18:56.853
+In general, we also believe that one of the most
+
+NOTE Confidence: 0.9554778933525085
+
+00:18:56.911 --> 00:18:59.857
+important things for you as a developer is to think
+
+NOTE Confidence: 0.9554778933525085
+
+00:18:59.915 --> 00:19:03.324
+about the concept we call supervision, which is that agents
+
+NOTE Confidence: 0.9554778933525085
+
+00:19:03.382 --> 00:19:05.520
+need to operate with clear oversight.
+
+NOTE Confidence: 0.9620637893676758
+
+00:19:05.800 --> 00:19:09.160
+The user needs to understand whether it is a human
+
+NOTE Confidence: 0.9620637893676758
+
+00:19:09.228 --> 00:19:12.319
+in the loop agent or a fully autonomous agent.
+
+NOTE Confidence: 0.9726409912109375
+
+00:19:12.600 --> 00:19:14.932
+They need to be able to trust what it can
+
+NOTE Confidence: 0.9726409912109375
+
+00:19:14.989 --> 00:19:15.159
+do.
+
+NOTE Confidence: 0.9372265934944153
+
+00:19:15.640 --> 00:19:18.798
+The most important thing is that as an agent becomes
+
+NOTE Confidence: 0.9372265934944153
+
+00:19:18.859 --> 00:19:22.382
+more and more autonomous, that trust needs to be something
+
+NOTE Confidence: 0.9372265934944153
+
+00:19:22.443 --> 00:19:25.420
+that we build upon to make sure the user believes
+
+NOTE Confidence: 0.9372265934944153
+
+00:19:25.481 --> 00:19:28.640
+and IT believes they still have operational control.
+
+NOTE Confidence: 0.9334232807159424
+
+00:19:29.000 --> 00:19:31.615
+We think you need to think about how do you
+
+NOTE Confidence: 0.9334232807159424
+
+00:19:31.675 --> 00:19:34.959
+surface the intent of your agent at natural waypoints.
+
+NOTE Confidence: 0.9345993995666504
+
+00:19:34.960 --> 00:19:37.926
+Make sure that even though an agent can do things
+
+NOTE Confidence: 0.9345993995666504
+
+00:19:37.987 --> 00:19:41.983
+fully autonomously, it should still ensure that it's notifying the
+
+NOTE Confidence: 0.9345993995666504
+
+00:19:42.043 --> 00:19:45.434
+user, providing places for it to compensate if there are
+
+NOTE Confidence: 0.9345993995666504
+
+00:19:45.495 --> 00:19:46.040
+problems.
+
+NOTE Confidence: 0.9799764156341553
+
+00:19:46.240 --> 00:19:46.680
+Why?
+
+NOTE Confidence: 0.9382959008216858
+
+00:19:46.920 --> 00:19:48.440
+Because agents make mistakes.
+
+NOTE Confidence: 0.9357237815856934
+
+00:19:48.680 --> 00:19:51.535
+Assume that your agent is not perfect and that you've
+
+NOTE Confidence: 0.9357237815856934
+
+00:19:51.589 --> 00:19:53.960
+defined it in such a way that your agent can
+
+NOTE Confidence: 0.9357237815856934
+
+00:19:54.014 --> 00:19:56.816
+compensate and bring the human user into the loop to
+
+NOTE Confidence: 0.9357237815856934
+
+00:19:56.870 --> 00:19:57.839
+compensate for it.
+
+NOTE Confidence: 0.9690977931022644
+
+00:19:58.280 --> 00:20:01.255
+And make sure that you think of consent as a
+
+NOTE Confidence: 0.9690977931022644
+
+00:20:01.323 --> 00:20:04.840
+continuous thing, not just as Patrick said one time.
+
+NOTE Confidence: 0.8176286816596985
+
+00:20:04.840 --> 00:20:06.600
+You set up this way and it's perfect.
+
+NOTE Confidence: 0.922823965549469
+
+00:20:06.960 --> 00:20:10.503
+Agents will evolve policy and change and need to keep
+
+NOTE Confidence: 0.922823965549469
+
+00:20:10.570 --> 00:20:11.639
+asking user why?
+
+NOTE Confidence: 0.7008832693099976
+
+00:20:11.880 --> 00:20:12.480
+Because we are.
+
+NOTE Confidence: 0.6980048418045044
+
+00:20:13.000 --> 00:20:14.640
+Learn autonomy with evidence.
+
+NOTE Confidence: 0.9200262427330017
+
+00:20:14.840 --> 00:20:17.442
+The more that we can build confidence in our users
+
+NOTE Confidence: 0.9200262427330017
+
+00:20:17.494 --> 00:20:20.097
+to trust the things that we do, that's where we'll
+
+NOTE Confidence: 0.9200262427330017
+
+00:20:20.149 --> 00:20:22.959
+build more and stronger and richer autonomous systems.
+
+NOTE Confidence: 0.9377423524856567
+
+00:20:24.920 --> 00:20:26.680
+With that, we believe in Windows.
+
+NOTE Confidence: 0.9417269825935364
+
+00:20:26.680 --> 00:20:29.158
+There's a lot of features that are in the platform
+
+NOTE Confidence: 0.9417269825935364
+
+00:20:29.208 --> 00:20:31.240
+and that we can add that help you use the
+
+NOTE Confidence: 0.9417269825935364
+
+00:20:31.290 --> 00:20:32.480
+surfaces that are there.
+
+NOTE Confidence: 0.9458157420158386
+
+00:20:32.680 --> 00:20:35.728
+The activity that your agent is running under can surface
+
+NOTE Confidence: 0.9458157420158386
+
+00:20:35.782 --> 00:20:37.279
+that using Windows channels.
+
+NOTE Confidence: 0.8928022980690002
+
+00:20:37.480 --> 00:20:40.222
+It can use notifications, It can use many things that
+
+NOTE Confidence: 0.8928022980690002
+
+00:20:40.274 --> 00:20:43.379
+exist there, as well as the guardrails and safety primitives
+
+NOTE Confidence: 0.8928022980690002
+
+00:20:43.431 --> 00:20:44.879
+that we help you show today.
+
+NOTE Confidence: 0.9432740807533264
+
+00:20:45.240 --> 00:20:49.034
+Further, if an agent has its own identity, the Providence
+
+NOTE Confidence: 0.9432740807533264
+
+00:20:49.101 --> 00:20:51.763
+of its code and an audit of what it does
+
+NOTE Confidence: 0.9432740807533264
+
+00:20:51.830 --> 00:20:54.360
+is a natural part of what the OS does.
+
+NOTE Confidence: 0.9211910367012024
+
+00:20:55.800 --> 00:20:57.560
+So with that, I'll turn over to Patrick.
+
+NOTE Confidence: 0.6291319131851196
+
+00:20:58.160 --> 00:20:58.600
+Wonderful.
+
+NOTE Confidence: 0.8810040950775146
+
+00:21:00.960 --> 00:21:03.927
+In the Copilot CLI and SDK, we started all the
+
+NOTE Confidence: 0.8810040950775146
+
+00:21:03.992 --> 00:21:04.960
+way over there.
+
+NOTE Confidence: 0.8260741233825684
+
+00:21:05.160 --> 00:21:08.960
+No sandboxes, no controls, basic guard rails, and the application.
+
+NOTE Confidence: 0.9096969962120056
+
+00:21:09.240 --> 00:21:11.230
+If the user hit the wrong prompt at the wrong
+
+NOTE Confidence: 0.9096969962120056
+
+00:21:11.274 --> 00:21:13.220
+point in time, they ended up in a land where
+
+NOTE Confidence: 0.9096969962120056
+
+00:21:13.264 --> 00:21:15.520
+they could do a lot more damage than they expected.
+
+NOTE Confidence: 0.9125614166259766
+
+00:21:16.320 --> 00:21:19.048
+Today we're happy to announce that the Copilot CLI and
+
+NOTE Confidence: 0.9125614166259766
+
+00:21:19.099 --> 00:21:22.182
+SDK, through our collaboration with the team over at Windows,
+
+NOTE Confidence: 0.9125614166259766
+
+00:21:22.232 --> 00:21:24.557
+we're able to ship a sandbox out of box, which
+
+NOTE Confidence: 0.9125614166259766
+
+00:21:24.607 --> 00:21:26.679
+is currently under the experimental flag.
+
+NOTE Confidence: 0.8963273763656616
+
+00:21:27.280 --> 00:21:29.888
+We'll be moving to GA in the future, so it'll
+
+NOTE Confidence: 0.8963273763656616
+
+00:21:29.946 --> 00:21:32.439
+become a default on solution in the future.
+
+NOTE Confidence: 0.8059795498847961
+
+00:21:32.440 --> 00:21:35.365
+We're moving to a fully isolated state where you'll take
+
+NOTE Confidence: 0.8059795498847961
+
+00:21:35.418 --> 00:21:38.030
+the entire agent to coast, shove it inside of safe
+
+NOTE Confidence: 0.8059795498847961
+
+00:21:38.082 --> 00:21:41.269
+environments, and allow it to execute freely, enabling you to
+
+NOTE Confidence: 0.8059795498847961
+
+00:21:41.322 --> 00:21:43.934
+accomplish a wider range of jobs in to end without
+
+NOTE Confidence: 0.8059795498847961
+
+00:21:43.986 --> 00:21:47.330
+supervising the agent directly or worrying about what it's doing
+
+NOTE Confidence: 0.8059795498847961
+
+00:21:47.382 --> 00:21:48.480
+and where it's going.
+
+NOTE Confidence: 0.9002324938774109
+
+00:21:50.040 --> 00:21:51.680
+So look at this in a more practical sense.
+
+NOTE Confidence: 0.8193026185035706
+
+00:21:51.680 --> 00:21:54.772
+Let's break down a little bit of what Stewart showed
+
+NOTE Confidence: 0.8193026185035706
+
+00:21:54.831 --> 00:21:58.102
+into 3 short little demos inside of the GitHub compiled
+
+NOTE Confidence: 0.8193026185035706
+
+00:21:58.162 --> 00:21:58.399
+CLI.
+
+NOTE Confidence: 0.9369838833808899
+
+00:21:58.400 --> 00:22:01.341
+Like I mentioned, you can actually fire it open today,
+
+NOTE Confidence: 0.9369838833808899
+
+00:22:01.396 --> 00:22:04.446
+and if you've enabled the experimental flag, you will be
+
+NOTE Confidence: 0.9369838833808899
+
+00:22:04.501 --> 00:22:06.679
+able to make sure it's actually running.
+
+NOTE Confidence: 0.6834833025932312
+
+00:22:09.000 --> 00:22:10.040
+Can you play on that one for me?
+
+NOTE Confidence: 0.8337634801864624
+
+00:22:12.360 --> 00:22:12.760
+Perfect.
+
+NOTE Confidence: 0.8548647165298462
+
+00:22:14.080 --> 00:22:16.381
+You will be able to access a slash sandbox, slash
+
+NOTE Confidence: 0.8548647165298462
+
+00:22:16.428 --> 00:22:18.870
+commands, which not only will Navy allow you to turn
+
+NOTE Confidence: 0.8548647165298462
+
+00:22:18.917 --> 00:22:21.030
+it on and off, but as you'll see, you'll have
+
+NOTE Confidence: 0.8548647165298462
+
+00:22:21.077 --> 00:22:24.224
+some quick handy out-of-the-box options that allow you to configure
+
+NOTE Confidence: 0.8548647165298462
+
+00:22:24.271 --> 00:22:24.599
+policy.
+
+NOTE Confidence: 0.9554925560951233
+
+00:22:25.000 --> 00:22:26.640
+You can turn on and off the sandbox.
+
+NOTE Confidence: 0.9127594232559204
+
+00:22:26.720 --> 00:22:29.762
+You can set the file system configuration notice, include working
+
+NOTE Confidence: 0.9127594232559204
+
+00:22:29.809 --> 00:22:32.759
+directories already there, and the policy will clear after it's
+
+NOTE Confidence: 0.9127594232559204
+
+00:22:32.805 --> 00:22:33.039
+done.
+
+NOTE Confidence: 0.9495319128036499
+
+00:22:33.680 --> 00:22:36.164
+If we just enable the file system protections and we
+
+NOTE Confidence: 0.9495319128036499
+
+00:22:36.211 --> 00:22:38.266
+ask the agent to just go off and delete all
+
+NOTE Confidence: 0.9495319128036499
+
+00:22:38.313 --> 00:22:40.941
+the files on our desktop, we probably don't really want
+
+NOTE Confidence: 0.9495319128036499
+
+00:22:40.989 --> 00:22:43.091
+that to happen, but it's a good test for the
+
+NOTE Confidence: 0.9495319128036499
+
+00:22:43.138 --> 00:22:43.759
+agent itself.
+
+NOTE Confidence: 0.9319324493408203
+
+00:22:44.680 --> 00:22:47.241
+We experienced our normal permissions prompt and we said yes,
+
+NOTE Confidence: 0.9319324493408203
+
+00:22:47.283 --> 00:22:49.929
+go delete everything on my desktop, which definitely don't want
+
+NOTE Confidence: 0.9319324493408203
+
+00:22:49.971 --> 00:22:50.559
+that to occur.
+
+NOTE Confidence: 0.9275035858154297
+
+00:22:50.560 --> 00:22:51.320
+I have plenty there.
+
+NOTE Confidence: 0.855116069316864
+
+00:22:51.920 --> 00:22:54.871
+And you'll notice that's the agents, because it has the
+
+NOTE Confidence: 0.855116069316864
+
+00:22:54.925 --> 00:22:57.877
+sandbox enabled, it's able to one block the deletion of
+
+NOTE Confidence: 0.855116069316864
+
+00:22:57.930 --> 00:23:00.828
+all the files in the desktop protection number 12, the
+
+NOTE Confidence: 0.855116069316864
+
+00:23:00.882 --> 00:23:04.156
+agents able to identify that it's actually operating with the
+
+NOTE Confidence: 0.855116069316864
+
+00:23:04.209 --> 00:23:04.800
+sandbox on.
+
+NOTE Confidence: 0.9207970499992371
+
+00:23:04.800 --> 00:23:07.160
+So you're aware of what's providing that protection.
+
+NOTE Confidence: 0.9266758561134338
+
+00:23:07.720 --> 00:23:10.377
+And then three, there are some options there and some
+
+NOTE Confidence: 0.9266758561134338
+
+00:23:10.427 --> 00:23:12.783
+next level guidance for what you can do next to
+
+NOTE Confidence: 0.9266758561134338
+
+00:23:12.833 --> 00:23:15.240
+move your way around the sandbox if you need to.
+
+NOTE Confidence: 0.8170195817947388
+
+00:23:16.440 --> 00:23:19.423
+If we look at the next piece, go forward, one
+
+NOTE Confidence: 0.8170195817947388
+
+00:23:19.489 --> 00:23:21.279
+for me over there, perfect.
+
+NOTE Confidence: 0.8928409814834595
+
+00:23:21.920 --> 00:23:24.400
+We go forward to restricting outbound network access.
+
+NOTE Confidence: 0.9486633539199829
+
+00:23:24.600 --> 00:23:26.971
+You have a similar opportunity just off of the file
+
+NOTE Confidence: 0.9486633539199829
+
+00:23:27.017 --> 00:23:29.668
+system and towards the network ingress and egress to your
+
+NOTE Confidence: 0.9486633539199829
+
+00:23:29.714 --> 00:23:30.040
+system.
+
+NOTE Confidence: 0.9233803749084473
+
+00:23:30.760 --> 00:23:32.691
+If you look at the network tab, you can allow
+
+NOTE Confidence: 0.9233803749084473
+
+00:23:32.734 --> 00:23:34.880
+outbound connections, you can allow local network.
+
+NOTE Confidence: 0.8895182609558105
+
+00:23:34.880 --> 00:23:36.930
+They're separate, so you have a couple of different flex
+
+NOTE Confidence: 0.8895182609558105
+
+00:23:36.967 --> 00:23:37.479
+options there.
+
+NOTE Confidence: 0.9340656995773315
+
+00:23:38.000 --> 00:23:40.504
+But the beautiful thing is if you ask the agents
+
+NOTE Confidence: 0.9340656995773315
+
+00:23:40.556 --> 00:23:43.321
+to do something as sketchy and dangerous as turn your
+
+NOTE Confidence: 0.9340656995773315
+
+00:23:43.373 --> 00:23:46.659
+private repository public, which might be company IP, the agent
+
+NOTE Confidence: 0.9340656995773315
+
+00:23:46.712 --> 00:23:49.789
+can actually use those filters to block certain actions and
+
+NOTE Confidence: 0.9340656995773315
+
+00:23:49.842 --> 00:23:52.920
+prevent you from making dangerous calls outside the system.
+
+NOTE Confidence: 0.9332690238952637
+
+00:23:53.359 --> 00:23:55.853
+And while this might seem like a basic demo of
+
+NOTE Confidence: 0.9332690238952637
+
+00:23:55.907 --> 00:23:58.996
+me asking it to do something expecting some guidance, the
+
+NOTE Confidence: 0.9332690238952637
+
+00:23:59.051 --> 00:24:01.652
+thing to be aware of is agents are still exposed
+
+NOTE Confidence: 0.9332690238952637
+
+00:24:01.706 --> 00:24:04.200
+to prompt injection attacks in the modern era.
+
+NOTE Confidence: 0.8756786584854126
+
+00:24:04.359 --> 00:24:07.009
+Which means that any context that enters its world sphere
+
+NOTE Confidence: 0.8756786584854126
+
+00:24:07.056 --> 00:24:09.798
+can actually direct its guidance and force it to accomplish
+
+NOTE Confidence: 0.8756786584854126
+
+00:24:09.845 --> 00:24:12.634
+or take care of actions that you wouldn't necessarily expect
+
+NOTE Confidence: 0.8756786584854126
+
+00:24:12.681 --> 00:24:12.959
+it to.
+
+NOTE Confidence: 0.8961687684059143
+
+00:24:15.600 --> 00:24:18.077
+If we scale this up to the CLI and SDK
+
+NOTE Confidence: 0.8961687684059143
+
+00:24:18.142 --> 00:24:22.509
+perfect, you have an opportunity to leverage all these capabilities
+
+NOTE Confidence: 0.8961687684059143
+
+00:24:22.574 --> 00:24:26.159
+in any application that you integrate our harness into.
+
+NOTE Confidence: 0.8288432955741882
+
+00:24:26.720 --> 00:24:28.904
+And so this is a personal writing app that I
+
+NOTE Confidence: 0.8288432955741882
+
+00:24:28.953 --> 00:24:30.840
+use to hack on the Copilot SDK itself.
+
+NOTE Confidence: 0.8584639430046082
+
+00:24:31.680 --> 00:24:33.640
+I'll go ahead and I'll run a sandbox text.
+
+NOTE Confidence: 0.8809125423431396
+
+00:24:33.640 --> 00:24:36.144
+The way that I actually deploy agents out of here
+
+NOTE Confidence: 0.8809125423431396
+
+00:24:36.195 --> 00:24:38.341
+is I just write like I normally would in a
+
+NOTE Confidence: 0.8809125423431396
+
+00:24:38.392 --> 00:24:40.487
+file and I can just @an agent and it will
+
+NOTE Confidence: 0.8809125423431396
+
+00:24:40.538 --> 00:24:43.502
+deploy it because I'm actually using my AT sandbox agents,
+
+NOTE Confidence: 0.8809125423431396
+
+00:24:43.553 --> 00:24:46.160
+which comes with these policies enabled by default.
+
+NOTE Confidence: 0.9405133128166199
+
+00:24:46.160 --> 00:24:49.272
+What I'm able to do is similar to the first
+
+NOTE Confidence: 0.9405133128166199
+
+00:24:49.344 --> 00:24:52.239
+demo, ask it to delete my desktop files.
+
+NOTE Confidence: 0.9209943413734436
+
+00:24:52.760 --> 00:24:55.259
+The sandbox will block the action, you will see the
+
+NOTE Confidence: 0.9209943413734436
+
+00:24:55.308 --> 00:24:58.101
+calls failing in there, and more importantly you will see
+
+NOTE Confidence: 0.9209943413734436
+
+00:24:58.150 --> 00:25:01.336
+the agent providing its final guidance saying the sandbox blocked
+
+NOTE Confidence: 0.9209943413734436
+
+00:25:01.385 --> 00:25:03.640
+my action, it's preventing me from doing this.
+
+NOTE Confidence: 0.9637249708175659
+
+00:25:03.640 --> 00:25:05.080
+You need to find another way around.
+
+NOTE Confidence: 0.9249051213264465
+
+00:25:05.680 --> 00:25:08.037
+Now in a normal situation I wouldn't want to find
+
+NOTE Confidence: 0.9249051213264465
+
+00:25:08.085 --> 00:25:08.999
+another way around.
+
+NOTE Confidence: 0.9422013163566589
+
+00:25:09.120 --> 00:25:12.000
+I don't want to delete files again on my desktop.
+
+NOTE Confidence: 0.8981731534004211
+
+00:25:12.400 --> 00:25:15.179
+So if we take a simpler, easier to manage a
+
+NOTE Confidence: 0.8981731534004211
+
+00:25:15.244 --> 00:25:18.282
+scenario such as creating a hello dot TXT on my
+
+NOTE Confidence: 0.8981731534004211
+
+00:25:18.347 --> 00:25:21.385
+desktop, I can show you what it's like to build
+
+NOTE Confidence: 0.8981731534004211
+
+00:25:21.450 --> 00:25:25.200
+finer and greater experiences for customers using the SDK.
+
+NOTE Confidence: 0.9502884745597839
+
+00:25:25.760 --> 00:25:27.977
+Again, all of these scenarios are available and you can
+
+NOTE Confidence: 0.9502884745597839
+
+00:25:28.018 --> 00:25:30.115
+think about how you want to integrate them best into
+
+NOTE Confidence: 0.9502884745597839
+
+00:25:30.155 --> 00:25:30.719
+your solution.
+
+NOTE Confidence: 0.884893536567688
+
+00:25:31.320 --> 00:25:33.888
+What's important about this one is I wanted to create
+
+NOTE Confidence: 0.884893536567688
+
+00:25:33.937 --> 00:25:35.439
+a file, the sandbox blocked it.
+
+NOTE Confidence: 0.8646615743637085
+
+00:25:36.000 --> 00:25:38.515
+But because this is integrated in the SDK and you
+
+NOTE Confidence: 0.8646615743637085
+
+00:25:38.566 --> 00:25:41.133
+can not only detect when the sandbox is in action,
+
+NOTE Confidence: 0.8646615743637085
+
+00:25:41.184 --> 00:25:44.007
+but you have an opportunity to perform other actions on
+
+NOTE Confidence: 0.8646615743637085
+
+00:25:44.058 --> 00:25:46.625
+behalf of the user, you can simply hit disable the
+
+NOTE Confidence: 0.8646615743637085
+
+00:25:46.676 --> 00:25:47.960
+sandbox, let it continue.
+
+NOTE Confidence: 0.9258729219436646
+
+00:25:47.960 --> 00:25:51.080
+I reviewed the command which allows it to operate freely.
+
+NOTE Confidence: 0.9661412239074707
+
+00:25:51.280 --> 00:25:52.800
+Create the file on the desktop.
+
+NOTE Confidence: 0.8979156613349915
+
+00:25:53.160 --> 00:25:55.701
+It should see this thing minimized in a seconds, and
+
+NOTE Confidence: 0.8979156613349915
+
+00:25:55.750 --> 00:25:58.389
+you'll notice there's a file there allowing you to not
+
+NOTE Confidence: 0.8979156613349915
+
+00:25:58.438 --> 00:26:00.784
+only put the sandbox in place as a great default
+
+NOTE Confidence: 0.8979156613349915
+
+00:26:00.833 --> 00:26:04.205
+out-of-the-box option, but put in user experiences and other controls
+
+NOTE Confidence: 0.8979156613349915
+
+00:26:04.254 --> 00:26:06.942
+that allow users to navigate safely around it when they
+
+NOTE Confidence: 0.8979156613349915
+
+00:26:06.991 --> 00:26:09.093
+run into it and they expect the agent to be
+
+NOTE Confidence: 0.8979156613349915
+
+00:26:09.142 --> 00:26:09.679
+successful.
+
+NOTE Confidence: 0.9186220169067383
+
+00:26:11.480 --> 00:26:12.080
+Thank you, Patrick.
+
+NOTE Confidence: 0.8128484487533569
+
+00:26:12.640 --> 00:26:15.346
+So as part of us building all these platform capabilities,
+
+NOTE Confidence: 0.8128484487533569
+
+00:26:15.393 --> 00:26:17.866
+we actually work very closely with Patrick and to get
+
+NOTE Confidence: 0.8128484487533569
+
+00:26:17.913 --> 00:26:20.199
+a copilot team to design and validate the design.
+
+NOTE Confidence: 0.7882909178733826
+
+00:26:20.440 --> 00:26:23.852
+But we also work very closely with the broader ecosystem
+
+NOTE Confidence: 0.7882909178733826
+
+00:26:23.913 --> 00:26:27.325
+as well with partners like Open AI, Manus, Ermes, NVIDIA
+
+NOTE Confidence: 0.7882909178733826
+
+00:26:27.386 --> 00:26:28.239
+and Open Claw.
+
+NOTE Confidence: 0.8052612543106079
+
+00:26:28.359 --> 00:26:31.079
+Stuart gave a great demo and at the keynote today
+
+NOTE Confidence: 0.8052612543106079
+
+00:26:31.135 --> 00:26:34.187
+he saw more about how Windows primitive or helping Open
+
+NOTE Confidence: 0.8052612543106079
+
+00:26:34.243 --> 00:26:35.519
+Claw run more securely.
+
+NOTE Confidence: 0.9294644594192505
+
+00:26:37.160 --> 00:26:39.468
+So we covered a lot of ground in this talk,
+
+NOTE Confidence: 0.9294644594192505
+
+00:26:39.522 --> 00:26:42.045
+so let me go ahead and summarize the key things
+
+NOTE Confidence: 0.9294644594192505
+
+00:26:42.098 --> 00:26:44.407
+that you need to do to make sure agents run
+
+NOTE Confidence: 0.9294644594192505
+
+00:26:44.461 --> 00:26:45.320
+well on Windows.
+
+NOTE Confidence: 0.8229629993438721
+
+00:26:45.640 --> 00:26:49.307
+1st, every agent should be running identified, should have its
+
+NOTE Confidence: 0.8229629993438721
+
+00:26:49.366 --> 00:26:52.619
+own identity distinct from that of the human user, with
+
+NOTE Confidence: 0.8229629993438721
+
+00:26:52.679 --> 00:26:55.400
+its own identity, permissions and audit trail.
+
+NOTE Confidence: 0.7780298590660095
+
+00:26:56.000 --> 00:26:57.160
+It should run contained.
+
+NOTE Confidence: 0.8835489153862
+
+00:26:57.400 --> 00:27:01.712
+Every action runs the right sandbox enforced by policy, and
+
+NOTE Confidence: 0.8835489153862
+
+00:27:01.785 --> 00:27:03.319
+it also runs managed.
+
+NOTE Confidence: 0.8396410346031189
+
+00:27:03.520 --> 00:27:05.680
+Now this is a topic that's going to require a
+
+NOTE Confidence: 0.8396410346031189
+
+00:27:05.728 --> 00:27:08.464
+lot more coverage, which we will cover in future sessions
+
+NOTE Confidence: 0.8396410346031189
+
+00:27:08.512 --> 00:27:09.760
+and blog posts and videos.
+
+NOTE Confidence: 0.836945652961731
+
+00:27:09.760 --> 00:27:11.444
+But what we will do is I give up very
+
+NOTE Confidence: 0.836945652961731
+
+00:27:11.489 --> 00:27:12.399
+high level overview.
+
+NOTE Confidence: 0.8219699859619141
+
+00:27:12.640 --> 00:27:15.831
+You know, at a high level IT admin policies apply
+
+NOTE Confidence: 0.8219699859619141
+
+00:27:15.896 --> 00:27:20.519
+consistently across devices with full enforceability and observability.
+
+NOTE Confidence: 0.7911756038665771
+
+00:27:20.800 --> 00:27:23.378
+Now if we go 1 little deeper, here's an extra
+
+NOTE Confidence: 0.7911756038665771
+
+00:27:23.436 --> 00:27:26.014
+feature you get as part of using MXC to build
+
+NOTE Confidence: 0.7911756038665771
+
+00:27:26.072 --> 00:27:26.759
+your agents.
+
+NOTE Confidence: 0.9043842554092407
+
+00:27:27.200 --> 00:27:31.106
+You get Agent 365 native integration and this enables your
+
+NOTE Confidence: 0.9043842554092407
+
+00:27:31.173 --> 00:27:35.080
+agents running on Windows to start secure and stay secure.
+
+NOTE Confidence: 0.9654150605201721
+
+00:27:35.359 --> 00:27:38.389
+And this also means you get the full ecosystem as
+
+NOTE Confidence: 0.9654150605201721
+
+00:27:38.450 --> 00:27:38.759
+well.
+
+NOTE Confidence: 0.8319187164306641
+
+00:27:38.760 --> 00:27:43.275
+You get Defender, Antra, Intune and preview their protections allow
+
+NOTE Confidence: 0.8319187164306641
+
+00:27:43.342 --> 00:27:47.049
+your security in IT teams to constrain and secure local
+
+NOTE Confidence: 0.8319187164306641
+
+00:27:47.116 --> 00:27:51.160
+agents to make them run more securely in enterprise context.
+
+NOTE Confidence: 0.8193839192390442
+
+00:27:51.440 --> 00:27:53.655
+So that's really like a nice icing on top of
+
+NOTE Confidence: 0.8193839192390442
+
+00:27:53.705 --> 00:27:55.720
+this to take it back to restart it from.
+
+NOTE Confidence: 0.8397807478904724
+
+00:27:56.160 --> 00:27:59.739
+As agents move from answering questions and to taking real
+
+NOTE Confidence: 0.8397807478904724
+
+00:27:59.801 --> 00:28:03.319
+actions, the biggest challenge is ensuring they run well.
+
+NOTE Confidence: 0.8808740973472595
+
+00:28:03.760 --> 00:28:06.800
+Windows gives the foundation to handle that shift.
+
+NOTE Confidence: 0.9355820417404175
+
+00:28:07.280 --> 00:28:10.480
+And Windows isn't just a place where agents can run.
+
+NOTE Confidence: 0.9254063963890076
+
+00:28:10.840 --> 00:28:14.507
+It's a place where they can run reliably, safely, and
+
+NOTE Confidence: 0.9254063963890076
+
+00:28:14.577 --> 00:28:15.199
+at scale.
+
+NOTE Confidence: 0.9353490471839905
+
+00:28:15.720 --> 00:28:18.826
+And with that, if you haven't done so yet, try
+
+NOTE Confidence: 0.9353490471839905
+
+00:28:18.894 --> 00:28:19.839
+MXC right now.
+
+NOTE Confidence: 0.8140908479690552
+
+00:28:19.840 --> 00:28:20.680
+What are you waiting for?
+
+NOTE Confidence: 0.8049534559249878
+
+00:28:20.960 --> 00:28:23.144
+And if you have any questions want talk to us
+
+NOTE Confidence: 0.8049534559249878
+
+00:28:23.193 --> 00:28:26.202
+further about any of these topics, come find Patrick's tonight
+
+NOTE Confidence: 0.8049534559249878
+
+00:28:26.251 --> 00:28:28.678
+at the agentic booth or some of her colleagues who
+
+NOTE Confidence: 0.8049534559249878
+
+00:28:28.727 --> 00:28:31.640
+will be there tomorrow to entertain more about these topics.
+
+NOTE Confidence: 0.8108637928962708
+
+00:28:32.000 --> 00:28:32.320
+Thank you.
+

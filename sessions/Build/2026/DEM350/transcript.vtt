@@ -1,0 +1,1745 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.8021485805511475
+
+00:00:02.520 --> 00:00:07.399
+Thank you, hope everyone is enjoying Microsoft build day one
+
+NOTE Confidence: 0.8021485805511475
+
+00:00:07.480 --> 00:00:09.919
+in the afternoon guys made it.
+
+NOTE Confidence: 0.5878540277481079
+
+00:00:09.920 --> 00:00:10.880
+My name is Ari Livigni.
+
+NOTE Confidence: 0.9107241034507751
+
+00:00:10.880 --> 00:00:12.840
+I'm a senior learning advocate with GitHub.
+
+NOTE Confidence: 0.857290506362915
+
+00:00:13.920 --> 00:00:16.746
+And my name is Alejandro Menocal and I'm a senior
+
+NOTE Confidence: 0.857290506362915
+
+00:00:16.803 --> 00:00:18.880
+service delivery engineer at GitHub.
+
+NOTE Confidence: 0.7629184722900391
+
+00:00:19.400 --> 00:00:22.751
+And we're going to talk about GitHub ejectic workflows and
+
+NOTE Confidence: 0.7629184722900391
+
+00:00:22.808 --> 00:00:26.159
+how auto this automation actually reads the room and we'll
+
+NOTE Confidence: 0.7629184722900391
+
+00:00:26.217 --> 00:00:27.719
+get it to the first slide.
+
+NOTE Confidence: 0.9338312149047852
+
+00:00:27.720 --> 00:00:29.120
+We want to get into more of the demo.
+
+NOTE Confidence: 0.872252345085144
+
+00:00:29.640 --> 00:00:33.312
+The idea here is that instead of having to know
+
+NOTE Confidence: 0.872252345085144
+
+00:00:33.391 --> 00:00:38.079
+YAML for actions, you can define your workflows in Markdown.
+
+NOTE Confidence: 0.8546804785728455
+
+00:00:38.080 --> 00:00:41.637
+You can even use Copilot to create those Markdown files
+
+NOTE Confidence: 0.8546804785728455
+
+00:00:41.701 --> 00:00:44.999
+that then can be compiled into an agentic workflow.
+
+NOTE Confidence: 0.8199065923690796
+
+00:00:45.360 --> 00:00:48.891
+So a lot of folks automation or CI is very
+
+NOTE Confidence: 0.8199065923690796
+
+00:00:48.975 --> 00:00:53.768
+much centred around, you know, very being very rigid and,
+
+NOTE Confidence: 0.8199065923690796
+
+00:00:53.852 --> 00:00:56.879
+and, and it has to do syntax errors.
+
+NOTE Confidence: 0.7707267999649048
+
+00:00:56.880 --> 00:01:00.040
+It's hard to identify with agenda workflows.
+
+NOTE Confidence: 0.9299241900444031
+
+00:01:00.040 --> 00:01:05.960
+You can really automate your, your CICD easily.
+
+NOTE Confidence: 0.8999327421188354
+
+00:01:06.680 --> 00:01:08.560
+You can triage test failures.
+
+NOTE Confidence: 0.9586918354034424
+
+00:01:08.560 --> 00:01:09.680
+It can identify.
+
+NOTE Confidence: 0.8837681412696838
+
+00:01:09.680 --> 00:01:12.404
+It can create issues for you on a daily basis
+
+NOTE Confidence: 0.8837681412696838
+
+00:01:12.465 --> 00:01:14.947
+or a daily report of your of your repo or
+
+NOTE Confidence: 0.8837681412696838
+
+00:01:15.008 --> 00:01:16.280
+open up pull request.
+
+NOTE Confidence: 0.8962854146957397
+
+00:01:16.600 --> 00:01:18.869
+And the idea is that it takes a lot of
+
+NOTE Confidence: 0.8962854146957397
+
+00:01:18.929 --> 00:01:21.617
+the toil and the mundane things we have to do
+
+NOTE Confidence: 0.8962854146957397
+
+00:01:21.677 --> 00:01:25.141
+as developers on our repos and automating that process for
+
+NOTE Confidence: 0.8962854146957397
+
+00:01:25.201 --> 00:01:25.439
+you.
+
+NOTE Confidence: 0.8051217198371887
+
+00:01:25.440 --> 00:01:28.120
+I don't know if you want to add anything.
+
+NOTE Confidence: 0.8899945616722107
+
+00:01:28.600 --> 00:01:30.280
+And the idea too is right.
+
+NOTE Confidence: 0.9497647285461426
+
+00:01:30.280 --> 00:01:34.240
+We have our agents and our models behind this.
+
+NOTE Confidence: 0.8388802409172058
+
+00:01:34.480 --> 00:01:38.100
+So whether it's Copilot, clawed codecs or Gemini, any of
+
+NOTE Confidence: 0.8388802409172058
+
+00:01:38.165 --> 00:01:42.239
+the models, it can dynamically diagnose, test failures, open up
+
+NOTE Confidence: 0.8388802409172058
+
+00:01:42.303 --> 00:01:45.860
+pull request to make changes or maybe update your stack
+
+NOTE Confidence: 0.8388802409172058
+
+00:01:45.924 --> 00:01:47.800
+and give you recommendations.
+
+NOTE Confidence: 0.8549154996871948
+
+00:01:48.680 --> 00:01:53.162
+And there's already a deep ecosystem available on different types
+
+NOTE Confidence: 0.8549154996871948
+
+00:01:53.231 --> 00:01:54.680
+of identic workflows.
+
+NOTE Confidence: 0.9685345888137817
+
+00:01:55.760 --> 00:01:58.031
+There's a website that's part of this that you can
+
+NOTE Confidence: 0.9685345888137817
+
+00:01:58.076 --> 00:01:58.440
+also go.
+
+NOTE Confidence: 0.912513792514801
+
+00:01:58.440 --> 00:02:01.400
+Look, we're actually releasing this in public preview next week.
+
+NOTE Confidence: 0.9539974331855774
+
+00:02:01.720 --> 00:02:03.488
+So you'll get an idea that you can use it
+
+NOTE Confidence: 0.9539974331855774
+
+00:02:03.531 --> 00:02:03.920
+yourself.
+
+NOTE Confidence: 0.8860700726509094
+
+00:02:05.120 --> 00:02:08.332
+Also, we're going to walk through a skills exercise that
+
+NOTE Confidence: 0.8860700726509094
+
+00:02:08.389 --> 00:02:11.142
+you could take and use your own GitHub handle to
+
+NOTE Confidence: 0.8860700726509094
+
+00:02:11.199 --> 00:02:13.551
+learn how to do this and see how it works
+
+NOTE Confidence: 0.8860700726509094
+
+00:02:13.609 --> 00:02:14.239
+first hand.
+
+NOTE Confidence: 0.7662920355796814
+
+00:02:14.240 --> 00:02:16.080
+I guess we can go to the next slide.
+
+NOTE Confidence: 0.8235136270523071
+
+00:02:16.440 --> 00:02:19.346
+So we're going to do with this exercise is we're
+
+NOTE Confidence: 0.8235136270523071
+
+00:02:19.407 --> 00:02:22.676
+going to take a fictitious Mona website that is tasked
+
+NOTE Confidence: 0.8235136270523071
+
+00:02:22.737 --> 00:02:26.491
+with looking at different updates on GitHub through its blogs,
+
+NOTE Confidence: 0.8235136270523071
+
+00:02:26.552 --> 00:02:30.367
+it's change logs, maybe notes that we've written ourselves that
+
+NOTE Confidence: 0.8235136270523071
+
+00:02:30.427 --> 00:02:31.760
+are in the repository.
+
+NOTE Confidence: 0.9160771369934082
+
+00:02:32.160 --> 00:02:35.421
+And with that, we're going to constantly get updates on
+
+NOTE Confidence: 0.9160771369934082
+
+00:02:35.480 --> 00:02:38.267
+all of that on some amount of frequency that we
+
+NOTE Confidence: 0.9160771369934082
+
+00:02:38.327 --> 00:02:40.876
+want to then give us APR that shows us what
+
+NOTE Confidence: 0.9160771369934082
+
+00:02:40.936 --> 00:02:44.375
+we can then either merge directly or obviously we probably
+
+NOTE Confidence: 0.9160771369934082
+
+00:02:44.434 --> 00:02:47.281
+want to peer review that and look at what's been
+
+NOTE Confidence: 0.9160771369934082
+
+00:02:47.340 --> 00:02:50.720
+created, have our teammates peer review that, and then we
+
+NOTE Confidence: 0.9160771369934082
+
+00:02:50.779 --> 00:02:52.439
+can merge that pull request.
+
+NOTE Confidence: 0.8888285160064697
+
+00:02:53.520 --> 00:02:55.265
+I guess with that, I think we can get into
+
+NOTE Confidence: 0.8888285160064697
+
+00:02:55.307 --> 00:02:57.261
+the, let's get right into it since we have like
+
+NOTE Confidence: 0.8888285160064697
+
+00:02:57.302 --> 00:02:57.759
+20 minutes.
+
+NOTE Confidence: 0.4744027853012085
+
+00:02:57.760 --> 00:02:57.880
+Cool.
+
+NOTE Confidence: 0.8877349495887756
+
+00:02:59.639 --> 00:03:02.550
+So in this GitHub skills exercise, what Alejandro is going
+
+NOTE Confidence: 0.8877349495887756
+
+00:03:02.600 --> 00:03:05.008
+to show you is we've already kind of started the
+
+NOTE Confidence: 0.8877349495887756
+
+00:03:05.058 --> 00:03:07.768
+process because it takes longer than the 25 minutes we
+
+NOTE Confidence: 0.8877349495887756
+
+00:03:07.818 --> 00:03:08.320
+have here.
+
+NOTE Confidence: 0.9129993319511414
+
+00:03:08.880 --> 00:03:13.019
+But from start to finish, this GitHub skills exercise is
+
+NOTE Confidence: 0.9129993319511414
+
+00:03:13.093 --> 00:03:16.714
+going to show you in an issue the different steps
+
+NOTE Confidence: 0.9129993319511414
+
+00:03:16.788 --> 00:03:19.079
+you can take of how this works.
+
+NOTE Confidence: 0.8264153599739075
+
+00:03:19.720 --> 00:03:25.307
+And with GitHub Agentic Workflows, we can automatically install it
+
+NOTE Confidence: 0.8264153599739075
+
+00:03:25.392 --> 00:03:28.778
+and create a it'll create a PR for us of
+
+NOTE Confidence: 0.8264153599739075
+
+00:03:28.863 --> 00:03:32.080
+how to install that in our repository.
+
+NOTE Confidence: 0.8949702978134155
+
+00:03:32.280 --> 00:03:35.033
+And what Alejandro is showing you here is those files
+
+NOTE Confidence: 0.8949702978134155
+
+00:03:35.085 --> 00:03:36.279
+that have been created.
+
+NOTE Confidence: 0.843626856803894
+
+00:03:36.280 --> 00:03:39.212
+So besides the markdown file, we have an agent file
+
+NOTE Confidence: 0.843626856803894
+
+00:03:39.270 --> 00:03:41.800
+which you can see it says Agentic Workflows.
+
+NOTE Confidence: 0.9015771150588989
+
+00:03:42.520 --> 00:03:45.560
+And this is describes what the agent installed.
+
+NOTE Confidence: 0.8827954530715942
+
+00:03:45.560 --> 00:03:48.112
+Just like if you have a custom agent, your repo
+
+NOTE Confidence: 0.8827954530715942
+
+00:03:48.166 --> 00:03:50.665
+or the the coded the cloud agent that you have
+
+NOTE Confidence: 0.8827954530715942
+
+00:03:50.719 --> 00:03:52.240
+normally in your repository.
+
+NOTE Confidence: 0.8472386598587036
+
+00:03:52.520 --> 00:03:55.313
+This sits there in in your repository under the dock
+
+NOTE Confidence: 0.8472386598587036
+
+00:03:55.366 --> 00:03:56.279
+GitHub directory.
+
+NOTE Confidence: 0.8924396634101868
+
+00:03:57.320 --> 00:04:01.032
+We also have a skill that gets installed as part
+
+NOTE Confidence: 0.8924396634101868
+
+00:04:01.109 --> 00:04:03.120
+of agentic workflows also.
+
+NOTE Confidence: 0.9356521368026733
+
+00:04:03.400 --> 00:04:05.378
+So all of this once we create the PR and
+
+NOTE Confidence: 0.9356521368026733
+
+00:04:05.428 --> 00:04:07.604
+I don't know if you want to show the command
+
+NOTE Confidence: 0.9356521368026733
+
+00:04:07.654 --> 00:04:09.879
+line of what that looks like on the exercise.
+
+NOTE Confidence: 0.8875756859779358
+
+00:04:11.320 --> 00:04:13.939
+So some of the set up here we installed here
+
+NOTE Confidence: 0.8875756859779358
+
+00:04:13.998 --> 00:04:16.796
+and we just ran this command to create the pull
+
+NOTE Confidence: 0.8875756859779358
+
+00:04:16.855 --> 00:04:20.665
+request and initialize our repo and have the completions already
+
+NOTE Confidence: 0.8875756859779358
+
+00:04:20.724 --> 00:04:21.319
+set to go.
+
+NOTE Confidence: 0.8279584050178528
+
+00:04:21.320 --> 00:04:23.633
+And that's what created the PR that Alejandro is showing
+
+NOTE Confidence: 0.8279584050178528
+
+00:04:23.674 --> 00:04:23.839
+you.
+
+NOTE Confidence: 0.8748972415924072
+
+00:04:24.600 --> 00:04:28.532
+So I'm going to go ahead and merge this in
+
+NOTE Confidence: 0.8748972415924072
+
+00:04:28.626 --> 00:04:32.839
+so that you can see in action how this works.
+
+NOTE Confidence: 0.7732449769973755
+
+00:04:33.560 --> 00:04:36.680
+Yeah, it has some good attributes to other files.
+
+NOTE Confidence: 0.9663916230201721
+
+00:04:36.880 --> 00:04:38.898
+If you do this yourself, you'll see all the files
+
+NOTE Confidence: 0.9663916230201721
+
+00:04:38.939 --> 00:04:39.640
+that get created.
+
+NOTE Confidence: 0.9279065728187561
+
+00:04:40.040 --> 00:04:43.230
+Again, you can take this GitHub skills exercise and walk
+
+NOTE Confidence: 0.9279065728187561
+
+00:04:43.287 --> 00:04:46.079
+through it to show exactly how it works yourself.
+
+NOTE Confidence: 0.928943395614624
+
+00:04:46.400 --> 00:04:48.346
+And you can take that and modify it and, you
+
+NOTE Confidence: 0.928943395614624
+
+00:04:48.390 --> 00:04:50.557
+know, maybe make some changes or make it work for
+
+NOTE Confidence: 0.928943395614624
+
+00:04:50.601 --> 00:04:50.999
+yourself.
+
+NOTE Confidence: 0.8561164736747742
+
+00:04:51.960 --> 00:04:55.483
+And what this does is really doing the setup right,
+
+NOTE Confidence: 0.8561164736747742
+
+00:04:55.552 --> 00:04:58.039
+of setting up that identic workflow.
+
+NOTE Confidence: 0.874458909034729
+
+00:04:58.520 --> 00:05:01.482
+And what we have here is really those, you know,
+
+NOTE Confidence: 0.874458909034729
+
+00:05:01.544 --> 00:05:04.753
+like for example the Copilot setup steps, it kind of
+
+NOTE Confidence: 0.874458909034729
+
+00:05:04.815 --> 00:05:07.839
+goes automatically scaffolds this for you, right?
+
+NOTE Confidence: 0.8952999711036682
+
+00:05:07.839 --> 00:05:10.989
+So you don't have to start from scratch and instead
+
+NOTE Confidence: 0.8952999711036682
+
+00:05:11.051 --> 00:05:14.262
+you can then have this framework and then build upon
+
+NOTE Confidence: 0.8952999711036682
+
+00:05:14.323 --> 00:05:17.226
+it depending on what you want to do, whether it
+
+NOTE Confidence: 0.8952999711036682
+
+00:05:17.287 --> 00:05:21.239
+is auto fix, CICD or automatically updating your website, right?
+
+NOTE Confidence: 0.8406015038490295
+
+00:05:21.240 --> 00:05:21.880
+This is the.
+
+NOTE Confidence: 0.9532400965690613
+
+00:05:22.320 --> 00:05:25.376
+This is where you add basically the business value of
+
+NOTE Confidence: 0.9532400965690613
+
+00:05:25.433 --> 00:05:26.760
+what you want to build.
+
+NOTE Confidence: 0.7640606760978699
+
+00:05:26.920 --> 00:05:30.132
+And it even installs an MCP server as well as
+
+NOTE Confidence: 0.7640606760978699
+
+00:05:30.203 --> 00:05:31.559
+part of it so that.
+
+NOTE Confidence: 0.8073028326034546
+
+00:05:33.080 --> 00:05:35.947
+So again, this is like a self-contained early ready to
+
+NOTE Confidence: 0.8073028326034546
+
+00:05:36.000 --> 00:05:36.160
+go.
+
+NOTE Confidence: 0.8042126297950745
+
+00:05:36.160 --> 00:05:40.982
+Like Alejandra said, it's early scaffolding, maybe some of the
+
+NOTE Confidence: 0.8042126297950745
+
+00:05:41.060 --> 00:05:44.560
+checks we have in there for the exercise too.
+
+NOTE Confidence: 0.9277844429016113
+
+00:05:44.560 --> 00:05:45.960
+We'll take a look at fixing that.
+
+NOTE Confidence: 0.9048676490783691
+
+00:05:46.640 --> 00:05:48.922
+But now we're going to do is we're going to
+
+NOTE Confidence: 0.9048676490783691
+
+00:05:48.975 --> 00:05:51.471
+go on to, we're going to prompt and we're going
+
+NOTE Confidence: 0.9048676490783691
+
+00:05:51.524 --> 00:05:52.479
+to use that agent.
+
+NOTE Confidence: 0.8224915862083435
+
+00:05:55.440 --> 00:05:58.120
+Yeah, and we're going to do that.
+
+NOTE Confidence: 0.7093141674995422
+
+00:05:58.200 --> 00:06:00.535
+Let's choose the agent in the maybe make that a
+
+NOTE Confidence: 0.7093141674995422
+
+00:06:00.585 --> 00:06:01.480
+little bit bigger.
+
+NOTE Confidence: 0.8955201506614685
+
+00:06:01.680 --> 00:06:05.350
+So now we're picking the agentic workflow agent and we're
+
+NOTE Confidence: 0.8955201506614685
+
+00:06:05.415 --> 00:06:08.957
+going to give it directions to create this workflow for
+
+NOTE Confidence: 0.8955201506614685
+
+00:06:09.021 --> 00:06:11.919
+us that's going to update the website for us.
+
+NOTE Confidence: 0.8999373912811279
+
+00:06:12.440 --> 00:06:14.467
+So we want to make sure we're on the latest
+
+NOTE Confidence: 0.8999373912811279
+
+00:06:14.514 --> 00:06:15.079
+main branch.
+
+NOTE Confidence: 0.9383015036582947
+
+00:06:15.400 --> 00:06:18.137
+We're going to create a new branch and we're going
+
+NOTE Confidence: 0.9383015036582947
+
+00:06:18.192 --> 00:06:21.040
+to update our info file that's used for our website.
+
+NOTE Confidence: 0.8657384514808655
+
+00:06:21.040 --> 00:06:23.969
+So we get the latest GitHub updates from the blog,
+
+NOTE Confidence: 0.8657384514808655
+
+00:06:24.028 --> 00:06:25.200
+changelog and so on.
+
+NOTE Confidence: 0.8114835023880005
+
+00:06:32.650 --> 00:06:38.066
+And what this should do is create, yeah, when this
+
+NOTE Confidence: 0.8114835023880005
+
+00:06:38.175 --> 00:06:42.400
+should create our workflow file for us.
+
+NOTE Confidence: 0.9685313105583191
+
+00:06:42.440 --> 00:06:44.080
+And then we're going to have to compile that.
+
+NOTE Confidence: 0.8574140667915344
+
+00:06:44.360 --> 00:06:47.628
+So part of this project, project or process with the
+
+NOTE Confidence: 0.8574140667915344
+
+00:06:47.691 --> 00:06:50.519
+agentic workflows is that we have to compile.
+
+NOTE Confidence: 0.858655571937561
+
+00:06:50.800 --> 00:06:53.782
+Since it's just a markdown file, we have to do
+
+NOTE Confidence: 0.858655571937561
+
+00:06:53.846 --> 00:06:57.153
+that so that it actually generates a YAML file that
+
+NOTE Confidence: 0.858655571937561
+
+00:06:57.217 --> 00:07:00.135
+it it's called a lock file that it knows what
+
+NOTE Confidence: 0.858655571937561
+
+00:07:00.200 --> 00:07:02.079
+to do to run those workflows.
+
+NOTE Confidence: 0.8646755814552307
+
+00:07:08.640 --> 00:07:11.484
+And we're, we added a little bit something extra here
+
+NOTE Confidence: 0.8646755814552307
+
+00:07:11.538 --> 00:07:14.919
+that the agent sometimes will automatically compile it for you.
+
+NOTE Confidence: 0.8566133975982666
+
+00:07:14.920 --> 00:07:16.280
+But we wanted to show that step.
+
+NOTE Confidence: 0.8182511925697327
+
+00:07:16.280 --> 00:07:17.994
+So that's why we had that in there as in
+
+NOTE Confidence: 0.8182511925697327
+
+00:07:18.037 --> 00:07:18.680
+the directions.
+
+NOTE Confidence: 0.81500643491745
+
+00:07:22.520 --> 00:07:26.387
+And now Alejandro's adding this one extra section to the
+
+NOTE Confidence: 0.81500643491745
+
+00:07:26.456 --> 00:07:29.839
+to the actual agent so that it goes through that.
+
+NOTE Confidence: 0.9419765472412109
+
+00:07:29.840 --> 00:07:32.240
+So you can also modify that agent.
+
+NOTE Confidence: 0.9128369688987732
+
+00:07:32.560 --> 00:07:35.256
+If there's something specific you want to do with your
+
+NOTE Confidence: 0.9128369688987732
+
+00:07:35.305 --> 00:07:37.852
+agentic workflow for that agent to do all the time,
+
+NOTE Confidence: 0.9128369688987732
+
+00:07:37.902 --> 00:07:39.400
+you can add that to the agent.
+
+NOTE Confidence: 0.8517534136772156
+
+00:07:51.920 --> 00:07:54.740
+It's so one of the differences here, in case you
+
+NOTE Confidence: 0.8517534136772156
+
+00:07:54.799 --> 00:07:57.443
+know it was sorry about the demo, but we hear
+
+NOTE Confidence: 0.8517534136772156
+
+00:07:57.502 --> 00:08:01.028
+this agent is really helping us to create agentic workflows,
+
+NOTE Confidence: 0.8517534136772156
+
+00:08:01.087 --> 00:08:01.440
+right.
+
+NOTE Confidence: 0.8316242098808289
+
+00:08:01.440 --> 00:08:04.054
+So we are using this agent to help us create
+
+NOTE Confidence: 0.8316242098808289
+
+00:08:04.113 --> 00:08:05.480
+those agentic workflow.
+
+NOTE Confidence: 0.8242592215538025
+
+00:08:05.480 --> 00:08:09.602
+So it currently what we're doing is basically this agent
+
+NOTE Confidence: 0.8242592215538025
+
+00:08:09.675 --> 00:08:14.240
+gives us the scaffold to create more agentic workflows, right?
+
+NOTE Confidence: 0.8923715353012085
+
+00:08:14.240 --> 00:08:17.356
+And so the next step that I'm going to do
+
+NOTE Confidence: 0.8923715353012085
+
+00:08:17.432 --> 00:08:22.220
+here, it's basically add the instructions to create the agentic
+
+NOTE Confidence: 0.8923715353012085
+
+00:08:22.296 --> 00:08:27.160
+workflow that's actually going to update our our website, right?
+
+NOTE Confidence: 0.8868526220321655
+
+00:08:27.560 --> 00:08:30.020
+And in here I have for example, when is it
+
+NOTE Confidence: 0.8868526220321655
+
+00:08:30.078 --> 00:08:30.840
+going to run?
+
+NOTE Confidence: 0.785198450088501
+
+00:08:31.280 --> 00:08:32.760
+What access am I given to?
+
+NOTE Confidence: 0.8780777454376221
+
+00:08:32.800 --> 00:08:35.971
+And then disigentic workflows in order for them to be
+
+NOTE Confidence: 0.8780777454376221
+
+00:08:36.031 --> 00:08:39.622
+secure, we are not actually giving the agent any permissions
+
+NOTE Confidence: 0.8780777454376221
+
+00:08:39.682 --> 00:08:43.093
+besides read access to the repository, but instead we use
+
+NOTE Confidence: 0.8780777454376221
+
+00:08:43.152 --> 00:08:47.162
+something called safe output, which is something that happens after
+
+NOTE Confidence: 0.8780777454376221
+
+00:08:47.222 --> 00:08:48.120
+the agent runs.
+
+NOTE Confidence: 0.8925061225891113
+
+00:08:48.400 --> 00:08:51.534
+So that the, so that basically that workflow, that step
+
+NOTE Confidence: 0.8925061225891113
+
+00:08:51.591 --> 00:08:54.212
+in the workflow is the one that has the access
+
+NOTE Confidence: 0.8925061225891113
+
+00:08:54.269 --> 00:08:57.119
+to perform the actions, whether it is to create an
+
+NOTE Confidence: 0.8925061225891113
+
+00:08:57.176 --> 00:08:58.999
+issue, to create a pull request.
+
+NOTE Confidence: 0.9439097046852112
+
+00:08:59.360 --> 00:09:04.186
+And that's how we segregate those responsibilities from the agent,
+
+NOTE Confidence: 0.9439097046852112
+
+00:09:04.259 --> 00:09:06.599
+just having all types of access.
+
+NOTE Confidence: 0.6145447492599487
+
+00:09:06.880 --> 00:09:07.000
+Yeah.
+
+NOTE Confidence: 0.7511304020881653
+
+00:09:07.000 --> 00:09:09.809
+So we can't hallucinate or delete your code base or,
+
+NOTE Confidence: 0.7511304020881653
+
+00:09:09.863 --> 00:09:12.240
+you know, remove files from your repository.
+
+NOTE Confidence: 0.9606632590293884
+
+00:09:12.480 --> 00:09:15.040
+It's always going to be where you're in control.
+
+NOTE Confidence: 0.9126622080802917
+
+00:09:15.040 --> 00:09:17.289
+It's going to do that automation for you, but you're
+
+NOTE Confidence: 0.9126622080802917
+
+00:09:17.332 --> 00:09:19.582
+going to be the one that ultimately decides, is this
+
+NOTE Confidence: 0.9126622080802917
+
+00:09:19.625 --> 00:09:22.221
+something that's useful from what's generated or do you want
+
+NOTE Confidence: 0.9126622080802917
+
+00:09:22.264 --> 00:09:22.999
+to throw it away?
+
+NOTE Confidence: 0.7725210189819336
+
+00:09:25.080 --> 00:09:28.490
+So currently with that prompt, right, what I'm just using
+
+NOTE Confidence: 0.7725210189819336
+
+00:09:28.550 --> 00:09:31.601
+is I'm using that agent agent to create the agentic
+
+NOTE Confidence: 0.7725210189819336
+
+00:09:31.661 --> 00:09:32.200
+workflow.
+
+NOTE Confidence: 0.8845388293266296
+
+00:09:32.280 --> 00:09:35.211
+And currently it's, you know, going to be thinking about
+
+NOTE Confidence: 0.8845388293266296
+
+00:09:35.263 --> 00:09:37.828
+that it's using that skill that we show that came
+
+NOTE Confidence: 0.8845388293266296
+
+00:09:37.880 --> 00:09:40.497
+with the scaffold in order to create that this new
+
+NOTE Confidence: 0.8845388293266296
+
+00:09:40.550 --> 00:09:41.440
+agentic workflow.
+
+NOTE Confidence: 0.8442956805229187
+
+00:09:44.160 --> 00:09:46.187
+So now and as you can see the steps, it's
+
+NOTE Confidence: 0.8442956805229187
+
+00:09:46.236 --> 00:09:47.720
+creating that workflow for us.
+
+NOTE Confidence: 0.9037953615188599
+
+00:09:47.720 --> 00:09:48.640
+It's preparing it.
+
+NOTE Confidence: 0.636037290096283
+
+00:09:49.040 --> 00:09:51.958
+And you can see as if you've used copilot chat
+
+NOTE Confidence: 0.636037290096283
+
+00:09:52.022 --> 00:09:52.719
+and the ID.
+
+NOTE Confidence: 0.9050604701042175
+
+00:09:52.920 --> 00:09:54.719
+This should look familiar to you to see all the
+
+NOTE Confidence: 0.9050604701042175
+
+00:09:54.757 --> 00:09:55.600
+steps that it's doing.
+
+NOTE Confidence: 0.8506873846054077
+
+00:10:00.640 --> 00:10:06.333
+Should be generating a file soon and the website we're
+
+NOTE Confidence: 0.8506873846054077
+
+00:10:06.438 --> 00:10:11.816
+doing this is just a basic Astro website and that's
+
+NOTE Confidence: 0.8506873846054077
+
+00:10:11.921 --> 00:10:15.189
+actually running right now too.
+
+NOTE Confidence: 0.5166413187980652
+
+00:10:16.230 --> 00:10:16.910
+This is the.
+
+NOTE Confidence: 0.8590326309204102
+
+00:10:16.910 --> 00:10:17.430
+Website.
+
+NOTE Confidence: 0.5890858173370361
+
+00:10:17.790 --> 00:10:18.070
+Go ahead.
+
+NOTE Confidence: 0.6308420300483704
+
+00:10:18.310 --> 00:10:18.630
+No go.
+
+NOTE Confidence: 0.8507426381111145
+
+00:10:19.070 --> 00:10:22.403
+Ahead, this is a website that has the information and
+
+NOTE Confidence: 0.8507426381111145
+
+00:10:22.466 --> 00:10:24.982
+I think if you see at the top, it should
+
+NOTE Confidence: 0.8507426381111145
+
+00:10:25.045 --> 00:10:27.749
+say the date on it goes a little bit lower,
+
+NOTE Confidence: 0.8507426381111145
+
+00:10:27.812 --> 00:10:28.190
+right?
+
+NOTE Confidence: 0.8107203841209412
+
+00:10:30.080 --> 00:10:31.080
+Yeah, March 17th.
+
+NOTE Confidence: 0.9414243102073669
+
+00:10:31.080 --> 00:10:34.600
+So that's when I initially started creating this exercise.
+
+NOTE Confidence: 0.9082255363464355
+
+00:10:34.600 --> 00:10:37.731
+So it has that static information and the identic workflow
+
+NOTE Confidence: 0.9082255363464355
+
+00:10:37.785 --> 00:10:40.107
+is what's going to allow us to keep that up
+
+NOTE Confidence: 0.9082255363464355
+
+00:10:40.161 --> 00:10:41.079
+to date with new.
+
+NOTE Confidence: 0.8603009581565857
+
+00:10:41.440 --> 00:10:44.745
+You know, as you've seen announcements today about GitHub Copilot
+
+NOTE Confidence: 0.8603009581565857
+
+00:10:44.795 --> 00:10:47.694
+features or agents, that would be something that would be
+
+NOTE Confidence: 0.8603009581565857
+
+00:10:47.745 --> 00:10:49.982
+pulled from the blog or the change log as an
+
+NOTE Confidence: 0.8603009581565857
+
+00:10:50.033 --> 00:10:50.440
+example.
+
+NOTE Confidence: 0.8847225904464722
+
+00:10:50.960 --> 00:10:53.555
+This maybe could be something in your repository of a
+
+NOTE Confidence: 0.8847225904464722
+
+00:10:53.604 --> 00:10:56.003
+stack that you have that has versions that may be
+
+NOTE Confidence: 0.8847225904464722
+
+00:10:56.052 --> 00:10:56.640
+out of date.
+
+NOTE Confidence: 0.9335533380508423
+
+00:10:57.080 --> 00:10:59.620
+And that's another example that it would look at that
+
+NOTE Confidence: 0.9335533380508423
+
+00:10:59.668 --> 00:11:02.208
+and then automatically give you APR to give you those
+
+NOTE Confidence: 0.9335533380508423
+
+00:11:02.256 --> 00:11:02.640
+updates.
+
+NOTE Confidence: 0.7312478423118591
+
+00:11:10.390 --> 00:11:19.740
+Here we go, and now.
+
+NOTE Confidence: 0.6616410613059998
+
+00:11:20.380 --> 00:11:22.900
+So it's adding the, yeah, the latest GitHub updates.
+
+NOTE Confidence: 0.9344654083251953
+
+00:11:22.900 --> 00:11:23.140
+Yeah.
+
+NOTE Confidence: 0.7432884573936462
+
+00:11:25.060 --> 00:11:29.580
+Whoops, I didn't mean to do that.
+
+NOTE Confidence: 0.7039488554000854
+
+00:11:29.740 --> 00:11:30.700
+Did you just delete their word?
+
+NOTE Confidence: 0.27944159507751465
+
+00:11:30.900 --> 00:11:31.060
+Yeah.
+
+NOTE Confidence: 0.8411858081817627
+
+00:11:32.580 --> 00:11:32.940
+There you go.
+
+NOTE Confidence: 0.8106542229652405
+
+00:11:33.180 --> 00:11:34.020
+Oh, you just closed it.
+
+NOTE Confidence: 0.3269440233707428
+
+00:11:34.020 --> 00:11:34.140
+OK.
+
+NOTE Confidence: 0.7369813919067383
+
+00:11:41.240 --> 00:11:44.323
+So that's that markdown file that update GitHub info dot
+
+NOTE Confidence: 0.7369813919067383
+
+00:11:44.378 --> 00:11:45.919
+MD that you can see created.
+
+NOTE Confidence: 0.7332049608230591
+
+00:11:45.920 --> 00:11:47.560
+That's our agentic workflow.
+
+NOTE Confidence: 0.8676069378852844
+
+00:11:48.720 --> 00:11:51.075
+And then the next step that Alejandro is going to
+
+NOTE Confidence: 0.8676069378852844
+
+00:11:51.124 --> 00:11:53.480
+do is what's going to compile that markdown file.
+
+NOTE Confidence: 0.903142511844635
+
+00:11:53.800 --> 00:11:56.778
+That then is our workflow that we can run at
+
+NOTE Confidence: 0.903142511844635
+
+00:11:56.846 --> 00:11:58.199
+a certain frequency.
+
+NOTE Confidence: 0.9458271265029907
+
+00:11:58.440 --> 00:12:00.950
+And I believe there is a frequency in there, but
+
+NOTE Confidence: 0.9458271265029907
+
+00:12:01.003 --> 00:12:03.043
+you can also, we asked it to also do it
+
+NOTE Confidence: 0.9458271265029907
+
+00:12:03.095 --> 00:12:05.553
+on demand that if we wanted to do this whenever
+
+NOTE Confidence: 0.9458271265029907
+
+00:12:05.606 --> 00:12:07.279
+we want, we can do that as well.
+
+NOTE Confidence: 0.8621887564659119
+
+00:12:07.280 --> 00:12:10.226
+Just like any GitHub Actions workflow that you're used to
+
+NOTE Confidence: 0.8621887564659119
+
+00:12:10.277 --> 00:12:11.880
+running, it's the same applies.
+
+NOTE Confidence: 0.8174826502799988
+
+00:12:13.200 --> 00:12:16.183
+So that if you're familiar with GitHub Actions, this is
+
+NOTE Confidence: 0.8174826502799988
+
+00:12:16.237 --> 00:12:19.329
+just GitHub Actions kind of on steroids with the identity
+
+NOTE Confidence: 0.8174826502799988
+
+00:12:19.383 --> 00:12:20.359
+agentic workflows.
+
+NOTE Confidence: 0.8714539408683777
+
+00:12:24.160 --> 00:12:24.680
+Still thinking?
+
+NOTE Confidence: 0.7491897940635681
+
+00:12:25.160 --> 00:12:26.280
+Still still creating.
+
+NOTE Confidence: 0.6754667162895203
+
+00:12:26.680 --> 00:12:26.960
+Yeah.
+
+NOTE Confidence: 0.8557711839675903
+
+00:12:32.760 --> 00:12:35.778
+And obviously, like with any of, of anything you do
+
+NOTE Confidence: 0.8557711839675903
+
+00:12:35.837 --> 00:12:38.974
+with Copilot or the agents, you can iterate with that
+
+NOTE Confidence: 0.8557711839675903
+
+00:12:39.033 --> 00:12:40.039
+agentic workflow.
+
+NOTE Confidence: 0.9253742694854736
+
+00:12:40.040 --> 00:12:42.976
+You can add like we added a complete comment in
+
+NOTE Confidence: 0.9253742694854736
+
+00:12:43.038 --> 00:12:45.599
+there that we did not want it to compile.
+
+NOTE Confidence: 0.9503981471061707
+
+00:12:45.800 --> 00:12:48.195
+Maybe there's other things that we want to add to
+
+NOTE Confidence: 0.9503981471061707
+
+00:12:48.244 --> 00:12:50.199
+the agent to make it work better for us.
+
+NOTE Confidence: 0.9017059206962585
+
+00:12:50.480 --> 00:12:54.001
+Maybe there's other pieces of the agentic workflow that we've
+
+NOTE Confidence: 0.9017059206962585
+
+00:12:54.059 --> 00:12:56.599
+created that we also want to modify as well.
+
+NOTE Confidence: 0.9657159447669983
+
+00:12:57.040 --> 00:12:57.600
+There we go.
+
+NOTE Confidence: 0.6380599141120911
+
+00:12:59.680 --> 00:13:00.360
+What's reading it?
+
+NOTE Confidence: 0.8526812791824341
+
+00:13:00.560 --> 00:13:01.600
+It's reading it, yeah.
+
+NOTE Confidence: 0.8847300410270691
+
+00:13:04.920 --> 00:13:06.680
+So it's checking the schedule.
+
+NOTE Confidence: 0.8396868705749512
+
+00:13:07.200 --> 00:13:08.480
+Can we open that file?
+
+NOTE Confidence: 0.5914248824119568
+
+00:13:11.120 --> 00:13:12.360
+Should be under workflows.
+
+NOTE Confidence: 0.7853518724441528
+
+00:13:15.600 --> 00:13:17.360
+Yeah, yeah.
+
+NOTE Confidence: 0.8668025135993958
+
+00:13:17.920 --> 00:13:22.760
+So here is the the markdown file, right?
+
+NOTE Confidence: 0.9180935025215149
+
+00:13:24.400 --> 00:13:25.600
+It's very basic.
+
+NOTE Confidence: 0.9499354958534241
+
+00:13:25.800 --> 00:13:28.292
+There's also a front matter that's at the top, I
+
+NOTE Confidence: 0.9499354958534241
+
+00:13:28.344 --> 00:13:28.759
+believe.
+
+NOTE Confidence: 0.4776666760444641
+
+00:13:29.040 --> 00:13:29.280
+Yep.
+
+NOTE Confidence: 0.9298437237739563
+
+00:13:29.720 --> 00:13:33.391
+This is all the front matter that basically instructs the
+
+NOTE Confidence: 0.9298437237739563
+
+00:13:33.455 --> 00:13:37.126
+general directions that we told it in natural language of
+
+NOTE Confidence: 0.9298437237739563
+
+00:13:37.190 --> 00:13:40.539
+what we wanted, and now it's generated this file for
+
+NOTE Confidence: 0.9298437237739563
+
+00:13:40.604 --> 00:13:43.373
+us and our next step is now to compile that
+
+NOTE Confidence: 0.9298437237739563
+
+00:13:43.437 --> 00:13:43.760
+file.
+
+NOTE Confidence: 0.8263288736343384
+
+00:13:52.640 --> 00:13:54.000
+Tools allowed.
+
+NOTE Confidence: 0.4306670129299164
+
+00:14:02.200 --> 00:14:02.920
+It's calling out.
+
+NOTE Confidence: 0.41434943675994873
+
+00:14:04.640 --> 00:14:05.560
+Site Contents.
+
+NOTE Confidence: 0.6364423036575317
+
+00:14:16.200 --> 00:14:18.480
+Let's try compiling 1 again.
+
+NOTE Confidence: 0.4105920195579529
+
+00:14:21.040 --> 00:14:22.560
+Saying filter name.
+
+NOTE Confidence: 0.5500735640525818
+
+00:14:23.280 --> 00:14:25.040
+Safe output assigned to user.
+
+NOTE Confidence: 0.6723825931549072
+
+00:14:36.060 --> 00:14:41.520
+I am compiling the right one right workflows of the
+
+NOTE Confidence: 0.6723825931549072
+
+00:14:41.627 --> 00:14:46.660
+GitHub info workflows Yeah web fetch edit it's.
+
+NOTE Confidence: 0.629688024520874
+
+00:14:48.060 --> 00:14:48.820
+Doesn't like the word.
+
+NOTE Confidence: 0.42933881282806396
+
+00:14:48.860 --> 00:14:49.820
+Allowed oh here.
+
+NOTE Confidence: 0.8907032012939453
+
+00:14:51.380 --> 00:14:53.140
+There's another one too, but I don't know if that's.
+
+NOTE Confidence: 0.5509051084518433
+
+00:15:01.000 --> 00:15:01.360
+There we.
+
+NOTE Confidence: 0.7203199863433838
+
+00:15:02.160 --> 00:15:02.480
+Go no.
+
+NOTE Confidence: 0.44944432377815247
+
+00:15:02.480 --> 00:15:05.120
+It says write for contents.
+
+NOTE Confidence: 0.5795702338218689
+
+00:15:05.160 --> 00:15:06.320
+Write is not allowed for security.
+
+NOTE Confidence: 0.33978724479675293
+
+00:15:06.320 --> 00:15:07.040
+Use safe outputs.
+
+NOTE Confidence: 0.7542502880096436
+
+00:15:07.040 --> 00:15:09.080
+Create issue to perform.
+
+NOTE Confidence: 0.31773486733436584
+
+00:15:09.080 --> 00:15:09.200
+Write.
+
+NOTE Confidence: 0.7268022894859314
+
+00:15:09.200 --> 00:15:14.753
+It's part of the writing and sandboxing stuff too that
+
+NOTE Confidence: 0.7268022894859314
+
+00:15:14.856 --> 00:15:18.969
+doesn't allow you to the contents write.
+
+NOTE Confidence: 0.49284854531288147
+
+00:15:19.010 --> 00:15:19.610
+Oh, here should.
+
+NOTE Confidence: 0.7253001928329468
+
+00:15:19.770 --> 00:15:20.530
+Be read, write.
+
+NOTE Confidence: 0.5861188173294067
+
+00:15:21.330 --> 00:15:21.850
+Read Yeah.
+
+NOTE Confidence: 0.6753323078155518
+
+00:15:25.450 --> 00:15:25.650
+Write.
+
+NOTE Confidence: 0.7206823825836182
+
+00:15:25.890 --> 00:15:27.890
+I think write for the pull request is correct.
+
+NOTE Confidence: 0.8514446020126343
+
+00:15:37.360 --> 00:15:38.280
+No, I think it's.
+
+NOTE Confidence: 0.8567440509796143
+
+00:15:39.120 --> 00:15:43.917
+Didn't create our let's see there we go OK so
+
+NOTE Confidence: 0.8567440509796143
+
+00:15:44.024 --> 00:15:48.608
+now we had to make some tweaks to the front
+
+NOTE Confidence: 0.8567440509796143
+
+00:15:48.714 --> 00:15:53.405
+matter but now we can submit that we can add
+
+NOTE Confidence: 0.8567440509796143
+
+00:15:53.512 --> 00:15:58.629
+that file got about a minute left so we're going
+
+NOTE Confidence: 0.8567440509796143
+
+00:15:58.736 --> 00:16:04.280
+to kind of breeze through this but this should have.
+
+NOTE Confidence: 0.7307313084602356
+
+00:16:06.080 --> 00:16:07.760
+The lock file if you want to talk about that.
+
+NOTE Confidence: 0.6301694512367249
+
+00:16:07.960 --> 00:16:08.200
+Yeah.
+
+NOTE Confidence: 0.7151331901550293
+
+00:16:08.200 --> 00:16:10.538
+So the lock file is what gets generated and that's
+
+NOTE Confidence: 0.7151331901550293
+
+00:16:10.584 --> 00:16:11.520
+the actual workflow.
+
+NOTE Confidence: 0.8120391964912415
+
+00:16:11.520 --> 00:16:13.233
+And I don't know if we can bring that up,
+
+NOTE Confidence: 0.8120391964912415
+
+00:16:13.275 --> 00:16:14.320
+show that too real quick.
+
+NOTE Confidence: 0.8580900430679321
+
+00:16:14.760 --> 00:16:18.036
+But the the lock file is the actual actions workflow
+
+NOTE Confidence: 0.8580900430679321
+
+00:16:18.099 --> 00:16:19.359
+that's going to run.
+
+NOTE Confidence: 0.8436972498893738
+
+00:16:19.960 --> 00:16:22.345
+The the MD file that we just showed you is
+
+NOTE Confidence: 0.8436972498893738
+
+00:16:22.402 --> 00:16:25.583
+the natural language markdown that you can do that, that
+
+NOTE Confidence: 0.8436972498893738
+
+00:16:25.639 --> 00:16:28.593
+you can control and check in the lock file something
+
+NOTE Confidence: 0.8436972498893738
+
+00:16:28.650 --> 00:16:31.319
+that gets generated as part of the compilation.
+
+NOTE Confidence: 0.843460202217102
+
+00:16:32.040 --> 00:16:34.000
+We got about 30 seconds left.
+
+NOTE Confidence: 0.9554035067558289
+
+00:16:36.240 --> 00:16:41.136
+Again, you can take this exercise afterwards and play around
+
+NOTE Confidence: 0.9554035067558289
+
+00:16:41.217 --> 00:16:42.360
+with yourself.
+
+NOTE Confidence: 0.8440307974815369
+
+00:16:42.360 --> 00:16:44.367
+We'll make some tweaks to it, make sure it runs
+
+NOTE Confidence: 0.8440307974815369
+
+00:16:44.410 --> 00:16:44.880
+seamlessly.
+
+NOTE Confidence: 0.8514183163642883
+
+00:16:45.120 --> 00:16:48.269
+And also there's probably been updates to agentic workflows too
+
+NOTE Confidence: 0.8514183163642883
+
+00:16:48.319 --> 00:16:49.719
+that we have to account for.
+
+NOTE Confidence: 0.9338445067405701
+
+00:16:49.920 --> 00:16:51.640
+But this is the workflow file here.
+
+NOTE Confidence: 0.7104080319404602
+
+00:16:52.000 --> 00:16:55.685
+And then maybe just show the this, yeah, the, yeah,
+
+NOTE Confidence: 0.7104080319404602
+
+00:16:55.757 --> 00:16:56.480
+the slide.
+
+NOTE Confidence: 0.917407214641571
+
+00:16:57.960 --> 00:17:00.924
+If you want to try this GitHub skills exercise, you
+
+NOTE Confidence: 0.917407214641571
+
+00:17:00.982 --> 00:17:01.680
+can go here.
+
+NOTE Confidence: 0.9115107655525208
+
+00:17:03.640 --> 00:17:06.686
+And if you yeah, so if you have that link,
+
+NOTE Confidence: 0.9115107655525208
+
+00:17:06.759 --> 00:17:09.588
+you can go to that link via the QR code
+
+NOTE Confidence: 0.9115107655525208
+
+00:17:09.660 --> 00:17:13.359
+and try to get up skills exercise out for yourself.
+
+NOTE Confidence: 0.7523154616355896
+
+00:17:14.400 --> 00:17:17.091
+We'll we'll be iterating on it, making improvements as we
+
+NOTE Confidence: 0.7523154616355896
+
+00:17:17.138 --> 00:17:17.280
+go.
+
+NOTE Confidence: 0.855715274810791
+
+00:17:17.280 --> 00:17:19.631
+But thank you for the time and I hope you
+
+NOTE Confidence: 0.855715274810791
+
+00:17:19.688 --> 00:17:22.039
+enjoyed the session on Eugenic Workflows.
+
+NOTE Confidence: 0.9512493014335632
+
+00:17:22.200 --> 00:17:22.600
+Thank you.
+

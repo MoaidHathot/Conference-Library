@@ -1,0 +1,2625 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.7206286787986755
+
+00:00:01.320 --> 00:00:02.920
+Hey everyone, I'm Pooja Trivedi.
+
+NOTE Confidence: 0.8042923212051392
+
+00:00:03.000 --> 00:00:07.650
+I'm an architect leading developer experiences in AI for Linux
+
+NOTE Confidence: 0.8042923212051392
+
+00:00:07.725 --> 00:00:10.799
+on Windows, and I'm joined here today by.
+
+NOTE Confidence: 0.7666546702384949
+
+00:00:11.120 --> 00:00:12.120
+Hi, my name is Craig.
+
+NOTE Confidence: 0.8849873542785645
+
+00:00:12.240 --> 00:00:15.325
+I'm a product manager working on the Windows Subsystem for
+
+NOTE Confidence: 0.8849873542785645
+
+00:00:15.379 --> 00:00:17.720
+Linux and other awesome AI tools on Windows.
+
+NOTE Confidence: 0.8084090948104858
+
+00:00:18.640 --> 00:00:20.948
+And today we're going to be talking to you about
+
+NOTE Confidence: 0.8084090948104858
+
+00:00:20.996 --> 00:00:22.439
+a new feature, WSL containers.
+
+NOTE Confidence: 0.8738583326339722
+
+00:00:22.760 --> 00:00:25.102
+And so really the talk boils down to just these
+
+NOTE Confidence: 0.8738583326339722
+
+00:00:25.152 --> 00:00:25.800
+three points.
+
+NOTE Confidence: 0.8752597570419312
+
+00:00:25.800 --> 00:00:27.920
+So this is the only really three takeaways you need.
+
+NOTE Confidence: 0.9222858548164368
+
+00:00:28.480 --> 00:00:30.630
+The first is you're going to be able to run
+
+NOTE Confidence: 0.9222858548164368
+
+00:00:30.680 --> 00:00:32.480
+Linux containers locally on Windows.
+
+NOTE Confidence: 0.8912801742553711
+
+00:00:32.760 --> 00:00:36.381
+That includes running them directly part of ACLI or running
+
+NOTE Confidence: 0.8912801742553711
+
+00:00:36.442 --> 00:00:39.879
+them as part of an API with within Windows applications.
+
+NOTE Confidence: 0.9217236042022705
+
+00:00:40.479 --> 00:00:42.677
+Second is that it's going to be part of the
+
+NOTE Confidence: 0.9217236042022705
+
+00:00:42.728 --> 00:00:44.160
+Windows Subsystem for Linux.
+
+NOTE Confidence: 0.9198431372642517
+
+00:00:44.479 --> 00:00:46.606
+So this will just be a new feature that you
+
+NOTE Confidence: 0.9198431372642517
+
+00:00:46.655 --> 00:00:48.040
+get directly as part of WSL.
+
+NOTE Confidence: 0.9647454023361206
+
+00:00:48.320 --> 00:00:49.840
+No need to install something new.
+
+NOTE Confidence: 0.9095244407653809
+
+00:00:49.920 --> 00:00:51.839
+It will just be part of an existing package that
+
+NOTE Confidence: 0.9095244407653809
+
+00:00:51.879 --> 00:00:52.999
+I hope you're already using.
+
+NOTE Confidence: 0.8897996544837952
+
+00:00:53.840 --> 00:00:56.097
+And the third is that we're want to make this
+
+NOTE Confidence: 0.8897996544837952
+
+00:00:56.147 --> 00:00:56.999
+enterprise ready.
+
+NOTE Confidence: 0.9090920090675354
+
+00:00:57.520 --> 00:01:00.536
+So this means that all the industry standard tools that
+
+NOTE Confidence: 0.9090920090675354
+
+00:01:00.591 --> 00:01:03.389
+you're using like MDE, Intune and more, all of that
+
+NOTE Confidence: 0.9090920090675354
+
+00:01:03.444 --> 00:01:06.186
+will just work with WSL containers as well so that
+
+NOTE Confidence: 0.9090920090675354
+
+00:01:06.241 --> 00:01:08.929
+you can feel secure and safe using this inside of
+
+NOTE Confidence: 0.9090920090675354
+
+00:01:08.984 --> 00:01:10.520
+your enterprise environment.
+
+NOTE Confidence: 0.9228832721710205
+
+00:01:11.440 --> 00:01:15.192
+And I think really the fun part here is let's
+
+NOTE Confidence: 0.9228832721710205
+
+00:01:15.275 --> 00:01:18.861
+go and jump out of the slides and jump into
+
+NOTE Confidence: 0.9228832721710205
+
+00:01:18.944 --> 00:01:22.280
+a live demo of taking a look at the CLI.
+
+NOTE Confidence: 0.9258951544761658
+
+00:01:22.920 --> 00:01:25.322
+So if we could switch to the other machine, we'll
+
+NOTE Confidence: 0.9258951544761658
+
+00:01:25.371 --> 00:01:25.959
+take a look.
+
+NOTE Confidence: 0.8607606887817383
+
+00:01:33.280 --> 00:01:36.592
+All right, as Craig said, when we ship this, you
+
+NOTE Confidence: 0.8607606887817383
+
+00:01:36.661 --> 00:01:40.732
+will get the full capabilities of WSL containers via simple
+
+NOTE Confidence: 0.8607606887817383
+
+00:01:40.801 --> 00:01:41.560
+WSL update.
+
+NOTE Confidence: 0.8737420439720154
+
+00:01:41.840 --> 00:01:45.048
+You don't need to download any third party tools, no
+
+NOTE Confidence: 0.8737420439720154
+
+00:01:45.110 --> 00:01:47.639
+starting of daemons, no Faustian rituals.
+
+NOTE Confidence: 0.9430628418922424
+
+00:01:48.080 --> 00:01:52.257
+And what it comes with is a command line tool
+
+NOTE Confidence: 0.9430628418922424
+
+00:01:52.350 --> 00:01:52.999
+called.
+
+NOTE Confidence: 0.5629919171333313
+
+00:01:53.000 --> 00:01:55.040
+You can't switch, can't switch.
+
+NOTE Confidence: 0.6829214096069336
+
+00:01:56.840 --> 00:01:57.280
+Oh, great.
+
+NOTE Confidence: 0.5933744311332703
+
+00:01:57.440 --> 00:01:58.360
+Oh, it's switched OK.
+
+NOTE Confidence: 0.8268983960151672
+
+00:01:58.480 --> 00:01:58.680
+Nice.
+
+NOTE Confidence: 0.9311890006065369
+
+00:02:03.320 --> 00:02:06.814
+What it comes with is a command line tool called
+
+NOTE Confidence: 0.9311890006065369
+
+00:02:06.887 --> 00:02:10.237
+WSLC and here I wanted to show you the command
+
+NOTE Confidence: 0.9311890006065369
+
+00:02:10.309 --> 00:02:12.639
+reference that the tool exposes.
+
+NOTE Confidence: 0.9030576348304749
+
+00:02:13.280 --> 00:02:15.542
+And as you look at this you'll realise that it
+
+NOTE Confidence: 0.9030576348304749
+
+00:02:15.591 --> 00:02:16.919
+looks very familiar to you.
+
+NOTE Confidence: 0.9479677081108093
+
+00:02:16.960 --> 00:02:19.100
+If you're used to using any of the standard Linux
+
+NOTE Confidence: 0.9479677081108093
+
+00:02:19.144 --> 00:02:20.280
+container tools out there.
+
+NOTE Confidence: 0.8221747875213623
+
+00:02:20.760 --> 00:02:24.130
+All the sub commands, options, switches within these also track
+
+NOTE Confidence: 0.8221747875213623
+
+00:02:24.184 --> 00:02:24.879
+very closely.
+
+NOTE Confidence: 0.9164206385612488
+
+00:02:25.800 --> 00:02:29.874
+We've also internally aliased it to container, so if you're
+
+NOTE Confidence: 0.9164206385612488
+
+00:02:29.943 --> 00:02:33.879
+more familiar to using container you can use that binary.
+
+NOTE Confidence: 0.9172593355178833
+
+00:02:35.120 --> 00:02:37.751
+Let me start by showing you a really simple flow
+
+NOTE Confidence: 0.9172593355178833
+
+00:02:37.805 --> 00:02:38.080
+here.
+
+NOTE Confidence: 0.9472650289535522
+
+00:02:38.840 --> 00:02:42.174
+I'm going to start by showing you how to create
+
+NOTE Confidence: 0.9472650289535522
+
+00:02:42.245 --> 00:02:44.799
+a Debian Linux container on Windows.
+
+NOTE Confidence: 0.9034748673439026
+
+00:02:47.200 --> 00:02:50.454
+And if you're not familiar, the Dash IT switch here
+
+NOTE Confidence: 0.9034748673439026
+
+00:02:50.518 --> 00:02:53.708
+tells WSLC to give me an interactive shell into my
+
+NOTE Confidence: 0.9034748673439026
+
+00:02:53.772 --> 00:02:55.239
+Debian Linux container.
+
+NOTE Confidence: 0.9514051675796509
+
+00:02:56.240 --> 00:02:58.790
+Normally it would download this image for me from a
+
+NOTE Confidence: 0.9514051675796509
+
+00:02:58.840 --> 00:02:59.640
+public registry.
+
+NOTE Confidence: 0.9654260277748108
+
+00:02:59.639 --> 00:03:01.885
+If I don't have it here, we have some Internet
+
+NOTE Confidence: 0.9654260277748108
+
+00:03:01.934 --> 00:03:02.520
+issues here.
+
+NOTE Confidence: 0.897148609161377
+
+00:03:02.520 --> 00:03:03.600
+So I pre downloaded it.
+
+NOTE Confidence: 0.8671636581420898
+
+00:03:04.919 --> 00:03:07.257
+And so I'm inside of the shell of the Debian
+
+NOTE Confidence: 0.8671636581420898
+
+00:03:07.310 --> 00:03:08.160
+Linux container.
+
+NOTE Confidence: 0.8290864825248718
+
+00:03:08.200 --> 00:03:11.485
+I can detach out of it using the standard control
+
+NOTE Confidence: 0.8290864825248718
+
+00:03:11.552 --> 00:03:12.959
+P control Q sequence.
+
+NOTE Confidence: 0.9132553935050964
+
+00:03:13.520 --> 00:03:16.743
+And now if I do a WSLC PS-A or if
+
+NOTE Confidence: 0.9132553935050964
+
+00:03:16.841 --> 00:03:21.725
+I do a WSLC container list if that's more familiar
+
+NOTE Confidence: 0.9132553935050964
+
+00:03:21.823 --> 00:03:22.800
+container.
+
+NOTE Confidence: 0.7257363200187683
+
+00:03:23.960 --> 00:03:24.120
+List.
+
+NOTE Confidence: 0.7087060213088989
+
+00:03:24.600 --> 00:03:26.440
+Container list.
+
+NOTE Confidence: 0.8488768339157104
+
+00:03:27.000 --> 00:03:29.921
+You'll see that the DBN Linux container started about 40
+
+NOTE Confidence: 0.8488768339157104
+
+00:03:29.973 --> 00:03:30.599
+seconds ago.
+
+NOTE Confidence: 0.9076186418533325
+
+00:03:31.320 --> 00:03:35.138
+I'm going to attach back to my container using WSLC
+
+NOTE Confidence: 0.9076186418533325
+
+00:03:35.212 --> 00:03:39.180
+attach and the container ID or the container name and
+
+NOTE Confidence: 0.9076186418533325
+
+00:03:39.255 --> 00:03:42.400
+there it is, I'm back inside of DBN Linux.
+
+NOTE Confidence: 0.8411866426467896
+
+00:03:43.040 --> 00:03:46.718
+I'm going to exit out of this container and terminate
+
+NOTE Confidence: 0.8411866426467896
+
+00:03:46.787 --> 00:03:49.772
+it, and WSLC PS-A will now show me that the
+
+NOTE Confidence: 0.8411866426467896
+
+00:03:49.841 --> 00:03:53.520
+DBN Linux container is exited about four seconds ago.
+
+NOTE Confidence: 0.9636778831481934
+
+00:03:54.160 --> 00:03:55.880
+So this was a really simple flow.
+
+NOTE Confidence: 0.9408708214759827
+
+00:03:56.560 --> 00:03:59.677
+Next, I want to show you how you would build
+
+NOTE Confidence: 0.9408708214759827
+
+00:03:59.748 --> 00:04:01.519
+custom images using WSLC.
+
+NOTE Confidence: 0.9094560146331787
+
+00:04:01.720 --> 00:04:04.043
+You would want to use this when you want to
+
+NOTE Confidence: 0.9094560146331787
+
+00:04:04.097 --> 00:04:07.826
+bring your cloud workloads or your production workloads directly onto
+
+NOTE Confidence: 0.9094560146331787
+
+00:04:07.880 --> 00:04:11.122
+your primary Windows development box so that you can iterate
+
+NOTE Confidence: 0.9094560146331787
+
+00:04:11.176 --> 00:04:12.959
+on it, test it, debug it locally.
+
+NOTE Confidence: 0.953312337398529
+
+00:04:13.280 --> 00:04:15.972
+And that way, because it's packaged as a container, you
+
+NOTE Confidence: 0.953312337398529
+
+00:04:16.021 --> 00:04:18.958
+get the same environment that you have in production locally
+
+NOTE Confidence: 0.953312337398529
+
+00:04:19.007 --> 00:04:19.839
+on your box here.
+
+NOTE Confidence: 0.8039637207984924
+
+00:04:19.839 --> 00:04:21.884
+And so you don't have the gotcha as of it
+
+NOTE Confidence: 0.8039637207984924
+
+00:04:21.934 --> 00:04:23.680
+works in dev, doesn't work in prod.
+
+NOTE Confidence: 0.9669380187988281
+
+00:04:24.640 --> 00:04:27.640
+So let me start by showing you a container file.
+
+NOTE Confidence: 0.9552543759346008
+
+00:04:28.240 --> 00:04:31.305
+If you're not familiar with this file, the container file
+
+NOTE Confidence: 0.9552543759346008
+
+00:04:31.358 --> 00:04:34.155
+has all the ingredients and the recipe that you need
+
+NOTE Confidence: 0.9552543759346008
+
+00:04:34.209 --> 00:04:36.360
+in order to build your container images.
+
+NOTE Confidence: 0.9336576461791992
+
+00:04:36.760 --> 00:04:40.983
+So it packages up your environment, your dependencies, your application
+
+NOTE Confidence: 0.9336576461791992
+
+00:04:41.042 --> 00:04:44.552
+logic, the instructions on how to run your application into
+
+NOTE Confidence: 0.9336576461791992
+
+00:04:44.611 --> 00:04:47.109
+a file, and then you can use this to build
+
+NOTE Confidence: 0.9336576461791992
+
+00:04:47.169 --> 00:04:48.239
+a container image.
+
+NOTE Confidence: 0.9448161721229553
+
+00:04:48.240 --> 00:04:51.465
+For me here, it's a really simple Linux utility I
+
+NOTE Confidence: 0.9448161721229553
+
+00:04:51.531 --> 00:04:54.427
+wrote for fun, which allows me to run all of
+
+NOTE Confidence: 0.9448161721229553
+
+00:04:54.493 --> 00:04:58.179
+my favorite Linux inspection commands on any file I drop
+
+NOTE Confidence: 0.9448161721229553
+
+00:04:58.245 --> 00:04:58.639
+to it.
+
+NOTE Confidence: 0.9492413401603699
+
+00:04:59.640 --> 00:05:03.218
+So the first line here is basically saying that my
+
+NOTE Confidence: 0.9492413401603699
+
+00:05:03.289 --> 00:05:08.299
+container environment starts with a very simple lightweight Python 312
+
+NOTE Confidence: 0.9492413401603699
+
+00:05:08.370 --> 00:05:08.800
+image.
+
+NOTE Confidence: 0.9646220803260803
+
+00:05:09.680 --> 00:05:12.364
+The next few lines here are installing all the dependencies
+
+NOTE Confidence: 0.9646220803260803
+
+00:05:12.410 --> 00:05:15.004
+that are needed for my container and my application logic
+
+NOTE Confidence: 0.9646220803260803
+
+00:05:15.049 --> 00:05:15.960
+to run successfully.
+
+NOTE Confidence: 0.9258683919906616
+
+00:05:17.120 --> 00:05:20.891
+Here I'm copying my application logic into the container and
+
+NOTE Confidence: 0.9258683919906616
+
+00:05:20.954 --> 00:05:23.719
+it's a web server that listens on port 5000.
+
+NOTE Confidence: 0.9180264472961426
+
+00:05:23.839 --> 00:05:25.872
+So I want to expose that port out of my
+
+NOTE Confidence: 0.9180264472961426
+
+00:05:25.924 --> 00:05:28.374
+container and map it onto my windows box when I
+
+NOTE Confidence: 0.9180264472961426
+
+00:05:28.426 --> 00:05:31.084
+run this container so that I can interact with this
+
+NOTE Confidence: 0.9180264472961426
+
+00:05:31.136 --> 00:05:34.419
+web server that's running inside of the Linux container locally
+
+NOTE Confidence: 0.9180264472961426
+
+00:05:34.471 --> 00:05:36.399
+from my windows box using local host.
+
+NOTE Confidence: 0.9415013790130615
+
+00:05:37.000 --> 00:05:39.678
+And then the last line here is the instructions on
+
+NOTE Confidence: 0.9415013790130615
+
+00:05:39.732 --> 00:05:43.000
+how my application should be started within this environment.
+
+NOTE Confidence: 0.9295905828475952
+
+00:05:43.560 --> 00:05:47.480
+So let me build this image using WSLC build.
+
+NOTE Confidence: 0.9281390905380249
+
+00:05:47.480 --> 00:05:51.890
+I'm going to call it my Linux spy and I
+
+NOTE Confidence: 0.9281390905380249
+
+00:05:52.003 --> 00:05:56.639
+can use the container file to build this.
+
+NOTE Confidence: 0.7308414578437805
+
+00:05:57.720 --> 00:05:58.400
+There it goes.
+
+NOTE Confidence: 0.8618069887161255
+
+00:05:58.720 --> 00:06:01.400
+And now if I do a WSLC images, and yes
+
+NOTE Confidence: 0.8618069887161255
+
+00:06:01.471 --> 00:06:05.209
+you can use grip here on PowerShell because I'm going
+
+NOTE Confidence: 0.8618069887161255
+
+00:06:05.280 --> 00:06:08.736
+to do a shameless plug here for another friend of
+
+NOTE Confidence: 0.8618069887161255
+
+00:06:08.807 --> 00:06:09.160
+mine.
+
+NOTE Confidence: 0.9075746536254883
+
+00:06:09.320 --> 00:06:12.753
+We have imported all the core utils, about 168 Linux
+
+NOTE Confidence: 0.9075746536254883
+
+00:06:12.819 --> 00:06:16.120
+utils into Windows now which are fully integrated.
+
+NOTE Confidence: 0.8928266763687134
+
+00:06:17.480 --> 00:06:20.433
+So here's the image that just built it says 9
+
+NOTE Confidence: 0.8928266763687134
+
+00:06:20.499 --> 00:06:23.978
+hours ago because some of the caching for base layers
+
+NOTE Confidence: 0.8928266763687134
+
+00:06:24.044 --> 00:06:25.159
+was already used.
+
+NOTE Confidence: 0.9428468346595764
+
+00:06:25.680 --> 00:06:28.751
+I'm going to now start a container using this image
+
+NOTE Confidence: 0.9428468346595764
+
+00:06:28.811 --> 00:06:30.920
+and I'm going to do a port mapping.
+
+NOTE Confidence: 0.8966344594955444
+
+00:06:31.520 --> 00:06:34.747
+As I mentioned earlier, my container web server listens on
+
+NOTE Confidence: 0.8966344594955444
+
+00:06:34.803 --> 00:06:35.359
+port 5000.
+
+NOTE Confidence: 0.9150816798210144
+
+00:06:35.360 --> 00:06:38.632
+I'm going to map it to my Windows host using
+
+NOTE Confidence: 0.9150816798210144
+
+00:06:38.706 --> 00:06:40.119
+this Dash P switch.
+
+NOTE Confidence: 0.9468896389007568
+
+00:06:41.440 --> 00:06:43.480
+And here I'm starting up my container.
+
+NOTE Confidence: 0.6599909663200378
+
+00:06:43.920 --> 00:06:44.480
+There it goes.
+
+NOTE Confidence: 0.8040372729301453
+
+00:06:44.560 --> 00:06:48.199
+I can now hit it on 127001, which is local
+
+NOTE Confidence: 0.8040372729301453
+
+00:06:48.286 --> 00:06:52.013
+host and I can interact with my Linux by my
+
+NOTE Confidence: 0.8040372729301453
+
+00:06:52.099 --> 00:06:53.399
+forensics tool.
+
+NOTE Confidence: 0.9323865175247192
+
+00:06:53.400 --> 00:06:54.960
+Here and there it is.
+
+NOTE Confidence: 0.9162628650665283
+
+00:06:54.960 --> 00:06:57.400
+It runs all of my favorite Linux commands on it.
+
+NOTE Confidence: 0.9020885825157166
+
+00:06:58.920 --> 00:07:01.556
+So now that I've shown you how you would expose
+
+NOTE Confidence: 0.9020885825157166
+
+00:07:01.612 --> 00:07:04.810
+services out of a Linux container onto your Windows host,
+
+NOTE Confidence: 0.9020885825157166
+
+00:07:04.867 --> 00:07:07.559
+I wanted to show you something more interesting.
+
+NOTE Confidence: 0.9458579421043396
+
+00:07:07.839 --> 00:07:10.785
+I wanted to show you how these containers can actually
+
+NOTE Confidence: 0.9458579421043396
+
+00:07:10.840 --> 00:07:13.676
+tap into the GPU that's present on your Windows host
+
+NOTE Confidence: 0.9458579421043396
+
+00:07:13.730 --> 00:07:16.076
+for your AI scenarios or if you want to run
+
+NOTE Confidence: 0.9458579421043396
+
+00:07:16.130 --> 00:07:18.040
+graphical applications or whatever.
+
+NOTE Confidence: 0.971046507358551
+
+00:07:18.040 --> 00:07:18.440
+Have you.
+
+NOTE Confidence: 0.8878554105758667
+
+00:07:19.200 --> 00:07:22.797
+I've already built my container and pre warmed it so
+
+NOTE Confidence: 0.8878554105758667
+
+00:07:22.867 --> 00:07:24.320
+it's already running.
+
+NOTE Confidence: 0.9419091939926147
+
+00:07:25.040 --> 00:07:27.831
+I did that to save time and I'm going to
+
+NOTE Confidence: 0.9419091939926147
+
+00:07:27.901 --> 00:07:28.320
+start.
+
+NOTE Confidence: 0.8682492971420288
+
+00:07:28.400 --> 00:07:30.960
+It's a Jupiter notebook web server again.
+
+NOTE Confidence: 0.817776083946228
+
+00:07:30.960 --> 00:07:33.710
+It listens on port 8888, which I exposed out using
+
+NOTE Confidence: 0.817776083946228
+
+00:07:33.765 --> 00:07:34.480
+port mapping.
+
+NOTE Confidence: 0.9238905310630798
+
+00:07:34.920 --> 00:07:38.558
+I'm going to start running these cells while I tell
+
+NOTE Confidence: 0.9238905310630798
+
+00:07:38.629 --> 00:07:41.839
+you what this cool AI container of mine does.
+
+NOTE Confidence: 0.8459148406982422
+
+00:07:42.760 --> 00:07:45.956
+What it does is it actually pulls down a G
+
+NOTE Confidence: 0.8459148406982422
+
+00:07:46.032 --> 00:07:49.229
+PT2 model and then it fine tunes it on the
+
+NOTE Confidence: 0.8459148406982422
+
+00:07:49.305 --> 00:07:53.186
+GPU on this Windows host and then it torch compiles
+
+NOTE Confidence: 0.8459148406982422
+
+00:07:53.262 --> 00:07:56.839
+this so that it generates fused Triton kernels.
+
+NOTE Confidence: 0.8712992072105408
+
+00:07:56.840 --> 00:08:00.608
+Those are those fused Triton kernels are optimised kernels that
+
+NOTE Confidence: 0.8712992072105408
+
+00:08:00.668 --> 00:08:03.359
+allow my model to run really fast on the GPU.
+
+NOTE Confidence: 0.8591774106025696
+
+00:08:03.880 --> 00:08:07.195
+And then for your entertainment, it shows you a head
+
+NOTE Confidence: 0.8591774106025696
+
+00:08:07.259 --> 00:08:10.829
+to head race between a compiled model and its uncompiled
+
+NOTE Confidence: 0.8591774106025696
+
+00:08:10.893 --> 00:08:12.360
+eager mode counterpart.
+
+NOTE Confidence: 0.9145612716674805
+
+00:08:13.320 --> 00:08:15.880
+And you can see how fast the compiled model runs.
+
+NOTE Confidence: 0.9410581588745117
+
+00:08:16.040 --> 00:08:18.867
+And while all this is happening, the GPU on my
+
+NOTE Confidence: 0.9410581588745117
+
+00:08:18.929 --> 00:08:21.879
+Windows box here is being leveraged to do all of
+
+NOTE Confidence: 0.9410581588745117
+
+00:08:21.941 --> 00:08:24.400
+this work inside of the Linux container.
+
+NOTE Confidence: 0.8936629891395569
+
+00:08:25.560 --> 00:08:27.761
+And before I hand it back over to Craig for
+
+NOTE Confidence: 0.8936629891395569
+
+00:08:27.812 --> 00:08:30.628
+some more WSL containers goodness and how you can embed
+
+NOTE Confidence: 0.8936629891395569
+
+00:08:30.679 --> 00:08:33.854
+those into your Windows application flows, I quickly wanted to
+
+NOTE Confidence: 0.8936629891395569
+
+00:08:33.905 --> 00:08:36.107
+show you the command that I ran to start my
+
+NOTE Confidence: 0.8936629891395569
+
+00:08:36.158 --> 00:08:37.079
+AI container here.
+
+NOTE Confidence: 0.8940901160240173
+
+00:08:38.920 --> 00:08:41.327
+So I ran it using run Dash IT you're familiar
+
+NOTE Confidence: 0.8940901160240173
+
+00:08:41.381 --> 00:08:43.039
+with that I showed you earlier.
+
+NOTE Confidence: 0.8601462841033936
+
+00:08:43.040 --> 00:08:43.960
+There's port mapping.
+
+NOTE Confidence: 0.8414217233657837
+
+00:08:43.960 --> 00:08:46.325
+And then the Dash V switch here is saying that
+
+NOTE Confidence: 0.8414217233657837
+
+00:08:46.377 --> 00:08:47.560
+I want to mount volume.
+
+NOTE Confidence: 0.8700029253959656
+
+00:08:47.559 --> 00:08:50.422
+So I want to mount the HF, the hugging face
+
+NOTE Confidence: 0.8700029253959656
+
+00:08:50.488 --> 00:08:54.216
+cache directory that's on my Windows host here onto this
+
+NOTE Confidence: 0.8700029253959656
+
+00:08:54.282 --> 00:08:56.080
+location into my container.
+
+NOTE Confidence: 0.7983369827270508
+
+00:08:56.600 --> 00:08:58.120
+And then the Dash Dash GPU's.
+
+NOTE Confidence: 0.9046738743782043
+
+00:08:58.120 --> 00:09:01.244
+All switch is asking the Linux container to use the
+
+NOTE Confidence: 0.9046738743782043
+
+00:09:01.305 --> 00:09:02.959
+GPU on my Windows box here.
+
+NOTE Confidence: 0.9016668796539307
+
+00:09:03.520 --> 00:09:05.760
+And I'm going to hand it back to Craig.
+
+NOTE Confidence: 0.6102790832519531
+
+00:09:05.760 --> 00:09:05.920
+Awesome.
+
+NOTE Confidence: 0.918988049030304
+
+00:09:07.040 --> 00:09:09.352
+So if we jump back to the slides, we'll be
+
+NOTE Confidence: 0.918988049030304
+
+00:09:09.407 --> 00:09:11.279
+able to see kind of the next step.
+
+NOTE Confidence: 0.8438809514045715
+
+00:09:11.840 --> 00:09:15.288
+And really the summary of that demo is there's two
+
+NOTE Confidence: 0.8438809514045715
+
+00:09:15.357 --> 00:09:17.840
+ways to interact with WSL container.
+
+NOTE Confidence: 0.8664199113845825
+
+00:09:18.120 --> 00:09:21.081
+There's the CLI, which we just showed as an awesome
+
+NOTE Confidence: 0.8664199113845825
+
+00:09:21.139 --> 00:09:24.565
+way to directly interact with those containers, but we also
+
+NOTE Confidence: 0.8664199113845825
+
+00:09:24.623 --> 00:09:25.319
+have an API.
+
+NOTE Confidence: 0.8740227222442627
+
+00:09:25.679 --> 00:09:28.645
+So the CLI is perfect for direct container access, direct
+
+NOTE Confidence: 0.8740227222442627
+
+00:09:28.697 --> 00:09:31.298
+building, running, and then the API is going to be
+
+NOTE Confidence: 0.8740227222442627
+
+00:09:31.350 --> 00:09:33.639
+a Nugent package that you'll be able to run.
+
+NOTE Confidence: 0.937698245048523
+
+00:09:33.920 --> 00:09:36.240
+And it's basically two different doors for the same engine.
+
+NOTE Confidence: 0.8559194207191467
+
+00:09:36.360 --> 00:09:39.868
+It's all powered by the same WSLVM that actually powers
+
+NOTE Confidence: 0.8559194207191467
+
+00:09:39.931 --> 00:09:41.080
+WSL distributions.
+
+NOTE Confidence: 0.9189915657043457
+
+00:09:41.760 --> 00:09:44.485
+And really, when we talk about this, it begs the
+
+NOTE Confidence: 0.9189915657043457
+
+00:09:44.542 --> 00:09:46.360
+question, why did we build this?
+
+NOTE Confidence: 0.9360931515693665
+
+00:09:46.360 --> 00:09:47.160
+Who is this for?
+
+NOTE Confidence: 0.92652428150177
+
+00:09:47.160 --> 00:09:50.080
+What are our goals at Microsoft for making this technology?
+
+NOTE Confidence: 0.8167661428451538
+
+00:09:50.680 --> 00:09:53.200
+And that breaks down to three different customer profiles.
+
+NOTE Confidence: 0.9127947688102722
+
+00:09:53.679 --> 00:09:55.970
+The first is if you're a container developer, this is
+
+NOTE Confidence: 0.9127947688102722
+
+00:09:56.014 --> 00:09:56.359
+for you.
+
+NOTE Confidence: 0.8473526239395142
+
+00:09:56.760 --> 00:09:58.880
+If you like to build, use containers.
+
+NOTE Confidence: 0.9116016030311584
+
+00:09:59.040 --> 00:10:01.466
+We wanted to make it easier to get started with
+
+NOTE Confidence: 0.9116016030311584
+
+00:10:01.518 --> 00:10:04.255
+to use containers and have that all run seamlessly on
+
+NOTE Confidence: 0.9116016030311584
+
+00:10:04.306 --> 00:10:04.719
+Windows.
+
+NOTE Confidence: 0.969443142414093
+
+00:10:05.240 --> 00:10:08.164
+We also wanted to be able to be opinionated about
+
+NOTE Confidence: 0.969443142414093
+
+00:10:08.224 --> 00:10:08.999
+our approach.
+
+NOTE Confidence: 0.8844019770622253
+
+00:10:09.280 --> 00:10:11.363
+We know that we are building both an API and
+
+NOTE Confidence: 0.8844019770622253
+
+00:10:11.410 --> 00:10:13.730
+ACLI, so we want them to work together, and we're
+
+NOTE Confidence: 0.8844019770622253
+
+00:10:13.777 --> 00:10:16.475
+probably going to write some pretty custom commands to do
+
+NOTE Confidence: 0.8844019770622253
+
+00:10:16.523 --> 00:10:16.759
+that.
+
+NOTE Confidence: 0.8315942883491516
+
+00:10:17.120 --> 00:10:19.535
+That's why we built our own Linux container CLI as
+
+NOTE Confidence: 0.8315942883491516
+
+00:10:19.583 --> 00:10:22.433
+opposed to using other standard tools like Docker or Podman
+
+NOTE Confidence: 0.8315942883491516
+
+00:10:22.482 --> 00:10:23.400
+or Rancher Desktop.
+
+NOTE Confidence: 0.9035285115242004
+
+00:10:23.920 --> 00:10:26.494
+However, those tools all work great, and if they still
+
+NOTE Confidence: 0.9035285115242004
+
+00:10:26.542 --> 00:10:28.639
+solve problems for you, you should use them.
+
+NOTE Confidence: 0.8860926628112793
+
+00:10:28.640 --> 00:10:31.808
+This is just another approach, and by nature of this
+
+NOTE Confidence: 0.8860926628112793
+
+00:10:31.869 --> 00:10:33.879
+work, this is fully open sourced.
+
+NOTE Confidence: 0.8941308856010437
+
+00:10:34.120 --> 00:10:36.306
+It's fully open sourced on WSL and all of the
+
+NOTE Confidence: 0.8941308856010437
+
+00:10:36.354 --> 00:10:39.270
+code that we're doing, all the improvements that we're doing
+
+NOTE Confidence: 0.8941308856010437
+
+00:10:39.318 --> 00:10:41.942
+to the underlying VM technology are going to accrue to
+
+NOTE Confidence: 0.8941308856010437
+
+00:10:41.990 --> 00:10:44.080
+those other container technologies as well.
+
+NOTE Confidence: 0.8709477782249451
+
+00:10:44.360 --> 00:10:47.000
+So for example, we're improving the cross OS file performance.
+
+NOTE Confidence: 0.8202763795852661
+
+00:10:47.200 --> 00:10:50.481
+You'll get that as well on Docker Desktop, Rancher Desktop,
+
+NOTE Confidence: 0.8202763795852661
+
+00:10:50.537 --> 00:10:53.485
+Padman Desktop, as well as on the Linux container CLI
+
+NOTE Confidence: 0.8202763795852661
+
+00:10:53.541 --> 00:10:54.319
+inside of WSL.
+
+NOTE Confidence: 0.8080256581306458
+
+00:10:55.320 --> 00:10:58.725
+Secondly, we're also wanting to build this for app builders
+
+NOTE Confidence: 0.8080256581306458
+
+00:10:58.782 --> 00:10:59.359
+and IS VS.
+
+NOTE Confidence: 0.9614158272743225
+
+00:10:59.600 --> 00:11:01.830
+We want you to be able to take some awesome
+
+NOTE Confidence: 0.9614158272743225
+
+00:11:01.882 --> 00:11:04.320
+Linux code that you have lying around or in the
+
+NOTE Confidence: 0.9614158272743225
+
+00:11:04.372 --> 00:11:06.966
+cloud and run that directly and locally as part of
+
+NOTE Confidence: 0.9614158272743225
+
+00:11:07.018 --> 00:11:08.159
+a Windows application.
+
+NOTE Confidence: 0.8508272171020508
+
+00:11:08.480 --> 00:11:10.363
+We want you to be able to do that all
+
+NOTE Confidence: 0.8508272171020508
+
+00:11:10.414 --> 00:11:13.265
+using really standard and powerful AP is in your Windows
+
+NOTE Confidence: 0.8508272171020508
+
+00:11:13.316 --> 00:11:13.519
+app.
+
+NOTE Confidence: 0.7739067077636719
+
+00:11:14.240 --> 00:11:17.192
+And lastly, we all started building this for enterprise IT
+
+NOTE Confidence: 0.7739067077636719
+
+00:11:17.243 --> 00:11:17.599
+admins.
+
+NOTE Confidence: 0.910551130771637
+
+00:11:17.880 --> 00:11:20.226
+These are folks who, hey, I want to run open
+
+NOTE Confidence: 0.910551130771637
+
+00:11:20.279 --> 00:11:22.733
+Claw inside of my enterprise and I want to run
+
+NOTE Confidence: 0.910551130771637
+
+00:11:22.786 --> 00:11:25.933
+that in a containerized environment using Linux, but I want
+
+NOTE Confidence: 0.910551130771637
+
+00:11:25.986 --> 00:11:28.866
+to manage that using all the Windows tools like Intune
+
+NOTE Confidence: 0.910551130771637
+
+00:11:28.919 --> 00:11:30.519
+or MDE that I'm familiar with.
+
+NOTE Confidence: 0.9445821642875671
+
+00:11:31.000 --> 00:11:34.055
+We're building this exactly for scenarios like that where I
+
+NOTE Confidence: 0.9445821642875671
+
+00:11:34.106 --> 00:11:36.540
+want to be able to use these powerful tools and
+
+NOTE Confidence: 0.9445821642875671
+
+00:11:36.592 --> 00:11:38.559
+applications and run Linux on Windows.
+
+NOTE Confidence: 0.9377281665802002
+
+00:11:38.840 --> 00:11:41.561
+And I don't want to be afraid of, hey, there's
+
+NOTE Confidence: 0.9377281665802002
+
+00:11:41.620 --> 00:11:44.520
+a black box opaque VM running in my organization.
+
+NOTE Confidence: 0.9413900971412659
+
+00:11:44.520 --> 00:11:45.320
+How do I access that?
+
+NOTE Confidence: 0.9251259565353394
+
+00:11:45.320 --> 00:11:47.591
+I want to make sure that you get that powerful
+
+NOTE Confidence: 0.9251259565353394
+
+00:11:47.640 --> 00:11:50.751
+isolation without having to worry about your security tools not
+
+NOTE Confidence: 0.9251259565353394
+
+00:11:50.801 --> 00:11:52.480
+being able to break that boundary.
+
+NOTE Confidence: 0.885213315486908
+
+00:11:53.920 --> 00:11:56.514
+And so this brings us to a really awesome plug
+
+NOTE Confidence: 0.885213315486908
+
+00:11:56.571 --> 00:11:59.166
+that we wanted to show for one of the partners
+
+NOTE Confidence: 0.885213315486908
+
+00:11:59.222 --> 00:12:00.519
+that we've worked with.
+
+NOTE Confidence: 0.878907322883606
+
+00:12:01.160 --> 00:12:04.320
+We have worked a lot with the Moonray team.
+
+NOTE Confidence: 0.9370310306549072
+
+00:12:04.600 --> 00:12:08.052
+Moonray is a very powerful rendering engine that is used
+
+NOTE Confidence: 0.9370310306549072
+
+00:12:08.114 --> 00:12:11.135
+to render amazing movies like the bad guys two or
+
+NOTE Confidence: 0.9370310306549072
+
+00:12:11.197 --> 00:12:14.280
+the wild Robot, which I'm a big fan of personally.
+
+NOTE Confidence: 0.9574571251869202
+
+00:12:14.760 --> 00:12:18.440
+And that rendering engine is built entirely on Linux.
+
+NOTE Confidence: 0.9280660152435303
+
+00:12:18.679 --> 00:12:21.264
+And so we've been able to work with the Moonray
+
+NOTE Confidence: 0.9280660152435303
+
+00:12:21.319 --> 00:12:23.794
+team to say, hey, how could we make it easier
+
+NOTE Confidence: 0.9280660152435303
+
+00:12:23.849 --> 00:12:26.599
+to get started with Moonray, which is also an open
+
+NOTE Confidence: 0.9280660152435303
+
+00:12:26.654 --> 00:12:29.679
+source application, and be able to use that on Windows.
+
+NOTE Confidence: 0.8915207386016846
+
+00:12:30.240 --> 00:12:32.986
+So that brings us to our second demo of let's
+
+NOTE Confidence: 0.8915207386016846
+
+00:12:33.047 --> 00:12:36.160
+go ahead and run the API portion of WSL containers.
+
+NOTE Confidence: 0.9061248898506165
+
+00:12:36.760 --> 00:12:39.805
+So I'm going to flip over here and you can
+
+NOTE Confidence: 0.9061248898506165
+
+00:12:39.878 --> 00:12:42.996
+see I'm in this project and I'm about to go
+
+NOTE Confidence: 0.9061248898506165
+
+00:12:43.069 --> 00:12:46.840
+run moonray.exe, which is a build that I've created.
+
+NOTE Confidence: 0.8855140805244446
+
+00:12:47.240 --> 00:12:50.569
+So again, this is a full Linux based rendering engine,
+
+NOTE Confidence: 0.8855140805244446
+
+00:12:50.631 --> 00:12:53.036
+but I have an EXE on my system and then
+
+NOTE Confidence: 0.8855140805244446
+
+00:12:53.098 --> 00:12:54.639
+I've given it some files.
+
+NOTE Confidence: 0.6181859374046326
+
+00:12:54.880 --> 00:12:56.320
+Of course it's backslashes.
+
+NOTE Confidence: 0.8860633373260498
+
+00:12:56.320 --> 00:12:59.171
+So we're running this in Windows and I've given it
+
+NOTE Confidence: 0.8860633373260498
+
+00:12:59.228 --> 00:13:02.080
+some input RDLB which are just render input files.
+
+NOTE Confidence: 0.9318217039108276
+
+00:13:02.440 --> 00:13:04.916
+And then I'm saying please output this jpg for me
+
+NOTE Confidence: 0.9318217039108276
+
+00:13:04.967 --> 00:13:07.140
+and I'm going to open up task manager so we
+
+NOTE Confidence: 0.9318217039108276
+
+00:13:07.190 --> 00:13:09.616
+can take a look at what's happening while we run
+
+NOTE Confidence: 0.9318217039108276
+
+00:13:09.667 --> 00:13:09.919
+this.
+
+NOTE Confidence: 0.9322651028633118
+
+00:13:10.679 --> 00:13:13.292
+When I run it, I've left some debug info here,
+
+NOTE Confidence: 0.9322651028633118
+
+00:13:13.349 --> 00:13:15.280
+it's starting up a session for me.
+
+NOTE Confidence: 0.8872990608215332
+
+00:13:15.840 --> 00:13:17.560
+That's how quickly it started the container.
+
+NOTE Confidence: 0.9207059144973755
+
+00:13:17.760 --> 00:13:19.400
+And then now it's doing the full render.
+
+NOTE Confidence: 0.8811116814613342
+
+00:13:19.760 --> 00:13:21.882
+And so if I look at my CPU, all the
+
+NOTE Confidence: 0.8811116814613342
+
+00:13:21.942 --> 00:13:25.702
+renders happening on my CPU, it's happening directly inside of
+
+NOTE Confidence: 0.8811116814613342
+
+00:13:25.762 --> 00:13:27.400
+this Moonray VM right here.
+
+NOTE Confidence: 0.940182626247406
+
+00:13:27.920 --> 00:13:30.597
+And then now that the render is complete, the Moonray
+
+NOTE Confidence: 0.940182626247406
+
+00:13:30.648 --> 00:13:33.073
+VM shuts down and all of that gets released back
+
+NOTE Confidence: 0.940182626247406
+
+00:13:33.124 --> 00:13:33.680
+to Windows.
+
+NOTE Confidence: 0.8213354349136353
+
+00:13:34.000 --> 00:13:35.120
+So it's totally seamless.
+
+NOTE Confidence: 0.9271983504295349
+
+00:13:35.120 --> 00:13:37.688
+If I did not include these debug messages, it would
+
+NOTE Confidence: 0.9271983504295349
+
+00:13:37.739 --> 00:13:39.200
+just look like a Windows app.
+
+NOTE Confidence: 0.8979939818382263
+
+00:13:39.200 --> 00:13:41.119
+I would actually be none the wiser that this was
+
+NOTE Confidence: 0.8979939818382263
+
+00:13:41.159 --> 00:13:42.359
+running Linux in the back end.
+
+NOTE Confidence: 0.899665117263794
+
+00:13:43.080 --> 00:13:45.163
+And then the cool part is if we take a
+
+NOTE Confidence: 0.899665117263794
+
+00:13:45.218 --> 00:13:47.905
+look at the output, you can see it outputted that
+
+NOTE Confidence: 0.899665117263794
+
+00:13:47.960 --> 00:13:50.756
+JPEG for me right here, which is a wonderful orange
+
+NOTE Confidence: 0.899665117263794
+
+00:13:50.811 --> 00:13:53.827
+coffee maker showing some of the cool rendering of, you
+
+NOTE Confidence: 0.899665117263794
+
+00:13:53.882 --> 00:13:56.240
+know, see through ray tracing applications.
+
+NOTE Confidence: 0.9731768369674683
+
+00:13:56.240 --> 00:13:56.520
+There.
+
+NOTE Confidence: 0.9013770222663879
+
+00:13:56.520 --> 00:13:59.192
+So this VM creation in the background, all of this
+
+NOTE Confidence: 0.9013770222663879
+
+00:13:59.245 --> 00:14:02.238
+running is all completely transparent to the to the user
+
+NOTE Confidence: 0.9013770222663879
+
+00:14:02.292 --> 00:14:02.880
+of the API.
+
+NOTE Confidence: 0.8543926477432251
+
+00:14:02.880 --> 00:14:05.609
+All you're doing is you're creating and managing containers via
+
+NOTE Confidence: 0.8543926477432251
+
+00:14:05.653 --> 00:14:05.999
+the API.
+
+NOTE Confidence: 0.8914564251899719
+
+00:14:06.160 --> 00:14:08.360
+Exactly so you as the developer can have control.
+
+NOTE Confidence: 0.8464889526367188
+
+00:14:08.360 --> 00:14:10.422
+Hey, I want some Linux code but I don't want
+
+NOTE Confidence: 0.8464889526367188
+
+00:14:10.469 --> 00:14:12.578
+my users to every worry am I running Linux or
+
+NOTE Confidence: 0.8464889526367188
+
+00:14:12.625 --> 00:14:13.000
+Windows.
+
+NOTE Confidence: 0.8137345314025879
+
+00:14:13.200 --> 00:14:14.680
+It just should all just work.
+
+NOTE Confidence: 0.9260154962539673
+
+00:14:15.160 --> 00:14:17.630
+So let's take a look at a sample project that's
+
+NOTE Confidence: 0.9260154962539673
+
+00:14:17.683 --> 00:14:19.996
+related to see how this might look in a code
+
+NOTE Confidence: 0.9260154962539673
+
+00:14:20.049 --> 00:14:20.680
+perspective.
+
+NOTE Confidence: 0.8456600308418274
+
+00:14:21.120 --> 00:14:24.960
+I have some container or some Nugent packages.
+
+NOTE Confidence: 0.8635672330856323
+
+00:14:24.960 --> 00:14:28.350
+I added this containers package and then I've defined this
+
+NOTE Confidence: 0.8635672330856323
+
+00:14:28.409 --> 00:14:31.799
+item group here saying please build this container for me.
+
+NOTE Confidence: 0.9322336316108704
+
+00:14:32.040 --> 00:14:35.075
+You can find the container file here and output it
+
+NOTE Confidence: 0.9322336316108704
+
+00:14:35.136 --> 00:14:35.440
+here.
+
+NOTE Confidence: 0.9339014887809753
+
+00:14:36.040 --> 00:14:38.263
+And if you take a look on my left hand
+
+NOTE Confidence: 0.9339014887809753
+
+00:14:38.321 --> 00:14:41.774
+navigation, that container file is directly with all of the
+
+NOTE Confidence: 0.9339014887809753
+
+00:14:41.832 --> 00:14:43.120
+source code of my app.
+
+NOTE Confidence: 0.897890567779541
+
+00:14:43.400 --> 00:14:45.000
+It's built into my application.
+
+NOTE Confidence: 0.6777809262275696
+
+00:14:45.400 --> 00:14:47.533
+So this is all a part of your CS project
+
+NOTE Confidence: 0.6777809262275696
+
+00:14:47.586 --> 00:14:49.559
+file, so that container file as well.
+
+NOTE Confidence: 0.8038239479064941
+
+00:14:49.560 --> 00:14:51.993
+So it's all integrated together as a single experience, even
+
+NOTE Confidence: 0.8038239479064941
+
+00:14:52.033 --> 00:14:52.480
+though and.
+
+NOTE Confidence: 0.9609535336494446
+
+00:14:53.160 --> 00:14:55.689
+When I build and run this, it will automatically build
+
+NOTE Confidence: 0.9609535336494446
+
+00:14:55.736 --> 00:14:56.720
+the container for me.
+
+NOTE Confidence: 0.8905535936355591
+
+00:14:56.920 --> 00:15:00.576
+So 1F5 experience and it's going to run my sample
+
+NOTE Confidence: 0.8905535936355591
+
+00:15:00.651 --> 00:15:01.920
+app in this case.
+
+NOTE Confidence: 0.8168029189109802
+
+00:15:01.920 --> 00:15:04.730
+This app is a fake and very whimsical app that
+
+NOTE Confidence: 0.8168029189109802
+
+00:15:04.791 --> 00:15:05.280
+I built.
+
+NOTE Confidence: 0.892264723777771
+
+00:15:05.640 --> 00:15:08.921
+I wanted to build an AI agent that would run
+
+NOTE Confidence: 0.892264723777771
+
+00:15:08.995 --> 00:15:10.039
+stocks for me.
+
+NOTE Confidence: 0.9457780718803406
+
+00:15:10.040 --> 00:15:12.406
+So it's going to buy and sell some fake stocks,
+
+NOTE Confidence: 0.9457780718803406
+
+00:15:12.456 --> 00:15:14.320
+and that's the container starting up.
+
+NOTE Confidence: 0.8951484560966492
+
+00:15:14.720 --> 00:15:17.528
+It's starting a bunch of processes and services in the
+
+NOTE Confidence: 0.8951484560966492
+
+00:15:17.580 --> 00:15:20.440
+background, and then now it's started my stock trading.
+
+NOTE Confidence: 0.9107426404953003
+
+00:15:20.920 --> 00:15:23.863
+And so I've hired an AI agent I called Herbert
+
+NOTE Confidence: 0.9107426404953003
+
+00:15:23.927 --> 00:15:25.719
+to buy and sell some stocks.
+
+NOTE Confidence: 0.9085012078285217
+
+00:15:26.080 --> 00:15:29.090
+And what actually is happening is I've given this container
+
+NOTE Confidence: 0.9085012078285217
+
+00:15:29.141 --> 00:15:31.794
+its own desktop and I've given it a visualization of
+
+NOTE Confidence: 0.9085012078285217
+
+00:15:31.845 --> 00:15:34.039
+the desktop so we can see what's happening.
+
+NOTE Confidence: 0.8906189799308777
+
+00:15:34.600 --> 00:15:37.523
+And we can see the AI agent actually goes in
+
+NOTE Confidence: 0.8906189799308777
+
+00:15:37.590 --> 00:15:40.580
+and make some fake stock trades, but he has a
+
+NOTE Confidence: 0.8906189799308777
+
+00:15:40.647 --> 00:15:42.840
+really bad habit of eating files.
+
+NOTE Confidence: 0.925095796585083
+
+00:15:43.520 --> 00:15:46.584
+So yes, I actually did program this to go randomly
+
+NOTE Confidence: 0.925095796585083
+
+00:15:46.646 --> 00:15:48.240
+delete files on my system.
+
+NOTE Confidence: 0.893076479434967
+
+00:15:48.680 --> 00:15:51.583
+And when it deletes the file, it really deletes it
+
+NOTE Confidence: 0.893076479434967
+
+00:15:51.641 --> 00:15:52.279
+on Windows.
+
+NOTE Confidence: 0.9488553404808044
+
+00:15:52.280 --> 00:15:54.160
+So that actually deleted the file here.
+
+NOTE Confidence: 0.9492160081863403
+
+00:15:54.760 --> 00:15:58.039
+And what we're highlighting is that there is a high
+
+NOTE Confidence: 0.9492160081863403
+
+00:15:58.103 --> 00:16:01.639
+level of integration between the container and Windows.
+
+NOTE Confidence: 0.9383153915405273
+
+00:16:01.960 --> 00:16:04.760
+You can specify, I want these ports open.
+
+NOTE Confidence: 0.91845703125
+
+00:16:04.760 --> 00:16:07.080
+That's how I viewed that desktop that I showed.
+
+NOTE Confidence: 0.908505380153656
+
+00:16:07.640 --> 00:16:10.758
+And you can specify, I only wanted to access this
+
+NOTE Confidence: 0.908505380153656
+
+00:16:10.821 --> 00:16:11.840
+file on Windows.
+
+NOTE Confidence: 0.8305046558380127
+
+00:16:12.120 --> 00:16:13.960
+So I minimize the blast radius.
+
+NOTE Confidence: 0.964823842048645
+
+00:16:14.040 --> 00:16:16.680
+Even though it really was deleting random things.
+
+NOTE Confidence: 0.9354263544082642
+
+00:16:17.120 --> 00:16:20.030
+I'm OK with showing that on this demo machine because
+
+NOTE Confidence: 0.9354263544082642
+
+00:16:20.085 --> 00:16:23.159
+it could not physically delete all the files on Windows.
+
+NOTE Confidence: 0.783381462097168
+
+00:16:23.320 --> 00:16:25.975
+It could only delete the files in this C temp
+
+NOTE Confidence: 0.783381462097168
+
+00:16:26.034 --> 00:16:26.920
+Herbert folder.
+
+NOTE Confidence: 0.8507322072982788
+
+00:16:27.920 --> 00:16:31.670
+So that's a very quick overview of where we're going
+
+NOTE Confidence: 0.8507322072982788
+
+00:16:31.742 --> 00:16:32.680
+with the API.
+
+NOTE Confidence: 0.9164093732833862
+
+00:16:33.080 --> 00:16:35.283
+And I'm sure the next burning question that you must
+
+NOTE Confidence: 0.9164093732833862
+
+00:16:35.326 --> 00:16:36.640
+have is how does this all work?
+
+NOTE Confidence: 0.8364199995994568
+
+00:16:36.760 --> 00:16:38.456
+So Pooja, would you be able to explain some of
+
+NOTE Confidence: 0.8364199995994568
+
+00:16:38.493 --> 00:16:39.120
+the architecture?
+
+NOTE Confidence: 0.9180291891098022
+
+00:16:39.160 --> 00:16:39.760
+Yeah, sure.
+
+NOTE Confidence: 0.9361760020256042
+
+00:16:41.680 --> 00:16:46.466
+So the way this works is every Windows application intending
+
+NOTE Confidence: 0.9361760020256042
+
+00:16:46.545 --> 00:16:51.571
+to create Linux containers gets a lightweight utility VM that's
+
+NOTE Confidence: 0.9361760020256042
+
+00:16:51.651 --> 00:16:55.560
+dedicated to it that's created in the background.
+
+NOTE Confidence: 0.8703709244728088
+
+00:16:55.880 --> 00:16:58.961
+All of the applications Linux containers are Co located on
+
+NOTE Confidence: 0.8703709244728088
+
+00:16:59.014 --> 00:16:59.439
+this VM.
+
+NOTE Confidence: 0.9180125594139099
+
+00:17:00.000 --> 00:17:02.612
+Every application as well as the CLI flow gets a
+
+NOTE Confidence: 0.9180125594139099
+
+00:17:02.666 --> 00:17:03.319
+separate VM.
+
+NOTE Confidence: 0.8892462849617004
+
+00:17:03.600 --> 00:17:07.570
+And what this gives us is a hypervisor boundary per
+
+NOTE Confidence: 0.8892462849617004
+
+00:17:07.648 --> 00:17:11.540
+app and it also gives us resource separation and a
+
+NOTE Confidence: 0.8892462849617004
+
+00:17:11.618 --> 00:17:13.720
+way to not 'cause conflict.
+
+NOTE Confidence: 0.7470923662185669
+
+00:17:13.720 --> 00:17:17.869
+So all of a container, all of an application's containers,
+
+NOTE Confidence: 0.7470923662185669
+
+00:17:17.941 --> 00:17:22.520
+it's names, it's volume, volume names, networks are all isolated
+
+NOTE Confidence: 0.7470923662185669
+
+00:17:22.592 --> 00:17:23.880
+on a on AVM basis.
+
+NOTE Confidence: 0.901400089263916
+
+00:17:23.880 --> 00:17:25.120
+So there is no conflict there.
+
+NOTE Confidence: 0.9337478876113892
+
+00:17:26.560 --> 00:17:29.271
+Going into a little bit more detail on the left,
+
+NOTE Confidence: 0.9337478876113892
+
+00:17:29.327 --> 00:17:32.264
+here you see the Windows operating system and on the
+
+NOTE Confidence: 0.9337478876113892
+
+00:17:32.321 --> 00:17:35.314
+right is a virtual machine that was either created by
+
+NOTE Confidence: 0.9337478876113892
+
+00:17:35.370 --> 00:17:38.759
+a Windows application by calling into the WSL containers API
+
+NOTE Confidence: 0.9337478876113892
+
+00:17:38.816 --> 00:17:39.720
+or the CLI flow.
+
+NOTE Confidence: 0.9013871550559998
+
+00:17:40.920 --> 00:17:44.574
+So as we mentioned, the two entry points into the
+
+NOTE Confidence: 0.9013871550559998
+
+00:17:44.649 --> 00:17:48.676
+WSL containers world are via the API, which is exposed
+
+NOTE Confidence: 0.9013871550559998
+
+00:17:48.751 --> 00:17:50.839
+by a library called WSLCSDK.
+
+NOTE Confidence: 0.8908110857009888
+
+00:17:51.320 --> 00:17:54.443
+We publish it via Nugent package that Windows applications can
+
+NOTE Confidence: 0.8908110857009888
+
+00:17:54.493 --> 00:17:57.617
+include and then start interacting with the WSL containers API
+
+NOTE Confidence: 0.8908110857009888
+
+00:17:57.667 --> 00:17:59.280
+to create and manage containers.
+
+NOTE Confidence: 0.9250544905662537
+
+00:18:00.320 --> 00:18:03.407
+Or the other entry point into this world is the
+
+NOTE Confidence: 0.9250544905662537
+
+00:18:03.473 --> 00:18:07.808
+WSLC command line executable or container executable that I demoed
+
+NOTE Confidence: 0.9250544905662537
+
+00:18:07.874 --> 00:18:08.399
+earlier.
+
+NOTE Confidence: 0.7462915182113647
+
+00:18:09.240 --> 00:18:12.516
+Both of these talk to WSL service via inter process
+
+NOTE Confidence: 0.7462915182113647
+
+00:18:12.580 --> 00:18:13.479
+communication.
+
+NOTE Confidence: 0.8559737205505371
+
+00:18:13.880 --> 00:18:19.034
+If you've used WSLWSL, service exists today in that world
+
+NOTE Confidence: 0.8559737205505371
+
+00:18:19.125 --> 00:18:20.120
+it is used.
+
+NOTE Confidence: 0.8747051954269409
+
+00:18:20.119 --> 00:18:22.879
+Its job is to manage the distros that WSL runs,
+
+NOTE Confidence: 0.8747051954269409
+
+00:18:22.938 --> 00:18:25.874
+the life cycle of the WSL virtual machine, and the
+
+NOTE Confidence: 0.8747051954269409
+
+00:18:25.933 --> 00:18:28.399
+communication between the VM and the host.
+
+NOTE Confidence: 0.9157753586769104
+
+00:18:28.680 --> 00:18:32.392
+We've augmented the same service to now manage the containers
+
+NOTE Confidence: 0.9157753586769104
+
+00:18:32.453 --> 00:18:35.496
+that run within these VMS, and it also manages and
+
+NOTE Confidence: 0.9157753586769104
+
+00:18:35.557 --> 00:18:39.573
+relays information back and forth between these containers and the
+
+NOTE Confidence: 0.9157753586769104
+
+00:18:39.634 --> 00:18:39.999
+users.
+
+NOTE Confidence: 0.8592429161071777
+
+00:18:40.000 --> 00:18:42.906
+On the Windows host side, inside of the Linux virtual
+
+NOTE Confidence: 0.8592429161071777
+
+00:18:42.960 --> 00:18:44.880
+machine we run a container runtime.
+
+NOTE Confidence: 0.6214706897735596
+
+00:18:45.640 --> 00:18:46.680
+Today we're on Mobi.
+
+NOTE Confidence: 0.8419890403747559
+
+00:18:46.680 --> 00:18:50.327
+It's an open source engine that powers Docker today and
+
+NOTE Confidence: 0.8419890403747559
+
+00:18:50.394 --> 00:18:54.174
+WSL service uses an HV socket to communicate users intent
+
+NOTE Confidence: 0.8419890403747559
+
+00:18:54.241 --> 00:18:57.889
+to the container runtime by opening this HV socket with
+
+NOTE Confidence: 0.8419890403747559
+
+00:18:57.955 --> 00:18:59.680
+the Linux virtual machine.
+
+NOTE Confidence: 0.9148572087287903
+
+00:19:00.160 --> 00:19:02.938
+It is not a network socket, it's a specialized socket
+
+NOTE Confidence: 0.9148572087287903
+
+00:19:02.990 --> 00:19:06.241
+that is used specifically for communication between the VM and
+
+NOTE Confidence: 0.9148572087287903
+
+00:19:06.293 --> 00:19:07.079
+the hypervisor.
+
+NOTE Confidence: 0.7952855229377747
+
+00:19:07.240 --> 00:19:11.053
+It's an it's a special extension of the Winsock API
+
+NOTE Confidence: 0.7952855229377747
+
+00:19:11.128 --> 00:19:12.399
+and every VM has.
+
+NOTE Confidence: 0.902945339679718
+
+00:19:12.400 --> 00:19:14.696
+It's sort of like a point to point per VM
+
+NOTE Confidence: 0.902945339679718
+
+00:19:14.752 --> 00:19:15.760
+to the hypervisor.
+
+NOTE Confidence: 0.9088006615638733
+
+00:19:15.960 --> 00:19:19.617
+So it's an isolated communication channel for every VM, and
+
+NOTE Confidence: 0.9088006615638733
+
+00:19:19.679 --> 00:19:23.275
+once the user issues a command for container creation, the
+
+NOTE Confidence: 0.9088006615638733
+
+00:19:23.337 --> 00:19:27.428
+container runtime goes ahead and creates those containers, and WSL
+
+NOTE Confidence: 0.9088006615638733
+
+00:19:27.490 --> 00:19:31.086
+service does the job of relaying that information back and
+
+NOTE Confidence: 0.9088006615638733
+
+00:19:31.148 --> 00:19:31.519
+forth.
+
+NOTE Confidence: 0.8370393514633179
+
+00:19:31.920 --> 00:19:38.920
+Sorry, oops, excuse me.
+
+NOTE Confidence: 0.8652048707008362
+
+00:19:40.520 --> 00:19:41.520
+So that's that.
+
+NOTE Confidence: 0.8064872622489929
+
+00:19:42.840 --> 00:19:45.680
+Next, I wanted to quickly touch on storage.
+
+NOTE Confidence: 0.9151351451873779
+
+00:19:46.280 --> 00:19:50.083
+So the container runtime inside of every virtual machine uses
+
+NOTE Confidence: 0.9151351451873779
+
+00:19:50.145 --> 00:19:53.949
+a central directory within this VM to store container related
+
+NOTE Confidence: 0.9151351451873779
+
+00:19:54.011 --> 00:19:54.759
+information.
+
+NOTE Confidence: 0.46680375933647156
+
+00:19:54.760 --> 00:19:57.840
+It's metadata, it's scratch space, etcetera.
+
+NOTE Confidence: 0.8622646331787109
+
+00:19:58.080 --> 00:20:01.224
+And usually it's a location like Viralib and the container
+
+NOTE Confidence: 0.8622646331787109
+
+00:20:01.278 --> 00:20:02.199
+storage location.
+
+NOTE Confidence: 0.815889835357666
+
+00:20:02.520 --> 00:20:06.107
+What we do is we now map this location onto
+
+NOTE Confidence: 0.815889835357666
+
+00:20:06.191 --> 00:20:09.862
+a virtual disk on the Windows host side or a
+
+NOTE Confidence: 0.815889835357666
+
+00:20:09.946 --> 00:20:10.279
+VHD.
+
+NOTE Confidence: 0.9293593168258667
+
+00:20:11.000 --> 00:20:14.000
+And every application gets its own VHD as well.
+
+NOTE Confidence: 0.9279001951217651
+
+00:20:14.000 --> 00:20:16.320
+The CLI flow also gets its own VHD.
+
+NOTE Confidence: 0.890160858631134
+
+00:20:16.320 --> 00:20:19.644
+So at the storage level everything is separated per application
+
+NOTE Confidence: 0.890160858631134
+
+00:20:19.697 --> 00:20:20.119
+as well.
+
+NOTE Confidence: 0.951727569103241
+
+00:20:22.000 --> 00:20:24.649
+And lastly, I quickly wanted to show you what the
+
+NOTE Confidence: 0.951727569103241
+
+00:20:24.703 --> 00:20:27.407
+flow would look like when a command as shown above
+
+NOTE Confidence: 0.951727569103241
+
+00:20:27.461 --> 00:20:27.840
+is run.
+
+NOTE Confidence: 0.8447203040122986
+
+00:20:27.840 --> 00:20:30.520
+The run dash IT I've already talked about before.
+
+NOTE Confidence: 0.8598001003265381
+
+00:20:30.960 --> 00:20:34.450
+The volume mount here is saying that I want to
+
+NOTE Confidence: 0.8598001003265381
+
+00:20:34.526 --> 00:20:38.245
+map my C: data directory on the Windows side onto
+
+NOTE Confidence: 0.8598001003265381
+
+00:20:38.321 --> 00:20:42.039
+the slash data mount on the Linux container side.
+
+NOTE Confidence: 0.8650847673416138
+
+00:20:42.480 --> 00:20:44.440
+And I want to create a Debian latest container.
+
+NOTE Confidence: 0.8389977216720581
+
+00:20:44.920 --> 00:20:48.561
+So when this is issued, the container runtime creates that
+
+NOTE Confidence: 0.8389977216720581
+
+00:20:48.623 --> 00:20:52.202
+Debian latest container and then it attaches a slash data
+
+NOTE Confidence: 0.8389977216720581
+
+00:20:52.264 --> 00:20:53.959
+volume onto this container.
+
+NOTE Confidence: 0.7991121411323547
+
+00:20:54.520 --> 00:20:58.118
+And then under the hood we go ahead and map
+
+NOTE Confidence: 0.7991121411323547
+
+00:20:58.202 --> 00:21:02.219
+the slash data folder or volume onto the SQL and
+
+NOTE Confidence: 0.7991121411323547
+
+00:21:02.302 --> 00:21:06.320
+data folder on the Windows side using Verdio FS.
+
+NOTE Confidence: 0.8593159914016724
+
+00:21:06.960 --> 00:21:11.013
+Vario FS is a relatively new file sharing protocol that
+
+NOTE Confidence: 0.8593159914016724
+
+00:21:11.087 --> 00:21:14.920
+is used for sharing files between VM and hypervisor.
+
+NOTE Confidence: 0.9367411732673645
+
+00:21:15.359 --> 00:21:18.005
+And for us we have this added complexity here of
+
+NOTE Confidence: 0.9367411732673645
+
+00:21:18.060 --> 00:21:21.641
+translating all of the file system semantics between 2 completely
+
+NOTE Confidence: 0.9367411732673645
+
+00:21:21.697 --> 00:21:23.240
+different operating systems.
+
+NOTE Confidence: 0.8885694146156311
+
+00:21:23.800 --> 00:21:26.680
+If you've used WSL, it uses Plan 9 today.
+
+NOTE Confidence: 0.8580719232559204
+
+00:21:27.400 --> 00:21:30.944
+Vario FS is about twice as fast as it stands
+
+NOTE Confidence: 0.8580719232559204
+
+00:21:31.025 --> 00:21:33.120
+today in this environment.
+
+NOTE Confidence: 0.9060914516448975
+
+00:21:33.119 --> 00:21:36.064
+And we're investing more in this areas and looking at
+
+NOTE Confidence: 0.9060914516448975
+
+00:21:36.120 --> 00:21:39.120
+various alternatives as well to make this even faster.
+
+NOTE Confidence: 0.9408419132232666
+
+00:21:42.200 --> 00:21:46.177
+And before we wrap up WSL containers here, I wanted
+
+NOTE Confidence: 0.9408419132232666
+
+00:21:46.255 --> 00:21:50.232
+to also quickly take a detour and mention what else
+
+NOTE Confidence: 0.9408419132232666
+
+00:21:50.310 --> 00:21:51.479
+is new for WSL.
+
+NOTE Confidence: 0.8399929404258728
+
+00:21:52.840 --> 00:21:55.760
+Microsoft's Linux distro, Azure Linux 4 dot O is now
+
+NOTE Confidence: 0.8399929404258728
+
+00:21:55.816 --> 00:21:58.400
+available for general use, so that's exciting.
+
+NOTE Confidence: 0.8102871179580688
+
+00:21:58.800 --> 00:22:01.720
+It is the same distro that runs AKS today.
+
+NOTE Confidence: 0.9085379242897034
+
+00:22:02.200 --> 00:22:03.800
+This is what powers Azure.
+
+NOTE Confidence: 0.8804685473442078
+
+00:22:03.800 --> 00:22:06.889
+So if you use this, it gives you a consistent,
+
+NOTE Confidence: 0.8804685473442078
+
+00:22:06.956 --> 00:22:09.240
+battle tested, proven environment.
+
+NOTE Confidence: 0.8590558171272278
+
+00:22:10.280 --> 00:22:14.191
+It Microsoft provides the entire stack for Linux, so it's
+
+NOTE Confidence: 0.8590558171272278
+
+00:22:14.259 --> 00:22:18.376
+a single vendor, full supply chain attestation from build to
+
+NOTE Confidence: 0.8590558171272278
+
+00:22:18.445 --> 00:22:19.200
+deployment.
+
+NOTE Confidence: 0.9238137602806091
+
+00:22:19.480 --> 00:22:21.440
+So you know where to go if you have issues.
+
+NOTE Confidence: 0.8537987470626831
+
+00:22:22.359 --> 00:22:25.656
+It's available today for VM, so you can try that
+
+NOTE Confidence: 0.8537987470626831
+
+00:22:25.725 --> 00:22:25.999
+out.
+
+NOTE Confidence: 0.8934377431869507
+
+00:22:26.000 --> 00:22:28.440
+And the WSL distro is coming out soon as well.
+
+NOTE Confidence: 0.9089232683181763
+
+00:22:28.720 --> 00:22:31.028
+So once that comes out, we would love for you
+
+NOTE Confidence: 0.9089232683181763
+
+00:22:31.080 --> 00:22:33.183
+to try that out as one of the distros for
+
+NOTE Confidence: 0.9089232683181763
+
+00:22:33.234 --> 00:22:33.440
+WSL.
+
+NOTE Confidence: 0.9193718433380127
+
+00:22:33.840 --> 00:22:35.320
+It is container optimized.
+
+NOTE Confidence: 0.9541761875152588
+
+00:22:35.600 --> 00:22:36.560
+It is lightweight.
+
+NOTE Confidence: 0.8827617168426514
+
+00:22:37.119 --> 00:22:38.743
+So please try it out and let us let us
+
+NOTE Confidence: 0.8827617168426514
+
+00:22:38.785 --> 00:22:39.640
+know what you think.
+
+NOTE Confidence: 0.871039867401123
+
+00:22:41.360 --> 00:22:43.840
+And that's it for WSL containers.
+
+NOTE Confidence: 0.9440793395042419
+
+00:22:43.840 --> 00:22:46.784
+We will be posting on the CLI blog when this
+
+NOTE Confidence: 0.9440793395042419
+
+00:22:46.850 --> 00:22:47.520
+goes live.
+
+NOTE Confidence: 0.9503319263458252
+
+00:22:48.240 --> 00:22:50.760
+Please try this out with your real world scenarios.
+
+NOTE Confidence: 0.8867554664611816
+
+00:22:51.200 --> 00:22:53.800
+Let us know, give us feedback so we can improve.
+
+NOTE Confidence: 0.824987530708313
+
+00:22:54.119 --> 00:22:56.583
+And we plan to thank you public preview by the
+
+NOTE Confidence: 0.824987530708313
+
+00:22:56.637 --> 00:22:57.279
+end of June.
+
+NOTE Confidence: 0.8475401401519775
+
+00:22:57.960 --> 00:22:59.320
+So you will be able to try it out there.
+
+NOTE Confidence: 0.796531617641449
+
+00:22:59.320 --> 00:23:01.773
+We're open source, so you can go check our progress
+
+NOTE Confidence: 0.796531617641449
+
+00:23:01.822 --> 00:23:02.639
+at Microsoft WSL.
+
+NOTE Confidence: 0.7904273271560669
+
+00:23:02.880 --> 00:23:04.887
+And then we'll be here for questions as well as
+
+NOTE Confidence: 0.7904273271560669
+
+00:23:04.929 --> 00:23:06.039
+the dev lead for Moon Ray.
+
+NOTE Confidence: 0.9031672477722168
+
+00:23:06.080 --> 00:23:07.680
+We'll be here as well if you have questions.
+
+NOTE Confidence: 0.92286616563797
+
+00:23:07.960 --> 00:23:08.800
+So thank you very much.
+
+NOTE Confidence: 0.9269130825996399
+
+00:23:08.800 --> 00:23:09.160
+Thank you all.
+
+NOTE Confidence: 0.6450743079185486
+
+00:23:09.160 --> 00:23:09.320
+Thank.
+
+NOTE Confidence: 0.7836816906929016
+
+00:23:09.720 --> 00:23:10.480
+You so much.
+

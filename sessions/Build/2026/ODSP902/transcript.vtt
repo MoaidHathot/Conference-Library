@@ -1,0 +1,680 @@
+WEBVTT
+
+00:00:00.420 --> 00:00:01.200
+VISHNU MENON: Hi everyone.
+
+00:00:01.200 --> 00:00:05.580
+Myself, Vishnu Menon, Senior
+Product Manager at Syncfusion.
+
+00:00:05.580 --> 00:00:06.690
+Today I'm going to talk
+
+00:00:06.690 --> 00:00:09.900
+about how you can build
+AI-driven user interfaces
+
+00:00:09.900 --> 00:00:12.030
+in.NET MAUI applications.
+
+00:00:12.030 --> 00:00:14.250
+Not just faster, but
+more consistent,
+
+00:00:14.250 --> 00:00:17.520
+and intelligently
+using design system.
+
+00:00:17.520 --> 00:00:20.520
+So before I jump into the
+session, I want to talk
+
+00:00:20.520 --> 00:00:23.730
+about the agenda for today's
+session, which is problems
+
+00:00:23.730 --> 00:00:27.540
+in UI building and why AI
+struggles with UI building,
+
+00:00:27.540 --> 00:00:30.870
+and the golden standards of
+design system, the AI skills,
+
+00:00:30.870 --> 00:00:33.180
+and AI-driven UI workflow.
+
+00:00:33.180 --> 00:00:36.720
+And then we'll be concluding
+the session with the demo.
+
+00:00:36.720 --> 00:00:40.960
+For now, let's jump into the ID.
+
+00:00:43.380 --> 00:00:46.410
+Now I'm going to showcase you a
+sample in which I'm just going
+
+00:00:46.410 --> 00:00:50.280
+to prompt AI to come up with a
+very basic mobile application,
+
+00:00:50.280 --> 00:00:52.620
+and let's see how it goes.
+
+00:00:52.620 --> 00:01:02.200
+Create a simple employee
+dashboard mobile application
+
+00:01:03.360 --> 00:01:09.190
+using.NET MAUI.
+
+00:01:15.240 --> 00:01:21.900
+So here you can see that the
+employee dashboard is here.
+
+00:01:21.900 --> 00:01:25.140
+And you can see that it is
+having two different type
+
+00:01:25.140 --> 00:01:26.310
+of contours.
+
+00:01:26.310 --> 00:01:28.860
+It is pretty colorful,
+having functional device.
+
+00:01:28.860 --> 00:01:30.120
+It is working fine.
+
+00:01:30.120 --> 00:01:33.120
+But when you stop, taking a
+look closer, you'll be seeing
+
+00:01:33.120 --> 00:01:36.180
+that there is some issues with
+the color on the view dashboard,
+
+00:01:36.180 --> 00:01:39.990
+but then color issues
+in the controls here.
+
+00:01:39.990 --> 00:01:43.770
+The icons in the collection
+view seems to be misaligned.
+
+00:01:43.770 --> 00:01:45.990
+So things like this,
+small issues occur,
+
+00:01:45.990 --> 00:01:49.950
+which is something developers
+need to manually rework.
+
+00:01:49.950 --> 00:01:51.540
+So that's the issue here.
+
+00:01:51.540 --> 00:01:54.540
+AI can generate user
+interfaces very quickly.
+
+00:01:54.540 --> 00:02:00.190
+But those UIs are not polished,
+are not production-ready.
+
+00:02:01.530 --> 00:02:03.450
+So why does this happen?
+
+00:02:03.450 --> 00:02:04.920
+That's the next question.
+
+00:02:04.920 --> 00:02:08.070
+Because AI does not have
+the design context,
+
+00:02:08.070 --> 00:02:10.260
+or design system of
+your application.
+
+00:02:10.260 --> 00:02:13.620
+Your application for example
+might have spacing rules,
+
+00:02:13.620 --> 00:02:16.230
+or component patterns,
+and design standards.
+
+00:02:16.230 --> 00:02:19.320
+Also sometimes, AI will
+have limited knowledge
+
+00:02:19.320 --> 00:02:20.370
+of UI controls.
+
+00:02:20.370 --> 00:02:26.340
+It mix and matches the APIs
+that will cause problems.
+
+00:02:26.340 --> 00:02:30.150
+So due to all of this, based on
+the prompt, what AI will do is
+
+00:02:30.150 --> 00:02:32.130
+that it will produce
+something more
+
+00:02:32.130 --> 00:02:34.470
+of a guess-based implementation.
+
+00:02:34.470 --> 00:02:35.880
+So that's the core issue here.
+
+00:02:35.880 --> 00:02:41.100
+AI is powerful, but without the
+right inputs and constrain,
+
+00:02:41.100 --> 00:02:44.820
+it can only guess, not
+design with intention.
+
+00:02:44.820 --> 00:02:46.980
+So you're rethinking
+what's the solution here?
+
+00:02:46.980 --> 00:02:49.350
+So basically at
+the higher level,
+
+00:02:49.350 --> 00:02:52.620
+two key ideas are the solution,
+which is the design system,
+
+00:02:52.620 --> 00:02:54.990
+and next one is the skills.
+
+00:02:54.990 --> 00:02:56.550
+So when we talk
+about design system,
+
+00:02:56.550 --> 00:02:58.440
+design system is a system
+
+00:02:58.440 --> 00:03:03.240
+that keeps your UI consistent
+throughout your application.
+
+00:03:03.240 --> 00:03:08.160
+It includes colors, typography,
+spacing, reusable components,
+
+00:03:08.160 --> 00:03:11.140
+layout patterns, and guidelines.
+
+00:03:13.590 --> 00:03:16.110
+Okay. Let me showcase
+you an example
+
+00:03:16.110 --> 00:03:18.480
+of what a design system is.
+
+00:03:18.480 --> 00:03:20.820
+If you're a working.NET MAUI
+application development,
+
+00:03:20.820 --> 00:03:23.940
+if you create a simple project,
+inside the Results folder,
+
+00:03:23.940 --> 00:03:28.380
+inside the Styles folder, there
+is something called styles.xaml.
+
+00:03:28.380 --> 00:03:30.840
+It contains all of the styles
+for different controls.
+
+00:03:30.840 --> 00:03:32.340
+That's a basic use case,
+
+00:03:32.340 --> 00:03:34.710
+or basic explanation
+of a design system.
+
+00:03:34.710 --> 00:03:37.230
+For example, if you
+did button control,
+
+00:03:37.230 --> 00:03:39.330
+and there is font
+family mentioned here,
+
+00:03:39.330 --> 00:03:40.440
+an Open Sans Regular.
+
+00:03:40.440 --> 00:03:44.610
+What it does is, that wherever
+you use button in.NET MAUI,
+
+00:03:44.610 --> 00:03:47.610
+different platforms,
+if you use button,
+
+00:03:47.610 --> 00:03:51.270
+it will still use the font
+family of Open Sans Regular.
+
+00:03:51.270 --> 00:03:54.030
+Based on different platforms
+and different controls,
+
+00:03:54.030 --> 00:03:56.370
+it will make sure that
+your UI looks standard.
+
+00:03:56.370 --> 00:03:59.610
+So that's the meaning
+of a design system.
+
+00:03:59.610 --> 00:04:03.540
+Something like colors.xaml
+also have the same use case,
+
+00:04:03.540 --> 00:04:04.440
+like primary colors.
+
+00:04:04.440 --> 00:04:08.100
+You can define to have a primary
+color that is similar across all
+
+00:04:08.100 --> 00:04:11.730
+of your different platforms.
+
+00:04:11.730 --> 00:04:15.420
+So this also helps us to
+reduce our hard coding,
+
+00:04:15.420 --> 00:04:19.350
+like repeated hard coding or
+(inaudible) you can reuse it.
+
+00:04:19.350 --> 00:04:25.670
+Along with that, it eliminates
+also repeated UI decisions.
+
+00:04:25.670 --> 00:04:28.100
+For example, if you have
+an enterprise application,
+
+00:04:28.100 --> 00:04:30.030
+and you have the
+properties in system,
+
+00:04:30.030 --> 00:04:35.220
+if you need to add a new
+feature, if you go to your UI
+
+00:04:35.220 --> 00:04:39.180
+and UX team, they will be
+coming up with UI (inaudible)
+
+00:04:39.180 --> 00:04:41.070
+that matches your design system.
+
+00:04:41.070 --> 00:04:43.170
+If not what happens,
+there will be a lot
+
+00:04:43.170 --> 00:04:45.060
+of repeated UI decisions.
+
+00:04:45.060 --> 00:04:48.510
+So what it does is that
+it enables you more
+
+00:04:48.510 --> 00:04:52.650
+faster development.
+
+00:04:52.650 --> 00:04:56.880
+Let's talk about next important
+piece here, which is skills.
+
+00:04:56.880 --> 00:04:57.960
+So what is a skill?
+
+00:04:57.960 --> 00:05:00.810
+A skill is a way to guide
+the AI to perform a task,
+
+00:05:00.810 --> 00:05:03.870
+using preferred
+instructions and rules.
+
+00:05:03.870 --> 00:05:06.870
+So here we are talking
+about design system skills,
+
+00:05:06.870 --> 00:05:09.780
+but still can be used for
+other use cases also.
+
+00:05:09.780 --> 00:05:13.110
+So I will showcase you
+skill file for now.
+
+00:05:13.110 --> 00:05:15.000
+Let me open it.
+
+00:05:15.000 --> 00:05:17.610
+So if you can see, this
+is a simple project
+
+00:05:17.610 --> 00:05:22.170
+in which I have added a skill
+inside.agents/skills Syncfusion
+
+00:05:22.170 --> 00:05:22.740
+MAUI button.
+
+00:05:22.740 --> 00:05:25.770
+This is a skill
+that is basically
+
+00:05:25.770 --> 00:05:27.840
+for Syncfusion MAUI
+button control.
+
+00:05:27.840 --> 00:05:29.520
+So this is the skills.md file.
+
+00:05:29.520 --> 00:05:32.730
+You can see what's the
+implementation or use case here,
+
+00:05:32.730 --> 00:05:33.840
+and when to use this skill.
+
+00:05:33.840 --> 00:05:36.330
+So your agent can read
+this file and get
+
+00:05:36.330 --> 00:05:41.220
+to know how things works, and it
+can go through getting started
+
+00:05:41.220 --> 00:05:44.790
+when you are adding the control,
+or if it fails at something,
+
+00:05:44.790 --> 00:05:47.730
+like a troubleshooting,
+it can go through here,
+
+00:05:47.730 --> 00:05:49.290
+come to this skills.md file.
+
+00:05:49.290 --> 00:05:52.410
+It can read it and
+there is differences.
+
+00:05:52.410 --> 00:05:55.260
+You can see that there is
+troubleshooting.md file it can
+
+00:05:55.260 --> 00:05:56.250
+go to.
+
+00:05:56.250 --> 00:05:59.530
+Go to that file there.
+
+00:06:00.990 --> 00:06:03.990
+So in short, I want
+to say here is
+
+00:06:03.990 --> 00:06:05.940
+that skills does not render UI.
+
+00:06:05.940 --> 00:06:08.190
+They constrain the decisions.
+
+00:06:08.190 --> 00:06:11.130
+So in simple terms, a
+skill defines how the AI
+
+00:06:11.130 --> 00:06:12.810
+should behave.
+
+00:06:12.810 --> 00:06:16.500
+Design system define
+what good UI looks like,
+
+00:06:16.500 --> 00:06:21.150
+and design system skills
+guide the AI to follow it.
+
+00:06:21.150 --> 00:06:23.880
+So next, what is
+it what skills do?
+
+00:06:23.880 --> 00:06:26.550
+So as you can see, without
+skills, and with skills.
+
+00:06:26.550 --> 00:06:27.780
+What's the difference here?
+
+00:06:27.780 --> 00:06:31.770
+When you prompt, there is no
+skill, AI will be coming up
+
+00:06:31.770 --> 00:06:34.710
+or guessing more of what
+to (inaudible) and coming
+
+00:06:34.710 --> 00:06:36.540
+up with the guess-based UI.
+
+00:06:36.540 --> 00:06:39.930
+And with skills, it will have
+some design tokens, layer tools,
+
+00:06:39.930 --> 00:06:42.810
+and will be getting a more
+understanding and coming
+
+00:06:42.810 --> 00:06:45.450
+up with more (inaudible)
+consistent UI.
+
+00:06:45.450 --> 00:06:48.550
+So let's jump into
+the demo session.
+
+00:06:52.560 --> 00:06:55.980
+Yes. This is the sample which
+we are going to work here.
+
+00:06:55.980 --> 00:06:59.970
+So before we start doing
+anything here, I want to show
+
+00:06:59.970 --> 00:07:04.230
+for this demo purpose, I am
+using Syncfusion's MAUI control.
+
+00:07:04.230 --> 00:07:06.000
+For those controls
+
+00:07:06.000 --> 00:07:10.560
+in skills.sh/Syncfusion/MAUI
+UI components skills.
+
+00:07:10.560 --> 00:07:12.630
+You can find that
+there are few skills
+
+00:07:12.630 --> 00:07:15.390
+that have been added
+for MAUI controls.
+
+00:07:15.390 --> 00:07:17.850
+So for example, if you want
+Syncfusion MAUI button,
+
+00:07:17.850 --> 00:07:20.400
+which I showcased earlier,
+you can copy this code
+
+00:07:20.400 --> 00:07:22.740
+and edit in your Terminal.
+
+00:07:22.740 --> 00:07:25.560
+So let me copy this line.
+
+00:07:25.560 --> 00:07:28.140
+Go here. Open the Terminal.
+
+00:07:28.140 --> 00:07:29.400
+Let me paste it.
+
+00:07:29.400 --> 00:07:34.410
+If you press something like
+/y, it will copy/paste all
+
+00:07:34.410 --> 00:07:38.670
+of the skills file
+in this order.
+
+00:07:38.670 --> 00:07:39.120
+Yes.
+
+00:07:39.120 --> 00:07:42.750
+So there is.agent/skills.
+
+00:07:42.750 --> 00:07:44.850
+So all of the skills
+have been added,
+
+00:07:44.850 --> 00:07:48.210
+a lot of controls,
+for the demo purpose.
+
+00:07:48.210 --> 00:07:52.410
+So now let me copy one
+additional skills.
+
+00:07:52.410 --> 00:07:57.480
+Let me reveal in the
+Finder and paste it here.
+
+00:07:57.480 --> 00:07:59.730
+So now you can see there
+is another set of skills,
+
+00:07:59.730 --> 00:08:02.340
+which is "design-system,"
+which I have added
+
+00:08:02.340 --> 00:08:03.930
+for this demo purpose.
+
+00:08:03.930 --> 00:08:08.160
+So when I will be
+copy/pasting the prompt here,
+
+00:08:08.160 --> 00:08:10.830
+and AI will be going
+through the design system,
+
+00:08:10.830 --> 00:08:14.070
+and to get an understanding what
+sort of design system I want
+
+00:08:14.070 --> 00:08:16.530
+to follow for this demo purpose.
+
+00:08:16.530 --> 00:08:19.920
+So let me open the font here.
+
+00:08:19.920 --> 00:08:23.820
+And let me just copy for you.
+
+00:08:23.820 --> 00:08:26.500
+And let it run here.
+
+00:08:28.590 --> 00:08:35.390
+And let AI do its work.
+
+00:08:35.390 --> 00:08:39.920
+So seems like AI has completed
+developing the info dashboard,
+
+00:08:39.920 --> 00:08:44.960
+which I asked it to
+develop using skills.
+
+00:08:44.960 --> 00:08:47.810
+So let's see what
+has AI done here.
+
+00:08:47.810 --> 00:08:50.000
+It has created employee models.
+
+00:08:50.000 --> 00:08:54.330
+It has created design tokens
+as it has been mentioned
+
+00:08:54.330 --> 00:08:57.210
+in the skill, or
+design system skill,
+
+00:08:57.210 --> 00:09:03.000
+and it has created info
+dashboard page (inaudible) page.
+
+00:09:03.000 --> 00:09:10.000
+Yes. So let's try to run and
+see what AI has created for us.
+
+00:09:14.610 --> 00:09:20.460
+Okay. So by using skills
+and Syncfusion controls,
+
+00:09:20.460 --> 00:09:22.890
+things look very good.
+
+00:09:22.890 --> 00:09:26.250
+The design system seems
+to be followed up,
+
+00:09:26.250 --> 00:09:29.940
+and everything looks consistent.
+
+00:09:29.940 --> 00:09:34.200
+So that's all for the demo.
+
+00:09:34.200 --> 00:09:36.210
+So I would like to
+conclude here by saying
+
+00:09:36.210 --> 00:09:39.960
+that we are not asking
+AI to design UI.
+
+00:09:39.960 --> 00:09:42.900
+We are teaching it
+how we design UI.
+
+00:09:42.900 --> 00:09:48.110
+Based on that, it should
+design the UI for us.
+
+00:09:48.110 --> 00:09:54.110
+So this QR contains the data
+link for the demo sample,
+
+00:09:54.110 --> 00:09:56.780
+and thank you all
+for joining with me.
+
+00:09:56.780 --> 00:09:59.490
+Happy coding with AI.

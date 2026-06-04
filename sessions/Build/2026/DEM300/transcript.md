@@ -1,0 +1,504 @@
+**[00:00:04]** We good now.
+**[00:00:05]** Awesome.
+**[00:00:06]** Well, good morning folks.
+**[00:00:08]** Thank you all for joining me for the first demo
+**[00:00:10]** of the morning.
+**[00:00:11]** My name is Nick Karpinski.
+**[00:00:12]** I'm a software engineer with Microsoft.
+**[00:00:15]** I've been with Microsoft for approximately 1212, 1/2 years, my
+**[00:00:19]** entire career on Visual Studio and most of that time
+**[00:00:23]** I've spent on the Visual Studio Profiler.
+**[00:00:26]** So I'm super excited to share some of my experience
+**[00:00:29]** with the profiler today and some of the work flows
+**[00:00:32]** that we've added into Visual Studio.
+**[00:00:35]** But before I get started, I always like to kind
+**[00:00:37]** of pull the audience understand who it is.
+**[00:00:39]** I'm talking to whohereisa.net developer.
+**[00:00:43]** OK, so a pretty good amount of people who here
+**[00:00:47]** has used the Visual Studio profiler before.
+**[00:00:51]** Wow.
+**[00:00:51]** Actually, there's quite a few people who hasn't used the
+**[00:00:54]** profiler before.
+**[00:00:56]** Anyone admitting cool.
+**[00:00:57]** I'd love to talk to you afterwards and you can
+**[00:00:59]** tell me why you're going to change your ways.
+**[00:01:01]** Who has used benchmark.net before?
+**[00:01:05]** OK, a couple of people.
+**[00:01:07]** Have any of you used the Visual Studio integration with
+**[00:01:10]** benchmark.net with the profiler?
+**[00:01:14]** One guy.
+**[00:01:14]** Awesome.
+**[00:01:15]** So I'm excited to share some of those new features
+**[00:01:18]** with you today.
+**[00:01:21]** This is going to be a pretty demo heavy presentation
+**[00:01:23]** as it is the demo.
+**[00:01:25]** I have a single slide that I want to walk
+**[00:01:27]** you through.
+**[00:01:27]** And this slide is going to help illustrate what that
+**[00:01:31]** agent is doing as we go through the demo itself.
+**[00:01:35]** And so this is my flow chart for how you
+**[00:01:37]** actually optimize code in the real world.
+**[00:01:41]** You start on the left, you work your way over
+**[00:01:42]** to the right, and if you're successful, you get cake
+**[00:01:44]** out of it.
+**[00:01:45]** And so to start, you want to really make sure
+**[00:01:47]** that you understand your issue.
+**[00:01:49]** And so when I say understand your issue, I mean
+**[00:01:52]** not just like, oh, hey, I think serialization is kind
+**[00:01:56]** of slow.
+**[00:01:56]** I should probably go take a look at that.
+**[00:01:58]** It's really, I have concrete numbers.
+**[00:02:00]** I know specifically where time is being spent in my
+**[00:02:04]** application.
+**[00:02:05]** And then I can use that to then try and
+**[00:02:07]** improve this specific parts that are taking up the most
+**[00:02:11]** amount of time so I get the most amount of
+**[00:02:14]** improvement for my investment.
+**[00:02:16]** And so if you don't know what the issue is,
+**[00:02:18]** that's OK.
+**[00:02:19]** You just run the profiler in Visual Studio and it
+**[00:02:21]** will show you where time is actually being spent in
+**[00:02:23]** your app.
+**[00:02:24]** And then from there you can figure out like where
+**[00:02:27]** you actually want to spend your time actually trying to
+**[00:02:29]** optimize.
+**[00:02:30]** The second thing is, once you know what the issue
+**[00:02:33]** is, you could jump into trying to optimize stuff, but
+**[00:02:36]** it's really hard to try and optimize if all you're
+**[00:02:39]** doing is just taking general traces of your application.
+**[00:02:43]** And so I always like to try and say, like,
+**[00:02:45]** go create a benchmark.
+**[00:02:46]** It gives you this nice reusable, durable test harness that
+**[00:02:50]** you can go and test performance on.
+**[00:02:52]** I like to think of a benchmark as a unit
+**[00:02:55]** test for performance.
+**[00:02:56]** So unit tests work with the debugger, benchmarks with work
+**[00:02:59]** with the profiler.
+**[00:03:00]** And the nice part is it's like once you have
+**[00:03:03]** it, then you can fall into the optimization loop.
+**[00:03:05]** And this is my favorite part.
+**[00:03:07]** This is the part where it actually gets to be
+**[00:03:09]** kind of fun, because all you got to do is
+**[00:03:11]** you measure, you make some changes to your code, and
+**[00:03:13]** then you see the impact of those changes.
+**[00:03:16]** And so like I said, you measure twice, you optimize
+**[00:03:18]** once, you measure, you make a change, and then you
+**[00:03:21]** measure again.
+**[00:03:22]** And you can see the delta, you can see what
+**[00:03:24]** the effects of your changes were.
+**[00:03:27]** And so then afterwards you get to the improve block.
+**[00:03:30]** Did you actually improve the code?
+**[00:03:31]** Yeah.
+**[00:03:32]** Cool success.
+**[00:03:32]** You get cake.
+**[00:03:33]** If you didn't, that's totally fine.
+**[00:03:36]** You can just fall back into that optimization loop.
+**[00:03:38]** You can try a different optimization.
+**[00:03:39]** It's not just necessarily A1 and done.
+**[00:03:41]** It's very experimental and maybe you've gotten to a point
+**[00:03:44]** where you've optimized so much for that one benchmark that
+**[00:03:47]** you can't really improve anymore.
+**[00:03:49]** And that's totally fine too.
+**[00:03:51]** You just go back to that first block and you
+**[00:03:53]** can start looking at other issues that you might have
+**[00:03:56]** had in that original trace and pinpoint something else to
+**[00:04:00]** try and improve.
+**[00:04:02]** And so with that, let's go ahead and let's jump
+**[00:04:05]** into the demos.
+**[00:04:07]** And so when I do demos, I always get super
+**[00:04:09]** aggravated by someone taking a console app, putting in a
+**[00:04:13]** very obvious bug and seeing saying, hey, check it out.
+**[00:04:16]** The tool showed me what the problem is.
+**[00:04:18]** Like, that's just not realistic of what we do as
+**[00:04:21]** software engineers.
+**[00:04:22]** And so I always like to go to some sort
+**[00:04:24]** of popular repository and see what I can do to
+**[00:04:27]** try and improve performance.
+**[00:04:29]** And so one of my favorite ways to do this
+**[00:04:31]** is I go to nugent.org, I just kind of Scroll
+**[00:04:34]** down some of the packages, see what's super popular.
+**[00:04:37]** And in this case, I'm going to for this talk,
+**[00:04:39]** I want to see if we can optimize CSV Helper.
+**[00:04:42]** So it's the 16th most downloaded Nugent package at 51
+**[00:04:46]** million downloads, super popular package.
+**[00:04:50]** If we can try and optimize that, we have a
+**[00:04:52]** potential to really help a lot of people.
+**[00:04:55]** And So what I did is I went ahead, I
+**[00:04:57]** cloned it, I opened the solution in Visual Studio and
+**[00:05:01]** you can see there's CSV helper.
+**[00:05:03]** There's already a CSV Helper benchmarks project, which is awesome.
+**[00:05:07]** That was actually added by yours truly in a previous
+**[00:05:09]** talk.
+**[00:05:10]** I've reused this repository a couple of times.
+**[00:05:13]** We also have tests, which are great.
+**[00:05:14]** So as we, you know, go through that optimization loop,
+**[00:05:17]** we can run the test, make sure we didn't actually
+**[00:05:19]** break functionality because although we want to make things faster,
+**[00:05:22]** we don't want to break things.
+**[00:05:25]** And then there's the website.
+**[00:05:27]** And so in the previous talk, I created a benchmark.
+**[00:05:31]** And for those of you that aren't familiar with benchmark.net
+**[00:05:35]** and how benchmarks work, this is a just a very
+**[00:05:38]** simple benchmark.
+**[00:05:39]** It's like I said, it's very similar to a unit
+**[00:05:42]** test.
+**[00:05:43]** There's a global setup piece to it, so you can
+**[00:05:46]** do all kinds of initialization before the benchmark itself actually
+**[00:05:50]** runs.
+**[00:05:51]** This is great because you can extract the parts that
+**[00:05:53]** you're not actually trying to measure.
+**[00:05:56]** And so in this benchmark, it's trying to enumerate records.
+**[00:06:00]** So it's trying to see how fast CSV Helper can
+**[00:06:04]** actually read ACSV file.
+**[00:06:06]** But I need some sort of test data to test
+**[00:06:08]** it on.
+**[00:06:09]** And so this global setup lets me set that up.
+**[00:06:11]** So I'm not benchmarking setting up my test data, right.
+**[00:06:13]** I'm just benchmarking the actual code that I'm interested in
+**[00:06:17]** which is this enumerate records.
+**[00:06:19]** Another interesting thing to kind of point out here is
+**[00:06:22]** in this enumerate records, you see it starts off by
+**[00:06:25]** setting the stream position equal to 0.
+**[00:06:28]** What I'm actually doing here is in the setup I'm
+**[00:06:31]** creating this CSV file and it's being put into a
+**[00:06:35]** memory stream and then I need to write that CSV
+**[00:06:38]** file and I don't want to pay the cost of
+**[00:06:41]** constantly expanding buffers and flushing out to disk.
+**[00:06:45]** I'm really trying to isolate the code that is doing
+**[00:06:47]** the actual enumeration.
+**[00:06:49]** And so I reset that stream and I keep it
+**[00:06:52]** in memory.
+**[00:06:53]** And so again, I'm just trying to measure the impact
+**[00:06:56]** of the library itself.
+**[00:06:59]** And so we have a benchmark for actually enumerating records.
+**[00:07:04]** I want to go ahead, I want to try and
+**[00:07:07]** create a benchmark for writing records.
+**[00:07:10]** So we have the reading, now we can do the
+**[00:07:12]** writing.
+**[00:07:13]** And so I'm going to switch over to the Copilot
+**[00:07:15]** chat and I'm going to type App Profiler that says,
+**[00:07:18]** I want to talk to the profiler agent that knows
+**[00:07:20]** about benchmarking, that knows how to run the profiler, that
+**[00:07:23]** knows how to write benchmarks.
+**[00:07:24]** And I want to say write me a benchmark for
+**[00:07:30]** writing ACSV file.
+**[00:07:35]** And now Copilot's going to go off.
+**[00:07:37]** And with any luck, it's going to go ahead and
+**[00:07:39]** write that for us.
+**[00:07:42]** And the first thing we can see is in the
+**[00:07:44]** kind of little Go stacks, there is a Yep, let
+**[00:07:47]** me see if I can expand that real quick.
+**[00:07:50]** It read the existing benchmark.
+**[00:07:53]** I didn't tell it about the existing benchmark.
+**[00:07:55]** It knows that, hey, I'm writing benchmarks.
+**[00:07:57]** I should probably look at the other benchmarks that are
+**[00:08:00]** included in this project and try and write similar code.
+**[00:08:03]** And so it found that benchmark.
+**[00:08:05]** It then said, hey, there's no existing benchmarks that cover
+**[00:08:08]** CSV writing because if we already have one, why duplicate
+**[00:08:11]** that work?
+**[00:08:12]** Why don't we just reuse the existing one?
+**[00:08:14]** And so now it's searching through the project and it's
+**[00:08:17]** going to write out a benchmark and then the first
+**[00:08:20]** thing it says is, hey, it needs to install this
+**[00:08:23]** benchmark packages, this diagnostics hub, benchmark.net Diagnosers.
+**[00:08:27]** I'm going to go ahead and say confirm.
+**[00:08:29]** This was that integration that I talked about with the
+**[00:08:31]** Visual Studio.
+**[00:08:32]** Profilerbenchmark.net has this concept of diagnosers, which allow different tools
+**[00:08:37]** to pull diagnostic information from the benchmark while it's running.
+**[00:08:43]** Visual Studio has one of these packages published on Nugent
+**[00:08:46]** that allows it to interact with the profiler and pull
+**[00:08:49]** that data.
+**[00:08:50]** And so it went ahead.
+**[00:08:52]** It created the benchmark.
+**[00:08:53]** It compiles cleanly.
+**[00:08:55]** I can go and click on the right records and
+**[00:08:58]** you can see it wrote it in a very similar
+**[00:09:00]** fashion.
+**[00:09:01]** It still has that simple class.
+**[00:09:03]** It does a global setup.
+**[00:09:04]** Again, it does the right records.
+**[00:09:06]** It sets the position.
+**[00:09:08]** I don't want it to set the length of the
+**[00:09:10]** stream because I don't want it to reset the stream
+**[00:09:12]** every time.
+**[00:09:12]** I just want it to reset its position in the
+**[00:09:15]** stream.
+**[00:09:16]** And then I want to change this a little bit.
+**[00:09:18]** So I have this writing off this record that we're
+**[00:09:22]** going to serialize off.
+**[00:09:24]** And in this name field, it's just a bunch of
+**[00:09:26]** random characters.
+**[00:09:28]** I'm going to hit alt slash and I'm going to
+**[00:09:33]** ask Copilot to update this so half of the records
+**[00:09:39]** have a comma delimiter in them.
+**[00:09:44]** And so I can kind of work with Copilot to
+**[00:09:47]** try and iterate on the benchmark itself.
+**[00:09:49]** In this case, I want to try and add some
+**[00:09:51]** commas to the fields because that'll make it a little
+**[00:09:54]** bit more interesting, little bit more realistic in my data.
+**[00:09:57]** So you can see it took a very simple approach
+**[00:10:00]** here where it just modded by two, dropped a comma
+**[00:10:03]** in there, nothing super, super crazy.
+**[00:10:07]** And so now I have my benchmark.
+**[00:10:11]** And so if you remember back to that loop would
+**[00:10:13]** now get to jump into the actual optimization part.
+**[00:10:16]** And this is the fun part.
+**[00:10:18]** And so I'm already talking with the profiler.
+**[00:10:21]** It's already asking, hey, do you want to run this
+**[00:10:22]** to establish a baseline?
+**[00:10:23]** And I'm going to say run the and I'll type
+**[00:10:26]** the hash and you can see this menu pops up.
+**[00:10:30]** And this is the way I can provide additional context
+**[00:10:34]** to copilot and I can say run the right records
+**[00:10:38]** benchmark and optimize the code that it calls.
+**[00:10:43]** And what that slug does is it provides that context
+**[00:10:47]** to copilot.
+**[00:10:47]** And the better context you can provide it, the more
+**[00:10:50]** likely it is going to be to do the operations
+**[00:10:53]** that you want.
+**[00:10:54]** And so I gave it that very specific like this
+**[00:10:56]** is the benchmark that I want you to run.
+**[00:11:01]** And so now it is reading through some of my
+**[00:11:04]** files, it looks like it's reading benchmark dot main.
+**[00:11:11]** And it picked up on this fact that previously in
+**[00:11:13]** the benchmarks, we only had a single benchmark that I
+**[00:11:16]** added during my previous talk.
+**[00:11:18]** And so I was just directly running that benchmark and
+**[00:11:20]** it says, hey, I need to be able to pick
+**[00:11:22]** the benchmark that I want to run.
+**[00:11:24]** So it automatically switched over to benchmark Switcher so it
+**[00:11:28]** can control the benchmarks that run at runtime.
+**[00:11:31]** And then behind the scenes, it's actually running benchmark.net.
+**[00:11:36]** And so if you ran this in the debugger or
+**[00:11:38]** you ran in this from a terminal, you would normally
+**[00:11:41]** get a terminal window that pops up and it's going
+**[00:11:43]** to have a whole bunch of spew that's popping out
+**[00:11:46]** that's saying like, hey, this is the iteration that we're
+**[00:11:49]** on.
+**[00:11:49]** This is how long each one of these has taken.
+**[00:11:51]** You can see we're right about 1.41.5 milliseconds.
+**[00:11:57]** And so it would spew all that out, the agents
+**[00:12:00]** just capturing all of that, collecting it here.
+**[00:12:03]** And then it at the end it's actually getting a
+**[00:12:05]** benchmark or it's getting a profiling trace, I should say.
+**[00:12:09]** And so it's saving to a directory and then it
+**[00:12:12]** automatically opens up in Visual Studio and then it can
+**[00:12:16]** start getting into the optimization.
+**[00:12:18]** And so at this point we have our benchmark, so
+**[00:12:21]** we have that reusable test harness, we now have a
+**[00:12:24]** trace from that.
+**[00:12:25]** And so we know where it is that we want
+**[00:12:27]** to or we have a trace that tells us where
+**[00:12:29]** time is being spent and where we might want to
+**[00:12:32]** try and do some investigation.
+**[00:12:35]** So I'm going to hit stop here real quick because
+**[00:12:37]** sometimes the agent gets a little excited and says, hey,
+**[00:12:40]** I see what the problem is.
+**[00:12:41]** Let me go fix that.
+**[00:12:43]** We've tried to tell it not to, but sometimes it
+**[00:12:44]** gets a little excited.
+**[00:12:46]** It went ahead, it did the analysis for us and
+**[00:12:49]** it said, hey, the biggest hotspot is this expression compile,
+**[00:12:54]** followed by the should quote and then this dynamic multicast
+**[00:12:58]** delegate.
+**[00:13:00]** And it's saying like, hey, the biggest win, of course
+**[00:13:02]** is the thing that uses the most amount of CPU.
+**[00:13:04]** Let me go ahead and try and optimize that.
+**[00:13:08]** I'll be honest, I've tried to optimize this a couple
+**[00:13:10]** of times and I always seem to fail.
+**[00:13:11]** And so I don't want to optimize the top most
+**[00:13:14]** item.
+**[00:13:15]** And if you remember back to that pipeline, like I
+**[00:13:18]** said, like if you can't get the improvement, just go
+**[00:13:20]** back and picking up the next biggest thing to try
+**[00:13:23]** and optimize.
+**[00:13:24]** So instead I'm going to say optimize the should quote
+**[00:13:30]** logic and so I can steer it down another investigation
+**[00:13:36]** path.
+**[00:13:37]** And so it's going to start thinking says user wants
+**[00:13:39]** me to investigate this other thing instead.
+**[00:13:42]** So it's going to go and it's going to investigate
+**[00:13:45]** the should quote logic it's going through, it's reading relevant
+**[00:13:49]** source it is.
+**[00:13:50]** And it's the interesting thing here is it's not just
+**[00:13:52]** grepping through your source base.
+**[00:13:54]** It's using the go to source functionality and the profiler.
+**[00:13:56]** It's using that profiling data to see exactly which lines
+**[00:14:00]** are taking the most amount of time and then it's
+**[00:14:02]** using that to guide the investigation that it's doing.
+**[00:14:06]** And so it is continuing to go through and it
+**[00:14:11]** looks like it says the best optimization is to combine
+**[00:14:16]** the character checks into a single pass and the should
+**[00:14:22]** quote method looks like and click here looks like.
+**[00:14:26]** The should quote method had this really Pretty Little Boolean
+**[00:14:31]** logic block that did a bunch of operations in very
+**[00:14:35]** few lines and copilot saying like, hey, you might be
+**[00:14:40]** iterating that too many times.
+**[00:14:42]** And instead let's just do a single pass through and
+**[00:14:45]** let's try and optimize how we're iterating over it so
+**[00:14:48]** we're not doing multiple iterations.
+**[00:14:51]** And the interesting thing here is as soon as it
+**[00:14:54]** went and did that optimization, you noticed it said, hey,
+**[00:14:57]** I need to rerun the benchmark to measure the improvement.
+**[00:15:01]** And so this is the really important part.
+**[00:15:03]** Again, like I was saying earlier, once you're in that
+**[00:15:06]** optimization loop, you want to measure, you establish your baseline,
+**[00:15:10]** then you change your code, then you always remeasure because
+**[00:15:13]** you want to see what was the impact of that
+**[00:15:15]** change.
+**[00:15:16]** Because if you're not actually measuring with data, you're not
+**[00:15:19]** optimizing, you're just refactoring code.
+**[00:15:22]** And so the data is really what turns it from
+**[00:15:24]** a refactoring into an optimization.
+**[00:15:28]** And so we can see the result summary.
+**[00:15:33]** Yep, scrolling a little bit too quick for me.
+**[00:15:36]** Before the baseline was 1.4, milliseconds afterwards was 1.4.
+**[00:15:41]** So unfortunately, we didn't get a good meaningful performance improvement
+**[00:15:46]** here.
+**[00:15:47]** But you could see the should quote did drop from
+**[00:15:50]** 13% to 7%.
+**[00:15:52]** And it looks like some other code started taking up
+**[00:15:56]** more of the time.
+**[00:15:57]** And so I could continue my investigation here with Copilot.
+**[00:16:02]** I could say like, hey, let's go ahead, let's try
+**[00:16:04]** and optimize the crate write delegate.
+**[00:16:07]** I could run a memory profile to go through and
+**[00:16:09]** I could check the allocations.
+**[00:16:11]** That way I could click the show, create write delegate
+**[00:16:16]** implementation.
+**[00:16:18]** I'll be honest, I did run this before the talk
+**[00:16:22]** and we actually created APR because we were able to
+**[00:16:25]** actually switch over to the conversation.
+**[00:16:29]** We were actually able to meaningfully improve this with Copilot.
+**[00:16:32]** I'm not sure why it didn't improve today.
+**[00:16:35]** I'd have to dig through the logic a little bit
+**[00:16:36]** more.
+**[00:16:37]** But our metrics did go from about 1.1 milliseconds down
+**[00:16:42]** to .8 milliseconds.
+**[00:16:44]** And while it doesn't seem like a whole lot, that's
+**[00:16:47]** a 25% win, a lot of times, like the improvements
+**[00:16:50]** that you get with software, it's not going to be
+**[00:16:53]** a magical like, oh, I fixed this one line and
+**[00:16:56]** it was 10X faster.
+**[00:16:58]** It's these small little paper cuts all over your code
+**[00:17:00]** base that are really just tripping you up and really
+**[00:17:03]** starting to hurt you.
+**[00:17:05]** And so with the Copilot agent, you can just have
+**[00:17:08]** it go through and run these and try and optimize
+**[00:17:12]** as as you have time.
+**[00:17:14]** And so we didn't get the optimization here, but one
+**[00:17:18]** of the interesting follow-ups that I kind of want to
+**[00:17:22]** leave everyone with is we now have this nice reusable
+**[00:17:26]** artifact that goes with the repository.
+**[00:17:29]** We can use this for additional profiling and I can
+**[00:17:32]** also use this to learn about the profiling that I'm
+**[00:17:36]** doing.
+**[00:17:36]** And so I could ask copilot, since we did a
+**[00:17:42]** single pass instead of multiple passes, why is this not
+**[00:17:50]** faster?
+**[00:17:52]** And it's not just you don't just have to use
+**[00:17:55]** Copilot to invoke tools and get these things done.
+**[00:17:58]** You can use it to actually learn and kind of
+**[00:18:00]** grow as a software engineer as well.
+**[00:18:02]** I'll be honest, I've Copilot has found some very interesting
+**[00:18:06]** optimizations for me in the past.
+**[00:18:08]** And I've asked it like, I don't understand what's happening
+**[00:18:11]** here.
+**[00:18:11]** And it's like, oh, did you know this like weird
+**[00:18:14]** quirk about the JIT will stop inlining code after so
+**[00:18:17]** many IL instructions in a method?
+**[00:18:20]** And I had no idea and I learned something new.
+**[00:18:22]** And so you can use copilot to not only kind
+**[00:18:25]** of achieve the results that you're looking for, but you
+**[00:18:28]** can also use it to learn and grow as a
+**[00:18:30]** software engineer as well.
+**[00:18:33]** And so with that, just want to switch back to
+**[00:18:38]** the presentation deck, some next steps, if you get a
+**[00:18:42]** chance, go see if you can reproduce the same.
+**[00:18:47]** Hopefully by reproducing the same, I mean, you actually reproduce
+**[00:18:51]** a performance win and you don't reproduce the non win
+**[00:18:54]** that I got here.
+**[00:18:55]** There is the CSV helper library as a resource.
+**[00:18:58]** It's uploaded in the GitHub repo for the session.
+**[00:19:03]** The author is super nice guy.
+**[00:19:05]** We'll work with you.
+**[00:19:07]** CSV helper optimization PR is there and then the profiler
+**[00:19:10]** agent documentation and then some other interesting related sessions later
+**[00:19:14]** on.
+**[00:19:15]** Today, Mads and I are going to be doing breakout
+**[00:19:17]** session two O 7 on the Mainstage.
+**[00:19:20]** And we're actually going to show off not only the
+**[00:19:22]** profiler agent, but the debugging agent and creating unit tests
+**[00:19:26]** as well and how we actually use that on Visual
+**[00:19:29]** Studio to improve the performance of Visual Studio and improve
+**[00:19:33]** the reliability of Visual Studio.
+**[00:19:37]** And so with that, thank you.
+**[00:19:40]** I can take any questions.
+**[00:19:44]** The question was what time is the breakout session?
+**[00:19:45]** Breakout session is at 4:00.
+**[00:20:01]** OK, so the question was how do you inject functional
+**[00:20:04]** testing into the group if into the loop if copilot
+**[00:20:07]** broke the functionality?
+**[00:20:10]** So a lot of times you can tell Copilot, these
+**[00:20:13]** are the tests that I have.
+**[00:20:15]** Please run these after any of the optimizations that you've
+**[00:20:18]** done and then it will go through and use that
+**[00:20:20]** as a validation layer in the breakout session that we're
+**[00:20:23]** doing later.
+**[00:20:24]** We're actually going to use copilots, the profilers ability to
+**[00:20:28]** profile a unit test, to profile the unit test up,
+**[00:20:30]** improve the optimization and because it's using the unit test,
+**[00:20:34]** it's like, oh hey, I can use that for functionality
+**[00:20:37]** as well.
+**[00:20:37]** So it'll do that.
+**[00:20:52]** Yep, yeah.
+**[00:21:05]** So the question was, can you use the profiler to
+**[00:21:08]** help you interpret the results that you're seeing in the
+**[00:21:11]** trace?
+**[00:21:12]** And the answer is yes, you can totally do that.
+**[00:21:14]** You can ask questions of it.
+**[00:21:17]** I'm actually going to flip back here real quick.
+**[00:21:19]** So the first thing you can do is you can
+**[00:21:21]** just hit this analyze button.
+**[00:21:23]** We can run it today and it'll say like, hey,
+**[00:21:26]** can you suggest some optimizations for this trace?
+**[00:21:28]** It's going to go ahead.
+**[00:21:29]** It's going to look at the top functions.
+**[00:21:31]** It's going to look at the call path, the hot
+**[00:21:33]** path, It's going to look at the caller Callie, and
+**[00:21:36]** it's going to try and digest some of the ideas.
+**[00:21:39]** This is just the main trace that opens up.
+**[00:21:42]** And then there's this top insights.
+**[00:21:44]** So we have top insights that fire on known bad
+**[00:21:49]** patterns in.net C++, like trying to think of ACPU.
+**[00:21:53]** What?
+**[00:21:53]** So ACPU 1 might be like calling index of on
+**[00:21:57]** a linked list because it's got to iterate through, or
+**[00:22:01]** calling contains on a on just a regular list.
+**[00:22:04]** It'll say something like, hey, you should consider using a
+**[00:22:07]** set here instead because it can hash it and it
+**[00:22:09]** can get direct access instead of having to iterate through.
+**[00:22:13]** If you don't have any of those top insights, you
+**[00:22:15]** can always click the generate top insights and Copilot will
+**[00:22:18]** go through.
+**[00:22:19]** It'll read your trace and then it'll come up with
+**[00:22:21]** some ideas.
+**[00:22:23]** And so in this case, you can say it's removing
+**[00:22:28]** repeated null checks.
+**[00:22:31]** It can send you to the source code.
+**[00:22:33]** You can click on the optimize.
+**[00:22:36]** There's an I enumerable with a concrete type, so you
+**[00:22:40]** can avoid that to remove the box, the numerator I
+**[00:22:44]** believe, and then construct the stream writer with a large
+**[00:22:48]** buffer, so saving on your buffer cost in this case.
+**[00:22:53]** When you call the analyze on that trace, it doesn't
+**[00:22:56]** always pick up on the fact that it ran in
+**[00:22:58]** a benchmark, and so it might try and optimize some
+**[00:23:01]** of the surrounding benchmark codes.
+**[00:23:03]** You have to be a little careful there because I
+**[00:23:05]** really don't care to optimize that.
+**[00:23:06]** I want to optimize the user code instead.
+**[00:23:11]** So cool.
+**[00:23:15]** Thank you.

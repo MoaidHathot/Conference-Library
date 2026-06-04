@@ -1,0 +1,348 @@
+**[00:00:02]** Thank you, hope everyone is enjoying Microsoft build day one
+**[00:00:07]** in the afternoon guys made it.
+**[00:00:09]** My name is Ari Livigni.
+**[00:00:10]** I'm a senior learning advocate with GitHub.
+**[00:00:13]** And my name is Alejandro Menocal and I'm a senior
+**[00:00:16]** service delivery engineer at GitHub.
+**[00:00:19]** And we're going to talk about GitHub ejectic workflows and
+**[00:00:22]** how auto this automation actually reads the room and we'll
+**[00:00:26]** get it to the first slide.
+**[00:00:27]** We want to get into more of the demo.
+**[00:00:29]** The idea here is that instead of having to know
+**[00:00:33]** YAML for actions, you can define your workflows in Markdown.
+**[00:00:38]** You can even use Copilot to create those Markdown files
+**[00:00:41]** that then can be compiled into an agentic workflow.
+**[00:00:45]** So a lot of folks automation or CI is very
+**[00:00:48]** much centred around, you know, very being very rigid and,
+**[00:00:53]** and, and it has to do syntax errors.
+**[00:00:56]** It's hard to identify with agenda workflows.
+**[00:01:00]** You can really automate your, your CICD easily.
+**[00:01:06]** You can triage test failures.
+**[00:01:08]** It can identify.
+**[00:01:09]** It can create issues for you on a daily basis
+**[00:01:12]** or a daily report of your of your repo or
+**[00:01:15]** open up pull request.
+**[00:01:16]** And the idea is that it takes a lot of
+**[00:01:18]** the toil and the mundane things we have to do
+**[00:01:21]** as developers on our repos and automating that process for
+**[00:01:25]** you.
+**[00:01:25]** I don't know if you want to add anything.
+**[00:01:28]** And the idea too is right.
+**[00:01:30]** We have our agents and our models behind this.
+**[00:01:34]** So whether it's Copilot, clawed codecs or Gemini, any of
+**[00:01:38]** the models, it can dynamically diagnose, test failures, open up
+**[00:01:42]** pull request to make changes or maybe update your stack
+**[00:01:45]** and give you recommendations.
+**[00:01:48]** And there's already a deep ecosystem available on different types
+**[00:01:53]** of identic workflows.
+**[00:01:55]** There's a website that's part of this that you can
+**[00:01:58]** also go.
+**[00:01:58]** Look, we're actually releasing this in public preview next week.
+**[00:02:01]** So you'll get an idea that you can use it
+**[00:02:03]** yourself.
+**[00:02:05]** Also, we're going to walk through a skills exercise that
+**[00:02:08]** you could take and use your own GitHub handle to
+**[00:02:11]** learn how to do this and see how it works
+**[00:02:13]** first hand.
+**[00:02:14]** I guess we can go to the next slide.
+**[00:02:16]** So we're going to do with this exercise is we're
+**[00:02:19]** going to take a fictitious Mona website that is tasked
+**[00:02:22]** with looking at different updates on GitHub through its blogs,
+**[00:02:26]** it's change logs, maybe notes that we've written ourselves that
+**[00:02:30]** are in the repository.
+**[00:02:32]** And with that, we're going to constantly get updates on
+**[00:02:35]** all of that on some amount of frequency that we
+**[00:02:38]** want to then give us APR that shows us what
+**[00:02:40]** we can then either merge directly or obviously we probably
+**[00:02:44]** want to peer review that and look at what's been
+**[00:02:47]** created, have our teammates peer review that, and then we
+**[00:02:50]** can merge that pull request.
+**[00:02:53]** I guess with that, I think we can get into
+**[00:02:55]** the, let's get right into it since we have like
+**[00:02:57]** 20 minutes.
+**[00:02:57]** Cool.
+**[00:02:59]** So in this GitHub skills exercise, what Alejandro is going
+**[00:03:02]** to show you is we've already kind of started the
+**[00:03:05]** process because it takes longer than the 25 minutes we
+**[00:03:07]** have here.
+**[00:03:08]** But from start to finish, this GitHub skills exercise is
+**[00:03:13]** going to show you in an issue the different steps
+**[00:03:16]** you can take of how this works.
+**[00:03:19]** And with GitHub Agentic Workflows, we can automatically install it
+**[00:03:25]** and create a it'll create a PR for us of
+**[00:03:28]** how to install that in our repository.
+**[00:03:32]** And what Alejandro is showing you here is those files
+**[00:03:35]** that have been created.
+**[00:03:36]** So besides the markdown file, we have an agent file
+**[00:03:39]** which you can see it says Agentic Workflows.
+**[00:03:42]** And this is describes what the agent installed.
+**[00:03:45]** Just like if you have a custom agent, your repo
+**[00:03:48]** or the the coded the cloud agent that you have
+**[00:03:50]** normally in your repository.
+**[00:03:52]** This sits there in in your repository under the dock
+**[00:03:55]** GitHub directory.
+**[00:03:57]** We also have a skill that gets installed as part
+**[00:04:01]** of agentic workflows also.
+**[00:04:03]** So all of this once we create the PR and
+**[00:04:05]** I don't know if you want to show the command
+**[00:04:07]** line of what that looks like on the exercise.
+**[00:04:11]** So some of the set up here we installed here
+**[00:04:13]** and we just ran this command to create the pull
+**[00:04:16]** request and initialize our repo and have the completions already
+**[00:04:20]** set to go.
+**[00:04:21]** And that's what created the PR that Alejandro is showing
+**[00:04:23]** you.
+**[00:04:24]** So I'm going to go ahead and merge this in
+**[00:04:28]** so that you can see in action how this works.
+**[00:04:33]** Yeah, it has some good attributes to other files.
+**[00:04:36]** If you do this yourself, you'll see all the files
+**[00:04:38]** that get created.
+**[00:04:40]** Again, you can take this GitHub skills exercise and walk
+**[00:04:43]** through it to show exactly how it works yourself.
+**[00:04:46]** And you can take that and modify it and, you
+**[00:04:48]** know, maybe make some changes or make it work for
+**[00:04:50]** yourself.
+**[00:04:51]** And what this does is really doing the setup right,
+**[00:04:55]** of setting up that identic workflow.
+**[00:04:58]** And what we have here is really those, you know,
+**[00:05:01]** like for example the Copilot setup steps, it kind of
+**[00:05:04]** goes automatically scaffolds this for you, right?
+**[00:05:07]** So you don't have to start from scratch and instead
+**[00:05:11]** you can then have this framework and then build upon
+**[00:05:14]** it depending on what you want to do, whether it
+**[00:05:17]** is auto fix, CICD or automatically updating your website, right?
+**[00:05:21]** This is the.
+**[00:05:22]** This is where you add basically the business value of
+**[00:05:25]** what you want to build.
+**[00:05:26]** And it even installs an MCP server as well as
+**[00:05:30]** part of it so that.
+**[00:05:33]** So again, this is like a self-contained early ready to
+**[00:05:36]** go.
+**[00:05:36]** Like Alejandra said, it's early scaffolding, maybe some of the
+**[00:05:41]** checks we have in there for the exercise too.
+**[00:05:44]** We'll take a look at fixing that.
+**[00:05:46]** But now we're going to do is we're going to
+**[00:05:48]** go on to, we're going to prompt and we're going
+**[00:05:51]** to use that agent.
+**[00:05:55]** Yeah, and we're going to do that.
+**[00:05:58]** Let's choose the agent in the maybe make that a
+**[00:06:00]** little bit bigger.
+**[00:06:01]** So now we're picking the agentic workflow agent and we're
+**[00:06:05]** going to give it directions to create this workflow for
+**[00:06:09]** us that's going to update the website for us.
+**[00:06:12]** So we want to make sure we're on the latest
+**[00:06:14]** main branch.
+**[00:06:15]** We're going to create a new branch and we're going
+**[00:06:18]** to update our info file that's used for our website.
+**[00:06:21]** So we get the latest GitHub updates from the blog,
+**[00:06:24]** changelog and so on.
+**[00:06:32]** And what this should do is create, yeah, when this
+**[00:06:38]** should create our workflow file for us.
+**[00:06:42]** And then we're going to have to compile that.
+**[00:06:44]** So part of this project, project or process with the
+**[00:06:47]** agentic workflows is that we have to compile.
+**[00:06:50]** Since it's just a markdown file, we have to do
+**[00:06:53]** that so that it actually generates a YAML file that
+**[00:06:57]** it it's called a lock file that it knows what
+**[00:07:00]** to do to run those workflows.
+**[00:07:08]** And we're, we added a little bit something extra here
+**[00:07:11]** that the agent sometimes will automatically compile it for you.
+**[00:07:14]** But we wanted to show that step.
+**[00:07:16]** So that's why we had that in there as in
+**[00:07:18]** the directions.
+**[00:07:22]** And now Alejandro's adding this one extra section to the
+**[00:07:26]** to the actual agent so that it goes through that.
+**[00:07:29]** So you can also modify that agent.
+**[00:07:32]** If there's something specific you want to do with your
+**[00:07:35]** agentic workflow for that agent to do all the time,
+**[00:07:37]** you can add that to the agent.
+**[00:07:51]** It's so one of the differences here, in case you
+**[00:07:54]** know it was sorry about the demo, but we hear
+**[00:07:57]** this agent is really helping us to create agentic workflows,
+**[00:08:01]** right.
+**[00:08:01]** So we are using this agent to help us create
+**[00:08:04]** those agentic workflow.
+**[00:08:05]** So it currently what we're doing is basically this agent
+**[00:08:09]** gives us the scaffold to create more agentic workflows, right?
+**[00:08:14]** And so the next step that I'm going to do
+**[00:08:17]** here, it's basically add the instructions to create the agentic
+**[00:08:22]** workflow that's actually going to update our our website, right?
+**[00:08:27]** And in here I have for example, when is it
+**[00:08:30]** going to run?
+**[00:08:31]** What access am I given to?
+**[00:08:32]** And then disigentic workflows in order for them to be
+**[00:08:36]** secure, we are not actually giving the agent any permissions
+**[00:08:39]** besides read access to the repository, but instead we use
+**[00:08:43]** something called safe output, which is something that happens after
+**[00:08:47]** the agent runs.
+**[00:08:48]** So that the, so that basically that workflow, that step
+**[00:08:51]** in the workflow is the one that has the access
+**[00:08:54]** to perform the actions, whether it is to create an
+**[00:08:57]** issue, to create a pull request.
+**[00:08:59]** And that's how we segregate those responsibilities from the agent,
+**[00:09:04]** just having all types of access.
+**[00:09:06]** Yeah.
+**[00:09:07]** So we can't hallucinate or delete your code base or,
+**[00:09:09]** you know, remove files from your repository.
+**[00:09:12]** It's always going to be where you're in control.
+**[00:09:15]** It's going to do that automation for you, but you're
+**[00:09:17]** going to be the one that ultimately decides, is this
+**[00:09:19]** something that's useful from what's generated or do you want
+**[00:09:22]** to throw it away?
+**[00:09:25]** So currently with that prompt, right, what I'm just using
+**[00:09:28]** is I'm using that agent agent to create the agentic
+**[00:09:31]** workflow.
+**[00:09:32]** And currently it's, you know, going to be thinking about
+**[00:09:35]** that it's using that skill that we show that came
+**[00:09:37]** with the scaffold in order to create that this new
+**[00:09:40]** agentic workflow.
+**[00:09:44]** So now and as you can see the steps, it's
+**[00:09:46]** creating that workflow for us.
+**[00:09:47]** It's preparing it.
+**[00:09:49]** And you can see as if you've used copilot chat
+**[00:09:52]** and the ID.
+**[00:09:52]** This should look familiar to you to see all the
+**[00:09:54]** steps that it's doing.
+**[00:10:00]** Should be generating a file soon and the website we're
+**[00:10:06]** doing this is just a basic Astro website and that's
+**[00:10:11]** actually running right now too.
+**[00:10:16]** This is the.
+**[00:10:16]** Website.
+**[00:10:17]** Go ahead.
+**[00:10:18]** No go.
+**[00:10:19]** Ahead, this is a website that has the information and
+**[00:10:22]** I think if you see at the top, it should
+**[00:10:25]** say the date on it goes a little bit lower,
+**[00:10:27]** right?
+**[00:10:30]** Yeah, March 17th.
+**[00:10:31]** So that's when I initially started creating this exercise.
+**[00:10:34]** So it has that static information and the identic workflow
+**[00:10:37]** is what's going to allow us to keep that up
+**[00:10:40]** to date with new.
+**[00:10:41]** You know, as you've seen announcements today about GitHub Copilot
+**[00:10:44]** features or agents, that would be something that would be
+**[00:10:47]** pulled from the blog or the change log as an
+**[00:10:50]** example.
+**[00:10:50]** This maybe could be something in your repository of a
+**[00:10:53]** stack that you have that has versions that may be
+**[00:10:56]** out of date.
+**[00:10:57]** And that's another example that it would look at that
+**[00:10:59]** and then automatically give you APR to give you those
+**[00:11:02]** updates.
+**[00:11:10]** Here we go, and now.
+**[00:11:20]** So it's adding the, yeah, the latest GitHub updates.
+**[00:11:22]** Yeah.
+**[00:11:25]** Whoops, I didn't mean to do that.
+**[00:11:29]** Did you just delete their word?
+**[00:11:30]** Yeah.
+**[00:11:32]** There you go.
+**[00:11:33]** Oh, you just closed it.
+**[00:11:34]** OK.
+**[00:11:41]** So that's that markdown file that update GitHub info dot
+**[00:11:44]** MD that you can see created.
+**[00:11:45]** That's our agentic workflow.
+**[00:11:48]** And then the next step that Alejandro is going to
+**[00:11:51]** do is what's going to compile that markdown file.
+**[00:11:53]** That then is our workflow that we can run at
+**[00:11:56]** a certain frequency.
+**[00:11:58]** And I believe there is a frequency in there, but
+**[00:12:01]** you can also, we asked it to also do it
+**[00:12:03]** on demand that if we wanted to do this whenever
+**[00:12:05]** we want, we can do that as well.
+**[00:12:07]** Just like any GitHub Actions workflow that you're used to
+**[00:12:10]** running, it's the same applies.
+**[00:12:13]** So that if you're familiar with GitHub Actions, this is
+**[00:12:16]** just GitHub Actions kind of on steroids with the identity
+**[00:12:19]** agentic workflows.
+**[00:12:24]** Still thinking?
+**[00:12:25]** Still still creating.
+**[00:12:26]** Yeah.
+**[00:12:32]** And obviously, like with any of, of anything you do
+**[00:12:35]** with Copilot or the agents, you can iterate with that
+**[00:12:39]** agentic workflow.
+**[00:12:40]** You can add like we added a complete comment in
+**[00:12:43]** there that we did not want it to compile.
+**[00:12:45]** Maybe there's other things that we want to add to
+**[00:12:48]** the agent to make it work better for us.
+**[00:12:50]** Maybe there's other pieces of the agentic workflow that we've
+**[00:12:54]** created that we also want to modify as well.
+**[00:12:57]** There we go.
+**[00:12:59]** What's reading it?
+**[00:13:00]** It's reading it, yeah.
+**[00:13:04]** So it's checking the schedule.
+**[00:13:07]** Can we open that file?
+**[00:13:11]** Should be under workflows.
+**[00:13:15]** Yeah, yeah.
+**[00:13:17]** So here is the the markdown file, right?
+**[00:13:24]** It's very basic.
+**[00:13:25]** There's also a front matter that's at the top, I
+**[00:13:28]** believe.
+**[00:13:29]** Yep.
+**[00:13:29]** This is all the front matter that basically instructs the
+**[00:13:33]** general directions that we told it in natural language of
+**[00:13:37]** what we wanted, and now it's generated this file for
+**[00:13:40]** us and our next step is now to compile that
+**[00:13:43]** file.
+**[00:13:52]** Tools allowed.
+**[00:14:02]** It's calling out.
+**[00:14:04]** Site Contents.
+**[00:14:16]** Let's try compiling 1 again.
+**[00:14:21]** Saying filter name.
+**[00:14:23]** Safe output assigned to user.
+**[00:14:36]** I am compiling the right one right workflows of the
+**[00:14:41]** GitHub info workflows Yeah web fetch edit it's.
+**[00:14:48]** Doesn't like the word.
+**[00:14:48]** Allowed oh here.
+**[00:14:51]** There's another one too, but I don't know if that's.
+**[00:15:01]** There we.
+**[00:15:02]** Go no.
+**[00:15:02]** It says write for contents.
+**[00:15:05]** Write is not allowed for security.
+**[00:15:06]** Use safe outputs.
+**[00:15:07]** Create issue to perform.
+**[00:15:09]** Write.
+**[00:15:09]** It's part of the writing and sandboxing stuff too that
+**[00:15:14]** doesn't allow you to the contents write.
+**[00:15:19]** Oh, here should.
+**[00:15:19]** Be read, write.
+**[00:15:21]** Read Yeah.
+**[00:15:25]** Write.
+**[00:15:25]** I think write for the pull request is correct.
+**[00:15:37]** No, I think it's.
+**[00:15:39]** Didn't create our let's see there we go OK so
+**[00:15:44]** now we had to make some tweaks to the front
+**[00:15:48]** matter but now we can submit that we can add
+**[00:15:53]** that file got about a minute left so we're going
+**[00:15:58]** to kind of breeze through this but this should have.
+**[00:16:06]** The lock file if you want to talk about that.
+**[00:16:07]** Yeah.
+**[00:16:08]** So the lock file is what gets generated and that's
+**[00:16:10]** the actual workflow.
+**[00:16:11]** And I don't know if we can bring that up,
+**[00:16:13]** show that too real quick.
+**[00:16:14]** But the the lock file is the actual actions workflow
+**[00:16:18]** that's going to run.
+**[00:16:19]** The the MD file that we just showed you is
+**[00:16:22]** the natural language markdown that you can do that, that
+**[00:16:25]** you can control and check in the lock file something
+**[00:16:28]** that gets generated as part of the compilation.
+**[00:16:32]** We got about 30 seconds left.
+**[00:16:36]** Again, you can take this exercise afterwards and play around
+**[00:16:41]** with yourself.
+**[00:16:42]** We'll make some tweaks to it, make sure it runs
+**[00:16:44]** seamlessly.
+**[00:16:45]** And also there's probably been updates to agentic workflows too
+**[00:16:48]** that we have to account for.
+**[00:16:49]** But this is the workflow file here.
+**[00:16:52]** And then maybe just show the this, yeah, the, yeah,
+**[00:16:55]** the slide.
+**[00:16:57]** If you want to try this GitHub skills exercise, you
+**[00:17:00]** can go here.
+**[00:17:03]** And if you yeah, so if you have that link,
+**[00:17:06]** you can go to that link via the QR code
+**[00:17:09]** and try to get up skills exercise out for yourself.
+**[00:17:14]** We'll we'll be iterating on it, making improvements as we
+**[00:17:17]** go.
+**[00:17:17]** But thank you for the time and I hope you
+**[00:17:19]** enjoyed the session on Eugenic Workflows.
+**[00:17:22]** Thank you.

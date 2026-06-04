@@ -1,0 +1,2616 @@
+WEBVTT
+
+00:00:00.360 --> 00:00:01.170
+JEFFREY SUTHERLAND:
+In this session,
+
+00:00:01.170 --> 00:00:03.150
+we're discussing something
+we all know is true.
+
+00:00:03.150 --> 00:00:05.250
+Security is getting harder.
+
+00:00:05.250 --> 00:00:07.980
+Threats scale, attackers adapt.
+
+00:00:07.980 --> 00:00:10.500
+Even when you do the right
+things, underlying assumptions
+
+00:00:10.500 --> 00:00:13.440
+in your apps or in the
+platform create risk.
+
+00:00:13.440 --> 00:00:15.810
+And AI is transforming
+how attackers operate
+
+00:00:15.810 --> 00:00:18.300
+and how we all must respond.
+
+00:00:18.300 --> 00:00:20.730
+In Windows, we're
+changing the model.
+
+00:00:20.730 --> 00:00:24.150
+But this isn't just Microsoft's
+problem, nor is it yours.
+
+00:00:24.150 --> 00:00:26.010
+We're in this together.
+
+00:00:26.010 --> 00:00:28.350
+We're raising the security
+baseline in Windows
+
+00:00:28.350 --> 00:00:31.080
+so you can rely on
+stronger defaults
+
+00:00:31.080 --> 00:00:34.710
+and your customers stay
+safer out of the box.
+
+00:00:34.710 --> 00:00:36.540
+It's a shared responsibility
+
+00:00:36.540 --> 00:00:40.080
+that creates a safer
+environment for all.
+
+00:00:40.080 --> 00:00:42.960
+We remove insecure patterns
+from the platform.
+
+00:00:42.960 --> 00:00:45.990
+You build on modern,
+supported foundations.
+
+00:00:45.990 --> 00:00:49.870
+That's how we reduce risk
+across the entire ecosystem.
+
+00:00:51.300 --> 00:00:52.560
+Let's frame the journey.
+
+00:00:52.560 --> 00:00:55.410
+You'll see our shifts
+across three dimensions.
+
+00:00:55.410 --> 00:00:57.540
+Reducing insecure legacy.
+
+00:00:57.540 --> 00:00:59.490
+Enforcing code trust by default.
+
+00:00:59.490 --> 00:01:02.950
+And preparing for the next
+generation of cryptography.
+
+00:01:04.800 --> 00:01:07.680
+Let's start by removing
+some legacy code.
+
+00:01:07.680 --> 00:01:10.200
+NTLM creates real risk.
+
+00:01:10.200 --> 00:01:11.370
+We all know it.
+
+00:01:11.370 --> 00:01:13.410
+Many environments
+still depend on it.
+
+00:01:13.410 --> 00:01:16.680
+We're removing that risk while
+preserving real-world scenarios
+
+00:01:16.680 --> 00:01:19.950
+so you can move forward without
+breaking your customers.
+
+00:01:19.950 --> 00:01:21.750
+Start planning that
+transition now
+
+00:01:21.750 --> 00:01:24.330
+so your customers don't
+feel the impact later.
+
+00:01:24.330 --> 00:01:25.470
+Now, Mariam will walk you
+
+00:01:25.470 --> 00:01:28.290
+through how the platform is
+changing and what we're doing
+
+00:01:28.290 --> 00:01:32.250
+to minimize the impact
+on you and your users.
+
+00:01:32.250 --> 00:01:33.840
+MARIAM GEWIDA: Thanks, Jeffrey.
+
+00:01:33.840 --> 00:01:36.780
+Like you mentioned, let's
+first look at what NTLM is
+
+00:01:36.780 --> 00:01:39.360
+and why it's considered
+weak and outdated.
+
+00:01:39.360 --> 00:01:41.100
+NTLM is an
+authentication protocol
+
+00:01:41.100 --> 00:01:43.710
+that goes all the way
+back to the early 2000s.
+
+00:01:43.710 --> 00:01:45.240
+It has since been deprecated,
+
+00:01:45.240 --> 00:01:47.610
+meaning it is no
+longer undergoing any
+
+00:01:47.610 --> 00:01:49.020
+active development.
+
+00:01:49.020 --> 00:01:52.110
+And organizations are strongly
+encouraged to move away from it
+
+00:01:52.110 --> 00:01:56.160
+and onto more secure
+protocols like Kerberos.
+
+00:01:56.160 --> 00:01:59.850
+Let's go through a typical
+NTLM authentication flow.
+
+00:01:59.850 --> 00:02:03.510
+In this scenario, a client is
+trying to access a resource.
+
+00:02:03.510 --> 00:02:05.010
+It connects to the server.
+
+00:02:05.010 --> 00:02:08.730
+The server asks who you are,
+which is the challenge.
+
+00:02:08.730 --> 00:02:11.040
+And then the client provides
+a string with a username
+
+00:02:11.040 --> 00:02:13.620
+and password plus the
+response to the challenge.
+
+00:02:13.620 --> 00:02:17.370
+The server gives access and the
+authentication goes through.
+
+00:02:17.370 --> 00:02:18.480
+But what's the issue?
+
+00:02:18.480 --> 00:02:21.180
+Number one, there's no
+server client verification.
+
+00:02:21.180 --> 00:02:23.460
+And so when the client is
+connecting to the server,
+
+00:02:23.460 --> 00:02:25.470
+it doesn't actually know
+that it is connecting
+
+00:02:25.470 --> 00:02:26.970
+to the intended server.
+
+00:02:26.970 --> 00:02:30.710
+So an attacker can intercept the
+request and act as the server.
+
+00:02:30.710 --> 00:02:33.230
+Problem number two, it
+is super weak and old.
+
+00:02:33.230 --> 00:02:35.450
+It uses super weak
+and old crypto.
+
+00:02:35.450 --> 00:02:37.160
+The message that the
+client sends back
+
+00:02:37.160 --> 00:02:41.390
+to the server uses an
+MD4-derived NT hash and HMAC MD5
+
+00:02:41.390 --> 00:02:44.840
+to compute the challenge
+response during authentication.
+
+00:02:44.840 --> 00:02:48.240
+And finally, problem number
+three, because of this lack
+
+00:02:48.240 --> 00:02:51.390
+of mutual authentication and
+the use of outdated crypto,
+
+00:02:51.390 --> 00:02:53.730
+an attacker can relay
+the challenge response
+
+00:02:53.730 --> 00:02:56.670
+to another server without
+cracking the password.
+
+00:02:56.670 --> 00:02:59.400
+So this, combined with
+the weak legacy hashing
+
+00:02:59.400 --> 00:03:03.480
+and the reusable NT hashes, this
+makes NTLM highly susceptible
+
+00:03:03.480 --> 00:03:06.270
+to relay and pass
+the hash attacks.
+
+00:03:06.270 --> 00:03:09.600
+Knowing this, you might wonder
+why NTLM is still prominent
+
+00:03:09.600 --> 00:03:11.220
+in so many environments.
+
+00:03:11.220 --> 00:03:12.480
+Some of the key scenarios
+
+00:03:12.480 --> 00:03:14.880
+where NTLM often
+becomes the only option
+
+00:03:14.880 --> 00:03:17.790
+for authentication are when
+there is no line of sight
+
+00:03:17.790 --> 00:03:20.580
+to a domain controller, in
+local account scenarios,
+
+00:03:20.580 --> 00:03:22.770
+or in scenarios where
+there is an unknown SPN
+
+00:03:22.770 --> 00:03:26.160
+or an IP address being used.
+
+00:03:26.160 --> 00:03:29.190
+So as part of our Windows
+security hardening mission,
+
+00:03:29.190 --> 00:03:30.600
+my team is fully committed
+
+00:03:30.600 --> 00:03:33.030
+to help organizations
+protect their environments
+
+00:03:33.030 --> 00:03:34.830
+against common attacks.
+
+00:03:34.830 --> 00:03:37.290
+And so to do so, we have
+prioritized the elimination
+
+00:03:37.290 --> 00:03:38.820
+of NTLM in Windows.
+
+00:03:38.820 --> 00:03:41.040
+However, given the
+several key scenarios
+
+00:03:41.040 --> 00:03:43.080
+where NTLM becomes
+the only option,
+
+00:03:43.080 --> 00:03:45.900
+we have dedicated our time to
+expanding Kerberos support
+
+00:03:45.900 --> 00:03:47.940
+in these exact scenarios.
+
+00:03:47.940 --> 00:03:50.760
+So first, we built IAKerb,
+which is an extension
+
+00:03:50.760 --> 00:03:54.570
+of Kerberos acting as a wrapper
+around Kerberos and enabling it
+
+00:03:54.570 --> 00:03:56.250
+in scenarios where the reach
+
+00:03:56.250 --> 00:03:58.440
+to a domain controller
+is restricted.
+
+00:03:58.440 --> 00:04:01.530
+We also built LocalKDC,
+which is designed to act
+
+00:04:01.530 --> 00:04:05.550
+as an authentication
+authority where it can talk
+
+00:04:05.550 --> 00:04:08.310
+to a SAM database on a given
+Windows instance and give
+
+00:04:08.310 --> 00:04:10.860
+out tickets for the
+identities that are local.
+
+00:04:10.860 --> 00:04:13.890
+So with IAKerb and LocalKDC,
+you can eliminate some
+
+00:04:13.890 --> 00:04:17.220
+of the most common uses of NTLM,
+further hardening the security
+
+00:04:17.220 --> 00:04:21.030
+of your organization
+and your environment.
+
+00:04:21.030 --> 00:04:23.370
+IAKerb and LocalKDC will
+be available in client
+
+00:04:23.370 --> 00:04:26.640
+and server WIP over the next
+few weeks, and you are going
+
+00:04:26.640 --> 00:04:28.860
+to be able to
+implement and test it.
+
+00:04:28.860 --> 00:04:33.420
+So now let's look at how IAKerb
+really works behind the scenes.
+
+00:04:33.420 --> 00:04:36.300
+In the first step, you see
+Kerberos authentication fails
+
+00:04:36.300 --> 00:04:39.540
+because there is no line of
+sight to the domain controller.
+
+00:04:39.540 --> 00:04:42.750
+The client then says, okay,
+I can still try IAKerb.
+
+00:04:42.750 --> 00:04:45.540
+So the client communicates
+with the server both options
+
+00:04:45.540 --> 00:04:48.150
+for authentication
+entailing Kerberos.
+
+00:04:48.150 --> 00:04:50.640
+The server acknowledges
+that it can use IAKerb
+
+00:04:50.640 --> 00:04:52.530
+and starts the
+negotiation process,
+
+00:04:52.530 --> 00:04:55.650
+first attempting IAKerb,
+and it succeeds.
+
+00:04:55.650 --> 00:04:58.110
+The client then gets the
+Kerberos tickets and succeeds
+
+00:04:58.110 --> 00:05:00.600
+with Kerberos authentication.
+
+00:05:00.600 --> 00:05:02.970
+One example where
+IAKerb applies is
+
+00:05:02.970 --> 00:05:05.610
+when there's a remote
+user working from home
+
+00:05:05.610 --> 00:05:08.460
+for a corporate that has
+public-facing corporate server,
+
+00:05:08.460 --> 00:05:09.480
+for example.
+
+00:05:09.480 --> 00:05:12.240
+And so to access the service,
+the user has to authenticate
+
+00:05:12.240 --> 00:05:15.900
+to the service, and for some
+reason, they have VPN issues.
+
+00:05:15.900 --> 00:05:18.060
+In this case, they cannot
+reach the domain controller,
+
+00:05:18.060 --> 00:05:20.070
+and the domain controller
+is behind a firewall,
+
+00:05:20.070 --> 00:05:22.410
+so they cannot even
+get a Kerberos ticket.
+
+00:05:22.410 --> 00:05:25.470
+So in this scenario, IAKerb
+acts as a proxy for Kerberos,
+
+00:05:25.470 --> 00:05:28.230
+and the server was essentially
+the middleman between the client
+
+00:05:28.230 --> 00:05:31.320
+and the domain controller,
+as it forwarded the messages
+
+00:05:31.320 --> 00:05:33.720
+between them and enabled
+the client to get a ticket
+
+00:05:33.720 --> 00:05:35.310
+and present it to the service.
+
+00:05:35.310 --> 00:05:39.330
+And with that, authentication
+with IAKerb is successful.
+
+00:05:39.330 --> 00:05:42.570
+Now let's move on to local
+KDC, which is mostly used
+
+00:05:42.570 --> 00:05:44.880
+in workgroup or
+cluster scenarios.
+
+00:05:44.880 --> 00:05:48.150
+This works by having every
+Windows instance running a local
+
+00:05:48.150 --> 00:05:50.910
+KDC that interacts with
+the local SAM database
+
+00:05:50.910 --> 00:05:53.790
+on the given Windows
+system, and it has access
+
+00:05:53.790 --> 00:05:55.260
+to the local accounts.
+
+00:05:55.260 --> 00:05:58.260
+So when the client tries to
+authenticate the server,
+
+00:05:58.260 --> 00:06:01.080
+the server will talk to
+the local KDC internally,
+
+00:06:01.080 --> 00:06:03.810
+and it will be able to mint
+tickets for this identity,
+
+00:06:03.810 --> 00:06:06.360
+enabling the authentication
+flow to go on.
+
+00:06:06.360 --> 00:06:09.060
+The security benefits here
+is that it replaces NTLM
+
+00:06:09.060 --> 00:06:11.730
+for local accounts, which is
+one of the largest scenarios
+
+00:06:11.730 --> 00:06:13.620
+where we see NTLM usage today.
+
+00:06:13.620 --> 00:06:16.350
+Now let's look at how
+authentication without NTLM
+
+00:06:16.350 --> 00:06:19.860
+and with IAKerb and local
+KDC goes in this demo.
+
+00:06:19.860 --> 00:06:22.320
+Here, I'm going to try
+to access a file share
+
+00:06:22.320 --> 00:06:26.820
+in this standalone setup
+with two unjoined machines.
+
+00:06:26.820 --> 00:06:31.200
+First, let's block NTLM.
+
+00:06:31.200 --> 00:06:33.420
+Now if we look into
+the Wireshark capture,
+
+00:06:33.420 --> 00:06:36.930
+we will be able to see what the
+client advertised to the server.
+
+00:06:36.930 --> 00:06:38.970
+In that advertisement,
+we're going to see
+
+00:06:38.970 --> 00:06:42.660
+that it advertised IAKerb.
+
+00:06:42.660 --> 00:06:47.250
+Now let's see if we
+actually end up using NTLM.
+
+00:06:47.250 --> 00:06:52.680
+They exchange a couple of IAKerb
+messages, and eventually we get
+
+00:06:52.680 --> 00:06:55.680
+to a message that says,
+oh, everything was good.
+
+00:06:55.680 --> 00:06:58.290
+I was able to authenticate
+using IAKerb,
+
+00:06:58.290 --> 00:07:01.290
+and authentication succeeds.
+
+00:07:01.290 --> 00:07:04.110
+Now let's move on into what
+we have already released,
+
+00:07:04.110 --> 00:07:05.610
+and it will take
+you a step further
+
+00:07:05.610 --> 00:07:09.660
+into enabling a more secure
+authentication protocol
+
+00:07:09.660 --> 00:07:11.100
+in your environment.
+
+00:07:11.100 --> 00:07:14.460
+Late last year, we released
+the enhanced NTLM auditing
+
+00:07:14.460 --> 00:07:19.410
+protocols, which went out to
+Server 2025 and Client 24H2.
+
+00:07:19.410 --> 00:07:21.420
+With the enhanced
+auditing, you will be able
+
+00:07:21.420 --> 00:07:26.310
+to know why NTLM is being
+used, where it is being used,
+
+00:07:26.310 --> 00:07:29.730
+and who the authentication
+request is going from and to.
+
+00:07:29.730 --> 00:07:33.270
+We highly suggest that you
+start using NTLM auditing today
+
+00:07:33.270 --> 00:07:36.180
+in your environment to know
+how NTLM is being used,
+
+00:07:36.180 --> 00:07:38.370
+and that will take you a
+step further into preparing
+
+00:07:38.370 --> 00:07:43.200
+into the overall disablement
+of NTLM in Windows.
+
+00:07:43.200 --> 00:07:46.020
+We are also excited to announce
+that over the next few weeks,
+
+00:07:46.020 --> 00:07:49.260
+we will also be releasing
+NTLM blocking policies.
+
+00:07:49.260 --> 00:07:51.030
+These blocking
+policies are available
+
+00:07:51.030 --> 00:07:52.710
+through the
+administrative templates
+
+00:07:52.710 --> 00:07:54.900
+under Systems and then NTLM.
+
+00:07:54.900 --> 00:07:57.000
+With these blocking
+policies, you will be able
+
+00:07:57.000 --> 00:08:00.300
+to selectively block
+specific scenarios of NTLM
+
+00:08:00.300 --> 00:08:01.290
+within your environment.
+
+00:08:01.290 --> 00:08:05.190
+So this includes SSO blocking,
+includes disabling NTLM
+
+00:08:05.190 --> 00:08:07.320
+for domain controllers,
+and so forth.
+
+00:08:07.320 --> 00:08:09.690
+This will take you one
+step further into starting
+
+00:08:09.690 --> 00:08:13.260
+to disable NTLM and looking
+at to see what breaks.
+
+00:08:13.260 --> 00:08:16.740
+With that, with the enablement
+of IAKerb and local KDC,
+
+00:08:16.740 --> 00:08:20.040
+you'll be able to move,
+successfully move away
+
+00:08:20.040 --> 00:08:23.520
+from NTLM in your environment.
+
+00:08:23.520 --> 00:08:25.590
+And so what can you
+start doing now with all
+
+00:08:25.590 --> 00:08:26.850
+of these new features?
+
+00:08:26.850 --> 00:08:29.460
+One, start using the enhanced
+NTLM auditing feature,
+
+00:08:29.460 --> 00:08:30.990
+which we released last year.
+
+00:08:30.990 --> 00:08:33.330
+Again, this will tell you
+how NTLM is being used
+
+00:08:33.330 --> 00:08:35.940
+in your environment and what
+you can start doing today
+
+00:08:35.940 --> 00:08:38.400
+to mitigate those
+NTLM scenarios.
+
+00:08:38.400 --> 00:08:40.200
+Two, you start remediating.
+
+00:08:40.200 --> 00:08:43.230
+Fix the unknown SPN scenarios.
+
+00:08:43.230 --> 00:08:45.090
+Start registering your IPs.
+
+00:08:45.090 --> 00:08:47.760
+Start to move away from
+third-party applications
+
+00:08:47.760 --> 00:08:50.130
+that are hard-coded to use NTLM.
+
+00:08:50.130 --> 00:08:53.040
+And then you can start in
+step three, piloting IAKerb
+
+00:08:53.040 --> 00:08:56.370
+and local KDC in Windows
+Insiders for server and client.
+
+00:08:56.370 --> 00:08:58.740
+Those will be available
+in server 2025
+
+00:08:58.740 --> 00:09:01.020
+and Client 24H2 and above.
+
+00:09:01.020 --> 00:09:02.790
+So you can start
+enabling those features.
+
+00:09:02.790 --> 00:09:05.010
+And with the blocking
+policies, you will be able
+
+00:09:05.010 --> 00:09:07.710
+to see successful Kerberos
+authentication even
+
+00:09:07.710 --> 00:09:12.180
+when NTLM is blocked and in
+previously dependent cases.
+
+00:09:12.180 --> 00:09:14.100
+And then finally,
+you can even start
+
+00:09:14.100 --> 00:09:16.920
+to fully block NTLM
+in your environment.
+
+00:09:16.920 --> 00:09:20.760
+And you can always reach out
+to us at NTLM@microsoft.com
+
+00:09:20.760 --> 00:09:23.040
+to report any unique scenarios
+
+00:09:23.040 --> 00:09:25.290
+that you identify
+NTLM usages in.
+
+00:09:25.290 --> 00:09:27.690
+And we'll be happy to assist
+you in either migrating away
+
+00:09:27.690 --> 00:09:31.110
+from NTLM in those scenarios or
+putting them into our backlog
+
+00:09:31.110 --> 00:09:33.930
+of scenarios that we need
+to address moving forward.
+
+00:09:33.930 --> 00:09:35.670
+And that's it.
+
+00:09:35.670 --> 00:09:38.160
+JEFFREY SUTHERLAND: NTLM shows
+how we move forward together.
+
+00:09:38.160 --> 00:09:42.240
+We remove insecure paths and we
+provide a working replacement.
+
+00:09:42.240 --> 00:09:45.900
+Next, we apply that same
+idea to code execution.
+
+00:09:45.900 --> 00:09:47.670
+Even with strong authentication,
+
+00:09:47.670 --> 00:09:49.950
+untrusted code can
+still reach users.
+
+00:09:49.950 --> 00:09:53.340
+So we're making trusted code the
+default experience on Windows.
+
+00:09:53.340 --> 00:09:56.370
+Jordan will show what that
+means and where we need you
+
+00:09:56.370 --> 00:10:00.330
+to adopt code signing for all of
+your code, including installers,
+
+00:10:00.330 --> 00:10:03.990
+uninstallers,
+scripts, and add-ons.
+
+00:10:03.990 --> 00:10:04.710
+JORDAN GEURTEN: Thanks, Jeffrey.
+
+00:10:04.710 --> 00:10:07.920
+I'm Jordan at TPM here on the
+Windows Platform Integrity team.
+
+00:10:07.920 --> 00:10:10.050
+Today, I'll be talking
+about new driver security
+
+00:10:10.050 --> 00:10:13.530
+and app control code integrity
+changes coming to Windows.
+
+00:10:13.530 --> 00:10:14.400
+These changes are all
+
+00:10:14.400 --> 00:10:18.060
+about eliminating common attack
+paths, built-in protection.
+
+00:10:18.060 --> 00:10:20.970
+This means fewer
+opportunities for attackers.
+
+00:10:20.970 --> 00:10:22.740
+Microsoft is tightening
+driver trust
+
+00:10:22.740 --> 00:10:24.150
+across the Windows platform.
+
+00:10:24.150 --> 00:10:26.760
+Cross-sign drivers are no
+longer trusted by default.
+
+00:10:26.760 --> 00:10:27.750
+We're moving to a model
+
+00:10:27.750 --> 00:10:31.320
+where WHCP certified drivers
+are becoming the baseline.
+
+00:10:31.320 --> 00:10:33.630
+You may ask why
+Microsoft is doing this.
+
+00:10:33.630 --> 00:10:35.880
+Well, the cross-sign driver
+program has posed a security
+
+00:10:35.880 --> 00:10:38.520
+risk for our partners
+and customers for years.
+
+00:10:38.520 --> 00:10:40.650
+This program had
+relaxed partner vetting
+
+00:10:40.650 --> 00:10:42.900
+and also didn't have
+anti-malware scanning,
+
+00:10:42.900 --> 00:10:45.480
+which meant malicious content
+was signed and abused.
+
+00:10:45.480 --> 00:10:48.300
+And the responsibility to
+protect signing keys fell
+
+00:10:48.300 --> 00:10:52.950
+to our partners, which meant
+keys were stolen in some cases.
+
+00:10:52.950 --> 00:10:55.230
+Additionally, the cross-signing
+program has been deprecated
+
+00:10:55.230 --> 00:10:56.670
+since 2011.
+
+00:10:56.670 --> 00:11:00.000
+Back in 2016, Windows already
+enforced WHCP signing
+
+00:11:00.000 --> 00:11:01.560
+for some driver scenarios,
+
+00:11:01.560 --> 00:11:04.920
+so we're simply expanding
+the enforcement.
+
+00:11:04.920 --> 00:11:07.350
+We're protecting compatibility
+for users and systems
+
+00:11:07.350 --> 00:11:09.810
+with a curated list of
+cross-signed drivers,
+
+00:11:09.810 --> 00:11:11.160
+which was informed by trillions
+
+00:11:11.160 --> 00:11:14.760
+of driver load
+diagnostic data signals.
+
+00:11:14.760 --> 00:11:16.710
+The feature rolls
+out in two phases.
+
+00:11:16.710 --> 00:11:19.560
+We start in audit mode, so
+Windows can measure impact
+
+00:11:19.560 --> 00:11:21.540
+to our users and the systems
+
+00:11:21.540 --> 00:11:24.720
+across three reboots
+and 100 system hours.
+
+00:11:24.720 --> 00:11:27.840
+We then move into enforcement,
+provided there is no impact
+
+00:11:27.840 --> 00:11:30.000
+to our users and the systems.
+
+00:11:30.000 --> 00:11:33.300
+The driver policy update
+is hitting Windows 1124H2
+
+00:11:33.300 --> 00:11:37.050
+and newer platforms in the
+May 2026 security update.
+
+00:11:37.050 --> 00:11:40.170
+Windows Server 2025
+is coming soon.
+
+00:11:40.170 --> 00:11:42.750
+If you ship drivers,
+the action is simple.
+
+00:11:42.750 --> 00:11:45.270
+Validate under audit mode
+
+00:11:45.270 --> 00:11:48.630
+and WHCP certify your
+cross-signed drivers now.
+
+00:11:48.630 --> 00:11:51.570
+Auditing your drivers is
+as easy as three steps.
+
+00:11:51.570 --> 00:11:55.440
+The first step is on a system
+with a May 2026 update or newer.
+
+00:11:55.440 --> 00:11:58.200
+First, check the
+state of the policy.
+
+00:11:58.200 --> 00:12:02.550
+Here, I've provided PowerShell
+commands to easily get that.
+
+00:12:02.550 --> 00:12:06.270
+Step two is to verify your
+drivers are WHCP certified using
+
+00:12:06.270 --> 00:12:08.730
+tooling like SignTool
+or Sigcheck.
+
+00:12:08.730 --> 00:12:10.560
+If drivers are WHCP signed,
+
+00:12:10.560 --> 00:12:13.860
+they will be default
+trusted by the policy.
+
+00:12:13.860 --> 00:12:17.100
+Step three, for non-WHCP
+certified drivers,
+
+00:12:17.100 --> 00:12:19.650
+you need to test them
+against the policy.
+
+00:12:19.650 --> 00:12:22.200
+PowerShell commands have
+been provided here.
+
+00:12:22.200 --> 00:12:24.480
+If you observe no
+event log entries,
+
+00:12:24.480 --> 00:12:26.820
+your drivers are
+trusted by policy.
+
+00:12:26.820 --> 00:12:28.260
+If you see event log entries,
+
+00:12:28.260 --> 00:12:30.960
+your drivers will be
+blocked by the new policy.
+
+00:12:30.960 --> 00:12:34.050
+The last step is for any
+non-WHCP signed drivers,
+
+00:12:34.050 --> 00:12:36.660
+regardless if they pass
+policy, we recommend going
+
+00:12:36.660 --> 00:12:39.570
+through the WHCP
+certification process.
+
+00:12:39.570 --> 00:12:40.830
+You can start by registering
+
+00:12:40.830 --> 00:12:43.830
+at the Hardware Dev
+Center, HDC for short.
+
+00:12:43.830 --> 00:12:47.280
+You need to then run
+and pass the HLK test
+
+00:12:47.280 --> 00:12:49.350
+and submit the driver
+package to HDC,
+
+00:12:49.350 --> 00:12:53.100
+or Microsoft will WHCP
+sign your drivers.
+
+00:12:53.100 --> 00:12:55.470
+You want to finish by
+distributing the signed driver
+
+00:12:55.470 --> 00:12:57.120
+through Windows Update.
+
+00:12:57.120 --> 00:12:59.400
+Let's follow steps one
+through three to learn how
+
+00:12:59.400 --> 00:13:02.010
+to verify your drivers against
+this new driver policy.
+
+00:13:02.010 --> 00:13:05.100
+The first step is to determine
+the state of the policy.
+
+00:13:05.100 --> 00:13:07.140
+Here, I've written a
+script using CI Tool,
+
+00:13:07.140 --> 00:13:10.680
+which is an inbox utility,
+to get the policy state.
+
+00:13:10.680 --> 00:13:13.650
+In my system's case, the
+policy is in enforcement mode,
+
+00:13:13.650 --> 00:13:15.780
+so drivers will be blocked.
+
+00:13:15.780 --> 00:13:17.670
+The next step is to
+verify the signatures
+
+00:13:17.670 --> 00:13:19.710
+on each of my drivers.
+
+00:13:19.710 --> 00:13:21.960
+Here, I have some Hello World
+drivers that are written
+
+00:13:21.960 --> 00:13:24.870
+with various signature
+types to validate.
+
+00:13:24.870 --> 00:13:27.780
+To validate each signature,
+I'm going to use SciTool,
+
+00:13:27.780 --> 00:13:30.810
+which is a tool
+available in the SDK.
+
+00:13:30.810 --> 00:13:33.750
+With these parameters, SciTool
+will dump all the signatures
+
+00:13:33.750 --> 00:13:37.650
+on the driver, including
+any catalog signatures.
+
+00:13:37.650 --> 00:13:40.200
+We can see that my first
+driver is cross-signed.
+
+00:13:40.200 --> 00:13:42.240
+A cross-signed driver
+is any signature
+
+00:13:42.240 --> 00:13:44.010
+with a certificate
+chaining to a root
+
+00:13:44.010 --> 00:13:46.470
+that is not the Microsoft root.
+
+00:13:46.470 --> 00:13:48.900
+This driver may be
+blocked by policy,
+
+00:13:48.900 --> 00:13:51.300
+as cross-signed drivers are
+no longer trusted by default,
+
+00:13:51.300 --> 00:13:54.060
+except for an explicit list
+for compatibility scenarios.
+
+00:13:54.060 --> 00:13:56.550
+The second driver
+is WHCP certified.
+
+00:13:56.550 --> 00:13:59.970
+The WHCP certified will
+have a certificate
+
+00:13:59.970 --> 00:14:04.230
+that chains the Microsoft root
+CA 2010 in its signature.
+
+00:14:04.230 --> 00:14:06.420
+We can see that the LEAP
+certificate is the Microsoft
+
+00:14:06.420 --> 00:14:08.700
+Windows hardware
+compatibility publisher.
+
+00:14:08.700 --> 00:14:11.070
+This driver is default
+trusted by policy.
+
+00:14:11.070 --> 00:14:12.840
+I don't have to worry about it.
+
+00:14:12.840 --> 00:14:15.030
+The third driver is dual-signed.
+
+00:14:15.030 --> 00:14:19.170
+It is cross-signed
+and WHCP certified.
+
+00:14:19.170 --> 00:14:21.450
+It is also default
+trusted by policy
+
+00:14:21.450 --> 00:14:24.450
+because it is WHCP signed,
+so I don't have to worry
+
+00:14:24.450 --> 00:14:26.440
+about this one as well.
+
+00:14:28.770 --> 00:14:31.920
+The last step is to test
+drivers against the policy.
+
+00:14:31.920 --> 00:14:34.470
+To verify my drivers, I'm
+going to load each one
+
+00:14:34.470 --> 00:14:37.260
+and evaluate any audit
+and block events.
+
+00:14:37.260 --> 00:14:38.250
+The only one that I'm worried
+
+00:14:38.250 --> 00:14:40.890
+about is the exclusively
+cross-signed driver,
+
+00:14:40.890 --> 00:14:43.620
+as it is no longer
+trusted by default.
+
+00:14:43.620 --> 00:14:46.110
+Here, I have a script to
+automate loading my drivers
+
+00:14:46.110 --> 00:14:48.300
+and another to pull all
+the audit and block events
+
+00:14:48.300 --> 00:14:50.670
+for the Windows driver policy.
+
+00:14:50.670 --> 00:14:53.760
+You can see that the non-WHCP
+certified driver is blocked
+
+00:14:53.760 --> 00:14:55.170
+by the new policy.
+
+00:14:55.170 --> 00:15:00.360
+There is a 3076 event for the
+audit version of the policy
+
+00:15:00.360 --> 00:15:03.030
+and also a 3077 block event
+
+00:15:03.030 --> 00:15:05.670
+for the enforcement
+mode of the policy.
+
+00:15:05.670 --> 00:15:08.220
+I will need to WHCP
+certify this driver,
+
+00:15:08.220 --> 00:15:10.470
+otherwise my customers will
+experience friction while
+
+00:15:10.470 --> 00:15:12.420
+using it.
+
+00:15:12.420 --> 00:15:15.030
+Switching gears to
+application security now.
+
+00:15:15.030 --> 00:15:17.640
+Application control for
+business, or simply app control,
+
+00:15:17.640 --> 00:15:20.070
+is Microsoft's application
+control security feature
+
+00:15:20.070 --> 00:15:21.600
+for organizations.
+
+00:15:21.600 --> 00:15:24.000
+App control is built directly
+into the Windows kernel
+
+00:15:24.000 --> 00:15:27.120
+on desktop and server, which
+prevents the need to install
+
+00:15:27.120 --> 00:15:30.810
+or download any clunky
+agents on top of systems.
+
+00:15:30.810 --> 00:15:33.570
+It can validate kernel
+processes like drivers,
+
+00:15:33.570 --> 00:15:36.540
+as well as applications and
+scripts, to lock down systems
+
+00:15:36.540 --> 00:15:40.170
+to run only trusted,
+authorized code.
+
+00:15:40.170 --> 00:15:41.520
+We integrate with
+Defender products
+
+00:15:41.520 --> 00:15:44.460
+to make reporting easier
+and to make reputation
+
+00:15:44.460 --> 00:15:47.340
+and intelligence-based
+decisions.
+
+00:15:47.340 --> 00:15:50.580
+Organizations all over the
+globe running Windows 10, 11,
+
+00:15:50.580 --> 00:15:53.280
+and Server 2016 or newer
+leverage app control
+
+00:15:53.280 --> 00:15:55.290
+to secure their environments.
+
+00:15:55.290 --> 00:15:57.900
+Organizations with app
+control face friction
+
+00:15:57.900 --> 00:16:00.780
+when your applications
+are unsigned, however.
+
+00:16:00.780 --> 00:16:03.450
+Help our collective customers
+by signing your code
+
+00:16:03.450 --> 00:16:06.840
+to make Windows more secure and
+reduce friction for our users.
+
+00:16:06.840 --> 00:16:09.000
+Smart app control builds
+on top of app control
+
+00:16:09.000 --> 00:16:11.460
+and shifts the Windows trust
+model from the Wild West
+
+00:16:11.460 --> 00:16:14.160
+and reactive AV blocks
+to a reputation
+
+00:16:14.160 --> 00:16:15.810
+and trust-based model.
+
+00:16:15.810 --> 00:16:18.600
+The feature is default-enabled
+on Windows 11 on tens
+
+00:16:18.600 --> 00:16:20.880
+of millions of consumer
+devices, and the number
+
+00:16:20.880 --> 00:16:23.970
+of protected users is
+growing every day.
+
+00:16:23.970 --> 00:16:25.950
+Smart app control
+trusts vetted content
+
+00:16:25.950 --> 00:16:28.590
+from the Microsoft Store,
+Windows components,
+
+00:16:28.590 --> 00:16:31.170
+and drivers from the WHCP
+certification program
+
+00:16:31.170 --> 00:16:32.970
+that we just talked about.
+
+00:16:32.970 --> 00:16:35.760
+It also trusts signed
+applications from CAs
+
+00:16:35.760 --> 00:16:39.060
+in the Microsoft Trusted Root
+program and content deemed safe
+
+00:16:39.060 --> 00:16:42.150
+by Microsoft AI
+Reputation Services.
+
+00:16:42.150 --> 00:16:44.430
+The feature does not
+trust unsigned apps
+
+00:16:44.430 --> 00:16:48.000
+without reputation, as Windows
+cannot tell who built it
+
+00:16:48.000 --> 00:16:50.970
+or verify the integrity
+on the content.
+
+00:16:50.970 --> 00:16:53.130
+It is critical to
+sign your code.
+
+00:16:53.130 --> 00:16:56.220
+If your code is unsigned and
+does not have reputation,
+
+00:16:56.220 --> 00:16:58.860
+this will result in
+friction for Windows users.
+
+00:16:58.860 --> 00:17:01.950
+Let's walk through how AI-driven
+app control stops malware.
+
+00:17:01.950 --> 00:17:04.110
+When a user downloads an
+app with good reputation
+
+00:17:04.110 --> 00:17:06.780
+from the Internet, the app gets
+successfully installed and run
+
+00:17:06.780 --> 00:17:09.630
+on smart app control as
+it is considered safe.
+
+00:17:09.630 --> 00:17:12.900
+When the user downloads an
+unsigned app without reputation,
+
+00:17:12.900 --> 00:17:16.020
+the user ignores any warnings
+and tries to install anyways.
+
+00:17:16.020 --> 00:17:17.790
+Smart app control
+protects that user,
+
+00:17:17.790 --> 00:17:20.480
+and the app is
+blocked from running.
+
+00:17:20.480 --> 00:17:23.000
+In the malicious case, the
+user unknowingly downloads a
+
+00:17:23.000 --> 00:17:24.560
+malicious application.
+
+00:17:24.560 --> 00:17:26.660
+Smart app control determines
+that the code is malicious,
+
+00:17:26.660 --> 00:17:29.730
+and the app is blocked,
+thereby protecting the user.
+
+00:17:29.730 --> 00:17:31.230
+As I've mentioned several times,
+
+00:17:31.230 --> 00:17:34.140
+unsigned code causes
+frictions for your customers.
+
+00:17:34.140 --> 00:17:38.040
+Your code must be signed to
+run smoothly now on Windows.
+
+00:17:38.040 --> 00:17:41.610
+Artifact signing removes
+every excuse for not signing.
+
+00:17:41.610 --> 00:17:43.980
+The Microsoft-provided signing
+service is affordable,
+
+00:17:43.980 --> 00:17:46.920
+just $9.99 a month
+for the basic tier.
+
+00:17:46.920 --> 00:17:49.110
+The service is also fully
+managed by Microsoft.
+
+00:17:49.110 --> 00:17:53.250
+There are no added costs to you
+to manage certificates or keys,
+
+00:17:53.250 --> 00:17:55.110
+and you don't have to
+worry about key rotation
+
+00:17:55.110 --> 00:17:56.730
+or protecting key material.
+
+00:17:56.730 --> 00:17:58.800
+We do that for you.
+
+00:17:58.800 --> 00:18:00.630
+We've also met our
+developers where they are.
+
+00:18:00.630 --> 00:18:04.830
+We integrate in CI/CD
+pipelines like GitHub and ADO,
+
+00:18:04.830 --> 00:18:07.650
+and we also have CLI options.
+
+00:18:07.650 --> 00:18:09.630
+The service also
+uses digest signing,
+
+00:18:09.630 --> 00:18:11.610
+so your code does not
+leave your system.
+
+00:18:11.610 --> 00:18:14.250
+Only a hash of the content
+is sent to the service,
+
+00:18:14.250 --> 00:18:16.890
+so it is fast and secure.
+
+00:18:16.890 --> 00:18:19.380
+It is also part of the
+trusted root program,
+
+00:18:19.380 --> 00:18:22.770
+which builds reputation
+with smart app control.
+
+00:18:22.770 --> 00:18:24.990
+Finally, we recommend
+testing your code
+
+00:18:24.990 --> 00:18:26.850
+with smart app control enabled,
+
+00:18:26.850 --> 00:18:28.320
+which you can now
+manually enable
+
+00:18:28.320 --> 00:18:32.210
+in Windows 11, 24H2, and 25H2.
+
+00:18:32.210 --> 00:18:34.430
+App control also now
+supports a new framework
+
+00:18:34.430 --> 00:18:36.920
+to make your code
+app control aware.
+
+00:18:36.920 --> 00:18:38.030
+You just need three things
+
+00:18:38.030 --> 00:18:41.460
+to tailor your features
+based on the policy state.
+
+00:18:41.460 --> 00:18:44.220
+The first is an app
+control manifest.
+
+00:18:44.220 --> 00:18:46.710
+This can be on the
+system or remote.
+
+00:18:46.710 --> 00:18:50.460
+This file will describe the
+settings in your application.
+
+00:18:50.460 --> 00:18:53.430
+Second is the app
+setting definition.
+
+00:18:53.430 --> 00:18:56.310
+This is the name of the
+setting and its type.
+
+00:18:56.310 --> 00:18:59.880
+App control supports
+Boolean or string types.
+
+00:18:59.880 --> 00:19:03.240
+The last step is calling the new
+Windows Lockdown Policy API,
+
+00:19:03.240 --> 00:19:05.280
+or WLDP for short.
+
+00:19:05.280 --> 00:19:08.550
+There is one API for
+each setting type.
+
+00:19:08.550 --> 00:19:11.370
+With these three pieces in
+place, your organization
+
+00:19:11.370 --> 00:19:13.620
+or users can write an
+app control policy,
+
+00:19:13.620 --> 00:19:16.200
+which can control security
+behavior in your app.
+
+00:19:16.200 --> 00:19:18.540
+Let's take a look
+at how to do this.
+
+00:19:18.540 --> 00:19:20.940
+Here, I've created a
+secure plugin host
+
+00:19:20.940 --> 00:19:22.770
+with two secure settings.
+
+00:19:22.770 --> 00:19:24.330
+When app control
+policies are active
+
+00:19:24.330 --> 00:19:26.220
+and the secure
+settings are enabled,
+
+00:19:26.220 --> 00:19:27.900
+the plugins must be signed,
+
+00:19:27.900 --> 00:19:30.600
+and the plugins cannot
+access the network.
+
+00:19:30.600 --> 00:19:32.610
+Let's see how to build
+something similar.
+
+00:19:32.610 --> 00:19:34.830
+We start with an
+application manifest.
+
+00:19:34.830 --> 00:19:37.260
+We start by defining
+the application ID,
+
+00:19:37.260 --> 00:19:39.900
+which is the name of
+the app, in a setting.
+
+00:19:39.900 --> 00:19:42.990
+Each definition must have a
+setting name, a setting type,
+
+00:19:42.990 --> 00:19:45.450
+which can be a bool or a string,
+
+00:19:45.450 --> 00:19:48.660
+and whether to ignore
+audit policies.
+
+00:19:48.660 --> 00:19:52.470
+The app manifests can be local,
+on the system, or remote,
+
+00:19:52.470 --> 00:19:54.570
+for instance, on GitHub.
+
+00:19:54.570 --> 00:19:58.680
+Next, we call the WLDP
+Get App Settings APIs.
+
+00:19:58.680 --> 00:20:02.580
+We first import the WLDP
+DLL, and we use the API
+
+00:20:02.580 --> 00:20:05.940
+which maps the setting
+type, either the bool,
+
+00:20:05.940 --> 00:20:08.400
+string list, or string set API.
+
+00:20:08.400 --> 00:20:12.120
+For my app, I'm using
+the boolean API.
+
+00:20:12.120 --> 00:20:15.540
+Next, we use the
+app manifest ID.
+
+00:20:15.540 --> 00:20:18.480
+This must match the
+ID in the manifest.
+
+00:20:18.480 --> 00:20:22.560
+We provide the name of the
+setting and the out result.
+
+00:20:22.560 --> 00:20:24.660
+This is the reconciliation
+app control does
+
+00:20:24.660 --> 00:20:26.850
+across all the policies.
+
+00:20:26.850 --> 00:20:30.690
+Finally, the API will return
+a status code, an age result.
+
+00:20:30.690 --> 00:20:33.150
+This can help you
+debug any issues.
+
+00:20:33.150 --> 00:20:36.430
+The status will be okay
+for successful calls.
+
+00:20:37.860 --> 00:20:40.080
+Let's take a look at how
+this works in practice.
+
+00:20:40.080 --> 00:20:43.440
+Here we have the secure plugin
+host running on a system.
+
+00:20:43.440 --> 00:20:45.330
+Right now, no
+policies are active,
+
+00:20:45.330 --> 00:20:48.030
+so the plugin host does
+not run in secure mode.
+
+00:20:48.030 --> 00:20:51.090
+The app control author
+specifies the path and location
+
+00:20:51.090 --> 00:20:54.810
+to the app manifest file
+for app control to consume.
+
+00:20:54.810 --> 00:20:55.890
+They also set the states
+
+00:20:55.890 --> 00:20:59.530
+of the settings they wish
+to enable or disable.
+
+00:21:02.760 --> 00:21:04.950
+The IT admin then
+deploys the policy,
+
+00:21:04.950 --> 00:21:07.530
+and on the next WLDP query,
+
+00:21:07.530 --> 00:21:10.020
+app control verifies
+the setting states
+
+00:21:10.020 --> 00:21:12.090
+and the reconciled
+state is returned back
+
+00:21:12.090 --> 00:21:13.230
+to the application.
+
+00:21:13.230 --> 00:21:14.850
+This is super exciting
+and impactful.
+
+00:21:14.850 --> 00:21:16.260
+You can see that
+your app now runs
+
+00:21:16.260 --> 00:21:18.030
+in maximum security mode based
+
+00:21:18.030 --> 00:21:22.060
+on how your customer configured
+their app control policy.
+
+00:21:23.070 --> 00:21:25.370
+Now, back to you, Jeffrey.
+
+00:21:25.370 --> 00:21:27.200
+JEFFREY SUTHERLAND: What
+you just saw marks a shift
+
+00:21:27.200 --> 00:21:28.610
+in expectations.
+
+00:21:28.610 --> 00:21:31.100
+Windows is making a
+stronger promise to users.
+
+00:21:31.100 --> 00:21:33.380
+Trusted code runs
+with less friction.
+
+00:21:33.380 --> 00:21:36.920
+That benefits everyone, and it
+creates a clear responsibility.
+
+00:21:36.920 --> 00:21:39.330
+If your code isn't
+trusted by default,
+
+00:21:39.330 --> 00:21:41.670
+your users will
+feel that friction.
+
+00:21:41.670 --> 00:21:43.380
+Now, underneath all of this,
+
+00:21:43.380 --> 00:21:45.770
+cryptography forms
+the foundation.
+
+00:21:45.770 --> 00:21:48.530
+That foundation is changing
+just as rapidly due
+
+00:21:48.530 --> 00:21:51.140
+to the advent of
+quantum computing.
+
+00:21:51.140 --> 00:21:53.870
+Now, Jason will now take us
+through what we need to know
+
+00:21:53.870 --> 00:21:58.320
+about post-quantum cryptography
+and how you can stay ahead.
+
+00:21:58.320 --> 00:21:59.250
+JASON FISHER: Thanks, Jeffrey.
+
+00:21:59.250 --> 00:22:02.520
+My name is Jason Fisher, the
+Group Engineering Manager
+
+00:22:02.520 --> 00:22:05.610
+for the Cryptography and
+Integrity team in Windows.
+
+00:22:05.610 --> 00:22:08.280
+As mentioned, authentication
+isn't the only thing
+
+00:22:08.280 --> 00:22:09.600
+that needs to evolve.
+
+00:22:09.600 --> 00:22:13.170
+Cryptography itself is
+facing a long-term shift.
+
+00:22:13.170 --> 00:22:15.930
+Thus, I am excited to
+be here today to talk
+
+00:22:15.930 --> 00:22:20.100
+about post-quantum
+cryptography in Windows.
+
+00:22:20.100 --> 00:22:23.100
+First off, what is
+a quantum computer?
+
+00:22:23.100 --> 00:22:24.180
+It's a type of computer
+
+00:22:24.180 --> 00:22:26.310
+that uses quantum
+mechanical phenomena,
+
+00:22:26.310 --> 00:22:29.940
+such as superposition, to
+perform operations on data.
+
+00:22:29.940 --> 00:22:33.210
+This allows quantum
+computers to use qubits,
+
+00:22:33.210 --> 00:22:36.900
+which can perform multiple
+operations simultaneously,
+
+00:22:36.900 --> 00:22:40.860
+making quantum computers faster
+than classical computers.
+
+00:22:40.860 --> 00:22:43.890
+They have the potential to
+revolutionize many fields,
+
+00:22:43.890 --> 00:22:46.740
+such as nature and science,
+by solving problems
+
+00:22:46.740 --> 00:22:48.900
+that are currently
+beyond the capabilities
+
+00:22:48.900 --> 00:22:50.640
+of classical computers.
+
+00:22:50.640 --> 00:22:54.360
+However, a sufficiently powerful
+quantum computer could undermine
+
+00:22:54.360 --> 00:22:56.160
+current encryption methods,
+
+00:22:56.160 --> 00:22:59.010
+posing challenges
+to data security.
+
+00:22:59.010 --> 00:23:01.170
+Quantum computers can
+be used to break many
+
+00:23:01.170 --> 00:23:04.080
+of the asymmetric encryption
+methods that we use today,
+
+00:23:04.080 --> 00:23:07.020
+such as RSA and elliptic
+curve Diffie-Hellman,
+
+00:23:07.020 --> 00:23:08.760
+considered to be hard problems
+
+00:23:08.760 --> 00:23:12.390
+that classical computers cannot
+solve in a feasible time.
+
+00:23:12.390 --> 00:23:15.120
+Today, our encryption and
+communication models rely
+
+00:23:15.120 --> 00:23:19.080
+on two math problems, discrete
+logarithm and factoring,
+
+00:23:19.080 --> 00:23:21.870
+which are extremely difficult
+to solve and considered
+
+00:23:21.870 --> 00:23:24.450
+as hard problems for
+classical computers.
+
+00:23:24.450 --> 00:23:27.630
+However, it was proven that
+there is a way to solve them
+
+00:23:27.630 --> 00:23:31.950
+by running Shor's algorithm on
+a capable quantum computer.
+
+00:23:31.950 --> 00:23:34.740
+Post-quantum, or
+quantum-safe algorithms,
+
+00:23:34.740 --> 00:23:37.920
+are thought to be secure
+against a crypt-analytic attack
+
+00:23:37.920 --> 00:23:39.990
+from a quantum computer,
+as they are based
+
+00:23:39.990 --> 00:23:41.700
+on different
+mathematical problems,
+
+00:23:41.700 --> 00:23:45.400
+such as structured lattices
+and hash functions.
+
+00:23:46.470 --> 00:23:49.560
+Quantum computers are in their
+early stages, and too small
+
+00:23:49.560 --> 00:23:52.500
+to crack public-key
+cryptography today.
+
+00:23:52.500 --> 00:23:53.820
+A quantum computer capable
+
+00:23:53.820 --> 00:23:56.970
+of breaking encryption will
+likely require a large number
+
+00:23:56.970 --> 00:23:59.190
+of qubits that are
+substantially greater
+
+00:23:59.190 --> 00:24:01.530
+than today's quantum machines.
+
+00:24:01.530 --> 00:24:02.820
+While the use of
+quantum computers
+
+00:24:02.820 --> 00:24:05.070
+to break cryptography
+is still in the future,
+
+00:24:05.070 --> 00:24:07.890
+the threat is realized today.
+
+00:24:07.890 --> 00:24:09.300
+The effort to inventory
+
+00:24:09.300 --> 00:24:13.320
+and update all asymmetric
+cryptography will arguably be
+
+00:24:13.320 --> 00:24:16.770
+the most complex multi-year
+transition we have
+
+00:24:16.770 --> 00:24:18.390
+ever undertaken.
+
+00:24:18.390 --> 00:24:20.100
+There are increasing
+concerns related
+
+00:24:20.100 --> 00:24:24.600
+to attackers harvesting data
+now with a view to being able
+
+00:24:24.600 --> 00:24:27.630
+to decrypt it later when
+quantum computers are
+
+00:24:27.630 --> 00:24:29.370
+sufficiently mature.
+
+00:24:29.370 --> 00:24:33.330
+This is referred to as the
+harvest-now-decrypt-later style
+
+00:24:33.330 --> 00:24:34.620
+of attack.
+
+00:24:34.620 --> 00:24:37.140
+These mainly impact
+areas that need storage
+
+00:24:37.140 --> 00:24:40.800
+of long-term sensitive data,
+such as health records,
+
+00:24:40.800 --> 00:24:43.890
+or hardware and IoT devices,
+which will be deployed
+
+00:24:43.890 --> 00:24:47.310
+in the field for many years,
+and likely beyond the point
+
+00:24:47.310 --> 00:24:50.770
+where quantum computers can
+break their encryption.
+
+00:24:51.840 --> 00:24:55.140
+On Windows, our efforts have
+been concentrated on areas
+
+00:24:55.140 --> 00:24:59.010
+that offer the greatest leverage
+across this broad scope.
+
+00:24:59.010 --> 00:25:00.360
+To ease in this transition,
+
+00:25:00.360 --> 00:25:02.940
+we have been incorporating
+post-quantum cryptography
+
+00:25:02.940 --> 00:25:04.980
+algorithms into Syncrypt,
+
+00:25:04.980 --> 00:25:07.620
+the core open-source
+cryptography library
+
+00:25:07.620 --> 00:25:11.130
+that powers our Windows and
+Linux operating systems.
+
+00:25:11.130 --> 00:25:14.580
+In addition, we have been
+updating our standard crypto API
+
+00:25:14.580 --> 00:25:19.230
+service, CNG, or cryptography
+next generation.
+
+00:25:19.230 --> 00:25:22.380
+This includes the
+NIST-standardized ML-KEM
+
+00:25:22.380 --> 00:25:25.140
+and ML-DSA algorithms
+for encryption
+
+00:25:25.140 --> 00:25:27.600
+and digital signatures,
+respectively.
+
+00:25:27.600 --> 00:25:30.450
+We have done so utilizing
+modern techniques,
+
+00:25:30.450 --> 00:25:34.080
+including implementations in
+Rust with formal verification,
+
+00:25:34.080 --> 00:25:38.220
+to ensure the highest grade
+of quality and correctness.
+
+00:25:38.220 --> 00:25:40.260
+While these algorithms
+have been standardized,
+
+00:25:40.260 --> 00:25:42.600
+they are still new,
+and there is some risk
+
+00:25:42.600 --> 00:25:44.730
+that they could be
+broken, either with
+
+00:25:44.730 --> 00:25:45.840
+or without the presence
+
+00:25:45.840 --> 00:25:49.020
+of a sufficiently capable
+quantum computer.
+
+00:25:49.020 --> 00:25:51.900
+Thus, we are additionally
+providing support
+
+00:25:51.900 --> 00:25:55.830
+for the IETF-based hybrid
+composite algorithms,
+
+00:25:55.830 --> 00:25:58.440
+which easily combine
+post-quantum algorithms
+
+00:25:58.440 --> 00:26:00.150
+with their classical variants,
+
+00:26:00.150 --> 00:26:03.990
+such as ML-KEM
+combined with ECDHE.
+
+00:26:03.990 --> 00:26:07.560
+This allows safe integration of
+PQC algorithms into applications
+
+00:26:07.560 --> 00:26:11.850
+and protocols today, without
+adding any additional risk.
+
+00:26:11.850 --> 00:26:14.610
+Above the crypto libraries,
+we are also pleased to bring
+
+00:26:14.610 --> 00:26:19.380
+in support for ML-DSA-based
+certificate and CMS APIs,
+
+00:26:19.380 --> 00:26:22.140
+including both certificate
+enrollment via Active Directory
+
+00:26:22.140 --> 00:26:23.580
+Certificate Services
+
+00:26:23.580 --> 00:26:26.610
+and certificate chain
+building through Crypt32.
+
+00:26:26.610 --> 00:26:29.970
+Lastly, our in-box
+implementation of TLS,
+
+00:26:29.970 --> 00:26:33.210
+S-Channel, has been updated
+to support negotiation
+
+00:26:33.210 --> 00:26:36.690
+of hybrid-based key exchange
+groups, a critical piece needed
+
+00:26:36.690 --> 00:26:40.380
+to migrate TLS 1.3 connections
+to be quantum-resistant
+
+00:26:40.380 --> 00:26:43.680
+from harvest-now,
+decrypt-later attacks.
+
+00:26:43.680 --> 00:26:46.620
+As global standards and
+regulations continue to mature
+
+00:26:46.620 --> 00:26:49.890
+in this ever-evolving space,
+we are committed to continuing
+
+00:26:49.890 --> 00:26:52.140
+to update our cryptography
+infrastructure
+
+00:26:52.140 --> 00:26:55.440
+to support customer needs.
+
+00:26:55.440 --> 00:26:57.510
+Now, let's look at
+our first demo,
+
+00:26:57.510 --> 00:27:02.190
+showcasing how you can use
+our CNG-BCrypt API interface
+
+00:27:02.190 --> 00:27:05.940
+to perform ML-DSA signature
+and verification.
+
+00:27:05.940 --> 00:27:07.170
+VOICEOVER: In this
+demo, we are going
+
+00:27:07.170 --> 00:27:11.970
+to showcase how you can leverage
+our CNG-BCrypt API interface
+
+00:27:11.970 --> 00:27:15.720
+to generate new ML-DSA
+keys and signed messages.
+
+00:27:15.720 --> 00:27:18.450
+We have updated BCrypt
+Generate Key Pair
+
+00:27:18.450 --> 00:27:22.230
+to support the ML-DSA
+cryptographic algorithms,
+
+00:27:22.230 --> 00:27:25.020
+which can be neatly passed
+into Bcrypt Sign Hash
+
+00:27:25.020 --> 00:27:26.970
+and Bcrypt Verify Signature
+
+00:27:26.970 --> 00:27:30.450
+with the Bcrypt Pad
+PQ-DSA Signing Context.
+
+00:27:30.450 --> 00:27:33.150
+This allows you to easily
+update your applications
+
+00:27:33.150 --> 00:27:37.470
+that are already using
+Bcrypt for RSA or ECC today.
+
+00:27:37.470 --> 00:27:40.980
+Here, you can see, we first call
+our configurable application
+
+00:27:40.980 --> 00:27:45.960
+with ML-DSA 65, producing a
+signature of 3,309 bytes.
+
+00:27:45.960 --> 00:27:48.930
+Now, let's compare
+with classic RSA 3K,
+
+00:27:48.930 --> 00:27:52.620
+producing a signature
+of 384 bytes.
+
+00:27:52.620 --> 00:27:54.360
+This highlights the
+size difference
+
+00:27:54.360 --> 00:27:57.120
+between ML-DSA and RSA.
+
+00:27:57.120 --> 00:27:59.310
+JASON FISHER: For our second
+demo, we will now focus
+
+00:27:59.310 --> 00:28:02.610
+on composite ML-KEM
+for encapsulating data
+
+00:28:02.610 --> 00:28:05.700
+that can be shared with
+a peer via Encrypt.
+
+00:28:05.700 --> 00:28:06.870
+VOICEOVER: In this
+demo, we are going
+
+00:28:06.870 --> 00:28:10.710
+to showcase how you can leverage
+our new composite ML-KEM plus
+
+00:28:10.710 --> 00:28:14.460
+ECC parameter sets and
+new Encrypt Encapsulate
+
+00:28:14.460 --> 00:28:17.460
+and Encrypt Decapsulate
+APIs to encrypt
+
+00:28:17.460 --> 00:28:21.450
+and decrypt content via our
+CNG Encrypt API surface.
+
+00:28:21.450 --> 00:28:25.380
+You start with our standard
+Encrypt Create Persisted Key API
+
+00:28:25.380 --> 00:28:29.280
+to generate new composite
+ML-KEM key pairs.
+
+00:28:29.280 --> 00:28:32.940
+You can then call Encrypt Export
+Key to produce a public key
+
+00:28:32.940 --> 00:28:34.350
+to share with your peer.
+
+00:28:34.350 --> 00:28:40.350
+In this case, we showed
+ML-KEM 768 with ECDH-P256,
+
+00:28:40.350 --> 00:28:44.130
+producing a public
+key of 1,249 bytes.
+
+00:28:44.130 --> 00:28:46.650
+On the receiving end,
+the peer can import
+
+00:28:46.650 --> 00:28:49.140
+that key via Encrypt Import Key.
+
+00:28:49.140 --> 00:28:52.710
+Once imported, that's when
+the peer can leverage our new
+
+00:28:52.710 --> 00:28:54.900
+Encrypt Encapsulate API
+
+00:28:54.900 --> 00:28:58.380
+to produce ciphertext
+and a shared secret.
+
+00:28:58.380 --> 00:29:03.690
+In this case, with ML-KEM
+768 and ECDH-P256,
+
+00:29:03.690 --> 00:29:07.380
+the ciphertext was 1,155 bytes.
+
+00:29:07.380 --> 00:29:09.060
+After sharing the ciphertext,
+
+00:29:09.060 --> 00:29:13.710
+the originating client can call
+our new Encrypt Decapsulate API
+
+00:29:13.710 --> 00:29:16.320
+to produce the same
+shared secret.
+
+00:29:16.320 --> 00:29:18.900
+JASON FISHER: For our final
+demo, we will show an example
+
+00:29:18.900 --> 00:29:22.230
+of a TLS connection being
+updated to negotiate
+
+00:29:22.230 --> 00:29:25.920
+and communicate over hybrid
+key exchange groups.
+
+00:29:25.920 --> 00:29:27.690
+VOICEOVER: In this final
+demo, we are going
+
+00:29:27.690 --> 00:29:31.920
+to showcase how our Inbox TLS
+Library S-Channel has now been
+
+00:29:31.920 --> 00:29:35.490
+updated to support hybrid
+key exchange groups.
+
+00:29:35.490 --> 00:29:39.090
+Today, this requires updating
+policy on the device
+
+00:29:39.090 --> 00:29:40.560
+to configure negotiation
+
+00:29:40.560 --> 00:29:43.860
+of these new ML-KEM
+plus ECDH hybrids.
+
+00:29:43.860 --> 00:29:47.520
+After configuration, you can
+see with this Wireshark trace
+
+00:29:47.520 --> 00:29:49.500
+that by navigating to a peer,
+
+00:29:49.500 --> 00:29:52.620
+which also supports
+hybrid key exchange,
+
+00:29:52.620 --> 00:29:55.950
+the appropriate quantum
+safe group was selected.
+
+00:29:55.950 --> 00:29:57.180
+JASON FISHER: As
+a call to action,
+
+00:29:57.180 --> 00:30:00.390
+post-quantum cryptography
+is not just an upgrade.
+
+00:30:00.390 --> 00:30:01.980
+It is a fundamental shift
+
+00:30:01.980 --> 00:30:04.830
+to secure the next
+era of computing.
+
+00:30:04.830 --> 00:30:08.370
+Thus, you should start now
+as transitioning takes time
+
+00:30:08.370 --> 00:30:10.230
+and early prep is critical.
+
+00:30:10.230 --> 00:30:12.960
+To start now, you should be
+planning Windows upgrades
+
+00:30:12.960 --> 00:30:16.200
+to the latest operating
+system, moving to TLS 1.3
+
+00:30:16.200 --> 00:30:19.620
+where applicable, updating
+your applications for ML-KEM
+
+00:30:19.620 --> 00:30:23.220
+and ML-DSA, either in
+pure or composite mode,
+
+00:30:23.220 --> 00:30:25.770
+and designing for
+crypto agility.
+
+00:30:25.770 --> 00:30:28.350
+Because algorithms will be
+changing in the future,
+
+00:30:28.350 --> 00:30:30.600
+the ability to
+migrate efficiently
+
+00:30:30.600 --> 00:30:33.000
+and safely is critical.
+
+00:30:33.000 --> 00:30:35.010
+Thank you for your time,
+and I am handing off
+
+00:30:35.010 --> 00:30:38.010
+to Jeffrey to conclude.
+
+00:30:38.010 --> 00:30:40.590
+JEFFREY SUTHERLAND: Now,
+let's bring it all together.
+
+00:30:40.590 --> 00:30:43.710
+Across Windows, we're making
+a set of commitments.
+
+00:30:43.710 --> 00:30:47.130
+Moving authentication
+off of legacy patterns.
+
+00:30:47.130 --> 00:30:49.920
+Making code trust the default.
+
+00:30:49.920 --> 00:30:55.050
+And advancing cryptography so it
+stays ahead of future threats.
+
+00:30:55.050 --> 00:30:57.270
+Our shared responsibility
+is simple.
+
+00:30:57.270 --> 00:30:59.550
+Your software stays
+secure by default
+
+00:30:59.550 --> 00:31:02.310
+because the platform
+starts secure by default.
+
+00:31:02.310 --> 00:31:05.550
+That only works if
+we both do our part.
+
+00:31:05.550 --> 00:31:08.820
+For you, that means move
+off of legacy dependencies.
+
+00:31:08.820 --> 00:31:10.530
+Sign everything you ship.
+
+00:31:10.530 --> 00:31:13.200
+Design your apps for a world
+that's fundamentally different
+
+00:31:13.200 --> 00:31:15.420
+because of quantum
+computing and AI.
+
+00:31:15.420 --> 00:31:17.850
+When you take those steps,
+your apps run smoothly
+
+00:31:17.850 --> 00:31:19.710
+and your users stay protected.
+
+00:31:19.710 --> 00:31:23.880
+If you don't, friction shows up
+and your users feel it first.
+
+00:31:23.880 --> 00:31:26.220
+This is how we raise
+the bar together.
+
+00:31:26.220 --> 00:31:27.690
+We commit to
+delivering a stronger,
+
+00:31:27.690 --> 00:31:29.100
+more secure foundation.
+
+00:31:29.100 --> 00:31:30.480
+We ask you to meet us there
+
+00:31:30.480 --> 00:31:32.970
+so we can protect the
+customers we share.
+
+00:31:32.970 --> 00:31:34.350
+Because security only works
+
+00:31:34.350 --> 00:31:37.690
+when the whole ecosystem
+moves forward together.

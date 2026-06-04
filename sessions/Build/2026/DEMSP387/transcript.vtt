@@ -1,0 +1,2880 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.35037168860435486
+
+00:00:01.600 --> 00:00:02.960
+OK, OK.
+
+NOTE Confidence: 0.6503008008003235
+
+00:00:03.080 --> 00:00:03.440
+All right, all.
+
+NOTE Confidence: 0.8219111561775208
+
+00:00:03.720 --> 00:00:05.771
+Right, so today we're going to talk about Open Shell
+
+NOTE Confidence: 0.8219111561775208
+
+00:00:05.810 --> 00:00:06.600
+working with GitHub.
+
+NOTE Confidence: 0.916115403175354
+
+00:00:06.960 --> 00:00:09.275
+We'll start off with giving you a quick overview of
+
+NOTE Confidence: 0.916115403175354
+
+00:00:09.321 --> 00:00:11.591
+what Open Shell is, and then we'll leave some time
+
+NOTE Confidence: 0.916115403175354
+
+00:00:11.636 --> 00:00:13.498
+at the end for a demo and then we'll jump
+
+NOTE Confidence: 0.916115403175354
+
+00:00:13.543 --> 00:00:13.680
+in.
+
+NOTE Confidence: 0.8223055005073547
+
+00:00:14.240 --> 00:00:17.459
+So a high level view, Open Shell is a project
+
+NOTE Confidence: 0.8223055005073547
+
+00:00:17.531 --> 00:00:20.750
+that Alex and I started at NVIDIA on our sort
+
+NOTE Confidence: 0.8223055005073547
+
+00:00:20.822 --> 00:00:23.039
+of 20% time about 8 months ago.
+
+NOTE Confidence: 0.7604147791862488
+
+00:00:23.760 --> 00:00:26.282
+The core thesis around Open Shell was really around 2
+
+NOTE Confidence: 0.7604147791862488
+
+00:00:26.330 --> 00:00:27.520
+sort of first principles.
+
+NOTE Confidence: 0.9002590179443359
+
+00:00:27.520 --> 00:00:30.280
+One was around the fact of, as we're moving towards
+
+NOTE Confidence: 0.9002590179443359
+
+00:00:30.334 --> 00:00:33.364
+an agent world, what does an agent native software stack
+
+NOTE Confidence: 0.9002590179443359
+
+00:00:33.418 --> 00:00:33.960
+look like?
+
+NOTE Confidence: 0.7497967481613159
+
+00:00:34.720 --> 00:00:36.957
+And our core thesis says as you want agents to
+
+NOTE Confidence: 0.7497967481613159
+
+00:00:37.005 --> 00:00:40.410
+be long running, they're switching to stateful, long running sessions,
+
+NOTE Confidence: 0.7497967481613159
+
+00:00:40.458 --> 00:00:41.480
+managing persistence.
+
+NOTE Confidence: 0.9058959484100342
+
+00:00:42.120 --> 00:00:44.281
+You really need a different environment than a whole new
+
+NOTE Confidence: 0.9058959484100342
+
+00:00:44.320 --> 00:00:45.440
+stack for them to be managed.
+
+NOTE Confidence: 0.9204549193382263
+
+00:00:45.600 --> 00:00:47.240
+And we'll sort of talk about what that looks like.
+
+NOTE Confidence: 0.8274028301239014
+
+00:00:48.120 --> 00:00:50.134
+The other pillar of this is, is that if you
+
+NOTE Confidence: 0.8274028301239014
+
+00:00:50.181 --> 00:00:52.851
+have an agent native software stack, then the tooling for
+
+NOTE Confidence: 0.8274028301239014
+
+00:00:52.898 --> 00:00:54.959
+it should really be built for machine speed.
+
+NOTE Confidence: 0.9097151160240173
+
+00:00:54.960 --> 00:00:56.903
+So how do you build machine speed as well as
+
+NOTE Confidence: 0.9097151160240173
+
+00:00:56.948 --> 00:00:57.920
+an agent native stack?
+
+NOTE Confidence: 0.8551154136657715
+
+00:00:58.800 --> 00:01:00.864
+And the way we came about this is that ultimately
+
+NOTE Confidence: 0.8551154136657715
+
+00:01:00.906 --> 00:01:02.759
+what we really need to be able to instill is
+
+NOTE Confidence: 0.8551154136657715
+
+00:01:02.801 --> 00:01:03.560
+a trusted runtime.
+
+NOTE Confidence: 0.7889357805252075
+
+00:01:03.560 --> 00:01:05.475
+So the core thesis we came around is, is how
+
+NOTE Confidence: 0.7889357805252075
+
+00:01:05.519 --> 00:01:07.000
+do you make this secure by design?
+
+NOTE Confidence: 0.8758825063705444
+
+00:01:07.640 --> 00:01:10.429
+And how do you make it a trusted runtime so
+
+NOTE Confidence: 0.8758825063705444
+
+00:01:10.494 --> 00:01:13.931
+everyone can have the trust and the confidence to run
+
+NOTE Confidence: 0.8758825063705444
+
+00:01:13.996 --> 00:01:17.239
+agents, models, harnesses inside this environment?
+
+NOTE Confidence: 0.8257356286048889
+
+00:01:17.640 --> 00:01:19.299
+Just to add a little bit to that there, I
+
+NOTE Confidence: 0.8257356286048889
+
+00:01:19.340 --> 00:01:20.999
+think we've all like these coding agents.
+
+NOTE Confidence: 0.8003478646278381
+
+00:01:21.000 --> 00:01:23.119
+You all get frustrated when you have to keep approving
+
+NOTE Confidence: 0.8003478646278381
+
+00:01:23.158 --> 00:01:25.160
+different things inside of a sandbox or for access.
+
+NOTE Confidence: 0.8617018461227417
+
+00:01:25.640 --> 00:01:27.623
+We start out with the question of what happens when
+
+NOTE Confidence: 0.8617018461227417
+
+00:01:27.662 --> 00:01:29.606
+we're running 500 or 1000 agents at the same time,
+
+NOTE Confidence: 0.8617018461227417
+
+00:01:29.645 --> 00:01:31.240
+you know, like what would that look like?
+
+NOTE Confidence: 0.8008015751838684
+
+00:01:31.640 --> 00:01:34.250
+So trying to figure out how we can apply technology
+
+NOTE Confidence: 0.8008015751838684
+
+00:01:34.301 --> 00:01:36.809
+in a like enterprise grade way to approve as many
+
+NOTE Confidence: 0.8008015751838684
+
+00:01:36.860 --> 00:01:39.265
+agent actions as possible in a secure way to as
+
+NOTE Confidence: 0.8008015751838684
+
+00:01:39.317 --> 00:01:42.388
+Ali was calling building agent speed, but don't be dependent
+
+NOTE Confidence: 0.8008015751838684
+
+00:01:42.439 --> 00:01:44.640
+on like human inputs to keep to keep going.
+
+NOTE Confidence: 0.8985264301300049
+
+00:01:45.040 --> 00:01:47.959
+So one of the core things about Open Shell is
+
+NOTE Confidence: 0.8985264301300049
+
+00:01:48.024 --> 00:01:50.879
+that the environment itself is a zero trust.
+
+NOTE Confidence: 0.9538833498954773
+
+00:01:50.880 --> 00:01:52.440
+So it's not completely permissive.
+
+NOTE Confidence: 0.8904338479042053
+
+00:01:52.440 --> 00:01:55.600
+Every sandbox, every environment starts completely closed down.
+
+NOTE Confidence: 0.9254702925682068
+
+00:01:56.200 --> 00:01:58.772
+And then as the agent is basically granted access and
+
+NOTE Confidence: 0.9254702925682068
+
+00:01:58.821 --> 00:02:00.520
+additional components, it can move.
+
+NOTE Confidence: 0.901738703250885
+
+00:02:00.520 --> 00:02:02.351
+Now, the way we sort of thought about this is
+
+NOTE Confidence: 0.901738703250885
+
+00:02:02.391 --> 00:02:04.507
+that I'm not going to read everything is this, these
+
+NOTE Confidence: 0.901738703250885
+
+00:02:04.548 --> 00:02:06.461
+are some of the big categories we hear from our
+
+NOTE Confidence: 0.901738703250885
+
+00:02:06.501 --> 00:02:08.902
+partners, from our customers, from the ecosystem as to like
+
+NOTE Confidence: 0.901738703250885
+
+00:02:08.943 --> 00:02:11.506
+the things that really concerns them about running long running
+
+NOTE Confidence: 0.901738703250885
+
+00:02:11.547 --> 00:02:12.280
+autonomous agents.
+
+NOTE Confidence: 0.8673776984214783
+
+00:02:13.080 --> 00:02:15.219
+And the way if you sort of go through this,
+
+NOTE Confidence: 0.8673776984214783
+
+00:02:15.269 --> 00:02:17.359
+one of the things you realize is, is a lot
+
+NOTE Confidence: 0.8673776984214783
+
+00:02:17.409 --> 00:02:20.295
+of these types of controls and governances are enforced at
+
+NOTE Confidence: 0.8673776984214783
+
+00:02:20.345 --> 00:02:23.381
+the agent layer, at the model layer within that probabilistic
+
+NOTE Confidence: 0.8673776984214783
+
+00:02:23.431 --> 00:02:23.679
+loop.
+
+NOTE Confidence: 0.9302899241447449
+
+00:02:24.200 --> 00:02:26.737
+So the way we thought about runtime and open Shell
+
+NOTE Confidence: 0.9302899241447449
+
+00:02:26.788 --> 00:02:29.071
+was how do you take these policies and how do
+
+NOTE Confidence: 0.9302899241447449
+
+00:02:29.122 --> 00:02:31.964
+you create a deterministic way to control and govern the
+
+NOTE Confidence: 0.9302899241447449
+
+00:02:32.015 --> 00:02:32.319
+agent?
+
+NOTE Confidence: 0.8951983451843262
+
+00:02:32.560 --> 00:02:34.843
+So you have to bring up that policy, that governance
+
+NOTE Confidence: 0.8951983451843262
+
+00:02:34.887 --> 00:02:37.039
+to the infrastructure layer, to the kernel layer.
+
+NOTE Confidence: 0.9293882250785828
+
+00:02:37.520 --> 00:02:40.120
+And a good example is, for example, prompt injection.
+
+NOTE Confidence: 0.84246426820755
+
+00:02:40.400 --> 00:02:42.830
+The design that we have is the agent should not
+
+NOTE Confidence: 0.84246426820755
+
+00:02:42.882 --> 00:02:46.709
+really have any credentials, secrets, tokens, keys, if it's authenticating
+
+NOTE Confidence: 0.84246426820755
+
+00:02:46.760 --> 00:02:47.640
+any as a service.
+
+NOTE Confidence: 0.9015294909477234
+
+00:02:47.960 --> 00:02:50.480
+So the gateway outside the sandbox holds all that.
+
+NOTE Confidence: 0.9350214004516602
+
+00:02:50.680 --> 00:02:52.520
+The sandbox is the blast radius.
+
+NOTE Confidence: 0.9372323751449585
+
+00:02:52.520 --> 00:02:55.145
+So if there's a prompt injection, if something happens to
+
+NOTE Confidence: 0.9372323751449585
+
+00:02:55.191 --> 00:02:57.079
+the agent itself, nothing for it to leak.
+
+NOTE Confidence: 0.9033639430999756
+
+00:02:57.080 --> 00:02:59.000
+And the blast radius is a single sandbox.
+
+NOTE Confidence: 0.8220111727714539
+
+00:02:59.000 --> 00:03:01.233
+And for those of you who are sort of familiar
+
+NOTE Confidence: 0.8220111727714539
+
+00:03:01.282 --> 00:03:04.458
+with traditional cloud native primitives, it's like when we went
+
+NOTE Confidence: 0.8220111727714539
+
+00:03:04.508 --> 00:03:08.280
+from stateful monolithic VMS to container based microservices on Kubernetes.
+
+NOTE Confidence: 0.9335404634475708
+
+00:03:08.560 --> 00:03:10.493
+You can now start to treat these things a little
+
+NOTE Confidence: 0.9335404634475708
+
+00:03:10.534 --> 00:03:12.427
+bit more like cattle than pet, and as a result,
+
+NOTE Confidence: 0.9335404634475708
+
+00:03:12.468 --> 00:03:14.120
+it becomes a little bit easier to govern.
+
+NOTE Confidence: 0.8884372711181641
+
+00:03:15.280 --> 00:03:18.834
+So this is a high level overview of an architecture
+
+NOTE Confidence: 0.8884372711181641
+
+00:03:18.904 --> 00:03:19.879
+of Open Shell.
+
+NOTE Confidence: 0.8274961113929749
+
+00:03:20.160 --> 00:03:22.641
+Now a couple quick things I'll mention right away is
+
+NOTE Confidence: 0.8274961113929749
+
+00:03:22.689 --> 00:03:24.360
+Open Shell is entirely open source.
+
+NOTE Confidence: 0.7850602269172668
+
+00:03:24.360 --> 00:03:26.000
+It's under Apache 2.0.
+
+NOTE Confidence: 0.9481359720230103
+
+00:03:26.440 --> 00:03:29.601
+Everything you're seeing here is on our GitHub repo, including
+
+NOTE Confidence: 0.9481359720230103
+
+00:03:29.652 --> 00:03:32.559
+the road map, the architecture, and everything around it.
+
+NOTE Confidence: 0.8894645571708679
+
+00:03:33.200 --> 00:03:35.589
+I'll give you a quick high level of the primitives
+
+NOTE Confidence: 0.8894645571708679
+
+00:03:35.637 --> 00:03:36.880
+that come with Open Shell.
+
+NOTE Confidence: 0.7927873134613037
+
+00:03:37.120 --> 00:03:39.040
+So as we mentioned, Open Shell is a runtime.
+
+NOTE Confidence: 0.8460037708282471
+
+00:03:39.440 --> 00:03:42.048
+In this runtime, there's a few critical primitives that come
+
+NOTE Confidence: 0.8460037708282471
+
+00:03:42.092 --> 00:03:42.439
+with it.
+
+NOTE Confidence: 0.9293265342712402
+
+00:03:43.120 --> 00:03:46.640
+1 is really the gateway that sits outside every sandbox.
+
+NOTE Confidence: 0.9324194192886353
+
+00:03:46.640 --> 00:03:49.505
+The gateway is meant to communicate and interact and hold
+
+NOTE Confidence: 0.9324194192886353
+
+00:03:49.555 --> 00:03:52.119
+credentials and tokens and keys as we talked about.
+
+NOTE Confidence: 0.8975794315338135
+
+00:03:52.120 --> 00:03:54.809
+So every agent has the session, but it has no
+
+NOTE Confidence: 0.8975794315338135
+
+00:03:54.868 --> 00:03:57.080
+way to be able to leak anything else.
+
+NOTE Confidence: 0.7674819231033325
+
+00:03:57.560 --> 00:04:00.551
+Every agent or its sub agents or its tooling runs
+
+NOTE Confidence: 0.7674819231033325
+
+00:04:00.612 --> 00:04:02.199
+its own dedicated sandbox.
+
+NOTE Confidence: 0.863054633140564
+
+00:04:02.680 --> 00:04:05.003
+So if you have an agent that spawns sub agents,
+
+NOTE Confidence: 0.863054633140564
+
+00:04:05.052 --> 00:04:07.573
+those can run into their own sandbox and have cross
+
+NOTE Confidence: 0.863054633140564
+
+00:04:07.623 --> 00:04:08.760
+sandbox communications.
+
+NOTE Confidence: 0.9086622595787048
+
+00:04:09.800 --> 00:04:12.138
+Now as part of this, one of the things we
+
+NOTE Confidence: 0.9086622595787048
+
+00:04:12.195 --> 00:04:14.989
+thought very hard about is, is how do you enforce
+
+NOTE Confidence: 0.9086622595787048
+
+00:04:15.046 --> 00:04:18.467
+policies that ensure not just what policies enforce, but the
+
+NOTE Confidence: 0.9086622595787048
+
+00:04:18.524 --> 00:04:21.433
+policy can answer the question of if I enforce this
+
+NOTE Confidence: 0.9086622595787048
+
+00:04:21.490 --> 00:04:23.600
+policy, what can this agent still do?
+
+NOTE Confidence: 0.8259990215301514
+
+00:04:24.000 --> 00:04:26.596
+And that's what we actually created a very unique offering
+
+NOTE Confidence: 0.8259990215301514
+
+00:04:26.640 --> 00:04:27.760
+called the Policy Prover.
+
+NOTE Confidence: 0.8293492197990417
+
+00:04:28.000 --> 00:04:29.788
+Maybe I'll have Alex talk a little bit about the
+
+NOTE Confidence: 0.8293492197990417
+
+00:04:29.826 --> 00:04:31.913
+policy prove and sort of the unique things because we're
+
+NOTE Confidence: 0.8293492197990417
+
+00:04:31.950 --> 00:04:33.664
+going to demonstrate this in a demo at the end
+
+NOTE Confidence: 0.8293492197990417
+
+00:04:33.701 --> 00:04:33.999
+as well.
+
+NOTE Confidence: 0.5889471769332886
+
+00:04:34.040 --> 00:04:34.200
+Yeah.
+
+NOTE Confidence: 0.9209932088851929
+
+00:04:34.720 --> 00:04:37.113
+One quick thing about the architecture as we dive in,
+
+NOTE Confidence: 0.9209932088851929
+
+00:04:37.158 --> 00:04:39.054
+I think a lot of us are very familiar with
+
+NOTE Confidence: 0.9209932088851929
+
+00:04:39.099 --> 00:04:42.079
+agents running inside sandboxes and like that kind of environment.
+
+NOTE Confidence: 0.8366144895553589
+
+00:04:42.080 --> 00:04:45.348
+I'd say architectural departure here, it's a little bit different
+
+NOTE Confidence: 0.8366144895553589
+
+00:04:45.398 --> 00:04:48.214
+is normally when we're using Copilot or using Cloud code
+
+NOTE Confidence: 0.8366144895553589
+
+00:04:48.265 --> 00:04:50.678
+or anything like that, you have the agent and it
+
+NOTE Confidence: 0.8366144895553589
+
+00:04:50.729 --> 00:04:52.640
+is executing code inside of a sandbox.
+
+NOTE Confidence: 0.7930013537406921
+
+00:04:52.640 --> 00:04:55.942
+The agent itself isn't running inside of the sandbox, and
+
+NOTE Confidence: 0.7930013537406921
+
+00:04:55.999 --> 00:04:58.780
+then the governance you get is done at the layer
+
+NOTE Confidence: 0.7930013537406921
+
+00:04:58.838 --> 00:05:01.503
+of copilot instead of the layer of of clod or,
+
+NOTE Confidence: 0.7930013537406921
+
+00:05:01.561 --> 00:05:04.399
+or whatever you're using in the open shell world.
+
+NOTE Confidence: 0.9305682182312012
+
+00:05:04.480 --> 00:05:07.200
+That agent runs inside of a sandbox.
+
+NOTE Confidence: 0.8296817541122437
+
+00:05:07.200 --> 00:05:11.156
+It's able to spin up new sandboxes, but everything, every
+
+NOTE Confidence: 0.8296817541122437
+
+00:05:11.225 --> 00:05:14.279
+input and output that it has is is enforced.
+
+NOTE Confidence: 0.8563001751899719
+
+00:05:14.360 --> 00:05:15.440
+And so that's a really neat thing.
+
+NOTE Confidence: 0.9576374888420105
+
+00:05:15.440 --> 00:05:16.040
+It doesn't matter.
+
+NOTE Confidence: 0.93680340051651
+
+00:05:16.040 --> 00:05:18.249
+You can have like 1 policy language that works across
+
+NOTE Confidence: 0.93680340051651
+
+00:05:18.290 --> 00:05:21.000
+any type of agent that you're running across your infrastructure.
+
+NOTE Confidence: 0.8427032828330994
+
+00:05:22.920 --> 00:05:25.000
+Over here, we see this thing called the policy prover.
+
+NOTE Confidence: 0.8309261798858643
+
+00:05:25.000 --> 00:05:26.911
+And this is one of the kind of the unique
+
+NOTE Confidence: 0.8309261798858643
+
+00:05:26.958 --> 00:05:29.848
+areas that we've developed with, with Open Shell actually uses
+
+NOTE Confidence: 0.8309261798858643
+
+00:05:29.895 --> 00:05:32.319
+some technology that came from Microsoft originally.
+
+NOTE Confidence: 0.7950047254562378
+
+00:05:33.120 --> 00:05:35.812
+So what we did is we took the policy language
+
+NOTE Confidence: 0.7950047254562378
+
+00:05:35.871 --> 00:05:38.564
+when we get into the, the weeds here a little
+
+NOTE Confidence: 0.7950047254562378
+
+00:05:38.623 --> 00:05:40.957
+bit, we use OPA and Rigo or YAML if you
+
+NOTE Confidence: 0.7950047254562378
+
+00:05:41.016 --> 00:05:44.785
+guys are familiar with these like standard policy languages and
+
+NOTE Confidence: 0.7950047254562378
+
+00:05:44.845 --> 00:05:46.759
+we described it in formal logic.
+
+NOTE Confidence: 0.9073904156684875
+
+00:05:47.320 --> 00:05:50.990
+So if you guys are familiar with formal verification, SMT
+
+NOTE Confidence: 0.9073904156684875
+
+00:05:51.055 --> 00:05:54.403
+solvers, things like that, what this allows us to do
+
+NOTE Confidence: 0.9073904156684875
+
+00:05:54.468 --> 00:05:57.495
+is not just like have an if statement that says
+
+NOTE Confidence: 0.9073904156684875
+
+00:05:57.559 --> 00:06:00.199
+can this agent still access the Internet?
+
+NOTE Confidence: 0.7964041233062744
+
+00:06:00.200 --> 00:06:03.240
+Can it like write to a repository?
+
+NOTE Confidence: 0.9661336541175842
+
+00:06:03.680 --> 00:06:06.000
+We can actually create a mathematical proof of that.
+
+NOTE Confidence: 0.9031943678855896
+
+00:06:06.040 --> 00:06:08.848
+And you can do incredibly complex and neat things with
+
+NOTE Confidence: 0.9031943678855896
+
+00:06:08.900 --> 00:06:09.160
+this.
+
+NOTE Confidence: 0.8299746513366699
+
+00:06:09.920 --> 00:06:11.720
+So this is unique area that we added in.
+
+NOTE Confidence: 0.8831372857093811
+
+00:06:12.720 --> 00:06:14.084
+If you look at where I would say kind of
+
+NOTE Confidence: 0.8831372857093811
+
+00:06:14.118 --> 00:06:15.722
+the puck is going, and this is what we're going
+
+NOTE Confidence: 0.8831372857093811
+
+00:06:15.756 --> 00:06:16.950
+to show in a demo for you guys in a
+
+NOTE Confidence: 0.8831372857093811
+
+00:06:16.984 --> 00:06:17.360
+little bit.
+
+NOTE Confidence: 0.8945234417915344
+
+00:06:17.960 --> 00:06:20.033
+You see, OK, we need to get, you know, out
+
+NOTE Confidence: 0.8945234417915344
+
+00:06:20.082 --> 00:06:22.748
+of the mode where humans are sitting there waiting for
+
+NOTE Confidence: 0.8945234417915344
+
+00:06:22.797 --> 00:06:25.561
+every single, you know, thing to happen and then proving
+
+NOTE Confidence: 0.8945234417915344
+
+00:06:25.611 --> 00:06:27.239
+every, every entry you would see.
+
+NOTE Confidence: 0.836144745349884
+
+00:06:27.240 --> 00:06:29.970
+I'd say like open AI and Entropic are both really
+
+NOTE Confidence: 0.836144745349884
+
+00:06:30.026 --> 00:06:33.370
+starting to talk about using another trusted agent to review
+
+NOTE Confidence: 0.836144745349884
+
+00:06:33.426 --> 00:06:35.599
+this sandbox change and see if it's OK.
+
+NOTE Confidence: 0.708737850189209
+
+00:06:36.279 --> 00:06:39.289
+So it's like auto approver for, for Kodak's managed agents
+
+NOTE Confidence: 0.708737850189209
+
+00:06:39.341 --> 00:06:40.120
+for for Claude.
+
+NOTE Confidence: 0.86601322889328
+
+00:06:41.400 --> 00:06:43.840
+They're still susceptible to the same risks though, right?
+
+NOTE Confidence: 0.9163315892219543
+
+00:06:43.840 --> 00:06:45.000
+You have another agent that can be.
+
+NOTE Confidence: 0.8987712264060974
+
+00:06:45.000 --> 00:06:46.800
+It's just like a human could also be fooled.
+
+NOTE Confidence: 0.7773067355155945
+
+00:06:47.839 --> 00:06:49.694
+The policy prover is a really neat input or a
+
+NOTE Confidence: 0.7773067355155945
+
+00:06:49.736 --> 00:06:52.209
+complimentary thing that you can have there where the policy
+
+NOTE Confidence: 0.7773067355155945
+
+00:06:52.250 --> 00:06:53.239
+prover cannot be fooled.
+
+NOTE Confidence: 0.9553065896034241
+
+00:06:53.880 --> 00:06:56.976
+Assuming that our description of the logic of the policy
+
+NOTE Confidence: 0.9553065896034241
+
+00:06:57.031 --> 00:06:57.640
+is correct.
+
+NOTE Confidence: 0.8552977442741394
+
+00:06:58.320 --> 00:07:00.083
+If you are opening up a new hole in the
+
+NOTE Confidence: 0.8552977442741394
+
+00:07:00.129 --> 00:07:02.028
+sandbox to allow it to write to a new repo
+
+NOTE Confidence: 0.8552977442741394
+
+00:07:02.073 --> 00:07:04.290
+in GitHub, for example, there's no way to fool an
+
+NOTE Confidence: 0.8552977442741394
+
+00:07:04.335 --> 00:07:06.280
+agent into not seeing that you're doing it.
+
+NOTE Confidence: 0.7930536866188049
+
+00:07:06.600 --> 00:07:08.720
+The prover will see it and will highlight that.
+
+NOTE Confidence: 0.8735151290893555
+
+00:07:09.160 --> 00:07:11.240
+So pretty interesting technology thing.
+
+NOTE Confidence: 0.85550856590271
+
+00:07:11.480 --> 00:07:13.769
+Another thing I think that will show in the demo
+
+NOTE Confidence: 0.85550856590271
+
+00:07:13.816 --> 00:07:15.200
+is how fast this runs, right?
+
+NOTE Confidence: 0.9028855562210083
+
+00:07:15.200 --> 00:07:17.306
+So as we add like more and more layers of
+
+NOTE Confidence: 0.9028855562210083
+
+00:07:17.357 --> 00:07:20.080
+security, the risk is if you're having for every call
+
+NOTE Confidence: 0.9028855562210083
+
+00:07:20.132 --> 00:07:22.752
+that you have with your agent, if another agent has
+
+NOTE Confidence: 0.9028855562210083
+
+00:07:22.803 --> 00:07:25.732
+to review it, you're doubling your token costs and you're
+
+NOTE Confidence: 0.9028855562210083
+
+00:07:25.783 --> 00:07:26.759
+doubling your time.
+
+NOTE Confidence: 0.8500977754592896
+
+00:07:27.280 --> 00:07:29.960
+The prover can run in order of single digit milliseconds.
+
+NOTE Confidence: 0.8973357677459717
+
+00:07:29.960 --> 00:07:32.633
+So often it's not even required to do that at
+
+NOTE Confidence: 0.8973357677459717
+
+00:07:32.692 --> 00:07:34.000
+that second level run.
+
+NOTE Confidence: 0.8844131231307983
+
+00:07:34.000 --> 00:07:35.939
+So there's some neat kind of performance benefits in there
+
+NOTE Confidence: 0.8844131231307983
+
+00:07:35.972 --> 00:07:36.240
+as well.
+
+NOTE Confidence: 0.8884553909301758
+
+00:07:37.160 --> 00:07:39.457
+And then the last thing I'll add on this particular
+
+NOTE Confidence: 0.8884553909301758
+
+00:07:39.502 --> 00:07:41.800
+slide before we move forward is our privacy router.
+
+NOTE Confidence: 0.8818826079368591
+
+00:07:42.000 --> 00:07:44.855
+So everything we've built in Open Shell runtime is thinking
+
+NOTE Confidence: 0.8818826079368591
+
+00:07:44.904 --> 00:07:47.905
+around how do you create isolation around system file, network
+
+NOTE Confidence: 0.8818826079368591
+
+00:07:47.953 --> 00:07:50.760
+memory, sort of all the constructs that you typically want
+
+NOTE Confidence: 0.8818826079368591
+
+00:07:50.809 --> 00:07:52.599
+to be able to slice your environment.
+
+NOTE Confidence: 0.8459713459014893
+
+00:07:52.600 --> 00:07:55.882
+But the other thing we think about is Open Shell
+
+NOTE Confidence: 0.8459713459014893
+
+00:07:55.950 --> 00:07:58.959
+is really isolation around agentic behavior.
+
+NOTE Confidence: 0.8418546319007874
+
+00:07:59.200 --> 00:08:02.428
+So if you think about something like traditional encapsulation, right,
+
+NOTE Confidence: 0.8418546319007874
+
+00:08:02.474 --> 00:08:05.425
+like whether you're talking about G Visor or hardened containers
+
+NOTE Confidence: 0.8418546319007874
+
+00:08:05.471 --> 00:08:07.500
+or micro VMS, in a lot of these cases you're
+
+NOTE Confidence: 0.8418546319007874
+
+00:08:07.546 --> 00:08:10.359
+just adding additional layers between a process and a kernel.
+
+NOTE Confidence: 0.8760206699371338
+
+00:08:10.360 --> 00:08:12.200
+You're trying to really reduce attack surface.
+
+NOTE Confidence: 0.7222341895103455
+
+00:08:12.600 --> 00:08:14.400
+Agentic behavior is very different.
+
+NOTE Confidence: 0.872383713722229
+
+00:08:14.400 --> 00:08:16.918
+It sort of manifests itself in very different forms and
+
+NOTE Confidence: 0.872383713722229
+
+00:08:16.964 --> 00:08:17.560
+environments.
+
+NOTE Confidence: 0.9032102227210999
+
+00:08:18.000 --> 00:08:20.757
+So the privacy router borrows actually a lot of the
+
+NOTE Confidence: 0.9032102227210999
+
+00:08:20.811 --> 00:08:22.919
+work that we did around synthetic data.
+
+NOTE Confidence: 0.9246588349342346
+
+00:08:23.400 --> 00:08:25.800
+So Alex and I joined NVIDIA about a year ago.
+
+NOTE Confidence: 0.8664608001708984
+
+00:08:26.240 --> 00:08:27.560
+We founded a company named Gretel.
+
+NOTE Confidence: 0.8998631238937378
+
+00:08:27.560 --> 00:08:29.040
+We focused on synthetic data.
+
+NOTE Confidence: 0.9501161575317383
+
+00:08:29.400 --> 00:08:31.659
+So the privacy router uses a lot of technology that
+
+NOTE Confidence: 0.9501161575317383
+
+00:08:31.704 --> 00:08:33.963
+comes out of synthetic data, actually a lot of work
+
+NOTE Confidence: 0.9501161575317383
+
+00:08:34.008 --> 00:08:35.160
+that Microsoft itself did.
+
+NOTE Confidence: 0.951559841632843
+
+00:08:35.760 --> 00:08:37.734
+And I'll describe it in sort of three use cases,
+
+NOTE Confidence: 0.951559841632843
+
+00:08:37.775 --> 00:08:39.873
+which is better than just kind of getting under the
+
+NOTE Confidence: 0.951559841632843
+
+00:08:39.914 --> 00:08:40.120
+hood.
+
+NOTE Confidence: 0.8994144797325134
+
+00:08:40.120 --> 00:08:43.175
+So one is you might have an environment where an
+
+NOTE Confidence: 0.8994144797325134
+
+00:08:43.238 --> 00:08:46.739
+agent needs to, for example, run inference and that the
+
+NOTE Confidence: 0.8994144797325134
+
+00:08:46.803 --> 00:08:48.840
+data it has is riddled with PII.
+
+NOTE Confidence: 0.8692371845245361
+
+00:08:48.880 --> 00:08:51.661
+So once that agent submits that query, the privacy router
+
+NOTE Confidence: 0.8692371845245361
+
+00:08:51.710 --> 00:08:54.052
+looks at it and says there's PII in here, routes
+
+NOTE Confidence: 0.8692371845245361
+
+00:08:54.100 --> 00:08:55.760
+it to a local model for inference.
+
+NOTE Confidence: 0.8941794037818909
+
+00:08:56.120 --> 00:08:58.796
+There might be a second scenario where an agent requires
+
+NOTE Confidence: 0.8941794037818909
+
+00:08:58.844 --> 00:09:02.429
+to run inference, it requires multi turn orchestration, tasking, reasoning,
+
+NOTE Confidence: 0.8941794037818909
+
+00:09:02.477 --> 00:09:04.485
+and it needs to go to a frontier model and
+
+NOTE Confidence: 0.8941794037818909
+
+00:09:04.532 --> 00:09:06.731
+it sees there's actually no PII in this, so it
+
+NOTE Confidence: 0.8941794037818909
+
+00:09:06.779 --> 00:09:07.640
+lets it route out.
+
+NOTE Confidence: 0.9114861488342285
+
+00:09:07.960 --> 00:09:10.180
+The third one is really the combination of the 1st
+
+NOTE Confidence: 0.9114861488342285
+
+00:09:10.225 --> 00:09:12.313
+2:00 and this is where we can use a combination
+
+NOTE Confidence: 0.9114861488342285
+
+00:09:12.357 --> 00:09:15.244
+of things like Kleiner models or differentially private fine tune
+
+NOTE Confidence: 0.9114861488342285
+
+00:09:15.289 --> 00:09:15.599
+models.
+
+NOTE Confidence: 0.8745913505554199
+
+00:09:15.600 --> 00:09:19.676
+So use DP with low epsilons to synthetically rewrite the
+
+NOTE Confidence: 0.8745913505554199
+
+00:09:19.749 --> 00:09:23.316
+query so it maintains the utility but none of the
+
+NOTE Confidence: 0.8745913505554199
+
+00:09:23.388 --> 00:09:23.680
+PII.
+
+NOTE Confidence: 0.8950929045677185
+
+00:09:23.679 --> 00:09:25.703
+So you can still go out to a frontier model
+
+NOTE Confidence: 0.8950929045677185
+
+00:09:25.750 --> 00:09:28.479
+reason and come back in your environment and rehydrate it.
+
+NOTE Confidence: 0.9193889498710632
+
+00:09:28.800 --> 00:09:31.685
+So it's a way to basically keep context and PII
+
+NOTE Confidence: 0.9193889498710632
+
+00:09:31.746 --> 00:09:34.079
+local while leveraging global compute.
+
+NOTE Confidence: 0.8781537413597107
+
+00:09:35.640 --> 00:09:37.810
+So jumping maybe into the demo and sort of talking
+
+NOTE Confidence: 0.8781537413597107
+
+00:09:37.854 --> 00:09:40.111
+about what we're just going to show you very quickly
+
+NOTE Confidence: 0.8781537413597107
+
+00:09:40.155 --> 00:09:42.152
+in the demo, Alex, do you want to just quickly
+
+NOTE Confidence: 0.8781537413597107
+
+00:09:42.195 --> 00:09:42.759
+talk to this?
+
+NOTE Confidence: 0.6850623488426208
+
+00:09:42.760 --> 00:09:43.000
+Sure.
+
+NOTE Confidence: 0.7606772780418396
+
+00:09:43.920 --> 00:09:46.278
+Yeah, we have, we have two demos that we're going
+
+NOTE Confidence: 0.7606772780418396
+
+00:09:46.326 --> 00:09:47.000
+to show today.
+
+NOTE Confidence: 0.8556473851203918
+
+00:09:47.160 --> 00:09:49.371
+The first one is in the time that you're running
+
+NOTE Confidence: 0.8556473851203918
+
+00:09:49.417 --> 00:09:52.319
+multiple agents adjusting that the issue of persistence, right.
+
+NOTE Confidence: 0.898379385471344
+
+00:09:52.320 --> 00:09:54.858
+So like you have agents running, it's awesome this idea
+
+NOTE Confidence: 0.898379385471344
+
+00:09:54.904 --> 00:09:57.350
+of like ephemeral agents, they spin up, they do their
+
+NOTE Confidence: 0.898379385471344
+
+00:09:57.396 --> 00:09:58.320
+job, they spin down.
+
+NOTE Confidence: 0.9593604803085327
+
+00:09:58.640 --> 00:10:00.901
+How do you enable those agents to communicate to each
+
+NOTE Confidence: 0.9593604803085327
+
+00:10:00.944 --> 00:10:01.200
+other?
+
+NOTE Confidence: 0.8369762897491455
+
+00:10:01.800 --> 00:10:03.520
+How do you able enable them to store data?
+
+NOTE Confidence: 0.8887962102890015
+
+00:10:04.480 --> 00:10:06.633
+And so one of the things that we're going to
+
+NOTE Confidence: 0.8887962102890015
+
+00:10:06.681 --> 00:10:09.520
+show here is actually using GitHub as a persistence layer.
+
+NOTE Confidence: 0.9064098596572876
+
+00:10:09.520 --> 00:10:10.560
+It's actually really neat.
+
+NOTE Confidence: 0.8451610207557678
+
+00:10:11.120 --> 00:10:13.692
+Whereas the agents run either the artifacts they generate at
+
+NOTE Confidence: 0.8451610207557678
+
+00:10:13.735 --> 00:10:15.793
+the end or their notes or the whole audit trail,
+
+NOTE Confidence: 0.8451610207557678
+
+00:10:15.836 --> 00:10:17.680
+you can actually just store that to GitHub.
+
+NOTE Confidence: 0.8531569838523865
+
+00:10:17.680 --> 00:10:18.640
+So that'll be the first demo.
+
+NOTE Confidence: 0.8873757719993591
+
+00:10:19.400 --> 00:10:22.432
+The second demo we're going to show right after that
+
+NOTE Confidence: 0.8873757719993591
+
+00:10:22.490 --> 00:10:25.464
+is talking about this whole kind of like loop where
+
+NOTE Confidence: 0.8873757719993591
+
+00:10:25.522 --> 00:10:28.846
+the agent actually we'll talk about this, but like within
+
+NOTE Confidence: 0.8873757719993591
+
+00:10:28.905 --> 00:10:32.053
+Open Shell, the agent has the ability to negotiate its
+
+NOTE Confidence: 0.8873757719993591
+
+00:10:32.112 --> 00:10:33.920
+own access with the supervisor.
+
+NOTE Confidence: 0.8734357357025146
+
+00:10:34.200 --> 00:10:36.440
+So we'll demonstrate how that runs and how we can
+
+NOTE Confidence: 0.8734357357025146
+
+00:10:36.485 --> 00:10:38.817
+reduce some of the kind of human overhead for like,
+
+NOTE Confidence: 0.8734357357025146
+
+00:10:38.862 --> 00:10:41.560
+approving different things as these agents evolve, I think.
+
+NOTE Confidence: 0.9180946946144104
+
+00:10:41.720 --> 00:10:44.547
+One of the key things around Open Shell and how
+
+NOTE Confidence: 0.9180946946144104
+
+00:10:44.607 --> 00:10:48.036
+we think about policies is when you write global policies
+
+NOTE Confidence: 0.9180946946144104
+
+00:10:48.096 --> 00:10:51.886
+and say these particular actions are allowed or disallowed, all
+
+NOTE Confidence: 0.9180946946144104
+
+00:10:51.946 --> 00:10:55.315
+of those global policies are made available to the agent
+
+NOTE Confidence: 0.9180946946144104
+
+00:10:55.375 --> 00:10:56.999
+running inside the sandbox.
+
+NOTE Confidence: 0.9387825131416321
+
+00:10:57.240 --> 00:10:59.250
+So this is an area where because we start with
+
+NOTE Confidence: 0.9387825131416321
+
+00:10:59.293 --> 00:11:01.784
+a zero trust mode, the agent doesn't actually have access
+
+NOTE Confidence: 0.9387825131416321
+
+00:11:01.828 --> 00:11:02.439
+to everything.
+
+NOTE Confidence: 0.8981906771659851
+
+00:11:02.440 --> 00:11:05.584
+But because it has understanding now of all the policies
+
+NOTE Confidence: 0.8981906771659851
+
+00:11:05.640 --> 00:11:08.672
+allowed in your organization, it can come back and say
+
+NOTE Confidence: 0.8981906771659851
+
+00:11:08.728 --> 00:11:10.974
+if you give me XY and ZI can go complete
+
+NOTE Confidence: 0.8981906771659851
+
+00:11:11.030 --> 00:11:11.479
+my task.
+
+NOTE Confidence: 0.8987646102905273
+
+00:11:11.720 --> 00:11:13.961
+But that is also not given blindly because what we've
+
+NOTE Confidence: 0.8987646102905273
+
+00:11:14.003 --> 00:11:16.540
+seen is, is agents can actually combine different chains and
+
+NOTE Confidence: 0.8987646102905273
+
+00:11:16.582 --> 00:11:17.640
+be able to problem solve.
+
+NOTE Confidence: 0.8413951396942139
+
+00:11:17.960 --> 00:11:20.575
+So once they request that the policy prover runs on
+
+NOTE Confidence: 0.8413951396942139
+
+00:11:20.627 --> 00:11:23.858
+top of it, ensures that there's no accidental exfiltration path
+
+NOTE Confidence: 0.8413951396942139
+
+00:11:23.909 --> 00:11:24.319
+created.
+
+NOTE Confidence: 0.7473120093345642
+
+00:11:24.880 --> 00:11:27.253
+And from there the policy is then granted to the
+
+NOTE Confidence: 0.7473120093345642
+
+00:11:27.303 --> 00:11:27.599
+agent.
+
+NOTE Confidence: 0.8773891925811768
+
+00:11:27.960 --> 00:11:30.160
+And then sort of, if you extrapolate this, this is
+
+NOTE Confidence: 0.8773891925811768
+
+00:11:30.204 --> 00:11:32.493
+really why this is important because when we talk to
+
+NOTE Confidence: 0.8773891925811768
+
+00:11:32.537 --> 00:11:35.046
+partners who are doing this with millions and millions of
+
+NOTE Confidence: 0.8773891925811768
+
+00:11:35.090 --> 00:11:38.039
+sandboxes, then that becomes very critical because even 1% approval
+
+NOTE Confidence: 0.8773891925811768
+
+00:11:38.083 --> 00:11:40.240
+to human looks like thousands of prompts per day.
+
+NOTE Confidence: 0.965880811214447
+
+00:11:40.480 --> 00:11:42.519
+So this is really how we're trying to automate this
+
+NOTE Confidence: 0.965880811214447
+
+00:11:42.559 --> 00:11:42.879
+process.
+
+NOTE Confidence: 0.7997530698776245
+
+00:11:44.160 --> 00:11:45.200
+I'm going to start a demo here.
+
+NOTE Confidence: 0.8774428963661194
+
+00:11:45.200 --> 00:11:46.763
+This is one of the core examples we have on
+
+NOTE Confidence: 0.8774428963661194
+
+00:11:46.799 --> 00:11:47.199
+Open Shell.
+
+NOTE Confidence: 0.8153875470161438
+
+00:11:47.200 --> 00:11:48.743
+So if you just go to Open Shell, go to
+
+NOTE Confidence: 0.8153875470161438
+
+00:11:48.783 --> 00:11:49.879
+examples, it's right there.
+
+NOTE Confidence: 0.898422122001648
+
+00:11:50.840 --> 00:11:54.193
+What we're doing right now is demonstrating the one of
+
+NOTE Confidence: 0.898422122001648
+
+00:11:54.255 --> 00:11:56.801
+the ways we can use GitHub for Agent as a
+
+NOTE Confidence: 0.898422122001648
+
+00:11:56.863 --> 00:11:57.360
+notepad.
+
+NOTE Confidence: 0.7908567190170288
+
+00:11:57.360 --> 00:11:59.440
+There's a the simple kind of example we're using here.
+
+NOTE Confidence: 0.9620442986488342
+
+00:12:00.000 --> 00:12:02.280
+So what's neat about this?
+
+NOTE Confidence: 0.9032843112945557
+
+00:12:02.280 --> 00:12:04.239
+You can restart your sandbox as many times as you
+
+NOTE Confidence: 0.9032843112945557
+
+00:12:04.279 --> 00:12:04.599
+want to.
+
+NOTE Confidence: 0.592892050743103
+
+00:12:05.640 --> 00:12:06.720
+Concurrency is built in.
+
+NOTE Confidence: 0.6235719919204712
+
+00:12:06.720 --> 00:12:08.684
+You're never going to have to worry about stomping on
+
+NOTE Confidence: 0.6235719919204712
+
+00:12:08.721 --> 00:12:10.760
+another agent's notes or anything in get Pad or GitHub.
+
+NOTE Confidence: 0.8767111897468567
+
+00:12:10.760 --> 00:12:11.320
+It's very cool.
+
+NOTE Confidence: 0.8028609156608582
+
+00:12:11.880 --> 00:12:14.016
+So what we're going to do essentially is we're going
+
+NOTE Confidence: 0.8028609156608582
+
+00:12:14.057 --> 00:12:15.947
+to follow kind of a standard map reduce or fan
+
+NOTE Confidence: 0.8028609156608582
+
+00:12:15.988 --> 00:12:17.959
+out pattern where we're going to use Open Shell.
+
+NOTE Confidence: 0.878972589969635
+
+00:12:17.960 --> 00:12:18.960
+We'll demonstrate this in a second.
+
+NOTE Confidence: 0.8569172620773315
+
+00:12:18.960 --> 00:12:21.040
+We're going to fire up five sandboxes.
+
+NOTE Confidence: 0.9548652172088623
+
+00:12:21.040 --> 00:12:22.490
+Each one of them is going to work on a
+
+NOTE Confidence: 0.9548652172088623
+
+00:12:22.529 --> 00:12:22.719
+task.
+
+NOTE Confidence: 0.9035801887512207
+
+00:12:23.360 --> 00:12:25.936
+They're going to store their notes, and then we're going
+
+NOTE Confidence: 0.9035801887512207
+
+00:12:25.982 --> 00:12:28.696
+to have another summarization or like a synthesis agent, go
+
+NOTE Confidence: 0.9035801887512207
+
+00:12:28.742 --> 00:12:31.272
+across all those notes and combine them into one single
+
+NOTE Confidence: 0.9035801887512207
+
+00:12:31.318 --> 00:12:31.640
+result.
+
+NOTE Confidence: 0.7743701934814453
+
+00:12:31.960 --> 00:12:33.080
+All that's going to be stored in GitHub.
+
+NOTE Confidence: 0.7223505973815918
+
+00:12:33.880 --> 00:12:35.080
+Kind of cool stuff that we're showing here.
+
+NOTE Confidence: 0.9415123462677002
+
+00:12:35.080 --> 00:12:37.308
+So this is what a policy looks like inside Open
+
+NOTE Confidence: 0.9415123462677002
+
+00:12:37.355 --> 00:12:37.639
+Shell.
+
+NOTE Confidence: 0.878438413143158
+
+00:12:38.200 --> 00:12:40.040
+So this is the OPA Rego policy.
+
+NOTE Confidence: 0.8013923168182373
+
+00:12:40.040 --> 00:12:42.419
+But here you can see, for example, here's what a
+
+NOTE Confidence: 0.8013923168182373
+
+00:12:42.468 --> 00:12:45.095
+a GitHub, a scoped GitHub policy would look like that
+
+NOTE Confidence: 0.8013923168182373
+
+00:12:45.145 --> 00:12:46.880
+scoped to a single agent execution.
+
+NOTE Confidence: 0.9372383952140808
+
+00:12:47.400 --> 00:12:49.217
+So we're telling it, this is what you're allowed to
+
+NOTE Confidence: 0.9372383952140808
+
+00:12:49.253 --> 00:12:49.360
+do.
+
+NOTE Confidence: 0.7799611687660217
+
+00:12:49.360 --> 00:12:52.200
+You're allowed to access these very specific REST endpoints.
+
+NOTE Confidence: 0.9373477697372437
+
+00:12:52.440 --> 00:12:54.160
+If you need more, you need to negotiate it.
+
+NOTE Confidence: 0.886416494846344
+
+00:12:54.400 --> 00:12:56.729
+But it's always kind of like that it's really important
+
+NOTE Confidence: 0.886416494846344
+
+00:12:56.771 --> 00:12:58.719
+security construct this really minimal policy.
+
+NOTE Confidence: 0.8732563853263855
+
+00:12:59.520 --> 00:13:01.562
+The second thing that we're showing here too is that
+
+NOTE Confidence: 0.8732563853263855
+
+00:13:01.601 --> 00:13:03.840
+the agent itself will never actually see the credentials.
+
+NOTE Confidence: 0.8892536759376526
+
+00:13:04.320 --> 00:13:06.400
+All of that is managed at the supervisor level.
+
+NOTE Confidence: 0.82578444480896
+
+00:13:06.400 --> 00:13:09.040
+So here I'm going to open up a terminal here.
+
+NOTE Confidence: 0.8514042496681213
+
+00:13:09.040 --> 00:13:11.800
+So this is the terminal interface for Open Shells.
+
+NOTE Confidence: 0.7969627380371094
+
+00:13:11.800 --> 00:13:14.200
+I, I just, it's a developer friendly interface.
+
+NOTE Confidence: 0.8091658353805542
+
+00:13:14.200 --> 00:13:15.200
+We can see what's happening.
+
+NOTE Confidence: 0.9272379875183105
+
+00:13:16.080 --> 00:13:17.680
+We're running a demo here on the left.
+
+NOTE Confidence: 0.8505890965461731
+
+00:13:18.280 --> 00:13:20.400
+What we just did is we spun up five sandboxes.
+
+NOTE Confidence: 0.9403395652770996
+
+00:13:20.400 --> 00:13:21.840
+Each one of them is working on a task.
+
+NOTE Confidence: 0.7760799527168274
+
+00:13:21.840 --> 00:13:23.706
+So it has a coding agent inside of it, a
+
+NOTE Confidence: 0.7760799527168274
+
+00:13:23.753 --> 00:13:25.199
+copilot or codecs in this case.
+
+NOTE Confidence: 0.916275143623352
+
+00:13:26.240 --> 00:13:28.399
+You can see here that it's hiding the credentials from
+
+NOTE Confidence: 0.916275143623352
+
+00:13:28.439 --> 00:13:28.839
+the agent.
+
+NOTE Confidence: 0.9276517629623413
+
+00:13:29.720 --> 00:13:31.802
+We have 4 sandboxes that are running on the task
+
+NOTE Confidence: 0.9276517629623413
+
+00:13:31.846 --> 00:13:32.279
+right now.
+
+NOTE Confidence: 0.8703768253326416
+
+00:13:32.920 --> 00:13:35.237
+They're going to use the credentials we granted for them
+
+NOTE Confidence: 0.8703768253326416
+
+00:13:35.278 --> 00:13:36.520
+to write directly to get help.
+
+NOTE Confidence: 0.889621376991272
+
+00:13:36.520 --> 00:13:38.040
+When they're done, we'll show you what this looks like.
+
+NOTE Confidence: 0.851858913898468
+
+00:13:38.880 --> 00:13:41.100
+And then the final, the synthesis agent's going to take
+
+NOTE Confidence: 0.851858913898468
+
+00:13:41.140 --> 00:13:43.280
+all of those different results and put them together.
+
+NOTE Confidence: 0.7763476967811584
+
+00:13:44.720 --> 00:13:47.129
+But the neat thing here is we're seeing the communication
+
+NOTE Confidence: 0.7763476967811584
+
+00:13:47.171 --> 00:13:49.200
+where each agent is isolated in its own sandbox.
+
+NOTE Confidence: 0.8851853013038635
+
+00:13:49.200 --> 00:13:51.351
+You can reason exactly about what it's doing from a
+
+NOTE Confidence: 0.8851853013038635
+
+00:13:51.393 --> 00:13:52.279
+security perspective.
+
+NOTE Confidence: 0.9116227030754089
+
+00:13:53.280 --> 00:13:55.325
+And then we've got the ability for them to to
+
+NOTE Confidence: 0.9116227030754089
+
+00:13:55.370 --> 00:13:56.279
+coordinate together.
+
+NOTE Confidence: 0.6530672311782837
+
+00:13:57.240 --> 00:13:59.200
+Say it like a slightly more advanced example.
+
+NOTE Confidence: 0.8263612389564514
+
+00:13:59.200 --> 00:14:01.479
+If you guys are looking to build on this, there's
+
+NOTE Confidence: 0.8263612389564514
+
+00:14:01.526 --> 00:14:03.479
+a neat protocol from Google called A to a.
+
+NOTE Confidence: 0.809529721736908
+
+00:14:03.480 --> 00:14:07.006
+So the agent protocol that enables the agents to for
+
+NOTE Confidence: 0.809529721736908
+
+00:14:07.073 --> 00:14:10.599
+really fast, high rate communication between agents.
+
+NOTE Confidence: 0.9285103678703308
+
+00:14:10.600 --> 00:14:12.557
+If they're like working together on something, they can do
+
+NOTE Confidence: 0.9285103678703308
+
+00:14:12.591 --> 00:14:12.760
+that.
+
+NOTE Confidence: 0.8950099349021912
+
+00:14:13.160 --> 00:14:15.091
+This mode still makes a lot of sense for whatever
+
+NOTE Confidence: 0.8950099349021912
+
+00:14:15.130 --> 00:14:15.839
+you want to store.
+
+NOTE Confidence: 0.7609553337097168
+
+00:14:15.840 --> 00:14:17.909
+Anything you want to store, an audit trail you want
+
+NOTE Confidence: 0.7609553337097168
+
+00:14:17.949 --> 00:14:20.059
+to store like the notes or the execution, storing it
+
+NOTE Confidence: 0.7609553337097168
+
+00:14:20.099 --> 00:14:21.519
+inside GitHub makes a lot of sense.
+
+NOTE Confidence: 0.8863947987556458
+
+00:14:21.520 --> 00:14:23.640
+I think putting those two together is pretty incredible.
+
+NOTE Confidence: 0.9244334697723389
+
+00:14:24.640 --> 00:14:26.344
+So here we can see the final kind of agent
+
+NOTE Confidence: 0.9244334697723389
+
+00:14:26.385 --> 00:14:27.399
+notepad that was written.
+
+NOTE Confidence: 0.7995043396949768
+
+00:14:29.120 --> 00:14:31.080
+Sandboxes are all closed down and deleted now.
+
+NOTE Confidence: 0.795394241809845
+
+00:14:31.080 --> 00:14:35.360
+So everything's been written out to to directly to GitHub.
+
+NOTE Confidence: 0.8625727891921997
+
+00:14:35.400 --> 00:14:37.291
+And then in a second here in in the the
+
+NOTE Confidence: 0.8625727891921997
+
+00:14:37.339 --> 00:14:39.279
+video, we'll look at the actual outputs.
+
+NOTE Confidence: 0.948268473148346
+
+00:14:39.800 --> 00:14:40.920
+So here you can see the runs.
+
+NOTE Confidence: 0.8414326906204224
+
+00:14:40.920 --> 00:14:42.240
+Let's go ahead and take a look at it.
+
+NOTE Confidence: 0.9700573682785034
+
+00:14:42.240 --> 00:14:44.520
+Here you have the notes.
+
+NOTE Confidence: 0.9105921387672424
+
+00:14:44.520 --> 00:14:47.092
+Each agent was able to write exactly to 1 file
+
+NOTE Confidence: 0.9105921387672424
+
+00:14:47.148 --> 00:14:50.392
+inside of the GitHub repo, so no destructive actions would
+
+NOTE Confidence: 0.9105921387672424
+
+00:14:50.448 --> 00:14:51.119
+be possible.
+
+NOTE Confidence: 0.7979843020439148
+
+00:14:51.720 --> 00:14:55.030
+And then they were all summaries together inside one single
+
+NOTE Confidence: 0.7979843020439148
+
+00:14:55.086 --> 00:14:55.760
+example and.
+
+NOTE Confidence: 0.8315262198448181
+
+00:14:57.000 --> 00:14:58.868
+One last thing to sort of note is one of
+
+NOTE Confidence: 0.8315262198448181
+
+00:14:58.914 --> 00:15:00.876
+the unique work that we did here on the on
+
+NOTE Confidence: 0.8315262198448181
+
+00:15:00.922 --> 00:15:03.257
+the network stack and the file system stack is, is
+
+NOTE Confidence: 0.8315262198448181
+
+00:15:03.304 --> 00:15:06.200
+that every time the policies are loaded, they're hot reloaded.
+
+NOTE Confidence: 0.8554967045783997
+
+00:15:06.200 --> 00:15:08.075
+So this isn't a traditional way where if you want
+
+NOTE Confidence: 0.8554967045783997
+
+00:15:08.114 --> 00:15:10.257
+in a container, you have to basically restart the entire
+
+NOTE Confidence: 0.8554967045783997
+
+00:15:10.296 --> 00:15:12.439
+sandbox and you basically have to wait for that latency.
+
+NOTE Confidence: 0.8157780766487122
+
+00:15:12.720 --> 00:15:15.260
+So this is another thing where we thought about this
+
+NOTE Confidence: 0.8157780766487122
+
+00:15:15.309 --> 00:15:18.485
+particular stack in machine speed for agent specifics, every sort
+
+NOTE Confidence: 0.8157780766487122
+
+00:15:18.534 --> 00:15:21.320
+of millisecond of delay compounds downstream and ripples.
+
+NOTE Confidence: 0.9214695692062378
+
+00:15:21.320 --> 00:15:23.213
+So this is another thing that we really wanted to
+
+NOTE Confidence: 0.9214695692062378
+
+00:15:23.252 --> 00:15:23.599
+focus on.
+
+NOTE Confidence: 0.5972657799720764
+
+00:15:23.640 --> 00:15:24.880
+All right.
+
+NOTE Confidence: 0.8709375858306885
+
+00:15:25.480 --> 00:15:27.640
+The next one we're going to show you guys, this
+
+NOTE Confidence: 0.8709375858306885
+
+00:15:27.686 --> 00:15:29.709
+is all of about three days old and this, but
+
+NOTE Confidence: 0.8709375858306885
+
+00:15:29.755 --> 00:15:32.376
+this is a really big piece of functionality we're working
+
+NOTE Confidence: 0.8709375858306885
+
+00:15:32.422 --> 00:15:32.560
+on.
+
+NOTE Confidence: 0.7032172679901123
+
+00:15:32.680 --> 00:15:34.000
+Do you mind pausing it for one second rally?
+
+NOTE Confidence: 0.867019534111023
+
+00:15:35.240 --> 00:15:37.000
+So we have the open shell terminal on the left.
+
+NOTE Confidence: 0.9681885838508606
+
+00:15:37.280 --> 00:15:39.040
+We have a demo here on the right.
+
+NOTE Confidence: 0.8950658440589905
+
+00:15:39.480 --> 00:15:41.928
+And what we're demonstrating is this loop where an agent
+
+NOTE Confidence: 0.8950658440589905
+
+00:15:41.972 --> 00:15:44.070
+running inside of a sandbox is going to hit some
+
+NOTE Confidence: 0.8950658440589905
+
+00:15:44.114 --> 00:15:45.119
+sort of a limit, right?
+
+NOTE Confidence: 0.841018795967102
+
+00:15:45.120 --> 00:15:47.476
+So in this case, we were directing the agents we
+
+NOTE Confidence: 0.841018795967102
+
+00:15:47.525 --> 00:15:49.930
+spun up, I believe, let's see, it's a Codex agent
+
+NOTE Confidence: 0.841018795967102
+
+00:15:49.979 --> 00:15:52.041
+we spun up inside of there and we told it,
+
+NOTE Confidence: 0.841018795967102
+
+00:15:52.090 --> 00:15:53.759
+hey, go ahead and write to GitHub.
+
+NOTE Confidence: 0.910405695438385
+
+00:15:54.200 --> 00:15:55.880
+It starts with read access to GitHub.
+
+NOTE Confidence: 0.8546528816223145
+
+00:15:55.880 --> 00:15:57.560
+So it does not have write access to GitHub.
+
+NOTE Confidence: 0.917553722858429
+
+00:15:58.320 --> 00:16:00.405
+So what's going to happen here is the agent is
+
+NOTE Confidence: 0.917553722858429
+
+00:16:00.450 --> 00:16:01.040
+going to run.
+
+NOTE Confidence: 0.8845654726028442
+
+00:16:01.680 --> 00:16:03.244
+Let's go ahead and unlock it for a second and
+
+NOTE Confidence: 0.8845654726028442
+
+00:16:03.279 --> 00:16:04.948
+we'll let this run Here you can see the policies
+
+NOTE Confidence: 0.8845654726028442
+
+00:16:04.982 --> 00:16:05.399
+on the left.
+
+NOTE Confidence: 0.8236875534057617
+
+00:16:05.800 --> 00:16:08.741
+The agents going to get blocked by open Shell when
+
+NOTE Confidence: 0.8236875534057617
+
+00:16:08.799 --> 00:16:10.799
+it tries to write to the new repo.
+
+NOTE Confidence: 0.8319305777549744
+
+00:16:11.400 --> 00:16:14.346
+So here you say it's going to be writing a
+
+NOTE Confidence: 0.8319305777549744
+
+00:16:14.416 --> 00:16:16.240
+policy block and drafting.
+
+NOTE Confidence: 0.7810563445091248
+
+00:16:16.240 --> 00:16:19.240
+So essentially it's trying to to write to GitHub directly.
+
+NOTE Confidence: 0.9440933465957642
+
+00:16:19.240 --> 00:16:20.080
+It gets blocked.
+
+NOTE Confidence: 0.910625159740448
+
+00:16:20.080 --> 00:16:21.400
+We'll see the denial in a second.
+
+NOTE Confidence: 0.9245287775993347
+
+00:16:22.200 --> 00:16:24.280
+When the agent gets blocked, we pass it back.
+
+NOTE Confidence: 0.7916101217269897
+
+00:16:24.680 --> 00:16:26.080
+Explanation for why it got blocked.
+
+NOTE Confidence: 0.8148388266563416
+
+00:16:26.080 --> 00:16:27.567
+We said you got blocked because you don't have access
+
+NOTE Confidence: 0.8148388266563416
+
+00:16:27.595 --> 00:16:27.960
+to this repo.
+
+NOTE Confidence: 0.9008162617683411
+
+00:16:28.280 --> 00:16:30.040
+There's a local skill that you can use.
+
+NOTE Confidence: 0.8758017420768738
+
+00:16:30.160 --> 00:16:32.324
+And this is the kind of cool thing inside Open
+
+NOTE Confidence: 0.8758017420768738
+
+00:16:32.371 --> 00:16:34.630
+Shell is that it's going to use that local skill
+
+NOTE Confidence: 0.8758017420768738
+
+00:16:34.677 --> 00:16:37.124
+and it's going to say, hey, I can enumerate actually
+
+NOTE Confidence: 0.8758017420768738
+
+00:16:37.171 --> 00:16:39.759
+the sandbox policies and I can also extend that policy.
+
+NOTE Confidence: 0.8591704964637756
+
+00:16:39.760 --> 00:16:42.299
+So it drafts a proposal and it says, now I'm
+
+NOTE Confidence: 0.8591704964637756
+
+00:16:42.357 --> 00:16:44.838
+going to add, you can see right here at the
+
+NOTE Confidence: 0.8591704964637756
+
+00:16:44.896 --> 00:16:48.013
+very top this network rule that just got auto approved
+
+NOTE Confidence: 0.8591704964637756
+
+00:16:48.070 --> 00:16:51.014
+here it is requesting access to write to a specific
+
+NOTE Confidence: 0.8591704964637756
+
+00:16:51.071 --> 00:16:51.879
+repo endpoint.
+
+NOTE Confidence: 0.5003474354743958
+
+00:16:52.600 --> 00:16:53.400
+We've defined that.
+
+NOTE Confidence: 0.8046581745147705
+
+00:16:53.400 --> 00:16:54.040
+That's OK.
+
+NOTE Confidence: 0.8532897233963013
+
+00:16:54.040 --> 00:16:55.320
+We can see this request here.
+
+NOTE Confidence: 0.682849109172821
+
+00:16:55.840 --> 00:16:58.120
+So reason our curl to write to 1 demo.
+
+NOTE Confidence: 0.8975770473480225
+
+00:16:58.120 --> 00:16:59.520
+So that's telling you what it's doing.
+
+NOTE Confidence: 0.9077231287956238
+
+00:17:00.240 --> 00:17:02.982
+Our prover is running against it and it discovered one
+
+NOTE Confidence: 0.9077231287956238
+
+00:17:03.033 --> 00:17:03.440
+finding.
+
+NOTE Confidence: 0.9049749970436096
+
+00:17:03.440 --> 00:17:07.564
+So it discovered there that we were expanding the credential
+
+NOTE Confidence: 0.9049749970436096
+
+00:17:07.633 --> 00:17:10.520
+right scope of the agent, but that was OK.
+
+NOTE Confidence: 0.9207786917686462
+
+00:17:10.560 --> 00:17:12.883
+We automatically approve it and we let it through and
+
+NOTE Confidence: 0.9207786917686462
+
+00:17:12.927 --> 00:17:13.760
+it all gets logged.
+
+NOTE Confidence: 0.9192748665809631
+
+00:17:14.119 --> 00:17:16.466
+So here's the total logs that we have coming out
+
+NOTE Confidence: 0.9192748665809631
+
+00:17:16.515 --> 00:17:17.200
+of Open Shell.
+
+NOTE Confidence: 0.7698360681533813
+
+00:17:17.200 --> 00:17:19.680
+We use a format called OCSF, which is the open
+
+NOTE Confidence: 0.7698360681533813
+
+00:17:19.733 --> 00:17:20.920
+cyber security format.
+
+NOTE Confidence: 0.797783374786377
+
+00:17:21.160 --> 00:17:23.520
+It's compatible with Splunk or any type of like security
+
+NOTE Confidence: 0.797783374786377
+
+00:17:23.562 --> 00:17:25.080
+data dog thing that you like to use.
+
+NOTE Confidence: 0.8885614275932312
+
+00:17:25.920 --> 00:17:28.800
+But you can see here essentially we have some approved
+
+NOTE Confidence: 0.8885614275932312
+
+00:17:28.853 --> 00:17:30.399
+accesses coming through here.
+
+NOTE Confidence: 0.8244239687919617
+
+00:17:30.400 --> 00:17:33.000
+We should see look through here as well.
+
+NOTE Confidence: 0.8679212927818298
+
+00:17:35.720 --> 00:17:37.606
+Here at first tried to do the right so you
+
+NOTE Confidence: 0.8679212927818298
+
+00:17:37.651 --> 00:17:38.640
+can see it was denied.
+
+NOTE Confidence: 0.8986715078353882
+
+00:17:40.080 --> 00:17:41.000
+It's like that's cool.
+
+NOTE Confidence: 0.8316596746444702
+
+00:17:41.000 --> 00:17:43.080
+It authored a new proposal as the next step.
+
+NOTE Confidence: 0.9011972546577454
+
+00:17:43.080 --> 00:17:45.381
+The gateway approved that and then it was able to
+
+NOTE Confidence: 0.9011972546577454
+
+00:17:45.428 --> 00:17:47.683
+reload the policy, hot reload it and then it was
+
+NOTE Confidence: 0.9011972546577454
+
+00:17:47.729 --> 00:17:49.279
+able to write to GitHub directly.
+
+NOTE Confidence: 0.9391224384307861
+
+00:17:49.720 --> 00:17:51.785
+So this is the kind of like neat, like audit
+
+NOTE Confidence: 0.9391224384307861
+
+00:17:51.832 --> 00:17:54.319
+trail automated approval process that we can do that.
+
+NOTE Confidence: 0.8279852271080017
+
+00:17:54.320 --> 00:17:56.914
+You can set security policy and then just let the
+
+NOTE Confidence: 0.8279852271080017
+
+00:17:56.967 --> 00:17:59.879
+agents evolve without having to grow to grant this like
+
+NOTE Confidence: 0.8279852271080017
+
+00:17:59.932 --> 00:18:03.480
+massively scoped like here's everything you can possibly do policy.
+
+NOTE Confidence: 0.8921078443527222
+
+00:18:03.480 --> 00:18:06.365
+We can keep each sandbox really limited to the minimal
+
+NOTE Confidence: 0.8921078443527222
+
+00:18:06.419 --> 00:18:09.625
+policy required, and the agent can negotiate its access from
+
+NOTE Confidence: 0.8921078443527222
+
+00:18:09.679 --> 00:18:09.999
+there.
+
+NOTE Confidence: 0.8541924953460693
+
+00:18:11.240 --> 00:18:14.328
+And maybe just before we pause for questions, a couple
+
+NOTE Confidence: 0.8541924953460693
+
+00:18:14.385 --> 00:18:16.959
+of other just high level notes on open Shell.
+
+NOTE Confidence: 0.7807738184928894
+
+00:18:17.880 --> 00:18:20.560
+So we're building open Shell with an ecosystem of partners.
+
+NOTE Confidence: 0.8136401176452637
+
+00:18:20.560 --> 00:18:22.794
+As mentioned, it's under Apache 2 point O long term
+
+NOTE Confidence: 0.8136401176452637
+
+00:18:22.838 --> 00:18:25.073
+thinking here is, is like this is something that we
+
+NOTE Confidence: 0.8136401176452637
+
+00:18:25.117 --> 00:18:27.440
+would potentially donate to CNCF or Linux Foundation.
+
+NOTE Confidence: 0.9315728545188904
+
+00:18:27.440 --> 00:18:29.960
+That's how we're thinking about it right now.
+
+NOTE Confidence: 0.8733774423599243
+
+00:18:30.000 --> 00:18:32.387
+The way we're actually implementing and taking to market Open
+
+NOTE Confidence: 0.8733774423599243
+
+00:18:32.426 --> 00:18:35.049
+Shells is we're working with partners like Microsoft announced this
+
+NOTE Confidence: 0.8733774423599243
+
+00:18:35.088 --> 00:18:35.480
+yesterday.
+
+NOTE Confidence: 0.8507189154624939
+
+00:18:35.480 --> 00:18:39.120
+It's embedded into Windows native WSL, Azure, GitHub.
+
+NOTE Confidence: 0.15497905015945435
+
+00:18:39.320 --> 00:18:39.840
+MXC.
+
+NOTE Confidence: 0.7634496688842773
+
+00:18:40.080 --> 00:18:44.446
+MXC, it's now available via Canonical on Ubuntu, Red Hat
+
+NOTE Confidence: 0.7634496688842773
+
+00:18:44.524 --> 00:18:46.239
+on open shift, Docker.
+
+NOTE Confidence: 0.7909179329872131
+
+00:18:46.800 --> 00:18:49.749
+We have partners who discussed their work that they're doing
+
+NOTE Confidence: 0.7909179329872131
+
+00:18:49.798 --> 00:18:52.894
+their agents like SAP work Day, ServiceNow running their agents
+
+NOTE Confidence: 0.7909179329872131
+
+00:18:52.943 --> 00:18:54.320
+inside open shelf for trust.
+
+NOTE Confidence: 0.8809469938278198
+
+00:18:54.640 --> 00:18:56.607
+So the whole thinking here is, is like how do
+
+NOTE Confidence: 0.8809469938278198
+
+00:18:56.650 --> 00:18:58.880
+we basically embed this as a trust layer and enable
+
+NOTE Confidence: 0.8809469938278198
+
+00:18:58.923 --> 00:19:00.759
+everyone to be able to build on top of it.
+
+NOTE Confidence: 0.8949494361877441
+
+00:19:01.320 --> 00:19:03.313
+So we would love for everyone, whoever has the time
+
+NOTE Confidence: 0.8949494361877441
+
+00:19:03.353 --> 00:19:05.034
+to go to the GitHub repo, take a look, give
+
+NOTE Confidence: 0.8949494361877441
+
+00:19:05.073 --> 00:19:06.520
+us some feedback, experiment with it.
+
+NOTE Confidence: 0.9064584374427795
+
+00:19:06.520 --> 00:19:09.685
+This is really something we want community engagement with while
+
+NOTE Confidence: 0.9064584374427795
+
+00:19:09.735 --> 00:19:11.119
+we are driving it at NVIDIA.
+
+NOTE Confidence: 0.8269739747047424
+
+00:19:11.119 --> 00:19:13.154
+Our hope is the community picks this up and pushes
+
+NOTE Confidence: 0.8269739747047424
+
+00:19:13.195 --> 00:19:13.479
+it out.
+
+NOTE Confidence: 0.8744853138923645
+
+00:19:13.920 --> 00:19:16.375
+And from a timing standpoint, we're targeting roughly the next
+
+NOTE Confidence: 0.8744853138923645
+
+00:19:16.415 --> 00:19:17.920
+couple of months for the beta version.
+
+NOTE Confidence: 0.7170459032058716
+
+00:19:18.200 --> 00:19:19.240
+This is still an alpha.
+
+NOTE Confidence: 0.8837891817092896
+
+00:19:19.240 --> 00:19:21.802
+We only released Open Shell at GTC in San Jose
+
+NOTE Confidence: 0.8837891817092896
+
+00:19:21.857 --> 00:19:23.639
+about three months ago in March.
+
+NOTE Confidence: 0.9462416172027588
+
+00:19:24.760 --> 00:19:27.184
+And now we are really maturing it around a few
+
+NOTE Confidence: 0.9462416172027588
+
+00:19:27.236 --> 00:19:28.080
+different areas.
+
+NOTE Confidence: 0.8235242962837219
+
+00:19:28.640 --> 00:19:30.637
+And some of the sort of the areas that we
+
+NOTE Confidence: 0.8235242962837219
+
+00:19:30.686 --> 00:19:32.975
+should talk about is that now we have this very
+
+NOTE Confidence: 0.8235242962837219
+
+00:19:33.024 --> 00:19:35.654
+cool and sort of powerful concept in Open Shell called
+
+NOTE Confidence: 0.8235242962837219
+
+00:19:35.703 --> 00:19:37.360
+drivers is exactly what you think.
+
+NOTE Confidence: 0.8717283010482788
+
+00:19:37.359 --> 00:19:39.706
+So when you are launching open Shelf, you can pick
+
+NOTE Confidence: 0.8717283010482788
+
+00:19:39.753 --> 00:19:42.239
+the perimeter for sandboxing you want under the hood.
+
+NOTE Confidence: 0.894315242767334
+
+00:19:42.240 --> 00:19:43.240
+I want to use Firecracker.
+
+NOTE Confidence: 0.8981003761291504
+
+00:19:43.240 --> 00:19:44.520
+I want to use a hardened container.
+
+NOTE Confidence: 0.9313152432441711
+
+00:19:44.520 --> 00:19:46.080
+I want to be able to use trusted computing.
+
+NOTE Confidence: 0.8531985282897949
+
+00:19:46.080 --> 00:19:49.200
+I want to use SIG primitive sandboxing from Kubernetes.
+
+NOTE Confidence: 0.8759083151817322
+
+00:19:49.400 --> 00:19:51.630
+So we rely on whatever the technology is under hood
+
+NOTE Confidence: 0.8759083151817322
+
+00:19:51.673 --> 00:19:53.423
+for you to be able to use and we enforce
+
+NOTE Confidence: 0.8759083151817322
+
+00:19:53.466 --> 00:19:54.559
+the runtime on top of it.
+
+NOTE Confidence: 0.892549455165863
+
+00:19:55.560 --> 00:19:57.800
+All right, Well, that's all we have for you today.
+
+NOTE Confidence: 0.9574300050735474
+
+00:19:57.800 --> 00:19:58.800
+We only have 4 minutes left.
+
+NOTE Confidence: 0.8665453791618347
+
+00:19:58.800 --> 00:20:00.480
+So happy to pause there, take any questions.
+
+NOTE Confidence: 0.8290162086486816
+
+00:20:00.520 --> 00:20:00.760
+Yeah.
+
+NOTE Confidence: 0.8676645755767822
+
+00:20:15.160 --> 00:20:17.883
+Our, our goal with this was to reduce like we
+
+NOTE Confidence: 0.8676645755767822
+
+00:20:17.944 --> 00:20:20.667
+finger in the air 90% of the approvals that a
+
+NOTE Confidence: 0.8676645755767822
+
+00:20:20.728 --> 00:20:22.120
+typical you would need.
+
+NOTE Confidence: 0.8864167928695679
+
+00:20:22.119 --> 00:20:24.623
+So the idea was that for any like piece of
+
+NOTE Confidence: 0.8864167928695679
+
+00:20:24.682 --> 00:20:27.960
+work you're doing, really ideally we could wrap it into
+
+NOTE Confidence: 0.8864167928695679
+
+00:20:28.020 --> 00:20:31.000
+one or two human approvals that required for that.
+
+NOTE Confidence: 0.7889143228530884
+
+00:20:31.480 --> 00:20:33.000
+So that's what we, that's what we aim for.
+
+NOTE Confidence: 0.861992359161377
+
+00:20:33.000 --> 00:20:34.927
+But I think it really depends on what the security
+
+NOTE Confidence: 0.861992359161377
+
+00:20:34.965 --> 00:20:37.240
+team like the constraints the security team wants to build.
+
+NOTE Confidence: 0.6962304711341858
+
+00:20:39.640 --> 00:20:43.251
+Project like you have this concept of providing, you know,
+
+NOTE Confidence: 0.6962304711341858
+
+00:20:43.313 --> 00:20:45.679
+like codecs clawed, you know, copilot.
+
+NOTE Confidence: 0.9072265028953552
+
+00:20:45.680 --> 00:20:49.354
+These are all providers where central teams, IT security can
+
+NOTE Confidence: 0.9072265028953552
+
+00:20:49.415 --> 00:20:50.640
+run global policies.
+
+NOTE Confidence: 0.8419619798660278
+
+00:20:51.000 --> 00:20:53.079
+Now every sandbox that we set starts with zero trust
+
+NOTE Confidence: 0.8419619798660278
+
+00:20:53.119 --> 00:20:54.319
+and none of those are granted.
+
+NOTE Confidence: 0.8060302138328552
+
+00:20:54.320 --> 00:20:57.188
+So basically the ceiling is whatever your central teams decide
+
+NOTE Confidence: 0.8060302138328552
+
+00:20:57.234 --> 00:20:59.640
+is the global policies your organization is allowed.
+
+NOTE Confidence: 0.7467268705368042
+
+00:21:02.280 --> 00:21:05.347
+Yeah, the idea is within that, the two ways that
+
+NOTE Confidence: 0.7467268705368042
+
+00:21:05.410 --> 00:21:07.199
+you could do this is like 1.
+
+NOTE Confidence: 0.8697212338447571
+
+00:21:07.200 --> 00:21:09.508
+You just give this massive like security signs off in
+
+NOTE Confidence: 0.8697212338447571
+
+00:21:09.552 --> 00:21:11.599
+this policy that is like the maximalist policy.
+
+NOTE Confidence: 0.8909510374069214
+
+00:21:11.600 --> 00:21:13.573
+It's like everything you could possibly do that's not good
+
+NOTE Confidence: 0.8909510374069214
+
+00:21:13.607 --> 00:21:14.559
+from a security perspective.
+
+NOTE Confidence: 0.818243145942688
+
+00:21:14.560 --> 00:21:16.520
+Like not every agent should start out with that thing.
+
+NOTE Confidence: 0.9449996948242188
+
+00:21:17.080 --> 00:21:19.286
+So what we're trying to build here is a dynamic
+
+NOTE Confidence: 0.9449996948242188
+
+00:21:19.333 --> 00:21:21.540
+way for the agent to build into exactly what it
+
+NOTE Confidence: 0.9449996948242188
+
+00:21:21.587 --> 00:21:22.479
+needs, but no more.
+
+NOTE Confidence: 0.8805212378501892
+
+00:21:23.400 --> 00:21:26.196
+And so that's what we allow the negotiation really to
+
+NOTE Confidence: 0.8805212378501892
+
+00:21:26.249 --> 00:21:29.099
+happen right up until the point the security team says
+
+NOTE Confidence: 0.8805212378501892
+
+00:21:29.152 --> 00:21:29.679
+that's it.
+
+NOTE Confidence: 0.8553837537765503
+
+00:21:29.840 --> 00:21:31.578
+If it's anything more than a human has to approve
+
+NOTE Confidence: 0.8553837537765503
+
+00:21:31.613 --> 00:21:31.720
+it.
+
+NOTE Confidence: 0.8095787763595581
+
+00:21:33.080 --> 00:21:34.280
+And that's why we enforce it.
+
+NOTE Confidence: 0.5443711280822754
+
+00:21:39.840 --> 00:21:41.684
+Not basically bypass it or override it or sort of
+
+NOTE Confidence: 0.5443711280822754
+
+00:21:41.722 --> 00:21:42.399
+reason about that.
+
+NOTE Confidence: 0.8152859210968018
+
+00:21:44.680 --> 00:21:45.400
+Any other questions all?
+
+NOTE Confidence: 0.6761505603790283
+
+00:21:48.280 --> 00:21:48.480
+Right.
+
+NOTE Confidence: 0.7642793655395508
+
+00:21:49.160 --> 00:21:49.600
+Thank you very.
+
+NOTE Confidence: 0.2044786810874939
+
+00:21:50.000 --> 00:21:50.120
+Much.
+

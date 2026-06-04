@@ -1,0 +1,853 @@
+**[00:00:00]** Right away.
+**[00:00:01]** Hi everyone, I'm Swix.
+**[00:00:02]** Hope you're having a good build so far.
+**[00:00:04]** OK, I'm going to start with maybe something slightly controversial,
+**[00:00:09]** which is somewhat making fun of a launch of Microsoft.
+**[00:00:13]** This is the GitHub Copilot app which is launched a
+**[00:00:17]** couple weeks ago.
+**[00:00:18]** And it's basically they're a big rebrand of what Copilot
+**[00:00:23]** could be, you know, beyond VS Code.
+**[00:00:27]** And you notice like it looks interestingly similar to some
+**[00:00:30]** other apps that have been launched recently.
+**[00:00:33]** And the way I frame this is that everything is
+**[00:00:35]** conductor.
+**[00:00:36]** The conductor was kind of first to this form factor
+**[00:00:38]** of being an agents command centre.
+**[00:00:40]** They all, they all have this marketing line and then
+**[00:00:44]** eventually sort of cursor rebranded, windsurf rebranded, codecs rebranded and,
+**[00:00:50]** and GitHub rebranded.
+**[00:00:52]** And I think this is just less a less an
+**[00:00:54]** indictment of the lack of imagination or whatever, or just,
+**[00:00:57]** it's just more or less the form factor that everyone
+**[00:00:59]** has agreed that we're going to converge on.
+**[00:01:02]** This is very similar to everything becoming a crab.
+**[00:01:05]** We have, we sort of independently reinvented the crabs at
+**[00:01:07]** least seven times on Earth.
+**[00:01:09]** And so I think that is the sort of main
+**[00:01:11]** focus that I, I was sort of pitching this talk,
+**[00:01:14]** I guess when when I was invited to come speak.
+**[00:01:18]** And very ironically, the company that I'm advising Cognition recently
+**[00:01:22]** yesterday also shipped the agent command centre.
+**[00:01:25]** Guess what?
+**[00:01:26]** It's the same other thing as well.
+**[00:01:29]** It's got some other interesting features with the local to
+**[00:01:32]** cloud hand off, but fundamentally the level of distraction is
+**[00:01:36]** really shifting from managing individual agents.
+**[00:01:39]** You know, we started with like auto complete and starting
+**[00:01:41]** starting to manage like individual terminals, starting to team mux
+**[00:01:45]** the terminals and have like 12 different terminals going on
+**[00:01:48]** and then something more civilized and organized like this.
+**[00:01:51]** My own coding definitely looks very chaotic in a similar
+**[00:01:56]** way, which with all over all these agent managers as
+**[00:02:00]** well, but also multiplexing across cursor across.
+**[00:02:03]** Oh my God, I just published my GitHub tokens.
+**[00:02:05]** I got to rotate that and other and all the
+**[00:02:08]** cloud code instances over there as well.
+**[00:02:11]** So that's great.
+**[00:02:13]** I think like one of the things that is very
+**[00:02:16]** interesting is like it's discovering why we're here, right?
+**[00:02:19]** So I spent a lot of my career basically organizing
+**[00:02:22]** the AI engineer community and I've, I've been sort of
+**[00:02:25]** watching this over the over the last few years, especially
+**[00:02:28]** over the last year.
+**[00:02:30]** This is an explosion in the community.
+**[00:02:31]** I, you know, I've met people across Paris and London
+**[00:02:35]** and Miami and Singapore and all these and there's, there's
+**[00:02:39]** basically like 6 core themes that I really wanted to
+**[00:02:43]** impart on people.
+**[00:02:45]** And I think this is the, all the contributors to
+**[00:02:48]** what exactly is going on and where we're going.
+**[00:02:50]** We're about to go with all this, right?
+**[00:02:51]** I think there's a little bit of like anxiety.
+**[00:02:54]** One of my speakers in one of my conferences called
+**[00:02:56]** it format fear of missing agent time.
+**[00:02:59]** Literally like people are doing like polyphasic sleep.
+**[00:03:01]** Like I wake up in at like 2:00 AM in
+**[00:03:03]** the morning and go like, OK, well, I can just
+**[00:03:05]** go hit enter on my agent again.
+**[00:03:07]** And before I go back to bed.
+**[00:03:10]** And I think like really what is becoming true is
+**[00:03:13]** that people used to be sort of in this sort
+**[00:03:16]** of big model religion and it is no longer that,
+**[00:03:19]** right?
+**[00:03:19]** It is it is sort of this model plus harness
+**[00:03:22]** combination, which I think is very wonderful for developers like
+**[00:03:25]** yourselves and, and really is this idea that you can
+**[00:03:28]** actually have a strong influence by shaping the harness in
+**[00:03:32]** in whatever way.
+**[00:03:33]** It used to be prompts, but now we have so
+**[00:03:35]** many other additions to with from MCPS to skills to
+**[00:03:39]** workflows to what have you and I.
+**[00:03:41]** I do think that that requires a level different kind
+**[00:03:44]** of UI to interact with the model apart from just
+**[00:03:46]** chat, which I think that's is what we're seeing as
+**[00:03:49]** well.
+**[00:03:50]** We're seeing also the model labs really transition themselves from
+**[00:03:54]** just being like, we're going to output the pure model
+**[00:03:57]** towards harnesses that are usually increasingly more and more swarm
+**[00:04:01]** oriented.
+**[00:04:01]** You can see Kimmy K2 put out like hundreds of
+**[00:04:05]** parallel swarms.
+**[00:04:06]** And Tropic recently also released a embarrassingly parallel feature to
+**[00:04:10]** port their million line code base of Zig into Rust.
+**[00:04:14]** And I think that's that's a that's a sign of
+**[00:04:16]** things to come.
+**[00:04:17]** I also think that there is also just going to
+**[00:04:19]** be a lot of humans employed in this area.
+**[00:04:20]** So like, you know, that I think there's some job
+**[00:04:22]** security there.
+**[00:04:23]** And it's funny enough, like it's not even like the
+**[00:04:25]** code base of the agents that is valuable because you
+**[00:04:28]** can leak the entire source code of cloud code and
+**[00:04:31]** nothing changes.
+**[00:04:32]** OK, And what do I mean by nothing changes?
+**[00:04:35]** And Tropic becomes a trillion dollar company even after all
+**[00:04:37]** the source code is pwned.
+**[00:04:39]** But also, like I asked the makers of all the
+**[00:04:41]** other competing harnesses, did you learn anything from from the
+**[00:04:45]** cloud code source leak literally on my podcast the other
+**[00:04:48]** day And they were like, no, like we, they were,
+**[00:04:51]** we just, it just validated.
+**[00:04:53]** They have no secret sauce.
+**[00:04:54]** Like we are also doing the same thing.
+**[00:04:55]** We've also discovered the same exact thing.
+**[00:04:57]** So the Moat is not in the model anymore.
+**[00:05:00]** The Moat is not in the sort of the, the
+**[00:05:03]** the agent harness.
+**[00:05:05]** What actually is it?
+**[00:05:08]** And I think, you know, obviously that the conclusion is
+**[00:05:11]** that you want to orchestrate multiple agents and really do
+**[00:05:14]** the mind meld of human to, to agent other trends
+**[00:05:16]** that are, that are really interesting.
+**[00:05:18]** I, I do think that the reason that this is
+**[00:05:21]** so much enabled now is because you can kind of
+**[00:05:23]** be hands off with a lot more model work.
+**[00:05:26]** And it only recently happened there.
+**[00:05:29]** Is anyone familiar with the, the site?
+**[00:05:30]** WTF happened in 1971?
+**[00:05:32]** It's kind of like a old economic site.
+**[00:05:34]** There's, there's like 1 econ guy.
+**[00:05:37]** Anyway, if you're interested in economics and history, there's a
+**[00:05:41]** site that that is very famous for documenting like the,
+**[00:05:44]** the sharp transitions in econ over the last 50 years.
+**[00:05:47]** I think there's another transitioning happening right now.
+**[00:05:50]** And that's just, it happened around about late 2025 that
+**[00:05:52]** we're living through the the implications of it.
+**[00:05:55]** And, and that is mostly because models have transitioned from
+**[00:05:59]** being, you know, like requiring a lot of human in
+**[00:06:02]** the loop here, it's shown by meter to be capable
+**[00:06:05]** of one to two hour tasks suddenly jumping to 10
+**[00:06:08]** to 12 hour and 20 / 24 hour tasks.
+**[00:06:10]** When that happens, when you have like that 10X in
+**[00:06:13]** autonomous capability, you start to have different kinds of UX.
+**[00:06:17]** And I think that's very interesting as well.
+**[00:06:19]** We see, we see that into the play out here
+**[00:06:22]** right here at GitHub with things like cloud code commits.
+**[00:06:26]** This is one of my podcast guests showing that's that
+**[00:06:29]** some indication of the amount of of get a code
+**[00:06:32]** on GitHub written by Cloud Code and which we actually
+**[00:06:35]** know because they are very clear attribution.
+**[00:06:38]** This is rising to 4 to 5% as of February.
+**[00:06:41]** It's probably 10% right now is on the trend to
+**[00:06:43]** be 50% by end of this year.
+**[00:06:45]** I'm not kidding guys.
+**[00:06:47]** That is cloud code.
+**[00:06:49]** But also obviously think about codecs and copilot and all
+**[00:06:51]** the other coding agents as well.
+**[00:06:54]** The I, I did, I did release a podcast with
+**[00:06:58]** the GitHub CEO yesterday.
+**[00:06:59]** Let me let me see where the the number that
+**[00:07:03]** he was presenting was something like 14%.
+**[00:07:07]** Sorry, 14 X I'm trying to trying to figure out
+**[00:07:10]** where, where the where the quote is year on year.
+**[00:07:14]** The the amount of commit growth from the number from
+**[00:07:17]** from last year is 14,000 times.
+**[00:07:21]** I think that's, that's really interesting.
+**[00:07:23]** And, and I think that's like that's, that's like a,
+**[00:07:25]** a sign of things to come.
+**[00:07:26]** But also I, I, I wanted to also tell you
+**[00:07:29]** that like there's agents that are doing this for coding,
+**[00:07:32]** but also they're agents that are doing this for unverifiable
+**[00:07:35]** domains, like just general browsing and computer use, but also
+**[00:07:39]** for design.
+**[00:07:40]** And I do think like that is starting to break
+**[00:07:41]** out.
+**[00:07:41]** Like we're, we sort of have this sort of accepted
+**[00:07:43]** wisdom that, oh, it's just going to be for verifiable
+**[00:07:46]** domains.
+**[00:07:46]** But I think the, the beauty of how people are
+**[00:07:49]** training these models is that it is really generalizing because
+**[00:07:51]** that's been the entire focus this, this, this whole time.
+**[00:07:55]** OK, So what does that mean specifically?
+**[00:07:58]** I just wanted to sort of dive right in into
+**[00:08:00]** the the point of the matter.
+**[00:08:02]** One of the most prescient talks I ever created at
+**[00:08:06]** my conferences is the this this talk on how the
+**[00:08:09]** IDE was dying.
+**[00:08:10]** So Steve Yagi is a creator of Gastown.
+**[00:08:12]** He's a legendary guy.
+**[00:08:14]** He's the right guy.
+**[00:08:14]** Who wrote the Yagi's platform rant?
+**[00:08:18]** Does anyone is anyone familiar with the platform rant from
+**[00:08:20]** Steve Yagi?
+**[00:08:21]** Yeah, it's really funny thinking about his platform rant and
+**[00:08:24]** then interviewing Satya yesterday talking about how he wants to
+**[00:08:27]** turn Microsoft into an AI platform.
+**[00:08:29]** I I leave you to draw those conclusions themselves.
+**[00:08:31]** There's there's a long lore of platform history that I
+**[00:08:34]** think starts with him and is being written again today
+**[00:08:37]** for the AI AI era.
+**[00:08:39]** But anyway, end of 2026, they did this talk.
+**[00:08:42]** They said the idea was going to die in 2026
+**[00:08:45]** and they were pretty much true.
+**[00:08:46]** Like immediately the sort of the everything is conducted carsonization
+**[00:08:50]** trend basically happened like right after they they did it.
+**[00:08:55]** I think it bodes well on you to then think
+**[00:08:57]** through the rest of the software development life cycle.
+**[00:09:00]** If the idea is that if you're doing all these
+**[00:09:02]** multi agent orchestration, like what next?
+**[00:09:04]** Right?
+**[00:09:05]** Well, the next thing is probably PRS, this concept that
+**[00:09:09]** you have to sort of wait for someone else to
+**[00:09:11]** approve manually because you can't be trusted to review your
+**[00:09:15]** PRS.
+**[00:09:16]** I think there's a, there's two separate, there's two versions
+**[00:09:19]** of this.
+**[00:09:19]** One is the open source version and one is the
+**[00:09:21]** sort of internal teams version.
+**[00:09:23]** Open source version is the one that is most at
+**[00:09:25]** threat because that's the vector by which a lot of
+**[00:09:28]** people are sending in malicious PRS or PRS that are
+**[00:09:31]** not quite aligned to what the, the the maintainers want.
+**[00:09:35]** So instead, instead of pull requests, you can just send
+**[00:09:37]** prompt requests and the the maintainers can just adapt it
+**[00:09:39]** from there because they just need your intent.
+**[00:09:42]** They don't actually need your code anymore.
+**[00:09:44]** I think that's really interesting.
+**[00:09:47]** Beyond PRS, what is what is after that, right?
+**[00:09:49]** Like when you have this many agents code coding 14
+**[00:09:52]** times more than you had last year, what do you
+**[00:09:55]** actually want to, to, to do next?
+**[00:09:58]** Well, you know, like a lot of people are exploring
+**[00:10:00]** these sort of goal loops, right?
+**[00:10:02]** Like the Ralph Wiggum loop was very viral last year
+**[00:10:04]** and now it's basically adopted by every major coding agent.
+**[00:10:08]** What that is going to lead to is basically this
+**[00:10:11]** closed loop of coding agents being able to verify their
+**[00:10:14]** own work.
+**[00:10:15]** We've been working on this at Cognition, but also a
+**[00:10:17]** lot of other people are starting to increasingly talk about
+**[00:10:20]** the depth of the code review.
+**[00:10:21]** This is what people are calling the dark factory as
+**[00:10:24]** opposed to the the general light software factory.
+**[00:10:27]** So if you're familiar with the, the idea of the
+**[00:10:29]** token factory or software factory, software factory is, is kind
+**[00:10:33]** of what people are converging on for producing large quantities
+**[00:10:36]** of software in, in some sort of pipeline.
+**[00:10:39]** The life factory is where there's a lot of humans
+**[00:10:41]** reviewing it.
+**[00:10:41]** The life factory is where there are no more humans
+**[00:10:43]** reviewing it.
+**[00:10:44]** And that's very, very scary.
+**[00:10:45]** I totally understand it.
+**[00:10:46]** And yet it is coming because that is what the
+**[00:10:48]** multi agent orchestration feature demands, right?
+**[00:10:51]** That that is the bottleneck anymore.
+**[00:10:54]** So I, I will, I will pause here in case
+**[00:10:57]** anyone wants to, wants to sort of talk about the
+**[00:11:00]** SDLC.
+**[00:11:01]** I do have more resources that and I and I,
+**[00:11:03]** you know, basically I'm repurposing these slides just to bring
+**[00:11:06]** this up for conversation.
+**[00:11:08]** But I think you're all here to get the you're
+**[00:11:10]** all here because you're interested in how people are managing
+**[00:11:12]** this sort of multi aging orchestration.
+**[00:11:15]** Does anyone have like anything that they want to sort
+**[00:11:17]** of dive into a little bit more on anything I
+**[00:11:19]** talked about?
+**[00:11:21]** I was told this was interactive.
+**[00:11:23]** So I'm, I'm being more, yes, yeah.
+**[00:11:26]** More about what are the ideas that we actually needed
+**[00:11:30]** to talk about and you get into how do you
+**[00:11:33]** then have user adoption or whatever is on the other
+**[00:11:37]** side of the pipeline to be managed?
+**[00:11:40]** How are you going to ensure that in the dark
+**[00:11:42]** factory scenario?
+**[00:11:45]** In a dark factory scenario, what's the hardening at the
+**[00:11:49]** end that harness look like?
+**[00:11:51]** Because it's about ideas and validation and then user change
+**[00:11:56]** management.
+**[00:11:57]** Ideas, Validation, user change manager.
+**[00:11:59]** OK, there's there's the internal loop and the external loop.
+**[00:12:01]** I think you're talking more about the external loop of
+**[00:12:04]** getting user, user acceptance.
+**[00:12:05]** Yeah, yeah, like we have to.
+**[00:12:07]** Have a hard.
+**[00:12:13]** Yeah, yeah, yeah.
+**[00:12:17]** So you want, you know, you want to have a
+**[00:12:19]** strong spec as as to what you want to converge
+**[00:12:22]** to that does it really starts to be like sort
+**[00:12:25]** of one level above just the raw delivery of code
+**[00:12:28]** because the the prompt becomes how you validate.
+**[00:12:32]** Yeah, there's a Swiss cheese model.
+**[00:12:34]** This is the one of our top posts of the
+**[00:12:35]** entire year.
+**[00:12:36]** So by way of introduction, if anyone doesn't know, I
+**[00:12:40]** ran both latent space and AI engineer.
+**[00:12:43]** We have, we have a good contributor program and this
+**[00:12:45]** is one of the top articles of the year so
+**[00:12:47]** far.
+**[00:12:49]** The the main idea is that, yes, you, you want
+**[00:12:51]** to have that sort of spec specification, but also that
+**[00:12:54]** strong test suite to, to manage against regressions.
+**[00:12:57]** I do think it's not enough.
+**[00:12:58]** I do think that you want to to have that
+**[00:13:00]** sort of outer loop of sort of online eval of
+**[00:13:02]** like whatever you're, you're shipping in feature flagging so that
+**[00:13:05]** you have progressive rollouts.
+**[00:13:07]** Those are all just generally good software engineering practices anyway,
+**[00:13:10]** whether or not you have a dark factory.
+**[00:13:12]** I do think they just become way more important because
+**[00:13:16]** you are suddenly shipping like an Uber, like a Facebook
+**[00:13:19]** at your 10% scale, right?
+**[00:13:20]** Like you're sort of bringing forward all these practices of
+**[00:13:23]** very large engineering organizations because you have a very large
+**[00:13:26]** engineering organization because you're working with so many agents.
+**[00:13:35]** Yeah, something that's.
+**[00:13:37]** More scalable?
+**[00:13:37]** Higher.
+**[00:13:38]** Order that we can use to validate yeah, one of
+**[00:13:40]** our top conversations of the year has been with Ryan
+**[00:13:43]** Le Papolo who is working on sort of the Dart
+**[00:13:45]** factory.
+**[00:13:45]** Open the eye.
+**[00:13:48]** Ryan Le Papolo who so he wrote this article on
+**[00:13:50]** harness engineering where it's, it's basically shipping a billion tokens
+**[00:13:54]** a day, which is something like $10,000 a day.
+**[00:13:59]** And, and just like, and no code, no human review
+**[00:14:02]** as well.
+**[00:14:03]** And they recently open sourced opening a Symphony, which I
+**[00:14:06]** think, I don't know if anyone has looked into, but
+**[00:14:08]** there's a very strong structure to how they're adopting it.
+**[00:14:11]** I definitely don't think it is the only way to
+**[00:14:14]** approach this.
+**[00:14:15]** There's other people innovating in this dark factory space like
+**[00:14:19]** strong DM and others.
+**[00:14:21]** I do think like you definitely want a strong like
+**[00:14:24]** basically we have superhuman coders, but we don't have superhuman
+**[00:14:28]** reviewers yet.
+**[00:14:29]** And mostly because not really the fault of the agents.
+**[00:14:32]** Like we don't communicate enough, right?
+**[00:14:34]** We don't have that ability or high bandwidth.
+**[00:14:37]** We don't have the neural link to really plug into
+**[00:14:38]** the machine and tell them what they want.
+**[00:14:40]** So obviously the machines are guessing and they're guessed it
+**[00:14:42]** wrong.
+**[00:14:42]** It's not really their fault, not really our fault either.
+**[00:14:45]** I do think that that just means fast cycles.
+**[00:14:47]** So for example, he, even though they have a million
+**[00:14:50]** lines of code and they're shipping a large app, they
+**[00:14:54]** insist on the compile time of less than a minute,
+**[00:14:57]** which I've never had in my professional career as an
+**[00:15:00]** engineer.
+**[00:15:01]** And, but because of, because of agents, you can like,
+**[00:15:03]** you can actually take your sort of garbage collection pause
+**[00:15:05]** every day if you want.
+**[00:15:06]** And just like make sure you cut all the build
+**[00:15:08]** times and optimize everything because why not?
+**[00:15:11]** But because you have the, the fast cycles, then you
+**[00:15:13]** have the fast feedback and you have the fast feedback,
+**[00:15:15]** you have the strong alignments between you and the you
+**[00:15:17]** and the agents, which I think is very important.
+**[00:15:19]** So I definitely would consider this fringe today.
+**[00:15:23]** OK, But things that were fringe last year have become
+**[00:15:26]** normal this year.
+**[00:15:27]** And I, I'm trying to update my own learning rate
+**[00:15:31]** in terms of how this all is going.
+**[00:15:34]** Because by the way, this is happening for coding.
+**[00:15:37]** But a broad lesson that I try to tell people
+**[00:15:39]** is also that that is actually last year's story.
+**[00:15:42]** This year's story is that what happened to coding last
+**[00:15:45]** year is happening for everything else in knowledge work.
+**[00:15:48]** And that's actually the real, the real story, right?
+**[00:15:50]** Like we're using all this sort of multi agent orchestration
+**[00:15:54]** conductor thing as a way to basically preview what the
+**[00:15:58]** future is about to be like.
+**[00:16:00]** We as we as developers are very privileged because we
+**[00:16:02]** get to live this first before the rest of the
+**[00:16:04]** world.
+**[00:16:05]** By the way, fun fact, the Opening eye team yesterday
+**[00:16:10]** announced that they are merging codecs into ChatGPT.
+**[00:16:17]** And so I think, I think this is one of
+**[00:16:19]** those things where what you see in the coding world
+**[00:16:22]** is definitely going to bleed into the normal world, which
+**[00:16:25]** is which is really fascinating.
+**[00:16:27]** So I don't know, you can tell your your friends
+**[00:16:29]** on what's coming.
+**[00:16:31]** Thank you.
+**[00:16:32]** Thank you for that.
+**[00:16:32]** Let me take one more question.
+**[00:16:33]** I think I had another hand raised somewhere here.
+**[00:16:37]** Just on the the software development life cycle, the code
+**[00:16:41]** review side, anything in that domain.
+**[00:16:48]** So you mentioned 0% human review.
+**[00:16:52]** Is that transitioning from 0% human review to just validation
+**[00:16:57]** of the spec?
+**[00:16:58]** Because you still mentioned there's some sort of iteration with
+**[00:17:01]** the human in the loop, or I guess outside of
+**[00:17:04]** the loop because you get an artifact to then check.
+**[00:17:09]** That does include the validation of the spec.
+**[00:17:12]** Some of the best utilizations of goal, like what is
+**[00:17:15]** goal?
+**[00:17:16]** Goal is actually like you don't tell you don't tell
+**[00:17:18]** the agent how to do it.
+**[00:17:19]** You tell the agent how you're about to evaluate it
+**[00:17:21]** and when it should stop.
+**[00:17:23]** And so that is a very primitive form of what
+**[00:17:25]** you are actually doing as a human.
+**[00:17:28]** You're just taking the time to write it down so
+**[00:17:30]** that that is what the the sort of Ralph loop
+**[00:17:33]** or the goal loop is.
+**[00:17:35]** I do think that there's a few more steps beyond
+**[00:17:37]** this.
+**[00:17:37]** So I do think like if you, if you look
+**[00:17:40]** into the harness engineering that opening a Symphony is doing,
+**[00:17:44]** that is the shape of the of the future where
+**[00:17:47]** you have basically a very highly detailed spec.
+**[00:17:50]** Have you seen this?
+**[00:17:50]** Have you guys seen this?
+**[00:17:51]** I'm going to pull it up Symphony.
+**[00:17:54]** Where's the link?
+**[00:17:56]** Here we go.
+**[00:17:58]** It is just just the giant list of markdown files,
+**[00:18:01]** which is which is really fascinating.
+**[00:18:04]** I'll just, I'll just, you know, so they sort of
+**[00:18:07]** really, really track down everything in in here and specify
+**[00:18:11]** right down to the, the the list you're really programming
+**[00:18:15]** with markdown and and English, which is really funny.
+**[00:18:18]** But really like what you're focusing on is the narrow
+**[00:18:22]** waist of, of a, of any program, which is the
+**[00:18:25]** API contracts the, the, the surfaces between modules, the types
+**[00:18:30]** and data structures, right?
+**[00:18:32]** Because everything else can be figured out from from there.
+**[00:18:34]** But this is having a narrow waist helps you contain
+**[00:18:37]** the entropy that models can inherently cause and also gives
+**[00:18:40]** you some way to verify that you're not veering too
+**[00:18:43]** far off, of course, like, so this is like the
+**[00:18:46]** best way that we have found.
+**[00:18:47]** By the way, this is like 2000 lines of just
+**[00:18:49]** prompts.
+**[00:18:52]** This is the best way that we've found so far
+**[00:18:54]** to write a spec.
+**[00:18:55]** This is a gold standard spec.
+**[00:18:57]** Most of us don't do this, right?
+**[00:18:58]** I don't do this.
+**[00:18:59]** I write 200 lines if I'm lucky.
+**[00:19:01]** But I do think that that is some some idea
+**[00:19:03]** of the shape of things to come if you want
+**[00:19:06]** this to be fully automated.
+**[00:19:08]** We are, we are eventually like, I think the sort
+**[00:19:11]** of ultimate Microsoft vision is that right now you are
+**[00:19:14]** using frontier models like the GPTS and the clouds or
+**[00:19:17]** whatever.
+**[00:19:18]** But ultimately you will have your own personal or your
+**[00:19:21]** company model trained on your spec anyway.
+**[00:19:24]** And then you don't have to use the expensive models,
+**[00:19:26]** right?
+**[00:19:27]** So like, I think that that is the Microsoft vision.
+**[00:19:30]** We're not there yet.
+**[00:19:30]** But I do think like if you have a good
+**[00:19:32]** agent platform, that is, it is meant to be your
+**[00:19:34]** friend, not open the eyes friend, you know what I
+**[00:19:36]** mean?
+**[00:19:36]** Like someone needs to be on your side.
+**[00:19:38]** And I do think that the the the agent labs
+**[00:19:40]** versus the model labs, that is the central debate that
+**[00:19:43]** I do talk about.
+**[00:19:45]** If you're interested in agent lab here, this is the
+**[00:19:50]** agent labs versus model labs debate.
+**[00:19:53]** If you're, if you're interested in in reading up on
+**[00:19:54]** that.
+**[00:19:55]** Cool, thank you for that.
+**[00:19:56]** Thank you.
+**[00:19:57]** All right, I'm gonna keep going.
+**[00:19:59]** I do think like there's a little bit more in
+**[00:20:01]** terms like if you if you explored the implications of
+**[00:20:04]** the SLC.
+**[00:20:05]** I highly, I strongly recommend Steve Yagi's post on Gastown
+**[00:20:10]** if you're, if you're interested in like the 8 levels
+**[00:20:14]** of the fully LLM psychosis sort of approach.
+**[00:20:18]** Let me, let me just find that visual that every
+**[00:20:20]** that I always refer to.
+**[00:20:23]** Yeah, there we go.
+**[00:20:24]** See, I look it up all the time and I
+**[00:20:26]** just usually I don't have the Q&A time because usually
+**[00:20:28]** this talk is done in 15 minutes, but I get
+**[00:20:31]** I get to stretch it out a little bit more.
+**[00:20:33]** So roughly roughly this kind of progression, right?
+**[00:20:36]** Like that you have you start from like adopting a
+**[00:20:39]** single coding agent to then doing multi agent.
+**[00:20:43]** This is roughly where most of us in this room
+**[00:20:45]** are.
+**[00:20:45]** If you're sort of up to speed, if you're not
+**[00:20:48]** be be informed that that's where most people are and
+**[00:20:51]** then going out to building your own orchestrator, which Steve
+**[00:20:54]** Yogi is doing with Gas city now instead of Gas
+**[00:20:56]** town.
+**[00:20:57]** Check it definitely, definitely check it out.
+**[00:20:59]** But also, you know, he's he's well aware that he's
+**[00:21:02]** he's ahead of where most people are.
+**[00:21:04]** But literally this was November, right where he said this
+**[00:21:08]** and it became true round about March, right?
+**[00:21:11]** It's not that far ahead, guys.
+**[00:21:12]** It's not that far.
+**[00:21:13]** OK.
+**[00:21:15]** The other thing that I've been covering a lot is
+**[00:21:18]** really the need for sandboxes.
+**[00:21:21]** This is one of those things where again, it's not
+**[00:21:24]** a sexy machine learning topic like GRPO or reinforcement learning.
+**[00:21:29]** Just I need more computer because why my agents need
+**[00:21:32]** computer because why I need, I need to fork these
+**[00:21:34]** things in safe environments.
+**[00:21:36]** And just like, you know, spinning up a new git,
+**[00:21:38]** git branch doesn't do it for me, right?
+**[00:21:40]** Like I need a full fork of my entire environment.
+**[00:21:44]** And so this is the Kubernetes problem on crack because
+**[00:21:47]** Kubernetes was meant to keep was meant to keep things
+**[00:21:49]** alive, but this is meant to be extremely serverless.
+**[00:21:54]** And we and our sort of current programming paradigms are
+**[00:21:57]** not quite adjusted to do that, right.
+**[00:21:59]** The rough idea now with what agents are doing to
+**[00:22:02]** our infrastructure, we used to be primarily training and then
+**[00:22:05]** we'll do a little bit of inference.
+**[00:22:07]** The ratio GPU to CPU is 8 to one.
+**[00:22:09]** This is from, by the way, this is from the
+**[00:22:11]** CEO of Intel Le Bhutan in the most recent earnings
+**[00:22:13]** call.
+**[00:22:14]** Things are moving with agents to 1 to one, GPU
+**[00:22:17]** to CPU.
+**[00:22:18]** This is why there's a coming CPU shortage, not just
+**[00:22:21]** the GPU quotes M Altman a few months ago to
+**[00:22:24]** a very significant degree where AI inference company and now
+**[00:22:28]** not just not just training.
+**[00:22:31]** OK, I do think that also I also want to
+**[00:22:33]** put you on notice like what you want to do
+**[00:22:35]** with multiple parallel massively multiple agents is you want them
+**[00:22:39]** to finish as quickly as possible.
+**[00:22:41]** So at Cognition, we've been working very closely with Cerebrous
+**[00:22:45]** on three, 1.5 and 3C2 coming up for thousands of
+**[00:22:48]** tokens per second inference, right?
+**[00:22:51]** Like if you're not familiar with your own infant speeds,
+**[00:22:54]** you should be, but it's roughly between 50 to 100.
+**[00:22:58]** Let's call it tokens per second.
+**[00:23:00]** I have seen demos of custom chips, which I which
+**[00:23:02]** I'm under NDAI can't say, I can't say which company
+**[00:23:05]** it is.
+**[00:23:06]** There are public company, sorry.
+**[00:23:08]** I can point to Talus, which made a, which made
+**[00:23:10]** a really cool demo this year, which you should definitely
+**[00:23:13]** check out.
+**[00:23:14]** This is their tokens inference of everyone else, including NVIDIA
+**[00:23:19]** H200B200, Grok and Cerebras.
+**[00:23:22]** These are meant to be the fast ones.
+**[00:23:24]** And Talos is over here at 17,000 tokens per second
+**[00:23:27]** and this might sound like an exaggeration.
+**[00:23:30]** It is not.
+**[00:23:31]** I have seen this myself.
+**[00:23:32]** We are going to see what with 300,000 token per
+**[00:23:34]** second inference.
+**[00:23:36]** And this is not for a frontier logic, right?
+**[00:23:38]** This is for commodity token logic right now.
+**[00:23:43]** And the, all these demos are Llama AP, but we're,
+**[00:23:46]** we're going to see this proceed out to the 30B
+**[00:23:49]** to the 70 B, eventually to the hundreds of B.
+**[00:23:52]** And at that point, there's some saturation point at which
+**[00:23:55]** from the vast majority of your work, it will basically
+**[00:23:58]** be functionally instant to have to have intelligence.
+**[00:24:01]** And you should basically start to think about how you're
+**[00:24:03]** going to deploy agents and sub agents to deal with
+**[00:24:05]** that or to, to make use of that, right?
+**[00:24:07]** Because this is coming on the infrastructure side, we have
+**[00:24:09]** made the investments already.
+**[00:24:10]** It is mathematically going to happen.
+**[00:24:13]** OK, finally, actually I'm going to I'm about to transition
+**[00:24:17]** to some sort of more future facing topics.
+**[00:24:20]** I'm just basically spelling out what I am extremely highly
+**[00:24:23]** convinced it's happening this year.
+**[00:24:25]** Like Talas will come up with their full chip, you
+**[00:24:28]** know, by end of year and you and you know,
+**[00:24:31]** you like, imagine what you can do with like a
+**[00:24:34]** communique 2.5 at like, you know, 1000 tokens per second,
+**[00:24:37]** right?
+**[00:24:38]** Like this is one of those things where like, I
+**[00:24:40]** think every 10X changes your usage habits, changes the products
+**[00:24:44]** that you can make changes the the sort of impact
+**[00:24:46]** that you're going to have on choosing between open models,
+**[00:24:49]** which is closed, like anything like that.
+**[00:24:52]** These are the transitions that are happening on the fundamental
+**[00:24:55]** level that are changing the way that we at the
+**[00:24:57]** sort of user level and the product engineering level make
+**[00:24:59]** our decisions.
+**[00:25:01]** So I'll pause there.
+**[00:25:02]** I so we just covered like the compute and inference
+**[00:25:06]** side of things any other comments or you want me
+**[00:25:10]** to double click on something Yeah and feel free to
+**[00:25:14]** shout I can just repeat why you is it the
+**[00:25:17]** model is the next model that put us to this
+**[00:25:21]** level.
+**[00:25:21]** This is all hardware.
+**[00:25:22]** OK None of this is research as far as the
+**[00:25:23]** the the model training people are concerned this is all
+**[00:25:25]** optimization.
+**[00:25:26]** So what's going to push us from where we are
+**[00:25:28]** now?
+**[00:25:29]** Yeah, that's the next part.
+**[00:25:32]** Our patron's is going to tell us.
+**[00:25:33]** But but yeah, I, I, I think it's a fair
+**[00:25:36]** question.
+**[00:25:37]** Look, actually the most interesting, the most interesting research comes
+**[00:25:42]** from the image community like the, the video Gen.
+**[00:25:45]** and the image Gen.
+**[00:25:45]** community as far as speed is concerned.
+**[00:25:48]** So far on the, on the language and encoding model
+**[00:25:51]** community, not really that involved beyond just raw quantization and
+**[00:25:55]** research into like numerical precision and, and what have you.
+**[00:25:59]** It it is all hardware and making smarter choices on
+**[00:26:03]** with billions of dollars.
+**[00:26:06]** It is it is the highest states poker game that
+**[00:26:08]** I've ever seen.
+**[00:26:09]** But yeah, I think I think it's a reasonable question.
+**[00:26:12]** Oh, I will I will mention more on the research
+**[00:26:15]** domain later.
+**[00:26:16]** But I do think that like all these trends are
+**[00:26:19]** basically pointing us as users, as sort of end user
+**[00:26:21]** programmers and product people to think very differently about how
+**[00:26:25]** we utilize them, right.
+**[00:26:26]** If you understand the the Moore's Law here, then you
+**[00:26:29]** start to know, like, OK, like this is a cool
+**[00:26:32]** demo now, but like, actually it's going to be normal
+**[00:26:35]** a year from now.
+**[00:26:36]** We should probably start planning for it.
+**[00:26:39]** Yeah.
+**[00:26:40]** So, Mark?
+**[00:26:41]** Was on a bit yesterday talking about specializing versus generalizing.
+**[00:26:45]** Yeah, as far as compute.
+**[00:26:47]** So like training versus inference?
+**[00:26:48]** Yeah.
+**[00:26:49]** And in part of that talk, it kind of made
+**[00:26:52]** me think about this.
+**[00:26:55]** If you have the AI model etched on the silicon
+**[00:26:58]** in the typical hardware life cycle is supposed to be
+**[00:27:02]** 5 or 6 years when that model is maybe irrelevant
+**[00:27:05]** a year from then, Yeah.
+**[00:27:06]** How does how does that shake out?
+**[00:27:08]** So, OK, there's a leap here, which I don't think
+**[00:27:12]** people have looked into that much.
+**[00:27:16]** Not most of these guys are not edging the actual
+**[00:27:18]** weights onto the silicon.
+**[00:27:19]** The only people doing that are tallest right now.
+**[00:27:23]** So, so actually, the the the the specialized inference people,
+**[00:27:27]** you know, there's a whole generation of them that kind
+**[00:27:31]** of failed to work.
+**[00:27:32]** Let's just call it.
+**[00:27:33]** And now now there's the second generation is the like
+**[00:27:36]** the Cerebrus and what and grok that that are getting
+**[00:27:40]** paid.
+**[00:27:40]** The third generation are still doing it white hat by
+**[00:27:43]** not doing doing the during the short term win here
+**[00:27:46]** of burning the weights in.
+**[00:27:50]** What's the question on that?
+**[00:27:52]** I do think that the tail is very long.
+**[00:27:54]** There's still people using GBT 4.1, there's still people using
+**[00:28:00]** Llama 3, right?
+**[00:28:03]** And because people build a working application, the whole point
+**[00:28:06]** of having open weights is that you own the weights
+**[00:28:09]** and they don't move your cheese.
+**[00:28:12]** And if the, if the application works fine, why change
+**[00:28:14]** it?
+**[00:28:14]** Why it only gets cheaper?
+**[00:28:15]** It only gets faster.
+**[00:28:16]** That's fantastic.
+**[00:28:17]** So I do think the the terminal value of a
+**[00:28:20]** chip is increasing.
+**[00:28:22]** We used to model, we used to do some tokenomics
+**[00:28:25]** two years ago on on lane space and it was
+**[00:28:28]** something like your amortization of a of of a chip
+**[00:28:32]** would be 3 to 4 years.
+**[00:28:34]** Now it's probably extended in life to 8.
+**[00:28:37]** The average of the average price of AH100 has melted
+**[00:28:39]** up.
+**[00:28:39]** I think I have a time series here.
+**[00:28:41]** Give me one second to find it.
+**[00:28:44]** By the way, I love using Google for my blog.
+**[00:28:46]** It's fantastic only if you have the SEO for it.
+**[00:28:51]** This used to be the norm for for chip deprecation.
+**[00:28:54]** And so it was kind of like a hot potato
+**[00:28:56]** then like you would never start a Neocloud based on
+**[00:28:57]** this.
+**[00:28:58]** And then chip started doing this.
+**[00:29:00]** This is like a four year old chip.
+**[00:29:03]** And, and and because we are figuring out how to,
+**[00:29:06]** how to make the most out of out of the
+**[00:29:08]** inference on, on older chips and the our general purpose
+**[00:29:11]** enough that you can sort of just change the software
+**[00:29:13]** and and update the new models.
+**[00:29:15]** I do think like there's a fundamental limit to amount
+**[00:29:18]** of compression that you can have.
+**[00:29:20]** And so the, the model size sizes are getting larger.
+**[00:29:24]** Any prizes for guessing?
+**[00:29:26]** How how do you know how this is not how
+**[00:29:30]** big mistrial small is We, we had the the chief
+**[00:29:34]** research officer of two scientists of mistrial on on the
+**[00:29:40]** podcast.
+**[00:29:41]** 24 B is small these days.
+**[00:29:45]** So we're slowly rising.
+**[00:29:47]** You know, this used to be two B1 BI think,
+**[00:29:49]** then went up to seven AB and now 24 B
+**[00:29:52]** is small.
+**[00:29:53]** I think there's some point there'll be like 100 B
+**[00:29:56]** That's and that's considered small because at the top end,
+**[00:30:00]** we have gone from let's say you know, GPT 4
+**[00:30:03]** being like a trillion tokens, a trillion params now to
+**[00:30:07]** 10 plus for the mythles class.
+**[00:30:10]** And I think that that is very normal and and
+**[00:30:13]** OK, we're not going to have that many orders of
+**[00:30:16]** magnitude left to go.
+**[00:30:17]** The rest is the domain of research.
+**[00:30:19]** I have 4 minutes to cover that.
+**[00:30:20]** Let's go into that a little bit what's coming right,
+**[00:30:23]** We have all this guaranteed done you can plan you
+**[00:30:26]** can sort of set your clocks by for the next
+**[00:30:28]** two years.
+**[00:30:29]** OK, what's coming is all the other stuff.
+**[00:30:33]** OK, so there's a king.
+**[00:30:35]** OK, so this is the, the research agenda as far
+**[00:30:37]** as I, I get it, as far as I'm tracking
+**[00:30:39]** it for all, all the sort of my researcher friends
+**[00:30:42]** that I'm that I'm getting.
+**[00:30:43]** And by the way, I think this is all recorded,
+**[00:30:45]** which is why I need to rotate my GitHub tokens.
+**[00:30:47]** But the king one, OK, they're not all equal weighted,
+**[00:30:51]** OK.
+**[00:30:51]** Some of them like memory and continual learning, you're probably
+**[00:30:54]** going to hear about for the next 5 years and
+**[00:30:57]** still not see not a huge significant change because it's
+**[00:30:59]** very speculative.
+**[00:31:01]** The one that is happening right freaking now is real
+**[00:31:04]** time.
+**[00:31:05]** And what do I mean by real time?
+**[00:31:07]** It is that low latency voice that we will all
+**[00:31:10]** promise with the GPT 4 O demo that we never
+**[00:31:13]** got.
+**[00:31:15]** We I wrote this article on the semi async valley
+**[00:31:17]** of death, that cognition where you basically have this sort
+**[00:31:20]** of uncanny valley area of latency where you're just sitting
+**[00:31:23]** around watching the AI do its thing, but not really
+**[00:31:26]** thinking, not really adding value because you can't really contact
+**[00:31:29]** switch.
+**[00:31:31]** So either you want to stay in flow and be
+**[00:31:33]** be really fast or you want to be super async
+**[00:31:35]** and there's really no room in between.
+**[00:31:37]** But that's how kind of how you want to work
+**[00:31:40]** with these multi agent orchestration things, right?
+**[00:31:42]** You want to be able to dispatch things in the
+**[00:31:44]** background and, and have a good system for, for, for
+**[00:31:47]** working with them.
+**[00:31:48]** But then have a main thread that is your deep
+**[00:31:51]** work.
+**[00:31:51]** That is your focus.
+**[00:31:52]** That is your highest, most challenging, most valuable task because
+**[00:31:55]** everything else goes to commodity inference.
+**[00:31:57]** This one, the deep work, the high, high bandwidth inference.
+**[00:32:00]** That is something that you definitely want as as well.
+**[00:32:03]** And we honestly have not got right.
+**[00:32:05]** Like think about all the the the advances and models
+**[00:32:08]** that you've seen in the past.
+**[00:32:10]** Let's call it two years.
+**[00:32:11]** It's just increasing reasoning, right?
+**[00:32:13]** Like we pride ourselves on going from like 2 hours
+**[00:32:16]** of autonomy to 15 hours of autonomy.
+**[00:32:18]** Great, but what about my 20?
+**[00:32:20]** What about taking my 2000 milliseconds down to 200 milliseconds
+**[00:32:23]** down to 20 milliseconds, right?
+**[00:32:25]** The only people doing this right now are thinking machines.
+**[00:32:28]** I highly recommend checking out the interaction small models.
+**[00:32:31]** They haven't actually released this, so all you get this
+**[00:32:34]** is demo videos, but I I do think they put
+**[00:32:36]** the world on notice that there is alpha here.
+**[00:32:39]** And I do think that that is something that we're
+**[00:32:41]** we're seeing as well, right.
+**[00:32:42]** So you can cheat on the hardware by investing a
+**[00:32:45]** ton in cheap in chips and going all right, I'll
+**[00:32:48]** I'll get the chip that gives me 300,000 tokens per
+**[00:32:51]** second and that in that way get the get the
+**[00:32:54]** latency that I that I seek, but it's not truly
+**[00:32:57]** interactive.
+**[00:32:58]** It is still going to try to inference 100,000 T.O.K
+**[00:33:01]** output reasoning tokens before giving your output, but here truly
+**[00:33:04]** interactive, meaning it has micro batches of interaction modeled in
+**[00:33:08]** the training data itself.
+**[00:33:10]** And I do think that that is something that we
+**[00:33:12]** definitely want to see more of like we want to
+**[00:33:14]** see that live interaction and mind meld between the human
+**[00:33:16]** and machine.
+**[00:33:17]** It will seem smarter just by just because it will
+**[00:33:21]** better align with what we wanted anyway.
+**[00:33:24]** OK, broader research.
+**[00:33:26]** The other thing that I'm I'm we just had an
+**[00:33:29]** XEI podcast as well.
+**[00:33:32]** The the the degree to which agents are eating everything
+**[00:33:36]** is enormous.
+**[00:33:37]** Like like right now people think video generation is just
+**[00:33:41]** like you prompt.
+**[00:33:42]** You put a prompt into a video Gen.
+**[00:33:44]** model and it gives it spits all the video in
+**[00:33:46]** one pass through to that video model.
+**[00:33:48]** It is about to be video agents where agents are
+**[00:33:51]** orchestrating that video model.
+**[00:33:53]** That sounds cheap.
+**[00:33:54]** That sounds like, oh, I could do that.
+**[00:33:56]** But no, like you don't think you have fully appreciated
+**[00:33:59]** what it means to fully enter and train the orchestrator
+**[00:34:02]** for specific domains like video agents and similarly for all
+**[00:34:05]** all other modalities.
+**[00:34:07]** I think world models is the other dark horse that
+**[00:34:09]** I would that I want to point you out too.
+**[00:34:12]** In the sense of like the models are currently trying
+**[00:34:14]** to predict what you are most what what sort of
+**[00:34:17]** like the median RLHF person is or the oral environment
+**[00:34:19]** is likely to reward.
+**[00:34:21]** But them maintaining a world model of what you want,
+**[00:34:24]** what you like is effectively that second level of intelligence
+**[00:34:27]** of like presence of mind and theory of mind that
+**[00:34:30]** I think is is really lacking in in the space.
+**[00:34:32]** So there's all these research directions solving each and every
+**[00:34:36]** one of these will lead to changes in the way
+**[00:34:38]** that we use the models themselves.
+**[00:34:41]** I do think that this is one of those things
+**[00:34:43]** where that's, you know, hallway conversation as far as we're
+**[00:34:46]** concerned.
+**[00:34:46]** But I can definitely see like in the research communities
+**[00:34:49]** that I track these, these are like the the sort
+**[00:34:51]** of top grand prizes right now.
+**[00:34:53]** OK, so I think my time is up.
+**[00:34:57]** The last thing I'll say is I've been calling this
+**[00:34:59]** sort of the agent work paradox.
+**[00:35:01]** Agents are doing more work than ever before, but we're
+**[00:35:03]** also working all harder than than we've ever worked before.
+**[00:35:06]** And that is OK.
+**[00:35:07]** That's normal, right?
+**[00:35:07]** I just want to normalize that because I'm also stressed
+**[00:35:09]** out.
+**[00:35:11]** I think.
+**[00:35:11]** I think you guys also all feel it and that
+**[00:35:13]** that's something that's like common.
+**[00:35:15]** It is rewarding because we are the first to feel
+**[00:35:18]** it and we are getting the the sort of brunt
+**[00:35:20]** of the, the sort of compression of the future, right?
+**[00:35:24]** And so This is why I always argue in a
+**[00:35:25]** very self-serving way that AI engineering is the last job
+**[00:35:28]** because you are the you are the ones to automate
+**[00:35:31]** all the other jobs away.
+**[00:35:32]** So you guys are in good hands.
+**[00:35:34]** Thank you.

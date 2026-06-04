@@ -1,0 +1,6145 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.8922659754753113
+
+00:00:01.120 --> 00:00:02.120
+Good afternoon, everyone.
+
+NOTE Confidence: 0.8573136329650879
+
+00:00:02.120 --> 00:00:03.000
+How's everyone doing?
+
+NOTE Confidence: 0.9476679563522339
+
+00:00:04.080 --> 00:00:05.440
+Come on, give me some energy.
+
+NOTE Confidence: 0.81325364112854
+
+00:00:05.920 --> 00:00:08.380
+It's 5:00 PM and I'm the only thing that sends
+
+NOTE Confidence: 0.81325364112854
+
+00:00:08.433 --> 00:00:10.680
+between you and the chain smokers tonight.
+
+NOTE Confidence: 0.94594407081604
+
+00:00:10.680 --> 00:00:12.720
+So trust me, buckle up.
+
+NOTE Confidence: 0.8134458661079407
+
+00:00:12.880 --> 00:00:13.720
+Roll up your sleeves.
+
+NOTE Confidence: 0.8727766871452332
+
+00:00:13.720 --> 00:00:15.040
+We're going to have a lot of fun together.
+
+NOTE Confidence: 0.9296461343765259
+
+00:00:15.200 --> 00:00:16.666
+And I'm going to give you the best of my
+
+NOTE Confidence: 0.9296461343765259
+
+00:00:16.703 --> 00:00:16.959
+energy.
+
+NOTE Confidence: 0.8058026432991028
+
+00:00:16.960 --> 00:00:19.200
+I sound good as long as I get a return.
+
+NOTE Confidence: 0.751251757144928
+
+00:00:19.200 --> 00:00:23.099
+OK, so I'm Lachlan Evenson, and this is the honest
+
+NOTE Confidence: 0.751251757144928
+
+00:00:23.177 --> 00:00:26.999
+practitioner's take on a Gentic AI on Kubernetes.
+
+NOTE Confidence: 0.9594990611076355
+
+00:00:27.000 --> 00:00:28.280
+Say that three times quickly.
+
+NOTE Confidence: 0.9456654191017151
+
+00:00:28.560 --> 00:00:31.240
+Now today, I'll be your honest practitioner.
+
+NOTE Confidence: 0.9442858099937439
+
+00:00:32.080 --> 00:00:34.972
+I have had the luxury of working in Kubernetes for
+
+NOTE Confidence: 0.9442858099937439
+
+00:00:35.030 --> 00:00:35.840
+over 10 years.
+
+NOTE Confidence: 0.9460130333900452
+
+00:00:35.960 --> 00:00:37.640
+Anybody else using Kubernetes in the room?
+
+NOTE Confidence: 0.8423007130622864
+
+00:00:37.880 --> 00:00:40.160
+By a show of hands, Excellent, excellent.
+
+NOTE Confidence: 0.8995108604431152
+
+00:00:40.320 --> 00:00:43.006
+All right, you're in the right place and it's the
+
+NOTE Confidence: 0.8995108604431152
+
+00:00:43.061 --> 00:00:46.406
+right time because this session is for people already running
+
+NOTE Confidence: 0.8995108604431152
+
+00:00:46.460 --> 00:00:49.586
+Kubernetes who are trying to figure out what AI workloads
+
+NOTE Confidence: 0.8995108604431152
+
+00:00:49.640 --> 00:00:51.560
+actually need on top of Kubernetes.
+
+NOTE Confidence: 0.9231873750686646
+
+00:00:51.720 --> 00:00:53.520
+Who's running AI on top of Kubernetes?
+
+NOTE Confidence: 0.9513075351715088
+
+00:00:54.680 --> 00:00:55.440
+No one yet.
+
+NOTE Confidence: 0.793351948261261
+
+00:00:56.120 --> 00:00:58.177
+OK, trust me, you're going by the end of the
+
+NOTE Confidence: 0.793351948261261
+
+00:00:58.224 --> 00:00:59.159
+session, 45 minutes.
+
+NOTE Confidence: 0.9192723631858826
+
+00:00:59.400 --> 00:01:01.498
+Come to me if you don't have something to walk
+
+NOTE Confidence: 0.9192723631858826
+
+00:01:01.543 --> 00:01:01.999
+away with.
+
+NOTE Confidence: 0.7544012665748596
+
+00:01:02.000 --> 00:01:02.400
+OK?
+
+NOTE Confidence: 0.9320794343948364
+
+00:01:03.000 --> 00:01:06.019
+So what we're going to cover today is what works
+
+NOTE Confidence: 0.9320794343948364
+
+00:01:06.082 --> 00:01:09.730
+today, what's harder than it looks and where the ecosystem
+
+NOTE Confidence: 0.9320794343948364
+
+00:01:09.793 --> 00:01:10.799
+is going, right?
+
+NOTE Confidence: 0.9058992862701416
+
+00:01:10.800 --> 00:01:13.426
+All on your journey to Agentic AI on top of
+
+NOTE Confidence: 0.9058992862701416
+
+00:01:13.487 --> 00:01:14.159
+Kubernetes.
+
+NOTE Confidence: 0.8072341084480286
+
+00:01:14.160 --> 00:01:15.880
+That sound good with me?
+
+NOTE Confidence: 0.7000665664672852
+
+00:01:15.880 --> 00:01:16.640
+All right, let's do it.
+
+NOTE Confidence: 0.7019931674003601
+
+00:01:18.520 --> 00:01:19.680
+OK, our agenda.
+
+NOTE Confidence: 0.9280786514282227
+
+00:01:19.680 --> 00:01:21.760
+We have three parts for this agenda today.
+
+NOTE Confidence: 0.9577004909515381
+
+00:01:21.760 --> 00:01:23.893
+And trust me, I had a lot of fun working
+
+NOTE Confidence: 0.9577004909515381
+
+00:01:23.946 --> 00:01:24.639
+on this deck.
+
+NOTE Confidence: 0.9057998061180115
+
+00:01:24.640 --> 00:01:28.373
+So if my excitement doesn't come across already, I'd be
+
+NOTE Confidence: 0.9057998061180115
+
+00:01:28.441 --> 00:01:29.119
+surprised.
+
+NOTE Confidence: 0.9310404062271118
+
+00:01:29.360 --> 00:01:31.198
+But I've had a lot of fun over the last
+
+NOTE Confidence: 0.9310404062271118
+
+00:01:31.245 --> 00:01:34.119
+few months working with Agentic Systems on top of Kubernetes.
+
+NOTE Confidence: 0.9540318250656128
+
+00:01:34.520 --> 00:01:36.886
+And I think back to 10 years ago when I
+
+NOTE Confidence: 0.9540318250656128
+
+00:01:36.946 --> 00:01:39.919
+started in Kubernetes, I had a lot of excitement.
+
+NOTE Confidence: 0.8841406106948853
+
+00:01:40.080 --> 00:01:42.238
+I had that aha moment when I first ran a
+
+NOTE Confidence: 0.8841406106948853
+
+00:01:42.292 --> 00:01:45.152
+container in production, and I scaled that out to 100
+
+NOTE Confidence: 0.8841406106948853
+
+00:01:45.206 --> 00:01:45.799
+containers.
+
+NOTE Confidence: 0.7264330387115479
+
+00:01:45.800 --> 00:01:48.240
+Anybody have that aha moment with Kubernetes?
+
+NOTE Confidence: 0.9097939729690552
+
+00:01:48.520 --> 00:01:51.621
+I had that same feeling with Agentic AI systems running
+
+NOTE Confidence: 0.9097939729690552
+
+00:01:51.678 --> 00:01:54.779
+on Kubernetes and my kids were watching Willy Wonka the
+
+NOTE Confidence: 0.9097939729690552
+
+00:01:54.836 --> 00:01:55.399
+other day.
+
+NOTE Confidence: 0.8193579912185669
+
+00:01:55.600 --> 00:01:59.027
+And there's this scene where Timothy Shamalay sings in a
+
+NOTE Confidence: 0.8193579912185669
+
+00:01:59.088 --> 00:02:00.680
+world of pure imagination.
+
+NOTE Confidence: 0.9440118670463562
+
+00:02:00.960 --> 00:02:03.404
+I feel like for the last 10 years, I've been
+
+NOTE Confidence: 0.9440118670463562
+
+00:02:03.460 --> 00:02:05.960
+trying to build platforms and now I get to go
+
+NOTE Confidence: 0.9440118670463562
+
+00:02:06.016 --> 00:02:09.072
+back to the world of pure imagination and create really
+
+NOTE Confidence: 0.9440118670463562
+
+00:02:09.128 --> 00:02:12.239
+cool systems using agentic systems on top of Kubernetes.
+
+NOTE Confidence: 0.9118845462799072
+
+00:02:12.240 --> 00:02:15.439
+So hopefully with this journey, I can impart some wisdom
+
+NOTE Confidence: 0.9118845462799072
+
+00:02:15.497 --> 00:02:17.839
+within you all to go on your own journey.
+
+NOTE Confidence: 0.9182145595550537
+
+00:02:17.960 --> 00:02:19.720
+And I'm going to make it very tactile.
+
+NOTE Confidence: 0.8779860138893127
+
+00:02:19.720 --> 00:02:22.575
+We're going to see demos, customer cases, and you're going
+
+NOTE Confidence: 0.8779860138893127
+
+00:02:22.624 --> 00:02:25.135
+to get access to some Kubernetes repos that you can
+
+NOTE Confidence: 0.8779860138893127
+
+00:02:25.184 --> 00:02:26.120
+take away with you.
+
+NOTE Confidence: 0.9675677418708801
+
+00:02:26.400 --> 00:02:28.329
+So let me go through the three parts of this
+
+NOTE Confidence: 0.9675677418708801
+
+00:02:28.373 --> 00:02:28.679
+agenda.
+
+NOTE Confidence: 0.8557096123695374
+
+00:02:28.960 --> 00:02:31.932
+We're going to go over why Kubernetes shows up as
+
+NOTE Confidence: 0.8557096123695374
+
+00:02:31.993 --> 00:02:35.754
+a substrate for running the biggest AI workloads in production
+
+NOTE Confidence: 0.8557096123695374
+
+00:02:35.815 --> 00:02:38.908
+and what managed stacks are great for and what self
+
+NOTE Confidence: 0.8557096123695374
+
+00:02:38.969 --> 00:02:42.488
+managed stacks like running on top of Kubernetes with your
+
+NOTE Confidence: 0.8557096123695374
+
+00:02:42.548 --> 00:02:45.399
+agentic system and your AI workloads are great.
+
+NOTE Confidence: 0.8254112005233765
+
+00:02:45.400 --> 00:02:48.596
+For some teams, what it actually takes to run a
+
+NOTE Confidence: 0.8254112005233765
+
+00:02:48.664 --> 00:02:51.996
+on Kubernetes and ask, we're going to go layer by
+
+NOTE Confidence: 0.8254112005233765
+
+00:02:52.064 --> 00:02:56.280
+layer from inference to serving to training to agentic system.
+
+NOTE Confidence: 0.8943246006965637
+
+00:02:56.280 --> 00:02:57.800
+So we're going to walk the stack together.
+
+NOTE Confidence: 0.8575099110603333
+
+00:02:57.800 --> 00:02:59.160
+OK, we're going to go through the whole lot.
+
+NOTE Confidence: 0.92769855260849
+
+00:02:59.840 --> 00:03:02.011
+3rd, we're going to take a look at what this
+
+NOTE Confidence: 0.92769855260849
+
+00:03:02.060 --> 00:03:05.120
+looks like in practice with real customers and real workloads.
+
+NOTE Confidence: 0.8643832206726074
+
+00:03:05.120 --> 00:03:08.027
+So we're going to work you through some sovereign customers,
+
+NOTE Confidence: 0.8643832206726074
+
+00:03:08.075 --> 00:03:11.661
+some financial service customers, how they're leveraging the platforms and
+
+NOTE Confidence: 0.8643832206726074
+
+00:03:11.709 --> 00:03:14.520
+tools I'm talking about today to power their AI workloads.
+
+NOTE Confidence: 0.9567945599555969
+
+00:03:14.840 --> 00:03:16.920
+And as I said, we're going to walk away.
+
+NOTE Confidence: 0.9345877766609192
+
+00:03:16.919 --> 00:03:18.931
+You're going to have a checklist that you're going to
+
+NOTE Confidence: 0.9345877766609192
+
+00:03:18.969 --> 00:03:20.640
+be able to take back to your team this week.
+
+NOTE Confidence: 0.9097764492034912
+
+00:03:20.919 --> 00:03:22.916
+I always say when you go to a Taylor Swift
+
+NOTE Confidence: 0.9097764492034912
+
+00:03:22.964 --> 00:03:24.200
+concert, what do you want?
+
+NOTE Confidence: 0.9706559777259827
+
+00:03:24.200 --> 00:03:26.000
+You want something you can't get on TV, right?
+
+NOTE Confidence: 0.9252980351448059
+
+00:03:26.000 --> 00:03:28.011
+I'm going to give you the stuff that you don't
+
+NOTE Confidence: 0.9252980351448059
+
+00:03:28.054 --> 00:03:29.759
+get on TV in this audience splash zone.
+
+NOTE Confidence: 0.5589441657066345
+
+00:03:30.040 --> 00:03:30.480
+Beware.
+
+NOTE Confidence: 0.8352571725845337
+
+00:03:30.480 --> 00:03:32.024
+So you're going to get wet in those first 3
+
+NOTE Confidence: 0.8352571725845337
+
+00:03:32.060 --> 00:03:32.239
+rows.
+
+NOTE Confidence: 0.8391068577766418
+
+00:03:32.440 --> 00:03:35.080
+OK, OK, let's go ahead.
+
+NOTE Confidence: 0.9523782730102539
+
+00:03:35.160 --> 00:03:35.880
+Let's dive in.
+
+NOTE Confidence: 0.8890254497528076
+
+00:03:36.000 --> 00:03:37.280
+We need to start with the why.
+
+NOTE Confidence: 0.8369928002357483
+
+00:03:37.560 --> 00:03:39.335
+I can't tell you the what without giving you the
+
+NOTE Confidence: 0.8369928002357483
+
+00:03:39.372 --> 00:03:39.520
+why.
+
+NOTE Confidence: 0.914225161075592
+
+00:03:39.520 --> 00:03:41.736
+I think the why is so important as to why
+
+NOTE Confidence: 0.914225161075592
+
+00:03:41.790 --> 00:03:43.520
+we're doing these things, right?
+
+NOTE Confidence: 0.8727189302444458
+
+00:03:43.520 --> 00:03:45.282
+So let's start with the why, and then I'll get
+
+NOTE Confidence: 0.8727189302444458
+
+00:03:45.320 --> 00:03:46.240
+to the what and the how.
+
+NOTE Confidence: 0.799622654914856
+
+00:03:46.240 --> 00:03:48.920
+OK, But it's important to be honest up front.
+
+NOTE Confidence: 0.8911038637161255
+
+00:03:49.080 --> 00:03:50.560
+This is the honest practitioner.
+
+NOTE Confidence: 0.9279645085334778
+
+00:03:50.560 --> 00:03:52.280
+I'm your honest practitioner for today.
+
+NOTE Confidence: 0.9265424013137817
+
+00:03:52.720 --> 00:03:54.795
+Kubernetes is a big hammer, and with a big hammer,
+
+NOTE Confidence: 0.9265424013137817
+
+00:03:54.836 --> 00:03:56.040
+everything looks like a nail.
+
+NOTE Confidence: 0.9548868536949158
+
+00:03:56.280 --> 00:03:59.363
+Kubernetes isn't always the right fit, but in some cases
+
+NOTE Confidence: 0.9548868536949158
+
+00:03:59.418 --> 00:04:00.519
+it is the right fit.
+
+NOTE Confidence: 0.9471075534820557
+
+00:04:00.800 --> 00:04:03.632
+And in the case of scale AI and scale run
+
+NOTE Confidence: 0.9471075534820557
+
+00:04:03.701 --> 00:04:04.599
+hand in hand.
+
+NOTE Confidence: 0.9163656234741211
+
+00:04:04.800 --> 00:04:07.331
+Kubernetes is a great platform to be able to run
+
+NOTE Confidence: 0.9163656234741211
+
+00:04:07.384 --> 00:04:09.651
+AI at scale, and it certainly is one of the
+
+NOTE Confidence: 0.9163656234741211
+
+00:04:09.704 --> 00:04:12.288
+right answers in that, OK, so we want to actually
+
+NOTE Confidence: 0.9163656234741211
+
+00:04:12.341 --> 00:04:14.767
+go through the why and why that scales and why
+
+NOTE Confidence: 0.9163656234741211
+
+00:04:14.819 --> 00:04:15.400
+it matters.
+
+NOTE Confidence: 0.8833057284355164
+
+00:04:17.000 --> 00:04:19.440
+I think it's important to start with looking at passives.
+
+NOTE Confidence: 0.8315163254737854
+
+00:04:19.440 --> 00:04:21.400
+When you're on your journey, you start with passives.
+
+NOTE Confidence: 0.9345751404762268
+
+00:04:21.400 --> 00:04:24.680
+On the left there we have full managed AI services.
+
+NOTE Confidence: 0.8528944849967957
+
+00:04:24.840 --> 00:04:27.680
+The session before this was about Microsoft Foundry.
+
+NOTE Confidence: 0.964257001876831
+
+00:04:27.880 --> 00:04:31.760
+That is an example of a fully integrated AI platform.
+
+NOTE Confidence: 0.8291389346122742
+
+00:04:32.200 --> 00:04:34.419
+And then over on the right, we have ASK and
+
+NOTE Confidence: 0.8291389346122742
+
+00:04:34.470 --> 00:04:35.400
+Kubernetes, right?
+
+NOTE Confidence: 0.8321998119354248
+
+00:04:35.600 --> 00:04:38.601
+And what we're gonna look is the left side provides
+
+NOTE Confidence: 0.8321998119354248
+
+00:04:38.660 --> 00:04:41.780
+A managed AI platform, which is gonna be your fastest
+
+NOTE Confidence: 0.8321998119354248
+
+00:04:41.838 --> 00:04:43.840
+path to a deployment model, right?
+
+NOTE Confidence: 0.7966399192810059
+
+00:04:43.839 --> 00:04:48.082
+It's curated, it's standardized, it's vendor choose on the right
+
+NOTE Confidence: 0.7966399192810059
+
+00:04:48.148 --> 00:04:48.479
+side.
+
+NOTE Confidence: 0.9320522546768188
+
+00:04:48.480 --> 00:04:52.160
+In contrast, Kubernetes is a deeper path into the stack.
+
+NOTE Confidence: 0.7608542442321777
+
+00:04:52.520 --> 00:04:55.480
+It's composable, it's open and it's you tuned.
+
+NOTE Confidence: 0.9109821319580078
+
+00:04:55.680 --> 00:04:58.179
+I think the open is really powerful because if you're
+
+NOTE Confidence: 0.9109821319580078
+
+00:04:58.227 --> 00:05:00.726
+running in multi cloud, if you're running on Prem, if
+
+NOTE Confidence: 0.9109821319580078
+
+00:05:00.774 --> 00:05:03.368
+you're running in Sovereign, the open allows you to run
+
+NOTE Confidence: 0.9109821319580078
+
+00:05:03.415 --> 00:05:06.056
+Kubernetes in those environments as well and have a very
+
+NOTE Confidence: 0.9109821319580078
+
+00:05:06.103 --> 00:05:07.000
+similar experience.
+
+NOTE Confidence: 0.9598680138587952
+
+00:05:07.000 --> 00:05:07.320
+Right?
+
+NOTE Confidence: 0.823164165019989
+
+00:05:07.560 --> 00:05:10.240
+But we are composable and you tuned.
+
+NOTE Confidence: 0.926665723323822
+
+00:05:10.520 --> 00:05:12.520
+Neither end of this scale is wrong.
+
+NOTE Confidence: 0.9038078784942627
+
+00:05:12.800 --> 00:05:16.120
+It's a matter of where your team sits, right?
+
+NOTE Confidence: 0.8456771373748779
+
+00:05:16.160 --> 00:05:18.280
+There are common patterns for speed and deployment.
+
+NOTE Confidence: 0.913297712802887
+
+00:05:18.400 --> 00:05:20.368
+You might want to be on the left side, and
+
+NOTE Confidence: 0.913297712802887
+
+00:05:20.414 --> 00:05:23.320
+foundry is probably your answer to take those common patterns.
+
+NOTE Confidence: 0.859558641910553
+
+00:05:23.640 --> 00:05:27.130
+If you want extreme scale, tunable, tight cost control, data
+
+NOTE Confidence: 0.859558641910553
+
+00:05:27.188 --> 00:05:31.143
+sovereignty, or building something a managed stack doesn't allow you
+
+NOTE Confidence: 0.859558641910553
+
+00:05:31.201 --> 00:05:34.459
+to quite tune, you might need a composable substrate and
+
+NOTE Confidence: 0.859558641910553
+
+00:05:34.517 --> 00:05:37.600
+ask and Kubernetes might be the right choice for you.
+
+NOTE Confidence: 0.8331438899040222
+
+00:05:38.000 --> 00:05:40.471
+So if you're working with Kubernetes, as I saw a
+
+NOTE Confidence: 0.8331438899040222
+
+00:05:40.523 --> 00:05:42.995
+few hands in the room, Kubernetes and ask may be
+
+NOTE Confidence: 0.8331438899040222
+
+00:05:43.046 --> 00:05:45.106
+a great place to chat or it might be the
+
+NOTE Confidence: 0.8331438899040222
+
+00:05:45.158 --> 00:05:46.239
+right choice for you.
+
+NOTE Confidence: 0.8408914804458618
+
+00:05:46.640 --> 00:05:49.517
+OK, But I think it's important to see the trade-offs
+
+NOTE Confidence: 0.8408914804458618
+
+00:05:49.572 --> 00:05:53.280
+between fully managed and integrated paths to composable substrate.
+
+NOTE Confidence: 0.8537371158599854
+
+00:05:53.279 --> 00:05:55.120
+And I'm going to pull on that a lot throughout
+
+NOTE Confidence: 0.8537371158599854
+
+00:05:55.160 --> 00:05:55.680
+this session.
+
+NOTE Confidence: 0.7654016017913818
+
+00:05:57.200 --> 00:06:00.640
+All right, I love Iron Triangle, a project management.
+
+NOTE Confidence: 0.8945233225822449
+
+00:06:00.720 --> 00:06:02.680
+You have the three things, the fast, the good and
+
+NOTE Confidence: 0.8945233225822449
+
+00:06:02.720 --> 00:06:04.040
+the cheap, and you get to pick 2.
+
+NOTE Confidence: 0.8226988911628723
+
+00:06:04.760 --> 00:06:06.000
+Doesn't that feel like a trade off?
+
+NOTE Confidence: 0.8279489874839783
+
+00:06:06.279 --> 00:06:09.728
+Well, the Iron Triangle is full of trade-offs, so AI
+
+NOTE Confidence: 0.8279489874839783
+
+00:06:09.794 --> 00:06:12.778
+kind of has its own version of this trade off
+
+NOTE Confidence: 0.8279489874839783
+
+00:06:12.845 --> 00:06:13.839
+as well, right?
+
+NOTE Confidence: 0.8258674740791321
+
+00:06:14.160 --> 00:06:18.050
+So AI as quality, speed and cost at each apex
+
+NOTE Confidence: 0.8258674740791321
+
+00:06:18.136 --> 00:06:19.519
+of the triangle.
+
+NOTE Confidence: 0.9287115335464478
+
+00:06:19.520 --> 00:06:21.995
+So let's take a look at how you can leverage
+
+NOTE Confidence: 0.9287115335464478
+
+00:06:22.052 --> 00:06:25.597
+those different sides of the triangle with these four different
+
+NOTE Confidence: 0.9287115335464478
+
+00:06:25.653 --> 00:06:26.159
+controls.
+
+NOTE Confidence: 0.9562147855758667
+
+00:06:26.160 --> 00:06:29.010
+So we have granular control which allows for the quality,
+
+NOTE Confidence: 0.9562147855758667
+
+00:06:29.060 --> 00:06:29.360
+right?
+
+NOTE Confidence: 0.9543629288673401
+
+00:06:29.360 --> 00:06:32.780
+You get to choose your scheduler accelerators, you get to
+
+NOTE Confidence: 0.9543629288673401
+
+00:06:32.840 --> 00:06:36.440
+choose the isolation model for whatever your customers need.
+
+NOTE Confidence: 0.6982580423355103
+
+00:06:37.280 --> 00:06:38.040
+Open tooling.
+
+NOTE Confidence: 0.8478980660438538
+
+00:06:38.040 --> 00:06:41.949
+I think it's super important the open tooling ecosystem and
+
+NOTE Confidence: 0.8478980660438538
+
+00:06:42.015 --> 00:06:46.057
+the fact that Kubernetes and ask leverage, the open ecosystem
+
+NOTE Confidence: 0.8478980660438538
+
+00:06:46.123 --> 00:06:49.369
+gives you value of the whole AI open source stack
+
+NOTE Confidence: 0.8478980660438538
+
+00:06:49.436 --> 00:06:50.960
+without vendor lock in.
+
+NOTE Confidence: 0.8930836319923401
+
+00:06:50.960 --> 00:06:52.860
+As I said, you can run this on Prem, you
+
+NOTE Confidence: 0.8930836319923401
+
+00:06:52.907 --> 00:06:55.140
+can run this in other data centers, you can run
+
+NOTE Confidence: 0.8930836319923401
+
+00:06:55.187 --> 00:06:57.705
+it in other clouds and have a very similar experience
+
+NOTE Confidence: 0.8930836319923401
+
+00:06:57.752 --> 00:06:59.320
+and that may be important to you.
+
+NOTE Confidence: 0.8954222202301025
+
+00:06:59.680 --> 00:07:00.640
+Data sovereignty.
+
+NOTE Confidence: 0.9483899474143982
+
+00:07:00.640 --> 00:07:02.897
+I think this is a big critical time talked about
+
+NOTE Confidence: 0.9483899474143982
+
+00:07:02.944 --> 00:07:04.119
+a lot with our customers.
+
+NOTE Confidence: 0.8696839213371277
+
+00:07:04.360 --> 00:07:09.760
+Workloads, data and weights stay where the compliance demands.
+
+NOTE Confidence: 0.9681036472320557
+
+00:07:10.080 --> 00:07:12.000
+You don't have to send them off premises.
+
+NOTE Confidence: 0.8812671303749084
+
+00:07:12.000 --> 00:07:16.075
+You can keep them where you're comfortable within your security
+
+NOTE Confidence: 0.8812671303749084
+
+00:07:16.140 --> 00:07:19.439
+boundaries and confines and visible unit economics.
+
+NOTE Confidence: 0.8608453273773193
+
+00:07:19.600 --> 00:07:22.080
+The talk of the town is cost per token, right?
+
+NOTE Confidence: 0.855516791343689
+
+00:07:22.080 --> 00:07:23.560
+We all worry about cost per token.
+
+NOTE Confidence: 0.777228057384491
+
+00:07:24.120 --> 00:07:27.160
+With the self hosted platform, you can actually tune your
+
+NOTE Confidence: 0.777228057384491
+
+00:07:27.213 --> 00:07:30.200
+cost per token, cost per inference, cost per tenant, and
+
+NOTE Confidence: 0.777228057384491
+
+00:07:30.253 --> 00:07:31.160
+it's all tunable.
+
+NOTE Confidence: 0.9516668319702148
+
+00:07:31.440 --> 00:07:33.360
+So you have control over the cost.
+
+NOTE Confidence: 0.9021172523498535
+
+00:07:33.640 --> 00:07:36.760
+The data stays with you, You're relying on open tooling
+
+NOTE Confidence: 0.9021172523498535
+
+00:07:36.817 --> 00:07:38.519
+and you have granular control.
+
+NOTE Confidence: 0.9190791249275208
+
+00:07:38.840 --> 00:07:41.487
+The trade off of all this, and there's always a
+
+NOTE Confidence: 0.9190791249275208
+
+00:07:41.543 --> 00:07:44.359
+trade off at the bottom you can see is complexity.
+
+NOTE Confidence: 0.8957379460334778
+
+00:07:44.360 --> 00:07:49.120
+So you're buying flexibility with operational overhead.
+
+NOTE Confidence: 0.9498569965362549
+
+00:07:49.120 --> 00:07:52.030
+So this platform will give you ultimate flexibility, but you
+
+NOTE Confidence: 0.9498569965362549
+
+00:07:52.078 --> 00:07:52.999
+need to operate it.
+
+NOTE Confidence: 0.8673028945922852
+
+00:07:53.000 --> 00:07:55.782
+And don't worry, AI agentic systems can help with that
+
+NOTE Confidence: 0.8673028945922852
+
+00:07:55.833 --> 00:07:56.040
+too.
+
+NOTE Confidence: 0.9498026967048645
+
+00:07:56.160 --> 00:07:57.640
+We'll talk about that a little later.
+
+NOTE Confidence: 0.8197948336601257
+
+00:07:59.160 --> 00:08:03.094
+OK, so if this is you, the composability isn't optional,
+
+NOTE Confidence: 0.8197948336601257
+
+00:08:03.164 --> 00:08:04.640
+it's required, right?
+
+NOTE Confidence: 0.9148910045623779
+
+00:08:04.640 --> 00:08:07.482
+So here are the profiles we see on the left
+
+NOTE Confidence: 0.9148910045623779
+
+00:08:07.548 --> 00:08:10.721
+in blue of where self managing wins and where we
+
+NOTE Confidence: 0.9148910045623779
+
+00:08:10.787 --> 00:08:13.959
+see our customers selecting self managing teams.
+
+NOTE Confidence: 0.8739144802093506
+
+00:08:13.960 --> 00:08:17.712
+Running AI at scale with cost or sensitivity to where
+
+NOTE Confidence: 0.8739144802093506
+
+00:08:17.783 --> 00:08:19.200
+the data is sitting.
+
+NOTE Confidence: 0.8711830377578735
+
+00:08:19.400 --> 00:08:23.013
+Isvs and cloud agnostic vendors who are out there building
+
+NOTE Confidence: 0.8711830377578735
+
+00:08:23.075 --> 00:08:26.128
+and shipping AI platforms to on Prem and edge and
+
+NOTE Confidence: 0.8711830377578735
+
+00:08:26.191 --> 00:08:29.680
+platform owners who want composability rather than rent.
+
+NOTE Confidence: 0.9642766714096069
+
+00:08:31.520 --> 00:08:33.170
+And then finally, if we look on the right, here
+
+NOTE Confidence: 0.9642766714096069
+
+00:08:33.205 --> 00:08:34.399
+are the primitives doing the work.
+
+NOTE Confidence: 0.9333392381668091
+
+00:08:34.400 --> 00:08:36.851
+So the great thing about Kubernetes is it comes with
+
+NOTE Confidence: 0.9333392381668091
+
+00:08:36.898 --> 00:08:39.679
+all of these things out-of-the-box to manage the substrate.
+
+NOTE Confidence: 0.811859667301178
+
+00:08:39.840 --> 00:08:44.270
+We have declarative resource management where we can manage memory,
+
+NOTE Confidence: 0.811859667301178
+
+00:08:44.336 --> 00:08:46.320
+GP, US quotas defined as code.
+
+NOTE Confidence: 0.8476595282554626
+
+00:08:46.320 --> 00:08:47.920
+Everything's declarative.
+
+NOTE Confidence: 0.8638229966163635
+
+00:08:48.160 --> 00:08:50.160
+We have heterogeneous scheduling.
+
+NOTE Confidence: 0.9353967905044556
+
+00:08:50.320 --> 00:08:52.524
+In a world of a lot of different accelerators, you
+
+NOTE Confidence: 0.9353967905044556
+
+00:08:52.568 --> 00:08:55.082
+want to match the right workload to the right accelerator
+
+NOTE Confidence: 0.9353967905044556
+
+00:08:55.126 --> 00:08:55.920
+at the right time.
+
+NOTE Confidence: 0.893043041229248
+
+00:08:56.080 --> 00:08:59.214
+So we can compose heterogeneous clusters with different types of
+
+NOTE Confidence: 0.893043041229248
+
+00:08:59.263 --> 00:09:01.320
+accelerators, networking accelerators too.
+
+NOTE Confidence: 0.8721562623977661
+
+00:09:02.160 --> 00:09:05.470
+We have namespace isolation where we can have multi tenant
+
+NOTE Confidence: 0.8721562623977661
+
+00:09:05.527 --> 00:09:09.293
+AI not crossing that security boundary within Kubernetes or having
+
+NOTE Confidence: 0.8721562623977661
+
+00:09:09.350 --> 00:09:11.119
+to rewrite your security tools.
+
+NOTE Confidence: 0.912176787853241
+
+00:09:11.320 --> 00:09:14.998
+And then finally, there's a complete ecosystem full of primitives
+
+NOTE Confidence: 0.912176787853241
+
+00:09:15.054 --> 00:09:15.959
+built with this.
+
+NOTE Confidence: 0.8840680122375488
+
+00:09:15.960 --> 00:09:16.960
+I see Mark in the back.
+
+NOTE Confidence: 0.858487606048584
+
+00:09:16.960 --> 00:09:19.031
+Dapper, right, lives on top of he gave me a
+
+NOTE Confidence: 0.858487606048584
+
+00:09:19.079 --> 00:09:19.320
+wave.
+
+NOTE Confidence: 0.8487230539321899
+
+00:09:19.520 --> 00:09:22.696
+He's he works on a project called Dapper, which sits
+
+NOTE Confidence: 0.8487230539321899
+
+00:09:22.757 --> 00:09:24.039
+on top of Kubernetes.
+
+NOTE Confidence: 0.9371271133422852
+
+00:09:24.040 --> 00:09:27.695
+But these abstractions are durable and something that these other
+
+NOTE Confidence: 0.9371271133422852
+
+00:09:27.751 --> 00:09:30.170
+platforms can build on top of to be able to
+
+NOTE Confidence: 0.9371271133422852
+
+00:09:30.226 --> 00:09:31.520
+have great experiences.
+
+NOTE Confidence: 0.8409581184387207
+
+00:09:31.520 --> 00:09:32.840
+So you can build your own platform.
+
+NOTE Confidence: 0.9070889949798584
+
+00:09:33.160 --> 00:09:35.840
+So Kubernetes obviously handles the complexity.
+
+NOTE Confidence: 0.9443833231925964
+
+00:09:35.840 --> 00:09:38.584
+It's built for that complexity, but not in spite of
+
+NOTE Confidence: 0.9443833231925964
+
+00:09:38.638 --> 00:09:38.800
+it.
+
+NOTE Confidence: 0.941173791885376
+
+00:09:40.560 --> 00:09:41.560
+So far, so good.
+
+NOTE Confidence: 0.8494352102279663
+
+00:09:41.720 --> 00:09:44.008
+I'm going to go grab some water, but as I
+
+NOTE Confidence: 0.8494352102279663
+
+00:09:44.064 --> 00:09:46.465
+just framed this up so you can take a look,
+
+NOTE Confidence: 0.8494352102279663
+
+00:09:46.521 --> 00:09:49.479
+AI comes in three different, very distinct workloads.
+
+NOTE Confidence: 0.921738862991333
+
+00:09:49.679 --> 00:09:52.578
+On the left, in red, we have inference, in the
+
+NOTE Confidence: 0.921738862991333
+
+00:09:52.641 --> 00:09:55.728
+middle we have training, and on the right we have
+
+NOTE Confidence: 0.921738862991333
+
+00:09:55.791 --> 00:09:56.799
+agentic systems.
+
+NOTE Confidence: 0.9125720262527466
+
+00:09:57.000 --> 00:10:00.030
+The purpose of this slide is actually to identify that
+
+NOTE Confidence: 0.9125720262527466
+
+00:10:00.086 --> 00:10:04.519
+each workload has different conditions, different lifetimes, different compute.
+
+NOTE Confidence: 0.8932644724845886
+
+00:10:04.720 --> 00:10:07.483
+So there is an operational environment that's required for each
+
+NOTE Confidence: 0.8932644724845886
+
+00:10:07.527 --> 00:10:08.799
+of these different workloads.
+
+NOTE Confidence: 0.8990598320960999
+
+00:10:11.120 --> 00:10:13.371
+So let's take a look at them quickly, but take
+
+NOTE Confidence: 0.8990598320960999
+
+00:10:13.420 --> 00:10:14.400
+a look at inference.
+
+NOTE Confidence: 0.8011800050735474
+
+00:10:14.400 --> 00:10:15.800
+Started inference on the left here.
+
+NOTE Confidence: 0.8941506147384644
+
+00:10:15.960 --> 00:10:18.600
+So lifetime milliseconds to seconds per request.
+
+NOTE Confidence: 0.8795304298400879
+
+00:10:18.880 --> 00:10:21.401
+We have both GPU and CPU in the mix, so
+
+NOTE Confidence: 0.8795304298400879
+
+00:10:21.466 --> 00:10:23.599
+heterogeneous, often single node.
+
+NOTE Confidence: 0.956002950668335
+
+00:10:23.600 --> 00:10:25.360
+You can run inference on a single node.
+
+NOTE Confidence: 0.966362476348877
+
+00:10:25.880 --> 00:10:28.080
+When we talk about training, that's not often true.
+
+NOTE Confidence: 0.8718905448913574
+
+00:10:28.360 --> 00:10:30.762
+And the failure mode is just drop the request and
+
+NOTE Confidence: 0.8718905448913574
+
+00:10:30.811 --> 00:10:33.213
+the cost vector here is what you need to optimize
+
+NOTE Confidence: 0.8718905448913574
+
+00:10:33.262 --> 00:10:34.879
+on is latency and cost per token.
+
+NOTE Confidence: 0.8633714914321899
+
+00:10:35.200 --> 00:10:36.817
+And down the bottom, what we're going to get to
+
+NOTE Confidence: 0.8633714914321899
+
+00:10:36.851 --> 00:10:38.399
+is different open source tools and platforms.
+
+NOTE Confidence: 0.8549196720123291
+
+00:10:38.400 --> 00:10:41.134
+So we have Kaito and AI Runway there as places
+
+NOTE Confidence: 0.8549196720123291
+
+00:10:41.193 --> 00:10:44.522
+that you can leverage inference on top of Kubernetes and
+
+NOTE Confidence: 0.8549196720123291
+
+00:10:44.582 --> 00:10:46.960
+ask training is throughput bound, right?
+
+NOTE Confidence: 0.9546354413032532
+
+00:10:47.000 --> 00:10:48.000
+Hours, weeks.
+
+NOTE Confidence: 0.8438244462013245
+
+00:10:49.040 --> 00:10:51.818
+Data scientists get really mad when their training jobs break
+
+NOTE Confidence: 0.8438244462013245
+
+00:10:51.864 --> 00:10:53.959
+because they have to resume from a checkpoint.
+
+NOTE Confidence: 0.9051856398582458
+
+00:10:53.960 --> 00:10:57.920
+And when you're utilizing extremely expensive hardware, time is money.
+
+NOTE Confidence: 0.8840924501419067
+
+00:10:57.920 --> 00:11:00.760
+And every minute on those computer platforms is money.
+
+NOTE Confidence: 0.9133176207542419
+
+00:11:00.760 --> 00:11:03.627
+So you want to make sure they're absolutely saturated and
+
+NOTE Confidence: 0.9133176207542419
+
+00:11:03.677 --> 00:11:05.639
+absolutely utilized to the full extent.
+
+NOTE Confidence: 0.8780454993247986
+
+00:11:06.240 --> 00:11:08.120
+And you want throughput iteration time.
+
+NOTE Confidence: 0.9270976781845093
+
+00:11:08.120 --> 00:11:09.920
+How long does a training iteration take?
+
+NOTE Confidence: 0.7897087335586548
+
+00:11:09.920 --> 00:11:12.497
+That's the measure we're going to discuss Ray and any
+
+NOTE Confidence: 0.7897087335586548
+
+00:11:12.546 --> 00:11:14.880
+scale on Azure as solutions to help you with the
+
+NOTE Confidence: 0.7897087335586548
+
+00:11:14.929 --> 00:11:16.679
+training, which is throughput bound.
+
+NOTE Confidence: 0.8572391271591187
+
+00:11:16.800 --> 00:11:19.276
+And then finally, we're going to talk about some agentic
+
+NOTE Confidence: 0.8572391271591187
+
+00:11:19.321 --> 00:11:21.400
+systems, but sessions, minutes per turn, right?
+
+NOTE Confidence: 0.9103937745094299
+
+00:11:21.400 --> 00:11:24.861
+We have autonomous agents, autopilot agents running on our behalf,
+
+NOTE Confidence: 0.9103937745094299
+
+00:11:24.913 --> 00:11:28.217
+ingesting data, making decisions and helping us get through our
+
+NOTE Confidence: 0.9103937745094299
+
+00:11:28.270 --> 00:11:28.479
+day.
+
+NOTE Confidence: 0.2800673246383667
+
+00:11:29.120 --> 00:11:30.680
+They're multi, multi modal.
+
+NOTE Confidence: 0.9204484224319458
+
+00:11:30.680 --> 00:11:34.320
+They take input from images, text, voice, video streams.
+
+NOTE Confidence: 0.8034578561782837
+
+00:11:35.120 --> 00:11:36.880
+They resume on state and mid session.
+
+NOTE Confidence: 0.856414794921875
+
+00:11:36.880 --> 00:11:39.248
+So we need some kind of state awareness and tool
+
+NOTE Confidence: 0.856414794921875
+
+00:11:39.297 --> 00:11:41.320
+core latency is obviously very sensitive.
+
+NOTE Confidence: 0.9245120882987976
+
+00:11:41.320 --> 00:11:43.935
+What tools they need to call to ultimately get you
+
+NOTE Confidence: 0.9245120882987976
+
+00:11:43.987 --> 00:11:45.399
+the response that you need.
+
+NOTE Confidence: 0.9002388715744019
+
+00:11:45.720 --> 00:11:48.194
+And down the bottom we're going to talk about skills
+
+NOTE Confidence: 0.9002388715744019
+
+00:11:48.242 --> 00:11:50.764
+MCP and a platform called Openclaw, which I heard has
+
+NOTE Confidence: 0.9002388715744019
+
+00:11:50.812 --> 00:11:52.240
+been talked about a lot today.
+
+NOTE Confidence: 0.819786787033081
+
+00:11:52.240 --> 00:11:56.887
+So they all share GP GPU's, but these three discrete
+
+NOTE Confidence: 0.819786787033081
+
+00:11:56.976 --> 00:12:02.696
+workloads, AI do not share the same operational assumptions with
+
+NOTE Confidence: 0.819786787033081
+
+00:12:02.786 --> 00:12:03.680
+me so far.
+
+NOTE Confidence: 0.7852213382720947
+
+00:12:04.600 --> 00:12:05.680
+OK, I'm talking quick.
+
+NOTE Confidence: 0.8517805337905884
+
+00:12:05.720 --> 00:12:07.480
+I'm talking quick, but hopefully bring it along.
+
+NOTE Confidence: 0.5769000053405762
+
+00:12:07.760 --> 00:12:08.480
+OK, excellent.
+
+NOTE Confidence: 0.9782503843307495
+
+00:12:08.480 --> 00:12:08.880
+Thank you.
+
+NOTE Confidence: 0.9360883235931396
+
+00:12:08.880 --> 00:12:10.520
+Thanks for the nods in agreement.
+
+NOTE Confidence: 0.8190128207206726
+
+00:12:10.760 --> 00:12:14.492
+OK, So Kubernetes gives you the foundation, but AI, the
+
+NOTE Confidence: 0.8190128207206726
+
+00:12:14.560 --> 00:12:16.800
+error of AI asks for more on top.
+
+NOTE Confidence: 0.9276806116104126
+
+00:12:17.080 --> 00:12:20.700
+So Kubernetes is necessary, but it's not sufficient at the
+
+NOTE Confidence: 0.9276806116104126
+
+00:12:20.763 --> 00:12:21.199
+moment.
+
+NOTE Confidence: 0.9251919388771057
+
+00:12:21.200 --> 00:12:24.005
+You need more on top of Kubernetes and you need
+
+NOTE Confidence: 0.9251919388771057
+
+00:12:24.064 --> 00:12:26.810
+to be able to build a platform that enables AI
+
+NOTE Confidence: 0.9251919388771057
+
+00:12:26.869 --> 00:12:28.719
+workloads on top of Kubernetes.
+
+NOTE Confidence: 0.8506771326065063
+
+00:12:28.920 --> 00:12:31.434
+So there are some gaps that Kubernetes needs to close,
+
+NOTE Confidence: 0.8506771326065063
+
+00:12:31.480 --> 00:12:31.760
+right?
+
+NOTE Confidence: 0.9325027465820312
+
+00:12:31.760 --> 00:12:33.120
+And these gaps are being worked on.
+
+NOTE Confidence: 0.7892481088638306
+
+00:12:33.400 --> 00:12:35.335
+But for example, we took at the lock the top
+
+NOTE Confidence: 0.7892481088638306
+
+00:12:35.379 --> 00:12:35.599
+left.
+
+NOTE Confidence: 0.8548538088798523
+
+00:12:36.280 --> 00:12:40.273
+Traditionally Kubernetes has workloads that can be scheduled one pot
+
+NOTE Confidence: 0.8548538088798523
+
+00:12:40.332 --> 00:12:40.920
+at a time.
+
+NOTE Confidence: 0.8529437184333801
+
+00:12:41.200 --> 00:12:44.918
+AI workloads want hundreds of thousands, 10s of thousands of
+
+NOTE Confidence: 0.8529437184333801
+
+00:12:44.980 --> 00:12:46.839
+pods to start together, right?
+
+NOTE Confidence: 0.86395663022995
+
+00:12:46.960 --> 00:12:49.724
+So you need to use things like gang scheduling and
+
+NOTE Confidence: 0.86395663022995
+
+00:12:49.779 --> 00:12:50.719
+advanced queuing.
+
+NOTE Confidence: 0.8920915126800537
+
+00:12:50.880 --> 00:12:52.640
+You don't want to use the default scheduler.
+
+NOTE Confidence: 0.8380406498908997
+
+00:12:52.840 --> 00:12:56.492
+Kubernetes allows you to clip that in heterogeneous hardware and
+
+NOTE Confidence: 0.8380406498908997
+
+00:12:56.549 --> 00:12:57.119
+awareness.
+
+NOTE Confidence: 0.9008594751358032
+
+00:12:57.520 --> 00:13:01.185
+Every new generation of accelerator that comes out doesn't mean
+
+NOTE Confidence: 0.9008594751358032
+
+00:13:01.243 --> 00:13:03.279
+you overchange your whole platform.
+
+NOTE Confidence: 0.9154930710792542
+
+00:13:03.400 --> 00:13:05.829
+It just means you can utilize a new platform while
+
+NOTE Confidence: 0.9154930710792542
+
+00:13:05.878 --> 00:13:08.600
+utilizing the one that you've already known and trusted.
+
+NOTE Confidence: 0.788801372051239
+
+00:13:08.600 --> 00:13:12.491
+So you have access to different GPU's, different CPU's, AI
+
+NOTE Confidence: 0.788801372051239
+
+00:13:12.558 --> 00:13:17.725
+aware devices, GPU family awareness, accelerator, top topology, numeral aware
+
+NOTE Confidence: 0.788801372051239
+
+00:13:17.792 --> 00:13:21.482
+placement are all need to become first class signals on
+
+NOTE Confidence: 0.788801372051239
+
+00:13:21.549 --> 00:13:23.160
+the Kubernetes platform.
+
+NOTE Confidence: 0.9423839449882507
+
+00:13:24.320 --> 00:13:24.960
+Scaling.
+
+NOTE Confidence: 0.9116200804710388
+
+00:13:25.400 --> 00:13:28.200
+So we have scaling is on the right signal.
+
+NOTE Confidence: 0.9246709942817688
+
+00:13:28.200 --> 00:13:31.240
+So traditionally Kubernetes scaled only on CPU and memory.
+
+NOTE Confidence: 0.9628749489784241
+
+00:13:31.520 --> 00:13:33.920
+Obviously in the AI world that is not enough.
+
+NOTE Confidence: 0.8986773490905762
+
+00:13:34.080 --> 00:13:37.345
+We need to scale on things like tokens per second,
+
+NOTE Confidence: 0.8986773490905762
+
+00:13:37.410 --> 00:13:42.048
+queue depth, GPU utilization and actually release the accelerators when
+
+NOTE Confidence: 0.8986773490905762
+
+00:13:42.113 --> 00:13:42.440
+idle.
+
+NOTE Confidence: 0.7012583017349243
+
+00:13:43.880 --> 00:13:45.440
+And finally we durable state.
+
+NOTE Confidence: 0.9121948480606079
+
+00:13:45.440 --> 00:13:47.844
+So in the agentic world, obviously we need state and
+
+NOTE Confidence: 0.9121948480606079
+
+00:13:47.890 --> 00:13:48.999
+also the training world.
+
+NOTE Confidence: 0.8342452645301819
+
+00:13:49.000 --> 00:13:52.320
+So Kubernetes was designed for stateless services.
+
+NOTE Confidence: 0.9007204174995422
+
+00:13:52.600 --> 00:13:55.081
+So we have to build in AI a set of
+
+NOTE Confidence: 0.9007204174995422
+
+00:13:55.154 --> 00:13:59.096
+caching and a set of storage services for long running
+
+NOTE Confidence: 0.9007204174995422
+
+00:13:59.169 --> 00:14:04.570
+training jobs for agentic workloads to survive evictions, drains, topology
+
+NOTE Confidence: 0.9007204174995422
+
+00:14:04.643 --> 00:14:09.023
+changes, or even spot interruption if you're running on spot
+
+NOTE Confidence: 0.9007204174995422
+
+00:14:09.096 --> 00:14:09.680
+devices.
+
+NOTE Confidence: 0.8959342241287231
+
+00:14:09.960 --> 00:14:12.160
+So Kubernetes gives you the foundation.
+
+NOTE Confidence: 0.9069504737854004
+
+00:14:12.440 --> 00:14:14.573
+But what we're going to build on upon here is
+
+NOTE Confidence: 0.9069504737854004
+
+00:14:14.620 --> 00:14:16.659
+the rest of the session is what we layer on
+
+NOTE Confidence: 0.9069504737854004
+
+00:14:16.706 --> 00:14:17.559
+top of Kubernetes.
+
+NOTE Confidence: 0.7494967579841614
+
+00:14:19.080 --> 00:14:21.240
+OK, so I gave you the why, now we're going
+
+NOTE Confidence: 0.7494967579841614
+
+00:14:21.291 --> 00:14:22.680
+to get the what in the how.
+
+NOTE Confidence: 0.9258731007575989
+
+00:14:22.680 --> 00:14:25.000
+OK, so let's get concrete here.
+
+NOTE Confidence: 0.9192262887954712
+
+00:14:25.200 --> 00:14:27.223
+We're going to walk through a four layer stack and
+
+NOTE Confidence: 0.9192262887954712
+
+00:14:27.263 --> 00:14:28.679
+go through each layer of the stack.
+
+NOTE Confidence: 0.9150542616844177
+
+00:14:28.960 --> 00:14:31.232
+Each has its own tools that I'm going to suggest
+
+NOTE Confidence: 0.9150542616844177
+
+00:14:31.279 --> 00:14:31.800
+trade-offs.
+
+NOTE Confidence: 0.9544157385826111
+
+00:14:32.080 --> 00:14:34.487
+And we actually have some announcements, so excited to get
+
+NOTE Confidence: 0.9544157385826111
+
+00:14:34.528 --> 00:14:35.400
+through them as well.
+
+NOTE Confidence: 0.9348966479301453
+
+00:14:37.160 --> 00:14:39.522
+OK, so this is the mental model for the rest
+
+NOTE Confidence: 0.9348966479301453
+
+00:14:39.576 --> 00:14:42.475
+of this session going from the bottom up Kubernetes up
+
+NOTE Confidence: 0.9348966479301453
+
+00:14:42.529 --> 00:14:43.120
+the bottom.
+
+NOTE Confidence: 0.8259597420692444
+
+00:14:43.120 --> 00:14:47.150
+We have Kubernetes where we have the substrate with Kubernetes
+
+NOTE Confidence: 0.8259597420692444
+
+00:14:47.215 --> 00:14:49.360
+and ask Azure Kubernetes Service.
+
+NOTE Confidence: 0.9394164085388184
+
+00:14:49.600 --> 00:14:51.816
+On top of that, we're going to go through inference
+
+NOTE Confidence: 0.9394164085388184
+
+00:14:51.860 --> 00:14:54.120
+and serving, which I find most customers start with.
+
+NOTE Confidence: 0.9162006378173828
+
+00:14:54.360 --> 00:14:56.411
+It's the way to get some value out of AI
+
+NOTE Confidence: 0.9162006378173828
+
+00:14:56.463 --> 00:14:58.720
+or at least see what AI can provide for you.
+
+NOTE Confidence: 0.8780422210693359
+
+00:14:58.880 --> 00:15:01.187
+So we're going to look at inference and serving with
+
+NOTE Confidence: 0.8780422210693359
+
+00:15:01.232 --> 00:15:02.119
+Kaito and AI Runway.
+
+NOTE Confidence: 0.8898201584815979
+
+00:15:02.440 --> 00:15:04.832
+Then we're going to move up the stack into the
+
+NOTE Confidence: 0.8898201584815979
+
+00:15:04.884 --> 00:15:07.640
+green training and fine tuning with Ray and any scale
+
+NOTE Confidence: 0.8898201584815979
+
+00:15:07.692 --> 00:15:08.160
+on Azure.
+
+NOTE Confidence: 0.9091023802757263
+
+00:15:08.160 --> 00:15:09.840
+The demo there is really cool.
+
+NOTE Confidence: 0.9653067588806152
+
+00:15:09.840 --> 00:15:12.155
+So I'm excited to show you some really cool training
+
+NOTE Confidence: 0.9653067588806152
+
+00:15:12.200 --> 00:15:14.159
+and fine tuning that we can do very quickly.
+
+NOTE Confidence: 0.9069238901138306
+
+00:15:14.400 --> 00:15:16.189
+And at the top of the stack, the area I'm
+
+NOTE Confidence: 0.9069238901138306
+
+00:15:16.232 --> 00:15:18.021
+having a lot of fun with at the moment is
+
+NOTE Confidence: 0.9069238901138306
+
+00:15:18.065 --> 00:15:19.199
+the agentic orchestration.
+
+NOTE Confidence: 0.8072640299797058
+
+00:15:19.400 --> 00:15:21.785
+So we're going to look at skills, MCP and open
+
+NOTE Confidence: 0.8072640299797058
+
+00:15:21.837 --> 00:15:24.119
+floor and some things we can build together.
+
+NOTE Confidence: 0.9144343733787537
+
+00:15:24.320 --> 00:15:26.552
+So we're going to start with inference and then I'm
+
+NOTE Confidence: 0.9144343733787537
+
+00:15:26.596 --> 00:15:28.304
+going to go to the top of the stack and
+
+NOTE Confidence: 0.9144343733787537
+
+00:15:28.348 --> 00:15:30.581
+then finish with the substrate at the bottom at the
+
+NOTE Confidence: 0.9144343733787537
+
+00:15:30.624 --> 00:15:30.799
+end.
+
+NOTE Confidence: 0.7823688387870789
+
+00:15:31.560 --> 00:15:34.289
+OK, so, so let's take a look at inference and
+
+NOTE Confidence: 0.7823688387870789
+
+00:15:34.350 --> 00:15:35.199
+serving layer.
+
+NOTE Confidence: 0.8667246103286743
+
+00:15:35.400 --> 00:15:37.273
+And as I said, I want to start here because
+
+NOTE Confidence: 0.8667246103286743
+
+00:15:37.316 --> 00:15:39.712
+if you haven't started your journey, some folks who run
+
+NOTE Confidence: 0.8667246103286743
+
+00:15:39.756 --> 00:15:41.759
+in Kubernetes but not AI on Kubernetes, right?
+
+NOTE Confidence: 0.9685474038124084
+
+00:15:42.000 --> 00:15:44.320
+So I think this is the logical starting point.
+
+NOTE Confidence: 0.944744348526001
+
+00:15:44.600 --> 00:15:46.631
+And I'll tell you why that is because you have
+
+NOTE Confidence: 0.944744348526001
+
+00:15:46.675 --> 00:15:48.398
+a model you want to run up and you want
+
+NOTE Confidence: 0.944744348526001
+
+00:15:48.442 --> 00:15:50.341
+to run it up in production, you want to run
+
+NOTE Confidence: 0.944744348526001
+
+00:15:50.385 --> 00:15:50.960
+it up in dev.
+
+NOTE Confidence: 0.8298542499542236
+
+00:15:51.120 --> 00:15:53.089
+You want to get started and see the value AI
+
+NOTE Confidence: 0.8298542499542236
+
+00:15:53.134 --> 00:15:55.506
+can provide and have you develop a start to integrate
+
+NOTE Confidence: 0.8298542499542236
+
+00:15:55.551 --> 00:15:56.760
+that model into a workload.
+
+NOTE Confidence: 0.9565834403038025
+
+00:15:57.200 --> 00:16:00.120
+So let's talk about what that looks like on Kubernetes.
+
+NOTE Confidence: 0.86798095703125
+
+00:16:01.920 --> 00:16:04.433
+All right, So what we're going to talk about here
+
+NOTE Confidence: 0.86798095703125
+
+00:16:04.484 --> 00:16:06.280
+is two different open source tools.
+
+NOTE Confidence: 0.9704282283782959
+
+00:16:06.280 --> 00:16:07.160
+So you can pick them up.
+
+NOTE Confidence: 0.7154691219329834
+
+00:16:07.160 --> 00:16:08.200
+They're all on GitHub today.
+
+NOTE Confidence: 0.9669360518455505
+
+00:16:08.400 --> 00:16:11.520
+Don't worry, I'll get you the links with one goal.
+
+NOTE Confidence: 0.9490445852279663
+
+00:16:11.800 --> 00:16:14.861
+So the goal here is to get a model, an
+
+NOTE Confidence: 0.9490445852279663
+
+00:16:14.941 --> 00:16:17.599
+inference model serving reliably.
+
+NOTE Confidence: 0.8779097199440002
+
+00:16:17.600 --> 00:16:19.720
+So you get an endpoint that you can make an
+
+NOTE Confidence: 0.8779097199440002
+
+00:16:19.769 --> 00:16:21.199
+inference request too, right?
+
+NOTE Confidence: 0.9618231058120728
+
+00:16:21.200 --> 00:16:22.840
+So let's start on the left in the blue.
+
+NOTE Confidence: 0.9284301400184631
+
+00:16:23.080 --> 00:16:25.400
+We have the platform layer with AI Runway.
+
+NOTE Confidence: 0.9181386828422546
+
+00:16:25.880 --> 00:16:30.973
+What AI Runway provides is a Kubernetes native inference platform
+
+NOTE Confidence: 0.9181386828422546
+
+00:16:31.051 --> 00:16:35.439
+with a web UI and a unified model deployment controller.
+
+NOTE Confidence: 0.9275888204574585
+
+00:16:35.800 --> 00:16:38.187
+So what this actually means to you is you can
+
+NOTE Confidence: 0.9275888204574585
+
+00:16:38.240 --> 00:16:41.105
+get a model up and running on Kubernetes very quickly,
+
+NOTE Confidence: 0.9275888204574585
+
+00:16:41.158 --> 00:16:43.440
+quickly with just a few clicks of a button.
+
+NOTE Confidence: 0.9432879686355591
+
+00:16:43.440 --> 00:16:45.386
+And I will show you in a demo in a
+
+NOTE Confidence: 0.9432879686355591
+
+00:16:45.443 --> 00:16:46.759
+couple of slides later.
+
+NOTE Confidence: 0.7443898916244507
+
+00:16:47.120 --> 00:16:51.596
+And it supports all the major engines out there like
+
+NOTE Confidence: 0.7443898916244507
+
+00:16:51.682 --> 00:16:55.040
+VLLM, SG, Lang, Tensor, RT, Llama, CPP.
+
+NOTE Confidence: 0.9222372174263
+
+00:16:55.560 --> 00:16:57.560
+So you can plug your own serving engine in.
+
+NOTE Confidence: 0.7497320771217346
+
+00:16:57.560 --> 00:16:59.960
+There are many different serving engines with different trade-offs.
+
+NOTE Confidence: 0.9395260810852051
+
+00:17:00.160 --> 00:17:02.852
+This allows you the flexibility, but it has one click
+
+NOTE Confidence: 0.9395260810852051
+
+00:17:02.903 --> 00:17:05.139
+deploy with a nice UI where you can run this
+
+NOTE Confidence: 0.9395260810852051
+
+00:17:05.190 --> 00:17:07.680
+up this afternoon on any cluster and get started.
+
+NOTE Confidence: 0.7920207381248474
+
+00:17:08.000 --> 00:17:10.849
+And then over on the right, we're going to look
+
+NOTE Confidence: 0.7920207381248474
+
+00:17:10.910 --> 00:17:14.366
+at the Kubernetes AI tool, excuse me, tool chain operator
+
+NOTE Confidence: 0.7920207381248474
+
+00:17:14.427 --> 00:17:15.639
+for Kaido for short.
+
+NOTE Confidence: 0.8592147827148438
+
+00:17:15.840 --> 00:17:16.960
+It's the operation layer.
+
+NOTE Confidence: 0.9017317891120911
+
+00:17:16.960 --> 00:17:19.585
+So this takes care of all the operational burden that
+
+NOTE Confidence: 0.9017317891120911
+
+00:17:19.635 --> 00:17:21.765
+you need to run a model and server model in
+
+NOTE Confidence: 0.9017317891120911
+
+00:17:21.815 --> 00:17:22.359
+production.
+
+NOTE Confidence: 0.7774776220321655
+
+00:17:22.600 --> 00:17:26.667
+It has optimized presets for pipelines data and tensile tensor
+
+NOTE Confidence: 0.7774776220321655
+
+00:17:26.732 --> 00:17:30.340
+parallelism, and it has KV cache, key value cache aware
+
+NOTE Confidence: 0.7774776220321655
+
+00:17:30.406 --> 00:17:34.079
+routing using Kubernetes primitives like inference pool.
+
+NOTE Confidence: 0.8310070633888245
+
+00:17:35.119 --> 00:17:38.816
+The important relationship here is that the AI runway is
+
+NOTE Confidence: 0.8310070633888245
+
+00:17:38.882 --> 00:17:42.711
+the platform, and Kaido is one of its providers, alongside
+
+NOTE Confidence: 0.8310070633888245
+
+00:17:42.777 --> 00:17:45.880
+things like NVIDIA Dynamo, Kube, Ray, and LLMD.
+
+NOTE Confidence: 0.9547225832939148
+
+00:17:46.160 --> 00:17:48.470
+And the great thing about this, these are all open
+
+NOTE Confidence: 0.9547225832939148
+
+00:17:48.516 --> 00:17:48.839
+source.
+
+NOTE Confidence: 0.9447730779647827
+
+00:17:49.560 --> 00:17:52.178
+They're both Kubernetes native, which means you can run them
+
+NOTE Confidence: 0.9447730779647827
+
+00:17:52.221 --> 00:17:52.920
+on any platform.
+
+NOTE Confidence: 0.9480577111244202
+
+00:17:52.920 --> 00:17:54.842
+You can pick them up and run them on any
+
+NOTE Confidence: 0.9480577111244202
+
+00:17:54.890 --> 00:17:57.919
+Kubernetes cluster that's compliant today, and you can run them
+
+NOTE Confidence: 0.9480577111244202
+
+00:17:57.967 --> 00:17:58.400
+anywhere.
+
+NOTE Confidence: 0.888824999332428
+
+00:17:59.960 --> 00:18:02.213
+All right, so I'm going to walk you through kind
+
+NOTE Confidence: 0.888824999332428
+
+00:18:02.260 --> 00:18:04.561
+of the experience that you're going to see on the
+
+NOTE Confidence: 0.888824999332428
+
+00:18:04.608 --> 00:18:06.439
+next slide where I go through the demo.
+
+NOTE Confidence: 0.9296880960464478
+
+00:18:06.680 --> 00:18:07.880
+This is what you're going to go from.
+
+NOTE Confidence: 0.9022568464279175
+
+00:18:07.880 --> 00:18:10.488
+So the promise here is from browsing a model to
+
+NOTE Confidence: 0.9022568464279175
+
+00:18:10.544 --> 00:18:13.320
+serving in production in just a few clicks, right?
+
+NOTE Confidence: 0.8383490443229675
+
+00:18:13.320 --> 00:18:14.720
+And primitives you already operate.
+
+NOTE Confidence: 0.8540984988212585
+
+00:18:14.720 --> 00:18:17.115
+So if you're running Kubernetes today and you have your
+
+NOTE Confidence: 0.8540984988212585
+
+00:18:17.159 --> 00:18:20.034
+workloads, all your app workloads already running on there, you're
+
+NOTE Confidence: 0.8540984988212585
+
+00:18:20.078 --> 00:18:21.079
+using the same tooling.
+
+NOTE Confidence: 0.8954200744628906
+
+00:18:21.280 --> 00:18:22.800
+So we're going to browse and deploy.
+
+NOTE Confidence: 0.6472336649894714
+
+00:18:23.120 --> 00:18:24.040
+We're going for step one.
+
+NOTE Confidence: 0.8450003266334534
+
+00:18:24.040 --> 00:18:26.118
+We're going to browse, we're going to go to AI
+
+NOTE Confidence: 0.8450003266334534
+
+00:18:26.163 --> 00:18:26.479
+Runway.
+
+NOTE Confidence: 0.8441075682640076
+
+00:18:26.480 --> 00:18:28.834
+We're going to pick a model from the model catalog
+
+NOTE Confidence: 0.8441075682640076
+
+00:18:28.881 --> 00:18:31.518
+which integrates into the Hugging Face UI, where you can
+
+NOTE Confidence: 0.8441075682640076
+
+00:18:31.565 --> 00:18:33.966
+go to of the latest models, open source open weight
+
+NOTE Confidence: 0.8441075682640076
+
+00:18:34.013 --> 00:18:34.719
+models as well.
+
+NOTE Confidence: 0.89911949634552
+
+00:18:35.400 --> 00:18:36.920
+You're going to check the GPU fit.
+
+NOTE Confidence: 0.9182167649269104
+
+00:18:36.920 --> 00:18:39.079
+So it's actually going to say this will fit on
+
+NOTE Confidence: 0.9182167649269104
+
+00:18:39.126 --> 00:18:41.709
+your cluster or it'll trigger some auto scaling on your
+
+NOTE Confidence: 0.9182167649269104
+
+00:18:41.756 --> 00:18:43.916
+cluster to make it fit and then create a model
+
+NOTE Confidence: 0.9182167649269104
+
+00:18:43.963 --> 00:18:44.479
+deployment.
+
+NOTE Confidence: 0.9011548757553101
+
+00:18:45.240 --> 00:18:48.582
+Step 2, we're going to actually create a Kaido workspace
+
+NOTE Confidence: 0.9011548757553101
+
+00:18:48.642 --> 00:18:52.821
+which estimates the GPU utilization that's required, the auto scaling,
+
+NOTE Confidence: 0.9011548757553101
+
+00:18:52.880 --> 00:18:56.044
+so the nodes that you need and estimates where you'll
+
+NOTE Confidence: 0.9011548757553101
+
+00:18:56.104 --> 00:18:59.148
+actually run this workload and takes care of all of
+
+NOTE Confidence: 0.9011548757553101
+
+00:18:59.208 --> 00:19:00.879
+that with optimized presets.
+
+NOTE Confidence: 0.8806595802307129
+
+00:19:01.200 --> 00:19:03.440
+And boom, it spins up an endpoint which is live.
+
+NOTE Confidence: 0.8936299681663513
+
+00:19:03.680 --> 00:19:06.640
+And then finally, you just ship that off and Kubernetes
+
+NOTE Confidence: 0.8936299681663513
+
+00:19:06.694 --> 00:19:09.439
+does the rest from CADA, which offers auto scaling.
+
+NOTE Confidence: 0.8916032910346985
+
+00:19:09.640 --> 00:19:12.218
+We integrate with the LLM metrics so you can scale
+
+NOTE Confidence: 0.8916032910346985
+
+00:19:12.270 --> 00:19:13.559
+on all different metrics.
+
+NOTE Confidence: 0.8757866024971008
+
+00:19:13.760 --> 00:19:16.080
+We have Canary deployments for rollback.
+
+NOTE Confidence: 0.9089938402175903
+
+00:19:16.240 --> 00:19:18.240
+We have rollback aware deployments as well.
+
+NOTE Confidence: 0.9602892398834229
+
+00:19:18.440 --> 00:19:20.654
+So every piece on the right side of this slide
+
+NOTE Confidence: 0.9602892398834229
+
+00:19:20.702 --> 00:19:23.301
+is a Kubernetes primitive that you already know how to
+
+NOTE Confidence: 0.9602892398834229
+
+00:19:23.349 --> 00:19:24.120
+run and operate.
+
+NOTE Confidence: 0.913017988204956
+
+00:19:24.119 --> 00:19:26.570
+We're not giving you anything new, we're just shaping it
+
+NOTE Confidence: 0.913017988204956
+
+00:19:26.613 --> 00:19:26.920
+for AI.
+
+NOTE Confidence: 0.9214724898338318
+
+00:19:27.240 --> 00:19:30.246
+So we have all the primitives down to play on
+
+NOTE Confidence: 0.9214724898338318
+
+00:19:30.313 --> 00:19:33.520
+the bottom and I believe the next slide is demo.
+
+NOTE Confidence: 0.719474196434021
+
+00:19:33.520 --> 00:19:35.658
+OK, so I got to give you the setup and
+
+NOTE Confidence: 0.719474196434021
+
+00:19:35.714 --> 00:19:36.839
+the quick drum roll.
+
+NOTE Confidence: 0.9518020749092102
+
+00:19:37.080 --> 00:19:39.360
+This was filmed by a colleague of mine named Ralph.
+
+NOTE Confidence: 0.9556230902671814
+
+00:19:39.640 --> 00:19:41.974
+I like to talk over demos, but Ralph has a
+
+NOTE Confidence: 0.9556230902671814
+
+00:19:42.030 --> 00:19:42.920
+voice for radio.
+
+NOTE Confidence: 0.8994503617286682
+
+00:19:42.920 --> 00:19:45.320
+It's smooth and buttery, so you should enjoy it.
+
+NOTE Confidence: 0.8079566955566406
+
+00:19:45.520 --> 00:19:46.040
+Let's see.
+
+NOTE Confidence: 0.8585113883018494
+
+00:19:46.040 --> 00:19:48.000
+And Ralph's going to take us through AI runway.
+
+NOTE Confidence: 0.6603114008903503
+
+00:19:48.040 --> 00:19:48.320
+Enjoy.
+
+NOTE Confidence: 0.9030128717422485
+
+00:19:48.360 --> 00:19:50.800
+Let's look at the user experience of AI Runway.
+
+NOTE Confidence: 0.8676503300666809
+
+00:19:50.960 --> 00:19:53.566
+This is the model catalog, the first thing your data
+
+NOTE Confidence: 0.8676503300666809
+
+00:19:53.616 --> 00:19:55.119
+scientists and developers see.
+
+NOTE Confidence: 0.8056628704071045
+
+00:19:55.360 --> 00:19:57.560
+Think of it as your App Store for AI models.
+
+NOTE Confidence: 0.839846134185791
+
+00:19:57.680 --> 00:20:00.841
+We have a curated set of popular models, Quan Phi,
+
+NOTE Confidence: 0.839846134185791
+
+00:20:00.904 --> 00:20:04.002
+Deep Sea Llama, each with a quick summary how big
+
+NOTE Confidence: 0.839846134185791
+
+00:20:04.065 --> 00:20:07.227
+it is, what engines it supports and what it's good
+
+NOTE Confidence: 0.839846134185791
+
+00:20:07.290 --> 00:20:07.479
+at.
+
+NOTE Confidence: 0.888857364654541
+
+00:20:07.840 --> 00:20:11.000
+Chat, text generation, multimodal, and so on.
+
+NOTE Confidence: 0.9645413756370544
+
+00:20:11.160 --> 00:20:14.314
+But the real magic is this GPU fit indicator on
+
+NOTE Confidence: 0.9645413756370544
+
+00:20:14.381 --> 00:20:15.119
+every card.
+
+NOTE Confidence: 0.9555342793464661
+
+00:20:15.359 --> 00:20:18.060
+It tells you instantly whether a model will actually run
+
+NOTE Confidence: 0.9555342793464661
+
+00:20:18.108 --> 00:20:18.880
+on your cluster.
+
+NOTE Confidence: 0.837846040725708
+
+00:20:19.120 --> 00:20:21.280
+No guesswork, no trial and error.
+
+NOTE Confidence: 0.9481427073478699
+
+00:20:22.160 --> 00:20:24.677
+Before we deploy something, let's also take a quick look
+
+NOTE Confidence: 0.9481427073478699
+
+00:20:24.722 --> 00:20:27.330
+at the runtime tab, where you see the inference frameworks
+
+NOTE Confidence: 0.9481427073478699
+
+00:20:27.375 --> 00:20:28.319
+that run your models.
+
+NOTE Confidence: 0.9129807353019714
+
+00:20:28.320 --> 00:20:31.584
+Under the hood, AI Runway supports multiple runtimes, and it's
+
+NOTE Confidence: 0.9129807353019714
+
+00:20:31.636 --> 00:20:34.953
+entirely extensible, so you can choose a different runtime when
+
+NOTE Confidence: 0.9129807353019714
+
+00:20:35.006 --> 00:20:35.480
+you want.
+
+NOTE Confidence: 0.9453202486038208
+
+00:20:35.640 --> 00:20:36.680
+You're never locked in.
+
+NOTE Confidence: 0.841439962387085
+
+00:20:37.040 --> 00:20:41.926
+Let's go to the Hugging Face gallery and search for
+
+NOTE Confidence: 0.841439962387085
+
+00:20:42.022 --> 00:20:45.280
+DeepSeek R1671 billion parameters.
+
+NOTE Confidence: 0.9228610992431641
+
+00:20:45.760 --> 00:20:49.302
+This is not going to fit on our single node
+
+NOTE Confidence: 0.9228610992431641
+
+00:20:49.385 --> 00:20:51.280
+which has 8H1 hundreds.
+
+NOTE Confidence: 0.9235920310020447
+
+00:20:51.920 --> 00:20:55.293
+So I then go into deploy and I select Dynamo
+
+NOTE Confidence: 0.9235920310020447
+
+00:20:55.369 --> 00:20:56.519
+as the runtime.
+
+NOTE Confidence: 0.8687387108802795
+
+00:20:57.520 --> 00:21:01.145
+We'll deploy into the default namespace and continue down the
+
+NOTE Confidence: 0.8687387108802795
+
+00:21:01.204 --> 00:21:01.679
+options.
+
+NOTE Confidence: 0.9267289638519287
+
+00:21:05.040 --> 00:21:08.006
+As you can see here, because this model is so
+
+NOTE Confidence: 0.9267289638519287
+
+00:21:08.072 --> 00:21:11.829
+large and one node was insufficient, it is recommending 3
+
+NOTE Confidence: 0.9267289638519287
+
+00:21:11.895 --> 00:21:14.400
+nodes that will have 24 GPUs in total.
+
+NOTE Confidence: 0.8746936917304993
+
+00:21:15.200 --> 00:21:18.283
+And because the auto scaler is enabled on this cluster,
+
+NOTE Confidence: 0.8746936917304993
+
+00:21:18.339 --> 00:21:21.535
+when we deploy we will eventually receive the extra nodes
+
+NOTE Confidence: 0.8746936917304993
+
+00:21:21.591 --> 00:21:22.320
+that we need.
+
+NOTE Confidence: 0.9210021495819092
+
+00:21:23.120 --> 00:21:25.880
+Now here's where storage volumes come in.
+
+NOTE Confidence: 0.8432574272155762
+
+00:21:26.840 --> 00:21:31.120
+I'm attaching A persistent volume backed by Azure managed luster.
+
+NOTE Confidence: 0.8962268829345703
+
+00:21:31.640 --> 00:21:34.920
+This is a high performance shared file system.
+
+NOTE Confidence: 0.8403146862983704
+
+00:21:35.600 --> 00:21:38.998
+The model waits get cached here, so on restarts or
+
+NOTE Confidence: 0.8403146862983704
+
+00:21:39.066 --> 00:21:42.396
+scale out the new nodes don't have to re download
+
+NOTE Confidence: 0.8403146862983704
+
+00:21:42.464 --> 00:21:43.959
+hundreds of gigabytes.
+
+NOTE Confidence: 0.7551398277282715
+
+00:21:44.680 --> 00:21:48.052
+It's read write many so all nodes can access it
+
+NOTE Confidence: 0.7551398277282715
+
+00:21:48.123 --> 00:21:49.199
+simultaneously.
+
+NOTE Confidence: 0.9353636503219604
+
+00:21:55.080 --> 00:21:58.193
+You can also see the cost estimate updating in real
+
+NOTE Confidence: 0.9353636503219604
+
+00:21:58.254 --> 00:21:58.560
+time.
+
+NOTE Confidence: 0.9361491799354553
+
+00:21:58.880 --> 00:22:02.653
+We have a good idea exactly what this deployment costs
+
+NOTE Confidence: 0.9361491799354553
+
+00:22:02.723 --> 00:22:04.960
+per hour and per month on Azure.
+
+NOTE Confidence: 0.9597639441490173
+
+00:22:05.320 --> 00:22:08.440
+This value will of course depend upon your cloud provider.
+
+NOTE Confidence: 0.9244536757469177
+
+00:22:09.160 --> 00:22:10.880
+So here's where it gets interesting.
+
+NOTE Confidence: 0.8688725829124451
+
+00:22:10.920 --> 00:22:15.707
+Right now, our cluster only has a single H-100 node,
+
+NOTE Confidence: 0.8688725829124451
+
+00:22:15.800 --> 00:22:20.679
+8 GPUs, but DeepSeek-R1 needs 24 GPUs across 3 nodes.
+
+NOTE Confidence: 0.926079511642456
+
+00:22:20.960 --> 00:22:22.760
+So what happens when I hit deploy?
+
+NOTE Confidence: 0.9474907517433167
+
+00:22:23.359 --> 00:22:26.327
+We'll skip ahead here since auto scaling takes a few
+
+NOTE Confidence: 0.9474907517433167
+
+00:22:26.384 --> 00:22:29.980
+minutes, but once those nodes come online, the deployment rolls
+
+NOTE Confidence: 0.9474907517433167
+
+00:22:30.037 --> 00:22:32.719
+out across all three nodes and goes to running.
+
+NOTE Confidence: 0.9289469718933105
+
+00:22:33.080 --> 00:22:36.365
+Now that DeepSeek-R1 is running, let's use it in the
+
+NOTE Confidence: 0.9289469718933105
+
+00:22:36.428 --> 00:22:37.439
+deployment page.
+
+NOTE Confidence: 0.90688157081604
+
+00:22:37.440 --> 00:22:40.320
+We can see our storage and the mounted disk, and
+
+NOTE Confidence: 0.90688157081604
+
+00:22:40.379 --> 00:22:42.359
+you can see the gateway endpoint.
+
+NOTE Confidence: 0.8508684039115906
+
+00:22:43.160 --> 00:22:47.873
+AI Runway integrates with the Gateway API inference extension using
+
+NOTE Confidence: 0.8508684039115906
+
+00:22:47.943 --> 00:22:49.280
+Istio in this case.
+
+NOTE Confidence: 0.9016284346580505
+
+00:22:49.840 --> 00:22:52.736
+This gives us a single stable endpoint for all our
+
+NOTE Confidence: 0.9016284346580505
+
+00:22:52.794 --> 00:22:53.200
+models.
+
+NOTE Confidence: 0.8391447067260742
+
+00:22:53.760 --> 00:22:55.880
+There's also our ready to use curl command.
+
+NOTE Confidence: 0.9444761276245117
+
+00:22:56.080 --> 00:22:59.000
+It's a standard Open AI compatible API.
+
+NOTE Confidence: 0.9432225227355957
+
+00:22:59.560 --> 00:23:02.145
+Any tool or SDK that speaks Open AI can talk
+
+NOTE Confidence: 0.9432225227355957
+
+00:23:02.204 --> 00:23:04.319
+to your models without modification.
+
+NOTE Confidence: 0.720967710018158
+
+00:23:08.920 --> 00:23:09.560
+Excellent.
+
+NOTE Confidence: 0.8050386309623718
+
+00:23:09.560 --> 00:23:10.560
+Do you do you agree?
+
+NOTE Confidence: 0.8113253712654114
+
+00:23:10.960 --> 00:23:12.880
+I think Ralph has a career in audiobooks.
+
+NOTE Confidence: 0.9332090616226196
+
+00:23:12.880 --> 00:23:14.320
+I can definitely listen to his voice.
+
+NOTE Confidence: 0.7277260422706604
+
+00:23:14.480 --> 00:23:15.520
+Smooth and buttery, right?
+
+NOTE Confidence: 0.9229637980461121
+
+00:23:15.880 --> 00:23:17.720
+So that is the power of AI runway.
+
+NOTE Confidence: 0.9393059611320496
+
+00:23:18.240 --> 00:23:19.680
+Ralph went through that in 3 minutes.
+
+NOTE Confidence: 0.9116078615188599
+
+00:23:19.680 --> 00:23:21.468
+What used to take me 3 weeks to get up
+
+NOTE Confidence: 0.9116078615188599
+
+00:23:21.515 --> 00:23:22.079
+and running.
+
+NOTE Confidence: 0.8888986706733704
+
+00:23:22.080 --> 00:23:24.471
+So the fact that you can click through, get everything
+
+NOTE Confidence: 0.8888986706733704
+
+00:23:24.516 --> 00:23:27.351
+provisioned using an open source tool that's available on GitHub
+
+NOTE Confidence: 0.8888986706733704
+
+00:23:27.395 --> 00:23:28.679
+today is absolutely powerful.
+
+NOTE Confidence: 0.8616291284561157
+
+00:23:30.000 --> 00:23:31.653
+OK, we're going to move up the stack now we're
+
+NOTE Confidence: 0.8616291284561157
+
+00:23:31.689 --> 00:23:33.199
+going to go to training and fine training.
+
+NOTE Confidence: 0.9176976084709167
+
+00:23:33.400 --> 00:23:35.360
+You've got your model, you've got it up and running.
+
+NOTE Confidence: 0.8895807266235352
+
+00:23:35.560 --> 00:23:37.215
+Now you want to fine tune it with your own
+
+NOTE Confidence: 0.8895807266235352
+
+00:23:37.255 --> 00:23:38.319
+data for your own workload.
+
+NOTE Confidence: 0.8866877555847168
+
+00:23:38.320 --> 00:23:42.358
+OK, let's have a look at Ray and any scale
+
+NOTE Confidence: 0.8866877555847168
+
+00:23:42.454 --> 00:23:43.319
+on Azure.
+
+NOTE Confidence: 0.8789191246032715
+
+00:23:45.520 --> 00:23:48.061
+OK, so now we want to talk about what Ray
+
+NOTE Confidence: 0.8789191246032715
+
+00:23:48.123 --> 00:23:50.479
+actually gives you and what it powers.
+
+NOTE Confidence: 0.8877725601196289
+
+00:23:50.480 --> 00:23:53.460
+So eventually all the agents need you to have a
+
+NOTE Confidence: 0.8877725601196289
+
+00:23:53.523 --> 00:23:56.440
+fine-tuned model with your own data behind it.
+
+NOTE Confidence: 0.8868211507797241
+
+00:23:56.440 --> 00:23:59.720
+So Ray is the workload that actually powers that.
+
+NOTE Confidence: 0.7521859407424927
+
+00:24:00.000 --> 00:24:02.735
+So Ask on its own provides the pod scheduling, the
+
+NOTE Confidence: 0.7521859407424927
+
+00:24:02.790 --> 00:24:05.799
+auto scaling, the node life cycle, networking, storage.
+
+NOTE Confidence: 0.874947726726532
+
+00:24:05.880 --> 00:24:07.080
+It provides the substrate.
+
+NOTE Confidence: 0.8027806282043457
+
+00:24:07.080 --> 00:24:10.946
+As I mentioned, it's hardened for production at scale, but
+
+NOTE Confidence: 0.8027806282043457
+
+00:24:11.013 --> 00:24:15.079
+production AI also needs things Ask doesn't provide natively.
+
+NOTE Confidence: 0.7367580533027649
+
+00:24:15.640 --> 00:24:19.116
+So we need a distributed compute and scheduling framework that
+
+NOTE Confidence: 0.7367580533027649
+
+00:24:19.172 --> 00:24:21.919
+schedules both the CPUs and GPUs in a single job.
+
+NOTE Confidence: 0.9242034554481506
+
+00:24:22.200 --> 00:24:24.200
+We also have heterogeneous hardware.
+
+NOTE Confidence: 0.8625327944755554
+
+00:24:24.840 --> 00:24:28.071
+Ray takes care of that with fractional GPU allocation, which
+
+NOTE Confidence: 0.8625327944755554
+
+00:24:28.125 --> 00:24:31.034
+is actually really important if you want to keep those
+
+NOTE Confidence: 0.8625327944755554
+
+00:24:31.088 --> 00:24:32.919
+GPU's at 100% as long as possible.
+
+NOTE Confidence: 0.8504862785339355
+
+00:24:33.200 --> 00:24:38.640
+Multi node orchestration for both training and reinforcement learning.
+
+NOTE Confidence: 0.8331965208053589
+
+00:24:38.880 --> 00:24:42.888
+So this becomes a CICD pipeline for your models, reinforcement
+
+NOTE Confidence: 0.8331965208053589
+
+00:24:42.953 --> 00:24:44.439
+learning, auto scaling.
+
+NOTE Confidence: 0.8502466678619385
+
+00:24:44.440 --> 00:24:46.680
+So it takes care of auto scaling on your behalf.
+
+NOTE Confidence: 0.8101291656494141
+
+00:24:46.920 --> 00:24:49.591
+And the really cool thing that I'm going to show
+
+NOTE Confidence: 0.8101291656494141
+
+00:24:49.646 --> 00:24:52.318
+in the demo is it's one Python native API across
+
+NOTE Confidence: 0.8101291656494141
+
+00:24:52.373 --> 00:24:54.600
+data prep, training, tuning and serving.
+
+NOTE Confidence: 0.9751755595207214
+
+00:24:54.600 --> 00:24:55.680
+And that's really cool.
+
+NOTE Confidence: 0.8874018788337708
+
+00:24:55.800 --> 00:24:58.464
+It's all hosted in their interface and you can deploy
+
+NOTE Confidence: 0.8874018788337708
+
+00:24:58.514 --> 00:25:01.027
+from their interface and actually run it on an ask
+
+NOTE Confidence: 0.8874018788337708
+
+00:25:01.077 --> 00:25:01.480
+cluster.
+
+NOTE Confidence: 0.8893396258354187
+
+00:25:01.480 --> 00:25:03.160
+So that's the gap that Ray fills.
+
+NOTE Confidence: 0.8433092832565308
+
+00:25:03.640 --> 00:25:06.009
+Ask is the cluster, Ray is the workload, and we're
+
+NOTE Confidence: 0.8433092832565308
+
+00:25:06.056 --> 00:25:07.951
+going to take take a look at how Ray can
+
+NOTE Confidence: 0.8433092832565308
+
+00:25:07.999 --> 00:25:09.799
+help us with training and fine tuning.
+
+NOTE Confidence: 0.913443386554718
+
+00:25:11.280 --> 00:25:14.213
+So today I'm announcing the public preview of Any Scale
+
+NOTE Confidence: 0.913443386554718
+
+00:25:14.266 --> 00:25:14.639
+on Ray.
+
+NOTE Confidence: 0.8678879737854004
+
+00:25:14.640 --> 00:25:17.733
+So this is managed Ray, which is an Azure native
+
+NOTE Confidence: 0.8678879737854004
+
+00:25:17.797 --> 00:25:21.600
+integration in collaboration with the folks from Any Scale.
+
+NOTE Confidence: 0.9520789384841919
+
+00:25:21.720 --> 00:25:23.120
+So it's in public preview.
+
+NOTE Confidence: 0.7379101514816284
+
+00:25:23.240 --> 00:25:26.798
+The Any Scale runtime runs inside your ASK environment and
+
+NOTE Confidence: 0.7379101514816284
+
+00:25:26.860 --> 00:25:29.560
+is integrated into your Azure control plane.
+
+NOTE Confidence: 0.8781528472900391
+
+00:25:29.920 --> 00:25:30.720
+It's open source.
+
+NOTE Confidence: 0.6598005294799805
+
+00:25:30.720 --> 00:25:32.600
+Ray is the distributed compute engine.
+
+NOTE Confidence: 0.8373600244522095
+
+00:25:32.880 --> 00:25:37.206
+Any Scale provides A managed life cycle, observability and 24
+
+NOTE Confidence: 0.8373600244522095
+
+00:25:37.277 --> 00:25:38.200
+by 7 support.
+
+NOTE Confidence: 0.9529467225074768
+
+00:25:38.800 --> 00:25:40.320
+It runs in your subscription.
+
+NOTE Confidence: 0.86296546459198
+
+00:25:40.320 --> 00:25:42.511
+This is super critical and I'll talk about how it's
+
+NOTE Confidence: 0.86296546459198
+
+00:25:42.554 --> 00:25:45.563
+actually configured in your subscription build through your Azure room
+
+NOTE Confidence: 0.86296546459198
+
+00:25:45.606 --> 00:25:48.055
+agreement, which is really cool because you don't need to
+
+NOTE Confidence: 0.86296546459198
+
+00:25:48.098 --> 00:25:49.559
+go form a new vendor relationship.
+
+NOTE Confidence: 0.9490209221839905
+
+00:25:49.720 --> 00:25:51.470
+You just pay us and we make sure we work
+
+NOTE Confidence: 0.9490209221839905
+
+00:25:51.513 --> 00:25:52.520
+with any scale as well.
+
+NOTE Confidence: 0.9306579232215881
+
+00:25:53.200 --> 00:25:55.359
+So this is how that looks, how it's delivered, because
+
+NOTE Confidence: 0.9306579232215881
+
+00:25:55.399 --> 00:25:57.599
+I think it's important to separate how it actually runs
+
+NOTE Confidence: 0.9306579232215881
+
+00:25:57.639 --> 00:26:00.319
+on your architecture when you're worried about sovereignty and when
+
+NOTE Confidence: 0.9306579232215881
+
+00:26:00.359 --> 00:26:01.039
+your daughter is.
+
+NOTE Confidence: 0.9592803716659546
+
+00:26:01.280 --> 00:26:03.880
+So there's two boundaries that matter in this architecture.
+
+NOTE Confidence: 0.914495587348938
+
+00:26:03.880 --> 00:26:05.755
+We have them boxed, one in the orange at the
+
+NOTE Confidence: 0.914495587348938
+
+00:26:05.798 --> 00:26:07.119
+top and the blue at the bottom.
+
+NOTE Confidence: 0.8351178765296936
+
+00:26:07.320 --> 00:26:09.760
+So the any scale control plane is along the top.
+
+NOTE Confidence: 0.8320000767707825
+
+00:26:09.960 --> 00:26:13.014
+It runs in the any scale managed Azure tenant, which
+
+NOTE Confidence: 0.8320000767707825
+
+00:26:13.072 --> 00:26:17.947
+includes dev tools, observability, AP is controllers, job orchestration, monitoring
+
+NOTE Confidence: 0.8320000767707825
+
+00:26:18.006 --> 00:26:19.240
+and many more things.
+
+NOTE Confidence: 0.8650429248809814
+
+00:26:19.520 --> 00:26:22.273
+And in your subscription, which is the bottom, that's where
+
+NOTE Confidence: 0.8650429248809814
+
+00:26:22.319 --> 00:26:23.719
+your daughter and model lives.
+
+NOTE Confidence: 0.9563953280448914
+
+00:26:23.720 --> 00:26:24.400
+So this is great.
+
+NOTE Confidence: 0.946420431137085
+
+00:26:24.400 --> 00:26:25.920
+You don't have to send them anywhere else.
+
+NOTE Confidence: 0.8063865900039673
+
+00:26:26.080 --> 00:26:29.876
+The any scale runtime runs a managed ray operator on
+
+NOTE Confidence: 0.8063865900039673
+
+00:26:29.949 --> 00:26:33.745
+your ask cluster with your BLOB storage and your GPU
+
+NOTE Confidence: 0.8063865900039673
+
+00:26:33.818 --> 00:26:34.840
+and CPU nodes.
+
+NOTE Confidence: 0.9513787627220154
+
+00:26:35.040 --> 00:26:38.979
+So the connection between them, everything stays within your tenant
+
+NOTE Confidence: 0.9513787627220154
+
+00:26:39.038 --> 00:26:39.919
+and your realm.
+
+NOTE Confidence: 0.8844628930091858
+
+00:26:40.200 --> 00:26:42.524
+So the three pillars worth calling out, which we have
+
+NOTE Confidence: 0.8844628930091858
+
+00:26:42.568 --> 00:26:45.287
+along the bottom there provisioning from the Azure portal, one
+
+NOTE Confidence: 0.8844628930091858
+
+00:26:45.331 --> 00:26:47.479
+portal, you don't have to go to multiple portals.
+
+NOTE Confidence: 0.9072929620742798
+
+00:26:47.720 --> 00:26:50.539
+Same workflow for your team that you already know and
+
+NOTE Confidence: 0.9072929620742798
+
+00:26:50.592 --> 00:26:52.720
+love unified billing, which I mentioned.
+
+NOTE Confidence: 0.8644591569900513
+
+00:26:52.880 --> 00:26:55.398
+And the the very best part of it is enterprise
+
+NOTE Confidence: 0.8644591569900513
+
+00:26:55.453 --> 00:26:58.191
+security with Entre ID because not only do you get
+
+NOTE Confidence: 0.8644591569900513
+
+00:26:58.245 --> 00:27:01.914
+workload identity, you get identity with your own credentials, RBAC
+
+NOTE Confidence: 0.8644591569900513
+
+00:27:01.969 --> 00:27:04.980
+audit and all the trails and compliance trails that you
+
+NOTE Confidence: 0.8644591569900513
+
+00:27:05.035 --> 00:27:06.240
+already know and love.
+
+NOTE Confidence: 0.9219714403152466
+
+00:27:06.440 --> 00:27:09.330
+So your data and your model never leaves the environment
+
+NOTE Confidence: 0.9219714403152466
+
+00:27:09.381 --> 00:27:09.639
+here.
+
+NOTE Confidence: 0.810110330581665
+
+00:27:09.880 --> 00:27:12.160
+So next demo is coming out right now.
+
+NOTE Confidence: 0.8764752745628357
+
+00:27:12.320 --> 00:27:14.103
+I'm actually going to speak over it, but I do
+
+NOTE Confidence: 0.8764752745628357
+
+00:27:14.143 --> 00:27:16.125
+have my colleague in the front, Bob, who helped me
+
+NOTE Confidence: 0.8764752745628357
+
+00:27:16.165 --> 00:27:16.759
+with this demo.
+
+NOTE Confidence: 0.7625285387039185
+
+00:27:16.760 --> 00:27:17.920
+So you get to free.
+
+NOTE Confidence: 0.8733057975769043
+
+00:27:17.920 --> 00:27:18.920
+Feel free to critique me.
+
+NOTE Confidence: 0.906136691570282
+
+00:27:18.920 --> 00:27:20.823
+I'm going to move to the side as I talk
+
+NOTE Confidence: 0.906136691570282
+
+00:27:20.872 --> 00:27:21.360
+over this.
+
+NOTE Confidence: 0.8347936272621155
+
+00:27:21.920 --> 00:27:24.148
+We're going to start in the Azure portal and I'm
+
+NOTE Confidence: 0.8347936272621155
+
+00:27:24.194 --> 00:27:26.422
+going to show you the full thing and we're going
+
+NOTE Confidence: 0.8347936272621155
+
+00:27:26.468 --> 00:27:29.161
+to go through a complete training and fine tuning exercise
+
+NOTE Confidence: 0.8347936272621155
+
+00:27:29.207 --> 00:27:30.599
+with a product catalog search.
+
+NOTE Confidence: 0.8539528250694275
+
+00:27:30.800 --> 00:27:32.890
+Buckle up, it's a 7 minute demo and it's going
+
+NOTE Confidence: 0.8539528250694275
+
+00:27:32.936 --> 00:27:33.799
+to be pretty quick.
+
+NOTE Confidence: 0.9253435730934143
+
+00:27:34.160 --> 00:27:36.436
+So we start, as I mentioned, it's all integrated in
+
+NOTE Confidence: 0.9253435730934143
+
+00:27:36.481 --> 00:27:37.240
+the Azure portal.
+
+NOTE Confidence: 0.8397238850593567
+
+00:27:37.240 --> 00:27:38.480
+We're in the Azure portal here.
+
+NOTE Confidence: 0.9723361730575562
+
+00:27:38.480 --> 00:27:39.880
+We don't have to go anywhere else.
+
+NOTE Confidence: 0.904995322227478
+
+00:27:40.359 --> 00:27:42.356
+And from the Azure portal, we can go to the
+
+NOTE Confidence: 0.904995322227478
+
+00:27:42.402 --> 00:27:44.352
+search bar in the top of the middle and go
+
+NOTE Confidence: 0.904995322227478
+
+00:27:44.399 --> 00:27:45.560
+ahead and type any scale.
+
+NOTE Confidence: 0.6324945688247681
+
+00:27:45.800 --> 00:27:47.680
+Any scale will appeal appear.
+
+NOTE Confidence: 0.9261618256568909
+
+00:27:47.680 --> 00:27:49.880
+It's in preview here, so it should show up.
+
+NOTE Confidence: 0.8894571661949158
+
+00:27:49.880 --> 00:27:50.880
+Any scale cloud.
+
+NOTE Confidence: 0.9323318600654602
+
+00:27:51.040 --> 00:27:53.000
+You can click any scale cloud.
+
+NOTE Confidence: 0.8945352435112
+
+00:27:53.040 --> 00:27:54.840
+The list of any scale clouds will come up.
+
+NOTE Confidence: 0.9256179928779602
+
+00:27:55.120 --> 00:27:56.920
+Of course, we're going to create a new one here.
+
+NOTE Confidence: 0.9535768032073975
+
+00:27:56.920 --> 00:27:58.920
+So let's go ahead and go through the create flow.
+
+NOTE Confidence: 0.9108483791351318
+
+00:27:59.560 --> 00:28:02.278
+The create flow is going to be very familiar to
+
+NOTE Confidence: 0.9108483791351318
+
+00:28:02.336 --> 00:28:03.840
+folks familiar with Azure.
+
+NOTE Confidence: 0.8013722896575928
+
+00:28:04.040 --> 00:28:06.120
+So what subscription would would you like it in?
+
+NOTE Confidence: 0.6905601620674133
+
+00:28:06.640 --> 00:28:09.480
+And we're putting it in that type subscription.
+
+NOTE Confidence: 0.9584389328956604
+
+00:28:09.680 --> 00:28:10.720
+What resource group?
+
+NOTE Confidence: 0.9727413654327393
+
+00:28:10.720 --> 00:28:11.960
+You can either create a new one.
+
+NOTE Confidence: 0.8545563220977783
+
+00:28:11.960 --> 00:28:15.600
+We're going to use Bob's testing for our resource group.
+
+NOTE Confidence: 0.9337834715843201
+
+00:28:15.840 --> 00:28:17.120
+And where are we going to put it?
+
+NOTE Confidence: 0.9068122506141663
+
+00:28:17.119 --> 00:28:19.815
+We're going to go put it in South, South Central
+
+NOTE Confidence: 0.9068122506141663
+
+00:28:19.871 --> 00:28:20.040
+US.
+
+NOTE Confidence: 0.9366275668144226
+
+00:28:20.400 --> 00:28:21.560
+We give it a cloud name.
+
+NOTE Confidence: 0.8870694041252136
+
+00:28:21.560 --> 00:28:24.060
+This is to identify the cloud that we're talking with
+
+NOTE Confidence: 0.8870694041252136
+
+00:28:24.107 --> 00:28:26.560
+and the connection with the any scale control plane.
+
+NOTE Confidence: 0.9663272500038147
+
+00:28:26.800 --> 00:28:29.050
+And then we can provision either a new cluster or
+
+NOTE Confidence: 0.9663272500038147
+
+00:28:29.096 --> 00:28:30.520
+a cluster that we already have.
+
+NOTE Confidence: 0.8626844882965088
+
+00:28:30.720 --> 00:28:33.663
+So if you already have Kubernetes clusters up and running
+
+NOTE Confidence: 0.8626844882965088
+
+00:28:33.714 --> 00:28:35.883
+on ask, you can go ahead and and link them
+
+NOTE Confidence: 0.8626844882965088
+
+00:28:35.935 --> 00:28:36.399
+in there.
+
+NOTE Confidence: 0.9158598184585571
+
+00:28:36.680 --> 00:28:38.520
+This is the cool part as well.
+
+NOTE Confidence: 0.9435874819755554
+
+00:28:38.520 --> 00:28:39.840
+We have managed identity.
+
+NOTE Confidence: 0.8487338423728943
+
+00:28:40.120 --> 00:28:42.664
+So this is how all the workloads running on the
+
+NOTE Confidence: 0.8487338423728943
+
+00:28:42.718 --> 00:28:46.074
+Any Scale cloud identify themselves with Azure and the storage
+
+NOTE Confidence: 0.8487338423728943
+
+00:28:46.128 --> 00:28:49.159
+accounts which model checkpoints and weights are stored.
+
+NOTE Confidence: 0.861027181148529
+
+00:28:49.400 --> 00:28:52.452
+And finally, we're going to be using ACR to store
+
+NOTE Confidence: 0.861027181148529
+
+00:28:52.514 --> 00:28:56.377
+any container images which support the ray operator, Any scale
+
+NOTE Confidence: 0.861027181148529
+
+00:28:56.439 --> 00:28:57.000
+operator.
+
+NOTE Confidence: 0.868247389793396
+
+00:28:58.560 --> 00:29:00.909
+OK, finally, we're going to run our checks and balances,
+
+NOTE Confidence: 0.868247389793396
+
+00:29:00.951 --> 00:29:02.839
+run it through the template before we submit.
+
+NOTE Confidence: 0.9399970769882202
+
+00:29:02.840 --> 00:29:05.338
+So let's just take a little look to recap before
+
+NOTE Confidence: 0.9399970769882202
+
+00:29:05.390 --> 00:29:07.160
+we go ahead and click create here.
+
+NOTE Confidence: 0.9130816459655762
+
+00:29:07.280 --> 00:29:09.999
+So all the details there are verifiable that we set
+
+NOTE Confidence: 0.9130816459655762
+
+00:29:10.053 --> 00:29:13.039
+it up with the resource groups in the test subscription.
+
+NOTE Confidence: 0.9639989733695984
+
+00:29:13.240 --> 00:29:14.858
+And what we can do then is go ahead and
+
+NOTE Confidence: 0.9639989733695984
+
+00:29:14.900 --> 00:29:15.440
+click create.
+
+NOTE Confidence: 0.9293307065963745
+
+00:29:15.440 --> 00:29:17.825
+We'll click create and we'll wait for the, you know,
+
+NOTE Confidence: 0.9293307065963745
+
+00:29:17.871 --> 00:29:20.119
+the elevator music to start while I grab a drink.
+
+NOTE Confidence: 0.9267996549606323
+
+00:29:20.400 --> 00:29:22.519
+And hopefully with the magic of video editing, this thing
+
+NOTE Confidence: 0.9267996549606323
+
+00:29:22.556 --> 00:29:23.560
+will create pretty quickly.
+
+NOTE Confidence: 0.88632732629776
+
+00:29:25.760 --> 00:29:27.889
+We can see up there in the notification window that
+
+NOTE Confidence: 0.88632732629776
+
+00:29:27.931 --> 00:29:29.560
+the submission is already taking place.
+
+NOTE Confidence: 0.9449458718299866
+
+00:29:29.880 --> 00:29:31.788
+And this thing should come up and running in just
+
+NOTE Confidence: 0.9449458718299866
+
+00:29:31.827 --> 00:29:32.840
+a matter of a few seconds.
+
+NOTE Confidence: 0.9083587527275085
+
+00:29:32.840 --> 00:29:35.486
+So I've gone from no any scale to an any
+
+NOTE Confidence: 0.9083587527275085
+
+00:29:35.552 --> 00:29:38.795
+scale on Azure cluster up and running in a matter
+
+NOTE Confidence: 0.9083587527275085
+
+00:29:38.861 --> 00:29:39.919
+of a few clicks.
+
+NOTE Confidence: 0.9423387050628662
+
+00:29:39.920 --> 00:29:42.915
+This is extremely powerful and I haven't have to leave
+
+NOTE Confidence: 0.9423387050628662
+
+00:29:42.970 --> 00:29:45.356
+the Azure portal at all to make any of this
+
+NOTE Confidence: 0.9423387050628662
+
+00:29:45.411 --> 00:29:45.800
+happen.
+
+NOTE Confidence: 0.9341121315956116
+
+00:29:46.040 --> 00:29:48.697
+So we can see the deployment is initializing up there
+
+NOTE Confidence: 0.9341121315956116
+
+00:29:48.748 --> 00:29:49.400
+on the right.
+
+NOTE Confidence: 0.8464441895484924
+
+00:29:49.720 --> 00:29:52.701
+And now that that deployment's running, we should have a
+
+NOTE Confidence: 0.8464441895484924
+
+00:29:52.755 --> 00:29:55.524
+cloud instance up and we can navigate to Bob's test,
+
+NOTE Confidence: 0.8464441895484924
+
+00:29:55.577 --> 00:29:58.239
+which we created, which was the name of the cloud.
+
+NOTE Confidence: 0.8752598762512207
+
+00:29:58.880 --> 00:30:01.729
+So here we see our resources, we see our resource
+
+NOTE Confidence: 0.8752598762512207
+
+00:30:01.787 --> 00:30:04.985
+blades on the left, familiar for anybody who's used the
+
+NOTE Confidence: 0.8752598762512207
+
+00:30:05.044 --> 00:30:05.800
+Azure portal.
+
+NOTE Confidence: 0.9568776488304138
+
+00:30:06.040 --> 00:30:07.040
+Nothing new here.
+
+NOTE Confidence: 0.8836917877197266
+
+00:30:07.200 --> 00:30:09.727
+But this is the instance of how it's created within
+
+NOTE Confidence: 0.8836917877197266
+
+00:30:09.776 --> 00:30:10.520
+the Azure APIs.
+
+NOTE Confidence: 0.8386729955673218
+
+00:30:10.760 --> 00:30:11.960
+We can click launch.
+
+NOTE Confidence: 0.7774901986122131
+
+00:30:12.000 --> 00:30:14.160
+This launches the any scale UI.
+
+NOTE Confidence: 0.9128032326698303
+
+00:30:15.120 --> 00:30:17.821
+The really cool thing here is you can continue with
+
+NOTE Confidence: 0.9128032326698303
+
+00:30:17.874 --> 00:30:20.840
+the same credentials that you log into the Azure portal.
+
+NOTE Confidence: 0.8719366788864136
+
+00:30:20.840 --> 00:30:22.840
+So we're going to demonstrate how that works.
+
+NOTE Confidence: 0.9373782277107239
+
+00:30:23.520 --> 00:30:24.440
+This is really powerful.
+
+NOTE Confidence: 0.9383522272109985
+
+00:30:24.440 --> 00:30:28.329
+One identity, multiple platforms, all tied in using the experience
+
+NOTE Confidence: 0.9383522272109985
+
+00:30:28.387 --> 00:30:29.919
+that starts in the portal.
+
+NOTE Confidence: 0.9130765199661255
+
+00:30:30.200 --> 00:30:33.115
+So we've gone ahead and authenticated now we've launched the
+
+NOTE Confidence: 0.9130765199661255
+
+00:30:33.164 --> 00:30:35.447
+portal here, and what we're going to do is walk
+
+NOTE Confidence: 0.9130765199661255
+
+00:30:35.496 --> 00:30:36.759
+through just a few things.
+
+NOTE Confidence: 0.9009837508201599
+
+00:30:36.920 --> 00:30:38.757
+This is where it's going to get quick, but we're
+
+NOTE Confidence: 0.9009837508201599
+
+00:30:38.795 --> 00:30:39.599
+going to get into it.
+
+NOTE Confidence: 0.807870090007782
+
+00:30:39.600 --> 00:30:43.997
+We see some dashboards, workloads, Jupiter notebooks or workspaces where,
+
+NOTE Confidence: 0.807870090007782
+
+00:30:44.057 --> 00:30:48.093
+sorry, workspaces are Jupiter notebooks where your AI developers or
+
+NOTE Confidence: 0.807870090007782
+
+00:30:48.153 --> 00:30:49.719
+your data scientists work.
+
+NOTE Confidence: 0.9757857918739319
+
+00:30:49.880 --> 00:30:51.200
+We have jobs and services.
+
+NOTE Confidence: 0.8521056175231934
+
+00:30:51.200 --> 00:30:54.213
+Jobs are short, short run jobs that run the completion
+
+NOTE Confidence: 0.8521056175231934
+
+00:30:54.269 --> 00:30:57.171
+and services are how you present these to connect to
+
+NOTE Confidence: 0.8521056175231934
+
+00:30:57.227 --> 00:30:58.119
+for inferencing.
+
+NOTE Confidence: 0.9154799580574036
+
+00:30:58.720 --> 00:31:00.400
+So we're going to go into workspaces.
+
+NOTE Confidence: 0.9530033469200134
+
+00:31:00.520 --> 00:31:03.211
+The really cool thing is you can go from zero
+
+NOTE Confidence: 0.9530033469200134
+
+00:31:03.271 --> 00:31:06.143
+to a full running pipeline here in just a minute
+
+NOTE Confidence: 0.9530033469200134
+
+00:31:06.202 --> 00:31:07.159
+using templates.
+
+NOTE Confidence: 0.8671764135360718
+
+00:31:07.520 --> 00:31:10.760
+So there is a bunch of baked in templates to
+
+NOTE Confidence: 0.8671764135360718
+
+00:31:10.834 --> 00:31:15.400
+do anything from multimodal inferencing to LLMS to hero demos.
+
+NOTE Confidence: 0.8748739957809448
+
+00:31:15.560 --> 00:31:17.873
+But anything that you can think of, there is a
+
+NOTE Confidence: 0.8748739957809448
+
+00:31:17.923 --> 00:31:21.292
+template library, that template library that any scale provides and
+
+NOTE Confidence: 0.8748739957809448
+
+00:31:21.342 --> 00:31:23.706
+you can get access to up, up and running models
+
+NOTE Confidence: 0.8748739957809448
+
+00:31:23.756 --> 00:31:26.120
+and infrastructure and just a matter of clicks.
+
+NOTE Confidence: 0.8812365531921387
+
+00:31:26.360 --> 00:31:28.264
+So now we're going to look at one that we
+
+NOTE Confidence: 0.8812365531921387
+
+00:31:28.311 --> 00:31:30.959
+provisioned and and we're going to walk through that over
+
+NOTE Confidence: 0.8812365531921387
+
+00:31:31.006 --> 00:31:33.050
+here on the right of the screen, you can see
+
+NOTE Confidence: 0.8812365531921387
+
+00:31:33.097 --> 00:31:35.141
+that it's picked up that I have a cluster of
+
+NOTE Confidence: 0.8812365531921387
+
+00:31:35.187 --> 00:31:36.999
+CPUs only I have a head node over here.
+
+NOTE Confidence: 0.8983222246170044
+
+00:31:37.160 --> 00:31:39.326
+And we can see that it's actually running on top
+
+NOTE Confidence: 0.8983222246170044
+
+00:31:39.371 --> 00:31:42.214
+of a Kubernetes cluster that I've already provisioned, which is
+
+NOTE Confidence: 0.8983222246170044
+
+00:31:42.259 --> 00:31:43.793
+what the way I set it up an 8 node
+
+NOTE Confidence: 0.8983222246170044
+
+00:31:43.838 --> 00:31:44.199
+cluster.
+
+NOTE Confidence: 0.8810670971870422
+
+00:31:45.640 --> 00:31:47.323
+And what we're going to do is show you something
+
+NOTE Confidence: 0.8810670971870422
+
+00:31:47.358 --> 00:31:47.920
+really powerful.
+
+NOTE Confidence: 0.8433542251586914
+
+00:31:47.920 --> 00:31:51.241
+So your AI developers or your data scientists can just
+
+NOTE Confidence: 0.8433542251586914
+
+00:31:51.303 --> 00:31:55.055
+launch the notebook from directly within the portal and start
+
+NOTE Confidence: 0.8433542251586914
+
+00:31:55.117 --> 00:31:56.039
+executing code.
+
+NOTE Confidence: 0.9112240076065063
+
+00:31:56.240 --> 00:31:59.218
+So here what we have is an embedded Visual Studio,
+
+NOTE Confidence: 0.9112240076065063
+
+00:31:59.278 --> 00:32:03.031
+Visual Studio instance, Visual Studio Code instance, and we can
+
+NOTE Confidence: 0.9112240076065063
+
+00:32:03.091 --> 00:32:04.640
+start looking at the code.
+
+NOTE Confidence: 0.9023711085319519
+
+00:32:04.640 --> 00:32:06.989
+So what we're going to do here is actually run
+
+NOTE Confidence: 0.9023711085319519
+
+00:32:07.040 --> 00:32:09.593
+through a fine tuning demo where we have a product
+
+NOTE Confidence: 0.9023711085319519
+
+00:32:09.644 --> 00:32:12.453
+catalog of images and we're actually going to fine tune
+
+NOTE Confidence: 0.9023711085319519
+
+00:32:12.504 --> 00:32:14.955
+that embedded model that we run today with a set
+
+NOTE Confidence: 0.9023711085319519
+
+00:32:15.006 --> 00:32:15.159
+of.
+
+NOTE Confidence: 0.9592669010162354
+
+00:32:15.280 --> 00:32:16.000
+New.
+
+NOTE Confidence: 0.821291446685791
+
+00:32:16.640 --> 00:32:19.600
+Images that we want it to make better recommendations.
+
+NOTE Confidence: 0.8209648132324219
+
+00:32:19.600 --> 00:32:21.858
+So if I type in shoe, it's going to recommend
+
+NOTE Confidence: 0.8209648132324219
+
+00:32:21.909 --> 00:32:22.159
+sock.
+
+NOTE Confidence: 0.9343816637992859
+
+00:32:22.160 --> 00:32:24.512
+If I search for headphones, it's going to give me
+
+NOTE Confidence: 0.9343816637992859
+
+00:32:24.560 --> 00:32:27.200
+things like speakers and other things that are related.
+
+NOTE Confidence: 0.9659905433654785
+
+00:32:27.520 --> 00:32:30.043
+So what you see here is all the Python code
+
+NOTE Confidence: 0.9659905433654785
+
+00:32:30.102 --> 00:32:33.213
+from within the notebook that can be run and executed
+
+NOTE Confidence: 0.9659905433654785
+
+00:32:33.271 --> 00:32:33.799
+directly.
+
+NOTE Confidence: 0.9697523713111877
+
+00:32:33.800 --> 00:32:35.720
+You don't have to leave this interface.
+
+NOTE Confidence: 0.9733978509902954
+
+00:32:35.920 --> 00:32:38.381
+You can simply click that play button there on the
+
+NOTE Confidence: 0.9733978509902954
+
+00:32:38.430 --> 00:32:40.399
+right and execute these bits and pieces.
+
+NOTE Confidence: 0.9336488842964172
+
+00:32:40.600 --> 00:32:43.837
+And what we're doing is actually cleaning the data right
+
+NOTE Confidence: 0.9336488842964172
+
+00:32:43.894 --> 00:32:46.322
+now and running a fine tune so you can see
+
+NOTE Confidence: 0.9336488842964172
+
+00:32:46.380 --> 00:32:49.559
+that little circle whizzing around there on the bottom.
+
+NOTE Confidence: 0.904747486114502
+
+00:32:49.760 --> 00:32:52.887
+What it's actually telling us right now is I've run
+
+NOTE Confidence: 0.904747486114502
+
+00:32:52.949 --> 00:32:56.261
+some fine tuning and the models gone from .34 accuracy
+
+NOTE Confidence: 0.904747486114502
+
+00:32:56.322 --> 00:32:59.082
+to .2 because I've given it new data to train
+
+NOTE Confidence: 0.904747486114502
+
+00:32:59.143 --> 00:33:02.026
+that model and make it more specific to my work
+
+NOTE Confidence: 0.904747486114502
+
+00:33:02.087 --> 00:33:02.639
+use case.
+
+NOTE Confidence: 0.9298453330993652
+
+00:33:03.040 --> 00:33:05.283
+And this is going to graph those results for me
+
+NOTE Confidence: 0.9298453330993652
+
+00:33:05.331 --> 00:33:07.527
+so that I can say I've actually made the model
+
+NOTE Confidence: 0.9298453330993652
+
+00:33:07.575 --> 00:33:10.439
+more accurate through the fine tuning, which means I'm going
+
+NOTE Confidence: 0.9298453330993652
+
+00:33:10.487 --> 00:33:11.919
+to get better recommendations.
+
+NOTE Confidence: 0.9631884098052979
+
+00:33:11.920 --> 00:33:13.240
+I know this is going quickly.
+
+NOTE Confidence: 0.8970683813095093
+
+00:33:13.480 --> 00:33:15.296
+I'm trying to follow along here to keep you all
+
+NOTE Confidence: 0.8970683813095093
+
+00:33:15.334 --> 00:33:15.760
+up to date.
+
+NOTE Confidence: 0.9172796607017517
+
+00:33:16.120 --> 00:33:18.878
+And finally, we can actually look in the embedded vectors
+
+NOTE Confidence: 0.9172796607017517
+
+00:33:18.926 --> 00:33:20.039
+here for relationships.
+
+NOTE Confidence: 0.8226740956306458
+
+00:33:20.040 --> 00:33:23.251
+Everything in the green there are related items, so we
+
+NOTE Confidence: 0.8226740956306458
+
+00:33:23.311 --> 00:33:27.474
+have laptop stands, smartwatches, portable SSDs, webcams, the the fine
+
+NOTE Confidence: 0.8226740956306458
+
+00:33:27.533 --> 00:33:31.518
+tuning has actually created those relationships and finally, we can
+
+NOTE Confidence: 0.8226740956306458
+
+00:33:31.577 --> 00:33:33.600
+see here these clouds on the left.
+
+NOTE Confidence: 0.902786135673523
+
+00:33:33.600 --> 00:33:35.919
+You see that the colors are all over the place
+
+NOTE Confidence: 0.902786135673523
+
+00:33:35.969 --> 00:33:38.944
+and on the right they're aggregated, meaning that we've put
+
+NOTE Confidence: 0.902786135673523
+
+00:33:38.994 --> 00:33:41.717
+all the references that are close together and made at
+
+NOTE Confidence: 0.902786135673523
+
+00:33:41.767 --> 00:33:44.440
+the model more accurate with the data we've provided.
+
+NOTE Confidence: 0.955213189125061
+
+00:33:44.920 --> 00:33:47.360
+Now finally, we're going to want to serve this somewhere.
+
+NOTE Confidence: 0.8699249625205994
+
+00:33:47.560 --> 00:33:50.660
+And the great thing about any scale on Azure is
+
+NOTE Confidence: 0.8699249625205994
+
+00:33:50.726 --> 00:33:52.640
+it takes care of the routing.
+
+NOTE Confidence: 0.8996378183364868
+
+00:33:52.640 --> 00:33:55.700
+We have 3 endpoints here, one for our Http://ingress and
+
+NOTE Confidence: 0.8996378183364868
+
+00:33:55.755 --> 00:33:58.542
+there's two models, one that does image to text and
+
+NOTE Confidence: 0.8996378183364868
+
+00:33:58.596 --> 00:34:02.039
+the other one does the recommendations that we just fine-tuned.
+
+NOTE Confidence: 0.9383254051208496
+
+00:34:02.320 --> 00:34:05.533
+So around this movement here, we're actually showing that if
+
+NOTE Confidence: 0.9383254051208496
+
+00:34:05.587 --> 00:34:08.265
+I ask it about a pair of wireless headphones, it's
+
+NOTE Confidence: 0.9383254051208496
+
+00:34:08.318 --> 00:34:11.425
+going to give me some different references and the matches
+
+NOTE Confidence: 0.9383254051208496
+
+00:34:11.479 --> 00:34:14.800
+or the applicability of those references to those other items.
+
+NOTE Confidence: 0.9416928291320801
+
+00:34:15.080 --> 00:34:17.306
+So what we've done here is go from notebook to
+
+NOTE Confidence: 0.9416928291320801
+
+00:34:17.354 --> 00:34:19.000
+production with just a few clicks.
+
+NOTE Confidence: 0.8275175094604492
+
+00:34:19.440 --> 00:34:21.879
+Finally, I'm going to just show the integrated monitoring and
+
+NOTE Confidence: 0.8275175094604492
+
+00:34:21.919 --> 00:34:23.719
+observability stack, which is super powerful.
+
+NOTE Confidence: 0.9318289756774902
+
+00:34:24.000 --> 00:34:26.408
+So you can see all the utilization of the nodes
+
+NOTE Confidence: 0.9318289756774902
+
+00:34:26.459 --> 00:34:27.279
+in the clusters.
+
+NOTE Confidence: 0.882803738117218
+
+00:34:27.520 --> 00:34:30.811
+You can actually have access to what's running and dependencies,
+
+NOTE Confidence: 0.882803738117218
+
+00:34:30.862 --> 00:34:33.897
+which is something that only the any scale platform Running
+
+NOTE Confidence: 0.882803738117218
+
+00:34:33.948 --> 00:34:35.439
+Ray gives you under the hood.
+
+NOTE Confidence: 0.908736526966095
+
+00:34:35.600 --> 00:34:38.196
+So you can not only see what's running, but you
+
+NOTE Confidence: 0.908736526966095
+
+00:34:38.251 --> 00:34:41.455
+can also troubleshoot and make sure your platform is being
+
+NOTE Confidence: 0.908736526966095
+
+00:34:41.510 --> 00:34:43.720
+utilized to the extent that you want it.
+
+NOTE Confidence: 0.8207072615623474
+
+00:34:43.719 --> 00:34:46.664
+So super powerful platform and in only 7 minutes that
+
+NOTE Confidence: 0.8207072615623474
+
+00:34:46.720 --> 00:34:49.164
+took me 3 months to do, only three months to
+
+NOTE Confidence: 0.8207072615623474
+
+00:34:49.220 --> 00:34:50.720
+go, you know, months to go.
+
+NOTE Confidence: 0.9036628007888794
+
+00:34:50.719 --> 00:34:52.558
+So it's great to see this in action and I
+
+NOTE Confidence: 0.9036628007888794
+
+00:34:52.603 --> 00:34:55.024
+really think you'll all love it for your fine training
+
+NOTE Confidence: 0.9036628007888794
+
+00:34:55.069 --> 00:34:56.280
+and reinforcement learning.
+
+NOTE Confidence: 0.8464230895042419
+
+00:34:56.280 --> 00:34:59.130
+So check out any scale on Azure with Ray under
+
+NOTE Confidence: 0.8464230895042419
+
+00:34:59.192 --> 00:35:00.679
+the hood running on ask.
+
+NOTE Confidence: 0.86751389503479
+
+00:35:00.840 --> 00:35:02.160
+And thank you, Bob, for that demo.
+
+NOTE Confidence: 0.7916619777679443
+
+00:35:03.360 --> 00:35:05.200
+All right, we're getting into the late stages here.
+
+NOTE Confidence: 0.8691774010658264
+
+00:35:05.360 --> 00:35:07.711
+We're going to finish on agentic, talk about some customers,
+
+NOTE Confidence: 0.8691774010658264
+
+00:35:07.750 --> 00:35:09.199
+and I'm going to get you out of here.
+
+NOTE Confidence: 0.9546710252761841
+
+00:35:09.520 --> 00:35:12.072
+OK, So wrapping up, this is the area that I'm
+
+NOTE Confidence: 0.9546710252761841
+
+00:35:12.128 --> 00:35:13.320
+really excited about.
+
+NOTE Confidence: 0.8497948050498962
+
+00:35:13.560 --> 00:35:16.611
+So we've looked at inferencing, serving, and we've looked at
+
+NOTE Confidence: 0.8497948050498962
+
+00:35:16.662 --> 00:35:17.120
+training.
+
+NOTE Confidence: 0.9188774824142456
+
+00:35:17.280 --> 00:35:19.550
+Last question is, how do I serve that all up
+
+NOTE Confidence: 0.9188774824142456
+
+00:35:19.601 --> 00:35:20.840
+to my autonomous agents?
+
+NOTE Confidence: 0.7467207908630371
+
+00:35:20.840 --> 00:35:22.120
+Aren't we talking about agents here?
+
+NOTE Confidence: 0.9253411889076233
+
+00:35:22.400 --> 00:35:24.000
+So I'm going to show you how to do that.
+
+NOTE Confidence: 0.8980531096458435
+
+00:35:24.200 --> 00:35:26.520
+So this is where agentic orchestration comes in.
+
+NOTE Confidence: 0.9422712326049805
+
+00:35:26.760 --> 00:35:29.665
+And this area, I will say, is arguably the least
+
+NOTE Confidence: 0.9422712326049805
+
+00:35:29.726 --> 00:35:31.239
+mature part of the stack.
+
+NOTE Confidence: 0.9251675605773926
+
+00:35:31.640 --> 00:35:33.000
+It's changing very rapidly.
+
+NOTE Confidence: 0.7598525285720825
+
+00:35:33.000 --> 00:35:35.941
+You hear open floor Hermes today, but I don't know
+
+NOTE Confidence: 0.7598525285720825
+
+00:35:35.999 --> 00:35:36.999
+where it's going.
+
+NOTE Confidence: 0.9539015889167786
+
+00:35:37.160 --> 00:35:38.784
+But the cool thing is you can run it up
+
+NOTE Confidence: 0.9539015889167786
+
+00:35:38.826 --> 00:35:40.159
+and start to experiment with it.
+
+NOTE Confidence: 0.9175493121147156
+
+00:35:41.080 --> 00:35:43.044
+So what we're going to do is just take a
+
+NOTE Confidence: 0.9175493121147156
+
+00:35:43.093 --> 00:35:45.843
+look at building an agent on Kubernetes with skills, MCP
+
+NOTE Confidence: 0.9175493121147156
+
+00:35:45.892 --> 00:35:47.119
+and primitives that help.
+
+NOTE Confidence: 0.9046806693077087
+
+00:35:47.400 --> 00:35:49.917
+So if you never heard the terminology of a skill,
+
+NOTE Confidence: 0.9046806693077087
+
+00:35:49.969 --> 00:35:52.949
+it's basically just a discrete set of capabilities that an
+
+NOTE Confidence: 0.9046806693077087
+
+00:35:53.000 --> 00:35:53.719
+agent can run.
+
+NOTE Confidence: 0.9638589024543762
+
+00:35:53.920 --> 00:35:56.309
+The cool thing about skills is it's any kind of
+
+NOTE Confidence: 0.9638589024543762
+
+00:35:56.359 --> 00:35:58.799
+script that any of your platform team would run.
+
+NOTE Confidence: 0.9025799036026001
+
+00:35:59.040 --> 00:36:01.342
+Everything that I had checked into a repo has now
+
+NOTE Confidence: 0.9025799036026001
+
+00:36:01.389 --> 00:36:03.363
+become a skill and I have agents run it on
+
+NOTE Confidence: 0.9025799036026001
+
+00:36:03.410 --> 00:36:03.880
+my behalf.
+
+NOTE Confidence: 0.9664354920387268
+
+00:36:04.040 --> 00:36:05.040
+So think about that.
+
+NOTE Confidence: 0.927376925945282
+
+00:36:05.080 --> 00:36:07.160
+Hold that in your mind for day 2 operations.
+
+NOTE Confidence: 0.9489697217941284
+
+00:36:07.360 --> 00:36:09.640
+You register that in the catalog and you can call
+
+NOTE Confidence: 0.9489697217941284
+
+00:36:09.687 --> 00:36:12.061
+it from any agent that has the right permissions to
+
+NOTE Confidence: 0.9489697217941284
+
+00:36:12.107 --> 00:36:12.480
+call it.
+
+NOTE Confidence: 0.9094775319099426
+
+00:36:12.800 --> 00:36:16.832
+MCP is a protocol that allows all models, all agents
+
+NOTE Confidence: 0.9094775319099426
+
+00:36:16.910 --> 00:36:20.399
+to talk with tools and data and other agents.
+
+NOTE Confidence: 0.8804535269737244
+
+00:36:20.400 --> 00:36:22.120
+So it allows the connectivity there.
+
+NOTE Confidence: 0.8336354494094849
+
+00:36:22.360 --> 00:36:25.489
+And one really cool thing is we actually expose the
+
+NOTE Confidence: 0.8336354494094849
+
+00:36:25.551 --> 00:36:26.839
+AKS MCP server today.
+
+NOTE Confidence: 0.8471893668174744
+
+00:36:27.040 --> 00:36:29.081
+So if you want to run up a set of
+
+NOTE Confidence: 0.8471893668174744
+
+00:36:29.143 --> 00:36:32.669
+tools and interact with AKS and natural language, you can
+
+NOTE Confidence: 0.8471893668174744
+
+00:36:32.731 --> 00:36:35.638
+say provision me an AKS cluster in VS Code with
+
+NOTE Confidence: 0.8471893668174744
+
+00:36:35.700 --> 00:36:38.422
+the AKS MCP server and the LLM will make the
+
+NOTE Confidence: 0.8471893668174744
+
+00:36:38.483 --> 00:36:42.504
+call for you and actually provision the infrastructure that's all
+
+NOTE Confidence: 0.8471893668174744
+
+00:36:42.566 --> 00:36:43.680
+open source today.
+
+NOTE Confidence: 0.9357029795646667
+
+00:36:43.960 --> 00:36:46.213
+It'll run all your tools under the hood and we
+
+NOTE Confidence: 0.9357029795646667
+
+00:36:46.262 --> 00:36:48.320
+run with workload identity for protection.
+
+NOTE Confidence: 0.8476395010948181
+
+00:36:49.400 --> 00:36:51.336
+Then on the right, we have Kubernetes fill in the
+
+NOTE Confidence: 0.8476395010948181
+
+00:36:51.376 --> 00:36:52.760
+primitives that where we have gaps.
+
+NOTE Confidence: 0.8865790367126465
+
+00:36:52.760 --> 00:36:56.126
+So we're using namespaces to isolate the agents back to
+
+NOTE Confidence: 0.8865790367126465
+
+00:36:56.187 --> 00:36:59.737
+make sure it has the right privileges and service measures
+
+NOTE Confidence: 0.8865790367126465
+
+00:36:59.799 --> 00:37:02.675
+to make sure that we can observe and filter the
+
+NOTE Confidence: 0.8865790367126465
+
+00:37:02.737 --> 00:37:05.919
+calls and actually make policy changes that we need.
+
+NOTE Confidence: 0.9533179402351379
+
+00:37:05.920 --> 00:37:08.652
+So Kubernetes has all the primitives we need under the
+
+NOTE Confidence: 0.9533179402351379
+
+00:37:08.703 --> 00:37:10.119
+hood here to make this work.
+
+NOTE Confidence: 0.870000958442688
+
+00:37:11.400 --> 00:37:13.747
+OK, so this is where we're right out on the
+
+NOTE Confidence: 0.870000958442688
+
+00:37:13.802 --> 00:37:15.440
+the edge of the frontier here.
+
+NOTE Confidence: 0.8855317831039429
+
+00:37:15.440 --> 00:37:17.218
+I'm going to give you an example of how to
+
+NOTE Confidence: 0.8855317831039429
+
+00:37:17.261 --> 00:37:17.599
+do this.
+
+NOTE Confidence: 0.8620983362197876
+
+00:37:17.600 --> 00:37:20.389
+So talked about open claw earlier today in many of
+
+NOTE Confidence: 0.8620983362197876
+
+00:37:20.445 --> 00:37:23.960
+these sessions, but it's a reference implementation for a multi
+
+NOTE Confidence: 0.8620983362197876
+
+00:37:24.016 --> 00:37:26.359
+channel, multi tool personal AI assistant.
+
+NOTE Confidence: 0.8963421583175659
+
+00:37:26.600 --> 00:37:28.600
+I use it to book my Pilates lessons.
+
+NOTE Confidence: 0.8836725354194641
+
+00:37:29.000 --> 00:37:30.400
+Hold your applause for later.
+
+NOTE Confidence: 0.9530344009399414
+
+00:37:30.600 --> 00:37:33.485
+There's no way I'm doing Pilates, not because there's anything
+
+NOTE Confidence: 0.9530344009399414
+
+00:37:33.532 --> 00:37:35.533
+bad, I just don't know that my body will do
+
+NOTE Confidence: 0.9530344009399414
+
+00:37:35.580 --> 00:37:35.720
+it.
+
+NOTE Confidence: 0.8792641162872314
+
+00:37:36.920 --> 00:37:40.160
+It bridges a chat platform into a multi agent orchestrator.
+
+NOTE Confidence: 0.9197777509689331
+
+00:37:40.160 --> 00:37:42.404
+So we're going to show a really cool demo on
+
+NOTE Confidence: 0.9197777509689331
+
+00:37:42.455 --> 00:37:45.160
+how to do that with approval flows, tools and memory.
+
+NOTE Confidence: 0.963062584400177
+
+00:37:45.280 --> 00:37:46.360
+It takes care of everything.
+
+NOTE Confidence: 0.8576564788818359
+
+00:37:46.360 --> 00:37:48.255
+It's a base pattern and we have a use case
+
+NOTE Confidence: 0.8576564788818359
+
+00:37:48.300 --> 00:37:49.879
+that I'm going to show in a minute.
+
+NOTE Confidence: 0.7990999221801758
+
+00:37:50.080 --> 00:37:53.758
+We've actually codified a bunch of skills that our ASK
+
+NOTE Confidence: 0.7990999221801758
+
+00:37:53.826 --> 00:37:58.799
+engineers use to help with troubleshooting environmental issues with ASK.
+
+NOTE Confidence: 0.9383906722068787
+
+00:37:58.920 --> 00:38:01.035
+So think about it as we can create agents out
+
+NOTE Confidence: 0.9383906722068787
+
+00:38:01.082 --> 00:38:03.762
+of our support engineers and actually give them access to
+
+NOTE Confidence: 0.9383906722068787
+
+00:38:03.809 --> 00:38:06.019
+the right tools at the right time so they don't
+
+NOTE Confidence: 0.9383906722068787
+
+00:38:06.066 --> 00:38:08.417
+have to go through the monotony of pulling all the
+
+NOTE Confidence: 0.9383906722068787
+
+00:38:08.464 --> 00:38:09.639
+logs or making decisions.
+
+NOTE Confidence: 0.862009584903717
+
+00:38:09.640 --> 00:38:10.880
+I'm going to talk about that in a minute.
+
+NOTE Confidence: 0.9233041405677795
+
+00:38:11.160 --> 00:38:13.986
+But we use that right now for day 2 operations,
+
+NOTE Confidence: 0.9233041405677795
+
+00:38:14.047 --> 00:38:16.633
+and that might be a great value add for you
+
+NOTE Confidence: 0.9233041405677795
+
+00:38:16.693 --> 00:38:19.400
+if you're starting to experiment with agents.
+
+NOTE Confidence: 0.9396294355392456
+
+00:38:19.880 --> 00:38:22.504
+And then finally, on the right, we're actually releasing today
+
+NOTE Confidence: 0.9396294355392456
+
+00:38:22.546 --> 00:38:24.240
+an agent reference stack for Kubernetes.
+
+NOTE Confidence: 0.7390806674957275
+
+00:38:24.240 --> 00:38:26.160
+We call it Kars, Kars for short.
+
+NOTE Confidence: 0.9159272909164429
+
+00:38:26.400 --> 00:38:30.613
+But this gives you a vertically integrated, secure sandbox environment
+
+NOTE Confidence: 0.9159272909164429
+
+00:38:30.673 --> 00:38:34.706
+where you can actually apply workload identity policies and sandbox
+
+NOTE Confidence: 0.9159272909164429
+
+00:38:34.766 --> 00:38:38.798
+environments leveraging Azure Linux under the hood, which is really
+
+NOTE Confidence: 0.9159272909164429
+
+00:38:38.859 --> 00:38:39.159
+cool.
+
+NOTE Confidence: 0.9507628083229065
+
+00:38:39.239 --> 00:38:41.488
+So you can rest assured that you have the right
+
+NOTE Confidence: 0.9507628083229065
+
+00:38:41.536 --> 00:38:44.359
+security primitives in place and don't let those agents run
+
+NOTE Confidence: 0.9507628083229065
+
+00:38:44.407 --> 00:38:46.800
+wild because I know security is a massive concern.
+
+NOTE Confidence: 0.9318130612373352
+
+00:38:48.000 --> 00:38:49.040
+So let's take a look at this.
+
+NOTE Confidence: 0.9033945202827454
+
+00:38:49.040 --> 00:38:50.160
+This is a 2 minute demo.
+
+NOTE Confidence: 0.8318859338760376
+
+00:38:50.160 --> 00:38:52.649
+We're going to take a look at the agent reference
+
+NOTE Confidence: 0.8318859338760376
+
+00:38:52.699 --> 00:38:55.544
+stack for Kubernetes, which is under Azure Kars, and you
+
+NOTE Confidence: 0.8318859338760376
+
+00:38:55.595 --> 00:38:57.881
+can run this up today and then we're going to
+
+NOTE Confidence: 0.8318859338760376
+
+00:38:57.932 --> 00:38:58.440
+finish up.
+
+NOTE Confidence: 0.8887857794761658
+
+00:39:00.040 --> 00:39:02.752
+So just going through the repo here, you can see
+
+NOTE Confidence: 0.8887857794761658
+
+00:39:02.808 --> 00:39:06.199
+the agent reference stack for Kubernetes and popping over to
+
+NOTE Confidence: 0.8887857794761658
+
+00:39:06.255 --> 00:39:07.159
+a terminal here.
+
+NOTE Confidence: 0.8733736276626587
+
+00:39:07.239 --> 00:39:09.784
+If you have any Kubernetes classy, even one locally, you
+
+NOTE Confidence: 0.8733736276626587
+
+00:39:09.830 --> 00:39:11.874
+can just run it up with a single command that
+
+NOTE Confidence: 0.8733736276626587
+
+00:39:11.920 --> 00:39:12.919
+ships with the binary.
+
+NOTE Confidence: 0.7069953680038452
+
+00:39:13.240 --> 00:39:14.560
+We can say car's up.
+
+NOTE Confidence: 0.9039928913116455
+
+00:39:14.840 --> 00:39:16.120
+We're provisioning a demo.
+
+NOTE Confidence: 0.9112855792045593
+
+00:39:16.400 --> 00:39:18.440
+And what is this is doing is actually running all
+
+NOTE Confidence: 0.9112855792045593
+
+00:39:18.481 --> 00:39:20.772
+the checks to make sure anything that I'm missing needs
+
+NOTE Confidence: 0.9112855792045593
+
+00:39:20.813 --> 00:39:21.480
+to be installed.
+
+NOTE Confidence: 0.8630765676498413
+
+00:39:21.480 --> 00:39:25.297
+But I'm actually running this locally against a cluster, an
+
+NOTE Confidence: 0.8630765676498413
+
+00:39:25.362 --> 00:39:28.079
+ask cluster that I have in my environment.
+
+NOTE Confidence: 0.8696732521057129
+
+00:39:28.360 --> 00:39:30.160
+So I ran it up.
+
+NOTE Confidence: 0.8783621788024902
+
+00:39:30.600 --> 00:39:32.474
+What we're going to see here is in the portal
+
+NOTE Confidence: 0.8783621788024902
+
+00:39:32.516 --> 00:39:33.599
+we can see the namespaces.
+
+NOTE Confidence: 0.6449758410453796
+
+00:39:33.760 --> 00:39:36.936
+We see that we provisioned AKARS Dash system card system
+
+NOTE Confidence: 0.6449758410453796
+
+00:39:36.992 --> 00:39:37.560
+namespace.
+
+NOTE Confidence: 0.8370071649551392
+
+00:39:37.840 --> 00:39:40.911
+That's where all the machinery is going to run on
+
+NOTE Confidence: 0.8370071649551392
+
+00:39:40.974 --> 00:39:42.040
+your ask cluster.
+
+NOTE Confidence: 0.8233559727668762
+
+00:39:42.560 --> 00:39:44.785
+Right now what I'm showing you is I want to
+
+NOTE Confidence: 0.8233559727668762
+
+00:39:44.836 --> 00:39:47.424
+run up an open Claw instance to start playing with
+
+NOTE Confidence: 0.8233559727668762
+
+00:39:47.476 --> 00:39:49.960
+open Claw using a custom resource in Kubernetes.
+
+NOTE Confidence: 0.6595938801765442
+
+00:39:50.120 --> 00:39:53.920
+So I'm saying please open Claw, be a helpful agent.
+
+NOTE Confidence: 0.9114964604377747
+
+00:39:53.920 --> 00:39:56.955
+Here's the access you have, here's the tools you have,
+
+NOTE Confidence: 0.9114964604377747
+
+00:39:57.011 --> 00:40:00.160
+here's what you can call all declarative and Kubernetes.
+
+NOTE Confidence: 0.898664116859436
+
+00:40:00.160 --> 00:40:01.920
+I'm going to apply that to the cluster now.
+
+NOTE Confidence: 0.8122972249984741
+
+00:40:02.280 --> 00:40:05.779
+And from here, we're going to be able to access
+
+NOTE Confidence: 0.8122972249984741
+
+00:40:05.854 --> 00:40:07.119
+the Open Claw UI.
+
+NOTE Confidence: 0.9201381206512451
+
+00:40:08.040 --> 00:40:09.360
+We'll just have a look over here.
+
+NOTE Confidence: 0.8243615627288818
+
+00:40:09.800 --> 00:40:12.162
+I want to just plug an open source tool called
+
+NOTE Confidence: 0.8243615627288818
+
+00:40:12.213 --> 00:40:14.884
+Headlamp that gives you, it's a heads up display for
+
+NOTE Confidence: 0.8243615627288818
+
+00:40:14.935 --> 00:40:17.760
+Kubernetes clusters and it actually has plug insurance.
+
+NOTE Confidence: 0.6171031594276428
+
+00:40:17.760 --> 00:40:19.400
+We've built a cars plug in as well.
+
+NOTE Confidence: 0.9185720682144165
+
+00:40:19.600 --> 00:40:22.279
+So you can go to Headlamp, which is open source,
+
+NOTE Confidence: 0.9185720682144165
+
+00:40:22.335 --> 00:40:25.573
+run up and introspect what your sandbox are running, where
+
+NOTE Confidence: 0.9185720682144165
+
+00:40:25.629 --> 00:40:29.369
+your agents are running, what security capabilities they have, what
+
+NOTE Confidence: 0.9185720682144165
+
+00:40:29.425 --> 00:40:32.440
+policies you have in place, and what access they have.
+
+NOTE Confidence: 0.8975913524627686
+
+00:40:32.920 --> 00:40:35.271
+We also have a mesh topology, so you can actually
+
+NOTE Confidence: 0.8975913524627686
+
+00:40:35.319 --> 00:40:37.479
+see the mesh graph of where all the calls are
+
+NOTE Confidence: 0.8975913524627686
+
+00:40:37.527 --> 00:40:39.879
+going from your agents to your LLMS or elsewhere.
+
+NOTE Confidence: 0.9352013468742371
+
+00:40:40.239 --> 00:40:42.451
+Finally, we have a binary version of that as well
+
+NOTE Confidence: 0.9352013468742371
+
+00:40:42.497 --> 00:40:43.399
+that you can run up.
+
+NOTE Confidence: 0.921759307384491
+
+00:40:43.400 --> 00:40:46.121
+If you go cars slash operator, you can see all
+
+NOTE Confidence: 0.921759307384491
+
+00:40:46.181 --> 00:40:48.429
+the same things you see in the UI at a
+
+NOTE Confidence: 0.921759307384491
+
+00:40:48.488 --> 00:40:51.624
+glance here to see what's running on your cluster and
+
+NOTE Confidence: 0.921759307384491
+
+00:40:51.684 --> 00:40:53.399
+the security controls it has.
+
+NOTE Confidence: 0.8312849998474121
+
+00:40:53.400 --> 00:40:55.669
+So I'm running a cars list now you can see
+
+NOTE Confidence: 0.8312849998474121
+
+00:40:55.723 --> 00:40:56.480
+the sandboxes.
+
+NOTE Confidence: 0.8698692917823792
+
+00:40:56.640 --> 00:40:58.830
+I have a demo that I've run up here that's
+
+NOTE Confidence: 0.8698692917823792
+
+00:40:58.883 --> 00:41:01.543
+in a sandbox environment and now I'm going to asked
+
+NOTE Confidence: 0.8698692917823792
+
+00:41:01.595 --> 00:41:03.734
+to connect to it and we will get the open
+
+NOTE Confidence: 0.8698692917823792
+
+00:41:03.786 --> 00:41:05.559
+clue UI which I can then log into.
+
+NOTE Confidence: 0.9147076606750488
+
+00:41:05.560 --> 00:41:08.744
+So this passes back the URL with the token embedded
+
+NOTE Confidence: 0.9147076606750488
+
+00:41:08.806 --> 00:41:10.679
+and I can go ahead and log in.
+
+NOTE Confidence: 0.9353430271148682
+
+00:41:11.000 --> 00:41:12.995
+And one of the cool things is I've run this
+
+NOTE Confidence: 0.9353430271148682
+
+00:41:13.041 --> 00:41:14.480
+up in just a couple of minutes.
+
+NOTE Confidence: 0.9158668518066406
+
+00:41:14.480 --> 00:41:15.720
+This demo was not edited.
+
+NOTE Confidence: 0.7768388390541077
+
+00:41:15.720 --> 00:41:16.960
+It's all just there live.
+
+NOTE Confidence: 0.841799259185791
+
+00:41:17.160 --> 00:41:19.400
+We get our chat interface so we can say hi.
+
+NOTE Confidence: 0.8247426748275757
+
+00:41:19.680 --> 00:41:23.283
+We start getting a response back from the agent here
+
+NOTE Confidence: 0.8247426748275757
+
+00:41:23.353 --> 00:41:26.680
+and we're going to ask it something very timely.
+
+NOTE Confidence: 0.6908901929855347
+
+00:41:26.680 --> 00:41:28.240
+We recorded this yesterday.
+
+NOTE Confidence: 0.9142139554023743
+
+00:41:28.520 --> 00:41:31.866
+Can you tell me what announcements Microsoft had with NVIDIA
+
+NOTE Confidence: 0.9142139554023743
+
+00:41:31.922 --> 00:41:32.479
+this week?
+
+NOTE Confidence: 0.7842476963996887
+
+00:41:33.239 --> 00:41:35.555
+So it's going to go over just to show that
+
+NOTE Confidence: 0.7842476963996887
+
+00:41:35.610 --> 00:41:37.319
+it's very fresh and very light.
+
+NOTE Confidence: 0.8777750134468079
+
+00:41:37.320 --> 00:41:39.240
+This is the constraints it's working with.
+
+NOTE Confidence: 0.8918108344078064
+
+00:41:39.400 --> 00:41:41.946
+So it's actually going to go to the web and
+
+NOTE Confidence: 0.8918108344078064
+
+00:41:42.006 --> 00:41:45.145
+consult and give me a well thought out response based
+
+NOTE Confidence: 0.8918108344078064
+
+00:41:45.204 --> 00:41:48.640
+on the media and press analysis yesterday of what actually
+
+NOTE Confidence: 0.8918108344078064
+
+00:41:48.699 --> 00:41:51.720
+happened at build between NVIDIA and and Microsoft.
+
+NOTE Confidence: 0.9238374829292297
+
+00:41:51.920 --> 00:41:54.957
+So you can see we've released these different things, and
+
+NOTE Confidence: 0.9238374829292297
+
+00:41:55.010 --> 00:41:57.301
+you can see that in a couple of minutes and
+
+NOTE Confidence: 0.9238374829292297
+
+00:41:57.354 --> 00:41:59.965
+a couple of clicks, I've got something I can give
+
+NOTE Confidence: 0.9238374829292297
+
+00:42:00.018 --> 00:42:02.896
+me value for my engineers to start playing with agents
+
+NOTE Confidence: 0.9238374829292297
+
+00:42:02.949 --> 00:42:05.080
+and the power of agents on top of Ask or
+
+NOTE Confidence: 0.9238374829292297
+
+00:42:05.133 --> 00:42:05.720
+Kubernetes.
+
+NOTE Confidence: 0.9076922535896301
+
+00:42:05.720 --> 00:42:08.760
+So that is the agent reference stack for Kubernetes.
+
+NOTE Confidence: 0.8749798536300659
+
+00:42:10.080 --> 00:42:12.502
+OK, now we're just going to wrap up and talk
+
+NOTE Confidence: 0.8749798536300659
+
+00:42:12.557 --> 00:42:15.199
+about some customers that are seeing some value.
+
+NOTE Confidence: 0.7082904577255249
+
+00:42:15.200 --> 00:42:20.177
+So here are the 4C 4 reasons where Kubernetes is
+
+NOTE Confidence: 0.7082904577255249
+
+00:42:20.281 --> 00:42:20.799
+wise.
+
+NOTE Confidence: 0.9152103662490845
+
+00:42:20.800 --> 00:42:22.800
+Practitioners are building on top of Kubernetes.
+
+NOTE Confidence: 0.7738792300224304
+
+00:42:22.920 --> 00:42:25.917
+For the agent layer, we have session state, we have
+
+NOTE Confidence: 0.7738792300224304
+
+00:42:25.976 --> 00:42:29.914
+multi step coordination, built in tool call observability, and then
+
+NOTE Confidence: 0.7738792300224304
+
+00:42:29.973 --> 00:42:31.560
+finally a composable stack.
+
+NOTE Confidence: 0.8211072683334351
+
+00:42:31.560 --> 00:42:35.274
+I've hopped on that composable stack, but you can pick
+
+NOTE Confidence: 0.8211072683334351
+
+00:42:35.343 --> 00:42:39.332
+up skills, cloud providers publish MCP skills all the time
+
+NOTE Confidence: 0.8211072683334351
+
+00:42:39.401 --> 00:42:43.184
+and you can interact with Azure using the AKSMCP server
+
+NOTE Confidence: 0.8211072683334351
+
+00:42:43.253 --> 00:42:46.279
+to interact with AKS using natural language.
+
+NOTE Confidence: 0.8419851064682007
+
+00:42:48.880 --> 00:42:51.641
+OK, substrate and I'm I'm getting low on time here,
+
+NOTE Confidence: 0.8419851064682007
+
+00:42:51.695 --> 00:42:54.239
+so I'm going to go through these announcements.
+
+NOTE Confidence: 0.8293814659118652
+
+00:42:54.360 --> 00:42:57.304
+So we've got a few announcements, 4 announcements today spanning
+
+NOTE Confidence: 0.8293814659118652
+
+00:42:57.350 --> 00:43:00.111
+both single cluster, multi cluster and, and fleet, and we're
+
+NOTE Confidence: 0.8293814659118652
+
+00:43:00.157 --> 00:43:01.399
+going to walk through them.
+
+NOTE Confidence: 0.8428541421890259
+
+00:43:02.920 --> 00:43:06.240
+OK, generally available, we have AKS automatic.
+
+NOTE Confidence: 0.8564755916595459
+
+00:43:06.239 --> 00:43:08.325
+If you're using automatic, it's the easiest way to get
+
+NOTE Confidence: 0.8564755916595459
+
+00:43:08.364 --> 00:43:09.599
+started with Kubernetes and AKS.
+
+NOTE Confidence: 0.8434855341911316
+
+00:43:09.760 --> 00:43:12.340
+But what we've done now is give you managed system
+
+NOTE Confidence: 0.8434855341911316
+
+00:43:12.392 --> 00:43:12.959
+node pools.
+
+NOTE Confidence: 0.9646650552749634
+
+00:43:13.160 --> 00:43:15.425
+So all the pods that need to run the Kubernetes
+
+NOTE Confidence: 0.9646650552749634
+
+00:43:15.473 --> 00:43:18.365
+components themselves, we now take care of managing that and
+
+NOTE Confidence: 0.9646650552749634
+
+00:43:18.413 --> 00:43:19.039
+scaling that.
+
+NOTE Confidence: 0.8887131214141846
+
+00:43:19.200 --> 00:43:21.952
+Why it's matters for AI is you don't need to
+
+NOTE Confidence: 0.8887131214141846
+
+00:43:22.014 --> 00:43:25.267
+run those components on your GPU nodes that you want
+
+NOTE Confidence: 0.8887131214141846
+
+00:43:25.329 --> 00:43:27.894
+to milk every cycle out of to run your AI
+
+NOTE Confidence: 0.8887131214141846
+
+00:43:27.957 --> 00:43:28.519
+workload.
+
+NOTE Confidence: 0.7169031500816345
+
+00:43:28.520 --> 00:43:32.160
+So that's AKS automatic with managed system node pools.
+
+NOTE Confidence: 0.7370602488517761
+
+00:43:32.920 --> 00:43:36.360
+Georgia today, Azure Container Linux.
+
+NOTE Confidence: 0.9149172306060791
+
+00:43:36.360 --> 00:43:37.520
+Excited about this one.
+
+NOTE Confidence: 0.8865769505500793
+
+00:43:37.520 --> 00:43:39.776
+So we've given you the best of Azure and the
+
+NOTE Confidence: 0.8865769505500793
+
+00:43:39.828 --> 00:43:41.880
+best of Linux and Azure Container Linux.
+
+NOTE Confidence: 0.864170253276825
+
+00:43:41.880 --> 00:43:43.600
+You get smaller attack surface area.
+
+NOTE Confidence: 0.8309703469276428
+
+00:43:43.840 --> 00:43:48.309
+We've curated the level of packages, smaller Cves, and predictable
+
+NOTE Confidence: 0.8309703469276428
+
+00:43:48.377 --> 00:43:49.799
+fast patching cycles.
+
+NOTE Confidence: 0.7715981602668762
+
+00:43:50.440 --> 00:43:53.813
+We have transparent side ply chains, so we package everything
+
+NOTE Confidence: 0.7715981602668762
+
+00:43:53.869 --> 00:43:56.468
+up, distributed it to the nodes so that you get
+
+NOTE Confidence: 0.7715981602668762
+
+00:43:56.523 --> 00:44:01.114
+predictable signed artifacts, predictable upgrade paths for regular work, regulated
+
+NOTE Confidence: 0.7715981602668762
+
+00:44:01.169 --> 00:44:03.880
+work at loads, and then consistency across hosts.
+
+NOTE Confidence: 0.9166592359542847
+
+00:44:03.880 --> 00:44:06.625
+You can start this up for both in a container
+
+NOTE Confidence: 0.9166592359542847
+
+00:44:06.686 --> 00:44:09.554
+environment on your VMS, or even in WSL on your
+
+NOTE Confidence: 0.9166592359542847
+
+00:44:09.615 --> 00:44:11.079
+Windows machine as well.
+
+NOTE Confidence: 0.8454941511154175
+
+00:44:11.080 --> 00:44:13.500
+So we believe the OS layer in ASK should be
+
+NOTE Confidence: 0.8454941511154175
+
+00:44:13.557 --> 00:44:16.878
+invisible, secure by default and consistent and out of your
+
+NOTE Confidence: 0.8454941511154175
+
+00:44:16.934 --> 00:44:17.160
+way.
+
+NOTE Confidence: 0.7901875376701355
+
+00:44:19.239 --> 00:44:21.947
+OK, really excited about the public preview of AKS on
+
+NOTE Confidence: 0.7901875376701355
+
+00:44:21.998 --> 00:44:22.559
+bare metal.
+
+NOTE Confidence: 0.8150280714035034
+
+00:44:22.760 --> 00:44:26.309
+So this is direct hardware access from AKS to manage
+
+NOTE Confidence: 0.8150280714035034
+
+00:44:26.378 --> 00:44:27.879
+physical nodes, right?
+
+NOTE Confidence: 0.8251885771751404
+
+00:44:27.880 --> 00:44:31.069
+So we can actually install AKS on physical hardware with
+
+NOTE Confidence: 0.8251885771751404
+
+00:44:31.126 --> 00:44:34.885
+no hypervisor, So no virtualization layer for your workload, which
+
+NOTE Confidence: 0.8251885771751404
+
+00:44:34.942 --> 00:44:37.675
+is important for GPU's, NICs and all the like of
+
+NOTE Confidence: 0.8251885771751404
+
+00:44:37.732 --> 00:44:39.839
+the specialized accelerated hardware.
+
+NOTE Confidence: 0.6427821516990662
+
+00:44:40.080 --> 00:44:43.746
+Same AKS control plane, different operational models, same operational model,
+
+NOTE Confidence: 0.6427821516990662
+
+00:44:43.794 --> 00:44:44.080
+sorry.
+
+NOTE Confidence: 0.8376376628875732
+
+00:44:44.440 --> 00:44:47.342
+And it matters for AI because you can extend AI
+
+NOTE Confidence: 0.8376376628875732
+
+00:44:47.403 --> 00:44:50.306
+to on Prem other cloud and have it inside Azure
+
+NOTE Confidence: 0.8376376628875732
+
+00:44:50.367 --> 00:44:53.517
+and not pay the virtualization tax for your on Prem
+
+NOTE Confidence: 0.8376376628875732
+
+00:44:53.578 --> 00:44:54.319
+environment.
+
+NOTE Confidence: 0.908345639705658
+
+00:44:54.560 --> 00:44:56.560
+So it allows you to scale very quickly.
+
+NOTE Confidence: 0.9401180148124695
+
+00:44:58.360 --> 00:45:00.520
+And finally, I'm really excited about this one.
+
+NOTE Confidence: 0.9454424381256104
+
+00:45:00.720 --> 00:45:02.880
+Clusters get really, really big really quickly.
+
+NOTE Confidence: 0.9036114811897278
+
+00:45:03.280 --> 00:45:05.014
+So you want to be able to be in a
+
+NOTE Confidence: 0.9036114811897278
+
+00:45:05.066 --> 00:45:07.800
+position where you can manage the fleet of clusters.
+
+NOTE Confidence: 0.8262044191360474
+
+00:45:07.800 --> 00:45:11.382
+Fleet for ARC enabled clusters allows you to have progressive
+
+NOTE Confidence: 0.8262044191360474
+
+00:45:11.440 --> 00:45:16.256
+rollouts across clusters, intelligent workload placement for your workloads across
+
+NOTE Confidence: 0.8262044191360474
+
+00:45:16.314 --> 00:45:20.425
+different boundaries, environments on Prem and on the edge, consistent
+
+NOTE Confidence: 0.8262044191360474
+
+00:45:20.484 --> 00:45:21.600
+policy enforcement.
+
+NOTE Confidence: 0.9525430798530579
+
+00:45:21.600 --> 00:45:23.943
+So we're pushing the same policies to all environments at
+
+NOTE Confidence: 0.9525430798530579
+
+00:45:23.984 --> 00:45:24.560
+the same time.
+
+NOTE Confidence: 0.8751606345176697
+
+00:45:24.840 --> 00:45:27.080
+And it's ARC enabled, so it's in the Azure, it
+
+NOTE Confidence: 0.8751606345176697
+
+00:45:27.129 --> 00:45:29.759
+has an identity in Azure using the same control plane.
+
+NOTE Confidence: 0.8363489508628845
+
+00:45:30.040 --> 00:45:33.640
+So all AI workloads outgrow a single cluster very quickly.
+
+NOTE Confidence: 0.9715006947517395
+
+00:45:33.840 --> 00:45:35.520
+And this is how you stay ahead of that.
+
+NOTE Confidence: 0.78945392370224
+
+00:45:37.600 --> 00:45:39.880
+OK, so back to the full Chester.
+
+NOTE Confidence: 0.9288924932479858
+
+00:45:39.880 --> 00:45:40.960
+We've run the whole thing.
+
+NOTE Confidence: 0.9321059584617615
+
+00:45:40.960 --> 00:45:42.720
+I'm just going to finish up with two customers.
+
+NOTE Confidence: 0.9772259593009949
+
+00:45:42.720 --> 00:45:44.360
+I need just an extra 2 minutes here.
+
+NOTE Confidence: 0.809309184551239
+
+00:45:44.560 --> 00:45:45.440
+I got too excited.
+
+NOTE Confidence: 0.9376382827758789
+
+00:45:45.440 --> 00:45:47.785
+So what this looks like in production, we're going to
+
+NOTE Confidence: 0.9376382827758789
+
+00:45:47.829 --> 00:45:49.599
+show you a couple of customer use cases.
+
+NOTE Confidence: 0.8913500905036926
+
+00:45:49.600 --> 00:45:52.429
+We actually have Royal Bank of Canada here who are
+
+NOTE Confidence: 0.8913500905036926
+
+00:45:52.485 --> 00:45:54.239
+leveraging Kaito in production.
+
+NOTE Confidence: 0.850914716720581
+
+00:45:54.480 --> 00:45:58.597
+Their platform onboarding and deployment operator wraps the GPU resource
+
+NOTE Confidence: 0.850914716720581
+
+00:45:58.654 --> 00:46:02.599
+provisioning into a CICD workflow that the developers run themselves.
+
+NOTE Confidence: 0.8729100227355957
+
+00:46:02.720 --> 00:46:05.680
+So it's a self-service deployment and it's secure by default.
+
+NOTE Confidence: 0.889008104801178
+
+00:46:06.320 --> 00:46:10.305
+Kaido is used for the production model serving workspace and
+
+NOTE Confidence: 0.889008104801178
+
+00:46:10.372 --> 00:46:13.760
+AI models deployed as pods and the model images are
+
+NOTE Confidence: 0.889008104801178
+
+00:46:13.826 --> 00:46:17.480
+stored in the banks ACR which Agile container registry.
+
+NOTE Confidence: 0.9368037581443787
+
+00:46:17.760 --> 00:46:20.509
+So the really important thing is we have a compliance
+
+NOTE Confidence: 0.9368037581443787
+
+00:46:20.561 --> 00:46:21.080
+perimeter.
+
+NOTE Confidence: 0.7804412841796875
+
+00:46:21.080 --> 00:46:24.664
+This is a bank obviously, and they're utilizing things like
+
+NOTE Confidence: 0.7804412841796875
+
+00:46:24.725 --> 00:46:27.945
+Antra ID, Key Vault, private ACR and their models are
+
+NOTE Confidence: 0.7804412841796875
+
+00:46:28.006 --> 00:46:31.590
+all and all their data stays inside their secure perimeter,
+
+NOTE Confidence: 0.7804412841796875
+
+00:46:31.651 --> 00:46:33.960
+their subscription and their boundary.
+
+NOTE Confidence: 0.8408603072166443
+
+00:46:34.280 --> 00:46:37.303
+And this is a really great example of how banks
+
+NOTE Confidence: 0.8408603072166443
+
+00:46:37.367 --> 00:46:40.390
+are utilizing tools like ask on top of Kaido on
+
+NOTE Confidence: 0.8408603072166443
+
+00:46:40.454 --> 00:46:42.319
+top of Ask for model serving.
+
+NOTE Confidence: 0.9367896318435669
+
+00:46:44.400 --> 00:46:46.000
+OK, one more before I finish up.
+
+NOTE Confidence: 0.9712263345718384
+
+00:46:46.000 --> 00:46:46.960
+This is really cool.
+
+NOTE Confidence: 0.8801654577255249
+
+00:46:46.960 --> 00:46:49.932
+Wave is rewriting the self driving playbook with end to
+
+NOTE Confidence: 0.8801654577255249
+
+00:46:49.987 --> 00:46:50.960
+end deep learning.
+
+NOTE Confidence: 0.7646307349205017
+
+00:46:51.120 --> 00:46:52.960
+And they're running that on ask with Ray.
+
+NOTE Confidence: 0.8756032586097717
+
+00:46:52.960 --> 00:46:57.219
+So their driver, the AI driver actually demonstrated autonomous driving
+
+NOTE Confidence: 0.8756032586097717
+
+00:46:57.279 --> 00:46:59.199
+in Tokyo only after four months.
+
+NOTE Confidence: 0.9624854922294617
+
+00:46:59.200 --> 00:47:01.223
+I lived in Japan for four years and I still
+
+NOTE Confidence: 0.9624854922294617
+
+00:47:01.270 --> 00:47:02.399
+couldn't drive in Tokyo.
+
+NOTE Confidence: 0.9506669640541077
+
+00:47:02.960 --> 00:47:04.200
+So that beat me out.
+
+NOTE Confidence: 0.9126068353652954
+
+00:47:04.200 --> 00:47:07.835
+So with a brand new Nissan vehicle, they demonstrated learning
+
+NOTE Confidence: 0.9126068353652954
+
+00:47:07.893 --> 00:47:08.479
+on the go.
+
+NOTE Confidence: 0.9375411868095398
+
+00:47:08.800 --> 00:47:13.040
+So that kind of generalization required massive infrastructure and clusters.
+
+NOTE Confidence: 0.8033190965652466
+
+00:47:13.200 --> 00:47:16.126
+And they use ask and any scale on Azure to
+
+NOTE Confidence: 0.8033190965652466
+
+00:47:16.196 --> 00:47:21.004
+connect thousands of GPU's into a flexible supercomputer for training
+
+NOTE Confidence: 0.8033190965652466
+
+00:47:21.074 --> 00:47:22.119
+and validation.
+
+NOTE Confidence: 0.8295367360115051
+
+00:47:22.560 --> 00:47:24.680
+And this training layer is pushed to its limits.
+
+NOTE Confidence: 0.8709297180175781
+
+00:47:24.880 --> 00:47:28.219
+The scale of the infrastructure directly determines how quickly they
+
+NOTE Confidence: 0.8709297180175781
+
+00:47:28.268 --> 00:47:29.839
+can iterate and train the model.
+
+NOTE Confidence: 0.8603197336196899
+
+00:47:29.840 --> 00:47:31.000
+So this is a really cool.
+
+NOTE Confidence: 0.7667793035507202
+
+00:47:31.480 --> 00:47:36.120
+OK, finally I wanted to talk about AKS claw.
+
+NOTE Confidence: 0.8590668439865112
+
+00:47:36.120 --> 00:47:38.571
+So I mentioned earlier I've got an example of agentic
+
+NOTE Confidence: 0.8590668439865112
+
+00:47:38.617 --> 00:47:39.079
+workloads.
+
+NOTE Confidence: 0.792210578918457
+
+00:47:39.080 --> 00:47:40.960
+On top of AKS, we have AKS claw.
+
+NOTE Confidence: 0.6993277668952942
+
+00:47:41.240 --> 00:47:43.480
+AKS claw is our SME.
+
+NOTE Confidence: 0.6442680358886719
+
+00:47:43.640 --> 00:47:45.880
+So our subject matter expertise at Sr.
+
+NOTE Confidence: 0.7854421734809875
+
+00:47:45.880 --> 00:47:47.480
+ES encoded as an agent.
+
+NOTE Confidence: 0.9020904898643494
+
+00:47:47.680 --> 00:47:51.743
+And what this really allows is each dedicated engineer gets
+
+NOTE Confidence: 0.9020904898643494
+
+00:47:51.812 --> 00:47:55.600
+a dedicated instance with an isolated instance of Claw.
+
+NOTE Confidence: 0.9021386504173279
+
+00:47:55.800 --> 00:47:58.478
+The AKS Claw gets installed and every new on call
+
+NOTE Confidence: 0.9021386504173279
+
+00:47:58.533 --> 00:48:01.375
+engineer is able to be up and running within minutes
+
+NOTE Confidence: 0.9021386504173279
+
+00:48:01.430 --> 00:48:04.381
+with very minimal training and get the tools they need
+
+NOTE Confidence: 0.9021386504173279
+
+00:48:04.436 --> 00:48:07.169
+and access to the environments they need to make a
+
+NOTE Confidence: 0.9021386504173279
+
+00:48:07.224 --> 00:48:09.519
+decision to get our customers back online.
+
+NOTE Confidence: 0.8280813694000244
+
+00:48:09.880 --> 00:48:12.892
+So this is 1 natural language interface, but we can
+
+NOTE Confidence: 0.8280813694000244
+
+00:48:12.951 --> 00:48:17.203
+replicate consistent operational behaviour by encoding it in agents with
+
+NOTE Confidence: 0.8280813694000244
+
+00:48:17.262 --> 00:48:18.680
+something like Ask Claw.
+
+NOTE Confidence: 0.9310200810432434
+
+00:48:18.680 --> 00:48:20.756
+So very excited to be able to build on top
+
+NOTE Confidence: 0.9310200810432434
+
+00:48:20.805 --> 00:48:23.080
+of the primitives that I've shared here today.
+
+NOTE Confidence: 0.8270187973976135
+
+00:48:23.960 --> 00:48:26.848
+OK, so now what is what you've got to take
+
+NOTE Confidence: 0.8270187973976135
+
+00:48:26.917 --> 00:48:29.600
+away with Start with Kubernetes, right?
+
+NOTE Confidence: 0.8364289999008179
+
+00:48:29.680 --> 00:48:31.738
+That's the substrate that many of you are already using
+
+NOTE Confidence: 0.8364289999008179
+
+00:48:31.775 --> 00:48:31.999
+today.
+
+NOTE Confidence: 0.8179172873497009
+
+00:48:32.400 --> 00:48:35.419
+Build the agent layer with MCP skills and reference stacks
+
+NOTE Confidence: 0.8179172873497009
+
+00:48:35.471 --> 00:48:36.200
+like Openclaw.
+
+NOTE Confidence: 0.7015430331230164
+
+00:48:36.680 --> 00:48:39.480
+Choose the tooling that matches your build versus buy.
+
+NOTE Confidence: 0.9274876713752747
+
+00:48:39.480 --> 00:48:41.942
+If you want things like AI Runway Kaito, we have
+
+NOTE Confidence: 0.9274876713752747
+
+00:48:41.993 --> 00:48:43.840
+a tool for every layer of the stack.
+
+NOTE Confidence: 0.9673603177070618
+
+00:48:44.000 --> 00:48:45.720
+You get to mix and match and choose.
+
+NOTE Confidence: 0.5635234713554382
+
+00:48:46.360 --> 00:48:50.694
+We got some tools obviously for inferencing and serving KIKDO
+
+NOTE Confidence: 0.5635234713554382
+
+00:48:50.765 --> 00:48:51.759
+and AI runway.
+
+NOTE Confidence: 0.8165760040283203
+
+00:48:51.960 --> 00:48:54.400
+We have Ray with any scale on Azure.
+
+NOTE Confidence: 0.8726664185523987
+
+00:48:54.600 --> 00:48:57.675
+And then we have what I just caused what I
+
+NOTE Confidence: 0.8726664185523987
+
+00:48:57.749 --> 00:49:03.095
+announced earlier for runtime specialization for agentic AI workloads and
+
+NOTE Confidence: 0.8726664185523987
+
+00:49:03.168 --> 00:49:04.560
+then finally Fleet.
+
+NOTE Confidence: 0.7851389050483704
+
+00:49:05.240 --> 00:49:06.600
+So invest in fleet early.
+
+NOTE Confidence: 0.7330432534217834
+
+00:49:06.760 --> 00:49:07.520
+I'm getting the look.
+
+NOTE Confidence: 0.6163820624351501
+
+00:49:07.800 --> 00:49:10.760
+It's a bit when your workloads outgrow a single cluster.
+
+NOTE Confidence: 0.9187375903129578
+
+00:49:11.240 --> 00:49:14.280
+OK, I think that gets us to the end.
+
+NOTE Confidence: 0.9519990682601929
+
+00:49:14.280 --> 00:49:16.000
+So I really appreciate your time.
+
+NOTE Confidence: 0.8398253321647644
+
+00:49:16.000 --> 00:49:18.095
+If you have any feedback, good, bad or otherwise, I'd
+
+NOTE Confidence: 0.8398253321647644
+
+00:49:18.135 --> 00:49:19.439
+appreciate you taking the survey.
+
+NOTE Confidence: 0.9456577301025391
+
+00:49:19.440 --> 00:49:21.600
+But I'll see you all around.
+
+NOTE Confidence: 0.9693982601165771
+
+00:49:21.600 --> 00:49:23.320
+I'll be over here for the next day or so.
+
+NOTE Confidence: 0.9157138466835022
+
+00:49:23.480 --> 00:49:25.773
+If any of that inspired any curiosity, I'd love to
+
+NOTE Confidence: 0.9157138466835022
+
+00:49:25.819 --> 00:49:27.746
+chat with you all about it and I'd love to
+
+NOTE Confidence: 0.9157138466835022
+
+00:49:27.792 --> 00:49:30.178
+learn from you as well, see what you're building and
+
+NOTE Confidence: 0.9157138466835022
+
+00:49:30.223 --> 00:49:32.838
+hopefully next time you're on stage telling me what y'all
+
+NOTE Confidence: 0.9157138466835022
+
+00:49:32.884 --> 00:49:33.159
+build.
+
+NOTE Confidence: 0.8333677649497986
+
+00:49:33.360 --> 00:49:35.605
+That brings me a lot of excitement to see what
+
+NOTE Confidence: 0.8333677649497986
+
+00:49:35.654 --> 00:49:36.239
+y'all build.
+
+NOTE Confidence: 0.8874108195304871
+
+00:49:36.240 --> 00:49:37.080
+So thank you.
+
+NOTE Confidence: 0.9411158561706543
+
+00:49:37.080 --> 00:49:37.960
+Have a great build.
+
+NOTE Confidence: 0.855074405670166
+
+00:49:38.160 --> 00:49:39.720
+Thanks for giving me an extra couple minutes.
+
+NOTE Confidence: 0.8424392938613892
+
+00:49:39.720 --> 00:49:40.480
+Appreciate the time.
+

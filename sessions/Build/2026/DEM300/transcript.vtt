@@ -1,0 +1,2525 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.466783732175827
+
+00:00:04.080 --> 00:00:04.600
+We good now.
+
+NOTE Confidence: 0.9583321213722229
+
+00:00:05.200 --> 00:00:05.720
+Awesome.
+
+NOTE Confidence: 0.9471526741981506
+
+00:00:06.800 --> 00:00:08.040
+Well, good morning folks.
+
+NOTE Confidence: 0.9419953227043152
+
+00:00:08.039 --> 00:00:10.248
+Thank you all for joining me for the first demo
+
+NOTE Confidence: 0.9419953227043152
+
+00:00:10.295 --> 00:00:10.999
+of the morning.
+
+NOTE Confidence: 0.7418625950813293
+
+00:00:11.000 --> 00:00:12.600
+My name is Nick Karpinski.
+
+NOTE Confidence: 0.9067775011062622
+
+00:00:12.600 --> 00:00:15.000
+I'm a software engineer with Microsoft.
+
+NOTE Confidence: 0.9149411916732788
+
+00:00:15.280 --> 00:00:19.497
+I've been with Microsoft for approximately 1212, 1/2 years, my
+
+NOTE Confidence: 0.9149411916732788
+
+00:00:19.565 --> 00:00:23.102
+entire career on Visual Studio and most of that time
+
+NOTE Confidence: 0.9149411916732788
+
+00:00:23.170 --> 00:00:25.960
+I've spent on the Visual Studio Profiler.
+
+NOTE Confidence: 0.9037882685661316
+
+00:00:26.560 --> 00:00:29.656
+So I'm super excited to share some of my experience
+
+NOTE Confidence: 0.9037882685661316
+
+00:00:29.717 --> 00:00:32.753
+with the profiler today and some of the work flows
+
+NOTE Confidence: 0.9037882685661316
+
+00:00:32.814 --> 00:00:34.999
+that we've added into Visual Studio.
+
+NOTE Confidence: 0.9066611528396606
+
+00:00:35.720 --> 00:00:37.704
+But before I get started, I always like to kind
+
+NOTE Confidence: 0.9066611528396606
+
+00:00:37.746 --> 00:00:39.519
+of pull the audience understand who it is.
+
+NOTE Confidence: 0.8363253474235535
+
+00:00:39.520 --> 00:00:42.320
+I'm talking to whohereisa.net developer.
+
+NOTE Confidence: 0.922280490398407
+
+00:00:43.880 --> 00:00:47.028
+OK, so a pretty good amount of people who here
+
+NOTE Confidence: 0.922280490398407
+
+00:00:47.096 --> 00:00:50.040
+has used the Visual Studio profiler before.
+
+NOTE Confidence: 0.7081069946289062
+
+00:00:51.280 --> 00:00:51.560
+Wow.
+
+NOTE Confidence: 0.9614662528038025
+
+00:00:51.560 --> 00:00:54.659
+Actually, there's quite a few people who hasn't used the
+
+NOTE Confidence: 0.9614662528038025
+
+00:00:54.714 --> 00:00:55.600
+profiler before.
+
+NOTE Confidence: 0.8959479928016663
+
+00:00:56.480 --> 00:00:57.760
+Anyone admitting cool.
+
+NOTE Confidence: 0.8983656167984009
+
+00:00:57.760 --> 00:00:59.260
+I'd love to talk to you afterwards and you can
+
+NOTE Confidence: 0.8983656167984009
+
+00:00:59.292 --> 00:01:00.759
+tell me why you're going to change your ways.
+
+NOTE Confidence: 0.8732109069824219
+
+00:01:01.680 --> 00:01:04.360
+Who has used benchmark.net before?
+
+NOTE Confidence: 0.9615545272827148
+
+00:01:05.920 --> 00:01:07.000
+OK, a couple of people.
+
+NOTE Confidence: 0.9045413136482239
+
+00:01:07.360 --> 00:01:10.385
+Have any of you used the Visual Studio integration with
+
+NOTE Confidence: 0.9045413136482239
+
+00:01:10.440 --> 00:01:12.200
+benchmark.net with the profiler?
+
+NOTE Confidence: 0.9748291969299316
+
+00:01:14.040 --> 00:01:14.640
+One guy.
+
+NOTE Confidence: 0.953465461730957
+
+00:01:14.960 --> 00:01:15.440
+Awesome.
+
+NOTE Confidence: 0.9680111408233643
+
+00:01:15.440 --> 00:01:18.712
+So I'm excited to share some of those new features
+
+NOTE Confidence: 0.9680111408233643
+
+00:01:18.778 --> 00:01:19.759
+with you today.
+
+NOTE Confidence: 0.9613670706748962
+
+00:01:21.080 --> 00:01:23.921
+This is going to be a pretty demo heavy presentation
+
+NOTE Confidence: 0.9613670706748962
+
+00:01:23.976 --> 00:01:24.959
+as it is the demo.
+
+NOTE Confidence: 0.9612865447998047
+
+00:01:25.480 --> 00:01:27.089
+I have a single slide that I want to walk
+
+NOTE Confidence: 0.9612865447998047
+
+00:01:27.128 --> 00:01:27.599
+you through.
+
+NOTE Confidence: 0.9246845841407776
+
+00:01:27.640 --> 00:01:31.243
+And this slide is going to help illustrate what that
+
+NOTE Confidence: 0.9246845841407776
+
+00:01:31.313 --> 00:01:34.640
+agent is doing as we go through the demo itself.
+
+NOTE Confidence: 0.9466173052787781
+
+00:01:35.080 --> 00:01:37.636
+And so this is my flow chart for how you
+
+NOTE Confidence: 0.9466173052787781
+
+00:01:37.699 --> 00:01:40.319
+actually optimize code in the real world.
+
+NOTE Confidence: 0.9347050189971924
+
+00:01:41.120 --> 00:01:42.705
+You start on the left, you work your way over
+
+NOTE Confidence: 0.9347050189971924
+
+00:01:42.740 --> 00:01:44.572
+to the right, and if you're successful, you get cake
+
+NOTE Confidence: 0.9347050189971924
+
+00:01:44.607 --> 00:01:44.959
+out of it.
+
+NOTE Confidence: 0.9664232134819031
+
+00:01:45.600 --> 00:01:47.937
+And so to start, you want to really make sure
+
+NOTE Confidence: 0.9664232134819031
+
+00:01:47.989 --> 00:01:49.599
+that you understand your issue.
+
+NOTE Confidence: 0.9382186532020569
+
+00:01:49.880 --> 00:01:52.768
+And so when I say understand your issue, I mean
+
+NOTE Confidence: 0.9382186532020569
+
+00:01:52.829 --> 00:01:56.086
+not just like, oh, hey, I think serialization is kind
+
+NOTE Confidence: 0.9382186532020569
+
+00:01:56.148 --> 00:01:56.640
+of slow.
+
+NOTE Confidence: 0.9687822461128235
+
+00:01:56.640 --> 00:01:58.120
+I should probably go take a look at that.
+
+NOTE Confidence: 0.9546329379081726
+
+00:01:58.120 --> 00:02:00.600
+It's really, I have concrete numbers.
+
+NOTE Confidence: 0.9514942169189453
+
+00:02:00.600 --> 00:02:04.042
+I know specifically where time is being spent in my
+
+NOTE Confidence: 0.9514942169189453
+
+00:02:04.109 --> 00:02:04.919
+application.
+
+NOTE Confidence: 0.9532709717750549
+
+00:02:05.400 --> 00:02:07.827
+And then I can use that to then try and
+
+NOTE Confidence: 0.9532709717750549
+
+00:02:07.889 --> 00:02:11.313
+improve this specific parts that are taking up the most
+
+NOTE Confidence: 0.9532709717750549
+
+00:02:11.375 --> 00:02:13.990
+amount of time so I get the most amount of
+
+NOTE Confidence: 0.9532709717750549
+
+00:02:14.052 --> 00:02:15.919
+improvement for my investment.
+
+NOTE Confidence: 0.9590837955474854
+
+00:02:16.200 --> 00:02:18.780
+And so if you don't know what the issue is,
+
+NOTE Confidence: 0.9590837955474854
+
+00:02:18.840 --> 00:02:19.440
+that's OK.
+
+NOTE Confidence: 0.9170204997062683
+
+00:02:19.480 --> 00:02:21.598
+You just run the profiler in Visual Studio and it
+
+NOTE Confidence: 0.9170204997062683
+
+00:02:21.642 --> 00:02:23.847
+will show you where time is actually being spent in
+
+NOTE Confidence: 0.9170204997062683
+
+00:02:23.890 --> 00:02:24.279
+your app.
+
+NOTE Confidence: 0.9580567479133606
+
+00:02:24.720 --> 00:02:26.969
+And then from there you can figure out like where
+
+NOTE Confidence: 0.9580567479133606
+
+00:02:27.015 --> 00:02:29.540
+you actually want to spend your time actually trying to
+
+NOTE Confidence: 0.9580567479133606
+
+00:02:29.586 --> 00:02:30.000
+optimize.
+
+NOTE Confidence: 0.950695276260376
+
+00:02:30.600 --> 00:02:33.442
+The second thing is, once you know what the issue
+
+NOTE Confidence: 0.950695276260376
+
+00:02:33.500 --> 00:02:36.574
+is, you could jump into trying to optimize stuff, but
+
+NOTE Confidence: 0.950695276260376
+
+00:02:36.632 --> 00:02:39.533
+it's really hard to try and optimize if all you're
+
+NOTE Confidence: 0.950695276260376
+
+00:02:39.591 --> 00:02:42.839
+doing is just taking general traces of your application.
+
+NOTE Confidence: 0.9482108354568481
+
+00:02:43.160 --> 00:02:45.150
+And so I always like to try and say, like,
+
+NOTE Confidence: 0.9482108354568481
+
+00:02:45.197 --> 00:02:46.240
+go create a benchmark.
+
+NOTE Confidence: 0.9621638059616089
+
+00:02:46.280 --> 00:02:50.130
+It gives you this nice reusable, durable test harness that
+
+NOTE Confidence: 0.9621638059616089
+
+00:02:50.196 --> 00:02:52.519
+you can go and test performance on.
+
+NOTE Confidence: 0.9510735869407654
+
+00:02:52.880 --> 00:02:55.176
+I like to think of a benchmark as a unit
+
+NOTE Confidence: 0.9510735869407654
+
+00:02:55.234 --> 00:02:56.440
+test for performance.
+
+NOTE Confidence: 0.8162417411804199
+
+00:02:56.680 --> 00:02:59.753
+So unit tests work with the debugger, benchmarks with work
+
+NOTE Confidence: 0.8162417411804199
+
+00:02:59.806 --> 00:03:00.760
+with the profiler.
+
+NOTE Confidence: 0.8978979587554932
+
+00:03:00.919 --> 00:03:03.035
+And the nice part is it's like once you have
+
+NOTE Confidence: 0.8978979587554932
+
+00:03:03.083 --> 00:03:05.440
+it, then you can fall into the optimization loop.
+
+NOTE Confidence: 0.9708235263824463
+
+00:03:05.440 --> 00:03:06.960
+And this is my favorite part.
+
+NOTE Confidence: 0.9425215125083923
+
+00:03:07.120 --> 00:03:09.276
+This is the part where it actually gets to be
+
+NOTE Confidence: 0.9425215125083923
+
+00:03:09.323 --> 00:03:11.288
+kind of fun, because all you got to do is
+
+NOTE Confidence: 0.9425215125083923
+
+00:03:11.336 --> 00:03:13.827
+you measure, you make some changes to your code, and
+
+NOTE Confidence: 0.9425215125083923
+
+00:03:13.875 --> 00:03:15.840
+then you see the impact of those changes.
+
+NOTE Confidence: 0.915523111820221
+
+00:03:16.160 --> 00:03:18.932
+And so like I said, you measure twice, you optimize
+
+NOTE Confidence: 0.915523111820221
+
+00:03:18.986 --> 00:03:21.704
+once, you measure, you make a change, and then you
+
+NOTE Confidence: 0.915523111820221
+
+00:03:21.758 --> 00:03:22.519
+measure again.
+
+NOTE Confidence: 0.9532278776168823
+
+00:03:22.560 --> 00:03:24.704
+And you can see the delta, you can see what
+
+NOTE Confidence: 0.9532278776168823
+
+00:03:24.754 --> 00:03:26.399
+the effects of your changes were.
+
+NOTE Confidence: 0.8452562093734741
+
+00:03:27.360 --> 00:03:30.080
+And so then afterwards you get to the improve block.
+
+NOTE Confidence: 0.935433030128479
+
+00:03:30.240 --> 00:03:31.520
+Did you actually improve the code?
+
+NOTE Confidence: 0.9705466032028198
+
+00:03:31.600 --> 00:03:31.920
+Yeah.
+
+NOTE Confidence: 0.8801137208938599
+
+00:03:32.000 --> 00:03:32.640
+Cool success.
+
+NOTE Confidence: 0.8002398014068604
+
+00:03:32.640 --> 00:03:33.120
+You get cake.
+
+NOTE Confidence: 0.9564803242683411
+
+00:03:33.840 --> 00:03:35.720
+If you didn't, that's totally fine.
+
+NOTE Confidence: 0.8531562685966492
+
+00:03:36.120 --> 00:03:38.080
+You can just fall back into that optimization loop.
+
+NOTE Confidence: 0.9307916164398193
+
+00:03:38.080 --> 00:03:39.600
+You can try a different optimization.
+
+NOTE Confidence: 0.9250816106796265
+
+00:03:39.600 --> 00:03:41.480
+It's not just necessarily A1 and done.
+
+NOTE Confidence: 0.9417365789413452
+
+00:03:41.800 --> 00:03:44.748
+It's very experimental and maybe you've gotten to a point
+
+NOTE Confidence: 0.9417365789413452
+
+00:03:44.800 --> 00:03:47.801
+where you've optimized so much for that one benchmark that
+
+NOTE Confidence: 0.9417365789413452
+
+00:03:47.852 --> 00:03:49.560
+you can't really improve anymore.
+
+NOTE Confidence: 0.77674400806427
+
+00:03:49.880 --> 00:03:51.080
+And that's totally fine too.
+
+NOTE Confidence: 0.9448675513267517
+
+00:03:51.400 --> 00:03:53.872
+You just go back to that first block and you
+
+NOTE Confidence: 0.9448675513267517
+
+00:03:53.928 --> 00:03:56.906
+can start looking at other issues that you might have
+
+NOTE Confidence: 0.9448675513267517
+
+00:03:56.962 --> 00:04:00.164
+had in that original trace and pinpoint something else to
+
+NOTE Confidence: 0.9448675513267517
+
+00:04:00.221 --> 00:04:01.120
+try and improve.
+
+NOTE Confidence: 0.9624441862106323
+
+00:04:02.040 --> 00:04:05.262
+And so with that, let's go ahead and let's jump
+
+NOTE Confidence: 0.9624441862106323
+
+00:04:05.331 --> 00:04:06.360
+into the demos.
+
+NOTE Confidence: 0.884574294090271
+
+00:04:07.480 --> 00:04:09.912
+And so when I do demos, I always get super
+
+NOTE Confidence: 0.884574294090271
+
+00:04:09.970 --> 00:04:13.214
+aggravated by someone taking a console app, putting in a
+
+NOTE Confidence: 0.884574294090271
+
+00:04:13.272 --> 00:04:16.400
+very obvious bug and seeing saying, hey, check it out.
+
+NOTE Confidence: 0.9146562814712524
+
+00:04:16.480 --> 00:04:18.280
+The tool showed me what the problem is.
+
+NOTE Confidence: 0.9427341818809509
+
+00:04:18.400 --> 00:04:21.025
+Like, that's just not realistic of what we do as
+
+NOTE Confidence: 0.9427341818809509
+
+00:04:21.080 --> 00:04:22.120
+software engineers.
+
+NOTE Confidence: 0.9334742426872253
+
+00:04:22.520 --> 00:04:24.839
+And so I always like to go to some sort
+
+NOTE Confidence: 0.9334742426872253
+
+00:04:24.899 --> 00:04:27.635
+of popular repository and see what I can do to
+
+NOTE Confidence: 0.9334742426872253
+
+00:04:27.694 --> 00:04:29.360
+try and improve performance.
+
+NOTE Confidence: 0.9074382781982422
+
+00:04:29.800 --> 00:04:31.829
+And so one of my favorite ways to do this
+
+NOTE Confidence: 0.9074382781982422
+
+00:04:31.878 --> 00:04:34.056
+is I go to nugent.org, I just kind of Scroll
+
+NOTE Confidence: 0.9074382781982422
+
+00:04:34.106 --> 00:04:36.680
+down some of the packages, see what's super popular.
+
+NOTE Confidence: 0.8984798789024353
+
+00:04:37.040 --> 00:04:39.499
+And in this case, I'm going to for this talk,
+
+NOTE Confidence: 0.8984798789024353
+
+00:04:39.554 --> 00:04:41.959
+I want to see if we can optimize CSV Helper.
+
+NOTE Confidence: 0.8456369638442993
+
+00:04:42.400 --> 00:04:46.639
+So it's the 16th most downloaded Nugent package at 51
+
+NOTE Confidence: 0.8456369638442993
+
+00:04:46.719 --> 00:04:49.999
+million downloads, super popular package.
+
+NOTE Confidence: 0.949121356010437
+
+00:04:50.040 --> 00:04:52.220
+If we can try and optimize that, we have a
+
+NOTE Confidence: 0.949121356010437
+
+00:04:52.271 --> 00:04:54.400
+potential to really help a lot of people.
+
+NOTE Confidence: 0.9036391377449036
+
+00:04:55.520 --> 00:04:57.798
+And So what I did is I went ahead, I
+
+NOTE Confidence: 0.9036391377449036
+
+00:04:57.861 --> 00:05:01.215
+cloned it, I opened the solution in Visual Studio and
+
+NOTE Confidence: 0.9036391377449036
+
+00:05:01.278 --> 00:05:03.239
+you can see there's CSV helper.
+
+NOTE Confidence: 0.8609578013420105
+
+00:05:03.320 --> 00:05:07.000
+There's already a CSV Helper benchmarks project, which is awesome.
+
+NOTE Confidence: 0.8783594965934753
+
+00:05:07.080 --> 00:05:09.554
+That was actually added by yours truly in a previous
+
+NOTE Confidence: 0.8783594965934753
+
+00:05:09.602 --> 00:05:09.839
+talk.
+
+NOTE Confidence: 0.8944782614707947
+
+00:05:10.120 --> 00:05:12.400
+I've reused this repository a couple of times.
+
+NOTE Confidence: 0.9403824210166931
+
+00:05:13.080 --> 00:05:14.640
+We also have tests, which are great.
+
+NOTE Confidence: 0.9053909778594971
+
+00:05:14.680 --> 00:05:17.223
+So as we, you know, go through that optimization loop,
+
+NOTE Confidence: 0.9053909778594971
+
+00:05:17.270 --> 00:05:19.577
+we can run the test, make sure we didn't actually
+
+NOTE Confidence: 0.9053909778594971
+
+00:05:19.624 --> 00:05:22.780
+break functionality because although we want to make things faster,
+
+NOTE Confidence: 0.9053909778594971
+
+00:05:22.827 --> 00:05:24.239
+we don't want to break things.
+
+NOTE Confidence: 0.9582236409187317
+
+00:05:25.000 --> 00:05:25.960
+And then there's the website.
+
+NOTE Confidence: 0.919386088848114
+
+00:05:27.080 --> 00:05:31.000
+And so in the previous talk, I created a benchmark.
+
+NOTE Confidence: 0.9329690337181091
+
+00:05:31.480 --> 00:05:35.512
+And for those of you that aren't familiar with benchmark.net
+
+NOTE Confidence: 0.9329690337181091
+
+00:05:35.579 --> 00:05:38.670
+and how benchmarks work, this is a just a very
+
+NOTE Confidence: 0.9329690337181091
+
+00:05:38.737 --> 00:05:39.880
+simple benchmark.
+
+NOTE Confidence: 0.9509669542312622
+
+00:05:39.880 --> 00:05:42.138
+It's like I said, it's very similar to a unit
+
+NOTE Confidence: 0.9509669542312622
+
+00:05:42.189 --> 00:05:42.440
+test.
+
+NOTE Confidence: 0.8916406631469727
+
+00:05:43.080 --> 00:05:46.115
+There's a global setup piece to it, so you can
+
+NOTE Confidence: 0.8916406631469727
+
+00:05:46.181 --> 00:05:50.603
+do all kinds of initialization before the benchmark itself actually
+
+NOTE Confidence: 0.8916406631469727
+
+00:05:50.669 --> 00:05:50.999
+runs.
+
+NOTE Confidence: 0.9549360871315002
+
+00:05:51.520 --> 00:05:53.759
+This is great because you can extract the parts that
+
+NOTE Confidence: 0.9549360871315002
+
+00:05:53.803 --> 00:05:55.439
+you're not actually trying to measure.
+
+NOTE Confidence: 0.922480583190918
+
+00:05:56.360 --> 00:06:00.400
+And so in this benchmark, it's trying to enumerate records.
+
+NOTE Confidence: 0.8683778047561646
+
+00:06:00.560 --> 00:06:03.954
+So it's trying to see how fast CSV Helper can
+
+NOTE Confidence: 0.8683778047561646
+
+00:06:04.029 --> 00:06:05.840
+actually read ACSV file.
+
+NOTE Confidence: 0.8966056704521179
+
+00:06:06.320 --> 00:06:08.609
+But I need some sort of test data to test
+
+NOTE Confidence: 0.8966056704521179
+
+00:06:08.665 --> 00:06:09.000
+it on.
+
+NOTE Confidence: 0.7177661061286926
+
+00:06:09.240 --> 00:06:11.280
+And so this global setup lets me set that up.
+
+NOTE Confidence: 0.8929685354232788
+
+00:06:11.320 --> 00:06:13.760
+So I'm not benchmarking setting up my test data, right.
+
+NOTE Confidence: 0.9281998872756958
+
+00:06:13.760 --> 00:06:17.321
+I'm just benchmarking the actual code that I'm interested in
+
+NOTE Confidence: 0.9281998872756958
+
+00:06:17.380 --> 00:06:19.280
+which is this enumerate records.
+
+NOTE Confidence: 0.9144670367240906
+
+00:06:19.839 --> 00:06:22.798
+Another interesting thing to kind of point out here is
+
+NOTE Confidence: 0.9144670367240906
+
+00:06:22.853 --> 00:06:25.648
+in this enumerate records, you see it starts off by
+
+NOTE Confidence: 0.9144670367240906
+
+00:06:25.703 --> 00:06:27.839
+setting the stream position equal to 0.
+
+NOTE Confidence: 0.9231597185134888
+
+00:06:28.360 --> 00:06:31.634
+What I'm actually doing here is in the setup I'm
+
+NOTE Confidence: 0.9231597185134888
+
+00:06:31.702 --> 00:06:34.976
+creating this CSV file and it's being put into a
+
+NOTE Confidence: 0.9231597185134888
+
+00:06:35.045 --> 00:06:38.251
+memory stream and then I need to write that CSV
+
+NOTE Confidence: 0.9231597185134888
+
+00:06:38.319 --> 00:06:41.048
+file and I don't want to pay the cost of
+
+NOTE Confidence: 0.9231597185134888
+
+00:06:41.116 --> 00:06:44.799
+constantly expanding buffers and flushing out to disk.
+
+NOTE Confidence: 0.9593036770820618
+
+00:06:45.080 --> 00:06:47.935
+I'm really trying to isolate the code that is doing
+
+NOTE Confidence: 0.9593036770820618
+
+00:06:47.991 --> 00:06:49.279
+the actual enumeration.
+
+NOTE Confidence: 0.930071234703064
+
+00:06:49.720 --> 00:06:52.355
+And so I reset that stream and I keep it
+
+NOTE Confidence: 0.930071234703064
+
+00:06:52.421 --> 00:06:53.079
+in memory.
+
+NOTE Confidence: 0.9733642339706421
+
+00:06:53.080 --> 00:06:56.581
+And so again, I'm just trying to measure the impact
+
+NOTE Confidence: 0.9733642339706421
+
+00:06:56.649 --> 00:06:58.160
+of the library itself.
+
+NOTE Confidence: 0.9018824696540833
+
+00:06:59.240 --> 00:07:04.600
+And so we have a benchmark for actually enumerating records.
+
+NOTE Confidence: 0.9655502438545227
+
+00:07:04.960 --> 00:07:07.708
+I want to go ahead, I want to try and
+
+NOTE Confidence: 0.9655502438545227
+
+00:07:07.782 --> 00:07:10.680
+create a benchmark for writing records.
+
+NOTE Confidence: 0.9277741312980652
+
+00:07:10.680 --> 00:07:12.549
+So we have the reading, now we can do the
+
+NOTE Confidence: 0.9277741312980652
+
+00:07:12.595 --> 00:07:12.959
+writing.
+
+NOTE Confidence: 0.875522792339325
+
+00:07:13.520 --> 00:07:15.693
+And so I'm going to switch over to the Copilot
+
+NOTE Confidence: 0.875522792339325
+
+00:07:15.741 --> 00:07:18.103
+chat and I'm going to type App Profiler that says,
+
+NOTE Confidence: 0.875522792339325
+
+00:07:18.151 --> 00:07:20.372
+I want to talk to the profiler agent that knows
+
+NOTE Confidence: 0.875522792339325
+
+00:07:20.419 --> 00:07:23.255
+about benchmarking, that knows how to run the profiler, that
+
+NOTE Confidence: 0.875522792339325
+
+00:07:23.302 --> 00:07:24.720
+knows how to write benchmarks.
+
+NOTE Confidence: 0.8132461309432983
+
+00:07:24.720 --> 00:07:30.145
+And I want to say write me a benchmark for
+
+NOTE Confidence: 0.8132461309432983
+
+00:07:30.274 --> 00:07:32.600
+writing ACSV file.
+
+NOTE Confidence: 0.7694774270057678
+
+00:07:35.400 --> 00:07:37.080
+And now Copilot's going to go off.
+
+NOTE Confidence: 0.9685745239257812
+
+00:07:37.120 --> 00:07:39.876
+And with any luck, it's going to go ahead and
+
+NOTE Confidence: 0.9685745239257812
+
+00:07:39.937 --> 00:07:41.039
+write that for us.
+
+NOTE Confidence: 0.863613486289978
+
+00:07:42.440 --> 00:07:44.827
+And the first thing we can see is in the
+
+NOTE Confidence: 0.863613486289978
+
+00:07:44.886 --> 00:07:47.572
+kind of little Go stacks, there is a Yep, let
+
+NOTE Confidence: 0.863613486289978
+
+00:07:47.632 --> 00:07:49.959
+me see if I can expand that real quick.
+
+NOTE Confidence: 0.8975522518157959
+
+00:07:50.800 --> 00:07:52.880
+It read the existing benchmark.
+
+NOTE Confidence: 0.95667564868927
+
+00:07:53.400 --> 00:07:55.840
+I didn't tell it about the existing benchmark.
+
+NOTE Confidence: 0.9598621129989624
+
+00:07:55.880 --> 00:07:57.640
+It knows that, hey, I'm writing benchmarks.
+
+NOTE Confidence: 0.9687454700469971
+
+00:07:57.640 --> 00:08:00.154
+I should probably look at the other benchmarks that are
+
+NOTE Confidence: 0.9687454700469971
+
+00:08:00.199 --> 00:08:02.759
+included in this project and try and write similar code.
+
+NOTE Confidence: 0.9520525336265564
+
+00:08:03.560 --> 00:08:05.480
+And so it found that benchmark.
+
+NOTE Confidence: 0.8836333751678467
+
+00:08:05.480 --> 00:08:08.661
+It then said, hey, there's no existing benchmarks that cover
+
+NOTE Confidence: 0.8836333751678467
+
+00:08:08.714 --> 00:08:11.736
+CSV writing because if we already have one, why duplicate
+
+NOTE Confidence: 0.8836333751678467
+
+00:08:11.789 --> 00:08:12.320
+that work?
+
+NOTE Confidence: 0.9507642388343811
+
+00:08:12.320 --> 00:08:14.040
+Why don't we just reuse the existing one?
+
+NOTE Confidence: 0.8585132956504822
+
+00:08:14.680 --> 00:08:17.713
+And so now it's searching through the project and it's
+
+NOTE Confidence: 0.8585132956504822
+
+00:08:17.769 --> 00:08:20.522
+going to write out a benchmark and then the first
+
+NOTE Confidence: 0.8585132956504822
+
+00:08:20.579 --> 00:08:23.219
+thing it says is, hey, it needs to install this
+
+NOTE Confidence: 0.8585132956504822
+
+00:08:23.275 --> 00:08:27.039
+benchmark packages, this diagnostics hub, benchmark.net Diagnosers.
+
+NOTE Confidence: 0.9002714157104492
+
+00:08:27.040 --> 00:08:28.600
+I'm going to go ahead and say confirm.
+
+NOTE Confidence: 0.9676894545555115
+
+00:08:29.240 --> 00:08:31.681
+This was that integration that I talked about with the
+
+NOTE Confidence: 0.9676894545555115
+
+00:08:31.726 --> 00:08:32.359
+Visual Studio.
+
+NOTE Confidence: 0.9129247069358826
+
+00:08:32.360 --> 00:08:37.874
+Profilerbenchmark.net has this concept of diagnosers, which allow different tools
+
+NOTE Confidence: 0.9129247069358826
+
+00:08:37.942 --> 00:08:42.639
+to pull diagnostic information from the benchmark while it's running.
+
+NOTE Confidence: 0.9180740118026733
+
+00:08:43.080 --> 00:08:46.277
+Visual Studio has one of these packages published on Nugent
+
+NOTE Confidence: 0.9180740118026733
+
+00:08:46.331 --> 00:08:49.203
+that allows it to interact with the profiler and pull
+
+NOTE Confidence: 0.9180740118026733
+
+00:08:49.258 --> 00:08:49.799
+that data.
+
+NOTE Confidence: 0.9304870367050171
+
+00:08:50.920 --> 00:08:52.680
+And so it went ahead.
+
+NOTE Confidence: 0.7954571843147278
+
+00:08:52.680 --> 00:08:53.840
+It created the benchmark.
+
+NOTE Confidence: 0.9270318746566772
+
+00:08:53.920 --> 00:08:55.240
+It compiles cleanly.
+
+NOTE Confidence: 0.9223021864891052
+
+00:08:55.679 --> 00:08:58.058
+I can go and click on the right records and
+
+NOTE Confidence: 0.9223021864891052
+
+00:08:58.114 --> 00:09:00.382
+you can see it wrote it in a very similar
+
+NOTE Confidence: 0.9223021864891052
+
+00:09:00.437 --> 00:09:00.880
+fashion.
+
+NOTE Confidence: 0.7710536122322083
+
+00:09:01.160 --> 00:09:03.600
+It still has that simple class.
+
+NOTE Confidence: 0.7562285661697388
+
+00:09:03.600 --> 00:09:04.600
+It does a global setup.
+
+NOTE Confidence: 0.8836672902107239
+
+00:09:04.600 --> 00:09:06.760
+Again, it does the right records.
+
+NOTE Confidence: 0.8233174085617065
+
+00:09:06.760 --> 00:09:07.840
+It sets the position.
+
+NOTE Confidence: 0.8880343437194824
+
+00:09:08.360 --> 00:09:10.037
+I don't want it to set the length of the
+
+NOTE Confidence: 0.8880343437194824
+
+00:09:10.079 --> 00:09:12.176
+stream because I don't want it to reset the stream
+
+NOTE Confidence: 0.8880343437194824
+
+00:09:12.218 --> 00:09:12.679
+every time.
+
+NOTE Confidence: 0.9402157068252563
+
+00:09:12.679 --> 00:09:15.580
+I just want it to reset its position in the
+
+NOTE Confidence: 0.9402157068252563
+
+00:09:15.647 --> 00:09:16.120
+stream.
+
+NOTE Confidence: 0.9356399178504944
+
+00:09:16.560 --> 00:09:18.680
+And then I want to change this a little bit.
+
+NOTE Confidence: 0.9456635117530823
+
+00:09:18.760 --> 00:09:22.438
+So I have this writing off this record that we're
+
+NOTE Confidence: 0.9456635117530823
+
+00:09:22.513 --> 00:09:24.239
+going to serialize off.
+
+NOTE Confidence: 0.9634522199630737
+
+00:09:24.280 --> 00:09:26.598
+And in this name field, it's just a bunch of
+
+NOTE Confidence: 0.9634522199630737
+
+00:09:26.651 --> 00:09:27.600
+random characters.
+
+NOTE Confidence: 0.830843985080719
+
+00:09:28.120 --> 00:09:33.541
+I'm going to hit alt slash and I'm going to
+
+NOTE Confidence: 0.830843985080719
+
+00:09:33.667 --> 00:09:39.845
+ask Copilot to update this so half of the records
+
+NOTE Confidence: 0.830843985080719
+
+00:09:39.971 --> 00:09:43.880
+have a comma delimiter in them.
+
+NOTE Confidence: 0.9211667776107788
+
+00:09:44.880 --> 00:09:47.019
+And so I can kind of work with Copilot to
+
+NOTE Confidence: 0.9211667776107788
+
+00:09:47.072 --> 00:09:49.159
+try and iterate on the benchmark itself.
+
+NOTE Confidence: 0.8997598886489868
+
+00:09:49.400 --> 00:09:51.436
+In this case, I want to try and add some
+
+NOTE Confidence: 0.8997598886489868
+
+00:09:51.487 --> 00:09:54.185
+commas to the fields because that'll make it a little
+
+NOTE Confidence: 0.8997598886489868
+
+00:09:54.236 --> 00:09:57.239
+bit more interesting, little bit more realistic in my data.
+
+NOTE Confidence: 0.8757084608078003
+
+00:09:57.720 --> 00:10:00.643
+So you can see it took a very simple approach
+
+NOTE Confidence: 0.8757084608078003
+
+00:10:00.708 --> 00:10:03.891
+here where it just modded by two, dropped a comma
+
+NOTE Confidence: 0.8757084608078003
+
+00:10:03.956 --> 00:10:06.360
+in there, nothing super, super crazy.
+
+NOTE Confidence: 0.9689958095550537
+
+00:10:07.480 --> 00:10:10.040
+And so now I have my benchmark.
+
+NOTE Confidence: 0.8913596272468567
+
+00:10:11.040 --> 00:10:13.619
+And so if you remember back to that loop would
+
+NOTE Confidence: 0.8913596272468567
+
+00:10:13.675 --> 00:10:16.480
+now get to jump into the actual optimization part.
+
+NOTE Confidence: 0.9005576372146606
+
+00:10:16.480 --> 00:10:17.520
+And this is the fun part.
+
+NOTE Confidence: 0.8564744591712952
+
+00:10:18.000 --> 00:10:20.480
+And so I'm already talking with the profiler.
+
+NOTE Confidence: 0.8894835114479065
+
+00:10:21.040 --> 00:10:22.867
+It's already asking, hey, do you want to run this
+
+NOTE Confidence: 0.8894835114479065
+
+00:10:22.904 --> 00:10:23.800
+to establish a baseline?
+
+NOTE Confidence: 0.9460489749908447
+
+00:10:23.800 --> 00:10:26.710
+And I'm going to say run the and I'll type
+
+NOTE Confidence: 0.9460489749908447
+
+00:10:26.779 --> 00:10:29.759
+the hash and you can see this menu pops up.
+
+NOTE Confidence: 0.910454511642456
+
+00:10:30.080 --> 00:10:34.396
+And this is the way I can provide additional context
+
+NOTE Confidence: 0.910454511642456
+
+00:10:34.479 --> 00:10:38.298
+to copilot and I can say run the right records
+
+NOTE Confidence: 0.910454511642456
+
+00:10:38.381 --> 00:10:42.199
+benchmark and optimize the code that it calls.
+
+NOTE Confidence: 0.8324703574180603
+
+00:10:43.840 --> 00:10:47.045
+And what that slug does is it provides that context
+
+NOTE Confidence: 0.8324703574180603
+
+00:10:47.108 --> 00:10:47.800
+to copilot.
+
+NOTE Confidence: 0.934177815914154
+
+00:10:47.800 --> 00:10:50.750
+And the better context you can provide it, the more
+
+NOTE Confidence: 0.934177815914154
+
+00:10:50.808 --> 00:10:53.412
+likely it is going to be to do the operations
+
+NOTE Confidence: 0.934177815914154
+
+00:10:53.470 --> 00:10:54.280
+that you want.
+
+NOTE Confidence: 0.944362223148346
+
+00:10:54.280 --> 00:10:56.519
+And so I gave it that very specific like this
+
+NOTE Confidence: 0.944362223148346
+
+00:10:56.569 --> 00:10:58.560
+is the benchmark that I want you to run.
+
+NOTE Confidence: 0.9207196831703186
+
+00:11:01.480 --> 00:11:04.866
+And so now it is reading through some of my
+
+NOTE Confidence: 0.9207196831703186
+
+00:11:04.945 --> 00:11:09.119
+files, it looks like it's reading benchmark dot main.
+
+NOTE Confidence: 0.9387938976287842
+
+00:11:11.360 --> 00:11:13.900
+And it picked up on this fact that previously in
+
+NOTE Confidence: 0.9387938976287842
+
+00:11:13.953 --> 00:11:16.759
+the benchmarks, we only had a single benchmark that I
+
+NOTE Confidence: 0.9387938976287842
+
+00:11:16.812 --> 00:11:18.399
+added during my previous talk.
+
+NOTE Confidence: 0.9675208926200867
+
+00:11:18.480 --> 00:11:20.917
+And so I was just directly running that benchmark and
+
+NOTE Confidence: 0.9675208926200867
+
+00:11:20.963 --> 00:11:22.756
+it says, hey, I need to be able to pick
+
+NOTE Confidence: 0.9675208926200867
+
+00:11:22.802 --> 00:11:24.320
+the benchmark that I want to run.
+
+NOTE Confidence: 0.8715957999229431
+
+00:11:24.320 --> 00:11:28.035
+So it automatically switched over to benchmark Switcher so it
+
+NOTE Confidence: 0.8715957999229431
+
+00:11:28.096 --> 00:11:30.960
+can control the benchmarks that run at runtime.
+
+NOTE Confidence: 0.9085534811019897
+
+00:11:31.680 --> 00:11:35.000
+And then behind the scenes, it's actually running benchmark.net.
+
+NOTE Confidence: 0.9043724536895752
+
+00:11:36.040 --> 00:11:38.228
+And so if you ran this in the debugger or
+
+NOTE Confidence: 0.9043724536895752
+
+00:11:38.282 --> 00:11:41.004
+you ran in this from a terminal, you would normally
+
+NOTE Confidence: 0.9043724536895752
+
+00:11:41.058 --> 00:11:43.674
+get a terminal window that pops up and it's going
+
+NOTE Confidence: 0.9043724536895752
+
+00:11:43.727 --> 00:11:46.290
+to have a whole bunch of spew that's popping out
+
+NOTE Confidence: 0.9043724536895752
+
+00:11:46.343 --> 00:11:49.386
+that's saying like, hey, this is the iteration that we're
+
+NOTE Confidence: 0.9043724536895752
+
+00:11:49.439 --> 00:11:49.600
+on.
+
+NOTE Confidence: 0.9127328991889954
+
+00:11:49.600 --> 00:11:51.600
+This is how long each one of these has taken.
+
+NOTE Confidence: 0.9155515432357788
+
+00:11:51.920 --> 00:11:56.360
+You can see we're right about 1.41.5 milliseconds.
+
+NOTE Confidence: 0.8255142569541931
+
+00:11:57.080 --> 00:12:00.002
+And so it would spew all that out, the agents
+
+NOTE Confidence: 0.8255142569541931
+
+00:12:00.067 --> 00:12:03.120
+just capturing all of that, collecting it here.
+
+NOTE Confidence: 0.8859597444534302
+
+00:12:03.120 --> 00:12:05.590
+And then it at the end it's actually getting a
+
+NOTE Confidence: 0.8859597444534302
+
+00:12:05.644 --> 00:12:08.759
+benchmark or it's getting a profiling trace, I should say.
+
+NOTE Confidence: 0.9247199892997742
+
+00:12:09.240 --> 00:12:12.292
+And so it's saving to a directory and then it
+
+NOTE Confidence: 0.9247199892997742
+
+00:12:12.360 --> 00:12:16.090
+automatically opens up in Visual Studio and then it can
+
+NOTE Confidence: 0.9247199892997742
+
+00:12:16.158 --> 00:12:18.600
+start getting into the optimization.
+
+NOTE Confidence: 0.9268686771392822
+
+00:12:18.840 --> 00:12:21.363
+And so at this point we have our benchmark, so
+
+NOTE Confidence: 0.9268686771392822
+
+00:12:21.418 --> 00:12:24.107
+we have that reusable test harness, we now have a
+
+NOTE Confidence: 0.9268686771392822
+
+00:12:24.162 --> 00:12:25.040
+trace from that.
+
+NOTE Confidence: 0.959601104259491
+
+00:12:25.040 --> 00:12:27.355
+And so we know where it is that we want
+
+NOTE Confidence: 0.959601104259491
+
+00:12:27.414 --> 00:12:29.849
+to or we have a trace that tells us where
+
+NOTE Confidence: 0.959601104259491
+
+00:12:29.908 --> 00:12:32.639
+time is being spent and where we might want to
+
+NOTE Confidence: 0.959601104259491
+
+00:12:32.698 --> 00:12:34.479
+try and do some investigation.
+
+NOTE Confidence: 0.8620845079421997
+
+00:12:35.320 --> 00:12:37.559
+So I'm going to hit stop here real quick because
+
+NOTE Confidence: 0.8620845079421997
+
+00:12:37.606 --> 00:12:40.219
+sometimes the agent gets a little excited and says, hey,
+
+NOTE Confidence: 0.8620845079421997
+
+00:12:40.266 --> 00:12:41.479
+I see what the problem is.
+
+NOTE Confidence: 0.9669393301010132
+
+00:12:41.480 --> 00:12:42.400
+Let me go fix that.
+
+NOTE Confidence: 0.9140479564666748
+
+00:12:43.000 --> 00:12:44.906
+We've tried to tell it not to, but sometimes it
+
+NOTE Confidence: 0.9140479564666748
+
+00:12:44.947 --> 00:12:45.839
+gets a little excited.
+
+NOTE Confidence: 0.8798936009407043
+
+00:12:46.520 --> 00:12:49.654
+It went ahead, it did the analysis for us and
+
+NOTE Confidence: 0.8798936009407043
+
+00:12:49.724 --> 00:12:53.973
+it said, hey, the biggest hotspot is this expression compile,
+
+NOTE Confidence: 0.8798936009407043
+
+00:12:54.043 --> 00:12:58.223
+followed by the should quote and then this dynamic multicast
+
+NOTE Confidence: 0.8798936009407043
+
+00:12:58.293 --> 00:12:58.920
+delegate.
+
+NOTE Confidence: 0.868758499622345
+
+00:13:00.080 --> 00:13:02.581
+And it's saying like, hey, the biggest win, of course
+
+NOTE Confidence: 0.868758499622345
+
+00:13:02.628 --> 00:13:04.799
+is the thing that uses the most amount of CPU.
+
+NOTE Confidence: 0.896889865398407
+
+00:13:04.800 --> 00:13:07.000
+Let me go ahead and try and optimize that.
+
+NOTE Confidence: 0.9315098524093628
+
+00:13:08.040 --> 00:13:10.001
+I'll be honest, I've tried to optimize this a couple
+
+NOTE Confidence: 0.9315098524093628
+
+00:13:10.039 --> 00:13:11.359
+of times and I always seem to fail.
+
+NOTE Confidence: 0.8070676922798157
+
+00:13:11.360 --> 00:13:14.774
+And so I don't want to optimize the top most
+
+NOTE Confidence: 0.8070676922798157
+
+00:13:14.851 --> 00:13:15.239
+item.
+
+NOTE Confidence: 0.9353941082954407
+
+00:13:15.600 --> 00:13:18.114
+And if you remember back to that pipeline, like I
+
+NOTE Confidence: 0.9353941082954407
+
+00:13:18.166 --> 00:13:20.835
+said, like if you can't get the improvement, just go
+
+NOTE Confidence: 0.9353941082954407
+
+00:13:20.886 --> 00:13:23.401
+back and picking up the next biggest thing to try
+
+NOTE Confidence: 0.9353941082954407
+
+00:13:23.452 --> 00:13:24.119
+and optimize.
+
+NOTE Confidence: 0.9423918724060059
+
+00:13:24.120 --> 00:13:29.922
+So instead I'm going to say optimize the should quote
+
+NOTE Confidence: 0.9423918724060059
+
+00:13:30.031 --> 00:13:35.943
+logic and so I can steer it down another investigation
+
+NOTE Confidence: 0.9423918724060059
+
+00:13:36.052 --> 00:13:36.600
+path.
+
+NOTE Confidence: 0.8986812829971313
+
+00:13:37.080 --> 00:13:39.721
+And so it's going to start thinking says user wants
+
+NOTE Confidence: 0.8986812829971313
+
+00:13:39.773 --> 00:13:42.000
+me to investigate this other thing instead.
+
+NOTE Confidence: 0.8991290330886841
+
+00:13:42.400 --> 00:13:45.416
+So it's going to go and it's going to investigate
+
+NOTE Confidence: 0.8991290330886841
+
+00:13:45.478 --> 00:13:49.418
+the should quote logic it's going through, it's reading relevant
+
+NOTE Confidence: 0.8991290330886841
+
+00:13:49.479 --> 00:13:50.280
+source it is.
+
+NOTE Confidence: 0.8287104368209839
+
+00:13:50.360 --> 00:13:52.487
+And it's the interesting thing here is it's not just
+
+NOTE Confidence: 0.8287104368209839
+
+00:13:52.528 --> 00:13:53.919
+grepping through your source base.
+
+NOTE Confidence: 0.8158715963363647
+
+00:13:54.160 --> 00:13:56.880
+It's using the go to source functionality and the profiler.
+
+NOTE Confidence: 0.9525504112243652
+
+00:13:56.880 --> 00:14:00.122
+It's using that profiling data to see exactly which lines
+
+NOTE Confidence: 0.9525504112243652
+
+00:14:00.179 --> 00:14:02.910
+are taking the most amount of time and then it's
+
+NOTE Confidence: 0.9525504112243652
+
+00:14:02.967 --> 00:14:06.039
+using that to guide the investigation that it's doing.
+
+NOTE Confidence: 0.9320521354675293
+
+00:14:06.880 --> 00:14:11.189
+And so it is continuing to go through and it
+
+NOTE Confidence: 0.9320521354675293
+
+00:14:11.287 --> 00:14:16.577
+looks like it says the best optimization is to combine
+
+NOTE Confidence: 0.9320521354675293
+
+00:14:16.675 --> 00:14:21.964
+the character checks into a single pass and the should
+
+NOTE Confidence: 0.9320521354675293
+
+00:14:22.062 --> 00:14:26.960
+quote method looks like and click here looks like.
+
+NOTE Confidence: 0.9086911082267761
+
+00:14:26.960 --> 00:14:31.752
+The should quote method had this really Pretty Little Boolean
+
+NOTE Confidence: 0.9086911082267761
+
+00:14:31.831 --> 00:14:35.759
+logic block that did a bunch of operations in very
+
+NOTE Confidence: 0.9086911082267761
+
+00:14:35.838 --> 00:14:39.924
+few lines and copilot saying like, hey, you might be
+
+NOTE Confidence: 0.9086911082267761
+
+00:14:40.002 --> 00:14:42.359
+iterating that too many times.
+
+NOTE Confidence: 0.9172562956809998
+
+00:14:42.360 --> 00:14:45.362
+And instead let's just do a single pass through and
+
+NOTE Confidence: 0.9172562956809998
+
+00:14:45.421 --> 00:14:48.541
+let's try and optimize how we're iterating over it so
+
+NOTE Confidence: 0.9172562956809998
+
+00:14:48.600 --> 00:14:50.719
+we're not doing multiple iterations.
+
+NOTE Confidence: 0.9192668199539185
+
+00:14:51.240 --> 00:14:54.100
+And the interesting thing here is as soon as it
+
+NOTE Confidence: 0.9192668199539185
+
+00:14:54.161 --> 00:14:57.630
+went and did that optimization, you noticed it said, hey,
+
+NOTE Confidence: 0.9192668199539185
+
+00:14:57.691 --> 00:15:01.160
+I need to rerun the benchmark to measure the improvement.
+
+NOTE Confidence: 0.9458763599395752
+
+00:15:01.640 --> 00:15:03.360
+And so this is the really important part.
+
+NOTE Confidence: 0.9105679988861084
+
+00:15:03.360 --> 00:15:06.264
+Again, like I was saying earlier, once you're in that
+
+NOTE Confidence: 0.9105679988861084
+
+00:15:06.319 --> 00:15:10.046
+optimization loop, you want to measure, you establish your baseline,
+
+NOTE Confidence: 0.9105679988861084
+
+00:15:10.101 --> 00:15:13.389
+then you change your code, then you always remeasure because
+
+NOTE Confidence: 0.9105679988861084
+
+00:15:13.444 --> 00:15:15.801
+you want to see what was the impact of that
+
+NOTE Confidence: 0.9105679988861084
+
+00:15:15.856 --> 00:15:16.239
+change.
+
+NOTE Confidence: 0.8676053285598755
+
+00:15:16.560 --> 00:15:19.659
+Because if you're not actually measuring with data, you're not
+
+NOTE Confidence: 0.8676053285598755
+
+00:15:19.709 --> 00:15:21.759
+optimizing, you're just refactoring code.
+
+NOTE Confidence: 0.9268161654472351
+
+00:15:22.200 --> 00:15:24.730
+And so the data is really what turns it from
+
+NOTE Confidence: 0.9268161654472351
+
+00:15:24.787 --> 00:15:26.800
+a refactoring into an optimization.
+
+NOTE Confidence: 0.8864191174507141
+
+00:15:28.760 --> 00:15:33.440
+And so we can see the result summary.
+
+NOTE Confidence: 0.8181893229484558
+
+00:15:33.600 --> 00:15:35.640
+Yep, scrolling a little bit too quick for me.
+
+NOTE Confidence: 0.909065842628479
+
+00:15:36.680 --> 00:15:41.160
+Before the baseline was 1.4, milliseconds afterwards was 1.4.
+
+NOTE Confidence: 0.9301878213882446
+
+00:15:41.160 --> 00:15:46.112
+So unfortunately, we didn't get a good meaningful performance improvement
+
+NOTE Confidence: 0.9301878213882446
+
+00:15:46.180 --> 00:15:46.519
+here.
+
+NOTE Confidence: 0.8048627376556396
+
+00:15:47.280 --> 00:15:50.729
+But you could see the should quote did drop from
+
+NOTE Confidence: 0.8048627376556396
+
+00:15:50.801 --> 00:15:51.520
+13% to 7%.
+
+NOTE Confidence: 0.8876529335975647
+
+00:15:52.680 --> 00:15:56.523
+And it looks like some other code started taking up
+
+NOTE Confidence: 0.8876529335975647
+
+00:15:56.598 --> 00:15:57.879
+more of the time.
+
+NOTE Confidence: 0.9334812760353088
+
+00:15:57.920 --> 00:16:02.080
+And so I could continue my investigation here with Copilot.
+
+NOTE Confidence: 0.8264876008033752
+
+00:16:02.240 --> 00:16:04.932
+I could say like, hey, let's go ahead, let's try
+
+NOTE Confidence: 0.8264876008033752
+
+00:16:04.988 --> 00:16:07.120
+and optimize the crate write delegate.
+
+NOTE Confidence: 0.9092164039611816
+
+00:16:07.120 --> 00:16:09.652
+I could run a memory profile to go through and
+
+NOTE Confidence: 0.9092164039611816
+
+00:16:09.708 --> 00:16:11.359
+I could check the allocations.
+
+NOTE Confidence: 0.9199283719062805
+
+00:16:11.360 --> 00:16:16.019
+That way I could click the show, create write delegate
+
+NOTE Confidence: 0.9199283719062805
+
+00:16:16.105 --> 00:16:17.400
+implementation.
+
+NOTE Confidence: 0.9194651246070862
+
+00:16:18.640 --> 00:16:21.978
+I'll be honest, I did run this before the talk
+
+NOTE Confidence: 0.9194651246070862
+
+00:16:22.050 --> 00:16:25.752
+and we actually created APR because we were able to
+
+NOTE Confidence: 0.9194651246070862
+
+00:16:25.824 --> 00:16:28.800
+actually switch over to the conversation.
+
+NOTE Confidence: 0.9200530052185059
+
+00:16:29.320 --> 00:16:32.320
+We were actually able to meaningfully improve this with Copilot.
+
+NOTE Confidence: 0.7926782369613647
+
+00:16:32.320 --> 00:16:35.000
+I'm not sure why it didn't improve today.
+
+NOTE Confidence: 0.9186957478523254
+
+00:16:35.000 --> 00:16:36.875
+I'd have to dig through the logic a little bit
+
+NOTE Confidence: 0.9186957478523254
+
+00:16:36.916 --> 00:16:37.119
+more.
+
+NOTE Confidence: 0.9142673015594482
+
+00:16:37.720 --> 00:16:42.589
+But our metrics did go from about 1.1 milliseconds down
+
+NOTE Confidence: 0.9142673015594482
+
+00:16:42.677 --> 00:16:44.359
+to .8 milliseconds.
+
+NOTE Confidence: 0.9303333759307861
+
+00:16:44.680 --> 00:16:47.806
+And while it doesn't seem like a whole lot, that's
+
+NOTE Confidence: 0.9303333759307861
+
+00:16:47.869 --> 00:16:50.870
+a 25% win, a lot of times, like the improvements
+
+NOTE Confidence: 0.9303333759307861
+
+00:16:50.933 --> 00:16:53.935
+that you get with software, it's not going to be
+
+NOTE Confidence: 0.9303333759307861
+
+00:16:53.997 --> 00:16:56.811
+a magical like, oh, I fixed this one line and
+
+NOTE Confidence: 0.9303333759307861
+
+00:16:56.874 --> 00:16:57.999
+it was 10X faster.
+
+NOTE Confidence: 0.9295548796653748
+
+00:16:58.080 --> 00:17:00.812
+It's these small little paper cuts all over your code
+
+NOTE Confidence: 0.9295548796653748
+
+00:17:00.864 --> 00:17:03.545
+base that are really just tripping you up and really
+
+NOTE Confidence: 0.9295548796653748
+
+00:17:03.597 --> 00:17:04.680
+starting to hurt you.
+
+NOTE Confidence: 0.8802132606506348
+
+00:17:05.200 --> 00:17:08.730
+And so with the Copilot agent, you can just have
+
+NOTE Confidence: 0.8802132606506348
+
+00:17:08.804 --> 00:17:12.335
+it go through and run these and try and optimize
+
+NOTE Confidence: 0.8802132606506348
+
+00:17:12.408 --> 00:17:13.879
+as as you have time.
+
+NOTE Confidence: 0.9400306940078735
+
+00:17:14.480 --> 00:17:18.323
+And so we didn't get the optimization here, but one
+
+NOTE Confidence: 0.9400306940078735
+
+00:17:18.398 --> 00:17:22.316
+of the interesting follow-ups that I kind of want to
+
+NOTE Confidence: 0.9400306940078735
+
+00:17:22.392 --> 00:17:26.385
+leave everyone with is we now have this nice reusable
+
+NOTE Confidence: 0.9400306940078735
+
+00:17:26.461 --> 00:17:29.400
+artifact that goes with the repository.
+
+NOTE Confidence: 0.9698694944381714
+
+00:17:29.400 --> 00:17:32.629
+We can use this for additional profiling and I can
+
+NOTE Confidence: 0.9698694944381714
+
+00:17:32.693 --> 00:17:35.987
+also use this to learn about the profiling that I'm
+
+NOTE Confidence: 0.9698694944381714
+
+00:17:36.052 --> 00:17:36.440
+doing.
+
+NOTE Confidence: 0.8989185094833374
+
+00:17:36.520 --> 00:17:42.352
+And so I could ask copilot, since we did a
+
+NOTE Confidence: 0.8989185094833374
+
+00:17:42.491 --> 00:17:50.129
+single pass instead of multiple passes, why is this not
+
+NOTE Confidence: 0.8989185094833374
+
+00:17:50.267 --> 00:17:51.240
+faster?
+
+NOTE Confidence: 0.9077059030532837
+
+00:17:52.760 --> 00:17:55.298
+And it's not just you don't just have to use
+
+NOTE Confidence: 0.9077059030532837
+
+00:17:55.355 --> 00:17:58.239
+Copilot to invoke tools and get these things done.
+
+NOTE Confidence: 0.9562199115753174
+
+00:17:58.240 --> 00:18:00.304
+You can use it to actually learn and kind of
+
+NOTE Confidence: 0.9562199115753174
+
+00:18:00.351 --> 00:18:02.039
+grow as a software engineer as well.
+
+NOTE Confidence: 0.8866152167320251
+
+00:18:02.560 --> 00:18:06.211
+I'll be honest, I've Copilot has found some very interesting
+
+NOTE Confidence: 0.8866152167320251
+
+00:18:06.271 --> 00:18:08.280
+optimizations for me in the past.
+
+NOTE Confidence: 0.956068754196167
+
+00:18:08.600 --> 00:18:11.068
+And I've asked it like, I don't understand what's happening
+
+NOTE Confidence: 0.956068754196167
+
+00:18:11.110 --> 00:18:11.319
+here.
+
+NOTE Confidence: 0.8195046186447144
+
+00:18:11.320 --> 00:18:14.280
+And it's like, oh, did you know this like weird
+
+NOTE Confidence: 0.8195046186447144
+
+00:18:14.343 --> 00:18:17.618
+quirk about the JIT will stop inlining code after so
+
+NOTE Confidence: 0.8195046186447144
+
+00:18:17.681 --> 00:18:19.759
+many IL instructions in a method?
+
+NOTE Confidence: 0.9539239406585693
+
+00:18:20.360 --> 00:18:22.880
+And I had no idea and I learned something new.
+
+NOTE Confidence: 0.8822475075721741
+
+00:18:22.880 --> 00:18:25.329
+And so you can use copilot to not only kind
+
+NOTE Confidence: 0.8822475075721741
+
+00:18:25.386 --> 00:18:28.519
+of achieve the results that you're looking for, but you
+
+NOTE Confidence: 0.8822475075721741
+
+00:18:28.576 --> 00:18:30.741
+can also use it to learn and grow as a
+
+NOTE Confidence: 0.8822475075721741
+
+00:18:30.798 --> 00:18:32.279
+software engineer as well.
+
+NOTE Confidence: 0.9335989356040955
+
+00:18:33.920 --> 00:18:37.994
+And so with that, just want to switch back to
+
+NOTE Confidence: 0.9335989356040955
+
+00:18:38.085 --> 00:18:42.794
+the presentation deck, some next steps, if you get a
+
+NOTE Confidence: 0.9335989356040955
+
+00:18:42.884 --> 00:18:46.959
+chance, go see if you can reproduce the same.
+
+NOTE Confidence: 0.8968143463134766
+
+00:18:47.119 --> 00:18:50.981
+Hopefully by reproducing the same, I mean, you actually reproduce
+
+NOTE Confidence: 0.8968143463134766
+
+00:18:51.041 --> 00:18:54.189
+a performance win and you don't reproduce the non win
+
+NOTE Confidence: 0.8968143463134766
+
+00:18:54.249 --> 00:18:55.199
+that I got here.
+
+NOTE Confidence: 0.9031829237937927
+
+00:18:55.960 --> 00:18:58.920
+There is the CSV helper library as a resource.
+
+NOTE Confidence: 0.7614526748657227
+
+00:18:58.920 --> 00:19:03.240
+It's uploaded in the GitHub repo for the session.
+
+NOTE Confidence: 0.8589760065078735
+
+00:19:03.680 --> 00:19:05.280
+The author is super nice guy.
+
+NOTE Confidence: 0.807332456111908
+
+00:19:05.680 --> 00:19:06.440
+We'll work with you.
+
+NOTE Confidence: 0.9005885124206543
+
+00:19:07.200 --> 00:19:10.485
+CSV helper optimization PR is there and then the profiler
+
+NOTE Confidence: 0.9005885124206543
+
+00:19:10.543 --> 00:19:14.809
+agent documentation and then some other interesting related sessions later
+
+NOTE Confidence: 0.9005885124206543
+
+00:19:14.867 --> 00:19:15.039
+on.
+
+NOTE Confidence: 0.8632960319519043
+
+00:19:15.040 --> 00:19:17.662
+Today, Mads and I are going to be doing breakout
+
+NOTE Confidence: 0.8632960319519043
+
+00:19:17.717 --> 00:19:19.519
+session two O 7 on the Mainstage.
+
+NOTE Confidence: 0.9341827034950256
+
+00:19:20.000 --> 00:19:22.913
+And we're actually going to show off not only the
+
+NOTE Confidence: 0.9341827034950256
+
+00:19:22.972 --> 00:19:26.718
+profiler agent, but the debugging agent and creating unit tests
+
+NOTE Confidence: 0.9341827034950256
+
+00:19:26.777 --> 00:19:29.512
+as well and how we actually use that on Visual
+
+NOTE Confidence: 0.9341827034950256
+
+00:19:29.572 --> 00:19:33.258
+Studio to improve the performance of Visual Studio and improve
+
+NOTE Confidence: 0.9341827034950256
+
+00:19:33.317 --> 00:19:35.279
+the reliability of Visual Studio.
+
+NOTE Confidence: 0.9682801961898804
+
+00:19:37.400 --> 00:19:39.520
+And so with that, thank you.
+
+NOTE Confidence: 0.9686234593391418
+
+00:19:40.440 --> 00:19:41.760
+I can take any questions.
+
+NOTE Confidence: 0.8699904084205627
+
+00:19:44.200 --> 00:19:45.880
+The question was what time is the breakout session?
+
+NOTE Confidence: 0.7697932720184326
+
+00:19:45.880 --> 00:19:47.800
+Breakout session is at 4:00.
+
+NOTE Confidence: 0.9099465012550354
+
+00:20:01.640 --> 00:20:04.694
+OK, so the question was how do you inject functional
+
+NOTE Confidence: 0.9099465012550354
+
+00:20:04.753 --> 00:20:07.691
+testing into the group if into the loop if copilot
+
+NOTE Confidence: 0.9099465012550354
+
+00:20:07.749 --> 00:20:09.159
+broke the functionality?
+
+NOTE Confidence: 0.9107407927513123
+
+00:20:10.080 --> 00:20:13.030
+So a lot of times you can tell Copilot, these
+
+NOTE Confidence: 0.9107407927513123
+
+00:20:13.095 --> 00:20:14.800
+are the tests that I have.
+
+NOTE Confidence: 0.9310758709907532
+
+00:20:15.160 --> 00:20:18.261
+Please run these after any of the optimizations that you've
+
+NOTE Confidence: 0.9310758709907532
+
+00:20:18.314 --> 00:20:20.679
+done and then it will go through and use that
+
+NOTE Confidence: 0.9310758709907532
+
+00:20:20.732 --> 00:20:23.676
+as a validation layer in the breakout session that we're
+
+NOTE Confidence: 0.9310758709907532
+
+00:20:23.729 --> 00:20:24.359
+doing later.
+
+NOTE Confidence: 0.8548637628555298
+
+00:20:24.600 --> 00:20:27.994
+We're actually going to use copilots, the profilers ability to
+
+NOTE Confidence: 0.8548637628555298
+
+00:20:28.048 --> 00:20:30.731
+profile a unit test, to profile the unit test up,
+
+NOTE Confidence: 0.8548637628555298
+
+00:20:30.786 --> 00:20:34.180
+improve the optimization and because it's using the unit test,
+
+NOTE Confidence: 0.8548637628555298
+
+00:20:34.235 --> 00:20:37.027
+it's like, oh hey, I can use that for functionality
+
+NOTE Confidence: 0.8548637628555298
+
+00:20:37.082 --> 00:20:37.520
+as well.
+
+NOTE Confidence: 0.9567254781723022
+
+00:20:37.920 --> 00:20:38.880
+So it'll do that.
+
+NOTE Confidence: 0.2595863938331604
+
+00:20:52.000 --> 00:21:05.290
+Yep, yeah.
+
+NOTE Confidence: 0.9223749041557312
+
+00:21:05.290 --> 00:21:08.187
+So the question was, can you use the profiler to
+
+NOTE Confidence: 0.9223749041557312
+
+00:21:08.247 --> 00:21:11.627
+help you interpret the results that you're seeing in the
+
+NOTE Confidence: 0.9223749041557312
+
+00:21:11.687 --> 00:21:12.049
+trace?
+
+NOTE Confidence: 0.9235215187072754
+
+00:21:12.050 --> 00:21:14.010
+And the answer is yes, you can totally do that.
+
+NOTE Confidence: 0.9706373810768127
+
+00:21:14.010 --> 00:21:15.330
+You can ask questions of it.
+
+NOTE Confidence: 0.9350098371505737
+
+00:21:17.610 --> 00:21:19.490
+I'm actually going to flip back here real quick.
+
+NOTE Confidence: 0.8872165083885193
+
+00:21:19.730 --> 00:21:21.490
+So the first thing you can do is you can
+
+NOTE Confidence: 0.8872165083885193
+
+00:21:21.534 --> 00:21:22.810
+just hit this analyze button.
+
+NOTE Confidence: 0.9193601012229919
+
+00:21:23.810 --> 00:21:25.996
+We can run it today and it'll say like, hey,
+
+NOTE Confidence: 0.9193601012229919
+
+00:21:26.045 --> 00:21:28.529
+can you suggest some optimizations for this trace?
+
+NOTE Confidence: 0.9008775353431702
+
+00:21:28.960 --> 00:21:29.800
+It's going to go ahead.
+
+NOTE Confidence: 0.9356603026390076
+
+00:21:29.800 --> 00:21:31.200
+It's going to look at the top functions.
+
+NOTE Confidence: 0.8506931066513062
+
+00:21:31.200 --> 00:21:33.403
+It's going to look at the call path, the hot
+
+NOTE Confidence: 0.8506931066513062
+
+00:21:33.453 --> 00:21:35.956
+path, It's going to look at the caller Callie, and
+
+NOTE Confidence: 0.8506931066513062
+
+00:21:36.006 --> 00:21:38.359
+it's going to try and digest some of the ideas.
+
+NOTE Confidence: 0.9373986721038818
+
+00:21:39.120 --> 00:21:42.200
+This is just the main trace that opens up.
+
+NOTE Confidence: 0.8869519233703613
+
+00:21:42.520 --> 00:21:44.480
+And then there's this top insights.
+
+NOTE Confidence: 0.7641746401786804
+
+00:21:44.880 --> 00:21:48.977
+So we have top insights that fire on known bad
+
+NOTE Confidence: 0.7641746401786804
+
+00:21:49.066 --> 00:21:53.519
+patterns in.net C++, like trying to think of ACPU.
+
+NOTE Confidence: 0.4801514744758606
+
+00:21:53.520 --> 00:21:53.680
+What?
+
+NOTE Confidence: 0.8329747915267944
+
+00:21:53.680 --> 00:21:57.035
+So ACPU 1 might be like calling index of on
+
+NOTE Confidence: 0.8329747915267944
+
+00:21:57.113 --> 00:22:01.250
+a linked list because it's got to iterate through, or
+
+NOTE Confidence: 0.8329747915267944
+
+00:22:01.328 --> 00:22:04.839
+calling contains on a on just a regular list.
+
+NOTE Confidence: 0.9080343246459961
+
+00:22:04.840 --> 00:22:07.638
+It'll say something like, hey, you should consider using a
+
+NOTE Confidence: 0.9080343246459961
+
+00:22:07.686 --> 00:22:09.905
+set here instead because it can hash it and it
+
+NOTE Confidence: 0.9080343246459961
+
+00:22:09.953 --> 00:22:12.800
+can get direct access instead of having to iterate through.
+
+NOTE Confidence: 0.886425256729126
+
+00:22:13.040 --> 00:22:15.456
+If you don't have any of those top insights, you
+
+NOTE Confidence: 0.886425256729126
+
+00:22:15.506 --> 00:22:18.476
+can always click the generate top insights and Copilot will
+
+NOTE Confidence: 0.886425256729126
+
+00:22:18.526 --> 00:22:19.080
+go through.
+
+NOTE Confidence: 0.9237668514251709
+
+00:22:19.080 --> 00:22:21.746
+It'll read your trace and then it'll come up with
+
+NOTE Confidence: 0.9237668514251709
+
+00:22:21.801 --> 00:22:22.399
+some ideas.
+
+NOTE Confidence: 0.9141004681587219
+
+00:22:23.080 --> 00:22:28.437
+And so in this case, you can say it's removing
+
+NOTE Confidence: 0.9141004681587219
+
+00:22:28.554 --> 00:22:30.999
+repeated null checks.
+
+NOTE Confidence: 0.9272809028625488
+
+00:22:31.840 --> 00:22:33.720
+It can send you to the source code.
+
+NOTE Confidence: 0.9437103271484375
+
+00:22:33.720 --> 00:22:35.280
+You can click on the optimize.
+
+NOTE Confidence: 0.8281795382499695
+
+00:22:36.040 --> 00:22:40.160
+There's an I enumerable with a concrete type, so you
+
+NOTE Confidence: 0.8281795382499695
+
+00:22:40.240 --> 00:22:44.123
+can avoid that to remove the box, the numerator I
+
+NOTE Confidence: 0.8281795382499695
+
+00:22:44.202 --> 00:22:48.799
+believe, and then construct the stream writer with a large
+
+NOTE Confidence: 0.8281795382499695
+
+00:22:48.878 --> 00:22:52.920
+buffer, so saving on your buffer cost in this case.
+
+NOTE Confidence: 0.8951169848442078
+
+00:22:53.240 --> 00:22:56.152
+When you call the analyze on that trace, it doesn't
+
+NOTE Confidence: 0.8951169848442078
+
+00:22:56.209 --> 00:22:58.551
+always pick up on the fact that it ran in
+
+NOTE Confidence: 0.8951169848442078
+
+00:22:58.608 --> 00:23:01.463
+a benchmark, and so it might try and optimize some
+
+NOTE Confidence: 0.8951169848442078
+
+00:23:01.521 --> 00:23:03.519
+of the surrounding benchmark codes.
+
+NOTE Confidence: 0.8717731833457947
+
+00:23:03.520 --> 00:23:05.377
+You have to be a little careful there because I
+
+NOTE Confidence: 0.8717731833457947
+
+00:23:05.416 --> 00:23:06.800
+really don't care to optimize that.
+
+NOTE Confidence: 0.9242660999298096
+
+00:23:06.800 --> 00:23:08.640
+I want to optimize the user code instead.
+
+NOTE Confidence: 0.779106855392456
+
+00:23:11.840 --> 00:23:12.080
+So cool.
+
+NOTE Confidence: 0.9734644293785095
+
+00:23:15.440 --> 00:23:15.760
+Thank you.
+

@@ -1,0 +1,4770 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.8926975727081299
+
+00:00:01.720 --> 00:00:04.280
+Hope you've had a great time here at Microsoft Build.
+
+NOTE Confidence: 0.8618546724319458
+
+00:00:04.840 --> 00:00:09.270
+You've seen a lot of amazing technologies, announcements, innovations, a
+
+NOTE Confidence: 0.8618546724319458
+
+00:00:09.332 --> 00:00:12.101
+lot about AI, certainly a lot of tools, a lot
+
+NOTE Confidence: 0.8618546724319458
+
+00:00:12.163 --> 00:00:12.839
+about data.
+
+NOTE Confidence: 0.8506780862808228
+
+00:00:13.720 --> 00:00:15.616
+But you know what for me really brings it home
+
+NOTE Confidence: 0.8506780862808228
+
+00:00:15.658 --> 00:00:17.719
+is when I see our customers be successful with it.
+
+NOTE Confidence: 0.7130241990089417
+
+00:00:17.720 --> 00:00:19.400
+That's what we're here about today.
+
+NOTE Confidence: 0.7786306738853455
+
+00:00:19.400 --> 00:00:21.810
+I'm Bob Ward, a Principal Architect in the Azure Data
+
+NOTE Confidence: 0.7786306738853455
+
+00:00:21.855 --> 00:00:22.720
+team for Microsoft.
+
+NOTE Confidence: 0.8911654353141785
+
+00:00:23.040 --> 00:00:25.704
+And the heart of this session today is for you
+
+NOTE Confidence: 0.8911654353141785
+
+00:00:25.762 --> 00:00:29.180
+to see a great example about Microsoft Partner with PepsiCo
+
+NOTE Confidence: 0.8911654353141785
+
+00:00:29.238 --> 00:00:32.598
+to build an amazing solution combining a data LED approach
+
+NOTE Confidence: 0.8911654353141785
+
+00:00:32.656 --> 00:00:33.120
+with AI.
+
+NOTE Confidence: 0.8997517824172974
+
+00:00:33.120 --> 00:00:35.920
+But before I bring them on stage, let me show
+
+NOTE Confidence: 0.8997517824172974
+
+00:00:35.982 --> 00:00:37.040
+you a little bit.
+
+NOTE Confidence: 0.8372815847396851
+
+00:00:37.040 --> 00:00:38.858
+Let me just talk a little bit of some foundation
+
+NOTE Confidence: 0.8372815847396851
+
+00:00:38.896 --> 00:00:39.199
+for you.
+
+NOTE Confidence: 0.9051052927970886
+
+00:00:40.040 --> 00:00:42.898
+This may not surprise you, but in studies that Gartner
+
+NOTE Confidence: 0.9051052927970886
+
+00:00:42.951 --> 00:00:45.809
+has done, so many companies believe if they don't have
+
+NOTE Confidence: 0.9051052927970886
+
+00:00:45.862 --> 00:00:49.197
+the right data infrastructure, the right data, the right secure
+
+NOTE Confidence: 0.9051052927970886
+
+00:00:49.250 --> 00:00:52.002
+data quality data, AI projects are kind of doomed to
+
+NOTE Confidence: 0.9051052927970886
+
+00:00:52.055 --> 00:00:52.320
+fail.
+
+NOTE Confidence: 0.6679030656814575
+
+00:00:52.320 --> 00:00:54.385
+In fact, some have started and I've seen it where
+
+NOTE Confidence: 0.6679030656814575
+
+00:00:54.428 --> 00:00:55.440
+they are not successful.
+
+NOTE Confidence: 0.7042100429534912
+
+00:00:56.000 --> 00:00:56.600
+Here's the good news.
+
+NOTE Confidence: 0.8956531882286072
+
+00:00:56.600 --> 00:00:59.611
+Over the last year, we've seen many companies start down
+
+NOTE Confidence: 0.8956531882286072
+
+00:00:59.665 --> 00:01:02.892
+this approach of modernizing their data state, getting it in
+
+NOTE Confidence: 0.8956531882286072
+
+00:01:02.946 --> 00:01:06.119
+a way that they're ready to build intelligent AI solutions.
+
+NOTE Confidence: 0.9250501394271851
+
+00:01:06.880 --> 00:01:09.881
+Now, what I've seen is the starting line for someone
+
+NOTE Confidence: 0.9250501394271851
+
+00:01:09.939 --> 00:01:11.960
+doing this journey looks like this.
+
+NOTE Confidence: 0.902751088142395
+
+00:01:12.120 --> 00:01:13.480
+There's a lot of arrows on there.
+
+NOTE Confidence: 0.9422466158866882
+
+00:01:13.640 --> 00:01:15.240
+There's a lot of silos on there.
+
+NOTE Confidence: 0.8991966843605042
+
+00:01:16.120 --> 00:01:18.441
+There's a lot of situations where you may have seen
+
+NOTE Confidence: 0.8991966843605042
+
+00:01:18.487 --> 00:01:20.581
+this in your company, A lot of copies of data,
+
+NOTE Confidence: 0.8991966843605042
+
+00:01:20.627 --> 00:01:21.720
+a lot of sprawl of data.
+
+NOTE Confidence: 0.9037423729896545
+
+00:01:21.720 --> 00:01:23.000
+This leads to a lot of problems.
+
+NOTE Confidence: 0.8858087062835693
+
+00:01:23.440 --> 00:01:26.516
+This leads to scenarios where there's a lot of inefficiencies
+
+NOTE Confidence: 0.8858087062835693
+
+00:01:26.566 --> 00:01:29.441
+and even accessing the data, no one really knows actually
+
+NOTE Confidence: 0.8858087062835693
+
+00:01:29.492 --> 00:01:30.399
+where the data is.
+
+NOTE Confidence: 0.8747235536575317
+
+00:01:31.120 --> 00:01:34.209
+This also leads to limited interoperability, a lot of manual
+
+NOTE Confidence: 0.8747235536575317
+
+00:01:34.261 --> 00:01:36.887
+file transfers, a lot of copies, a lot of pipelines
+
+NOTE Confidence: 0.8747235536575317
+
+00:01:36.939 --> 00:01:39.720
+floating around, which is very costly to organization.
+
+NOTE Confidence: 0.9172967672348022
+
+00:01:40.360 --> 00:01:43.207
+What really hurts is exposure because this data, a lot
+
+NOTE Confidence: 0.9172967672348022
+
+00:01:43.259 --> 00:01:44.999
+of people don't know where it is.
+
+NOTE Confidence: 0.8373003005981445
+
+00:01:45.000 --> 00:01:47.356
+It's really hard to govern this and the exposure where
+
+NOTE Confidence: 0.8373003005981445
+
+00:01:47.400 --> 00:01:48.840
+this data might become a problem.
+
+NOTE Confidence: 0.847168505191803
+
+00:01:48.840 --> 00:01:51.000
+Security becomes a super big issue.
+
+NOTE Confidence: 0.7753090262413025
+
+00:01:51.960 --> 00:01:54.682
+Now anytime I've seen data sprawl, it usually involves vendor
+
+NOTE Confidence: 0.7753090262413025
+
+00:01:54.727 --> 00:01:55.039
+sprawl.
+
+NOTE Confidence: 0.8562935590744019
+
+00:01:55.040 --> 00:01:57.346
+So now you've got to keep up with multiple vendors
+
+NOTE Confidence: 0.8562935590744019
+
+00:01:57.392 --> 00:02:01.360
+who may have multiple different subscriptions, different versions, different policies.
+
+NOTE Confidence: 0.8460623621940613
+
+00:02:01.360 --> 00:02:02.440
+You've got to track as well.
+
+NOTE Confidence: 0.9623582363128662
+
+00:02:03.280 --> 00:02:05.120
+So what's a good finish line look like?
+
+NOTE Confidence: 0.6599035263061523
+
+00:02:05.280 --> 00:02:06.480
+Well, to me, that's like Nirvana.
+
+NOTE Confidence: 0.8433449864387512
+
+00:02:06.880 --> 00:02:10.625
+This is like multiple organizations working together on different tasks,
+
+NOTE Confidence: 0.8433449864387512
+
+00:02:10.677 --> 00:02:13.850
+but these tasks work off a centralized unified data platform,
+
+NOTE Confidence: 0.8433449864387512
+
+00:02:13.902 --> 00:02:16.399
+often a lake house type approach or a lake based
+
+NOTE Confidence: 0.8433449864387512
+
+00:02:16.451 --> 00:02:16.919
+approach.
+
+NOTE Confidence: 0.9249842166900635
+
+00:02:17.760 --> 00:02:20.939
+And it's interesting, even though there are multiple tasks that
+
+NOTE Confidence: 0.9249842166900635
+
+00:02:20.990 --> 00:02:24.523
+the organization has to do, because everything is integrated together,
+
+NOTE Confidence: 0.9249842166900635
+
+00:02:24.574 --> 00:02:27.400
+they can achieve different types of tasks together in an
+
+NOTE Confidence: 0.9249842166900635
+
+00:02:27.451 --> 00:02:28.359
+interoperable way.
+
+NOTE Confidence: 0.8669242858886719
+
+00:02:28.360 --> 00:02:30.450
+Now there may be a lot of data sources still
+
+NOTE Confidence: 0.8669242858886719
+
+00:02:30.497 --> 00:02:33.727
+involved in the organization, this finish line scenario, but they're
+
+NOTE Confidence: 0.8669242858886719
+
+00:02:33.775 --> 00:02:35.960
+well integrated into the actual lake approach.
+
+NOTE Confidence: 0.9385121464729309
+
+00:02:36.400 --> 00:02:40.502
+This gives you great governance, great security, a tighter integration
+
+NOTE Confidence: 0.9385121464729309
+
+00:02:40.560 --> 00:02:41.440
+with AI models.
+
+NOTE Confidence: 0.7830749154090881
+
+00:02:41.440 --> 00:02:44.509
+You need 2 products that give you that are Microsoft
+
+NOTE Confidence: 0.7830749154090881
+
+00:02:44.568 --> 00:02:46.280
+Fabric and Azure Data bricks.
+
+NOTE Confidence: 0.885849118232727
+
+00:02:46.280 --> 00:02:48.319
+And you're going to see examples of that today from
+
+NOTE Confidence: 0.885849118232727
+
+00:02:48.359 --> 00:02:48.679
+PepsiCo.
+
+NOTE Confidence: 0.9683107733726501
+
+00:02:49.720 --> 00:02:51.840
+So you make this journey to the finish line.
+
+NOTE Confidence: 0.9324535131454468
+
+00:02:51.840 --> 00:02:53.080
+What are some things you need to do?
+
+NOTE Confidence: 0.8290985226631165
+
+00:02:53.280 --> 00:02:54.720
+Well, first of all, you got to unify your data.
+
+NOTE Confidence: 0.871559739112854
+
+00:02:55.080 --> 00:02:57.033
+As you saw in that diagram, this could be a
+
+NOTE Confidence: 0.871559739112854
+
+00:02:57.078 --> 00:02:59.804
+difficult approach, and I've seen it be a difficult approach
+
+NOTE Confidence: 0.871559739112854
+
+00:02:59.850 --> 00:03:01.440
+and take a while in many companies.
+
+NOTE Confidence: 0.8192728161811829
+
+00:03:01.720 --> 00:03:04.486
+But with platforms like fabric and data bricks, it become
+
+NOTE Confidence: 0.8192728161811829
+
+00:03:04.535 --> 00:03:06.039
+a little easier than you think.
+
+NOTE Confidence: 0.8318033218383789
+
+00:03:06.960 --> 00:03:09.370
+Even when you unify that data, though, the data needs
+
+NOTE Confidence: 0.8318033218383789
+
+00:03:09.415 --> 00:03:10.279
+to be ready for AI.
+
+NOTE Confidence: 0.7958455681800842
+
+00:03:10.280 --> 00:03:13.879
+I'm a data person that involves data that's curated, data
+
+NOTE Confidence: 0.7958455681800842
+
+00:03:13.943 --> 00:03:16.279
+that is secure, data of high quality.
+
+NOTE Confidence: 0.9636331796646118
+
+00:03:16.520 --> 00:03:18.120
+There are tools to help you make that journey.
+
+NOTE Confidence: 0.8113481402397156
+
+00:03:18.120 --> 00:03:20.401
+So even when you get unification, if the data is
+
+NOTE Confidence: 0.8113481402397156
+
+00:03:20.449 --> 00:03:22.588
+not ready, it can be difficult to build an AI
+
+NOTE Confidence: 0.8113481402397156
+
+00:03:22.636 --> 00:03:23.919
+solution that's successful.
+
+NOTE Confidence: 0.8971797227859497
+
+00:03:24.720 --> 00:03:26.200
+Now AI models have to come into play.
+
+NOTE Confidence: 0.9037293791770935
+
+00:03:26.480 --> 00:03:28.622
+And it could be you're going to use popular models
+
+NOTE Confidence: 0.9037293791770935
+
+00:03:28.665 --> 00:03:30.764
+that exist out there today, or you're going to go
+
+NOTE Confidence: 0.9037293791770935
+
+00:03:30.807 --> 00:03:33.078
+down the exercise of fine tuning models, but you need
+
+NOTE Confidence: 0.9037293791770935
+
+00:03:33.121 --> 00:03:35.348
+a platform that's going to give you choice of models
+
+NOTE Confidence: 0.9037293791770935
+
+00:03:35.391 --> 00:03:36.720
+per the needs of your business.
+
+NOTE Confidence: 0.7993817925453186
+
+00:03:36.720 --> 00:03:38.840
+And then finally, you've got to build the right solution.
+
+NOTE Confidence: 0.8934122920036316
+
+00:03:39.400 --> 00:03:40.800
+Am I going to build simple chat agents?
+
+NOTE Confidence: 0.8223451972007751
+
+00:03:40.800 --> 00:03:43.440
+Am I going to build complicated type agents?
+
+NOTE Confidence: 0.8330961465835571
+
+00:03:43.680 --> 00:03:46.309
+You're going to see examples where PepsiCo has decided to
+
+NOTE Confidence: 0.8330961465835571
+
+00:03:46.355 --> 00:03:48.938
+build solutions that, guess what, fit the needs of their
+
+NOTE Confidence: 0.8330961465835571
+
+00:03:48.984 --> 00:03:49.399
+business.
+
+NOTE Confidence: 0.8294907212257385
+
+00:03:49.400 --> 00:03:50.400
+Kind of makes sense, right?
+
+NOTE Confidence: 0.8681643009185791
+
+00:03:50.640 --> 00:03:52.554
+And they went through this journey of making sure their
+
+NOTE Confidence: 0.8681643009185791
+
+00:03:52.589 --> 00:03:53.319
+data is ready for AI.
+
+NOTE Confidence: 0.8309764266014099
+
+00:03:54.200 --> 00:03:56.312
+Now you have tools along the way as developers and
+
+NOTE Confidence: 0.8309764266014099
+
+00:03:56.354 --> 00:03:58.720
+you've seen at this event many of these tools mentioned.
+
+NOTE Confidence: 0.8381213545799255
+
+00:03:59.080 --> 00:04:01.951
+If you're want the low code approach, you could use
+
+NOTE Confidence: 0.8381213545799255
+
+00:04:02.007 --> 00:04:05.441
+things like Copilot Studio or you could use rich combinations
+
+NOTE Confidence: 0.8381213545799255
+
+00:04:05.497 --> 00:04:08.819
+of things like Visual Studio, Visual Studio Code and GitHub
+
+NOTE Confidence: 0.8381213545799255
+
+00:04:08.875 --> 00:04:12.197
+Copilot to give that rich developer experience to build any
+
+NOTE Confidence: 0.8381213545799255
+
+00:04:12.253 --> 00:04:15.011
+data solution you need with AI now in the middle,
+
+NOTE Confidence: 0.8381213545799255
+
+00:04:15.068 --> 00:04:17.151
+you need a way to host AI models in a
+
+NOTE Confidence: 0.8381213545799255
+
+00:04:17.207 --> 00:04:18.839
+very, very comprehensive way.
+
+NOTE Confidence: 0.8464442491531372
+
+00:04:18.839 --> 00:04:21.464
+Cost effective way with Choice and Foundry is it From
+
+NOTE Confidence: 0.8464442491531372
+
+00:04:21.513 --> 00:04:24.682
+personal experience, and I've tried to deploy models on premises
+
+NOTE Confidence: 0.8464442491531372
+
+00:04:24.732 --> 00:04:27.455
+in many different scenarios, I have found Founder to be
+
+NOTE Confidence: 0.8464442491531372
+
+00:04:27.505 --> 00:04:29.782
+so superior to give me the models of quality I
+
+NOTE Confidence: 0.8464442491531372
+
+00:04:29.832 --> 00:04:30.080
+need.
+
+NOTE Confidence: 0.8096029758453369
+
+00:04:30.400 --> 00:04:32.475
+With a Choice, I need to pick the models that
+
+NOTE Confidence: 0.8096029758453369
+
+00:04:32.521 --> 00:04:34.735
+give me the power, whether it be small models or
+
+NOTE Confidence: 0.8096029758453369
+
+00:04:34.781 --> 00:04:35.519
+or large models.
+
+NOTE Confidence: 0.8387625813484192
+
+00:04:36.040 --> 00:04:38.421
+I have application hosting platforms, I can do things in
+
+NOTE Confidence: 0.8387625813484192
+
+00:04:38.463 --> 00:04:40.759
+Kubernetes, Azure Container services, static web apps.
+
+NOTE Confidence: 0.9013386964797974
+
+00:04:40.760 --> 00:04:43.074
+I have many different choices where these apps can be
+
+NOTE Confidence: 0.9013386964797974
+
+00:04:43.118 --> 00:04:45.039
+hosted that can integrate with these models.
+
+NOTE Confidence: 0.8870121836662292
+
+00:04:45.800 --> 00:04:48.204
+Now I'm a database guy, so we need databases and
+
+NOTE Confidence: 0.8870121836662292
+
+00:04:48.254 --> 00:04:50.909
+we have a rich choice of Azure databases available to
+
+NOTE Confidence: 0.8870121836662292
+
+00:04:50.959 --> 00:04:51.160
+you.
+
+NOTE Confidence: 0.8201258182525635
+
+00:04:51.160 --> 00:04:53.820
+And then of course, you might use Databricks and Fabric
+
+NOTE Confidence: 0.8201258182525635
+
+00:04:53.869 --> 00:04:56.240
+as that unifying platform to bring them together.
+
+NOTE Confidence: 0.9516828060150146
+
+00:04:56.839 --> 00:04:59.416
+And notice here at the bottom, this is going to
+
+NOTE Confidence: 0.9516828060150146
+
+00:04:59.471 --> 00:05:02.925
+give you resiliency, governance, and security in a very unified
+
+NOTE Confidence: 0.9516828060150146
+
+00:05:02.980 --> 00:05:03.200
+way.
+
+NOTE Confidence: 0.8875149488449097
+
+00:05:03.200 --> 00:05:05.760
+And don't forget, if you need to build solutions that
+
+NOTE Confidence: 0.8875149488449097
+
+00:05:05.809 --> 00:05:07.790
+will work on the edge, you can do that as
+
+NOTE Confidence: 0.8875149488449097
+
+00:05:07.838 --> 00:05:08.079
+well.
+
+NOTE Confidence: 0.8794533014297485
+
+00:05:08.440 --> 00:05:11.066
+Technologies like Foundry Local give you the ability to do
+
+NOTE Confidence: 0.8794533014297485
+
+00:05:11.111 --> 00:05:13.239
+things like AI models in an edge type scenario.
+
+NOTE Confidence: 0.7278326153755188
+
+00:05:14.360 --> 00:05:16.823
+So Speaking of Azure Database, this is what I specialize
+
+NOTE Confidence: 0.7278326153755188
+
+00:05:16.867 --> 00:05:16.999
+in.
+
+NOTE Confidence: 0.9625700116157532
+
+00:05:17.120 --> 00:05:19.080
+We've got a great set for you to use.
+
+NOTE Confidence: 0.7897745370864868
+
+00:05:19.279 --> 00:05:22.225
+And PepsiCo uses several of these, whether it be the
+
+NOTE Confidence: 0.7897745370864868
+
+00:05:22.282 --> 00:05:25.568
+popular Azure SQL like Hyperscale based on SQL Server, you
+
+NOTE Confidence: 0.7897745370864868
+
+00:05:25.624 --> 00:05:28.343
+all know and like it could be Postgres Sequel or
+
+NOTE Confidence: 0.7897745370864868
+
+00:05:28.400 --> 00:05:29.760
+Cosmos DB for no sequel.
+
+NOTE Confidence: 0.8476617932319641
+
+00:05:30.040 --> 00:05:31.960
+Or it could be the new Postgres offering.
+
+NOTE Confidence: 0.8211794495582581
+
+00:05:31.960 --> 00:05:35.478
+We just announced this event called Horizon DBA Postgres compatible
+
+NOTE Confidence: 0.8211794495582581
+
+00:05:35.531 --> 00:05:38.000
+database that's built and scaled for the cloud.
+
+NOTE Confidence: 0.8158079981803894
+
+00:05:38.280 --> 00:05:39.680
+Or it could even be my sequel.
+
+NOTE Confidence: 0.8859490752220154
+
+00:05:40.080 --> 00:05:41.880
+But with all these choices, what's common among them?
+
+NOTE Confidence: 0.8508042097091675
+
+00:05:42.160 --> 00:05:43.960
+Well, first of all, they all allow scale.
+
+NOTE Confidence: 0.8565636873245239
+
+00:05:44.280 --> 00:05:46.000
+They are using the backbone of Azure.
+
+NOTE Confidence: 0.8275604844093323
+
+00:05:46.120 --> 00:05:48.576
+So it's very easy for us to build managed database
+
+NOTE Confidence: 0.8275604844093323
+
+00:05:48.625 --> 00:05:50.640
+infrastructures that scale to your needs.
+
+NOTE Confidence: 0.9439521431922913
+
+00:05:51.280 --> 00:05:52.800
+All of them support transactions.
+
+NOTE Confidence: 0.8143751621246338
+
+00:05:52.800 --> 00:05:55.808
+They're all built because that's they're all relational databases or
+
+NOTE Confidence: 0.8143751621246338
+
+00:05:55.853 --> 00:05:57.800
+in the case of Cosmos, a no sequel database.
+
+NOTE Confidence: 0.9051135182380676
+
+00:05:58.080 --> 00:06:01.585
+That is very transactional intent, which means that for AI
+
+NOTE Confidence: 0.9051135182380676
+
+00:06:01.645 --> 00:06:05.452
+systems, they can support OTP type transactions, but still give
+
+NOTE Confidence: 0.9051135182380676
+
+00:06:05.513 --> 00:06:06.480
+things you need.
+
+NOTE Confidence: 0.9396204948425293
+
+00:06:06.640 --> 00:06:08.400
+Like the Third Point, vector support.
+
+NOTE Confidence: 0.8570225834846497
+
+00:06:08.720 --> 00:06:11.300
+One of things I love we've done is ensure that
+
+NOTE Confidence: 0.8570225834846497
+
+00:06:11.356 --> 00:06:14.778
+every database we have has integrated vector support for rich
+
+NOTE Confidence: 0.8570225834846497
+
+00:06:14.834 --> 00:06:18.705
+searching, tightly integrated with things like Foundry or the ability
+
+NOTE Confidence: 0.8570225834846497
+
+00:06:18.761 --> 00:06:22.239
+to mirror these databases easily into Fabric support that lake
+
+NOTE Confidence: 0.8570225834846497
+
+00:06:22.295 --> 00:06:22.799
+approach.
+
+NOTE Confidence: 0.8703598380088806
+
+00:06:23.760 --> 00:06:26.007
+Now we've made a lot of announcements this week about
+
+NOTE Confidence: 0.8703598380088806
+
+00:06:26.050 --> 00:06:28.679
+our databases, including for Cosmos DB, several announcements.
+
+NOTE Confidence: 0.83619624376297
+
+00:06:28.680 --> 00:06:30.796
+A semantic re ranking is one of those I think
+
+NOTE Confidence: 0.83619624376297
+
+00:06:30.843 --> 00:06:33.430
+is very, very popular that a Cosmos DB community really
+
+NOTE Confidence: 0.83619624376297
+
+00:06:33.477 --> 00:06:33.760
+likes.
+
+NOTE Confidence: 0.7591854333877563
+
+00:06:34.120 --> 00:06:36.040
+Cosmos is a technology that PepsiCo has used.
+
+NOTE Confidence: 0.824235200881958
+
+00:06:36.040 --> 00:06:39.300
+One of their solutions we have, Azure SQL Database, including
+
+NOTE Confidence: 0.824235200881958
+
+00:06:39.353 --> 00:06:43.308
+Hyperscale, made several announcements this week on deep integrations with
+
+NOTE Confidence: 0.824235200881958
+
+00:06:43.362 --> 00:06:46.195
+GitHub Copilot in Visual Studio Code to give a better
+
+NOTE Confidence: 0.824235200881958
+
+00:06:46.248 --> 00:06:48.440
+experience for developers with Azure SQL.
+
+NOTE Confidence: 0.8170632123947144
+
+00:06:48.920 --> 00:06:52.454
+And then of course, we announced yesterday the public preview
+
+NOTE Confidence: 0.8170632123947144
+
+00:06:52.512 --> 00:06:55.873
+of Horizon DB, a rich set of scalable architectures inside
+
+NOTE Confidence: 0.8170632123947144
+
+00:06:55.931 --> 00:06:59.640
+Azure to support Postgres compatibility for Postgres developers.
+
+NOTE Confidence: 0.9215691685676575
+
+00:07:00.320 --> 00:07:02.163
+But hey, you've heard me talk enough here, you really
+
+NOTE Confidence: 0.9215691685676575
+
+00:07:02.198 --> 00:07:03.519
+want to see what things are in action.
+
+NOTE Confidence: 0.6669820547103882
+
+00:07:03.839 --> 00:07:06.259
+So I'd like to welcome on today's Rishab from Microsoft
+
+NOTE Confidence: 0.6669820547103882
+
+00:07:06.303 --> 00:07:07.359
+and Kernel from PepsiCo.
+
+NOTE Confidence: 0.8070869445800781
+
+00:07:10.280 --> 00:07:10.760
+Thanks, Bob.
+
+NOTE Confidence: 0.1938716620206833
+
+00:07:12.240 --> 00:07:12.640
+Thank you.
+
+NOTE Confidence: 0.6374832391738892
+
+00:07:12.720 --> 00:07:12.960
+Thank you.
+
+NOTE Confidence: 0.6683834791183472
+
+00:07:12.960 --> 00:07:13.480
+Thank you so much.
+
+NOTE Confidence: 0.7874512672424316
+
+00:07:13.480 --> 00:07:13.800
+Thank you.
+
+NOTE Confidence: 0.8867886662483215
+
+00:07:15.720 --> 00:07:16.680
+Good afternoon, everyone.
+
+NOTE Confidence: 0.7330500483512878
+
+00:07:16.920 --> 00:07:19.988
+I'm Rishab Saha, Chief Architect at Microsoft's Office of the
+
+NOTE Confidence: 0.7330500483512878
+
+00:07:20.038 --> 00:07:20.240
+CTO.
+
+NOTE Confidence: 0.800037682056427
+
+00:07:20.760 --> 00:07:23.754
+I'm thrilled to be joined today by Krunal Patel, Senior
+
+NOTE Confidence: 0.800037682056427
+
+00:07:23.808 --> 00:07:26.640
+Manager at Pepsico's AI Solution and Platforms team.
+
+NOTE Confidence: 0.8247673511505127
+
+00:07:28.080 --> 00:07:29.707
+By the way, before we start Krunal, I saw a
+
+NOTE Confidence: 0.8247673511505127
+
+00:07:29.745 --> 00:07:31.372
+lot of people with a lot of food and drinks
+
+NOTE Confidence: 0.8247673511505127
+
+00:07:31.410 --> 00:07:31.600
+here.
+
+NOTE Confidence: 0.8940974473953247
+
+00:07:32.160 --> 00:07:34.000
+Do you really get unlimited Pepsi at work?
+
+NOTE Confidence: 0.7058825492858887
+
+00:07:34.640 --> 00:07:38.203
+Well, well, unlimited thing that we get is a complexity
+
+NOTE Confidence: 0.7058825492858887
+
+00:07:38.268 --> 00:07:39.240
+and it's scale.
+
+NOTE Confidence: 0.5091713070869446
+
+00:07:39.600 --> 00:07:39.800
+Right.
+
+NOTE Confidence: 0.6364262700080872
+
+00:07:39.840 --> 00:07:41.040
+Do you say complexity and scale?
+
+NOTE Confidence: 0.6292063593864441
+
+00:07:41.080 --> 00:07:44.720
+Yeah, touché but but that's actually true.
+
+NOTE Confidence: 0.8603559732437134
+
+00:07:44.840 --> 00:07:49.920
+Let's think about the scale that Pepsi cooperates 300,000 plus
+
+NOTE Confidence: 0.8603559732437134
+
+00:07:50.002 --> 00:07:55.410
+employees, products enjoyed in 200 plus countries, 23 plus billion
+
+NOTE Confidence: 0.8603559732437134
+
+00:07:55.492 --> 00:07:56.640
+dollar brands.
+
+NOTE Confidence: 0.9302902817726135
+
+00:07:57.040 --> 00:07:58.080
+That's massive scale.
+
+NOTE Confidence: 0.8509303331375122
+
+00:07:58.560 --> 00:08:01.567
+There's a high degree of chance that all of us
+
+NOTE Confidence: 0.8509303331375122
+
+00:08:01.633 --> 00:08:04.967
+today had consumed a Pepsi product in some shape or
+
+NOTE Confidence: 0.8509303331375122
+
+00:08:05.033 --> 00:08:05.360
+form.
+
+NOTE Confidence: 0.9023487567901611
+
+00:08:06.360 --> 00:08:10.469
+But this scale creates complexity, and this complexity creates a
+
+NOTE Confidence: 0.9023487567901611
+
+00:08:10.533 --> 00:08:13.679
+very specific kind of pain for the people who are
+
+NOTE Confidence: 0.9023487567901611
+
+00:08:13.744 --> 00:08:16.119
+closest to Pepsi's largest customers.
+
+NOTE Confidence: 0.9202389717102051
+
+00:08:16.880 --> 00:08:18.826
+And that's the pain, or that's the story that we
+
+NOTE Confidence: 0.9202389717102051
+
+00:08:18.866 --> 00:08:19.840
+are going to talk about.
+
+NOTE Confidence: 0.8885526061058044
+
+00:08:20.360 --> 00:08:23.026
+Obviously, Bob kicked us off with a lot of product
+
+NOTE Confidence: 0.8885526061058044
+
+00:08:23.080 --> 00:08:23.400
+story.
+
+NOTE Confidence: 0.8330258727073669
+
+00:08:23.960 --> 00:08:26.970
+But for the next 3035 minutes, we'll be talking more
+
+NOTE Confidence: 0.8330258727073669
+
+00:08:27.028 --> 00:08:30.097
+about the people story, the story about a key account
+
+NOTE Confidence: 0.8330258727073669
+
+00:08:30.155 --> 00:08:33.108
+manager, a Cam, and how we took them Monday morning
+
+NOTE Confidence: 0.8330258727073669
+
+00:08:33.166 --> 00:08:34.439
+from chaos to clarity.
+
+NOTE Confidence: 0.915378987789154
+
+00:08:34.720 --> 00:08:35.240
+Let's begin.
+
+NOTE Confidence: 0.1914370059967041
+
+00:08:35.320 --> 00:08:35.480
+Yeah.
+
+NOTE Confidence: 0.834936261177063
+
+00:08:37.000 --> 00:08:40.128
+So a key account manager or Cam is a senior
+
+NOTE Confidence: 0.834936261177063
+
+00:08:40.201 --> 00:08:45.440
+sales professional responsible for managing Pepsico's largest customers.
+
+NOTE Confidence: 0.8335917592048645
+
+00:08:46.120 --> 00:08:48.120
+And these are the who's who of the retailers.
+
+NOTE Confidence: 0.766843855381012
+
+00:08:48.840 --> 00:08:52.548
+Think about, I would name names, but in a way
+
+NOTE Confidence: 0.766843855381012
+
+00:08:52.631 --> 00:08:56.999
+we go and shop PepsiCo products when this key account
+
+NOTE Confidence: 0.766843855381012
+
+00:08:57.081 --> 00:09:01.449
+managers have to prep for a meeting with an executive
+
+NOTE Confidence: 0.766843855381012
+
+00:09:01.532 --> 00:09:03.840
+in that for their customers.
+
+NOTE Confidence: 0.9207860827445984
+
+00:09:04.720 --> 00:09:06.853
+These are some of the challenges that you see on
+
+NOTE Confidence: 0.9207860827445984
+
+00:09:06.897 --> 00:09:09.520
+screen that they have to go through fragmented information.
+
+NOTE Confidence: 0.8179818987846375
+
+00:09:10.240 --> 00:09:11.440
+Imagine it's Monday morning.
+
+NOTE Confidence: 0.8713244795799255
+
+00:09:12.080 --> 00:09:14.240
+They have a meeting in the next 48 hours.
+
+NOTE Confidence: 0.8780309557914734
+
+00:09:14.640 --> 00:09:18.009
+The way they start today is going through multiple reports,
+
+NOTE Confidence: 0.8780309557914734
+
+00:09:18.066 --> 00:09:22.064
+multiple dashboards, contacts, buried in some emails, and still trying
+
+NOTE Confidence: 0.8780309557914734
+
+00:09:22.121 --> 00:09:24.519
+to figure out, do I have the current data?
+
+NOTE Confidence: 0.9535764455795288
+
+00:09:24.560 --> 00:09:26.040
+Do I have the latest context?
+
+NOTE Confidence: 0.8665469884872437
+
+00:09:26.559 --> 00:09:29.295
+And that's a very painful process for a key account
+
+NOTE Confidence: 0.8665469884872437
+
+00:09:29.349 --> 00:09:32.513
+manager to go through because their true competency lies in
+
+NOTE Confidence: 0.8665469884872437
+
+00:09:32.567 --> 00:09:36.750
+actually strategizing, actually thinking about the conversation that they need
+
+NOTE Confidence: 0.8665469884872437
+
+00:09:36.804 --> 00:09:38.359
+to have with their customers.
+
+NOTE Confidence: 0.9548911452293396
+
+00:09:38.360 --> 00:09:40.452
+But even before they go there, they have to go
+
+NOTE Confidence: 0.9548911452293396
+
+00:09:40.497 --> 00:09:41.679
+through all these hurdles.
+
+NOTE Confidence: 0.9724186658859253
+
+00:09:42.240 --> 00:09:43.600
+And this is not just one task.
+
+NOTE Confidence: 0.9001210331916809
+
+00:09:44.160 --> 00:09:45.440
+If you really zoom in.
+
+NOTE Confidence: 0.8724427819252014
+
+00:09:46.120 --> 00:09:48.464
+Its a combination of all the things that you're seeing
+
+NOTE Confidence: 0.8724427819252014
+
+00:09:48.507 --> 00:09:49.679
+on the screen today, right?
+
+NOTE Confidence: 0.6233561038970947
+
+00:09:50.560 --> 00:09:51.960
+And its its painful, right?
+
+NOTE Confidence: 0.9200524687767029
+
+00:09:52.080 --> 00:09:54.219
+If I was in their shoes, if I had to
+
+NOTE Confidence: 0.9200524687767029
+
+00:09:54.278 --> 00:09:57.250
+go through all these things even before I could do
+
+NOTE Confidence: 0.9200524687767029
+
+00:09:57.309 --> 00:10:00.400
+my main job, it's a really, really painful struggle.
+
+NOTE Confidence: 0.9179242849349976
+
+00:10:00.400 --> 00:10:02.733
+And by the way, these are not small customers that
+
+NOTE Confidence: 0.9179242849349976
+
+00:10:02.779 --> 00:10:03.759
+they're working with.
+
+NOTE Confidence: 0.8071601986885071
+
+00:10:03.760 --> 00:10:07.686
+These are really, really big retail customers driving multi $1,000,000
+
+NOTE Confidence: 0.8071601986885071
+
+00:10:07.742 --> 00:10:08.359
+in revenue.
+
+NOTE Confidence: 0.782743513584137
+
+00:10:09.480 --> 00:10:12.264
+So Kunal, maybe walk us through, we know that this
+
+NOTE Confidence: 0.782743513584137
+
+00:10:12.319 --> 00:10:14.658
+was a challenge and we began how did we go
+
+NOTE Confidence: 0.782743513584137
+
+00:10:14.713 --> 00:10:16.440
+or how, where do we want to go?
+
+NOTE Confidence: 0.9204409718513489
+
+00:10:16.440 --> 00:10:17.560
+Maybe let's walk us through that.
+
+NOTE Confidence: 0.7985865473747253
+
+00:10:18.400 --> 00:10:18.840
+You know what?
+
+NOTE Confidence: 0.812405526638031
+
+00:10:18.920 --> 00:10:21.923
+I would say that imagine a world where, you know,
+
+NOTE Confidence: 0.812405526638031
+
+00:10:21.984 --> 00:10:24.927
+we have account plans and all the health of that
+
+NOTE Confidence: 0.812405526638031
+
+00:10:24.988 --> 00:10:28.360
+account comes together in one singular workflow, right?
+
+NOTE Confidence: 0.7518200874328613
+
+00:10:29.120 --> 00:10:32.235
+Think about like, you know, hey, it's a singular place
+
+NOTE Confidence: 0.7518200874328613
+
+00:10:32.293 --> 00:10:35.005
+where, you know, it's a trusted data, but at at
+
+NOTE Confidence: 0.7518200874328613
+
+00:10:35.062 --> 00:10:37.659
+the same time, like, you know, it's a, it's a
+
+NOTE Confidence: 0.7518200874328613
+
+00:10:37.716 --> 00:10:38.639
+one, one source.
+
+NOTE Confidence: 0.8430212736129761
+
+00:10:38.760 --> 00:10:40.812
+We don't have to go to multiple data silos and,
+
+NOTE Confidence: 0.8430212736129761
+
+00:10:40.855 --> 00:10:43.956
+you know, compile the different information and validate from different
+
+NOTE Confidence: 0.8430212736129761
+
+00:10:43.999 --> 00:10:44.480
+people now.
+
+NOTE Confidence: 0.7751631736755371
+
+00:10:45.840 --> 00:10:48.529
+And also like, you know, think about like, you know,
+
+NOTE Confidence: 0.7751631736755371
+
+00:10:48.581 --> 00:10:50.960
+hey, learning system that compounds over time.
+
+NOTE Confidence: 0.7539616823196411
+
+00:10:51.320 --> 00:10:53.882
+It doesn't have to actually, we don't have to feed
+
+NOTE Confidence: 0.7539616823196411
+
+00:10:53.933 --> 00:10:56.496
+it keep on feeding data, but it actually learns on
+
+NOTE Confidence: 0.7539616823196411
+
+00:10:56.547 --> 00:10:57.879
+its own eventually, right?
+
+NOTE Confidence: 0.8085466027259827
+
+00:10:58.160 --> 00:11:00.080
+So that's kind of a system we build.
+
+NOTE Confidence: 0.8298152089118958
+
+00:11:00.600 --> 00:11:02.569
+How about you walk us through like, you know, let's,
+
+NOTE Confidence: 0.8298152089118958
+
+00:11:02.606 --> 00:11:03.440
+let's walk us through.
+
+NOTE Confidence: 0.8101876378059387
+
+00:11:04.559 --> 00:11:07.555
+Obviously, I think it all starts with the foundation, one
+
+NOTE Confidence: 0.8101876378059387
+
+00:11:07.608 --> 00:11:10.183
+of the key learnings, you know, for any person or
+
+NOTE Confidence: 0.8101876378059387
+
+00:11:10.235 --> 00:11:13.073
+person now who is in the relationship business, it's a
+
+NOTE Confidence: 0.8101876378059387
+
+00:11:13.126 --> 00:11:16.279
+lot of those learnings become tribal knowledge at some point
+
+NOTE Confidence: 0.8101876378059387
+
+00:11:16.331 --> 00:11:17.119
+in time, right?
+
+NOTE Confidence: 0.874184250831604
+
+00:11:17.120 --> 00:11:20.318
+Because you have a single customer managing, managing a massive
+
+NOTE Confidence: 0.874184250831604
+
+00:11:20.369 --> 00:11:22.399
+amount of relationships and information.
+
+NOTE Confidence: 0.925043523311615
+
+00:11:22.679 --> 00:11:25.670
+However, even before we go solving for that, the key
+
+NOTE Confidence: 0.925043523311615
+
+00:11:25.727 --> 00:11:27.280
+starts with the foundation.
+
+NOTE Confidence: 0.9177809953689575
+
+00:11:28.200 --> 00:11:31.461
+Just like we cannot build a skyscraper on sand, it's
+
+NOTE Confidence: 0.9177809953689575
+
+00:11:31.523 --> 00:11:35.286
+very difficult to build agents if your data is inconsistent,
+
+NOTE Confidence: 0.9177809953689575
+
+00:11:35.349 --> 00:11:38.422
+if your data is not governed properly, or if your
+
+NOTE Confidence: 0.9177809953689575
+
+00:11:38.485 --> 00:11:40.679
+data is just not meaningful enough.
+
+NOTE Confidence: 0.8944860696792603
+
+00:11:41.440 --> 00:11:44.418
+So it all starts with foundation or an enterprise data
+
+NOTE Confidence: 0.8944860696792603
+
+00:11:44.473 --> 00:11:45.079
+foundation.
+
+NOTE Confidence: 0.7952747344970703
+
+00:11:45.160 --> 00:11:48.201
+Bob alluded to this in, in, in his part, but
+
+NOTE Confidence: 0.7952747344970703
+
+00:11:48.270 --> 00:11:51.726
+these are based on some, I would say, common sense
+
+NOTE Confidence: 0.7952747344970703
+
+00:11:51.795 --> 00:11:53.039
+principles, right?
+
+NOTE Confidence: 0.8017551898956299
+
+00:11:53.600 --> 00:11:56.350
+You need to have your dev OPS and governance in
+
+NOTE Confidence: 0.8017551898956299
+
+00:11:56.408 --> 00:11:56.760
+place.
+
+NOTE Confidence: 0.9241176247596741
+
+00:11:57.400 --> 00:12:00.066
+You need to make sure that you have your industry
+
+NOTE Confidence: 0.9241176247596741
+
+00:12:00.120 --> 00:12:03.657
+data models standardized so that your data is actually harmonized
+
+NOTE Confidence: 0.9241176247596741
+
+00:12:03.711 --> 00:12:06.159
+across various business functions or markets.
+
+NOTE Confidence: 0.9367609620094299
+
+00:12:06.559 --> 00:12:09.934
+You also need to make sure you're building reusable modules
+
+NOTE Confidence: 0.9367609620094299
+
+00:12:09.991 --> 00:12:13.080
+so every team is not doing the same thing differently.
+
+NOTE Confidence: 0.9254827499389648
+
+00:12:13.200 --> 00:12:16.971
+And obviously you end with central observability because that's how
+
+NOTE Confidence: 0.9254827499389648
+
+00:12:17.028 --> 00:12:19.280
+your system learns, evolves, and adapts.
+
+NOTE Confidence: 0.898902952671051
+
+00:12:19.679 --> 00:12:22.222
+Now PepsiCo, from what I saw, had put in a
+
+NOTE Confidence: 0.898902952671051
+
+00:12:22.283 --> 00:12:25.491
+lot of effort and they had that EDF foundation pretty
+
+NOTE Confidence: 0.898902952671051
+
+00:12:25.552 --> 00:12:26.399
+well baked in.
+
+NOTE Confidence: 0.8020899295806885
+
+00:12:26.840 --> 00:12:29.802
+Now maybe walk us through how we went from the
+
+NOTE Confidence: 0.8020899295806885
+
+00:12:29.866 --> 00:12:33.924
+foundational EDF layer and then traditionally what was data for
+
+NOTE Confidence: 0.8020899295806885
+
+00:12:33.988 --> 00:12:37.079
+dashboards, we evolved that for data for agents.
+
+NOTE Confidence: 0.7983290553092957
+
+00:12:37.440 --> 00:12:40.428
+Yeah, data for dashboards to data for agents, Yes, that's
+
+NOTE Confidence: 0.7983290553092957
+
+00:12:40.481 --> 00:12:42.893
+the goal that we or that's the journey that we
+
+NOTE Confidence: 0.7983290553092957
+
+00:12:42.945 --> 00:12:43.679
+are on, right?
+
+NOTE Confidence: 0.7457378506660461
+
+00:12:44.080 --> 00:12:47.120
+Right now, yeah, our pipelines are serving to a dashboards.
+
+NOTE Confidence: 0.8475611805915833
+
+00:12:47.400 --> 00:12:50.660
+But eventually like you know, insights, insights we want to
+
+NOTE Confidence: 0.8475611805915833
+
+00:12:50.715 --> 00:12:54.418
+be automated right now, today, insights are actually manipulated or
+
+NOTE Confidence: 0.8475611805915833
+
+00:12:54.474 --> 00:12:57.679
+actually understood by humans and actions are taken by the
+
+NOTE Confidence: 0.8475611805915833
+
+00:12:57.734 --> 00:12:58.840
+manual rules, right.
+
+NOTE Confidence: 0.8373966813087463
+
+00:12:59.240 --> 00:13:02.036
+But instead like you know, the tomorrow that we are
+
+NOTE Confidence: 0.8373966813087463
+
+00:13:02.091 --> 00:13:04.943
+driving for or we have worked together to get there,
+
+NOTE Confidence: 0.8373966813087463
+
+00:13:04.998 --> 00:13:08.837
+right, The connected knowledge graph and also that connected knowledge
+
+NOTE Confidence: 0.8373966813087463
+
+00:13:08.892 --> 00:13:11.359
+graph that builds the common knowledge layer.
+
+NOTE Confidence: 0.8544818758964539
+
+00:13:12.679 --> 00:13:16.546
+Also that common knowledge layer sits on top of, you
+
+NOTE Confidence: 0.8544818758964539
+
+00:13:16.621 --> 00:13:21.454
+know, the multiple different fragmented data agents that can take
+
+NOTE Confidence: 0.8544818758964539
+
+00:13:21.528 --> 00:13:25.247
+advantage of that, that can reason on it, that can
+
+NOTE Confidence: 0.8544818758964539
+
+00:13:25.321 --> 00:13:29.560
+actually decide and actually take an action on it, right?
+
+NOTE Confidence: 0.6850926280021667
+
+00:13:30.040 --> 00:13:32.000
+Insights to automation.
+
+NOTE Confidence: 0.769572377204895
+
+00:13:32.000 --> 00:13:33.960
+That's what, you know, we have built together.
+
+NOTE Confidence: 0.7634440064430237
+
+00:13:34.240 --> 00:13:37.753
+Now the foundation perspective, like, you know, EDF is a
+
+NOTE Confidence: 0.7634440064430237
+
+00:13:37.815 --> 00:13:41.642
+really metadata first foundation that you know, we have built
+
+NOTE Confidence: 0.7634440064430237
+
+00:13:41.705 --> 00:13:44.403
+together and also on on on top of that, you
+
+NOTE Confidence: 0.7634440064430237
+
+00:13:44.466 --> 00:13:47.351
+know, we we have created a data as a knowledge
+
+NOTE Confidence: 0.7634440064430237
+
+00:13:47.414 --> 00:13:51.492
+where, you know, we have a different disconnected entities coming
+
+NOTE Confidence: 0.7634440064430237
+
+00:13:51.555 --> 00:13:52.119
+together.
+
+NOTE Confidence: 0.8177404403686523
+
+00:13:52.520 --> 00:13:55.645
+We have our data as intelligence, you know, where we
+
+NOTE Confidence: 0.8177404403686523
+
+00:13:55.706 --> 00:13:59.192
+know we we allow agents to actually reason through, scroll
+
+NOTE Confidence: 0.8177404403686523
+
+00:13:59.252 --> 00:14:02.138
+through, go deeper and then you then it comes to
+
+NOTE Confidence: 0.8177404403686523
+
+00:14:02.198 --> 00:14:03.039
+a agent layer.
+
+NOTE Confidence: 0.8361627459526062
+
+00:14:03.320 --> 00:14:06.123
+So basically the concept is, you know, making the data
+
+NOTE Confidence: 0.8361627459526062
+
+00:14:06.174 --> 00:14:08.614
+AI ready data so that you know, we can generate
+
+NOTE Confidence: 0.8361627459526062
+
+00:14:08.666 --> 00:14:10.120
+more value for the business.
+
+NOTE Confidence: 0.8821019530296326
+
+00:14:10.520 --> 00:14:12.555
+So it is safe to say if you want to
+
+NOTE Confidence: 0.8821019530296326
+
+00:14:12.613 --> 00:14:15.578
+do anything with agents, you need to have your data
+
+NOTE Confidence: 0.8821019530296326
+
+00:14:15.636 --> 00:14:16.159
+AI ready.
+
+NOTE Confidence: 0.8706746697425842
+
+00:14:17.400 --> 00:14:19.781
+And making your data AI ready, even with a strong
+
+NOTE Confidence: 0.8706746697425842
+
+00:14:19.830 --> 00:14:21.239
+foundation is extremely hard.
+
+NOTE Confidence: 0.8342448472976685
+
+00:14:21.840 --> 00:14:24.329
+It is hard because you have to solve for these
+
+NOTE Confidence: 0.8342448472976685
+
+00:14:24.383 --> 00:14:26.439
+five things together at the same time.
+
+NOTE Confidence: 0.8939346075057983
+
+00:14:27.120 --> 00:14:30.114
+You need your data to be real time or in
+
+NOTE Confidence: 0.8939346075057983
+
+00:14:30.189 --> 00:14:32.960
+in real time available to the agents.
+
+NOTE Confidence: 0.9302470684051514
+
+00:14:33.400 --> 00:14:36.652
+We all know agents are very sensitive to latency, even
+
+NOTE Confidence: 0.9302470684051514
+
+00:14:36.712 --> 00:14:38.639
+if it is available in real time.
+
+NOTE Confidence: 0.9163184762001038
+
+00:14:38.640 --> 00:14:41.800
+You also need to make sure your data is unified.
+
+NOTE Confidence: 0.8934590816497803
+
+00:14:41.920 --> 00:14:44.939
+Some of this complex business workflows touch various parts of
+
+NOTE Confidence: 0.8934590816497803
+
+00:14:44.988 --> 00:14:47.375
+your business, so you need to make sure your data
+
+NOTE Confidence: 0.8934590816497803
+
+00:14:47.424 --> 00:14:47.959
+is unified.
+
+NOTE Confidence: 0.8351371884346008
+
+00:14:48.640 --> 00:14:51.232
+Even if your data is unified, you still make to
+
+NOTE Confidence: 0.8351371884346008
+
+00:14:51.287 --> 00:14:53.879
+need to make sure that your data is meaningful.
+
+NOTE Confidence: 0.9442378282546997
+
+00:14:54.200 --> 00:14:56.683
+You need to make sure all the business context, all
+
+NOTE Confidence: 0.9442378282546997
+
+00:14:56.732 --> 00:14:59.800
+the business meanings, all the business processes are captured.
+
+NOTE Confidence: 0.9040138721466064
+
+00:15:00.320 --> 00:15:02.461
+Even with that, you still need to make sure it
+
+NOTE Confidence: 0.9040138721466064
+
+00:15:02.508 --> 00:15:03.160
+is contextual.
+
+NOTE Confidence: 0.9314711689949036
+
+00:15:04.120 --> 00:15:07.117
+Agents work extremely well with the right context at the
+
+NOTE Confidence: 0.9314711689949036
+
+00:15:07.171 --> 00:15:07.759
+right time.
+
+NOTE Confidence: 0.8443490862846375
+
+00:15:08.360 --> 00:15:11.134
+And all of this is meaningless if your data isn't
+
+NOTE Confidence: 0.8443490862846375
+
+00:15:11.190 --> 00:15:12.040
+really trusted.
+
+NOTE Confidence: 0.8752694129943848
+
+00:15:12.640 --> 00:15:16.566
+And these doing this individually is hard, but doing this
+
+NOTE Confidence: 0.8752694129943848
+
+00:15:16.635 --> 00:15:20.079
+at the scale that Pepsi operates in is way harder.
+
+NOTE Confidence: 0.9366439580917358
+
+00:15:20.480 --> 00:15:24.263
+Now we do have Azure services and platforms that make
+
+NOTE Confidence: 0.9366439580917358
+
+00:15:24.335 --> 00:15:26.120
+it possible make it easy.
+
+NOTE Confidence: 0.7175441980361938
+
+00:15:26.120 --> 00:15:30.588
+Perhaps Azure Databricks, Microsoft Fabric, you know, our enterprise application
+
+NOTE Confidence: 0.7175441980361938
+
+00:15:30.644 --> 00:15:32.319
+databases like SQL, Cosmos DB.
+
+NOTE Confidence: 0.8950197100639343
+
+00:15:32.920 --> 00:15:35.518
+But even with all that, you still need to be
+
+NOTE Confidence: 0.8950197100639343
+
+00:15:35.577 --> 00:15:39.887
+very conscious or an intentional about the architectural decisions you're
+
+NOTE Confidence: 0.8950197100639343
+
+00:15:39.946 --> 00:15:40.360
+making.
+
+NOTE Confidence: 0.901868462562561
+
+00:15:40.920 --> 00:15:43.319
+One of the things as a chief architect I keep
+
+NOTE Confidence: 0.901868462562561
+
+00:15:43.373 --> 00:15:46.413
+saying is operating model is something that also needs to
+
+NOTE Confidence: 0.901868462562561
+
+00:15:46.466 --> 00:15:46.839
+evolve.
+
+NOTE Confidence: 0.9507664442062378
+
+00:15:47.360 --> 00:15:50.453
+All these things are important, but so is your operating
+
+NOTE Confidence: 0.9507664442062378
+
+00:15:50.508 --> 00:15:50.840
+model.
+
+NOTE Confidence: 0.9084373116493225
+
+00:15:51.200 --> 00:15:53.360
+Maybe let's talk about some of the capabilities.
+
+NOTE Confidence: 0.8033934235572815
+
+00:15:53.360 --> 00:15:56.430
+Again, I won't drain to the slides, but in Pepsico's
+
+NOTE Confidence: 0.8033934235572815
+
+00:15:56.489 --> 00:15:59.914
+case, these were all the components that were important in
+
+NOTE Confidence: 0.8033934235572815
+
+00:15:59.973 --> 00:16:02.040
+making this solution a possibility.
+
+NOTE Confidence: 0.875741720199585
+
+00:16:03.040 --> 00:16:06.040
+Individually, maybe these products are not as interesting.
+
+NOTE Confidence: 0.8329135775566101
+
+00:16:06.600 --> 00:16:09.529
+The highlight of the slide that I want us to
+
+NOTE Confidence: 0.8329135775566101
+
+00:16:09.595 --> 00:16:12.991
+take away with is all these products were used from
+
+NOTE Confidence: 0.8329135775566101
+
+00:16:13.057 --> 00:16:16.319
+a point of view of being production ready, right?
+
+NOTE Confidence: 0.8365858793258667
+
+00:16:16.320 --> 00:16:17.560
+That that was the goal.
+
+NOTE Confidence: 0.8832225203514099
+
+00:16:18.200 --> 00:16:20.570
+And once you see the solution is a multi agent
+
+NOTE Confidence: 0.8832225203514099
+
+00:16:20.621 --> 00:16:24.795
+system, so different teams, different developers, different components, you know,
+
+NOTE Confidence: 0.8832225203514099
+
+00:16:24.847 --> 00:16:26.959
+might have access to different solutions.
+
+NOTE Confidence: 0.8393990397453308
+
+00:16:26.960 --> 00:16:29.293
+So we didn't really want to push them in a
+
+NOTE Confidence: 0.8393990397453308
+
+00:16:29.348 --> 00:16:32.237
+way where we are articulating user, you can just use
+
+NOTE Confidence: 0.8393990397453308
+
+00:16:32.293 --> 00:16:32.959
+this or not.
+
+NOTE Confidence: 0.852242112159729
+
+00:16:33.280 --> 00:16:35.360
+This come kind of tells the entire story.
+
+NOTE Confidence: 0.7486228942871094
+
+00:16:36.040 --> 00:16:39.254
+And this will be available in as part of your
+
+NOTE Confidence: 0.7486228942871094
+
+00:16:39.325 --> 00:16:41.039
+presentation post build.
+
+NOTE Confidence: 0.8514897227287292
+
+00:16:41.040 --> 00:16:42.600
+So you can get access to this.
+
+NOTE Confidence: 0.8207427263259888
+
+00:16:42.880 --> 00:16:45.040
+But these are all more theoretical concepts, right?
+
+NOTE Confidence: 0.7654638886451721
+
+00:16:46.240 --> 00:16:49.074
+Maybe let's talk about the Cam 360 agent and this
+
+NOTE Confidence: 0.7654638886451721
+
+00:16:49.132 --> 00:16:50.000
+agentic system.
+
+NOTE Confidence: 0.773410439491272
+
+00:16:50.440 --> 00:16:52.680
+Well, before we dive that, let me paint a picture.
+
+NOTE Confidence: 0.44184619188308716
+
+00:16:54.120 --> 00:16:54.760
+Meet Priya.
+
+NOTE Confidence: 0.6681361794471741
+
+00:16:54.760 --> 00:16:56.480
+Let's let's use Priya as an example.
+
+NOTE Confidence: 0.7503319978713989
+
+00:16:57.040 --> 00:16:58.160
+A key account manager.
+
+NOTE Confidence: 0.8155498504638672
+
+00:16:59.400 --> 00:17:02.893
+In 48 hours, she has an important meeting with one
+
+NOTE Confidence: 0.8155498504638672
+
+00:17:02.963 --> 00:17:05.200
+of her largest retail customers.
+
+NOTE Confidence: 0.8563380241394043
+
+00:17:05.720 --> 00:17:11.898
+Today she's going through 6710 different systems, reports, emails, contacts
+
+NOTE Confidence: 0.8563380241394043
+
+00:17:11.980 --> 00:17:14.039
+buried in some documents.
+
+NOTE Confidence: 0.9341626167297363
+
+00:17:14.520 --> 00:17:17.175
+It takes her hours to even go through what she
+
+NOTE Confidence: 0.9341626167297363
+
+00:17:17.233 --> 00:17:19.600
+really needs to prepare for that meeting.
+
+NOTE Confidence: 0.8604523539543152
+
+00:17:20.119 --> 00:17:22.920
+So we went from that to a new world where
+
+NOTE Confidence: 0.8604523539543152
+
+00:17:22.988 --> 00:17:26.198
+she just bringing up can 360 and asking it help
+
+NOTE Confidence: 0.8604523539543152
+
+00:17:26.267 --> 00:17:27.359
+me get prepared.
+
+NOTE Confidence: 0.8350899815559387
+
+00:17:27.760 --> 00:17:30.320
+Walk us through how that journey got unlocked.
+
+NOTE Confidence: 0.7221325039863586
+
+00:17:30.359 --> 00:17:33.374
+Well, when you say that, you know, Priya, you know,
+
+NOTE Confidence: 0.7221325039863586
+
+00:17:33.433 --> 00:17:36.271
+going to multiple system, but I want to just say
+
+NOTE Confidence: 0.7221325039863586
+
+00:17:36.330 --> 00:17:39.286
+that, you know, hey, Priya is now company with the
+
+NOTE Confidence: 0.7221325039863586
+
+00:17:39.345 --> 00:17:43.069
+six superstars, you know, the six superstar team members, like,
+
+NOTE Confidence: 0.7221325039863586
+
+00:17:43.128 --> 00:17:45.492
+you know, I have a data, a team that you
+
+NOTE Confidence: 0.7221325039863586
+
+00:17:45.551 --> 00:17:47.680
+know, actually crunch into the data.
+
+NOTE Confidence: 0.7354562878608704
+
+00:17:47.760 --> 00:17:49.400
+I let me introduce you with them, right.
+
+NOTE Confidence: 0.6757816076278687
+
+00:17:49.400 --> 00:17:50.800
+You know, that is orchestrator.
+
+NOTE Confidence: 0.7180930376052856
+
+00:17:51.320 --> 00:17:54.440
+It's a, you know, really smart project manager.
+
+NOTE Confidence: 0.9140591025352478
+
+00:17:54.960 --> 00:17:57.160
+It orchestrates everything across the board.
+
+NOTE Confidence: 0.922146201133728
+
+00:17:57.640 --> 00:17:59.760
+Then you know you have a superstar in the team.
+
+NOTE Confidence: 0.795857846736908
+
+00:17:59.760 --> 00:18:01.780
+We have a nerd, data nerd which is a data
+
+NOTE Confidence: 0.795857846736908
+
+00:18:01.830 --> 00:18:02.520
+analyst agent.
+
+NOTE Confidence: 0.7727190852165222
+
+00:18:02.960 --> 00:18:05.840
+It actually countries the data and goes through a number.
+
+NOTE Confidence: 0.7882893085479736
+
+00:18:06.400 --> 00:18:08.080
+We have a person named tactic agent.
+
+NOTE Confidence: 0.7513150572776794
+
+00:18:08.080 --> 00:18:10.931
+It makes sure that you know the account personas are
+
+NOTE Confidence: 0.7513150572776794
+
+00:18:10.986 --> 00:18:14.386
+really captured very well and actually all the strategies that
+
+NOTE Confidence: 0.7513150572776794
+
+00:18:14.441 --> 00:18:17.183
+we create on top of it, it's actually followed the
+
+NOTE Confidence: 0.7513150572776794
+
+00:18:17.238 --> 00:18:18.279
+tag tracking agent.
+
+NOTE Confidence: 0.7455681562423706
+
+00:18:18.280 --> 00:18:21.200
+We life cycle perspective on the accounts.
+
+NOTE Confidence: 0.7924492359161377
+
+00:18:21.200 --> 00:18:23.571
+We manage that through this tracking agent and we make
+
+NOTE Confidence: 0.7924492359161377
+
+00:18:23.615 --> 00:18:25.240
+sure that, you know, we are on track.
+
+NOTE Confidence: 0.6883174777030945
+
+00:18:25.800 --> 00:18:26.920
+We have a best practices.
+
+NOTE Confidence: 0.6953669786453247
+
+00:18:26.920 --> 00:18:28.990
+Of course, I think about PepsiCo scale like, you know,
+
+NOTE Confidence: 0.6953669786453247
+
+00:18:29.028 --> 00:18:29.680
+PepsiCo is a big.
+
+NOTE Confidence: 0.8555116653442383
+
+00:18:30.000 --> 00:18:31.772
+So in this scale, we want to make sure that,
+
+NOTE Confidence: 0.8555116653442383
+
+00:18:31.813 --> 00:18:33.868
+you know, we also follow the runbook that you know,
+
+NOTE Confidence: 0.8555116653442383
+
+00:18:33.908 --> 00:18:35.480
+we have been following for the success.
+
+NOTE Confidence: 0.7797183394432068
+
+00:18:35.720 --> 00:18:38.195
+So that's this agent actually make sure that and my
+
+NOTE Confidence: 0.7797183394432068
+
+00:18:38.243 --> 00:18:41.010
+favorite one last one, right, You know, the debrief agent
+
+NOTE Confidence: 0.7797183394432068
+
+00:18:41.059 --> 00:18:43.340
+in this case, like, you know, you can just talk
+
+NOTE Confidence: 0.7797183394432068
+
+00:18:43.388 --> 00:18:43.679
+to it.
+
+NOTE Confidence: 0.7783823609352112
+
+00:18:44.119 --> 00:18:46.235
+It's a live conversational agent where, you know, it could
+
+NOTE Confidence: 0.7783823609352112
+
+00:18:46.271 --> 00:18:47.839
+make sure that you hit the knowledge layer.
+
+NOTE Confidence: 0.8291574716567993
+
+00:18:47.840 --> 00:18:50.640
+If knowledge has some gaps, it will create a question.
+
+NOTE Confidence: 0.8590849041938782
+
+00:18:50.760 --> 00:18:52.927
+It will ask that question to the user, to the
+
+NOTE Confidence: 0.8590849041938782
+
+00:18:52.975 --> 00:18:55.527
+Priya and Priya would answer that and it will capture
+
+NOTE Confidence: 0.8590849041938782
+
+00:18:55.575 --> 00:18:58.080
+into knowledge and next time you know, boom, it will
+
+NOTE Confidence: 0.8590849041938782
+
+00:18:58.128 --> 00:19:00.439
+have a better understanding around your account.
+
+NOTE Confidence: 0.4948023557662964
+
+00:19:00.520 --> 00:19:00.880
+That's awesome.
+
+NOTE Confidence: 0.8496145009994507
+
+00:19:01.040 --> 00:19:04.298
+I think safe to say that every Cam has a
+
+NOTE Confidence: 0.8496145009994507
+
+00:19:04.379 --> 00:19:07.719
+team of 6 working with them all the time.
+
+NOTE Confidence: 0.9090924263000488
+
+00:19:07.760 --> 00:19:10.244
+And this is the complexity that today, before the system
+
+NOTE Confidence: 0.9090924263000488
+
+00:19:10.288 --> 00:19:12.640
+existed, they had to really go through and solve for.
+
+NOTE Confidence: 0.8538951277732849
+
+00:19:13.040 --> 00:19:14.520
+Maybe let's pick a couple of agents.
+
+NOTE Confidence: 0.7489551305770874
+
+00:19:14.880 --> 00:19:17.445
+You said nerd, so maybe let's dive into the data
+
+NOTE Confidence: 0.7489551305770874
+
+00:19:17.498 --> 00:19:20.438
+analyst agent and yeah, just walk us through the behind
+
+NOTE Confidence: 0.7489551305770874
+
+00:19:20.492 --> 00:19:21.080
+the scenes.
+
+NOTE Confidence: 0.6276528835296631
+
+00:19:21.480 --> 00:19:24.200
+So data analyst agent is interesting one, right?
+
+NOTE Confidence: 0.8171793818473816
+
+00:19:24.320 --> 00:19:25.320
+It's a hybrid system.
+
+NOTE Confidence: 0.8132945895195007
+
+00:19:25.320 --> 00:19:29.242
+You can see that it has authentication query genie and
+
+NOTE Confidence: 0.8132945895195007
+
+00:19:29.314 --> 00:19:30.839
+also enriched layers.
+
+NOTE Confidence: 0.8404950499534607
+
+00:19:31.240 --> 00:19:34.394
+But authentication is where, you know, we make sure that,
+
+NOTE Confidence: 0.8404950499534607
+
+00:19:34.449 --> 00:19:37.272
+you know, users access if they don't have access to
+
+NOTE Confidence: 0.8404950499534607
+
+00:19:37.327 --> 00:19:40.482
+specific data, you know, we don't agent does not actually
+
+NOTE Confidence: 0.8404950499534607
+
+00:19:40.537 --> 00:19:43.083
+also go through and look at that data and then
+
+NOTE Confidence: 0.8404950499534607
+
+00:19:43.139 --> 00:19:44.079
+comes to a genie.
+
+NOTE Confidence: 0.7216155529022217
+
+00:19:44.080 --> 00:19:46.534
+Genie is a heart and actually on this case, like
+
+NOTE Confidence: 0.7216155529022217
+
+00:19:46.585 --> 00:19:48.529
+you know it will, it will do a text to
+
+NOTE Confidence: 0.7216155529022217
+
+00:19:48.580 --> 00:19:51.853
+SQL generation and also executes that and provides the responses
+
+NOTE Confidence: 0.7216155529022217
+
+00:19:51.904 --> 00:19:52.159
+back.
+
+NOTE Confidence: 0.8162473440170288
+
+00:19:52.160 --> 00:19:55.468
+And finally, you know, and reach and persist layer where
+
+NOTE Confidence: 0.8162473440170288
+
+00:19:55.527 --> 00:19:58.539
+you know, we have this knowledge layer and also all
+
+NOTE Confidence: 0.8162473440170288
+
+00:19:58.598 --> 00:20:01.079
+the different session memories are stored.
+
+NOTE Confidence: 0.874455988407135
+
+00:20:01.080 --> 00:20:05.680
+So that actually makes the synthesization very easy.
+
+NOTE Confidence: 0.7640268802642822
+
+00:20:05.960 --> 00:20:08.000
+So let's do deep dive into a demo.
+
+NOTE Confidence: 0.5732929110527039
+
+00:20:08.000 --> 00:20:09.685
+You know, I have a small demo that you know,
+
+NOTE Confidence: 0.5732929110527039
+
+00:20:09.723 --> 00:20:10.719
+we can that's a good idea.
+
+NOTE Confidence: 0.9023603200912476
+
+00:20:11.760 --> 00:20:14.840
+So I'll quickly go through this demo.
+
+NOTE Confidence: 0.7571495175361633
+
+00:20:16.320 --> 00:20:16.480
+Yeah.
+
+NOTE Confidence: 0.7351731061935425
+
+00:20:16.880 --> 00:20:18.737
+So think about this like no, this is a Lang
+
+NOTE Confidence: 0.7351731061935425
+
+00:20:18.780 --> 00:20:19.040
+Smith.
+
+NOTE Confidence: 0.6300281286239624
+
+00:20:19.800 --> 00:20:23.360
+This is a combination of a Lang graph and Genie.
+
+NOTE Confidence: 0.7233504056930542
+
+00:20:23.440 --> 00:20:27.085
+So in Lang Smith we have yeah, in Lang Smith
+
+NOTE Confidence: 0.7233504056930542
+
+00:20:27.168 --> 00:20:30.317
+we have a flows as you can see that is
+
+NOTE Confidence: 0.7233504056930542
+
+00:20:30.400 --> 00:20:35.040
+a project manager, you know, orchestrator in the center.
+
+NOTE Confidence: 0.7494508028030396
+
+00:20:35.280 --> 00:20:37.506
+And you know, as query comes in like you know,
+
+NOTE Confidence: 0.7494508028030396
+
+00:20:37.554 --> 00:20:40.119
+there is a query being written just for demo purpose.
+
+NOTE Confidence: 0.8715165853500366
+
+00:20:40.119 --> 00:20:45.265
+This query is asking top actually accounts that you know
+
+NOTE Confidence: 0.8715165853500366
+
+00:20:45.357 --> 00:20:46.920
+that can be used.
+
+NOTE Confidence: 0.6914774775505066
+
+00:20:46.920 --> 00:20:50.370
+So and it is going through all the authentication, converting
+
+NOTE Confidence: 0.6914774775505066
+
+00:20:50.427 --> 00:20:53.086
+those token from JW to YDC tokens and then, you
+
+NOTE Confidence: 0.6914774775505066
+
+00:20:53.142 --> 00:20:54.840
+know, doing a call to a genie.
+
+NOTE Confidence: 0.7260600328445435
+
+00:20:55.440 --> 00:20:58.101
+And after that, you know, it is starting to synthesize,
+
+NOTE Confidence: 0.7260600328445435
+
+00:20:58.149 --> 00:20:58.439
+right.
+
+NOTE Confidence: 0.761797308921814
+
+00:20:58.440 --> 00:21:01.255
+You know, before even it provides an answer back, it
+
+NOTE Confidence: 0.761797308921814
+
+00:21:01.309 --> 00:21:03.962
+has a, you know, golden data set that it actually
+
+NOTE Confidence: 0.761797308921814
+
+00:21:04.016 --> 00:21:07.048
+looks at and you know, finally provides the output that,
+
+NOTE Confidence: 0.761797308921814
+
+00:21:07.102 --> 00:21:09.538
+hey, this is output that, you know, I want to
+
+NOTE Confidence: 0.761797308921814
+
+00:21:09.592 --> 00:21:10.079
+look for.
+
+NOTE Confidence: 0.8197938799858093
+
+00:21:10.080 --> 00:21:12.819
+But if I, if I go even deeper, like, you
+
+NOTE Confidence: 0.8197938799858093
+
+00:21:12.887 --> 00:21:15.079
+know, if I, if I go to a node by
+
+NOTE Confidence: 0.8197938799858093
+
+00:21:15.147 --> 00:21:18.640
+node, if I want to understand what nodes are built,
+
+NOTE Confidence: 0.8197938799858093
+
+00:21:18.709 --> 00:21:19.119
+right?
+
+NOTE Confidence: 0.7177281975746155
+
+00:21:19.119 --> 00:21:23.031
+You know, there are multiple nodes here and, and in
+
+NOTE Confidence: 0.7177281975746155
+
+00:21:23.108 --> 00:21:25.639
+a we ask or we can take a look at
+
+NOTE Confidence: 0.7177281975746155
+
+00:21:25.716 --> 00:21:26.559
+that nodes.
+
+NOTE Confidence: 0.7889833450317383
+
+00:21:26.960 --> 00:21:29.040
+So these are this is a graph.
+
+NOTE Confidence: 0.8227679133415222
+
+00:21:29.760 --> 00:21:32.028
+This is a graph and nodes that we are looking
+
+NOTE Confidence: 0.8227679133415222
+
+00:21:32.079 --> 00:21:34.600
+at, there are multiple nodes and graphs mentioned.
+
+NOTE Confidence: 0.8892855644226074
+
+00:21:34.800 --> 00:21:36.680
+And these are the steps that we are following, right?
+
+NOTE Confidence: 0.7783023715019226
+
+00:21:36.680 --> 00:21:39.345
+So in these steps we we want to make sure
+
+NOTE Confidence: 0.7783023715019226
+
+00:21:39.410 --> 00:21:43.050
+that, you know, the conversion of the token happens very
+
+NOTE Confidence: 0.7783023715019226
+
+00:21:43.115 --> 00:21:43.440
+well.
+
+NOTE Confidence: 0.7371655702590942
+
+00:21:43.680 --> 00:21:46.712
+So we have a federation policy in the database Genie
+
+NOTE Confidence: 0.7371655702590942
+
+00:21:46.770 --> 00:21:49.803
+configured so that you know, we use that and convert
+
+NOTE Confidence: 0.7371655702590942
+
+00:21:49.861 --> 00:21:51.320
+the token from JW to YDC.
+
+NOTE Confidence: 0.8058261275291443
+
+00:21:51.880 --> 00:21:54.240
+That happens here in authentication layer in this tab.
+
+NOTE Confidence: 0.7932062149047852
+
+00:21:54.600 --> 00:21:57.200
+Then you know we have Genie call.
+
+NOTE Confidence: 0.7756026387214661
+
+00:21:57.359 --> 00:22:00.496
+Now after we call to Genie, we have a conversation,
+
+NOTE Confidence: 0.7756026387214661
+
+00:22:00.558 --> 00:22:03.264
+IDs and all that we track onto a session and
+
+NOTE Confidence: 0.7756026387214661
+
+00:22:03.326 --> 00:22:06.094
+we keep on tracking that hey, where we are on
+
+NOTE Confidence: 0.7756026387214661
+
+00:22:06.155 --> 00:22:09.599
+that Genie, that request, we received that request back.
+
+NOTE Confidence: 0.8097245097160339
+
+00:22:10.200 --> 00:22:13.832
+The response actually provides us summarized output and at the
+
+NOTE Confidence: 0.8097245097160339
+
+00:22:13.890 --> 00:22:16.000
+same time also it provides a sequel.
+
+NOTE Confidence: 0.8727618455886841
+
+00:22:17.280 --> 00:22:20.923
+Now our orchestrator on the other side, it compiles all
+
+NOTE Confidence: 0.8727618455886841
+
+00:22:20.989 --> 00:22:25.162
+the information from this Genie output and actually provides it
+
+NOTE Confidence: 0.8727618455886841
+
+00:22:25.228 --> 00:22:25.560
+back.
+
+NOTE Confidence: 0.7888281941413879
+
+00:22:25.560 --> 00:22:28.915
+So you can see that in this case it is
+
+NOTE Confidence: 0.7888281941413879
+
+00:22:29.004 --> 00:22:33.684
+going through the code snippets that you know, it, it
+
+NOTE Confidence: 0.7888281941413879
+
+00:22:33.773 --> 00:22:40.485
+provides output to orchestrator and orchestrator actually synthesizes at the
+
+NOTE Confidence: 0.7888281941413879
+
+00:22:40.573 --> 00:22:41.279
+end now.
+
+NOTE Confidence: 0.7307573556900024
+
+00:22:41.520 --> 00:22:44.365
+Yeah, it over here, right here, it is trying to
+
+NOTE Confidence: 0.7307573556900024
+
+00:22:44.426 --> 00:22:47.635
+show that, you know, we have conversation IDs that we
+
+NOTE Confidence: 0.7307573556900024
+
+00:22:47.695 --> 00:22:50.480
+tracked through and I know that is a genie IDs
+
+NOTE Confidence: 0.7307573556900024
+
+00:22:50.541 --> 00:22:52.600
+that, you know, we follow through.
+
+NOTE Confidence: 0.7855996489524841
+
+00:22:52.800 --> 00:22:56.443
+We make sure that, you know, we we tied back
+
+NOTE Confidence: 0.7855996489524841
+
+00:22:56.526 --> 00:22:59.590
+to the to the query and at the end we
+
+NOTE Confidence: 0.7855996489524841
+
+00:22:59.673 --> 00:23:04.063
+have a final output that, you know, it gets generated
+
+NOTE Confidence: 0.7855996489524841
+
+00:23:04.145 --> 00:23:04.560
+here.
+
+NOTE Confidence: 0.7444755434989929
+
+00:23:05.000 --> 00:23:07.770
+Now I want to walk you through one more piece
+
+NOTE Confidence: 0.7444755434989929
+
+00:23:07.831 --> 00:23:10.725
+like, you know, yeah, it's a it's a genie being
+
+NOTE Confidence: 0.7444755434989929
+
+00:23:10.786 --> 00:23:12.880
+used under land graph flow, right?
+
+NOTE Confidence: 0.7625307440757751
+
+00:23:13.280 --> 00:23:15.533
+But not only that, like, you know, I will, we
+
+NOTE Confidence: 0.7625307440757751
+
+00:23:15.583 --> 00:23:18.237
+will show data breaks, let's say like how data breaks
+
+NOTE Confidence: 0.7625307440757751
+
+00:23:18.287 --> 00:23:20.039
+configuration looks like for genie.
+
+NOTE Confidence: 0.7557568550109863
+
+00:23:20.440 --> 00:23:22.840
+So we, we configure the genie.
+
+NOTE Confidence: 0.8274434804916382
+
+00:23:22.960 --> 00:23:25.853
+We make sure that you know in this genie we
+
+NOTE Confidence: 0.8274434804916382
+
+00:23:25.920 --> 00:23:28.948
+have all the all the tables that are that are
+
+NOTE Confidence: 0.8274434804916382
+
+00:23:29.015 --> 00:23:31.639
+needed that are created also warehouse.
+
+NOTE Confidence: 0.7624127268791199
+
+00:23:32.000 --> 00:23:34.614
+It's a it's a no sort of warehouse like you
+
+NOTE Confidence: 0.7624127268791199
+
+00:23:34.675 --> 00:23:37.654
+know, we have created here just to make sure that
+
+NOTE Confidence: 0.7624127268791199
+
+00:23:37.715 --> 00:23:39.599
+you know the speed is provided.
+
+NOTE Confidence: 0.8867999911308289
+
+00:23:40.280 --> 00:23:44.692
+All the tables that are actually in the picture are
+
+NOTE Confidence: 0.8867999911308289
+
+00:23:44.778 --> 00:23:47.719
+being used with that those tables.
+
+NOTE Confidence: 0.9235449433326721
+
+00:23:47.720 --> 00:23:50.204
+You know you have all the definitions mentioned in those
+
+NOTE Confidence: 0.9235449433326721
+
+00:23:50.249 --> 00:23:50.559
+tables.
+
+NOTE Confidence: 0.8336955308914185
+
+00:23:50.920 --> 00:23:54.170
+All the column details are captured in those tables as
+
+NOTE Confidence: 0.8336955308914185
+
+00:23:54.230 --> 00:23:56.698
+you can see here as we go and deeper each
+
+NOTE Confidence: 0.8336955308914185
+
+00:23:56.758 --> 00:24:00.912
+and every configurations helps actually Genie understand a little bit
+
+NOTE Confidence: 0.8336955308914185
+
+00:24:00.972 --> 00:24:03.921
+more about the data so that when it generates the
+
+NOTE Confidence: 0.8336955308914185
+
+00:24:03.981 --> 00:24:07.232
+SQL, it's much more accurate SQL rather than you know,
+
+NOTE Confidence: 0.8336955308914185
+
+00:24:07.292 --> 00:24:09.639
+it's, it's just keeps on trying, right.
+
+NOTE Confidence: 0.8470742106437683
+
+00:24:10.000 --> 00:24:12.311
+So as you can see here, it's it is there
+
+NOTE Confidence: 0.8470742106437683
+
+00:24:12.368 --> 00:24:15.200
+is a formatting assistant also that we have used.
+
+NOTE Confidence: 0.7365699410438538
+
+00:24:15.320 --> 00:24:18.487
+So we make sure that you know the formatting is
+
+NOTE Confidence: 0.7365699410438538
+
+00:24:18.555 --> 00:24:21.790
+correct at the end and and this data actually we
+
+NOTE Confidence: 0.7365699410438538
+
+00:24:21.857 --> 00:24:25.160
+also take advantage of Unity catalog here, right?
+
+NOTE Confidence: 0.7350689172744751
+
+00:24:25.160 --> 00:24:28.057
+So you need the catalog actually helps us make sure
+
+NOTE Confidence: 0.7350689172744751
+
+00:24:28.114 --> 00:24:30.785
+that you know the users has access to the right
+
+NOTE Confidence: 0.7350689172744751
+
+00:24:30.842 --> 00:24:31.240
+tables.
+
+NOTE Confidence: 0.8169720768928528
+
+00:24:31.240 --> 00:24:33.808
+Let's say we configure here 10 tables, but user may
+
+NOTE Confidence: 0.8169720768928528
+
+00:24:33.858 --> 00:24:35.520
+not have access to all 10 tables.
+
+NOTE Confidence: 0.9372414946556091
+
+00:24:35.880 --> 00:24:37.890
+They only may have access to only two or three
+
+NOTE Confidence: 0.9372414946556091
+
+00:24:37.934 --> 00:24:38.239
+tables.
+
+NOTE Confidence: 0.908052921295166
+
+00:24:38.640 --> 00:24:41.617
+So we don't want, you know our agents to provide
+
+NOTE Confidence: 0.908052921295166
+
+00:24:41.680 --> 00:24:44.720
+access to all of the data and provide the answer.
+
+NOTE Confidence: 0.8999626040458679
+
+00:24:44.720 --> 00:24:46.773
+But you know that that might not be a good
+
+NOTE Confidence: 0.8999626040458679
+
+00:24:46.822 --> 00:24:47.360
+one, right?
+
+NOTE Confidence: 0.8505758047103882
+
+00:24:47.359 --> 00:24:50.139
+Because user may not have access and we are trying
+
+NOTE Confidence: 0.8505758047103882
+
+00:24:50.195 --> 00:24:52.919
+to attach into the data which is restricted data.
+
+NOTE Confidence: 0.8324294686317444
+
+00:24:53.359 --> 00:24:55.757
+So we also take took care of that over here
+
+NOTE Confidence: 0.8324294686317444
+
+00:24:55.813 --> 00:24:58.991
+we are providing an instruction making sure that you know
+
+NOTE Confidence: 0.8324294686317444
+
+00:24:59.047 --> 00:25:02.950
+all the instructions are configured, system instructions for the agent
+
+NOTE Confidence: 0.8324294686317444
+
+00:25:03.006 --> 00:25:04.399
+are configured correctly.
+
+NOTE Confidence: 0.826892614364624
+
+00:25:04.520 --> 00:25:08.520
+1 short examples are created here and all the queries.
+
+NOTE Confidence: 0.7475762963294983
+
+00:25:08.520 --> 00:25:11.261
+So there are some high confidence path if queries are
+
+NOTE Confidence: 0.7475762963294983
+
+00:25:11.313 --> 00:25:14.262
+really matching closely with them that, you know, we have
+
+NOTE Confidence: 0.7475762963294983
+
+00:25:14.313 --> 00:25:16.900
+a high confidence path where we have a real static
+
+NOTE Confidence: 0.7475762963294983
+
+00:25:16.952 --> 00:25:20.263
+sequels configured here, but there are some low confidence paths
+
+NOTE Confidence: 0.7475762963294983
+
+00:25:20.314 --> 00:25:22.797
+where you know, we generate a sequel on the fly,
+
+NOTE Confidence: 0.7475762963294983
+
+00:25:22.849 --> 00:25:23.160
+right?
+
+NOTE Confidence: 0.9586037993431091
+
+00:25:23.400 --> 00:25:24.800
+So that's also out there.
+
+NOTE Confidence: 0.8252938985824585
+
+00:25:25.600 --> 00:25:29.023
+As you can see, we we have those high confidence
+
+NOTE Confidence: 0.8252938985824585
+
+00:25:29.094 --> 00:25:31.519
+path very well established, right.
+
+NOTE Confidence: 0.7817850708961487
+
+00:25:31.520 --> 00:25:35.120
+A lot of high, high confidence queries already mentioned.
+
+NOTE Confidence: 0.8467878699302673
+
+00:25:35.480 --> 00:25:38.308
+And this is all because of the golden data set
+
+NOTE Confidence: 0.8467878699302673
+
+00:25:38.370 --> 00:25:41.198
+that we collected with at the layer of the log
+
+NOTE Confidence: 0.8467878699302673
+
+00:25:41.260 --> 00:25:43.719
+logs that we collect for the user usage.
+
+NOTE Confidence: 0.8227994441986084
+
+00:25:43.720 --> 00:25:46.621
+So in the development cycles when we actually provide it
+
+NOTE Confidence: 0.8227994441986084
+
+00:25:46.673 --> 00:25:49.212
+to users, we also collect that how they are using
+
+NOTE Confidence: 0.8227994441986084
+
+00:25:49.263 --> 00:25:51.439
+it, what common questions they are asking.
+
+NOTE Confidence: 0.84007728099823
+
+00:25:51.640 --> 00:25:54.160
+And based on that, we compile the high confidence path.
+
+NOTE Confidence: 0.8280171155929565
+
+00:25:54.840 --> 00:25:57.862
+As you can see that the questions as questions being
+
+NOTE Confidence: 0.8280171155929565
+
+00:25:57.921 --> 00:26:00.944
+asked for the high confidence path, it is instant of
+
+NOTE Confidence: 0.8280171155929565
+
+00:26:01.002 --> 00:26:03.560
+the first question was high confidence path.
+
+NOTE Confidence: 0.8222618699073792
+
+00:26:04.000 --> 00:26:06.362
+It would run those queries and it would provide the
+
+NOTE Confidence: 0.8222618699073792
+
+00:26:06.408 --> 00:26:07.520
+answer back immediately.
+
+NOTE Confidence: 0.8273296356201172
+
+00:26:07.840 --> 00:26:09.699
+For the low confidence, as you can see, there is
+
+NOTE Confidence: 0.8273296356201172
+
+00:26:09.738 --> 00:26:10.319
+a trusted sign.
+
+NOTE Confidence: 0.7891169786453247
+
+00:26:11.040 --> 00:26:15.314
+Unfortunately we had to label some of the data out,
+
+NOTE Confidence: 0.7891169786453247
+
+00:26:15.398 --> 00:26:18.080
+but yeah, so this is a nutshell.
+
+NOTE Confidence: 0.7673419117927551
+
+00:26:18.080 --> 00:26:20.683
+Like you know the you you get the data back
+
+NOTE Confidence: 0.7673419117927551
+
+00:26:20.744 --> 00:26:24.680
+to a orchestrator level and orchestrator then you know synthesize
+
+NOTE Confidence: 0.7673419117927551
+
+00:26:24.741 --> 00:26:27.163
+just in case if it has to use some other
+
+NOTE Confidence: 0.7673419117927551
+
+00:26:27.223 --> 00:26:30.130
+agents as well, then it does it and then finally
+
+NOTE Confidence: 0.7673419117927551
+
+00:26:30.191 --> 00:26:31.159
+provides output.
+
+NOTE Confidence: 0.5943912863731384
+
+00:26:31.360 --> 00:26:31.680
+Yeah, I know.
+
+NOTE Confidence: 0.8280518651008606
+
+00:26:31.760 --> 00:26:33.889
+And by the way, for all of us or those
+
+NOTE Confidence: 0.8280518651008606
+
+00:26:33.945 --> 00:26:36.860
+of you who have tried building a natural language to
+
+NOTE Confidence: 0.8280518651008606
+
+00:26:36.916 --> 00:26:39.270
+SQL kind of a system, we know it's a very,
+
+NOTE Confidence: 0.8280518651008606
+
+00:26:39.326 --> 00:26:40.560
+very hard thing to do.
+
+NOTE Confidence: 0.7135674953460693
+
+00:26:40.880 --> 00:26:44.440
+But there were three key takeaways as part of this.
+
+NOTE Confidence: 0.7636037468910217
+
+00:26:44.880 --> 00:26:47.757
+You know, walk through first, if Priya the Cam, when
+
+NOTE Confidence: 0.7636037468910217
+
+00:26:47.812 --> 00:26:51.243
+she started interacting with the system, she started with just
+
+NOTE Confidence: 0.7636037468910217
+
+00:26:51.299 --> 00:26:52.239
+an intent, right?
+
+NOTE Confidence: 0.9056368470191956
+
+00:26:52.240 --> 00:26:54.949
+She didn't really have to go and figure out where
+
+NOTE Confidence: 0.9056368470191956
+
+00:26:55.005 --> 00:26:58.102
+the data sources or knowledge sources to get that answer
+
+NOTE Confidence: 0.9056368470191956
+
+00:26:58.157 --> 00:26:58.599
+resides.
+
+NOTE Confidence: 0.8089360594749451
+
+00:26:59.400 --> 00:27:02.697
+The second part was that intent got translated into a
+
+NOTE Confidence: 0.8089360594749451
+
+00:27:02.760 --> 00:27:06.182
+SQL query or whatever the query mechanism is behind the
+
+NOTE Confidence: 0.8089360594749451
+
+00:27:06.244 --> 00:27:06.680
+scenes.
+
+NOTE Confidence: 0.8848976492881775
+
+00:27:07.280 --> 00:27:09.950
+But the reason that was good and accurate because of
+
+NOTE Confidence: 0.8848976492881775
+
+00:27:10.001 --> 00:27:12.979
+the Enterprise Data Foundation and the work Pepsi had done
+
+NOTE Confidence: 0.8848976492881775
+
+00:27:13.031 --> 00:27:14.879
+in setting that foundation properly.
+
+NOTE Confidence: 0.9047015905380249
+
+00:27:15.440 --> 00:27:19.281
+And more importantly, the system is not just summarizing information
+
+NOTE Confidence: 0.9047015905380249
+
+00:27:19.338 --> 00:27:20.920
+and giving it back to Priya.
+
+NOTE Confidence: 0.876264214515686
+
+00:27:21.560 --> 00:27:24.506
+The system is making sure Priya has access to the
+
+NOTE Confidence: 0.876264214515686
+
+00:27:24.566 --> 00:27:28.234
+variable she needs to make her conversation with the customer
+
+NOTE Confidence: 0.876264214515686
+
+00:27:28.294 --> 00:27:30.999
+as appropriate and as meaningful as possible.
+
+NOTE Confidence: 0.7588274478912354
+
+00:27:32.000 --> 00:27:35.872
+So this was an example of data analyst or NERD
+
+NOTE Confidence: 0.7588274478912354
+
+00:27:35.956 --> 00:27:37.640
+agent as you put so.
+
+NOTE Confidence: 0.8487170338630676
+
+00:27:38.160 --> 00:27:41.960
+So let's see a tracking agent.
+
+NOTE Confidence: 0.763435959815979
+
+00:27:41.960 --> 00:27:43.360
+Let's walk through another agent.
+
+NOTE Confidence: 0.6699147820472717
+
+00:27:44.600 --> 00:27:46.080
+Maybe let's move the story forward, right.
+
+NOTE Confidence: 0.7455068826675415
+
+00:27:46.080 --> 00:27:49.453
+So Priya used the data analyst agent had an amazing
+
+NOTE Confidence: 0.7455068826675415
+
+00:27:49.519 --> 00:27:51.239
+meeting with her customer.
+
+NOTE Confidence: 0.8459252119064331
+
+00:27:51.760 --> 00:27:53.320
+It's Thursday evening, maybe Thursday morning.
+
+NOTE Confidence: 0.9051374197006226
+
+00:27:53.320 --> 00:27:56.800
+She had the meeting Thursday evening in the current cycle.
+
+NOTE Confidence: 0.8038555979728699
+
+00:27:56.960 --> 00:27:59.259
+What she did is she went back to her car,
+
+NOTE Confidence: 0.8038555979728699
+
+00:27:59.315 --> 00:28:02.343
+she may be scribbled some notes, maybe send an e-mail,
+
+NOTE Confidence: 0.8038555979728699
+
+00:28:02.399 --> 00:28:04.867
+or she may be made a promise to herself that
+
+NOTE Confidence: 0.8038555979728699
+
+00:28:04.923 --> 00:28:07.671
+she'll go and update the account plan in the near
+
+NOTE Confidence: 0.8038555979728699
+
+00:28:07.727 --> 00:28:08.120
+future.
+
+NOTE Confidence: 0.8420935273170471
+
+00:28:08.920 --> 00:28:11.387
+All of us who have done this know it's very
+
+NOTE Confidence: 0.8420935273170471
+
+00:28:11.445 --> 00:28:14.200
+easy to miss context when you are in that cycle.
+
+NOTE Confidence: 0.9114882349967957
+
+00:28:14.720 --> 00:28:17.546
+And even if you are able to do all that,
+
+NOTE Confidence: 0.9114882349967957
+
+00:28:17.616 --> 00:28:21.785
+that context and information is still very relevant to you,
+
+NOTE Confidence: 0.9114882349967957
+
+00:28:21.856 --> 00:28:22.280
+Priya.
+
+NOTE Confidence: 0.8379842042922974
+
+00:28:22.680 --> 00:28:25.927
+It does not really become an institutional knowledge base or
+
+NOTE Confidence: 0.8379842042922974
+
+00:28:25.981 --> 00:28:27.279
+an institutional memory.
+
+NOTE Confidence: 0.8709222078323364
+
+00:28:28.080 --> 00:28:30.953
+So the goal of the tracking agent was how do
+
+NOTE Confidence: 0.8709222078323364
+
+00:28:31.018 --> 00:28:34.675
+we extend the preparation work that maybe a data analyst
+
+NOTE Confidence: 0.8709222078323364
+
+00:28:34.740 --> 00:28:35.720
+agent has done?
+
+NOTE Confidence: 0.9582906365394592
+
+00:28:36.080 --> 00:28:37.959
+How do we extend that and make that into a
+
+NOTE Confidence: 0.9582906365394592
+
+00:28:38.004 --> 00:28:38.720
+learning system?
+
+NOTE Confidence: 0.8568753600120544
+
+00:28:39.720 --> 00:28:42.120
+So the tracking agent really had three main components.
+
+NOTE Confidence: 0.9423059821128845
+
+00:28:42.520 --> 00:28:44.520
+The first part is learning module.
+
+NOTE Confidence: 0.9615597724914551
+
+00:28:45.040 --> 00:28:49.212
+The learning module essentially allows you to create categories that
+
+NOTE Confidence: 0.9615597724914551
+
+00:28:49.273 --> 00:28:52.280
+you want your system to continuously learn about.
+
+NOTE Confidence: 0.7800659537315369
+
+00:28:52.960 --> 00:28:54.560
+And these categories are configurable.
+
+NOTE Confidence: 0.9063643217086792
+
+00:28:54.800 --> 00:28:57.942
+These categories would be things like pricing, This could be
+
+NOTE Confidence: 0.9063643217086792
+
+00:28:57.995 --> 00:28:59.199
+things like escalation.
+
+NOTE Confidence: 0.9471629858016968
+
+00:28:59.280 --> 00:29:02.227
+This could be any parameter that you want your system
+
+NOTE Confidence: 0.9471629858016968
+
+00:29:02.282 --> 00:29:03.839
+to continuously learn about.
+
+NOTE Confidence: 0.8209765553474426
+
+00:29:04.720 --> 00:29:07.171
+Once that learning has happened, then it moves on to
+
+NOTE Confidence: 0.8209765553474426
+
+00:29:07.218 --> 00:29:08.680
+the enterprise knowledge layer.
+
+NOTE Confidence: 0.8991410136222839
+
+00:29:09.000 --> 00:29:12.771
+The enterprise knowledge layer is essentially the layer which is
+
+NOTE Confidence: 0.8991410136222839
+
+00:29:12.830 --> 00:29:17.014
+extracting the tribal knowledge and information that existed in Priya's
+
+NOTE Confidence: 0.8991410136222839
+
+00:29:17.073 --> 00:29:20.727
+memory and making that available to everyone in the accounting
+
+NOTE Confidence: 0.8991410136222839
+
+00:29:20.786 --> 00:29:23.733
+or everyone who will come later who needs to build
+
+NOTE Confidence: 0.8991410136222839
+
+00:29:23.792 --> 00:29:25.560
+on top of that knowledge base.
+
+NOTE Confidence: 0.8977828025817871
+
+00:29:26.120 --> 00:29:29.753
+And finally, the fact builder agent is working on generating
+
+NOTE Confidence: 0.8977828025817871
+
+00:29:29.813 --> 00:29:32.720
+facts from the signals that you have configured.
+
+NOTE Confidence: 0.9215973019599915
+
+00:29:32.720 --> 00:29:35.120
+We will see that in action in a bit.
+
+NOTE Confidence: 0.8070393204689026
+
+00:29:35.600 --> 00:29:39.065
+And the tracking agent is essentially the conversational interface that
+
+NOTE Confidence: 0.8070393204689026
+
+00:29:39.114 --> 00:29:40.919
+is only working with the fact Ledger.
+
+NOTE Confidence: 0.858717679977417
+
+00:29:41.360 --> 00:29:43.370
+It only knows that the facts are stored in the
+
+NOTE Confidence: 0.858717679977417
+
+00:29:43.413 --> 00:29:45.511
+fact Ledger and that's the only thing that a Cam
+
+NOTE Confidence: 0.858717679977417
+
+00:29:45.554 --> 00:29:46.559
+needs to interact with.
+
+NOTE Confidence: 0.8794655203819275
+
+00:29:47.080 --> 00:29:49.652
+Everything that you see on the learning side, the enterprise
+
+NOTE Confidence: 0.8794655203819275
+
+00:29:49.695 --> 00:29:52.825
+knowledge side, and the compounding intelligence side is happening behind
+
+NOTE Confidence: 0.8794655203819275
+
+00:29:52.868 --> 00:29:54.240
+the scenes on a scheduled basis.
+
+NOTE Confidence: 0.9149128794670105
+
+00:29:55.480 --> 00:29:58.812
+So if you see this in action, this is the
+
+NOTE Confidence: 0.9149128794670105
+
+00:29:58.894 --> 00:30:00.519
+example of a signal.
+
+NOTE Confidence: 0.9340441823005676
+
+00:30:00.920 --> 00:30:03.212
+Like I said, signals could be any category that you
+
+NOTE Confidence: 0.9340441823005676
+
+00:30:03.257 --> 00:30:05.279
+want your system to continuously learn about.
+
+NOTE Confidence: 0.7329632043838501
+
+00:30:05.400 --> 00:30:07.320
+It's configurable in this sense.
+
+NOTE Confidence: 0.8865994811058044
+
+00:30:07.680 --> 00:30:10.360
+It's tracking pricing information.
+
+NOTE Confidence: 0.9502740502357483
+
+00:30:10.800 --> 00:30:13.478
+It's tracking the hints that you want your system to
+
+NOTE Confidence: 0.9502740502357483
+
+00:30:13.529 --> 00:30:14.559
+learn about pricing.
+
+NOTE Confidence: 0.9110878109931946
+
+00:30:15.000 --> 00:30:18.936
+It also has an extraction prompt for your downstream agent
+
+NOTE Confidence: 0.9110878109931946
+
+00:30:19.004 --> 00:30:21.040
+to maybe use that as a prompt.
+
+NOTE Confidence: 0.8735153079032898
+
+00:30:21.920 --> 00:30:24.087
+Once you set this up, you could also set additional
+
+NOTE Confidence: 0.8735153079032898
+
+00:30:24.130 --> 00:30:25.320
+things like metadata fields.
+
+NOTE Confidence: 0.8980825543403625
+
+00:30:25.600 --> 00:30:29.115
+Metadata fields are more relevant for your knowledge sources and
+
+NOTE Confidence: 0.8980825543403625
+
+00:30:29.170 --> 00:30:32.136
+knowledge bases so that it knows the context that it's
+
+NOTE Confidence: 0.8980825543403625
+
+00:30:32.191 --> 00:30:32.960
+talking about.
+
+NOTE Confidence: 0.8193285465240479
+
+00:30:33.360 --> 00:30:36.344
+This is again a configurable thing that you're storing in
+
+NOTE Confidence: 0.8193285465240479
+
+00:30:36.396 --> 00:30:36.919
+Cosmos DB.
+
+NOTE Confidence: 0.9004966020584106
+
+00:30:37.720 --> 00:30:42.160
+Once this is set, this gives you the learning part.
+
+NOTE Confidence: 0.8013396859169006
+
+00:30:42.920 --> 00:30:45.600
+The next part is we move into Foundry IQ.
+
+NOTE Confidence: 0.7398960590362549
+
+00:30:46.440 --> 00:30:47.990
+In Foundry IQ, if you are by the way, if
+
+NOTE Confidence: 0.7398960590362549
+
+00:30:48.028 --> 00:30:50.314
+you have not attended Pablo session earlier in the morning,
+
+NOTE Confidence: 0.7398960590362549
+
+00:30:50.353 --> 00:30:51.399
+I strongly recommended you.
+
+NOTE Confidence: 0.7550522089004517
+
+00:30:51.400 --> 00:30:54.600
+But Foundry IQ solves for the agentic RAG or the
+
+NOTE Confidence: 0.7550522089004517
+
+00:30:54.666 --> 00:30:56.400
+agentic retrieval process.
+
+NOTE Confidence: 0.9081054329872131
+
+00:30:57.080 --> 00:30:59.320
+It comprises of knowledge sources.
+
+NOTE Confidence: 0.8131664991378784
+
+00:30:59.760 --> 00:31:02.808
+Knowledge sources could be you know something like your indexes
+
+NOTE Confidence: 0.8131664991378784
+
+00:31:02.857 --> 00:31:05.470
+or even Federated things like you know your remote MCP
+
+NOTE Confidence: 0.8131664991378784
+
+00:31:05.519 --> 00:31:07.599
+servers, remote SharePoint, whatever it be.
+
+NOTE Confidence: 0.8840674161911011
+
+00:31:08.120 --> 00:31:11.385
+This is where all the knowledge that is relevant for
+
+NOTE Confidence: 0.8840674161911011
+
+00:31:11.448 --> 00:31:15.280
+that customer is constantly being ingested and reasoned over.
+
+NOTE Confidence: 0.7721788287162781
+
+00:31:16.200 --> 00:31:20.607
+Where Foundry IQ makes agentic rag and agentic retrieval extremely
+
+NOTE Confidence: 0.7721788287162781
+
+00:31:20.674 --> 00:31:24.280
+seamless is as part of this particular knowledge base.
+
+NOTE Confidence: 0.9361549615859985
+
+00:31:24.800 --> 00:31:28.299
+When you look at the knowledge base, the knowledge base
+
+NOTE Confidence: 0.9361549615859985
+
+00:31:28.363 --> 00:31:31.544
+is really a combination of knobs that it gives the
+
+NOTE Confidence: 0.9361549615859985
+
+00:31:31.607 --> 00:31:35.234
+developers and the developer can go and just adjust those
+
+NOTE Confidence: 0.9361549615859985
+
+00:31:35.298 --> 00:31:35.679
+knobs.
+
+NOTE Confidence: 0.904474139213562
+
+00:31:35.680 --> 00:31:38.793
+So as a developer, I can adjust knobs of the
+
+NOTE Confidence: 0.904474139213562
+
+00:31:38.864 --> 00:31:40.279
+retrieval mechanism.
+
+NOTE Confidence: 0.8688476085662842
+
+00:31:40.400 --> 00:31:44.031
+I can choose what the retrieval instruction that I need
+
+NOTE Confidence: 0.8688476085662842
+
+00:31:44.097 --> 00:31:44.559
+to put.
+
+NOTE Confidence: 0.9408838152885437
+
+00:31:45.600 --> 00:31:48.709
+Once I have the retrieval instructions put together, I can
+
+NOTE Confidence: 0.9408838152885437
+
+00:31:48.763 --> 00:31:50.639
+also choose the planning mechanism.
+
+NOTE Confidence: 0.8617748618125916
+
+00:31:50.720 --> 00:31:53.973
+In the planning mechanism I just configure a chat completions
+
+NOTE Confidence: 0.8617748618125916
+
+00:31:54.026 --> 00:31:55.359
+model to do the planning.
+
+NOTE Confidence: 0.9435902833938599
+
+00:31:56.000 --> 00:31:58.332
+Once planning happens, I also have the ability to do
+
+NOTE Confidence: 0.9435902833938599
+
+00:31:58.377 --> 00:31:59.319
+the reasoning effort.
+
+NOTE Confidence: 0.7563498020172119
+
+00:32:00.280 --> 00:32:05.160
+Now, this from a implementation perspective is very, very simple.
+
+NOTE Confidence: 0.8201221823692322
+
+00:32:05.160 --> 00:32:08.419
+If you try to do this without something like Foundry
+
+NOTE Confidence: 0.8201221823692322
+
+00:32:08.482 --> 00:32:11.239
+IQ, try to build a smart agentic rag system.
+
+NOTE Confidence: 0.8695096373558044
+
+00:32:11.480 --> 00:32:14.234
+It's a very, very hard problem to solve, especially at
+
+NOTE Confidence: 0.8695096373558044
+
+00:32:14.285 --> 00:32:15.000
+PepsiCo scale.
+
+NOTE Confidence: 0.8929635286331177
+
+00:32:15.280 --> 00:32:18.740
+But this is what is responsible for building that enterprise
+
+NOTE Confidence: 0.8929635286331177
+
+00:32:18.797 --> 00:32:22.546
+knowledge layer and really extracting things that were usually in
+
+NOTE Confidence: 0.8929635286331177
+
+00:32:22.604 --> 00:32:26.294
+someone's memory and democratizing it and making it available to
+
+NOTE Confidence: 0.8929635286331177
+
+00:32:26.352 --> 00:32:27.160
+everyone else.
+
+NOTE Confidence: 0.9231786727905273
+
+00:32:27.800 --> 00:32:29.960
+This is still happening behind the scenes, right?
+
+NOTE Confidence: 0.8252954483032227
+
+00:32:31.080 --> 00:32:34.040
+Once this happens, the fact builder agent comes into play.
+
+NOTE Confidence: 0.9290685057640076
+
+00:32:34.600 --> 00:32:37.649
+Like I said, the fact builder agent is responsible for
+
+NOTE Confidence: 0.9290685057640076
+
+00:32:37.705 --> 00:32:40.924
+converting the signals that you want your system to learn
+
+NOTE Confidence: 0.9290685057640076
+
+00:32:40.981 --> 00:32:41.319
+about.
+
+NOTE Confidence: 0.879935622215271
+
+00:32:42.000 --> 00:32:46.396
+Combining that with all the knowledge sources and the knowledge
+
+NOTE Confidence: 0.879935622215271
+
+00:32:46.466 --> 00:32:50.444
+bases that you have and extracting facts or making things
+
+NOTE Confidence: 0.879935622215271
+
+00:32:50.514 --> 00:32:51.839
+factual statements.
+
+NOTE Confidence: 0.7714317440986633
+
+00:32:52.800 --> 00:32:55.040
+From implementation perspective, it's fairly seamless.
+
+NOTE Confidence: 0.8119052052497864
+
+00:32:55.880 --> 00:32:57.760
+It has a core agent runtime.
+
+NOTE Confidence: 0.8898548483848572
+
+00:32:58.720 --> 00:33:02.114
+Core agent runtime is essentially an agent which is abstracted
+
+NOTE Confidence: 0.8898548483848572
+
+00:33:02.169 --> 00:33:05.400
+away so that multiple agents can use that same abstraction.
+
+NOTE Confidence: 0.8371983766555786
+
+00:33:05.880 --> 00:33:08.080
+The key part is it uses responses API.
+
+NOTE Confidence: 0.9346155524253845
+
+00:33:08.880 --> 00:33:12.720
+It also has tool calling already abstracted away, and that's
+
+NOTE Confidence: 0.9346155524253845
+
+00:33:12.784 --> 00:33:14.960
+essentially what this agent needs.
+
+NOTE Confidence: 0.846985936164856
+
+00:33:15.080 --> 00:33:18.771
+Because we're using responses API, things get pretty standardized and
+
+NOTE Confidence: 0.846985936164856
+
+00:33:18.825 --> 00:33:19.200
+simple.
+
+NOTE Confidence: 0.8827868103981018
+
+00:33:19.440 --> 00:33:22.045
+And this obviously is the system prompt that also has
+
+NOTE Confidence: 0.8827868103981018
+
+00:33:22.095 --> 00:33:24.160
+been configured for the Fad Builder agent.
+
+NOTE Confidence: 0.8587824106216431
+
+00:33:25.040 --> 00:33:28.470
+What once this is done, the final output of this
+
+NOTE Confidence: 0.8587824106216431
+
+00:33:28.541 --> 00:33:30.400
+looks something like this.
+
+NOTE Confidence: 0.9581606388092041
+
+00:33:31.000 --> 00:33:32.160
+Now you have the signals.
+
+NOTE Confidence: 0.8651919364929199
+
+00:33:32.600 --> 00:33:35.370
+The signals are combined with the knowledge bases and the
+
+NOTE Confidence: 0.8651919364929199
+
+00:33:35.418 --> 00:33:37.120
+fact builder agent generates facts.
+
+NOTE Confidence: 0.8898141384124756
+
+00:33:37.440 --> 00:33:39.280
+An example of this is pricing.
+
+NOTE Confidence: 0.8793236017227173
+
+00:33:39.280 --> 00:33:41.160
+We wanted our system to learn about pricing.
+
+NOTE Confidence: 0.8500522375106812
+
+00:33:42.000 --> 00:33:45.076
+It went through maybe an e-mail that it found in
+
+NOTE Confidence: 0.8500522375106812
+
+00:33:45.140 --> 00:33:48.922
+one of the knowledge sources and it's also summarizing what
+
+NOTE Confidence: 0.8500522375106812
+
+00:33:48.986 --> 00:33:52.320
+was that pricing rated discussion that had happened.
+
+NOTE Confidence: 0.7615843415260315
+
+00:33:53.240 --> 00:33:56.403
+Along with the pricing really discussion, it also generates a
+
+NOTE Confidence: 0.7615843415260315
+
+00:33:56.455 --> 00:33:57.959
+confidence score and summary.
+
+NOTE Confidence: 0.9021872282028198
+
+00:33:58.200 --> 00:34:02.413
+The extraction summary is something very particular like this customer
+
+NOTE Confidence: 0.9021872282028198
+
+00:34:02.473 --> 00:34:04.640
+had requested a blanket 7% increase.
+
+NOTE Confidence: 0.8477025032043457
+
+00:34:05.160 --> 00:34:09.202
+Along with that, it also generates stakeholders confidence, reason and
+
+NOTE Confidence: 0.8477025032043457
+
+00:34:09.260 --> 00:34:12.898
+some additional extracted data, which again were the things you
+
+NOTE Confidence: 0.8477025032043457
+
+00:34:12.956 --> 00:34:14.919
+wanted your system to learn about.
+
+NOTE Confidence: 0.8864560127258301
+
+00:34:16.239 --> 00:34:18.769
+The critical part of this is if I had no
+
+NOTE Confidence: 0.8864560127258301
+
+00:34:18.833 --> 00:34:22.185
+idea of what happened with that customer maybe in the
+
+NOTE Confidence: 0.8864560127258301
+
+00:34:22.248 --> 00:34:25.221
+last quarter or last year, I just needed to ask
+
+NOTE Confidence: 0.8864560127258301
+
+00:34:25.284 --> 00:34:28.763
+simply without spending hours trying to get hold of the
+
+NOTE Confidence: 0.8864560127258301
+
+00:34:28.826 --> 00:34:32.305
+right person or even going to multiple emails trying to
+
+NOTE Confidence: 0.8864560127258301
+
+00:34:32.368 --> 00:34:33.760
+get the right context.
+
+NOTE Confidence: 0.9219555854797363
+
+00:34:33.880 --> 00:34:36.791
+So this is what is getting that system from preparation
+
+NOTE Confidence: 0.9219555854797363
+
+00:34:36.844 --> 00:34:37.479
+to learning.
+
+NOTE Confidence: 0.8549624085426331
+
+00:34:37.840 --> 00:34:42.638
+And finally, from a tracking agent perspective, behind the scenes,
+
+NOTE Confidence: 0.8549624085426331
+
+00:34:42.711 --> 00:34:45.837
+I as a Cam user, I'm conversing or having a
+
+NOTE Confidence: 0.8549624085426331
+
+00:34:45.910 --> 00:34:48.600
+conversation with the tracking agent.
+
+NOTE Confidence: 0.8707118034362793
+
+00:34:49.120 --> 00:34:53.116
+The tracking agent is again built on that same abstraction
+
+NOTE Confidence: 0.8707118034362793
+
+00:34:53.185 --> 00:34:57.320
+that the fact agent was built upon similar structure, right?
+
+NOTE Confidence: 0.8997936248779297
+
+00:34:57.320 --> 00:35:00.600
+It had access to the same agent runtime.
+
+NOTE Confidence: 0.7439972758293152
+
+00:35:01.240 --> 00:35:03.600
+The original tools that it had was search facts.
+
+NOTE Confidence: 0.7357496619224548
+
+00:35:03.760 --> 00:35:06.606
+And this retailers as an example, you can start giving
+
+NOTE Confidence: 0.7357496619224548
+
+00:35:06.658 --> 00:35:08.240
+it additional tools as needed.
+
+NOTE Confidence: 0.9193820357322693
+
+00:35:08.719 --> 00:35:11.341
+And as part of this, this is just looking at
+
+NOTE Confidence: 0.9193820357322693
+
+00:35:11.401 --> 00:35:14.380
+Cosmos DB and based on the intent of the question,
+
+NOTE Confidence: 0.9193820357322693
+
+00:35:14.439 --> 00:35:17.240
+it's providing the right facts to the end user.
+
+NOTE Confidence: 0.787236750125885
+
+00:35:18.520 --> 00:35:21.586
+And again, these are like nothing too complicated or in
+
+NOTE Confidence: 0.787236750125885
+
+00:35:21.642 --> 00:35:22.199
+a complex.
+
+NOTE Confidence: 0.6307846307754517
+
+00:35:22.200 --> 00:35:24.200
+By the way, we also had observability set up.
+
+NOTE Confidence: 0.8812758922576904
+
+00:35:24.200 --> 00:35:28.083
+We wanted to make sure everything that the agent is
+
+NOTE Confidence: 0.8812758922576904
+
+00:35:28.159 --> 00:35:32.880
+doing is properly monitored and using open standard OLTP, open
+
+NOTE Confidence: 0.8812758922576904
+
+00:35:32.957 --> 00:35:34.480
+telemetry protocols.
+
+NOTE Confidence: 0.9118594527244568
+
+00:35:35.360 --> 00:35:39.423
+From a user experience perspective, this is all that it
+
+NOTE Confidence: 0.9118594527244568
+
+00:35:39.497 --> 00:35:40.680
+leads to, right?
+
+NOTE Confidence: 0.8139902949333191
+
+00:35:40.719 --> 00:35:43.636
+You just ask a question and intent the agent behind
+
+NOTE Confidence: 0.8139902949333191
+
+00:35:43.693 --> 00:35:47.811
+the scenes goes through everything your learning configurations that you
+
+NOTE Confidence: 0.8139902949333191
+
+00:35:47.868 --> 00:35:51.357
+have done, the enterprise knowledge layer, you have built the
+
+NOTE Confidence: 0.8139902949333191
+
+00:35:51.414 --> 00:35:53.988
+facts that were created and at the end of the
+
+NOTE Confidence: 0.8139902949333191
+
+00:35:54.045 --> 00:35:56.562
+day, in a matter of minutes pre as access to
+
+NOTE Confidence: 0.8139902949333191
+
+00:35:56.619 --> 00:35:59.078
+what was the last offer for ABC, which is a
+
+NOTE Confidence: 0.8139902949333191
+
+00:35:59.135 --> 00:36:00.679
+dummy company in this case.
+
+NOTE Confidence: 0.7359928488731384
+
+00:36:02.080 --> 00:36:04.187
+So if if we kind of, you know, just summarize
+
+NOTE Confidence: 0.7359928488731384
+
+00:36:04.234 --> 00:36:07.231
+this, right, this is also an example of compounding intelligence
+
+NOTE Confidence: 0.7359928488731384
+
+00:36:07.278 --> 00:36:09.759
+and intelligence that compounds on top of each other.
+
+NOTE Confidence: 0.7704272270202637
+
+00:36:10.760 --> 00:36:14.025
+Every meeting that happened earlier, you know, was in someone's
+
+NOTE Confidence: 0.7704272270202637
+
+00:36:14.077 --> 00:36:14.439
+memory.
+
+NOTE Confidence: 0.8192164897918701
+
+00:36:14.760 --> 00:36:17.240
+Just make sure that it's making the system smarter.
+
+NOTE Confidence: 0.904582142829895
+
+00:36:18.480 --> 00:36:22.523
+Every debrief that usually happened now gives you an opportunity
+
+NOTE Confidence: 0.904582142829895
+
+00:36:22.586 --> 00:36:25.240
+to plan better for the next account cycle.
+
+NOTE Confidence: 0.9291238784790039
+
+00:36:26.040 --> 00:36:28.672
+Every Cam or every new Cam that comes after can
+
+NOTE Confidence: 0.9291238784790039
+
+00:36:28.728 --> 00:36:31.360
+benefit from the context that came before them.
+
+NOTE Confidence: 0.9451665878295898
+
+00:36:31.360 --> 00:36:33.957
+You really don't need to reinvent the wheel to get
+
+NOTE Confidence: 0.9451665878295898
+
+00:36:34.009 --> 00:36:35.879
+the right context at the right time.
+
+NOTE Confidence: 0.907974898815155
+
+00:36:37.120 --> 00:36:39.000
+Now, all this is good.
+
+NOTE Confidence: 0.831565260887146
+
+00:36:40.040 --> 00:36:42.521
+We kind of talked about things that worked, but I
+
+NOTE Confidence: 0.831565260887146
+
+00:36:42.571 --> 00:36:45.153
+think to be truthful, we also wanted to share about
+
+NOTE Confidence: 0.831565260887146
+
+00:36:45.204 --> 00:36:47.685
+some of the lessons that we that we went through,
+
+NOTE Confidence: 0.831565260887146
+
+00:36:47.736 --> 00:36:48.039
+right?
+
+NOTE Confidence: 0.7777354121208191
+
+00:36:48.280 --> 00:36:49.680
+You obviously saw six agents.
+
+NOTE Confidence: 0.8666501045227051
+
+00:36:50.000 --> 00:36:51.160
+We just talked about two.
+
+NOTE Confidence: 0.8780498504638672
+
+00:36:51.920 --> 00:36:54.392
+But even when we started with individual agents, one of
+
+NOTE Confidence: 0.8780498504638672
+
+00:36:54.437 --> 00:36:56.685
+the key learnings was don't try to boil the ocean,
+
+NOTE Confidence: 0.8780498504638672
+
+00:36:56.730 --> 00:36:57.000
+right?
+
+NOTE Confidence: 0.8581295013427734
+
+00:36:57.000 --> 00:36:59.442
+I mean, when we started, it didn't feel like we
+
+NOTE Confidence: 0.8581295013427734
+
+00:36:59.494 --> 00:37:02.144
+were boiling the ocean, but you really need to keep
+
+NOTE Confidence: 0.8581295013427734
+
+00:37:02.196 --> 00:37:03.079
+your scope small.
+
+NOTE Confidence: 0.8704633712768555
+
+00:37:03.600 --> 00:37:06.200
+If you think you're starting small, start smaller.
+
+NOTE Confidence: 0.818429172039032
+
+00:37:06.520 --> 00:37:09.559
+Start with one workflow, one person, one data source, and
+
+NOTE Confidence: 0.818429172039032
+
+00:37:09.613 --> 00:37:11.479
+then start building on top of that.
+
+NOTE Confidence: 0.8783031702041626
+
+00:37:12.280 --> 00:37:15.579
+The second thing is, even with all the data foundations
+
+NOTE Confidence: 0.8783031702041626
+
+00:37:15.639 --> 00:37:18.879
+work and everything that we had put together, we still
+
+NOTE Confidence: 0.8783031702041626
+
+00:37:18.939 --> 00:37:22.539
+underestimated the quality of data all the more because when
+
+NOTE Confidence: 0.8783031702041626
+
+00:37:22.599 --> 00:37:26.499
+engineers and architects are working on agentic systems, when the
+
+NOTE Confidence: 0.8783031702041626
+
+00:37:26.559 --> 00:37:30.279
+responses come back, the agents are very good with confidently
+
+NOTE Confidence: 0.8783031702041626
+
+00:37:30.339 --> 00:37:33.999
+hallucinating, especially if part of your answer is wrong and
+
+NOTE Confidence: 0.8783031702041626
+
+00:37:34.059 --> 00:37:35.799
+part of your answer is right.
+
+NOTE Confidence: 0.8420958518981934
+
+00:37:36.000 --> 00:37:38.578
+It's very difficult for an engineer who's not a domain
+
+NOTE Confidence: 0.8420958518981934
+
+00:37:38.625 --> 00:37:40.439
+expert to figure out what's happening.
+
+NOTE Confidence: 0.7727240324020386
+
+00:37:40.440 --> 00:37:43.410
+So you need to absolutely make sure your domain exports
+
+NOTE Confidence: 0.7727240324020386
+
+00:37:43.464 --> 00:37:45.840
+are part of this journey right from the one.
+
+NOTE Confidence: 0.7587765455245972
+
+00:37:46.320 --> 00:37:49.020
+And finally, obviously the best part was the Enterprise Data
+
+NOTE Confidence: 0.7587765455245972
+
+00:37:49.065 --> 00:37:49.560
+Foundation.
+
+NOTE Confidence: 0.8775018453598022
+
+00:37:49.640 --> 00:37:50.880
+Yeah, the good part, right?
+
+NOTE Confidence: 0.6720483899116516
+
+00:37:50.880 --> 00:37:53.327
+I mean, we had, we learned that, you know, the
+
+NOTE Confidence: 0.6720483899116516
+
+00:37:53.381 --> 00:37:56.680
+Enterprise Data Foundation played a, you know, pivotal role in
+
+NOTE Confidence: 0.6720483899116516
+
+00:37:56.733 --> 00:37:56.999
+this.
+
+NOTE Confidence: 0.7494621276855469
+
+00:37:57.000 --> 00:38:00.052
+And because of that, like, you know, agents just did
+
+NOTE Confidence: 0.7494621276855469
+
+00:38:00.111 --> 00:38:00.639
+not work.
+
+NOTE Confidence: 0.7396289706230164
+
+00:38:00.640 --> 00:38:02.400
+But it compounded this value, right?
+
+NOTE Confidence: 0.8058138489723206
+
+00:38:03.440 --> 00:38:07.680
+Debrief agents actually made next sessions even better, right?
+
+NOTE Confidence: 0.7155089974403381
+
+00:38:07.680 --> 00:38:10.164
+So those kind of things really we loved so that
+
+NOTE Confidence: 0.7155089974403381
+
+00:38:10.217 --> 00:38:13.758
+you know, data Foundation, investment in Data Foundation, making AI
+
+NOTE Confidence: 0.7155089974403381
+
+00:38:13.811 --> 00:38:15.080
+ready data was valuable.
+
+NOTE Confidence: 0.7366725206375122
+
+00:38:15.640 --> 00:38:17.906
+So say, if you say the first couple of agents
+
+NOTE Confidence: 0.7366725206375122
+
+00:38:17.957 --> 00:38:20.173
+were a little bit hard to do, but once those
+
+NOTE Confidence: 0.7366725206375122
+
+00:38:20.224 --> 00:38:22.944
+foundations were built in, the next 345 agents were an
+
+NOTE Confidence: 0.7366725206375122
+
+00:38:22.995 --> 00:38:26.118
+order of magnitude faster because we had those foundations set
+
+NOTE Confidence: 0.7366725206375122
+
+00:38:26.168 --> 00:38:26.319
+up.
+
+NOTE Confidence: 0.8602794408798218
+
+00:38:26.480 --> 00:38:28.398
+And that that's a pretty common experience that we'll all
+
+NOTE Confidence: 0.8602794408798218
+
+00:38:28.431 --> 00:38:28.600
+have.
+
+NOTE Confidence: 0.8369826078414917
+
+00:38:29.320 --> 00:38:31.880
+It will be like climbing on a hill essentially, right?
+
+NOTE Confidence: 0.2793332040309906
+
+00:38:33.720 --> 00:38:34.520
+Well, thanks for now.
+
+NOTE Confidence: 0.8230695128440857
+
+00:38:34.520 --> 00:38:37.640
+Thanks for sharing the PepsiCo story with us.
+
+NOTE Confidence: 0.8476733565330505
+
+00:38:38.040 --> 00:38:41.327
+By the way, what you heard today was PepsiCo story,
+
+NOTE Confidence: 0.8476733565330505
+
+00:38:41.392 --> 00:38:44.680
+but it's not really relevant just for Pepsi, right?
+
+NOTE Confidence: 0.8777461051940918
+
+00:38:46.280 --> 00:38:48.255
+If you try to extend that on what it truly
+
+NOTE Confidence: 0.8777461051940918
+
+00:38:48.302 --> 00:38:50.701
+means to do enterprise AI at scale from a blueprint
+
+NOTE Confidence: 0.8777461051940918
+
+00:38:50.749 --> 00:38:52.960
+perspective, it would look something like this.
+
+NOTE Confidence: 0.8873919248580933
+
+00:38:53.760 --> 00:38:57.831
+You start with a secure infrastructure, you make sure you
+
+NOTE Confidence: 0.8873919248580933
+
+00:38:57.902 --> 00:39:01.117
+unify and govern your data on top you have to
+
+NOTE Confidence: 0.8873919248580933
+
+00:39:01.188 --> 00:39:03.759
+make sure your AI platform is ready.
+
+NOTE Confidence: 0.8732197880744934
+
+00:39:04.240 --> 00:39:08.080
+That's where your models agents would reside, operate, run on.
+
+NOTE Confidence: 0.8970914483070374
+
+00:39:08.640 --> 00:39:11.656
+You also need to make sure your user experience layer
+
+NOTE Confidence: 0.8970914483070374
+
+00:39:11.713 --> 00:39:14.559
+or where the agents actually interact with humans.
+
+NOTE Confidence: 0.6544157266616821
+
+00:39:14.840 --> 00:39:19.320
+That's will bake too, but the pattern still holds, right?
+
+NOTE Confidence: 0.8936907052993774
+
+00:39:19.320 --> 00:39:22.879
+Your agents might change based on your industry, your data
+
+NOTE Confidence: 0.8936907052993774
+
+00:39:22.940 --> 00:39:26.499
+might evolve based on your company, even a user experience
+
+NOTE Confidence: 0.8936907052993774
+
+00:39:26.561 --> 00:39:29.199
+might change based on what role you are in.
+
+NOTE Confidence: 0.8778988718986511
+
+00:39:29.600 --> 00:39:31.599
+But at the end of the day, the building blocks
+
+NOTE Confidence: 0.8778988718986511
+
+00:39:31.643 --> 00:39:34.252
+will still remain pretty consistent to what you're seeing on
+
+NOTE Confidence: 0.8778988718986511
+
+00:39:34.295 --> 00:39:34.599
+screen.
+
+NOTE Confidence: 0.8390762209892273
+
+00:39:38.719 --> 00:39:41.146
+And by the way, we also have a few resources
+
+NOTE Confidence: 0.8390762209892273
+
+00:39:41.201 --> 00:39:43.408
+if you if you want to go through, if you
+
+NOTE Confidence: 0.8390762209892273
+
+00:39:43.463 --> 00:39:46.717
+haven't tried Azure, there are some free resources that are
+
+NOTE Confidence: 0.8390762209892273
+
+00:39:46.772 --> 00:39:47.600
+available here.
+
+NOTE Confidence: 0.7986307144165039
+
+00:39:47.600 --> 00:39:50.216
+If you're already an Azure customer, you can go through
+
+NOTE Confidence: 0.7986307144165039
+
+00:39:50.264 --> 00:39:53.214
+programs like Azure accelerate, which will give you access to,
+
+NOTE Confidence: 0.7986307144165039
+
+00:39:53.262 --> 00:39:55.926
+you know, trusted experts that was or programs like this
+
+NOTE Confidence: 0.7986307144165039
+
+00:39:55.974 --> 00:39:58.448
+is one of the things that PepsiCo and Microsoft, you
+
+NOTE Confidence: 0.7986307144165039
+
+00:39:58.495 --> 00:39:59.400
+know, partnered on.
+
+NOTE Confidence: 0.7982215881347656
+
+00:39:59.760 --> 00:40:01.947
+Obviously, you also have things like cloud accelerate factory and
+
+NOTE Confidence: 0.7982215881347656
+
+00:40:01.981 --> 00:40:02.519
+stuff like that.
+
+NOTE Confidence: 0.5847305059432983
+
+00:40:02.680 --> 00:40:04.120
+And I own brain through the slides.
+
+NOTE Confidence: 0.8513740301132202
+
+00:40:05.120 --> 00:40:07.388
+This is all something that would be available after the
+
+NOTE Confidence: 0.8513740301132202
+
+00:40:07.430 --> 00:40:07.760
+session.
+
+NOTE Confidence: 0.893872082233429
+
+00:40:07.760 --> 00:40:09.695
+So you can go through this and consume this and
+
+NOTE Confidence: 0.893872082233429
+
+00:40:09.736 --> 00:40:11.713
+make sure if you want to take advantage of these
+
+NOTE Confidence: 0.893872082233429
+
+00:40:11.754 --> 00:40:13.319
+programs, those are accessible to you.
+
+NOTE Confidence: 0.7604514956474304
+
+00:40:14.520 --> 00:40:19.280
+Maybe maybe let's end with where we started, right?
+
+NOTE Confidence: 0.7904472947120667
+
+00:40:19.320 --> 00:40:21.458
+By the way, there's also survey if you guys want
+
+NOTE Confidence: 0.7904472947120667
+
+00:40:21.503 --> 00:40:22.839
+to kind of quickly do an eval.
+
+NOTE Confidence: 0.8041372895240784
+
+00:40:23.200 --> 00:40:26.080
+But let me end where we start, right?
+
+NOTE Confidence: 0.8848470449447632
+
+00:40:26.600 --> 00:40:31.387
+A single Cam Monday morning, an important meeting happening in
+
+NOTE Confidence: 0.8848470449447632
+
+00:40:31.464 --> 00:40:32.159
+48 hours.
+
+NOTE Confidence: 0.9214009046554565
+
+00:40:32.640 --> 00:40:36.524
+Before she spent hours just thinking about where the information
+
+NOTE Confidence: 0.9214009046554565
+
+00:40:36.584 --> 00:40:41.015
+is, what the right information is, multiple dashboards, multiple reports,
+
+NOTE Confidence: 0.9214009046554565
+
+00:40:41.075 --> 00:40:44.171
+multiple emails asking her team where do I get that
+
+NOTE Confidence: 0.9214009046554565
+
+00:40:44.231 --> 00:40:44.960
+information.
+
+NOTE Confidence: 0.8600726127624512
+
+00:40:45.719 --> 00:40:49.339
+But now she just opens up the can 360 agent
+
+NOTE Confidence: 0.8600726127624512
+
+00:40:49.423 --> 00:40:51.359
+asks a single question.
+
+NOTE Confidence: 0.8908039331436157
+
+00:40:51.600 --> 00:40:55.327
+Help me get prepared and within minutes, not hours, not
+
+NOTE Confidence: 0.8908039331436157
+
+00:40:55.395 --> 00:40:56.480
+days, not weeks.
+
+NOTE Confidence: 0.9097497463226318
+
+00:40:56.680 --> 00:40:59.817
+She has access to all the information that she needs,
+
+NOTE Confidence: 0.9097497463226318
+
+00:40:59.876 --> 00:41:04.138
+including biosignals, data, risks, talking points, even a draft strategy
+
+NOTE Confidence: 0.9097497463226318
+
+00:41:04.197 --> 00:41:07.689
+with enough time to think, to strategize and actually focus
+
+NOTE Confidence: 0.9097497463226318
+
+00:41:07.749 --> 00:41:09.879
+on the customer relationship itself.
+
+NOTE Confidence: 0.8819926381111145
+
+00:41:10.560 --> 00:41:12.489
+And that's I think the key part of why we
+
+NOTE Confidence: 0.8819926381111145
+
+00:41:12.536 --> 00:41:13.759
+are doing all this, right?
+
+NOTE Confidence: 0.9108943939208984
+
+00:41:13.760 --> 00:41:15.160
+It's not really to replace people.
+
+NOTE Confidence: 0.8893159627914429
+
+00:41:15.160 --> 00:41:17.128
+That's what we were really focused on when we started
+
+NOTE Confidence: 0.8893159627914429
+
+00:41:17.165 --> 00:41:17.760
+on this journey.
+
+NOTE Confidence: 0.8971332311630249
+
+00:41:17.920 --> 00:41:20.432
+It's really to give time back to people so they
+
+NOTE Confidence: 0.8971332311630249
+
+00:41:20.485 --> 00:41:23.425
+can really focus on what's the most important for them,
+
+NOTE Confidence: 0.8971332311630249
+
+00:41:23.479 --> 00:41:23.800
+right?
+
+NOTE Confidence: 0.8467549085617065
+
+00:41:24.200 --> 00:41:26.200
+Think, strategize and actually be human.
+
+NOTE Confidence: 0.9625994563102722
+
+00:41:26.560 --> 00:41:27.200
+Thank you so much.
+
+NOTE Confidence: 0.9198488593101501
+
+00:41:27.360 --> 00:41:29.365
+We'll be available if anyone has any questions, but this
+
+NOTE Confidence: 0.9198488593101501
+
+00:41:29.401 --> 00:41:29.759
+was great.
+
+NOTE Confidence: 0.9538388252258301
+
+00:41:29.800 --> 00:41:30.320
+Thank you so much.
+
+NOTE Confidence: 0.7152142524719238
+
+00:41:30.440 --> 00:41:30.760
+Thank you.
+

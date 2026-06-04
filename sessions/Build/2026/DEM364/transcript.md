@@ -1,0 +1,499 @@
+**[00:00:22]** Thank you, Chadora.
+**[00:00:23]** Hi everyone.
+**[00:00:24]** So this is a demo session called Simplify up dev
+**[00:00:27]** with cloud native PostgreSQL in Azure Horizon DB.
+**[00:00:31]** So welcome everyone.
+**[00:00:33]** So today we'll talk about AI features of Azure Horizon
+**[00:00:37]** DB.
+**[00:00:38]** If you missed the announcement by Satya yesterday, let me
+**[00:00:41]** give you a quick refresher.
+**[00:00:42]** So Horizon DB is our new Postgres SQL database and
+**[00:00:45]** just yesterday we announced public preview of it, which we
+**[00:00:49]** are very excited about.
+**[00:00:51]** So what we did we take, we took open source
+**[00:00:54]** Postgres QL engine and connected it to cloud optimized scalable
+**[00:00:59]** storage back end.
+**[00:01:01]** And that allows us to achieve high resiliency, larger scale
+**[00:01:06]** and better performance for Postgres workloads.
+**[00:01:10]** So with Horizon DB, you'll find 3 times higher throughput
+**[00:01:14]** on transactions and three times faster vector search.
+**[00:01:18]** You can also scale it to a very large databases,
+**[00:01:21]** enable up to 15 read only replicas.
+**[00:01:24]** So it gives you a very scalable, powerful engine.
+**[00:01:28]** And on top of that engine as well, we've built
+**[00:01:30]** AI features.
+**[00:01:31]** So Horizon DB is designed for this new era of
+**[00:01:35]** AI agents.
+**[00:01:36]** So it comes with built in AI models, AI pipelines
+**[00:01:40]** and AI functions.
+**[00:01:41]** And this is what we are going to focus on
+**[00:01:43]** today.
+**[00:01:44]** And we'll test this claim of like having AI functions
+**[00:01:48]** and AI features that simplify development of apps by building
+**[00:01:53]** this agent today on the stage using Horizon DB features.
+**[00:02:01]** So let's start from this demo application.
+**[00:02:03]** So this is the end state.
+**[00:02:05]** This is the app that we are going to build
+**[00:02:07]** today, or at least some key components of it.
+**[00:02:10]** So what do you see?
+**[00:02:10]** Here is a Zava room designer app that helps me
+**[00:02:14]** design my room.
+**[00:02:16]** What you what we have here is a photo of
+**[00:02:18]** my Brooklyn loft with the first piece of furniture that
+**[00:02:22]** I have this gorgeous Scotch.
+**[00:02:24]** And I'll use this app to help me pick other
+**[00:02:28]** furniture that fits this style and color palette of this
+**[00:02:33]** room.
+**[00:02:33]** So all I need to do is click design my
+**[00:02:36]** Room and this app that we are going to build
+**[00:02:39]** together, it's going to analyze the folder, determine the style
+**[00:02:44]** and color palette, right?
+**[00:02:46]** And scan the product catalog and pick the furniture that
+**[00:02:50]** actually fits into the into my room, right?
+**[00:02:53]** And voila, the room is furnished.
+**[00:02:56]** So no more kind of this very difficult choices, each
+**[00:03:00]** piece of furniture to put, right?
+**[00:03:02]** Everything is done for me and under the nice small
+**[00:03:05]** budget.
+**[00:03:06]** So fantastic.
+**[00:03:07]** So you can see here all of the pieces of
+**[00:03:10]** furniture selected, right?
+**[00:03:13]** So on the surface this may seem a little bit
+**[00:03:17]** intimidating or a little bit sophisticated, right?
+**[00:03:21]** Seems like a complex app, but this cannot be farther
+**[00:03:25]** from the truth.
+**[00:03:26]** This app actually is intentionally designed to be very simple
+**[00:03:30]** and we'll show it by building components of this app
+**[00:03:34]** 1 by 1 to show you how this app was
+**[00:03:36]** actually built and how we simplify development process with Horizon
+**[00:03:40]** DB.
+**[00:03:43]** So the first step in in our journey would be
+**[00:03:45]** connecting models, right?
+**[00:03:47]** So if you want our agent to be able to
+**[00:03:50]** reason right, the first step always is provisioning models, connecting
+**[00:03:55]** them.
+**[00:03:55]** All of this infrastructure setup, this Horizon DB.
+**[00:03:59]** That's the first step that we get to skip.
+**[00:04:01]** So instead of doing that, I will just show you
+**[00:04:04]** how you provision Horizon DB.
+**[00:04:06]** And as part of that process, we'll actually bundle models
+**[00:04:10]** into the database.
+**[00:04:11]** So the database comes already with all of the model
+**[00:04:14]** connections provisioned.
+**[00:04:16]** So what I'm going to do, I'm going to click
+**[00:04:20]** this button, and throughout this demo, I'll actually use this
+**[00:04:25]** Postgres extension for this code.
+**[00:04:28]** So this is our product.
+**[00:04:30]** All of the experiences that you'll see is actually based
+**[00:04:32]** on that.
+**[00:04:33]** I highly recommend you use it for your Postgres work.
+**[00:04:38]** And in this new server screen, we have a new
+**[00:04:41]** entry provision Horizon DB, right?
+**[00:04:43]** So I'll click it.
+**[00:04:45]** I'll log in into my Azure portal using my credentials
+**[00:04:49]** and then I will specify details of my cluster, right?
+**[00:04:53]** So I will I will name it my Horizon DB2.
+**[00:05:00]** I will provision a little bit more compute cores.
+**[00:05:04]** I will select my user and this is where I
+**[00:05:09]** can bundle my AI models and AI related features.
+**[00:05:14]** Here just a simple check box which activates model management
+**[00:05:19]** and PG vector and disk and N vector search extensions
+**[00:05:23]** for Postgres, right?
+**[00:05:25]** So just like that I am ready to provision my
+**[00:05:28]** Horizon DB with all of the AI enablement kind of
+**[00:05:32]** models already provisioned together with it.
+**[00:05:36]** So we want to wait for this process to complete.
+**[00:05:39]** For this demo, we will use and it will run
+**[00:05:42]** in the background.
+**[00:05:42]** But I will and I just almost clicked it just
+**[00:05:47]** in time something didn't go as well.
+**[00:05:52]** But I have my pre provisioned Horizon DB for the
+**[00:05:55]** demo ready.
+**[00:05:56]** So we can just jump right into this one, right?
+**[00:06:01]** So the first step or the next step in our
+**[00:06:03]** app development journey, right?
+**[00:06:05]** So now we have Horizon DB with AI models enabled.
+**[00:06:09]** So second, let's prepare data right for for our from
+**[00:06:14]** our product catalog for AI consumption.
+**[00:06:20]** So for this, let's first take a look at at
+**[00:06:23]** the data that we have.
+**[00:06:25]** So here is a product sample table.
+**[00:06:28]** You can see it has all of the kind of
+**[00:06:31]** product catalog related details here, right?
+**[00:06:35]** But what it doesn't have, it doesn't have embeddings, right?
+**[00:06:38]** And the embeddings are important for our model, for our
+**[00:06:41]** model, for our app to be able to reason which
+**[00:06:44]** pieces of furniture semantically kind of fit into the style
+**[00:06:48]** right of the room.
+**[00:06:49]** So we need embeddings almost always when we build AI
+**[00:06:53]** agents, right?
+**[00:06:54]** So let's add embeddings to this table.
+**[00:06:57]** Actually we will do a little bit more sophisticated than
+**[00:07:00]** that.
+**[00:07:01]** So what I do have though in the database, as
+**[00:07:04]** I mentioned, we have pre provisioned the models, right?
+**[00:07:07]** And in SQL I can actually inspect the model registry
+**[00:07:10]** and see what kind of models I have here, right?
+**[00:07:14]** So now you can see 3 managed models were provisioned
+**[00:07:18]** automatically with the database.
+**[00:07:20]** I have a generic chat completion model here.
+**[00:07:25]** I have text embedding model, right?
+**[00:07:27]** And I also have a very powerful model which is
+**[00:07:30]** semantically ranker model that we will use later that allows
+**[00:07:34]** us to improve quality of search results.
+**[00:07:39]** We also support if you have your own enterprise models,
+**[00:07:41]** right?
+**[00:07:42]** We also support bring your own model feature where you
+**[00:07:46]** can connect your existing models to the database as well.
+**[00:07:51]** OK.
+**[00:07:52]** So now we have the models and the next step
+**[00:07:55]** we'll we'll create this AI pipeline that takes our product
+**[00:07:59]** catalog data, right, and generics embeddings for them and all
+**[00:08:04]** in the database, right?
+**[00:08:05]** So this is a full definition of the AI pipeline.
+**[00:08:08]** So we say, hey, from this product sample table as
+**[00:08:12]** a source performs these steps and this is a simple
+**[00:08:16]** sequence of steps, right?
+**[00:08:18]** First we'll chunk the data, which is important for accuracy
+**[00:08:21]** of our vector search later, right?
+**[00:08:23]** So we need to split it into little pieces.
+**[00:08:25]** So this is a chunk function.
+**[00:08:27]** And then we'll we are going to for each chunk,
+**[00:08:29]** you are going to generate embedding, right?
+**[00:08:31]** So this is how I specify that step.
+**[00:08:34]** And that trigger is important element here as well.
+**[00:08:37]** This pipeline not only will process my existing data and
+**[00:08:40]** product sample table, but it also connect a trigger to
+**[00:08:43]** it.
+**[00:08:43]** So any changes in my product catalog will automatically go
+**[00:08:47]** through this pipeline.
+**[00:08:48]** So it will incrementally keep updating the data and generate
+**[00:08:52]** new embeddings.
+**[00:08:54]** So let's run it.
+**[00:09:02]** OK, pipeline created successfully.
+**[00:09:05]** I can see the status of my pipeline using SQL
+**[00:09:07]** as well.
+**[00:09:08]** So here is the status and if you look here
+**[00:09:12]** at this total processed items, if I keep running this
+**[00:09:17]** status query you will see it's increasing or at least
+**[00:09:22]** it should increase.
+**[00:09:30]** Or maybe not.
+**[00:09:35]** OK, let's pretend that it's increasing.
+**[00:09:38]** If not, it will be interesting to see what's happening.
+**[00:09:41]** But in in addition to the SQL status of the
+**[00:09:45]** pipeline, I can also use UIS that we've developed for
+**[00:09:49]** this in this extension.
+**[00:09:52]** And I can look at the pipeline status here.
+**[00:09:55]** So I can I can just open the pipeline window
+**[00:10:03]** and see visual representation.
+**[00:10:09]** So that's a backup embedding.
+**[00:10:10]** Let's see this is the green still.
+**[00:10:12]** OK?
+**[00:10:14]** And this is our new embedding pipeline that we've just
+**[00:10:17]** created.
+**[00:10:21]** And here is a kind of a diagram of everything
+**[00:10:23]** that is happening.
+**[00:10:24]** OK?
+**[00:10:25]** So you can see that we have.
+**[00:10:28]** So let's close this one.
+**[00:10:30]** Stand this a little bit.
+**[00:10:33]** You can see what's going on here, right?
+**[00:10:35]** So we have our source table which has 60 rows,
+**[00:10:39]** right?
+**[00:10:40]** So this is all of the rows that we have
+**[00:10:42]** here.
+**[00:10:43]** Then chunking process splits each row into a few or
+**[00:10:47]** more chunks, right?
+**[00:10:48]** And the generates 116 chunks.
+**[00:10:51]** And then embedded embedding step talks to the Microsoft Foundry
+**[00:10:55]** model, embedding model that we pre provisioned with the database,
+**[00:10:58]** right?
+**[00:10:59]** And generates 116 vectors, right?
+**[00:11:02]** So all of that is pretty good.
+**[00:11:04]** So if you look at the output of this final
+**[00:11:07]** sync step, right, we can see the table here, the
+**[00:11:11]** output table is embedding pipeline output, right?
+**[00:11:16]** So let's see what that table has if our pipeline
+**[00:11:21]** succeeded.
+**[00:11:25]** So this is our pipeline output of the pipeline table.
+**[00:11:29]** So let's see how many rows.
+**[00:11:31]** Yeah, so it actually did succeed.
+**[00:11:33]** So our status now if you run it again shows
+**[00:11:38]** 116 rows process.
+**[00:11:40]** So it was just a little delay in our demo.
+**[00:11:44]** So that is awesome.
+**[00:11:48]** And now we can see the output of this MBD
+**[00:11:51]** pipeline, right, table.
+**[00:11:56]** So here you can see the chunks that were generated
+**[00:12:00]** and more importantly, the embeddings, right?
+**[00:12:03]** So now we have our product catalog fully vectorized.
+**[00:12:07]** So it's ready for our vector search to find relevant
+**[00:12:10]** items.
+**[00:12:12]** So let's do, let's do just that and demonstrate a
+**[00:12:17]** very simple query a little bit bigger that performs vector
+**[00:12:23]** search.
+**[00:12:23]** So if you're not familiar, in Postgres, this is vector
+**[00:12:27]** search operator, right?
+**[00:12:29]** So we are performing vector search across our output table
+**[00:12:32]** and trying to find best chairs that is comfortable.
+**[00:12:36]** Comfortable, right?
+**[00:12:38]** And this is the results.
+**[00:12:41]** So some chairs were returned.
+**[00:12:43]** So that's great.
+**[00:12:45]** But what if you want to change the data, right?
+**[00:12:48]** So let's add a new item into our product catalog
+**[00:12:52]** product sample table.
+**[00:12:55]** So we'll just insert this new row.
+**[00:13:00]** And very quickly, if you look at the count of
+**[00:13:03]** the rows in the embedding pipeline, we see that it's
+**[00:13:07]** already 117, right?
+**[00:13:09]** So the pipeline was watching in the background and asynchronously
+**[00:13:12]** without blocking my actual insert, right?
+**[00:13:14]** Because we want to keep our database responsive, all of
+**[00:13:18]** the inserts happen very quickly and pipeline asynchronously bug processes
+**[00:13:23]** all the new data.
+**[00:13:24]** So it did process that very quickly.
+**[00:13:26]** And now in our output table, we have 117 items.
+**[00:13:32]** So now if you repeat that vector search, you can
+**[00:13:35]** see, you can see that the newly added item is
+**[00:13:39]** already in the results of the vector search, right?
+**[00:13:43]** So that gives you a very simple way to build
+**[00:13:46]** this vector generation pipeline without any kind of steps covering
+**[00:13:51]** all of this complicated use cases like incremental updates, all
+**[00:13:55]** of that.
+**[00:13:56]** So all of this complexity is taken away.
+**[00:14:01]** Great.
+**[00:14:01]** So how are you doing on time?
+**[00:14:03]** You're doing great.
+**[00:14:05]** So that's first step, right?
+**[00:14:06]** So we prepared our data.
+**[00:14:07]** Now we can start searching over it and we'll search
+**[00:14:11]** in a very scalable manner and in a very sophisticated
+**[00:14:15]** manner as well.
+**[00:14:16]** So let's do a retrieval step.
+**[00:14:22]** So in order to enable retrieval of data right from
+**[00:14:26]** our now vectorized product catalog, what we want to do,
+**[00:14:31]** we want to be we want to achieve high accuracy
+**[00:14:35]** of the results and we want to make the search
+**[00:14:38]** very fast, right?
+**[00:14:40]** So in order to achieve both, we will enable two
+**[00:14:43]** types of searches.
+**[00:14:44]** So we will do hybrid search.
+**[00:14:46]** So first we will enable full full text search extension
+**[00:14:51]** on our database and we'll create full text search index
+**[00:14:57]** on our product catalog.
+**[00:14:59]** So this is the new PGFTS extension that we've enabled
+**[00:15:03]** on Horizon DB, which basically brings a Lucene type functionality
+**[00:15:08]** to Postgres.
+**[00:15:09]** So now in Postgres we can do full text search.
+**[00:15:11]** That's awesome.
+**[00:15:12]** And we also provision here our disk NN vector index
+**[00:15:15]** that gives us better performance compared to PG vector, right?
+**[00:15:19]** So it's a very fast vector search.
+**[00:15:21]** So now we have created this indexes, we can perform
+**[00:15:25]** vector search and to simplify it even faster, we created
+**[00:15:29]** this simple function that allows you to perform pretty sophisticated
+**[00:15:34]** operations with just this very simple syntax, right?
+**[00:15:38]** So what we are searching here is this string that
+**[00:15:41]** kind of describes the style of the photos that you
+**[00:15:44]** saw, right?
+**[00:15:45]** So you can see here we in the prior step
+**[00:15:48]** in the app from the photo, we kind of deduced
+**[00:15:51]** the description of the room, right?
+**[00:15:53]** So we are skipping that for the sake of this,
+**[00:15:56]** for the sake of time.
+**[00:15:57]** But this is the output of that step.
+**[00:15:59]** So now we have textual description of the room, right?
+**[00:16:03]** So how to describe the style?
+**[00:16:06]** Then we specify the source table where we are going
+**[00:16:09]** to search, right, the column and an important parameter, a
+**[00:16:13]** type of search.
+**[00:16:14]** So now we are specifying hybrid search.
+**[00:16:16]** We can do vector search, we can do full text
+**[00:16:18]** search.
+**[00:16:19]** But hybrid combines both.
+**[00:16:21]** So it kind of gives you strength of both.
+**[00:16:23]** So we are doing hybrid search here and then just
+**[00:16:26]** join some details.
+**[00:16:27]** So we have a nice output.
+**[00:16:28]** So let's run this and here you can see the
+**[00:16:34]** results, right?
+**[00:16:37]** So some results were returned and interesting part of this
+**[00:16:40]** about this result is the influence of hybrid search brings
+**[00:16:44]** into our search results.
+**[00:16:46]** So if you look at that search string, right, you
+**[00:16:49]** can see here the term mid century modern, right?
+**[00:16:54]** And the top result in the hybrid search results is
+**[00:16:58]** mid century model.
+**[00:17:00]** So it's a keyword match, right?
+**[00:17:02]** So that's what you get when you do a hybrid
+**[00:17:05]** search.
+**[00:17:05]** When you combine full text search results with vector, you
+**[00:17:09]** get kind of the relevance of the exact match of
+**[00:17:13]** the keywords kind of brings the results up, right?
+**[00:17:17]** So if that's what you want, the hybrid search is
+**[00:17:19]** really good for you.
+**[00:17:20]** And there are use cases where keyword matches are important,
+**[00:17:23]** right?
+**[00:17:24]** But in our scenario, I think more important is kind
+**[00:17:27]** of a style and semantic matching, right?
+**[00:17:29]** So let's improve on that.
+**[00:17:31]** So to do it better, we are actually going to
+**[00:17:34]** enable semantic re ranking.
+**[00:17:37]** And to do that it's just another parameter on our
+**[00:17:40]** search function.
+**[00:17:41]** We'll say, hey, do re ranking equals true, right.
+**[00:17:44]** So let's do that.
+**[00:17:45]** And semantic re ranking will will significantly prove kind of
+**[00:17:49]** relevance of our results from the semantic point of view,
+**[00:17:53]** right.
+**[00:17:54]** So it uses as a here semantic ranking model behind
+**[00:17:57]** the scenes.
+**[00:17:58]** And now as you can see, the the results are
+**[00:18:01]** slightly different Coffee tables here are kind of found more
+**[00:18:06]** relevant to this query result, probably because our search stream
+**[00:18:11]** includes wood tones and dark vibes, right?
+**[00:18:15]** So coffee table has kind of a more surface, I
+**[00:18:17]** don't know.
+**[00:18:19]** So that's how you easily you can enable semantic re
+**[00:18:22]** ranking and improve accuracy of your query results, right.
+**[00:18:29]** But that was that simplified function may seem like kind
+**[00:18:33]** of a pack or like a black box, right?
+**[00:18:36]** So how do we understand what's happening inside of this
+**[00:18:40]** search function?
+**[00:18:42]** So this is another feature that we can demonstrate.
+**[00:18:45]** So we have here visualize query plan button and that
+**[00:18:48]** allows us to look inside of any queries that we
+**[00:18:50]** are running, right?
+**[00:18:53]** So I'll do that and create a visualization of these
+**[00:18:57]** queries that we just run.
+**[00:19:05]** And here we go.
+**[00:19:06]** So let's zoom out a little bit.
+**[00:19:09]** So this is pretty large query, right?
+**[00:19:12]** But we can safely ignore this part of the query.
+**[00:19:14]** This is just our joins where we format the output,
+**[00:19:17]** right?
+**[00:19:17]** So let's ignore that part.
+**[00:19:19]** So this second part is actually our search function.
+**[00:19:23]** And if you zoom in on it, we can see
+**[00:19:25]** exactly the structure of what is going on behind the
+**[00:19:28]** scenes, right?
+**[00:19:29]** So let's further zoom in.
+**[00:19:31]** So we can see that the query starts with two
+**[00:19:34]** steps.
+**[00:19:34]** So first it does a full text search and it
+**[00:19:37]** performs vector search in parallel, right?
+**[00:19:40]** So that gives you 2 lists of items with different
+**[00:19:43]** priorities.
+**[00:19:45]** And then what we do as a hybrid search, we
+**[00:19:49]** do reciprocal rank fusion.
+**[00:19:52]** So that's basically a formula here, very simple actually mathematical
+**[00:19:56]** formula that kind of averages out the 2 results, right?
+**[00:20:00]** So it allows you to take 2 ranked results and
+**[00:20:03]** merge them together, averaging the out the rankings.
+**[00:20:08]** And after that, because we enabled the semantic re ranking,
+**[00:20:12]** right?
+**[00:20:12]** So we perform a call into a semantic re ranking
+**[00:20:16]** function to take the 30 candidates and reorder them now
+**[00:20:20]** in the order of semantic relevance, right?
+**[00:20:24]** And finally, that allows us to take out of the
+**[00:20:28]** 30, we take the top ten that are the best
+**[00:20:31]** matches, right?
+**[00:20:33]** And because we requested top 10 results, we return the
+**[00:20:36]** top 10 results.
+**[00:20:37]** So that's kind of the interesting way how our Postgres
+**[00:20:41]** tooling that kind of has this query plans allows us
+**[00:20:44]** to understand what's going on behind the scenes.
+**[00:20:49]** So that's how this intelligent semantic ranking search was done
+**[00:20:54]** and we are doing good on time.
+**[00:20:57]** So the last step I wanted to show is a
+**[00:21:00]** very powerful step.
+**[00:21:02]** Knowledge graphs, right?
+**[00:21:03]** So the, the heart of the intelligence of this agent
+**[00:21:07]** of this app is being able to match styles, right?
+**[00:21:10]** So look at the photo and then determine what is
+**[00:21:13]** the stylistic kind of matching between this piece of furniture.
+**[00:21:17]** So what we did, we created a knowledge graph of
+**[00:21:20]** styles for this product catalog, and in the interest of
+**[00:21:23]** time, I'll skip that step, but you're welcome to look
+**[00:21:27]** at the repo.
+**[00:21:28]** It has yet another AI pipeline and SQL scripts that
+**[00:21:31]** actually builds a knowledge graph, and it stores this knowledge
+**[00:21:36]** graph again in Postgres in a real graph manner.
+**[00:21:39]** So we use Apache AGE Extension for Postgres, which basically
+**[00:21:44]** brings a graph capability, graph database capabilities on top of
+**[00:21:49]** your relational Postgres SQL.
+**[00:21:52]** So that allows you to run this cipher query.
+**[00:21:54]** So if you look at these queries, so this is
+**[00:21:57]** how a cipher query looks like.
+**[00:22:00]** So it has a bunch of matches.
+**[00:22:01]** It allows you to traverse relationship in your graph, right?
+**[00:22:06]** So very cool.
+**[00:22:07]** But let's run it and see the results.
+**[00:22:11]** So if we run this graph query, what we see
+**[00:22:15]** is visualization of the graph because that's what we have
+**[00:22:21]** in our tooling as well.
+**[00:22:24]** And if we zoom in a little bit more than
+**[00:22:29]** for, then in the middle of this graph you can
+**[00:22:34]** see a style mid century modern style, right?
+**[00:22:40]** And that style connects coffee tables.
+**[00:22:47]** So here is this one coffee table, right?
+**[00:22:49]** So that's a category coffee table.
+**[00:22:51]** So it connects this coffee table to various other items,
+**[00:22:55]** right?
+**[00:22:56]** So it connects to chairs that have similar style, and
+**[00:23:01]** it connects this coffee table to bookcases, right, of the
+**[00:23:07]** similar mid century modern style.
+**[00:23:11]** So that's kind of the basic idea of this style
+**[00:23:13]** graph, right?
+**[00:23:14]** It allows you to connect furniture, these styles together.
+**[00:23:19]** But it's kind of simple, right?
+**[00:23:21]** What happens if there is not enough furniture of particular
+**[00:23:25]** style, right, that matches your own well, styles actually similar
+**[00:23:29]** to each other.
+**[00:23:30]** And that knowledge we expressed in the knowledge graph as
+**[00:23:34]** well.
+**[00:23:35]** So we can actually go better do better than just
+**[00:23:40]** showing connecting styles, connecting furniture based on styles.
+**[00:23:47]** We can also introduce this relationship similar to between two
+**[00:23:51]** styles, right?
+**[00:23:52]** So our mid century modern style is similar to Bahamian
+**[00:23:56]** style, right?
+**[00:23:57]** And that knowledge expressed in our knowledge graph allow us
+**[00:24:02]** to again traverse from this chair and connect it to
+**[00:24:07]** a similar area rugs to a similar area rugs and
+**[00:24:11]** basically fulfill our room desired room with a much broader
+**[00:24:16]** variety of furniture options, right?
+**[00:24:20]** So that's kind of how knowledge graphs work.
+**[00:24:23]** They are very powerful tool applicable to almost any domain,
+**[00:24:26]** right?
+**[00:24:27]** And they frequently kind of encapsulate this domain knowledge that
+**[00:24:31]** you have, right?
+**[00:24:32]** So they are very powerful for enhancing intelligence and quality
+**[00:24:36]** of operation of your agents.
+**[00:24:39]** Cool.
+**[00:24:40]** So that's all I had to conclude.
+**[00:24:44]** Let's go back to the to our app and see
+**[00:24:47]** what what was actually what it did right, what we
+**[00:24:51]** did.
+**[00:24:51]** So if you look at the agent details in this
+**[00:24:55]** demo, we were able to prepare our data right for
+**[00:24:58]** agent consumption, for AI consumption using AI pipelines.
+**[00:25:04]** We were able to perform powerful hybrid search with all
+**[00:25:07]** kinds of sophisticated accuracy options.
+**[00:25:11]** And we were able to use semantic re ranking, right
+**[00:25:15]** to pick the the best rooms related to our to
+**[00:25:19]** our room.
+**[00:25:20]** And of course, we find related products using knowledge graphs,
+**[00:25:23]** right?
+**[00:25:24]** So all of that functionality we were able to achieve
+**[00:25:28]** just using built in Horizon DBAI features.
+**[00:25:31]** So no external services, no complexity, right?
+**[00:25:35]** And very few lines of SQL if you prefer that.
+**[00:25:41]** If you're interested in trying it out yourself, here is
+**[00:25:45]** the repo with all of the source code and sample
+**[00:25:48]** queries, right?
+**[00:25:50]** It has only 60 rows as a sample data set,
+**[00:25:53]** but it's enough to kind of illustrate how this how
+**[00:25:57]** simple actually behind the scenes this app is.
+**[00:26:07]** And that's it.

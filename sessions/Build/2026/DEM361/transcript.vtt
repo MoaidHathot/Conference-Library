@@ -1,0 +1,2310 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.7698017358779907
+
+00:00:00.400 --> 00:00:01.840
+Some good energy for the last day.
+
+NOTE Confidence: 0.6999534964561462
+
+00:00:02.320 --> 00:00:02.520
+Cool.
+
+NOTE Confidence: 0.8279324769973755
+
+00:00:02.640 --> 00:00:03.320
+So I'm Jim Bennett.
+
+NOTE Confidence: 0.854407548904419
+
+00:00:03.320 --> 00:00:06.349
+I'm a Microsoft MVP for Foundry and dev tools and
+
+NOTE Confidence: 0.854407548904419
+
+00:00:06.410 --> 00:00:07.399
+stuff like that.
+
+NOTE Confidence: 0.9656224846839905
+
+00:00:07.800 --> 00:00:10.400
+And I'm here to tell you about your agents.
+
+NOTE Confidence: 0.8651894927024841
+
+00:00:11.160 --> 00:00:12.280
+So quick question.
+
+NOTE Confidence: 0.8583115339279175
+
+00:00:12.280 --> 00:00:13.720
+Well, first of all, who's heard of AI?
+
+NOTE Confidence: 0.8360409736633301
+
+00:00:15.040 --> 00:00:15.840
+Yeah, OK, fair enough.
+
+NOTE Confidence: 0.931382954120636
+
+00:00:16.040 --> 00:00:17.800
+But who is actually building agents?
+
+NOTE Confidence: 0.7710095643997192
+
+00:00:18.960 --> 00:00:20.040
+OK, send a few hands.
+
+NOTE Confidence: 0.7495473027229309
+
+00:00:20.520 --> 00:00:23.595
+Who actually know what you what's actually knows what your
+
+NOTE Confidence: 0.7495473027229309
+
+00:00:23.648 --> 00:00:25.239
+agent is doing under the hood?
+
+NOTE Confidence: 0.8188728094100952
+
+00:00:26.960 --> 00:00:30.310
+Few hands, OK, who knows that their agent is actually
+
+NOTE Confidence: 0.8188728094100952
+
+00:00:30.374 --> 00:00:30.879
+working?
+
+NOTE Confidence: 0.9079002141952515
+
+00:00:32.520 --> 00:00:33.400
+Few hands.
+
+NOTE Confidence: 0.8848146200180054
+
+00:00:33.479 --> 00:00:36.268
+OK, this is what we're going to talk talk about
+
+NOTE Confidence: 0.8848146200180054
+
+00:00:36.327 --> 00:00:39.530
+today about the fact that you probably don't know what
+
+NOTE Confidence: 0.8848146200180054
+
+00:00:39.589 --> 00:00:42.199
+your agent is actually doing under the hood.
+
+NOTE Confidence: 0.9214855432510376
+
+00:00:42.680 --> 00:00:45.280
+So let's get away from slides.
+
+NOTE Confidence: 0.9557939171791077
+
+00:00:45.280 --> 00:00:46.160
+We don't care about slides.
+
+NOTE Confidence: 0.8704061508178711
+
+00:00:46.320 --> 00:00:47.520
+Let's see something in action.
+
+NOTE Confidence: 0.9505108594894409
+
+00:00:48.400 --> 00:00:48.520
+Now.
+
+NOTE Confidence: 0.9723755121231079
+
+00:00:48.520 --> 00:00:50.040
+Here I have an agent.
+
+NOTE Confidence: 0.9029285311698914
+
+00:00:50.800 --> 00:00:54.232
+Now all the cool kids tell me that agents are
+
+NOTE Confidence: 0.9029285311698914
+
+00:00:54.308 --> 00:00:59.266
+lit LLMS, instructions, tools, and that's literally what makes an
+
+NOTE Confidence: 0.9029285311698914
+
+00:00:59.342 --> 00:00:59.800
+agent.
+
+NOTE Confidence: 0.9436084032058716
+
+00:01:00.080 --> 00:01:03.572
+So I have an agent up here, this code here,
+
+NOTE Confidence: 0.9436084032058716
+
+00:01:03.653 --> 00:01:05.439
+this 11 lines of code.
+
+NOTE Confidence: 0.9549887180328369
+
+00:01:05.840 --> 00:01:06.760
+This is my agent.
+
+NOTE Confidence: 0.9770085215568542
+
+00:01:07.040 --> 00:01:07.720
+That's all I have.
+
+NOTE Confidence: 0.5818617343902588
+
+00:01:08.360 --> 00:01:09.560
+I'm defining my LLM.
+
+NOTE Confidence: 0.809893012046814
+
+00:01:10.000 --> 00:01:12.320
+I am using an open AI model.
+
+NOTE Confidence: 0.911323070526123
+
+00:01:12.480 --> 00:01:14.120
+This is running on Microsoft Foundry.
+
+NOTE Confidence: 0.9349932670593262
+
+00:01:14.520 --> 00:01:16.565
+If you haven't heard of Foundry, it's basically a place
+
+NOTE Confidence: 0.9349932670593262
+
+00:01:16.603 --> 00:01:18.239
+to run your models, do cool stuff like that.
+
+NOTE Confidence: 0.9610681533813477
+
+00:01:18.880 --> 00:01:20.200
+I have my instructions.
+
+NOTE Confidence: 0.9393150806427002
+
+00:01:21.240 --> 00:01:25.320
+This particular example, I have been building a procurement system
+
+NOTE Confidence: 0.9393150806427002
+
+00:01:25.381 --> 00:01:26.000
+evaluator.
+
+NOTE Confidence: 0.8725712895393372
+
+00:01:26.560 --> 00:01:29.276
+So kind of fairly boring line of business application that
+
+NOTE Confidence: 0.8725712895393372
+
+00:01:29.322 --> 00:01:30.400
+you're likely to build.
+
+NOTE Confidence: 0.9543808102607727
+
+00:01:30.760 --> 00:01:34.153
+People want to buy stuff rather than having humans approve
+
+NOTE Confidence: 0.9543808102607727
+
+00:01:34.211 --> 00:01:34.679
+or deny.
+
+NOTE Confidence: 0.9480217099189758
+
+00:01:34.920 --> 00:01:37.113
+This is an agent that does that approve or deny
+
+NOTE Confidence: 0.9480217099189758
+
+00:01:37.160 --> 00:01:37.440
+cycle.
+
+NOTE Confidence: 0.8646910786628723
+
+00:01:38.040 --> 00:01:40.120
+So it's a procurement evaluator.
+
+NOTE Confidence: 0.8962290287017822
+
+00:01:40.480 --> 00:01:44.462
+You read purchase requests, gather relevant policy, vendor budget, blah,
+
+NOTE Confidence: 0.8962290287017822
+
+00:01:44.518 --> 00:01:45.679
+blah, blah, do stuff.
+
+NOTE Confidence: 0.8100952506065369
+
+00:01:45.920 --> 00:01:48.680
+OK, And then I have some tools.
+
+NOTE Confidence: 0.8594226241111755
+
+00:01:49.600 --> 00:01:51.885
+I have a series of tools I've got to check
+
+NOTE Confidence: 0.8594226241111755
+
+00:01:51.939 --> 00:01:54.823
+policy tool, a tool to look up vendors, budgets, that
+
+NOTE Confidence: 0.8594226241111755
+
+00:01:54.878 --> 00:01:55.639
+kind of stuff.
+
+NOTE Confidence: 0.9458283185958862
+
+00:01:56.560 --> 00:01:57.400
+Now this is great.
+
+NOTE Confidence: 0.900128960609436
+
+00:01:57.480 --> 00:02:00.172
+This is me kind of scaffolding my application, but I'm
+
+NOTE Confidence: 0.900128960609436
+
+00:02:00.222 --> 00:02:01.319
+using agent framework.
+
+NOTE Confidence: 0.8484935164451599
+
+00:02:01.720 --> 00:02:04.382
+An agent framework kind of just does the rest for
+
+NOTE Confidence: 0.8484935164451599
+
+00:02:04.436 --> 00:02:04.600
+me.
+
+NOTE Confidence: 0.963748574256897
+
+00:02:05.320 --> 00:02:08.799
+Literally the way that I interact with my agent is
+
+NOTE Confidence: 0.963748574256897
+
+00:02:08.869 --> 00:02:10.400
+this one line of code.
+
+NOTE Confidence: 0.9535370469093323
+
+00:02:11.320 --> 00:02:15.312
+I say agent, run, here's the inputs, just go and
+
+NOTE Confidence: 0.9535370469093323
+
+00:02:15.395 --> 00:02:16.559
+do your thing.
+
+NOTE Confidence: 0.8970125913619995
+
+00:02:16.560 --> 00:02:19.125
+And then I get back an output and then, you
+
+NOTE Confidence: 0.8970125913619995
+
+00:02:19.185 --> 00:02:22.407
+know, fingers crossed it all works, but I don't really
+
+NOTE Confidence: 0.8970125913619995
+
+00:02:22.466 --> 00:02:23.719
+know what's going on.
+
+NOTE Confidence: 0.8530997037887573
+
+00:02:23.720 --> 00:02:25.769
+It's very much, this is a black box, this is
+
+NOTE Confidence: 0.8530997037887573
+
+00:02:25.816 --> 00:02:27.679
+decisions are being made under the hood.
+
+NOTE Confidence: 0.8571088314056396
+
+00:02:28.480 --> 00:02:32.626
+So the LLM decides, sorry for the anthropomorphisation there, but
+
+NOTE Confidence: 0.8571088314056396
+
+00:02:32.690 --> 00:02:35.752
+the LLM decides what tools to call, if it should
+
+NOTE Confidence: 0.8571088314056396
+
+00:02:35.815 --> 00:02:38.240
+call a tool, what order to call tools.
+
+NOTE Confidence: 0.8248777985572815
+
+00:02:38.600 --> 00:02:41.205
+And then the agent framework takes the results, those tool
+
+NOTE Confidence: 0.8248777985572815
+
+00:02:41.250 --> 00:02:43.720
+calls, calls the LLM again, does more things, does more
+
+NOTE Confidence: 0.8248777985572815
+
+00:02:43.765 --> 00:02:44.080
+things.
+
+NOTE Confidence: 0.9391264319419861
+
+00:02:44.320 --> 00:02:47.085
+And all I ever see is just the output coming
+
+NOTE Confidence: 0.9391264319419861
+
+00:02:47.148 --> 00:02:47.400
+out.
+
+NOTE Confidence: 0.9460178017616272
+
+00:02:48.160 --> 00:02:48.600
+That's it.
+
+NOTE Confidence: 0.9529916048049927
+
+00:02:48.800 --> 00:02:51.473
+I don't get that visibility over what's happening under the
+
+NOTE Confidence: 0.9529916048049927
+
+00:02:51.518 --> 00:02:53.239
+hood and I just have to hope it works.
+
+NOTE Confidence: 0.8981582522392273
+
+00:02:53.840 --> 00:02:56.880
+I can run this in dev, fingers crossed it works.
+
+NOTE Confidence: 0.903255045413971
+
+00:02:58.400 --> 00:02:59.724
+So this is the kind of thing that my agent
+
+NOTE Confidence: 0.903255045413971
+
+00:02:59.756 --> 00:03:00.040
+would do.
+
+NOTE Confidence: 0.8817671537399292
+
+00:03:00.560 --> 00:03:03.062
+So I could say, look, I want to put in
+
+NOTE Confidence: 0.8817671537399292
+
+00:03:03.128 --> 00:03:06.288
+a purchase request, $3200 I want to spend on the
+
+NOTE Confidence: 0.8817671537399292
+
+00:03:06.354 --> 00:03:09.910
+engineering team for an IDE because we need an updated
+
+NOTE Confidence: 0.8817671537399292
+
+00:03:09.976 --> 00:03:10.239
+IDE.
+
+NOTE Confidence: 0.9565286040306091
+
+00:03:10.840 --> 00:03:14.443
+This goes in and the agent comes back and says,
+
+NOTE Confidence: 0.9565286040306091
+
+00:03:14.519 --> 00:03:18.199
+OK, this is approved, This is why it's approved.
+
+NOTE Confidence: 0.9467467665672302
+
+00:03:18.560 --> 00:03:18.880
+Done.
+
+NOTE Confidence: 0.8798273801803589
+
+00:03:19.160 --> 00:03:20.800
+Sweet, complete black box.
+
+NOTE Confidence: 0.962324321269989
+
+00:03:21.080 --> 00:03:23.360
+Could be right, could be wrong, I just don't know.
+
+NOTE Confidence: 0.9515513777732849
+
+00:03:25.320 --> 00:03:27.336
+So how do I discover what it's doing under the
+
+NOTE Confidence: 0.9515513777732849
+
+00:03:27.380 --> 00:03:27.599
+hood?
+
+NOTE Confidence: 0.804169774055481
+
+00:03:28.800 --> 00:03:30.720
+Well, who's heard of open telemetry?
+
+NOTE Confidence: 0.7242517471313477
+
+00:03:31.800 --> 00:03:32.960
+Yes, so a few of you.
+
+NOTE Confidence: 0.9454832077026367
+
+00:03:33.200 --> 00:03:35.608
+Open telemetry is a standard way of seeing what your
+
+NOTE Confidence: 0.9454832077026367
+
+00:03:35.654 --> 00:03:36.719
+applications are doing.
+
+NOTE Confidence: 0.6758101582527161
+
+00:03:37.200 --> 00:03:38.600
+You will bolt this onto your web app.
+
+NOTE Confidence: 0.9047167301177979
+
+00:03:39.080 --> 00:03:40.840
+You see how long the requests take.
+
+NOTE Confidence: 0.8128975629806519
+
+00:03:41.080 --> 00:03:42.844
+You see your five hundreds, your four hundreds, your two
+
+NOTE Confidence: 0.8128975629806519
+
+00:03:42.876 --> 00:03:43.160
+hundreds.
+
+NOTE Confidence: 0.8900576829910278
+
+00:03:43.400 --> 00:03:46.040
+You get visibility over what your application is doing.
+
+NOTE Confidence: 0.9483878016471863
+
+00:03:46.720 --> 00:03:49.533
+Wouldn't it be nice if we could take that same
+
+NOTE Confidence: 0.9483878016471863
+
+00:03:49.594 --> 00:03:53.386
+principle, that same open standard principle and apply that to
+
+NOTE Confidence: 0.9483878016471863
+
+00:03:53.447 --> 00:03:55.160
+AI applications and you can.
+
+NOTE Confidence: 0.9327831864356995
+
+00:03:55.480 --> 00:03:59.832
+So there is a thing called where are we open
+
+NOTE Confidence: 0.9327831864356995
+
+00:03:59.930 --> 00:04:00.920
+inference?
+
+NOTE Confidence: 0.8547120690345764
+
+00:04:00.920 --> 00:04:02.440
+Has anyone heard of open inference?
+
+NOTE Confidence: 0.8776028156280518
+
+00:04:03.520 --> 00:04:07.000
+OK, one hand, Open inference is an open standard extension
+
+NOTE Confidence: 0.8776028156280518
+
+00:04:07.060 --> 00:04:10.840
+for open telemetry that works with the semantic conventions for
+
+NOTE Confidence: 0.8776028156280518
+
+00:04:10.900 --> 00:04:11.080
+AI.
+
+NOTE Confidence: 0.9520299434661865
+
+00:04:11.560 --> 00:04:14.040
+So basically it makes AI work with open telemetry.
+
+NOTE Confidence: 0.7467175126075745
+
+00:04:14.560 --> 00:04:16.720
+Now Open Infinity are working on a Gen.
+
+NOTE Confidence: 0.8622022867202759
+
+00:04:16.720 --> 00:04:17.480
+AI standard.
+
+NOTE Confidence: 0.9667788743972778
+
+00:04:18.240 --> 00:04:21.225
+It's in a committee, and we all know what committees
+
+NOTE Confidence: 0.9667788743972778
+
+00:04:21.283 --> 00:04:21.800
+are like.
+
+NOTE Confidence: 0.8402521014213562
+
+00:04:22.400 --> 00:04:24.880
+So maybe one day they will get the standard going,
+
+NOTE Confidence: 0.8402521014213562
+
+00:04:24.930 --> 00:04:27.510
+but until then, open inference has been around for a
+
+NOTE Confidence: 0.8402521014213562
+
+00:04:27.559 --> 00:04:29.842
+few years and that is kind of an open standard
+
+NOTE Confidence: 0.8402521014213562
+
+00:04:29.891 --> 00:04:32.422
+that folks can use for gathering to empty data from
+
+NOTE Confidence: 0.8402521014213562
+
+00:04:32.471 --> 00:04:32.719
+LLMS.
+
+NOTE Confidence: 0.8487895727157593
+
+00:04:32.920 --> 00:04:35.449
+And actually if you were in the session yesterday from
+
+NOTE Confidence: 0.8487895727157593
+
+00:04:35.496 --> 00:04:37.979
+Sarah Bird, you would know that open inference is the
+
+NOTE Confidence: 0.8487895727157593
+
+00:04:38.026 --> 00:04:40.790
+standard that's being used for the new assert framework and
+
+NOTE Confidence: 0.8487895727157593
+
+00:04:40.837 --> 00:04:43.320
+agent control specification that Microsoft are doing.
+
+NOTE Confidence: 0.9058852195739746
+
+00:04:45.440 --> 00:04:47.426
+So if I think if I want to put this
+
+NOTE Confidence: 0.9058852195739746
+
+00:04:47.483 --> 00:04:51.058
+kind of telemetry inside my application, it's actually not that
+
+NOTE Confidence: 0.9058852195739746
+
+00:04:51.115 --> 00:04:52.080
+complex to do it.
+
+NOTE Confidence: 0.7458798885345459
+
+00:04:53.120 --> 00:04:54.440
+Open telemetry is a standard.
+
+NOTE Confidence: 0.6907771825790405
+
+00:04:54.839 --> 00:04:57.390
+We, the person over there has said I've done open
+
+NOTE Confidence: 0.6907771825790405
+
+00:04:57.442 --> 00:04:59.160
+telemetry has probably done this.
+
+NOTE Confidence: 0.915046215057373
+
+00:04:59.160 --> 00:05:01.240
+You just drop in AI want to trace things.
+
+NOTE Confidence: 0.9172343015670776
+
+00:05:01.600 --> 00:05:03.170
+I put in a couple lines of code to say
+
+NOTE Confidence: 0.9172343015670776
+
+00:05:03.212 --> 00:05:04.080
+I want to trace this.
+
+NOTE Confidence: 0.8674333095550537
+
+00:05:04.480 --> 00:05:06.866
+I want to send this to open inference and then
+
+NOTE Confidence: 0.8674333095550537
+
+00:05:06.917 --> 00:05:08.940
+I just send this to a back end and that
+
+NOTE Confidence: 0.8674333095550537
+
+00:05:08.992 --> 00:05:12.001
+can then it will exposes visibility of what my application
+
+NOTE Confidence: 0.8674333095550537
+
+00:05:12.053 --> 00:05:12.519
+is doing.
+
+NOTE Confidence: 0.833303689956665
+
+00:05:13.640 --> 00:05:17.143
+So what I get out the other side is something
+
+NOTE Confidence: 0.833303689956665
+
+00:05:17.221 --> 00:05:18.000
+like this.
+
+NOTE Confidence: 0.9237725138664246
+
+00:05:19.360 --> 00:05:21.064
+So what I've got here, this is an application called
+
+NOTE Confidence: 0.9237725138664246
+
+00:05:21.097 --> 00:05:21.360
+Phoenix.
+
+NOTE Confidence: 0.8813908100128174
+
+00:05:21.400 --> 00:05:24.367
+It's a free open source back end for telemetry data
+
+NOTE Confidence: 0.8813908100128174
+
+00:05:24.425 --> 00:05:27.160
+made by Arise defaults invented open inference.
+
+NOTE Confidence: 0.9022672772407532
+
+00:05:27.160 --> 00:05:29.765
+This is kind of the standard default out the box
+
+NOTE Confidence: 0.9022672772407532
+
+00:05:29.819 --> 00:05:32.479
+open source way of rendering open inference data.
+
+NOTE Confidence: 0.946529746055603
+
+00:05:33.600 --> 00:05:35.680
+And this gives me a complete breakdown of what my
+
+NOTE Confidence: 0.946529746055603
+
+00:05:35.723 --> 00:05:36.360
+agent is doing.
+
+NOTE Confidence: 0.8635501861572266
+
+00:05:37.000 --> 00:05:40.352
+So at the top level, I have this process dot
+
+NOTE Confidence: 0.8635501861572266
+
+00:05:40.429 --> 00:05:43.553
+run and it says this is the tech flow IDE
+
+NOTE Confidence: 0.8635501861572266
+
+00:05:43.629 --> 00:05:47.440
+$3200 need the upgrade and they have the response.
+
+NOTE Confidence: 0.8728225231170654
+
+00:05:47.440 --> 00:05:48.640
+Yes, it's compliant.
+
+NOTE Confidence: 0.8494437336921692
+
+00:05:48.720 --> 00:05:49.280
+It's whatever.
+
+NOTE Confidence: 0.9040491580963135
+
+00:05:49.600 --> 00:05:52.259
+This this is really what I see from my agent
+
+NOTE Confidence: 0.9040491580963135
+
+00:05:52.319 --> 00:05:55.039
+run, but I have so much more information now.
+
+NOTE Confidence: 0.9482707381248474
+
+00:05:55.040 --> 00:05:57.540
+I have this tree diagram that shows me everything the
+
+NOTE Confidence: 0.9482707381248474
+
+00:05:57.587 --> 00:05:58.720
+agent is actually doing.
+
+NOTE Confidence: 0.8986316323280334
+
+00:05:59.640 --> 00:06:01.960
+So actually Microsoft agent framework kicks off an agent.
+
+NOTE Confidence: 0.8448887467384338
+
+00:06:02.480 --> 00:06:03.720
+It then calls an LLM.
+
+NOTE Confidence: 0.7623699307441711
+
+00:06:04.480 --> 00:06:06.574
+This LM, I can, I can see the system prompt,
+
+NOTE Confidence: 0.7623699307441711
+
+00:06:06.621 --> 00:06:08.572
+I can see the user prompt, I can see what
+
+NOTE Confidence: 0.7623699307441711
+
+00:06:08.620 --> 00:06:11.000
+comes out the other side request to do tool calls.
+
+NOTE Confidence: 0.8033896088600159
+
+00:06:11.440 --> 00:06:14.000
+I can dig deep into a whole of more attributes.
+
+NOTE Confidence: 0.8996872901916504
+
+00:06:14.000 --> 00:06:15.240
+Where's the fun ones?
+
+NOTE Confidence: 0.8981809616088867
+
+00:06:15.560 --> 00:06:18.164
+So I can see things like token counts in and
+
+NOTE Confidence: 0.8981809616088867
+
+00:06:18.223 --> 00:06:18.519
+outs.
+
+NOTE Confidence: 0.7227020859718323
+
+00:06:18.520 --> 00:06:19.360
+It's open AI.
+
+NOTE Confidence: 0.8685459494590759
+
+00:06:19.360 --> 00:06:21.831
+We use a Microsoft agent framework and I've kind of
+
+NOTE Confidence: 0.8685459494590759
+
+00:06:21.880 --> 00:06:24.739
+got this deep level of telemetry across everything that the
+
+NOTE Confidence: 0.8685459494590759
+
+00:06:24.787 --> 00:06:27.598
+agent framework is, is deciding to do everything that goes
+
+NOTE Confidence: 0.8685459494590759
+
+00:06:27.646 --> 00:06:29.439
+into every single part of the system.
+
+NOTE Confidence: 0.8553542494773865
+
+00:06:29.920 --> 00:06:31.120
+This is what goes to the LM.
+
+NOTE Confidence: 0.8259491920471191
+
+00:06:31.280 --> 00:06:32.520
+This is what comes back from the LM.
+
+NOTE Confidence: 0.7944154143333435
+
+00:06:33.080 --> 00:06:35.160
+The LM wants to call a tool, sweet.
+
+NOTE Confidence: 0.7974035739898682
+
+00:06:35.480 --> 00:06:39.067
+It calls the Czech policy tool 3200 Tech flow gets
+
+NOTE Confidence: 0.7974035739898682
+
+00:06:39.139 --> 00:06:41.937
+back a response and so on and so on and
+
+NOTE Confidence: 0.7974035739898682
+
+00:06:42.009 --> 00:06:42.440
+so on.
+
+NOTE Confidence: 0.9285834431648254
+
+00:06:42.440 --> 00:06:45.354
+So I can start getting this visibility over everything that
+
+NOTE Confidence: 0.9285834431648254
+
+00:06:45.403 --> 00:06:48.119
+my application is doing at a very, very granular level.
+
+NOTE Confidence: 0.9568187594413757
+
+00:06:49.120 --> 00:06:52.240
+And this allows me to start understanding my application.
+
+NOTE Confidence: 0.8764193654060364
+
+00:06:52.240 --> 00:06:53.320
+I can start doing this at scale.
+
+NOTE Confidence: 0.9050859212875366
+
+00:06:53.760 --> 00:06:55.504
+I can do this for in dev for one or
+
+NOTE Confidence: 0.9050859212875366
+
+00:06:55.554 --> 00:06:58.196
+two as I'm experimenting, I can do this in production
+
+NOTE Confidence: 0.9050859212875366
+
+00:06:58.246 --> 00:07:00.239
+for thousands, millions of rows of data.
+
+NOTE Confidence: 0.9026675224304199
+
+00:07:00.240 --> 00:07:02.767
+I get to see all the things and what's called
+
+NOTE Confidence: 0.9026675224304199
+
+00:07:02.823 --> 00:07:05.800
+as well because it's a standard open telemetry, I can
+
+NOTE Confidence: 0.9026675224304199
+
+00:07:05.857 --> 00:07:08.159
+do all the standard tricks that folks do.
+
+NOTE Confidence: 0.9017069339752197
+
+00:07:08.400 --> 00:07:10.669
+If I want to strip out PII or a customer
+
+NOTE Confidence: 0.9017069339752197
+
+00:07:10.726 --> 00:07:13.165
+data, I can drop a new spam processor in to
+
+NOTE Confidence: 0.9017069339752197
+
+00:07:13.222 --> 00:07:13.960
+strip it out.
+
+NOTE Confidence: 0.8497418761253357
+
+00:07:14.320 --> 00:07:15.833
+You know, anything I kind of want to do to
+
+NOTE Confidence: 0.8497418761253357
+
+00:07:15.869 --> 00:07:17.455
+manipulate the data on the way out, I can do
+
+NOTE Confidence: 0.8497418761253357
+
+00:07:17.491 --> 00:07:17.959
+that as well.
+
+NOTE Confidence: 0.97062087059021
+
+00:07:19.120 --> 00:07:20.960
+So suddenly I know what my system is doing.
+
+NOTE Confidence: 0.8889452219009399
+
+00:07:21.040 --> 00:07:22.600
+That answers that first question I asked you.
+
+NOTE Confidence: 0.9339566826820374
+
+00:07:22.720 --> 00:07:23.880
+Do you know what your agent is doing?
+
+NOTE Confidence: 0.9622752666473389
+
+00:07:24.200 --> 00:07:25.680
+I can see inside that black box.
+
+NOTE Confidence: 0.8883808255195618
+
+00:07:27.240 --> 00:07:29.173
+But the next question that comes up is, is it
+
+NOTE Confidence: 0.8883808255195618
+
+00:07:29.216 --> 00:07:29.560
+working?
+
+NOTE Confidence: 0.9748693704605103
+
+00:07:31.320 --> 00:07:32.800
+How do we know if something works?
+
+NOTE Confidence: 0.8995791673660278
+
+00:07:32.800 --> 00:07:34.320
+How do we know if an AI agent is working?
+
+NOTE Confidence: 0.8805821537971497
+
+00:07:34.960 --> 00:07:36.240
+Now who writes unit tests?
+
+NOTE Confidence: 0.3976852297782898
+
+00:07:36.960 --> 00:07:37.280
+Who writes?
+
+NOTE Confidence: 0.9483711123466492
+
+00:07:37.640 --> 00:07:39.040
+I'm not seeing enough hands here.
+
+NOTE Confidence: 0.9528825283050537
+
+00:07:39.760 --> 00:07:41.440
+I'm not mad, I'm just disappointed.
+
+NOTE Confidence: 0.8685594797134399
+
+00:07:41.680 --> 00:07:42.000
+Come on.
+
+NOTE Confidence: 0.9209473133087158
+
+00:07:42.360 --> 00:07:45.363
+Now when we think about unit testing with deterministic code,
+
+NOTE Confidence: 0.9209473133087158
+
+00:07:45.412 --> 00:07:46.839
+we are used to writing tests.
+
+NOTE Confidence: 0.9135550260543823
+
+00:07:46.840 --> 00:07:49.925
+We say with these inputs, I expect this output that
+
+NOTE Confidence: 0.9135550260543823
+
+00:07:49.985 --> 00:07:53.010
+doesn't work with an LLM with these inputs, I will
+
+NOTE Confidence: 0.9135550260543823
+
+00:07:53.071 --> 00:07:56.519
+get a non deterministic output coming out the other side.
+
+NOTE Confidence: 0.9589077234268188
+
+00:07:57.520 --> 00:07:59.600
+So how do I know if my LLM is working?
+
+NOTE Confidence: 0.8826442956924438
+
+00:08:00.720 --> 00:08:02.973
+Well, the easiest way to do it is ask a
+
+NOTE Confidence: 0.8826442956924438
+
+00:08:03.031 --> 00:08:05.400
+person to have a look humans can look at.
+
+NOTE Confidence: 0.9108223915100098
+
+00:08:37.120 --> 00:08:40.213
+But it turns out that actually humans are not the
+
+NOTE Confidence: 0.9108223915100098
+
+00:08:40.276 --> 00:08:43.748
+best at evaluating whether something works or not AI is
+
+NOTE Confidence: 0.9108223915100098
+
+00:08:43.811 --> 00:08:47.346
+actually better than humans at doing this for the simple
+
+NOTE Confidence: 0.9108223915100098
+
+00:08:47.409 --> 00:08:49.240
+reason that humans get bored.
+
+NOTE Confidence: 0.7590269446372986
+
+00:08:50.760 --> 00:08:51.880
+So who here likes having lunch?
+
+NOTE Confidence: 0.8855981826782227
+
+00:08:53.360 --> 00:08:55.032
+Who here is doing work the last 10 minutes before
+
+NOTE Confidence: 0.8855981826782227
+
+00:08:55.066 --> 00:08:56.567
+lunch and just wants to get it wrapped up as
+
+NOTE Confidence: 0.8855981826782227
+
+00:08:56.601 --> 00:08:58.239
+quick as possible so they can go and have lunch?
+
+NOTE Confidence: 0.9598752856254578
+
+00:08:58.760 --> 00:09:00.560
+Yes, humans make mistakes.
+
+NOTE Confidence: 0.9435083866119385
+
+00:09:00.560 --> 00:09:02.160
+Humans have biases.
+
+NOTE Confidence: 0.7066363096237183
+
+00:09:02.560 --> 00:09:03.320
+Humans, it's been shown.
+
+NOTE Confidence: 0.9135539531707764
+
+00:09:03.320 --> 00:09:05.335
+Like for example, in the prison system, if your parole
+
+NOTE Confidence: 0.9135539531707764
+
+00:09:05.373 --> 00:09:07.239
+review is just before lunch, you've got no chance.
+
+NOTE Confidence: 0.8794062733650208
+
+00:09:07.680 --> 00:09:09.600
+After lunch, you're sweet, you're out of there.
+
+NOTE Confidence: 0.8474908471107483
+
+00:09:09.840 --> 00:09:11.924
+So there's these kind of biases that happen because humans
+
+NOTE Confidence: 0.8474908471107483
+
+00:09:11.960 --> 00:09:12.319
+get bored.
+
+NOTE Confidence: 0.8665052056312561
+
+00:09:12.320 --> 00:09:13.240
+Humans make mistakes.
+
+NOTE Confidence: 0.9136250019073486
+
+00:09:13.800 --> 00:09:16.698
+AI is just as good as a human still makes
+
+NOTE Confidence: 0.9136250019073486
+
+00:09:16.768 --> 00:09:18.960
+mistakes but doesn't get bored.
+
+NOTE Confidence: 0.9635102152824402
+
+00:09:19.160 --> 00:09:21.679
+And we can run AI at scale to test whether
+
+NOTE Confidence: 0.9635102152824402
+
+00:09:21.739 --> 00:09:23.359
+or not our code is working.
+
+NOTE Confidence: 0.958159863948822
+
+00:09:24.040 --> 00:09:26.351
+So what I can do is I can actually use
+
+NOTE Confidence: 0.958159863948822
+
+00:09:26.412 --> 00:09:28.479
+an AI to see is my system working.
+
+NOTE Confidence: 0.9103807210922241
+
+00:09:29.200 --> 00:09:32.165
+Classic example here is I have these tools that do
+
+NOTE Confidence: 0.9103807210922241
+
+00:09:32.224 --> 00:09:32.640
+things.
+
+NOTE Confidence: 0.9199497103691101
+
+00:09:33.920 --> 00:09:34.920
+What if the tool didn't work?
+
+NOTE Confidence: 0.9067190885543823
+
+00:09:35.520 --> 00:09:37.920
+What if the policy tool didn't return a policy?
+
+NOTE Confidence: 0.8842876553535461
+
+00:09:37.920 --> 00:09:41.370
+Returned blank and my agent being really helpful goes, well,
+
+NOTE Confidence: 0.8842876553535461
+
+00:09:41.427 --> 00:09:43.440
+there's no policy, it must be fine.
+
+NOTE Confidence: 0.9347046613693237
+
+00:09:43.720 --> 00:09:44.480
+Approved.
+
+NOTE Confidence: 0.9454361200332642
+
+00:09:44.480 --> 00:09:46.320
+You can all buy $1,000,000 worth of software.
+
+NOTE Confidence: 0.3071644902229309
+
+00:09:46.320 --> 00:09:46.760
+Yay.
+
+NOTE Confidence: 0.9433116912841797
+
+00:09:46.880 --> 00:09:48.760
+All approved because there is no policy.
+
+NOTE Confidence: 0.9723036885261536
+
+00:09:49.200 --> 00:09:50.240
+How can I test for this?
+
+NOTE Confidence: 0.9685351848602295
+
+00:09:50.240 --> 00:09:51.320
+How can I discover this?
+
+NOTE Confidence: 0.8917619585990906
+
+00:09:51.840 --> 00:09:54.234
+So actually what I can do now that I have
+
+NOTE Confidence: 0.8917619585990906
+
+00:09:54.292 --> 00:09:58.029
+this visibility over everything that happens inside my system, I
+
+NOTE Confidence: 0.8917619585990906
+
+00:09:58.088 --> 00:10:00.891
+can take this data and I can actually throw this
+
+NOTE Confidence: 0.8917619585990906
+
+00:10:00.949 --> 00:10:02.759
+at an AI and say, is this good?
+
+NOTE Confidence: 0.9580589532852173
+
+00:10:02.880 --> 00:10:03.560
+Does it work?
+
+NOTE Confidence: 0.9285230040550232
+
+00:10:04.480 --> 00:10:06.200
+Is it actually doing what it's supposed to do?
+
+NOTE Confidence: 0.8973795771598816
+
+00:10:06.600 --> 00:10:07.920
+And this is what we call evals.
+
+NOTE Confidence: 0.8829077482223511
+
+00:10:08.640 --> 00:10:11.600
+So evals is the fancy AI word for testing.
+
+NOTE Confidence: 0.9074457287788391
+
+00:10:12.360 --> 00:10:15.227
+We should have called it testing because people know what
+
+NOTE Confidence: 0.9074457287788391
+
+00:10:15.277 --> 00:10:17.692
+testing is, but we have to call it evals because
+
+NOTE Confidence: 0.9074457287788391
+
+00:10:17.742 --> 00:10:18.999
+we're cool and different.
+
+NOTE Confidence: 0.787494421005249
+
+00:10:19.280 --> 00:10:22.081
+So whenever you hear the people talking about evals, it's
+
+NOTE Confidence: 0.787494421005249
+
+00:10:22.131 --> 00:10:23.360
+basically testing for AI.
+
+NOTE Confidence: 0.7819730043411255
+
+00:10:24.480 --> 00:10:26.880
+And So what I can do is I can start
+
+NOTE Confidence: 0.7819730043411255
+
+00:10:26.948 --> 00:10:28.800
+writing, got a prompt here.
+
+NOTE Confidence: 0.9042854905128479
+
+00:10:28.800 --> 00:10:31.029
+I can write, start writing a prompt to say, look
+
+NOTE Confidence: 0.9042854905128479
+
+00:10:31.076 --> 00:10:33.398
+at the information that I have and tell me whether
+
+NOTE Confidence: 0.9042854905128479
+
+00:10:33.445 --> 00:10:34.559
+or not my AI is working.
+
+NOTE Confidence: 0.9455697536468506
+
+00:10:35.000 --> 00:10:36.040
+So here I've got a prompt.
+
+NOTE Confidence: 0.8359004855155945
+
+00:10:36.200 --> 00:10:39.160
+You are auditing an automated procurement evaluator.
+
+NOTE Confidence: 0.7440575957298279
+
+00:10:39.760 --> 00:10:41.400
+Each row shows a purchase request.
+
+NOTE Confidence: 0.5248025059700012
+
+00:10:42.640 --> 00:10:44.400
+The final produces blah, blah, blah.
+
+NOTE Confidence: 0.805559515953064
+
+00:10:44.600 --> 00:10:47.714
+Decide whether the recommendation is supported by the tool evidence
+
+NOTE Confidence: 0.805559515953064
+
+00:10:47.761 --> 00:10:48.040
+alone.
+
+NOTE Confidence: 0.8945915699005127
+
+00:10:48.240 --> 00:10:51.075
+So we're saying the data that comes back from the
+
+NOTE Confidence: 0.8945915699005127
+
+00:10:51.133 --> 00:10:53.680
+tools is the decision grounded in that data.
+
+NOTE Confidence: 0.8312163949012756
+
+00:10:54.720 --> 00:10:56.588
+I then have a rubric here for how we score
+
+NOTE Confidence: 0.8312163949012756
+
+00:10:56.633 --> 00:10:58.279
+it, approve, reject, flag for review.
+
+NOTE Confidence: 0.9340909719467163
+
+00:10:58.800 --> 00:11:00.899
+And then I have spaces where I can fill in
+
+NOTE Confidence: 0.9340909719467163
+
+00:11:00.949 --> 00:11:04.149
+the original purchase request, the evidence, the data that comes
+
+NOTE Confidence: 0.9340909719467163
+
+00:11:04.199 --> 00:11:06.649
+back from the tools, what the agent said, why the
+
+NOTE Confidence: 0.9340909719467163
+
+00:11:06.699 --> 00:11:07.399
+agent said it.
+
+NOTE Confidence: 0.8779569864273071
+
+00:11:07.840 --> 00:11:11.525
+And then the final thing is the recommendation supported by
+
+NOTE Confidence: 0.8779569864273071
+
+00:11:11.587 --> 00:11:15.460
+tools supported unsupported return One word and I've now built
+
+NOTE Confidence: 0.8779569864273071
+
+00:11:15.522 --> 00:11:15.960
+a test.
+
+NOTE Confidence: 0.9247545003890991
+
+00:11:16.000 --> 00:11:18.787
+I have taken my non deterministic output of my AI,
+
+NOTE Confidence: 0.9247545003890991
+
+00:11:18.842 --> 00:11:21.072
+put this eval on top of it and this will
+
+NOTE Confidence: 0.9247545003890991
+
+00:11:21.128 --> 00:11:24.639
+now give me a deterministic output of supported or unsupported.
+
+NOTE Confidence: 0.9638385772705078
+
+00:11:25.240 --> 00:11:25.720
+This is great.
+
+NOTE Confidence: 0.8671793937683105
+
+00:11:25.720 --> 00:11:28.359
+I can start testing things and the way I can
+
+NOTE Confidence: 0.8671793937683105
+
+00:11:28.419 --> 00:11:31.479
+run this is I can literally go to Phoenix, download
+
+NOTE Confidence: 0.8671793937683105
+
+00:11:31.539 --> 00:11:34.779
+the telemetry data, pass through it, pull out the tool
+
+NOTE Confidence: 0.8671793937683105
+
+00:11:34.839 --> 00:11:37.839
+outputs, throw it into this prompt, throw it in an
+
+NOTE Confidence: 0.8671793937683105
+
+00:11:37.899 --> 00:11:39.039
+AI and say test it.
+
+NOTE Confidence: 0.8672265410423279
+
+00:11:40.480 --> 00:11:41.992
+And what comes out I'm going to flip to a
+
+NOTE Confidence: 0.8672265410423279
+
+00:11:42.029 --> 00:11:43.800
+different project in Phoenix that's easy to see.
+
+NOTE Confidence: 0.918997585773468
+
+00:11:43.800 --> 00:11:47.796
+This what comes out is a score zero if it
+
+NOTE Confidence: 0.918997585773468
+
+00:11:47.893 --> 00:11:50.720
+doesn't work one for it does.
+
+NOTE Confidence: 0.7886314988136292
+
+00:11:52.400 --> 00:11:54.685
+So if I look at this first one here, for
+
+NOTE Confidence: 0.7886314988136292
+
+00:11:54.742 --> 00:11:57.599
+example, let's actually go and open up in a trace.
+
+NOTE Confidence: 0.9644280672073364
+
+00:11:59.200 --> 00:12:00.720
+First one here, right?
+
+NOTE Confidence: 0.9306182861328125
+
+00:12:00.720 --> 00:12:02.280
+So this one here, this says it's supported.
+
+NOTE Confidence: 0.9318991899490356
+
+00:12:03.840 --> 00:12:05.240
+The evidence shows sufficient budget.
+
+NOTE Confidence: 0.8033921122550964
+
+00:12:05.240 --> 00:12:08.091
+The vendors preferred the the purchase amount is under the
+
+NOTE Confidence: 0.8033921122550964
+
+00:12:08.140 --> 00:12:09.320
+auto approval threshold.
+
+NOTE Confidence: 0.8696725368499756
+
+00:12:09.760 --> 00:12:10.040
+Done.
+
+NOTE Confidence: 0.8435013294219971
+
+00:12:10.200 --> 00:12:12.441
+So this is said the data that comes back from
+
+NOTE Confidence: 0.8435013294219971
+
+00:12:12.490 --> 00:12:15.279
+the tools allows agrees with the decision that was made.
+
+NOTE Confidence: 0.8644483685493469
+
+00:12:16.200 --> 00:12:16.560
+Cool.
+
+NOTE Confidence: 0.7568569779396057
+
+00:12:17.000 --> 00:12:19.961
+But actually, if I look at the all my numbers,
+
+NOTE Confidence: 0.7568569779396057
+
+00:12:20.025 --> 00:12:23.759
+pass, pass, pass, pass, pass fail, fail, fail, fail, fail.
+
+NOTE Confidence: 0.8458448052406311
+
+00:12:24.480 --> 00:12:25.720
+So it only works half the time.
+
+NOTE Confidence: 0.8857327103614807
+
+00:12:25.720 --> 00:12:28.480
+Half the time my agent is not actually working.
+
+NOTE Confidence: 0.9330207109451294
+
+00:12:28.640 --> 00:12:31.154
+It's not doing something grounded in the data from the
+
+NOTE Confidence: 0.9330207109451294
+
+00:12:31.200 --> 00:12:31.480
+tools.
+
+NOTE Confidence: 0.8755255937576294
+
+00:12:32.720 --> 00:12:35.049
+So if I have a look at say this row
+
+NOTE Confidence: 0.8755255937576294
+
+00:12:35.115 --> 00:12:38.643
+here, this says it's unsupported and it tells me that
+
+NOTE Confidence: 0.8755255937576294
+
+00:12:38.709 --> 00:12:40.440
+there's sufficient budget.
+
+NOTE Confidence: 0.8698718547821045
+
+00:12:41.200 --> 00:12:44.935
+The policy requires VP approval for this level and this
+
+NOTE Confidence: 0.8698718547821045
+
+00:12:45.003 --> 00:12:48.400
+got rejected, but it shouldn't have been rejected.
+
+NOTE Confidence: 0.7666181325912476
+
+00:12:48.400 --> 00:12:49.800
+It should be flagged for VP review.
+
+NOTE Confidence: 0.9132693409919739
+
+00:12:50.240 --> 00:12:52.520
+So the policy says VP has to review this.
+
+NOTE Confidence: 0.8217838406562805
+
+00:12:52.720 --> 00:12:53.880
+The agent said rejected.
+
+NOTE Confidence: 0.7786164879798889
+
+00:12:54.400 --> 00:12:55.956
+What it should have done is flagged it for review
+
+NOTE Confidence: 0.7786164879798889
+
+00:12:55.988 --> 00:12:57.640
+because the policy says somebody should review this.
+
+NOTE Confidence: 0.9119942784309387
+
+00:12:57.960 --> 00:13:00.219
+So having this LLM as a judge, I can see
+
+NOTE Confidence: 0.9119942784309387
+
+00:13:00.276 --> 00:13:03.948
+exactly what is happening, what's going wrong, what mistakes it's
+
+NOTE Confidence: 0.9119942784309387
+
+00:13:04.004 --> 00:13:04.399
+making.
+
+NOTE Confidence: 0.9303644895553589
+
+00:13:05.800 --> 00:13:08.350
+And so now I've got this great situation where I
+
+NOTE Confidence: 0.9303644895553589
+
+00:13:08.403 --> 00:13:09.519
+know what it's doing.
+
+NOTE Confidence: 0.9610971808433533
+
+00:13:10.360 --> 00:13:12.909
+I have my inputs, I have my tests, and I
+
+NOTE Confidence: 0.9610971808433533
+
+00:13:12.972 --> 00:13:14.120
+have some results.
+
+NOTE Confidence: 0.9560775756835938
+
+00:13:14.800 --> 00:13:18.209
+And when I have inputs and tests, I can start
+
+NOTE Confidence: 0.9560775756835938
+
+00:13:18.285 --> 00:13:21.239
+building automated testing around this.
+
+NOTE Confidence: 0.9127715229988098
+
+00:13:22.080 --> 00:13:24.440
+I can start saying, right, this doesn't work.
+
+NOTE Confidence: 0.8717342615127563
+
+00:13:24.440 --> 00:13:26.882
+Now I can extract all this data that I've got
+
+NOTE Confidence: 0.8717342615127563
+
+00:13:26.937 --> 00:13:29.325
+all these inputs, and I can put this in like
+
+NOTE Confidence: 0.8717342615127563
+
+00:13:29.379 --> 00:13:30.519
+a data set somewhere.
+
+NOTE Confidence: 0.9013972282409668
+
+00:13:31.559 --> 00:13:34.132
+And then I can run these inputs through my agents,
+
+NOTE Confidence: 0.9013972282409668
+
+00:13:34.183 --> 00:13:36.756
+score it with my evaluator, see what the score is,
+
+NOTE Confidence: 0.9013972282409668
+
+00:13:36.807 --> 00:13:39.174
+and then I can start making fixes to my agents
+
+NOTE Confidence: 0.9013972282409668
+
+00:13:39.225 --> 00:13:41.798
+and put it through that same pipeline, the same as
+
+NOTE Confidence: 0.9013972282409668
+
+00:13:41.849 --> 00:13:43.959
+those of you who put your hands up to say
+
+NOTE Confidence: 0.9013972282409668
+
+00:13:44.010 --> 00:13:46.119
+they do unit testing, probably have done.
+
+NOTE Confidence: 0.8244264125823975
+
+00:13:46.480 --> 00:13:48.526
+If you do test driven development, you build your tests
+
+NOTE Confidence: 0.8244264125823975
+
+00:13:48.564 --> 00:13:50.499
+upfront and you keep running your codes, it all goes
+
+NOTE Confidence: 0.8244264125823975
+
+00:13:50.536 --> 00:13:50.760
+green.
+
+NOTE Confidence: 0.9536133408546448
+
+00:13:51.000 --> 00:13:51.720
+Same kind of idea.
+
+NOTE Confidence: 0.9382011294364929
+
+00:13:52.320 --> 00:13:54.840
+I've got my data, I've got my evaluator.
+
+NOTE Confidence: 0.9026954770088196
+
+00:13:55.120 --> 00:13:57.336
+I can just keep tweaking my agent till the numbers
+
+NOTE Confidence: 0.9026954770088196
+
+00:13:57.381 --> 00:13:58.799
+come out good on the other side.
+
+NOTE Confidence: 0.8296186923980713
+
+00:13:59.880 --> 00:14:03.680
+So the, the classic example for this is model selection.
+
+NOTE Confidence: 0.8739727139472961
+
+00:14:04.560 --> 00:14:05.760
+My application is not good.
+
+NOTE Confidence: 0.9359667301177979
+
+00:14:05.920 --> 00:14:08.587
+I might try a new model, or my application is
+
+NOTE Confidence: 0.9359667301177979
+
+00:14:08.646 --> 00:14:10.840
+good, but I want to upgrade my model.
+
+NOTE Confidence: 0.9046134352684021
+
+00:14:10.840 --> 00:14:12.080
+I want to try a cheaper model.
+
+NOTE Confidence: 0.7906081676483154
+
+00:14:12.320 --> 00:14:13.960
+The model providers pushed out a new model.
+
+NOTE Confidence: 0.9088453054428101
+
+00:14:14.120 --> 00:14:16.324
+How do I make sure my application still works and
+
+NOTE Confidence: 0.9088453054428101
+
+00:14:16.369 --> 00:14:16.999
+model changes?
+
+NOTE Confidence: 0.9137544631958008
+
+00:14:17.760 --> 00:14:19.960
+And so I've got an example here.
+
+NOTE Confidence: 0.8924242258071899
+
+00:14:21.160 --> 00:14:24.760
+This here is exactly the same application, the same agent.
+
+NOTE Confidence: 0.8909415602684021
+
+00:14:25.080 --> 00:14:29.153
+Nothing has changed, except I'm running this against GBT 5.4
+
+NOTE Confidence: 0.8909415602684021
+
+00:14:29.221 --> 00:14:30.239
+instead of 4.1.
+
+NOTE Confidence: 0.8736710548400879
+
+00:14:33.800 --> 00:14:35.800
+Oh look, look at all those ones there.
+
+NOTE Confidence: 0.9414239525794983
+
+00:14:36.120 --> 00:14:37.640
+This is now 90% effective.
+
+NOTE Confidence: 0.7770143151283264
+
+00:14:38.160 --> 00:14:39.840
+I've made no change to my application.
+
+NOTE Confidence: 0.8883448839187622
+
+00:14:40.120 --> 00:14:41.800
+All I've done is change the model that I'm calling.
+
+NOTE Confidence: 0.9331837296485901
+
+00:14:42.240 --> 00:14:45.156
+But because I've got this ability to have this data
+
+NOTE Confidence: 0.9331837296485901
+
+00:14:45.213 --> 00:14:48.930
+set, have these evaluations and run this continuous testing loop,
+
+NOTE Confidence: 0.9331837296485901
+
+00:14:48.987 --> 00:14:49.959
+I can score this.
+
+NOTE Confidence: 0.9738788604736328
+
+00:14:50.000 --> 00:14:52.592
+I can tell when things are working or when things
+
+NOTE Confidence: 0.9738788604736328
+
+00:14:52.645 --> 00:14:53.279
+have broken.
+
+NOTE Confidence: 0.9712259769439697
+
+00:14:54.640 --> 00:14:56.640
+Now this I can then take a little bit further.
+
+NOTE Confidence: 0.8767468929290771
+
+00:14:57.400 --> 00:14:58.800
+So who uses a coding agent?
+
+NOTE Confidence: 0.8042378425598145
+
+00:15:00.480 --> 00:15:00.960
+Few hands.
+
+NOTE Confidence: 0.6672468185424805
+
+00:15:00.960 --> 00:15:03.939
+OK, get up, copilot and he clawed people in the
+
+NOTE Confidence: 0.6672468185424805
+
+00:15:04.003 --> 00:15:04.319
+room.
+
+NOTE Confidence: 0.5143402814865112
+
+00:15:04.560 --> 00:15:05.800
+It's OK, Microsoft won't shoot you.
+
+NOTE Confidence: 0.5446673631668091
+
+00:15:05.800 --> 00:15:07.480
+You know, he's fine now.
+
+NOTE Confidence: 0.8622952103614807
+
+00:15:07.880 --> 00:15:10.553
+So if you've got a coding agent, coding agents can
+
+NOTE Confidence: 0.8622952103614807
+
+00:15:10.607 --> 00:15:12.800
+have skills, Skills can access this data.
+
+NOTE Confidence: 0.7799353003501892
+
+00:15:13.360 --> 00:15:16.491
+So I can literally spin up GitHub Copilot CLI or
+
+NOTE Confidence: 0.7799353003501892
+
+00:15:16.556 --> 00:15:18.840
+Claude and say, OK, here's my code.
+
+NOTE Confidence: 0.8785582780838013
+
+00:15:19.400 --> 00:15:20.960
+Here's the GitHub repo with my code in it.
+
+NOTE Confidence: 0.8679603934288025
+
+00:15:22.120 --> 00:15:25.400
+Here is the inputs that I run to my agent.
+
+NOTE Confidence: 0.8781233429908752
+
+00:15:26.160 --> 00:15:27.720
+Here are the evaluations that I run.
+
+NOTE Confidence: 0.9599355459213257
+
+00:15:28.160 --> 00:15:30.240
+I want you to fix my application.
+
+NOTE Confidence: 0.8368967175483704
+
+00:15:31.280 --> 00:15:34.480
+And so the coding agent can take all this data.
+
+NOTE Confidence: 0.854718029499054
+
+00:15:34.720 --> 00:15:37.280
+It can spin up my application in a sandboxed environment.
+
+NOTE Confidence: 0.9014739394187927
+
+00:15:38.000 --> 00:15:40.610
+It can pump my inputs in, it can run my
+
+NOTE Confidence: 0.9014739394187927
+
+00:15:40.676 --> 00:15:41.480
+evaluations.
+
+NOTE Confidence: 0.935878574848175
+
+00:15:41.880 --> 00:15:43.120
+It can look at the results.
+
+NOTE Confidence: 0.9390720725059509
+
+00:15:43.960 --> 00:15:46.234
+And then it can go back and tweak the prompt,
+
+NOTE Confidence: 0.9390720725059509
+
+00:15:46.285 --> 00:15:49.571
+change the model, adjust the tool descriptions, whatever it needs
+
+NOTE Confidence: 0.9390720725059509
+
+00:15:49.621 --> 00:15:51.694
+to do, and then run it again and then run
+
+NOTE Confidence: 0.9390720725059509
+
+00:15:51.745 --> 00:15:52.200
+it again.
+
+NOTE Confidence: 0.9094624519348145
+
+00:15:52.360 --> 00:15:54.760
+And slowly it can converge on a much better solution.
+
+NOTE Confidence: 0.8851438760757446
+
+00:15:55.520 --> 00:15:57.522
+Yeah, in this case, I went from 50% to 90%
+
+NOTE Confidence: 0.8851438760757446
+
+00:15:57.569 --> 00:15:59.000
+just by me changing the model.
+
+NOTE Confidence: 0.8839558362960815
+
+00:15:59.320 --> 00:16:01.941
+That's very much a contrived case in a lot of
+
+NOTE Confidence: 0.8839558362960815
+
+00:16:01.999 --> 00:16:02.639
+situations.
+
+NOTE Confidence: 0.8245082497596741
+
+00:16:02.760 --> 00:16:04.656
+You need to get an iterate on the prompt, you
+
+NOTE Confidence: 0.8245082497596741
+
+00:16:04.699 --> 00:16:07.565
+need to iterate on tool descriptions, try different models, whatever
+
+NOTE Confidence: 0.8245082497596741
+
+00:16:07.607 --> 00:16:08.239
+you want to do.
+
+NOTE Confidence: 0.8671225905418396
+
+00:16:08.440 --> 00:16:11.322
+And eventually you'll find over like 456 cycles, your coding
+
+NOTE Confidence: 0.8671225905418396
+
+00:16:11.370 --> 00:16:13.821
+agent will kind of converge on a point where you're
+
+NOTE Confidence: 0.8671225905418396
+
+00:16:13.869 --> 00:16:16.560
+kind of hitting that 90% effective rate for your agents.
+
+NOTE Confidence: 0.849740743637085
+
+00:16:17.480 --> 00:16:19.520
+Top tip agents will never be 100%.
+
+NOTE Confidence: 0.8292227387428284
+
+00:16:20.720 --> 00:16:23.149
+Humans are never 100%, agents will never be 100%, but
+
+NOTE Confidence: 0.8292227387428284
+
+00:16:23.195 --> 00:16:25.120
+you want to kind of work towards this 90%.
+
+NOTE Confidence: 0.9446760416030884
+
+00:16:25.120 --> 00:16:27.729
+And so suddenly I've got everything I need to build
+
+NOTE Confidence: 0.9446760416030884
+
+00:16:27.780 --> 00:16:29.520
+that self improving software loop.
+
+NOTE Confidence: 0.855438232421875
+
+00:16:29.760 --> 00:16:31.360
+Anyone here does self improving software?
+
+NOTE Confidence: 0.8336721062660217
+
+00:16:31.560 --> 00:16:33.852
+Anyone here use the agents to fix Got a hand
+
+NOTE Confidence: 0.8336721062660217
+
+00:16:33.904 --> 00:16:36.039
+over there yes, that's a couple of hands.
+
+NOTE Confidence: 0.9565770626068115
+
+00:16:36.200 --> 00:16:37.280
+This is kind of the future.
+
+NOTE Confidence: 0.9350394606590271
+
+00:16:37.880 --> 00:16:39.960
+We have the ability to monitor applications.
+
+NOTE Confidence: 0.9698460698127747
+
+00:16:40.400 --> 00:16:41.560
+We can see what's going wrong.
+
+NOTE Confidence: 0.9201030135154724
+
+00:16:41.680 --> 00:16:43.520
+We can ask our coding agents to fix that.
+
+NOTE Confidence: 0.939865231513977
+
+00:16:43.560 --> 00:16:45.081
+This is kind of the future of the software that
+
+NOTE Confidence: 0.939865231513977
+
+00:16:45.114 --> 00:16:45.600
+we're building.
+
+NOTE Confidence: 0.8222705721855164
+
+00:16:48.680 --> 00:16:54.920
+So that is Skip for those we didn't do slides.
+
+NOTE Confidence: 0.7928509712219238
+
+00:16:54.920 --> 00:16:56.680
+We just, So what have we talked about today?
+
+NOTE Confidence: 0.9502686262130737
+
+00:16:57.480 --> 00:16:59.669
+When you have an agent, it's a black box, you
+
+NOTE Confidence: 0.9502686262130737
+
+00:16:59.717 --> 00:17:01.079
+do not know what it's doing.
+
+NOTE Confidence: 0.8894374966621399
+
+00:17:01.880 --> 00:17:04.675
+You need to add observability so you can see what
+
+NOTE Confidence: 0.8894374966621399
+
+00:17:04.732 --> 00:17:05.359
+it's doing.
+
+NOTE Confidence: 0.7645929455757141
+
+00:17:05.520 --> 00:17:08.052
+There's industry stands, this open inference is the industry standard
+
+NOTE Confidence: 0.7645929455757141
+
+00:17:08.089 --> 00:17:08.639
+for doing this.
+
+NOTE Confidence: 0.8259382843971252
+
+00:17:09.240 --> 00:17:10.960
+This gives you the view on what you're doing.
+
+NOTE Confidence: 0.8963579535484314
+
+00:17:11.880 --> 00:17:14.200
+Then once you've got this, you can start building evals.
+
+NOTE Confidence: 0.8986886143684387
+
+00:17:14.200 --> 00:17:16.355
+You're using LM as a judge to test your agent
+
+NOTE Confidence: 0.8986886143684387
+
+00:17:16.402 --> 00:17:18.653
+runs, see what it's doing, and then you can use
+
+NOTE Confidence: 0.8986886143684387
+
+00:17:18.701 --> 00:17:21.239
+this data to drive that self improving software loop.
+
+NOTE Confidence: 0.8136628270149231
+
+00:17:21.440 --> 00:17:24.048
+You deploy your models to foundry, you build a Microsoft
+
+NOTE Confidence: 0.8136628270149231
+
+00:17:24.095 --> 00:17:25.400
+agent framework application.
+
+NOTE Confidence: 0.5324416160583496
+
+00:17:25.600 --> 00:17:26.960
+You can get up copilot CLI.
+
+NOTE Confidence: 0.884362518787384
+
+00:17:26.960 --> 00:17:29.080
+You can say fix it goes off fixes it.
+
+NOTE Confidence: 0.9520021677017212
+
+00:17:29.400 --> 00:17:29.800
+Jobs are good.
+
+NOTE Confidence: 0.9292938709259033
+
+00:17:29.800 --> 00:17:30.920
+And there we go.
+
+NOTE Confidence: 0.8969420790672302
+
+00:17:31.119 --> 00:17:33.480
+That is how you can use evals to understand your
+
+NOTE Confidence: 0.8969420790672302
+
+00:17:33.529 --> 00:17:34.120
+application.
+
+NOTE Confidence: 0.6120399832725525
+
+00:17:34.600 --> 00:17:36.080
+So I'm Jim Bennett, so I'm Microsoft MVP.
+
+NOTE Confidence: 0.8723798394203186
+
+00:17:36.080 --> 00:17:40.173
+If you've got any questions about this scan that that's
+
+NOTE Confidence: 0.8723798394203186
+
+00:17:40.248 --> 00:17:43.374
+got links to all my LinkedIn and so if you
+
+NOTE Confidence: 0.8723798394203186
+
+00:17:43.448 --> 00:17:47.021
+want to hit me up with any questions after this,
+
+NOTE Confidence: 0.8723798394203186
+
+00:17:47.096 --> 00:17:50.519
+more than happy to geek out on things amazing.
+
+NOTE Confidence: 0.8040825724601746
+
+00:17:52.000 --> 00:17:54.239
+Once you scan that one, if you want to get
+
+NOTE Confidence: 0.8040825724601746
+
+00:17:54.293 --> 00:17:56.639
+started with Phoenix, it's free open source.
+
+NOTE Confidence: 0.925908625125885
+
+00:17:57.160 --> 00:17:58.080
+It's just a bit off the screen.
+
+NOTE Confidence: 0.7918877005577087
+
+00:17:58.200 --> 00:17:59.040
+It's free and open source.
+
+NOTE Confidence: 0.8437333703041077
+
+00:17:59.040 --> 00:18:01.160
+So scan that QR code and you can grab Phoenix.
+
+NOTE Confidence: 0.9274965524673462
+
+00:18:01.160 --> 00:18:02.360
+You can run it completely locally.
+
+NOTE Confidence: 0.6921326518058777
+
+00:18:02.359 --> 00:18:04.608
+You can I would have, I would have showed it
+
+NOTE Confidence: 0.6921326518058777
+
+00:18:04.659 --> 00:18:07.418
+to you deployed to container App, but my Microsoft MVP
+
+NOTE Confidence: 0.6921326518058777
+
+00:18:07.469 --> 00:18:09.360
+Azure credit ran out three hours ago.
+
+NOTE Confidence: 0.7851064205169678
+
+00:18:09.840 --> 00:18:11.983
+So literally I have no Azure credits to show off
+
+NOTE Confidence: 0.7851064205169678
+
+00:18:12.028 --> 00:18:14.127
+on Azure, but that's how you can get started on
+
+NOTE Confidence: 0.7851064205169678
+
+00:18:14.172 --> 00:18:14.440
+there.
+
+NOTE Confidence: 0.8266024589538574
+
+00:18:14.680 --> 00:18:16.996
+And then finally, if you want the code for this
+
+NOTE Confidence: 0.8266024589538574
+
+00:18:17.046 --> 00:18:19.215
+up here in this GitHub repos all the code so
+
+NOTE Confidence: 0.8266024589538574
+
+00:18:19.264 --> 00:18:21.679
+you can reproduce everything that happened today.
+
+NOTE Confidence: 0.7072609066963196
+
+00:18:21.680 --> 00:18:23.680
+And if you got any questions, come find me afterwards.
+
+NOTE Confidence: 0.8544721007347107
+
+00:18:23.800 --> 00:18:24.760
+Happy to answer your questions.
+

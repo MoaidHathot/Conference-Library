@@ -1,0 +1,3180 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.8314163088798523
+
+00:00:00.120 --> 00:00:02.120
+I've got a ton of stuff to talk about.
+
+NOTE Confidence: 0.8681832551956177
+
+00:00:03.000 --> 00:00:06.110
+So I packed a lot more information into this demo
+
+NOTE Confidence: 0.8681832551956177
+
+00:00:06.173 --> 00:00:09.727
+because there's been a lot of new capabilities have just
+
+NOTE Confidence: 0.8681832551956177
+
+00:00:09.791 --> 00:00:10.679
+been launched.
+
+NOTE Confidence: 0.7761074900627136
+
+00:00:10.800 --> 00:00:12.720
+So I'll try to squish that all into the time.
+
+NOTE Confidence: 0.8886922597885132
+
+00:00:13.080 --> 00:00:15.870
+And if there's any questions, just launch them in the
+
+NOTE Confidence: 0.8886922597885132
+
+00:00:15.923 --> 00:00:17.239
+middle of the discussion.
+
+NOTE Confidence: 0.8777209520339966
+
+00:00:17.239 --> 00:00:19.465
+I'm OK with that and we can have an interactive
+
+NOTE Confidence: 0.8777209520339966
+
+00:00:19.512 --> 00:00:21.880
+conversation or save them, save them till the end.
+
+NOTE Confidence: 0.9296122789382935
+
+00:00:22.520 --> 00:00:26.200
+So I work on a developer acceleration team at AMD.
+
+NOTE Confidence: 0.903574526309967
+
+00:00:26.360 --> 00:00:28.960
+We focus primarily on the client side of AI.
+
+NOTE Confidence: 0.8723728656768799
+
+00:00:28.960 --> 00:00:32.590
+So AI PCs, these sweet little devices that are packed
+
+NOTE Confidence: 0.8723728656768799
+
+00:00:32.659 --> 00:00:36.769
+with compute power for AI processing and we're also involved
+
+NOTE Confidence: 0.8723728656768799
+
+00:00:36.837 --> 00:00:39.646
+in a lot of the work and bridging that to
+
+NOTE Confidence: 0.8723728656768799
+
+00:00:39.714 --> 00:00:40.400
+the cloud.
+
+NOTE Confidence: 0.924525260925293
+
+00:00:40.400 --> 00:00:43.000
+So how are we combining those two technologies?
+
+NOTE Confidence: 0.8152672052383423
+
+00:00:43.320 --> 00:00:46.416
+My team works directly with Isvs and our OEM partners
+
+NOTE Confidence: 0.8152672052383423
+
+00:00:46.475 --> 00:00:48.519
+to get their AI apps in the market.
+
+NOTE Confidence: 0.8433757424354553
+
+00:00:48.760 --> 00:00:50.891
+And so we're kind of end of the line, like
+
+NOTE Confidence: 0.8433757424354553
+
+00:00:50.942 --> 00:00:53.784
+get stuff actually into production and built, but I have
+
+NOTE Confidence: 0.8433757424354553
+
+00:00:53.834 --> 00:00:56.067
+a whole suite of experts on my team that are
+
+NOTE Confidence: 0.8433757424354553
+
+00:00:56.118 --> 00:00:58.757
+full stack involved in, you know, down to the metal,
+
+NOTE Confidence: 0.8433757424354553
+
+00:00:58.808 --> 00:01:00.279
+the back end implementations.
+
+NOTE Confidence: 0.9135056138038635
+
+00:01:00.520 --> 00:01:04.169
+And we're also developing layers of software to help deploy
+
+NOTE Confidence: 0.9135056138038635
+
+00:01:04.230 --> 00:01:07.880
+applications and AI solutions in general out in the market.
+
+NOTE Confidence: 0.951806902885437
+
+00:01:08.000 --> 00:01:10.360
+I'm going to touch a lot of those pieces here.
+
+NOTE Confidence: 0.8278573155403137
+
+00:01:10.800 --> 00:01:13.437
+So depending on, you know, what you're most interested, we
+
+NOTE Confidence: 0.8278573155403137
+
+00:01:13.482 --> 00:01:15.119
+can dig deeper into any one of them.
+
+NOTE Confidence: 0.8707904815673828
+
+00:01:16.160 --> 00:01:19.617
+So the primary discussion here is to talk about what
+
+NOTE Confidence: 0.8707904815673828
+
+00:01:19.684 --> 00:01:21.279
+we're calling Playbooks.
+
+NOTE Confidence: 0.9109261631965637
+
+00:01:21.760 --> 00:01:24.297
+This is a way to just speed up that developer
+
+NOTE Confidence: 0.9109261631965637
+
+00:01:24.353 --> 00:01:26.439
+cycle and get your apps built faster.
+
+NOTE Confidence: 0.769845724105835
+
+00:01:26.760 --> 00:01:29.405
+So I'm going to showcase a couple of key playbooks
+
+NOTE Confidence: 0.769845724105835
+
+00:01:29.458 --> 00:01:31.679
+in the in the areas of a gentic AI coding.
+
+NOTE Confidence: 0.8026509284973145
+
+00:01:31.920 --> 00:01:34.501
+We'll walk through how we're making that easier, walk through
+
+NOTE Confidence: 0.8026509284973145
+
+00:01:34.544 --> 00:01:35.559
+some of those playbooks.
+
+NOTE Confidence: 0.8936136364936829
+
+00:01:35.800 --> 00:01:38.448
+And then I really want to talk about fundamental shift
+
+NOTE Confidence: 0.8936136364936829
+
+00:01:38.497 --> 00:01:42.520
+that's happening underneath that, that's enabling those playbooks and experiences.
+
+NOTE Confidence: 0.8104112148284912
+
+00:01:42.840 --> 00:01:45.146
+And it's a technology that we're building into the rock
+
+NOTE Confidence: 0.8104112148284912
+
+00:01:45.188 --> 00:01:47.160
+and stack called lemonade and lemonade routers.
+
+NOTE Confidence: 0.7952940464019775
+
+00:01:48.200 --> 00:01:49.880
+So we'll cover a lot of this materials.
+
+NOTE Confidence: 0.8792000412940979
+
+00:01:49.880 --> 00:01:53.167
+We go forward before I get started, kind of a
+
+NOTE Confidence: 0.8792000412940979
+
+00:01:53.241 --> 00:01:55.359
+freebie here, take a picture.
+
+NOTE Confidence: 0.9200911521911621
+
+00:01:56.480 --> 00:01:58.640
+Thank you to our our marketing team.
+
+NOTE Confidence: 0.8313256502151489
+
+00:01:59.200 --> 00:02:02.560
+They've enabled a really great developer program here.
+
+NOTE Confidence: 0.8811306953430176
+
+00:02:02.560 --> 00:02:05.179
+We have access to a lot of content, but also
+
+NOTE Confidence: 0.8811306953430176
+
+00:02:05.239 --> 00:02:08.870
+some credits to cloud compute because, you know, these worlds
+
+NOTE Confidence: 0.8811306953430176
+
+00:02:08.930 --> 00:02:10.240
+need to live together.
+
+NOTE Confidence: 0.9513329863548279
+
+00:02:10.240 --> 00:02:11.200
+So we're developing on the edge.
+
+NOTE Confidence: 0.892852783203125
+
+00:02:11.200 --> 00:02:12.480
+We're also developing on the cloud.
+
+NOTE Confidence: 0.8086560368537903
+
+00:02:12.880 --> 00:02:15.893
+Grab your credits and get access to some some compute
+
+NOTE Confidence: 0.8086560368537903
+
+00:02:15.950 --> 00:02:18.680
+power there on our Instinct class class devices.
+
+NOTE Confidence: 0.887304961681366
+
+00:02:20.280 --> 00:02:22.320
+OK, I want to talk about AI use cases.
+
+NOTE Confidence: 0.8976205587387085
+
+00:02:23.120 --> 00:02:25.534
+Over the last couple of years, we've watched these use
+
+NOTE Confidence: 0.8976205587387085
+
+00:02:25.578 --> 00:02:26.159
+cases emerge.
+
+NOTE Confidence: 0.9161139130592346
+
+00:02:26.400 --> 00:02:29.350
+These are some core use cases that I'm personally following
+
+NOTE Confidence: 0.9161139130592346
+
+00:02:29.400 --> 00:02:30.800
+that I'm very interested in.
+
+NOTE Confidence: 0.8486006855964661
+
+00:02:31.080 --> 00:02:33.300
+And I see a lot of changing, a lot of
+
+NOTE Confidence: 0.8486006855964661
+
+00:02:33.360 --> 00:02:34.200
+disruption in.
+
+NOTE Confidence: 0.8517069816589355
+
+00:02:34.520 --> 00:02:38.234
+And we're looking at things from workflow automation, knowledge bases
+
+NOTE Confidence: 0.8517069816589355
+
+00:02:38.287 --> 00:02:38.879
+in general.
+
+NOTE Confidence: 0.9121710062026978
+
+00:02:39.200 --> 00:02:41.000
+Gaming is a little bit more emergent.
+
+NOTE Confidence: 0.8766441941261292
+
+00:02:41.000 --> 00:02:43.637
+We're starting to see how Gentek AI folds into that
+
+NOTE Confidence: 0.8766441941261292
+
+00:02:43.688 --> 00:02:45.240
+in a number of different ways.
+
+NOTE Confidence: 0.8737700581550598
+
+00:02:45.520 --> 00:02:48.579
+And then historically, we're thinking about coding as its own
+
+NOTE Confidence: 0.8737700581550598
+
+00:02:48.629 --> 00:02:52.040
+separate use cases, but fundamentally that's infiltrated everything.
+
+NOTE Confidence: 0.8871887922286987
+
+00:02:52.160 --> 00:02:53.760
+I mean, coding isn't even a use case.
+
+NOTE Confidence: 0.8253086805343628
+
+00:02:53.760 --> 00:02:55.880
+It's it's just a foundational layer.
+
+NOTE Confidence: 0.8913825750350952
+
+00:02:56.080 --> 00:02:58.308
+So we're going to talk about coding a lot in
+
+NOTE Confidence: 0.8913825750350952
+
+00:02:58.359 --> 00:03:00.942
+in this presentation, but I want to direct you over
+
+NOTE Confidence: 0.8913825750350952
+
+00:03:00.992 --> 00:03:03.576
+to a couple of individuals that are standing in the
+
+NOTE Confidence: 0.8913825750350952
+
+00:03:03.626 --> 00:03:03.879
+back.
+
+NOTE Confidence: 0.8850686550140381
+
+00:03:04.000 --> 00:03:07.379
+We've got a deep hands on workshop on coding with
+
+NOTE Confidence: 0.8850686550140381
+
+00:03:07.448 --> 00:03:09.999
+agents going on in the next pavilion.
+
+NOTE Confidence: 0.8297751545906067
+
+00:03:10.000 --> 00:03:12.831
+So if you're free at 1:15, definitely stop by early
+
+NOTE Confidence: 0.8297751545906067
+
+00:03:12.887 --> 00:03:14.719
+that workshop standing room only.
+
+NOTE Confidence: 0.8806505799293518
+
+00:03:14.720 --> 00:03:17.993
+It's been packed both days, but we'll go into deep,
+
+NOTE Confidence: 0.8806505799293518
+
+00:03:18.057 --> 00:03:21.972
+you know, hands on exercises on the machines, building those,
+
+NOTE Confidence: 0.8806505799293518
+
+00:03:22.036 --> 00:03:23.319
+those coding agents.
+
+NOTE Confidence: 0.8650031685829163
+
+00:03:23.320 --> 00:03:25.509
+I'm going to talk a lot about that here and
+
+NOTE Confidence: 0.8650031685829163
+
+00:03:25.560 --> 00:03:27.800
+and showcase just a, a few highlights of it.
+
+NOTE Confidence: 0.8846310973167419
+
+00:03:29.080 --> 00:03:32.230
+So the key theme that, you know, I'm really digging
+
+NOTE Confidence: 0.8846310973167419
+
+00:03:32.292 --> 00:03:34.949
+into here is this idea of of choice that we
+
+NOTE Confidence: 0.8846310973167419
+
+00:03:35.011 --> 00:03:35.319
+have.
+
+NOTE Confidence: 0.928530752658844
+
+00:03:35.840 --> 00:03:38.326
+And what's happened in the last six months is we
+
+NOTE Confidence: 0.928530752658844
+
+00:03:38.377 --> 00:03:39.879
+have a ton of choices, right?
+
+NOTE Confidence: 0.9047372937202454
+
+00:03:40.120 --> 00:03:42.840
+Part of that is AI assisted coding.
+
+NOTE Confidence: 0.831745982170105
+
+00:03:43.080 --> 00:03:45.513
+Part of it is a genetic layer opening up a
+
+NOTE Confidence: 0.831745982170105
+
+00:03:45.571 --> 00:03:46.439
+lot of options.
+
+NOTE Confidence: 0.9389594793319702
+
+00:03:46.760 --> 00:03:50.509
+But there's three fundamental modalities of choice that we have
+
+NOTE Confidence: 0.9389594793319702
+
+00:03:50.569 --> 00:03:51.759
+at our disposal now.
+
+NOTE Confidence: 0.9456613063812256
+
+00:03:52.120 --> 00:03:55.065
+One of them is the quality, like how you know
+
+NOTE Confidence: 0.9456613063812256
+
+00:03:55.130 --> 00:03:58.665
+how much performance in the accuracy of the quality of
+
+NOTE Confidence: 0.9456613063812256
+
+00:03:58.730 --> 00:03:59.319
+the task.
+
+NOTE Confidence: 0.947560727596283
+
+00:03:59.680 --> 00:04:01.599
+Mostly we think about that in terms of the model
+
+NOTE Confidence: 0.947560727596283
+
+00:04:01.639 --> 00:04:02.319
+we want to reach.
+
+NOTE Confidence: 0.8893980383872986
+
+00:04:02.320 --> 00:04:03.760
+Are we going to run a small model?
+
+NOTE Confidence: 0.8339277505874634
+
+00:04:03.760 --> 00:04:06.160
+Do we want to run a large foundational model and
+
+NOTE Confidence: 0.8339277505874634
+
+00:04:06.210 --> 00:04:07.960
+then have those trade-offs on cost.
+
+NOTE Confidence: 0.9499232769012451
+
+00:04:08.120 --> 00:04:10.099
+I'm going to show you an example of that in
+
+NOTE Confidence: 0.9499232769012451
+
+00:04:10.145 --> 00:04:10.560
+the demo.
+
+NOTE Confidence: 0.9477994441986084
+
+00:04:12.200 --> 00:04:14.040
+The other thing is locality.
+
+NOTE Confidence: 0.8759028315544128
+
+00:04:14.040 --> 00:04:17.045
+And what I mean by that is we can decide
+
+NOTE Confidence: 0.8759028315544128
+
+00:04:17.120 --> 00:04:20.201
+whether we want to run on a CPUAGPU or an
+
+NOTE Confidence: 0.8759028315544128
+
+00:04:20.276 --> 00:04:22.079
+NPU for running locally.
+
+NOTE Confidence: 0.946172297000885
+
+00:04:22.520 --> 00:04:25.169
+And now we can also choose whether we want to
+
+NOTE Confidence: 0.946172297000885
+
+00:04:25.228 --> 00:04:27.759
+split our workload across client and cloud.
+
+NOTE Confidence: 0.8592193126678467
+
+00:04:28.200 --> 00:04:31.575
+And in our presentation yesterday, we showed a use case
+
+NOTE Confidence: 0.8592193126678467
+
+00:04:31.636 --> 00:04:32.679
+with VLLM router.
+
+NOTE Confidence: 0.7897645235061646
+
+00:04:32.680 --> 00:04:35.941
+We're adding semantic filtering so the user can decide on
+
+NOTE Confidence: 0.7897645235061646
+
+00:04:35.998 --> 00:04:36.799
+those choices.
+
+NOTE Confidence: 0.8439770340919495
+
+00:04:36.800 --> 00:04:39.328
+So as a user, you're setting that policy either in
+
+NOTE Confidence: 0.8439770340919495
+
+00:04:39.378 --> 00:04:42.008
+that routing layer or in your agentic layer and then
+
+NOTE Confidence: 0.8439770340919495
+
+00:04:42.058 --> 00:04:44.839
+feeding that into our stack to do the physical routing.
+
+NOTE Confidence: 0.9025114178657532
+
+00:04:45.720 --> 00:04:47.560
+So I'll talk a little bit more about that.
+
+NOTE Confidence: 0.9033501744270325
+
+00:04:48.080 --> 00:04:50.512
+The other choice you have is we build up these
+
+NOTE Confidence: 0.9033501744270325
+
+00:04:50.565 --> 00:04:52.679
+different systems in the consumer space.
+
+NOTE Confidence: 0.9088232517242432
+
+00:04:52.880 --> 00:04:54.860
+You may have a laptop, You also may have a
+
+NOTE Confidence: 0.9088232517242432
+
+00:04:54.908 --> 00:04:57.502
+node like an appliance that's just sitting there in the
+
+NOTE Confidence: 0.9088232517242432
+
+00:04:57.549 --> 00:04:59.199
+background doing work all the time.
+
+NOTE Confidence: 0.8823158740997314
+
+00:04:59.480 --> 00:05:01.942
+And you now have choice about what kind of work
+
+NOTE Confidence: 0.8823158740997314
+
+00:05:01.995 --> 00:05:04.615
+is going to be running as a background task versus
+
+NOTE Confidence: 0.8823158740997314
+
+00:05:04.667 --> 00:05:06.239
+a foreground interactive task.
+
+NOTE Confidence: 0.9596864581108093
+
+00:05:06.360 --> 00:05:08.360
+That's going to change your decision making as well.
+
+NOTE Confidence: 0.8215177655220032
+
+00:05:09.120 --> 00:05:11.970
+And then the last, but maybe the most exciting is
+
+NOTE Confidence: 0.8215177655220032
+
+00:05:12.029 --> 00:05:12.960
+modality, right?
+
+NOTE Confidence: 0.9253568053245544
+
+00:05:12.960 --> 00:05:15.938
+Just the new models that have hit the market in
+
+NOTE Confidence: 0.9253568053245544
+
+00:05:16.002 --> 00:05:19.614
+the last six months or so, Omnimoto models, speech models
+
+NOTE Confidence: 0.9253568053245544
+
+00:05:19.678 --> 00:05:21.959
+have gotten much more sophisticated.
+
+NOTE Confidence: 0.9364531636238098
+
+00:05:22.080 --> 00:05:24.800
+So we're communicating, you know, with these things, right?
+
+NOTE Confidence: 0.7577126026153564
+
+00:05:24.800 --> 00:05:26.120
+Not with keyboards anymore.
+
+NOTE Confidence: 0.9495592713356018
+
+00:05:27.000 --> 00:05:29.640
+Also image generation, right?
+
+NOTE Confidence: 0.8911030292510986
+
+00:05:29.640 --> 00:05:33.672
+And also vision language models, so adding visual capability to
+
+NOTE Confidence: 0.8911030292510986
+
+00:05:33.736 --> 00:05:37.320
+our learning and our research and our development cycle.
+
+NOTE Confidence: 0.8533676862716675
+
+00:05:38.120 --> 00:05:42.470
+And then just amazing progress in AI models, text models,
+
+NOTE Confidence: 0.8533676862716675
+
+00:05:42.546 --> 00:05:43.920
+V LLMS in general.
+
+NOTE Confidence: 0.8329835534095764
+
+00:05:44.440 --> 00:05:47.465
+And those are all being integrated in these multimodal omnimodal
+
+NOTE Confidence: 0.8329835534095764
+
+00:05:47.512 --> 00:05:48.080
+experiences.
+
+NOTE Confidence: 0.9656774401664734
+
+00:05:48.480 --> 00:05:51.625
+And the industry has not fully standardized on how to
+
+NOTE Confidence: 0.9656774401664734
+
+00:05:51.685 --> 00:05:52.160
+do that.
+
+NOTE Confidence: 0.890522837638855
+
+00:05:52.280 --> 00:05:53.280
+How do you serve that?
+
+NOTE Confidence: 0.9067202806472778
+
+00:05:53.280 --> 00:05:55.560
+How do you bring that into a single endpoint?
+
+NOTE Confidence: 0.964587926864624
+
+00:05:56.120 --> 00:05:57.600
+But these are choices that we have.
+
+NOTE Confidence: 0.915118932723999
+
+00:05:57.800 --> 00:05:59.617
+And so I'm going to talk to some of the
+
+NOTE Confidence: 0.915118932723999
+
+00:05:59.663 --> 00:06:02.039
+tools that are making those choices easier to make.
+
+NOTE Confidence: 0.9175176024436951
+
+00:06:04.320 --> 00:06:05.960
+So I'll dig into this use case.
+
+NOTE Confidence: 0.7279866337776184
+
+00:06:06.320 --> 00:06:09.362
+One of the main themes of the discussion for for
+
+NOTE Confidence: 0.7279866337776184
+
+00:06:09.425 --> 00:06:10.440
+a gentic coding.
+
+NOTE Confidence: 0.9212148189544678
+
+00:06:10.640 --> 00:06:13.640
+It's a great place to showcase those those choices.
+
+NOTE Confidence: 0.8800798654556274
+
+00:06:14.000 --> 00:06:15.900
+And in this workshop, you can see some of that
+
+NOTE Confidence: 0.8800798654556274
+
+00:06:15.941 --> 00:06:18.750
+because you're going to define different agents for different tasks,
+
+NOTE Confidence: 0.8800798654556274
+
+00:06:18.792 --> 00:06:19.039
+right?
+
+NOTE Confidence: 0.9472405314445496
+
+00:06:19.040 --> 00:06:20.680
+You may have that architecture step.
+
+NOTE Confidence: 0.9765002727508545
+
+00:06:20.920 --> 00:06:21.960
+You need to get that right.
+
+NOTE Confidence: 0.8441817164421082
+
+00:06:21.960 --> 00:06:24.231
+You want to use a larger model for that, probably
+
+NOTE Confidence: 0.8441817164421082
+
+00:06:24.278 --> 00:06:26.040
+even want to push that onto the cloud.
+
+NOTE Confidence: 0.9406636953353882
+
+00:06:26.279 --> 00:06:30.311
+But as I'm doing small iterations, even debugging, maybe small
+
+NOTE Confidence: 0.9406636953353882
+
+00:06:30.376 --> 00:06:34.147
+feature tweaks, that's something that I could do local and
+
+NOTE Confidence: 0.9406636953353882
+
+00:06:34.212 --> 00:06:37.268
+I can offset either cost or mobility to be able
+
+NOTE Confidence: 0.9406636953353882
+
+00:06:37.333 --> 00:06:40.714
+to make that choice and pull those agents locally on
+
+NOTE Confidence: 0.9406636953353882
+
+00:06:40.779 --> 00:06:41.560
+my platform.
+
+NOTE Confidence: 0.962882399559021
+
+00:06:41.720 --> 00:06:44.379
+So literally, I was playing with this this morning, trying
+
+NOTE Confidence: 0.962882399559021
+
+00:06:44.424 --> 00:06:46.212
+to see if I could come up with some new
+
+NOTE Confidence: 0.962882399559021
+
+00:06:46.258 --> 00:06:47.679
+fresh example to show you guys.
+
+NOTE Confidence: 0.915556788444519
+
+00:06:48.120 --> 00:06:51.465
+And I was walking through, you know, the grounds here,
+
+NOTE Confidence: 0.915556788444519
+
+00:06:51.527 --> 00:06:55.120
+coding on this laptop and still running jobs, iterating on
+
+NOTE Confidence: 0.915556788444519
+
+00:06:55.182 --> 00:06:58.713
+features and debugging code not connected to the cloud or
+
+NOTE Confidence: 0.915556788444519
+
+00:06:58.775 --> 00:07:00.200
+not connected to Wi-Fi.
+
+NOTE Confidence: 0.7697946429252625
+
+00:07:00.360 --> 00:07:01.480
+So that's a choice I have.
+
+NOTE Confidence: 0.812900185585022
+
+00:07:01.480 --> 00:07:04.570
+I can literally be mobile coding with with these types
+
+NOTE Confidence: 0.812900185585022
+
+00:07:04.627 --> 00:07:05.200
+of device.
+
+NOTE Confidence: 0.9359685182571411
+
+00:07:05.400 --> 00:07:06.840
+So that was kind of a fun exercise.
+
+NOTE Confidence: 0.9059175848960876
+
+00:07:08.200 --> 00:07:09.800
+And those choices can be dynamic.
+
+NOTE Confidence: 0.9274433851242065
+
+00:07:10.320 --> 00:07:13.600
+So we are quickly moving from static choices.
+
+NOTE Confidence: 0.7982819676399231
+
+00:07:13.600 --> 00:07:16.235
+So if you're setting up those semantic filtering rules, it
+
+NOTE Confidence: 0.7982819676399231
+
+00:07:16.281 --> 00:07:18.325
+could be rule, it could be a static rule, and
+
+NOTE Confidence: 0.7982819676399231
+
+00:07:18.371 --> 00:07:20.279
+now we're moving to more dynamic choicing.
+
+NOTE Confidence: 0.9592207670211792
+
+00:07:20.280 --> 00:07:22.303
+We need to be able to make that routing decision
+
+NOTE Confidence: 0.9592207670211792
+
+00:07:22.345 --> 00:07:23.400
+real time and on the fly.
+
+NOTE Confidence: 0.9235300421714783
+
+00:07:23.680 --> 00:07:26.681
+Could be based on what the resource availability is, or
+
+NOTE Confidence: 0.9235300421714783
+
+00:07:26.736 --> 00:07:29.737
+it could just be some dynamic setting in your workflow,
+
+NOTE Confidence: 0.9235300421714783
+
+00:07:29.792 --> 00:07:30.119
+right?
+
+NOTE Confidence: 0.9348597526550293
+
+00:07:30.120 --> 00:07:32.534
+If you're in a crunch and that bug is not
+
+NOTE Confidence: 0.9348597526550293
+
+00:07:32.593 --> 00:07:35.597
+getting flushed out, OK, it's time to move that off
+
+NOTE Confidence: 0.9348597526550293
+
+00:07:35.656 --> 00:07:38.130
+to a more robust model to be able to solve
+
+NOTE Confidence: 0.9348597526550293
+
+00:07:38.189 --> 00:07:40.840
+that bug and iterate ground that to 0 faster.
+
+NOTE Confidence: 0.9456163048744202
+
+00:07:42.800 --> 00:07:45.299
+So I'm going to showcase some of that in this
+
+NOTE Confidence: 0.9456163048744202
+
+00:07:45.355 --> 00:07:45.799
+example.
+
+NOTE Confidence: 0.8413838148117065
+
+00:07:46.560 --> 00:07:51.265
+While that runs, I'll flip over here quickly to the
+
+NOTE Confidence: 0.8413838148117065
+
+00:07:51.357 --> 00:07:53.479
+interface and bring up.
+
+NOTE Confidence: 0.8847131729125977
+
+00:07:55.880 --> 00:07:57.680
+Yeah, that's good.
+
+NOTE Confidence: 0.697301983833313
+
+00:07:58.480 --> 00:07:58.720
+OK.
+
+NOTE Confidence: 0.8314727544784546
+
+00:07:58.720 --> 00:08:00.921
+So one of the things we did in our in
+
+NOTE Confidence: 0.8314727544784546
+
+00:08:00.980 --> 00:08:04.133
+our stack, rock EM stack in our tool called lemonade,
+
+NOTE Confidence: 0.8314727544784546
+
+00:08:04.193 --> 00:08:07.703
+Lemonade is the tool that gives us that routing capability,
+
+NOTE Confidence: 0.8314727544784546
+
+00:08:07.763 --> 00:08:08.119
+right?
+
+NOTE Confidence: 0.8046503067016602
+
+00:08:08.240 --> 00:08:10.040
+So it's abstracting away the back end.
+
+NOTE Confidence: 0.7655115127563477
+
+00:08:10.240 --> 00:08:12.684
+You don't have to be Rock EM experts, you don't
+
+NOTE Confidence: 0.7655115127563477
+
+00:08:12.736 --> 00:08:15.024
+have to be HIP experts, You don't have to be
+
+NOTE Confidence: 0.7655115127563477
+
+00:08:15.076 --> 00:08:16.792
+an expert on GP us or NP us or CP
+
+NOTE Confidence: 0.7655115127563477
+
+00:08:16.844 --> 00:08:17.000
+us.
+
+NOTE Confidence: 0.8495051860809326
+
+00:08:17.240 --> 00:08:20.560
+Lemonade is providing that abstraction and the routing capability.
+
+NOTE Confidence: 0.9016632437705994
+
+00:08:20.560 --> 00:08:23.999
+So you're feeding your semantic rules into Lemonade and then
+
+NOTE Confidence: 0.9016632437705994
+
+00:08:24.056 --> 00:08:26.119
+it's making those decisions for you.
+
+NOTE Confidence: 0.8594827651977539
+
+00:08:27.160 --> 00:08:30.458
+If you want to use a more robust semantic router,
+
+NOTE Confidence: 0.8594827651977539
+
+00:08:30.525 --> 00:08:34.295
+this will plug into things like VLLM router, open router
+
+NOTE Confidence: 0.8594827651977539
+
+00:08:34.362 --> 00:08:35.440
+and those tools.
+
+NOTE Confidence: 0.8758259415626526
+
+00:08:35.679 --> 00:08:37.544
+But I found on client, it's nice to be be
+
+NOTE Confidence: 0.8758259415626526
+
+00:08:37.589 --> 00:08:39.999
+able to have something a little bit more lightweight.
+
+NOTE Confidence: 0.8793963193893433
+
+00:08:40.120 --> 00:08:42.866
+I don't necessarily want to install the Docker image here
+
+NOTE Confidence: 0.8793963193893433
+
+00:08:42.914 --> 00:08:45.805
+in my Windows laptop, although I'm perfectly fine doing that
+
+NOTE Confidence: 0.8793963193893433
+
+00:08:45.853 --> 00:08:46.479
+on the cloud.
+
+NOTE Confidence: 0.8694830536842346
+
+00:08:46.760 --> 00:08:49.766
+So Lemonade can also take those rules itself and do
+
+NOTE Confidence: 0.8694830536842346
+
+00:08:49.825 --> 00:08:51.240
+that semantic filtering.
+
+NOTE Confidence: 0.8728263974189758
+
+00:08:52.320 --> 00:08:54.557
+But one of the key aspects of Lemonade, because it's,
+
+NOTE Confidence: 0.8728263974189758
+
+00:08:54.600 --> 00:08:56.584
+it's a little bit lower in the stack, we wanted
+
+NOTE Confidence: 0.8728263974189758
+
+00:08:56.626 --> 00:08:58.400
+to be able to plug into the agentic layer.
+
+NOTE Confidence: 0.9375590682029724
+
+00:08:58.680 --> 00:09:00.800
+So we introduced a new launch feature.
+
+NOTE Confidence: 0.82365483045578
+
+00:09:01.000 --> 00:09:04.317
+So very easily you can go into Lemonade and ask
+
+NOTE Confidence: 0.82365483045578
+
+00:09:04.388 --> 00:09:08.341
+it to launch your favorite tool, whether it's, you know,
+
+NOTE Confidence: 0.82365483045578
+
+00:09:08.411 --> 00:09:11.517
+Codex or Clawed or Gaia or Open Claw, all of
+
+NOTE Confidence: 0.82365483045578
+
+00:09:11.588 --> 00:09:15.400
+those agentic frameworks, it's fungible at that point.
+
+NOTE Confidence: 0.9462595582008362
+
+00:09:15.520 --> 00:09:18.449
+So now you have these different technologies that can plug
+
+NOTE Confidence: 0.9462595582008362
+
+00:09:18.499 --> 00:09:19.560
+together very easily.
+
+NOTE Confidence: 0.8391909003257751
+
+00:09:20.320 --> 00:09:24.466
+So in launching that, it'll pull up a, a list
+
+NOTE Confidence: 0.8391909003257751
+
+00:09:24.558 --> 00:09:25.480
+of models.
+
+NOTE Confidence: 0.8900466561317444
+
+00:09:25.640 --> 00:09:28.565
+Now the key here Lemonade was, was built as a
+
+NOTE Confidence: 0.8900466561317444
+
+00:09:28.630 --> 00:09:30.320
+client centric technology.
+
+NOTE Confidence: 0.8715325593948364
+
+00:09:30.320 --> 00:09:33.177
+So some of the default choices it's going to pull
+
+NOTE Confidence: 0.8715325593948364
+
+00:09:33.235 --> 00:09:35.976
+up our models that we know will run robustly on
+
+NOTE Confidence: 0.8715325593948364
+
+00:09:36.035 --> 00:09:36.560
+platform.
+
+NOTE Confidence: 0.8916381597518921
+
+00:09:36.920 --> 00:09:39.679
+So any of these choices that I, I select, you
+
+NOTE Confidence: 0.8916381597518921
+
+00:09:39.741 --> 00:09:42.439
+know, will be routed to the local processor.
+
+NOTE Confidence: 0.809152364730835
+
+00:09:42.440 --> 00:09:45.750
+And depending on the choice of model, Lemonade knows if
+
+NOTE Confidence: 0.809152364730835
+
+00:09:45.811 --> 00:09:48.520
+that's a GGOF file, will run that on the GPU.
+
+NOTE Confidence: 0.8173395395278931
+
+00:09:48.720 --> 00:09:51.211
+If it's something from our Vitis stack or our fast
+
+NOTE Confidence: 0.8173395395278931
+
+00:09:51.261 --> 00:09:53.602
+flow stack, we know that that model is ready to
+
+NOTE Confidence: 0.8173395395278931
+
+00:09:53.652 --> 00:09:54.400
+run on the NPU.
+
+NOTE Confidence: 0.9622738361358643
+
+00:09:55.200 --> 00:09:57.080
+Anything else can default back to CPU.
+
+NOTE Confidence: 0.7322850227355957
+
+00:09:57.080 --> 00:09:58.920
+So again, a lot of choices here.
+
+NOTE Confidence: 0.9102689623832703
+
+00:10:00.720 --> 00:10:03.120
+I'll show you what I did on the walk over.
+
+NOTE Confidence: 0.9137656092643738
+
+00:10:03.120 --> 00:10:05.075
+It took about 15 minutes, so I'm not going to
+
+NOTE Confidence: 0.9137656092643738
+
+00:10:05.118 --> 00:10:05.640
+run it here.
+
+NOTE Confidence: 0.8136548399925232
+
+00:10:06.440 --> 00:10:08.777
+But the first thing was I just asked it a
+
+NOTE Confidence: 0.8136548399925232
+
+00:10:08.834 --> 00:10:11.799
+simple task, OK, told me a weather dashboard, right?
+
+NOTE Confidence: 0.8501770496368408
+
+00:10:11.800 --> 00:10:14.470
+So it goes off and chewed up about 2020 thousand
+
+NOTE Confidence: 0.8501770496368408
+
+00:10:14.525 --> 00:10:16.973
+tokens, ran into a bunch of bugs and you can
+
+NOTE Confidence: 0.8501770496368408
+
+00:10:17.029 --> 00:10:19.866
+see like all the red space, it's iterating on those
+
+NOTE Confidence: 0.8501770496368408
+
+00:10:19.921 --> 00:10:20.199
+bugs.
+
+NOTE Confidence: 0.6764227747917175
+
+00:10:20.200 --> 00:10:22.280
+And you know, we don't, we know how that works.
+
+NOTE Confidence: 0.8136019110679626
+
+00:10:22.520 --> 00:10:23.880
+That's not really the demo.
+
+NOTE Confidence: 0.9006630778312683
+
+00:10:25.400 --> 00:10:27.643
+The demo is that if you look at the task
+
+NOTE Confidence: 0.9006630778312683
+
+00:10:27.699 --> 00:10:30.727
+manager over here, it's just burning up the local GPU,
+
+NOTE Confidence: 0.9006630778312683
+
+00:10:30.783 --> 00:10:31.119
+right?
+
+NOTE Confidence: 0.6173360347747803
+
+00:10:31.600 --> 00:10:32.720
+The Wi-Fi is silent.
+
+NOTE Confidence: 0.568903386592865
+
+00:10:32.840 --> 00:10:33.840
+I could turn off the Wi-Fi.
+
+NOTE Confidence: 0.8549444079399109
+
+00:10:33.840 --> 00:10:36.906
+It's not talking to the cloud, and it's doing that
+
+NOTE Confidence: 0.8549444079399109
+
+00:10:36.967 --> 00:10:40.279
+initial planning phase locally on the strict Halo GPU.
+
+NOTE Confidence: 0.8786125183105469
+
+00:10:41.520 --> 00:10:43.774
+The second task is then it's got to go through
+
+NOTE Confidence: 0.8786125183105469
+
+00:10:43.823 --> 00:10:46.567
+and iterate on that debugging, and there I'm making that
+
+NOTE Confidence: 0.8786125183105469
+
+00:10:46.616 --> 00:10:46.959
+choice.
+
+NOTE Confidence: 0.9643654227256775
+
+00:10:47.000 --> 00:10:47.960
+Are we converging?
+
+NOTE Confidence: 0.9108918309211731
+
+00:10:48.160 --> 00:10:49.400
+I'll let it go one cycle.
+
+NOTE Confidence: 0.9399044513702393
+
+00:10:49.400 --> 00:10:51.494
+If it's not going to converge, I'll just flip it
+
+NOTE Confidence: 0.9399044513702393
+
+00:10:51.538 --> 00:10:53.719
+over to the cloud model and let it converge there.
+
+NOTE Confidence: 0.8836625814437866
+
+00:10:54.440 --> 00:10:57.156
+And after all that 50,000 tokens or so, you know,
+
+NOTE Confidence: 0.8836625814437866
+
+00:10:57.212 --> 00:11:00.040
+this is the beautiful weather dashboard it created.
+
+NOTE Confidence: 0.938262403011322
+
+00:11:00.240 --> 00:11:01.720
+Not particularly impressive.
+
+NOTE Confidence: 0.9143306016921997
+
+00:11:01.720 --> 00:11:04.277
+It's like a blank HTML page with, you know, a
+
+NOTE Confidence: 0.9143306016921997
+
+00:11:04.334 --> 00:11:04.960
+search box.
+
+NOTE Confidence: 0.8554655909538269
+
+00:11:04.960 --> 00:11:05.840
+Enter your city.
+
+NOTE Confidence: 0.9003849029541016
+
+00:11:06.120 --> 00:11:08.120
+So now, now I'm in the feature planning mode.
+
+NOTE Confidence: 0.8857080340385437
+
+00:11:08.120 --> 00:11:08.560
+OK.
+
+NOTE Confidence: 0.8729652762413025
+
+00:11:08.560 --> 00:11:10.000
+I really want a couple graphs.
+
+NOTE Confidence: 0.8617917895317078
+
+00:11:10.000 --> 00:11:11.976
+And, you know, I want to see a sunny, you
+
+NOTE Confidence: 0.8617917895317078
+
+00:11:12.024 --> 00:11:14.531
+know, sunny logo when I'm in San Diego and something
+
+NOTE Confidence: 0.8617917895317078
+
+00:11:14.580 --> 00:11:17.279
+a little little breezier when I'm here in San Francisco.
+
+NOTE Confidence: 0.7583438158035278
+
+00:11:17.559 --> 00:11:20.152
+But that feature iteration I want to do at the
+
+NOTE Confidence: 0.7583438158035278
+
+00:11:20.209 --> 00:11:21.279
+coffee shop, right?
+
+NOTE Confidence: 0.8617545366287231
+
+00:11:21.280 --> 00:11:22.720
+I want to be in a creative space.
+
+NOTE Confidence: 0.8938068747520447
+
+00:11:22.720 --> 00:11:23.960
+I don't want to be at my desk.
+
+NOTE Confidence: 0.8149325847625732
+
+00:11:23.960 --> 00:11:25.760
+I don't want to be in an office space.
+
+NOTE Confidence: 0.9482390880584717
+
+00:11:25.920 --> 00:11:28.168
+I want to use the creative energy in the phase
+
+NOTE Confidence: 0.9482390880584717
+
+00:11:28.217 --> 00:11:28.999
+where I need it.
+
+NOTE Confidence: 0.8551192283630371
+
+00:11:29.640 --> 00:11:31.963
+And so again, I'm going to definitely shift back to
+
+NOTE Confidence: 0.8551192283630371
+
+00:11:32.009 --> 00:11:34.333
+my local laptop so I can do that creative iteration
+
+NOTE Confidence: 0.8551192283630371
+
+00:11:34.378 --> 00:11:34.879
+work there.
+
+NOTE Confidence: 0.9251935482025146
+
+00:11:36.160 --> 00:11:38.654
+So that's one example of what you can do with
+
+NOTE Confidence: 0.9251935482025146
+
+00:11:38.710 --> 00:11:39.319
+this stack.
+
+NOTE Confidence: 0.9689522981643677
+
+00:11:40.840 --> 00:11:49.610
+Let me switch over to this next topic.
+
+NOTE Confidence: 0.6586955785751343
+
+00:11:51.890 --> 00:11:52.210
+Thanks.
+
+NOTE Confidence: 0.8294354677200317
+
+00:11:52.250 --> 00:11:56.210
+OK, so all of this is accessible through these playbooks.
+
+NOTE Confidence: 0.8208554983139038
+
+00:11:57.240 --> 00:11:59.080
+We built out a whole suite of playbooks.
+
+NOTE Confidence: 0.8211531639099121
+
+00:11:59.360 --> 00:12:02.386
+It's full stack, so if you're a kernel developer, you
+
+NOTE Confidence: 0.8211531639099121
+
+00:12:02.443 --> 00:12:04.955
+can go to the playbook and figure out how to
+
+NOTE Confidence: 0.8211531639099121
+
+00:12:05.012 --> 00:12:06.840
+write optimized rock'em kernels.
+
+NOTE Confidence: 0.9317609667778015
+
+00:12:07.720 --> 00:12:09.917
+If you are a comfy UI user and you just
+
+NOTE Confidence: 0.9317609667778015
+
+00:12:09.974 --> 00:12:13.918
+like creating images through an application level interface, there's a
+
+NOTE Confidence: 0.9317609667778015
+
+00:12:13.974 --> 00:12:15.439
+playbook in there for you.
+
+NOTE Confidence: 0.9114277362823486
+
+00:12:15.840 --> 00:12:18.330
+If you want to be a Lemonade powered user and
+
+NOTE Confidence: 0.9114277362823486
+
+00:12:18.385 --> 00:12:21.485
+learn how to integrate that into your own application so
+
+NOTE Confidence: 0.9114277362823486
+
+00:12:21.540 --> 00:12:25.470
+that you can abstract away AMD hardware, have cross-platform capability
+
+NOTE Confidence: 0.9114277362823486
+
+00:12:25.525 --> 00:12:28.293
+to other vendors, Lemonade can do that and we have
+
+NOTE Confidence: 0.9114277362823486
+
+00:12:28.348 --> 00:12:29.400
+a playbook for you.
+
+NOTE Confidence: 0.8467404246330261
+
+00:12:29.720 --> 00:12:31.593
+So I'm going to show you that and do a
+
+NOTE Confidence: 0.8467404246330261
+
+00:12:31.642 --> 00:12:33.959
+quick walkthrough of those so you can see them.
+
+NOTE Confidence: 0.9134228229522705
+
+00:12:34.240 --> 00:12:37.781
+This came live really just a few weeks ago and
+
+NOTE Confidence: 0.9134228229522705
+
+00:12:37.858 --> 00:12:42.632
+it's launched primarily on the client platforms and Radeon GPU
+
+NOTE Confidence: 0.9134228229522705
+
+00:12:42.709 --> 00:12:43.479
+platforms.
+
+NOTE Confidence: 0.9607924222946167
+
+00:12:43.720 --> 00:12:46.440
+And we're quickly expanding this to the new Halo box.
+
+NOTE Confidence: 0.8667565584182739
+
+00:12:46.559 --> 00:12:48.863
+If you stop by our booth, you can see that
+
+NOTE Confidence: 0.8667565584182739
+
+00:12:48.918 --> 00:12:52.153
+that's the appliance PC that I mentioned before and that'll
+
+NOTE Confidence: 0.8667565584182739
+
+00:12:52.208 --> 00:12:53.359
+be launching in June.
+
+NOTE Confidence: 0.9310737252235413
+
+00:12:54.320 --> 00:12:57.076
+And then we're also going to be adding the blueprints
+
+NOTE Confidence: 0.9310737252235413
+
+00:12:57.128 --> 00:12:59.884
+from our Epic server and enterprise use cases as well
+
+NOTE Confidence: 0.9310737252235413
+
+00:12:59.936 --> 00:13:00.560
+as Instinct.
+
+NOTE Confidence: 0.9371623396873474
+
+00:13:01.080 --> 00:13:02.320
+So great place to go.
+
+NOTE Confidence: 0.9446027278900146
+
+00:13:02.320 --> 00:13:03.560
+It's a one stop shop.
+
+NOTE Confidence: 0.9230402112007141
+
+00:13:03.560 --> 00:13:05.640
+So you now have this developer interface.
+
+NOTE Confidence: 0.9269933700561523
+
+00:13:05.880 --> 00:13:09.150
+No matter which device you're targeting and no matter what
+
+NOTE Confidence: 0.9269933700561523
+
+00:13:09.206 --> 00:13:12.251
+type of developer you are, there are some really great
+
+NOTE Confidence: 0.9269933700561523
+
+00:13:12.308 --> 00:13:14.000
+playbooks here to get started.
+
+NOTE Confidence: 0.9016985297203064
+
+00:13:14.000 --> 00:13:16.200
+So if you want to code, you pop in there.
+
+NOTE Confidence: 0.9236496686935425
+
+00:13:16.360 --> 00:13:19.345
+It's basically a recipe to set up all the tools
+
+NOTE Confidence: 0.9236496686935425
+
+00:13:19.409 --> 00:13:20.680
+and the environment.
+
+NOTE Confidence: 0.785627007484436
+
+00:13:21.320 --> 00:13:24.240
+It's one thing I'm very passionate about with my team.
+
+NOTE Confidence: 0.9009873867034912
+
+00:13:24.680 --> 00:13:26.160
+We just have to make this easier, right?
+
+NOTE Confidence: 0.7855522036552429
+
+00:13:26.360 --> 00:13:29.725
+Even if you're developing on, you know, big scale class
+
+NOTE Confidence: 0.7855522036552429
+
+00:13:29.787 --> 00:13:33.519
+enterprise GPU's, there's no reason this has to be difficult.
+
+NOTE Confidence: 0.8908392786979675
+
+00:13:33.880 --> 00:13:36.688
+Like the user experience here should be uniform, should be
+
+NOTE Confidence: 0.8908392786979675
+
+00:13:36.736 --> 00:13:38.480
+accessible across the product stack.
+
+NOTE Confidence: 0.8419841527938843
+
+00:13:38.720 --> 00:13:42.240
+That's that's really the goal here of these different playbooks.
+
+NOTE Confidence: 0.9061716198921204
+
+00:13:43.320 --> 00:13:46.059
+The other key thing is all those playbooks are open
+
+NOTE Confidence: 0.9061716198921204
+
+00:13:46.113 --> 00:13:48.799
+sourced, so they're sitting out there on a GitHub.
+
+NOTE Confidence: 0.9084059000015259
+
+00:13:48.800 --> 00:13:50.755
+You can go there, you can actually see the ones
+
+NOTE Confidence: 0.9084059000015259
+
+00:13:50.797 --> 00:13:53.169
+that are not released because it's GitHub and that GitHub
+
+NOTE Confidence: 0.9084059000015259
+
+00:13:53.210 --> 00:13:53.959
+project is public.
+
+NOTE Confidence: 0.918570339679718
+
+00:13:54.200 --> 00:13:56.229
+So you'll go in there and you'll see like a
+
+NOTE Confidence: 0.918570339679718
+
+00:13:56.276 --> 00:13:58.919
+much, much longer list of some really cool capabilities.
+
+NOTE Confidence: 0.797947108745575
+
+00:13:58.920 --> 00:14:01.920
+There's a clustering playbook that's coming out where we've taken
+
+NOTE Confidence: 0.797947108745575
+
+00:14:01.966 --> 00:14:04.458
+a bunch of these strict Halos, although like more like
+
+NOTE Confidence: 0.797947108745575
+
+00:14:04.504 --> 00:14:05.520
+in a Nook form factor.
+
+NOTE Confidence: 0.811824381351471
+
+00:14:05.679 --> 00:14:08.263
+Stack those up and we're running very, very large, you
+
+NOTE Confidence: 0.811824381351471
+
+00:14:08.311 --> 00:14:10.559
+know, 200, three, 100 billion parameter models.
+
+NOTE Confidence: 0.9173398017883301
+
+00:14:10.720 --> 00:14:11.880
+There's a playbook for that.
+
+NOTE Confidence: 0.8974688649177551
+
+00:14:12.720 --> 00:14:13.440
+So very exciting.
+
+NOTE Confidence: 0.8027514219284058
+
+00:14:13.440 --> 00:14:15.360
+I'd I'd steer you over to the GitHub.
+
+NOTE Confidence: 0.8613728880882263
+
+00:14:17.040 --> 00:14:20.043
+So one of those playbooks that I want to run
+
+NOTE Confidence: 0.8613728880882263
+
+00:14:20.111 --> 00:14:23.319
+for you here live is on the Omni modal routing.
+
+NOTE Confidence: 0.8948211669921875
+
+00:14:28.960 --> 00:14:31.846
+So going back to that idea of choice for multi
+
+NOTE Confidence: 0.8948211669921875
+
+00:14:31.909 --> 00:14:35.360
+modality, some of those choices depend on the use case.
+
+NOTE Confidence: 0.8940311670303345
+
+00:14:35.360 --> 00:14:37.904
+So if I'm talking to my application, I need to
+
+NOTE Confidence: 0.8940311670303345
+
+00:14:37.959 --> 00:14:40.669
+route that inference to a specific place and in a
+
+NOTE Confidence: 0.8940311670303345
+
+00:14:40.724 --> 00:14:41.720
+very specific way.
+
+NOTE Confidence: 0.9232709407806396
+
+00:14:42.520 --> 00:14:45.228
+If I am asking it to generate an image, I'm
+
+NOTE Confidence: 0.9232709407806396
+
+00:14:45.291 --> 00:14:47.811
+also going to ask it to route to maybe a
+
+NOTE Confidence: 0.9232709407806396
+
+00:14:47.874 --> 00:14:50.079
+specialized image generation model.
+
+NOTE Confidence: 0.8880677819252014
+
+00:14:51.040 --> 00:14:53.687
+So in this use case, I want to showcase how
+
+NOTE Confidence: 0.8880677819252014
+
+00:14:53.749 --> 00:14:55.719
+that actually works in Lemonade.
+
+NOTE Confidence: 0.837292492389679
+
+00:14:56.080 --> 00:14:59.374
+Now what Lemonade is, is actually an embeddable DLL that
+
+NOTE Confidence: 0.837292492389679
+
+00:14:59.432 --> 00:15:02.432
+provides the, I call it the tracks and the switches
+
+NOTE Confidence: 0.837292492389679
+
+00:15:02.491 --> 00:15:04.079
+to build your applications.
+
+NOTE Confidence: 0.8969805240631104
+
+00:15:04.320 --> 00:15:07.158
+The UI that I'm showing you is essentially it's a
+
+NOTE Confidence: 0.8969805240631104
+
+00:15:07.216 --> 00:15:07.679
+sandbox.
+
+NOTE Confidence: 0.8383210897445679
+
+00:15:08.120 --> 00:15:10.749
+It's it's a demo UI that we built and our
+
+NOTE Confidence: 0.8383210897445679
+
+00:15:10.814 --> 00:15:15.240
+open source community, they're constantly packing features into this.
+
+NOTE Confidence: 0.87845778465271
+
+00:15:15.480 --> 00:15:18.373
+So we don't necessarily know exactly what's going to show
+
+NOTE Confidence: 0.87845778465271
+
+00:15:18.424 --> 00:15:20.607
+up in this UI on any given week because the
+
+NOTE Confidence: 0.87845778465271
+
+00:15:20.658 --> 00:15:23.399
+developers are adding really interesting things today.
+
+NOTE Confidence: 0.7037007212638855
+
+00:15:23.400 --> 00:15:26.760
+I added Mac support a couple months ago.
+
+NOTE Confidence: 0.8364531993865967
+
+00:15:26.760 --> 00:15:29.000
+I think they added NVIDIA support last week.
+
+NOTE Confidence: 0.8284550905227661
+
+00:15:29.560 --> 00:15:30.920
+And we encourage that, right?
+
+NOTE Confidence: 0.7856911420822144
+
+00:15:30.920 --> 00:15:33.627
+Even though this is something a lot of folks at
+
+NOTE Confidence: 0.7856911420822144
+
+00:15:33.684 --> 00:15:36.622
+AMD created and it's in, it's in it's beginning, we
+
+NOTE Confidence: 0.7856911420822144
+
+00:15:36.679 --> 00:15:38.119
+want this to proliferate.
+
+NOTE Confidence: 0.8676108121871948
+
+00:15:38.120 --> 00:15:40.173
+So where the developer community wants to take this, we're
+
+NOTE Confidence: 0.8676108121871948
+
+00:15:40.208 --> 00:15:41.200
+going to let them take that.
+
+NOTE Confidence: 0.8088960647583008
+
+00:15:41.400 --> 00:15:43.600
+We've opened up a BI weekly maintainers meeting.
+
+NOTE Confidence: 0.9602073431015015
+
+00:15:43.600 --> 00:15:46.248
+So that team is meeting and governing what shows up
+
+NOTE Confidence: 0.9602073431015015
+
+00:15:46.300 --> 00:15:47.080
+into this tool.
+
+NOTE Confidence: 0.8549453616142273
+
+00:15:47.600 --> 00:15:50.279
+So let me show you one of the coolest features
+
+NOTE Confidence: 0.8549453616142273
+
+00:15:50.338 --> 00:15:52.959
+that showed up is this Omni modal capability.
+
+NOTE Confidence: 0.9488418698310852
+
+00:15:53.240 --> 00:15:55.328
+The idea here is how do you bring that a
+
+NOTE Confidence: 0.9488418698310852
+
+00:15:55.380 --> 00:15:58.460
+collection of models together that you're going to need for
+
+NOTE Confidence: 0.9488418698310852
+
+00:15:58.512 --> 00:15:59.400
+your application?
+
+NOTE Confidence: 0.8816385269165039
+
+00:15:59.760 --> 00:16:04.398
+So in like a rich media experience where I want
+
+NOTE Confidence: 0.8816385269165039
+
+00:16:04.496 --> 00:16:08.937
+to go and create, you know, you know, draw me
+
+NOTE Confidence: 0.8816385269165039
+
+00:16:09.036 --> 00:16:13.280
+an image of a mountain with a train tunnel.
+
+NOTE Confidence: 0.7453933954238892
+
+00:16:16.320 --> 00:16:18.560
+So, you know, I need an image Gen.
+
+NOTE Confidence: 0.9544921517372131
+
+00:16:18.560 --> 00:16:20.673
+model for that, but I may want to talk to
+
+NOTE Confidence: 0.9544921517372131
+
+00:16:20.725 --> 00:16:20.879
+it.
+
+NOTE Confidence: 0.9632860422134399
+
+00:16:20.880 --> 00:16:21.320
+Also.
+
+NOTE Confidence: 0.9344285726547241
+
+00:16:21.360 --> 00:16:23.194
+I'm not going to do the voice because it's so
+
+NOTE Confidence: 0.9344285726547241
+
+00:16:23.235 --> 00:16:23.479
+noisy.
+
+NOTE Confidence: 0.8469192385673523
+
+00:16:24.360 --> 00:16:27.701
+It's it's not going to work really great right now,
+
+NOTE Confidence: 0.8469192385673523
+
+00:16:27.766 --> 00:16:30.584
+but I may want to interact with it on that,
+
+NOTE Confidence: 0.8469192385673523
+
+00:16:30.649 --> 00:16:31.960
+on that audio level.
+
+NOTE Confidence: 0.9079816937446594
+
+00:16:31.960 --> 00:16:33.360
+I may want it to talk back to me.
+
+NOTE Confidence: 0.8345183730125427
+
+00:16:33.520 --> 00:16:35.927
+If I'm asking it to create a children's book or
+
+NOTE Confidence: 0.8345183730125427
+
+00:16:35.978 --> 00:16:38.386
+a children's story, I want it to speak back and
+
+NOTE Confidence: 0.8345183730125427
+
+00:16:38.437 --> 00:16:40.845
+like tell the story to to my daughter, right as
+
+NOTE Confidence: 0.8345183730125427
+
+00:16:40.896 --> 00:16:42.279
+a as like a fun experience.
+
+NOTE Confidence: 0.9328338503837585
+
+00:16:43.280 --> 00:16:46.344
+So the Omni capability in lemonade is basically pulling together
+
+NOTE Confidence: 0.9328338503837585
+
+00:16:46.392 --> 00:16:49.599
+collections of models and putting the intelligent routing below it.
+
+NOTE Confidence: 0.9463644623756409
+
+00:16:49.680 --> 00:16:52.920
+So it knows based on the context of your query.
+
+NOTE Confidence: 0.8440603613853455
+
+00:16:53.120 --> 00:16:55.814
+If I say draw me a, it knows it needs
+
+NOTE Confidence: 0.8440603613853455
+
+00:16:55.887 --> 00:16:58.000
+to route that to a image Gen.
+
+NOTE Confidence: 0.8907080888748169
+
+00:16:58.000 --> 00:16:58.320
+model.
+
+NOTE Confidence: 0.8753997683525085
+
+00:16:58.560 --> 00:17:03.108
+If I say narrate a story about this, actually, if
+
+NOTE Confidence: 0.8753997683525085
+
+00:17:03.201 --> 00:17:07.007
+I say, you know, edit this to add a steam
+
+NOTE Confidence: 0.8753997683525085
+
+00:17:07.100 --> 00:17:12.205
+locomotive here, it's actually going to create a like a
+
+NOTE Confidence: 0.8753997683525085
+
+00:17:12.298 --> 00:17:15.640
+control net layer on that image Gen.
+
+NOTE Confidence: 0.9527401328086853
+
+00:17:15.640 --> 00:17:18.040
+model so that it can do the image editing.
+
+NOTE Confidence: 0.9351511597633362
+
+00:17:18.040 --> 00:17:19.600
+And now it's recycling that imaging.
+
+NOTE Confidence: 0.8864489793777466
+
+00:17:19.920 --> 00:17:22.083
+And I'll run through a couple of use cases here
+
+NOTE Confidence: 0.8864489793777466
+
+00:17:22.129 --> 00:17:22.359
+live.
+
+NOTE Confidence: 0.8880349397659302
+
+00:17:22.680 --> 00:17:24.623
+My favorite is at the end when we get to
+
+NOTE Confidence: 0.8880349397659302
+
+00:17:24.672 --> 00:17:26.858
+that final image and then it tells me a story
+
+NOTE Confidence: 0.8880349397659302
+
+00:17:26.907 --> 00:17:29.579
+about it because that's like a human experience that is
+
+NOTE Confidence: 0.8880349397659302
+
+00:17:29.628 --> 00:17:30.600
+near and dear to me.
+
+NOTE Confidence: 0.953916609287262
+
+00:17:30.600 --> 00:17:31.560
+I think it's very cool.
+
+NOTE Confidence: 0.8352141976356506
+
+00:17:33.800 --> 00:17:35.734
+You know, I think I went through an exercise and
+
+NOTE Confidence: 0.8352141976356506
+
+00:17:35.774 --> 00:17:37.829
+said, OK, change it to Thomas the train because you
+
+NOTE Confidence: 0.8352141976356506
+
+00:17:37.870 --> 00:17:39.200
+know, my kid, well, she's 17 now.
+
+NOTE Confidence: 0.8036651015281677
+
+00:17:39.200 --> 00:17:41.537
+In all honesty, like it's not as cool to her,
+
+NOTE Confidence: 0.8036651015281677
+
+00:17:41.589 --> 00:17:43.200
+but it's still a cool use case.
+
+NOTE Confidence: 0.7329974174499512
+
+00:17:43.200 --> 00:17:48.557
+And it's sort of like channels as memories, narrative story
+
+NOTE Confidence: 0.7329974174499512
+
+00:17:48.648 --> 00:17:49.919
+of this scene.
+
+NOTE Confidence: 0.8748778104782104
+
+00:17:50.760 --> 00:17:53.743
+But the main point here is we've have all that
+
+NOTE Confidence: 0.8748778104782104
+
+00:17:53.808 --> 00:17:55.559
+choice at our disposal now.
+
+NOTE Confidence: 0.9091445207595825
+
+00:17:55.720 --> 00:17:57.960
+I didn't have to be an expert to build that.
+
+NOTE Confidence: 0.8622592091560364
+
+00:17:58.400 --> 00:18:01.898
+Like all of that machinery, the routing, the assembly of
+
+NOTE Confidence: 0.8622592091560364
+
+00:18:01.960 --> 00:18:05.896
+that collection, the type of models that are available, whether
+
+NOTE Confidence: 0.8622592091560364
+
+00:18:05.959 --> 00:18:08.707
+they run well on GPUs or Npus, all that's at
+
+NOTE Confidence: 0.8622592091560364
+
+00:18:08.770 --> 00:18:09.520
+my disposal.
+
+NOTE Confidence: 0.7849764227867126
+
+00:18:10.400 --> 00:18:13.057
+So the key technology here that's enabling it is part
+
+NOTE Confidence: 0.7849764227867126
+
+00:18:13.107 --> 00:18:14.160
+of our Rock EM stack.
+
+NOTE Confidence: 0.8331453204154968
+
+00:18:14.280 --> 00:18:16.160
+It's going to be available across our platform.
+
+NOTE Confidence: 0.9026525020599365
+
+00:18:18.200 --> 00:18:18.640
+OK.
+
+NOTE Confidence: 0.9200379252433777
+
+00:18:18.640 --> 00:18:21.281
+So while that runs, I don't know if you'll be
+
+NOTE Confidence: 0.9200379252433777
+
+00:18:21.340 --> 00:18:22.279
+able to hear it.
+
+NOTE Confidence: 0.7651820778846741
+
+00:18:25.360 --> 00:18:28.160
+It's yeah, it's not.
+
+NOTE Confidence: 0.7434118390083313
+
+00:18:28.160 --> 00:18:30.657
+I don't know if it's audios routing, but yeah, it's
+
+NOTE Confidence: 0.7434118390083313
+
+00:18:30.706 --> 00:18:32.960
+it's, you know, it's a really cool experience.
+
+NOTE Confidence: 0.8311257362365723
+
+00:18:32.960 --> 00:18:35.742
+It's it's like in this really like deep, like pensive
+
+NOTE Confidence: 0.8311257362365723
+
+00:18:35.795 --> 00:18:38.840
+voice starts telling a story about this misty mountaintop.
+
+NOTE Confidence: 0.9301532506942749
+
+00:18:38.840 --> 00:18:41.080
+And anyway, just a really fun experience.
+
+NOTE Confidence: 0.9646360278129578
+
+00:18:42.280 --> 00:18:44.120
+Let me talk about one other choice.
+
+NOTE Confidence: 0.9073386192321777
+
+00:18:44.480 --> 00:18:47.663
+I have a few more minutes left and this is
+
+NOTE Confidence: 0.9073386192321777
+
+00:18:47.738 --> 00:18:51.679
+something that we showed yesterday with VLLM router.
+
+NOTE Confidence: 0.8964710831642151
+
+00:18:51.720 --> 00:18:56.111
+VLM router has some very sophisticated semantic filtering and we
+
+NOTE Confidence: 0.8964710831642151
+
+00:18:56.180 --> 00:18:59.199
+can use that, but on the client that's a bit
+
+NOTE Confidence: 0.8964710831642151
+
+00:18:59.268 --> 00:18:59.679
+heavy.
+
+NOTE Confidence: 0.9008539319038391
+
+00:19:00.200 --> 00:19:03.205
+So there are cases where I can use an agentic
+
+NOTE Confidence: 0.9008539319038391
+
+00:19:03.272 --> 00:19:06.745
+layer to pass on those policies and those rules into
+
+NOTE Confidence: 0.9008539319038391
+
+00:19:06.812 --> 00:19:10.352
+that same routing layer and let it make decisions not
+
+NOTE Confidence: 0.9008539319038391
+
+00:19:10.419 --> 00:19:13.692
+just on modality, but on quality or cost or token
+
+NOTE Confidence: 0.9008539319038391
+
+00:19:13.759 --> 00:19:14.159
+usage.
+
+NOTE Confidence: 0.8746082186698914
+
+00:19:15.040 --> 00:19:17.481
+One of the key use cases that I really like
+
+NOTE Confidence: 0.8746082186698914
+
+00:19:17.538 --> 00:19:20.605
+and we showcased yesterday was, you know, I entered my
+
+NOTE Confidence: 0.8746082186698914
+
+00:19:20.661 --> 00:19:24.069
+Social Security number, said hey, this is my Social Security
+
+NOTE Confidence: 0.8746082186698914
+
+00:19:24.126 --> 00:19:26.000
+number, what state was I born in?
+
+NOTE Confidence: 0.8869447708129883
+
+00:19:26.320 --> 00:19:30.464
+And immediately it grabs that and says that's personal information
+
+NOTE Confidence: 0.8869447708129883
+
+00:19:30.526 --> 00:19:31.720
+based on the rules.
+
+NOTE Confidence: 0.9029991030693054
+
+00:19:31.720 --> 00:19:32.840
+We're going to keep that local.
+
+NOTE Confidence: 0.8771669864654541
+
+00:19:33.000 --> 00:19:35.225
+So we're going to answer that question, but we're going
+
+NOTE Confidence: 0.8771669864654541
+
+00:19:35.265 --> 00:19:36.519
+to run it on your local GPUNPU.
+
+NOTE Confidence: 0.8946771025657654
+
+00:19:37.080 --> 00:19:39.008
+And then of course it came back and said that's
+
+NOTE Confidence: 0.8946771025657654
+
+00:19:39.049 --> 00:19:40.280
+a fake Social Security number.
+
+NOTE Confidence: 0.818071722984314
+
+00:19:40.280 --> 00:19:43.279
+So even the local models are intelligent enough to know,
+
+NOTE Confidence: 0.818071722984314
+
+00:19:43.332 --> 00:19:45.903
+you know, when I'm, I'm trying to spoof them, if
+
+NOTE Confidence: 0.818071722984314
+
+00:19:45.956 --> 00:19:48.206
+I give them a phone number, if I give them
+
+NOTE Confidence: 0.818071722984314
+
+00:19:48.259 --> 00:19:49.919
+my, my name, my place of birth.
+
+NOTE Confidence: 0.9431040287017822
+
+00:19:50.200 --> 00:19:51.440
+And that's just one use case.
+
+NOTE Confidence: 0.9088186621665955
+
+00:19:51.440 --> 00:19:54.345
+Those semantic rules can be set by your use case,
+
+NOTE Confidence: 0.9088186621665955
+
+00:19:54.404 --> 00:19:57.429
+by your agent, by your routing policy based on your
+
+NOTE Confidence: 0.9088186621665955
+
+00:19:57.488 --> 00:19:58.199
+application.
+
+NOTE Confidence: 0.8328016996383667
+
+00:19:58.600 --> 00:20:00.692
+But I think that's a really great use case for
+
+NOTE Confidence: 0.8328016996383667
+
+00:20:00.738 --> 00:20:03.239
+client when we want to keep things local or firewalled.
+
+NOTE Confidence: 0.834430456161499
+
+00:20:04.520 --> 00:20:06.560
+Another use case is cost, right?
+
+NOTE Confidence: 0.880452036857605
+
+00:20:07.560 --> 00:20:08.800
+I think you're all in the same boat.
+
+NOTE Confidence: 0.8050519227981567
+
+00:20:08.920 --> 00:20:10.360
+Our company is looking at the cost.
+
+NOTE Confidence: 0.9120965600013733
+
+00:20:10.800 --> 00:20:13.012
+I talked to our IT team and they said, you
+
+NOTE Confidence: 0.9120965600013733
+
+00:20:13.065 --> 00:20:15.910
+know, people are asking a lot of really dumb questions
+
+NOTE Confidence: 0.9120965600013733
+
+00:20:15.962 --> 00:20:17.279
+on our enterprise server.
+
+NOTE Confidence: 0.7320256233215332
+
+00:20:17.600 --> 00:20:19.760
+You know, they're asking like, you know, Yeah.
+
+NOTE Confidence: 0.7942993640899658
+
+00:20:20.200 --> 00:20:22.563
+How many, how many Rs in Strawberry or like, you
+
+NOTE Confidence: 0.7942993640899658
+
+00:20:22.612 --> 00:20:25.369
+know, those types of silly things that we're just trying
+
+NOTE Confidence: 0.7942993640899658
+
+00:20:25.418 --> 00:20:27.239
+to test system or hello, how are you?
+
+NOTE Confidence: 0.88767009973526
+
+00:20:27.680 --> 00:20:29.642
+And they want to be able to like push those
+
+NOTE Confidence: 0.88767009973526
+
+00:20:29.687 --> 00:20:32.334
+costs off of the enterprise server because those costs are
+
+NOTE Confidence: 0.88767009973526
+
+00:20:32.380 --> 00:20:34.159
+significant across our industry, right?
+
+NOTE Confidence: 0.8714887499809265
+
+00:20:34.160 --> 00:20:36.960
+It's, it's the most disruptive aspect of what's going on.
+
+NOTE Confidence: 0.9662449359893799
+
+00:20:37.280 --> 00:20:39.120
+So we can pull that stuff locally.
+
+NOTE Confidence: 0.8058693408966064
+
+00:20:39.200 --> 00:20:42.080
+Let's do silly things local, let's do small tasks local.
+
+NOTE Confidence: 0.6803706288337708
+
+00:20:42.160 --> 00:20:43.400
+It's another semantic rule.
+
+NOTE Confidence: 0.770439863204956
+
+00:20:43.560 --> 00:20:46.901
+So we showcase that yesterday running on Azure cloud as
+
+NOTE Confidence: 0.770439863204956
+
+00:20:46.962 --> 00:20:50.000
+one endpoint or strict Halo as the local endpoint.
+
+NOTE Confidence: 0.8592013716697693
+
+00:20:50.280 --> 00:20:53.520
+And that again is infinitely customizable.
+
+NOTE Confidence: 0.662749707698822
+
+00:20:53.520 --> 00:20:57.668
+We're running on fireworks, we're running on, you know, clod
+
+NOTE Confidence: 0.662749707698822
+
+00:20:57.737 --> 00:20:59.120
+any remote endpoint.
+
+NOTE Confidence: 0.9204598665237427
+
+00:21:01.800 --> 00:21:05.160
+OK, I just showed you this demo of the collections.
+
+NOTE Confidence: 0.868931770324707
+
+00:21:06.240 --> 00:21:10.274
+OK, one last set of information about the the cortex
+
+NOTE Confidence: 0.868931770324707
+
+00:21:10.352 --> 00:21:12.680
+that I was talking about here.
+
+NOTE Confidence: 0.8120065927505493
+
+00:21:13.600 --> 00:21:14.960
+Again, fully open source.
+
+NOTE Confidence: 0.7882513999938965
+
+00:21:15.120 --> 00:21:17.560
+So community is building it, contributing it.
+
+NOTE Confidence: 0.9608055949211121
+
+00:21:17.560 --> 00:21:18.320
+You can go there.
+
+NOTE Confidence: 0.9666079878807068
+
+00:21:18.320 --> 00:21:21.360
+You can see where it's going in the future.
+
+NOTE Confidence: 0.9617010951042175
+
+00:21:22.320 --> 00:21:25.280
+It was really invented down here at the back end.
+
+NOTE Confidence: 0.831886887550354
+
+00:21:25.440 --> 00:21:28.198
+It's it's many things in the stack, but the back
+
+NOTE Confidence: 0.831886887550354
+
+00:21:28.256 --> 00:21:30.670
+end is really, if you think about it was a
+
+NOTE Confidence: 0.831886887550354
+
+00:21:30.728 --> 00:21:32.279
+is a device problem, right?
+
+NOTE Confidence: 0.8498969078063965
+
+00:21:32.280 --> 00:21:33.560
+There's so many devices.
+
+NOTE Confidence: 0.607655942440033
+
+00:21:33.560 --> 00:21:36.362
+You've got Rock Em, you've got Vulcan, you have Llama,
+
+NOTE Confidence: 0.607655942440033
+
+00:21:36.414 --> 00:21:37.400
+CBP, we have Vitis.
+
+NOTE Confidence: 0.8846505880355835
+
+00:21:38.840 --> 00:21:41.755
+If you get into the other modalities, you've got Stable
+
+NOTE Confidence: 0.8846505880355835
+
+00:21:41.808 --> 00:21:43.080
+Diffusion, Whisper, CPP.
+
+NOTE Confidence: 0.7274034023284912
+
+00:21:43.240 --> 00:21:45.960
+If you're doing text to speech, you've got Cocoro.
+
+NOTE Confidence: 0.900952935218811
+
+00:21:46.880 --> 00:21:49.186
+It was really impossible to tie all that together in
+
+NOTE Confidence: 0.900952935218811
+
+00:21:49.230 --> 00:21:51.758
+a meaningful way, and our developers were taking too long
+
+NOTE Confidence: 0.900952935218811
+
+00:21:51.803 --> 00:21:53.400
+to get those applications to market.
+
+NOTE Confidence: 0.8761311173439026
+
+00:21:53.680 --> 00:21:54.960
+So this is where it was born.
+
+NOTE Confidence: 0.9341526031494141
+
+00:21:55.119 --> 00:21:58.564
+Make this as simple as possible, as simple as, you
+
+NOTE Confidence: 0.9341526031494141
+
+00:21:58.633 --> 00:22:00.080
+know, a standard API.
+
+NOTE Confidence: 0.7164556980133057
+
+00:22:00.880 --> 00:22:02.080
+So what API do you use there?
+
+NOTE Confidence: 0.7174499034881592
+
+00:22:02.440 --> 00:22:04.680
+Open AI has already solved this problem for us, right?
+
+NOTE Confidence: 0.7927254438400269
+
+00:22:04.680 --> 00:22:08.400
+They've created a standard inference endpoint API.
+
+NOTE Confidence: 0.9644988775253296
+
+00:22:08.600 --> 00:22:10.320
+Everything we do is based on that standard.
+
+NOTE Confidence: 0.8964638710021973
+
+00:22:11.160 --> 00:22:14.476
+So if you're plugging into a standard cloud endpoint, you
+
+NOTE Confidence: 0.8964638710021973
+
+00:22:14.534 --> 00:22:17.327
+can just as easily route that work to your local
+
+NOTE Confidence: 0.8964638710021973
+
+00:22:17.385 --> 00:22:17.559
+PC.
+
+NOTE Confidence: 0.8985141515731812
+
+00:22:17.920 --> 00:22:19.800
+So again, very accessible.
+
+NOTE Confidence: 0.9326517581939697
+
+00:22:20.320 --> 00:22:22.400
+And then moving up, we added a bunch of utility.
+
+NOTE Confidence: 0.8858911395072937
+
+00:22:22.400 --> 00:22:26.298
+If you've got model management and you're creating these collections,
+
+NOTE Confidence: 0.8858911395072937
+
+00:22:26.354 --> 00:22:27.880
+we've got utility for that.
+
+NOTE Confidence: 0.9233545064926147
+
+00:22:27.880 --> 00:22:30.792
+We talked about the router and then the most exciting
+
+NOTE Confidence: 0.9233545064926147
+
+00:22:30.847 --> 00:22:33.760
+work right now is happening on the application space.
+
+NOTE Confidence: 0.9542489051818848
+
+00:22:34.080 --> 00:22:36.736
+So what the community is building when you give them
+
+NOTE Confidence: 0.9542489051818848
+
+00:22:36.787 --> 00:22:38.320
+these tools, it blows my mind.
+
+NOTE Confidence: 0.837844729423523
+
+00:22:38.320 --> 00:22:42.076
+Every week someone built like an App Store app so
+
+NOTE Confidence: 0.837844729423523
+
+00:22:42.153 --> 00:22:45.449
+I can talk to my Strix Halo from, you know,
+
+NOTE Confidence: 0.837844729423523
+
+00:22:45.526 --> 00:22:46.599
+from my phone.
+
+NOTE Confidence: 0.6917873620986938
+
+00:22:47.359 --> 00:22:49.757
+People are adding other vendors for which I think is
+
+NOTE Confidence: 0.6917873620986938
+
+00:22:49.803 --> 00:22:50.079
+great.
+
+NOTE Confidence: 0.8971684575080872
+
+00:22:51.359 --> 00:22:54.472
+People are adding, you know, home, home media hubs, home
+
+NOTE Confidence: 0.8971684575080872
+
+00:22:54.528 --> 00:22:57.696
+assistant hubs, all those use cases which as a technology
+
+NOTE Confidence: 0.8971684575080872
+
+00:22:57.752 --> 00:23:00.754
+company, like we don't necessarily have the time to go
+
+NOTE Confidence: 0.8971684575080872
+
+00:23:00.809 --> 00:23:03.199
+do that unless it's a major market segment.
+
+NOTE Confidence: 0.9241871237754822
+
+00:23:03.400 --> 00:23:06.120
+But the community of developers, they're passionate about it.
+
+NOTE Confidence: 0.8930763006210327
+
+00:23:06.720 --> 00:23:08.991
+A couple weeks ago at the Ubuntu Summit, one of
+
+NOTE Confidence: 0.8930763006210327
+
+00:23:09.039 --> 00:23:11.455
+the chief architects stood up and said, this is my
+
+NOTE Confidence: 0.8930763006210327
+
+00:23:11.503 --> 00:23:12.760
+passion project right now.
+
+NOTE Confidence: 0.8514343500137329
+
+00:23:13.000 --> 00:23:16.153
+I'm just really excited about the work that's happening in
+
+NOTE Confidence: 0.8514343500137329
+
+00:23:16.207 --> 00:23:19.197
+this space and encouraging the community to come in and
+
+NOTE Confidence: 0.8514343500137329
+
+00:23:19.252 --> 00:23:20.719
+just play right and invent.
+
+NOTE Confidence: 0.9025129675865173
+
+00:23:23.480 --> 00:23:26.120
+OK, one shameless marketing plug.
+
+NOTE Confidence: 0.8558347225189209
+
+00:23:26.520 --> 00:23:27.720
+I mentioned this Halo box.
+
+NOTE Confidence: 0.9000681042671204
+
+00:23:27.720 --> 00:23:30.609
+It's not out yet, but this is the future of
+
+NOTE Confidence: 0.9000681042671204
+
+00:23:30.676 --> 00:23:32.759
+what we're doing on Agentic AI.
+
+NOTE Confidence: 0.8869203329086304
+
+00:23:32.760 --> 00:23:35.885
+So there's a number of projects that I'm working on
+
+NOTE Confidence: 0.8869203329086304
+
+00:23:35.947 --> 00:23:36.559
+right now.
+
+NOTE Confidence: 0.8890290856361389
+
+00:23:36.840 --> 00:23:38.528
+This box is, if you go down to our booth,
+
+NOTE Confidence: 0.8890290856361389
+
+00:23:38.570 --> 00:23:39.599
+you can see it right now.
+
+NOTE Confidence: 0.9236137270927429
+
+00:23:39.720 --> 00:23:42.668
+It is the exact same processor that's in these laptops,
+
+NOTE Confidence: 0.9236137270927429
+
+00:23:42.722 --> 00:23:44.974
+but now it's in a form factor that you can
+
+NOTE Confidence: 0.9236137270927429
+
+00:23:45.028 --> 00:23:47.279
+just plug in and it's completely headless.
+
+NOTE Confidence: 0.9564452767372131
+
+00:23:47.840 --> 00:23:49.990
+And we're building up a couple of use cases that
+
+NOTE Confidence: 0.9564452767372131
+
+00:23:50.035 --> 00:23:51.199
+are going to be always on.
+
+NOTE Confidence: 0.8575364351272583
+
+00:23:51.680 --> 00:23:55.676
+So this is your team of agents that's running non-stop
+
+NOTE Confidence: 0.8575364351272583
+
+00:23:55.750 --> 00:23:57.600
+overnight in the morning.
+
+NOTE Confidence: 0.9018295407295227
+
+00:23:57.640 --> 00:24:00.980
+It's scraping all your GitHub issues, it's scraping all your
+
+NOTE Confidence: 0.9018295407295227
+
+00:24:01.036 --> 00:24:01.760
+social media.
+
+NOTE Confidence: 0.9455655813217163
+
+00:24:02.680 --> 00:24:04.640
+It's looking at the competitive landscape.
+
+NOTE Confidence: 0.9376527667045593
+
+00:24:04.840 --> 00:24:07.079
+And when I sit down in the morning, I open
+
+NOTE Confidence: 0.9376527667045593
+
+00:24:07.133 --> 00:24:08.359
+up my Notion dashboard.
+
+NOTE Confidence: 0.8584988713264465
+
+00:24:08.640 --> 00:24:11.969
+All that information's been scraped for me and presented in
+
+NOTE Confidence: 0.8584988713264465
+
+00:24:12.026 --> 00:24:12.759
+A to do list.
+
+NOTE Confidence: 0.9286597371101379
+
+00:24:13.040 --> 00:24:15.717
+So that's the kind of use case that's coming online
+
+NOTE Confidence: 0.9286597371101379
+
+00:24:15.770 --> 00:24:17.240
+with with these new devices.
+
+NOTE Confidence: 0.934563934803009
+
+00:24:18.800 --> 00:24:20.680
+So yeah, keep an eye open for that.
+
+NOTE Confidence: 0.845576822757721
+
+00:24:21.000 --> 00:24:22.960
+Come June, that'll be a big announcement.
+
+NOTE Confidence: 0.8894831538200378
+
+00:24:23.359 --> 00:24:24.646
+But if you want to check it out, go go
+
+NOTE Confidence: 0.8894831538200378
+
+00:24:24.679 --> 00:24:25.119
+by the booth.
+
+NOTE Confidence: 0.917539119720459
+
+00:24:26.920 --> 00:24:30.749
+And then lastly, I-1 last call to action is to
+
+NOTE Confidence: 0.917539119720459
+
+00:24:30.832 --> 00:24:33.080
+go to the developer portal.
+
+NOTE Confidence: 0.8552064895629883
+
+00:24:33.160 --> 00:24:38.563
+So developer.amd.com, you will see the playbooks, you'll see announcements
+
+NOTE Confidence: 0.8552064895629883
+
+00:24:38.636 --> 00:24:39.439
+about Halo.
+
+NOTE Confidence: 0.8976450562477112
+
+00:24:39.720 --> 00:24:42.431
+You will see a lot of the use cases that
+
+NOTE Confidence: 0.8976450562477112
+
+00:24:42.499 --> 00:24:46.703
+we're building on Lemonade and on the Rock'em Stack workshops,
+
+NOTE Confidence: 0.8976450562477112
+
+00:24:46.770 --> 00:24:50.228
+new events that are coming to here in San Francisco
+
+NOTE Confidence: 0.8976450562477112
+
+00:24:50.296 --> 00:24:51.720
+as well as worldwide.
+
+NOTE Confidence: 0.8807442784309387
+
+00:24:51.720 --> 00:24:56.920
+We just did a, a 4000 developer workshop in Shanghai.
+
+NOTE Confidence: 0.8855205178260803
+
+00:24:57.400 --> 00:24:59.960
+The next one's probably going to be about 10,000 developers.
+
+NOTE Confidence: 0.8726399540901184
+
+00:25:00.080 --> 00:25:02.730
+I mean, this is an area we are heavily investing
+
+NOTE Confidence: 0.8726399540901184
+
+00:25:02.785 --> 00:25:05.159
+in and we want to bring meaningful content.
+
+NOTE Confidence: 0.9216471314430237
+
+00:25:05.160 --> 00:25:08.800
+So hands on workshops, coding workshops, developer workshops.
+
+NOTE Confidence: 0.8373070359230042
+
+00:25:09.800 --> 00:25:12.449
+So this is the place to to, you know, keep
+
+NOTE Confidence: 0.8373070359230042
+
+00:25:12.512 --> 00:25:14.720
+tabs on that, the developer portal.
+
+NOTE Confidence: 0.18932950496673584
+
+00:25:15.160 --> 00:25:15.320
+Yeah.
+
+NOTE Confidence: 0.8976158499717712
+
+00:25:15.320 --> 00:25:17.520
+If you join, you'll get all those notifications.
+
+NOTE Confidence: 0.813846230506897
+
+00:25:17.520 --> 00:25:20.280
+And then there's a bunch of gibbies for cloud credits.
+
+NOTE Confidence: 0.9047284126281738
+
+00:25:20.280 --> 00:25:22.222
+If you want to get on instinct to do some
+
+NOTE Confidence: 0.9047284126281738
+
+00:25:22.269 --> 00:25:23.879
+more serious development up there.
+
+NOTE Confidence: 0.9399772882461548
+
+00:25:23.880 --> 00:25:26.097
+If you get in the developer program, you can get
+
+NOTE Confidence: 0.9399772882461548
+
+00:25:26.143 --> 00:25:27.760
+credits to go do that work as well.
+
+NOTE Confidence: 0.9594888687133789
+
+00:25:28.480 --> 00:25:30.461
+OK, let me land the plane almost out of time,
+
+NOTE Confidence: 0.9594888687133789
+
+00:25:30.505 --> 00:25:32.840
+but I think we've got some wiggle room for questions.
+
+NOTE Confidence: 0.9471258521080017
+
+00:25:33.240 --> 00:25:35.240
+Yes, one minute.
+
+NOTE Confidence: 0.8706403970718384
+
+00:25:35.880 --> 00:25:36.160
+OK.
+
+NOTE Confidence: 0.43443888425827026
+
+00:25:36.280 --> 00:25:37.080
+And yeah.
+
+NOTE Confidence: 0.6930171251296997
+
+00:25:37.080 --> 00:25:37.560
+What do you got?
+
+NOTE Confidence: 0.8703382611274719
+
+00:25:37.560 --> 00:25:40.600
+Anybody want to dig deeper into some of those topics?
+
+NOTE Confidence: 0.5968345999717712
+
+00:25:43.200 --> 00:25:43.400
+Yep.
+
+NOTE Confidence: 0.7491968870162964
+
+00:25:45.360 --> 00:25:45.760
+June.
+
+NOTE Confidence: 0.9030684232711792
+
+00:25:45.920 --> 00:25:46.840
+It'll be announced in June.
+
+NOTE Confidence: 0.8724908232688904
+
+00:25:46.840 --> 00:25:47.440
+They're out now.
+
+NOTE Confidence: 0.8091415762901306
+
+00:25:47.440 --> 00:25:51.427
+You'll see them, but it'll be launched for for ordering
+
+NOTE Confidence: 0.8091415762901306
+
+00:25:51.499 --> 00:25:52.079
+in June.
+
+NOTE Confidence: 0.9469366073608398
+
+00:25:55.480 --> 00:25:57.080
+I don't know.
+
+NOTE Confidence: 0.9072417616844177
+
+00:25:57.560 --> 00:25:58.440
+Yeah, I don't know.
+
+NOTE Confidence: 0.7996478080749512
+
+00:25:58.560 --> 00:26:01.760
+It's, I mean, the hardware's fundamentally the same, right?
+
+NOTE Confidence: 0.8625867366790771
+
+00:26:01.760 --> 00:26:05.360
+So, yeah, seems about right for the high end.
+
+NOTE Confidence: 0.8058661818504333
+
+00:26:06.600 --> 00:26:09.345
+I mean, I think a lot of that's memory these
+
+NOTE Confidence: 0.8058661818504333
+
+00:26:09.407 --> 00:26:09.719
+days.
+
+NOTE Confidence: 0.8829150199890137
+
+00:26:10.280 --> 00:26:12.666
+When I first bought this laptop, it was about a
+
+NOTE Confidence: 0.8829150199890137
+
+00:26:12.716 --> 00:26:14.239
+lot cheaper than it was today.
+
+NOTE Confidence: 0.8825448751449585
+
+00:26:15.000 --> 00:26:17.920
+Memory cost, which is another cost function, right?
+
+NOTE Confidence: 0.8577834367752075
+
+00:26:18.119 --> 00:26:21.087
+Like if we're thinking about running a small model because
+
+NOTE Confidence: 0.8577834367752075
+
+00:26:21.139 --> 00:26:23.492
+it takes less memory, I have the options to do
+
+NOTE Confidence: 0.8577834367752075
+
+00:26:23.544 --> 00:26:23.799
+that.
+
+NOTE Confidence: 0.705371081829071
+
+00:26:25.040 --> 00:26:28.160
+Other questions, OK.
+
+NOTE Confidence: 0.6728727221488953
+
+00:26:30.680 --> 00:26:31.240
+All right, folks.
+
+NOTE Confidence: 0.9569094777107239
+
+00:26:31.640 --> 00:26:32.000
+Thanks.
+
+NOTE Confidence: 0.5645067095756531
+
+00:26:32.080 --> 00:26:32.560
+Easy crowd.
+
+NOTE Confidence: 0.7870832681655884
+
+00:26:32.920 --> 00:26:33.440
+Appreciate it.
+

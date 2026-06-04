@@ -1,0 +1,1547 @@
+WEBVTT
+
+00:00:00.510 --> 00:00:07.170
+[ Music ]
+
+00:00:07.170 --> 00:00:09.540
+POORVI NARANG: Welcome
+to Build 2026.
+
+00:00:09.540 --> 00:00:13.500
+I'm Poorvi Narang, Senior
+Product Manager for Azure Linux.
+
+00:00:13.500 --> 00:00:16.620
+In this session, we'll take
+you through Azure Linux,
+
+00:00:16.620 --> 00:00:20.910
+Microsoft's purpose-built Linux
+distribution for Azure --
+
+00:00:20.910 --> 00:00:25.830
+what it is, where it runs, and
+what's new with Azure Linux 4.0.
+
+00:00:25.830 --> 00:00:27.570
+So here's what we'll cover.
+
+00:00:27.570 --> 00:00:30.240
+We'll start with
+Microsoft's Linux journey,
+
+00:00:30.240 --> 00:00:34.260
+then dive into what Azure
+Linux is and where it runs on:
+
+00:00:34.260 --> 00:00:37.350
+AKS, VMs, and containers.
+
+00:00:37.350 --> 00:00:39.960
+We'll walk you through
+Azure Linux 4.0;
+
+00:00:39.960 --> 00:00:43.560
+introduce Azure Container
+Linux; cover the key benefits
+
+00:00:43.560 --> 00:00:47.040
+around security,
+performance, and resiliency;
+
+00:00:47.040 --> 00:00:50.070
+and close with how to
+get started today.
+
+00:00:50.070 --> 00:00:52.740
+Microsoft's Linux story
+goes back further
+
+00:00:52.740 --> 00:00:54.630
+than most people realize.
+
+00:00:54.630 --> 00:00:58.410
+In 2009, we released
+20,000 lines of code
+
+00:00:58.410 --> 00:01:03.840
+into the Linux kernel, and yes,
+the headline was "Pigs do fly."
+
+00:01:03.840 --> 00:01:08.160
+By 2011, Microsoft was one
+of the top five contributors
+
+00:01:08.160 --> 00:01:11.220
+to the Linux kernel,
+driven by our investment
+
+00:01:11.220 --> 00:01:13.980
+in Hyper-V and virtualization.
+
+00:01:13.980 --> 00:01:16.800
+In 2015, we released VS Code
+
+00:01:16.800 --> 00:01:19.590
+and co-founded the
+Node.js Foundation.
+
+00:01:19.590 --> 00:01:22.560
+By 2018, we'd acquired GitHub,
+
+00:01:22.560 --> 00:01:25.560
+VS Code was the number
+one developer tool,
+
+00:01:25.560 --> 00:01:29.400
+and Azure was trending
+towards 50% Linux workloads.
+
+00:01:29.400 --> 00:01:34.920
+Then in 2019, we shipped
+the Linux kernel for WSL,
+
+00:01:34.920 --> 00:01:38.700
+and we quietly released an
+internal project called
+
+00:01:38.700 --> 00:01:44.160
+CBL-Mariner on GitHub that would
+eventually become Azure Linux.
+
+00:01:44.160 --> 00:01:48.090
+In 2023, we made Azure
+Linux generally available
+
+00:01:48.090 --> 00:01:52.020
+as a container host on
+AKS and released.NET
+
+00:01:52.020 --> 00:01:55.770
+and Java container
+images built on it.
+
+00:01:55.770 --> 00:01:57.300
+And today at Build,
+
+00:01:57.300 --> 00:02:02.550
+we're announcing Azure Linux
+4.0 preview for VMs and VMSS,
+
+00:02:02.550 --> 00:02:07.680
+plus Azure Container Linux
+as an immutable OS on AKS.
+
+00:02:07.680 --> 00:02:09.990
+This is our next chapter.
+
+00:02:09.990 --> 00:02:12.720
+So why build our own
+Linux distribution?
+
+00:02:12.720 --> 00:02:13.890
+Four reasons.
+
+00:02:13.890 --> 00:02:15.600
+First, security.
+
+00:02:15.600 --> 00:02:18.180
+We own the end-to-end
+supply chain.
+
+00:02:18.180 --> 00:02:23.250
+Every package that is built from
+source and signed by Microsoft.
+
+00:02:23.250 --> 00:02:26.520
+You don't have to wonder where
+your binaries came from.
+
+00:02:26.520 --> 00:02:28.500
+Second, performance.
+
+00:02:28.500 --> 00:02:31.410
+Azure Linux is a highly
+performant image,
+
+00:02:31.410 --> 00:02:34.410
+optimized specifically
+for Azure workloads
+
+00:02:34.410 --> 00:02:36.660
+across a variety
+of environments.
+
+00:02:36.660 --> 00:02:38.220
+Third, quality.
+
+00:02:38.220 --> 00:02:40.170
+We maintain a high-quality bar
+
+00:02:40.170 --> 00:02:43.260
+to minimize outages
+and disruptions.
+
+00:02:43.260 --> 00:02:46.770
+If tests fail, the
+release does not ship.
+
+00:02:46.770 --> 00:02:49.410
+And lastly, support
+and compliance.
+
+00:02:49.410 --> 00:02:51.360
+One vendor, one support channel,
+
+00:02:51.360 --> 00:02:54.030
+centralized support,
+and compliance.
+
+00:02:54.030 --> 00:02:57.840
+This is a distribution
+for Azure by Azure.
+
+00:02:57.840 --> 00:02:59.490
+And this isn't theoretical.
+
+00:02:59.490 --> 00:03:05.100
+Over 80% of Microsoft's Linux
+usage runs on Azure Linux today:
+
+00:03:05.100 --> 00:03:10.590
+Office, LinkedIn, Xbox,
+Defender, Cloud Shell, AKS,
+
+00:03:10.590 --> 00:03:14.460
+App Services, and core
+Azure infrastructure.
+
+00:03:14.460 --> 00:03:18.180
+Using Azure Linux allows these
+teams to spend less time
+
+00:03:18.180 --> 00:03:21.570
+on operational tasks
+like meeting compliance,
+
+00:03:21.570 --> 00:03:23.820
+managing OS upgrades,
+and scanning
+
+00:03:23.820 --> 00:03:27.330
+and patching critical
+security vulnerabilities.
+
+00:03:27.330 --> 00:03:30.900
+When you adopt Azure Linux,
+you're running the same OS
+
+00:03:30.900 --> 00:03:34.560
+that powers Microsoft's most
+critical infrastructure.
+
+00:03:34.560 --> 00:03:36.930
+We trust it, and so can you.
+
+00:03:36.930 --> 00:03:39.330
+Now, let me walk you
+through the architecture.
+
+00:03:39.330 --> 00:03:42.030
+Azure Linux is a
+three-layer stack.
+
+00:03:42.030 --> 00:03:45.450
+At the foundation is
+the Azure Linux Kernel,
+
+00:03:45.450 --> 00:03:49.500
+an upstream LTS Linux kernel
+optimized for Hyper-V
+
+00:03:49.500 --> 00:03:54.270
+across cloud and edge, with
+Azure-specific silicon drivers
+
+00:03:54.270 --> 00:03:55.920
+for better performance.
+
+00:03:55.920 --> 00:03:57.840
+It's hardened with
+secure defaults
+
+00:03:57.840 --> 00:03:59.790
+and supports multiple
+architectures
+
+00:03:59.790 --> 00:04:03.390
+like x86_64 and ARM64.
+
+00:04:03.390 --> 00:04:07.590
+On top of that is the Azure
+Linux Core RPM packages,
+
+00:04:07.590 --> 00:04:11.190
+but with a deliberately
+small default footprint.
+
+00:04:11.190 --> 00:04:14.520
+You get what you need,
+nothing that you don't.
+
+00:04:14.520 --> 00:04:17.760
+And wrapping everything is the
+around-the-clock protection
+
+00:04:17.760 --> 00:04:19.500
+from Microsoft.
+
+00:04:19.500 --> 00:04:21.630
+Every package is
+built from scratch
+
+00:04:21.630 --> 00:04:24.030
+to ensure supply chain security.
+
+00:04:24.030 --> 00:04:26.910
+Critical CVE patches
+are available quickly
+
+00:04:26.910 --> 00:04:29.190
+for commercially
+supported images.
+
+00:04:29.190 --> 00:04:32.610
+We do monthly servicing
+plus on-demand updates
+
+00:04:32.610 --> 00:04:34.350
+for critical issues.
+
+00:04:34.350 --> 00:04:37.530
+Azure Linux runs
+everywhere you need it.
+
+00:04:37.530 --> 00:04:41.760
+On AKS, it's been generally
+available since 2023,
+
+00:04:41.760 --> 00:04:44.850
+running millions of cores in
+mission-critical workloads
+
+00:04:44.850 --> 00:04:47.190
+across thousands of customers.
+
+00:04:47.190 --> 00:04:50.340
+And today, we're announcing
+Azure Container Linux,
+
+00:04:50.340 --> 00:04:55.130
+now generally available as an
+immutable OS for your AKS nodes.
+
+00:04:55.130 --> 00:04:58.970
+On virtual machines, Azure
+Linux is entering preview.
+
+00:04:58.970 --> 00:05:02.090
+It's the same distribution
+but more general purpose,
+
+00:05:02.090 --> 00:05:05.990
+supporting any VM
+or VMSS deployment.
+
+00:05:05.990 --> 00:05:10.130
+And Azure Linux container
+images is entering preview,
+
+00:05:10.130 --> 00:05:13.130
+pre-installed with all the
+tooling you need to work
+
+00:05:13.130 --> 00:05:14.960
+with Azure, ready to pull
+
+00:05:14.960 --> 00:05:18.030
+from the Microsoft
+Container Registry.
+
+00:05:18.030 --> 00:05:20.580
+Now let's talk VMs specifically.
+
+00:05:20.580 --> 00:05:24.300
+Azure Linux supports any Linux
+workload you want to run.
+
+00:05:24.300 --> 00:05:27.680
+It's a full general-purpose
+distribution.
+
+00:05:27.680 --> 00:05:32.540
+The packages are derived from
+Fedora and optimized for Azure.
+
+00:05:32.540 --> 00:05:35.360
+Each package undergoes
+rigorous performance
+
+00:05:35.360 --> 00:05:38.220
+and quality testing
+before release.
+
+00:05:38.220 --> 00:05:41.190
+On day one of general
+availability, you get support
+
+00:05:41.190 --> 00:05:44.280
+for Microsoft extensions
+and partner products,
+
+00:05:44.280 --> 00:05:48.030
+so your existing tooling
+works out of the box.
+
+00:05:48.030 --> 00:05:51.420
+For security and compliance,
+you get SLAs for high
+
+00:05:51.420 --> 00:05:54.150
+and critical CVEs,
+backed by thousands
+
+00:05:54.150 --> 00:05:59.670
+of security researchers and
+MSRC, plus FIPS validation,
+
+00:05:59.670 --> 00:06:03.480
+CIS Level 1 and Level 2
+benchmarks will be available
+
+00:06:03.480 --> 00:06:06.750
+at GA, along with
+Secure Boot support.
+
+00:06:06.750 --> 00:06:10.680
+Now, let me introduce
+Azure Linux 4.0.
+
+00:06:10.680 --> 00:06:14.790
+It's built on a robust
+open-source foundation, Fedora,
+
+00:06:14.790 --> 00:06:17.760
+and enhanced with
+Azure-specific innovations
+
+00:06:17.760 --> 00:06:20.550
+to deliver a powerful, secure,
+
+00:06:20.550 --> 00:06:23.040
+and developer-friendly
+environment.
+
+00:06:23.040 --> 00:06:25.020
+Robust upstream support.
+
+00:06:25.020 --> 00:06:27.600
+We leverage Fedora's
+active community
+
+00:06:27.600 --> 00:06:30.870
+for rapid innovation
+and development.
+
+00:06:30.870 --> 00:06:33.090
+Declarative deviations.
+
+00:06:33.090 --> 00:06:36.540
+Any changes from upstream
+are clearly documented,
+
+00:06:36.540 --> 00:06:39.990
+making auditing and
+compliance straightforward.
+
+00:06:39.990 --> 00:06:42.330
+Simplified ISV experience.
+
+00:06:42.330 --> 00:06:45.750
+If your partners already
+support the RHEL ecosystem,
+
+00:06:45.750 --> 00:06:49.350
+Azure Linux will feel
+familiar and easy to adopt.
+
+00:06:49.350 --> 00:06:51.390
+Enhanced security.
+
+00:06:51.390 --> 00:06:55.500
+Azure CVE SLAs are inherited,
+and we're compliance-ready
+
+00:06:55.500 --> 00:07:00.210
+out of the box with
+FIPS/FedRAMP, CIS benchmarking,
+
+00:07:00.210 --> 00:07:04.320
+Secure Boot, and SELinux
+enforced by default.
+
+00:07:04.320 --> 00:07:06.300
+Operational excellence.
+
+00:07:06.300 --> 00:07:07.980
+A rolling release model,
+
+00:07:07.980 --> 00:07:11.040
+LTS plus hardware
+enablement kernels,
+
+00:07:11.040 --> 00:07:15.210
+and single-vendor support
+for streamlined management.
+
+00:07:15.210 --> 00:07:19.500
+Now, let me show you Azure
+Linux 4.0 in action.
+
+00:07:19.500 --> 00:07:24.570
+I've already SSH'd into an Azure
+Linux 4.0 VM running in Azure.
+
+00:07:24.570 --> 00:07:28.050
+First, let's confirm
+what we're running.
+
+00:07:28.050 --> 00:07:29.790
+This is Azure Linux 4.0,
+
+00:07:29.790 --> 00:07:33.630
+built on a Fedora foundation,
+optimized for Azure.
+
+00:07:33.630 --> 00:07:38.100
+We're running the 6.18 kernel,
+the latest upstream LTS kernel,
+
+00:07:38.100 --> 00:07:41.310
+hardened and tuned
+for Azure workloads.
+
+00:07:41.310 --> 00:07:44.820
+One of the things that
+makes Azure Linux 4.0 stand
+
+00:07:44.820 --> 00:07:48.390
+out is SELinux is
+enforcing by default.
+
+00:07:48.390 --> 00:07:50.700
+No extra configuration needed.
+
+00:07:50.700 --> 00:07:54.390
+You get mandatory access
+control out of the box.
+
+00:07:54.390 --> 00:07:58.500
+And look at how lean this image
+is: a small set of packages.
+
+00:07:58.500 --> 00:08:01.890
+A lightweight footprint means
+fewer packages to patch,
+
+00:08:01.890 --> 00:08:06.000
+fewer CVEs to deal with, and
+a smaller attack surface.
+
+00:08:06.000 --> 00:08:10.410
+For package management, Azure
+Linux 4.0 ships with DNF5.
+
+00:08:10.410 --> 00:08:12.600
+Fast, modern, and familiar
+
+00:08:12.600 --> 00:08:15.150
+if you've worked
+with Fedora or RHEL.
+
+00:08:15.150 --> 00:08:19.170
+Installing a package is
+exactly what you'd expect.
+
+00:08:19.170 --> 00:08:21.150
+Finally, the firewall.
+
+00:08:21.150 --> 00:08:24.150
+Firewalld is active and
+locked down by default.
+
+00:08:24.150 --> 00:08:27.300
+Only explicitly allowed
+services are open.
+
+00:08:27.300 --> 00:08:32.640
+If I want to open a custom port
+like 8080, I add it explicitly.
+
+00:08:32.640 --> 00:08:35.700
+Nothing is open
+unless you say so.
+
+00:08:35.700 --> 00:08:36.570
+That's the kind
+
+00:08:36.570 --> 00:08:40.920
+of secure-by-default posture we
+want for production workloads.
+
+00:08:40.920 --> 00:08:42.870
+So that's Azure Linux 4.0.
+
+00:08:42.870 --> 00:08:46.680
+Secure by default with
+SELinux and firewalld,
+
+00:08:46.680 --> 00:08:49.380
+lightweight with a
+minimal package set,
+
+00:08:49.380 --> 00:08:53.510
+and built on a modern
+kernel optimized for Azure.
+
+00:08:53.510 --> 00:08:56.000
+Azure Linux 4.0 ships
+with native support
+
+00:08:56.000 --> 00:08:58.820
+for Azure services,
+development tools,
+
+00:08:58.820 --> 00:09:02.580
+and security features your
+workloads already depend on.
+
+00:09:02.580 --> 00:09:06.570
+For security and observability,
+you get Defender for Cloud
+
+00:09:06.570 --> 00:09:09.990
+for robust security
+management, and Azure Monitor
+
+00:09:09.990 --> 00:09:13.590
+for comprehensive health
+and performance insights.
+
+00:09:13.590 --> 00:09:16.680
+For custom image management,
+Azure Image Builder
+
+00:09:16.680 --> 00:09:20.070
+and Image Customizer let
+you build, customize,
+
+00:09:20.070 --> 00:09:24.840
+and deploy your own Azure Linux
+images tailored to your needs.
+
+00:09:24.840 --> 00:09:27.870
+And for the developer
+ecosystem, there's full support
+
+00:09:27.870 --> 00:09:31.470
+for popular runtimes
+like.NET and OpenJDK,
+
+00:09:31.470 --> 00:09:34.760
+along with seamless
+control through Azure CLI.
+
+00:09:34.760 --> 00:09:38.300
+Since general
+availability in May 2023,
+
+00:09:38.300 --> 00:09:41.300
+thousands of customers
+have adopted Azure Linux
+
+00:09:41.300 --> 00:09:44.180
+across financial
+services, healthcare,
+
+00:09:44.180 --> 00:09:47.150
+video streaming,
+and data analytics.
+
+00:09:47.150 --> 00:09:50.360
+Customers running streaming
+services have reported strong
+
+00:09:50.360 --> 00:09:54.680
+reliability due to fewer
+interruptions on Azure Linux.
+
+00:09:54.680 --> 00:09:57.050
+Large retailers have chosen it
+
+00:09:57.050 --> 00:10:00.510
+for best-in-class
+performance on Azure.
+
+00:10:00.510 --> 00:10:03.540
+And customers in regulated
+industries like healthcare
+
+00:10:03.540 --> 00:10:07.800
+and finance who need strong
+security guarantees have adopted
+
+00:10:07.800 --> 00:10:11.310
+Azure Linux for its
+reduced attack surface.
+
+00:10:11.310 --> 00:10:15.810
+The consistent feedback: Azure
+Linux delivers on reliability,
+
+00:10:15.810 --> 00:10:18.630
+performance, and security.
+
+00:10:18.630 --> 00:10:23.280
+Now my colleague, Flora Taagen,
+also on the Azure Linux team,
+
+00:10:23.280 --> 00:10:27.030
+will walk you through how
+Azure Linux is used in AKS
+
+00:10:27.030 --> 00:10:31.620
+and why it matters for
+your Kubernetes workloads.
+
+00:10:31.620 --> 00:10:33.480
+FLORA TAAGEN: Thanks, Poorvi.
+
+00:10:33.480 --> 00:10:37.140
+On the left, you can see a
+typical AKS node running a
+
+00:10:37.140 --> 00:10:39.810
+purpose-built version
+of Azure Linux,
+
+00:10:39.810 --> 00:10:42.750
+including only the
+essential components needed
+
+00:10:42.750 --> 00:10:45.810
+to run Kubernetes
+workloads efficiently.
+
+00:10:45.810 --> 00:10:49.680
+Azure Linux for AKS is a
+lightweight operating system.
+
+00:10:49.680 --> 00:10:53.490
+Packages are deliberately
+selected and rigorously tested
+
+00:10:53.490 --> 00:10:57.180
+on AKS infrastructure, so
+you get a minimal footprint
+
+00:10:57.180 --> 00:10:59.670
+with high confidence
+in stability.
+
+00:10:59.670 --> 00:11:03.180
+Azure Linux on AKS is available
+wherever you need it,
+
+00:11:03.180 --> 00:11:06.870
+in the cloud with AKS or at
+the edge through AKS enabled
+
+00:11:06.870 --> 00:11:09.960
+by Azure Arc, giving you
+a consistent platform
+
+00:11:09.960 --> 00:11:11.910
+across environments.
+
+00:11:11.910 --> 00:11:13.860
+And finally, security is built
+
+00:11:13.860 --> 00:11:17.130
+into Azure Linux
+on AKS by design.
+
+00:11:17.130 --> 00:11:21.540
+Azure Linux provides strong
+compute-level isolation,
+
+00:11:21.540 --> 00:11:25.500
+and with options like an
+immutable host configuration,
+
+00:11:25.500 --> 00:11:26.940
+it helps reduce drift
+
+00:11:26.940 --> 00:11:29.700
+and minimize attack
+surface over time.
+
+00:11:29.700 --> 00:11:33.720
+Overall, Azure Linux with
+AKS gives you a minimal,
+
+00:11:33.720 --> 00:11:36.480
+well-tested, and
+secure foundation
+
+00:11:36.480 --> 00:11:39.990
+for running containerized
+workloads at scale.
+
+00:11:39.990 --> 00:11:41.610
+At Build, we're excited
+
+00:11:41.610 --> 00:11:43.920
+to announce the
+general availability
+
+00:11:43.920 --> 00:11:47.190
+of Azure Container Linux on AKS.
+
+00:11:47.190 --> 00:11:49.890
+Azure Container Linux, or ACL,
+
+00:11:49.890 --> 00:11:54.060
+brings together Flatcar's
+proven, vendor-neutral,
+
+00:11:54.060 --> 00:11:57.570
+and immutable design with
+the hardened security
+
+00:11:57.570 --> 00:12:01.020
+and trusted supply
+chain of Azure Linux.
+
+00:12:01.020 --> 00:12:05.820
+The result is a secure, scalable
+container host, purpose-built
+
+00:12:05.820 --> 00:12:08.940
+for running modern
+workloads in production.
+
+00:12:08.940 --> 00:12:11.850
+ACL is based on
+Flatcar's architecture
+
+00:12:11.850 --> 00:12:13.440
+and delivers a minimal,
+
+00:12:13.440 --> 00:12:17.820
+immutable operating system
+optimized for containers.
+
+00:12:17.820 --> 00:12:21.750
+While it isn't binary compatible
+with Flatcar, since it's built
+
+00:12:21.750 --> 00:12:25.200
+on Azure Linux rather
+than Gen2 sources,
+
+00:12:25.200 --> 00:12:27.810
+it provides the same
+core functionality
+
+00:12:27.810 --> 00:12:32.190
+and operational model that
+customers rely on today.
+
+00:12:32.190 --> 00:12:36.120
+Where ACL really stands
+out is in its built-in,
+
+00:12:36.120 --> 00:12:39.000
+out-of-the-box
+security guarantees.
+
+00:12:39.000 --> 00:12:43.140
+First, immutability is
+enforced at the kernel level.
+
+00:12:43.140 --> 00:12:46.920
+Critical system components like
+the usr directory are locked
+
+00:12:46.920 --> 00:12:50.490
+down to prevent drift and
+unauthorized changes.
+
+00:12:50.490 --> 00:12:55.140
+Second, ACL uses a minimal,
+purpose-built package set,
+
+00:12:55.140 --> 00:12:57.240
+reducing the overall
+attack surface
+
+00:12:57.240 --> 00:12:59.910
+and lowering exposure to CVEs.
+
+00:12:59.910 --> 00:13:03.000
+Third, it includes strong
+runtime protection
+
+00:13:03.000 --> 00:13:07.260
+through SELinux, enforcing
+strict least-privilege access
+
+00:13:07.260 --> 00:13:09.780
+controls across the system.
+
+00:13:09.780 --> 00:13:12.540
+On top of that, ACL
+supports Trusted Launch
+
+00:13:12.540 --> 00:13:15.810
+with a unified kernel image,
+ensuring the integrity
+
+00:13:15.810 --> 00:13:19.650
+of the system from the
+very first stage of boot.
+
+00:13:19.650 --> 00:13:21.660
+And finally, ACL benefits
+
+00:13:21.660 --> 00:13:25.770
+from the same secure end-to-end
+Microsoft supply chain
+
+00:13:25.770 --> 00:13:30.780
+as Azure Linux, using signed
+RPMs that you can trust.
+
+00:13:30.780 --> 00:13:34.140
+Together, this gives customers
+a modern, immutable,
+
+00:13:34.140 --> 00:13:36.090
+and security-first foundation
+
+00:13:36.090 --> 00:13:40.290
+for running container
+workloads on AKS at scale.
+
+00:13:40.290 --> 00:13:42.810
+This slide is here to
+help you differentiate
+
+00:13:42.810 --> 00:13:45.570
+between the two Azure
+Linux-based container host
+
+00:13:45.570 --> 00:13:48.030
+options on AKS.
+
+00:13:48.030 --> 00:13:50.310
+On the left is Azure Linux.
+
+00:13:50.310 --> 00:13:52.320
+This is the more
+general-purpose,
+
+00:13:52.320 --> 00:13:55.020
+familiar Linux node experience.
+
+00:13:55.020 --> 00:13:59.070
+It uses the standard Kubernetes
+host stack, and it's a great fit
+
+00:13:59.070 --> 00:14:01.920
+for customers doing
+lift-and-shift migrations
+
+00:14:01.920 --> 00:14:06.000
+or who want a flexible, familiar
+host environment while still
+
+00:14:06.000 --> 00:14:08.370
+benefiting from Microsoft's
+security posture
+
+00:14:08.370 --> 00:14:10.800
+for AKS workloads.
+
+00:14:10.800 --> 00:14:13.410
+On the right is Azure
+Container Linux.
+
+00:14:13.410 --> 00:14:17.550
+This is the more opinionated,
+container-optimized option.
+
+00:14:17.550 --> 00:14:21.030
+It builds on Azure Linux
+but adds stronger security
+
+00:14:21.030 --> 00:14:23.700
+and integrity
+guarantees by default.
+
+00:14:23.700 --> 00:14:27.960
+For example, a read-only
+usr backed by dm-verity,
+
+00:14:27.960 --> 00:14:31.440
+SELinux enabled, plus
+an A/B update agent
+
+00:14:31.440 --> 00:14:33.480
+and other hardening features.
+
+00:14:33.480 --> 00:14:37.080
+It's designed for cloud-native
+customers who want a minimal,
+
+00:14:37.080 --> 00:14:40.530
+immutable host model similar
+to what they may have seen
+
+00:14:40.530 --> 00:14:44.910
+with other container-optimized
+OSs in the ecosystem.
+
+00:14:44.910 --> 00:14:46.560
+Now the practical part.
+
+00:14:46.560 --> 00:14:49.140
+These options are not
+mutually exclusive.
+
+00:14:49.140 --> 00:14:53.370
+In AKS, you can run an Azure
+Linux node pool alongside an
+
+00:14:53.370 --> 00:14:56.580
+Azure Container Linux node
+pool in the same cluster
+
+00:14:56.580 --> 00:15:00.540
+and schedule workloads to the
+right host based on your needs.
+
+00:15:00.540 --> 00:15:03.000
+So the takeaway is,
+choose Azure Linux
+
+00:15:03.000 --> 00:15:06.690
+when you want the familiar,
+flexible host experience.
+
+00:15:06.690 --> 00:15:10.110
+Choose Azure Container Linux
+when you want the most hardened,
+
+00:15:10.110 --> 00:15:12.870
+minimal, immutable
+host by default.
+
+00:15:12.870 --> 00:15:14.340
+And if you have
+mixed requirements,
+
+00:15:14.340 --> 00:15:17.250
+you can use both
+side-by-side in one cluster
+
+00:15:17.250 --> 00:15:21.000
+by splitting workloads
+across node pools.
+
+00:15:21.000 --> 00:15:24.870
+Now let's demo Azure
+Container Linux in action.
+
+00:15:24.870 --> 00:15:28.890
+First thing we'll do is create
+an AKS cluster running Azure
+
+00:15:28.890 --> 00:15:30.300
+Container Linux.
+
+00:15:30.300 --> 00:15:31.440
+The only thing you need
+
+00:15:31.440 --> 00:15:34.860
+to specify is os-sku
+AzureContainerLinux
+
+00:15:34.860 --> 00:15:37.260
+in the az aks create command.
+
+00:15:37.260 --> 00:15:40.110
+It's really that
+simple to get started.
+
+00:15:40.110 --> 00:15:43.140
+Now, let me grab the credentials
+so that I can interact
+
+00:15:43.140 --> 00:15:47.010
+with the cluster, and let's
+take a look at our nodes.
+
+00:15:47.010 --> 00:15:50.040
+You can see the node is
+running Azure Container Linux,
+
+00:15:50.040 --> 00:15:53.100
+and the OS image
+column confirms it.
+
+00:15:53.100 --> 00:15:56.640
+Let's now take a look at
+what's running on this node.
+
+00:15:56.640 --> 00:15:58.830
+First, the OS identity.
+
+00:15:58.830 --> 00:16:01.590
+You can see this is
+Azure Container Linux,
+
+00:16:01.590 --> 00:16:04.260
+built on the Azure
+Linux package pipeline
+
+00:16:04.260 --> 00:16:07.080
+with the same immutable
+OS architecture
+
+00:16:07.080 --> 00:16:09.600
+as Flatcar Container Linux.
+
+00:16:09.600 --> 00:16:10.830
+Here's the kernel.
+
+00:16:10.830 --> 00:16:14.910
+Azure Container Linux runs
+the Azure Linux Kernel.
+
+00:16:14.910 --> 00:16:18.540
+And bootctl shows us
+the secure boot chain.
+
+00:16:18.540 --> 00:16:23.040
+You can see Secure Boot is
+enabled with vTPM attestation,
+
+00:16:23.040 --> 00:16:27.930
+and the OS uses a unified kernel
+image, meaning the kernel,
+
+00:16:27.930 --> 00:16:32.820
+ramfs, and the command line are
+all signed as a single bundle.
+
+00:16:32.820 --> 00:16:37.200
+Now, let's look at how ACL
+protects the system partition.
+
+00:16:37.200 --> 00:16:40.200
+Dm-verity is active on usr.
+
+00:16:40.200 --> 00:16:44.550
+This cryptographically verifies
+every block read from disk.
+
+00:16:44.550 --> 00:16:47.310
+And if we try to write
+to usr directly,
+
+00:16:47.310 --> 00:16:50.010
+even as root, it's denied.
+
+00:16:50.010 --> 00:16:54.420
+The file system is read-only
+enforced at the block layer.
+
+00:16:54.420 --> 00:16:58.650
+ACL also ships with
+SELinux in enforcing mode.
+
+00:16:58.650 --> 00:17:01.920
+So in summary, ACL gives
+you defense-in-depth
+
+00:17:01.920 --> 00:17:03.330
+at the node level.
+
+00:17:03.330 --> 00:17:07.050
+An immutable OS image
+verified by dm-verity
+
+00:17:07.050 --> 00:17:10.440
+and mandatory access
+controls with SELinux.
+
+00:17:10.440 --> 00:17:14.100
+Even if an attacker gets root
+access inside a container,
+
+00:17:14.100 --> 00:17:16.110
+the host stays protected.
+
+00:17:16.110 --> 00:17:18.600
+When it comes to Azure,
+customers depend
+
+00:17:18.600 --> 00:17:22.860
+on a diverse ecosystem of
+Azure-native, third-party,
+
+00:17:22.860 --> 00:17:26.760
+and open-source tooling
+across DevOps, observability,
+
+00:17:26.760 --> 00:17:29.180
+networking, and security.
+
+00:17:29.180 --> 00:17:32.870
+On AKS, Azure Linux enables
+seamless integration
+
+00:17:32.870 --> 00:17:34.610
+with the broader ecosystem,
+
+00:17:34.610 --> 00:17:37.220
+supporting leading
+partner solutions called
+
+00:17:37.220 --> 00:17:39.920
+out on this slide, with
+full compatibility
+
+00:17:39.920 --> 00:17:41.850
+with Azure extensions.
+
+00:17:41.850 --> 00:17:44.250
+Azure Linux 4.0 for VMs
+
+00:17:44.250 --> 00:17:48.000
+and Azure Container Linux
+deliver strong day-one partner
+
+00:17:48.000 --> 00:17:51.840
+support by supporting the
+following subset of partners,
+
+00:17:51.840 --> 00:17:54.690
+accelerating readiness for
+your production workloads
+
+00:17:54.690 --> 00:17:56.250
+from the get-go.
+
+00:17:56.250 --> 00:18:00.660
+Azure Linux is deeply integrated
+with the open-source ecosystem,
+
+00:18:00.660 --> 00:18:05.070
+building on and contributing to
+the upstream kernel and Fedora,
+
+00:18:05.070 --> 00:18:07.170
+as well as key
+community projects
+
+00:18:07.170 --> 00:18:11.460
+such as Kata Containers,
+containerd, and systemd.
+
+00:18:11.460 --> 00:18:14.720
+So why choose Azure
+Linux as your OS?
+
+00:18:14.720 --> 00:18:18.140
+Let's explore three core
+benefits: resiliency,
+
+00:18:18.140 --> 00:18:20.690
+security, and performance.
+
+00:18:20.690 --> 00:18:25.100
+Many customers managing
+large-scale Azure workloads are
+
+00:18:25.100 --> 00:18:29.580
+concerned about outages during
+OS or application upgrades.
+
+00:18:29.580 --> 00:18:31.740
+In traditional distributions,
+
+00:18:31.740 --> 00:18:36.210
+upgrades can introduce
+frequent reboots, downtime,
+
+00:18:36.210 --> 00:18:39.230
+or regressions that
+disrupt services.
+
+00:18:39.230 --> 00:18:41.570
+Azure Linux mitigates this risk
+
+00:18:41.570 --> 00:18:44.360
+through rigorous
+end-to-end validation
+
+00:18:44.360 --> 00:18:48.150
+across Azure scenarios
+prior to release.
+
+00:18:48.150 --> 00:18:50.250
+Any failure blocks the release,
+
+00:18:50.250 --> 00:18:53.190
+helping prevent
+customer-impacting issues
+
+00:18:53.190 --> 00:18:55.470
+in production environments.
+
+00:18:55.470 --> 00:18:57.510
+Core components
+such as the kernel
+
+00:18:57.510 --> 00:19:01.740
+and critical system packages
+are maintained on stable,
+
+00:19:01.740 --> 00:19:06.840
+long-term support versions with
+security patches backported.
+
+00:19:06.840 --> 00:19:09.810
+Changes are introduced
+in a controlled manner
+
+00:19:09.810 --> 00:19:14.940
+at release boundaries, avoiding
+disruptive mid-cycle updates.
+
+00:19:14.940 --> 00:19:18.510
+Performance issues can impact
+line-of-business apps,
+
+00:19:18.510 --> 00:19:22.770
+and customers often blame
+the OS for regressions.
+
+00:19:22.770 --> 00:19:26.880
+Azure Linux solves this with
+a lightweight image optimized
+
+00:19:26.880 --> 00:19:29.580
+for Azure, resulting
+in faster pod
+
+00:19:29.580 --> 00:19:32.400
+and node startup times on AKS.
+
+00:19:32.400 --> 00:19:36.900
+For example, MediaKind reported
+faster node setup times,
+
+00:19:36.900 --> 00:19:39.480
+and PlayFab saw quicker scaling
+
+00:19:39.480 --> 00:19:43.080
+to handle player
+influx on Azure Linux.
+
+00:19:43.080 --> 00:19:48.150
+We regularly run performance
+tests alongside quality checks.
+
+00:19:48.150 --> 00:19:52.230
+If regressions appear, we
+block the Azure Linux release.
+
+00:19:52.230 --> 00:19:56.340
+Data for cluster create and
+cluster upgrade operations show
+
+00:19:56.340 --> 00:19:59.520
+that Azure Linux is
+consistently on par
+
+00:19:59.520 --> 00:20:02.280
+or faster than other distros.
+
+00:20:02.280 --> 00:20:06.060
+Security challenges
+include CVE overload
+
+00:20:06.060 --> 00:20:07.920
+and supply chain threats.
+
+00:20:07.920 --> 00:20:09.750
+Azure Linux addresses this
+
+00:20:09.750 --> 00:20:12.930
+by reducing the overall
+attack surface.
+
+00:20:12.930 --> 00:20:15.300
+Because we ship fewer packages,
+
+00:20:15.300 --> 00:20:18.810
+there are simply fewer
+CVEs to begin with.
+
+00:20:18.810 --> 00:20:23.310
+On top of that, we enforce
+strict remediation SLAs,
+
+00:20:23.310 --> 00:20:27.810
+with critical CVEs
+addressed within five days.
+
+00:20:27.810 --> 00:20:30.870
+At the kernel level,
+all modules are signed
+
+00:20:30.870 --> 00:20:33.570
+with Microsoft's trusted
+key, which ensures
+
+00:20:33.570 --> 00:20:37.770
+that only authorized code
+can run in kernel space.
+
+00:20:37.770 --> 00:20:41.040
+And from a supply chain
+perspective, everything is built
+
+00:20:41.040 --> 00:20:44.850
+from source on Microsoft-managed
+infrastructure,
+
+00:20:44.850 --> 00:20:48.060
+giving you full control
+and transparency.
+
+00:20:48.060 --> 00:20:52.710
+Azure Linux also enables strong
+out-of-the-box compliance
+
+00:20:52.710 --> 00:20:56.550
+with FIPS images, CIS
+benchmark alignment,
+
+00:20:56.550 --> 00:21:01.080
+and Secure Boot support
+included at no additional cost.
+
+00:21:01.080 --> 00:21:03.570
+And here's the part I'm
+most excited about:
+
+00:21:03.570 --> 00:21:07.590
+how you can get involved and
+started on Azure Linux today.
+
+00:21:07.590 --> 00:21:09.930
+Everything is open source.
+
+00:21:09.930 --> 00:21:14.310
+Our GitHub is where you can
+file issues and submit PRs.
+
+00:21:14.310 --> 00:21:17.580
+We actively review
+community contributions,
+
+00:21:17.580 --> 00:21:19.230
+and we want more of them.
+
+00:21:19.230 --> 00:21:21.690
+You can get started with
+our enterprise offerings
+
+00:21:21.690 --> 00:21:22.740
+by following the links
+
+00:21:22.740 --> 00:21:25.740
+to our documentation
+included on this slide.
+
+00:21:25.740 --> 00:21:28.710
+And we run a bimonthly
+community call.
+
+00:21:28.710 --> 00:21:32.760
+In this forum, we share roadmap
+updates, demo new features,
+
+00:21:32.760 --> 00:21:34.710
+and take feedback live.
+
+00:21:34.710 --> 00:21:36.480
+This is a community effort,
+
+00:21:36.480 --> 00:21:39.720
+and your feedback directly
+shapes what we build.
+
+00:21:39.720 --> 00:21:43.770
+So that's Azure Linux
+end-to-end, modern, secure,
+
+00:21:43.770 --> 00:21:45.950
+and purpose-built for Azure.
+
+00:21:45.950 --> 00:21:49.160
+From Azure Linux 4.0 to
+Azure Container Linux,
+
+00:21:49.160 --> 00:21:51.710
+we're bringing a
+unified foundation
+
+00:21:51.710 --> 00:21:55.200
+across VMs, AKS, and containers.
+
+00:21:55.200 --> 00:21:57.390
+We're excited about
+where this is going,
+
+00:21:57.390 --> 00:21:59.460
+and we'd love your thoughts.
+
+00:21:59.460 --> 00:22:02.040
+Questions, feedback,
+please reach out.
+
+00:22:02.040 --> 00:22:04.140
+We look forward to
+hearing from you.
+
+00:22:04.140 --> 00:22:06.520
+Thanks for joining us today.
+
+00:22:06.520 --> 00:22:12.410
+[ Music ]

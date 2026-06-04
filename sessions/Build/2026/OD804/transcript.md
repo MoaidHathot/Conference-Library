@@ -1,0 +1,864 @@
+**[00:00:02]** CHET HUSK: Hey, folks.
+**[00:00:03]** Welcome to Build, and especially welcome to this session
+**[00:00:06]** on simplifying.NET installs with dotnetup.
+**[00:00:09]** I'm Chet Husk, and I've been working
+**[00:00:11]** on the.NET SDK for a few years now.
+**[00:00:14]** And I'm excited to show you this new product we've been working
+**[00:00:17]** on and show you how it might help tackle some problems
+**[00:00:21]** that you have been facing managing.NET itself.
+**[00:00:26]** Before we really get into things,
+**[00:00:28]** I want to take a few minutes to let you know what we're going
+**[00:00:31]** to be looking at today.
+**[00:00:32]** So first, I want to shape the problem for you
+**[00:00:37]** and let you see how I see getting.NET on your machine
+**[00:00:41]** and managing versions over time.
+**[00:00:44]** And then I want to briefly sketch out the outline
+**[00:00:46]** of our plan on how we'd like to solve this.
+**[00:00:49]** And then we'll get right into the meat of some demos
+**[00:00:53]** of what's coming in our initial preview versions of dotnetup.
+**[00:00:58]** Finally, we'll come back, and we'll talk about what's
+**[00:01:01]** on the roadmap for dotnetup and when you can expect to see
+**[00:01:04]** and use it and get hands on yourself.
+**[00:01:07]** Okay. Are you ready?
+**[00:01:09]** Let's take a look at what we're dealing with here.
+**[00:01:12]** So if you install.NET today, we think you fall
+**[00:01:16]** into basically one of two buckets.
+**[00:01:18]** You are either using Visual Studio on Windows,
+**[00:01:21]** where Visual Studio manages the toolchain for you and updates
+**[00:01:26]** on a frequent cadence and brings you all of those feature band
+**[00:01:29]** and servicing bug fixes that you know and love,
+**[00:01:33]** or you're everyone else.
+**[00:01:36]** And that's exactly the problem that we'd like to solve.
+**[00:01:40]** If you look at installing.NET on different platforms,
+**[00:01:44]** it's a very, shall we say, heterogeneous situation.
+**[00:01:50]** Here's a short list of a bunch of the different ways
+**[00:01:52]** that you can install.NET today.
+**[00:01:56]** If you break these into categories,
+**[00:01:58]** what you have is IDE-based distribution,
+**[00:02:02]** a package-manager-based distribution,
+**[00:02:04]** and then you have manual distribution of various kinds.
+**[00:02:10]** For IDE-based distributions on Windows,
+**[00:02:13]** you have primarily Visual Studio,
+**[00:02:15]** and then across platform, you have Visual Studio Code,
+**[00:02:18]** where my team owns a Visual Studio Code extension whose job
+**[00:02:23]** is to get you the SDK versions that your projects
+**[00:02:26]** and tools need to run.
+**[00:02:28]** Outside of the IDEs, you have package managers,
+**[00:02:32]** things like WinGet or Homebrew on macOS or Linux,
+**[00:02:37]** and we'll get there in just a second.
+**[00:02:39]** And these tools use the system's capabilities
+**[00:02:43]** to acquire.NET packages.
+**[00:02:45]** These are really nice for a number of reasons,
+**[00:02:49]** the most interesting of which is the kind
+**[00:02:52]** of centralized management you get.
+**[00:02:55]** But for some people, that model is not a good fit,
+**[00:02:58]** and so they reach for more manual ways of installing macOS.
+**[00:03:03]** Some of the most common of these include the actual.NET website,
+**[00:03:08]** which is get.dot.net, which is one
+**[00:03:11]** of my favorite things to say.
+**[00:03:13]** We have a set of install scripts for PowerShell
+**[00:03:16]** and various POSIX shells that people often use
+**[00:03:21]** to manage their CLI and SDK installations.
+**[00:03:25]** And then there's a whole ecosystem of tools
+**[00:03:29]** that exist specifically to manage versions
+**[00:03:32]** of various software development toolchains.
+**[00:03:36]** For.NET, there's a community project named DNVM
+**[00:03:39]** or.NET Version Manager.
+**[00:03:41]** But there are also more extensible or pluggable systems
+**[00:03:46]** for this, like Mise-en-Place or ASDF.
+**[00:03:50]** There are too many to count here, but these are some
+**[00:03:53]** of the most familiar or most frequently used.
+**[00:03:57]** I haven't talked about Linux yet, though.
+**[00:03:59]** But I do want to point out that all of the mechanisms here
+**[00:04:02]** on this slide that you see with an asterisk are not mechanisms
+**[00:04:06]** that are owned and operated by Microsoft.
+**[00:04:09]** These are community mechanisms in a bunch of different ways.
+**[00:04:12]** And sometimes they use packages under the hood.
+**[00:04:16]** And sometimes they use just zips or tarballs.
+**[00:04:19]** And in some cases, like Homebrew, they can use both,
+**[00:04:22]** depending on your preferences.
+**[00:04:24]** So already you can see it's a very mixed bag of ways
+**[00:04:29]** to get.NET and the pros and cons of each mechanism.
+**[00:04:34]** And we're about to get even more complex as we enter the world
+**[00:04:38]** of Linux distributions.
+**[00:04:41]** You have a bunch of different ways:
+**[00:04:43]** those same three categories of package managers,
+**[00:04:46]** the dotnet-install scripts,
+**[00:04:48]** and then the manual installation tools.
+**[00:04:53]** But this is coupled with the fact that,
+**[00:04:57]** for the package managers, there's been this long arc
+**[00:05:00]** of history where sometimes Microsoft provided packages
+**[00:05:04]** for your package manager,
+**[00:05:05]** and sometimes your distro provided packages
+**[00:05:09]** for your package manager.
+**[00:05:10]** And sometimes you had both.
+**[00:05:12]** So there's a long list of decision trees that you have
+**[00:05:15]** to go through just to install our software.
+**[00:05:19]** You have to decide if you're okay with certain restrictions
+**[00:05:23]** on the feature bands that you will have available to you
+**[00:05:26]** because the.NET SDK ships four times a year.
+**[00:05:30]** And each quarterly shipment contains net new features
+**[00:05:34]** and enhancements.
+**[00:05:37]** So do you want those, or do you want the centralized update
+**[00:05:41]** mechanism that the distros' package manager give you?
+**[00:05:45]** Do you need different versions across your different repos?
+**[00:05:48]** If so, the package managers may not be a good fit for that.
+**[00:05:53]** So it's pretty easy to, as you start looking at the needs
+**[00:05:57]** of your individual repos or your individual developers,
+**[00:06:01]** that you find that the happy path
+**[00:06:02]** of package managers doesn't work for you.
+**[00:06:04]** And you start having to reach
+**[00:06:06]** for these local management solutions like dotnet-install
+**[00:06:12]** or DNVM, Mise-en-Place, etc. These tools are great.
+**[00:06:17]** They do the job, but in the case of the install scripts,
+**[00:06:21]** there's no central management so you can keep track of what SDKs
+**[00:06:26]** and toolchains are installed where on your system.
+**[00:06:29]** There's no way to easily update individual installations or all
+**[00:06:34]** of the installations on your system.
+**[00:06:36]** And in addition, often these local mechanisms tend to clash
+**[00:06:41]** with any global or system-level installs.
+**[00:06:44]** And all of these statements are true even
+**[00:06:47]** on other platforms than Linux.
+**[00:06:51]** So there's this very complex installation problem
+**[00:06:55]** that users have to solve.
+**[00:06:57]** And then when you guys find bugs or gaps in our software,
+**[00:07:01]** and you want us to consider making enhancements
+**[00:07:04]** or fixing those bugs, it's difficult on our end
+**[00:07:07]** to categorize how that installation occurred
+**[00:07:11]** and validate that that installation is correct
+**[00:07:14]** in the first place.
+**[00:07:15]** So there's pain on both ends.
+**[00:07:17]** Believe me on that.
+**[00:07:20]** So what do we, as a tooling team,
+**[00:07:23]** want to do to solve this big problem?
+**[00:07:25]** Well, there's all those different installation
+**[00:07:27]** mechanisms, and we discovered we would make another one.
+**[00:07:31]** And this is the one that will solve all the problems.
+**[00:07:33]** And I'm only half joking here.
+**[00:07:35]** We'll take a look in a little bit more detail in a moment
+**[00:07:38]** and see how we plan on tackling some of these problems.
+**[00:07:42]** But I could not resist the opportunity to call
+**[00:07:45]** out to Randall Munroe's comic here.
+**[00:07:48]** Our plan for solving this platform-specific and managed
+**[00:07:54]** versus unmanaged split is to make a tool
+**[00:07:59]** that behaves the same on every platform.
+**[00:08:02]** And that leans into global installations
+**[00:08:07]** that do not require user elevation.
+**[00:08:11]** So in this case, when we say global,
+**[00:08:13]** we don't mean system global.
+**[00:08:15]** We mean user global, installations of.NET
+**[00:08:19]** that are scoped to your user directory or a location
+**[00:08:22]** where you specifically manage
+**[00:08:25]** and that don't impact others on your system.
+**[00:08:28]** So we want to make this tool and make it fast,
+**[00:08:31]** make it lightweight, use native AOT to make it execute
+**[00:08:36]** as quickly as possible and get out of your way.
+**[00:08:39]** We want it to leverage the existing mechanisms
+**[00:08:42]** that users use to describe what SDKs and tools you want.
+**[00:08:48]** Today, that's global JSON.
+**[00:08:50]** But the hope is that with a shared way of interacting
+**[00:08:55]** with SDK installs, we could potentially evolve
+**[00:09:00]** that file format or its purpose into something more ergonomic.
+**[00:09:04]** Along the way, we want this tool to cover features
+**[00:09:07]** and functionality gaps that system-level install users have
+**[00:09:12]** that user-level installs do not.
+**[00:09:16]** So earlier, when we were talking about some of the pros and cons
+**[00:09:19]** of the installation methods, I mentioned that package managers
+**[00:09:23]** and installers, like the ones that Visual Studio use,
+**[00:09:27]** have central management and auditability kind of baked in
+**[00:09:32]** and the current mechanisms for user-level installs don't.
+**[00:09:36]** So we want our tool to bring that level of audibility
+**[00:09:39]** and safety to everyone.
+**[00:09:42]** And so to enable this, we've been working
+**[00:09:45]** with the.NET releases teams to sign all of the binaries and all
+**[00:09:50]** of the manifests involved so that you know that the binaries
+**[00:09:55]** that you are using are the ones that we intended to deliver
+**[00:09:58]** to you and all the way down.
+**[00:10:01]** And then finally, we didn't want this tool to exist
+**[00:10:04]** in isolation, to be in a bubble.
+**[00:10:07]** We wanted to create this tool and create a library around it
+**[00:10:11]** so that other tools that needed to behave similarly
+**[00:10:15]** or that needed to interact with installs had the option
+**[00:10:20]** of using a library that would do things correctly and safely.
+**[00:10:24]** So this will play a little bit more into the long-term plans.
+**[00:10:29]** But we hope that if this tool takes off, the manifests
+**[00:10:33]** and bookkeeping that it uses become a shared resource
+**[00:10:36]** for a constellation of tools like Dependabot and Renovate
+**[00:10:41]** and this whole audibility
+**[00:10:43]** and automated compliance infrastructure
+**[00:10:45]** that many developers use today for their package references
+**[00:10:49]** and their Docker file references.
+**[00:10:51]** So we want to fit in that world.
+**[00:10:54]** And part of fitting in that world is providing tools to plug
+**[00:10:57]** in easily into those systems.
+**[00:11:02]** So from this point on, we're going to talk about some
+**[00:11:04]** of the specifics of dotnetup and show it to you.
+**[00:11:07]** But I want to be super clear.
+**[00:11:09]** Everything you're seeing from here
+**[00:11:12]** on is internal preview level.
+**[00:11:15]** We'll talk about some of the milestones
+**[00:11:17]** in this release process a little bit later on.
+**[00:11:20]** But I wanted to show you what we have today
+**[00:11:22]** so you can see the vision of how it all works together and so
+**[00:11:26]** that you can see where we're aiming for and give us feedback,
+**[00:11:31]** because the earlier we get your feedback,
+**[00:11:32]** the earlier we can incorporate it,
+**[00:11:34]** and the better the end product will be.
+**[00:11:36]** So big giant "Under Construction" label here.
+**[00:11:39]** If this were like the early 2000s, on a web page,
+**[00:11:42]** you'd see the big blinking marquee
+**[00:11:44]** "Under Construction" sign.
+**[00:11:46]** So just be aware of that.
+**[00:11:49]** We're going to lean into some demos now.
+**[00:11:51]** And I'm sure the first question on your mind is,
+**[00:11:52]** how do I get this thing?
+**[00:11:54]** So we're going to talk about the acquisition and initialization
+**[00:11:57]** of dotnetup on different systems.
+**[00:12:00]** Then we're going to show how you can use dotnetup
+**[00:12:03]** to easily get started in a couple
+**[00:12:05]** of different kinds of repo shapes.
+**[00:12:08]** And then finally, we'll talk about how you can use dotnetup
+**[00:12:12]** to tackle one of the more annoying problems
+**[00:12:14]** of toolchain management today.
+**[00:12:18]** So let's get into it.
+**[00:12:20]** I'm going to "Alt-Tab" over to my terminal here.
+**[00:12:24]** And where we are is in a repo that I'll give you the link
+**[00:12:28]** to a little bit later.
+**[00:12:30]** I've got a repo where I've put together some scenarios,
+**[00:12:33]** some example repository patterns
+**[00:12:35]** that might benefit from dotnetup.
+**[00:12:38]** So if we look in my scenarios folder,
+**[00:12:41]** I've got three scenarios here: a "cross-platform-webapp,"
+**[00:12:45]** a "multi-runtime-testing" application,
+**[00:12:48]** and then an application that has up-to-date
+**[00:12:50]** or outdated.NET SDK installations.
+**[00:12:54]** I want to start with the most straightforward one, but first,
+**[00:12:57]** I need to get dotnetup.
+**[00:12:59]** And that's where we've tried to make this really easy.
+**[00:13:02]** We have aka.ms links that I will again show a little bit later
+**[00:13:05]** to make it easy to get dotnetup.
+**[00:13:07]** You can go to "aka.ms/dotnetup/get-dotnetup,"
+**[00:13:12]** and there will be a Shell
+**[00:13:13]** or PowerShell script that you can use.
+**[00:13:17]** And we'll have examples for both of these
+**[00:13:20]** in the documentation links that you'll see later.
+**[00:13:23]** But it's as easy as running this script.
+**[00:13:25]** And this script is going to look at the platform you're on
+**[00:13:28]** and determine which version of dotnetup it should download.
+**[00:13:32]** Because remember, this is an AOT platform-specific application.
+**[00:13:36]** We want this to be as fast as possible.
+**[00:13:38]** We will download it, verify it, and then install it
+**[00:13:42]** into your home directory by default.
+**[00:13:45]** Though, as always, you have 100% control
+**[00:13:48]** over where this thing goes.
+**[00:13:50]** So path isn't configured because that's a little hard to do
+**[00:13:55]** in a script that you source like this on Linux.
+**[00:13:58]** So we'll just start by invoking it manually.
+**[00:14:03]** And the first time you run dotnetup
+**[00:14:07]** or when you run the init command specifically, you'll get run
+**[00:14:11]** through a configuration walkthrough
+**[00:14:13]** where dotnetup itself will help you set your system
+**[00:14:16]** up for success.
+**[00:14:18]** So I just want to call out here that dotnetup,
+**[00:14:21]** like the.NET CLI, collects the usage telemetry
+**[00:14:24]** to help us understand how you use it.
+**[00:14:26]** But just like the.NET CLI, you can use all
+**[00:14:29]** of the existing telemetry opt-out flags that we have
+**[00:14:33]** in the.NET CLI to control that experience.
+**[00:14:35]** So just a heads up there.
+**[00:14:37]** The first time you run dotnetup, like I said,
+**[00:14:39]** you'll get this walkthrough.
+**[00:14:41]** And it wants to ensure that you are set
+**[00:14:44]** up with a viable installation.NET
+**[00:14:47]** that you can use to start development.
+**[00:14:50]** It's going to prompt you for the different channels
+**[00:14:53]** that you might want to use.
+**[00:14:54]** And because I'm a bleeding-edge kind of person,
+**[00:14:57]** I'm going to choose "latest"
+**[00:14:58]** so that we will get the latest stable release
+**[00:15:00]** that exists today.
+**[00:15:02]** And then we will stay up to date over time.
+**[00:15:05]** The next question is how you would like to use dotnetup.
+**[00:15:09]** This could be a bit of a deep dive,
+**[00:15:13]** but the way that matches most closely
+**[00:15:17]** to how you might be expecting this to work from tools
+**[00:15:20]** like DNVM or Mise-en-Place is terminal mode.
+**[00:15:24]** So I'm going to use this.
+**[00:15:25]** And in this mode, dotnetup is going to configure itself
+**[00:15:28]** to add itself to the path
+**[00:15:31]** and to add the.NET installation location
+**[00:15:33]** that it manages to the path.
+**[00:15:36]** And I'm going to skip that last question because dotnetup saw
+**[00:15:40]** that I had global installs and offered to port them
+**[00:15:44]** over to the new world for me.
+**[00:15:46]** But when I told it what to install, it went to grab it,
+**[00:15:51]** it went to install it into its managed.NET
+**[00:15:54]** installation location.
+**[00:15:56]** And then it gave me some nice UI and UX
+**[00:15:58]** around the downloading installation of that SDK.
+**[00:16:01]** So at this point, it has downloaded the latest.NET SDK
+**[00:16:06]** for me, and it has updated my shell profile so that
+**[00:16:11]** on subsequent indications, my shell will include all
+**[00:16:18]** of the environment variables and configuration necessary
+**[00:16:23]** to successfully run dotnetup.
+**[00:16:26]** So if we go look at the command that it inserted
+**[00:16:29]** into my profile, this is a shell-specific script.
+**[00:16:33]** It detected I'm using Z shell, that sets up.NET
+**[00:16:37]** to use the installation that dotnetup manages
+**[00:16:41]** and then ensures that dotnetup and the.NET XE are
+**[00:16:44]** on my path, which is great.
+**[00:16:46]** That means I can now do "dotnetup -- info."
+**[00:16:51]** Well, if I were in a new shell session, I could do that.
+**[00:16:55]** So I can do "dotnetup -- info" here, and I can see that I'm
+**[00:17:00]** on a specific version of dotnetup.
+**[00:17:02]** And then I can do.NET info as well.
+**[00:17:07]** And because this is the first time that version
+**[00:17:10]** of that is run, it will do some crunching.
+**[00:17:12]** And then it will tell me everything
+**[00:17:13]** about this installation, which, as we asked for, is 10.0.300,
+**[00:17:21]** is on macOS, is installed to a location that dotnetup manages,
+**[00:17:27]** and comes with the ASP.NET and NETCORE runtimes.
+**[00:17:31]** So this is exactly what anyone coming to.NET would need.
+**[00:17:35]** And it was as easy as "dotnetup init," and we're good.
+**[00:17:41]** So now that I have dotnetup, I'm prepared to work
+**[00:17:45]** on any repo that I want.
+**[00:17:47]** So if we go into the "cross-platform-webapp"
+**[00:17:52]** that I wanted to show you all, this web app is very simple.
+**[00:17:58]** It has a library and a web app that consumes that library.
+**[00:18:02]** But it also has a "global.json" file that I want to show you.
+**[00:18:08]** And this global JSON has something different
+**[00:18:11]** to what I just installed.
+**[00:18:13]** This global JSON says that this repo expects
+**[00:18:16]** to use 10.0.100 of the.NET SDK.
+**[00:18:20]** Why? I don't know.
+**[00:18:21]** But this is what the developer has chosen.
+**[00:18:23]** But it's okay with rolling forward
+**[00:18:25]** to the latestFeature band.
+**[00:18:27]** So we're going to we're going to use that.
+**[00:18:30]** And it turns out dotnet up understands that.
+**[00:18:32]** If we run "dotnetup sdk install" here -- Yeah.
+**[00:18:45]** Oh, it rolled forward to the latestFeature band
+**[00:18:48]** because that's what's in the global JSON.
+**[00:18:50]** But if we open up our "global.json" in VS Code here
+**[00:18:55]** and we change this to be something like,
+**[00:18:59]** we'll do "latestPatch" instead, and then we come back
+**[00:19:03]** to run our install, then we can see that dotnetup has chosen
+**[00:19:07]** to install 1xx, so meaning the 100 feature band.
+**[00:19:13]** And it even tells us why, because the global JSON
+**[00:19:16]** in our project specifies that version.
+**[00:19:20]** And so here we can also see the download and the install
+**[00:19:22]** of this new version of the.NET SDK, and we're good.
+**[00:19:27]** So now that we are in our repo, we can go run our web app
+**[00:19:34]** or build it, and everything will just work.
+**[00:19:38]** It'll use the SDK that we told it to,
+**[00:19:42]** and it will build the app.
+**[00:19:43]** And I didn't have to do anything crazy.
+**[00:19:47]** All I had to do was run "dotnetup install"
+**[00:19:50]** or "dotnetup sdk install."
+**[00:19:52]** And with that one command, I was good to go.
+**[00:19:56]** This is the core value proposition that we see.
+**[00:20:01]** And so here's me proving that we used the 108 SDK.
+**[00:20:06]** This is the core value proposition of dotnetup.
+**[00:20:08]** You could do that same gesture:
+**[00:20:11]** grabbing the dotnetup installation,
+**[00:20:13]** running "dotnetup init" to get a dotnetup install going,
+**[00:20:17]** and then "dotnetup install" on any repo and have a.NET SDK
+**[00:20:23]** that will work for that repo.
+**[00:20:27]** That's great.
+**[00:20:29]** It is very frustrating to have to manage those things today.
+**[00:20:32]** And while there are some helpers that will use a global JSON
+**[00:20:36]** in CI/CD, for example, like in GitHub actions,
+**[00:20:39]** the actions/setup-dotnet action will do that for you.
+**[00:20:44]** There's been nothing supported locally that you could use
+**[00:20:49]** on your developer box or that an agent could use on your behalf.
+**[00:20:54]** So we're trying to fill that need here in a supported way.
+**[00:20:57]** Dotnetup does more than just SDK installations, though.
+**[00:21:01]** If you list this, if you run the dotnetup list command,
+**[00:21:04]** you can see that it's actually tracking those decisions
+**[00:21:08]** that you made and why you've made them.
+**[00:21:11]** So it knows that it has two versions
+**[00:21:13]** of the.NET SDK installed.
+**[00:21:16]** And it knows what channels you are tracking.
+**[00:21:20]** So it's tracking the latest channel
+**[00:21:23]** because I explicitly told it to on that startup.
+**[00:21:27]** It's tracking the 1xx channel because our webapp,
+**[00:21:32]** "global.json," told it to.
+**[00:21:34]** And that's good because it means that when a new 109 is released
+**[00:21:41]** in May or a 110 in June, and so on, I guess 108 was May,
+**[00:21:46]** so a 109 in June and a 110 in July, and so forth,
+**[00:21:51]** dotnetup will understand that.
+**[00:21:52]** And a dotnetup update will do those updates for you.
+**[00:21:59]** So this is the real beauty.
+**[00:22:01]** It's not just installations.
+**[00:22:04]** It's understanding what you need and what you have
+**[00:22:08]** and what is available and making those things all
+**[00:22:12]** align consistently.
+**[00:22:14]** So that's the first end-to-end example I wanted to show you.
+**[00:22:20]** And this is something that, if you are engaged in open source
+**[00:22:24]** or if you are using agents to help contribute
+**[00:22:27]** to open source repos that you use at work
+**[00:22:29]** or whatever your pattern is,
+**[00:22:31]** that's a pattern you probably had to do before.
+**[00:22:33]** You had to go clone the repo and then figure out,
+**[00:22:36]** like you just try a normal dot net build, and the builds
+**[00:22:39]** or the SDKs you have don't match with what's in the repo.
+**[00:22:43]** So that problem, we can say, is solved definitively.
+**[00:22:48]** The next scenario is a little more interesting and, I think,
+**[00:22:52]** shows off more of the potential future direction for dotnetup.
+**[00:22:57]** And for this one, I'm going to need
+**[00:22:59]** to show you a little bit of code to set it up.
+**[00:23:02]** So we have a repo here,
+**[00:23:05]** a workspace where we have a source code library
+**[00:23:12]** that provides some utility that we care about.
+**[00:23:15]** And then we have a test project that consumes it.
+**[00:23:19]** So we have a really cool truncation string helper here
+**[00:23:23]** and a string helper that can check
+**[00:23:25]** if a given string is only alphanumeric ASCII characters.
+**[00:23:30]** So kind of basic stuff.
+**[00:23:31]** And like responsible developers,
+**[00:23:34]** we've created a set of test cases for it.
+**[00:23:37]** And so we want to be able to test this.
+**[00:23:41]** Well, what's interesting is that, like many library authors,
+**[00:23:46]** we might want to do some customization of that library
+**[00:23:51]** for different target frameworks.
+**[00:23:53]** For example, in.NET 10,
+**[00:23:54]** maybe there is a new span-based overload of index of string
+**[00:24:00]** that we want to make use of that we can't on.NET 8.
+**[00:24:04]** And so in our library, we might have an #ifdef that we add
+**[00:24:08]** in here that we use a different execution path on 10 versus 8.
+**[00:24:14]** But we still want to build for 8 because we want people that are
+**[00:24:17]** on 8 to be able to use our library.
+**[00:24:21]** We call this multi-targeting.
+**[00:24:22]** And from a library perspective,
+**[00:24:25]** it doesn't actually matter what you target here.
+**[00:24:28]** So here in my library, I'm using NetStandard 2.0
+**[00:24:31]** because my library doesn't do any per runtime specialization.
+**[00:24:36]** But as a library author, I want to make sure that everyone
+**[00:24:40]** on the latest and greatest versions
+**[00:24:42]** of.NET can use my library.
+**[00:24:45]** And so a way we could do that is by making sample projects
+**[00:24:51]** that consume my library and use it.
+**[00:24:54]** But a more integrated way is to write tests.
+**[00:24:56]** And so that's what we've done here.
+**[00:24:57]** We have a test library
+**[00:24:59]** that targets these three different in-support runtimes
+**[00:25:02]** and just has these tests.
+**[00:25:06]** Something I've struggled with often in my career is I want
+**[00:25:11]** to use the latest.NET SDK.
+**[00:25:18]** Because the SDK is where all the tooling features come from.
+**[00:25:23]** So, regardless of what runtime I'm building assets for,
+**[00:25:27]** I want to use a 10 SDK right now
+**[00:25:30]** because that's the latest major version out there.
+**[00:25:33]** So I end up in a situation where I have one SDK,
+**[00:25:37]** but I need multiple runtimes to run my tests.
+**[00:25:41]** And if I try this right now and I come over to my test and I try
+**[00:25:48]** and run -- Well, before we get into this,
+**[00:25:50]** I'm going to go "-- list-runtimes."
+**[00:25:52]** And you can see here that we just have 10 runtimes.
+**[00:25:56]** And I'm going to run "dotnet test" on my test,
+**[00:25:59]** which targets 8, 9, and 10.
+**[00:26:02]** And that took no time at all to run,
+**[00:26:04]** but it didn't run successfully.
+**[00:26:06]** I'm going to zoom out a little bit so you can see it.
+**[00:26:08]** But what happened was on.NET 8, no tests ran
+**[00:26:12]** because we did not have a.NET Core Runtime for version 8.
+**[00:26:18]** And then for.NET 9, no tests ran
+**[00:26:21]** because we did not have a.NET Core Runtime for 9.
+**[00:26:26]** And then on.NET 10, our tests did run, and they passed.
+**[00:26:30]** This is something I see all the time.
+**[00:26:33]** And when people see this, the way they fix it is
+**[00:26:36]** in their CI/CD providers,
+**[00:26:38]** they install entirely parallel SDK installations.
+**[00:26:44]** So if you ran this command on their CI setups,
+**[00:26:50]** you would see an 8 SDK, a 9 SDK, and one or more 10 SDKs.
+**[00:26:55]** And to me, that's not necessary
+**[00:26:58]** because new SDKs include new tooling
+**[00:27:00]** and fully support building older runtimes.
+**[00:27:04]** So instead, what I would like to do is just be able
+**[00:27:08]** to get runtimes that I need to actually run my application.
+**[00:27:12]** And this is not something that you can do easily today.
+**[00:27:16]** So one of the things that dotnetup kind
+**[00:27:19]** of makes easy is installing runtimes.
+**[00:27:22]** And so I've done a little shenanigans here,
+**[00:27:25]** and I've made a fake extension to Global JSON,
+**[00:27:28]** where I can say I need some runtimes,
+**[00:27:30]** and I want the.NET runtime, and I need 8, 9, and 10.
+**[00:27:34]** This syntax is not final by any means.
+**[00:27:36]** This is just something that might happen in the future.
+**[00:27:40]** And there's a world where dotnetup would understand that.
+**[00:27:44]** And it would, when you ran dotnetup install,
+**[00:27:48]** it would do that for you.
+**[00:27:51]** It would install both the SDKs and the runtimes that you need.
+**[00:27:54]** We're not in that world today.
+**[00:27:56]** And so instead, what you can do is you can do
+**[00:27:58]** "dotnet runtime install 8.0 9.0 10.0,"
+**[00:28:03]** and it will do them all at the same time.
+**[00:28:05]** It'll go find the latest ones of each of those bands,
+**[00:28:09]** download them, and install them.
+**[00:28:11]** In this case, I just said 8.0, 9.0, and 10.0,
+**[00:28:15]** and dotnetup got me the latest one of each of those bands.
+**[00:28:19]** If I had specific needs, I could say specific versions.
+**[00:28:23]** That's not a problem.
+**[00:28:25]** But it's very easy now to acquire these runtimes.
+**[00:28:29]** And now that I have these runtimes,
+**[00:28:32]** I can go run my tests again, and they'll work.
+**[00:28:37]** And I didn't have to install entire new SDKs at hundreds
+**[00:28:41]** of megabytes apiece just to make my tests run.
+**[00:28:45]** This, to me, is the best of both worlds.
+**[00:28:47]** You're on the latest tooling, but you're able to do the things
+**[00:28:50]** that you need to do in ways that you couldn't before easily.
+**[00:28:55]** So this is exciting to me.
+**[00:28:57]** It's bringing some of the convenience of things
+**[00:28:59]** that you could do in your CI/CD setups
+**[00:29:01]** to your local development.
+**[00:29:03]** So that's another example of the kinds of functionality
+**[00:29:07]** that dotnetup can provide.
+**[00:29:09]** And even though I'm just showing the.NET runtime here,
+**[00:29:13]** you can specify all kinds of different specifiers here.
+**[00:29:19]** You can do ASP.NET.
+**[00:29:24]** So here's an example of aspnetcore.
+**[00:29:26]** You can also do Windows desktop on Windows in that case.
+**[00:29:31]** So that would look like
+**[00:29:32]** "dotnetup runtime install aspnetcore@8.0."
+**[00:29:38]** And this pattern of component name @version is one
+**[00:29:42]** that we've been fleshing out over a few SDK releases here.
+**[00:29:46]** And now we have that runtime.
+**[00:29:48]** So if we run "dotnet -- list-runtimes" now,
+**[00:29:51]** you'll see that we have the core runtimes for 8, 9, and 10,
+**[00:29:55]** and the ASP.NET runtimes for 8 and 10.
+**[00:29:58]** Easy peasy.
+**[00:30:01]** That's it.
+**[00:30:02]** So that's the core value prop.
+**[00:30:05]** Can I get tooling more easily?
+**[00:30:09]** But it's also interesting to note
+**[00:30:11]** that getting the tooling is only half the battle.
+**[00:30:13]** There is a long tail of maintenance and upgrades
+**[00:30:16]** that responsible development teams have to adhere to.
+**[00:30:20]** And dotnetup makes that possible as well.
+**[00:30:23]** So we saw dotnetup list before, but I just want to call
+**[00:30:27]** that up here again to note
+**[00:30:28]** that those explicit runtimes are also tracked here.
+**[00:30:32]** And you can see what is currently installed,
+**[00:30:35]** and you can see the requests here as well.
+**[00:30:38]** So when new versions of the runtimes release,
+**[00:30:42]** a simple "dotnetup update" will cover them as well.
+**[00:30:48]** And because I just installed all of these,
+**[00:30:51]** they're all already up to date.
+**[00:30:53]** But if any one of these were out of date compared to the requests
+**[00:30:58]** that we had, dotnetup would have installed them right there.
+**[00:31:02]** This is all happening under the covers
+**[00:31:03]** because dotnetup is keeping a manifest,
+**[00:31:06]** an installation tracker in your user directory
+**[00:31:11]** in a data directory there.
+**[00:31:12]** So you can think of it as a lock file for the declared
+**[00:31:16]** or desired state of your system.
+**[00:31:18]** It's not necessarily something that we intend to share
+**[00:31:21]** across repos or across developers.
+**[00:31:24]** You should still use global JSON
+**[00:31:25]** to describe your requirements for development.
+**[00:31:29]** But that manifests as what's powering a lot
+**[00:31:31]** of this update information as well.
+**[00:31:34]** So those are some of the core functionalities there.
+**[00:31:36]** There are a few other interesting things
+**[00:31:39]** about dotnetup that I want to call out here.
+**[00:31:43]** The "print-env-script" is a helper command that can be used
+**[00:31:47]** to make sure your shell is configured correctly
+**[00:31:51]** to just natively use dotnetup.
+**[00:31:53]** This is what is used when you do that init
+**[00:31:57]** to configure your system to use dotnetup.
+**[00:32:00]** Right now, this print-env-script is supported for Bash and Zsh
+**[00:32:06]** and other POSIX shells only.
+**[00:32:09]** PowerShell support is coming.
+**[00:32:11]** We have that in PR.
+**[00:32:13]** And hopefully, within a week or two from the time
+**[00:32:15]** that you're seeing this, you'll be able
+**[00:32:16]** to grab dotnetup yourself and give that a try.
+**[00:32:21]** The other thing that's interesting
+**[00:32:23]** that has been missing from SDK management is uninstallations.
+**[00:32:28]** So when you do these updates, new versions of SDKs
+**[00:32:33]** and runtimes will be installed on your system.
+**[00:32:36]** But that means the old ones may not actually be needed
+**[00:32:40]** by any tools anymore.
+**[00:32:42]** So an update will remove out-of-date installations
+**[00:32:46]** that are no longer needed by the set of requirements
+**[00:32:49]** that you have declared.
+**[00:32:51]** You can also manually uninstall SDKs
+**[00:32:54]** and runtimes if you need them.
+**[00:32:57]** Architecturally, I want to call out here
+**[00:32:59]** that dotnetup has a top-level install update
+**[00:33:02]** and uninstall command.
+**[00:33:03]** But it also has component-level commands,
+**[00:33:07]** "dotnetup sdk install,"
+**[00:33:09]** "dotnetup sdk update," and so forth.
+**[00:33:13]** This is because we are seeing dotnetup as a way
+**[00:33:16]** to start thinking about the entire.NET toolchain
+**[00:33:21]** in terms of components.
+**[00:33:23]** Right now, the two clean lines we have
+**[00:33:26]** for components are SDKs and runtimes.
+**[00:33:28]** But there are features and functionality of the SDK
+**[00:33:32]** that might make more sense
+**[00:33:34]** as discrete components for you to use.
+**[00:33:37]** Those of you who are familiar with tools
+**[00:33:39]** like rustup may see where this is going.
+**[00:33:42]** You can imagine a world where pieces of the SDK might be able
+**[00:33:46]** to release at different cadences.
+**[00:33:49]** And instead of drowning in a bunch
+**[00:33:51]** of different update notifications and inability
+**[00:33:55]** to control that rate of change, you, as a developer,
+**[00:33:58]** could use dotnetup to stay on top of that and have one command
+**[00:34:02]** to manage all of your updates and components.
+**[00:34:06]** So that's where I think we'll stop with the demos themselves.
+**[00:34:12]** And we'll switch back over to go talk a little bit more
+**[00:34:16]** about what the future of dotnetup will look like.
+**[00:34:20]** And to talk about future development, first,
+**[00:34:23]** I want to talk about who we're designing this for.
+**[00:34:26]** There are two primary consumers here.
+**[00:34:29]** The first is humans, and the second is agents of all kinds.
+**[00:34:33]** Not just the AI or LLM style of agent,
+**[00:34:36]** but CI/CD systems are agents in a way as well.
+**[00:34:42]** So really, it's humans and automated use cases.
+**[00:34:46]** We want humans to be able to use this tool.
+**[00:34:49]** And we want their expectations from other ecosystems
+**[00:34:52]** to carry over broadly.
+**[00:34:54]** We want to fill a need for simple management
+**[00:34:59]** and consistent management of the parts of our platform.
+**[00:35:03]** We don't want someone to have to learn a bunch of new concepts.
+**[00:35:06]** We want them to just be able to clone a repo,
+**[00:35:08]** run dotnetup install, and be good to go.
+**[00:35:11]** And we want that user experience to be something that someone
+**[00:35:15]** on any OS platform can use.
+**[00:35:18]** So this entire time I've been talking about users using this.
+**[00:35:23]** I'm meaning developers specifically.
+**[00:35:26]** This is a developer time tool
+**[00:35:28]** to make developer time use cases more simple
+**[00:35:31]** and easy and straightforward.
+**[00:35:33]** For your production use cases, you would still want
+**[00:35:35]** to use your package manager to grab.NET runtimes
+**[00:35:40]** for your framework-dependent applications.
+**[00:35:43]** Or you'd want to bundle self-contained
+**[00:35:44]** if that's the deployment mechanism you prefer.
+**[00:35:47]** Both of those are better options for production deployments
+**[00:35:51]** because with package manager packages,
+**[00:35:54]** you can get cross-system-wide security updates
+**[00:35:56]** as soon as they're available.
+**[00:35:58]** Those of you doing self-contained deployments
+**[00:36:00]** already know that you have to be on the ball every month
+**[00:36:03]** for security releases to roll out new versions.
+**[00:36:06]** So production is not what we're talking about with this tool.
+**[00:36:09]** We're talking about developer time use cases for humans.
+**[00:36:14]** Agents similarly bring expectations.
+**[00:36:18]** In their case, their expectations are a combination
+**[00:36:20]** of what they were trained on and what the skills
+**[00:36:23]** and context they've been given say.
+**[00:36:25]** And so we want agents to have something that looks
+**[00:36:28]** and feels similar to other tools
+**[00:36:31]** but adapts itself a little bit more cleanly to some
+**[00:36:35]** of the specific needs of our ecosystems.
+**[00:36:37]** So we want to give it a tool
+**[00:36:39]** that the agent can use successfully, quickly,
+**[00:36:43]** and importantly, so that it can do setup
+**[00:36:46]** and management the right way.
+**[00:36:48]** Because it's very possible for an agent to go look at some docs
+**[00:36:51]** and get half the story and unzip a zip install on your system
+**[00:36:56]** in a way that negatively impacts your development experience.
+**[00:37:00]** So we hope this tool can provide guardrails for those agents
+**[00:37:05]** in a way that ad hoc downloading and execution wouldn't do.
+**[00:37:10]** Agents also tend to work best without admin rights,
+**[00:37:13]** in sandboxes with guardrails.
+**[00:37:16]** And so we needed a tool that would work outside
+**[00:37:20]** of a user elevation context,
+**[00:37:22]** which then leads naturally towards using your user
+**[00:37:26]** directory in this way.
+**[00:37:28]** Both of these categories of agents need to stay up to date
+**[00:37:32]** to get security fixes and tooling enhancements.
+**[00:37:34]** And they need to be able to exercise better control
+**[00:37:37]** over their environments.
+**[00:37:39]** They need to be able to say semantically,
+**[00:37:42]** I want whatever the latest stable version is,
+**[00:37:45]** or I have a constraint that says I need to stay
+**[00:37:48]** on the latest 10 series of tools.
+**[00:37:53]** So we want you to be able to express those constraints
+**[00:37:59]** and then have tooling respect them locally the same way
+**[00:38:02]** that CI/CD tooling respects them today.
+**[00:38:06]** So I've shown some things that it can do today.
+**[00:38:10]** I want to look a little bit more towards the future
+**[00:38:12]** as we get closer to internal and public preview
+**[00:38:14]** and beyond milestones.
+**[00:38:17]** What I showed today was management of stable SDKs
+**[00:38:20]** and manual management of runtimes.
+**[00:38:24]** The runtime installations,
+**[00:38:27]** you didn't have a global JSON way of dealing with that.
+**[00:38:30]** So you had to explicitly say, I need this version.
+**[00:38:33]** So we want to, in internal preview, focus on managing SDKs.
+**[00:38:38]** And we have a PR in the pipeline
+**[00:38:40]** that will even let you manage daily SDKs.
+**[00:38:44]** So those of you who are leading edge may know
+**[00:38:48]** that we have these monthly previews
+**[00:38:51]** of the next major version of.NET.
+**[00:38:54]** So this month we released.NET 11, Preview 5, for example,
+**[00:38:59]** or I guess 4, actually.
+**[00:39:01]** We're working on 5 right now.
+**[00:39:04]** Those previews, we consider them stable
+**[00:39:07]** from a release management process perspective.
+**[00:39:11]** Separately from those previews, every build that goes
+**[00:39:16]** into the.NET unified build system produces a workable,
+**[00:39:21]** usable SDK.
+**[00:39:23]** And those can sometimes provide bug fixes
+**[00:39:26]** or sometimes provide new features and functionality
+**[00:39:29]** that we would like fast feedback on.
+**[00:39:31]** And so one of the things that we want the internal preview
+**[00:39:34]** to enable you to do is to try that out.
+**[00:39:39]** We would like you to be able to say, in your global JSON
+**[00:39:41]** or at the command line, hey, give me the 11 nightlies.
+**[00:39:46]** Give me the hot builds for 11, and just let me have a way
+**[00:39:50]** to try those out easily.
+**[00:39:53]** But we also want to give you a way
+**[00:39:55]** to easily A-B compare behaviors.
+**[00:39:58]** And so I call this one-shot execution.
+**[00:40:01]** We want there to be a command called dotnetup.NET
+**[00:40:04]** that you can use to specify a specific version of.NET
+**[00:40:09]** to run a given command on.
+**[00:40:11]** So, in your case, it may be as simple as "dotnet build."
+**[00:40:15]** But you want to validate that.NET build on 10.0.300.
+**[00:40:19]** Works the same for you that.NET build on 11, Preview 5 does.
+**[00:40:24]** With this one-shot execution, you could specifically say, hey,
+**[00:40:28]** dotnetup, run.NET build on 10.0.300,
+**[00:40:32]** and then run.NET build on 11, Preview 5, and you could compare
+**[00:40:37]** and contrast those experiences.
+**[00:40:39]** Maybe there's a UX change to the way
+**[00:40:41]** that the MSBuild Terminal Logger shows things
+**[00:40:43]** that you need to react to.
+**[00:40:45]** Or maybe there's a behavioral change in the SDK targets.
+**[00:40:49]** Or maybe there's just a CLI tool that is tweaked that you want
+**[00:40:52]** to try out a bug fix on.
+**[00:40:55]** One-shot execution should make it easier for you to A-B test
+**[00:40:58]** and do so in a way that doesn't impact your global installation.
+**[00:41:03]** So I'm very excited for that, for people to try ad hoc fixes
+**[00:41:07]** and give us even faster feedback.
+**[00:41:09]** So all of that is internal preview: daily builds,
+**[00:41:13]** one-shot execution, stable SDKs.
+**[00:41:16]** The next milestone that we're aiming for is public preview.
+**[00:41:19]** In this milestone, it's more
+**[00:41:20]** about helping you stay compliant.
+**[00:41:24]** The public preview will have the ability
+**[00:41:27]** for dotnetup itself to update itself.
+**[00:41:31]** Those of you who have used the Aspire CLI have seen how useful
+**[00:41:34]** this can be in practice.
+**[00:41:36]** But dotnetup, once installed, should be able
+**[00:41:38]** to just take control of its own updating from there,
+**[00:41:41]** with all appropriate signing and validation there.
+**[00:41:45]** In addition, we want dotnetup to be able
+**[00:41:47]** to give you update checks and notifications as well.
+**[00:41:53]** Those of you who have used tools like Oh My Posh or Oh My Zsh,
+**[00:41:57]** when you start up a terminal, when you're using these tools,
+**[00:42:00]** once a day or once a week, they do a check to see
+**[00:42:04]** if there's a new version and then let you know.
+**[00:42:06]** We want to do the same both for dotnetup as well
+**[00:42:09]** as your installed SDKs so that you know
+**[00:42:12]** when there are security updates or feature updates,
+**[00:42:15]** and you can hop on board those trains and take advantage
+**[00:42:18]** of them as soon as possible.
+**[00:42:20]** Public preview will also have full signature verification
+**[00:42:23]** of all stable releases, both the.NET SDK and runtime tooling,
+**[00:42:28]** as well as dotnetup itself, again,
+**[00:42:31]** for that provenance stuff I mentioned earlier on.
+**[00:42:34]** When you use this tool, we want you to be confident
+**[00:42:36]** that you are using the bits
+**[00:42:39]** that Microsoft intended for you to use here.
+**[00:42:43]** It's about safety, security,
+**[00:42:44]** and managing your supply chain in that way.
+**[00:42:47]** For public preview, I'd also like us
+**[00:42:48]** to have agent skills available and published
+**[00:42:51]** to the dotnet/skills repo so that those of you
+**[00:42:54]** who are using LLMs to do automated updates
+**[00:42:59]** or do A-B testing, compare and contrast between versions,
+**[00:43:04]** can have good ways of using dotnetup easily without having
+**[00:43:08]** to write a bunch of skills in context yourself.
+**[00:43:11]** For GA, we want to focus on fit and finish of the tool itself,
+**[00:43:15]** official docs up on the.NET website, mentioning
+**[00:43:19]** and supporting dotnetup as an official install method
+**[00:43:23]** on the.NET website itself, and also expanding the usage
+**[00:43:28]** of global JSON to manage those runtimes,
+**[00:43:31]** that hypothetical I showed earlier.
+**[00:43:35]** In the far future, dotnetup, I hope, is a vehicle for us
+**[00:43:40]** to radically change the way we ship the SDK
+**[00:43:44]** and enable faster updates of all of our tooling.
+**[00:43:48]** I don't know if you've noticed, but with AI
+**[00:43:51]** and LLMs exploding the way they have, there's a push
+**[00:43:54]** to release earlier and more often and more incrementally.
+**[00:43:59]** The way you manage risk is by broad testing and faster rollout
+**[00:44:06]** so that if there is a problem, you can react to it faster.
+**[00:44:09]** We want that for not just dotnetup,
+**[00:44:11]** but the entire.NET toolchain.
+**[00:44:13]** But it can be hard to do with some
+**[00:44:15]** of these delivery mechanisms that I've talked about earlier.
+**[00:44:18]** We think dotnetup can help us accelerate our delivery as well
+**[00:44:23]** as help factor out the SDK itself into components
+**[00:44:26]** that may be able to update more rapidly
+**[00:44:30]** through those traditional channels.
+**[00:44:32]** We also want to focus longer term on integrating dotnetup
+**[00:44:36]** into the existing CI/CD integrations
+**[00:44:38]** that you use to manage.NET today.
+**[00:44:41]** Action/setup.net for GitHub Actions,
+**[00:44:43]** and the usedotnet 2 action on Azure DevOps are great tools
+**[00:44:47]** to have, but their features subtly differ sometimes.
+**[00:44:51]** And they may not have all of the same capabilities.
+**[00:44:54]** They may not be, necessarily, investing in the same amount
+**[00:44:57]** of caching or performance.
+**[00:44:59]** We are hopeful that by using dotnetup as the implementation
+**[00:45:05]** of those tools, that we can bring consistency of experience
+**[00:45:09]** and a single place to improve performance
+**[00:45:11]** across environments there as well.
+**[00:45:15]** So that's a brief glimpse into the roadmap.
+**[00:45:18]** Timeline-wise, we hope to have an internal preview
+**[00:45:20]** in the next couple weeks and public preview before the end
+**[00:45:24]** of the summer, ideally.
+**[00:45:26]** This tool, dotnetup, is not locked
+**[00:45:29]** to the.NET SDK ship cycle or timeframe.
+**[00:45:33]** It ships what we call out of band.
+**[00:45:36]** And so with it, all of these gates are going to be based both
+**[00:45:39]** on feature functionality as well as feedback that you give us
+**[00:45:43]** about its quality and usefulness.
+**[00:45:45]** So the more feedback you can give us, trying this stuff out
+**[00:45:48]** and kicking the tires, even
+**[00:45:50]** on these internal nightly bits, the better.
+**[00:45:53]** Which leads us into what I'd like you to do now
+**[00:45:57]** that you've sat through this whole talk with me.
+**[00:46:00]** The first thing I'd like you to do is to get dotnetup itself.
+**[00:46:04]** Here are those aka.ms links that you can use
+**[00:46:06]** to easily get started.
+**[00:46:08]** I'd start on the docs link here.
+**[00:46:10]** So aka.ms/dotnetup/docs, that is a Getting Started doc
+**[00:46:14]** that will give you the exact copy-paste shell script snippet
+**[00:46:19]** that you can use.
+**[00:46:21]** For the shell script, it's exactly what I did earlier,
+**[00:46:24]** curling the script and piping it into SH.
+**[00:46:27]** For the PowerShell one, it's the PowerShell equivalent,
+**[00:46:30]** invoke web request into invoke expression.
+**[00:46:33]** That's all you need to get started there.
+**[00:46:35]** For those of you who want to dive a little bit deeper,
+**[00:46:38]** there's a link to the dotnetup design spec
+**[00:46:40]** that we created several months ago and have been iterating
+**[00:46:44]** on as we add new features.
+**[00:46:46]** If you have feedback about the tool, the appropriate place
+**[00:46:50]** for it is at this link, dotnetup/feedback.
+**[00:46:53]** That will take you to the discussion board
+**[00:46:55]** on the.NET SDK repo in a special category just
+**[00:46:58]** for dotnetup that I and the rest
+**[00:47:00]** of the team will be interacting with on.
+**[00:47:04]** And then finally, all of the samples that I showed
+**[00:47:07]** in the demo today, as well as GitHub actions
+**[00:47:10]** that automatically hook up dotnetup and do the things
+**[00:47:13]** that I was doing today, can be found at the sample repo I made:
+**[00:47:18]** github.com/baronfell/ dotnetup-repo-patterns-demo.
+**[00:47:22]** So everything I did, you can clone this repo
+**[00:47:25]** and get started and try it yourself.
+**[00:47:27]** We'd love you to get the tool,
+**[00:47:29]** try it on the samples, try it on your repo.
+**[00:47:32]** Let us know what you think of it.
+**[00:47:35]** Does it flow well?
+**[00:47:36]** Is it performant enough?
+**[00:47:37]** Does it have the features that you want?
+**[00:47:40]** Let us know at the feedback link.
+**[00:47:41]** And thank you so much for watching.
+**[00:47:44]** Have a great rest of the time at Build, and happy hacking.

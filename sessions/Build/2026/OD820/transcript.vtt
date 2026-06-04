@@ -1,0 +1,3299 @@
+WEBVTT
+
+00:00:03.900 --> 00:00:05.490
+JUSTINE COCCHI: Hi,
+I'm Justine Cocchi,
+
+00:00:05.490 --> 00:00:08.940
+and I'm a Program Manager on
+the Azure Cosmos DB team.
+
+00:00:08.940 --> 00:00:11.340
+I'm joined today
+by Aayush Kataria,
+
+00:00:11.340 --> 00:00:14.640
+who's a software engineer
+also working on Cosmos DB.
+
+00:00:14.640 --> 00:00:16.260
+We're excited to
+talk to you today
+
+00:00:16.260 --> 00:00:19.170
+about designing reliable
+multi-agent apps
+
+00:00:19.170 --> 00:00:21.990
+with Azure Cosmos
+DB, and the example
+
+00:00:21.990 --> 00:00:24.540
+that we'll use today
+is a travel assistant,
+
+00:00:24.540 --> 00:00:27.180
+which is a multi-agent
+AI application
+
+00:00:27.180 --> 00:00:29.970
+that helps you plan
+personalized trips.
+
+00:00:29.970 --> 00:00:31.170
+One of the functionalities
+
+00:00:31.170 --> 00:00:34.740
+of our application
+is a chat feature.
+
+00:00:34.740 --> 00:00:37.710
+When a user wants to plan a
+trip, they can start a chat
+
+00:00:37.710 --> 00:00:40.590
+by saying something like
+"Plan a trip to Paris."
+
+00:00:40.590 --> 00:00:43.590
+This first gets routed to
+our orchestrator agent,
+
+00:00:43.590 --> 00:00:45.150
+who then can pass the message
+
+00:00:45.150 --> 00:00:48.600
+to various specialist agents,
+like the hotel agent.
+
+00:00:48.600 --> 00:00:52.260
+We can look up memories in
+Azure Cosmos DB with contacts
+
+00:00:52.260 --> 00:00:54.870
+that we already have
+stored about this user.
+
+00:00:54.870 --> 00:00:58.440
+We can embed the initial
+query with Azure Open AI,
+
+00:00:58.440 --> 00:01:01.080
+so that we can turn it into
+vectors that we can then search
+
+00:01:01.080 --> 00:01:04.230
+against our existing other
+metadata, like places
+
+00:01:04.230 --> 00:01:06.840
+and restaurants and
+hotels in Paris
+
+00:01:06.840 --> 00:01:09.350
+that may be useful for our user.
+
+00:01:09.350 --> 00:01:12.590
+Then we're ready to send our
+message back with the data
+
+00:01:12.590 --> 00:01:15.240
+that we found and help
+them plan their trip.
+
+00:01:15.240 --> 00:01:18.240
+This is just an example of
+one turn, and if we look
+
+00:01:18.240 --> 00:01:22.080
+at the user interaction flow,
+we can see many pieces of data
+
+00:01:22.080 --> 00:01:25.860
+that are moving through this
+user journey, from the message
+
+00:01:25.860 --> 00:01:28.800
+to the various agents we're
+talking to, when we're ready
+
+00:01:28.800 --> 00:01:31.200
+to actually create
+the trip, and lastly,
+
+00:01:31.200 --> 00:01:32.640
+we need to extract the memories
+
+00:01:32.640 --> 00:01:35.880
+so that we can remember what's
+happened next time the user
+
+00:01:35.880 --> 00:01:38.430
+comes and logs into our website.
+
+00:01:38.430 --> 00:01:40.500
+There's various things
+that we want to focus
+
+00:01:40.500 --> 00:01:43.080
+on in different parts
+of the user flow
+
+00:01:43.080 --> 00:01:46.080
+that will really help us keep
+the best user experience.
+
+00:01:46.080 --> 00:01:47.610
+In the beginning, the latency
+
+00:01:47.610 --> 00:01:50.220
+and personalization is
+the most important.
+
+00:01:50.220 --> 00:01:52.680
+We want to make sure the
+agent remembers key things
+
+00:01:52.680 --> 00:01:56.280
+about our users and that the
+responses are very fast.
+
+00:01:56.280 --> 00:01:58.830
+Otherwise, the user may become
+frustrated and they may go
+
+00:01:58.830 --> 00:02:01.530
+to one of our competitor
+travel sites.
+
+00:02:01.530 --> 00:02:03.540
+Whereas, in the back
+half, consistency
+
+00:02:03.540 --> 00:02:05.580
+and reliability become
+more important.
+
+00:02:05.580 --> 00:02:07.890
+We don't want to accidentally
+double-book a trip
+
+00:02:07.890 --> 00:02:10.530
+or forget something that
+we already talked about.
+
+00:02:10.530 --> 00:02:13.740
+So really keeping in mind
+the user perspective
+
+00:02:13.740 --> 00:02:16.560
+as we build our application
+will help us ensure
+
+00:02:16.560 --> 00:02:18.930
+that our application
+is reliable.
+
+00:02:18.930 --> 00:02:20.610
+Now, I want to zoom
+in on one thing,
+
+00:02:20.610 --> 00:02:22.440
+which is the number
+of agents here.
+
+00:02:22.440 --> 00:02:23.760
+We've talked about
+an orchestrator
+
+00:02:23.760 --> 00:02:25.140
+and some specialists.
+
+00:02:25.140 --> 00:02:27.510
+I want to hand it off to Aayush
+who's going to talk more
+
+00:02:27.510 --> 00:02:28.950
+about the multi-agent pattern
+
+00:02:28.950 --> 00:02:31.680
+and how it can help us
+in our application.
+
+00:02:31.680 --> 00:02:32.820
+AAYUSH KATARIA: Thanks, Justine.
+
+00:02:32.820 --> 00:02:37.470
+Going over the travel scenario
+that we'll be discussing today.
+
+00:02:37.470 --> 00:02:39.210
+Hi, I'm Aayush Kataria.
+
+00:02:39.210 --> 00:02:42.510
+I'm a software engineer
+at Azure Cosmos DB.
+
+00:02:42.510 --> 00:02:45.870
+So let's dive into
+why multi-agent.
+
+00:02:45.870 --> 00:02:49.620
+So let's start with what
+goes wrong when you don't.
+
+00:02:49.620 --> 00:02:53.460
+So on the left, you see
+the single-agent problem.
+
+00:02:53.460 --> 00:02:55.470
+When you have one agent trying
+
+00:02:55.470 --> 00:02:58.170
+to handle every
+domain all packed
+
+00:02:58.170 --> 00:03:01.500
+into a single system prompt,
+the model gets confused.
+
+00:03:01.500 --> 00:03:05.400
+It doesn't know which
+capability to invoke or when.
+
+00:03:05.400 --> 00:03:07.560
+There's no separation
+of concerns,
+
+00:03:07.560 --> 00:03:10.980
+so every change risks
+breaking something else.
+
+00:03:10.980 --> 00:03:14.640
+You can't scale or improve
+any area of expertise
+
+00:03:14.640 --> 00:03:16.530
+without touching everything.
+
+00:03:16.530 --> 00:03:18.570
+And as conversations
+grow longer,
+
+00:03:18.570 --> 00:03:20.280
+you hit context window limits.
+
+00:03:20.280 --> 00:03:22.710
+The model starts
+forgetting earlier parts
+
+00:03:22.710 --> 00:03:26.190
+of the conversation, leading
+to inconsistent behavior.
+
+00:03:26.190 --> 00:03:30.210
+So on the right-hand side, we
+have the multi-agent solution.
+
+00:03:30.210 --> 00:03:34.110
+Instead of one monolithic agent,
+you have specialized agents,
+
+00:03:34.110 --> 00:03:38.100
+each with a focus prompt and
+a specific set of tools.
+
+00:03:38.100 --> 00:03:42.450
+So an orchestrator sits on
+top, routes the user's request
+
+00:03:42.450 --> 00:03:45.360
+to the right specialist
+based on the intent,
+
+00:03:45.360 --> 00:03:47.670
+so this gives us a few big wins.
+
+00:03:47.670 --> 00:03:50.850
+So first, each agent
+has a smaller,
+
+00:03:50.850 --> 00:03:54.360
+more focused context,
+so it reasons better.
+
+00:03:54.360 --> 00:03:58.650
+Second, you can develop and
+update agents independently.
+
+00:03:58.650 --> 00:04:03.150
+Adding a new specialist doesn't
+require touching existing ones.
+
+00:04:03.150 --> 00:04:05.220
+Third, it's composable.
+
+00:04:05.220 --> 00:04:07.770
+You can plug in new capabilities
+
+00:04:07.770 --> 00:04:11.010
+without rewriting
+the whole system.
+
+00:04:11.010 --> 00:04:16.380
+So now let's look at how
+agentic memory works better
+
+00:04:16.380 --> 00:04:20.340
+than retrieval-augmented
+generation.
+
+00:04:20.340 --> 00:04:24.420
+So this is where we
+get into, I think,
+
+00:04:24.420 --> 00:04:27.240
+which is the most interesting
+part of the stock.
+
+00:04:27.240 --> 00:04:29.010
+That is agentic memory.
+
+00:04:29.010 --> 00:04:32.250
+So most people are
+familiar with RAG.
+
+00:04:32.250 --> 00:04:34.980
+That's retrieval-augmented
+generation.
+
+00:04:34.980 --> 00:04:37.530
+You have a knowledge base,
+you embed documents,
+
+00:04:37.530 --> 00:04:40.880
+and when a user asks a question,
+you retrieve the relevant chunks
+
+00:04:40.880 --> 00:04:42.560
+and feed them to the model.
+
+00:04:42.560 --> 00:04:45.950
+So it works well
+for what it does
+
+00:04:45.950 --> 00:04:47.960
+but has fundamental limitations
+
+00:04:47.960 --> 00:04:50.840
+when you're building
+agent-based applications.
+
+00:04:50.840 --> 00:04:52.970
+So let's walk through
+the comparison.
+
+00:04:52.970 --> 00:04:55.260
+Traditional RAG is static.
+
+00:04:55.260 --> 00:04:59.070
+Your knowledge base is fixed
+until you explicitly update it.
+
+00:04:59.070 --> 00:05:01.620
+Agentic memory, on the
+other hand, is dynamic.
+
+00:05:01.620 --> 00:05:05.460
+It grows automatically
+with every interaction.
+
+00:05:05.460 --> 00:05:08.040
+RAG gives the same
+results to everyone.
+
+00:05:08.040 --> 00:05:10.500
+It's searching a shared corpus.
+
+00:05:10.500 --> 00:05:12.960
+Agentic memory is user specific.
+
+00:05:12.960 --> 00:05:16.350
+It stores individual
+preferences and history,
+
+00:05:16.350 --> 00:05:19.680
+so two different
+users get completely
+
+00:05:19.680 --> 00:05:21.240
+different experiences.
+
+00:05:21.240 --> 00:05:24.720
+RAG retrieves by
+similarity alone.
+
+00:05:24.720 --> 00:05:27.870
+Whatever is closest in the
+embedding space comes back.
+
+00:05:27.870 --> 00:05:30.960
+Agentic memory uses salient
+scoring, which factors
+
+00:05:30.960 --> 00:05:34.230
+in importance, confidence,
+and resiliency.
+
+00:05:34.230 --> 00:05:36.570
+RAG doesn't learn
+from interactions.
+
+00:05:36.570 --> 00:05:39.270
+It's just a pure lookup.
+
+00:05:39.270 --> 00:05:42.630
+Agentic memory actively
+learns and adapts.
+
+00:05:42.630 --> 00:05:45.270
+Every conversation
+is an opportunity
+
+00:05:45.270 --> 00:05:48.060
+to extract new knowledge.
+
+00:05:48.060 --> 00:05:51.240
+And RAG has no concept of time.
+
+00:05:51.240 --> 00:05:54.360
+Agentic memory supports
+cross-session persistence
+
+00:05:54.360 --> 00:05:56.550
+with TTL policies.
+
+00:05:56.550 --> 00:06:00.330
+Let's now go over the
+system architecture
+
+00:06:00.330 --> 00:06:04.830
+for our travel agent application
+that we are going to demo
+
+00:06:04.830 --> 00:06:07.140
+at the later end of the session.
+
+00:06:07.140 --> 00:06:12.690
+So now let's zoom out and look
+at the full system architecture.
+
+00:06:12.690 --> 00:06:15.660
+So everything starts
+when a message lands
+
+00:06:15.660 --> 00:06:17.520
+in the orchestrator agent.
+
+00:06:17.520 --> 00:06:20.100
+This is the front door
+of our application,
+
+00:06:20.100 --> 00:06:23.730
+so every conversation comes
+through the orchestrator first.
+
+00:06:23.730 --> 00:06:28.500
+Its only job is to
+understand intent and decide
+
+00:06:28.500 --> 00:06:31.290
+which specialist
+should handle it.
+
+00:06:31.290 --> 00:06:34.050
+After that, there are
+specialized agents --
+
+00:06:34.050 --> 00:06:36.690
+hotel, dining, and activity.
+
+00:06:36.690 --> 00:06:42.330
+Each one owns a single domain,
+so has its own system prompt
+
+00:06:42.330 --> 00:06:45.760
+and pulls from a
+focused set of tools.
+
+00:06:46.920 --> 00:06:48.840
+In our multi-agent application,
+
+00:06:48.840 --> 00:06:53.430
+none of these agents are talking
+directly to the database.
+
+00:06:53.430 --> 00:06:58.110
+They go through the MCP
+server, which has many tools,
+
+00:06:58.110 --> 00:07:01.050
+like recall memories,
+discover places,
+
+00:07:01.050 --> 00:07:04.830
+transfer between different
+agents, and many more.
+
+00:07:04.830 --> 00:07:10.920
+The point of MCP is decoupling,
+so we can update or add tools
+
+00:07:10.920 --> 00:07:15.030
+without touching agent code,
+and one tool can be reused
+
+00:07:15.030 --> 00:07:17.910
+across every other agent.
+
+00:07:17.910 --> 00:07:21.900
+So underneath the MCP layer,
+we have our Azure Cosmos DB.
+
+00:07:21.900 --> 00:07:25.290
+It stores everything the
+application needs, sessions,
+
+00:07:25.290 --> 00:07:30.390
+messages, places, trips,
+API events, among others.
+
+00:07:30.390 --> 00:07:33.750
+Places are searched
+using hybrid search,
+
+00:07:33.750 --> 00:07:37.650
+and every container uses a
+hierarchical partition key,
+
+00:07:37.650 --> 00:07:41.430
+so the system is
+multi-tenant from day one.
+
+00:07:41.430 --> 00:07:44.190
+Next, we have the
+agent memory toolkit,
+
+00:07:44.190 --> 00:07:47.100
+which is a new
+Cosmos DB offering
+
+00:07:47.100 --> 00:07:52.380
+to host your memory layer, so
+for any multi-agent application.
+
+00:07:52.380 --> 00:07:55.410
+It is a separate
+background runtime
+
+00:07:55.410 --> 00:07:58.320
+that hands off the
+same Cosmos DB account
+
+00:07:58.320 --> 00:07:59.850
+that I mentioned before.
+
+00:07:59.850 --> 00:08:03.540
+It owns its own container
+called "memories"
+
+00:08:03.540 --> 00:08:07.230
+where the actual turns of the
+conversation, facts extracted
+
+00:08:07.230 --> 00:08:10.170
+from those turns, the user
+summaries, the thread summaries,
+
+00:08:10.170 --> 00:08:15.270
+everything is stored, and the
+agent never calls it directly.
+
+00:08:15.270 --> 00:08:18.270
+And then we have
+the Azure OpenAI
+
+00:08:18.270 --> 00:08:20.520
+which is providing
+the LLM reasoning
+
+00:08:20.520 --> 00:08:22.410
+and embedding capabilities.
+
+00:08:22.410 --> 00:08:26.610
+It's a shared utility that
+feeds both the agent runtime
+
+00:08:26.610 --> 00:08:29.040
+and the toolkit pipeline.
+
+00:08:29.040 --> 00:08:35.340
+Now let's go over some concepts
+about memory and agentic memory.
+
+00:08:35.340 --> 00:08:38.490
+So before we go
+deeper into memory,
+
+00:08:38.490 --> 00:08:41.520
+let's establish a
+clear vocabulary.
+
+00:08:41.520 --> 00:08:45.780
+People use the word "memory"
+loosely, so let's be precise.
+
+00:08:45.780 --> 00:08:48.500
+So there are three
+distinct concepts here.
+
+00:08:48.500 --> 00:08:51.290
+State, which is the snapshot
+
+00:08:51.290 --> 00:08:55.160
+of your entire application
+at any given moment.
+
+00:08:55.160 --> 00:08:58.940
+It contains everything needed
+to restore the application
+
+00:08:58.940 --> 00:09:01.910
+to that exact point,
+what the user said,
+
+00:09:01.910 --> 00:09:05.040
+what the agent decided,
+what tools were called.
+
+00:09:05.040 --> 00:09:09.270
+Then we have short-term
+memory, which is what happens
+
+00:09:09.270 --> 00:09:12.450
+within that particular
+single session.
+
+00:09:12.450 --> 00:09:14.280
+It's the conversation history,
+
+00:09:14.280 --> 00:09:16.740
+the messages going
+back and forth.
+
+00:09:16.740 --> 00:09:19.590
+This is what lets
+an agent refer back
+
+00:09:19.590 --> 00:09:22.650
+to something the user
+said three messages ago
+
+00:09:22.650 --> 00:09:25.290
+and give a coherent response.
+
+00:09:25.290 --> 00:09:27.240
+Then we have the
+long-term memory.
+
+00:09:27.240 --> 00:09:31.350
+This is where things actually
+start to get more powerful.
+
+00:09:31.350 --> 00:09:33.420
+This persists across sessions.
+
+00:09:33.420 --> 00:09:36.930
+When a user comes back
+days or weeks later,
+
+00:09:36.930 --> 00:09:40.380
+the agent can recall what it
+learned about them previously,
+
+00:09:40.380 --> 00:09:43.740
+their preferences, past
+decisions, feedback,
+
+00:09:43.740 --> 00:09:46.650
+and this is what
+enables personalization
+
+00:09:46.650 --> 00:09:48.680
+and learning over time.
+
+00:09:48.680 --> 00:09:50.810
+It's the difference
+between an agent
+
+00:09:50.810 --> 00:09:53.720
+that starts fresh every
+conversation and one
+
+00:09:53.720 --> 00:09:57.270
+that builds a relationship
+with the user.
+
+00:09:57.270 --> 00:09:58.470
+JUSTINE COCCHI: So Aayush,
+
+00:09:58.470 --> 00:10:01.920
+these are really interesting
+different types of memory.
+
+00:10:01.920 --> 00:10:03.870
+I'm wondering, how can
+we implement these
+
+00:10:03.870 --> 00:10:06.090
+into our travel application?
+
+00:10:06.090 --> 00:10:06.630
+AAYUSH KATARIA: Yeah.
+
+00:10:06.630 --> 00:10:10.110
+So in our travel application, we
+are going to implement all three
+
+00:10:10.110 --> 00:10:12.240
+of these different
+kind of memories.
+
+00:10:12.240 --> 00:10:15.750
+State management through
+LangGraph Cosmos DB checkpointer
+
+00:10:15.750 --> 00:10:19.140
+integration, and then short-term
+memory and long-term memory
+
+00:10:19.140 --> 00:10:22.590
+through the dedicated agent
+memory toolkit backed
+
+00:10:22.590 --> 00:10:24.330
+by Cosmos DB.
+
+00:10:24.330 --> 00:10:27.420
+Now let's move over to
+the code and I'll go
+
+00:10:27.420 --> 00:10:31.080
+over a few more core concepts,
+and then we can jump
+
+00:10:31.080 --> 00:10:34.560
+into our UI demo and look
+
+00:10:34.560 --> 00:10:37.530
+and get the feel how the
+agent memory toolkit works
+
+00:10:37.530 --> 00:10:40.020
+with our multi-agent
+application.
+
+00:10:40.020 --> 00:10:41.040
+So we just talked
+
+00:10:41.040 --> 00:10:44.070
+about long-term memory
+at a high level.
+
+00:10:44.070 --> 00:10:46.140
+Now I want to break that down
+
+00:10:46.140 --> 00:10:49.500
+because not all long-term
+memories are the same,
+
+00:10:49.500 --> 00:10:51.360
+and the toolkit reflects
+
+00:10:51.360 --> 00:10:54.510
+that with four different
+types of memories.
+
+00:10:54.510 --> 00:10:58.650
+So the reason this matters
+is each type has a different
+
+00:10:58.650 --> 00:11:01.830
+lifetime, a different
+way of being created,
+
+00:11:01.830 --> 00:11:04.530
+and a different way
+the agent uses it.
+
+00:11:04.530 --> 00:11:06.270
+So let's walk through them.
+
+00:11:06.270 --> 00:11:11.790
+As you can see here, we have a
+few different types of memory
+
+00:11:11.790 --> 00:11:15.030
+that we are storing in
+our agent memory toolkit.
+
+00:11:15.030 --> 00:11:19.440
+First is the facts, so sometimes
+called "semantic memory."
+
+00:11:19.440 --> 00:11:23.010
+These are simple, durable
+statements about the user.
+
+00:11:23.010 --> 00:11:27.090
+User is vegetarian, travels with
+a wheelchair, lives in Seattle.
+
+00:11:27.090 --> 00:11:28.530
+They are objectively true.
+
+00:11:28.530 --> 00:11:31.920
+They don't change often and
+they should never expire.
+
+00:11:31.920 --> 00:11:34.470
+Second is the procedural memory.
+
+00:11:34.470 --> 00:11:38.160
+This is behavioral patterns,
+preferences inferred
+
+00:11:38.160 --> 00:11:40.440
+from how the user
+actually behaves
+
+00:11:40.440 --> 00:11:44.820
+over multiple conversations,
+tends to book boutique hotels
+
+00:11:44.820 --> 00:11:47.760
+over chains, prefers
+late dinners.
+
+00:11:47.760 --> 00:11:52.170
+These are softer than facts, so
+the user might never say them
+
+00:11:52.170 --> 00:11:55.650
+out loud, but they
+emerge from repetition.
+
+00:11:55.650 --> 00:11:58.860
+They also never
+expire by default
+
+00:11:58.860 --> 00:12:02.670
+because behavioral patterns
+are usually stable.
+
+00:12:02.670 --> 00:12:05.310
+Third is episodic memory.
+
+00:12:05.310 --> 00:12:09.480
+These are tied to a
+specific time and place.
+
+00:12:09.480 --> 00:12:12.000
+Visited New York
+City in last spring,
+
+00:12:12.000 --> 00:12:14.940
+loved seafood on
+my Barcelona trip.
+
+00:12:14.940 --> 00:12:19.110
+These are how the system knows
+to reference a past trip
+
+00:12:19.110 --> 00:12:24.000
+when planning a new one,
+and these do expire.
+
+00:12:24.000 --> 00:12:26.460
+So the default is 90 days.
+
+00:12:26.460 --> 00:12:30.780
+Episodic memory gets a
+little noisy too fast,
+
+00:12:30.780 --> 00:12:34.560
+and a recommendation
+system doesn't really need
+
+00:12:34.560 --> 00:12:36.060
+to remember a coffee shop
+
+00:12:36.060 --> 00:12:39.390
+that you went probably
+four years ago.
+
+00:12:39.390 --> 00:12:41.790
+Fourth is the user summary.
+
+00:12:41.790 --> 00:12:44.070
+This is different
+from the other three.
+
+00:12:44.070 --> 00:12:47.400
+It's not extracted
+from a single message.
+
+00:12:47.400 --> 00:12:51.150
+It's a rolling synthesis
+of who this user I,
+
+00:12:51.150 --> 00:12:54.360
+regenerated automatically
+every few turns.
+
+00:12:54.360 --> 00:12:57.390
+It can be something like
+
+00:12:57.390 --> 00:13:01.290
+"This user is a frequent
+solo traveler, vegetarian,
+
+00:13:01.290 --> 00:13:06.660
+prefers cultural over
+outdoor, mid-range hotels."
+
+00:13:06.660 --> 00:13:10.560
+So the orchestrator pulls
+these into its system prompt
+
+00:13:10.560 --> 00:13:14.040
+at the start of
+every conversation.
+
+00:13:14.040 --> 00:13:17.610
+So even on day one of
+a brand-new session,
+
+00:13:17.610 --> 00:13:21.780
+the agent already
+knows the user.
+
+00:13:21.780 --> 00:13:27.460
+So let's go and look
+how it looks in the UI.
+
+00:13:29.040 --> 00:13:31.620
+So let me sign in
+with a user, Tony,
+
+00:13:31.620 --> 00:13:38.040
+for which we already have
+some preferences loaded.
+
+00:13:38.040 --> 00:13:40.320
+So let me go talk with
+the chat assistant.
+
+00:13:40.320 --> 00:13:49.690
+Let's say, "Hi, I am
+planning a trip to Tokyo,"
+
+00:13:51.240 --> 00:13:55.230
+and you'd be able to see that
+it's actually in the logs
+
+00:13:55.230 --> 00:13:57.870
+where my API server is running
+
+00:13:57.870 --> 00:14:00.060
+that it's actually going
+to the orchestrator.
+
+00:14:00.060 --> 00:14:02.220
+Orchestrator then
+works its magic,
+
+00:14:02.220 --> 00:14:05.550
+figure out what's the intent
+of the particular user,
+
+00:14:05.550 --> 00:14:10.290
+what tools would I be
+using, where should I go,
+
+00:14:10.290 --> 00:14:13.770
+and then eventually it gives
+us a response that, "Hello,
+
+00:14:13.770 --> 00:14:15.570
+to get started with
+Tokyo trip planning,
+
+00:14:15.570 --> 00:14:19.350
+please let me know
+what hotels you want,
+
+00:14:19.350 --> 00:14:21.210
+what activities you want to do."
+
+00:14:21.210 --> 00:14:22.050
+So let's see.
+
+00:14:22.050 --> 00:14:30.060
+Let's ask it what are
+my hotel preferences,
+
+00:14:30.060 --> 00:14:34.380
+and if we'll actually head back
+to the portal, we can actually,
+
+00:14:34.380 --> 00:14:37.110
+for that particular user
+in our memories container,
+
+00:14:37.110 --> 00:14:41.670
+I can search what all
+facts are actually stored.
+
+00:14:41.670 --> 00:14:48.660
+So if I'll execute this query, I
+can see the user's name is Tony.
+
+00:14:48.660 --> 00:14:51.750
+Tony prefers luxury
+five-star hotels.
+
+00:14:51.750 --> 00:14:53.550
+He loves art museums
+
+00:14:53.550 --> 00:14:56.700
+and contemporary
+galleries and everything.
+
+00:14:56.700 --> 00:15:01.110
+So if we'll head back to our
+UI, I can actually see that,
+
+00:15:01.110 --> 00:15:03.660
+based on your past interactions,
+here's what I know
+
+00:15:03.660 --> 00:15:05.460
+about your hotel preferences.
+
+00:15:05.460 --> 00:15:09.630
+You prioritize reliable Wi-Fi
+over price for business trips.
+
+00:15:09.630 --> 00:15:13.710
+You enjoy rooftop bars and quiet
+evenings during work travel.
+
+00:15:13.710 --> 00:15:18.240
+So similarly, I would be
+able to fetch my preferences
+
+00:15:18.240 --> 00:15:24.270
+for activities, my
+preferences for restaurants,
+
+00:15:24.270 --> 00:15:26.400
+my dietary preferences.
+
+00:15:26.400 --> 00:15:30.240
+So that way the agent toolkit
+is extracting the memories,
+
+00:15:30.240 --> 00:15:33.330
+storing those preferences
+back in Cosmos DB,
+
+00:15:33.330 --> 00:15:37.170
+and when the user is coming,
+and actually chatting
+
+00:15:37.170 --> 00:15:38.160
+with the chat assistant.
+
+00:15:38.160 --> 00:15:41.910
+It's able to leverage those
+preferences and memories back
+
+00:15:41.910 --> 00:15:43.950
+into the conversation.
+
+00:15:43.950 --> 00:15:47.940
+Now let's head back
+to the code once more
+
+00:15:47.940 --> 00:15:53.250
+and let's see how are we
+actually extracting all
+
+00:15:53.250 --> 00:15:54.420
+these memories.
+
+00:15:54.420 --> 00:15:58.530
+So storing memories is
+only half the challenge.
+
+00:15:58.530 --> 00:16:03.300
+The real value comes from making
+all this memory intelligent,
+
+00:16:03.300 --> 00:16:07.920
+meaning the system actively
+manages its own knowledge.
+
+00:16:07.920 --> 00:16:12.330
+So if we'll go to this
+particular class,
+
+00:16:12.330 --> 00:16:17.730
+we have public-facing APIs
+which are extracting memories,
+
+00:16:17.730 --> 00:16:20.610
+generating threat summary,
+generating user summary,
+
+00:16:20.610 --> 00:16:24.060
+and reconciling memories, which
+means conflict resolution.
+
+00:16:24.060 --> 00:16:27.240
+So the first piece is the
+threshold-driven extraction,
+
+00:16:27.240 --> 00:16:29.490
+which is extract memories.
+
+00:16:29.490 --> 00:16:33.900
+So the real value comes from
+making memories intelligent.
+
+00:16:33.900 --> 00:16:37.830
+So the user never has to
+say, "Remember this."
+
+00:16:37.830 --> 00:16:39.870
+As the conversation unfolds,
+
+00:16:39.870 --> 00:16:43.470
+a background pipeline
+runs every end turn
+
+00:16:43.470 --> 00:16:47.070
+in the agent memory
+toolkit and asks the LLM,
+
+00:16:47.070 --> 00:16:50.490
+"Is there anything new about
+this user worth remembering?"
+
+00:16:50.490 --> 00:16:54.930
+If the user is -- if the answer
+is yes, it pulls out a fact,
+
+00:16:54.930 --> 00:16:58.800
+classifies it as a fact,
+procedural or episodic memory,
+
+00:16:58.800 --> 00:17:01.560
+and writes it back to Cosmos DB.
+
+00:17:01.560 --> 00:17:04.020
+The agent loop
+doesn't wait on this.
+
+00:17:04.020 --> 00:17:07.500
+It happens asynchronously
+in the background.
+
+00:17:07.500 --> 00:17:11.280
+The second piece is conflict
+resolution, which is done
+
+00:17:11.280 --> 00:17:15.300
+by the reconciled
+memories method.
+
+00:17:15.300 --> 00:17:19.740
+So real conversations always
+would be contradicting.
+
+00:17:19.740 --> 00:17:22.320
+The user says "I'm
+vegan" on Monday.
+
+00:17:22.320 --> 00:17:25.800
+Three weeks later, they mention
+how much they love a steakhouse
+
+00:17:25.800 --> 00:17:28.710
+and they have
+started eating meat.
+
+00:17:28.710 --> 00:17:30.830
+So now what does the system do?
+
+00:17:30.830 --> 00:17:32.360
+So on a separate cadence,
+
+00:17:32.360 --> 00:17:36.230
+the toolkit periodically
+sweeps the user's facts
+
+00:17:36.230 --> 00:17:41.120
+and asks the LLM to classify
+the pairs of related memories
+
+00:17:41.120 --> 00:17:44.610
+so they can be either
+duplicates or updates.
+
+00:17:44.610 --> 00:17:47.970
+When it finds one, it
+doesn't delete the user.
+
+00:17:47.970 --> 00:17:51.330
+It marks it superseded
+by the winner.
+
+00:17:51.330 --> 00:17:54.510
+That is done so that the
+audit trail is preserved,
+
+00:17:54.510 --> 00:17:57.510
+so the user never
+sees a contradiction
+
+00:17:57.510 --> 00:17:59.010
+in the recommendations.
+
+00:17:59.010 --> 00:18:02.130
+But if you're debugging,
+say, six months later,
+
+00:18:02.130 --> 00:18:04.860
+you can still see exactly when
+
+00:18:04.860 --> 00:18:08.490
+and why the system
+changed its mind.
+
+00:18:08.490 --> 00:18:11.940
+The third place is
+rolling summaries.
+
+00:18:11.940 --> 00:18:13.920
+Conversations can get long.
+
+00:18:13.920 --> 00:18:16.140
+Token budgets are finite.
+
+00:18:16.140 --> 00:18:19.230
+The toolkit handles this
+by generating two kinds
+
+00:18:19.230 --> 00:18:21.030
+of summaries on a cadence.
+
+00:18:21.030 --> 00:18:22.920
+So one is threat summary
+
+00:18:22.920 --> 00:18:24.990
+that captures the
+current conversation,
+
+00:18:24.990 --> 00:18:26.820
+the current session,
+and the thread,
+
+00:18:26.820 --> 00:18:31.290
+and other is user summary that
+captures who this user is
+
+00:18:31.290 --> 00:18:33.830
+across all conversations.
+
+00:18:33.830 --> 00:18:38.930
+So just for this demo
+purposes, both user summary
+
+00:18:38.930 --> 00:18:40.880
+and threat summary
+are regenerated
+
+00:18:40.880 --> 00:18:44.930
+after every five turns, so we
+can actually see that happen
+
+00:18:44.930 --> 00:18:47.490
+in the demo in a few minutes.
+
+00:18:47.490 --> 00:18:53.760
+In production, the agent toolkit
+has like some default set
+
+00:18:53.760 --> 00:18:57.540
+which are tunable by the
+customer who's going
+
+00:18:57.540 --> 00:19:00.150
+to use the agent memory toolkit.
+
+00:19:00.150 --> 00:19:03.630
+So the orchestrator eventually
+pulls these summaries
+
+00:19:03.630 --> 00:19:07.260
+into context at the
+start of every turn,
+
+00:19:07.260 --> 00:19:09.600
+so even after a
+hundred messages,
+
+00:19:09.600 --> 00:19:13.950
+the agent doesn't
+lose the actual plot.
+
+00:19:13.950 --> 00:19:18.060
+The fourth piece is what
+I think of as the payoff.
+
+00:19:18.060 --> 00:19:20.880
+That is memory condition search.
+
+00:19:20.880 --> 00:19:25.890
+So everything that we've talked
+about so far is plumbing.
+
+00:19:25.890 --> 00:19:30.410
+This is where the memory shapes
+what the user actually sees.
+
+00:19:30.410 --> 00:19:34.760
+So before any specialist
+agent searches for a hotel
+
+00:19:34.760 --> 00:19:38.030
+or a restaurant, it
+recalls memories first
+
+00:19:38.030 --> 00:19:40.520
+to ask the toolkit,
+"What do we know
+
+00:19:40.520 --> 00:19:44.550
+about this user that's relevant
+to this particular query?"
+
+00:19:44.550 --> 00:19:48.480
+So the recall comes back with
+relevant facts and preferences,
+
+00:19:48.480 --> 00:19:51.150
+and the agent then encodes those
+
+00:19:51.150 --> 00:19:54.360
+as explicit filters
+on the search call.
+
+00:19:54.360 --> 00:20:00.060
+That's how "Show me
+hotels in Tokyo" becomes
+
+00:20:00.060 --> 00:20:02.730
+"Show me luxury
+hotels in Tokyo."
+
+00:20:02.730 --> 00:20:07.140
+So the personalization
+isn't bolted on at the end.
+
+00:20:07.140 --> 00:20:10.530
+It's baked into
+the query itself.
+
+00:20:10.530 --> 00:20:14.790
+So the agent memory toolkit
+runs all these automatically
+
+00:20:14.790 --> 00:20:17.790
+in the background on
+the right cadence
+
+00:20:17.790 --> 00:20:21.420
+without the application code
+having to coordinate them,
+
+00:20:21.420 --> 00:20:24.240
+and your agent
+always stays simple.
+
+00:20:24.240 --> 00:20:26.940
+So now let's go back to the UI
+
+00:20:26.940 --> 00:20:30.960
+and let's see how we'll
+choose a new user
+
+00:20:30.960 --> 00:20:34.830
+that has no preferences stored
+in our memories container.
+
+00:20:34.830 --> 00:20:39.900
+So let's see how
+the workflow is.
+
+00:20:39.900 --> 00:20:41.790
+So let me close this.
+
+00:20:41.790 --> 00:20:44.680
+Let me log out of this session.
+
+00:20:45.720 --> 00:20:49.560
+Let's choose a new
+user as Peter,
+
+00:20:49.560 --> 00:20:51.750
+and we can go in our portal.
+
+00:20:51.750 --> 00:20:56.340
+We can confirm that Peter
+doesn't have anything stored
+
+00:20:56.340 --> 00:20:59.350
+in the memories container.
+
+00:21:02.040 --> 00:21:03.030
+Let's go back here.
+
+00:21:03.030 --> 00:21:04.950
+Let's start a session.
+
+00:21:04.950 --> 00:21:12.960
+Let's say I'm planning
+a trip to Paris.
+
+00:21:12.960 --> 00:21:16.950
+Similarly, again, now if I'll
+go to my API server back
+
+00:21:16.950 --> 00:21:19.960
+in the terminal
+where it's running,
+
+00:21:21.810 --> 00:21:25.890
+I can see now it's the user
+is the user chosen as Peter.
+
+00:21:25.890 --> 00:21:28.680
+It's going to the
+orchestrator agent and, like,
+
+00:21:28.680 --> 00:21:31.260
+other tools that the
+orchestrator agent decides
+
+00:21:31.260 --> 00:21:32.640
+to go to.
+
+00:21:32.640 --> 00:21:34.290
+Let's head back to our UI.
+
+00:21:34.290 --> 00:21:35.700
+I have an answer.
+
+00:21:35.700 --> 00:21:39.090
+So, "Hello, I'd be happy to help
+you plan your trip to Paris.
+
+00:21:39.090 --> 00:21:41.610
+Would you like to start by
+finding hotels, restaurants,
+
+00:21:41.610 --> 00:21:44.790
+or activities, or perhaps
+create an itinerary?"
+
+00:21:44.790 --> 00:21:51.990
+So let's say I am vegan.
+
+00:21:51.990 --> 00:21:53.760
+If we'll head back
+to the portal,
+
+00:21:53.760 --> 00:21:56.190
+you can actually see
+some memories stored
+
+00:21:56.190 --> 00:21:58.320
+for that particular user.
+
+00:21:58.320 --> 00:22:00.210
+So this is a memory-type turn.
+
+00:22:00.210 --> 00:22:04.590
+Turn is nothing but just the
+conversation that the user
+
+00:22:04.590 --> 00:22:09.060
+and the agent is doing
+on our chat assistant.
+
+00:22:09.060 --> 00:22:12.450
+So as we said, I'm
+planning a trip to Paris.
+
+00:22:12.450 --> 00:22:15.570
+That is stored as a turn.
+
+00:22:15.570 --> 00:22:19.200
+And right now it's storing
+"I'm vegan" as a turn as well.
+
+00:22:19.200 --> 00:22:23.340
+If I'll execute the query again,
+you can see that it was able
+
+00:22:23.340 --> 00:22:27.090
+to extract the fact that
+the user is actually,
+
+00:22:27.090 --> 00:22:29.640
+in fact, vegan.
+
+00:22:29.640 --> 00:22:31.050
+So let me go back to the UI
+
+00:22:31.050 --> 00:22:33.720
+and let me deliberately
+contradict myself,
+
+00:22:33.720 --> 00:22:42.570
+and let's say I have
+started eating meat now.
+
+00:22:42.570 --> 00:22:46.560
+Again, if I go back to my
+portal, let me now filter it
+
+00:22:46.560 --> 00:22:52.530
+for just facts so that we
+can see how the fact is
+
+00:22:52.530 --> 00:22:54.270
+getting resolved.
+
+00:22:54.270 --> 00:22:57.180
+So right now we only
+have one fact here
+
+00:22:57.180 --> 00:22:59.790
+that the user is vegan.
+
+00:22:59.790 --> 00:23:03.180
+Let me execute the query again.
+
+00:23:03.180 --> 00:23:05.940
+So now you can see
+we have a new fact
+
+00:23:05.940 --> 00:23:09.270
+that the user has started
+eating meat and changing
+
+00:23:09.270 --> 00:23:13.140
+from a vegan diet, and if
+we go to the older fact
+
+00:23:13.140 --> 00:23:17.190
+that was the user is vegan, I
+can see that it's superseded
+
+00:23:17.190 --> 00:23:22.470
+by the same fact ID of
+my new fact so that
+
+00:23:22.470 --> 00:23:24.480
+that is done for an audit trail.
+
+00:23:24.480 --> 00:23:28.290
+As I explained before, if
+after six months or a year
+
+00:23:28.290 --> 00:23:31.350
+down the road you want to check
+like which fact was superseded
+
+00:23:31.350 --> 00:23:35.700
+by which fact, we would have
+a debug log, in that sense.
+
+00:23:35.700 --> 00:23:37.800
+Let's head back to the UI.
+
+00:23:37.800 --> 00:23:40.920
+Just couple of other things
+that I wanted to mention is
+
+00:23:40.920 --> 00:23:48.330
+that the prompt for these
+LLM models are our scripts
+
+00:23:48.330 --> 00:23:50.580
+that are written in
+our code itself.
+
+00:23:50.580 --> 00:23:54.450
+So if we'll go to -- go back
+to our code and I can show you
+
+00:23:54.450 --> 00:23:57.690
+like an extract
+memories prompt file.
+
+00:23:57.690 --> 00:24:02.400
+So here you can see that we are
+deliberately giving instructions
+
+00:24:02.400 --> 00:24:07.050
+to the LLM that these are the
+four different type of memories
+
+00:24:07.050 --> 00:24:10.050
+that you can extract,
+and we have given
+
+00:24:10.050 --> 00:24:12.810
+like detailed information
+in the prompt
+
+00:24:12.810 --> 00:24:14.700
+like what should
+be the structure
+
+00:24:14.700 --> 00:24:18.810
+of those memories rules
+according to like which rules
+
+00:24:18.810 --> 00:24:22.560
+and examples that what kind of
+a memory would be classified
+
+00:24:22.560 --> 00:24:24.960
+as fact, what would be
+classified as procedural,
+
+00:24:24.960 --> 00:24:29.370
+what would be classified as
+episodic, and similarly,
+
+00:24:29.370 --> 00:24:32.820
+prompts have been given -- the
+prompt, there are rules given
+
+00:24:32.820 --> 00:24:37.980
+to this prompt that what kind
+of turn should be extracted.
+
+00:24:37.980 --> 00:24:41.220
+So for an example, if my
+turn just has greetings
+
+00:24:41.220 --> 00:24:45.090
+to the assistant, those
+turns would not be extracted
+
+00:24:45.090 --> 00:24:46.020
+as a fact.
+
+00:24:46.020 --> 00:24:50.520
+So if I'm just saying hello, hi,
+good morning, good afternoon,
+
+00:24:50.520 --> 00:24:53.520
+so those turns would
+not be extracted.
+
+00:24:53.520 --> 00:24:55.800
+Now let's look at
+how summarization,
+
+00:24:55.800 --> 00:24:57.540
+auto-summarization works.
+
+00:24:57.540 --> 00:25:02.070
+So as I mentioned, just for this
+demo, we have set that cadence
+
+00:25:02.070 --> 00:25:06.180
+as five turns, so as soon as
+there would be five turns,
+
+00:25:06.180 --> 00:25:08.520
+auto-summarization
+would be generated.
+
+00:25:08.520 --> 00:25:16.450
+So let me ask it to recommend
+me some restaurants now.
+
+00:25:19.380 --> 00:25:23.850
+So now if we'll go back to our
+terminal window, I would be able
+
+00:25:23.850 --> 00:25:28.320
+to see that the orchestrator
+agent actually extracted the
+
+00:25:28.320 --> 00:25:31.770
+intent and it was able
+to call the dining agent
+
+00:25:31.770 --> 00:25:37.290
+to actually list the
+recommendations for restaurants.
+
+00:25:37.290 --> 00:25:41.740
+So let's go back to the UI and
+see what all results we get.
+
+00:25:42.750 --> 00:25:45.030
+So it can -- you can
+clearly see that it says
+
+00:25:45.030 --> 00:25:47.730
+that here are some restaurant
+recommendations in Paris
+
+00:25:47.730 --> 00:25:50.910
+and based on your updated
+dietary preference,
+
+00:25:50.910 --> 00:25:58.740
+so it's automatically picking up
+the current fact that we have
+
+00:25:58.740 --> 00:26:02.250
+in our memories container
+as we have already resolved
+
+00:26:02.250 --> 00:26:03.900
+that conflict and it's able
+
+00:26:03.900 --> 00:26:07.830
+to give us the correct
+recommended list of restaurants.
+
+00:26:07.830 --> 00:26:15.960
+Now, let's say, we can say,
+"Create an itinerary for Paris
+
+00:26:15.960 --> 00:26:19.890
+for three days,"
+and as we can see,
+
+00:26:19.890 --> 00:26:23.220
+we have already done five
+turns with the agent,
+
+00:26:23.220 --> 00:26:27.390
+so we can actually go in
+our portal and also see
+
+00:26:27.390 --> 00:26:30.490
+if a summary is being extracted.
+
+00:26:48.600 --> 00:26:51.630
+So we can see that a user
+summary was extracted.
+
+00:26:51.630 --> 00:26:59.550
+If I run the query again, we
+should be able to see -- yeah.
+
+00:26:59.550 --> 00:27:01.410
+So we can see the user summary.
+
+00:27:01.410 --> 00:27:03.300
+The user is planning
+a trip to Paris.
+
+00:27:03.300 --> 00:27:05.340
+The user has changed
+their dietary preference
+
+00:27:05.340 --> 00:27:07.410
+from vegan to omnivore.
+
+00:27:07.410 --> 00:27:10.020
+So similarly, we would
+have a threat summary
+
+00:27:10.020 --> 00:27:15.180
+that would be extracted as
+well, and we can also see here
+
+00:27:15.180 --> 00:27:17.250
+that the itinerary
+agent was able
+
+00:27:17.250 --> 00:27:21.930
+to generate the whole
+itinerary for us.
+
+00:27:21.930 --> 00:27:25.260
+So the agent memory toolkit
+for Azure Cosmos DB is
+
+00:27:25.260 --> 00:27:27.090
+in public preview now.
+
+00:27:27.090 --> 00:27:30.870
+It has fact extraction,
+auto-summarization,
+
+00:27:30.870 --> 00:27:34.050
+and there are package
+instructions and prompts
+
+00:27:34.050 --> 00:27:38.790
+to do conflict resolution,
+extract different kind
+
+00:27:38.790 --> 00:27:43.710
+of memories, do user and
+thread summarization.
+
+00:27:43.710 --> 00:27:48.150
+Next, LangChain Azure Cosmos
+DB integration is also
+
+00:27:48.150 --> 00:27:49.650
+generally available.
+
+00:27:49.650 --> 00:27:53.280
+It's a integration package
+
+00:27:53.280 --> 00:27:56.760
+that has all the Cosmos DB
+integration for LangChain
+
+00:27:56.760 --> 00:27:58.650
+and LangGraph that
+were used to build
+
+00:27:58.650 --> 00:28:00.480
+that multi-agent application.
+
+00:28:00.480 --> 00:28:04.890
+You can use the vector store
+integration from LangChain.
+
+00:28:04.890 --> 00:28:07.920
+If you want to do
+state checkpointing
+
+00:28:07.920 --> 00:28:09.390
+for your multi-agent
+application,
+
+00:28:09.390 --> 00:28:12.030
+you can use the LangGraph
+checkpointer store.
+
+00:28:12.030 --> 00:28:13.050
+JUSTINE COCCHI: So Aayush,
+
+00:28:13.050 --> 00:28:16.500
+it looks like we've
+implemented the memory toolkit
+
+00:28:16.500 --> 00:28:20.700
+and LangChain, and there's a lot
+of touch points with Cosmos DB
+
+00:28:20.700 --> 00:28:22.470
+and many different containers.
+
+00:28:22.470 --> 00:28:24.240
+How can we verify that
+we're following all
+
+00:28:24.240 --> 00:28:27.480
+of the Cosmos DB best
+practices in this application?
+
+00:28:27.480 --> 00:28:29.730
+AAYUSH KATARIA: That's a
+really good question, Justine.
+
+00:28:29.730 --> 00:28:32.370
+So let me set up the scene.
+
+00:28:32.370 --> 00:28:37.350
+So most of the AI apps I've
+been building lately work.
+
+00:28:37.350 --> 00:28:38.790
+They pass the demos.
+
+00:28:38.790 --> 00:28:41.850
+They look great in a
+notebook, but there's a gap
+
+00:28:41.850 --> 00:28:44.670
+between it runs and
+it runs at scale
+
+00:28:44.670 --> 00:28:47.670
+without setting money on fire.
+
+00:28:47.670 --> 00:28:52.320
+So in Cosmos DB that gap
+is paved with decisions
+
+00:28:52.320 --> 00:28:56.370
+that you make on day one
+and pay for on day 90,
+
+00:28:56.370 --> 00:28:59.580
+that the partition keys you
+didn't think hard enough about,
+
+00:28:59.580 --> 00:29:03.540
+the indexing policy you left on
+defaults, the document shape
+
+00:29:03.540 --> 00:29:07.470
+that looked clean in code
+but blows up your IU build
+
+00:29:07.470 --> 00:29:12.720
+in production, so that's why
+we are introducing a Cosmos DB
+
+00:29:12.720 --> 00:29:14.610
+agent kit.
+
+00:29:14.610 --> 00:29:17.550
+So I'll show you.
+
+00:29:17.550 --> 00:29:20.880
+So you just need this
+one line of code
+
+00:29:20.880 --> 00:29:24.600
+that can just install
+your agent kit,
+
+00:29:24.600 --> 00:29:26.820
+and it would install
+these agents.
+
+00:29:26.820 --> 00:29:28.350
+You would have different skills
+
+00:29:28.350 --> 00:29:33.180
+that would have Cosmos
+DB best practices.
+
+00:29:33.180 --> 00:29:36.370
+Now let's go and
+see it in action.
+
+00:29:37.770 --> 00:29:39.930
+So I can just ask it that,
+
+00:29:39.930 --> 00:29:48.000
+"Can you provide me
+some recommendations
+
+00:29:48.000 --> 00:29:53.920
+on best practices
+for my data model?"
+
+00:29:58.110 --> 00:30:02.730
+So what's happening behind this
+prompt is the important part.
+
+00:30:02.730 --> 00:30:05.100
+So the agent kit
+isn't just a service.
+
+00:30:05.100 --> 00:30:08.640
+It isn't an account
+you provision.
+
+00:30:08.640 --> 00:30:13.710
+It's a repo of skills that any
+agent skills compatible coding
+
+00:30:13.710 --> 00:30:17.400
+agent can pull in, like
+GitHub Copilot, Claude Code,
+
+00:30:17.400 --> 00:30:19.890
+Gemini CLI, and others.
+
+00:30:19.890 --> 00:30:25.890
+And what these skills do is
+they give the agent Cosmos DB
+
+00:30:25.890 --> 00:30:29.250
+instincts of someone
+who has shipped,
+
+00:30:29.250 --> 00:30:32.550
+who has been shipping
+on it for years.
+
+00:30:32.550 --> 00:30:35.970
+So partitioning,
+indexing, RU economics,
+
+00:30:35.970 --> 00:30:39.300
+modeling for actual
+access patterns instead
+
+00:30:39.300 --> 00:30:42.690
+of how the data
+feels in your head.
+
+00:30:42.690 --> 00:30:48.480
+So here's the report ranked
+by impact, highest ROI first.
+
+00:30:48.480 --> 00:30:51.400
+So let's just go
+over the report.
+
+00:30:52.860 --> 00:30:55.830
+So it's giving you some
+critical recommendations.
+
+00:30:55.830 --> 00:31:00.120
+It's giving you some
+really highly important
+
+00:31:00.120 --> 00:31:04.170
+recommendations, and you can
+also interact with the agent
+
+00:31:04.170 --> 00:31:06.930
+if you want to push
+back on something
+
+00:31:06.930 --> 00:31:09.450
+and you can tell the agent
+
+00:31:09.450 --> 00:31:13.020
+that why did you did
+something in a certain way.
+
+00:31:13.020 --> 00:31:17.670
+So it can be an interactive
+collaborative effort with that,
+
+00:31:17.670 --> 00:31:19.590
+with this particular agent.
+
+00:31:19.590 --> 00:31:21.660
+So who is this for?
+
+00:31:21.660 --> 00:31:25.440
+So if you're new to Cosmos
+DB, the cognitive tax
+
+00:31:25.440 --> 00:31:29.490
+of am I modeling this
+right basically goes away.
+
+00:31:29.490 --> 00:31:32.280
+So you write code, the
+agent can reviews it,
+
+00:31:32.280 --> 00:31:37.290
+and you ship something that's
+well architected by default.
+
+00:31:37.290 --> 00:31:40.980
+So if you -- and if you're a
+seasoned Cosmos DB developer,
+
+00:31:40.980 --> 00:31:43.920
+point it at your existing
+services and let it hunt
+
+00:31:43.920 --> 00:31:47.100
+for the things that have
+quietly been costing you,
+
+00:31:47.100 --> 00:31:50.610
+so like old containers
+with stale index policies,
+
+00:31:50.610 --> 00:31:54.240
+queries that grew teeth
+over time, partition keys
+
+00:31:54.240 --> 00:31:56.460
+that stopped aging well.
+
+00:31:56.460 --> 00:32:01.530
+And the part that genuinely
+changes how teams operate is you
+
+00:32:01.530 --> 00:32:04.920
+can drop this into your
+CI and your PR reviews.
+
+00:32:04.920 --> 00:32:09.930
+Now every change gets a Cosmos
+DB expert opinion before it
+
+00:32:09.930 --> 00:32:14.220
+merges, so automatically
+every time at no extra cost.
+
+00:32:14.220 --> 00:32:18.900
+So that's the leverage of
+using the Cosmos DB agent kit.
+
+00:32:18.900 --> 00:32:23.280
+This Cosmos DB agent kit is
+generally available now.
+
+00:32:23.280 --> 00:32:23.820
+JUSTINE COCCHI: Awesome.
+
+00:32:23.820 --> 00:32:24.720
+Thanks, Aayush.
+
+00:32:24.720 --> 00:32:27.600
+Now we can feel confident that
+we have all the best practices
+
+00:32:27.600 --> 00:32:33.360
+in place for partitioning and
+cost management, but I also want
+
+00:32:33.360 --> 00:32:35.040
+to make sure we're
+production-ready
+
+00:32:35.040 --> 00:32:37.530
+and that we're using
+all the best practices
+
+00:32:37.530 --> 00:32:40.140
+for reliability
+and availability.
+
+00:32:40.140 --> 00:32:43.650
+And really, before we analyze
+how to do that, it's important
+
+00:32:43.650 --> 00:32:46.830
+to go back to the user
+requirements and what we need
+
+00:32:46.830 --> 00:32:50.550
+to guarantee to our users in
+terms of three key metrics.
+
+00:32:50.550 --> 00:32:54.270
+The first metric is SLO,
+which is the target level
+
+00:32:54.270 --> 00:32:55.860
+of service availability.
+
+00:32:55.860 --> 00:32:59.130
+Now, we have a global
+application and we want
+
+00:32:59.130 --> 00:33:01.410
+to make sure that our
+application is always available
+
+00:33:01.410 --> 00:33:05.250
+for our users that may be
+chatting from all over the world
+
+00:33:05.250 --> 00:33:08.310
+at any time of day, so we
+really can't have any downtime
+
+00:33:08.310 --> 00:33:10.110
+in our application.
+
+00:33:10.110 --> 00:33:13.290
+And we also want to look
+at two metrics for RPO,
+
+00:33:13.290 --> 00:33:17.640
+recovery point objective, and
+RTO, recovery time objective.
+
+00:33:17.640 --> 00:33:21.030
+Now, for distributed cloud
+applications, it's not a matter
+
+00:33:21.030 --> 00:33:24.330
+of if a disaster will strike,
+but when, and to ensure
+
+00:33:24.330 --> 00:33:26.910
+that we're prepared
+when something happens.
+
+00:33:26.910 --> 00:33:28.980
+So for recovery point objective,
+
+00:33:28.980 --> 00:33:32.940
+we need to define how long
+before the disaster strikes
+
+00:33:32.940 --> 00:33:35.670
+could we potentially
+lose data and ensure
+
+00:33:35.670 --> 00:33:39.360
+that our application
+has RPO targets
+
+00:33:39.360 --> 00:33:41.220
+that meet our user needs.
+
+00:33:41.220 --> 00:33:45.360
+Now, after the disaster, there's
+a potential time of downtime.
+
+00:33:45.360 --> 00:33:49.260
+So how long is it acceptable
+for us to be down?
+
+00:33:49.260 --> 00:33:52.530
+In our application, we really
+want five-nines of availability.
+
+00:33:52.530 --> 00:33:55.110
+We want our application to
+be always up and we want it
+
+00:33:55.110 --> 00:33:58.050
+to be available and
+all around the world.
+
+00:33:58.050 --> 00:34:01.380
+So we can use the active-active
+pattern in Azure Cosmos DB
+
+00:34:01.380 --> 00:34:03.300
+to ensure that we're
+getting those five-nines
+
+00:34:03.300 --> 00:34:04.770
+of availability.
+
+00:34:04.770 --> 00:34:06.930
+Now, in Cosmos DB, there's
+two different ways
+
+00:34:06.930 --> 00:34:09.060
+to achieve the
+active-active pattern.
+
+00:34:09.060 --> 00:34:11.220
+The first is with
+the multi-writer.
+
+00:34:11.220 --> 00:34:14.790
+In the multi-writer, you have
+multiple Azure Cosmos DB regions
+
+00:34:14.790 --> 00:34:17.400
+and they're all simultaneously
+accepting both read
+
+00:34:17.400 --> 00:34:18.900
+and write traffic.
+
+00:34:18.900 --> 00:34:22.290
+This is leaderless, meaning
+writes can come into any region
+
+00:34:22.290 --> 00:34:25.140
+and their conflict resolved
+across all regions.
+
+00:34:25.140 --> 00:34:27.870
+In this setup, the RTO is zero
+
+00:34:27.870 --> 00:34:30.090
+because all regions
+are already online
+
+00:34:30.090 --> 00:34:31.860
+and ready to accept traffic.
+
+00:34:31.860 --> 00:34:34.590
+The RPO is effectively zero.
+
+00:34:34.590 --> 00:34:36.420
+It's basically the
+conflict resolution
+
+00:34:36.420 --> 00:34:39.270
+and the replication
+time across regions.
+
+00:34:39.270 --> 00:34:42.240
+Now, in the single-writer
+setup, this is enabled
+
+00:34:42.240 --> 00:34:45.780
+by a new feature called "per
+partition automatic failover."
+
+00:34:45.780 --> 00:34:49.890
+This allows us to fail over at
+the individual partition level.
+
+00:34:49.890 --> 00:34:51.840
+Rather than waiting
+for an entire region
+
+00:34:51.840 --> 00:34:55.470
+to become unavailable and
+failover after that happens,
+
+00:34:55.470 --> 00:34:59.130
+we're able to react in a much
+more agile way by responding
+
+00:34:59.130 --> 00:35:01.050
+at the partition level.
+
+00:35:01.050 --> 00:35:04.440
+This is when you think about
+a brownout versus a blackout.
+
+00:35:04.440 --> 00:35:06.930
+It's much less common for
+an entire region to go
+
+00:35:06.930 --> 00:35:08.790
+down than an
+individual partition
+
+00:35:08.790 --> 00:35:10.740
+to maybe experience failures
+
+00:35:10.740 --> 00:35:13.410
+that require failing
+over to a new region.
+
+00:35:13.410 --> 00:35:15.900
+With per partition
+automatic failover,
+
+00:35:15.900 --> 00:35:20.520
+the unaffected healthy regions,
+or partitions, are still reading
+
+00:35:20.520 --> 00:35:22.800
+and writing from that
+primary write region,
+
+00:35:22.800 --> 00:35:26.040
+where any partition that is
+experiencing issues can fail
+
+00:35:26.040 --> 00:35:27.600
+over seamlessly.
+
+00:35:27.600 --> 00:35:29.970
+The application handles all
+of this, so we don't need
+
+00:35:29.970 --> 00:35:33.000
+to coordinate the failures in
+our app side, and we don't need
+
+00:35:33.000 --> 00:35:35.010
+to make an expensive
+call on when
+
+00:35:35.010 --> 00:35:36.990
+to failover the entire region.
+
+00:35:36.990 --> 00:35:39.180
+So this gives us the
+active-active pattern
+
+00:35:39.180 --> 00:35:41.070
+with five-nines of availability
+
+00:35:41.070 --> 00:35:44.370
+without actually having
+multiple writers.
+
+00:35:44.370 --> 00:35:47.700
+Per partition automatic failover
+is now generally available.
+
+00:35:47.700 --> 00:35:50.580
+This gives us zero
+downtime, zero data loss,
+
+00:35:50.580 --> 00:35:53.400
+and with zero touch because
+the SDK does the heavy lifting
+
+00:35:53.400 --> 00:35:54.840
+for us.
+
+00:35:54.840 --> 00:35:58.700
+So now we know that
+we have availability
+
+00:35:58.700 --> 00:36:01.310
+at the partition level,
+but we still do need
+
+00:36:01.310 --> 00:36:03.950
+to manage some
+complex operations
+
+00:36:03.950 --> 00:36:07.010
+in our application
+on the write path.
+
+00:36:07.010 --> 00:36:09.290
+Even though our rights are
+guaranteed to be available
+
+00:36:09.290 --> 00:36:11.270
+because Cosmos DB will be up,
+
+00:36:11.270 --> 00:36:14.190
+we need to make sure we
+still have consistency.
+
+00:36:14.190 --> 00:36:17.490
+Imagine the scenario our
+user has planned the trip
+
+00:36:17.490 --> 00:36:20.190
+with our travel app and
+they're ready to book.
+
+00:36:20.190 --> 00:36:21.930
+So when they say "Book it,"
+
+00:36:21.930 --> 00:36:24.660
+three things are really
+happening independently.
+
+00:36:24.660 --> 00:36:27.690
+First, in our trips container,
+we're updating the status
+
+00:36:27.690 --> 00:36:29.280
+of this trip to booked.
+
+00:36:29.280 --> 00:36:30.450
+We need to store memory.
+
+00:36:30.450 --> 00:36:33.210
+We need to remember, next
+time the user goes to chat
+
+00:36:33.210 --> 00:36:34.530
+with our app, they
+need to remember
+
+00:36:34.530 --> 00:36:37.020
+that they actually
+booked a trip to Paris.
+
+00:36:37.020 --> 00:36:39.840
+And lastly, in the events
+container, we need to emit
+
+00:36:39.840 --> 00:36:42.150
+that booking event so that
+our downstream systems
+
+00:36:42.150 --> 00:36:45.750
+and our logging also are
+coordinated with this write.
+
+00:36:45.750 --> 00:36:47.880
+Now, in our application,
+we can manage all
+
+00:36:47.880 --> 00:36:50.430
+of these independently,
+but they are writes
+
+00:36:50.430 --> 00:36:51.810
+to separate containers.
+
+00:36:51.810 --> 00:36:53.820
+So what if one of them fails?
+
+00:36:53.820 --> 00:36:55.650
+This is a really bad
+user experience.
+
+00:36:55.650 --> 00:36:57.570
+We don't want the
+agent to forget
+
+00:36:57.570 --> 00:37:00.260
+that a user actually
+booked a trip.
+
+00:37:00.260 --> 00:37:03.170
+We can use distributed
+transactions in Cosmos DB,
+
+00:37:03.170 --> 00:37:05.510
+which is now in public preview.
+
+00:37:05.510 --> 00:37:09.380
+This gives us atomic execution
+of multiple requests.
+
+00:37:09.380 --> 00:37:11.870
+Whereas, previously you
+could have a transaction
+
+00:37:11.870 --> 00:37:14.220
+within a single partition key,
+
+00:37:14.220 --> 00:37:17.070
+now you can get atomic
+transactions across partitions
+
+00:37:17.070 --> 00:37:20.820
+or even across containers,
+like we have in our use case.
+
+00:37:20.820 --> 00:37:24.660
+This means all three of those
+operations can either succeed
+
+00:37:24.660 --> 00:37:25.980
+or fail together.
+
+00:37:25.980 --> 00:37:28.770
+This gives us consistency
+at the container level
+
+00:37:28.770 --> 00:37:30.840
+and also simplifies
+our application,
+
+00:37:30.840 --> 00:37:32.550
+which improves reliability.
+
+00:37:32.550 --> 00:37:35.130
+We no longer need to manage
+all that error handling
+
+00:37:35.130 --> 00:37:38.370
+in our application and we can
+let the platform do the heavy
+
+00:37:38.370 --> 00:37:40.650
+lifting for us.
+
+00:37:40.650 --> 00:37:42.690
+If you remember our
+integrated embeddings
+
+00:37:42.690 --> 00:37:45.690
+in our embeddings generation,
+this is another opportunity
+
+00:37:45.690 --> 00:37:48.240
+to let the platform
+do the heavy lifting.
+
+00:37:48.240 --> 00:37:51.330
+The current flow that we have
+today is our natural language
+
+00:37:51.330 --> 00:37:54.240
+chat, so our user
+is giving a prompt.
+
+00:37:54.240 --> 00:37:57.450
+Before our application can
+do anything with Cosmos DB,
+
+00:37:57.450 --> 00:37:59.070
+we need to call
+OpenAI and we need
+
+00:37:59.070 --> 00:38:00.870
+to generate those embeddings.
+
+00:38:00.870 --> 00:38:05.190
+This leaves room for potentially
+rate limiting or error handling.
+
+00:38:05.190 --> 00:38:07.170
+It's more coordination
+that needs to happen
+
+00:38:07.170 --> 00:38:11.640
+in our application where
+we could see write loss
+
+00:38:11.640 --> 00:38:15.000
+availability without Cosmos
+DB actually being down.
+
+00:38:15.000 --> 00:38:17.310
+Maybe it's an issue with
+our error handling,
+
+00:38:17.310 --> 00:38:19.860
+and this makes it really
+brittle for the application
+
+00:38:19.860 --> 00:38:23.340
+and it puts the heavy onus on
+the developer to make sure
+
+00:38:23.340 --> 00:38:25.920
+that all of this
+is going smoothly.
+
+00:38:25.920 --> 00:38:29.010
+With integrated embeddings,
+this flow simplifies.
+
+00:38:29.010 --> 00:38:33.000
+So we no longer need to have
+that external synchronous call
+
+00:38:33.000 --> 00:38:37.650
+to OpenAI before we can keep
+going in our conversation.
+
+00:38:37.650 --> 00:38:40.950
+We can use integrated embeddings
+to write the raw message
+
+00:38:40.950 --> 00:38:43.920
+into Cosmos DB and it's
+automatically integrated
+
+00:38:43.920 --> 00:38:45.450
+with Microsoft Foundry.
+
+00:38:45.450 --> 00:38:47.940
+The embeddings are
+generated asynchronously
+
+00:38:47.940 --> 00:38:51.060
+and this allows us to focus
+on our business logic instead
+
+00:38:51.060 --> 00:38:55.340
+of focusing on coordinating
+all of these external calls.
+
+00:38:55.340 --> 00:38:58.100
+Integrated embeddings
+automatically generate the
+
+00:38:58.100 --> 00:39:00.110
+embeddings at write time.
+
+00:39:00.110 --> 00:39:02.540
+You define your Microsoft
+Foundry integration
+
+00:39:02.540 --> 00:39:05.210
+and you no longer need to
+rely on external pipelines
+
+00:39:05.210 --> 00:39:07.380
+to do all the plumbing for you.
+
+00:39:07.380 --> 00:39:10.530
+You can define the source
+and the target properties
+
+00:39:10.530 --> 00:39:12.060
+to create these embeddings on,
+
+00:39:12.060 --> 00:39:14.580
+which really gives
+you the full control
+
+00:39:14.580 --> 00:39:17.520
+for how the embeddings are
+generated in your application
+
+00:39:17.520 --> 00:39:19.590
+without needing to worry
+about coordinating
+
+00:39:19.590 --> 00:39:20.880
+that in the app itself.
+
+00:39:20.880 --> 00:39:23.040
+AAYUSH KATARIA: Integrated
+embeddings seems to be
+
+00:39:23.040 --> 00:39:25.020
+such a great feature, Justine.
+
+00:39:25.020 --> 00:39:27.810
+Like while building my
+multi-agent application,
+
+00:39:27.810 --> 00:39:30.410
+while I was testing it,
+chatting with the assistant,
+
+00:39:30.410 --> 00:39:33.680
+I was getting rate limited
+so many times and I had
+
+00:39:33.680 --> 00:39:36.350
+to wait for, like,
+sometimes like even for 30,
+
+00:39:36.350 --> 00:39:41.450
+40 seconds to get actually the
+message back from the LLM.
+
+00:39:41.450 --> 00:39:43.550
+That sounds really nice.
+
+00:39:43.550 --> 00:39:46.670
+I was just going through
+my trips container
+
+00:39:46.670 --> 00:39:50.310
+and I actually thought
+of another scenario,
+
+00:39:50.310 --> 00:39:54.390
+that I have a lot of trips that
+are in my trips container.
+
+00:39:54.390 --> 00:39:59.130
+But what if I want to make a
+dashboard just to filter it
+
+00:39:59.130 --> 00:40:02.610
+with like what is the
+hottest destination
+
+00:40:02.610 --> 00:40:08.280
+that my users are traveling to,
+and that way I can add probably,
+
+00:40:08.280 --> 00:40:11.730
+say, more hotels or more
+restaurants, particularly
+
+00:40:11.730 --> 00:40:15.150
+for that particular destination
+so the users would have, like,
+
+00:40:15.150 --> 00:40:18.870
+more options for, like,
+where can they eat,
+
+00:40:18.870 --> 00:40:20.820
+what hotels they can stay at.
+
+00:40:20.820 --> 00:40:24.560
+Is there a way today that we
+can do that in Cosmos DB?
+
+00:40:24.560 --> 00:40:26.990
+JUSTINE COCCHI: Yeah, so let's
+take a look at the design
+
+00:40:26.990 --> 00:40:30.050
+of our trips container
+and see why this query,
+
+00:40:30.050 --> 00:40:33.890
+this new dashboard, higher-level
+query is so difficult
+
+00:40:33.890 --> 00:40:37.700
+to challenge to fulfill with
+our current architecture.
+
+00:40:37.700 --> 00:40:41.790
+So as our travel application
+is picking up steam
+
+00:40:41.790 --> 00:40:44.610
+and more users are using
+it, we have this need
+
+00:40:44.610 --> 00:40:46.440
+for cross-tenant queries.
+
+00:40:46.440 --> 00:40:48.570
+How many trips to
+Paris are next month?
+
+00:40:48.570 --> 00:40:49.830
+What is the top city?
+
+00:40:49.830 --> 00:40:51.510
+What is the top destination?
+
+00:40:51.510 --> 00:40:53.820
+These types of things are
+not really well served
+
+00:40:53.820 --> 00:40:55.760
+by our current architecture.
+
+00:40:55.760 --> 00:40:58.910
+Our current trips container is
+using a hierarchical partition
+
+00:40:58.910 --> 00:41:02.690
+key with tenant and
+then user and trip ID.
+
+00:41:02.690 --> 00:41:04.730
+This makes our agent
+queries really fast,
+
+00:41:04.730 --> 00:41:06.920
+and an individual user
+can really quickly learn
+
+00:41:06.920 --> 00:41:08.670
+about all of their trips.
+
+00:41:08.670 --> 00:41:12.480
+But as the platform developer
+of our travel agent site,
+
+00:41:12.480 --> 00:41:14.490
+we want that
+higher-level dashboard.
+
+00:41:14.490 --> 00:41:18.390
+We want to know how many,
+broadly across all tenants,
+
+00:41:18.390 --> 00:41:20.990
+how many trips to Paris
+are there next month?
+
+00:41:20.990 --> 00:41:24.260
+The issue with this query in
+our current architecture is
+
+00:41:24.260 --> 00:41:26.300
+that it's a
+cross-partition query.
+
+00:41:26.300 --> 00:41:29.450
+So Cosmos DB is a distributed
+database, and your data lives
+
+00:41:29.450 --> 00:41:31.710
+on multiple physical partitions.
+
+00:41:31.710 --> 00:41:33.750
+A query like this, where
+we're getting an account
+
+00:41:33.750 --> 00:41:36.420
+of all the trips to
+Paris, needs to be routed
+
+00:41:36.420 --> 00:41:39.150
+to every single physical
+partition so that we can count
+
+00:41:39.150 --> 00:41:41.760
+up all the trips and then
+give the answer back.
+
+00:41:41.760 --> 00:41:46.410
+For our new requirement of this
+dashboard, broad across tenants,
+
+00:41:46.410 --> 00:41:48.870
+we need new architecture.
+
+00:41:48.870 --> 00:41:53.220
+We can create a copy of our data
+using global secondary indexes.
+
+00:41:53.220 --> 00:41:56.850
+This allows us to create
+a secondary container
+
+00:41:56.850 --> 00:42:00.530
+or global secondary index that's
+partitioned on destination.
+
+00:42:00.530 --> 00:42:03.020
+This makes a query, like
+finding all the trips
+
+00:42:03.020 --> 00:42:05.030
+to Paris, extremely fast.
+
+00:42:05.030 --> 00:42:08.390
+We only need to check one
+partition instead of all of them
+
+00:42:08.390 --> 00:42:11.280
+in our previous container.
+
+00:42:11.280 --> 00:42:14.280
+Global secondary indexes are
+now generally available.
+
+00:42:14.280 --> 00:42:17.490
+They will automatically sync
+data from a source container
+
+00:42:17.490 --> 00:42:21.090
+and create a copy
+container with all
+
+00:42:21.090 --> 00:42:23.490
+of that synced data
+that's better suited
+
+00:42:23.490 --> 00:42:24.960
+for your query patterns.
+
+00:42:24.960 --> 00:42:27.420
+They really help you
+increase query efficiency
+
+00:42:27.420 --> 00:42:30.780
+and transform what would be very
+heavy cross-partition queries
+
+00:42:30.780 --> 00:42:32.940
+into single-partition look-ups.
+
+00:42:32.940 --> 00:42:36.750
+They help you isolate
+heavy workload operations
+
+00:42:36.750 --> 00:42:40.260
+into the secondary container to
+ensure that you can run them
+
+00:42:40.260 --> 00:42:42.840
+without impacting your
+transactional workload.
+
+00:42:42.840 --> 00:42:44.580
+So let's take a look
+at what this looks
+
+00:42:44.580 --> 00:42:46.830
+like in the Azure portal.
+
+00:42:46.830 --> 00:42:50.190
+I'm going to pull up my
+Azure Cosmos DB account
+
+00:42:50.190 --> 00:42:52.470
+and I've got my trips
+container here.
+
+00:42:52.470 --> 00:42:55.260
+As you can see, I'm using a
+hierarchical partition key
+
+00:42:55.260 --> 00:42:58.470
+with tenant ID, user
+ID, and the trip.
+
+00:42:58.470 --> 00:43:00.510
+Now, this is a fairly
+heavy document.
+
+00:43:00.510 --> 00:43:04.500
+We've got this days array, which
+is storing all the information
+
+00:43:04.500 --> 00:43:08.070
+about the activities that
+the user is doing every day.
+
+00:43:08.070 --> 00:43:10.020
+Now, for my global
+secondary index,
+
+00:43:10.020 --> 00:43:12.450
+I don't actually need this
+low-level information
+
+00:43:12.450 --> 00:43:15.360
+about every trip, so when I
+define my global secondary
+
+00:43:15.360 --> 00:43:19.800
+index, which I've already
+created my trips by destination,
+
+00:43:19.800 --> 00:43:22.620
+I can actually change the
+data model a little bit.
+
+00:43:22.620 --> 00:43:25.170
+I can project what properties
+are most important
+
+00:43:25.170 --> 00:43:27.120
+for me in this GSI.
+
+00:43:27.120 --> 00:43:29.250
+You see I have all
+of my trips here,
+
+00:43:29.250 --> 00:43:30.780
+but I've filtered
+out that days array.
+
+00:43:30.780 --> 00:43:34.920
+I don't need to have that
+written into my secondary data.
+
+00:43:34.920 --> 00:43:37.380
+I really can make sure the
+schema matches how I'm going
+
+00:43:37.380 --> 00:43:38.700
+to query it.
+
+00:43:38.700 --> 00:43:40.680
+Now, let's take a
+look at a query
+
+00:43:40.680 --> 00:43:43.140
+and we'll run the same
+query getting all the trips
+
+00:43:43.140 --> 00:43:44.880
+to Paris, France.
+
+00:43:44.880 --> 00:43:47.400
+First, I'm going to execute
+this on my trips container.
+
+00:43:47.400 --> 00:43:50.520
+So this is the primary container
+that we've already been using,
+
+00:43:50.520 --> 00:43:53.730
+and you can see I have
+500 trips to France.
+
+00:43:53.730 --> 00:43:57.420
+If I look at the query stats,
+this costs me about 30 RUs.
+
+00:43:57.420 --> 00:43:59.370
+Now, imagine this query at scale
+
+00:43:59.370 --> 00:44:01.410
+when I'm constantly
+refreshing my dashboard
+
+00:44:01.410 --> 00:44:03.660
+and all my devs
+are looking at it.
+
+00:44:03.660 --> 00:44:06.120
+I wonder if there's a way
+that we can optimize this.
+
+00:44:06.120 --> 00:44:09.780
+So let's go into our
+GSI and let's go ahead
+
+00:44:09.780 --> 00:44:12.840
+and execute this same query.
+
+00:44:12.840 --> 00:44:16.020
+As I execute the same
+query against my GSI,
+
+00:44:16.020 --> 00:44:19.290
+I get the same answer, which
+is great, but if I look
+
+00:44:19.290 --> 00:44:23.400
+at the query stats, we see this
+time it only cost me 3 RUs.
+
+00:44:23.400 --> 00:44:25.560
+That's about a 90% savings.
+
+00:44:25.560 --> 00:44:28.230
+Now, the specific degree
+of savings will depend
+
+00:44:28.230 --> 00:44:32.070
+on your query and the physical
+partition layout of your source,
+
+00:44:32.070 --> 00:44:34.740
+but you can see how GSIs
+are a very powerful way
+
+00:44:34.740 --> 00:44:36.630
+to optimize your queries,
+
+00:44:36.630 --> 00:44:39.600
+especially when you have
+new evolving requirements.
+
+00:44:39.600 --> 00:44:43.230
+In this example, we didn't
+need a dashboard on day one,
+
+00:44:43.230 --> 00:44:47.490
+but global secondary indexes
+allowed us to add a GSI later
+
+00:44:47.490 --> 00:44:51.300
+on in the life cycle of
+our application and ensure
+
+00:44:51.300 --> 00:44:53.400
+that our queries are
+still efficient even
+
+00:44:53.400 --> 00:44:55.110
+as our requirements evolve.
+
+00:44:55.110 --> 00:44:58.650
+So we covered a lot
+today, and I really want
+
+00:44:58.650 --> 00:44:59.730
+to bring it all together
+
+00:44:59.730 --> 00:45:03.150
+with some key takeaways
+to keep in mind.
+
+00:45:03.150 --> 00:45:07.020
+First, make sure that your
+agentic applications have
+
+00:45:07.020 --> 00:45:10.110
+durable memory and that
+they're scalable by design.
+
+00:45:10.110 --> 00:45:13.140
+Remember the different memory
+types that enable your agents
+
+00:45:13.140 --> 00:45:15.750
+to give better responses.
+
+00:45:15.750 --> 00:45:18.960
+You can ship even faster with
+an AI-native dev experience
+
+00:45:18.960 --> 00:45:23.280
+and the Azure Cosmos DB toolkit
+to analyze your application
+
+00:45:23.280 --> 00:45:26.190
+and ensure that you're
+using those best practices.
+
+00:45:26.190 --> 00:45:28.950
+Think about reliability
+and availability.
+
+00:45:28.950 --> 00:45:31.440
+Are there certain platform
+features you can take advantage
+
+00:45:31.440 --> 00:45:33.630
+of to avoid brittle
+error handling
+
+00:45:33.630 --> 00:45:35.640
+in your application code?
+
+00:45:35.640 --> 00:45:38.340
+Really thinking about
+mission-critical applications
+
+00:45:38.340 --> 00:45:43.950
+and how you can build
+ready-to-ship AI applications.
+
+00:45:43.950 --> 00:45:46.440
+I want to leave you with
+several resources today.
+
+00:45:46.440 --> 00:45:50.130
+This first link, that Cosmos
+DB Travel Multi-Agent,
+
+00:45:50.130 --> 00:45:52.590
+will be all of the demo
+code that we shared,
+
+00:45:52.590 --> 00:45:54.870
+including a workshop
+if you want to walk
+
+00:45:54.870 --> 00:45:57.270
+through building this
+application yourself.
+
+00:45:57.270 --> 00:45:59.070
+We've also got several
+links for some
+
+00:45:59.070 --> 00:46:01.710
+of the various announcements
+that we released today.
+
+00:46:01.710 --> 00:46:05.350
+Thank you so much and I hope
+you enjoy the rest of Build.

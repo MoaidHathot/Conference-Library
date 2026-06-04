@@ -1,0 +1,1965 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.9261837005615234
+
+00:00:02.920 --> 00:00:04.720
+Thank you everybody for joining us.
+
+NOTE Confidence: 0.9053908586502075
+
+00:00:04.720 --> 00:00:06.600
+Please come in, take a seat.
+
+NOTE Confidence: 0.8461184501647949
+
+00:00:06.880 --> 00:00:09.611
+I will be passing the mic over to Marco and
+
+NOTE Confidence: 0.8461184501647949
+
+00:00:09.675 --> 00:00:10.120
+Sergei.
+
+NOTE Confidence: 0.8934546113014221
+
+00:00:10.119 --> 00:00:13.576
+They will be talking about how to ship code faster
+
+NOTE Confidence: 0.8934546113014221
+
+00:00:13.645 --> 00:00:16.480
+with AI powered, no sequel schema design.
+
+NOTE Confidence: 0.7217026352882385
+
+00:00:16.480 --> 00:00:17.920
+The floor is yours, gentlemen.
+
+NOTE Confidence: 0.9065235257148743
+
+00:00:18.320 --> 00:00:21.480
+Thank you and welcome everyone to this session.
+
+NOTE Confidence: 0.8171576857566833
+
+00:00:21.480 --> 00:00:24.880
+So I'm Marco and I have Sergei with me.
+
+NOTE Confidence: 0.8391140103340149
+
+00:00:24.880 --> 00:00:27.591
+How many of you are building no sequel applications using
+
+NOTE Confidence: 0.8391140103340149
+
+00:00:27.638 --> 00:00:28.400
+Azure Cosmos DP?
+
+NOTE Confidence: 0.8689829707145691
+
+00:00:28.600 --> 00:00:29.320
+Raise your hands.
+
+NOTE Confidence: 0.693793535232544
+
+00:00:30.160 --> 00:00:35.440
+OK, how about MongoDB, Dynamodb or something else?
+
+NOTE Confidence: 0.6491437554359436
+
+00:00:35.760 --> 00:00:36.440
+OK, great.
+
+NOTE Confidence: 0.8555119633674622
+
+00:00:36.760 --> 00:00:41.220
+So anyway, modern developers really love no SQL databases like
+
+NOTE Confidence: 0.8555119633674622
+
+00:00:41.292 --> 00:00:45.178
+Azure Cosmos DP because it's really easy to evolve and
+
+NOTE Confidence: 0.8555119633674622
+
+00:00:45.250 --> 00:00:48.199
+iterate on the no SQL schema using Jason.
+
+NOTE Confidence: 0.8692241907119751
+
+00:00:48.720 --> 00:00:54.101
+And obviously, thinking about Azure Cosmos DP specifically, it's optimized
+
+NOTE Confidence: 0.8692241907119751
+
+00:00:54.174 --> 00:00:57.519
+for low latency, highly scalable applications.
+
+NOTE Confidence: 0.920661985874176
+
+00:00:58.120 --> 00:01:00.200
+They can be like more traditional applications.
+
+NOTE Confidence: 0.8578179478645325
+
+00:01:00.200 --> 00:01:04.120
+But today oftentimes we talk about AI and agents.
+
+NOTE Confidence: 0.9292742609977722
+
+00:01:04.120 --> 00:01:08.365
+And so it's really great for both operational data, vector
+
+NOTE Confidence: 0.9292742609977722
+
+00:01:08.438 --> 00:01:11.440
+data and also for AI native applications.
+
+NOTE Confidence: 0.9728118181228638
+
+00:01:12.440 --> 00:01:14.781
+You will be able to store everything in one single
+
+NOTE Confidence: 0.9728118181228638
+
+00:01:14.828 --> 00:01:16.280
+place, which is very important.
+
+NOTE Confidence: 0.9387096762657166
+
+00:01:16.280 --> 00:01:18.437
+You will be able to keep your embeddings up to
+
+NOTE Confidence: 0.9387096762657166
+
+00:01:18.484 --> 00:01:20.359
+date when you have new operational data.
+
+NOTE Confidence: 0.8206397294998169
+
+00:01:20.360 --> 00:01:21.520
+So that's super important.
+
+NOTE Confidence: 0.8375072479248047
+
+00:01:21.520 --> 00:01:22.720
+There's no data movement.
+
+NOTE Confidence: 0.8279118537902832
+
+00:01:23.280 --> 00:01:25.650
+And in Azure Cosmos TV, we have a lot of
+
+NOTE Confidence: 0.8279118537902832
+
+00:01:25.709 --> 00:01:30.093
+like intelligent features like integrated vector search, full text search,
+
+NOTE Confidence: 0.8279118537902832
+
+00:01:30.153 --> 00:01:32.760
+even hybrid search with semantic re ranking.
+
+NOTE Confidence: 0.8818826079368591
+
+00:01:33.200 --> 00:01:37.199
+And also it has great integrations with tools like Microsoft
+
+NOTE Confidence: 0.8818826079368591
+
+00:01:37.266 --> 00:01:41.066
+Foundry where you can host your large language models, of
+
+NOTE Confidence: 0.8818826079368591
+
+00:01:41.133 --> 00:01:41.599
+course.
+
+NOTE Confidence: 0.7175891995429993
+
+00:01:41.600 --> 00:01:44.573
+And you've been hearing a lot about Foundry as well
+
+NOTE Confidence: 0.7175891995429993
+
+00:01:44.632 --> 00:01:46.439
+as you know, a ISDKS and so on.
+
+NOTE Confidence: 0.8329260349273682
+
+00:01:46.680 --> 00:01:51.189
+And it's really built for this low latency globally distributed
+
+NOTE Confidence: 0.8329260349273682
+
+00:01:51.261 --> 00:01:52.120
+AI workload.
+
+NOTE Confidence: 0.8265486359596252
+
+00:01:52.120 --> 00:01:55.580
+So great example is, for example, Open AI who is
+
+NOTE Confidence: 0.8265486359596252
+
+00:01:55.652 --> 00:01:59.690
+using very heavily Azure Cosmos DAP for their Chachi PD,
+
+NOTE Confidence: 0.8265486359596252
+
+00:01:59.762 --> 00:02:03.439
+ServiceNow, thinking about like development and AI.
+
+NOTE Confidence: 0.8287296295166016
+
+00:02:03.440 --> 00:02:06.784
+So we all know byte coding, for example, you're using
+
+NOTE Confidence: 0.8287296295166016
+
+00:02:06.847 --> 00:02:10.760
+probably Copilot, GitHub Copilot to build applications faster.
+
+NOTE Confidence: 0.8599739670753479
+
+00:02:11.240 --> 00:02:14.948
+And and they're also like different other tools that you
+
+NOTE Confidence: 0.8599739670753479
+
+00:02:15.014 --> 00:02:18.590
+can use to build faster, even faster than with regular
+
+NOTE Confidence: 0.8599739670753479
+
+00:02:18.656 --> 00:02:19.119
+no SQL.
+
+NOTE Confidence: 0.8015859127044678
+
+00:02:20.280 --> 00:02:23.586
+But then there are also ways to, you know, for
+
+NOTE Confidence: 0.8015859127044678
+
+00:02:23.658 --> 00:02:28.187
+example, use AI to generate queries code using natural language
+
+NOTE Confidence: 0.8015859127044678
+
+00:02:28.259 --> 00:02:30.560
+MCP integration super important.
+
+NOTE Confidence: 0.8478604555130005
+
+00:02:30.560 --> 00:02:34.350
+It's like a USBC for apps and agents these days,
+
+NOTE Confidence: 0.8478604555130005
+
+00:02:34.429 --> 00:02:38.930
+a standard way to connect to databases and other services
+
+NOTE Confidence: 0.8478604555130005
+
+00:02:39.009 --> 00:02:39.720
+securely.
+
+NOTE Confidence: 0.7571834921836853
+
+00:02:40.240 --> 00:02:42.795
+And now in this demo session, we are also going
+
+NOTE Confidence: 0.7571834921836853
+
+00:02:42.850 --> 00:02:45.080
+to talk about Azure Cosmos DP Agent Kate.
+
+NOTE Confidence: 0.8618983030319214
+
+00:02:45.080 --> 00:02:48.072
+And basically this is where I'm going to hand over
+
+NOTE Confidence: 0.8618983030319214
+
+00:02:48.131 --> 00:02:50.944
+to Sergei, who is going to show an amazing demo
+
+NOTE Confidence: 0.8618983030319214
+
+00:02:51.004 --> 00:02:52.560
+about how how to use that.
+
+NOTE Confidence: 0.9682770371437073
+
+00:02:52.800 --> 00:02:54.520
+So the floor is yours.
+
+NOTE Confidence: 0.7123037576675415
+
+00:02:54.760 --> 00:02:55.480
+Thank you, Marco.
+
+NOTE Confidence: 0.8878215551376343
+
+00:02:56.000 --> 00:02:56.440
+Hi everyone.
+
+NOTE Confidence: 0.8660538792610168
+
+00:02:56.440 --> 00:02:57.240
+Nice to meet you all.
+
+NOTE Confidence: 0.8993865847587585
+
+00:02:57.640 --> 00:03:01.720
+So let's take a look at our demo scenario.
+
+NOTE Confidence: 0.8123159408569336
+
+00:03:01.720 --> 00:03:07.091
+What we're going to show today, we have various simple
+
+NOTE Confidence: 0.8123159408569336
+
+00:03:07.190 --> 00:03:15.347
+classic e-commerce application data model with customer domain, products, products
+
+NOTE Confidence: 0.8123159408569336
+
+00:03:15.446 --> 00:03:20.520
+domain and sales order domains as a starting point.
+
+NOTE Confidence: 0.8374289870262146
+
+00:03:21.800 --> 00:03:33.190
+Most of the apologies, this looks like I lost connection.
+
+NOTE Confidence: 0.841582715511322
+
+00:04:10.590 --> 00:04:11.790
+Oh, I see it now.
+
+NOTE Confidence: 0.8116040229797363
+
+00:04:15.710 --> 00:04:16.110
+Thank you.
+
+NOTE Confidence: 0.8580165505409241
+
+00:04:18.390 --> 00:04:20.990
+OK, go back to my demo scenario.
+
+NOTE Confidence: 0.8867648839950562
+
+00:04:21.390 --> 00:04:26.133
+Starting point, we we see classic applications where they try
+
+NOTE Confidence: 0.8867648839950562
+
+00:04:26.211 --> 00:04:31.265
+to modernize something, they take schema and they modernize table
+
+NOTE Confidence: 0.8867648839950562
+
+00:04:31.343 --> 00:04:32.509
+to a container.
+
+NOTE Confidence: 0.8950545787811279
+
+00:04:33.839 --> 00:04:36.907
+While this approach works and it's OK, it's not optimal
+
+NOTE Confidence: 0.8950545787811279
+
+00:04:36.963 --> 00:04:39.640
+approach and we're going to show you in our demo
+
+NOTE Confidence: 0.8950545787811279
+
+00:04:39.696 --> 00:04:41.760
+how to optimize this classic pattern.
+
+NOTE Confidence: 0.8947927951812744
+
+00:04:42.000 --> 00:04:46.614
+To skip this and take advantage of our knowledge on
+
+NOTE Confidence: 0.8947927951812744
+
+00:04:46.705 --> 00:04:51.320
+no SQL design and best practices to iterate faster.
+
+NOTE Confidence: 0.8259683847427368
+
+00:04:53.520 --> 00:04:56.648
+And what we going to use in our demo is
+
+NOTE Confidence: 0.8259683847427368
+
+00:04:56.728 --> 00:05:00.980
+Azure Cosmos DB Agent Kit, which is nothing less than
+
+NOTE Confidence: 0.8259683847427368
+
+00:05:01.060 --> 00:05:05.954
+just a set of best practices, packaging copilot skills, which
+
+NOTE Confidence: 0.8259683847427368
+
+00:05:06.034 --> 00:05:07.960
+you can deploy anywhere.
+
+NOTE Confidence: 0.7644287943840027
+
+00:05:07.960 --> 00:05:10.065
+We deploy it in the escort extension, but you can
+
+NOTE Confidence: 0.7644287943840027
+
+00:05:10.108 --> 00:05:11.440
+deploy it in any other copilot.
+
+NOTE Confidence: 0.7989734411239624
+
+00:05:11.440 --> 00:05:12.200
+They all can.
+
+NOTE Confidence: 0.8301082849502563
+
+00:05:12.440 --> 00:05:16.293
+As long as your copilot agent can take advantage of
+
+NOTE Confidence: 0.8301082849502563
+
+00:05:16.368 --> 00:05:18.560
+skills, they would be useful.
+
+NOTE Confidence: 0.9101516008377075
+
+00:05:21.520 --> 00:05:23.960
+So let's quickly jump in a demo directly.
+
+NOTE Confidence: 0.7626242637634277
+
+00:05:23.960 --> 00:05:28.480
+I'm going to minimize this for a second.
+
+NOTE Confidence: 0.9374597668647766
+
+00:05:33.120 --> 00:05:37.120
+What we have here is our Cosmos Agent Kit.
+
+NOTE Confidence: 0.8906590938568115
+
+00:05:37.120 --> 00:05:38.440
+This is a public repo.
+
+NOTE Confidence: 0.882351815700531
+
+00:05:38.440 --> 00:05:40.040
+Anybody can download and install it.
+
+NOTE Confidence: 0.8583488464355469
+
+00:05:40.920 --> 00:05:44.498
+All it takes is NPX skills at Azure Cosmos DB
+
+NOTE Confidence: 0.8583488464355469
+
+00:05:44.578 --> 00:05:47.680
+Cosmos Agent Kit to install it locally.
+
+NOTE Confidence: 0.8743386268615723
+
+00:05:48.839 --> 00:05:54.984
+What it does it deploy Agent skills, Cosmos DB best
+
+NOTE Confidence: 0.8743386268615723
+
+00:05:55.104 --> 00:05:58.960
+practices, and a bunch of rules.
+
+NOTE Confidence: 0.8605186939239502
+
+00:05:59.520 --> 00:06:01.280
+There is over 100 rules right now.
+
+NOTE Confidence: 0.8011705279350281
+
+00:06:02.040 --> 00:06:02.760
+They are indexed.
+
+NOTE Confidence: 0.7813813090324402
+
+00:06:02.760 --> 00:06:06.222
+So when you ask Copilot, do something with no SQL
+
+NOTE Confidence: 0.7813813090324402
+
+00:06:06.293 --> 00:06:07.000
+Cosmos DB.
+
+NOTE Confidence: 0.6982778310775757
+
+00:06:07.680 --> 00:06:11.175
+Depending what you're doing, whether you evaluate the model or
+
+NOTE Confidence: 0.6982778310775757
+
+00:06:11.232 --> 00:06:14.558
+you building a code best, best on best practices, depending
+
+NOTE Confidence: 0.6982778310775757
+
+00:06:14.615 --> 00:06:17.377
+on the code SDK, it applies certain set of skills
+
+NOTE Confidence: 0.6982778310775757
+
+00:06:17.434 --> 00:06:18.279
+to optimize it.
+
+NOTE Confidence: 0.8969614505767822
+
+00:06:18.279 --> 00:06:20.491
+We're going to show you what it does in our
+
+NOTE Confidence: 0.8969614505767822
+
+00:06:20.542 --> 00:06:20.800
+case.
+
+NOTE Confidence: 0.8672035932540894
+
+00:06:21.320 --> 00:06:25.803
+And then from our demo perspective, I kind of package
+
+NOTE Confidence: 0.8672035932540894
+
+00:06:25.888 --> 00:06:30.203
+everything in the repo, which you can take away and
+
+NOTE Confidence: 0.8672035932540894
+
+00:06:30.287 --> 00:06:30.879
+follow.
+
+NOTE Confidence: 0.8296496272087097
+
+00:06:32.760 --> 00:06:35.770
+But the first thing I did from scenario perspective, I
+
+NOTE Confidence: 0.8296496272087097
+
+00:06:35.825 --> 00:06:38.947
+added the knowledge domain to scenario because no SQL is
+
+NOTE Confidence: 0.8296496272087097
+
+00:06:39.003 --> 00:06:42.069
+very important to optimize not just for data model, but
+
+NOTE Confidence: 0.8296496272087097
+
+00:06:42.125 --> 00:06:43.240
+for access patterns.
+
+NOTE Confidence: 0.819462239742279
+
+00:06:43.600 --> 00:06:47.322
+And while I have the data model kind of taken
+
+NOTE Confidence: 0.819462239742279
+
+00:06:47.405 --> 00:06:52.202
+from like tables relationships, I want to document what my
+
+NOTE Confidence: 0.819462239742279
+
+00:06:52.285 --> 00:06:57.083
+access patterns are in the structured context so the agent
+
+NOTE Confidence: 0.819462239742279
+
+00:06:57.165 --> 00:07:00.639
+can understand and take advantage of this.
+
+NOTE Confidence: 0.7563523650169373
+
+00:07:00.920 --> 00:07:03.280
+So I defined 4 access patterns.
+
+NOTE Confidence: 0.774783730506897
+
+00:07:04.040 --> 00:07:07.523
+One get customer and there are five most recent orders,
+
+NOTE Confidence: 0.774783730506897
+
+00:07:07.586 --> 00:07:09.359
+orders with relative volume.
+
+NOTE Confidence: 0.9509952664375305
+
+00:07:09.840 --> 00:07:12.200
+Second get one order with line items.
+
+NOTE Confidence: 0.8147284388542175
+
+00:07:13.200 --> 00:07:16.200
+Third one is crude operation placing order.
+
+NOTE Confidence: 0.8185308575630188
+
+00:07:17.560 --> 00:07:20.304
+And the first one is list all from products domain,
+
+NOTE Confidence: 0.8185308575630188
+
+00:07:20.358 --> 00:07:23.480
+list all products in a category sorted by price ascending.
+
+NOTE Confidence: 0.8670300245285034
+
+00:07:25.200 --> 00:07:28.774
+And then there is some extended order patterns for post
+
+NOTE Confidence: 0.8670300245285034
+
+00:07:28.839 --> 00:07:29.879
+lunch pattern 2.
+
+NOTE Confidence: 0.7808294296264648
+
+00:07:30.440 --> 00:07:32.680
+Second part is volume metrics.
+
+NOTE Confidence: 0.8169806003570557
+
+00:07:33.280 --> 00:07:36.823
+A lot of times we see developers when they start,
+
+NOTE Confidence: 0.8169806003570557
+
+00:07:36.895 --> 00:07:40.799
+they often a they don't potentially know how much data
+
+NOTE Confidence: 0.8169806003570557
+
+00:07:40.872 --> 00:07:42.679
+is they're going to have.
+
+NOTE Confidence: 0.9612753987312317
+
+00:07:42.960 --> 00:07:45.800
+But it's important to think about it from projection.
+
+NOTE Confidence: 0.8696045279502869
+
+00:07:46.440 --> 00:07:49.170
+What is the order of magnitude difference would be And
+
+NOTE Confidence: 0.8696045279502869
+
+00:07:49.221 --> 00:07:51.749
+what we do to simplify this because you don't know
+
+NOTE Confidence: 0.8696045279502869
+
+00:07:51.799 --> 00:07:54.479
+what you don't know, but you want to start somewhere.
+
+NOTE Confidence: 0.7189958691596985
+
+00:07:54.880 --> 00:07:57.400
+So we define what we see it in a demo.
+
+NOTE Confidence: 0.8150624632835388
+
+00:07:57.840 --> 00:08:00.489
+But for AI copilot we also document what is our
+
+NOTE Confidence: 0.8150624632835388
+
+00:08:00.545 --> 00:08:01.560
+production target.
+
+NOTE Confidence: 0.8330503106117249
+
+00:08:01.800 --> 00:08:04.512
+So for demo, we only test with 10 customers, like
+
+NOTE Confidence: 0.8330503106117249
+
+00:08:04.568 --> 00:08:07.613
+you're not going to test with a million in development,
+
+NOTE Confidence: 0.8330503106117249
+
+00:08:07.668 --> 00:08:10.160
+but in production we expect to be 10 million.
+
+NOTE Confidence: 0.8671585917472839
+
+00:08:10.160 --> 00:08:11.360
+So whatever the number would be.
+
+NOTE Confidence: 0.9478744268417358
+
+00:08:11.640 --> 00:08:14.359
+And then you do it for all the entities you
+
+NOTE Confidence: 0.9478744268417358
+
+00:08:14.422 --> 00:08:17.647
+have and that would give you the range for analysis
+
+NOTE Confidence: 0.9478744268417358
+
+00:08:17.710 --> 00:08:21.188
+to actually project whatever works for 10, will it work
+
+NOTE Confidence: 0.9478744268417358
+
+00:08:21.251 --> 00:08:22.200
+for 10 million?
+
+NOTE Confidence: 0.8180720210075378
+
+00:08:22.760 --> 00:08:26.465
+And that's very important, especially no SQL distributed database, because
+
+NOTE Confidence: 0.8180720210075378
+
+00:08:26.515 --> 00:08:29.369
+every mistake you do early actually going to penalize you
+
+NOTE Confidence: 0.8180720210075378
+
+00:08:29.419 --> 00:08:29.719
+later.
+
+NOTE Confidence: 0.8822879195213318
+
+00:08:30.400 --> 00:08:33.448
+So those two things are important as a context to
+
+NOTE Confidence: 0.8822879195213318
+
+00:08:33.511 --> 00:08:34.879
+add in the iterations.
+
+NOTE Confidence: 0.9276199340820312
+
+00:08:35.280 --> 00:08:38.840
+Now let's look into actual iterations.
+
+NOTE Confidence: 0.8280362486839294
+
+00:08:38.840 --> 00:08:42.392
+So the first thing is if we take that naive
+
+NOTE Confidence: 0.8280362486839294
+
+00:08:42.474 --> 00:08:47.679
+design manual, anti pattern AI would call where each container,
+
+NOTE Confidence: 0.8280362486839294
+
+00:08:47.761 --> 00:08:50.240
+each table become a container.
+
+NOTE Confidence: 0.8805140852928162
+
+00:08:50.559 --> 00:08:53.098
+We can pick a partition key, we can run it,
+
+NOTE Confidence: 0.8805140852928162
+
+00:08:53.157 --> 00:08:55.400
+I pre ran it so we don't have to spend
+
+NOTE Confidence: 0.8805140852928162
+
+00:08:55.459 --> 00:08:56.639
+a whole lot of time.
+
+NOTE Confidence: 0.8369513154029846
+
+00:08:57.120 --> 00:09:01.896
+This is an example of the naive iteration where I
+
+NOTE Confidence: 0.8369513154029846
+
+00:09:01.993 --> 00:09:07.160
+create a simple API to run all those access patterns.
+
+NOTE Confidence: 0.8074800968170166
+
+00:09:07.679 --> 00:09:11.720
+I documented the request units which is Cosmos DB virtual
+
+NOTE Confidence: 0.8074800968170166
+
+00:09:11.791 --> 00:09:14.840
+compute charge to actually run per request.
+
+NOTE Confidence: 0.8956749439239502
+
+00:09:15.320 --> 00:09:17.766
+You can see that some of those are somewhat high
+
+NOTE Confidence: 0.8956749439239502
+
+00:09:17.816 --> 00:09:19.040
+even for small data set.
+
+NOTE Confidence: 0.7877137660980225
+
+00:09:20.800 --> 00:09:23.734
+Now I also want to show you second often seen
+
+NOTE Confidence: 0.7877137660980225
+
+00:09:23.800 --> 00:09:26.930
+anti pattern in no SQL where because no SQL give
+
+NOTE Confidence: 0.7877137660980225
+
+00:09:26.995 --> 00:09:29.800
+you flexibility to combine things together.
+
+NOTE Confidence: 0.9164380431175232
+
+00:09:30.120 --> 00:09:33.480
+A lot of times we see it's taken to extreme.
+
+NOTE Confidence: 0.75140380859375
+
+00:09:36.160 --> 00:09:41.311
+It's taken to extreme where the combination actually creating massive
+
+NOTE Confidence: 0.75140380859375
+
+00:09:41.386 --> 00:09:42.879
+write amplification.
+
+NOTE Confidence: 0.8319186568260193
+
+00:09:43.240 --> 00:09:48.978
+To demo this, I'm going to show you where we
+
+NOTE Confidence: 0.8319186568260193
+
+00:09:49.108 --> 00:09:57.716
+preceded the container in the emulator with customer with embedded
+
+NOTE Confidence: 0.8319186568260193
+
+00:09:57.847 --> 00:09:58.759
+orders.
+
+NOTE Confidence: 0.8404275178909302
+
+00:09:58.760 --> 00:10:02.498
+So everything is a customer document and I can embed
+
+NOTE Confidence: 0.8404275178909302
+
+00:10:02.570 --> 00:10:04.440
+orders in the order array.
+
+NOTE Confidence: 0.8363105654716492
+
+00:10:05.120 --> 00:10:08.320
+So if I'm going to simulate, whenever I create a
+
+NOTE Confidence: 0.8363105654716492
+
+00:10:08.386 --> 00:10:11.986
+order, update the array, I'll show you what happens to
+
+NOTE Confidence: 0.8363105654716492
+
+00:10:12.053 --> 00:10:13.520
+a charge to a request.
+
+NOTE Confidence: 0.8043336868286133
+
+00:10:17.120 --> 00:10:28.680
+So if I go to naive D, let me run
+
+NOTE Confidence: 0.8043336868286133
+
+00:10:29.030 --> 00:10:39.539
+this, Oh, it's already seated.
+
+NOTE Confidence: 0.8092086911201477
+
+00:10:55.330 --> 00:11:00.571
+Now you see, I'm simulating the updating the arrays and
+
+NOTE Confidence: 0.8092086911201477
+
+00:11:00.666 --> 00:11:05.431
+you see how with the document size grows, the cost
+
+NOTE Confidence: 0.8092086911201477
+
+00:11:05.526 --> 00:11:08.290
+of the request also increase.
+
+NOTE Confidence: 0.9066936373710632
+
+00:11:08.809 --> 00:11:11.927
+And at the end, I'm actually going to project that
+
+NOTE Confidence: 0.9066936373710632
+
+00:11:11.989 --> 00:11:15.605
+with my document with only 50 iterations, my document grew
+
+NOTE Confidence: 0.9066936373710632
+
+00:11:15.668 --> 00:11:17.040
+to 300 kilobytes plus.
+
+NOTE Confidence: 0.771850049495697
+
+00:11:17.360 --> 00:11:21.657
+But also my compute charge for to process the document
+
+NOTE Confidence: 0.771850049495697
+
+00:11:21.737 --> 00:11:26.273
+also increased to 130 request units from initial where we
+
+NOTE Confidence: 0.771850049495697
+
+00:11:26.353 --> 00:11:30.093
+start on the iteration 10, it was like only 660
+
+NOTE Confidence: 0.771850049495697
+
+00:11:30.173 --> 00:11:32.720
+kilobytes to 2026 request units.
+
+NOTE Confidence: 0.7555509805679321
+
+00:11:33.160 --> 00:11:35.267
+This is the end pattern we see a lot where
+
+NOTE Confidence: 0.7555509805679321
+
+00:11:35.317 --> 00:11:38.178
+because the SQL give you flexibility to keep updating the
+
+NOTE Confidence: 0.7555509805679321
+
+00:11:38.228 --> 00:11:40.537
+race, we see like, Oh, well, I'm going to just
+
+NOTE Confidence: 0.7555509805679321
+
+00:11:40.587 --> 00:11:44.000
+keep patching it without understanding the compute penalty for this.
+
+NOTE Confidence: 0.7393754124641418
+
+00:11:44.640 --> 00:11:46.960
+This is the NA pattern we also recommend to avoid.
+
+NOTE Confidence: 0.8292033076286316
+
+00:11:47.440 --> 00:11:50.552
+So if we take those two NA patterns and say,
+
+NOTE Confidence: 0.8292033076286316
+
+00:11:50.622 --> 00:11:54.088
+how can we optimize the data model to avoid those
+
+NOTE Confidence: 0.8292033076286316
+
+00:11:54.159 --> 00:11:58.119
+mistakes early and measure the difference in the impact?
+
+NOTE Confidence: 0.792455792427063
+
+00:12:00.320 --> 00:12:04.749
+So we'll go into iteration of let's take optimized agent
+
+NOTE Confidence: 0.792455792427063
+
+00:12:04.828 --> 00:12:10.206
+guided design, taking those agent skills, agent kit skills installed
+
+NOTE Confidence: 0.792455792427063
+
+00:12:10.285 --> 00:12:10.760
+early.
+
+NOTE Confidence: 0.7805721163749695
+
+00:12:11.120 --> 00:12:13.569
+So I'm going to take now I'm going to literally,
+
+NOTE Confidence: 0.7805721163749695
+
+00:12:13.620 --> 00:12:14.079
+I'm lazy.
+
+NOTE Confidence: 0.7375423312187195
+
+00:12:14.080 --> 00:12:17.255
+I'm going to just move all to copilot prompt and
+
+NOTE Confidence: 0.7375423312187195
+
+00:12:17.321 --> 00:12:19.239
+I'm going to keep editing it.
+
+NOTE Confidence: 0.8037601709365845
+
+00:12:19.240 --> 00:12:21.400
+So this is a summary I just ran earlier.
+
+NOTE Confidence: 0.614321768283844
+
+00:12:21.400 --> 00:12:25.200
+It summarizes naive pattern, a request patterns.
+
+NOTE Confidence: 0.8759774565696716
+
+00:12:25.920 --> 00:12:27.920
+I'm going to say copilot.
+
+NOTE Confidence: 0.730070948600769
+
+00:12:28.760 --> 00:12:32.883
+Let's take those inputs, take the access patterns and volumetrics
+
+NOTE Confidence: 0.730070948600769
+
+00:12:32.946 --> 00:12:36.245
+as a context, and then propose optimal Cosmos no SQL
+
+NOTE Confidence: 0.730070948600769
+
+00:12:36.309 --> 00:12:41.447
+container design partition key strategy, indexing, accounting for access patterns
+
+NOTE Confidence: 0.730070948600769
+
+00:12:41.510 --> 00:12:44.999
+and volumes, and write full recommendations in MD file.
+
+NOTE Confidence: 0.6857919692993164
+
+00:12:55.670 --> 00:12:58.790
+So now it's reading now access patterns, volume metrics.
+
+NOTE Confidence: 0.7756829857826233
+
+00:12:58.790 --> 00:13:05.252
+It's reading the agent kids skills for Cosmos DB as
+
+NOTE Confidence: 0.7756829857826233
+
+00:13:05.379 --> 00:13:12.094
+the best practices, trying to parse what it's done in
+
+NOTE Confidence: 0.7756829857826233
+
+00:13:12.221 --> 00:13:19.444
+naive iterations, checking what was initially set up as a
+
+NOTE Confidence: 0.7756829857826233
+
+00:13:19.570 --> 00:13:26.919
+container per table design, and creating a recommendation.
+
+NOTE Confidence: 0.5977419018745422
+
+00:13:47.320 --> 00:13:49.040
+I wish it could done it faster.
+
+NOTE Confidence: 0.8864803314208984
+
+00:14:10.210 --> 00:14:10.610
+Let's go.
+
+NOTE Confidence: 0.8828721642494202
+
+00:14:15.170 --> 00:14:17.010
+It seems to be taking some time.
+
+NOTE Confidence: 0.7729931473731995
+
+00:14:17.610 --> 00:14:19.370
+Yeah, it seems to be taking some time, yes.
+
+NOTE Confidence: 0.8791676759719849
+
+00:14:19.730 --> 00:14:22.236
+Maybe you can recap like what we've done so far
+
+NOTE Confidence: 0.8791676759719849
+
+00:14:22.289 --> 00:14:23.409
+while we are waiting.
+
+NOTE Confidence: 0.5611225366592407
+
+00:14:25.530 --> 00:14:25.930
+Yes.
+
+NOTE Confidence: 0.8832058310508728
+
+00:14:26.130 --> 00:14:35.939
+So what we've done so far is we showed the
+
+NOTE Confidence: 0.8832058310508728
+
+00:14:36.173 --> 00:14:43.180
+classic looks like it's, yeah.
+
+NOTE Confidence: 0.8015695214271545
+
+00:14:43.420 --> 00:14:45.340
+So it finally came up with a model.
+
+NOTE Confidence: 0.8211512565612793
+
+00:14:46.220 --> 00:14:50.137
+Now you see that instead of container container per table
+
+NOTE Confidence: 0.8211512565612793
+
+00:14:50.206 --> 00:14:54.948
+model, it's actually recommended to collapse domains for customer and
+
+NOTE Confidence: 0.8211512565612793
+
+00:14:55.017 --> 00:14:58.659
+orders together and products and categories together.
+
+NOTE Confidence: 0.7418762445449829
+
+00:14:59.300 --> 00:15:02.935
+Customer orders partitioned by customer ID which give you customer
+
+NOTE Confidence: 0.7418762445449829
+
+00:15:02.990 --> 00:15:06.240
+docs plus order docs with type discriminator and line items
+
+NOTE Confidence: 0.7418762445449829
+
+00:15:06.295 --> 00:15:09.160
+would be embedded in order document and in products.
+
+NOTE Confidence: 0.8632772564888
+
+00:15:09.160 --> 00:15:13.824
+Both products and categories are because they access by category
+
+NOTE Confidence: 0.8632772564888
+
+00:15:13.896 --> 00:15:17.905
+ID and there is not enough requirement to separate them
+
+NOTE Confidence: 0.8632772564888
+
+00:15:17.978 --> 00:15:19.800
+from the access patterns.
+
+NOTE Confidence: 0.7746655344963074
+
+00:15:19.880 --> 00:15:22.069
+We can package them up in the category ID and
+
+NOTE Confidence: 0.7746655344963074
+
+00:15:22.118 --> 00:15:24.599
+then product have product docs category normalized.
+
+NOTE Confidence: 0.8221132159233093
+
+00:15:25.960 --> 00:15:29.425
+We can actually tell like this is an iterative loop
+
+NOTE Confidence: 0.8221132159233093
+
+00:15:29.492 --> 00:15:32.142
+where if you not sure why you can ask a
+
+NOTE Confidence: 0.8221132159233093
+
+00:15:32.210 --> 00:15:35.200
+pilot and say explain why or rationalize it.
+
+NOTE Confidence: 0.867030918598175
+
+00:15:36.480 --> 00:15:39.127
+Or when you have additional requirements you can fit it
+
+NOTE Confidence: 0.867030918598175
+
+00:15:39.175 --> 00:15:39.320
+in.
+
+NOTE Confidence: 0.8576904535293579
+
+00:15:39.720 --> 00:15:44.585
+So just for the sake of order, I would accept
+
+NOTE Confidence: 0.8576904535293579
+
+00:15:44.694 --> 00:15:49.559
+this and take this and deploy as a next step.
+
+NOTE Confidence: 0.7536305785179138
+
+00:15:50.040 --> 00:15:53.562
+So next step take this output create local emulator with
+
+NOTE Confidence: 0.7536305785179138
+
+00:15:53.625 --> 00:15:57.399
+partition keys and DX policies defined here in the document.
+
+NOTE Confidence: 0.8679398894309998
+
+00:15:59.240 --> 00:16:00.680
+This is the beauty of Cosmos DB.
+
+NOTE Confidence: 0.7628615498542786
+
+00:16:00.680 --> 00:16:05.264
+While Cosmos DB is no SQL database in Azure, only
+
+NOTE Confidence: 0.7628615498542786
+
+00:16:05.358 --> 00:16:05.919
+cloud.
+
+NOTE Confidence: 0.8500979542732239
+
+00:16:05.920 --> 00:16:10.344
+We also have the very nice emulator which install local
+
+NOTE Confidence: 0.8500979542732239
+
+00:16:10.424 --> 00:16:14.124
+in my VM and runs locally and iterating on the
+
+NOTE Confidence: 0.8500979542732239
+
+00:16:14.205 --> 00:16:18.387
+emulator is really really fast and easy so it should
+
+NOTE Confidence: 0.8500979542732239
+
+00:16:18.468 --> 00:16:20.640
+be creating it in a minute.
+
+NOTE Confidence: 0.7791646122932434
+
+00:16:20.640 --> 00:16:26.055
+This is pretty much emulator where in the initial initial
+
+NOTE Confidence: 0.7791646122932434
+
+00:16:26.150 --> 00:16:32.990
+database AIA one was customers, orders, products, products as individual
+
+NOTE Confidence: 0.7791646122932434
+
+00:16:33.085 --> 00:16:36.600
+containers with individual documents.
+
+NOTE Confidence: 0.8482863903045654
+
+00:16:37.280 --> 00:16:41.050
+In the emulator, you can take any document as a
+
+NOTE Confidence: 0.8482863903045654
+
+00:16:41.130 --> 00:16:44.741
+point look up like basic key value or you can
+
+NOTE Confidence: 0.8482863903045654
+
+00:16:44.821 --> 00:16:48.832
+read it as a query like select star from container
+
+NOTE Confidence: 0.8482863903045654
+
+00:16:48.913 --> 00:16:51.320
+where customer ID equal C0015.
+
+NOTE Confidence: 0.9088113903999329
+
+00:16:53.560 --> 00:16:55.680
+And I think it should be.
+
+NOTE Confidence: 0.7033848166465759
+
+00:16:55.800 --> 00:16:57.680
+If we refresh, it's probably done.
+
+NOTE Confidence: 0.8345721960067749
+
+00:17:00.600 --> 00:17:01.320
+No, not yet.
+
+NOTE Confidence: 0.8237879872322083
+
+00:17:01.320 --> 00:17:07.520
+Let me see.
+
+NOTE Confidence: 0.879580020904541
+
+00:17:11.480 --> 00:17:12.840
+OK, it's creating computers now.
+
+NOTE Confidence: 0.6505216360092163
+
+00:17:12.840 --> 00:17:20.800
+All right now it should create and evaluate them.
+
+NOTE Confidence: 0.8092496991157532
+
+00:17:27.200 --> 00:17:31.652
+Yeah, now it's creating the next database and containers customer
+
+NOTE Confidence: 0.8092496991157532
+
+00:17:31.720 --> 00:17:32.199
+orders.
+
+NOTE Confidence: 0.8028677105903625
+
+00:17:32.840 --> 00:17:36.520
+You can see that it created updated index policy with
+
+NOTE Confidence: 0.8028677105903625
+
+00:17:36.589 --> 00:17:40.200
+all the properties we use in in the Access veterans.
+
+NOTE Confidence: 0.8762414455413818
+
+00:17:45.240 --> 00:17:46.560
+OK, I think it's done.
+
+NOTE Confidence: 0.831344723701477
+
+00:17:46.560 --> 00:17:50.450
+We can go to next step, let's see, then validate
+
+NOTE Confidence: 0.831344723701477
+
+00:17:50.531 --> 00:17:52.720
+data shapes as a next step.
+
+NOTE Confidence: 0.7432875633239746
+
+00:17:53.960 --> 00:17:57.380
+So because we combine in the in the next step,
+
+NOTE Confidence: 0.7432875633239746
+
+00:17:57.454 --> 00:18:00.801
+in the next step, we ask him, now that you've
+
+NOTE Confidence: 0.7432875633239746
+
+00:18:00.875 --> 00:18:05.783
+created containers and define ex policies and partition keys, take
+
+NOTE Confidence: 0.7432875633239746
+
+00:18:05.857 --> 00:18:09.501
+sample data like in CSV based on the entities and
+
+NOTE Confidence: 0.7432875633239746
+
+00:18:09.575 --> 00:18:14.334
+convert them into combined document shapes based on the combined
+
+NOTE Confidence: 0.7432875633239746
+
+00:18:14.409 --> 00:18:19.465
+entities with type disk communities and validate everything from the
+
+NOTE Confidence: 0.7432875633239746
+
+00:18:19.539 --> 00:18:22.440
+like data type measures and everything.
+
+NOTE Confidence: 0.7684992551803589
+
+00:18:22.440 --> 00:18:26.262
+So this will quickly go and create a data migration
+
+NOTE Confidence: 0.7684992551803589
+
+00:18:26.337 --> 00:18:30.459
+of data conversion tool to convert the data, load those
+
+NOTE Confidence: 0.7684992551803589
+
+00:18:30.534 --> 00:18:35.556
+Jason, convert the Jason documents into the containers and validate
+
+NOTE Confidence: 0.7684992551803589
+
+00:18:35.631 --> 00:18:37.280
+the shapes and counts.
+
+NOTE Confidence: 0.8279659152030945
+
+00:18:49.119 --> 00:18:52.977
+And you can see that it's building the CDN scripts
+
+NOTE Confidence: 0.8279659152030945
+
+00:18:53.054 --> 00:18:55.600
+now after analyzing the the data.
+
+NOTE Confidence: 0.7137950658798218
+
+00:19:03.760 --> 00:19:06.635
+The one thing that's going out that there is a
+
+NOTE Confidence: 0.7137950658798218
+
+00:19:06.697 --> 00:19:10.010
+special decimal parser and the CC files as an example
+
+NOTE Confidence: 0.7137950658798218
+
+00:19:10.072 --> 00:19:13.260
+and it's taking as it convert to Jason data because
+
+NOTE Confidence: 0.7137950658798218
+
+00:19:13.322 --> 00:19:16.760
+we don't have the in Jason, there's only primitive data
+
+NOTE Confidence: 0.7137950658798218
+
+00:19:16.822 --> 00:19:18.760
+types need to convert properly.
+
+NOTE Confidence: 0.7125818133354187
+
+00:19:19.960 --> 00:19:22.612
+Same thing happens with like data types in Jason and
+
+NOTE Confidence: 0.7125818133354187
+
+00:19:22.663 --> 00:19:23.480
+Jason documents.
+
+NOTE Confidence: 0.8030989766120911
+
+00:19:23.480 --> 00:19:26.634
+In Cosmos DB we don't have a data type, but
+
+NOTE Confidence: 0.8030989766120911
+
+00:19:26.708 --> 00:19:30.156
+we convert all the time stamps and dates in ISO
+
+NOTE Confidence: 0.8030989766120911
+
+00:19:30.229 --> 00:19:33.898
+formats, a stream which allow us to do proper date
+
+NOTE Confidence: 0.8030989766120911
+
+00:19:33.971 --> 00:19:37.639
+ranges, sorts and everything else with data types.
+
+NOTE Confidence: 0.7061907052993774
+
+00:19:45.390 --> 00:19:48.967
+So it when the script should be executing it now,
+
+NOTE Confidence: 0.7061907052993774
+
+00:19:49.040 --> 00:19:52.909
+Now it's querying to validate, do like some sampling.
+
+NOTE Confidence: 0.8321460485458374
+
+00:19:53.430 --> 00:19:57.107
+We can actually go here now and see our combined
+
+NOTE Confidence: 0.8321460485458374
+
+00:19:57.183 --> 00:19:57.949
+documents.
+
+NOTE Confidence: 0.8567813634872437
+
+00:19:57.950 --> 00:20:01.990
+So this is our customer with type Customer.
+
+NOTE Confidence: 0.810936689376831
+
+00:20:02.230 --> 00:20:03.910
+Customer ID is a partition key.
+
+NOTE Confidence: 0.6341663002967834
+
+00:20:04.320 --> 00:20:06.960
+ID is a unique combination of partition.
+
+NOTE Confidence: 0.7431381940841675
+
+00:20:06.960 --> 00:20:10.832
+Can ID in cosmos give you that unique key value
+
+NOTE Confidence: 0.7431381940841675
+
+00:20:10.914 --> 00:20:15.858
+identifier and our embedded order summaries and then we have
+
+NOTE Confidence: 0.7431381940841675
+
+00:20:15.940 --> 00:20:20.389
+also type order with the same partition key with order
+
+NOTE Confidence: 0.7431381940841675
+
+00:20:20.472 --> 00:20:22.119
+line items built in.
+
+NOTE Confidence: 0.9046764373779297
+
+00:20:22.640 --> 00:20:25.741
+So this is all done, should be able to go
+
+NOTE Confidence: 0.9046764373779297
+
+00:20:25.816 --> 00:20:26.800
+to next step.
+
+NOTE Confidence: 0.730216920375824
+
+00:20:35.040 --> 00:20:37.800
+Now let's build the application code.
+
+NOTE Confidence: 0.8006993532180786
+
+00:20:37.800 --> 00:20:39.760
+Now to test all those access patterns.
+
+NOTE Confidence: 0.7888171672821045
+
+00:20:42.520 --> 00:20:47.062
+So I define simple structure models, repository, service and main
+
+NOTE Confidence: 0.7888171672821045
+
+00:20:47.132 --> 00:20:48.600
+and Python agent kit.
+
+NOTE Confidence: 0.8194714784622192
+
+00:20:48.840 --> 00:20:51.729
+And I'm going to just call out like use Cosmos
+
+NOTE Confidence: 0.8194714784622192
+
+00:20:51.791 --> 00:20:54.932
+DB best practices and a document at the bottom how
+
+NOTE Confidence: 0.8194714784622192
+
+00:20:54.994 --> 00:20:58.449
+I want to summarize the outputs for access patterns for
+
+NOTE Confidence: 0.8194714784622192
+
+00:20:58.511 --> 00:21:01.149
+P1 through P4 so I can compare them to the
+
+NOTE Confidence: 0.8194714784622192
+
+00:21:01.212 --> 00:21:04.352
+pre run in the naive model to actually measure the
+
+NOTE Confidence: 0.8194714784622192
+
+00:21:04.415 --> 00:21:08.121
+execution of the request units before and after to actually
+
+NOTE Confidence: 0.8194714784622192
+
+00:21:08.183 --> 00:21:09.440
+show the difference.
+
+NOTE Confidence: 0.6458101272583008
+
+00:21:20.330 --> 00:21:21.130
+Yeah, it's rereading.
+
+NOTE Confidence: 0.8303282856941223
+
+00:21:21.130 --> 00:21:24.260
+Now that we're moving from the data model to actual
+
+NOTE Confidence: 0.8303282856941223
+
+00:21:24.321 --> 00:21:28.434
+code development, it's rereading the Cosmos DB best practice skills
+
+NOTE Confidence: 0.8303282856941223
+
+00:21:28.495 --> 00:21:31.749
+but in different section to actually get the SDK best
+
+NOTE Confidence: 0.8303282856941223
+
+00:21:31.810 --> 00:21:34.818
+practice skills, how to do the retries, how to do
+
+NOTE Confidence: 0.8303282856941223
+
+00:21:34.879 --> 00:21:38.010
+the client, single time client and all other stuff.
+
+NOTE Confidence: 0.6740642786026001
+
+00:21:52.040 --> 00:21:54.421
+It looks like I'd get confused with my daddy Andy
+
+NOTE Confidence: 0.6740642786026001
+
+00:21:54.470 --> 00:21:55.880
+because I have example there.
+
+NOTE Confidence: 0.8369784355163574
+
+00:21:57.000 --> 00:22:01.809
+Yeah, I wonder if my can you, can you guys
+
+NOTE Confidence: 0.8369784355163574
+
+00:22:01.923 --> 00:22:02.839
+hear me?
+
+NOTE Confidence: 0.6299347281455994
+
+00:22:03.360 --> 00:22:03.640
+Yeah.
+
+NOTE Confidence: 0.8878385424613953
+
+00:22:03.960 --> 00:22:05.360
+Oh, I didn't know that you can hear me.
+
+NOTE Confidence: 0.8880253434181213
+
+00:22:07.120 --> 00:22:10.800
+How many of you have used Azure Cosmos DP emulator?
+
+NOTE Confidence: 0.9125285744667053
+
+00:22:12.800 --> 00:22:15.120
+OK, go and give it a try.
+
+NOTE Confidence: 0.8930808901786804
+
+00:22:15.119 --> 00:22:19.651
+The Linux version is now out in Georgia as of
+
+NOTE Confidence: 0.8930808901786804
+
+00:22:19.752 --> 00:22:23.679
+today, so there's been an existing one.
+
+NOTE Confidence: 0.8160416483879089
+
+00:22:24.240 --> 00:22:27.157
+But like this is a vnext version so go and
+
+NOTE Confidence: 0.8160416483879089
+
+00:22:27.227 --> 00:22:28.200
+give it a try.
+
+NOTE Confidence: 0.8983933329582214
+
+00:22:28.680 --> 00:22:32.600
+Runs on your Mac or Windows laptop.
+
+NOTE Confidence: 0.6675868630409241
+
+00:22:34.120 --> 00:22:34.440
+Linux.
+
+NOTE Confidence: 0.8701649904251099
+
+00:22:40.200 --> 00:22:42.520
+Well it's running, we only have a few minutes left.
+
+NOTE Confidence: 0.8803790807723999
+
+00:22:42.520 --> 00:22:45.660
+So what I'm going to do, I'm going to show
+
+NOTE Confidence: 0.8803790807723999
+
+00:22:45.735 --> 00:22:49.100
+you the end result of this and just have like
+
+NOTE Confidence: 0.8803790807723999
+
+00:22:49.175 --> 00:22:52.615
+pre run version model and in the end result of
+
+NOTE Confidence: 0.8803790807723999
+
+00:22:52.690 --> 00:22:54.560
+this maximize it go back.
+
+NOTE Confidence: 0.7878446578979492
+
+00:22:56.280 --> 00:23:01.079
+So this is a summary table of a comparison of
+
+NOTE Confidence: 0.7878446578979492
+
+00:23:01.186 --> 00:23:06.199
+iteration A naive versus iteration B optimized.
+
+NOTE Confidence: 0.8446158766746521
+
+00:23:06.760 --> 00:23:11.307
+So we took P1P2 and P3AS strong wins and we
+
+NOTE Confidence: 0.8446158766746521
+
+00:23:11.413 --> 00:23:17.018
+measure delta in the percentage, but also the look at
+
+NOTE Confidence: 0.8446158766746521
+
+00:23:17.123 --> 00:23:22.199
+the difference of how many are used per request.
+
+NOTE Confidence: 0.5643443465232849
+
+00:23:22.200 --> 00:23:22.800
+We save in.
+
+NOTE Confidence: 0.7703949809074402
+
+00:23:23.240 --> 00:23:26.897
+So in the P1 we save in more than 50%
+
+NOTE Confidence: 0.7703949809074402
+
+00:23:26.996 --> 00:23:31.840
+request units per request in the P 275% requests.
+
+NOTE Confidence: 0.7794811129570007
+
+00:23:32.320 --> 00:23:37.160
+In P 340% request, There is some differences.
+
+NOTE Confidence: 0.7605077028274536
+
+00:23:37.160 --> 00:23:41.175
+P2B is actually shown it's it's true in both both
+
+NOTE Confidence: 0.7605077028274536
+
+00:23:41.257 --> 00:23:46.912
+cases it's shown the difference between the single document retrieval
+
+NOTE Confidence: 0.7605077028274536
+
+00:23:46.994 --> 00:23:50.846
+using the point read versus query and the B4 is
+
+NOTE Confidence: 0.7605077028274536
+
+00:23:50.928 --> 00:23:55.435
+really just red here and because the difference is like
+
+NOTE Confidence: 0.7605077028274536
+
+00:23:55.517 --> 00:23:58.959
+0.09, so that percentage is just overhead.
+
+NOTE Confidence: 0.8508164286613464
+
+00:23:59.760 --> 00:24:02.514
+What's most important thing is when I tell that what
+
+NOTE Confidence: 0.8508164286613464
+
+00:24:02.567 --> 00:24:05.322
+would be the monthly cost savings if I combine those
+
+NOTE Confidence: 0.8508164286613464
+
+00:24:05.375 --> 00:24:07.759
+are used and project for production workload.
+
+NOTE Confidence: 0.8822959065437317
+
+00:24:07.880 --> 00:24:13.823
+Based on my volume metrics, I'm saving about 3000 reads
+
+NOTE Confidence: 0.8822959065437317
+
+00:24:13.931 --> 00:24:18.578
+per second for P1 and P2 and 500 writes per
+
+NOTE Confidence: 0.8822959065437317
+
+00:24:18.687 --> 00:24:20.199
+second for P3.
+
+NOTE Confidence: 0.8557522892951965
+
+00:24:20.560 --> 00:24:23.737
+So if I combine those savings and convert them to
+
+NOTE Confidence: 0.8557522892951965
+
+00:24:23.802 --> 00:24:27.369
+like list price and Cosmos DB, I'll save about $980,000
+
+NOTE Confidence: 0.8557522892951965
+
+00:24:27.434 --> 00:24:29.639
+per month by optimizing my schema.
+
+NOTE Confidence: 0.7758344411849976
+
+00:24:30.200 --> 00:24:34.348
+But this is a true true overhead we see customers
+
+NOTE Confidence: 0.7758344411849976
+
+00:24:34.433 --> 00:24:38.835
+losing on the table by not optimizing and doing like
+
+NOTE Confidence: 0.7758344411849976
+
+00:24:38.920 --> 00:24:40.359
+lazy conversions.
+
+NOTE Confidence: 0.8284724950790405
+
+00:24:40.680 --> 00:24:43.937
+And to me this is like the biggest value of
+
+NOTE Confidence: 0.8284724950790405
+
+00:24:44.013 --> 00:24:45.679
+using no SQL database.
+
+NOTE Confidence: 0.8930412530899048
+
+00:24:45.680 --> 00:24:49.005
+Take advantage of full flexibility but also use API to
+
+NOTE Confidence: 0.8930412530899048
+
+00:24:49.066 --> 00:24:50.359
+validate what you do.
+
+NOTE Confidence: 0.7159877419471741
+
+00:24:50.560 --> 00:24:51.520
+Is it optimal?
+
+NOTE Confidence: 0.877454936504364
+
+00:24:51.800 --> 00:24:54.879
+And like you see probably in many talks, if you
+
+NOTE Confidence: 0.877454936504364
+
+00:24:54.944 --> 00:24:58.482
+think of this as like every time you develop something
+
+NOTE Confidence: 0.877454936504364
+
+00:24:58.547 --> 00:25:01.692
+and and build, run the agent kit to validate and
+
+NOTE Confidence: 0.877454936504364
+
+00:25:01.757 --> 00:25:05.360
+use the API to quickly validate and measure the outputs
+
+NOTE Confidence: 0.877454936504364
+
+00:25:05.426 --> 00:25:08.440
+without building complex things to to do this.
+
+NOTE Confidence: 0.8003314137458801
+
+00:25:09.000 --> 00:25:11.404
+And you can do the same thing with new things
+
+NOTE Confidence: 0.8003314137458801
+
+00:25:11.458 --> 00:25:14.611
+like whenever you have the new requirements, feed them into
+
+NOTE Confidence: 0.8003314137458801
+
+00:25:14.664 --> 00:25:18.031
+the copilot and say, this is my existing application structure,
+
+NOTE Confidence: 0.8003314137458801
+
+00:25:18.085 --> 00:25:20.863
+this is my new requirements, what need to be changed
+
+NOTE Confidence: 0.8003314137458801
+
+00:25:20.917 --> 00:25:22.199
+and what need to be set.
+
+NOTE Confidence: 0.7862135171890259
+
+00:25:22.200 --> 00:25:25.302
+We have, I don't think we have questions, but I'll
+
+NOTE Confidence: 0.7862135171890259
+
+00:25:25.364 --> 00:25:28.405
+be happy to step out if anybody has any questions
+
+NOTE Confidence: 0.7862135171890259
+
+00:25:28.467 --> 00:25:28.840
+after.
+
+NOTE Confidence: 0.7865843772888184
+
+00:25:30.840 --> 00:25:31.240
+All right.
+
+NOTE Confidence: 0.9591444730758667
+
+00:25:31.400 --> 00:25:32.240
+Thank you everyone.
+

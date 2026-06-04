@@ -1,0 +1,648 @@
+**[00:00:03]** KIM MANIS: Welcome to this session on securing, scaling,
+**[00:00:05]** and sustaining your data estate in Microsoft Fabric.
+**[00:00:09]** I'm Kim Manis, Corporate Vice President of Product
+**[00:00:12]** of the Microsoft Fabric Platform.
+**[00:00:15]** We all know AI is changing the world.
+**[00:00:17]** It's enabling everyone to move faster than ever,
+**[00:00:20]** whether it's data professionals who are implementing code faster
+**[00:00:23]** than ever, analysts and data citizens
+**[00:00:25]** who are spending less time finding the data
+**[00:00:27]** and more time getting into the deep analysis,
+**[00:00:30]** and line-of-business users who can go and ask
+**[00:00:32]** and answer their own questions without the need
+**[00:00:34]** of an analyst for help.
+**[00:00:37]** And this is all great, but that broad data access
+**[00:00:40]** and generative AI, it does bring additional risk,
+**[00:00:44]** increased risky behavior, increased risk of data breaches.
+**[00:00:48]** And often security professionals are feeling like that security
+**[00:00:51]** and data culture, they seem in conflict.
+**[00:00:55]** And achieving those goals, they can feel diametrically opposed,
+**[00:01:00]** whether it's fostering a data culture by driving broad access
+**[00:01:03]** to data and securing your data and making sure it's governed
+**[00:01:07]** and people are doing the right things with the data.
+**[00:01:09]** And this is really where Microsoft Fabric comes in.
+**[00:01:12]** Microsoft Fabric allows you to foster a data-driven culture
+**[00:01:15]** through automated, repeatable, and governed data development
+**[00:01:19]** in Fabric, and you can get broad access
+**[00:01:22]** through a single discoverable data catalog
+**[00:01:24]** with the OneLake catalog that's accessible everywhere your
+**[00:01:27]** business users and your developers work,
+**[00:01:29]** whether it's Teams, Excel, Foundry, and more.
+**[00:01:33]** And this is great because it's easy to discover the data,
+**[00:01:36]** find what you're looking for,
+**[00:01:37]** ask and answer your own questions.
+**[00:01:39]** But with that comes security
+**[00:01:42]** and making sure your data is governed and secure,
+**[00:01:44]** whether it's through isolating your sensitive data
+**[00:01:47]** with always-on network security
+**[00:01:49]** and managing data access centrally at the item, folder,
+**[00:01:52]** row, column level, and being able to govern your data
+**[00:01:55]** and capacity centrally.
+**[00:01:57]** So this allows you to give broad access to everyone
+**[00:02:00]** in your organization who needs data,
+**[00:02:02]** while making sure they only see what they're supposed to see,
+**[00:02:05]** and they're only accessing the data the way they're supposed
+**[00:02:07]** to access it.
+**[00:02:10]** And Microsoft Fabric is a complete end-and data platform,
+**[00:02:14]** covering the whole gamut of tools,
+**[00:02:16]** all the way from databases, data integration,
+**[00:02:19]** to our newest capabilities with Fabric IQ.
+**[00:02:21]** And today we're really going to focus on the admin
+**[00:02:24]** and governance space and how we're enabling all
+**[00:02:26]** of these workloads, workloads with key admin
+**[00:02:28]** and governance capabilities.
+**[00:02:30]** And Fabric has all the tools to support every user engaged
+**[00:02:34]** in Fabric when it comes to governance,
+**[00:02:36]** whether it's the Fabric tenant admins, the capacity
+**[00:02:39]** and workspace admins, or the data and AI developers.
+**[00:02:42]** So let's kick it off by talking about the Fabric tenant admins,
+**[00:02:46]** and tenant admins have a ton to do, and as we talked about,
+**[00:02:49]** a lot to worry about when it comes
+**[00:02:51]** to governance and security.
+**[00:02:53]** Let's take a look at a demo to see the day
+**[00:02:55]** in the life of a tenant admin.
+**[00:02:57]** SPEAKER 1: Okay, everyone,
+**[00:02:58]** let's start with the admin experience,
+**[00:03:00]** and I gotta tell you, this is one
+**[00:03:02]** of my favorite things to show people.
+**[00:03:04]** So picture this: you're a Microsoft Fabric admin.
+**[00:03:07]** You've got hundreds, maybe thousands
+**[00:03:09]** of items in your tenant.
+**[00:03:10]** People are building lakehouses, creating reports,
+**[00:03:13]** connecting data from everywhere, and your job:
+**[00:03:16]** make sure it's all secure, compliant, and actually usable.
+**[00:03:20]** That's a tall order, right?
+**[00:03:21]** Well, here's where it gets good.
+**[00:03:24]** My day starts here in the OneLake catalog on the
+**[00:03:26]** "Govern" tab, and look at this.
+**[00:03:28]** I land on this page, and immediately I can see the health
+**[00:03:31]** of my entire tenant, and I'm not digging
+**[00:03:33]** through five different portals.
+**[00:03:35]** I'm not hunting for settings.
+**[00:03:37]** It's all right here: insights, recommended actions,
+**[00:03:40]** and quick access to every management tool I need.
+**[00:03:43]** How cool is that?
+**[00:03:44]** Now, check this out.
+**[00:03:45]** I've got two recommended actions waiting for me.
+**[00:03:47]** The first one is telling me, hey,
+**[00:03:50]** your sensitivity labels aren't applied broadly enough.
+**[00:03:53]** That means there are items out there
+**[00:03:55]** that might not have the protection your
+**[00:03:57]** organization requires.
+**[00:03:59]** The second one says you should improve data curation with tags.
+**[00:04:02]** These aren't just alerts; these are actionable recommendations.
+**[00:04:06]** Microsoft Fabric is literally coaching you on how
+**[00:04:09]** to become a better admin.
+**[00:04:11]** I love this.
+**[00:04:12]** Before I jump on that sensitivity label
+**[00:04:14]** recommendation, I want to understand the full picture.
+**[00:04:17]** So I click "View More," and now I'm looking
+**[00:04:20]** at the governance report,
+**[00:04:21]** and this is where it gets really interesting
+**[00:04:23]** because I can see three key areas.
+**[00:04:26]** First, my data estate: domains, capacities, feature usage.
+**[00:04:31]** Second, security and compliance, sensitivity labels
+**[00:04:34]** for Microsoft Purview, and data loss prevention policies,
+**[00:04:37]** or DLP.
+**[00:04:39]** Finally, trust and reuse, data freshness,
+**[00:04:42]** how well things are curated and what's being shared.
+**[00:04:45]** This is the 360-degree view every admin has been asking for.
+**[00:04:49]** Now, here's where I'm going to blow your mind a little bit.
+**[00:04:52]** I'm going to open up Copilot and just ask
+**[00:04:55]** which domains has the most unlabeled items?
+**[00:04:58]** Boom, it tells me it's the sales domain.
+**[00:05:00]** Of course.
+**[00:05:01]** I didn't have to run a report.
+**[00:05:03]** I didn't have to export to Excel and do a pivot table.
+**[00:05:06]** I just asked.
+**[00:05:07]** Are you kidding me?
+**[00:05:07]** This is powerful.
+**[00:05:09]** All right, so now I know the sales domain is
+**[00:05:11]** where the gap is.
+**[00:05:12]** I go back to my recommended action, review the steps,
+**[00:05:15]** and here's what I love:
+**[00:05:16]** Microsoft Fabric has built-in features to handle this.
+**[00:05:20]** I don't need a third-party tool.
+**[00:05:21]** I don't need a custom script.
+**[00:05:23]** I activate the default sensitivity label policy
+**[00:05:26]** at the domain level, and because I've delegated the settings,
+**[00:05:29]** domain owners can fine-tune it for their own context.
+**[00:05:32]** I pop into the sales domain settings,
+**[00:05:34]** set the appropriate label, and just like that,
+**[00:05:37]** every new item created in this domain is
+**[00:05:39]** automatically protected.
+**[00:05:41]** Let me say that again: automatically protected,
+**[00:05:43]** no user action required.
+**[00:05:45]** That is huge.
+**[00:05:46]** Now, for my second recommendation -- tags.
+**[00:05:48]** I'd heard about tags before, but I hadn't set them up yet,
+**[00:05:52]** so let's do it right now, live.
+**[00:05:54]** I created a few tags for organization-wide use,
+**[00:05:57]** plus some specific ones for sales, and now --
+**[00:05:59]** now every user
+**[00:06:01]** in my organization can apply these tags
+**[00:06:03]** to their items and workspaces.
+**[00:06:05]** This makes everything more discoverable,
+**[00:06:07]** more organized, and more trustworthy.
+**[00:06:10]** So let's just step back for a second.
+**[00:06:11]** What just happened?
+**[00:06:12]** The OneLake catalog gave me governance insights,
+**[00:06:15]** told me exactly what to fix,
+**[00:06:17]** showed me unused capabilities I wasn't taken advantage of,
+**[00:06:20]** and gave me direct links to go fix everything.
+**[00:06:22]** This is an admin's best friend.
+**[00:06:24]** I'm not even exaggerating.
+**[00:06:26]** KIM MANIS: The OneLake catalog provides a one-stop shop
+**[00:06:29]** for tenant admins to go and see everything they need to see
+**[00:06:32]** to govern their entire tenant.
+**[00:06:34]** In the OneLake catalog "Govern" tab, you can gain insights
+**[00:06:36]** on items, workspaces, capacities, domains,
+**[00:06:40]** and you can chat with Copilot to dig deeper into the insights
+**[00:06:42]** and find out what's really going on in your tenant.
+**[00:06:45]** And now you can take action in place in the "Govern" tab
+**[00:06:48]** by reviewing and fixing recommended updates directly
+**[00:06:51]** in the catalog.
+**[00:06:55]** The One Link catalog also allows you to implement a data estate
+**[00:06:59]** in a flexible federated data mesh.
+**[00:07:01]** You can define domains, subdomains, workspaces,
+**[00:07:04]** and then you can implement these tenant-wide settings
+**[00:07:07]** and delegate control to the admins of those domains
+**[00:07:11]** or workspaces or capacities, really allowing you
+**[00:07:13]** to curate your governance posture,
+**[00:07:15]** depending on the workload and depending on the parts
+**[00:07:18]** of the organization, and you have a ton of flexibility there.
+**[00:07:24]** Fabric goes hand in hand
+**[00:07:26]** with Purview's data security capabilities.
+**[00:07:29]** Here you can use Purview information protection labels
+**[00:07:33]** and Purview data loss prevention policies
+**[00:07:35]** to really secure not just your data estate
+**[00:07:38]** but your entire Microsoft estate.
+**[00:07:40]** Because these capabilities work side-by-side with Office,
+**[00:07:44]** so something's marked highly confidential in Fabric,
+**[00:07:47]** if you export that data to Excel,
+**[00:07:49]** that highly confidential label flows with it.
+**[00:07:54]** And this now joins with the Purview Insider Risk Management
+**[00:07:59]** capabilities and Purview Data Security Posture Management
+**[00:08:02]** that allows you to fully audit what's going
+**[00:08:04]** on in your organization, and even see risky usage of Copilot,
+**[00:08:08]** including Copilot and Power BI and Fabric data agents.
+**[00:08:15]** Fabric also allows you to meet the strictest data residency
+**[00:08:19]** requirements across the globe, available in many regions,
+**[00:08:22]** across many data centers, and all the sort
+**[00:08:24]** of certifications you need, both regional and industry-specific.
+**[00:08:31]** Okay, let's switch gears.
+**[00:08:32]** We talked about tenant admins.
+**[00:08:34]** Now let's talk about capacity and workspace admins,
+**[00:08:37]** and these are the folks that are often in charge of the project
+**[00:08:40]** and getting things done hands-on with the developers.
+**[00:08:46]** So let's take a look at the day in the life
+**[00:08:48]** of a capacity admin in Microsoft Fabric.
+**[00:08:52]** SPEAKER 1: It's December, year-end close.
+**[00:08:54]** Every query matters, and somewhere in marketing,
+**[00:08:56]** someone just kicked off a monster report
+**[00:08:58]** across three years of data.
+**[00:09:00]** The CFO's dashboard is about to crawl.
+**[00:09:03]** Guess who gets the call?
+**[00:09:04]** So I open the "Admin portal," head to the "Capacity settings,"
+**[00:09:07]** and click into my production capacity.
+**[00:09:09]** First layer of defense:
+**[00:09:10]** workspace level "Surge Protection."
+**[00:09:12]** I'm capping every ad hoc reporting workspace
+**[00:09:15]** at 25% of the capacity.
+**[00:09:17]** Marketing can still run their reports;
+**[00:09:19]** they just can't eat the whole buffet.
+**[00:09:21]** I also flip on capacity level surge protection,
+**[00:09:24]** which rejects background operations above the threshold,
+**[00:09:26]** keeping room for the interactive reports
+**[00:09:29]** that actually matter right now.
+**[00:09:31]** But the sales workspaces, those are different.
+**[00:09:34]** I marked them as mission-critical.
+**[00:09:36]** That means they're exempt from the surge cap.
+**[00:09:38]** They get whatever capacity they need
+**[00:09:40]** because year-end close doesn't wait for anyone.
+**[00:09:43]** Now I need a safety valve.
+**[00:09:45]** I enable capacity overage and set a 24-hour rolling CU limit.
+**[00:09:49]** If sales needs to spike beyond our capacity during crunch time,
+**[00:09:52]** it can -- no throttling, no angry CFO.
+**[00:09:55]** But protection without visibility is just a hope.
+**[00:09:58]** So I open the "Real-Time" Hub,
+**[00:09:59]** select capacity overview events and set an alert.
+**[00:10:03]** I name the rule pick summary events, and I add a filter
+**[00:10:06]** when the interactive delay threshold hits 90%.
+**[00:10:09]** Fire a Teams message.
+**[00:10:10]** That's it.
+**[00:10:11]** A few clicks, and I've got real-time eyes
+**[00:10:13]** on my capacity before the dashboard spins,
+**[00:10:15]** before the phone rings,
+**[00:10:16]** before anyone even knows there's a problem.
+**[00:10:19]** Four layers: noisy neighbors cap, crown jewels protected,
+**[00:10:23]** overflow valve set, real time eyes on the whole thing.
+**[00:10:26]** The CFO's dashboards, it never even blinked.
+**[00:10:29]** KIM MANIS: There's a ton of new capabilities when it comes
+**[00:10:32]** to capacity administration and how you can govern both
+**[00:10:35]** with proactive guardrails and reactive monitoring.
+**[00:10:38]** And so, definitely, you want to check
+**[00:10:40]** out the new surge protection capabilities,
+**[00:10:43]** including marking workspaces now as mission-critical
+**[00:10:45]** to make sure they don't get throttled.
+**[00:10:48]** Capacity overage allows you to spike
+**[00:10:50]** up above your capacity spend for excess consumption.
+**[00:10:55]** Say you have a quarterly report running,
+**[00:10:57]** or you want to make sure this specific workspace never
+**[00:10:59]** gets throttled.
+**[00:11:00]** Capacity overage is your option there.
+**[00:11:02]** And then capacity events in Real-Time Hub allow you
+**[00:11:05]** to know what's going on in your capacity in real time and set
+**[00:11:09]** up triggers and actions.
+**[00:11:11]** And you can dive deeper with the capacity metrics
+**[00:11:14]** and chargeback apps that allow you to know everything going
+**[00:11:17]** on in your capacity and really identify root causes
+**[00:11:20]** and inform capacity planning.
+**[00:11:23]** And if you need more, we have this awesome Fabric capacity
+**[00:11:26]** guidance white paper that gives you everything you need to know
+**[00:11:28]** about capacities and how to manage and monitor them.
+**[00:11:32]** Okay, so we talked about capacities.
+**[00:11:34]** Now let's talk about workspace admins
+**[00:11:37]** and see what capabilities we have for them
+**[00:11:39]** to secure their workspaces end-to-end in Fabric.
+**[00:11:42]** SPEAKER 1: At Zava, we start with identity.
+**[00:11:45]** Entra Conditional Access policies ensure only managed
+**[00:11:48]** devices can reach this workspace.
+**[00:11:50]** Not on a company-approved device?
+**[00:11:52]** You don't get in.
+**[00:11:53]** Simple, decisive.
+**[00:11:55]** Inside the workspace roles define what you can do.
+**[00:11:58]** Megan is a contributor.
+**[00:11:59]** She can create and delete items.
+**[00:12:01]** David is a viewer.
+**[00:12:03]** Read only.
+**[00:12:04]** The right access for the right person at the right level.
+**[00:12:07]** Now I could go further.
+**[00:12:09]** "Inbound networking" lets me block public access entirely
+**[00:12:13]** and restrict connections to our corporate IP range
+**[00:12:16]** through the firewall, but honestly,
+**[00:12:18]** Conditional Access plus workspace roles already gives me
+**[00:12:22]** a strong balance of security and usability,
+**[00:12:25]** so I'll keep the default inbound access for now.
+**[00:12:27]** Where it gets serious is outbound.
+**[00:12:30]** I enable outbound access protection,
+**[00:12:32]** which blocks every outgoing connection from this workspace.
+**[00:12:36]** Nothing leaves unless I say so.
+**[00:12:38]** Then I open the doors I trust.
+**[00:12:40]** I connect the rule for our sales aggregation pipeline
+**[00:12:43]** to reach order data in Azure and a managed private endpoint
+**[00:12:47]** for a partner storage account with currency conversion rates.
+**[00:12:50]** This is active only after the storage account owner
+**[00:12:53]** approves it.
+**[00:12:54]** Now, watch.
+**[00:12:55]** A user tries to connect the notebook
+**[00:12:57]** to a personal storage account,
+**[00:12:58]** maybe copying some data somewhere it shouldn't go.
+**[00:13:01]** Fabric blocks it, no warning, no negotiation, just no.
+**[00:13:05]** Conditional Access, workspace rows, outbound protection.
+**[00:13:09]** Three layers: identity, permissions, and network.
+**[00:13:12]** And the data never leaves the building.
+**[00:13:15]** That's not a policy document; that's a platform.
+**[00:13:18]** KIM MANIS: We have all the capabilities you need
+**[00:13:20]** to secure your data estate with Microsoft Fabric.
+**[00:13:23]** At the tenant level, you can use Microsoft Entra
+**[00:13:26]** to authenticate every inbound request using all available data
+**[00:13:29]** points like identity, location, device, and risk detection.
+**[00:13:34]** Or for specific scenarios, you can use Azure Private Link
+**[00:13:37]** to send traffic over Microsoft's own private network,
+**[00:13:41]** and of course, everything is encrypted
+**[00:13:43]** and secured by default in Fabric.
+**[00:13:46]** However, we've heard from customers
+**[00:13:48]** that you need more granular control at the workspace level,
+**[00:13:52]** project by project, to make sure you're securing your data
+**[00:13:54]** appropriately for the project at hand,
+**[00:13:57]** and that's why we have workspace level security for all
+**[00:14:01]** of the capabilities you need,
+**[00:14:02]** whether it's outbound trusted workspace access,
+**[00:14:05]** Azure Private Link, outbound access protection,
+**[00:14:07]** customer managed keys,
+**[00:14:09]** workspace-level IP firewall rules.
+**[00:14:12]** All of these capabilities are generally available
+**[00:14:14]** and allow you to give the granularity you need
+**[00:14:17]** and the security levels you need for each
+**[00:14:19]** of the different projects going on in Fabric.
+**[00:14:21]** Okay, so we already talked about Fabric tenant admins
+**[00:14:24]** and capacity and workspace admins.
+**[00:14:26]** Now let's switch gears and talk about data and AI developers
+**[00:14:30]** and how they can take advantage
+**[00:14:31]** of the governance capabilities in Fabric.
+**[00:14:36]** And automating developer workflows are critical
+**[00:14:40]** for governance.
+**[00:14:41]** You need to make sure you reduce manual configurations,
+**[00:14:45]** and you don't want humans in the loop creating issues
+**[00:14:47]** that you could automate.
+**[00:14:49]** And you need visibility into what is going
+**[00:14:52]** on to make sure you can audit everything,
+**[00:14:54]** and inconsistent processes are really hard to enforce,
+**[00:14:58]** and again, this is where automation
+**[00:15:00]** around those developer workloads really help you make sure
+**[00:15:03]** that every project is following best practices.
+**[00:15:07]** And Fabric's promise to developers are simple.
+**[00:15:10]** We rely on consistent open formats,
+**[00:15:12]** making sure your data is your data.
+**[00:15:15]** Developers need access to scriptable APIs.
+**[00:15:19]** They need automation for provisioning
+**[00:15:21]** through tools like Terraform.
+**[00:15:23]** We need to make collaboration simple
+**[00:15:26]** through Git-based source control, and then, of course,
+**[00:15:29]** whether you're developing in the UI
+**[00:15:31]** through low-friction navigation and built-in experiences,
+**[00:15:35]** or through agents in your AI tool of choice,
+**[00:15:38]** we need to make sure that agentic development is simple
+**[00:15:42]** and obvious with Microsoft Fabric.
+**[00:15:46]** So now let's take a look at the day in the life
+**[00:15:48]** of the data developer setting up a new project in Fabric.
+**[00:15:53]** SPEAKER 2: Let's provision a complete Fabric Analytics
+**[00:15:55]** project with a single pipeline run.
+**[00:16:00]** Everything's parameterized: workspace name,
+**[00:16:03]** capacity, auth method, storage.
+**[00:16:06]** Configure what you need and "Run."
+**[00:16:12]** The pipeline starts with a Terraform plan,
+**[00:16:15]** cleaning up prior state
+**[00:16:16]** and showing exactly what it will create.
+**[00:16:19]** It pauses for manual approval.
+**[00:16:21]** You review the full plan before anything gets created
+**[00:16:24]** and then "Resume."
+**[00:16:27]** The Terraform Fabric provider creates 12 resources:
+**[00:16:30]** workspaces, identity, storage connections,
+**[00:16:33]** Git sync -- all as code.
+**[00:16:38]** Now the Fabric CLI steps in, patching notebooks,
+**[00:16:41]** building the Direct Lake model, and publishing the environment.
+**[00:16:49]** Copy jobs pull data from ADLS into the Bronze Lakehouse.
+**[00:16:52]** Notebooks transform it to Silver,
+**[00:16:53]** and shortcuts link the tables across lakehouses --
+**[00:16:56]** medallion architecture fully automated.
+**[00:16:59]** And now the pipeline is done.
+**[00:17:00]** Let's see the results.
+**[00:17:06]** Eleven items, the full stack: lakehouses to reports.
+**[00:17:10]** Nothing created manually.
+**[00:17:13]** Here's the full lineage:
+**[00:17:14]** ingestion to transformation to reporting.
+**[00:17:17]** The semantic model connects to Silver through Direct Lake,
+**[00:17:19]** querying the lakehouse directly, no import step.
+**[00:17:25]** And in the Silver Lakehouse, tables and data ready to query.
+**[00:17:30]** Infrastructure, data, analytics -- all from one pipeline run.
+**[00:17:35]** That's the whole story.
+**[00:17:36]** Full automation with Fabric.
+**[00:17:39]** KIM MANIS: Developers have a lot to deal with, and in Fabric,
+**[00:17:42]** we really want to make it simple, whether it's how you set
+**[00:17:45]** up the project through automation with tools
+**[00:17:47]** like Terraform, the developer workflow, just making it easier
+**[00:17:51]** to jump from dev to test to prod
+**[00:17:53]** to collaborate with your coworkers.
+**[00:17:56]** And when you deploy to production, making it simple
+**[00:17:59]** to automate that deployment
+**[00:18:01]** so that you can reliably deploy quality code.
+**[00:18:05]** And then, of course, monitoring and operating that code
+**[00:18:07]** in production so that you know what's going on,
+**[00:18:09]** and you can monitor everything in the system.
+**[00:18:15]** So now let's take a look at the life of a data engineer
+**[00:18:18]** and how they can use the OneLake catalog
+**[00:18:20]** to discover all the data they need and curate it
+**[00:18:22]** for their organization.
+**[00:18:24]** SPEAKER 1: I'm so excited about this one.
+**[00:18:26]** I'm a data engineer now.
+**[00:18:27]** My name is -- well, it doesn't matter, but my job is critical.
+**[00:18:32]** I'm responsible for curating trusted data that hundreds
+**[00:18:35]** of analysts, business users --
+**[00:18:37]** and this is the important part -- AI experiences all rely on.
+**[00:18:41]** Let me be real with you.
+**[00:18:42]** My job is not just about building pipelines.
+**[00:18:45]** That's part of it, sure, but the real job:
+**[00:18:48]** making sure the right data can be found, understood,
+**[00:18:51]** and trusted before anyone touches it.
+**[00:18:54]** If you're a data engineer,
+**[00:18:55]** you know exactly what I'm talking about.
+**[00:18:57]** So I start in the OneLake catalog, the single place
+**[00:19:00]** where I discover and govern my entire data estate,
+**[00:19:04]** and look at what we're seeing here.
+**[00:19:06]** This spans everything my organization works with:
+**[00:19:09]** lakehouses, mirrored data from Azure and Snowflake, warehouses,
+**[00:19:13]** SQL databases, semantic models, pipelines,
+**[00:19:16]** even organizational apps -- all in one place.
+**[00:19:20]** No more swivel cheering between portals.
+**[00:19:22]** No more where did that dataset go?
+**[00:19:25]** This is it.
+**[00:19:26]** Now, discovery starts with business intent,
+**[00:19:28]** and I love that phrase because it's so true.
+**[00:19:31]** I'm not searching randomly.
+**[00:19:32]** I'm going to the "Sales" domain, scoping down to the
+**[00:19:35]** "EMEA" subdomain, and look at that.
+**[00:19:38]** I see the domain branding, the description.
+**[00:19:40]** I instantly know I'm in the right business context.
+**[00:19:43]** From here, I can filter
+**[00:19:45]** by endorsements, tags, and workspaces.
+**[00:19:48]** I'm zeroing in on only the trusted relevant data --
+**[00:19:51]** no noise, just signal.
+**[00:19:53]** Let me show you what any item looks like up close,
+**[00:19:56]** and it's gorgeous, by the way.
+**[00:19:58]** Key metadata is right there, front and center: descriptions,
+**[00:20:01]** tags, owners, endorsements, sensitivity labels.
+**[00:20:04]** Remember that default sensitivity label
+**[00:20:06]** that the admin set up earlier?
+**[00:20:08]** That's flowing through right here, automatically applied.
+**[00:20:11]** The admin did their job, and now I benefit from it.
+**[00:20:14]** And, oh, if a description is missing, one click.
+**[00:20:17]** Copilot generates it for me
+**[00:20:19]** so analysts can understand exactly what they're looking
+**[00:20:22]** at without sending me a message on Teams asking,
+**[00:20:24]** hey, what's in that table?
+**[00:20:26]** We've all gotten that message, right?
+**[00:20:28]** No more. Now, let's ground this in something real.
+**[00:20:31]** It's the end of the year.
+**[00:20:32]** The sales team is finalizing revenue numbers,
+**[00:20:35]** and I'm the data engineer who needs
+**[00:20:36]** to make sure the customer data is ready
+**[00:20:38]** for consumption before your close deadline.
+**[00:20:41]** Pressure is on.
+**[00:20:42]** Let's go. I search for orders and immediately narrow the list
+**[00:20:46]** to sales on order data.
+**[00:20:48]** Easy. Now I see more than one item called orders,
+**[00:20:51]** and if you've worked in a real data estate,
+**[00:20:54]** you know this happens all the time.
+**[00:20:56]** So which one is the real one?
+**[00:20:57]** I open the details pane and look at this.
+**[00:20:59]** I can see it's connected to the production deployment pipeline.
+**[00:21:02]** That tells me this isn't some test copy someone forgot
+**[00:21:06]** to delete.
+**[00:21:06]** This is the real asset, flowing to production.
+**[00:21:09]** I can see the full metadata and the data schema all the way
+**[00:21:12]** down to the column level.
+**[00:21:14]** No guesswork.
+**[00:21:15]** And then I open the "Lineage" view,
+**[00:21:16]** and this is where it all comes together.
+**[00:21:18]** I can see the sensitivity label is inherited from the source.
+**[00:21:21]** Protection flows downstream automatically
+**[00:21:24]** through the lakehouse, through the semantic models,
+**[00:21:26]** all the way into the reports.
+**[00:21:28]** I'm not guessing at the downstream impact.
+**[00:21:30]** I could see it clearly.
+**[00:21:31]** That gives me confidence to make changes
+**[00:21:33]** because I know exactly what's affected.
+**[00:21:35]** As a data engineer, I review everything,
+**[00:21:38]** set up proper descriptions, and I can certify this asset.
+**[00:21:41]** Now it's discoverable.
+**[00:21:42]** Now the sales team can rely on it with confidence.
+**[00:21:45]** And if you want to zoom out, the "Govern" tab is there
+**[00:21:47]** for me as a data owner too.
+**[00:21:49]** It shows me the completeness and compliance of everything I own,
+**[00:21:53]** where descriptions are missing, where trust signals are weak,
+**[00:21:56]** and what I should do next.
+**[00:21:57]** It's like having a governance checklist that updates itself.
+**[00:22:01]** One more thing before I hand this off.
+**[00:22:03]** Before I promote this lakehouse to the end users,
+**[00:22:05]** I always check security, always.
+**[00:22:08]** In the "Secure" tab, I can see exactly who has access,
+**[00:22:11]** which roles, which users, which groups,
+**[00:22:13]** all the way down to specific tables and columns.
+**[00:22:16]** For the year-end close,
+**[00:22:18]** sales needs broad access to order data.
+**[00:22:20]** They can see everything except for one column
+**[00:22:23]** that contains customer social security numbers.
+**[00:22:25]** I deliberately excluded
+**[00:22:27]** that using column-level security via OneLake security.
+**[00:22:30]** Think about that -- broad access for productivity,
+**[00:22:33]** granular protection for compliance.
+**[00:22:35]** You get both.
+**[00:22:36]** That's the sweet spot.
+**[00:22:37]** So where are we?
+**[00:22:39]** The data is ready; it's discoverable,
+**[00:22:41]** governed, and trusted.
+**[00:22:42]** Now it can be used by data scientists, analysts,
+**[00:22:45]** business users, and by Copilot and AI agents
+**[00:22:49]** that need trusted data to generate reliable answers.
+**[00:22:52]** That's foundation, and it's solid.
+**[00:22:54]** Okay. Last set of demos, and honestly, this might be the one
+**[00:22:58]** that gets the biggest reaction
+**[00:23:00]** because everything we've built --
+**[00:23:02]** the governance, the trust signals, the security --
+**[00:23:04]** it doesn't just live inside Microsoft Fabric;
+**[00:23:07]** it goes everywhere.
+**[00:23:08]** The OneLake catalog is integrated into more
+**[00:23:11]** than 100 places across Microsoft Fabric and Office:
+**[00:23:14]** Microsoft Teams, Excel,
+**[00:23:16]** Microsoft Copilot Studio, and more.
+**[00:23:18]** Users find and analyze data from the tools they already use,
+**[00:23:21]** and here's the beautiful part: the governance travels with it.
+**[00:23:24]** When I use OneLake catalog in Excel,
+**[00:23:26]** I can only see the data I'm allowed to see based
+**[00:23:28]** on my access permissions and my organization's DLP rules.
+**[00:23:32]** When I connect to the sales orders lakehouse, I connect only
+**[00:23:35]** to the data I'm authorized to access based
+**[00:23:37]** on that OneLake security we just set up.
+**[00:23:39]** Same rules, same protection, different tool.
+**[00:23:42]** That's how it should work.
+**[00:23:43]** And it doesn't stop in the UI.
+**[00:23:45]** The same catalog is accessible through public APIs and MCP.
+**[00:23:49]** Watch this.
+**[00:23:50]** I'm in Visual Studio Code using an LLM-powered app,
+**[00:23:54]** and I just ask in natural language,
+**[00:23:56]** what sales-related lakehouses does Zava have?
+**[00:23:59]** And it comes back with the results
+**[00:24:00]** from the same trusted catalog, same governance, same security.
+**[00:24:04]** Whether it's a person searching in Excel or an AI agent querying
+**[00:24:08]** through an API, the same governed truth is discoverable
+**[00:24:12]** and usable everywhere.
+**[00:24:14]** Folks, this is what it looks
+**[00:24:16]** like when governance isn't bottleneck; it's an accelerator.
+**[00:24:19]** Your admins set the guardrails.
+**[00:24:21]** Your data engineers build trust.
+**[00:24:23]** And then every user, every app, every AI agent
+**[00:24:27]** in your organization benefits from it.
+**[00:24:29]** That is the power of One Lake catalog in Microsoft Fabric.
+**[00:24:32]** And I could not be more excited about where things are going.
+**[00:24:37]** KIM MANIS: The One Lake catalog is the trusted data
+**[00:24:39]** catalog for over 240,000 organizations worldwide,
+**[00:24:44]** and the OneLake catalog really consists of three key pillars.
+**[00:24:49]** We have unified data discovery, making it easy
+**[00:24:52]** to find the data no matter where you work, whether it's
+**[00:24:55]** in Power BI, Excel, Fabric, Foundry, and more.
+**[00:25:00]** And we have built-in governance, as we talked before,
+**[00:25:02]** not just for the tenant admins, but for any data owner.
+**[00:25:06]** And of course, Zero Trust protection with the Secure tab,
+**[00:25:10]** where you can set up those security rules centrally
+**[00:25:12]** for OneLake, and it applies regardless
+**[00:25:16]** of which engine you're using to get the job done.
+**[00:25:19]** And now we have enhanced support for tables and columns
+**[00:25:21]** when you're exploring data, allowing you
+**[00:25:24]** to reveal the underlying data schema for any data item stored
+**[00:25:27]** in Fabric, and you can preview the data right in line
+**[00:25:30]** in the catalog and take quick actions just from there.
+**[00:25:36]** Okay, so we talked a lot about the experience in Fabric,
+**[00:25:39]** but what about an AI developer in Foundry,
+**[00:25:41]** leveraging the data to build agents?
+**[00:25:43]** Let's take a look at what the new capabilities are
+**[00:25:46]** with Fabric in Foundry.
+**[00:25:49]** SPEAKER 3: Most organizations already have a huge amount
+**[00:25:51]** of valuable unstructured data sitting in SharePoint.
+**[00:25:54]** That includes business documents, PDFs,
+**[00:25:56]** and of course Excel files.
+**[00:25:58]** The challenge is that this content often contains some
+**[00:26:01]** of the most important business contexts,
+**[00:26:03]** but is usually disconnected from analytics and AI.
+**[00:26:07]** Now, moving over to my lakehouse in Microsoft Fabric,
+**[00:26:10]** I can bring all of the data together in OneLake.
+**[00:26:13]** Here my unstructured SharePoint files can live alongside my
+**[00:26:16]** structured data, and because I'm using OneLake shortcuts,
+**[00:26:20]** the files are virtualized into place.
+**[00:26:22]** There is no copy, no data movement,
+**[00:26:24]** and no extra duplication to manage.
+**[00:26:26]** I can also unify this with data from other sources,
+**[00:26:29]** including multi-cloud data from S3 net of files
+**[00:26:32]** that are network protected, or from Azure Blob Storage,
+**[00:26:35]** where I have my customer support transcripts.
+**[00:26:38]** So instead of creating another data silo,
+**[00:26:41]** OneLake gives me one logical data layer
+**[00:26:43]** across my organization's data.
+**[00:26:46]** Now I want to use this data to build an AI agent.
+**[00:26:49]** In Microsoft AI Foundry, I can use knowledge
+**[00:26:52]** to index this context and make it available for grounding.
+**[00:26:56]** This indexing step is important because it turns raw files
+**[00:26:59]** into searchable, retrievable knowledge that the agent can use
+**[00:27:02]** to answer questions with the right business context.
+**[00:27:06]** As part of Foundry knowledge,
+**[00:27:07]** OneLake catalog is natively integrated.
+**[00:27:10]** Here I can search across available data,
+**[00:27:13]** see what has been endorsed in my organization, and use signals
+**[00:27:17]** like sensitivity labels to understand
+**[00:27:19]** which data is trusted and ready to use.
+**[00:27:22]** This lakehouse is promoted, so I know it is intended
+**[00:27:25]** for broader use and is ready to power AI experiences.
+**[00:27:29]** From here, I can directly add this OneLake knowledge source
+**[00:27:31]** to my agent, and now I can start asking business questions
+**[00:27:35]** like what are my best-selling products,
+**[00:27:37]** and how can I improve my sales?
+**[00:27:39]** That is the value of bringing OneLake Fabric
+**[00:27:41]** and Foundry together.
+**[00:27:42]** You can connect to business data where it already lives,
+**[00:27:45]** unify structured and unstructured data
+**[00:27:47]** without copying it, discover trusted data
+**[00:27:50]** through the OneLake catalog, and use it natively in Foundry
+**[00:27:53]** to build grounded AI agents.
+**[00:27:56]** KIM MANIS: So you just saw
+**[00:27:57]** in that demo the OneLake catalog just built into Foundry,
+**[00:28:01]** and the OneLake catalog is built into hundreds
+**[00:28:03]** of other applications, including many of the products we know
+**[00:28:06]** and love in Office, Excel, PowerPoint, Teams,
+**[00:28:09]** as well as Copilot Studio for building agents there as well.
+**[00:28:14]** And in that demo you saw the OneLake catalog just built
+**[00:28:17]** into Foundry, so now agent developers can discover the data
+**[00:28:21]** they have access to.
+**[00:28:22]** And again, all that role-level security,
+**[00:28:24]** all those governance policies that you set
+**[00:28:26]** up in Fabric apply in Foundry as well.
+**[00:28:31]** So we covered a lot here across the governance, security,
+**[00:28:34]** and capacity spectrum in Fabric, and there's a lot more to learn,
+**[00:28:37]** so check out these links.
+**[00:28:38]** And I highly recommend the Fabric security white paper.
+**[00:28:41]** It's a very long paper, but one recommendation I always give is
+**[00:28:45]** put that in Copilot, and then you can ask lots of questions
+**[00:28:47]** and get your answers on everything
+**[00:28:49]** to do with Fabric security.
+**[00:28:52]** Thank you so much, and super excited
+**[00:28:54]** to see what you build with this.

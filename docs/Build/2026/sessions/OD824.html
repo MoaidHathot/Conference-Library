@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OD824 - Scalable Applications Without Polyglot tax: Azure SQL Hyperscale</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; OD824</nav>
+        <h1>OD824 &mdash; Scalable Applications Without Polyglot tax: Azure SQL Hyperscale</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">OD824 &middot; Pre-recorded</span>
+    <h1>Scalable Applications Without Polyglot tax: Azure SQL Hyperscale</h1>
+    <div class="speakers"></div>
+    <div class="meta">
+        <span>Pre-recorded</span>
+<span>(200) Intermediate</span>
+    </div>
+    <div class="tags"><span class="tag">Azure SQL Hyperscale</span> <span class="tag">CP&amp;D</span> <span class="tag">Data</span> <span class="tag">Cloud platform &amp; data</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/OD824?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/4610847f-3c55-4710-af17-90eaee6d192e" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/4610847f-3c55-4710-af17-90eaee6d192e" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Modern application architectures have drifted toward polyglot persistence, adding complexity, data movement, and operational overhead. Azure SQL Database Hyperscale takes a different approach: a single, multi model system that brings relational, transactional, and emerging workloads together within SQL. Learn how Hyperscale redefines performance, elasticity, and operations. See why consolidating on a single, multi-model SQL platform is the simpler, more scalable path for modern applications</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>Azure SQL argues that &quot;polyglot persistence&quot; — stitching together separate relational, document, graph, vector, and analytics databases — imposes an avoidable tax in latency, security surface, operational overhead, and developer cognitive load. The session makes the case that the Microsoft SQL core engine now consolidates these workloads natively, and that Azure SQL Hyperscale supplies the cloud-native scale, elasticity, and economics to run them, with particular emphasis on why ACID guarantees matter in agentic scenarios.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Native JSON type and path-specific JSON indexes</strong> <em>(00:05:45)</em> — SQL stores JSON as a pre-parsed binary (ANSI JSON type, no longer NVARCHAR(MAX)), cutting JSON storage by 30–50% and allowing indexing of a specific JSON path rather than the whole document.</li>
+<li><strong>Native vector type with DiskANN and HNSW indexes</strong> <em>(00:09:18)</em> — Vectors moved from varbinary to a native type, with vector indexes built on Microsoft Research&#39;s DiskANN, including recently introduced updatable DiskANN indexes.</li>
+<li><strong>Operational-data pre-filtering for vector search</strong> <em>(00:10:52)</em> — Relational context (e.g. locating &quot;person Bob&quot;) narrows the vector search space, reducing cost versus a standalone vector database.</li>
+<li><strong>Hyperscale named replicas with isolated working sets</strong> <em>(00:17:02)</em> — Each named replica gets its own connection string, buffer pool, and RBPEX (Resilient Buffer Pool Extension) L2 cache, isolating read workloads from primary writes over the same up-to-128 TB dataset.</li>
+<li><strong>Snapshot-based backups</strong> <em>(00:16:11)</em> — Because page servers write to Azure storage, backups use storage snapshots without consuming compute to read pages, unlike traditional BACKUP DATABASE operations.</li>
+<li><strong>SQL MCP server via Data API Builder</strong> <em>(00:20:04)</em> — A REST endpoint from Data API Builder can be exposed as an MCP server, enabling natural-language interaction with Hyperscale data.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Defining &quot;polyglot tax&quot;: network latency, fragmented auth and security surfaces, separate backups, and developer cognitive load</li>
+<li>A real-time fraud-detection app as the recurring example spanning order history, device fingerprints, graph relations, similar transactions, and statistical baselines</li>
+<li>Native graph support with MATCH syntax and query-optimizer integration</li>
+<li>Clustered columnstore for OLAP-friendly compression and HTAP within a single engine</li>
+<li>Single-transaction-boundary stored procedures combining relational, JSON, graph, and vector operations</li>
+<li>Why ACID semantics and idempotency are critical for agents that write and may rewrite</li>
+<li>Hyperscale architecture: dedicated log service, page servers with SSDs, asynchronous redo, and Azure storage as durable tier</li>
+<li>Serverless scaling of named replicas (e.g. 2 to 128 vCores), provisioned primary with serverless replicas, Geo-DR and built-in high availability</li>
+<li>Security features: ledger, dynamic data masking, Always Encrypted, tenant-based execution</li>
+<li>Economics: eliminating sidecar databases, pay-for-use serverless, storage from 10 GB to 128 TB, reduced staffing, and a licensing-free model</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;When I say polyglot tax, I mean having the tax that you pay for choosing multiple databases.&quot; — Aditya Badramraju</p>
+</blockquote>
+<blockquote>
+<p>&quot;After we switched to Hyperscale, I can really sleep peacefully in the night.&quot; — customer, as recounted by Aditya Badramraju</p>
+</blockquote>
+<blockquote>
+<p>&quot;ACID semantics are so important in agentic world than a normal world.&quot; — Aditya Badramraju</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Azure SQL Database Hyperscale</li>
+<li>Microsoft SQL (core engine)</li>
+<li>DiskANN [inferred]</li>
+<li>HNSW</li>
+<li>Clustered columnstore</li>
+<li>RBPEX (Resilient Buffer Pool Extension)</li>
+<li>Data API Builder</li>
+<li>SQL MCP server</li>
+<li>Azure Storage</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Aditya Badramraju — Product Manager, Azure SQL</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (24,866 chars)</summary>
+        <pre class="transcript-body">[00:00:03] ADITYA BADRAMRAJU: Hi, everyone.
+[00:00:04] I hope you are having great Build.
+[00:00:07] I&#39;m Aditya.
+[00:00:08] I&#39;m the Product Manager from Azure SQL.
+[00:00:11] Today, I&#39;m here to talk to you
+[00:00:12] about building scalable applications
+[00:00:15] without having polyglot tax.
+[00:00:17] Now let&#39;s talk what exactly is polyglot tax.
+[00:00:20] What do we mean by that?
+[00:00:21] When I say polyglot tax, I mean having the tax that you pay
+[00:00:26] for choosing multiple databases.
+[00:00:29] Okay. How many of you are building applications day in,
+[00:00:33] day out?
+[00:00:35] I&#39;m sure everyone.
+[00:00:37] So let&#39;s say you build a prototype.
+[00:00:40] How long do you take?
+[00:00:41] Based on whatever that application is,
+[00:00:46] it takes -- you start at 9:00 AM.
+[00:00:48] Before lunch, you almost have it.
+[00:00:51] You can say, &quot;Aditya, it can be fast.&quot;
+[00:00:54] I&#39;m sure it&#39;s for sure fast.
+[00:00:57] So, but my point is you can build a prototype pretty fast.
+[00:01:00] But let&#39;s say you built a prototype
+[00:01:02] and that prototype is super successful.
+[00:01:05] How do you -- and then you want to add something
+[00:01:07] like semantic search with vectors,
+[00:01:10] you might get a vector DB.
+[00:01:12] And then you extended it to have graphs.
+[00:01:15] You added graph DB.
+[00:01:17] And then you need to do analytics on top of it.
+[00:01:22] See what I&#39;m doing here?
+[00:01:24] You add so many databases that are specific to them.
+[00:01:29] And now, because you are adding so many databases,
+[00:01:33] in all of this data, in all shipping all of this data,
+[00:01:37] if something broke at one point, the other things won&#39;t work.
+[00:01:42] Imagine the data that flows from vectors is broken,
+[00:01:49] which comes to the analytics.
+[00:01:51] The analytics might not give you the right answers.
+[00:01:54] So that is broken.
+[00:01:56] So that&#39;s the polyglot tax I&#39;m talking about.
+[00:02:01] We are here because this one we can really avoid
+[00:02:08] with Microsoft SQL.
+[00:02:10] Now, how do -- let&#39;s say you&#39;re building a fraud check,
+[00:02:15] real-time fraud check application.
+[00:02:18] How do you typically do that with all these databases?
+[00:02:21] You do -- you have a relational database for order history.
+[00:02:25] You have a JSON or a document databases
+[00:02:28] for device fingerprint.
+[00:02:30] When I say device fingerprint, is it coming
+[00:02:32] from an application, is it coming from a browser, etc?
+[00:02:35] You might use a document database for that.
+[00:02:38] For detecting multiple graph relations
+[00:02:41] between multiple people, you might use graph.
+[00:02:45] If you want to find similar transactions like,
+[00:02:48] what would this database look like?
+[00:02:51] What is this transaction looking like?
+[00:02:54] Buying something from Walmart, what does that look like?
+[00:02:59] Is there a similar transaction to that?
+[00:03:02] There is that too.
+[00:03:03] And then finally, you would want all of this coming
+[00:03:07] to a statistical baseline, which essentially means analytics.
+[00:03:11] We have five different databases,
+[00:03:13] five different sync jobs, five different auth systems.
+[00:03:17] And because of all of this, you have so much latency
+[00:03:20] because your application needs to wait
+[00:03:22] to read from all of this.
+[00:03:25] The costs are also the same.
+[00:03:27] That&#39;s what I&#39;m trying to say.
+[00:03:28] Because you are trying to read from all of this,
+[00:03:30] you have network latency.
+[00:03:33] You have different security surfaces
+[00:03:35] with all these databases.
+[00:03:36] You have security in relational versus DW versus your --
+[00:03:45] what do you say, graph, all of that.
+[00:03:47] You have separate auth systems everywhere.
+[00:03:50] You need to pay tax for that.
+[00:03:52] You would have different database backups
+[00:03:55] for all of this.
+[00:03:56] Imagine that.
+[00:03:57] There is no one single backup statement
+[00:03:59] that would be doing this.
+[00:04:00] Finally, more than anything, there is cognitive load
+[00:04:04] so which means I need to, as a developer,
+[00:04:07] I need to learn five different tools,
+[00:04:09] five different query languages, etc.
+[00:04:13] Now, as a user, it&#39;s okay, but as an agent,
+[00:04:16] it&#39;s going to be even more tough because agents
+[00:04:20] with so many choices tend to hallucinate a lot.
+[00:04:24] More hallucination means more wrong data,
+[00:04:26] which we really doesn&#39;t want to have.
+[00:04:30] That&#39;s why we are here talking avoiding polyglot tax
+[00:04:34] with Microsoft SQL core engine.
+[00:04:36] And not just with engine avoiding the tax, you need scale
+[00:04:43] to perform and use the best of this engine.
+[00:04:47] That best of this engine comes from Azure SQL Hyperscale.
+[00:04:50] We will talk how Azure SQL Hyperscale helps with that.
+[00:04:54] So Act 1: how to avoid the tax
+[00:04:56] with all the different capabilities that we built
+[00:04:59] into Microsoft SQL core engine.
+[00:05:02] Act 2 is to how do you scale that Microsoft SQL core engine,
+[00:05:06] which is the base of building the Azure SQL Hyperscale.
+[00:05:10] Okay. Let&#39;s go into Part 1.
+[00:05:13] Okay. So let&#39;s talk about the first act,
+[00:05:16] which is the core engine and how we are avoiding the polyglot tax
+[00:05:19] with Microsoft SQL.
+[00:05:20] Okay. So let&#39;s say you have the --
+[00:05:28] as I mentioned in the fraud detection app setting,
+[00:05:34] where you would need, if you are logging from app
+[00:05:38] or if you are logging from a web browser,
+[00:05:40] you need a JSON kind of a document.
+[00:05:42] And how would SQL really do that?
+[00:05:45] So recently, SQL essentially introduced JSON native type
+[00:05:52] and JSON indexes, and it is -- previously, when we started,
+[00:05:59] we kind of did NVARCHAR MAX, but it&#39;s no more NVARCHAR MAX.
+[00:06:03] It&#39;s purely JSON type, native JSON type, ANSI.
+[00:06:08] And it is a pre-parsed binary,
+[00:06:11] which means the way we store the JSON
+[00:06:14] in our engine is a pre-parsed binary,
+[00:06:17] which essentially makes JSON save 30 to 50% less.
+[00:06:22] And there is this famous JSON index,
+[00:06:25] which in another relational databases where you index.
+[00:06:31] When you index, the entire JSON document gets indexed.
+[00:06:35] The cool thing that we did with JSON
+[00:06:37] in Microsoft SQL is you can index the particular path
+[00:06:41] of that JSON.
+[00:06:42] So that essentially makes you feel that, okay,
+[00:06:46] if I want to search only on the device, then whatever the date
+[00:06:51] or anything, I can index only on the path of device in that JSON
+[00:06:56] and attributes, and your JSON index will essentially
+[00:07:00] pick that.
+[00:07:01] Now, with JSON, one of the favorite features of using JSON,
+[00:07:07] even for the people in document databases,
+[00:07:10] is the schema flexibility.
+[00:07:13] You can have a JSON document of, let&#39;s say, four attributes,
+[00:07:16] one of them, and another JSON document of five attributes.
+[00:07:20] In a relational world, you might need
+[00:07:22] to add one more column and all of that.
+[00:07:25] That is not there with JSON.
+[00:07:27] And, hey, SQL supports it.
+[00:07:29] Microsoft SQL supports it.
+[00:07:30] And now, all the JSON updates that you do
+[00:07:33] and what all you do follow the same transaction boundary,
+[00:07:37] and no more or nothing more than that,
+[00:07:39] so which means you can rollback, roll forward,
+[00:07:42] all the ACID properties are done.
+[00:07:45] So we kind of see the Microsoft SQL.
+[00:07:48] We did -- internally, we did the YCSW tests,
+[00:07:55] and we see that we are no less than any document database
+[00:08:00] when it comes to JSON performance
+[00:08:02] and JSON index performance.
+[00:08:03] That&#39;s why we -- once you do this, I almost kind
+[00:08:07] of say you need not really think
+[00:08:09] about having a separate document database.
+[00:08:11] You can essentially say goodbye,
+[00:08:13] and we just bank on Microsoft SQL.
+[00:08:17] Now, since forever, as I said, we have invested in graph,
+[00:08:23] and you have graph in Microsoft SQL.
+[00:08:26] You can do MATCH, and you can say the syntax is natively
+[00:08:31] supported, and you can have the query optimizer understand this
+[00:08:36] MATCH and give you a perfect plan
+[00:08:39] that is required for this MATCH.
+[00:08:40] And that way, graph is inbuilt in Microsoft SQL itself.
+[00:08:47] So you have JSON.
+[00:08:48] You have graph.
+[00:08:50] And there are graphs also very interesting scenarios
+[00:08:55] when it comes to application like anti-fraud detection,
+[00:08:59] fraud detection, and all of that.
+[00:09:01] So you really need -- wherever you need a specialist graph kind
+[00:09:07] of scenarios, you need --
+[00:09:09] Microsoft SQL does support all the basic graph functionalities,
+[00:09:14] such that you can use Microsoft SQL for that.
+[00:09:18] Now, recently, we started supporting vectors.
+[00:09:25] And when we started, again, we used to support vectors on top
+[00:09:29] of varbinary, and then we immediately switched
+[00:09:32] and vectors in native type.
+[00:09:34] Now, we initially released vector type,
+[00:09:38] but we haven&#39;t released the index on it.
+[00:09:41] Later, we released vector indexes using the DiskANN,
+[00:09:46] which is a great Microsoft research,
+[00:09:48] which came out from this Microsoft research,
+[00:09:50] and which is essentially pretty fast and HNSW.
+[00:09:56] And now, imagine vector databases are kind of tricky.
+[00:10:01] If you have a specialized vector database,
+[00:10:04] and if you don&#39;t have the operational data&#39;s context
+[00:10:10] to it, what happens is you would end up searching a lot number
+[00:10:17] of rows, a lot number of vectors,
+[00:10:19] and that is costly in general.
+[00:10:22] Let&#39;s say you want to search about person Bob.
+[00:10:27] And that person Bob is in one of the relational data.
+[00:10:34] You find that person, and you will select transactions similar
+[00:10:38] to that, which essentially gives you more context, and hence,
+[00:10:43] it will help you -- it will help you reduce the --
+[00:10:49] reduce the tax on it, and it will be pretty fast.
+[00:10:52] Hence, essentially, it&#39;s a pre-filter.
+[00:10:54] And we also kind of introduced very recently updatable
+[00:11:00] DiskANN indexes.
+[00:11:02] So this essentially makes people who are vector databases kind
+[00:11:08] of -- there is no need of a separate vector database.
+[00:11:12] Now, clustered columnstore.
+[00:11:14] This is one of the very famous features that SQL have.
+[00:11:21] And we are continuously investing
+[00:11:22] in this columnstore today, where -- so in SQL, traditionally used
+[00:11:32] to be its rowstore, you can convert them to columnstore,
+[00:11:35] and which is more OLAP-friendly.
+[00:11:38] And all the data that you have for the analytics,
+[00:11:43] you can transfer them as a columnstore, which essentially,
+[00:11:46] again, gives you a very huge amount of compression for you
+[00:11:50] to -- on top of the rowstore, and you can expose
+[00:11:54] that for your analytics endpoint.
+[00:11:57] So that essentially gives you HTAP.
+[00:12:00] One, you have the primary transactions.
+[00:12:06] You have analytics.
+[00:12:07] You have JSON.
+[00:12:08] But just having transactions, analytics,
+[00:12:11] and the real-time transactions, it makes Microsoft SQL one
+[00:12:15] of the best analytical stores out there.
+[00:12:17] So now, combine all this story.
+[00:12:20] Let&#39;s look at all of this.
+[00:12:22] You have JSON.
+[00:12:24] You got the order history of a person using relational.
+[00:12:30] That&#39;s what I&#39;m kind of doing with this.
+[00:12:32] And then you kind of got the device footprint from JSON,
+[00:12:37] saying -- by just using JSON value.
+[00:12:40] And then you said, &quot;Okay, for this, can you give me
+[00:12:45] for the MATCH of this -- for a risk score greater than 0.8?
+[00:12:50] And then find the similar transactions of that
+[00:12:54] in the vector table and give a 90-day baseline on top of it.&quot;
+[00:12:59] And I can write all of it in a single stored procedure
+[00:13:04] and execute that, and it will have one transaction boundary.
+[00:13:09] Which means, let&#39;s say when you are writing something on JSON,
+[00:13:13] if it fails, everything fails.
+[00:13:16] This is very, very important for agents because agents,
+[00:13:20] though one of the fact that we learned recently is agent needs
+[00:13:27] a lot of data to read.
+[00:13:29] But agent also loves idempotency,
+[00:13:31] which means they come, they write.
+[00:13:34] If they write, they might rewrite because of
+[00:13:38] so many things, which means they need a proper rollback.
+[00:13:42] ACID semantics are so important in agentic world
+[00:13:47] than a normal world because in a normal world,
+[00:13:50] a developer would be sitting and making sure that, oh,
+[00:13:53] this transaction has this transaction boundary.
+[00:13:57] And hence, when it comes to agents, they just come in,
+[00:14:02] put the transaction, and go out.
+[00:14:04] That we should really make sure that ACID is the only way
+[00:14:09] where you can know the data that is coming
+[00:14:11] in is completely coming in and get committed.
+[00:14:14] So it becomes even more important in the agentic world.
+[00:14:18] Now, that&#39;s the part with core engine,
+[00:14:22] where you avoided polyglot tax.
+[00:14:25] Now, take this core engine, take it up, and you plug
+[00:14:29] that into something which scales.
+[00:14:33] That is Hyperscale.
+[00:14:34] That is the Hyperscale,
+[00:14:35] and I call this databases peace of mind database.
+[00:14:39] The reason why I call this databases a peace
+[00:14:41] of mind database is when you start --
+[00:14:47] there is a famous customer.
+[00:14:48] He told me this story.
+[00:14:50] He mentioned, &quot;Hey, Aditya.
+[00:14:53] After we switched to Hyperscale,
+[00:14:55] I can really sleep peacefully in the night.&quot;
+[00:14:58] That made me come up with this peace of mind database
+[00:15:01] with some other colleagues.
+[00:15:03] The reason why I said that whatever
+[00:15:08] that customer told me is
+[00:15:09] so important is the customer need not wake
+[00:15:12] up for a file group full, or a file full, or a log full,
+[00:15:17] or anything because Hyperscale just grows
+[00:15:21] as your application grows.
+[00:15:22] And it has its own dedicated log service.
+[00:15:25] It has its own page servers and Azure storage.
+[00:15:28] So why I typically show a architecture diagram,
+[00:15:34] here I&#39;m not showing it purposefully because all you,
+[00:15:37] as an audience, need
+[00:15:39] to understand here is Hyperscale has different components.
+[00:15:45] You have log service, dedicated log service for your writes.
+[00:15:49] Your reads are coming from page servers,
+[00:15:52] which are essentially a -- which have SSDs of its own,
+[00:15:57] and it is asynchronous.
+[00:15:58] Log service will do continuous redo into page service.
+[00:16:03] This page service will continuously write back
+[00:16:06] into Azure storage for the durable -- as a durable tier.
+[00:16:11] Now, if you do that, because you are writing into Azure storage,
+[00:16:15] what happens is we can use the Azure storage&#39;s tech
+[00:16:19] of taking snapshots.
+[00:16:21] Now, eventually, it became a good news for all the users
+[00:16:25] because compute on the top is not involved
+[00:16:29] in taking the backups, which means there is no pages
+[00:16:32] that were read to take a backup.
+[00:16:35] Or in traditional SQL, if you are doing backup database,
+[00:16:38] database name, you are essentially reading that backup,
+[00:16:41] reading all the data into the compute
+[00:16:42] and writing it back into the.bak.
+[00:16:45] That is not needed anymore with Hyperscale snapshot backups.
+[00:16:50] Now, how, in general, with agents and all of this world,
+[00:16:59] people use Hyperscale.
+[00:17:02] So the way they use is they use primary for the OLTP writes.
+[00:17:09] One of the major things
+[00:17:11] that Hyperscale has a advantage is having named replicas.
+[00:17:15] What this named replicas is,
+[00:17:17] think of it like you have its own connection string
+[00:17:20] for a readable copy.
+[00:17:21] Now, why is that important?
+[00:17:23] That is important because that readable copy essentially has
+[00:17:27] its own buffer pool, which means its own memory,
+[00:17:30] its own L2 cache.
+[00:17:32] We call it as RBPEX, which is resilient buffer pool extension,
+[00:17:36] which means it has its own working set.
+[00:17:39] And that working set is extremely different
+[00:17:42] to any other named replica that you give.
+[00:17:44] So you can differentiate working sets in Hyperscale
+[00:17:48] with different named replicas
+[00:17:51] with an underlying all the same data of 128 TB.
+[00:17:56] And you can have your writes not affected by reads.
+[00:17:59] So we see customers doing writes on the primary.
+[00:18:04] They are continuous writes.
+[00:18:06] We see customers doing agents pointed to one
+[00:18:12] of the named replicas, and they do vector distances,
+[00:18:15] similar transactions, all of that,
+[00:18:17] and find the cosine similarity
+[00:18:20] and give back what exactly it is.
+[00:18:23] So that from one named replica.
+[00:18:27] I have seen customers using nightly jobs,
+[00:18:30] and they use serverless specifically
+[00:18:33] for those named replicas, where they go --
+[00:18:36] in the morning, the serverless comes to two vCores,
+[00:18:40] and in the night when they use, they expand it to 128 vCores.
+[00:18:44] They run their job, run the analytics, and they sleep off.
+[00:18:49] So they use separate named replica for that.
+[00:18:52] By the way, your primary can always be provisioned,
+[00:18:58] and your named replicas can be serverless.
+[00:19:03] So we also care about your business continuity; hence,
+[00:19:07] we do have Geo-DR and high availability built-in
+[00:19:13] into Hyperscale.
+[00:19:14] Now, let&#39;s look at the other side of it.
+[00:19:19] Hyperscale comes -- because Hyperscale also is a Microsoft
+[00:19:23] SQL core engine, the engine itself has the best security
+[00:19:29] out there.
+[00:19:30] Do you know something
+[00:19:31] that Microsoft SQL supports ledger too?
+[00:19:38] That&#39;s what we support even in Hyperscale
+[00:19:41] because Microsoft SQL supports it.
+[00:19:43] We have dynamic data masking.
+[00:19:45] You can have always encrypted,
+[00:19:49] (inaudible) only stored procedures,
+[00:19:50] tenant-based execution,
+[00:19:52] all of that using Microsoft SQL core engine
+[00:19:56] and also in Hyperscale.
+[00:19:57] Now, what is AI or agent or any talk
+[00:20:04] without having an MCP server?
+[00:20:07] So SQL has its own MCP server.
+[00:20:11] We did that with the Data API builder.
+[00:20:13] You have so many tools that you use --
+[00:20:18] you can use with this MCP server.
+[00:20:21] You point the -- you have a DAB, create a DAB.
+[00:20:24] You created a Data API builder using Data API builder.
+[00:20:27] You created that, and you get your Data API REST endpoint.
+[00:20:32] Using that REST endpoint, you can point that to an MCP,
+[00:20:36] and that MCP can come from Hyperscale, and then that&#39;s it.
+[00:20:42] So you can talk to your data, which is in Hyperscale.
+[00:20:46] Imagine this.
+[00:20:48] You have 128 TB data.
+[00:20:50] You have agents.
+[00:20:51] You have writes.
+[00:20:53] And you have MCP.
+[00:20:55] You can talk to all of this with MCP with the natural language,
+[00:21:00] saying, &quot;Update so-and-so person&#39;s name,
+[00:21:04] last name to this,&quot; or, &quot;Change the salary of so-and-so person
+[00:21:09] to this,&quot; all of it using MCP.
+[00:21:12] That&#39;s what we have with SQL MCP server.
+[00:21:15] Yeah. So what is -- we understand that core engine --
+[00:21:18] now come back to core engine is now --
+[00:21:22] doesn&#39;t have polyglot tax, and Hyperscale is giving scale.
+[00:21:28] Whatever it is, the economics are very important.
+[00:21:31] So in the economics, because you are avoiding polyglot tax,
+[00:21:36] essentially, you are eliminating all the sidecars,
+[00:21:38] which means separate vector DB, separate graph DB.
+[00:21:41] All of them are not there, and hence, you eliminate that tax.
+[00:21:45] You only pay for what you use with serverless, and it can go
+[00:21:50] from two vCores to 80 vCores, but only when you need.
+[00:21:54] If not, you will come back to the two vCores
+[00:21:56] and pay the less bill for that.
+[00:21:58] You pay only for storage from 10 GB to 128 TB.
+[00:22:03] We won&#39;t over-provision like you need not over-provision upfront,
+[00:22:07] and you don&#39;t need to pay bill.
+[00:22:09] Whenever your data grows, we grow with that,
+[00:22:12] which means even the people cost is less
+[00:22:15] because you really need not think
+[00:22:17] of having five different personas doing five different
+[00:22:20] things and five different expertise.
+[00:22:21] You can have one SQL expertise, and that&#39;s pretty much it.
+[00:22:25] So Hyperscale also -- imagine all of this we are giving you
+[00:22:30] with a 68% better performance than our compete.
+[00:22:34] So that&#39;s a steal.
+[00:22:36] So that&#39;s why we say that Microsoft SQL,
+[00:22:39] combined with Azure SQL Hyperscale,
+[00:22:41] has the best economics.
+[00:22:42] By the way, one point I really want
+[00:22:45] to touch upon is Azure SQL Hyperscale is the database
+[00:22:53] with licensing-free model.
+[00:22:57] Now, so ultimately, what is here.
+[00:23:02] So two acts, five ideas I will leave you with.
+[00:23:06] Polyglot tax is a choice, not an inevitability,
+[00:23:10] which means it&#39;s not really needed to go
+[00:23:13] to polyglot tax choice.
+[00:23:15] But I also want to ground upon a truth
+[00:23:17] that one size doesn&#39;t fit all.
+[00:23:20] So there are cases where, in the extreme cases,
+[00:23:23] you might need a DQP, and you really need a data warehouse.
+[00:23:29] In the extreme cases of graph,
+[00:23:31] you might need a separate graph databases.
+[00:23:33] But all the basic scenario, all the scenarios where,
+[00:23:38] for the most of the scenarios, unless it is exceptional,
+[00:23:42] Microsoft SQL covers you with an exceptional relational workload.
+[00:23:45] So that&#39;s what we are saying.
+[00:23:47] And Hyperscale architecture is one
+[00:23:49] of the best architectures purpose-built for cloud.
+[00:23:54] And agents, as I mentioned in the talk, really,
+[00:23:59] really need all these guarantees more than ever.
+[00:24:03] So Microsoft SQL and Azure SQL Hyperscale as a story is
+[00:24:09] so shining right now than ever.
+[00:24:12] So all I say is avoid the tax, ship at scale,
+[00:24:16] and yeah, sleep at night.
+[00:24:19] Thank you.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRKSP91 - Turn foundation models into production AI on Microsoft Foundry</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRKSP91</nav>
+        <h1>BRKSP91 &mdash; Turn foundation models into production AI on Microsoft Foundry</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRKSP91 &middot; Breakout</span>
+    <h1>Turn foundation models into production AI on Microsoft Foundry</h1>
+    <div class="speakers">Vivek Chauhan, Alicia Frame, Jetashree Ravi</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(200) Intermediate</span>
+<span>Festival Pavilion, Breakout 3</span>
+<span>2026-06-03 18:30 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">AI</span> <span class="tag">API</span> <span class="tag">Developer</span> <span class="tag">Microsoft Foundry</span> <span class="tag">App Developers</span> <span class="tag">AI Toolkit</span> <span class="tag">Developer tools &amp; frameworks</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRKSP91?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/1ce61725-4e6d-40e0-902f-a17d1366824a" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Move beyond generic foundation models and learn how to build production‑ready, use case‑specific AI with optimized training and inference with Fireworks AI. See how developers integrate Fireworks with Microsoft Foundry to customize models, improve inference performance, and deploy at scale. Through a live demo and real‑world case study, you’ll learn practical patterns for reducing cost, latency, and time‑to‑production in enterprise AI systems.
+
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>This session makes the case that open-weight models have closed the quality gap with frontier closed models for most enterprise tasks, and that real differentiation comes from fine-tuning on proprietary data. Fireworks AI presents its training-and-inference platform and announces general availability of Fireworks within Microsoft Foundry, illustrated with a Harvey AI case study on legal agents.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>General availability of Fireworks AI in Microsoft Foundry [00:15:47]</strong> — Announced during Satya Nadella&#39;s keynote the prior day, bringing Fireworks inference deployment to Foundry through one endpoint, one contract, and one platform.</li>
+<li><strong>Three Foundry integration modes</strong> — Serverless/pay-as-you-go per token, provisioned throughput (PTU) for production workloads, and bring-your-own-weights for custom-trained open-weight models.</li>
+<li><strong>Fireworks training agent</strong> — A natural-language agent that reformats data, writes evals, selects models, runs hyperparameter grid search, and reports cost upfront; also available headless via a skill file for coding harnesses like GitHub Copilot, Claude, or Cursor.</li>
+<li><strong>Harvey advisor-agent research published [00:31:26]</strong> — Harvey reported a hybrid system pairing open-weight worker agents (GLM 5.1) with heavier closed advisor models (Claude Opus 4.7) that was roughly 2.4x cheaper and about 30% better on its &quot;all pass&quot; metric.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Collapse of the quality gap between open-weight and frontier closed models for enterprise use cases.</li>
+<li>Fine-tuning as the source of competitive differentiation and the continuous training &quot;flywheel.&quot;</li>
+<li>LLM inference as a combinatorial optimization problem (speculative decoding, quantization, CUDA kernels, parallelization) with tens of thousands of permutations per model.</li>
+<li>Tiered platform surfaces: training agent (app builders/PMs), managed training (ML engineers), and training API (advanced researchers).</li>
+<li>Training methods: supervised fine-tuning, preference optimization/DPO, reinforcement fine-tuning with graders, and compound/chained training.</li>
+<li>Numerical fidelity between training and serving, GPU orchestration, autoscaling, and custom model &quot;shapes&quot; via the Fire Optimizer.</li>
+<li>Legal Agent Benchmark (LAB): client-matter environments, partner-level instructions, real work-product output, and expert rubric grading across 24 practice areas, 1,200+ tasks, and up to 75,000 rubric criteria.</li>
+<li>Jagged intelligence, inference-time routing across cost/quality Pareto frontier, and security/governance via in-VPC open-weight deployment.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;It&#39;s like having an aircraft carrier to point at a bunker as well as to point at an Ant. You don&#39;t need that.&quot; — Vivek Chauhan</p>
+</blockquote>
+<blockquote>
+<p>&quot;A model might be really strong at transactional work like corporate M&amp;A, financial due diligence, but poor at litigation work like case law, research, writing intensive tasks.&quot; — Nico Grupin</p>
+</blockquote>
+<blockquote>
+<p>&quot;I can&#39;t tell you how relieving it is to me now and how much better I sleep at night knowing that we don&#39;t have to go figure this all out ourselves.&quot; — Nico Grupin</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Microsoft Foundry (Azure Foundry)</li>
+<li>Fireworks AI platform (inference engine, Fire Optimizer, training agent, managed training, training API)</li>
+<li>GLM 5.1</li>
+<li>Kimi [inferred]</li>
+<li>GPT 120B</li>
+<li>DeepSeek V4 [inferred]</li>
+<li>Claude Opus 4.7</li>
+<li>Claude Sonnet 4.6</li>
+<li>Weights &amp; Biases</li>
+<li>GitHub Copilot, Claude, Cursor (coding harnesses)</li>
+<li>Harvey AI / Legal Agent Benchmark (LAB)</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Vivek Chauhan — Fireworks AI presenter</li>
+<li>Jetashree Ravi (&quot;Jed&quot;) — co-presenter (Fireworks/Foundry integration)</li>
+<li>Nico Grupin — Head of Applied Research, Harvey AI (guest)</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+<section class="section">
+    <h2>References</h2>
+    <ul class="refs-list">
+<li><a href="@{link=https://static.rainfocus.com/microsoft/build26/static/staticfile/staticfile/FInal%20External%20-%20Fireworks%20AI%20on%20Microsoft%20Foundry_%20Foundation%20Models%20to%20Production%20AI_1780435089594001oSaU%20%281%29_1780512199025001zSCg.pptx; backpackLink=; label=; category=Download}" target="_blank" rel="noopener"></a></li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (53,765 chars)</summary>
+        <pre class="transcript-body">[00:00:01] Joining the session, can you guys all hear me?
+[00:00:03] If you cannot hear me, you can use the the
+[00:00:05] headsets which we have on the back.
+[00:00:09] I&#39;m Vivek Chauhan.
+[00:00:10] I&#39;ll be presenting this session with my friend and colleague
+[00:00:12] Jed.
+[00:00:13] We also have a special guest Nico from Harvey.
+[00:00:15] He&#39;ll be joining the call.
+[00:00:16] Today we&#39;re going to talk about how you can save
+[00:00:20] a ton of money and build application specific production graze
+[00:00:24] inference optimized AI using open source models there are using
+[00:00:29] fireworks and then how you can serve those models for
+[00:00:33] inference on foundry.
+[00:00:35] Cool.
+[00:00:36] OK, let&#39;s get started.
+[00:00:39] There are three fundamental truths we believe in the AI&#39;s
+[00:00:42] landscape right now.
+[00:00:44] Number one, for all practical purposes for most enterprise use
+[00:00:48] cases, the gap between open weight models and frontier closed
+[00:00:51] models has collapsed.
+[00:00:54] What it means is that a lot of the companies
+[00:00:57] can switch to an open weight model if they want
+[00:00:59] to while keeping the same quality bar and save a
+[00:01:02] ton of money as compared to pointing let&#39;s say clawed
+[00:01:05] Opus 4.7 for an e-mail summarization task.
+[00:01:07] You can use a smaller model and open weight model
+[00:01:09] and get to the same quality and save money.
+[00:01:11] The second thing, the true differentiation only comes from actually
+[00:01:15] embedding your own data mode into the AI.
+[00:01:18] If you are using the same close weight model which
+[00:01:20] everyone of your competitor is using, there is no differentiation.
+[00:01:25] If you wanted to redifferentiate your own AI stack, leveraging
+[00:01:28] fine tuning is actually very key.
+[00:01:30] And 3rd and the most important thing, the most leading
+[00:01:33] companies in this space which we see on our platform
+[00:01:36] are actually going beyond just inference or inference optimization or
+[00:01:39] fine tuning.
+[00:01:40] They are continuously improving their AI stack and they are,
+[00:01:44] they have found a flywheel on our platform through which
+[00:01:47] they can actually have a very differentiated mode.
+[00:01:50] And we&#39;ll talk about how leveraging fireworks, you can get
+[00:01:53] the same mode on your platform.
+[00:01:56] And we have the platform on fireworks AI side where
+[00:01:58] we provide world class inference and training.
+[00:02:00] So we&#39;ll cover that also.
+[00:02:02] OK, a little bit about Fireworks AI, We process more
+[00:02:05] than 30 trillion tokens per day.
+[00:02:08] It&#39;s actually right behind Frontier close weight labs like cloud
+[00:02:12] and and Tropic and open AI.
+[00:02:14] We saw more than 10,000 enterprise customers globally who leverage
+[00:02:19] our platform to build production blade applications using open weight
+[00:02:23] models.
+[00:02:24] You have some names on the screen cursor actually leverage
+[00:02:29] our RL rollout capabilities to build Composer 2, Composer 2.5
+[00:02:33] models.
+[00:02:34] We have customers like Versal, Genspark, Uber, Do Dash, a
+[00:02:37] long list of customers who lean on us for better
+[00:02:40] quality through fine tuning and training, better performance.
+[00:02:44] It could be speed, it could be throughput, time to
+[00:02:46] first look on whatever is your application specific need.
+[00:02:49] We&#39;re able to take care of that using a platform.
+[00:02:52] How do we do that?
+[00:02:54] We have our own inference engine, our own inference stack.
+[00:02:58] If you think about it, LLM inference actually is a
+[00:03:00] very, very difficult and very brutal combinatorial problem.
+[00:03:05] Across optimizations on speculative decoding or quantization modes, various different
+[00:03:10] queues you have access to, different parallelization strategies.
+[00:03:14] There&#39;s more than 85,000 permutations, 84,000 permutations for one model
+[00:03:19] which you want to serve.
+[00:03:22] For most companies, it does not make sense to actually
+[00:03:24] deal with this complexity in house.
+[00:03:27] They would rather focus on their users, their application and
+[00:03:31] leaner platform.
+[00:03:32] Because we keep up with this space.
+[00:03:33] This space is moving too fast.
+[00:03:35] We deal with everything in terms of the Kuda kernels,
+[00:03:38] in terms of quantization, spell decoding, adaptive caching.
+[00:03:42] Every new fancy AI optimization trick which comes out, we
+[00:03:45] embed that in our stack.
+[00:03:47] You don&#39;t have to worry about it.
+[00:03:49] You can focus on your application and we can take
+[00:03:51] care of your specific needs.
+[00:03:53] I want my time to 1st token to be less
+[00:03:55] than 500 millisecond.
+[00:03:57] I want my N 20 density to be less than
+[00:03:58] two seconds.
+[00:03:59] I want my throughput to be such.
+[00:04:01] We can take care of that using our inference engine.
+[00:04:04] And all of these inference engine capabilities are now available
+[00:04:08] on Foundry, and we&#39;ll talk about that.
+[00:04:10] We&#39;ll do a live demo of that.
+[00:04:12] This slide actually is my favorite slide.
+[00:04:15] We want all companies to actually own their AI stack.
+[00:04:20] Its paramount that companies do that and we want to
+[00:04:24] meet customers where they are in their journey.
+[00:04:29] Different companies are actually in different stages of their AI
+[00:04:31] journey.
+[00:04:32] In fact within a company also different teams are in
+[00:04:34] different stage of their AI journey.
+[00:04:36] We want to find a way to meet them where
+[00:04:38] they are.
+[00:04:39] We have a training agent which is more targeted towards
+[00:04:41] product managers and app builders.
+[00:04:43] The training agent basically can take your data and your
+[00:04:47] business use case and it can give you a fine-tuned
+[00:04:49] model, will give you a live demo, will give you
+[00:04:52] a demo of the of the agent.
+[00:04:53] Right now we have a managed training platform which is
+[00:04:56] more targeted towards ML engineers.
+[00:04:58] If you already know what training method you want to
+[00:05:01] use, you already have a data set which you have
+[00:05:03] want to use.
+[00:05:04] You can literally just port the data set and kick
+[00:05:06] off a training job on the platform.
+[00:05:08] You do not have to worry about any of the
+[00:05:10] back end infrastructure orchestration.
+[00:05:12] We take care of that.
+[00:05:14] If you are an advanced ML team, if you are
+[00:05:17] researchers, you actually would love our training API product.
+[00:05:22] With the training API product, we expose the raw primitives
+[00:05:25] of the platform, custom loss functions, reward functions, advanced algo
+[00:05:29] suite.
+[00:05:29] If you want access to highest context window, full parameter
+[00:05:32] fine tuning, we provide that in our training API and
+[00:05:35] we&#39;ll talk about that.
+[00:05:36] Basically, we have a, we have a surface from high
+[00:05:39] to very low controls depending on what you want.
+[00:05:42] And you can actually meet your key needs in one
+[00:05:45] platform.
+[00:05:46] And no matter what surface you use, you can one
+[00:05:48] click deploy in the platform, which is very, very important
+[00:05:51] for speed of iteration as coming to training somewhere and
+[00:05:54] doing inference somewhere else, downloading, reformatting.
+[00:05:57] You don&#39;t have to deal with any of that.
+[00:05:59] One click deploy, run your evals, cheaper to production.
+[00:06:03] And this is the flywheel I was talking about.
+[00:06:06] We have seen, we are already seeing leading companies in
+[00:06:09] the space find this flywheel on our platform and they&#39;re
+[00:06:11] actually spinning faster and faster.
+[00:06:13] They are training models on the platform, they&#39;re deploying it
+[00:06:16] on the platform, they&#39;re monitoring it, They&#39;re getting the traces
+[00:06:19] out of it, they&#39;re retraining it.
+[00:06:21] And they&#39;re able to do that on our platform because
+[00:06:23] we take care of the complex part.
+[00:06:24] We take care of the GPU orchestrations.
+[00:06:26] You don&#39;t need to scavenge for GPUs.
+[00:06:27] You don&#39;t need to worry about elasticity.
+[00:06:29] You don&#39;t need to worry about bad notes or CSP
+[00:06:31] issues.
+[00:06:31] That&#39;s our headache.
+[00:06:33] We take care of just the core part of the
+[00:06:35] the family itself in terms of like putting the weights
+[00:06:38] over hot loading, checkpointing.
+[00:06:40] That&#39;s not your pain point as compared to doing this
+[00:06:43] DIY in house, which might take you many, many weeks.
+[00:06:46] You can probably get 10 iterations done in fireworks.
+[00:06:50] The third thing is we guarantee numerical fidelity for you.
+[00:06:53] It&#39;s actually a very big thing when you&#39;re training a
+[00:06:56] large model, when you&#39;re training an NMOE model which is
+[00:06:59] using floating point precision, the numerics can drift a lot.
+[00:07:02] What you train on might not be what you serve
+[00:07:05] on.
+[00:07:06] And we guarantee numerics where you don&#39;t have to worry
+[00:07:08] about that.
+[00:07:09] You can be assured that what I trained, the results
+[00:07:11] I got is matching the production platform performance for my
+[00:07:15] end users.
+[00:07:16] And again, no vendors for all.
+[00:07:18] Everything is in one platform, training and inference, one click
+[00:07:20] deploy and you know you can focus on an application
+[00:07:22] and leave the infrastructure to us.
+[00:07:25] OK, enough with the slides.
+[00:07:27] Let&#39;s do some live demo, actually recorded demo.
+[00:07:32] So I&#39;m going to start with a demo of the
+[00:07:34] training agent.
+[00:07:36] The idea is very simple actually.
+[00:07:39] Let me ask a question first.
+[00:07:40] How many of you love writing evals and reformatting data?
+[00:07:46] No one.
+[00:07:47] OK, so the agent is for you.
+[00:07:49] The idea behind the agent is very simple.
+[00:07:52] You speak in plain English.
+[00:07:53] This is my data set, this is my business goal,
+[00:07:56] and you help me fine tune a model.
+[00:07:59] The agent can reformat the data.
+[00:08:01] The agent can write evals for you.
+[00:08:04] The agent can help you find a model which might
+[00:08:06] be good for your use case.
+[00:08:08] The agent can do hyperparameter search for you.
+[00:08:11] So usually when you are doing a fine tuning of
+[00:08:13] the model, there are so many knobs you can tweak
+[00:08:15] to get to the output you&#39;re looking for.
+[00:08:17] And its extremely actually very painful to go through all
+[00:08:20] the permutations manually, 1 by 1.
+[00:08:23] You don&#39;t have to do that.
+[00:08:24] We have an agent which can take your business use
+[00:08:27] case, deal with model selection, evaluating data formatting, and it
+[00:08:31] can give you a plan and the plan will outline
+[00:08:33] what the agent is proposing.
+[00:08:36] It can also tell you upfront what it will cost
+[00:08:38] you to do this training iteration.
+[00:08:41] Once you&#39;re happy with the plan at a high level,
+[00:08:43] you can just say, OK, you know what, approve, go
+[00:08:46] ahead.
+[00:08:47] Then the agent will take your data set, make a
+[00:08:50] small cut of the data set, and do the hyperparameter
+[00:08:54] grid search on that data set to narrow down the
+[00:08:57] sample space.
+[00:08:58] And once it has narrowed down the sample space, it
+[00:09:00] will ask you again.
+[00:09:01] OK, you know what?
+[00:09:02] I tried like these ten different iterations.
+[00:09:04] These are the 2 which are the most promising.
+[00:09:06] This is the reason why it&#39;s more promising along with
+[00:09:08] the eval results.
+[00:09:09] Do you want me to do a full run?
+[00:09:11] The full data set run on the platform?
+[00:09:13] Once you say yes, the agent will take your full
+[00:09:16] data set and it will actually do the whole training
+[00:09:19] run on your full data set.
+[00:09:21] It will give you a very comprehensive, like step by
+[00:09:24] step view of what&#39;s happening under the hood and it
+[00:09:27] will give you a final report.
+[00:09:28] In the end, Everything which I&#39;m showing here on the
+[00:09:31] screen is actually available in headless fashion.
+[00:09:34] So we have a skill file.
+[00:09:35] If you want to train a modeler directly from your
+[00:09:37] own coding agent, from your own harness, Kittup, Copilot, clod,
+[00:09:41] cursor, you name it, you can just drop the skill
+[00:09:43] file, add your API keys and you&#39;re good to go.
+[00:09:46] It also gives you suggestions what else you could do
+[00:09:50] if you want to do more iterations on top of
+[00:09:52] it.
+[00:09:53] The agent can take care of your supervised fine tuning
+[00:09:55] needs.
+[00:09:55] It can take care of preference optimization needs.
+[00:09:57] It can help you make a model for classification tasks.
+[00:10:01] All of that is packaged already.
+[00:10:03] OK, so agent is for people who do not want
+[00:10:06] to like deal with the ML part of it.
+[00:10:08] We also have a very simple clickable workflow.
+[00:10:11] If you want to just train a model and you
+[00:10:13] have a data set already, and if you know which
+[00:10:15] method you want to use, what hyperparams you want to
+[00:10:18] use, what I&#39;m showing on the screen is our managed
+[00:10:20] training product.
+[00:10:22] You can come into the platform and you can choose
+[00:10:24] supervised fine tuning, reinforcement, fine tuning, preference optimization, and just
+[00:10:28] just select the workflow you want to go with.
+[00:10:31] You can choose the model.
+[00:10:32] We are usually day zero provider for open weight models
+[00:10:36] for inference.
+[00:10:37] That also means we are the fastest providers for supporting
+[00:10:41] fine tuning on open weight models.
+[00:10:44] You can come in here, select the model you want.
+[00:10:47] Once you have selected the model, you can upload the
+[00:10:49] data set directly.
+[00:10:50] We also provide secure training, so you can actually stream
+[00:10:53] data BYOB directly from your own cloud.
+[00:10:55] And we expose raw parameters where you can choose the
+[00:10:58] epochs, the learning rate, the batch size.
+[00:11:00] A lot of like smart defaults are available out-of-the-box to
+[00:11:03] you and you can basically kick off a training job.
+[00:11:06] If you want to do reinforcement fine tuning, there is
+[00:11:08] one additional step.
+[00:11:09] Basically you have to upload your grader or connect your
+[00:11:13] grader using your GitHub repo so that they reinforcement tuning
+[00:11:17] job can use a grader to actually give rewards to
+[00:11:20] the agent, to the model.
+[00:11:22] And again, we expose features where you can change your
+[00:11:25] different knobs, top K, top P, etc.
+[00:11:28] Along with that size learning rate, we also support weights
+[00:11:31] and biases.
+[00:11:32] So if you want more detailed telemetry, you can just
+[00:11:35] plug in your API key and get weights and biases
+[00:11:37] so you can actually monitor what&#39;s happening under the hood.
+[00:11:40] If you want to do preference optimization that&#39;s also supported
+[00:11:43] similar setup.
+[00:11:43] Upload the data, choose the configs you want to run,
+[00:11:46] run as many times as you want to run.
+[00:11:48] All your trained models show up on the platform and
+[00:11:51] while the training job is going on, you can actually
+[00:11:55] monitor the results live on the platform.
+[00:11:57] It will show you the loss function or the reward
+[00:12:00] function in real time.
+[00:12:01] So you can see if it&#39;s behaving it&#39;s supposed to
+[00:12:02] behave or not.
+[00:12:03] You can pause something if it&#39;s not behaving, redo the
+[00:12:06] the reward functions or whatever eval you have picked up
+[00:12:09] for the for the job.
+[00:12:10] The best part of this this whole thing is that
+[00:12:12] you can one click deploy.
+[00:12:15] You do not have to worry about downloading the way
+[00:12:17] it&#39;s reformatting it, uploading it somewhere, worry about numerics and
+[00:12:20] just waste time on it.
+[00:12:22] Just one click deploy on the platform.
+[00:12:24] And also we provide compound training.
+[00:12:27] So you can take a supervised fine-tuned model and then
+[00:12:30] do DPO on top of it.
+[00:12:31] Then take a DPO model, do reinforcement learning on top
+[00:12:35] of it and you can do as many iterations or
+[00:12:38] passes as you want.
+[00:12:39] That is the flywheel I was talking about of continuous
+[00:12:41] iteration and continuous training.
+[00:12:44] What happens once you train the model?
+[00:12:46] This is the part where we talk about inference and
+[00:12:49] doing dedicated deployment.
+[00:12:51] So we support on demand deployment of these fine-tuned models.
+[00:12:57] Again, we support the largest array of open weight models
+[00:13:00] you can do inference on just like base model on
+[00:13:03] the platform if you want to.
+[00:13:06] We also support inference on the fine-tuned model which I
+[00:13:08] was talking about.
+[00:13:10] So basically just come and select the model.
+[00:13:14] One thing which is interesting here, remember I was talking
+[00:13:18] about how using our fire optimizer capabilities were able to
+[00:13:21] give you custom shapes of the model specific to your
+[00:13:25] own traffic.
+[00:13:26] You are seeing an example here.
+[00:13:28] The same model on the same number of GPUs can
+[00:13:30] give you very different performance depending on how you have
+[00:13:34] orchestrated and packaged the whole GPU stack from CUDA kernels
+[00:13:37] to spec decoding to everything around it.
+[00:13:40] We are seeing an example here.
+[00:13:41] The same model can be served in a minimal shape
+[00:13:44] way or a full precision shape way can be served
+[00:13:46] for optimized for speed, optimized for throughput.
+[00:13:50] So the screen is showing you selecting a custom tuned
+[00:13:53] model and you can choose the shape you want depending
+[00:13:57] on your applications need and basically one click deploy that
+[00:14:01] shape on the model.
+[00:14:02] We also support auto scaling, so you don&#39;t have to
+[00:14:05] worry about peaks and troughs of your traffic that we
+[00:14:07] already scale up and scale down as your traffic shifts.
+[00:14:11] And yeah, that&#39;s how the deployment works.
+[00:14:14] I also talked about the training API a couple of
+[00:14:17] slides before.
+[00:14:18] What is the training API?
+[00:14:20] If you want raw power of the platform exposed to
+[00:14:23] you because you&#39;re an advanced ML user, this is what
+[00:14:26] you need.
+[00:14:27] We take care of everything behind the scene in terms
+[00:14:29] of infra, but still give you all the Norse exposed
+[00:14:31] to you.
+[00:14:32] You can write your own custom loss functions.
+[00:14:34] You can, you know, go with the latest and greatest
+[00:14:37] algorithms out there.
+[00:14:38] Everybody is talking about on policy registration right now, Cisco.
+[00:14:41] All these things are available and then you have full
+[00:14:43] parameter fine tuning.
+[00:14:45] We have a cookbook which has a bunch of recipes
+[00:14:47] in a GitHub repo which is publicly available.
+[00:14:49] You don&#39;t have to write something from scratch if you
+[00:14:52] don&#39;t want to just pick a recipe chain the knobs.
+[00:14:56] The beauty about this particular product is that you can
+[00:14:59] train the model from within your harness, and that&#39;s actually
+[00:15:03] very important.
+[00:15:04] AI needs to learn how to do the job better,
+[00:15:07] but it needs to learn how to do the job
+[00:15:09] better from within your environment, from within your harness, knowing
+[00:15:12] which tools it has access to and how to orchestrate
+[00:15:15] these tools.
+[00:15:16] With the training API, we are giving those capabilities to
+[00:15:19] you Well.
+[00:15:19] Also talk a little bit about harness and AI model
+[00:15:21] coming together for fine tuning as we go to the
+[00:15:23] later half of the session.
+[00:15:28] And there&#39;s a bunch of examples which you can use
+[00:15:30] to, to get started.
+[00:15:31] You don&#39;t have to worry about like writing something from
+[00:15:33] scratch.
+[00:15:34] You can train A1 trillion parameter model from your laptop
+[00:15:37] and we take care of all the infra.
+[00:15:41] Cool.
+[00:15:41] OK.
+[00:15:42] So we also want to talk about an exciting announcement
+[00:15:47] we had yesterday on Satya&#39;s keynote about fireworks being available
+[00:15:53] on Foundry.
+[00:15:54] Everything which I showed you in terms of inference deployment
+[00:15:57] is available on Foundry.
+[00:15:58] The training side is not.
+[00:16:00] You can train a model on Fireworks and you can
+[00:16:01] download it and move it to a custom model deployment
+[00:16:03] on Foundry.
+[00:16:04] So you&#39;re not, you don&#39;t have to worry about that.
+[00:16:07] And we have an announcement video.
+[00:16:16] And now, which is the exciting thing that we&#39;re here
+[00:16:20] together to announce is the general availability of Fireworks in
+[00:16:25] Microsoft Foundry and how customers can not only take all
+[00:16:29] of the greatness that Fireworks has to offer, but also
+[00:16:33] all of the greatness that Foundry has to offer in
+[00:16:37] a simplified way, 1 endpoint, one contract and one journey,
+[00:16:41] one platform.
+[00:16:42] So I&#39;m super excited.
+[00:16:44] Thank you, Lean.
+[00:16:45] It&#39;s been an amazing partnership with your team.
+[00:16:56] Thank you, Vivek, for introducing Fireworks.
+[00:16:59] Now what you&#39;re all here for today in terms of
+[00:17:02] how Fireworks actually fits on Foundry and how to go
+[00:17:06] from that model catalog on Azure Foundry all the way
+[00:17:10] into production, it&#39;s actually quite straightforward.
+[00:17:14] And before we even get into that in a demo,
+[00:17:16] let&#39;s talk about why customers choose Fireworks on Foundry specifically
+[00:17:21] for mainly 4 key reasons.
+[00:17:23] One, because of performance.
+[00:17:26] So my colleague Vivek actually introduced our inference engine that
+[00:17:30] helps you do optimization from a CUDA kernel level up.
+[00:17:34] And so when customers come to us, we can actually
+[00:17:37] optimize for their specific use case and give the most
+[00:17:40] out of the GPU when the model sits on top
+[00:17:42] of the GPU for their inferencing needs and use case.
+[00:17:46] The second reason being the model advantage.
+[00:17:49] Most of the models that are released on fireworks, we
+[00:17:53] release it on day zero.
+[00:17:55] So when Deep V4 came out or the Kimi 2.6
+[00:17:58] came out, we tried our best to release all these
+[00:18:01] state-of-the-art open source models on day zero.
+[00:18:05] So you can plug it into your agents as soon
+[00:18:07] as they come out.
+[00:18:09] The third reason being more of control and extensibility itself.
+[00:18:15] So a lot of the custom models can now be
+[00:18:19] deployed on Foundry through the integration of Fireworks and Azure
+[00:18:24] Foundry Catalog itself.
+[00:18:26] The last being economics.
+[00:18:29] This is what most customers really, really care about.
+[00:18:32] When you start scaling these closed source models specifically in
+[00:18:36] your applications, they get really expensive really quickly.
+[00:18:41] So what customers are looking for is a cheaper alternative
+[00:18:44] at the same time meeting the quality that these close
+[00:18:47] source models give.
+[00:18:49] And that&#39;s what the models on Fireworks actually provide.
+[00:18:52] And integrated with Azure Foundry, it&#39;s even more easier for
+[00:18:56] you to use up these Azure credits that you have
+[00:18:58] on Foundry itself.
+[00:19:01] So that there are three main integration modes that customers
+[00:19:05] use when integrating fireworks with Foundry.
+[00:19:08] The first being serverless.
+[00:19:11] These are models that are deployed on Foundry and you
+[00:19:14] don&#39;t really have to create a deployment per SE.
+[00:19:18] It&#39;s already created.
+[00:19:20] It&#39;s a shared deployment among multiple users.
+[00:19:23] It is per token basis.
+[00:19:25] You&#39;ll be charged per token when you use this particular
+[00:19:28] model on Foundry.
+[00:19:30] So we have a lot state-of-the-art OSS models available today
+[00:19:34] through Foundry.
+[00:19:35] In this particular mode that is the serverless or pay
+[00:19:38] as you go mode.
+[00:19:39] We have GLM 5.1, Kimi 2.6, GPT 120B and we
+[00:19:42] are releasing models as they come as well.
+[00:19:46] The second mode being mode, the PTU or provisional throughput
+[00:19:51] mode.
+[00:19:51] This is when you already have a production workload in
+[00:19:55] mind and you want to reserve some GPUs and deploy
+[00:19:59] a model for your specific use case.
+[00:20:02] This is PTU gated and it works really, really well
+[00:20:05] for production workload specifically.
+[00:20:08] And then the last one being bring your own weights.
+[00:20:11] A lot of the customers, when they come to us
+[00:20:13] and when they&#39;re especially competing with closed source models, they
+[00:20:16] have trained open source models to compete with them in
+[00:20:19] terms of quality.
+[00:20:20] And when they have their own models that they have
+[00:20:23] trained and the custom weights, they want to deploy it
+[00:20:26] on Foundry.
+[00:20:27] So like Vivek mentioned, you can chain these models on
+[00:20:31] Fireworks and then download the model weights, upload it to
+[00:20:35] Azure and deploy it on Azure and use your Azure
+[00:20:38] credits for that particular deployment itself.
+[00:20:42] This particular integration architecture deployment work, deployment mode works very
+[00:20:48] well when you have trained proprietary models and you wanna
+[00:20:52] use that in your application.
+[00:20:55] Now that we know a little bit about what the
+[00:20:58] Azure and Fireworks integration is about, let&#39;s talk a little
+[00:21:02] bit about what customers are saying about this integration itself.
+[00:21:07] One, our friends at UI Path actually wanted a faster
+[00:21:11] and more cost effective model.
+[00:21:13] Not only that, they actually wanted a model, an open
+[00:21:17] source model to beat the quality of a closed source
+[00:21:21] Sonnet 4.6 model.
+[00:21:22] And this was achievable by using models on Fireworks and
+[00:21:27] Azure Foundry.
+[00:21:28] And then there there are stakeholders from Bolt knew what
+[00:21:31] they were looking for, for their application was something that
+[00:21:34] can scale well in terms of throughput and latency for
+[00:21:37] their production use case.
+[00:21:39] And this was definitely possible.
+[00:21:41] And their particular, we found a solution for their particular
+[00:21:45] problem using the Azure ecosystem and the fireworks model.
+[00:21:49] Lastly, some of the key decision makers at Motif were
+[00:21:53] actually trying to have models run a repeatable task and
+[00:21:58] also at a high volume workload.
+[00:22:01] And to support that specific workload, they deployed models on
+[00:22:05] Azure Foundry that was also optimized using the using the
+[00:22:10] engine that Fireworks has and we were able to serve
+[00:22:14] that particular repeatable high volume workload itself.
+[00:22:19] Now that we know a bit about what customers are
+[00:22:21] telling us and what that integration is about, let&#39;s look
+[00:22:24] at quick demos on this particular section itself.
+[00:22:29] So when customers actually come to the Azure Foundry platform,
+[00:22:33] they can go to the Discover page as pointed to
+[00:22:37] in this particular video.
+[00:22:39] And then in the catalog itself, go to the models
+[00:22:43] page and look at the model catalogs.
+[00:22:46] And within these model catalogs, if you want to find
+[00:22:49] all the Fireworks models and that are optimized on Fireworks,
+[00:22:53] most of them have the prefix called FW.
+[00:22:56] For using the serverless pay as you go method.
+[00:22:59] You can just click on this particular model and then
+[00:23:02] click on deploy.
+[00:23:05] Once customer click on deploy, it asks you whether you
+[00:23:08] want to set some custom settings.
+[00:23:10] These custom settings actually are settings that you can configure
+[00:23:13] based on the PTU or the rate limits that you
+[00:23:16] are interested.
+[00:23:17] All serverless models that are deployed through Azure and Fireworks
+[00:23:20] actually have some kind of rate limit because it&#39;s shared
+[00:23:23] infrastructure.
+[00:23:24] So you can talk this particular switch to figure out
+[00:23:27] what kind of rate limits you want to set.
+[00:23:30] And once you do and you click deploy, you will
+[00:23:33] actually see a screen as shown above and you can
+[00:23:36] chat with the model.
+[00:23:38] In fact, you can even use the API itself to
+[00:23:41] plug into your agents or applications that you do have.
+[00:23:45] You might be wondering, OK, great, I can use a
+[00:23:48] model that already exists in the catalog, but what do
+[00:23:51] I do if I care about my custom models itself?
+[00:23:54] In this case, you can even upload your custom models.
+[00:23:57] So you might have to train these models on fireworks
+[00:24:00] and download these models.
+[00:24:02] But once you do, actually uploading it and deploying it
+[00:24:05] is quite straightforward and it&#39;s just a bunch of clicks.
+[00:24:10] In this particular video, it actually shows you how to
+[00:24:14] deploy these custom models.
+[00:24:16] You go to the build section of Azure itself and
+[00:24:20] once you do and go to the model pages, instead
+[00:24:23] of going to the deployments, you go to the custom
+[00:24:27] model section.
+[00:24:28] Over here you have a button that says Add.
+[00:24:31] This lets you add your own custom models.
+[00:24:34] You can name it whatever you want and choose the
+[00:24:36] base architecture.
+[00:24:38] If the base architecture is not by default supported, then
+[00:24:41] you can contact Azure and Fireworks and we will help
+[00:24:44] you enable it on Azure itself.
+[00:24:46] And once you do have it, you&#39;ve got to use
+[00:24:49] this command line, command line prompt that it actually gave
+[00:24:53] you to upload your custom model to Azure.
+[00:24:57] And once it&#39;s uploaded, it&#39;s very easy to deploy.
+[00:25:00] You just click on the custom model that you have
+[00:25:05] on the platform and you click deploy.
+[00:25:09] It&#39;s as simple as that.
+[00:25:11] And because this is your particular deployment, you don&#39;t really
+[00:25:14] have any rate limits and you can decide how many
+[00:25:17] Ptus or provision throughput you want to provision for this
+[00:25:20] particular deployment itself.
+[00:25:23] And very similar to what we saw before, once this
+[00:25:26] model is ready, you can go to the UI and
+[00:25:29] chat with the model or use the API itself to
+[00:25:32] integrate with your applications or agents.
+[00:25:40] Say you have your models, either custom or existing based
+[00:25:43] models on Azure ready and you want to actually deploy
+[00:25:47] these models through the Azure agents itself.
+[00:25:50] How do you do that?
+[00:25:52] That&#39;s a question that a lot of customers ask us.
+[00:25:54] And I&#39;ll quickly show you a demo on how to
+[00:25:57] plug in the fireworks models on Foundry into the agents
+[00:26:00] that you found on in the Azure catalog itself.
+[00:26:04] So when you go to the build page, you will
+[00:26:07] see even a step to look at the agents that
+[00:26:11] are existing on your Azure account.
+[00:26:14] And you can name your agent whatever you want and
+[00:26:16] click on deploy.
+[00:26:18] Once you deploy, you can change the models that works
+[00:26:20] behind this particular agent itself.
+[00:26:25] It&#39;ll just take a couple of minutes to deploy.
+[00:26:27] And as you can see, it lists a bunch of
+[00:26:30] models that the agent can use.
+[00:26:32] You can choose a fireworks model that already exists on
+[00:26:35] Foundry or you can even choose a custom model.
+[00:26:37] You can even integrate these agent with different tools.
+[00:26:41] It can be web search tools, it can be tools
+[00:26:43] that you define or functions that you define as well.
+[00:26:46] And the agent will work really well with the tools
+[00:26:49] along with the fireworks model that you have integrated the
+[00:26:52] agent with.
+[00:26:55] So this is all well and good.
+[00:26:57] And you might be wondering, OK, let&#39;s hear actual customer
+[00:27:02] talk about deploying their their application and agents using this
+[00:27:07] fireworks and Azure Foundry itself.
+[00:27:10] And for that today here we have Nico.
+[00:27:14] A quick round of applause for Nico.
+[00:27:15] He&#39;ll be talking about Harvey and how they used Azure
+[00:27:20] and Fireworks itself.
+[00:27:26] Awesome thank you so much Nico for for joining.
+[00:27:30] Nico leads the applied research team at Harvey AI.
+[00:27:34] Harvey AI is a can you guys not hear us
+[00:27:38] is the mic for kick OK better now OK awesome
+[00:27:43] yeah.
+[00:27:44] Nico leads the applied research team at Harvey AI.
+[00:27:47] Harvey is the leading native AI startup and and it
+[00:27:50] is used by hundreds of leading legal firms around the
+[00:27:53] globe.
+[00:27:55] And two weeks ago, 3 weeks ago, they launched the
+[00:27:58] new benchmark for legal lab legal agent benchmark.
+[00:28:01] So we&#39;re excited to talk about the benchmark.
+[00:28:04] We&#39;re excited to talk about how we&#39;re using, working together,
+[00:28:08] open weight models, closes models and orchestrating and getting to
+[00:28:12] a really good price performance for applications.
+[00:28:15] OK, awesome.
+[00:28:17] You&#39;re going to talk a little bit about Harvey and
+[00:28:19] the benchmark itself.
+[00:28:20] Sure, happy to and thanks for having me incredible event.
+[00:28:23] So my name is Nico Grupin, I&#39;m the head of
+[00:28:25] applied research at Harvey.
+[00:28:27] Harvey is of course the generative AI platform for legal
+[00:28:29] and professional services.
+[00:28:31] We serve actually thousands of, of law firms across the
+[00:28:35] world and our mission is to make the work that
+[00:28:38] lawyers do more efficient, higher quality and reduce the busy
+[00:28:43] work within legal.
+[00:28:44] So as, as was kind of alluded to three weeks
+[00:28:47] ago, we&#39;d launched legal agent benchmark.
+[00:28:51] As agents sort of proliferate in the application layer, one
+[00:28:54] of the biggest questions on the top of all of
+[00:28:57] our minds are what does it mean in terms of
+[00:29:00] quality?
+[00:29:00] How do I think about quality in my respective vertical
+[00:29:04] or domain?
+[00:29:05] That&#39;s what lab for short is intended to, to to
+[00:29:08] address.
+[00:29:09] So it&#39;s a benchmark to measure the performance of long
+[00:29:12] horizon agents on legal tasks.
+[00:29:15] So what does that mean?
+[00:29:16] There&#39;s really 4 components here.
+[00:29:18] The first is the agent&#39;s environment.
+[00:29:20] So the agent&#39;s environment is effectively a client matter.
+[00:29:24] A client matter is the term that we use to
+[00:29:27] describe the universe of documents, work, intermediate work product that
+[00:29:32] a lawyer uses when completing a project.
+[00:29:35] Right.
+[00:29:35] So the agents dropped into this environment and it&#39;s given
+[00:29:38] an instruction, right?
+[00:29:39] And the instruction is not a detailed list of hey,
+[00:29:42] here are all of the things you need to do.
+[00:29:44] It&#39;s a partner level instruction, right?
+[00:29:46] Which is, hey, here&#39;s a data room, go write me
+[00:29:48] an issues list.
+[00:29:49] And then you have to circle back with the complete
+[00:29:51] work product.
+[00:29:52] So that&#39;s the context that the agent&#39;s given.
+[00:29:54] It needs to rely on both its priors for how
+[00:29:56] legal work is done as well as tools and kind
+[00:29:59] of harness, harness skills, those sort of things that has
+[00:30:02] available to it.
+[00:30:04] It&#39;s asked to produce real legal work product.
+[00:30:07] So it&#39;s not just a chat based kind of interface
+[00:30:10] a chat answer.
+[00:30:11] The agent has to produce real word docs, Excel spreadsheets,
+[00:30:14] PowerPoints, potentially many of them 5 to 10 of them
+[00:30:18] in a single in a single scope of a task.
+[00:30:21] And then it&#39;s graded using expert rubrics, right.
+[00:30:24] So each task has about 50 plus rubric criteria that
+[00:30:28] specify all of the material points that are are considered
+[00:30:31] a good work product.
+[00:30:33] So overall we have coverage of 24 legal practice areas
+[00:30:38] over 1200 tasks total and I think up to 75,000
+[00:30:42] total rubber criteria.
+[00:30:44] So we&#39;re really excited about this for benchmarking to spawn
+[00:30:48] a number of of research directions that I think we&#39;ll
+[00:30:51] talk about and to to start running open weight models
+[00:30:54] and post training over as well.
+[00:30:56] It&#39;s amazing.
+[00:30:57] It&#39;s great to have industry specific benchmarks because then you
+[00:31:01] can truly capture how the models do on industry specific
+[00:31:04] task and actually the all pass criteria which you have
+[00:31:06] is very, very strict, very high measure of is the
+[00:31:09] agent truly doing the task the human would do.
+[00:31:12] So that&#39;s amazing.
+[00:31:14] We&#39;d love to talk about the work we have been
+[00:31:16] doing together on fine tuning and using the work on
+[00:31:19] GLM 5.1 and use the custom harness work on top
+[00:31:22] of it if you want to talk about that a
+[00:31:25] little bit.
+[00:31:25] Yeah, we actually published an article today morning about this.
+[00:31:28] You can check it out.
+[00:31:29] Yeah, a lot of interesting work streams going on.
+[00:31:31] As I mentioned, Lab is not just a benchmark, we
+[00:31:34] really view it as a foundation for research into all
+[00:31:37] of these areas that are important for production deployments at
+[00:31:41] the application layer.
+[00:31:42] So think post training of open weight models, harness optimizations,
+[00:31:46] how do you bake domain specificity into an agent harness
+[00:31:50] as well as things like skills tool use more cutting
+[00:31:53] edge, cutting edge kind of frontier things like memory etcetera.
+[00:31:58] So with the fireworks team, we&#39;re partnering on a number
+[00:32:01] of of research tracks including kind of straightforward post training
+[00:32:06] like SFT with Kimi models.
+[00:32:08] We&#39;ve shown some nice improvements there in terms of lift
+[00:32:11] on labs kind of all pass scoring criteria over the
+[00:32:14] base model.
+[00:32:15] But that the track that I&#39;m most excited about which
+[00:32:18] we did publish today.
+[00:32:20] So go check it out.
+[00:32:21] Is this work on advisor agents, right?
+[00:32:25] So we&#39;ve effectively built a system that leverages worker agents
+[00:32:30] that are driven by open weight models like GLM 5.1
+[00:32:33] and then call to advisor models that are heavier, in
+[00:32:37] many cases closed source frontier models like Opus 4.7.
+[00:32:42] And it turns out that you can effectively navigate the
+[00:32:45] Pareto frontier of quality and cost by leveraging these hybrid
+[00:32:50] systems that effectively do inference time routing.
+[00:32:54] And so that&#39;s what the plot is showing here is
+[00:32:56] essentially with a closed frontier, you know, you&#39;re getting the
+[00:33:00] frontier of performance, but it often comes with significant cost
+[00:33:03] and latency trade-offs, open weight models, much cheaper, much faster,
+[00:33:07] greater security guarantees.
+[00:33:09] But with that trade off in in performance and with
+[00:33:13] this hybrid system, not only are we maintaining quality at
+[00:33:16] a lower cost and latency, but we&#39;re actually improving it
+[00:33:20] in many cases.
+[00:33:21] So really excited line of work and I think we&#39;re
+[00:33:23] going to continue to build upon it.
+[00:33:26] That&#39;s awesome.
+[00:33:26] Yeah.
+[00:33:27] To 2.4 X cheaper on a task where it&#39;s about
+[00:33:31] 30% better on the all pass metric, which is really,
+[00:33:35] really cool.
+[00:33:37] I think I was talking about this earlier in the
+[00:33:39] session, like a lot of the companies are using the
+[00:33:41] frontier close model for all tasks.
+[00:33:43] It&#39;s like having an aircraft carrier to point at a
+[00:33:46] bunker as well as to point at an Ant.
+[00:33:48] You don&#39;t need that.
+[00:33:49] Like you, you have to have judgement on where and
+[00:33:52] what kind of models are needed.
+[00:33:53] And open models are actually really good on that one.
+[00:33:56] Actually, I would love to hear Harvey&#39;s strategy around open
+[00:33:59] models in general.
+[00:34:00] Like, why do you think it&#39;s important for Harvey to
+[00:34:02] leverage open models?
+[00:34:03] Yeah.
+[00:34:04] So I think what&#39;s great about partnership like ours with
+[00:34:06] Fireworks is there&#39;s kind of two sides here, right.
+[00:34:08] There&#39;s the consumption of open weight models based models through
+[00:34:12] a managed inference provider.
+[00:34:14] We&#39;re interested in using these out-of-the-box.
+[00:34:17] And then there&#39;s also this question of, hey, can we
+[00:34:19] improve open weight models via post training, right.
+[00:34:22] So we&#39;re investing in both parts of this equation.
+[00:34:25] And with respect to post training in particular, I think
+[00:34:28] there are four kind of key considerations here that make
+[00:34:31] this an extremely kind of compelling premise for us.
+[00:34:35] The first, everyone thinks we&#39;re going to say cost and
+[00:34:37] latency first.
+[00:34:37] It&#39;s definitely there.
+[00:34:38] The 1st is actually domain expertise, right?
+[00:34:41] So what we&#39;ve seen through our evaluations is that there&#39;s
+[00:34:44] a significant element of jagged intelligence, right?
+[00:34:47] And So what that means is this is a phrase
+[00:34:50] coined by Andre Carpathy.
+[00:34:51] It refers to this observation that we&#39;ve we&#39;ve sort of
+[00:34:54] seen in many different verticals and with language models generally
+[00:34:58] that they&#39;re really, really good at certain things and then
+[00:35:01] they fail miserably at other things.
+[00:35:04] And it&#39;s really hard to, to, to interpret a reason
+[00:35:06] about why that is for any given model, right?
+[00:35:08] And we see the same thing and legal, right, a
+[00:35:10] model might be really strong at transactional work like corporate
+[00:35:14] M&amp;A, financial due diligence, but poor at litigation work like
+[00:35:18] case law, research, writing intensive tasks, something like that, right?
+[00:35:22] And so via post training, we can kind of smoothen
+[00:35:25] out these rough edges and bring the model up to
+[00:35:27] speed across all practice areas, disciplines, types of work.
+[00:35:30] So that&#39;s one cost and latency is the second factor.
+[00:35:33] I think you described it perfectly as you don&#39;t need
+[00:35:36] to bring the Ferrari off of the racetrack if you
+[00:35:38] don&#39;t need to.
+[00:35:39] I think we see sort of a bimodal distribution of
+[00:35:42] usage emerging, right, where for really high stakes, really complex
+[00:35:45] work, you&#39;ll pay a premium, use the frontier closed source
+[00:35:49] models, but there&#39;s also a lot of simpler work that
+[00:35:52] open weight models are, are perfectly well suited for.
+[00:35:55] So routing between these two modes is, is going to
+[00:35:57] become increasingly important.
+[00:36:00] And then something that we think about a lot that
+[00:36:02] I think the industry as a whole is, is starting
+[00:36:05] to come around to is security and governance, right.
+[00:36:07] So for the highest stakes type of work, you know,
+[00:36:10] what our customers are really asking us for is a
+[00:36:13] secure deployment within the RVPC.
+[00:36:16] Open weight models enable that by also having access to
+[00:36:19] things like the complete reasoning trace of the model, you
+[00:36:23] can do much greater interpretability, auditability work on top of
+[00:36:27] the behavior of an agent, which is increasingly becoming important
+[00:36:31] for compliance reasons over time.
+[00:36:33] So all that is to say, both the consumption of
+[00:36:36] open wave models and post training increasingly important for us
+[00:36:39] at Harvey.
+[00:36:41] All the points that you put forward and the expertise
+[00:36:44] and the agent work that you&#39;re talking about, if you
+[00:36:47] can double click on that and speak a bit more
+[00:36:50] about the end to end iteration cycle with fireworks and
+[00:36:53] what&#39;s possible today that was not possible previously, that would
+[00:36:57] be great.
+[00:36:58] Yeah.
+[00:36:58] So within the manage inference side, it&#39;s basically plug and
+[00:37:02] play, which is great because you don&#39;t need to do
+[00:37:04] that iteration, right.
+[00:37:05] So we can start consuming open source models pretty pretty
+[00:37:09] quickly.
+[00:37:11] And then with all of the work that you&#39;ve done
+[00:37:13] around managed training infrastructure, it makes the iteration loop much
+[00:37:17] tighter, much faster, much more efficient.
+[00:37:20] We have a saying at Harvey, it&#39;s that all timelines
+[00:37:23] are are compressed, right?
+[00:37:24] And this sort of dynamic AI landscape and environment that
+[00:37:28] we&#39;re in, that applies to research as well, right?
+[00:37:31] So being able to pick up the pace on things
+[00:37:34] like post training experiments, running many iterations in parallel and
+[00:37:39] and in a pretty low touch manner for for our
+[00:37:42] research team picks up our velocity, which is kind of
+[00:37:45] a a crucial factor for us.
+[00:37:48] And like you said, I think at Fireworks, we too
+[00:37:50] believe that all iteration cycles are compressed.
+[00:37:54] One thing I would love for you to dive a
+[00:37:56] little bit deeper on is you&#39;ve always been an Azure
+[00:37:59] customer.
+[00:38:00] So how does this particular foundry with Fireworks partnership really
+[00:38:05] like help you?
+[00:38:06] And if there are customers today who are trying to
+[00:38:09] use the similar platform and path, what advice or recommendation
+[00:38:13] would you have?
+[00:38:14] Yeah, yeah, absolutely.
+[00:38:15] Well, I mean, this is Microsoft Foundry, right?
+[00:38:17] When I think of enterprise grade infrastructure, especially AI infrastructure,
+[00:38:22] I immediately think of Microsoft Foundry, right?
+[00:38:25] Like I said earlier, legal work is the highest stakes
+[00:38:29] type of knowledge work.
+[00:38:30] For that, you need the highest grade of infrastructure, security,
+[00:38:33] governance, compliance, all of these things, right?
+[00:38:35] So that&#39;s why we&#39;ve been kind of a happy Azure
+[00:38:39] customer for this whole time.
+[00:38:41] And I think that that applies to model training as
+[00:38:44] well, right?
+[00:38:45] So with fireworks, it&#39;s sort of a best of both
+[00:38:47] worlds scenario where you can take this enterprise grade infrastructure
+[00:38:51] that we&#39;ve already been leveraging and then layer on managed
+[00:38:55] inference for open weight models, training infrastructure and then seamless
+[00:38:59] deployment of those models, right?
+[00:39:01] That&#39;s not, you know, significantly handicapping our own infrastructure teams,
+[00:39:04] right?
+[00:39:05] So it&#39;s a marriage of these two incredible things.
+[00:39:07] We&#39;re very excited about it.
+[00:39:09] And just to give a little bit of kind of
+[00:39:12] historical context, when I joined Harvey, we were talking about
+[00:39:15] this off stage.
+[00:39:16] We were 5 or 6 people in an Airbnb.
+[00:39:19] You know, forget innovative AI problems.
+[00:39:21] It was, you know, we were thinking about whether the
+[00:39:23] Wi-Fi was on in any given day.
+[00:39:25] But this was three years ago before a lot of
+[00:39:28] this AI infrastructure existed, right?
+[00:39:31] And I can&#39;t tell you how relieving it is to
+[00:39:34] me now and how much better I sleep at night
+[00:39:36] knowing that we don&#39;t have to go figure this all
+[00:39:39] out ourselves and that we can sort of ride the
+[00:39:41] tailwinds of your great work and the great work of
+[00:39:44] your partnership with Microsoft.
+[00:39:46] So my advice would be if you are a founder
+[00:39:48] starting an AI native company today and building your AI
+[00:39:51] stack for the first time, or if you&#39;re a larger
+[00:39:54] enterprise and you&#39;re rebuilding your AI stack to be sort
+[00:39:57] of agent native, I would take, I would ride the
+[00:40:00] tailwinds that are available to you.
+[00:40:02] And I would recommend using this, this managed infrastructure.
+[00:40:06] As we said, all timelines are compressed, so it&#39;ll help
+[00:40:08] you move much much faster.
+[00:40:11] OK.
+[00:40:11] Thank you so much for your time in coming here
+[00:40:13] and talking about Harvey itself.
+[00:40:15] And just as Nico said, if you were starting a
+[00:40:19] new use case or reimagining your use case and already
+[00:40:23] using Azure, then do go out and check out fireworks
+[00:40:26] models on Azure itself.
+[00:40:29] You have different modes that you can deploy and integrate
+[00:40:32] into your agents, whether you&#39;re using agents on Azure or
+[00:40:35] agents that you&#39;ve built yourself as well.
+[00:40:37] Thank you for your time and happy to take any
+[00:40:40] questions for Niko, Vivek or myself as well.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

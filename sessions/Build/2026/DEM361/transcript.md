@@ -1,0 +1,461 @@
+**[00:00:00]** Some good energy for the last day.
+**[00:00:02]** Cool.
+**[00:00:02]** So I'm Jim Bennett.
+**[00:00:03]** I'm a Microsoft MVP for Foundry and dev tools and
+**[00:00:06]** stuff like that.
+**[00:00:07]** And I'm here to tell you about your agents.
+**[00:00:11]** So quick question.
+**[00:00:12]** Well, first of all, who's heard of AI?
+**[00:00:15]** Yeah, OK, fair enough.
+**[00:00:16]** But who is actually building agents?
+**[00:00:18]** OK, send a few hands.
+**[00:00:20]** Who actually know what you what's actually knows what your
+**[00:00:23]** agent is doing under the hood?
+**[00:00:26]** Few hands, OK, who knows that their agent is actually
+**[00:00:30]** working?
+**[00:00:32]** Few hands.
+**[00:00:33]** OK, this is what we're going to talk talk about
+**[00:00:36]** today about the fact that you probably don't know what
+**[00:00:39]** your agent is actually doing under the hood.
+**[00:00:42]** So let's get away from slides.
+**[00:00:45]** We don't care about slides.
+**[00:00:46]** Let's see something in action.
+**[00:00:48]** Now.
+**[00:00:48]** Here I have an agent.
+**[00:00:50]** Now all the cool kids tell me that agents are
+**[00:00:54]** lit LLMS, instructions, tools, and that's literally what makes an
+**[00:00:59]** agent.
+**[00:01:00]** So I have an agent up here, this code here,
+**[00:01:03]** this 11 lines of code.
+**[00:01:05]** This is my agent.
+**[00:01:07]** That's all I have.
+**[00:01:08]** I'm defining my LLM.
+**[00:01:10]** I am using an open AI model.
+**[00:01:12]** This is running on Microsoft Foundry.
+**[00:01:14]** If you haven't heard of Foundry, it's basically a place
+**[00:01:16]** to run your models, do cool stuff like that.
+**[00:01:18]** I have my instructions.
+**[00:01:21]** This particular example, I have been building a procurement system
+**[00:01:25]** evaluator.
+**[00:01:26]** So kind of fairly boring line of business application that
+**[00:01:29]** you're likely to build.
+**[00:01:30]** People want to buy stuff rather than having humans approve
+**[00:01:34]** or deny.
+**[00:01:34]** This is an agent that does that approve or deny
+**[00:01:37]** cycle.
+**[00:01:38]** So it's a procurement evaluator.
+**[00:01:40]** You read purchase requests, gather relevant policy, vendor budget, blah,
+**[00:01:44]** blah, blah, do stuff.
+**[00:01:45]** OK, And then I have some tools.
+**[00:01:49]** I have a series of tools I've got to check
+**[00:01:51]** policy tool, a tool to look up vendors, budgets, that
+**[00:01:54]** kind of stuff.
+**[00:01:56]** Now this is great.
+**[00:01:57]** This is me kind of scaffolding my application, but I'm
+**[00:02:00]** using agent framework.
+**[00:02:01]** An agent framework kind of just does the rest for
+**[00:02:04]** me.
+**[00:02:05]** Literally the way that I interact with my agent is
+**[00:02:08]** this one line of code.
+**[00:02:11]** I say agent, run, here's the inputs, just go and
+**[00:02:15]** do your thing.
+**[00:02:16]** And then I get back an output and then, you
+**[00:02:19]** know, fingers crossed it all works, but I don't really
+**[00:02:22]** know what's going on.
+**[00:02:23]** It's very much, this is a black box, this is
+**[00:02:25]** decisions are being made under the hood.
+**[00:02:28]** So the LLM decides, sorry for the anthropomorphisation there, but
+**[00:02:32]** the LLM decides what tools to call, if it should
+**[00:02:35]** call a tool, what order to call tools.
+**[00:02:38]** And then the agent framework takes the results, those tool
+**[00:02:41]** calls, calls the LLM again, does more things, does more
+**[00:02:43]** things.
+**[00:02:44]** And all I ever see is just the output coming
+**[00:02:47]** out.
+**[00:02:48]** That's it.
+**[00:02:48]** I don't get that visibility over what's happening under the
+**[00:02:51]** hood and I just have to hope it works.
+**[00:02:53]** I can run this in dev, fingers crossed it works.
+**[00:02:58]** So this is the kind of thing that my agent
+**[00:02:59]** would do.
+**[00:03:00]** So I could say, look, I want to put in
+**[00:03:03]** a purchase request, $3200 I want to spend on the
+**[00:03:06]** engineering team for an IDE because we need an updated
+**[00:03:09]** IDE.
+**[00:03:10]** This goes in and the agent comes back and says,
+**[00:03:14]** OK, this is approved, This is why it's approved.
+**[00:03:18]** Done.
+**[00:03:19]** Sweet, complete black box.
+**[00:03:21]** Could be right, could be wrong, I just don't know.
+**[00:03:25]** So how do I discover what it's doing under the
+**[00:03:27]** hood?
+**[00:03:28]** Well, who's heard of open telemetry?
+**[00:03:31]** Yes, so a few of you.
+**[00:03:33]** Open telemetry is a standard way of seeing what your
+**[00:03:35]** applications are doing.
+**[00:03:37]** You will bolt this onto your web app.
+**[00:03:39]** You see how long the requests take.
+**[00:03:41]** You see your five hundreds, your four hundreds, your two
+**[00:03:42]** hundreds.
+**[00:03:43]** You get visibility over what your application is doing.
+**[00:03:46]** Wouldn't it be nice if we could take that same
+**[00:03:49]** principle, that same open standard principle and apply that to
+**[00:03:53]** AI applications and you can.
+**[00:03:55]** So there is a thing called where are we open
+**[00:03:59]** inference?
+**[00:04:00]** Has anyone heard of open inference?
+**[00:04:03]** OK, one hand, Open inference is an open standard extension
+**[00:04:07]** for open telemetry that works with the semantic conventions for
+**[00:04:10]** AI.
+**[00:04:11]** So basically it makes AI work with open telemetry.
+**[00:04:14]** Now Open Infinity are working on a Gen.
+**[00:04:16]** AI standard.
+**[00:04:18]** It's in a committee, and we all know what committees
+**[00:04:21]** are like.
+**[00:04:22]** So maybe one day they will get the standard going,
+**[00:04:24]** but until then, open inference has been around for a
+**[00:04:27]** few years and that is kind of an open standard
+**[00:04:29]** that folks can use for gathering to empty data from
+**[00:04:32]** LLMS.
+**[00:04:32]** And actually if you were in the session yesterday from
+**[00:04:35]** Sarah Bird, you would know that open inference is the
+**[00:04:38]** standard that's being used for the new assert framework and
+**[00:04:40]** agent control specification that Microsoft are doing.
+**[00:04:45]** So if I think if I want to put this
+**[00:04:47]** kind of telemetry inside my application, it's actually not that
+**[00:04:51]** complex to do it.
+**[00:04:53]** Open telemetry is a standard.
+**[00:04:54]** We, the person over there has said I've done open
+**[00:04:57]** telemetry has probably done this.
+**[00:04:59]** You just drop in AI want to trace things.
+**[00:05:01]** I put in a couple lines of code to say
+**[00:05:03]** I want to trace this.
+**[00:05:04]** I want to send this to open inference and then
+**[00:05:06]** I just send this to a back end and that
+**[00:05:08]** can then it will exposes visibility of what my application
+**[00:05:12]** is doing.
+**[00:05:13]** So what I get out the other side is something
+**[00:05:17]** like this.
+**[00:05:19]** So what I've got here, this is an application called
+**[00:05:21]** Phoenix.
+**[00:05:21]** It's a free open source back end for telemetry data
+**[00:05:24]** made by Arise defaults invented open inference.
+**[00:05:27]** This is kind of the standard default out the box
+**[00:05:29]** open source way of rendering open inference data.
+**[00:05:33]** And this gives me a complete breakdown of what my
+**[00:05:35]** agent is doing.
+**[00:05:37]** So at the top level, I have this process dot
+**[00:05:40]** run and it says this is the tech flow IDE
+**[00:05:43]** $3200 need the upgrade and they have the response.
+**[00:05:47]** Yes, it's compliant.
+**[00:05:48]** It's whatever.
+**[00:05:49]** This this is really what I see from my agent
+**[00:05:52]** run, but I have so much more information now.
+**[00:05:55]** I have this tree diagram that shows me everything the
+**[00:05:57]** agent is actually doing.
+**[00:05:59]** So actually Microsoft agent framework kicks off an agent.
+**[00:06:02]** It then calls an LLM.
+**[00:06:04]** This LM, I can, I can see the system prompt,
+**[00:06:06]** I can see the user prompt, I can see what
+**[00:06:08]** comes out the other side request to do tool calls.
+**[00:06:11]** I can dig deep into a whole of more attributes.
+**[00:06:14]** Where's the fun ones?
+**[00:06:15]** So I can see things like token counts in and
+**[00:06:18]** outs.
+**[00:06:18]** It's open AI.
+**[00:06:19]** We use a Microsoft agent framework and I've kind of
+**[00:06:21]** got this deep level of telemetry across everything that the
+**[00:06:24]** agent framework is, is deciding to do everything that goes
+**[00:06:27]** into every single part of the system.
+**[00:06:29]** This is what goes to the LM.
+**[00:06:31]** This is what comes back from the LM.
+**[00:06:33]** The LM wants to call a tool, sweet.
+**[00:06:35]** It calls the Czech policy tool 3200 Tech flow gets
+**[00:06:39]** back a response and so on and so on and
+**[00:06:42]** so on.
+**[00:06:42]** So I can start getting this visibility over everything that
+**[00:06:45]** my application is doing at a very, very granular level.
+**[00:06:49]** And this allows me to start understanding my application.
+**[00:06:52]** I can start doing this at scale.
+**[00:06:53]** I can do this for in dev for one or
+**[00:06:55]** two as I'm experimenting, I can do this in production
+**[00:06:58]** for thousands, millions of rows of data.
+**[00:07:00]** I get to see all the things and what's called
+**[00:07:02]** as well because it's a standard open telemetry, I can
+**[00:07:05]** do all the standard tricks that folks do.
+**[00:07:08]** If I want to strip out PII or a customer
+**[00:07:10]** data, I can drop a new spam processor in to
+**[00:07:13]** strip it out.
+**[00:07:14]** You know, anything I kind of want to do to
+**[00:07:15]** manipulate the data on the way out, I can do
+**[00:07:17]** that as well.
+**[00:07:19]** So suddenly I know what my system is doing.
+**[00:07:21]** That answers that first question I asked you.
+**[00:07:22]** Do you know what your agent is doing?
+**[00:07:24]** I can see inside that black box.
+**[00:07:27]** But the next question that comes up is, is it
+**[00:07:29]** working?
+**[00:07:31]** How do we know if something works?
+**[00:07:32]** How do we know if an AI agent is working?
+**[00:07:34]** Now who writes unit tests?
+**[00:07:36]** Who writes?
+**[00:07:37]** I'm not seeing enough hands here.
+**[00:07:39]** I'm not mad, I'm just disappointed.
+**[00:07:41]** Come on.
+**[00:07:42]** Now when we think about unit testing with deterministic code,
+**[00:07:45]** we are used to writing tests.
+**[00:07:46]** We say with these inputs, I expect this output that
+**[00:07:49]** doesn't work with an LLM with these inputs, I will
+**[00:07:53]** get a non deterministic output coming out the other side.
+**[00:07:57]** So how do I know if my LLM is working?
+**[00:08:00]** Well, the easiest way to do it is ask a
+**[00:08:03]** person to have a look humans can look at.
+**[00:08:37]** But it turns out that actually humans are not the
+**[00:08:40]** best at evaluating whether something works or not AI is
+**[00:08:43]** actually better than humans at doing this for the simple
+**[00:08:47]** reason that humans get bored.
+**[00:08:50]** So who here likes having lunch?
+**[00:08:53]** Who here is doing work the last 10 minutes before
+**[00:08:55]** lunch and just wants to get it wrapped up as
+**[00:08:56]** quick as possible so they can go and have lunch?
+**[00:08:58]** Yes, humans make mistakes.
+**[00:09:00]** Humans have biases.
+**[00:09:02]** Humans, it's been shown.
+**[00:09:03]** Like for example, in the prison system, if your parole
+**[00:09:05]** review is just before lunch, you've got no chance.
+**[00:09:07]** After lunch, you're sweet, you're out of there.
+**[00:09:09]** So there's these kind of biases that happen because humans
+**[00:09:11]** get bored.
+**[00:09:12]** Humans make mistakes.
+**[00:09:13]** AI is just as good as a human still makes
+**[00:09:16]** mistakes but doesn't get bored.
+**[00:09:19]** And we can run AI at scale to test whether
+**[00:09:21]** or not our code is working.
+**[00:09:24]** So what I can do is I can actually use
+**[00:09:26]** an AI to see is my system working.
+**[00:09:29]** Classic example here is I have these tools that do
+**[00:09:32]** things.
+**[00:09:33]** What if the tool didn't work?
+**[00:09:35]** What if the policy tool didn't return a policy?
+**[00:09:37]** Returned blank and my agent being really helpful goes, well,
+**[00:09:41]** there's no policy, it must be fine.
+**[00:09:43]** Approved.
+**[00:09:44]** You can all buy $1,000,000 worth of software.
+**[00:09:46]** Yay.
+**[00:09:46]** All approved because there is no policy.
+**[00:09:49]** How can I test for this?
+**[00:09:50]** How can I discover this?
+**[00:09:51]** So actually what I can do now that I have
+**[00:09:54]** this visibility over everything that happens inside my system, I
+**[00:09:58]** can take this data and I can actually throw this
+**[00:10:00]** at an AI and say, is this good?
+**[00:10:02]** Does it work?
+**[00:10:04]** Is it actually doing what it's supposed to do?
+**[00:10:06]** And this is what we call evals.
+**[00:10:08]** So evals is the fancy AI word for testing.
+**[00:10:12]** We should have called it testing because people know what
+**[00:10:15]** testing is, but we have to call it evals because
+**[00:10:17]** we're cool and different.
+**[00:10:19]** So whenever you hear the people talking about evals, it's
+**[00:10:22]** basically testing for AI.
+**[00:10:24]** And So what I can do is I can start
+**[00:10:26]** writing, got a prompt here.
+**[00:10:28]** I can write, start writing a prompt to say, look
+**[00:10:31]** at the information that I have and tell me whether
+**[00:10:33]** or not my AI is working.
+**[00:10:35]** So here I've got a prompt.
+**[00:10:36]** You are auditing an automated procurement evaluator.
+**[00:10:39]** Each row shows a purchase request.
+**[00:10:42]** The final produces blah, blah, blah.
+**[00:10:44]** Decide whether the recommendation is supported by the tool evidence
+**[00:10:47]** alone.
+**[00:10:48]** So we're saying the data that comes back from the
+**[00:10:51]** tools is the decision grounded in that data.
+**[00:10:54]** I then have a rubric here for how we score
+**[00:10:56]** it, approve, reject, flag for review.
+**[00:10:58]** And then I have spaces where I can fill in
+**[00:11:00]** the original purchase request, the evidence, the data that comes
+**[00:11:04]** back from the tools, what the agent said, why the
+**[00:11:06]** agent said it.
+**[00:11:07]** And then the final thing is the recommendation supported by
+**[00:11:11]** tools supported unsupported return One word and I've now built
+**[00:11:15]** a test.
+**[00:11:16]** I have taken my non deterministic output of my AI,
+**[00:11:18]** put this eval on top of it and this will
+**[00:11:21]** now give me a deterministic output of supported or unsupported.
+**[00:11:25]** This is great.
+**[00:11:25]** I can start testing things and the way I can
+**[00:11:28]** run this is I can literally go to Phoenix, download
+**[00:11:31]** the telemetry data, pass through it, pull out the tool
+**[00:11:34]** outputs, throw it into this prompt, throw it in an
+**[00:11:37]** AI and say test it.
+**[00:11:40]** And what comes out I'm going to flip to a
+**[00:11:42]** different project in Phoenix that's easy to see.
+**[00:11:43]** This what comes out is a score zero if it
+**[00:11:47]** doesn't work one for it does.
+**[00:11:52]** So if I look at this first one here, for
+**[00:11:54]** example, let's actually go and open up in a trace.
+**[00:11:59]** First one here, right?
+**[00:12:00]** So this one here, this says it's supported.
+**[00:12:03]** The evidence shows sufficient budget.
+**[00:12:05]** The vendors preferred the the purchase amount is under the
+**[00:12:08]** auto approval threshold.
+**[00:12:09]** Done.
+**[00:12:10]** So this is said the data that comes back from
+**[00:12:12]** the tools allows agrees with the decision that was made.
+**[00:12:16]** Cool.
+**[00:12:17]** But actually, if I look at the all my numbers,
+**[00:12:20]** pass, pass, pass, pass, pass fail, fail, fail, fail, fail.
+**[00:12:24]** So it only works half the time.
+**[00:12:25]** Half the time my agent is not actually working.
+**[00:12:28]** It's not doing something grounded in the data from the
+**[00:12:31]** tools.
+**[00:12:32]** So if I have a look at say this row
+**[00:12:35]** here, this says it's unsupported and it tells me that
+**[00:12:38]** there's sufficient budget.
+**[00:12:41]** The policy requires VP approval for this level and this
+**[00:12:45]** got rejected, but it shouldn't have been rejected.
+**[00:12:48]** It should be flagged for VP review.
+**[00:12:50]** So the policy says VP has to review this.
+**[00:12:52]** The agent said rejected.
+**[00:12:54]** What it should have done is flagged it for review
+**[00:12:55]** because the policy says somebody should review this.
+**[00:12:57]** So having this LLM as a judge, I can see
+**[00:13:00]** exactly what is happening, what's going wrong, what mistakes it's
+**[00:13:04]** making.
+**[00:13:05]** And so now I've got this great situation where I
+**[00:13:08]** know what it's doing.
+**[00:13:10]** I have my inputs, I have my tests, and I
+**[00:13:12]** have some results.
+**[00:13:14]** And when I have inputs and tests, I can start
+**[00:13:18]** building automated testing around this.
+**[00:13:22]** I can start saying, right, this doesn't work.
+**[00:13:24]** Now I can extract all this data that I've got
+**[00:13:26]** all these inputs, and I can put this in like
+**[00:13:29]** a data set somewhere.
+**[00:13:31]** And then I can run these inputs through my agents,
+**[00:13:34]** score it with my evaluator, see what the score is,
+**[00:13:36]** and then I can start making fixes to my agents
+**[00:13:39]** and put it through that same pipeline, the same as
+**[00:13:41]** those of you who put your hands up to say
+**[00:13:44]** they do unit testing, probably have done.
+**[00:13:46]** If you do test driven development, you build your tests
+**[00:13:48]** upfront and you keep running your codes, it all goes
+**[00:13:50]** green.
+**[00:13:51]** Same kind of idea.
+**[00:13:52]** I've got my data, I've got my evaluator.
+**[00:13:55]** I can just keep tweaking my agent till the numbers
+**[00:13:57]** come out good on the other side.
+**[00:13:59]** So the, the classic example for this is model selection.
+**[00:14:04]** My application is not good.
+**[00:14:05]** I might try a new model, or my application is
+**[00:14:08]** good, but I want to upgrade my model.
+**[00:14:10]** I want to try a cheaper model.
+**[00:14:12]** The model providers pushed out a new model.
+**[00:14:14]** How do I make sure my application still works and
+**[00:14:16]** model changes?
+**[00:14:17]** And so I've got an example here.
+**[00:14:21]** This here is exactly the same application, the same agent.
+**[00:14:25]** Nothing has changed, except I'm running this against GBT 5.4
+**[00:14:29]** instead of 4.1.
+**[00:14:33]** Oh look, look at all those ones there.
+**[00:14:36]** This is now 90% effective.
+**[00:14:38]** I've made no change to my application.
+**[00:14:40]** All I've done is change the model that I'm calling.
+**[00:14:42]** But because I've got this ability to have this data
+**[00:14:45]** set, have these evaluations and run this continuous testing loop,
+**[00:14:48]** I can score this.
+**[00:14:50]** I can tell when things are working or when things
+**[00:14:52]** have broken.
+**[00:14:54]** Now this I can then take a little bit further.
+**[00:14:57]** So who uses a coding agent?
+**[00:15:00]** Few hands.
+**[00:15:00]** OK, get up, copilot and he clawed people in the
+**[00:15:04]** room.
+**[00:15:04]** It's OK, Microsoft won't shoot you.
+**[00:15:05]** You know, he's fine now.
+**[00:15:07]** So if you've got a coding agent, coding agents can
+**[00:15:10]** have skills, Skills can access this data.
+**[00:15:13]** So I can literally spin up GitHub Copilot CLI or
+**[00:15:16]** Claude and say, OK, here's my code.
+**[00:15:19]** Here's the GitHub repo with my code in it.
+**[00:15:22]** Here is the inputs that I run to my agent.
+**[00:15:26]** Here are the evaluations that I run.
+**[00:15:28]** I want you to fix my application.
+**[00:15:31]** And so the coding agent can take all this data.
+**[00:15:34]** It can spin up my application in a sandboxed environment.
+**[00:15:38]** It can pump my inputs in, it can run my
+**[00:15:40]** evaluations.
+**[00:15:41]** It can look at the results.
+**[00:15:43]** And then it can go back and tweak the prompt,
+**[00:15:46]** change the model, adjust the tool descriptions, whatever it needs
+**[00:15:49]** to do, and then run it again and then run
+**[00:15:51]** it again.
+**[00:15:52]** And slowly it can converge on a much better solution.
+**[00:15:55]** Yeah, in this case, I went from 50% to 90%
+**[00:15:57]** just by me changing the model.
+**[00:15:59]** That's very much a contrived case in a lot of
+**[00:16:01]** situations.
+**[00:16:02]** You need to get an iterate on the prompt, you
+**[00:16:04]** need to iterate on tool descriptions, try different models, whatever
+**[00:16:07]** you want to do.
+**[00:16:08]** And eventually you'll find over like 456 cycles, your coding
+**[00:16:11]** agent will kind of converge on a point where you're
+**[00:16:13]** kind of hitting that 90% effective rate for your agents.
+**[00:16:17]** Top tip agents will never be 100%.
+**[00:16:20]** Humans are never 100%, agents will never be 100%, but
+**[00:16:23]** you want to kind of work towards this 90%.
+**[00:16:25]** And so suddenly I've got everything I need to build
+**[00:16:27]** that self improving software loop.
+**[00:16:29]** Anyone here does self improving software?
+**[00:16:31]** Anyone here use the agents to fix Got a hand
+**[00:16:33]** over there yes, that's a couple of hands.
+**[00:16:36]** This is kind of the future.
+**[00:16:37]** We have the ability to monitor applications.
+**[00:16:40]** We can see what's going wrong.
+**[00:16:41]** We can ask our coding agents to fix that.
+**[00:16:43]** This is kind of the future of the software that
+**[00:16:45]** we're building.
+**[00:16:48]** So that is Skip for those we didn't do slides.
+**[00:16:54]** We just, So what have we talked about today?
+**[00:16:57]** When you have an agent, it's a black box, you
+**[00:16:59]** do not know what it's doing.
+**[00:17:01]** You need to add observability so you can see what
+**[00:17:04]** it's doing.
+**[00:17:05]** There's industry stands, this open inference is the industry standard
+**[00:17:08]** for doing this.
+**[00:17:09]** This gives you the view on what you're doing.
+**[00:17:11]** Then once you've got this, you can start building evals.
+**[00:17:14]** You're using LM as a judge to test your agent
+**[00:17:16]** runs, see what it's doing, and then you can use
+**[00:17:18]** this data to drive that self improving software loop.
+**[00:17:21]** You deploy your models to foundry, you build a Microsoft
+**[00:17:24]** agent framework application.
+**[00:17:25]** You can get up copilot CLI.
+**[00:17:26]** You can say fix it goes off fixes it.
+**[00:17:29]** Jobs are good.
+**[00:17:29]** And there we go.
+**[00:17:31]** That is how you can use evals to understand your
+**[00:17:33]** application.
+**[00:17:34]** So I'm Jim Bennett, so I'm Microsoft MVP.
+**[00:17:36]** If you've got any questions about this scan that that's
+**[00:17:40]** got links to all my LinkedIn and so if you
+**[00:17:43]** want to hit me up with any questions after this,
+**[00:17:47]** more than happy to geek out on things amazing.
+**[00:17:52]** Once you scan that one, if you want to get
+**[00:17:54]** started with Phoenix, it's free open source.
+**[00:17:57]** It's just a bit off the screen.
+**[00:17:58]** It's free and open source.
+**[00:17:59]** So scan that QR code and you can grab Phoenix.
+**[00:18:01]** You can run it completely locally.
+**[00:18:02]** You can I would have, I would have showed it
+**[00:18:04]** to you deployed to container App, but my Microsoft MVP
+**[00:18:07]** Azure credit ran out three hours ago.
+**[00:18:09]** So literally I have no Azure credits to show off
+**[00:18:12]** on Azure, but that's how you can get started on
+**[00:18:14]** there.
+**[00:18:14]** And then finally, if you want the code for this
+**[00:18:17]** up here in this GitHub repos all the code so
+**[00:18:19]** you can reproduce everything that happened today.
+**[00:18:21]** And if you got any questions, come find me afterwards.
+**[00:18:23]** Happy to answer your questions.

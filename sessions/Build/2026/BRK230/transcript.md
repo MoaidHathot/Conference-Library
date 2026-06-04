@@ -1,0 +1,1174 @@
+**[00:00:00]** Well, hello, welcome to building smart AI systems in Foundry
+**[00:00:05]** as everything in the world evolves around us.
+**[00:00:10]** I'm Yina, I lead product from Microsoft Foundry, and I'm
+**[00:00:14]** joined today with Naomi, who does all the work for
+**[00:00:16]** shipping all of the models in Microsoft Foundry.
+**[00:00:20]** And in the next 45 minutes, we're going to talk
+**[00:00:23]** about something that every team building with AI faces.
+**[00:00:27]** You build the systems and the landscape around you keeps
+**[00:00:31]** evolving.
+**[00:00:32]** The models, the tools, the set of like capabilities around
+**[00:00:36]** them, it's all shifting around you.
+**[00:00:40]** And let's be honest, a year ago, building an AI
+**[00:00:43]** app filled a lot more simple.
+**[00:00:45]** You pick the model, you wire it up and you
+**[00:00:47]** ship it.
+**[00:00:48]** But now you're not building, no longer building just chat
+**[00:00:51]** apps, your full on building authentic systems, long running systems
+**[00:00:55]** that have to have to continuously improve.
+**[00:00:58]** And that is a little bit more challenging.
+**[00:01:02]** And here's what I see every single developer face that
+**[00:01:05]** you know, run into, they have a hard time picking
+**[00:01:08]** the right model for the task.
+**[00:01:10]** There's a lot of models in the market.
+**[00:01:11]** More keep coming every single day.
+**[00:01:14]** The benchmarks look great in paper, but they don't tell
+**[00:01:16]** you if their model is good for your scenario.
+**[00:01:19]** And then the cluster really, really hard to predict.
+**[00:01:22]** And then you can do like some analysis when you're
+**[00:01:25]** building it, but like when you put it into production
+**[00:01:28]** and see the bill, it's painful, right?
+**[00:01:31]** So the moment that you have something that is fully
+**[00:01:34]** built and out there, then the next model is in,
+**[00:01:38]** the next tool is out.
+**[00:01:39]** And all of these different things need to keep changing
+**[00:01:42]** and you have to continuously be building this system and
+**[00:01:45]** the landscape keeps keeps moving around you.
+**[00:01:48]** Now what you want is a system that is simpler,
+**[00:01:51]** that is better, that is more cost effective and that
+**[00:01:54]** is scalable as you bring it into production.
+**[00:01:57]** And that gives you the best outcome for your scenario.
+**[00:02:00]** And today we're going to show you how you can
+**[00:02:02]** actually get there using Microsoft Foundry as the underlying platform.
+**[00:02:06]** What you need in order to get there is not
+**[00:02:09]** just a better prompt system or a newer model or,
+**[00:02:13]** you know, the latest MCP tool.
+**[00:02:15]** What you need is a system that continuously improve over
+**[00:02:18]** times and a platform that enables you from all the
+**[00:02:21]** way from building to governing and managing at scale.
+**[00:02:24]** For that, you know, we start with building with GitHub
+**[00:02:27]** a compilot CLI grounding with all of the set of
+**[00:02:29]** information that you might have within your organization.
+**[00:02:32]** Whether it is, you know, your productivity data in work
+**[00:02:36]** IQ, your structured data in found in Fabric IQ.
+**[00:02:39]** All of the context and knowledge you might want to
+**[00:02:41]** bring to your agents using Foundry IQ, and all of
+**[00:02:44]** the world's knowledge using Web IQ.
+**[00:02:46]** Then running that in Foundry using Foundry hosted agents governing
+**[00:02:49]** with a 365, and then improving over time with a
+**[00:02:52]** set of platform capabilities that Foundry offers.
+**[00:02:56]** And that's what Foundry comes in.
+**[00:02:58]** It's the platform that enables you to take models, agent
+**[00:03:02]** service, all of the grounding information, the tools, the post
+**[00:03:06]** training capabilities and bring that all to bear for you
+**[00:03:10]** to leverage in your scenario.
+**[00:03:13]** And the platform is fully governed for the entire genetic
+**[00:03:16]** life cycle, not just for running, inferencing or for building
+**[00:03:20]** a specific point on solution.
+**[00:03:22]** It's for you to be able to build, deploy and
+**[00:03:24]** operate at scale and continuously improve your entire system.
+**[00:03:29]** And this is what an important mental shift.
+**[00:03:33]** And it's like if there's I will say one thing
+**[00:03:35]** that you take out of this session today is how
+**[00:03:38]** we need to evolve how we think about what was
+**[00:03:41]** QA ING our solutions.
+**[00:03:43]** So as a developer, you used to think about like,
+**[00:03:45]** I'll build it and then I'll think about QA at
+**[00:03:48]** the end.
+**[00:03:48]** Actually, that needs to be entirely shift left.
+**[00:03:51]** And now you have to think about your success criteria
+**[00:03:55]** and evaluation first so that then you can think about
+**[00:03:58]** how you're going to continuously improve over time and be
+**[00:04:02]** a resilient solution that decouples from the model evolving from
+**[00:04:06]** tools changing and from the context evolving itself.
+**[00:04:09]** That way you can actually build a solution that like
+**[00:04:14]** it's more ready for the test of time and there's
+**[00:04:18]** a set of optimization categories.
+**[00:04:20]** I'll just go back for a second.
+**[00:04:21]** But then once you have your evaluations defined, are actually
+**[00:04:24]** going to tell you like, what are the set of
+**[00:04:27]** levers that you can pull to optimise the system?
+**[00:04:29]** And this is how we're going to structure the rest
+**[00:04:31]** of the talk today.
+**[00:04:32]** We're going to go through selection of evaluation, optimisation and
+**[00:04:36]** scaling.
+**[00:04:38]** OK, we're going to start and then we're going to
+**[00:04:40]** do it around the model ecosystem.
+**[00:04:42]** So like we're going to have other sessions throughout the
+**[00:04:44]** the conference in which we're going to go deeper into
+**[00:04:47]** like more of the authentic side and then also more
+**[00:04:50]** of like deeper into the post training capabilities that we
+**[00:04:53]** have around models.
+**[00:04:55]** OK, let's start with select.
+**[00:04:57]** All right, awesome.
+**[00:04:58]** So lots and lots of models available for you in
+**[00:05:01]** Foundry.
+**[00:05:02]** Hopefully that's really good news because you saw a great
+**[00:05:04]** set of announcements this morning at the keynote, and we're
+**[00:05:06]** going to build on that and tell you a little
+**[00:05:08]** bit more about what's going on.
+**[00:05:10]** Because every AI system really belongs with acting models, right?
+**[00:05:14]** We want to think about not just looking at the
+**[00:05:16]** specific model you need for all of your use cases,
+**[00:05:18]** but instead actually looking at model choice is something that
+**[00:05:21]** you need to define by task.
+**[00:05:23]** And so you think about this as kind of an
+**[00:05:25]** ongoing systems decision.
+**[00:05:26]** You know, talked about it, right?
+**[00:05:27]** That model life cycle is continuously accelerating.
+**[00:05:30]** We're always bringing the best and latest to you, but
+**[00:05:32]** we want to make sure that we're able to bring
+**[00:05:34]** and optimise across these different areas.
+**[00:05:36]** So let's think about how we approach model selection as
+**[00:05:39]** part of this.
+**[00:05:40]** So of course, in any AI application, models are kind
+**[00:05:43]** of your raw materials, right, to get started with and
+**[00:05:46]** you build so many big things on top of this
+**[00:05:48]** and as part of your AI applications.
+**[00:05:51]** But what matters is not just the model itself, but
+**[00:05:53]** is it the right model for the job that you
+**[00:05:55]** have?
+**[00:05:56]** And of course, with foundry models, developers can access, explore,
+**[00:05:59]** compare and do many things across the foundry model catalog
+**[00:06:02]** with a consistent API and of course, an enterprise curation
+**[00:06:06]** that's built in as part of this.
+**[00:06:08]** And so of course, this means, you know, less thinking
+**[00:06:10]** about more that, sorry, this means more around faster experimentation,
+**[00:06:13]** being able to get to production faster and then be
+**[00:06:15]** able to deploy this quickly of your as your requirements
+**[00:06:18]** change.
+**[00:06:19]** Now a couple of things that I want to mention
+**[00:06:20]** on this slide in particular, we have, of course, our
+**[00:06:22]** flagship models there.
+**[00:06:23]** You see Open AI and Anthropic as we talk about
+**[00:06:25]** all the time.
+**[00:06:26]** I don't want to have a special call out with
+**[00:06:28]** our amazing partnership with we have with Hugging Face because
+**[00:06:31]** of course, if Jeff is sitting right there, go hugging
+**[00:06:34]** face, love Hugging face folks.
+**[00:06:35]** Yes, yes, thank you.
+**[00:06:37]** So we love our OSS models.
+**[00:06:39]** We have a great partnership with them populate so many
+**[00:06:41]** things inside of the Foundry catalog and you know talk
+**[00:06:43]** a little bit later on about one of the announcements
+**[00:06:46]** we have there as well.
+**[00:06:47]** And so really we can think about these new models
+**[00:06:49]** coming in.
+**[00:06:50]** You heard about NVIDIA this morning as well and being
+**[00:06:52]** able to have access both the flagship capabilities and the
+**[00:06:55]** best of the OSS models across the board.
+**[00:06:58]** So let's talk about Claude.
+**[00:06:59]** Claude is also out there.
+**[00:07:01]** We launched Opus 4.8 last week as our newest model
+**[00:07:04]** that's in our Foundry catalog.
+**[00:07:06]** Please do check it out as part of this.
+**[00:07:08]** And I'm excited that today we can announce that Claude
+**[00:07:10]** is finally running on Azure.
+**[00:07:12]** It is actually running on GB three hundreds, our highest
+**[00:07:14]** end hardware that we have available.
+**[00:07:16]** And it really gives us a great way to be
+**[00:07:18]** able to bring that anthropic life cycle, all of the
+**[00:07:20]** development tools and bringing them directly to you from Azure.
+**[00:07:23]** So really exciting stuff as part of this too.
+**[00:07:25]** Cool.
+**[00:07:26]** Somebody's excited.
+**[00:07:27]** One person at least was excited about Claude.
+**[00:07:29]** People excited about Claude.
+**[00:07:30]** Yes, thank you.
+**[00:07:32]** All right, so all good.
+**[00:07:35]** All right, let's talk about Microsoft AI models, right?
+**[00:07:38]** So we brought a lot of energy this morning in
+**[00:07:40]** the keynote.
+**[00:07:40]** If you saw with Mustafa there, we've announced different models
+**[00:07:43]** that are coming onto Foundry.
+**[00:07:45]** They are live this morning.
+**[00:07:46]** My team just pushed them.
+**[00:07:47]** So go, go, all those folks.
+**[00:07:49]** Amazing.
+**[00:07:49]** So it's incredible to see that go live as Mustafa
+**[00:07:52]** was talking.
+**[00:07:53]** And so really you can think about this as being
+**[00:07:55]** exciting for Microsoft itself, right?
+**[00:07:57]** It's not that we're building the amazing platform that we
+**[00:08:00]** have inside of Foundry, but it's also that we're bringing
+**[00:08:03]** these first party models to you, really bringing the best
+**[00:08:06]** to what we can do, running those efficiently and cost
+**[00:08:08]** optimization scenarios that are really well handled.
+**[00:08:11]** Especially I would say, for example, on image 2.5.
+**[00:08:14]** This is one of the latest models that are out
+**[00:08:16]** there.
+**[00:08:16]** Please go try it out.
+**[00:08:17]** It's a great one as well.
+**[00:08:18]** And we can really see across thinking across image, across
+**[00:08:22]** code and audio models.
+**[00:08:23]** We really have a full multimodal application stack that's really
+**[00:08:26]** coming out with those first party models too.
+**[00:08:29]** So lots and lots of goodness that's happening across the
+**[00:08:31]** board with foundry models.
+**[00:08:33]** So what was our strategy?
+**[00:08:35]** So we've got lots of goodness in the catalog.
+**[00:08:37]** We've got 11,000 plus models to look for, but there's
+**[00:08:40]** even more that's part of this too.
+**[00:08:42]** So with foundry models, our strategy really is to innovate
+**[00:08:45]** across that full AI spectrum.
+**[00:08:47]** And so you see here on the one side, you've
+**[00:08:49]** really got the production grade frontier models.
+**[00:08:52]** You can use those quickly inside of your applications and
+**[00:08:54]** they have those strict operational requirements there.
+**[00:08:57]** On the other side, we also want to bring you
+**[00:08:59]** that cutting edge, that experimentation that really helps you unleash
+**[00:09:03]** the research and develop that as part of your applications
+**[00:09:06]** too.
+**[00:09:06]** And so you can check out things like Foundry Labs.
+**[00:09:08]** We've got a new set of capabilities that are out
+**[00:09:11]** there, primarily from Microsoft Research.
+**[00:09:13]** The latest and greatest pieces are there.
+**[00:09:15]** And then we basically have a great place to build
+**[00:09:17]** your models.
+**[00:09:18]** You can build them with confidence and then explore, you
+**[00:09:20]** know, the frontiers of what could be really essential for
+**[00:09:23]** the future.
+**[00:09:25]** So next piece of this is understanding the shifts that
+**[00:09:28]** we are seeing.
+**[00:09:29]** So it's not just about 1 reasoning model or one
+**[00:09:31]** frontier model happening across all of your different use cases.
+**[00:09:35]** Instead, we really want to think about the shifts that
+**[00:09:37]** are happening within those different segments.
+**[00:09:39]** And so you can see now this increasingly is coming
+**[00:09:42]** from these purpose built models.
+**[00:09:44]** And so purpose built models that are for specific domains.
+**[00:09:47]** And so not every problem warrants having the same general
+**[00:09:50]** purpose model, of course.
+**[00:09:51]** So geospatial, robotics, biomedical, material science, code, search, media, right,
+**[00:09:56]** Lots and lots of different categories of models in here
+**[00:09:59]** and you need specific ones for that.
+**[00:10:01]** So as developers, you really think about the best system
+**[00:10:04]** design that's being able to apply the models that you
+**[00:10:06]** can within those domain areas.
+**[00:10:08]** And so one of the ones that I'll call out
+**[00:10:10]** here specifically that's newest is Aurora 1.5.
+**[00:10:13]** You can see it here on our geospatial pieces.
+**[00:10:15]** It's really an amazing weather modelling system.
+**[00:10:17]** So if you have a great application for this, we
+**[00:10:19]** really think this is the cutting edge, has that satellite
+**[00:10:22]** imagery in their atmospheric data and can really scale out
+**[00:10:25]** where traditional models can't.
+**[00:10:27]** So lots and lots of goodness happening across here too,
+**[00:10:29]** NVIDIA.
+**[00:10:30]** Yeah, we're also are expanding our partnership with NVIDIA bringing
+**[00:10:34]** in addition and models from NVIDIA and Emotron recenting models,
+**[00:10:37]** models for physical AI like Cosmos and the new NVIDIA
+**[00:10:41]** AI weather models like Earth .2 technologies.
+**[00:10:44]** These models enable developers and enterprises to build systems that
+**[00:10:48]** recent act and respond to real world conditions.
+**[00:10:51]** And just going beyond software workloads into physical AI, we
+**[00:10:54]** actually have a pre recorded session with a very, very
+**[00:10:57]** cool demo of physical AI that I recommend that you
+**[00:10:59]** catch on.
+**[00:11:00]** Together with NVIDIA, we are enabling A unified platform where
+**[00:11:04]** developers can build, run on a scale AI systems that
+**[00:11:07]** spanned into physical.
+**[00:11:10]** OK, so let's see our foundry models in action.
+**[00:11:15]** I'm just going to give you a quick pointers as
+**[00:11:17]** you land in the Foundry portal.
+**[00:11:19]** So this is the foundry portal where you can see
+**[00:11:21]** all of the different models that we have available, all
+**[00:11:23]** of the different set of providers.
+**[00:11:26]** We have a leaderboard where we benchmark models across different
+**[00:11:30]** set of dimensions, quality, safety, throughput, bench and cost.
+**[00:11:34]** And we bring all of the models and also have
+**[00:11:36]** a set of trade off charts where you can use
+**[00:11:38]** to select models based on your particular set of trade-offs.
+**[00:11:42]** We also have the ability to compare models across different
+**[00:11:45]** providers, whether it is open source models or closed models,
+**[00:11:48]** and see how are they comparing across the different benchmarks
+**[00:11:52]** that we have and running side by side models.
+**[00:11:55]** If you want to see how they behave on a
+**[00:11:57]** given set of prompts, how much time do they take,
+**[00:11:59]** what is the responses that they have?
+**[00:12:01]** You can do them this comparison side by side.
+**[00:12:04]** This is really good when you're doing prototyping.
+**[00:12:06]** You can also save as an agent.
+**[00:12:08]** And when you save as an agent, of course, then
+**[00:12:10]** new capabilities show up like you can add a specific
+**[00:12:12]** set of tools, knowledge, memory and guard rails.
+**[00:12:15]** And you can also set a specific set of metrics.
+**[00:12:19]** In this particular case, I've set up task adherence, intend
+**[00:12:22]** resolution and relevance as part of the out-of-the-box metrics that
+**[00:12:25]** then foundry will do evaluations every time that the agent
+**[00:12:28]** is invoked.
+**[00:12:29]** So in this, when I go and run a request,
+**[00:12:31]** it's going to do a trace that I can then
+**[00:12:34]** go and watch and it's going to give me the
+**[00:12:36]** specifics spans around duration, what each of the turns are
+**[00:12:40]** going in.
+**[00:12:41]** And then it's going to also give me the outputs
+**[00:12:43]** of that evaluation.
+**[00:12:44]** And it's going to in this, in in this case,
+**[00:12:47]** it's doing LLMS as a judge and it's going to
+**[00:12:49]** tell whether or not it's passing.
+**[00:12:51]** And it's going to give me a specific set of
+**[00:12:53]** verbatim on like what happened during during that call.
+**[00:12:56]** So this is a great way into which you can
+**[00:12:58]** take the models that are available in the catalog, run
+**[00:13:01]** a set of like queries against them and it start
+**[00:13:04]** get ready for prototyping with them.
+**[00:13:05]** Awesome.
+**[00:13:09]** Great.
+**[00:13:09]** Oops, there we go.
+**[00:13:13]** And then throughout the the session, what we're going to
+**[00:13:15]** do is we're going to use a scenario where we're
+**[00:13:17]** going to be building a tree planning app.
+**[00:13:20]** And this one is basically, you know, typical scenario that
+**[00:13:22]** you have in the enterprise where there's specific goal that
+**[00:13:25]** you have to understand the intent.
+**[00:13:26]** You have to like, then make sure that you're making
+**[00:13:29]** a set of decisions based on the, on the, on
+**[00:13:31]** the prompts that you're getting and then giving an an
+**[00:13:34]** output to the user.
+**[00:13:36]** As I mentioned at the beginning, the key part of
+**[00:13:38]** that and that we want you to take away is
+**[00:13:40]** that you need to start with what success looks like.
+**[00:13:43]** What is your success criteria when it comes to correctness,
+**[00:13:46]** when it comes to compliance, when it comes to like
+**[00:13:48]** user behaviour and when it comes to like, what are
+**[00:13:50]** you going to use in the application to take it
+**[00:13:52]** to production?
+**[00:13:54]** And in, in that concept comes in the notion of,
+**[00:13:57]** of hill climbing.
+**[00:13:58]** And you see, you saw this in the keynote where
+**[00:14:00]** because you have a very clear understanding of what is
+**[00:14:04]** your success criteria, then you can go and continuously improve
+**[00:14:07]** on it, right?
+**[00:14:08]** And this is what we're going to do in the
+**[00:14:09]** session.
+**[00:14:10]** We're going to create that benchmark and we're going to
+**[00:14:12]** continuously improve on on that.
+**[00:14:14]** the IT typically the developer workflow starts where like you
+**[00:14:18]** have a scenario, you do have an understanding of what
+**[00:14:21]** success looks like and then you're going to throw prototype
+**[00:14:24]** it with what is the latest and greatest model that
+**[00:14:27]** has been recently announced, right?
+**[00:14:29]** With that, you can get a really good understanding of
+**[00:14:33]** like this, the the how the scenario behaves and whether
+**[00:14:36]** your particular application can you know what would be the
+**[00:14:39]** baseline for that?
+**[00:14:42]** This is what we're going to do at the first
+**[00:14:44]** step and just shout out on like everything that we're
+**[00:14:47]** going to show.
+**[00:14:48]** Of course, we build it with agents and you can
+**[00:14:50]** try it yourself.
+**[00:14:51]** So this is the AKA dot Ms.
+**[00:14:52]** link for all of the code that we're going to
+**[00:14:54]** show during the session.
+**[00:14:56]** And we're not going to go deeply super into code.
+**[00:14:59]** We're just going to go show the outputs, but everything
+**[00:15:01]** is right now in the GitHub repo for you to
+**[00:15:03]** try along.
+**[00:15:04]** And of course, I just want to just a shout
+**[00:15:06]** out of gratitude for Nithya, who was the mastermind.
+**[00:15:09]** We had all of the demos and she's done.
+**[00:15:12]** She did a great job to it.
+**[00:15:12]** So with that, let's jump into it.
+**[00:15:14]** All right, sorry.
+**[00:15:17]** #101 Thank you.
+**[00:15:18]** All right, awesome.
+**[00:15:19]** As Yina mentioned, so we have an incredible repo here.
+**[00:15:22]** I do guys encourage you all to go check it
+**[00:15:24]** out.
+**[00:15:25]** You can see definitely all the code that's been generated.
+**[00:15:27]** You can go through and follow these demos at the
+**[00:15:29]** same time.
+**[00:15:30]** But in the spirit of being able to make sure
+**[00:15:32]** that we're using agentic workflows as part of what we're
+**[00:15:35]** doing, I want to show you a little bit about
+**[00:15:37]** the outcome and how we're generating these things.
+**[00:15:39]** So we go through our scenario.
+**[00:15:41]** So you know, mentioned we're doing a travel app, right?
+**[00:15:43]** We need to build it for a robust set of
+**[00:15:45]** employee queries as part of this.
+**[00:15:46]** And so First off is just establishing what is our
+**[00:15:49]** baseline.
+**[00:15:49]** We can't improve unless we know what's going on.
+**[00:15:52]** And so we've taken a model straight off the bat.
+**[00:15:54]** So GPT 4.1, we're going to apply it basically to
+**[00:15:57]** every task in here and just establish our baseline.
+**[00:16:00]** So you can see we're going to work through here
+**[00:16:02]** being able to understand a little bit about the evaluations
+**[00:16:05]** run.
+**[00:16:06]** We just have a very simple data set, right?
+**[00:16:08]** We're just starting this off, We're prototyping our application.
+**[00:16:10]** So we're starting off with 20 or so seed rows
+**[00:16:13]** of data and you can check out the different pieces.
+**[00:16:16]** So here's our scorecard.
+**[00:16:17]** OK, it's not great, right?
+**[00:16:19]** It's not great.
+**[00:16:20]** We just have to accept it's the beginning of our
+**[00:16:21]** journey.
+**[00:16:22]** We're just starting our hill climb and so it's not
+**[00:16:24]** great.
+**[00:16:25]** So quality, you can see in this case is a
+**[00:16:27]** lot lower than we wanted as our target.
+**[00:16:29]** You can see that cost per task is actually pretty
+**[00:16:32]** expensive.
+**[00:16:33]** And we've got latency here.
+**[00:16:34]** So latency is not bad, right?
+**[00:16:35]** Latency is not bad, but we know where we need
+**[00:16:37]** to improve as part of.
+**[00:16:38]** This.
+**[00:16:38]** It's worth mentioning that here in quality, we're just using
+**[00:16:41]** out-of-the-box evaluators like Task Adherence and Task completion in order
+**[00:16:45]** to understand the quality, and then we'll like unpack a
+**[00:16:47]** little bit more on how you can bring your own
+**[00:16:50]** domain data.
+**[00:16:51]** Yeah.
+**[00:16:51]** So the big problem here is that we used one
+**[00:16:53]** Model 1 Frontierish model in this case for every job,
+**[00:16:56]** including basically what are the cheap ones in here.
+**[00:16:59]** So essentially we used a Ferrari for a grocery run,
+**[00:17:02]** right?
+**[00:17:02]** So we need to not do that so we can
+**[00:17:04]** think about, right.
+**[00:17:05]** The eval data here helps us to understand where we
+**[00:17:07]** need to go improve really quickly.
+**[00:17:09]** So in this case, we can understand like, you know,
+**[00:17:11]** how do we think about the model itself, What are
+**[00:17:13]** we going to do for the next pieces of it
+**[00:17:15]** and how are we going to route that content going
+**[00:17:17]** forward?
+**[00:17:18]** So a reality check, this is where we're starting on
+**[00:17:20]** our hill climb, right?
+**[00:17:21]** So we're at .8, sorry, we need to get to
+**[00:17:24]** .8, and our baseline is sitting at .59.
+**[00:17:27]** So that gap is really helpful, right?
+**[00:17:29]** It helps to understand where we need to go.
+**[00:17:31]** And so our job is basically not to guess, right?
+**[00:17:34]** We need to go through and look at this methodically.
+**[00:17:36]** So This is why we use that whole loop that
+**[00:17:38]** we talked about at the beginning.
+**[00:17:39]** We're going to think about that baseline, we're going to
+**[00:17:41]** measure it honestly, and then we're going to decide where
+**[00:17:44]** that next game comes from.
+**[00:17:45]** And so this is a really the piece here where
+**[00:17:47]** we're decomposing that workflow so that employees travel request.
+**[00:17:50]** It may look like a simple thing, we're all very
+**[00:17:52]** familiar with this, but we want to decompose it into
+**[00:17:55]** the different tasks.
+**[00:17:56]** Essentially, we have a job to be done, and for
+**[00:17:58]** each of these jobs to be done, we need to
+**[00:17:59]** make sure that we have the right model and be
+**[00:18:01]** able to use that directly here.
+**[00:18:03]** So we don't want to over build for each step.
+**[00:18:05]** We want to make sure that we're decomposing it correctly.
+**[00:18:07]** Choose the right prompt, choose the right model, choose the
+**[00:18:09]** right tool as part of this.
+**[00:18:11]** And then of course, the right context decomposition in this
+**[00:18:14]** case is really the way that we think about that
+**[00:18:16]** first optimization move as part of.
+**[00:18:18]** This yeah, think about it as like when you're building
+**[00:18:20]** an enterprise solution, you want to think about micro services
+**[00:18:23]** architecture and not using a single model for everything in
+**[00:18:25]** your solution.
+**[00:18:26]** Break it apart.
+**[00:18:27]** What are the jobs to be done?
+**[00:18:28]** And for each of the jobs to be done, you
+**[00:18:30]** can optimise a specific model that you use for that.
+**[00:18:32]** And the smaller the model, the faster you can do
+**[00:18:34]** it and the more cost you can have on optimization.
+**[00:18:37]** Then one of the best ways and the simplest way
+**[00:18:40]** that you can use to like when you decompose into
+**[00:18:43]** multiple models is to use a model router.
+**[00:18:45]** The model router takes automatically the prompts that you have
+**[00:18:49]** and then it will analyse based on the prompt, which
+**[00:18:51]** is the best model to send the request to.
+**[00:18:54]** We have in foundry a model router and actually it
+**[00:18:58]** supports 28 different models, including GPT 5.4, GPT 5.5, family
+**[00:19:04]** cloud Opus models.
+**[00:19:05]** And then it has also automatic failover to improve all
+**[00:19:08]** of the customer experience.
+**[00:19:09]** It has a genetic support and and also starting today,
+**[00:19:13]** we're like now being able to govern the policies of
+**[00:19:16]** which models are being used by model router.
+**[00:19:18]** So that like you know, from a, from a governance
+**[00:19:21]** perspective, you can auto select just the models that you
+**[00:19:24]** want at your solution to or like that you might
+**[00:19:26]** want your solution just to use.
+**[00:19:28]** We're also investing more on model router so that like
+**[00:19:31]** further down the line, we're going to open the ability
+**[00:19:34]** to customise, to fine tune the router itself and to
+**[00:19:36]** bring in fine tune models.
+**[00:19:39]** The second way that you can do instead of using
+**[00:19:41]** a model router is where you build a router yourself.
+**[00:19:44]** And like, you know, you have a small model that
+**[00:19:47]** routes the intent.
+**[00:19:48]** And for example, you can use a 4.1 nano model
+**[00:19:50]** or a Mistral small model to like just basically give
+**[00:19:53]** it a set of rules.
+**[00:19:55]** And you say like this is all of the different
+**[00:19:56]** set of scenarios.
+**[00:19:57]** This is all of the different jobs and then route
+**[00:20:00]** to the models that are specifically treating the the jobs
+**[00:20:03]** on the solution.
+**[00:20:05]** Let's take a look at that in action.
+**[00:20:06]** Yeah, OK.
+**[00:20:08]** Thank you.
+**[00:20:10]** Awesome.
+**[00:20:10]** So let's take a look here.
+**[00:20:11]** So you can see our simple router is coming here
+**[00:20:14]** where we're helping to decompose those different tasks.
+**[00:20:16]** So we look at the different intent as part of
+**[00:20:18]** this and then be able to run this to be
+**[00:20:20]** able to understand how to best use the the model
+**[00:20:22]** itself.
+**[00:20:23]** So once we've looked at those areas, I won't spend
+**[00:20:25]** your time looking at code, but in this case, we'll
+**[00:20:27]** understand and decompose these different pieces.
+**[00:20:29]** So once we have run this, we can actually see
+**[00:20:31]** that the agent has gone through, it's looked at the
+**[00:20:34]** different intents, it has broken down where we need to
+**[00:20:36]** have this and then be able to understand as well
+**[00:20:38]** for things like for each task, which model is being
+**[00:20:41]** recommended.
+**[00:20:42]** So here we go.
+**[00:20:42]** We can say that the quality results here, you can
+**[00:20:45]** see we're actually optimising for quality in this case.
+**[00:20:48]** So we've got the recommendations coming through from this different
+**[00:20:50]** skill.
+**[00:20:51]** We've configured and deployed it as part of all of
+**[00:20:53]** this.
+**[00:20:54]** And then we can see out of here, our synthetic
+**[00:20:56]** data has now become a much bigger.
+**[00:20:58]** So we've taken our 20 original seed rows.
+**[00:21:00]** We've created more synthetic data directly from Foundry.
+**[00:21:03]** So this is a great way of being able to
+**[00:21:05]** just quickly use this to generate the data that you
+**[00:21:07]** need to test your application.
+**[00:21:09]** So you can see I've got a target of 170
+**[00:21:11]** rows here.
+**[00:21:12]** And then out of that 170, we're going to pick
+**[00:21:14]** 50 and use those correctly.
+**[00:21:15]** So here's that 50, I'm going to take out my
+**[00:21:17]** different task types and now I'm going to go ahead
+**[00:21:20]** and run this.
+**[00:21:21]** So once I've done these eval results, here we go.
+**[00:21:23]** So we can actually check out.
+**[00:21:25]** So where were we before?
+**[00:21:26]** We were looking at our single Frontier model where we're
+**[00:21:29]** just running 4.1 and now we've run that multi model
+**[00:21:31]** router and you can see the results have improved here.
+**[00:21:34]** So cost and task, right, we've really gotten down to
+**[00:21:36]** where we need to be.
+**[00:21:37]** Cost is significantly as proved as a part of this.
+**[00:21:40]** And then we can still work on some of these
+**[00:21:41]** other areas like latency.
+**[00:21:43]** Let's keep going.
+**[00:21:47]** So when you think about model selection, it's really coming
+**[00:21:50]** down to these three different questions.
+**[00:21:52]** So often times we think about, you know, whether you're
+**[00:21:54]** choosing that model, it's whether you think about that capability
+**[00:21:57]** piece of it, can it even do the job at
+**[00:21:59]** all?
+**[00:21:59]** As part of this, we also want to think about
+**[00:22:01]** what's the bar for production, right?
+**[00:22:03]** When we're looking at latency, when we're looking at cost
+**[00:22:05]** optimization, can it do the job that you need inside
+**[00:22:07]** of production?
+**[00:22:08]** And then of course, can you afford to run it
+**[00:22:10]** at that scale, right?
+**[00:22:11]** This is the other piece of like when people often
+**[00:22:14]** look to these different areas, it's like, you know, cost
+**[00:22:17]** and those pieces be a big factor into how you
+**[00:22:19]** scale up.
+**[00:22:20]** So benchmarks of course, can help you, right?
+**[00:22:22]** In this case, they can understand a little bit more
+**[00:22:24]** about where you're going, but they shouldn't make the decision
+**[00:22:27]** for you.
+**[00:22:27]** And it's a really important piece of looking at this.
+**[00:22:30]** The answer comes from your workload, what model to use.
+**[00:22:33]** Evaluate on your workload, not the beautiful benchmarks that are
+**[00:22:36]** out there as part of this.
+**[00:22:38]** So let's go into evaluating and understanding a little bit
+**[00:22:41]** more.
+**[00:22:42]** Yeah, this is a great Segway because that's what we're
+**[00:22:45]** saying is benchmarks is not necessarily what is going to
+**[00:22:48]** lead your decision making in selecting a model is how
+**[00:22:51]** do you evaluate on your data and that should drive
+**[00:22:53]** your model selection.
+**[00:22:55]** As part of Foundry, we have, you know, an extensive
+**[00:22:58]** model of an evaluation catalog.
+**[00:23:01]** But like the key again, the point of the session
+**[00:23:03]** start with evaluations and in the improvement loop, the evaluation
+**[00:23:07]** become your product spec.
+**[00:23:09]** And as you're hill climbing, the evaluations become your IP.
+**[00:23:12]** This is where you're going to have your data come
+**[00:23:15]** in, your success criteria and the definition of like, what
+**[00:23:19]** looks good looks like for you.
+**[00:23:21]** It defines which trade-offs are going to matter for you.
+**[00:23:24]** And it's the measuring stick for every single change that
+**[00:23:27]** you're going to make to the system, whether that change
+**[00:23:29]** is something that you're making or make something that you
+**[00:23:32]** have to react to.
+**[00:23:33]** Like for example, model life cycle.
+**[00:23:35]** The like model is no longer available in the catalog.
+**[00:23:37]** Now what you're going to do, you have to continuously
+**[00:23:40]** run this set of evaluations to make sure that as
+**[00:23:43]** you bring in a new set of components to your
+**[00:23:46]** solution, you can continue to run as you're expecting.
+**[00:23:50]** So for this a specific scenario that we're using on
+**[00:23:53]** the planner trip evaluation like things like correctness, policy compliance.
+**[00:23:57]** And when I say policy is like the companies, they
+**[00:23:59]** always have a travel policy.
+**[00:24:00]** You must only spend this amount of dollars per DM
+**[00:24:03]** per day.
+**[00:24:03]** You only can't have, you know this if if there's
+**[00:24:07]** more than 7 hour trip, you can go do business
+**[00:24:09]** or not, right?
+**[00:24:10]** Like all of these different set of policies that are
+**[00:24:13]** specific for the scenario, the tool called validity, the escalation
+**[00:24:16]** accuracy when it doesn't go, doesn't need to go to
+**[00:24:19]** a human when not.
+**[00:24:20]** And of course safety and privacy as well.
+**[00:24:23]** Now in Foundry, we have a set of evaluators that
+**[00:24:26]** you can use.
+**[00:24:27]** We have built in evaluators that like help measure around
+**[00:24:31]** quality things like is the intent being adhered or not.
+**[00:24:35]** It can help also mesh building evaluators around risk and
+**[00:24:39]** safety and also identic evaluators that like will help you
+**[00:24:42]** understand if the if the solution is actually following across
+**[00:24:45]** multiple turns.
+**[00:24:47]** We also have the ability to create custom evaluators prompt
+**[00:24:50]** code and as we are announcing today at the conference,
+**[00:24:53]** rubric based evaluators.
+**[00:24:58]** Oh, we're announcing today.
+**[00:24:59]** Let me show you that OK, this is the evaluation
+**[00:25:05]** catalog in Foundry.
+**[00:25:07]** These are all of the out-of-the-box evaluators and the different
+**[00:25:10]** set of categories that I have here.
+**[00:25:12]** If you come in and create an evaluator, you're going
+**[00:25:14]** to see that you can have a rubric prompt or
+**[00:25:16]** code based evaluator.
+**[00:25:17]** When I go with prompts like you know, it gives
+**[00:25:19]** you the ability to select the prompt to get the
+**[00:25:22]** code.
+**[00:25:22]** When I go with rubric, I can select specific agent.
+**[00:25:26]** It's going to take the definition of that agent and
+**[00:25:28]** then it's going to generate it's going to take a
+**[00:25:29]** little bit because it analysis the agent.
+**[00:25:31]** So it's going to generate a specific set of rubrics
+**[00:25:34]** and across different dimensions.
+**[00:25:36]** So in this case, what I did is I took
+**[00:25:38]** an agent, this is the concierge starter agent, the travel
+**[00:25:41]** agent that we're working on.
+**[00:25:43]** And then based on the definition and some of the
+**[00:25:46]** seeding set of trajectories that the agent had, it generated
+**[00:25:49]** 7 different dimensions on this rubric.
+**[00:25:52]** And I can come in further and do edits on
+**[00:25:54]** it.
+**[00:25:54]** So for example, if I say, you know, the policy
+**[00:25:56]** compliance is actually more important.
+**[00:25:58]** And so it's not like I'm not going to give
+**[00:26:00]** it a weight of five, I'm going to give it
+**[00:26:02]** a weight of 8 and then update this and run
+**[00:26:04]** it.
+**[00:26:04]** When I run it, I'm going to see all of
+**[00:26:06]** the different set of results on all of the different
+**[00:26:09]** dimensions that I have and including both successes and not
+**[00:26:11]** successes.
+**[00:26:12]** And I can do further analysis of these results.
+**[00:26:14]** And the founder will show me a cluster analysis across
+**[00:26:18]** all of the different set evaluators that run where I
+**[00:26:21]** can see where did the agent hallucinated, where did it,
+**[00:26:25]** It didn't produce an adequate final answer.
+**[00:26:28]** And I can go deeper and understand what is happening
+**[00:26:31]** across the the system.
+**[00:26:32]** Everything that you see on the UI we can also
+**[00:26:35]** do in code, of course.
+**[00:26:37]** So let's take a look at code.
+**[00:26:39]** Awesome.
+**[00:26:40]** So just to show you a little bit about our
+**[00:26:42]** travel policy, obviously this is just for the example for
+**[00:26:45]** our demo here, but you can see in this case
+**[00:26:47]** we've got a skill file, right, that outlines clearly where
+**[00:26:50]** the travel policy is.
+**[00:26:51]** And that's basically what we're grounding against.
+**[00:26:53]** And so making sure that we have access to that
+**[00:26:55]** to generate our rubric.
+**[00:26:57]** So in this case, we've got a judge, right?
+**[00:26:58]** We've got a generic judge that's operating here.
+**[00:27:01]** So we can see that that LLM is actually looking
+**[00:27:04]** at answer quality.
+**[00:27:05]** But we need to make sure that we have that
+**[00:27:07]** 5 axis of the rubric to evaluate against.
+**[00:27:09]** And so you can see it outlines here.
+**[00:27:11]** We can check it out and make sure that it's
+**[00:27:13]** part of here.
+**[00:27:13]** So right now, you know, the score is the mean
+**[00:27:16]** as part of this too.
+**[00:27:17]** And so it doesn't really qualify everything that we need.
+**[00:27:20]** So in this case, we're going to rerun with both
+**[00:27:22]** of those agents with all of those 3 evaluators as
+**[00:27:25]** part of this too.
+**[00:27:26]** You can see here, it's grinding through, crunching through all
+**[00:27:29]** the data, making sure we have that eval piece done.
+**[00:27:31]** And then here's our scorecard that gets resulted at the
+**[00:27:34]** end.
+**[00:27:34]** So again, comparing to where we were versus now, where
+**[00:27:37]** we're going to be in the in the future here.
+**[00:27:39]** So you can see in this case, we've got policy
+**[00:27:41]** adherence.
+**[00:27:42]** And before we were striking it red, still pretty red
+**[00:27:45]** on this, but you can see now our multi multi
+**[00:27:47]** router has actually made that even better from a quality
+**[00:27:50]** perspective.
+**[00:27:50]** But our target has been missed still.
+**[00:27:52]** So we still got a bit of hell climbing to
+**[00:27:54]** do, but we're definitely making an improvement.
+**[00:27:56]** But we can see that that LLM judge has not
+**[00:27:58]** been able to take it on from a generic perspective.
+**[00:28:03]** There's an important call out there, which is like at
+**[00:28:05]** the beginning we did an assessment on quality on like
+**[00:28:08]** just baseline evaluators.
+**[00:28:09]** It gave us is like, OK, you're about halfway there.
+**[00:28:11]** And then we looked at like, is it really following
+**[00:28:14]** the travel policy, right?
+**[00:28:15]** And it wasn't.
+**[00:28:16]** We needed to create a custom evaluator specific for that
+**[00:28:19]** travel policy to see if it is following the policy
+**[00:28:22]** continuously or not.
+**[00:28:24]** And this is where it says like, OK, now that
+**[00:28:26]** particular angle of the scenario is not being met and
+**[00:28:28]** you need to figure out how do you optimize for
+**[00:28:31]** that outcome, right?
+**[00:28:32]** Like that's where the quality definition that you have, it's
+**[00:28:35]** so important and might also shift over time as you
+**[00:28:38]** get more details on your scenario.
+**[00:28:39]** Yeah.
+**[00:28:40]** Awesome.
+**[00:28:41]** So let's keep going.
+**[00:28:43]** I think as part of this too.
+**[00:28:44]** So we've got our custom evaluator essentially here and now
+**[00:28:48]** our hill climb has to continue.
+**[00:28:53]** All right, so let's talk about optimization.
+**[00:28:55]** So this is really that section where we find the
+**[00:28:58]** biggest wins, right?
+**[00:28:59]** This is across your whole application.
+**[00:29:00]** We've gone through these different segments.
+**[00:29:02]** And so we want to make sure that cost reduction
+**[00:29:05]** in AI really comes from just choosing a cheaper model.
+**[00:29:08]** I see customers doing this all the time.
+**[00:29:10]** I'm sure you all have tried this as well.
+**[00:29:12]** Don't think about it as being a cheaper model.
+**[00:29:13]** It is about the architectural decisions that you are making
+**[00:29:16]** inside of your application.
+**[00:29:19]** So optimization is that hill climb.
+**[00:29:21]** You can see that we've got the categories on the
+**[00:29:23]** side here that helps us to understand these multiple dimensions.
+**[00:29:27]** So we're not just pushing on cost in this case,
+**[00:29:29]** we're actually pushing on quality or just pushing on latency.
+**[00:29:32]** We need to find a way to improve the system
+**[00:29:34]** meaningfully across all of these dimensions.
+**[00:29:37]** And so that's why we want to think about optimization
+**[00:29:39]** as a really iterative process through this.
+**[00:29:42]** You start off with things like prompt improvements, you're going
+**[00:29:45]** to carry on with better context and then essentially have
+**[00:29:48]** decomposition routing as we showed.
+**[00:29:49]** And then of course, a deeper architectural relatency here, levers
+**[00:29:53]** are here.
+**[00:29:53]** So you want to think about maybe the goal is
+**[00:29:55]** not having a perfect endpoint, right?
+**[00:29:57]** It's really about how do we make that system really
+**[00:30:00]** operate and measurable of faster and better with every single
+**[00:30:03]** choice.
+**[00:30:05]** So when teams talk about AI cost and I'm sure
+**[00:30:07]** you all think about cost, right?
+**[00:30:08]** Can I show hands folks who are thinking about cost
+**[00:30:11]** in their applications almost I would say at least 3/4
+**[00:30:13]** of the room.
+**[00:30:14]** The rest of you are obviously bowlers for all of
+**[00:30:16]** your AI token use.
+**[00:30:17]** So it's all good.
+**[00:30:18]** So when teams talk about this AI cost piece of
+**[00:30:21]** this, it's really the instinct is to ask for that
+**[00:30:23]** cheaper model.
+**[00:30:24]** But in practice, it's actually the biggest wins are coming
+**[00:30:27]** from those system designs.
+**[00:30:29]** We have a full stack of levers inside our foundry.
+**[00:30:32]** And so I often think about here, hey, can I
+**[00:30:34]** do routing by workload?
+**[00:30:35]** Can I make sure I'm using batch inference, right?
+**[00:30:38]** That can save you lots of money as part of
+**[00:30:39]** what we're doing.
+**[00:30:40]** You can think about that.
+**[00:30:41]** Async jobs, you've got structured outputs here for wasted tokens,
+**[00:30:44]** caching here to help you avoid those repeated work, and
+**[00:30:47]** distillation that brings down some of the cost as well.
+**[00:30:50]** The important point is for every single one of these
+**[00:30:53]** levers, those gains compound.
+**[00:30:55]** So think about it across that spectrum, you're basically not
+**[00:30:58]** just doing one magical fix.
+**[00:30:59]** As much as we would all love that to happen,
+**[00:31:01]** you basically need an architecture that helps you to take
+**[00:31:04]** advantage of that and lets you stack all of those
+**[00:31:06]** optimizations together.
+**[00:31:08]** So that brings me into caching.
+**[00:31:10]** Caching is a big area, right, For all of us.
+**[00:31:12]** We've been on this journey for implicit caching.
+**[00:31:15]** We've been into this expanding out as we think about
+**[00:31:17]** different areas of caching and how they've been improved over
+**[00:31:20]** time.
+**[00:31:21]** And so today we're really excited to have an optimization
+**[00:31:23]** that's coming to caching that's new and different.
+**[00:31:26]** So caching has really evolved from that low level optimization.
+**[00:31:29]** And we want to make sure as part of this,
+**[00:31:31]** we have explicit prompt caching.
+**[00:31:33]** Explicit prompt caching is a newer service where we're really
+**[00:31:37]** looking at core system capabilities into that AI platform.
+**[00:31:40]** And so it's not just about, you know, here's one
+**[00:31:42]** lever we can pull, but instead about understanding not just
+**[00:31:45]** where the request lands, but delivering where we can a
+**[00:31:48]** consistent and guaranteed performance.
+**[00:31:50]** Make sure that you have the savings that you need.
+**[00:31:52]** Now, the cool thing here is you have that Azure
+**[00:31:55]** context cache.
+**[00:31:56]** And so this is not owned by us, the inference
+**[00:31:58]** provider.
+**[00:31:58]** This is owned by you, right?
+**[00:32:00]** Exciting, right, that you have this context cache, It is
+**[00:32:03]** your data.
+**[00:32:04]** You get to look at your deployments and your savings
+**[00:32:06]** as part of this.
+**[00:32:07]** And so you can think about this as really having
+**[00:32:09]** better privacy controls.
+**[00:32:11]** It has better operational availability across long running tasks and
+**[00:32:14]** it is available for private preview today.
+**[00:32:17]** Exciting.
+**[00:32:18]** Yes.
+**[00:32:18]** Yeah, that's cool.
+**[00:32:20]** Awesome, I.
+**[00:32:21]** Love it.
+**[00:32:22]** So I'm excited about this one.
+**[00:32:24]** It's a big piece of this.
+**[00:32:25]** All right, let's carry on on our journey latency so
+**[00:32:27]** we can think about that.
+**[00:32:29]** It's not just about, again, picking that faster model.
+**[00:32:31]** It's actually about how we design A faster system as
+**[00:32:34]** part of all of this.
+**[00:32:35]** And so you can improve the responsiveness here at multiple
+**[00:32:38]** stages.
+**[00:32:39]** And so we want to make sure that you can
+**[00:32:41]** route each task essentially to a faster model.
+**[00:32:43]** You saw us demo some of that too.
+**[00:32:44]** You can think about reserve capacity with things like PTU
+**[00:32:47]** as part of this consistency, having that consistency under a
+**[00:32:50]** large workload.
+**[00:32:51]** And then of course, use priority processing where you need
+**[00:32:54]** that toll road.
+**[00:32:55]** Basically that helps you quickly with low latency.
+**[00:32:57]** And so we want to make sure that you can
+**[00:32:59]** remove wasted work with prompt caching.
+**[00:33:01]** We talked about predicted outputs as well, structured outputs and
+**[00:33:05]** tighter token budgets.
+**[00:33:06]** So again, for all of those that you're on that
+**[00:33:08]** token budget.
+**[00:33:08]** So the part here, streaming of course, helps us here
+**[00:33:11]** with making sure that we have perceived speed.
+**[00:33:13]** And then API gateways as part of this can help
+**[00:33:15]** you to optimise that traffic across all of these regions.
+**[00:33:19]** So the whole idea here, that whole premise in all
+**[00:33:21]** of this is to make sure production latency is engineered
+**[00:33:25]** for it is not something you just hope and wish
+**[00:33:27]** for, right?
+**[00:33:28]** Really important piece of all of this.
+**[00:33:31]** All right, last one, let's talk about quality.
+**[00:33:33]** So quality levers, you've got the idea now you've got
+**[00:33:36]** lots of levers you can pull.
+**[00:33:37]** All these levers do amazing things inside of your applications.
+**[00:33:40]** And so in this case where quality is our constraint,
+**[00:33:43]** there's really a progression of levers that you can use.
+**[00:33:46]** You can think about how we go from lightweight essentially
+**[00:33:48]** to heavyweight on the other side of the slide.
+**[00:33:50]** So in this case, prompt design, number one thing I
+**[00:33:53]** would say is always start with prompt design.
+**[00:33:55]** Make sure that you're basically you're doing something that's faster
+**[00:33:58]** and cheapest as you can do, and then you can
+**[00:33:59]** basically ground that system with a retrieval or tool.
+**[00:34:02]** Use other pieces that you need as part of this.
+**[00:34:04]** If you need to go stronger, then you can go
+**[00:34:06]** into things like fine tuning and distillation.
+**[00:34:08]** We'll talk about those in just a second.
+**[00:34:10]** And for a really highly specialised phases, you could go
+**[00:34:13]** into your domain and have a custom model training.
+**[00:34:15]** In this case, the key is not to jump to
+**[00:34:17]** the heaviest solution first.
+**[00:34:19]** I know it's tempting.
+**[00:34:20]** Don't do it.
+**[00:34:21]** Start with the prompt pieces first.
+**[00:34:23]** Go all the way to the other end of the
+**[00:34:24]** spectrum.
+**[00:34:25]** Use as you need and again, incrementally stack all of
+**[00:34:27]** those benefits.
+**[00:34:29]** Alright, and we're going to start with the headiest.
+**[00:34:31]** We're going to do the model, of course, but but
+**[00:34:33]** but there's a full session on agent optimization that I
+**[00:34:37]** totally recommend that you go to.
+**[00:34:39]** We're going to show how you can automatically analyse what
+**[00:34:43]** the is happening with your agent.
+**[00:34:46]** Look at the how you can optimize your prompts and
+**[00:34:48]** how you can optimize your tools.
+**[00:34:50]** Please also go to that session as well, OK.
+**[00:34:54]** So for the policy itself, what we're going to do
+**[00:34:57]** is we're going to use distillation and fine tuning to
+**[00:35:01]** improve on that travel policy adherence issue that we saw
+**[00:35:05]** before.
+**[00:35:06]** Why we're doing this?
+**[00:35:07]** Well, because like we're going to take this this knowledge
+**[00:35:10]** of the travel policy and we're going to embed it
+**[00:35:12]** into the model.
+**[00:35:13]** We're going to use a bigger teacher model and then
+**[00:35:15]** teach that into a smaller model to make sure that
+**[00:35:18]** we can maintain the cost optimization that we want to
+**[00:35:21]** achieve.
+**[00:35:22]** And we're let's kind of see that in in code.
+**[00:35:27]** So first of all, fine tuning is super simple for
+**[00:35:30]** the set of models that we have as part of
+**[00:35:32]** like supervised fine.
+**[00:35:34]** We actually have multiple techniques.
+**[00:35:35]** We have supervised fine tuning that are preference optimization.
+**[00:35:38]** We have RL.
+**[00:35:39]** We have all of these as part of like a
+**[00:35:41]** managed service within Foundry.
+**[00:35:42]** It's a few clicks in the UI or a few
+**[00:35:45]** lines of code in your Python code.
+**[00:35:47]** Let me just quickly share how that looks like.
+**[00:35:50]** First you're selecting your endpoint, then you're selecting your data
+**[00:35:54]** set, Then you're also looking at like what is the
+**[00:35:57]** set of models?
+**[00:35:57]** What is your base model?
+**[00:35:58]** What is your training model?
+**[00:36:00]** And then within like less than 100 lines of code,
+**[00:36:03]** you have the job ready to submit for a, for
+**[00:36:06]** a training run.
+**[00:36:08]** Once you do that.
+**[00:36:10]** So what we did here is like we did that
+**[00:36:12]** the training run and then we went in and did
+**[00:36:16]** pull the, the deployment of that into a developer tier.
+**[00:36:19]** Developer tier is a way into which you can try
+**[00:36:22]** multiple models that you are fine tuning, deploy them in.
+**[00:36:26]** It's super cheap to run.
+**[00:36:27]** And then like you can find like you can test
+**[00:36:29]** them against your, your particular data.
+**[00:36:32]** In this particular case, we see these are the two
+**[00:36:34]** prior, 2 prior runs that we've done.
+**[00:36:36]** And then with the fine tune model in a 1.2
+**[00:36:39]** GBT for one nano, we got all the way up
+**[00:36:42]** into the quality that we wanted for that particular scenario.
+**[00:36:47]** So in a very simple fine tuning run, we got
+**[00:36:50]** to the quality that we wanted and the output that
+**[00:36:53]** we wanted on on that particular set.
+**[00:36:57]** We can also see this is the fine tuning experience
+**[00:36:59]** here in foundry where we can see like the last
+**[00:37:01]** curve and the token accuracy that we got from that
+**[00:37:04]** particular run.
+**[00:37:05]** And then we can continuously fine tune like basically as
+**[00:37:08]** we get new, new set of trajectories coming in, the
+**[00:37:10]** model will continuously tune and then we can see all
+**[00:37:13]** of the different checkpoints and look at the checkpoints and
+**[00:37:16]** and bring in checkpoints as well.
+**[00:37:19]** OK.
+**[00:37:21]** Let's go back to the up the, the specific set
+**[00:37:24]** of like you know, this is what we where we
+**[00:37:28]** are in terms of the optimization of the scenario.
+**[00:37:32]** But in terms of Foundry I mentioned there's we have
+**[00:37:35]** multiple ways into which you can post train models.
+**[00:37:38]** There's managed fine tuning, which is what we what I
+**[00:37:41]** showed just now, which is the simplest way to do
+**[00:37:43]** it.
+**[00:37:43]** You bring your data and Foundry handles everything that there
+**[00:37:46]** is, the data preparation, the training, the monitoring, the deployment.
+**[00:37:49]** It has the highest likelihood of success.
+**[00:37:53]** If you are not a machine learning professional or a
+**[00:37:56]** data scientist that has done ML in the past and
+**[00:37:58]** it's very low effort.
+**[00:38:00]** You can pick whether you want to do supervised fine
+**[00:38:02]** tuning, direct preference optimization, or or reinforce fine tuning.
+**[00:38:06]** We also have a serverless API.
+**[00:38:11]** We also have a serverless API that we're launching here
+**[00:38:14]** as part of a build where you can have control
+**[00:38:17]** of your rewards and the hyper parameters and Foundry handles
+**[00:38:21]** the infrastructure.
+**[00:38:22]** It produces a set of lower weights where then like
+**[00:38:25]** we overlay on top of like the set, the set
+**[00:38:27]** of deployments that we have.
+**[00:38:29]** There's no cluster management that you have to do.
+**[00:38:31]** And finally, we also offer full control RL where you
+**[00:38:34]** can have full ownership of the code, the distributed strategies
+**[00:38:38]** that you're using, the algorithms that you're bringing, whether you're
+**[00:38:42]** what type of GPU clusters you're using.
+**[00:38:44]** And then it foundry managers for you, the compute and
+**[00:38:47]** the orchestration.
+**[00:38:48]** And you can use frameworks like Slime on Viral in
+**[00:38:50]** order to do the training.
+**[00:38:52]** Of course, my recommendation is that you start at the
+**[00:38:54]** simplest one, see what you get because again, you have
+**[00:38:57]** the evaluations right.
+**[00:38:58]** Like this is the importance of defining your success criteria
+**[00:39:01]** and then move towards the right as your scenario demands.
+**[00:39:07]** Once you have your customized model, then you can bring
+**[00:39:11]** it in Foundry and and run it.
+**[00:39:13]** If it is an open source model, we have Foundry
+**[00:39:16]** managed compute and the partnership that we announced in GA
+**[00:39:20]** today with Fireworks and then like or or you can
+**[00:39:23]** deploy it on your own compute clusters.
+**[00:39:26]** Speaking of fireworks, this we are announcing the general availability
+**[00:39:31]** and that what it brings to customers is 0 day
+**[00:39:33]** access to optimised frontier models, the best in class inferencing
+**[00:39:38]** performance and making sure that it has that native integration
+**[00:39:41]** into Azure for that enterprise foundation.
+**[00:39:44]** So like that's the key differentiation when it comes to
+**[00:39:47]** leveraging Fireworks directly versus leverage micro fireworks on Foundry, which
+**[00:39:52]** means like it, it deeply integrates across all of the
+**[00:39:55]** enterprise stack that we offer.
+**[00:39:59]** We also have manage compute in Microsoft Foundry, which basically
+**[00:40:02]** is that for teams that are standardising on open models
+**[00:40:05]** and making sure that they want to have a broad
+**[00:40:07]** model selection.
+**[00:40:08]** This is where our partnership with Hugging Face shines in
+**[00:40:11]** like all of the different set of models that we
+**[00:40:13]** are are coming in from thousands of models that are
+**[00:40:16]** coming in from Hugging Face, from NVIDIA, from Microsoft Research.
+**[00:40:20]** Then you can use optimised runtimes like VLLMSG, LAN, the
+**[00:40:23]** NVIDIA names, runtime as well for efficient execution and then
+**[00:40:27]** like have all of the flexibility on compute where foundry
+**[00:40:31]** managers the accelerators and you can bring your own capacity
+**[00:40:34]** to have this full seam seamlessly integrated across the stack.
+**[00:40:38]** It uses the same auth, it uses the same API
+**[00:40:41]** endpoints, it uses the same SDK, and then you don't
+**[00:40:44]** have to manage all of that separately.
+**[00:40:48]** All right, we can talk about operations a little bit
+**[00:40:51]** more.
+**[00:40:51]** So this is where our AI systems are really looking
+**[00:40:54]** like production systems.
+**[00:40:55]** And so once you have selection, evaluation and optimization done,
+**[00:40:58]** the next challenge is really making sure that we are
+**[00:41:01]** operating that system with discipline.
+**[00:41:03]** So that really means observability.
+**[00:41:05]** And so I won't show too much of a demo
+**[00:41:07]** here.
+**[00:41:07]** What's in there?
+**[00:41:08]** It's available for you in the primary portal with lots
+**[00:41:10]** of goodness.
+**[00:41:11]** But really when you're taking something from prototype into production,
+**[00:41:14]** really that observability piece is critical to what you're doing.
+**[00:41:18]** And so we want to make sure we understand not
+**[00:41:20]** just what our AI system is actually outputting here, but
+**[00:41:23]** ensuring essentially as part of this, we are tracing, we're
+**[00:41:25]** evaluating and monitoring.
+**[00:41:27]** And so tracing lets you see that end to end
+**[00:41:29]** visibility across prompts.
+**[00:41:30]** We also make sure that we're tracing is giving you
+**[00:41:33]** that information that you need for tools evaluation, of course,
+**[00:41:35]** that lets us understand quality and safety and agent behaviour.
+**[00:41:39]** And then monitoring of course, is worth Azure monitor.
+**[00:41:41]** You can see that brings in the real time signals
+**[00:41:43]** that you need for cost and latency and all of
+**[00:41:46]** those pieces.
+**[00:41:47]** So if you want to make sure your AI system
+**[00:41:49]** is really great, right, we want to think about this
+**[00:41:51]** from a confidence perspective.
+**[00:41:53]** Really think about building observability into your loop straight away.
+**[00:41:57]** Now we have a great demo that's part of this
+**[00:41:59]** too.
+**[00:41:59]** We won't go through this too much but just to
+**[00:42:01]** show you what this looks like very quickly on the
+**[00:42:03]** foundry portal, you can see these directly in here.
+**[00:42:05]** You can see the the different areas and then this
+**[00:42:08]** case I'm picking on the time to the last bite
+**[00:42:10]** and I'm actually going to ask copilot directly in here.
+**[00:42:12]** How do I improve this right?
+**[00:42:13]** And it actually shows it to me directly in here.
+**[00:42:15]** So just a really great way of being able to
+**[00:42:17]** check out all of these different capabilities and having copilot
+**[00:42:20]** assistance directly in here too.
+**[00:42:23]** All right, take us home.
+**[00:42:25]** Yeah.
+**[00:42:25]** So, so multiple steps, multiple levers throughout the session we
+**[00:42:29]** showed an end to end scenario and what are the
+**[00:42:31]** set of things that you can do is to improve
+**[00:42:34]** in quality.
+**[00:42:35]** So at every step, this is the notion of hill
+**[00:42:37]** climbing that you saw us talk about in the keynote
+**[00:42:41]** today, the quality improving over time.
+**[00:42:43]** But the key set of thing, and again, the key
+**[00:42:46]** take away is start with your evals, the definition of
+**[00:42:49]** success.
+**[00:42:49]** How do you define that success criteria?
+**[00:42:52]** Foundry helps you along the way with Robert, like the
+**[00:42:55]** new capabilities that we have, whether you can bring in
+**[00:42:59]** your code, bring in your prompt or have Foundry help
+**[00:43:02]** you this like build up those rubrics using now the
+**[00:43:05]** new set of rubric based based evals capabilities.
+**[00:43:09]** So at the end of the day, make sure that
+**[00:43:11]** you're building the system, not just a prompt.
+**[00:43:13]** Long gone, long gone are the days of just prompt
+**[00:43:16]** engineering.
+**[00:43:18]** You need to make sure that you're picking up the
+**[00:43:20]** best model for the workload.
+**[00:43:21]** Decompose the set of scenarios that you have.
+**[00:43:24]** Think about old school micro services architecture when you're building
+**[00:43:28]** your solutions.
+**[00:43:30]** Evaluate on your particular scenario.
+**[00:43:32]** Think about the all of the different set of optimization
+**[00:43:36]** capabilities that you have across quality, latency and cost.
+**[00:43:40]** And then like understanding that understanding of your scenario, as
+**[00:43:44]** I mentioned before becomes your IP that then you can
+**[00:43:46]** further cost optimise on.
+**[00:43:49]** You need to operate with control.
+**[00:43:50]** Make sure that like you know, monitoring, versioning, governing, being
+**[00:43:54]** able to rollback, fully integrate into your CCICD pipeline.
+**[00:43:58]** All of those different pieces we enable and support as
+**[00:44:01]** part of Foundry with the integration that we have with
+**[00:44:03]** GitHub.
+**[00:44:04]** And then as we show during the session, continuously improve
+**[00:44:08]** so that like you can actually build not only solutions
+**[00:44:11]** that meet the goal, but that continuously meet that goal
+**[00:44:15]** over time as everything else changes around you.
+**[00:44:20]** All right.
+**[00:44:20]** So if we step back, this is your value proposition
+**[00:44:23]** on Foundry.
+**[00:44:24]** Of course, we think about this, right?
+**[00:44:25]** We're basically having a great way to select the model
+**[00:44:27]** to start off with.
+**[00:44:28]** You can think about how you scale that model as
+**[00:44:30]** part of this.
+**[00:44:31]** You can then optimize it, take it out globally, think
+**[00:44:34]** about how you think about changes and demand over time.
+**[00:44:36]** How do I iterate across this entire process?
+**[00:44:39]** And then of course, keep control, security, compliance operations all
+**[00:44:42]** the way through really is that it's not about model
+**[00:44:45]** choice.
+**[00:44:45]** This is about the entire platform value that we're delivering
+**[00:44:49]** as you're part of Foundry and really having that way
+**[00:44:51]** to build smarter systems as models and costs keep evolving.
+**[00:44:55]** So what else should we learn?
+**[00:44:56]** Well, there's a lot of other sessions that we have
+**[00:44:59]** at the conference for you to take a look.
+**[00:45:01]** Please join or watch the recordings.
+**[00:45:04]** This is part of the end to end set of
+**[00:45:06]** solutions that Foundry offers.
+**[00:45:08]** We talked about in this session more about models, but
+**[00:45:11]** there's other sessions that are going to go deeper into
+**[00:45:14]** post training, deeper into identic solutions, deeper into safety and,
+**[00:45:19]** and responsible AI as well.
+**[00:45:21]** And we're here to help you along the way.
+**[00:45:23]** Please connect with us.
+**[00:45:24]** Start building with foundryai.azure.com is the one thing that you
+**[00:45:28]** need to remember the session code where you can find
+**[00:45:31]** the link where you can find all of the code
+**[00:45:33]** that we shared as well.
+**[00:45:34]** And then we have a very active Discord community.
+**[00:45:37]** Please join us there.
+**[00:45:38]** And thank you for joining us today.
+**[00:45:41]** We appreciate that you're all here.
+**[00:45:43]** And I hope that you had a great time learning
+**[00:45:46]** with us how to continuously improve your AI systems.
+**[00:45:49]** Thank you folks.

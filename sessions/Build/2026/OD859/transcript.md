@@ -1,0 +1,688 @@
+**[00:00:00]** JEFFREY SUTHERLAND: In this session,
+**[00:00:01]** we're discussing something we all know is true.
+**[00:00:03]** Security is getting harder.
+**[00:00:05]** Threats scale, attackers adapt.
+**[00:00:07]** Even when you do the right things, underlying assumptions
+**[00:00:10]** in your apps or in the platform create risk.
+**[00:00:13]** And AI is transforming how attackers operate
+**[00:00:15]** and how we all must respond.
+**[00:00:18]** In Windows, we're changing the model.
+**[00:00:20]** But this isn't just Microsoft's problem, nor is it yours.
+**[00:00:24]** We're in this together.
+**[00:00:26]** We're raising the security baseline in Windows
+**[00:00:28]** so you can rely on stronger defaults
+**[00:00:31]** and your customers stay safer out of the box.
+**[00:00:34]** It's a shared responsibility
+**[00:00:36]** that creates a safer environment for all.
+**[00:00:40]** We remove insecure patterns from the platform.
+**[00:00:42]** You build on modern, supported foundations.
+**[00:00:45]** That's how we reduce risk across the entire ecosystem.
+**[00:00:51]** Let's frame the journey.
+**[00:00:52]** You'll see our shifts across three dimensions.
+**[00:00:55]** Reducing insecure legacy.
+**[00:00:57]** Enforcing code trust by default.
+**[00:00:59]** And preparing for the next generation of cryptography.
+**[00:01:04]** Let's start by removing some legacy code.
+**[00:01:07]** NTLM creates real risk.
+**[00:01:10]** We all know it.
+**[00:01:11]** Many environments still depend on it.
+**[00:01:13]** We're removing that risk while preserving real-world scenarios
+**[00:01:16]** so you can move forward without breaking your customers.
+**[00:01:19]** Start planning that transition now
+**[00:01:21]** so your customers don't feel the impact later.
+**[00:01:24]** Now, Mariam will walk you
+**[00:01:25]** through how the platform is changing and what we're doing
+**[00:01:28]** to minimize the impact on you and your users.
+**[00:01:32]** MARIAM GEWIDA: Thanks, Jeffrey.
+**[00:01:33]** Like you mentioned, let's first look at what NTLM is
+**[00:01:36]** and why it's considered weak and outdated.
+**[00:01:39]** NTLM is an authentication protocol
+**[00:01:41]** that goes all the way back to the early 2000s.
+**[00:01:43]** It has since been deprecated,
+**[00:01:45]** meaning it is no longer undergoing any
+**[00:01:47]** active development.
+**[00:01:49]** And organizations are strongly encouraged to move away from it
+**[00:01:52]** and onto more secure protocols like Kerberos.
+**[00:01:56]** Let's go through a typical NTLM authentication flow.
+**[00:01:59]** In this scenario, a client is trying to access a resource.
+**[00:02:03]** It connects to the server.
+**[00:02:05]** The server asks who you are, which is the challenge.
+**[00:02:08]** And then the client provides a string with a username
+**[00:02:11]** and password plus the response to the challenge.
+**[00:02:13]** The server gives access and the authentication goes through.
+**[00:02:17]** But what's the issue?
+**[00:02:18]** Number one, there's no server client verification.
+**[00:02:21]** And so when the client is connecting to the server,
+**[00:02:23]** it doesn't actually know that it is connecting
+**[00:02:25]** to the intended server.
+**[00:02:26]** So an attacker can intercept the request and act as the server.
+**[00:02:30]** Problem number two, it is super weak and old.
+**[00:02:33]** It uses super weak and old crypto.
+**[00:02:35]** The message that the client sends back
+**[00:02:37]** to the server uses an MD4-derived NT hash and HMAC MD5
+**[00:02:41]** to compute the challenge response during authentication.
+**[00:02:44]** And finally, problem number three, because of this lack
+**[00:02:48]** of mutual authentication and the use of outdated crypto,
+**[00:02:51]** an attacker can relay the challenge response
+**[00:02:53]** to another server without cracking the password.
+**[00:02:56]** So this, combined with the weak legacy hashing
+**[00:02:59]** and the reusable NT hashes, this makes NTLM highly susceptible
+**[00:03:03]** to relay and pass the hash attacks.
+**[00:03:06]** Knowing this, you might wonder why NTLM is still prominent
+**[00:03:09]** in so many environments.
+**[00:03:11]** Some of the key scenarios
+**[00:03:12]** where NTLM often becomes the only option
+**[00:03:14]** for authentication are when there is no line of sight
+**[00:03:17]** to a domain controller, in local account scenarios,
+**[00:03:20]** or in scenarios where there is an unknown SPN
+**[00:03:22]** or an IP address being used.
+**[00:03:26]** So as part of our Windows security hardening mission,
+**[00:03:29]** my team is fully committed
+**[00:03:30]** to help organizations protect their environments
+**[00:03:33]** against common attacks.
+**[00:03:34]** And so to do so, we have prioritized the elimination
+**[00:03:37]** of NTLM in Windows.
+**[00:03:38]** However, given the several key scenarios
+**[00:03:41]** where NTLM becomes the only option,
+**[00:03:43]** we have dedicated our time to expanding Kerberos support
+**[00:03:45]** in these exact scenarios.
+**[00:03:47]** So first, we built IAKerb, which is an extension
+**[00:03:50]** of Kerberos acting as a wrapper around Kerberos and enabling it
+**[00:03:54]** in scenarios where the reach
+**[00:03:56]** to a domain controller is restricted.
+**[00:03:58]** We also built LocalKDC, which is designed to act
+**[00:04:01]** as an authentication authority where it can talk
+**[00:04:05]** to a SAM database on a given Windows instance and give
+**[00:04:08]** out tickets for the identities that are local.
+**[00:04:10]** So with IAKerb and LocalKDC, you can eliminate some
+**[00:04:13]** of the most common uses of NTLM, further hardening the security
+**[00:04:17]** of your organization and your environment.
+**[00:04:21]** IAKerb and LocalKDC will be available in client
+**[00:04:23]** and server WIP over the next few weeks, and you are going
+**[00:04:26]** to be able to implement and test it.
+**[00:04:28]** So now let's look at how IAKerb really works behind the scenes.
+**[00:04:33]** In the first step, you see Kerberos authentication fails
+**[00:04:36]** because there is no line of sight to the domain controller.
+**[00:04:39]** The client then says, okay, I can still try IAKerb.
+**[00:04:42]** So the client communicates with the server both options
+**[00:04:45]** for authentication entailing Kerberos.
+**[00:04:48]** The server acknowledges that it can use IAKerb
+**[00:04:50]** and starts the negotiation process,
+**[00:04:52]** first attempting IAKerb, and it succeeds.
+**[00:04:55]** The client then gets the Kerberos tickets and succeeds
+**[00:04:58]** with Kerberos authentication.
+**[00:05:00]** One example where IAKerb applies is
+**[00:05:02]** when there's a remote user working from home
+**[00:05:05]** for a corporate that has public-facing corporate server,
+**[00:05:08]** for example.
+**[00:05:09]** And so to access the service, the user has to authenticate
+**[00:05:12]** to the service, and for some reason, they have VPN issues.
+**[00:05:15]** In this case, they cannot reach the domain controller,
+**[00:05:18]** and the domain controller is behind a firewall,
+**[00:05:20]** so they cannot even get a Kerberos ticket.
+**[00:05:22]** So in this scenario, IAKerb acts as a proxy for Kerberos,
+**[00:05:25]** and the server was essentially the middleman between the client
+**[00:05:28]** and the domain controller, as it forwarded the messages
+**[00:05:31]** between them and enabled the client to get a ticket
+**[00:05:33]** and present it to the service.
+**[00:05:35]** And with that, authentication with IAKerb is successful.
+**[00:05:39]** Now let's move on to local KDC, which is mostly used
+**[00:05:42]** in workgroup or cluster scenarios.
+**[00:05:44]** This works by having every Windows instance running a local
+**[00:05:48]** KDC that interacts with the local SAM database
+**[00:05:50]** on the given Windows system, and it has access
+**[00:05:53]** to the local accounts.
+**[00:05:55]** So when the client tries to authenticate the server,
+**[00:05:58]** the server will talk to the local KDC internally,
+**[00:06:01]** and it will be able to mint tickets for this identity,
+**[00:06:03]** enabling the authentication flow to go on.
+**[00:06:06]** The security benefits here is that it replaces NTLM
+**[00:06:09]** for local accounts, which is one of the largest scenarios
+**[00:06:11]** where we see NTLM usage today.
+**[00:06:13]** Now let's look at how authentication without NTLM
+**[00:06:16]** and with IAKerb and local KDC goes in this demo.
+**[00:06:19]** Here, I'm going to try to access a file share
+**[00:06:22]** in this standalone setup with two unjoined machines.
+**[00:06:26]** First, let's block NTLM.
+**[00:06:31]** Now if we look into the Wireshark capture,
+**[00:06:33]** we will be able to see what the client advertised to the server.
+**[00:06:36]** In that advertisement, we're going to see
+**[00:06:38]** that it advertised IAKerb.
+**[00:06:42]** Now let's see if we actually end up using NTLM.
+**[00:06:47]** They exchange a couple of IAKerb messages, and eventually we get
+**[00:06:52]** to a message that says, oh, everything was good.
+**[00:06:55]** I was able to authenticate using IAKerb,
+**[00:06:58]** and authentication succeeds.
+**[00:07:01]** Now let's move on into what we have already released,
+**[00:07:04]** and it will take you a step further
+**[00:07:05]** into enabling a more secure authentication protocol
+**[00:07:09]** in your environment.
+**[00:07:11]** Late last year, we released the enhanced NTLM auditing
+**[00:07:14]** protocols, which went out to Server 2025 and Client 24H2.
+**[00:07:19]** With the enhanced auditing, you will be able
+**[00:07:21]** to know why NTLM is being used, where it is being used,
+**[00:07:26]** and who the authentication request is going from and to.
+**[00:07:29]** We highly suggest that you start using NTLM auditing today
+**[00:07:33]** in your environment to know how NTLM is being used,
+**[00:07:36]** and that will take you a step further into preparing
+**[00:07:38]** into the overall disablement of NTLM in Windows.
+**[00:07:43]** We are also excited to announce that over the next few weeks,
+**[00:07:46]** we will also be releasing NTLM blocking policies.
+**[00:07:49]** These blocking policies are available
+**[00:07:51]** through the administrative templates
+**[00:07:52]** under Systems and then NTLM.
+**[00:07:54]** With these blocking policies, you will be able
+**[00:07:57]** to selectively block specific scenarios of NTLM
+**[00:08:00]** within your environment.
+**[00:08:01]** So this includes SSO blocking, includes disabling NTLM
+**[00:08:05]** for domain controllers, and so forth.
+**[00:08:07]** This will take you one step further into starting
+**[00:08:09]** to disable NTLM and looking at to see what breaks.
+**[00:08:13]** With that, with the enablement of IAKerb and local KDC,
+**[00:08:16]** you'll be able to move, successfully move away
+**[00:08:20]** from NTLM in your environment.
+**[00:08:23]** And so what can you start doing now with all
+**[00:08:25]** of these new features?
+**[00:08:26]** One, start using the enhanced NTLM auditing feature,
+**[00:08:29]** which we released last year.
+**[00:08:30]** Again, this will tell you how NTLM is being used
+**[00:08:33]** in your environment and what you can start doing today
+**[00:08:35]** to mitigate those NTLM scenarios.
+**[00:08:38]** Two, you start remediating.
+**[00:08:40]** Fix the unknown SPN scenarios.
+**[00:08:43]** Start registering your IPs.
+**[00:08:45]** Start to move away from third-party applications
+**[00:08:47]** that are hard-coded to use NTLM.
+**[00:08:50]** And then you can start in step three, piloting IAKerb
+**[00:08:53]** and local KDC in Windows Insiders for server and client.
+**[00:08:56]** Those will be available in server 2025
+**[00:08:58]** and Client 24H2 and above.
+**[00:09:01]** So you can start enabling those features.
+**[00:09:02]** And with the blocking policies, you will be able
+**[00:09:05]** to see successful Kerberos authentication even
+**[00:09:07]** when NTLM is blocked and in previously dependent cases.
+**[00:09:12]** And then finally, you can even start
+**[00:09:14]** to fully block NTLM in your environment.
+**[00:09:16]** And you can always reach out to us at NTLM@microsoft.com
+**[00:09:20]** to report any unique scenarios
+**[00:09:23]** that you identify NTLM usages in.
+**[00:09:25]** And we'll be happy to assist you in either migrating away
+**[00:09:27]** from NTLM in those scenarios or putting them into our backlog
+**[00:09:31]** of scenarios that we need to address moving forward.
+**[00:09:33]** And that's it.
+**[00:09:35]** JEFFREY SUTHERLAND: NTLM shows how we move forward together.
+**[00:09:38]** We remove insecure paths and we provide a working replacement.
+**[00:09:42]** Next, we apply that same idea to code execution.
+**[00:09:45]** Even with strong authentication,
+**[00:09:47]** untrusted code can still reach users.
+**[00:09:49]** So we're making trusted code the default experience on Windows.
+**[00:09:53]** Jordan will show what that means and where we need you
+**[00:09:56]** to adopt code signing for all of your code, including installers,
+**[00:10:00]** uninstallers, scripts, and add-ons.
+**[00:10:03]** JORDAN GEURTEN: Thanks, Jeffrey.
+**[00:10:04]** I'm Jordan at TPM here on the Windows Platform Integrity team.
+**[00:10:07]** Today, I'll be talking about new driver security
+**[00:10:10]** and app control code integrity changes coming to Windows.
+**[00:10:13]** These changes are all
+**[00:10:14]** about eliminating common attack paths, built-in protection.
+**[00:10:18]** This means fewer opportunities for attackers.
+**[00:10:20]** Microsoft is tightening driver trust
+**[00:10:22]** across the Windows platform.
+**[00:10:24]** Cross-sign drivers are no longer trusted by default.
+**[00:10:26]** We're moving to a model
+**[00:10:27]** where WHCP certified drivers are becoming the baseline.
+**[00:10:31]** You may ask why Microsoft is doing this.
+**[00:10:33]** Well, the cross-sign driver program has posed a security
+**[00:10:35]** risk for our partners and customers for years.
+**[00:10:38]** This program had relaxed partner vetting
+**[00:10:40]** and also didn't have anti-malware scanning,
+**[00:10:42]** which meant malicious content was signed and abused.
+**[00:10:45]** And the responsibility to protect signing keys fell
+**[00:10:48]** to our partners, which meant keys were stolen in some cases.
+**[00:10:52]** Additionally, the cross-signing program has been deprecated
+**[00:10:55]** since 2011.
+**[00:10:56]** Back in 2016, Windows already enforced WHCP signing
+**[00:11:00]** for some driver scenarios,
+**[00:11:01]** so we're simply expanding the enforcement.
+**[00:11:04]** We're protecting compatibility for users and systems
+**[00:11:07]** with a curated list of cross-signed drivers,
+**[00:11:09]** which was informed by trillions
+**[00:11:11]** of driver load diagnostic data signals.
+**[00:11:14]** The feature rolls out in two phases.
+**[00:11:16]** We start in audit mode, so Windows can measure impact
+**[00:11:19]** to our users and the systems
+**[00:11:21]** across three reboots and 100 system hours.
+**[00:11:24]** We then move into enforcement, provided there is no impact
+**[00:11:27]** to our users and the systems.
+**[00:11:30]** The driver policy update is hitting Windows 1124H2
+**[00:11:33]** and newer platforms in the May 2026 security update.
+**[00:11:37]** Windows Server 2025 is coming soon.
+**[00:11:40]** If you ship drivers, the action is simple.
+**[00:11:42]** Validate under audit mode
+**[00:11:45]** and WHCP certify your cross-signed drivers now.
+**[00:11:48]** Auditing your drivers is as easy as three steps.
+**[00:11:51]** The first step is on a system with a May 2026 update or newer.
+**[00:11:55]** First, check the state of the policy.
+**[00:11:58]** Here, I've provided PowerShell commands to easily get that.
+**[00:12:02]** Step two is to verify your drivers are WHCP certified using
+**[00:12:06]** tooling like SignTool or Sigcheck.
+**[00:12:08]** If drivers are WHCP signed,
+**[00:12:10]** they will be default trusted by the policy.
+**[00:12:13]** Step three, for non-WHCP certified drivers,
+**[00:12:17]** you need to test them against the policy.
+**[00:12:19]** PowerShell commands have been provided here.
+**[00:12:22]** If you observe no event log entries,
+**[00:12:24]** your drivers are trusted by policy.
+**[00:12:26]** If you see event log entries,
+**[00:12:28]** your drivers will be blocked by the new policy.
+**[00:12:30]** The last step is for any non-WHCP signed drivers,
+**[00:12:34]** regardless if they pass policy, we recommend going
+**[00:12:36]** through the WHCP certification process.
+**[00:12:39]** You can start by registering
+**[00:12:40]** at the Hardware Dev Center, HDC for short.
+**[00:12:43]** You need to then run and pass the HLK test
+**[00:12:47]** and submit the driver package to HDC,
+**[00:12:49]** or Microsoft will WHCP sign your drivers.
+**[00:12:53]** You want to finish by distributing the signed driver
+**[00:12:55]** through Windows Update.
+**[00:12:57]** Let's follow steps one through three to learn how
+**[00:12:59]** to verify your drivers against this new driver policy.
+**[00:13:02]** The first step is to determine the state of the policy.
+**[00:13:05]** Here, I've written a script using CI Tool,
+**[00:13:07]** which is an inbox utility, to get the policy state.
+**[00:13:10]** In my system's case, the policy is in enforcement mode,
+**[00:13:13]** so drivers will be blocked.
+**[00:13:15]** The next step is to verify the signatures
+**[00:13:17]** on each of my drivers.
+**[00:13:19]** Here, I have some Hello World drivers that are written
+**[00:13:21]** with various signature types to validate.
+**[00:13:24]** To validate each signature, I'm going to use SciTool,
+**[00:13:27]** which is a tool available in the SDK.
+**[00:13:30]** With these parameters, SciTool will dump all the signatures
+**[00:13:33]** on the driver, including any catalog signatures.
+**[00:13:37]** We can see that my first driver is cross-signed.
+**[00:13:40]** A cross-signed driver is any signature
+**[00:13:42]** with a certificate chaining to a root
+**[00:13:44]** that is not the Microsoft root.
+**[00:13:46]** This driver may be blocked by policy,
+**[00:13:48]** as cross-signed drivers are no longer trusted by default,
+**[00:13:51]** except for an explicit list for compatibility scenarios.
+**[00:13:54]** The second driver is WHCP certified.
+**[00:13:56]** The WHCP certified will have a certificate
+**[00:13:59]** that chains the Microsoft root CA 2010 in its signature.
+**[00:14:04]** We can see that the LEAP certificate is the Microsoft
+**[00:14:06]** Windows hardware compatibility publisher.
+**[00:14:08]** This driver is default trusted by policy.
+**[00:14:11]** I don't have to worry about it.
+**[00:14:12]** The third driver is dual-signed.
+**[00:14:15]** It is cross-signed and WHCP certified.
+**[00:14:19]** It is also default trusted by policy
+**[00:14:21]** because it is WHCP signed, so I don't have to worry
+**[00:14:24]** about this one as well.
+**[00:14:28]** The last step is to test drivers against the policy.
+**[00:14:31]** To verify my drivers, I'm going to load each one
+**[00:14:34]** and evaluate any audit and block events.
+**[00:14:37]** The only one that I'm worried
+**[00:14:38]** about is the exclusively cross-signed driver,
+**[00:14:40]** as it is no longer trusted by default.
+**[00:14:43]** Here, I have a script to automate loading my drivers
+**[00:14:46]** and another to pull all the audit and block events
+**[00:14:48]** for the Windows driver policy.
+**[00:14:50]** You can see that the non-WHCP certified driver is blocked
+**[00:14:53]** by the new policy.
+**[00:14:55]** There is a 3076 event for the audit version of the policy
+**[00:15:00]** and also a 3077 block event
+**[00:15:03]** for the enforcement mode of the policy.
+**[00:15:05]** I will need to WHCP certify this driver,
+**[00:15:08]** otherwise my customers will experience friction while
+**[00:15:10]** using it.
+**[00:15:12]** Switching gears to application security now.
+**[00:15:15]** Application control for business, or simply app control,
+**[00:15:17]** is Microsoft's application control security feature
+**[00:15:20]** for organizations.
+**[00:15:21]** App control is built directly into the Windows kernel
+**[00:15:24]** on desktop and server, which prevents the need to install
+**[00:15:27]** or download any clunky agents on top of systems.
+**[00:15:30]** It can validate kernel processes like drivers,
+**[00:15:33]** as well as applications and scripts, to lock down systems
+**[00:15:36]** to run only trusted, authorized code.
+**[00:15:40]** We integrate with Defender products
+**[00:15:41]** to make reporting easier and to make reputation
+**[00:15:44]** and intelligence-based decisions.
+**[00:15:47]** Organizations all over the globe running Windows 10, 11,
+**[00:15:50]** and Server 2016 or newer leverage app control
+**[00:15:53]** to secure their environments.
+**[00:15:55]** Organizations with app control face friction
+**[00:15:57]** when your applications are unsigned, however.
+**[00:16:00]** Help our collective customers by signing your code
+**[00:16:03]** to make Windows more secure and reduce friction for our users.
+**[00:16:06]** Smart app control builds on top of app control
+**[00:16:09]** and shifts the Windows trust model from the Wild West
+**[00:16:11]** and reactive AV blocks to a reputation
+**[00:16:14]** and trust-based model.
+**[00:16:15]** The feature is default-enabled on Windows 11 on tens
+**[00:16:18]** of millions of consumer devices, and the number
+**[00:16:20]** of protected users is growing every day.
+**[00:16:23]** Smart app control trusts vetted content
+**[00:16:25]** from the Microsoft Store, Windows components,
+**[00:16:28]** and drivers from the WHCP certification program
+**[00:16:31]** that we just talked about.
+**[00:16:32]** It also trusts signed applications from CAs
+**[00:16:35]** in the Microsoft Trusted Root program and content deemed safe
+**[00:16:39]** by Microsoft AI Reputation Services.
+**[00:16:42]** The feature does not trust unsigned apps
+**[00:16:44]** without reputation, as Windows cannot tell who built it
+**[00:16:48]** or verify the integrity on the content.
+**[00:16:50]** It is critical to sign your code.
+**[00:16:53]** If your code is unsigned and does not have reputation,
+**[00:16:56]** this will result in friction for Windows users.
+**[00:16:58]** Let's walk through how AI-driven app control stops malware.
+**[00:17:01]** When a user downloads an app with good reputation
+**[00:17:04]** from the Internet, the app gets successfully installed and run
+**[00:17:06]** on smart app control as it is considered safe.
+**[00:17:09]** When the user downloads an unsigned app without reputation,
+**[00:17:12]** the user ignores any warnings and tries to install anyways.
+**[00:17:16]** Smart app control protects that user,
+**[00:17:17]** and the app is blocked from running.
+**[00:17:20]** In the malicious case, the user unknowingly downloads a
+**[00:17:23]** malicious application.
+**[00:17:24]** Smart app control determines that the code is malicious,
+**[00:17:26]** and the app is blocked, thereby protecting the user.
+**[00:17:29]** As I've mentioned several times,
+**[00:17:31]** unsigned code causes frictions for your customers.
+**[00:17:34]** Your code must be signed to run smoothly now on Windows.
+**[00:17:38]** Artifact signing removes every excuse for not signing.
+**[00:17:41]** The Microsoft-provided signing service is affordable,
+**[00:17:43]** just $9.99 a month for the basic tier.
+**[00:17:46]** The service is also fully managed by Microsoft.
+**[00:17:49]** There are no added costs to you to manage certificates or keys,
+**[00:17:53]** and you don't have to worry about key rotation
+**[00:17:55]** or protecting key material.
+**[00:17:56]** We do that for you.
+**[00:17:58]** We've also met our developers where they are.
+**[00:18:00]** We integrate in CI/CD pipelines like GitHub and ADO,
+**[00:18:04]** and we also have CLI options.
+**[00:18:07]** The service also uses digest signing,
+**[00:18:09]** so your code does not leave your system.
+**[00:18:11]** Only a hash of the content is sent to the service,
+**[00:18:14]** so it is fast and secure.
+**[00:18:16]** It is also part of the trusted root program,
+**[00:18:19]** which builds reputation with smart app control.
+**[00:18:22]** Finally, we recommend testing your code
+**[00:18:24]** with smart app control enabled,
+**[00:18:26]** which you can now manually enable
+**[00:18:28]** in Windows 11, 24H2, and 25H2.
+**[00:18:32]** App control also now supports a new framework
+**[00:18:34]** to make your code app control aware.
+**[00:18:36]** You just need three things
+**[00:18:38]** to tailor your features based on the policy state.
+**[00:18:41]** The first is an app control manifest.
+**[00:18:44]** This can be on the system or remote.
+**[00:18:46]** This file will describe the settings in your application.
+**[00:18:50]** Second is the app setting definition.
+**[00:18:53]** This is the name of the setting and its type.
+**[00:18:56]** App control supports Boolean or string types.
+**[00:18:59]** The last step is calling the new Windows Lockdown Policy API,
+**[00:19:03]** or WLDP for short.
+**[00:19:05]** There is one API for each setting type.
+**[00:19:08]** With these three pieces in place, your organization
+**[00:19:11]** or users can write an app control policy,
+**[00:19:13]** which can control security behavior in your app.
+**[00:19:16]** Let's take a look at how to do this.
+**[00:19:18]** Here, I've created a secure plugin host
+**[00:19:20]** with two secure settings.
+**[00:19:22]** When app control policies are active
+**[00:19:24]** and the secure settings are enabled,
+**[00:19:26]** the plugins must be signed,
+**[00:19:27]** and the plugins cannot access the network.
+**[00:19:30]** Let's see how to build something similar.
+**[00:19:32]** We start with an application manifest.
+**[00:19:34]** We start by defining the application ID,
+**[00:19:37]** which is the name of the app, in a setting.
+**[00:19:39]** Each definition must have a setting name, a setting type,
+**[00:19:42]** which can be a bool or a string,
+**[00:19:45]** and whether to ignore audit policies.
+**[00:19:48]** The app manifests can be local, on the system, or remote,
+**[00:19:52]** for instance, on GitHub.
+**[00:19:54]** Next, we call the WLDP Get App Settings APIs.
+**[00:19:58]** We first import the WLDP DLL, and we use the API
+**[00:20:02]** which maps the setting type, either the bool,
+**[00:20:05]** string list, or string set API.
+**[00:20:08]** For my app, I'm using the boolean API.
+**[00:20:12]** Next, we use the app manifest ID.
+**[00:20:15]** This must match the ID in the manifest.
+**[00:20:18]** We provide the name of the setting and the out result.
+**[00:20:22]** This is the reconciliation app control does
+**[00:20:24]** across all the policies.
+**[00:20:26]** Finally, the API will return a status code, an age result.
+**[00:20:30]** This can help you debug any issues.
+**[00:20:33]** The status will be okay for successful calls.
+**[00:20:37]** Let's take a look at how this works in practice.
+**[00:20:40]** Here we have the secure plugin host running on a system.
+**[00:20:43]** Right now, no policies are active,
+**[00:20:45]** so the plugin host does not run in secure mode.
+**[00:20:48]** The app control author specifies the path and location
+**[00:20:51]** to the app manifest file for app control to consume.
+**[00:20:54]** They also set the states
+**[00:20:55]** of the settings they wish to enable or disable.
+**[00:21:02]** The IT admin then deploys the policy,
+**[00:21:04]** and on the next WLDP query,
+**[00:21:07]** app control verifies the setting states
+**[00:21:10]** and the reconciled state is returned back
+**[00:21:12]** to the application.
+**[00:21:13]** This is super exciting and impactful.
+**[00:21:14]** You can see that your app now runs
+**[00:21:16]** in maximum security mode based
+**[00:21:18]** on how your customer configured their app control policy.
+**[00:21:23]** Now, back to you, Jeffrey.
+**[00:21:25]** JEFFREY SUTHERLAND: What you just saw marks a shift
+**[00:21:27]** in expectations.
+**[00:21:28]** Windows is making a stronger promise to users.
+**[00:21:31]** Trusted code runs with less friction.
+**[00:21:33]** That benefits everyone, and it creates a clear responsibility.
+**[00:21:36]** If your code isn't trusted by default,
+**[00:21:39]** your users will feel that friction.
+**[00:21:41]** Now, underneath all of this,
+**[00:21:43]** cryptography forms the foundation.
+**[00:21:45]** That foundation is changing just as rapidly due
+**[00:21:48]** to the advent of quantum computing.
+**[00:21:51]** Now, Jason will now take us through what we need to know
+**[00:21:53]** about post-quantum cryptography and how you can stay ahead.
+**[00:21:58]** JASON FISHER: Thanks, Jeffrey.
+**[00:21:59]** My name is Jason Fisher, the Group Engineering Manager
+**[00:22:02]** for the Cryptography and Integrity team in Windows.
+**[00:22:05]** As mentioned, authentication isn't the only thing
+**[00:22:08]** that needs to evolve.
+**[00:22:09]** Cryptography itself is facing a long-term shift.
+**[00:22:13]** Thus, I am excited to be here today to talk
+**[00:22:15]** about post-quantum cryptography in Windows.
+**[00:22:20]** First off, what is a quantum computer?
+**[00:22:23]** It's a type of computer
+**[00:22:24]** that uses quantum mechanical phenomena,
+**[00:22:26]** such as superposition, to perform operations on data.
+**[00:22:29]** This allows quantum computers to use qubits,
+**[00:22:33]** which can perform multiple operations simultaneously,
+**[00:22:36]** making quantum computers faster than classical computers.
+**[00:22:40]** They have the potential to revolutionize many fields,
+**[00:22:43]** such as nature and science, by solving problems
+**[00:22:46]** that are currently beyond the capabilities
+**[00:22:48]** of classical computers.
+**[00:22:50]** However, a sufficiently powerful quantum computer could undermine
+**[00:22:54]** current encryption methods,
+**[00:22:56]** posing challenges to data security.
+**[00:22:59]** Quantum computers can be used to break many
+**[00:23:01]** of the asymmetric encryption methods that we use today,
+**[00:23:04]** such as RSA and elliptic curve Diffie-Hellman,
+**[00:23:07]** considered to be hard problems
+**[00:23:08]** that classical computers cannot solve in a feasible time.
+**[00:23:12]** Today, our encryption and communication models rely
+**[00:23:15]** on two math problems, discrete logarithm and factoring,
+**[00:23:19]** which are extremely difficult to solve and considered
+**[00:23:21]** as hard problems for classical computers.
+**[00:23:24]** However, it was proven that there is a way to solve them
+**[00:23:27]** by running Shor's algorithm on a capable quantum computer.
+**[00:23:31]** Post-quantum, or quantum-safe algorithms,
+**[00:23:34]** are thought to be secure against a crypt-analytic attack
+**[00:23:37]** from a quantum computer, as they are based
+**[00:23:39]** on different mathematical problems,
+**[00:23:41]** such as structured lattices and hash functions.
+**[00:23:46]** Quantum computers are in their early stages, and too small
+**[00:23:49]** to crack public-key cryptography today.
+**[00:23:52]** A quantum computer capable
+**[00:23:53]** of breaking encryption will likely require a large number
+**[00:23:56]** of qubits that are substantially greater
+**[00:23:59]** than today's quantum machines.
+**[00:24:01]** While the use of quantum computers
+**[00:24:02]** to break cryptography is still in the future,
+**[00:24:05]** the threat is realized today.
+**[00:24:07]** The effort to inventory
+**[00:24:09]** and update all asymmetric cryptography will arguably be
+**[00:24:13]** the most complex multi-year transition we have
+**[00:24:16]** ever undertaken.
+**[00:24:18]** There are increasing concerns related
+**[00:24:20]** to attackers harvesting data now with a view to being able
+**[00:24:24]** to decrypt it later when quantum computers are
+**[00:24:27]** sufficiently mature.
+**[00:24:29]** This is referred to as the harvest-now-decrypt-later style
+**[00:24:33]** of attack.
+**[00:24:34]** These mainly impact areas that need storage
+**[00:24:37]** of long-term sensitive data, such as health records,
+**[00:24:40]** or hardware and IoT devices, which will be deployed
+**[00:24:43]** in the field for many years, and likely beyond the point
+**[00:24:47]** where quantum computers can break their encryption.
+**[00:24:51]** On Windows, our efforts have been concentrated on areas
+**[00:24:55]** that offer the greatest leverage across this broad scope.
+**[00:24:59]** To ease in this transition,
+**[00:25:00]** we have been incorporating post-quantum cryptography
+**[00:25:02]** algorithms into Syncrypt,
+**[00:25:04]** the core open-source cryptography library
+**[00:25:07]** that powers our Windows and Linux operating systems.
+**[00:25:11]** In addition, we have been updating our standard crypto API
+**[00:25:14]** service, CNG, or cryptography next generation.
+**[00:25:19]** This includes the NIST-standardized ML-KEM
+**[00:25:22]** and ML-DSA algorithms for encryption
+**[00:25:25]** and digital signatures, respectively.
+**[00:25:27]** We have done so utilizing modern techniques,
+**[00:25:30]** including implementations in Rust with formal verification,
+**[00:25:34]** to ensure the highest grade of quality and correctness.
+**[00:25:38]** While these algorithms have been standardized,
+**[00:25:40]** they are still new, and there is some risk
+**[00:25:42]** that they could be broken, either with
+**[00:25:44]** or without the presence
+**[00:25:45]** of a sufficiently capable quantum computer.
+**[00:25:49]** Thus, we are additionally providing support
+**[00:25:51]** for the IETF-based hybrid composite algorithms,
+**[00:25:55]** which easily combine post-quantum algorithms
+**[00:25:58]** with their classical variants,
+**[00:26:00]** such as ML-KEM combined with ECDHE.
+**[00:26:03]** This allows safe integration of PQC algorithms into applications
+**[00:26:07]** and protocols today, without adding any additional risk.
+**[00:26:11]** Above the crypto libraries, we are also pleased to bring
+**[00:26:14]** in support for ML-DSA-based certificate and CMS APIs,
+**[00:26:19]** including both certificate enrollment via Active Directory
+**[00:26:22]** Certificate Services
+**[00:26:23]** and certificate chain building through Crypt32.
+**[00:26:26]** Lastly, our in-box implementation of TLS,
+**[00:26:29]** S-Channel, has been updated to support negotiation
+**[00:26:33]** of hybrid-based key exchange groups, a critical piece needed
+**[00:26:36]** to migrate TLS 1.3 connections to be quantum-resistant
+**[00:26:40]** from harvest-now, decrypt-later attacks.
+**[00:26:43]** As global standards and regulations continue to mature
+**[00:26:46]** in this ever-evolving space, we are committed to continuing
+**[00:26:49]** to update our cryptography infrastructure
+**[00:26:52]** to support customer needs.
+**[00:26:55]** Now, let's look at our first demo,
+**[00:26:57]** showcasing how you can use our CNG-BCrypt API interface
+**[00:27:02]** to perform ML-DSA signature and verification.
+**[00:27:05]** VOICEOVER: In this demo, we are going
+**[00:27:07]** to showcase how you can leverage our CNG-BCrypt API interface
+**[00:27:11]** to generate new ML-DSA keys and signed messages.
+**[00:27:15]** We have updated BCrypt Generate Key Pair
+**[00:27:18]** to support the ML-DSA cryptographic algorithms,
+**[00:27:22]** which can be neatly passed into Bcrypt Sign Hash
+**[00:27:25]** and Bcrypt Verify Signature
+**[00:27:26]** with the Bcrypt Pad PQ-DSA Signing Context.
+**[00:27:30]** This allows you to easily update your applications
+**[00:27:33]** that are already using Bcrypt for RSA or ECC today.
+**[00:27:37]** Here, you can see, we first call our configurable application
+**[00:27:40]** with ML-DSA 65, producing a signature of 3,309 bytes.
+**[00:27:45]** Now, let's compare with classic RSA 3K,
+**[00:27:48]** producing a signature of 384 bytes.
+**[00:27:52]** This highlights the size difference
+**[00:27:54]** between ML-DSA and RSA.
+**[00:27:57]** JASON FISHER: For our second demo, we will now focus
+**[00:27:59]** on composite ML-KEM for encapsulating data
+**[00:28:02]** that can be shared with a peer via Encrypt.
+**[00:28:05]** VOICEOVER: In this demo, we are going
+**[00:28:06]** to showcase how you can leverage our new composite ML-KEM plus
+**[00:28:10]** ECC parameter sets and new Encrypt Encapsulate
+**[00:28:14]** and Encrypt Decapsulate APIs to encrypt
+**[00:28:17]** and decrypt content via our CNG Encrypt API surface.
+**[00:28:21]** You start with our standard Encrypt Create Persisted Key API
+**[00:28:25]** to generate new composite ML-KEM key pairs.
+**[00:28:29]** You can then call Encrypt Export Key to produce a public key
+**[00:28:32]** to share with your peer.
+**[00:28:34]** In this case, we showed ML-KEM 768 with ECDH-P256,
+**[00:28:40]** producing a public key of 1,249 bytes.
+**[00:28:44]** On the receiving end, the peer can import
+**[00:28:46]** that key via Encrypt Import Key.
+**[00:28:49]** Once imported, that's when the peer can leverage our new
+**[00:28:52]** Encrypt Encapsulate API
+**[00:28:54]** to produce ciphertext and a shared secret.
+**[00:28:58]** In this case, with ML-KEM 768 and ECDH-P256,
+**[00:29:03]** the ciphertext was 1,155 bytes.
+**[00:29:07]** After sharing the ciphertext,
+**[00:29:09]** the originating client can call our new Encrypt Decapsulate API
+**[00:29:13]** to produce the same shared secret.
+**[00:29:16]** JASON FISHER: For our final demo, we will show an example
+**[00:29:18]** of a TLS connection being updated to negotiate
+**[00:29:22]** and communicate over hybrid key exchange groups.
+**[00:29:25]** VOICEOVER: In this final demo, we are going
+**[00:29:27]** to showcase how our Inbox TLS Library S-Channel has now been
+**[00:29:31]** updated to support hybrid key exchange groups.
+**[00:29:35]** Today, this requires updating policy on the device
+**[00:29:39]** to configure negotiation
+**[00:29:40]** of these new ML-KEM plus ECDH hybrids.
+**[00:29:43]** After configuration, you can see with this Wireshark trace
+**[00:29:47]** that by navigating to a peer,
+**[00:29:49]** which also supports hybrid key exchange,
+**[00:29:52]** the appropriate quantum safe group was selected.
+**[00:29:55]** JASON FISHER: As a call to action,
+**[00:29:57]** post-quantum cryptography is not just an upgrade.
+**[00:30:00]** It is a fundamental shift
+**[00:30:01]** to secure the next era of computing.
+**[00:30:04]** Thus, you should start now as transitioning takes time
+**[00:30:08]** and early prep is critical.
+**[00:30:10]** To start now, you should be planning Windows upgrades
+**[00:30:12]** to the latest operating system, moving to TLS 1.3
+**[00:30:16]** where applicable, updating your applications for ML-KEM
+**[00:30:19]** and ML-DSA, either in pure or composite mode,
+**[00:30:23]** and designing for crypto agility.
+**[00:30:25]** Because algorithms will be changing in the future,
+**[00:30:28]** the ability to migrate efficiently
+**[00:30:30]** and safely is critical.
+**[00:30:33]** Thank you for your time, and I am handing off
+**[00:30:35]** to Jeffrey to conclude.
+**[00:30:38]** JEFFREY SUTHERLAND: Now, let's bring it all together.
+**[00:30:40]** Across Windows, we're making a set of commitments.
+**[00:30:43]** Moving authentication off of legacy patterns.
+**[00:30:47]** Making code trust the default.
+**[00:30:49]** And advancing cryptography so it stays ahead of future threats.
+**[00:30:55]** Our shared responsibility is simple.
+**[00:30:57]** Your software stays secure by default
+**[00:30:59]** because the platform starts secure by default.
+**[00:31:02]** That only works if we both do our part.
+**[00:31:05]** For you, that means move off of legacy dependencies.
+**[00:31:08]** Sign everything you ship.
+**[00:31:10]** Design your apps for a world that's fundamentally different
+**[00:31:13]** because of quantum computing and AI.
+**[00:31:15]** When you take those steps, your apps run smoothly
+**[00:31:17]** and your users stay protected.
+**[00:31:19]** If you don't, friction shows up and your users feel it first.
+**[00:31:23]** This is how we raise the bar together.
+**[00:31:26]** We commit to delivering a stronger,
+**[00:31:27]** more secure foundation.
+**[00:31:29]** We ask you to meet us there
+**[00:31:30]** so we can protect the customers we share.
+**[00:31:32]** Because security only works
+**[00:31:34]** when the whole ecosystem moves forward together.

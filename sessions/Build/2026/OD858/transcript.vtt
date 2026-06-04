@@ -1,0 +1,832 @@
+WEBVTT
+
+00:00:01.050 --> 00:00:02.700
+SAMANTHA SONG: Hi,
+I'm Samantha Song
+
+00:00:02.700 --> 00:00:05.250
+and I'm a product manager
+on the Windows platform.
+
+00:00:05.250 --> 00:00:06.270
+Check this out.
+
+00:00:06.270 --> 00:00:09.510
+My keyboard looks like a
+koi fish pond right now,
+
+00:00:09.510 --> 00:00:15.180
+87 individual LEDs, each one a
+pixel in a little aquatic scene.
+
+00:00:15.180 --> 00:00:17.790
+Fish are swimming, lily
+pads are floating,
+
+00:00:17.790 --> 00:00:19.830
+and there's ripple physics.
+
+00:00:19.830 --> 00:00:22.020
+My PC orchestrated all of this
+
+00:00:22.020 --> 00:00:24.900
+through natural
+language instructions.
+
+00:00:24.900 --> 00:00:28.500
+As developers, we spend so
+much time on our computers.
+
+00:00:28.500 --> 00:00:32.310
+Half of my time awake is spent
+looking at my Windows device.
+
+00:00:32.310 --> 00:00:35.310
+It should at least look and
+feel personal, and not just
+
+00:00:35.310 --> 00:00:38.910
+like a default install that
+goes to a billion other people.
+
+00:00:38.910 --> 00:00:41.430
+Today, personalization
+means digging
+
+00:00:41.430 --> 00:00:43.320
+through nested settings panels
+
+00:00:43.320 --> 00:00:46.470
+and toggling options you
+didn't know existed.
+
+00:00:46.470 --> 00:00:49.140
+Want to coordinate your
+accent color, wallpaper,
+
+00:00:49.140 --> 00:00:50.520
+and keyboard lighting?
+
+00:00:50.520 --> 00:00:53.850
+That's three different
+settings pages at a minimum.
+
+00:00:53.850 --> 00:00:55.410
+And if you want to go
+deeper, you're looking
+
+00:00:55.410 --> 00:00:58.170
+at potentially multiple
+third-party apps
+
+00:00:58.170 --> 00:01:00.960
+and navigating registry keys.
+
+00:01:00.960 --> 00:01:03.600
+As a developer, you
+know these APIs exist,
+
+00:01:03.600 --> 00:01:05.400
+but stitching them
+together into something
+
+00:01:05.400 --> 00:01:07.530
+that feels good could
+be a weekend project
+
+00:01:07.530 --> 00:01:09.030
+that you never get to.
+
+00:01:09.030 --> 00:01:12.000
+Like here, this is just part of
+the code that you would need
+
+00:01:12.000 --> 00:01:14.870
+to write to just turn
+your keyboard red.
+
+00:01:14.870 --> 00:01:17.240
+But what if you could tell your
+agent that you want to turn
+
+00:01:17.240 --> 00:01:20.210
+on your Zen coding vibe
+and it handles all of it?
+
+00:01:20.210 --> 00:01:22.940
+Your wallpaper, accent
+color, dark mode,
+
+00:01:22.940 --> 00:01:24.980
+RGB lighting in one shot?
+
+00:01:24.980 --> 00:01:26.760
+That would be fun.
+
+00:01:26.760 --> 00:01:30.090
+Or have it dynamically adjust
+to your computer use needs.
+
+00:01:30.090 --> 00:01:32.700
+Like I love to watch music
+videos while I work,
+
+00:01:32.700 --> 00:01:35.460
+so I customized my keyboard so
+that it reflects the colors
+
+00:01:35.460 --> 00:01:38.220
+on my screen as I have
+music videos playing
+
+00:01:38.220 --> 00:01:40.020
+in the background.
+
+00:01:40.020 --> 00:01:41.430
+So how can you do this?
+
+00:01:41.430 --> 00:01:42.930
+Let me break it down.
+
+00:01:42.930 --> 00:01:43.860
+I've created a skill
+
+00:01:43.860 --> 00:01:46.860
+that streamlines
+personalization with agents.
+
+00:01:46.860 --> 00:01:48.630
+Windows provides
+the capabilities
+
+00:01:48.630 --> 00:01:51.840
+so that agents can interact
+directly with the OS.
+
+00:01:51.840 --> 00:01:55.980
+Agents can generate their own
+code, use MCP servers, skills,
+
+00:01:55.980 --> 00:01:58.080
+all to accomplish the
+task you have described
+
+00:01:58.080 --> 00:02:00.060
+through natural language.
+
+00:02:00.060 --> 00:02:03.000
+Today I'll be showing you my
+skill, which exists as a repo
+
+00:02:03.000 --> 00:02:05.430
+with a skill.md at the root.
+
+00:02:05.430 --> 00:02:08.310
+That markdown file is your
+contract with the agent.
+
+00:02:08.310 --> 00:02:11.790
+It declares what tools are
+available, what commands to run,
+
+00:02:11.790 --> 00:02:14.370
+and what parameters they accept.
+
+00:02:14.370 --> 00:02:17.130
+The agent reads it, reasons
+about user's intent,
+
+00:02:17.130 --> 00:02:18.900
+and calls your tooling.
+
+00:02:18.900 --> 00:02:22.860
+No SDK to integrate, no
+API service to design.
+
+00:02:22.860 --> 00:02:25.530
+Skills are great because
+they define clear guidelines
+
+00:02:25.530 --> 00:02:26.610
+for agents.
+
+00:02:26.610 --> 00:02:29.610
+So instead of spinning their
+wheels, wasting tokens,
+
+00:02:29.610 --> 00:02:31.620
+trying to interpret your intent,
+
+00:02:31.620 --> 00:02:33.810
+they know to use these
+predefined tools
+
+00:02:33.810 --> 00:02:35.880
+to accomplish a type of task.
+
+00:02:35.880 --> 00:02:37.170
+This intelligence layer,
+
+00:02:37.170 --> 00:02:39.750
+paired with exposed
+Windows capabilities,
+
+00:02:39.750 --> 00:02:42.360
+means that we can
+get creative here.
+
+00:02:42.360 --> 00:02:45.960
+You say, make everything cherry
+blossom themed for spring,
+
+00:02:45.960 --> 00:02:47.670
+and the agent picks
+your wallpaper,
+
+00:02:47.670 --> 00:02:50.010
+chooses a pink accent color,
+
+00:02:50.010 --> 00:02:52.740
+enables taskbar color
+using skill commands
+
+00:02:52.740 --> 00:02:54.930
+that map to real Windows APIs.
+
+00:02:54.930 --> 00:02:58.530
+The skill I'll be demoing is
+an open-source Copilot skill.
+
+00:02:58.530 --> 00:03:00.630
+I am a huge fan of
+colorful lights.
+
+00:03:00.630 --> 00:03:04.140
+I have my RGB dynamic
+lighting enabled keyboard
+
+00:03:04.140 --> 00:03:06.000
+and a lamp that I love.
+
+00:03:06.000 --> 00:03:08.550
+Previously, I would have to
+go into settings and play
+
+00:03:08.550 --> 00:03:11.580
+around with the preset effects
+and colors to get close
+
+00:03:11.580 --> 00:03:15.210
+to the vibe that I wanted to
+feel that day, which was fine.
+
+00:03:15.210 --> 00:03:17.220
+It would just take
+time, and I was limited
+
+00:03:17.220 --> 00:03:19.680
+to what was already
+available in settings,
+
+00:03:19.680 --> 00:03:21.420
+which are great effects
+meant to appeal
+
+00:03:21.420 --> 00:03:23.400
+to a broad range of users.
+
+00:03:23.400 --> 00:03:26.910
+But what if I wanted my RGB
+keyboard to reflect my creative
+
+00:03:26.910 --> 00:03:28.620
+and artistic personality?
+
+00:03:28.620 --> 00:03:31.740
+What if I wanted it to
+reflect my love of music?
+
+00:03:31.740 --> 00:03:33.240
+Or what if I just
+woke up one day
+
+00:03:33.240 --> 00:03:36.810
+and decided I wanted my keyboard
+to feel like a Zen garden
+
+00:03:36.810 --> 00:03:39.000
+with blooming flowers?
+
+00:03:39.000 --> 00:03:41.940
+Agents can use public
+LampArray APIs to design
+
+00:03:41.940 --> 00:03:45.330
+and implement cool per lamp
+effects and animations.
+
+00:03:45.330 --> 00:03:47.910
+And that's what I've
+programmed my skill to do.
+
+00:03:47.910 --> 00:03:52.590
+The skills modules execute it
+reliably against real OS APIs.
+
+00:03:52.590 --> 00:03:56.040
+The C# driver discovers
+all LampArray devices.
+
+00:03:56.040 --> 00:03:58.920
+The Python effect scripts
+implement render frame,
+
+00:03:58.920 --> 00:04:02.310
+a function, from time
+to per lamp colors.
+
+00:04:02.310 --> 00:04:06.750
+Koi fish, shooting stars, ocean
+waves, falling raindrops,
+
+00:04:06.750 --> 00:04:10.350
+all just math that
+translates to color.
+
+00:04:10.350 --> 00:04:13.020
+The theme module
+goes beyond RGB.
+
+00:04:13.020 --> 00:04:16.590
+You say ocean theme, and the
+skill orchestrates everything
+
+00:04:16.590 --> 00:04:17.940
+in a single pass.
+
+00:04:17.940 --> 00:04:21.180
+It can download themed
+wallpapers, write accent colors
+
+00:04:21.180 --> 00:04:24.930
+to the Explorer accent
+registry path, and more.
+
+00:04:24.930 --> 00:04:26.670
+This skill ships with a library
+
+00:04:26.670 --> 00:04:30.330
+of real Microsoft
+MSIX package themes.
+
+00:04:30.330 --> 00:04:32.820
+Personalization is
+the visible scenario.
+
+00:04:32.820 --> 00:04:35.880
+The underlying change is
+intent becoming a first-class
+
+00:04:35.880 --> 00:04:37.950
+system input.
+
+00:04:37.950 --> 00:04:40.920
+In this experience, I
+expressed a single intent.
+
+00:04:40.920 --> 00:04:42.120
+An agent interprets it
+
+00:04:42.120 --> 00:04:45.120
+and executes it directly
+against Windows.
+
+00:04:45.120 --> 00:04:49.050
+There is no manual setup across
+themes, lighting, or settings.
+
+00:04:49.050 --> 00:04:52.260
+The system treats it as
+one coherent action.
+
+00:04:52.260 --> 00:04:55.920
+And from there, you can start
+to see the art of the possible.
+
+00:04:55.920 --> 00:04:58.380
+At the enterprise level,
+you could imagine a world
+
+00:04:58.380 --> 00:05:02.190
+where a user switches into
+a secure finance mode,
+
+00:05:02.190 --> 00:05:05.100
+and the system aligns
+apps, access boundaries,
+
+00:05:05.100 --> 00:05:07.500
+and environment automatically.
+
+00:05:07.500 --> 00:05:10.080
+And for developers, you could
+imagine skills becoming the
+
+00:05:10.080 --> 00:05:12.630
+interface layer, where
+instead of scripts
+
+00:05:12.630 --> 00:05:16.320
+and fragmented tooling,
+capabilities are defined once
+
+00:05:16.320 --> 00:05:19.560
+and reused consistently
+by agents.
+
+00:05:19.560 --> 00:05:21.660
+Windows is evolving
+into a platform
+
+00:05:21.660 --> 00:05:24.960
+where natural language can
+map to real system outcomes,
+
+00:05:24.960 --> 00:05:28.100
+with the structure and
+primitives needed to make
+
+00:05:28.100 --> 00:05:31.040
+that reliable, safe,
+and extensible.
+
+00:05:31.040 --> 00:05:32.900
+To build the skill
+I'll be demoing today,
+
+00:05:32.900 --> 00:05:35.600
+I described my vision
+to GitHub Copilot,
+
+00:05:35.600 --> 00:05:37.760
+and it scaffolded
+the.NET driver,
+
+00:05:37.760 --> 00:05:41.400
+wrote the effect scripts, built
+the theme engine, everything.
+
+00:05:41.400 --> 00:05:44.250
+I used a GitHub Copilot CLI,
+
+00:05:44.250 --> 00:05:46.440
+which you can install
+from the link here.
+
+00:05:46.440 --> 00:05:49.920
+And I'm also showing a link to
+the public repo for my skill.
+
+00:05:49.920 --> 00:05:52.980
+First, I'm going to show off
+how agents can generate custom
+
+00:05:52.980 --> 00:05:56.310
+animations based on
+a user's prompt.
+
+00:05:56.310 --> 00:05:58.590
+My keyboard is running
+one right now.
+
+00:05:58.590 --> 00:06:01.170
+This effect actually
+came to me in a dream.
+
+00:06:01.170 --> 00:06:03.120
+I was like, what if my
+keyboard could look
+
+00:06:03.120 --> 00:06:05.280
+like a koi fish
+swimming in a pond?
+
+00:06:05.280 --> 00:06:06.930
+I gave this prompt to my agent,
+
+00:06:06.930 --> 00:06:09.300
+and it generated
+a pond simulation
+
+00:06:09.300 --> 00:06:12.990
+with the 87 individual
+LEDs in my keyboard.
+
+00:06:12.990 --> 00:06:15.390
+You can see the swimming
+fish, lily pads, ripples,
+
+00:06:15.390 --> 00:06:17.640
+all from just a few
+lines of Python.
+
+00:06:17.640 --> 00:06:19.860
+Let's see what other
+effects it can generate.
+
+00:06:19.860 --> 00:06:22.680
+Hmm, what about a
+cozy campfire theme
+
+00:06:22.680 --> 00:06:25.590
+for all my dynamic lighting
+compatible devices?
+
+00:06:25.590 --> 00:06:27.600
+Let's see what it comes up with.
+
+00:06:27.600 --> 00:06:29.280
+Code generation on Windows.
+
+00:06:29.280 --> 00:06:30.930
+So powerful.
+
+00:06:30.930 --> 00:06:32.430
+See what happened?
+
+00:06:32.430 --> 00:06:35.790
+The agent reasoned,
+generated a Python script,
+
+00:06:35.790 --> 00:06:38.730
+implemented render frame
+with the fire effects,
+
+00:06:38.730 --> 00:06:41.250
+and ran it on my
+keyboard and lamp.
+
+00:06:41.250 --> 00:06:43.920
+That's agentic code
+generation executing
+
+00:06:43.920 --> 00:06:46.470
+against real Windows APIs.
+
+00:06:46.470 --> 00:06:48.240
+But why just stop
+at my keyboard?
+
+00:06:48.240 --> 00:06:50.070
+With Windows primitives,
+I should be able
+
+00:06:50.070 --> 00:06:52.230
+to change my whole
+Windows theme.
+
+00:06:52.230 --> 00:06:55.800
+I'm talking wallpaper, accent
+color, light mode, dark mode.
+
+00:06:55.800 --> 00:06:59.130
+One sentence to my agent,
+and I can change everything.
+
+00:06:59.130 --> 00:07:01.740
+Let's say I open my
+desktop in the morning,
+
+00:07:01.740 --> 00:07:05.190
+and I see the classic Windows
+Bloom theme, which is beautiful
+
+00:07:05.190 --> 00:07:07.770
+but maybe doesn't
+really feel like me.
+
+00:07:07.770 --> 00:07:09.870
+Today, I'm feeling
+a bit stressed.
+
+00:07:09.870 --> 00:07:11.100
+I have a ton of meetings
+
+00:07:11.100 --> 00:07:14.010
+and several vibe coding
+projects to work on.
+
+00:07:14.010 --> 00:07:16.050
+Let's start the day
+with a Zen coding theme
+
+00:07:16.050 --> 00:07:18.000
+to facilitate focus.
+
+00:07:18.000 --> 00:07:22.000
+Let me just type that into my
+CLI, and let's see what happens.
+
+00:07:33.000 --> 00:07:34.680
+So much better.
+
+00:07:34.680 --> 00:07:37.860
+The themes agent can generate
+a completely new theme,
+
+00:07:37.860 --> 00:07:40.920
+or it can pull a beautiful
+Microsoft design theme,
+
+00:07:40.920 --> 00:07:42.750
+which is what
+you're seeing here.
+
+00:07:42.750 --> 00:07:44.430
+And check out my keyboard too.
+
+00:07:44.430 --> 00:07:47.070
+A new calming effect.
+
+00:07:47.070 --> 00:07:48.900
+And if I wanted to
+switch it up later --
+
+00:07:48.900 --> 00:07:55.110
+-- cherry blossom theme.
+
+00:07:55.110 --> 00:07:57.150
+Boom, everything changes again.
+
+00:07:57.150 --> 00:07:59.370
+Okay, these effects
+are super cool,
+
+00:07:59.370 --> 00:08:02.070
+and my Windows is starting
+to feel more like me.
+
+00:08:02.070 --> 00:08:04.290
+But I'm a super
+multitasker who's looking
+
+00:08:04.290 --> 00:08:07.200
+for productivity gains
+wherever I can find them.
+
+00:08:07.200 --> 00:08:11.190
+How can my personalization agent
+help me be more productive?
+
+00:08:11.190 --> 00:08:13.170
+I don't have my sound
+on when I'm focusing,
+
+00:08:13.170 --> 00:08:15.600
+so often I miss
+my notifications.
+
+00:08:15.600 --> 00:08:20.100
+So what if I could flash red
+whenever I get a notification?
+
+00:08:20.100 --> 00:08:21.330
+Let me just tell my agent
+
+00:08:21.330 --> 00:08:23.880
+to flash my keyboard red
+whenever I get a message
+
+00:08:23.880 --> 00:08:25.770
+so that I can stay
+on top of things.
+
+00:08:25.770 --> 00:08:28.830
+The notification watcher
+monitors Windows toast events
+
+00:08:28.830 --> 00:08:31.320
+and resumes with no state loss.
+
+00:08:31.320 --> 00:08:34.830
+Now, even if I'm in deep focus
+mode, if Monica messages me,
+
+00:08:34.830 --> 00:08:37.890
+I'll be able to see it, respond,
+and go back to focusing
+
+00:08:37.890 --> 00:08:39.450
+without missing a beat.
+
+00:08:39.450 --> 00:08:42.480
+Theming and personalization
+is so important to Windows.
+
+00:08:42.480 --> 00:08:45.450
+We want developers to have fun
+coding on Windows and to feel
+
+00:08:45.450 --> 00:08:47.250
+like their machine is theirs.
+
+00:08:47.250 --> 00:08:49.650
+We are investing in
+exposing Windows primitive
+
+00:08:49.650 --> 00:08:51.120
+so that agents can do more
+
+00:08:51.120 --> 00:08:53.670
+with the platform and
+make it personal.
+
+00:08:53.670 --> 00:08:55.140
+Okay, so to finish up here,
+
+00:08:55.140 --> 00:08:56.970
+there are three things
+I want you to do.
+
+00:08:56.970 --> 00:08:59.750
+First, clone the skill
+and make it yours,
+
+00:08:59.750 --> 00:09:03.800
+github.com/samanthamsong/windows
+personalization skill.
+
+00:09:03.800 --> 00:09:05.940
+Run the setup and
+you're up and running.
+
+00:09:05.940 --> 00:09:08.760
+Use the effects, themes,
+and Spotify sync
+
+00:09:08.760 --> 00:09:11.760
+that are already there,
+or describe something new
+
+00:09:11.760 --> 00:09:14.430
+to your agent and
+watch it generate it.
+
+00:09:14.430 --> 00:09:17.370
+Second, build your own
+skill and share it.
+
+00:09:17.370 --> 00:09:19.890
+The skill.md contract is simple.
+
+00:09:19.890 --> 00:09:21.870
+Declare your tools,
+write some scripts,
+
+00:09:21.870 --> 00:09:24.240
+and any agent can invoke them.
+
+00:09:24.240 --> 00:09:27.570
+Got an idea for a focus mode
+skill, a weather-reactive theme
+
+00:09:27.570 --> 00:09:31.650
+that matches the sky outside, a
+meeting-aware theme switcher,
+
+00:09:31.650 --> 00:09:33.210
+and the final call to action,
+
+00:09:33.210 --> 00:09:36.480
+let's crowdsource Windows
+personalization together.
+
+00:09:36.480 --> 00:09:37.590
+The repo is open.
+
+00:09:37.590 --> 00:09:40.440
+I want this to be a place where
+developers share their skills,
+
+00:09:40.440 --> 00:09:43.670
+their effects, and their
+weird and wonderful ideas.
+
+00:09:43.670 --> 00:09:47.030
+Your koi fish might inspire
+someone else's jellyfish.
+
+00:09:47.030 --> 00:09:50.690
+Your synth wave theme might
+become someone's daily driver.
+
+00:09:50.690 --> 00:09:53.540
+Fork my skill, build
+something cool, submit a PR,
+
+00:09:53.540 --> 00:09:55.940
+and help make Windows
+PC feel like it belongs
+
+00:09:55.940 --> 00:09:58.200
+to the person using it.

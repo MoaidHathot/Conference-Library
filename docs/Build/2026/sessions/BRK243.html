@@ -1,0 +1,1264 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRK243 - Claw and agent harness in Microsoft Foundry</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRK243</nav>
+        <h1>BRK243 &mdash; Claw and agent harness in Microsoft Foundry</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRK243 &middot; Breakout</span>
+    <h1>Claw and agent harness in Microsoft Foundry</h1>
+    <div class="speakers">Glenn Condron, Amanda Foster, Shawn Henry</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(400) Expert</span>
+<span>Gateway Pavilion, Level 1, Cowell Theater</span>
+<span>2026-06-03 18:30 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">Agents</span> <span class="tag">GitHub Copilot</span> <span class="tag">Microsoft Foundry</span> <span class="tag">MCP</span> <span class="tag">OSS</span> <span class="tag">Agent Observability</span> <span class="tag">Claws</span> <span class="tag">Openclaw</span> <span class="tag">Evaluations</span> <span class="tag">Agents &amp; apps</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRK243?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/ce857844-2448-482c-a66b-efa81e214b35" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Go deep on multi-agent systems built on Microsoft Foundry, featuring Claw agent patterns and the hosted agents architecture. Explore long-running agents with triggers, state management, and file access—all natively supported on Foundry. See how coding agents built with GitHub Copilot SDK and Claude Agent SDK integrate into multi-agent workflows using Microsoft Agent Framework. Learn how to coordinate, host, and operate these systems with observability and continuous evals.
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>A deep-dive into deploying advanced, long-running &quot;claw&quot;-style agents and agent harnesses on Microsoft Foundry. The session defines what an agent harness is, demonstrates running the Hermes harness on Foundry hosted agents, building custom harnesses with Microsoft Agent Framework, and publishing agents into Teams and Microsoft 365 Copilot.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Agent harness support in Microsoft Agent Framework</strong> — Any agent can have a harness attached via <code>AsAgentHarness</code>, gaining built-in tools (file system, code/shell execution), context compaction, planning, and middleware for free (~00:25:00–00:27:00).</li>
+<li><strong>Routines (preview) in Foundry</strong> — A trigger feature letting agents react to external stimuli or schedule recurring work, including agents creating their own routines to spin a shut-down sandbox back up for self-maintenance (~00:13:44).</li>
+<li><strong>Autopilot agents</strong> — A new third agent type that acts on its own behalf and has a real user account (email alias, ability to send Teams messages and create Word documents), demoed briefly in the prior day&#39;s keynote (~00:39:46).</li>
+<li><strong>One-click publish to Teams and M365 Copilot</strong> — From the Foundry portal, deployed agents can be scoped to the creator or submitted to the Microsoft Admin Center for organization-wide approval, yielding both Teams and Copilot UIs out of the box (~00:35:35).</li>
+<li><strong>Hermes on Foundry hosted agents</strong> — A claw-like harness demonstrated running with a stateless, auto-shutdown back end (15-minute idle timeout) that uses Foundry models and Entra/Azure default credentials (~00:09:57).</li>
+<li><strong>AGUI plus Copilot Kit integration</strong> — Enabling an AGUI endpoint with a few lines of code gives agents a web UI, including built-in chart controls, without extra code (~00:31:31).</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Foundry&#39;s layered architecture: intelligence (models), runtime, and human-agent collaboration, wrapped in trust, observability, and evaluations.</li>
+<li>Definition and core components of an agent harness: the agent loop, context management and compaction, skills and tools, giving an agent a computer (file system, code execution), orchestration, memory/session persistence, lifecycle hooks, and human-in-the-loop.</li>
+<li>The &quot;claw&quot;-like pattern popularized by OpenClaw: agents that own their environment, run long, communicate over messaging platforms, and self-improve.</li>
+<li>State management trade-offs: per-session unique file systems, snapshots, BLOB-storage backups, and Foundry&#39;s ~30-day sandbox retention after inactivity.</li>
+<li>Microsoft Agent Framework&#39;s three parts: agent loop, workflows (sequential, handoff, author-critic, Magentic), and harnesses; cross-ecosystem connectors (OpenAI, Anthropic, Gemini, Bedrock, Ollama, A2A).</li>
+<li>Assistive, autonomous, and Autopilot agent identity models; group-chat behaviors and access control for a work stream manager agent.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;If you think of your agent as the motor, as the engine, then the harness is the car.&quot; — Shawn Henry</p>
+</blockquote>
+<blockquote>
+<p>&quot;They are the most pet-like thing we perhaps have invented since the beginning of cloud computing.&quot; — Glenn Condron, on claw-style agents</p>
+</blockquote>
+<blockquote>
+<p>&quot;The agent state creates these unique environments... that uniqueness causes pain when it comes to recovering and resuming from errors.&quot; — Glenn Condron</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Microsoft Foundry / Foundry hosted agents</li>
+<li>Microsoft Agent Framework</li>
+<li>Hermes</li>
+<li>OpenClaw</li>
+<li>GitHub Copilot (CLI and SDK)</li>
+<li>Claude Code / Claude Agent SDK</li>
+<li>Cursor</li>
+<li>Copilot Studio</li>
+<li>Microsoft 365 Copilot</li>
+<li>Microsoft Teams</li>
+<li>Microsoft Admin Center</li>
+<li>Work IQ (MCP/SharePoint connector)</li>
+<li>AGUI</li>
+<li>Copilot Kit</li>
+<li>Foundry Toolkit Agent Inspector</li>
+<li>Azure Functions, Azure Container Apps</li>
+<li>Scout in Foundry</li>
+<li>MCP, OpenAPI, A2A protocol</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Shawn Henry — Microsoft Foundry team</li>
+<li>Glenn Condron — Microsoft Foundry team; contributing PRs to the Hermes repo</li>
+<li>Amanda Foster — Microsoft Foundry team</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>Session code and resources on GitHub (link referenced on closing slides).</li>
+<li>Agent League Hackathon (QR code on closing slide), running until the 14th.</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+<section class="section">
+    <h2>References</h2>
+    <ul class="refs-list">
+<li><a href="@{link=https://aka.ms/build/foundrydiscord; backpackLink=; label=Microsoft Foundry in Discord; category=Web link}" target="_blank" rel="noopener">Microsoft Foundry in Discord</a></li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (64,189 chars)</summary>
+        <pre class="transcript-body">[00:00:00] And welcome to Day 2 of Build.
+[00:00:02] My name is Sean Henry.
+[00:00:03] I&#39;m here with my colleagues, Glenn and Amanda.
+[00:00:06] We work on Microsoft Foundry, which is Microsoft&#39;s AI platform
+[00:00:11] for using models and building applications and agents.
+[00:00:16] So we&#39;re here today, we&#39;re going to talk about claws
+[00:00:19] and agent harnesses and some of those concepts of how
+[00:00:22] to deploy your more advanced and sophisticated agents into Foundry.
+[00:00:27] So I&#39;ll just get us started here with a bit
+[00:00:30] of a robe, actually.
+[00:00:31] How many of you, I can barely see any of
+[00:00:32] you, but like how many of you got a chance
+[00:00:34] to check out Tina and Jeff session yesterday?
+[00:00:36] There was kind of an overview of Foundry.
+[00:00:40] A few folks, few hands up, not too many.
+[00:00:42] OK, well, this kind of follows on from that.
+[00:00:44] We&#39;re going to dive deep into a few of these
+[00:00:46] these layers.
+[00:00:47] When we think about how to build agents today, they
+[00:00:51] kind of started this base layer at the bottom here
+[00:00:54] of intelligence.
+[00:00:55] These are the models, you know, in Foundry, we have
+[00:00:58] thousands of models available, hundreds of models available for using
+[00:01:01] with agents.
+[00:01:02] And then on top of these, this intelligence layer, we
+[00:01:04] add a runtime.
+[00:01:06] This is how we host agents and Foundry, how we
+[00:01:08] deploy agents into Foundry and how we manage them.
+[00:01:12] And then finally on top of that runtime is a
+[00:01:14] is the human and agent collaboration layer.
+[00:01:17] And this is where we have our agents actually meet
+[00:01:19] us where we&#39;re working.
+[00:01:20] So this is how we get our agents to work
+[00:01:23] with us through things like Teams or M365 copilot and
+[00:01:26] enable us to work better every day.
+[00:01:29] All this within Foundry is kind of wrapped within a
+[00:01:32] layer of trust and security and, and manageability and observability
+[00:01:35] and evaluations and all those things that you need in
+[00:01:38] order to run your agents in production.
+[00:01:41] And one of the great things about Foundry is that
+[00:01:43] you can kind of choose the level of simplicity or
+[00:01:45] control that you want for your agents.
+[00:01:47] You can start by building very simple agents, prompt agents
+[00:01:50] within the portal, or you can move to more advanced
+[00:01:52] agents, which is what we&#39;re going to be talking about
+[00:01:54] a little bit today.
+[00:01:55] Agents where you&#39;re writing them in, in, in, in, in
+[00:01:57] code, where you&#39;re bringing in your own libraries, where you&#39;re
+[00:02:00] connecting them into other systems.
+[00:02:02] That&#39;s what we&#39;re going to kind of focus on.
+[00:02:03] We&#39;re going to be looking mainly here today at the
+[00:02:05] agent runtime and some of the agent collaboration stuff.
+[00:02:10] But I want to back up a second and kind
+[00:02:11] of talk about what we&#39;ve been, what we&#39;ve been seeing
+[00:02:13] over the last six months.
+[00:02:14] You know, I, I did a similar session to this
+[00:02:17] at our Ignite conference six months ago.
+[00:02:19] And since then, you know, a lot has changed.
+[00:02:22] I think we&#39;ve all experienced that the kind of the
+[00:02:24] best Frontier models have gotten really, really good at coding.
+[00:02:28] And this is kind of been this, this change almost
+[00:02:31] in the role of software development, where we&#39;re now having
+[00:02:34] our, our, our coding agents do most of the actual
+[00:02:37] coding and we&#39;re supervising them and we&#39;re making sure that
+[00:02:40] they&#39;re building the right thing.
+[00:02:42] And that&#39;s what the help of these tools and these
+[00:02:44] coding agents.
+[00:02:45] We&#39;ve seen things like GitHub Copilot and Claude code and
+[00:02:48] cursor and all these tools that have made it much,
+[00:02:51] much more powerful for software engineers to build applications.
+[00:02:55] We then saw things like open Claw become available, which
+[00:02:58] was kind of this, this agent that runs a locally
+[00:03:01] on your machine runs with your credentials and you interact
+[00:03:04] with it over messaging and it&#39;s constantly running and waiting
+[00:03:07] for you to interact with it.
+[00:03:09] Then the second generation, we&#39;ll talk about Hermes a little
+[00:03:12] bit later, came on of of these claw style applications.
+[00:03:16] And what we&#39;re seeing now is these things that we&#39;ve
+[00:03:19] learned with these agent harnesses on on top of coding
+[00:03:22] agents and on top of claws.
+[00:03:24] With claws, we&#39;re now applying them everywhere to enterprise applications.
+[00:03:28] That&#39;s what we want to show here is how you
+[00:03:30] can take some of these agent harness techniques, some of
+[00:03:33] these claw techniques, and make them available for your scaled
+[00:03:36] enterprise applications.
+[00:03:39] So first of all, I&#39;ve said things like agent harness
+[00:03:41] and claw.
+[00:03:41] What actually, what actually is an agent harness?
+[00:03:44] And you can find dozens of definitions for agent harnesses.
+[00:03:47] I&#39;m going to take a stab at what we think
+[00:03:48] it means here.
+[00:03:50] An agent harness is really that shell, the set of
+[00:03:53] tools that you put around your agent in order to
+[00:03:56] make it be able to perform on longer, more complicated
+[00:03:59] tasks.
+[00:04:00] I&#39;ve heard a good analogy that if you think of
+[00:04:02] your agent as the motor, as the engine, then the
+[00:04:05] harness is the car.
+[00:04:06] It&#39;s all the things.
+[00:04:07] And the motor by itself is not very useful.
+[00:04:09] You need wheels, you need steering wheel, you need seats,
+[00:04:11] you need all these things to actually make it useful.
+[00:04:14] But we still need that core piece.
+[00:04:16] So if the components of the agent harness, the core
+[00:04:18] piece is what we call that agent loop.
+[00:04:20] This is what we think of kind of these traditional
+[00:04:23] agents where we&#39;re giving them a set of context and
+[00:04:25] we&#39;re giving them a set of available tools.
+[00:04:27] And we&#39;re calling the LLM to ask it to provide
+[00:04:30] a response based on that context.
+[00:04:33] Often it&#39;ll come back and it&#39;ll ask us to execute
+[00:04:35] some tools.
+[00:04:36] We&#39;ll execute all those tools, give that response back to
+[00:04:38] the LLM, and then we&#39;ll continue in a loop.
+[00:04:40] And this loop will continue until our agent has reached
+[00:04:43] a goal.
+[00:04:43] So this is kind of the core concept, that nugget
+[00:04:46] that that engine, that motor of an agent harness around
+[00:04:50] that we add a few things.
+[00:04:51] We add context management.
+[00:04:53] So as we&#39;re adding this context to the agent, we&#39;re
+[00:04:56] adding things like prompts, we&#39;re adding things like messages, tools,
+[00:05:00] skills.
+[00:05:01] That starts growing the context.
+[00:05:02] We want to keep that nicely contained.
+[00:05:04] So the agent harness is very proactive in maintaining that
+[00:05:07] context and keeping it under control to do things like
+[00:05:10] like context compaction, to look at all the stuff that&#39;s
+[00:05:13] inside the agents context window and then compact it down
+[00:05:16] to something more manageable.
+[00:05:21] The other thing, of course the skills and tools.
+[00:05:23] Agents have always had tools.
+[00:05:24] Now we&#39;re seeing skills becoming a lot more common to
+[00:05:26] be used.
+[00:05:27] So skills, of course, are text based capabilities that you
+[00:05:31] add to your agent and then tools and MCPS tools
+[00:05:34] tools can be over MCP open API.
+[00:05:37] But one of the things we&#39;re finding with agent harnesses
+[00:05:39] also is kind of these tools that give an agent
+[00:05:41] a computer are very, very powerful.
+[00:05:43] So if we give the agent access to the file
+[00:05:46] system to read and write files, we give it the
+[00:05:48] ability to write code that it can execute or the
+[00:05:51] ability to execute programs on your machine.
+[00:05:54] Now it&#39;s able.
+[00:05:54] Now your, your, your agents are able to do more
+[00:05:57] human like tasks because you&#39;ve given them a computer to
+[00:06:00] work with.
+[00:06:03] The harness also manages your agents, orchestrates your agents together.
+[00:06:06] If you have specialized agents, for instance for something like
+[00:06:10] web browsing or executing code or synthesizing documents, those are
+[00:06:13] all managed by your agent harness as well.
+[00:06:16] Memory and session persistence.
+[00:06:19] As your agent is executing and as it works over
+[00:06:21] different sessions, you want it to be able to Remember,
+[00:06:24] Remember things about you remember things.
+[00:06:25] It&#39;s learned in order to improve over time.
+[00:06:28] The other important thing with session with with memory and
+[00:06:31] session persistence is that this means the actual runtime can
+[00:06:34] be stateless.
+[00:06:35] And so we can have the runtime hosted on different,
+[00:06:37] different environments and different deployments.
+[00:06:40] This is really important as you start deploying your agents
+[00:06:42] where they&#39;re running for long periods of time.
+[00:06:46] Life cycle hooks kind of go without saying.
+[00:06:48] You want to make sure that you can connect your
+[00:06:50] agent through the agent harness to your existing applications at
+[00:06:53] all cycles.
+[00:06:54] So before the agent runs, after the agent runs, before
+[00:06:56] it calls the LLM, after it calls the LLM, before
+[00:06:59] it calls tools, and after it calls tools.
+[00:07:01] And this is the place where you can apply your
+[00:07:03] policy and your logic specific to your application to your
+[00:07:06] agent harness.
+[00:07:08] And then last but not least is human in the
+[00:07:10] loop.
+[00:07:11] As these agents are more and more powerful, they&#39;re doing
+[00:07:13] more advanced things, you want to make sure you can
+[00:07:16] have communication directly with humans.
+[00:07:17] So the harness will provide those channels and those capabilities
+[00:07:22] so that your agent can ask a human if it&#39;s
+[00:07:25] doing a high higher risk, higher risk tool call or
+[00:07:29] a higher higher risk execution.
+[00:07:31] So if it&#39;s trying to access the file system to
+[00:07:33] write files or execute code, you want to have a
+[00:07:36] human in the loop.
+[00:07:37] And the agent harness provides those kind of things.
+[00:07:39] So there&#39;s a few other things for agent harnesses, but
+[00:07:41] these we think are kind of the core capabilities that
+[00:07:44] we see across all agent harnesses.
+[00:07:46] So that&#39;s kind of the that&#39;s what agent harnesses are.
+[00:07:49] We&#39;re going to now look at a few different ways
+[00:07:52] of how we get agent harnesses deployed into Foundry.
+[00:07:55] So the first thing going to have Glenn come up
+[00:07:57] and he&#39;s going to talk about getting Hermes deployed into
+[00:08:00] Foundry.
+[00:08:01] Glenn, come on up.
+[00:08:04] Hello everybody.
+[00:08:05] Hopefully my microphone works.
+[00:08:06] I talked just long enough to get it to turn
+[00:08:08] on excellence.
+[00:08:09] So thank you everybody first of all for coming and
+[00:08:14] may finding your way here to the to the like.
+[00:08:19] As far away.
+[00:08:19] Possible conference room as far as I can tell to
+[00:08:22] have this talk.
+[00:08:23] So first of all there&#39;s a couple of things I
+[00:08:26] want to talk about whilst this slide is here on
+[00:08:28] the screen.
+[00:08:30] The Sean mentioned, he gave a lot of detail about
+[00:08:32] harnesses and then he but he mentioned this kind of
+[00:08:35] claw style or claw like and I thought I wanted
+[00:08:38] to give a little bit of color on that and
+[00:08:40] then get into demos.
+[00:08:41] So the what claw like in our instance, one of
+[00:08:44] the main things I wanted to kind of show to
+[00:08:47] you all today is that there is a pattern of
+[00:08:50] building agents where you take a harness and it has
+[00:08:54] memory and it kind of owns its environment.
+[00:08:57] It&#39;s maybe it&#39;s sandbox or it&#39;s VM.
+[00:08:59] It has tools, it has autonomy, it&#39;s able to execute
+[00:09:01] for long periods of time, deciding how to take action,
+[00:09:04] what to do.
+[00:09:05] It typically has like a communication platform to be able
+[00:09:08] to communicate with you where you want to.
+[00:09:09] You&#39;re on Telegram, you&#39;re on Slack, so on and so
+[00:09:11] forth, right?
+[00:09:12] This is a particular way of taking a harness, mixing
+[00:09:15] together a lot of things around it in order to
+[00:09:17] build an experience that is really amazing.
+[00:09:20] Open claw kind of popularized this way of doing this
+[00:09:22] in its architecture.
+[00:09:24] And then there are many kind of things that are
+[00:09:26] literally claws or a particular flavor of claw and you
+[00:09:28] know, nano chlor and various things that are literally chlor
+[00:09:30] and have chlor in the name.
+[00:09:31] And there&#39;s Hermes and Hermes has the qualities of claws
+[00:09:35] like we described.
+[00:09:36] It has a lot of those same features, the same
+[00:09:38] ingredients that we just talked about.
+[00:09:40] But it is not necessarily like literally an open claw
+[00:09:42] clone or a fork of open claw or anything like
+[00:09:45] that.
+[00:09:45] They do a lot of their own things.
+[00:09:47] And so Hermes is a is an agent that can
+[00:09:50] write that you can deploy and can run for you.
+[00:09:53] It has all of those ingredients we just talked about
+[00:09:55] can run in many environments.
+[00:09:57] Today I&#39;m going to show it running in Foundry hosted
+[00:09:59] agents.
+[00:10:00] It can appear in the kind of communication channels you
+[00:10:03] want and it is focused a lot on what they
+[00:10:06] this, this bottom layer, this collective wisdom, this constant self
+[00:10:11] improving, getting better.
+[00:10:13] The more you do your particular tasks with Hermes, the
+[00:10:15] better it gets at doing those tasks.
+[00:10:17] And it has a few techniques of like doing that
+[00:10:19] and I like them kind of a lot.
+[00:10:23] So this is Hermes my demo today.
+[00:10:27] What I&#39;m trying to show though, because another thing about
+[00:10:30] these claw like architectures is today most of them are
+[00:10:33] kind of optimized for running on a machine like on
+[00:10:36] a, on a your machine or on AVM that they
+[00:10:38] own.
+[00:10:39] And if you remember the early days of the cloud
+[00:10:42] and pets versus cattle and those kinds of analogy, that
+[00:10:45] means these things are kind of like pets.
+[00:10:47] You name them, literally name them.
+[00:10:49] They are the most pet like thing we perhaps have
+[00:10:51] invented since the beginning of cloud computing.
+[00:10:54] So what I wanted to do was to create a
+[00:10:56] slice with Hermes where the back end was on Foundry,
+[00:11:00] but where the agent was always available.
+[00:11:02] I could always talk to Hermes, but it would shut
+[00:11:04] down when it wasn&#39;t doing anything.
+[00:11:06] And so it felt like I always had this Hermes
+[00:11:08] there doing whatever I wanted, but I wasn&#39;t paying for
+[00:11:11] it all the time.
+[00:11:12] So in my case, I&#39;ve got the back end on
+[00:11:13] Foundry.
+[00:11:14] I live in the terminal.
+[00:11:15] Therefore the place I want it to be is in
+[00:11:17] the terminal.
+[00:11:18] I&#39;m running Hermes.
+[00:11:19] I&#39;m not using Open Shell today.
+[00:11:20] I left this in here because if you you may,
+[00:11:22] you may want this depending on how you&#39;re going to.
+[00:11:24] Deploy a set up like this.
+[00:11:26] Foundry hosted agents has a sandbox built in so I
+[00:11:30] am just relying on that for my purposes so.
+[00:11:34] Let&#39;s get to it.
+[00:11:35] This is the Hermes Tui.
+[00:11:38] So this is.
+[00:11:39] Running on my machine.
+[00:11:41] But when it started up, what it did was connect
+[00:11:44] to a Hermes agent running on Foundry.
+[00:11:46] Hasted agents.
+[00:11:47] I can say hello, I can get it to go
+[00:11:50] do things and then it will it.
+[00:11:52] It&#39;s using a model that is running on Foundry.
+[00:11:55] It is using my local kind of Azure default credential
+[00:11:58] to be able to connect.
+[00:11:59] To this endpoint, it is then using the same entry
+[00:12:01] credentials to get a model from Foundry.
+[00:12:03] So it&#39;s using a Foundry model and I&#39;m using off
+[00:12:05] to connect and then we&#39;ll get to this maintenance thing
+[00:12:07] in a minute.
+[00:12:08] And then very importantly, something else I can do is
+[00:12:11] I can say can you see this file on SharePoint
+[00:12:13] called build demos dot docx?
+[00:12:15] If any of you watched Tina and Jeff&#39;s session, then
+[00:12:18] if you have not watched it, you should go watch
+[00:12:21] it.
+[00:12:21] And then this document is Oh no, the MCP didn&#39;t
+[00:12:25] work.
+[00:12:26] So what this document is the the actual demo that
+[00:12:31] the demo script for their session.
+[00:12:35] So what&#39;s going on here is networking is bad and
+[00:12:38] my Hermes agent is failing to connect to the MCP
+[00:12:42] to be able to download the document because but my
+[00:12:45] my point that I&#39;m making here though, is you can
+[00:12:49] see up here this says MCPFTV like work IQ SharePoint.
+[00:12:53] So this is Hermes Hermes, my Hermes instance is deployed
+[00:12:56] to the cloud.
+[00:12:57] It has a toolbox connection.
+[00:12:58] The agent is using your, its identity and yours to
+[00:13:02] be able to connect to a work IQ MCP and
+[00:13:05] it is able to get to SharePoint normally.
+[00:13:09] And for some reason in my demo today, it is
+[00:13:11] not working.
+[00:13:12] So, but I&#39;ll, I&#39;ll, I&#39;ll show you this in a
+[00:13:14] second because there&#39;s a couple of interesting things about this
+[00:13:18] terminal setup.
+[00:13:18] So what happens with Hermes is it starts to generate
+[00:13:22] files, it starts to generate skills, it starts to generate
+[00:13:26] context.
+[00:13:27] So the more you work with the with the SharePoint
+[00:13:30] or you work on your tasks, you&#39;re going to do
+[00:13:31] the more stuff it generates on disk and that can
+[00:13:34] start to cause problems.
+[00:13:35] So I&#39;m going to jump over to my to my
+[00:13:38] Foundry page here.
+[00:13:40] This is the agent that I was just connecting to.
+[00:13:42] It has a Foundry agent endpoint.
+[00:13:44] The TUI connects to this, this agent and then it
+[00:13:47] has this thing here though called routines that you might
+[00:13:51] not have seen before because this is new, which is
+[00:13:54] in preview.
+[00:13:55] Now what happens with Hermes has the has a set
+[00:13:58] of kind of maintenance routines that it can do, curates
+[00:14:02] the skills, it&#39;ll delete old skills that get stale and
+[00:14:05] so on and so forth.
+[00:14:06] So in my setup, when I am talking to Hermes,
+[00:14:10] it is I, I don&#39;t want the sandbox running forever.
+[00:14:14] So it&#39;s can&#39;t really just do those maintenance tasks whenever
+[00:14:16] because otherwise I&#39;d have to keep the sandbox alive forever
+[00:14:19] with this agent running in it.
+[00:14:20] I don&#39;t want that.
+[00:14:21] So my agent shuts down after like 15 minutes of
+[00:14:24] idle time and these routines spin it back up when
+[00:14:26] it&#39;s time to do maintenance and time to do that
+[00:14:29] thing.
+[00:14:29] So you can see here I have, I have this
+[00:14:31] like maintenance routine that ran and you saw that maintenance
+[00:14:34] routine was at the top of the terminal when I
+[00:14:36] launched it earlier.
+[00:14:38] That&#39;s because the run had happened of the maintenance routine.
+[00:14:41] And then the way this works is if I come
+[00:14:43] over here, so you can see I ran this shell
+[00:14:45] script that sets up some environment variables and then runs
+[00:14:48] my TUI.
+[00:14:48] This is just the pointing the TUI to the back
+[00:14:51] end.
+[00:14:52] And then there&#39;s a string.
+[00:14:53] It&#39;s called George the build Hermes.
+[00:14:55] That&#39;s the session ID for Foundry.
+[00:14:57] Every session ID controls the file system that this agent
+[00:15:01] is going to get access to, which means if I
+[00:15:04] change this to, I don&#39;t know, Jeff, let&#39;s say Jeff
+[00:15:08] the build Hermes.
+[00:15:11] Now this is a brand new Hermes.
+[00:15:14] It&#39;s a brand new file system.
+[00:15:16] It&#39;s a brand new VM.
+[00:15:17] It is recreated from the snapshot that I deployed when
+[00:15:20] I created my Hermes agent.
+[00:15:23] And when it gets when the agent launches for the
+[00:15:27] first time, it creates a new maintenance routine automatically is
+[00:15:34] what happens here.
+[00:15:36] And so let me like rerun this because once again,
+[00:15:40] I&#39;m dealing with an agent split across 2 regions on
+[00:15:43] conference Internet is what is, is what is going on
+[00:15:47] right now.
+[00:15:49] And So what happens in here is that Hermes, when
+[00:15:52] you, when I connect to this setup that creates a,
+[00:15:55] it creates a new routine that does nightly maintenance.
+[00:15:59] That nightly maintenance routine will delete old scheduled skills.
+[00:16:03] It will, it&#39;ll delete like a bunch of different like
+[00:16:05] stuff that he might need to do to curate the
+[00:16:08] files.
+[00:16:08] And importantly, it will backup Hermes.
+[00:16:12] So it&#39;ll put it into, I&#39;ll create an independent backup
+[00:16:16] of Hermes to be able to, to, to make sure
+[00:16:19] that the files are always on, on disk.
+[00:16:22] And so routines are a feature where you can get
+[00:16:25] the agent to react to external stimuli.
+[00:16:28] They can go and create the they can, they can,
+[00:16:32] they can prompt an agent to go do something.
+[00:16:36] So if you go like create a routine in here,
+[00:16:38] you can select an agent, you can select a session
+[00:16:41] and you can give it a prompt and give it
+[00:16:43] some recurrence.
+[00:16:45] But importantly, the agents can create them themselves to come
+[00:16:48] back into the same session.
+[00:16:49] So that&#39;s what&#39;s happening here is I didn&#39;t create any
+[00:16:51] of these routines.
+[00:16:52] That&#39;s why they have weird names is because each one
+[00:16:54] of these was created by an agent in order to
+[00:16:56] be able to for it to be able to do
+[00:16:58] maintenance on itself because it knew it needed to be
+[00:17:01] able to do it.
+[00:17:02] So this is the over this overarching setup that I
+[00:17:05] have here where the Hermes is running in the cloud.
+[00:17:09] There is a two way on my local machine, there
+[00:17:11] is a proxy to connect and proxy the the 2
+[00:17:13] E like protocol over the network to get to the
+[00:17:16] Hermes agents that&#39;s running in the cloud.
+[00:17:18] I have this routine that is then managing and looking
+[00:17:22] after the context of that agent and the, and the
+[00:17:25] let&#39;s see if I can see if I can make
+[00:17:28] sure that this this runs so that you actually get
+[00:17:32] a better experience of seeing some of this festival.
+[00:17:36] And then and then every new session stays around.
+[00:17:42] And so that leads me to the one of the
+[00:17:46] main points that I wanted to make, which is that
+[00:17:50] the state is really important.
+[00:17:52] So I made a bunch of decisions in how I
+[00:17:54] designed this.
+[00:17:55] I wanted it to shut down.
+[00:17:56] Therefore, I decided there were that I needed to do
+[00:17:59] things like externalize the way that the maintenance routines wanted
+[00:18:02] were going to happen.
+[00:18:04] If you don&#39;t care about that, if you&#39;re running on
+[00:18:06] AVM, you can just run it forever or if you
+[00:18:08] want to be OK.
+[00:18:09] And so my main point is that let me switch
+[00:18:12] to this slide for a moment.
+[00:18:14] My main point here is that the agent state creates
+[00:18:19] these unique environments.
+[00:18:21] So every, every Hermes instance, every file system, every agent
+[00:18:26] in one of these kind of claw like patterns becomes
+[00:18:29] unique by design.
+[00:18:31] You want it to be unique because you want it
+[00:18:33] to have all of its own skills.
+[00:18:34] You want it to have all of its own content.
+[00:18:35] You want it to be constantly like learning and evolving
+[00:18:39] and getting better, right?
+[00:18:41] So that means that you always want uniqueness.
+[00:18:48] And unfortunately, what that means though, as we learn painfully
+[00:18:53] over the course of building our cloud applications, is that
+[00:18:57] that uniqueness causes pain when it comes to recovering and
+[00:19:02] resuming from errors, right?
+[00:19:04] So now I went and spun up a new one
+[00:19:06] because the Internet was bad and now it&#39;s just working.
+[00:19:09] So that, so you need to decide how you want
+[00:19:12] to handle that state.
+[00:19:14] In my case, I was good with a backup, making
+[00:19:16] sure I every night put it on the BLOB storage.
+[00:19:19] And I&#39;m going to rely on the fact that Foundry
+[00:19:22] hosted agents keep the sandboxes file system around for at
+[00:19:26] least it&#39;s basically 30 days of after inactivity.
+[00:19:29] So if I don&#39;t do anything to it for 30
+[00:19:30] days, we will like delete the like this file system
+[00:19:33] that this is based on.
+[00:19:34] But otherwise, if I&#39;m still using it to be forever,
+[00:19:37] I&#39;m good with that as my constraint.
+[00:19:39] It&#39;s now running in a sandbox.
+[00:19:40] It&#39;s isolated.
+[00:19:41] It has access to my work IQ.
+[00:19:42] You can see it knows that this document here was
+[00:19:44] made by Jeff Holland.
+[00:19:45] I could access it and I could start getting it
+[00:19:47] to do stuff.
+[00:19:48] Now this new instance that I just spun up also
+[00:19:51] created a new routine.
+[00:19:52] As I said before, as I as I said it
+[00:19:55] would before.
+[00:19:56] So you can see I have this this routine now
+[00:19:58] targeting that same name and I can like go and
+[00:20:01] do routine test runs to be able to like execute
+[00:20:03] the routines.
+[00:20:04] So this all this shows you with the mix of
+[00:20:07] ingredients that you have on Foundry you can put together.
+[00:20:11] A nice experience for being able to build something based
+[00:20:16] upon a Hermes or some claw like experience.
+[00:20:20] If you want.
+[00:20:21] And as long as you take into account what you&#39;re
+[00:20:24] going to do with all the state and where you&#39;re
+[00:20:27] going to put it, you either need to do something
+[00:20:29] like what I&#39;ve done where you optimize and you change
+[00:20:32] things or build something custom, which is where the next
+[00:20:35] demo is going to take you.
+[00:20:37] And so my last point before I hand over is
+[00:20:40] if you want to do this, if you want to
+[00:20:42] use Hermes and you want to build and you want
+[00:20:45] to use it to be able to build things yourself,
+[00:20:47] doing things like what I&#39;ve just described, come see me
+[00:20:50] at the end.
+[00:20:51] I have all the code available for everything I&#39;ve done.
+[00:20:53] You&#39;ll be able to do it.
+[00:20:55] It&#39;s kind of a proof of concept at the moment.
+[00:20:56] I&#39;m going to keep evolving it, but come talk to
+[00:20:59] me so I can help.
+[00:20:59] We can help each other, like make these things real.
+[00:21:02] And also come talk to me if you want to
+[00:21:03] use routines and you&#39;re interested in just generically, how do
+[00:21:05] I trigger these agents?
+[00:21:07] OK, we&#39;ll be here at the end and I&#39;ll be
+[00:21:09] in the booze after this, OK, Thank you very much.
+[00:21:11] Sorry for the hiccups, but you still saw what I
+[00:21:13] was going to show you in the end.
+[00:21:14] And now I&#39;ll hand you off to my my buddy
+[00:21:17] to talk about custom agents.
+[00:21:21] Thanks, Glenn.
+[00:21:21] Very cool.
+[00:21:22] Glenn wasn&#39;t kidding when he&#39;s saying he&#39;s continued to work
+[00:21:24] on it.
+[00:21:24] He&#39;s making PRS directly into the Hermes repo to to
+[00:21:27] fix things up and improve it and make it work
+[00:21:30] better with Foundry.
+[00:21:32] So be sure to check that out.
+[00:21:33] So that was kind of taking an off the shelf
+[00:21:36] agent harness and getting it working inside of Microsoft Foundry.
+[00:21:41] I&#39;m going to focus here a little bit more on
+[00:21:43] building your own custom harness with Microsoft Agent Framework.
+[00:21:47] So if you&#39;re not familiar with Microsoft Agent Framework, it&#39;s
+[00:21:50] our library, our SDK for building AI applications and agents
+[00:21:54] at Microsoft in Python And C#.
+[00:21:56] We released it late last year in October to preview
+[00:21:59] and we recently went to version one OA couple months
+[00:22:02] ago.
+[00:22:04] And I&#39;ll do kind of a quick, quick overview of
+[00:22:07] it.
+[00:22:07] We where&#39;s the clicker we go.
+[00:22:11] It&#39;s kind of composed of three parts.
+[00:22:13] And these are kind of familiar from some of the
+[00:22:14] earlier slides.
+[00:22:15] We have the agent loop, we have workflows and we
+[00:22:17] have harnesses.
+[00:22:18] So we first look at the agent loop.
+[00:22:20] This is our kind of our Microsoft agent framework, AI
+[00:22:23] agent construct.
+[00:22:24] And what it allows you to do is it allows
+[00:22:26] you to build these loops that talk to Foundry models,
+[00:22:29] Foundry tools, and host directly in Foundry, but also allows
+[00:22:33] you to connect to tools and capabilities from elsewhere in
+[00:22:36] the AI ecosystem.
+[00:22:37] You can connect directly to Open AI directly.
+[00:22:39] Anthropic, you can use Gemini models, you can use Bedrock
+[00:22:41] models, you can use local models with O Llama.
+[00:22:45] You can connect to any tool you want over open
+[00:22:48] API or MCP or even directly through code.
+[00:22:50] And then you can deploy it anywhere.
+[00:22:51] You can deploy it into Foundry hosting, like I mentioned
+[00:22:54] with Foundry hosted agents, but you can deploy it into
+[00:22:56] Azure Functions and Azure Container Apps.
+[00:22:58] You can deploy it into AWS if you want to.
+[00:22:59] I don&#39;t know why you&#39;d want to do that.
+[00:23:02] So that that&#39;s our kind of core agent construct.
+[00:23:04] We also have connectors for different types of agents, so
+[00:23:06] we can abstract away other agent providers that are out
+[00:23:09] there.
+[00:23:09] You can build, you can connect directly to Foundry prompt
+[00:23:12] agents.
+[00:23:12] These are agents that are built declaratively directly in Foundry.
+[00:23:15] You can connect it to copilot studio agents.
+[00:23:17] You can connect it to Cloud code agents.
+[00:23:19] You connect to GitHub copilot CLI agents.
+[00:23:22] A lot of folks doing that connecting their their agent
+[00:23:24] systems through Microsoft agent framework into GitHub copilot.
+[00:23:28] Or again, you can connect with the ecosystem using the
+[00:23:30] A to a protocol.
+[00:23:33] That&#39;s the agent loop.
+[00:23:34] On top of the agent loop, we had workflows.
+[00:23:36] So workflows are first of all are kind of built
+[00:23:39] in constructs for building multi agent systems.
+[00:23:41] So you can have flows like sequential one agent talking
+[00:23:44] to another, handing off between agents where the context moves
+[00:23:47] as well.
+[00:23:48] These kind of author critic patterns where you have agents
+[00:23:51] constantly refining their output.
+[00:23:52] And then one that we built with Microsoft Research called
+[00:23:55] Magentic, which is this planning one where where you have
+[00:23:58] a supervisor agent that generates a plan and then has
+[00:24:01] sub agents kind of work through that plan.
+[00:24:04] You can also build your own custom workflows.
+[00:24:06] We have a full directed workflow capability within agent framework.
+[00:24:10] And you can have you can have workflows that combine
+[00:24:12] agents with regular code, which is also really powerful.
+[00:24:14] Not everything needs to be an agent.
+[00:24:16] You can have workflows with a little bit of code
+[00:24:18] in them, a little bit of agents and you can
+[00:24:19] build those through code.
+[00:24:20] Or you can also build your workflows declaratively using YAML.
+[00:24:25] And then the latest thing we&#39;ve added are these agent
+[00:24:27] harnesses.
+[00:24:28] So the agent harness capabilities.
+[00:24:29] Again, like I said, it&#39;s the shell that we build
+[00:24:32] on top of the agent.
+[00:24:33] So we start with things like some common tools, tools
+[00:24:36] for file system access, for code execution, for shell execution,
+[00:24:40] some, some built in context, building that context to kind
+[00:24:43] of build the chain of context by bringing in your
+[00:24:46] prompts and your skills and your agent memory, combining that
+[00:24:49] all together in a smart way and handing that to
+[00:24:52] the LLM.
+[00:24:53] Also some planning capabilities.
+[00:24:55] We found that these agent systems work much better often,
+[00:24:58] not always, but often when you have a kind of
+[00:25:00] planning phase and you have sub agents that can specialize
+[00:25:03] in specific tasks.
+[00:25:04] And then finally extensive middleware so that you can do
+[00:25:07] things like context compaction, you can do tool selection.
+[00:25:10] You can have different algorithms for how you want to
+[00:25:12] select tools and how you define permissions and capabilities.
+[00:25:14] What are your agents able to do what what tools
+[00:25:18] is able to access?
+[00:25:20] This allows you to build things like deep research agents,
+[00:25:23] coding agents like get up, Co piloting, cloud code, content
+[00:25:26] generation agents, any kind of these kind of goal driven
+[00:25:28] agents where you want to give an agent kind of
+[00:25:31] a more abstract goal and have it figure out its
+[00:25:33] own plan to to get to success.
+[00:25:35] And of course, because we&#39;re a framework, you can build
+[00:25:37] your own custom agent, your custom harness and you can
+[00:25:39] mix and match.
+[00:25:40] You can build harnesses into workflows.
+[00:25:42] You can have workflows and harnesses.
+[00:25:44] You can build all those things together.
+[00:25:46] So that&#39;s an overview of agent Framework.
+[00:25:47] We&#39;ll focus a little bit.
+[00:25:48] Now let&#39;s go over to coding demo of some of
+[00:25:51] these agent harness capabilities.
+[00:25:54] So yeah, here we go, demo.
+[00:25:57] So my agent told me the network is not great,
+[00:26:00] but we will we&#39;ll give it a try.
+[00:26:03] All right, first we&#39;ll start in code.
+[00:26:05] As I said, agent Framework, everything, everything is featureparitybetween.net and
+[00:26:13] Python.
+[00:26:13] I&#39;m going to show this demo in C# also available
+[00:26:17] in Python.
+[00:26:18] If you love Python, you can work in there as
+[00:26:19] well.
+[00:26:20] So if you&#39;ve used agent framework before, the first few
+[00:26:23] lines are familiar.
+[00:26:24] This is setting up your chat client.
+[00:26:25] This you can think of as that core agent loop.
+[00:26:27] And what we&#39;ve done is we&#39;ve added the ability to
+[00:26:30] slap an agent harness on top of any agent.
+[00:26:34] And so I can take that chat client and I
+[00:26:36] can call as agent harness.
+[00:26:38] And this is kind of a minimal agent harness here.
+[00:26:41] And actually these two lines, 79 and 80, these are
+[00:26:44] things that actually we won&#39;t need soon while we&#39;re in
+[00:26:49] preview.
+[00:26:49] We have those, but those will be optional.
+[00:26:51] So it&#39;ll be very simple to create an agent.
+[00:26:53] And what happens when you add this agent harness, it
+[00:26:55] gets all those tools built in for free.
+[00:26:57] It gets that compaction built in for free.
+[00:27:00] If you&#39;re using kind of agent framework in the past,
+[00:27:02] it was like a bunch of Lego bricks and you
+[00:27:04] had to attach things together and build what you wanted.
+[00:27:06] If you approach it from the agent harness, the things
+[00:27:08] are already built and you define maybe you take some
+[00:27:10] Lego bricks away, maybe you swap some out for other
+[00:27:12] pieces.
+[00:27:13] So very simple to build an agent that has all
+[00:27:16] those capabilities already in it and to get you going
+[00:27:19] very quickly, but you may want to customize it.
+[00:27:21] So here&#39;s an example of customizing agents.
+[00:27:23] This is a research agent here, and you can see
+[00:27:27] that we have more, many more things that we&#39;ve configured.
+[00:27:33] So obviously even the name and description, that&#39;s great, some
+[00:27:35] metadata, but I&#39;ve also given it some tools.
+[00:27:38] This is a tool here that converts a web page
+[00:27:40] into into a markdown file.
+[00:27:42] I can specify things in the model level, like the
+[00:27:44] reasoning effort.
+[00:27:45] I can specify where I want it to store files,
+[00:27:48] where I want its memory to go, where I want
+[00:27:50] what, what files I want to give it access to.
+[00:27:52] With the file access store, I can figure where I
+[00:27:54] want the telemetry to go.
+[00:27:56] It spits out the full complement of hotel from the
+[00:27:59] Gen.
+[00:27:59] AI spec.
+[00:27:59] So I can have that go up to Foundry.
+[00:28:01] I can have it go up to anywhere where I
+[00:28:02] want to see where I want to see my telemetry.
+[00:28:04] And then I can give it some preconfigured background agents.
+[00:28:06] So I have one here that does web search in
+[00:28:08] the background.
+[00:28:11] And then finally, to make things a little bit easier
+[00:28:14] to run and to demo and to kind of prototype
+[00:28:16] with, we&#39;ve built a harness console.
+[00:28:18] So this is a 2 E interface, text user interface,
+[00:28:21] similar to what Glenn showed with with Hermes or what
+[00:28:24] you&#39;re familiar with, with a lot of these harnesses that
+[00:28:27] helps you kind of build and iterate on your agent
+[00:28:30] and work with it for so you can then deploy
+[00:28:32] it later.
+[00:28:34] So we&#39;ll take a look.
+[00:28:35] Let&#39;s see what we got here.
+[00:28:36] So here we&#39;re just kind of creating, we&#39;re running this
+[00:28:39] agent through our console.
+[00:28:41] We&#39;re taking that research agent I built before and we&#39;re
+[00:28:43] just providing some configuration and some listeners and observers and
+[00:28:46] handlers for some of the events that are coming off
+[00:28:48] of the agent.
+[00:28:50] Let me show you here that running Yeah.
+[00:28:54] So we&#39;ll just get this started.
+[00:28:55] Let&#39;s try something like write A blog about Microsoft&#39;s Agent
+[00:29:05] Framework announces at Build on E 26.
+[00:29:12] And while it&#39;s kicking off, I&#39;ll give you a quick
+[00:29:13] tour of what it&#39;s doing.
+[00:29:14] Hope you guys can see this.
+[00:29:15] All right, it&#39;s down at the bottom.
+[00:29:17] But again, this is just kind of a sample that
+[00:29:19] we built on top to kind of show how you
+[00:29:20] can use an agent that&#39;s attached to a harness.
+[00:29:22] You can see it&#39;s working away here, but you can
+[00:29:24] see at the bottom it&#39;s it&#39;s in plan mode.
+[00:29:28] So you can see here, it&#39;s in plan mode.
+[00:29:31] It&#39;s hold on a second here.
+[00:29:33] There we go that it&#39;s in plan mode.
+[00:29:36] We can have different modes.
+[00:29:37] We can plan and execute mode.
+[00:29:38] We can have it show it&#39;s current listed to do&#39;s.
+[00:29:41] We can have it show it&#39;s exported sessions.
+[00:29:44] So all the stuff that&#39;s been doing over time, we
+[00:29:46] can have it export that from the sample.
+[00:29:47] But you can see here, it&#39;s calling a bunch of
+[00:29:49] tools, It&#39;s figuring out what mode it&#39;s in, It&#39;s figuring
+[00:29:51] out what memory it might have in the background that
+[00:29:53] needs to do, and it&#39;s loading a bunch of skills.
+[00:29:55] So I&#39;d already built a skill for blog outlining.
+[00:29:58] It&#39;s done that, it&#39;s reading some files and it&#39;s building
+[00:30:01] A to do list.
+[00:30:03] And so while it&#39;s doing this, hopefully it&#39;s still running
+[00:30:05] up there it goes.
+[00:30:06] And now so it&#39;s downloading a little bit of information
+[00:30:08] to try and build an outline.
+[00:30:10] So it&#39;s in this plan phase, it&#39;s going to build
+[00:30:11] an outline for us.
+[00:30:14] And why does it keep scrolling up?
+[00:30:17] OK, so now it&#39;s asked us while it builds the
+[00:30:19] plan, it like it wants to know what kind of
+[00:30:22] content, what what type of blog it wants to build.
+[00:30:24] So now we have this kind of human in the
+[00:30:26] loop where it&#39;s asking us For more information.
+[00:30:28] It&#39;s an event that&#39;s coming off of the agent harness
+[00:30:30] and we&#39;re listening it to it here in the console.
+[00:30:32] So we&#39;ll say, what do you guys think?
+[00:30:34] Should we do?
+[00:30:35] General tech audience?
+[00:30:36] And that sounds boring.
+[00:30:37] Let&#39;s do developers building AI agents.
+[00:30:40] So give us options.
+[00:30:40] It&#39;s going through and it&#39;s continuing to build its plan.
+[00:30:42] And while it&#39;s doing that, I&#39;m going to flip over
+[00:30:45] here to back to the code and we can actually
+[00:30:47] take a look at how it&#39;s doing.
+[00:30:49] So I&#39;m not sure if it&#39;s built its plan yet,
+[00:30:51] but we can look at one I ran earlier.
+[00:30:54] So here we can see this is the run I&#39;m
+[00:30:56] doing now.
+[00:30:57] And yeah, so it&#39;s building up his plan already.
+[00:30:59] I think it&#39;s still working on this.
+[00:31:00] Here&#39;s maybe a longer one up here under plans that
+[00:31:04] I did earlier where it kind of builds his plan.
+[00:31:07] This is how it wants to build a blog.
+[00:31:08] It&#39;s kind of building on this, iterating this.
+[00:31:10] And then once it kind of finishes his plan, it&#39;s
+[00:31:12] going to ask him to show me the plan of
+[00:31:14] the, hey, are you OK if I execute on this
+[00:31:15] plan?
+[00:31:18] So I&#39;ll pop back over.
+[00:31:19] It looks like it&#39;s still working.
+[00:31:21] So while it&#39;s working away, I&#39;ll just move on to
+[00:31:23] my next demo.
+[00:31:24] That&#39;s the great thing about these harness agents and they
+[00:31:26] kind of run in the background and do do work
+[00:31:28] over long periods of time.
+[00:31:31] So that&#39;s kind of our sample agent harness console.
+[00:31:34] But we know that like when you actually want to
+[00:31:36] build these agents for your customers, your customers don&#39;t want
+[00:31:38] to use text user interface.
+[00:31:39] Maybe they do, maybe some of them do, but a
+[00:31:41] lot of them don&#39;t.
+[00:31:42] So we&#39;ve done a lot of work with AGUI and
+[00:31:44] the Copilot kit folks to make it really easy to
+[00:31:47] build UI on top of your agents and while.
+[00:31:50] So I&#39;ll come back to here.
+[00:31:51] Look, we got a, we got a plan and we&#39;re
+[00:31:53] just going to say approve and execute.
+[00:31:54] And now it&#39;s going to write our blog post for
+[00:31:56] us.
+[00:31:57] But while we&#39;re doing that, we will pop back over
+[00:32:00] to here and I&#39;ll show you how easy it is.
+[00:32:02] So we had our running and harness and then here
+[00:32:05] if we wanted to run it in AGUI, again, just
+[00:32:07] a couple lines of code.
+[00:32:08] This is the important one right here where we, if
+[00:32:11] you&#39;ve used things like asp.net before in C#, we, we
+[00:32:15] just enable AGUI on top of our, our agent here
+[00:32:18] using an app and giving our agent very similar in
+[00:32:21] Python as well.
+[00:32:22] And what this does, it gives our agent an AGUI
+[00:32:25] endpoint.
+[00:32:25] And if you&#39;re not familiar, AGUI is an open standard
+[00:32:28] for UI that talks to agents and a number of
+[00:32:31] there&#39;s a number of libraries that can talk directly to
+[00:32:34] that.
+[00:32:35] Copilot Kit has provided a nice one that can talk
+[00:32:38] directly to this AGUI interface.
+[00:32:40] So we&#39;ll take a look at that.
+[00:32:43] That is running here.
+[00:32:45] I&#39;ll just do this real quick so I can ask,
+[00:32:47] I&#39;ll just click one of these.
+[00:32:49] So this is a, a different agent where I&#39;ve given
+[00:32:51] it a sales CSV, but we can see the same
+[00:32:53] thing.
+[00:32:53] We can see the same type of things from the
+[00:32:55] agent harness going through where we can see its tools
+[00:32:58] calls, we can see them as they complete.
+[00:33:00] We can you obviously you can you can remove these
+[00:33:03] if you don&#39;t want to have this in your end
+[00:33:05] application.
+[00:33:06] We can see it executing now in a nice UI.
+[00:33:09] So you can use you can use your agent directly
+[00:33:12] in a workflow without any UI at all.
+[00:33:14] You can use it in a in the console application
+[00:33:16] or you can use it in the UI like this.
+[00:33:18] And one of the nice things with with Copilot Kit,
+[00:33:20] they have a bunch of controls built in, so we
+[00:33:22] can actually give our agent the ability to build charts
+[00:33:25] like this.
+[00:33:25] There was no extra code I had to write to
+[00:33:27] do this.
+[00:33:28] I just had to tell the agent that I can
+[00:33:29] generate these controls and charts.
+[00:33:31] So we get this nice result coming from it basically
+[00:33:33] for free.
+[00:33:35] OK.
+[00:33:36] And then the last thing is that of course, because
+[00:33:38] this is just an agent, we can deploy it directly
+[00:33:41] to Foundry.
+[00:33:43] So we can use our agent host builder and we
+[00:33:45] can create a responses endpoint.
+[00:33:47] And if we run it through the responses endpoint, we
+[00:33:49] can now interact with it with our tools.
+[00:33:51] And I&#39;ll just give a shout out here for the
+[00:33:53] Foundry Toolkit Agent Inspector, which is a great tool when
+[00:33:55] you&#39;re building agents.
+[00:33:57] You can, you can see I have some previous responses
+[00:34:00] and events here.
+[00:34:01] You can connect your agent directly from this tool and
+[00:34:03] you can debug it through here as well.
+[00:34:05] So that&#39;s a third way.
+[00:34:06] And then of course, once I&#39;ve done this, I can
+[00:34:08] deploy it directly into Foundry.
+[00:34:10] That takes a few minutes when I hit the deploy
+[00:34:13] button, but I did one earlier today.
+[00:34:15] So here&#39;s my agent here up and running.
+[00:34:17] It&#39;s actually this one up and running in Foundry.
+[00:34:20] And now it&#39;s just like any other agent and I
+[00:34:21] can interact with it here.
+[00:34:23] I can see the traces, I can see, I can
+[00:34:25] see all the things that foundry give me gives me
+[00:34:29] in order to manage, monitor and evaluate my my agent.
+[00:34:34] OK, So that&#39;s a quick tour of agent framework and
+[00:34:36] how we think about agent harnesses.
+[00:34:38] Now that I&#39;ve got my agent up in Foundry, Amanda&#39;s
+[00:34:41] going to come here and talk to how we get
+[00:34:43] these agents to actually show up where people where your
+[00:34:46] customers are actually working in teams and in and in
+[00:34:49] copilot.
+[00:34:50] Thanks.
+[00:34:59] Hello, everyone.
+[00:35:01] How are we doing?
+[00:35:01] Let&#39;s switch back to the slides.
+[00:35:12] OK, so like Sean said, I&#39;m going to talk a
+[00:35:15] little bit about now what comes next.
+[00:35:18] You have an agent, it&#39;s built and now you want
+[00:35:21] to put it to work most of the time.
+[00:35:23] You don&#39;t want to stand alone UI.
+[00:35:25] You want to put it in the surfaces that you
+[00:35:27] use every day.
+[00:35:28] And that&#39;s why Foundry has this great kind of one
+[00:35:32] click published to Teams and M365 Copilot.
+[00:35:35] I&#39;m going to show you exactly how this works in
+[00:35:38] a minute, but essentially in Foundry, once you have your
+[00:35:41] agents deployed from the portal, it&#39;s super simple.
+[00:35:44] There&#39;s a kind of one click drop down, you fill
+[00:35:47] out a few key details, and then your agent is
+[00:35:50] instantly available if you choose to just keep it scoped
+[00:35:53] and visible to yourself.
+[00:35:55] But then there&#39;s also an option to share it with
+[00:35:57] your entire organization.
+[00:35:59] So let&#39;s jump into it and I&#39;ll I can show
+[00:36:01] you this better than I can tell you.
+[00:36:07] Switching demo three.
+[00:36:10] OK, so like I said, I have an agent.
+[00:36:13] This is just a simple prompt agent.
+[00:36:16] But for the purposes of this demo, I want to
+[00:36:18] show you what the publishing experience looks like.
+[00:36:21] So once I have a version that I&#39;ve tested and
+[00:36:24] I&#39;m happy with, what I&#39;ll do is I&#39;ll come here
+[00:36:27] to the publish drop down and I&#39;ll click this Publish
+[00:36:30] to Teams and I&#39;m 365 copilot button.
+[00:36:33] Just for sake of time, I&#39;ve already published this one,
+[00:36:36] but this is the exact experience.
+[00:36:38] As I click publish, I&#39;d be taken to a dialogue
+[00:36:41] where I&#39;d get to name my agent, provide some kind
+[00:36:44] of key details, and these are actually what end users
+[00:36:47] are going to see when they interact with your agent.
+[00:36:51] So these are more of like the actions it can
+[00:36:53] perform, not necessarily the internal implementation details.
+[00:36:57] And then on the next page, I have two options.
+[00:37:01] I can either make it available just to myself and
+[00:37:03] that&#39;s where it shows up immediately and I can start
+[00:37:06] using it.
+[00:37:07] Or I could submit it to the Microsoft Admin Center
+[00:37:11] for approval.
+[00:37:13] And then once approved, it will be available to everyone
+[00:37:16] in my organization.
+[00:37:18] And there&#39;s also another option to download and customize.
+[00:37:22] But like I said I&#39;ve already published this so this
+[00:37:26] is what the agent would look like in M365 copilot.
+[00:37:29] Could just ask this one like what products we sell
+[00:37:34] cuz this is a SAVA customer and product support agent
+[00:37:39] we sell.
+[00:37:41] But what&#39;s great as well is I&#39;m only going to
+[00:37:43] show you copilot for this agent, but in a second
+[00:37:46] I&#39;m going to show you teams with just that one
+[00:37:49] experience.
+[00:37:50] I get both UIS out-of-the-box and I don&#39;t have to
+[00:37:53] build anything else.
+[00:37:56] And yeah, the agent&#39;s now listing information about my products.
+[00:38:00] But let&#39;s now pivot to what I think is going
+[00:38:03] to be kind of the more interesting new part of
+[00:38:06] the demo, which going back to our slides.
+[00:38:16] Going back to the slides, you&#39;re probably familiar with the
+[00:38:21] first two types of agents in Foundry today, kind of
+[00:38:26] until a few till really recently, we had assisted agents
+[00:38:31] and autonomous agents.
+[00:38:34] All of these agents still had a unique intra agent
+[00:38:37] identity, but they didn&#39;t always act using that identity.
+[00:38:42] So with assistive agents, typically it&#39;s like you build an
+[00:38:46] agent and you give it one of the work IQ
+[00:38:48] tools and it&#39;s kind of a personal productivity agent that
+[00:38:52] can send emails on your behalf, draft teams messages on
+[00:38:56] your behalf.
+[00:38:57] And most of its functions are really all just kind
+[00:39:00] of an extension of you.
+[00:39:03] There&#39;s also the autonomous agent category where this is typically
+[00:39:08] an agent that runs in the background.
+[00:39:11] You can actually assign this agent&#39;s identity permission like on
+[00:39:15] an Azure resource group or on a storage account.
+[00:39:19] And then it can again be triggered from a non
+[00:39:22] human chat based trigger and then perform actions on its
+[00:39:27] own behalf.
+[00:39:28] But the key call out here is there are limitations
+[00:39:31] because the same actions I described with the assistive agent,
+[00:39:36] like with the work IQ tools, there is no way
+[00:39:39] to do those in the autonomous agent case unless until
+[00:39:43] bringing us to the third type of agents.
+[00:39:46] We have this new type of agent called Autopilot agents,
+[00:39:49] actually demoed them a little bit snippet yesterday in the
+[00:39:53] keynote.
+[00:39:53] But this type of agent also, just like autonomous agents,
+[00:39:57] always acts on its own behalf.
+[00:40:00] But the difference here is it actually has a user
+[00:40:03] account which gives it its own like e-mail address alias,
+[00:40:07] the ability to send teams messages on its own behalf,
+[00:40:11] create word documents on be your own on its own
+[00:40:14] behalf.
+[00:40:14] So it essentially now can do any action, even those
+[00:40:19] that typically require a user account.
+[00:40:23] So now let&#39;s dive into like what this looks like
+[00:40:26] how I would build 1.
+[00:40:28] You&#39;ve probably heard of the announcement of like Scout in
+[00:40:32] Foundry.
+[00:40:33] The kind of how to think about autopilot agents here
+[00:40:36] is we&#39;re giving you the platform to actually build any
+[00:40:40] type of agent that&#39;s or any type of autopilot agent
+[00:40:43] where Scout is one example of like an out-of-the-box autopilot
+[00:40:47] agent.
+[00:40:49] So switching back over and this is also in the
+[00:40:53] repo for the breakout session, but at Foundry, we&#39;ve kind
+[00:40:57] of focused on giving you a hero scenario, which we
+[00:41:02] call our kind of work stream manager agent.
+[00:41:06] I think a key unlock for this type of agents
+[00:41:09] is group chat behaviors.
+[00:41:11] So we&#39;ve tried to create an agent that shows you
+[00:41:14] how to kind of it will automatically track open items.
+[00:41:17] You can answer, it can answer questions about everything in
+[00:41:20] your Teams chat, and there&#39;s even an onboarding flow.
+[00:41:24] And I know I don&#39;t have that much time, so
+[00:41:26] I&#39;m just going to, once you&#39;ve deployed this sample, you
+[00:41:29] would go to the Microsoft Admin Center in the request
+[00:41:32] tab.
+[00:41:34] Once it loads, you would approve your agent and then
+[00:41:39] you would come to Teams and hire it essentially.
+[00:41:43] But once I&#39;ve actually created this agent, I think this
+[00:41:46] is the cool part is I would initially, because I&#39;m
+[00:41:49] the one that created the instance, would get a message
+[00:41:52] that would be an onboarding message.
+[00:41:54] And it would ask me like, who should I be
+[00:41:57] able to talk to?
+[00:41:59] Because by default only I can talk to it and
+[00:42:02] then I can give it people that it&#39;s allowed to
+[00:42:05] talk to.
+[00:42:05] So here I&#39;m telling Seth, Elijah and other teammates mates
+[00:42:09] and then this agent will then be able to respond
+[00:42:13] to them one-on-one in Group chats.
+[00:42:16] But if I didn&#39;t give someone access, like I can
+[00:42:19] give you an example right now of say I throw
+[00:42:23] work and then this work stream manager agent into a
+[00:42:28] chat and I say hi.
+[00:42:29] Oh, I guess I already said that.
+[00:42:30] Well, I say hi.
+[00:42:32] Oh, no, everything&#39;s live.
+[00:42:36] So I guess I&#39;ve already done it here.
+[00:42:39] But let&#39;s see if the agent will respond.
+[00:42:42] Burke is not someone who has access to this agent.
+[00:42:48] Moment of truth.
+[00:42:53] Hopefully the agent woke up this morning.
+[00:42:57] Yeah.
+[00:42:57] So again, we&#39;ve created a sample where you have complete
+[00:43:00] control of who can talk to it.
+[00:43:03] And I&#39;m going to quickly now show you what this
+[00:43:05] looks like in a group chat.
+[00:43:07] So like I said, there&#39;s a few out-of-the-box capabilities that
+[00:43:12] we have added.
+[00:43:13] The 1st is every message that it&#39;s going to respond
+[00:43:15] to, it will like to just signal that it&#39;s actually
+[00:43:18] working on a response.
+[00:43:20] If I directly @the agent, it&#39;s going to @me back.
+[00:43:24] But you&#39;ll also notice if you see here, I guess
+[00:43:28] my Zoomit commands are not on.
+[00:43:31] You&#39;ll also notice if you see here, I&#39;m asking other
+[00:43:34] members of the chat to do things and this agent
+[00:43:36] isn&#39;t responding to all messages.
+[00:43:38] So that&#39;s definitely a critical behavior for agents and group
+[00:43:42] chats don&#39;t have much time left, so we&#39;re going to
+[00:43:45] have to wrap it up there.
+[00:43:46] But please start building with the code sample.
+[00:43:50] We&#39;ve provided you a set of examples, but this is
+[00:43:53] really meant for you to tailor it to your team&#39;s
+[00:43:56] needs and behavior preferences.
+[00:43:58] But I&#39;ll pass it back to Sean.
+[00:44:03] Thanks, Amanda.
+[00:44:05] Cool stuff again.
+[00:44:07] We will.
+[00:44:08] Let&#39;s go forward here a little bit.
+[00:44:11] Actually we&#39;ll wrap this up in only a couple seconds.
+[00:44:13] We looked at kind of, we&#39;ll go back to here.
+[00:44:16] We looked at three things.
+[00:44:18] We looked at three things.
+[00:44:19] We talked about agent harnesses.
+[00:44:20] Not going back.
+[00:44:21] There we go.
+[00:44:22] Whatever.
+[00:44:23] We&#39;ll get here in a second.
+[00:44:24] So we talked about agent harnesses and we showed three
+[00:44:27] things.
+[00:44:28] We showed taking an off the shelf agent harness with
+[00:44:30] Hermes, getting it deployed into Foundry.
+[00:44:32] We showed building custom harnesses with Microsoft Agent Framework, getting
+[00:44:35] those running in Foundry.
+[00:44:37] And then Amanda showed you how to actually get your
+[00:44:39] agents what they&#39;re up in Foundry, get them where your
+[00:44:42] customers are in in M365 and inside of team with
+[00:44:44] a couple different ways of how those agents can interact
+[00:44:46] with within your enterprise.
+[00:44:48] So we&#39;re excited with what you can build with this.
+[00:44:52] All our code is available on GitHub.
+[00:44:54] There&#39;s a link in a second.
+[00:44:55] If you do build something great, there&#39;s the Agent League
+[00:44:57] Hackathon, which you can join.
+[00:44:59] Grab this QR code.
+[00:45:00] It&#39;s still running until the 14th.
+[00:45:02] There&#39;s fabulous prizes you can give that.
+[00:45:04] Give that a shake.
+[00:45:06] Want to say thank you?
+[00:45:07] There&#39;s some more sessions going on for Foundry and Agents
+[00:45:10] that you can take a look at, or you can
+[00:45:12] take a look some of the ones yesterday, you can
+[00:45:14] go watch those online.
+[00:45:16] And then finally, yeah, you can explore the session.
+[00:45:19] We&#39;ve got code and resources available up on GitHub.
+[00:45:24] If you want to try out all the things that
+[00:45:26] we did, we got a couple seconds.
+[00:45:28] We&#39;re going to be here, but then we&#39;ll also be
+[00:45:31] over at the at the Foundry agents booth.
+[00:45:34] If you want to come chat with us.
+[00:45:35] I have stickers.
+[00:45:37] If you want stickers, you can come get some stickers
+[00:45:38] for me over there I.
+[00:45:39] Want to hear about what you all want to build?
+[00:45:41] If you want to build with yeah, let&#39;s know what
+[00:45:42] you&#39;re building.
+[00:45:43] Come.
+[00:45:43] Talk to us.
+[00:45:44] See you as all.
+[00:45:45] Great.
+[00:45:46] Thanks everyone.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRK245 - Build the thing that builds the thing</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRK245</nav>
+        <h1>BRK245 &mdash; Build the thing that builds the thing</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRK245 &middot; Breakout</span>
+    <h1>Build the thing that builds the thing</h1>
+    <div class="speakers">Peter Steinberger</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(200) Intermediate</span>
+<span>Gateway Pavilion, Level 1, Cowell Theater</span>
+<span>2026-06-02 21:30 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">Microsoft Purview</span> <span class="tag">ACA</span> <span class="tag">Secure App Development</span> <span class="tag">Agents &amp; apps</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRK245?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/5a21e754-8418-4276-9e66-5041ed2f019d" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>The way software is built is changing rapidly. Learn how we build a whole ecosystem of tools to build OpenClaw faster and with more confidence.
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>Peter Steinberger walks through the sprawling ecosystem of small, &quot;vibe-coded&quot; tools he built to maintain the fast-growing open-source project OpenClaw with a tiny team. The central thesis: in the agent era, a developer&#39;s job shifts from building software faster to building the tools that help agents build, verify, and ship software faster — and personal annoyance is the best signal for what to automate next.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Clause Reaper, an automated issue/PR triage system</strong> [00:05:54] — Spins up a Codex session via GitHub Action on every issue or pull request, guided by a <code>vision.md</code> file, to comment on or close items; credited with closing roughly 15,000 issues.</li>
+<li><strong>Weekly re-runs of triage across all issues</strong> [00:07:20] — Re-evaluates every open issue and PR at least weekly, notifying original reporters via Discord when their problem was already fixed on main.</li>
+<li><strong>A Discord crawler (&quot;disk crawl&quot;) feeding a maintainer dashboard</strong> [00:08:52] — Aggregates GitHub and Discord activity, serializing the data into GitHub as a backup/distribution channel so maintainers without a bot token can access it.</li>
+<li><strong>Release Bar dashboard</strong> [00:15:42] — Tracks days since last release across many projects to flag which need a new release or attention.</li>
+<li><strong>Octopus, a GitHub token proxy</strong> [00:17:49] — Routes read-only, non-mutating calls through a GitHub App (raising the rate limit from 5,000 to 15,000 requests/hour) via Cloudflare, reserving the personal token for mutating actions.</li>
+<li><strong>Crab Box, a cloud test-sandbox wrapper</strong> [00:22:00] — rsyncs changes to beefy cloud VMs to run heavy or parallel tests, with fallback across ~20 providers; later extended with cross-platform OS testing, VNC, and screenshot/click/type computer-vision automation.</li>
+<li><strong>Mantis, visual PR verification</strong> [00:25:43] — Spins up boxes to record video of a bug and its fix, verifying the change so the maintainer only watches the video and merges.</li>
+<li><strong>Auto Review</strong> [00:27:45] — Has the agent recursively call itself with fresh context to run multiple automated review rounds before committing or landing a PR, driven by one line in <code>agents.md</code>.</li>
+<li><strong>Core Patch</strong> [00:34:56] — Splits a large codebase into ~50 sections for separate agent review, useful for cleaning up legacy code.</li>
+<li><strong>Crab Fleet, multiplayer Codex</strong> [00:36:35] — Runs Codex inside Crab Box so maintainers can view, talk to, and take over a shared agent session.</li>
+<li><strong>Prompt-attachment contributor skill</strong> [00:32:27] — Asks contributors&#39; agents to attach a privacy-filtered transcript to PRs, giving maintainers a signal of effort invested.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Treating issues and pull requests as interchangeable &quot;prompt requests&quot; signaling user dissatisfaction</li>
+<li>Managing open-source &quot;slop&quot; at scale rather than fighting it</li>
+<li>Closing the loop so agents can self-verify (screenshots, video, end-to-end tests)</li>
+<li>Using a <code>vision.md</code> to encode what the project does and does not want</li>
+<li>Writing project invariants into agent instruction files, and having the agent author its own instructions</li>
+<li>Optimizing for autonomous agent work versus reserving human focus time</li>
+<li>Compounding value of small composable tools</li>
+<li>Annoyance and laziness as automation signals</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;It&#39;s still called pull request. I call it prompt request because... it&#39;s just a signal that somebody&#39;s not happy with what you built.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;Oftentimes we&#39;re not limited anymore by intelligence. The models are good enough now. Everything that we are limited off is our own imagination.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;Listen when you&#39;re annoyed. Annoyance is an amazing signal for we can automate this, and then anytime you automate something, it compounds.&quot;</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>OpenClaw</li>
+<li>Codex</li>
+<li>Claude</li>
+<li>Cloudflare</li>
+<li>GitHub / GitHub Actions / GitHub Apps</li>
+<li>Discord</li>
+<li>CodeRabbit [inferred]</li>
+<li>Blacksmith [inferred]</li>
+<li>Wispr Flow [inferred]</li>
+<li>Go</li>
+<li>AWS</li>
+<li>Clause Reaper, Octopus, Crab Box, Mantis, Auto Review, Core Patch, Crab Fleet, Click Clock, Release Bar, GOG (Google CLI), disk crawl (Discord crawler) — speaker&#39;s own tools</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Peter Steinberger — speaker, maintainer of OpenClaw</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (47,215 chars)</summary>
+        <pre class="transcript-body">[00:00:00] Good afternoon.
+[00:00:09] All right, let&#39;s see if we got this working here.
+[00:00:12] Yeah, So don&#39;t expect a regular presentation here.
+[00:00:17] My talk is about build a thing that builds the
+[00:00:21] thing.
+[00:00:21] I want to inspire you a little bit how to
+[00:00:25] approach building software in the future.
+[00:00:29] You know, it&#39;s been not even a year since we
+[00:00:34] have coding agents and it&#39;s kind of like half a
+[00:00:38] year since they got good and there&#39;s no stopping down.
+[00:00:43] So a lot of the ways we built software in
+[00:00:48] the past I feel are obsolete and we we haven&#39;t
+[00:00:53] really figured it out yet.
+[00:00:58] I&#39;m curious here, is anyone here who maintains open source?
+[00:01:04] Yes.
+[00:01:06] How are you handling the pain?
+[00:01:09] So I kind of stumbled into into open claw people.
+[00:01:19] I saw this all these articles where people say, oh,
+[00:01:23] Peter made 43 projects that failed and then finally like
+[00:01:28] one worked.
+[00:01:30] And I had to laugh at this because none of
+[00:01:34] these projects failed.
+[00:01:37] All of these projects are things I built for myself
+[00:01:42] to work faster to like mostly actually to like help
+[00:01:48] my agents to work faster.
+[00:01:52] Like anytime you build software now, your job is no
+[00:01:55] longer to, to figure out how you build software faster.
+[00:01:59] Really your job should be, what can I do to
+[00:02:02] help my agent to build software faster?
+[00:02:05] And even more so, it&#39;s all about closing the loop.
+[00:02:10] You know, last year I built, I, I spent a
+[00:02:15] few months building a SaaS and the agent would write
+[00:02:20] code and then it would like, tell me it&#39;s done.
+[00:02:25] And then I would look at the browser, I would
+[00:02:27] pitch at the agent.
+[00:02:28] It will like go in the loop, it will fix
+[00:02:30] it.
+[00:02:30] And eventually we will be there.
+[00:02:33] And that was until I figured out like, hey, no,
+[00:02:37] the the agent just cannot make a screenshot.
+[00:02:40] You know, just like humans would like anything that where
+[00:02:46] you feel this is something I do repeatedly.
+[00:02:51] Just start thinking, how can I automate this?
+[00:02:53] How can I, how can I help my agent to
+[00:02:56] close the loop?
+[00:02:58] So I&#39;m going to guide you a little bit through
+[00:03:01] all my failed projects and give you a little bit
+[00:03:05] of the, the, the thought process I put on this
+[00:03:08] website a little bit.
+[00:03:11] It&#39;s pure slop, but I think it&#39;s kind of nice
+[00:03:14] for that all the little tools that we built to
+[00:03:17] build Opencloud and I don&#39;t think it&#39;s even complete.
+[00:03:26] So my, my first problem was that open clock clinic
+[00:03:31] exploded and then the issues and PRS started increasing.
+[00:03:37] And I didn&#39;t know that this number you actually once
+[00:03:41] it reaches 5K, it stays at 5K and kind of
+[00:03:43] masks.
+[00:03:44] At some point we had like more than 10,000 issues
+[00:03:47] because people don&#39;t, they don&#39;t look.
+[00:03:49] They&#39;re just like, oh, I mean people, the agents don&#39;t
+[00:03:53] look.
+[00:03:53] You know, it&#39;s like, let&#39;s not pretend any of that
+[00:03:56] is, is is written by humans anymore.
+[00:03:58] And I know a lot of open source people get
+[00:04:01] really mad at all the slop they&#39;re getting, but I
+[00:04:05] feel you can&#39;t fight the world.
+[00:04:08] You have to figure out a way how to deal
+[00:04:10] with that.
+[00:04:11] So I see differently.
+[00:04:12] Yes, there&#39;s a lot of slop, but the real problem
+[00:04:16] is that it&#39;s still called pull request.
+[00:04:20] I call it prompt request because what you really want
+[00:04:24] is anytime someone opens an issue or PR, it&#39;s just
+[00:04:27] a signal that somebody&#39;s not happy with what you built
+[00:04:31] and it&#39;s asking for a change.
+[00:04:33] Actually, like these two things are like interchangeable, like mostly
+[00:04:37] doesn&#39;t matter if it&#39;s an issue or PR, Sometimes an
+[00:04:40] issue is actually nicer because I can work fresh if
+[00:04:42] it&#39;s a pull request and like somebody used Claude, I&#39;m
+[00:04:45] like I it&#39;s probably takes me more time to like
+[00:04:48] make my agent read the code and then like bitch
+[00:04:51] at the code and then rewrite the code.
+[00:04:56] But the first thing, the first thing I had to,
+[00:04:58] I had to solve was how do I get this
+[00:05:00] number down?
+[00:05:01] And I tried, obviously you tried tools, right?
+[00:05:04] I tried code rabbit, I tried grabbed, I tried a
+[00:05:07] bunch of tools and they were nice, but they ultimately
+[00:05:11] would just give me a review.
+[00:05:13] I wanted more I reviews are nice but I kind
+[00:05:16] of want something that automatically groups and closes the issues
+[00:05:20] and I couldn&#39;t find anything good.
+[00:05:23] And in this day and age you don&#39;t actually need
+[00:05:26] to wait anymore to like find stuff.
+[00:05:28] You can just build your own stuff.
+[00:05:29] So I built close rebar again, totally slopped website because
+[00:05:34] the website doesn&#39;t matter.
+[00:05:41] But it&#39;s actually really simple to build.
+[00:05:43] Like I don&#39;t know what all these SAS tools where
+[00:05:47] their mode is, because ultimately any time someone opens an
+[00:05:51] issue or a pull request, I just start a codex
+[00:05:54] in the cloud.
+[00:05:55] We are a GitHub action and have a nice prompt
+[00:06:00] that explains the codex.
+[00:06:03] Like what is, what&#39;s the goal of the project?
+[00:06:07] What&#39;s our vision?
+[00:06:08] I do this now for any of my open source
+[00:06:10] projects.
+[00:06:10] I have a vision dot MD and part of my
+[00:06:13] standard prompt is that my agent reads that file and
+[00:06:16] in that file is kind of like what stuff that
+[00:06:19] yes, we totally want, What stuff that definitely we don&#39;t
+[00:06:23] want.
+[00:06:24] And based on those rules clause, Reaper will run and
+[00:06:29] we&#39;ll just either comment on the issue or close the
+[00:06:33] issue.
+[00:06:35] And through that, I was able to like close around
+[00:06:37] 15,000 issues.
+[00:06:39] I mean, yes, I also operate under assumption that I
+[00:06:41] have infinite tokens.
+[00:06:43] You could definitely do this a little bit more efficient.
+[00:06:46] But we didn&#39;t stop there.
+[00:06:47] Once we had a system that could close issues, of
+[00:06:51] course, we also wanted to review issues.
+[00:06:58] And it&#39;s not a static process, right?
+[00:07:02] At our scale, any time a fixed lens on main,
+[00:07:06] there&#39;s a good chance that I solve an issue that
+[00:07:10] I&#39;ve never read because there&#39;s like many thousand issues open.
+[00:07:17] So what we do is actually we rerun clause weeper
+[00:07:20] on every issue and pull request at least once a
+[00:07:23] week.
+[00:07:24] Depending on how many tokens you want to spend, you
+[00:07:25] could do it every day.
+[00:07:28] So what regularly happens is is that I I have
+[00:07:31] an integration on Discord and then and then the report
+[00:07:35] will tell me yeah, a close issue from three months
+[00:07:38] ago that I&#39;ve never seen just because, because Kodak, a
+[00:07:41] classic would run on that issue.
+[00:07:44] And then a person that wrote an issue will get
+[00:07:46] a will get a response.
+[00:07:47] Hey, we fixed this on main.
+[00:07:48] And again, it&#39;s something I don&#39;t have to deal with
+[00:07:50] it.
+[00:07:51] I automated it.
+[00:07:52] It solves the problem.
+[00:07:57] I also build a nice dashboard.
+[00:07:58] So I see right now there&#39;s only 18, 18 codecs
+[00:08:04] working right now and this is how it looks.
+[00:08:11] It&#39;s just one long comment that explains what it does
+[00:08:15] and it gives people a ray of issues that they
+[00:08:18] that they need to solve.
+[00:08:20] Typical stuff.
+[00:08:24] The next thing I I had to solve now.
+[00:08:27] Now the project gained momentum.
+[00:08:29] I added more maintainers and some people turn out to
+[00:08:33] be really good.
+[00:08:35] Some people, they kind of showed up for a few
+[00:08:38] days and then disappeared.
+[00:08:41] And I was very liberal in the beginning of adding
+[00:08:44] people and I lost a little bit overview.
+[00:08:47] So I wanted a dashboard.
+[00:08:50] So I just built the dashboard.
+[00:08:52] So now we have reports with open claw.
+[00:08:54] This is not public for everyone because it because you
+[00:08:57] want a little bit more data.
+[00:08:58] Actually, I&#39;m not just looking at GitHub issues.
+[00:09:01] I also look at all our Discord stuff.
+[00:09:04] So to me, being a good maintainer doesn&#39;t just mean
+[00:09:07] you push code domain also means that you participate in
+[00:09:11] discussions, which we use Discord for that.
+[00:09:14] So, so this system integrates all data from Discord.
+[00:09:18] Now that brought me to the next problem.
+[00:09:21] How do I get the data from Discord?
+[00:09:25] Well, let&#39;s just build this crawl.
+[00:09:30] Like in this day and age, any problem is just
+[00:09:33] a prompt away.
+[00:09:34] Like building this thing is never the hard thing.
+[00:09:36] Maintaining this thing is actually the hard thing.
+[00:09:40] But again, even even on even now, when I when
+[00:09:44] I maintain stuff, I don&#39;t think about the project level
+[00:09:49] anymore.
+[00:09:51] I it looks like this.
+[00:09:55] I basically tell I go one level beyond.
+[00:09:58] I go into my projects folder and ask codex, hey,
+[00:10:00] let&#39;s try ash.
+[00:10:01] What are the things that I should work on?
+[00:10:03] And it just finds a list of all the all
+[00:10:06] my projects and open issues.
+[00:10:08] And then I basically say, yes, do all of them
+[00:10:11] because I already have my slop is better than your
+[00:10:15] slop.
+[00:10:18] No, I don&#39;t do all of them because there&#39;s still
+[00:10:21] sometimes people report weird stuff and I don&#39;t fully trust
+[00:10:25] my agents.
+[00:10:26] So I want to, I want to read that right.
+[00:10:31] So again, I, I&#39;m a lazy person.
+[00:10:33] I could click on each of those URLs, but it&#39;s
+[00:10:36] kind of like slow.
+[00:10:37] So I built something where you just select the text
+[00:10:41] and I built myself an issue browser because again, it
+[00:10:45] was like like there was like just a few clicks
+[00:10:48] too much.
+[00:10:49] It annoyed me a little bit too much and and
+[00:10:51] the critical the critical thing that you are is like
+[00:10:53] your time is limited, so you need to build the
+[00:10:55] tools to build the tools.
+[00:10:57] So again, I built this little slop wiped issue browser
+[00:11:01] where I can copy by now any format because turns
+[00:11:05] out there is clank is given an almost unlimited amount
+[00:11:09] of versions how to format things.
+[00:11:12] So I anytime something didn&#39;t work, I just like fixed
+[00:11:15] it to make it work.
+[00:11:17] And now it basically parses all the formats that it&#39;s
+[00:11:19] ever seen.
+[00:11:20] And I can very quickly click through this list.
+[00:11:24] In many cases, the agents are already so good because
+[00:11:28] I have this vision dot MD file that the selection
+[00:11:30] is mostly right.
+[00:11:32] And they usually say do those eight.
+[00:11:34] Don&#39;t do those two because I know this needs actual
+[00:11:37] time.
+[00:11:38] You know, anytime you work with agents, you want to
+[00:11:41] optimize what they can do autonomously and then it doesn&#39;t
+[00:11:45] matter how long it takes.
+[00:11:48] You want to you want to really manage the focus
+[00:11:51] time where you want to be in the loop for
+[00:11:54] the things that are important and all the things.
+[00:11:58] What is that even Gmail draft create.
+[00:12:01] Yeah, that&#39;s pretty nice feature.
+[00:12:03] Oh yeah.
+[00:12:03] Let&#39;s look at this.
+[00:12:04] This is a nice feature on GOG.
+[00:12:08] Another thing that I built because I got annoyed that
+[00:12:12] Google doesn&#39;t have a CLI and I want my agents
+[00:12:15] to access all my Google yes, like codecs has Gmail
+[00:12:19] integration and now calendar integration, but only for one account
+[00:12:23] against and it annoyed me.
+[00:12:25] So I just built the CLI that can do everything
+[00:12:28] anytime something&#39;s missing because I, I, I control the whole
+[00:12:31] stack.
+[00:12:32] My agent controls the whole stack.
+[00:12:33] So it can just fix itself like so like you
+[00:12:36] own the whole universe.
+[00:12:37] Anything is fixable.
+[00:12:39] And this is all these issues are are super nice
+[00:12:42] because this would eventually add a feature codecs can not
+[00:12:47] only build it, but also end to end verify it
+[00:12:50] because I of course have like a demo account on
+[00:12:53] GOG so it can end to end test the whole
+[00:12:56] feature.
+[00:12:57] And I basically have to do nothing other than saying
+[00:12:59] yes.
+[00:13:00] And I can ship it and I can ship it
+[00:13:01] with confidence because it&#39;s end to end tested.
+[00:13:09] So then I build this scroll for the maintenance reports.
+[00:13:13] Turns out this is like this solves a much bigger
+[00:13:16] problem because when you do open source and you have
+[00:13:19] multiple thousands of issues, it&#39;s very hard to know what&#39;s
+[00:13:23] actually the thing that I should work on.
+[00:13:27] So now I I hooked up this crawl to codecs
+[00:13:31] and it will it will go through all my channels
+[00:13:34] and I can&#39;t basically ask it what are people screaming
+[00:13:38] the most correlated to open issues and PRS and find
+[00:13:42] me the top five things I should work on.
+[00:13:48] It should like match it with my vision document.
+[00:13:51] Pick the stuff that you can work autonomously and then
+[00:13:54] basically it can run off and work for doesn&#39;t matter
+[00:13:57] how many hours you can, you can parallelize it.
+[00:14:04] And then what you always should know when you build,
+[00:14:07] even when you highly automate this agent is you should
+[00:14:10] have this the, you should have the overview of your
+[00:14:13] system.
+[00:14:14] So you will know which issues are like, probably fine,
+[00:14:16] probably fine.
+[00:14:17] Oh, this is Harry.
+[00:14:17] I need to look at that more specifically.
+[00:14:22] So I built disk crawl.
+[00:14:24] And then of course, all my maintainers wanted disk crawl.
+[00:14:26] But again, it there&#39;s no, there&#39;s no public way to
+[00:14:29] get all this data.
+[00:14:30] So I used a bot multi that was in this
+[00:14:33] code to like use him to access all the data.
+[00:14:37] But then how do you distribute it to to the
+[00:14:39] other maintainers?
+[00:14:41] Well, what&#39;s the what&#39;s the simplest backup system there is
+[00:14:48] GitHub.
+[00:14:50] So, so all the, all the data from our Discord
+[00:14:54] is not just in some oh, this could store just
+[00:14:57] in some, some format that serializes the database and anyone
+[00:15:02] that uses Discord can just use this as an alternative
+[00:15:06] data server if they don&#39;t have a bot token because
+[00:15:09] I didn&#39;t want to give my bot token to all
+[00:15:13] the people.
+[00:15:14] This is good enough.
+[00:15:15] Again, problem solved.
+[00:15:19] Now, if you&#39;re like me and you&#39;re maintaining a lot
+[00:15:23] of open source projects, what I always wanted was a
+[00:15:28] way to have this a little dashboard of like what
+[00:15:32] actually needs my attention.
+[00:15:35] Where are the most pull requests?
+[00:15:37] Should I do another release?
+[00:15:38] But there wasn&#39;t really anything good, so I just build
+[00:15:42] release bar and now I can filter on this specifically
+[00:15:46] how many days since the last release?
+[00:15:50] So whenever I do like my little fixes and you
+[00:15:53] know, software, if you don&#39;t constantly garden your software, it&#39;s
+[00:15:57] dead because dependencies, everything needs updating, systems change.
+[00:16:02] So now I have a nice dashboard to know when
+[00:16:05] should I do another release and I can basically filter
+[00:16:08] on stuff that need attention.
+[00:16:09] And again, the beauty of all these little all these
+[00:16:14] little tools that you build to help you build the
+[00:16:18] thing, they&#39;re not system critical.
+[00:16:21] So all these tools, I didn&#39;t, yes, I actually didn&#39;t
+[00:16:25] look at any of that code because it doesn&#39;t matter.
+[00:16:29] Like for, for stuff that a lot of people run
+[00:16:32] open claw, I read more code than people would think.
+[00:16:37] But for all this little helper tools, vibe them away.
+[00:16:42] And if you don&#39;t, maybe you use them a lot,
+[00:16:44] then you can like iterate on them.
+[00:16:45] Maybe they don&#39;t work out at no cost.
+[00:16:51] Yeah, we talked about the little browser here.
+[00:16:55] There&#39;s another thing.
+[00:16:56] Now that I, I use more and more aids to
+[00:16:59] work on things in parallel, I hit another problem.
+[00:17:05] There&#39;s only so many GitHub tokens that you can use.
+[00:17:09] And then, and because we have so many issues and
+[00:17:12] I instructed my, my agent to look at find related
+[00:17:15] issues.
+[00:17:16] I always ran out of token.
+[00:17:19] And I know that I, I don&#39;t know if they
+[00:17:21] get the people out here like they&#39;re good friends and
+[00:17:24] I have someone literally clicking a button once an hour
+[00:17:26] to reset Peter&#39;s rate limits.
+[00:17:29] But the problem is these people need sleep.
+[00:17:31] It&#39;s not clankers.
+[00:17:33] So so so when I was working weird hours like
+[00:17:36] Ashley wasn&#39;t around, I couldn&#39;t ping her to like reset
+[00:17:40] my tokens again.
+[00:17:43] I find being annoyed is the very best way to
+[00:17:46] solve problems.
+[00:17:49] So I built Octopus and you&#39;re like, my feelings were
+[00:17:52] like transported into this distinct feelings.
+[00:17:59] But the principle is the principle is very, very easy.
+[00:18:04] Octopus.
+[00:18:07] Let&#39;s see if this actually works.
+[00:18:13] But again, the the principle is very easy.
+[00:18:15] You as a as a individual have 5000 API tokens
+[00:18:20] per hour.
+[00:18:22] But if you install a GitHub app, you can see
+[00:18:24] 15,000 tokens per hour.
+[00:18:27] So I just built the thing that since GH and
+[00:18:31] then calls this thing on Cloudflare if it&#39;s a read
+[00:18:35] only.
+[00:18:36] If it&#39;s a non mutating read only action from a
+[00:18:39] public repository, it can use the GitHub app and then
+[00:18:42] use the token from the GitHub app and not my
+[00:18:45] token.
+[00:18:45] Only if it&#39;s something that&#39;s mutating or it doesn&#39;t fit
+[00:18:48] that that match it will use my token.
+[00:18:50] Bam again, problem solved and all the tools are so
+[00:18:57] good now, especially, especially Cloudflare.
+[00:19:03] I didn&#39;t have I I I just explained the agent
+[00:19:06] what I want.
+[00:19:11] And then with the combination of really smart models browser
+[00:19:15] use you don&#39;t have to do anything anymore.
+[00:19:18] Like literally could configure Cloudflare itself.
+[00:19:21] You probably still want to have a look at because
+[00:19:23] you want to review if it actually doesn&#39;t mess up
+[00:19:26] your security settings.
+[00:19:32] But the idea is anytime, anytime you feel you feel
+[00:19:35] pain, think of go, go, go, go level out and
+[00:19:38] think about what, what can I do to like get
+[00:19:41] rid of that pain?
+[00:19:43] And then usually it will not only help you, it
+[00:19:46] will help your whole team.
+[00:19:48] And it&#39;s, it&#39;s A and it compounds.
+[00:19:51] All the little tools are built help me to build
+[00:19:53] faster.
+[00:19:54] Another, another problem I had.
+[00:19:58] Yeah, how?
+[00:19:58] We&#39;re on time.
+[00:19:59] Actually, I think we&#39;re good.
+[00:20:06] Who who here had this problem?
+[00:20:08] Who who&#39;s crazy enough to runs like more than let&#39;s
+[00:20:11] say 10 codec sessions except Cloud 2.
+[00:20:16] Yeah, you guys need to level up.
+[00:20:20] So the project grew, it kind of exploded the code
+[00:20:26] and the features grew.
+[00:20:31] People reported bugs.
+[00:20:32] Our test case grew and the tests were becoming more
+[00:20:36] and more pain.
+[00:20:38] You know, that&#39;s, that&#39;s the stuff kind of creeps in.
+[00:20:40] It takes like took like 10 seconds and took 30
+[00:20:43] seconds and took a minute, then it took two minutes,
+[00:20:47] 100 took 5 minutes.
+[00:20:48] Then I optimized it from a mixed studio to work
+[00:20:51] in one minute.
+[00:20:52] And everybody complained that that like their computers were melting
+[00:20:55] because they didn&#39;t have like 40 cores.
+[00:21:00] So we had this shared painting again.
+[00:21:02] And around the time I saw that, oops, oh, this
+[00:21:08] doesn&#39;t, I saw that.
+[00:21:11] What&#39;s it called?
+[00:21:12] Blacksmiths.
+[00:21:13] They had, they started something, a test box concept.
+[00:21:21] So the idea is your computer power is limited, so
+[00:21:25] you want to give the agent a little box where
+[00:21:29] it can run the tests or do whatever it needs
+[00:21:33] to be.
+[00:21:34] That&#39;s that&#39;s super intensive and that&#39;s beautiful for a while.
+[00:21:40] But the problem was their stuff was very new and
+[00:21:43] was like, it was down for at least two hours
+[00:21:46] a day.
+[00:21:47] And by then our team was so dependent on it
+[00:21:49] that like nothing would get done anymore in those two
+[00:21:51] hours because see, I would break down and then tests
+[00:21:53] would break down.
+[00:21:55] So I was like, this is fine.
+[00:21:56] I&#39;ll just build something that wraps it with alternatives.
+[00:22:00] And that&#39;s how Crab Box was born because you have
+[00:22:03] to keep it with the weird crustacean names.
+[00:22:07] Again, very simple, a very simple concept.
+[00:22:09] You spin up a little inferile machine in the cloud
+[00:22:13] and then it our syncs your changes in there.
+[00:22:17] Your report&#39;s already checked out.
+[00:22:18] It runs the tests in there and then you to
+[00:22:21] pay the all the CPU stuff that you would need
+[00:22:24] to run the test on your machine.
+[00:22:26] You can use really beefy hardware.
+[00:22:28] You can massively parallelize everyone&#39;s happy.
+[00:22:34] And then this, this tool quickly became like universally loft
+[00:22:39] because it would it would use our main provider and
+[00:22:43] if that one&#39;s down, it would just use AWS or
+[00:22:47] now as Asia.
+[00:22:48] And then people started making pull requests and now it
+[00:22:51] supports like 20 providers.
+[00:22:56] But it didn&#39;t stop there because I recognized this is
+[00:22:59] actually way more useful because oftentimes we have bugs where
+[00:23:03] Oh yeah, on on Windows there is AE Prem issue
+[00:23:06] even though we use no, then it should be cross-platform.
+[00:23:10] There&#39;s like always little weird details where cross-platform is a
+[00:23:14] lie.
+[00:23:16] And then in the past, I would just sometimes just
+[00:23:19] like vibe it because I&#39;m too lazy to spin up
+[00:23:22] my Windows computer.
+[00:23:23] I could spin up AVM, but then how do I
+[00:23:25] get it into the VM?
+[00:23:26] And then I kind of like have to do get
+[00:23:28] codecs into the VM because I can&#39;t, I can&#39;t do
+[00:23:30] get anymore without an agent because it&#39;s 3:00 AM and
+[00:23:34] I&#39;m tired.
+[00:23:35] You know, you know, you have to fight friction.
+[00:23:38] Like, like ultimately we are being lazy is good.
+[00:23:42] So I noticed that I&#39;m, I&#39;m pushing SLOB because I&#39;m
+[00:23:47] too lazy to come up with a good testing system.
+[00:23:52] So I added cross-platform support to crap box.
+[00:23:57] And now anytime there&#39;s something that&#39;s hairy, I just tell
+[00:24:00] my my agent, hey, test it on all OSS and
+[00:24:02] it will not just like create one box, it will
+[00:24:04] create three boxes.
+[00:24:06] Or maybe maybe there&#39;s a big issue that&#39;s only on
+[00:24:08] Red Hat.
+[00:24:08] Sorry, Sally love Red Hat.
+[00:24:11] And it will spin up four boxes and you can
+[00:24:13] like, you can scale it infinitum and like increase your
+[00:24:16] confidence that your code actually works.
+[00:24:18] And it can do that in parallel, which is really
+[00:24:21] amazing.
+[00:24:23] And then once I built that got me thinking like,
+[00:24:28] I have this bug, but it&#39;s like actually only on
+[00:24:32] Windows on this browser.
+[00:24:34] So I kind of need UI for that.
+[00:24:37] People already solved that.
+[00:24:38] Just add V&amp;C into it.
+[00:24:40] So now I have a crack box that like can
+[00:24:43] recreate exact scenario and then my agent opens a browser
+[00:24:46] with web VNC and in there there&#39;s already a browser
+[00:24:49] waiting and a terminal and maybe Telegram or whatever I
+[00:24:52] need so I can recreate the issue end to end
+[00:24:55] and test it.
+[00:24:57] That was amazing.
+[00:24:59] But still like I had to click myself, you know,
+[00:25:05] like laziness is good.
+[00:25:09] So that got us the idea.
+[00:25:11] Wouldn&#39;t it be cool if the clanker could do it?
+[00:25:13] Of course they can do it.
+[00:25:14] They have computer vision models could really good.
+[00:25:17] So so now crapbox also has little little tools for
+[00:25:21] screenshot and click and type.
+[00:25:24] And now I can actually my agent can have its
+[00:25:27] own little box with UI that it can use computer
+[00:25:30] automation in to control the UI.
+[00:25:35] And it&#39;s still not good enough.
+[00:25:38] And like, I don&#39;t want to watch the clanker.
+[00:25:40] I just want to see a video.
+[00:25:43] So what we built next was Mantis, where now we
+[00:25:46] have an agent that I can ping on a, on
+[00:25:49] a pull request.
+[00:25:51] They&#39;ll spin up correct boxes, make a video of the
+[00:25:54] bug, fix it, make a video of the fix and
+[00:25:57] actually look at the video and verify it.
+[00:26:00] And then all I get I can basically I see
+[00:26:02] an issue.
+[00:26:03] I can ping clause Reaper to fix it.
+[00:26:06] It will create the PR meant just for like do
+[00:26:09] the visual verification and all I have to do is
+[00:26:13] like look at the video and plus merge and that&#39;s
+[00:26:16] all built based on me being annoyed.
+[00:26:23] The next thing I noticed, like you would, you would
+[00:26:29] use codecs.
+[00:26:30] You were like do the prompt and then you would
+[00:26:33] do slash review because you&#39;re like, you&#39;re kind of unsure
+[00:26:36] maybe maybe I should review it.
+[00:26:38] And then Cortex would find 3 issues and they&#39;re like,
+[00:26:41] yeah, damn, they&#39;re like all of them sound real.
+[00:26:44] So I&#39;ll fix it and run off for 1020 minutes,
+[00:26:47] run all the tests again and you&#39;re like, is it
+[00:26:51] really all fixed?
+[00:26:53] Let&#39;s do slash review again.
+[00:26:55] It would run for 10 minutes.
+[00:26:57] It would find 2 new issues because it can&#39;t, can&#39;t
+[00:27:00] show me all the issues at once.
+[00:27:01] Yeah, yeah.
+[00:27:02] It&#39;s just like they can&#39;t do it.
+[00:27:04] You type fix again, you wait 20 minutes, you do
+[00:27:07] something else, go back and like, yeah, but this is
+[00:27:10] really fixed the slash review again.
+[00:27:12] It would run for 20 minutes or 30 minutes.
+[00:27:16] You would find another issues.
+[00:27:17] And I don&#39;t know, have you done this?
+[00:27:20] Like I did this and then there was one time
+[00:27:23] I did this 10 times.
+[00:27:25] It was the whole day.
+[00:27:27] Like I I added support for line.
+[00:27:29] I don&#39;t even use line, but like somebody was very
+[00:27:32] passionate about it.
+[00:27:34] I wanted to get it in and then all day
+[00:27:36] I did this review and that was like, is it
+[00:27:38] enough?
+[00:27:38] Is enough?
+[00:27:40] Like I like I feel like I&#39;m the clanker.
+[00:27:45] So I built auto review and in the beginning I
+[00:27:48] thought, oh, this is kind of annoying.
+[00:27:51] I probably need hooks or like maybe I have 4
+[00:27:53] codecs because codecs open source, I could totally do that.
+[00:27:57] But that turns out it&#39;s actually way easier than that
+[00:27:59] because agents are really good at following instructions for the
+[00:28:02] last at least four or five months.
+[00:28:05] So now there is one line in my agent dot
+[00:28:08] MD that says before you commit or land APR, if
+[00:28:13] you haven&#39;t done auto view it, run auto review.
+[00:28:17] And again, you know, review, some people say look at
+[00:28:21] the code with fresh eyes.
+[00:28:24] Yeah, good luck with that.
+[00:28:25] You know, like context doesn&#39;t really work that way, but.
+[00:28:38] But you can just call.
+[00:28:41] I don&#39;t know if you find the when you get
+[00:28:44] the idea, you can just call the agent that you
+[00:28:48] use SCLI with the commands that it should do.
+[00:28:52] So you get a fresh context by just calling like
+[00:28:56] I Codex calls codex to like run order review.
+[00:29:00] There was a bug sometimes, Sometimes Codex was calling codex,
+[00:29:02] calling Codex and calling codex and it took very long.
+[00:29:04] I fixed that, but now I have a very reliable
+[00:29:10] system that automatically runs many rounds of review and I
+[00:29:17] also tuned the skill MD file to explain the agent.
+[00:29:24] Not every review thing is valid you know.
+[00:29:29] Sometimes they would find very good edge cases.
+[00:29:35] So it&#39;s a little bit up to you to explain
+[00:29:39] the agent, the, the, the, the conditions.
+[00:29:43] What do you think is is valid running?
+[00:29:45] For example, in our case, we don&#39;t expect that you
+[00:29:48] randomly edit plug in files while the system is running.
+[00:29:52] The agent doesn&#39;t know that.
+[00:29:53] So like by default, it would write very defensive code
+[00:29:56] to like deal with all of those things.
+[00:29:58] So, so it&#39;s always a good idea to write all
+[00:30:01] this invariance into your agent sort of D file.
+[00:30:05] That&#39;s a good idea in general because you know that,
+[00:30:09] but the clanker doesn&#39;t.
+[00:30:11] And every time you start a new session, clanker memory
+[00:30:14] is pretty much gone.
+[00:30:16] So you, the more you tell it about your project,
+[00:30:20] the better the time you&#39;ll have.
+[00:30:23] I I went all in from very long agent files
+[00:30:26] to like very short ones.
+[00:30:27] And now mine are kind of long again, but with
+[00:30:31] meaningful stuff.
+[00:30:34] Every time you do that, it&#39;s also don&#39;t, don&#39;t write
+[00:30:37] the text yourself.
+[00:30:39] You know, none of this is written yourself.
+[00:30:41] You don&#39;t know how to write to a clanker.
+[00:30:43] In a way, the clanker writes to a clanker.
+[00:30:45] So like you, you&#39;re going to explain what you want
+[00:30:47] from the agent and the agent will write in its
+[00:30:49] own words.
+[00:30:51] And then every once in a while go into meta
+[00:30:52] mode and just ask the agent, hey, is there anything
+[00:30:55] that&#39;s confusing in your agent Solomon D file?
+[00:30:58] And then they will usually tell you, yeah, well, this
+[00:31:00] is confusing because here it says this and here it
+[00:31:02] says this and then clean it up.
+[00:31:03] Clean up any confusion because that&#39;s just token burner and
+[00:31:07] we&#39;ll we&#39;ll give you a voice results.
+[00:31:11] But I think if if you only take about two
+[00:31:14] ideas from this talk, try auto review and try crap
+[00:31:18] box.
+[00:31:18] It totally revolutionized how we build software like my.
+[00:31:22] My trust in in prompting and shipping is much, much
+[00:31:28] higher with that stuff.
+[00:31:38] There&#39;s another thing when we get PRS, I would love
+[00:31:45] to know how people came to that PR like the
+[00:31:51] good and the bad thing with agencies.
+[00:31:56] Like a one line prompt can create 10 lines, 10/10/10
+[00:32:00] pages of content and you don&#39;t always know how much
+[00:32:04] how much work was put in.
+[00:32:07] So very early on in our contributor guidelines, I asked
+[00:32:11] people to please send me the prompts and nobody would
+[00:32:14] do it because there was just no good system, you
+[00:32:16] know, And you, I was fighting against people&#39;s laziness.
+[00:32:20] Of course they will not do it.
+[00:32:22] That one took me a long time to figure out.
+[00:32:25] But now I built the skill.
+[00:32:27] If you use open claw and you contribute, you send
+[00:32:29] a pull request to open claw.
+[00:32:31] Your agent will ask you, hey, do you want to
+[00:32:34] send a a privacy filtered version of the prompt?
+[00:32:38] If you do that, we will look at your PR
+[00:32:41] faster and then the user can type yes.
+[00:32:44] And then the agent will upload, will, will, will look
+[00:32:48] on the disk, will find its own transcript, will cut
+[00:32:51] the transcript to the interesting parts, and then we&#39;ll add
+[00:32:55] those transcript to the pull request.
+[00:32:59] And suddenly I have a much more interesting data point
+[00:33:02] about how much effort was put in because that&#39;s ultimately
+[00:33:05] what you&#39;re after.
+[00:33:06] Like, again, somebody can say fix issue number and send
+[00:33:11] PR and it&#39;s like 4 words with five tokens.
+[00:33:15] And, or somebody could actually spend a few hours and
+[00:33:18] like have an actual discussion and you don&#39;t always know.
+[00:33:21] So this has been extremely helpful in, in, in figuring
+[00:33:24] out what&#39;s total slop and what&#39;s kind of good slop.
+[00:33:29] And again, like I could have done this half a
+[00:33:32] year ago.
+[00:33:32] I just, I just didn&#39;t come to mind that actually
+[00:33:36] it&#39;s that easy.
+[00:33:37] Oftentimes we&#39;re not limited anymore by, by intelligence.
+[00:33:45] The models are good enough now.
+[00:33:47] Everything that, that we are limited off is our own
+[00:33:50] imagination, how what you do with it and how to
+[00:33:52] build things.
+[00:33:55] Now I built all the review and it was like,
+[00:33:57] oh this is amazing.
+[00:33:59] And it made me really bad.
+[00:34:01] It felt really bad for all the code that I
+[00:34:03] committed without review.
+[00:34:05] Now that I, I, I saw how much stuff the
+[00:34:08] agent finds each time and ISO 255 five is good.
+[00:34:12] But and yes it is really good.
+[00:34:15] But still there&#39;s so many Boo boos like the especially
+[00:34:20] enlargement.
+[00:34:21] There&#39;s just mistakes and, and like difficult things the agent
+[00:34:24] will only find after doing multiple rounds of reviews.
+[00:34:28] So it got me worried like, oh, I wish I
+[00:34:31] had done this earlier, but you can&#39;t really.
+[00:34:35] There&#39;s no slash review for a project that has a
+[00:34:37] million lines of code.
+[00:34:38] There&#39;s too much.
+[00:34:40] Like what should the agent focus on?
+[00:34:42] There&#39;s too much for, for the context.
+[00:34:52] It annoyed me.
+[00:34:54] You know what, what I, what happens when I&#39;m annoyed?
+[00:34:56] So I, I, I built core patch.
+[00:35:00] The principle is very simple, like, oh, you have a
+[00:35:02] big project.
+[00:35:03] Let&#39;s take it apart into like 50 little sub things,
+[00:35:07] subsections by feature or whatever.
+[00:35:09] However else you can like we can like separate it
+[00:35:12] and then have the agent review each of those things
+[00:35:16] separately.
+[00:35:17] And then you can, you can download this, run this
+[00:35:20] on, on your project and I guarantee you&#39;ll find a
+[00:35:22] lot of interesting things.
+[00:35:27] It&#39;s not, it&#39;s not quite as perfect as pair change
+[00:35:30] because you would have to probably scale it up to
+[00:35:34] thousands of codec sessions.
+[00:35:38] Even with unlimited token.
+[00:35:39] That&#39;s a problem.
+[00:35:40] But it&#39;s really good at like cleaning up code bases.
+[00:35:51] This is something that&#39;s not fully finished yet, but you
+[00:35:56] know, I got, I was so into crap box.
+[00:36:05] The more I worked with the team, the more did
+[00:36:08] you have this where you ask your teammate and your
+[00:36:11] teammate will pass stuff from your from the agent in
+[00:36:14] the chat.
+[00:36:15] And then you would, you would comment on it and
+[00:36:17] then they would pass stuff into into the coding agent
+[00:36:20] and they would they would pass stuff back into the
+[00:36:22] chat.
+[00:36:23] I&#39;m like, I don&#39;t like, like you&#39;ll just intermediary.
+[00:36:29] I want to talk to your clanker.
+[00:36:31] So, so that&#39;s the last thing I built.
+[00:36:35] This is crap fleet, which is basically we already have
+[00:36:38] crap box where the tests run couldn&#39;t codex run in
+[00:36:41] there as well?
+[00:36:43] Turns out yes, it can.
+[00:36:46] And then you have multiplayer codecs.
+[00:36:49] So, so, so now if I work on something and
+[00:36:51] I want a second opinion, I can just send a
+[00:36:54] link to one of my my maintenance and like he
+[00:36:57] can look at the session, talk to the session, take
+[00:37:00] over the session.
+[00:37:02] It&#39;s like multiplayer clanking.
+[00:37:11] There&#39;s more stuff.
+[00:37:12] We kind of rebuild Slack.
+[00:37:16] Yeah.
+[00:37:16] I don&#39;t know what happened there, but we went into
+[00:37:22] this issue where we had all these model message channels
+[00:37:28] and you often want to test it end to end.
+[00:37:32] But there was sometimes features are very difficult to understand
+[00:37:38] with all the complex API.
+[00:37:40] You kind of want to see, see it in the
+[00:37:42] UI.
+[00:37:43] And I built this automation, but man, anytime I logged
+[00:37:45] in, there was like a cloud flare, a capture or
+[00:37:48] like like all these, all these companies really don&#39;t like
+[00:37:51] it if you spin up something in the quick box,
+[00:37:53] especially not if it&#39;s Linux based and there&#39;s nobody logged
+[00:37:56] in And it just feels like, feels like someone&#39;s trying
+[00:37:59] to hack their system.
+[00:38:00] It&#39;s just trying to like make it work.
+[00:38:01] But I can see why people don&#39;t like it or
+[00:38:03] why their systems would freak out.
+[00:38:07] So we just build our own messaging platform to like,
+[00:38:10] test to like have real end to end test for
+[00:38:12] something that we have under control.
+[00:38:15] And then it got a little bit out of hand
+[00:38:18] and now we kind of have a backup chat system
+[00:38:20] that works whenever our team is done.
+[00:38:23] It&#39;s called Click Clock.
+[00:38:38] There&#39;s so much more.
+[00:38:41] Where were we?
+[00:38:43] I think I showed you I showed you a good
+[00:38:47] part yes, of course, there&#39;s way more crawlers, but my
+[00:38:51] my big my big take away for this is listen
+[00:38:55] to your listen to your body.
+[00:38:57] Listen when you&#39;re annoyed.
+[00:38:59] Annoyance is is an amazing signal for we can automate
+[00:39:02] this and then anytime you automate something, it compounds all
+[00:39:05] these little tools, they&#39;re working together, right?
+[00:39:08] I, I can only do the reports because I use
+[00:39:11] disk crawl and I could only use crab fleet because
+[00:39:15] I have crab box.
+[00:39:16] Even though all of these are weird names, they are
+[00:39:19] incredibly helpful in helping us ship a massive code base
+[00:39:22] with a very small team.
+[00:39:26] And with that, I do think we have a few
+[00:39:28] minutes of Q&amp;A.
+[00:39:29] There is a microphone.
+[00:39:33] There&#39;s a microphone here, so shoot.
+[00:39:46] As you&#39;re building so.
+[00:39:54] It&#39;s making some noise.
+[00:39:56] Is it working?
+[00:39:57] Yes, there we go.
+[00:39:58] Sorry, as you&#39;re building this, this ecosystem and it becoming
+[00:40:02] more like enterprise quote UN quote like do you feel
+[00:40:05] that there are times?
+[00:40:08] Where you want to build something but the dependency on
+[00:40:13] the other things get in the way of you improving.
+[00:40:19] Hadn&#39;t happened so far yet.
+[00:40:21] Haven&#39;t.
+[00:40:23] It&#39;s less dependencies, it&#39;s more like all those little tools
+[00:40:27] compound and make building new tools faster in in many
+[00:40:30] ways.
+[00:40:31] Sometimes I use one tools in another tool, many other
+[00:40:34] times, and that&#39;s a general trick when you work with
+[00:40:37] agents.
+[00:40:38] If you&#39;ve sold something once, you can just tell your
+[00:40:40] agent, look there, I already solved this there.
+[00:40:42] They&#39;re really good at pedal matching.
+[00:40:44] So I would actually say it really compounds.
+[00:40:46] Sometimes something doesn&#39;t work out, but then you learn from
+[00:40:49] it.
+[00:40:49] Like like the token thing, where was it?
+[00:40:57] Too many things?
+[00:41:00] The token thing, the first version I built was just
+[00:41:05] on my machine that was really awkward with the, the,
+[00:41:09] the the GitHub app.
+[00:41:12] So like I iterated a bunch in it and eventually
+[00:41:14] it was like I ripped it all out.
+[00:41:15] And I, I just told my agent, remove this feature
+[00:41:18] here, rebuild this with this new idea, but take that
+[00:41:22] part from that tool and like push it into your
+[00:41:25] tool.
+[00:41:26] And then like basically you save the prompting, right?
+[00:41:28] Because you already you can just tell the agent look
+[00:41:31] around this, look at the git history is a very
+[00:41:33] smart at figuring out the context.
+[00:41:35] Even better if you just press the the the whisper
+[00:41:38] flow button and you just like you just talk about
+[00:41:40] it.
+[00:41:41] Sometimes.
+[00:41:41] Sometimes we just talk in the team about it and
+[00:41:44] I just press the button and codex are just listening
+[00:41:46] on the conversation and just start building while we&#39;ve been
+[00:41:50] discussing.
+[00:41:50] Even though there&#39;s like side chatter and blah, blah.
+[00:41:52] But like it&#39;s it&#39;s clever enough to understand like this
+[00:41:56] comment was a joke and this is important.
+[00:41:59] So he&#39;s just like, you can just do stuff.
+[00:42:03] Thank you.
+[00:42:05] All right.
+[00:42:08] Hi, Peter, this is Divya.
+[00:42:10] My biggest question is, this is awesome, but imagine you
+[00:42:14] have a billion things on your plate.
+[00:42:17] Me as a solutions engineer and I love the concept
+[00:42:20] of building my own agents, but I simply don&#39;t have
+[00:42:24] the time to actually go ahead and build tools to
+[00:42:28] help me be more efficient and save time.
+[00:42:31] You notice they notice meme and like Stone Age where
+[00:42:34] they had this car with rectangular- and then and then
+[00:42:38] then the guy comes along with like the round one
+[00:42:41] and they&#39;re like, oh, we don&#39;t have time.
+[00:42:44] We&#39;re so busy.
+[00:42:45] So the the beauty is all these tools, they can
+[00:42:50] be massive slop.
+[00:42:52] It&#39;s like you can literally you can tell the code
+[00:42:55] is, Hey, look at this session and see the pain
+[00:42:57] that I had to do building a tool that reduces
+[00:42:59] the pain.
+[00:43:00] This is the rough idea.
+[00:43:01] You don&#39;t have to give it the programming language.
+[00:43:03] Nothing matters for like those little tools.
+[00:43:05] Like I use go.
+[00:43:06] I don&#39;t even like go, but like, I know, I
+[00:43:07] know that my agents are fast and go, so who
+[00:43:10] cares?
+[00:43:10] And then just like do it on the side, you
+[00:43:12] know, it&#39;s like there&#39;s always space somewhere in the corner
+[00:43:15] for little window for like experiments.
+[00:43:17] And it also takes a fun a little bit back
+[00:43:21] and then it it really compounds.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

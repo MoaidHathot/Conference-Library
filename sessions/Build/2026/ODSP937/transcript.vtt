@@ -1,0 +1,802 @@
+WEBVTT
+
+00:00:00.150 --> 00:00:02.940
+JESSE HALL: Let's discuss
+agents, not just any agents,
+
+00:00:02.940 --> 00:00:05.910
+but real-time multimodal agents.
+
+00:00:05.910 --> 00:00:09.180
+Many agents being built
+today are single modal.
+
+00:00:09.180 --> 00:00:11.010
+They're text agents.
+
+00:00:11.010 --> 00:00:15.630
+And with text agents, latency
+is much more forgiving.
+
+00:00:15.630 --> 00:00:19.590
+Users are okay with a
+spinner or a text shimmer
+
+00:00:19.590 --> 00:00:21.510
+to let them know
+something's going on.
+
+00:00:21.510 --> 00:00:25.110
+But with real-time
+agents, latency is key.
+
+00:00:25.110 --> 00:00:27.750
+And so that's what we're
+going to talk about today.
+
+00:00:27.750 --> 00:00:30.480
+Real-time, it is
+built different.
+
+00:00:30.480 --> 00:00:31.890
+What is LiveKit?
+
+00:00:31.890 --> 00:00:35.310
+We'll discuss the cascaded
+pipeline and then how Azure
+
+00:00:35.310 --> 00:00:37.740
+and LiveKit work together.
+
+00:00:37.740 --> 00:00:42.240
+So before we talk about LiveKit,
+let's discuss some challenges
+
+00:00:42.240 --> 00:00:46.650
+that you will face when
+building a real-time multimodal
+
+00:00:46.650 --> 00:00:48.390
+agentic experience.
+
+00:00:48.390 --> 00:00:51.000
+You see, models, they
+are the easy part now.
+
+00:00:51.000 --> 00:00:53.640
+Everything around it
+is the hard part.
+
+00:00:53.640 --> 00:00:58.380
+Voice is one modality,
+and voice is real-time.
+
+00:00:58.380 --> 00:01:00.060
+And so we have to
+take the user's voice
+
+00:01:00.060 --> 00:01:02.820
+from their microphone, wherever
+they are in the world,
+
+00:01:02.820 --> 00:01:06.090
+send that to the models,
+generate a reply,
+
+00:01:06.090 --> 00:01:08.610
+and send that back to
+the user's speakers,
+
+00:01:08.610 --> 00:01:11.040
+all within a few
+hundred milliseconds,
+
+00:01:11.040 --> 00:01:14.090
+if we want to consider it
+real-time, over networks
+
+00:01:14.090 --> 00:01:15.980
+that we don't control.
+
+00:01:15.980 --> 00:01:17.120
+And so we have to
+think about all
+
+00:01:17.120 --> 00:01:19.490
+of the things that
+add to latency.
+
+00:01:19.490 --> 00:01:23.130
+So network conditions, echo
+and noise cancellation.
+
+00:01:23.130 --> 00:01:26.700
+We need to detect when the
+user is finished talking,
+
+00:01:26.700 --> 00:01:28.020
+so turn detection.
+
+00:01:28.020 --> 00:01:30.690
+We also need to allow
+the user to interrupt,
+
+00:01:30.690 --> 00:01:33.210
+but we don't want them
+to interrupt for a cough
+
+00:01:33.210 --> 00:01:36.660
+or a sneeze, or if they're
+back-channeling by saying, hmm,
+
+00:01:36.660 --> 00:01:39.210
+oh, yeah, we don't want
+that to interrupt.
+
+00:01:39.210 --> 00:01:43.440
+So there are a lot of things to
+think about and a lot of things
+
+00:01:43.440 --> 00:01:46.440
+that go into creating
+an excellent real-time
+
+00:01:46.440 --> 00:01:48.600
+user experience.
+
+00:01:48.600 --> 00:01:52.050
+And all of this has to work
+not just for a single user,
+
+00:01:52.050 --> 00:01:55.230
+but hopefully our application
+is very popular, and it needs
+
+00:01:55.230 --> 00:01:58.650
+to scale to hundreds, tens,
+or hundreds of thousands
+
+00:01:58.650 --> 00:02:00.510
+of users concurrently.
+
+00:02:00.510 --> 00:02:04.830
+And so, again, these challenges,
+they are not the responsibility
+
+00:02:04.830 --> 00:02:07.800
+of the models, but they
+are the responsibility
+
+00:02:07.800 --> 00:02:10.680
+of the real-time
+media infrastructure,
+
+00:02:10.680 --> 00:02:13.110
+which many are not
+even thinking about.
+
+00:02:13.110 --> 00:02:17.580
+And so this is exactly what
+WebRTC was designed for,
+
+00:02:17.580 --> 00:02:21.660
+but building infrastructure
+around WebRTC is not trivial.
+
+00:02:21.660 --> 00:02:24.500
+And so this is where
+LiveKit comes in.
+
+00:02:24.500 --> 00:02:27.980
+LiveKit is an open-source,
+real-time media layer
+
+00:02:27.980 --> 00:02:31.010
+that your agent and your
+orchestration runs on.
+
+00:02:31.010 --> 00:02:36.180
+So not just voice, but also
+video and data built on WebRTC.
+
+00:02:36.180 --> 00:02:38.670
+And so then we have
+the agent's SDK.
+
+00:02:38.670 --> 00:02:41.220
+You can choose between
+Python and TypeScript.
+
+00:02:41.220 --> 00:02:44.550
+And these two things allow
+you to bring your agent,
+
+00:02:44.550 --> 00:02:47.340
+the same agent, to any device.
+
+00:02:47.340 --> 00:02:51.840
+So phones, laptops, SIP and
+telephony, embedded devices,
+
+00:02:51.840 --> 00:02:55.800
+cars, wearables,
+robotics, and much more.
+
+00:02:55.800 --> 00:02:58.380
+And LiveKit is the
+transport layer
+
+00:02:58.380 --> 00:03:02.430
+that ChatGPT chose
+for their voice mode.
+
+00:03:02.430 --> 00:03:04.740
+Now, here is the voice pipeline.
+
+00:03:04.740 --> 00:03:08.400
+So, again, the user
+speech is where we start.
+
+00:03:08.400 --> 00:03:10.680
+And the first thing
+we need to do is VAD,
+
+00:03:10.680 --> 00:03:12.390
+voice activity detection.
+
+00:03:12.390 --> 00:03:15.480
+We need to detect when
+the user starts speaking,
+
+00:03:15.480 --> 00:03:17.820
+because we don't want
+to process silence.
+
+00:03:17.820 --> 00:03:19.770
+That would cost us
+a lot of money.
+
+00:03:19.770 --> 00:03:22.170
+So when the user starts
+speaking, then we send
+
+00:03:22.170 --> 00:03:25.500
+that speech to our
+speech-to-text model,
+
+00:03:25.500 --> 00:03:29.160
+which then transcribes
+the speech into text,
+
+00:03:29.160 --> 00:03:30.870
+sends that text to the LLM.
+
+00:03:30.870 --> 00:03:33.540
+The LLM generates a
+reply, again, in text,
+
+00:03:33.540 --> 00:03:36.210
+which sends that to the
+text-to-speech model,
+
+00:03:36.210 --> 00:03:39.750
+which then generates the voice
+that goes back to the user.
+
+00:03:39.750 --> 00:03:42.360
+So that's the very
+basic voice pipeline,
+
+00:03:42.360 --> 00:03:46.140
+or also called a
+cascaded pipeline.
+
+00:03:46.140 --> 00:03:48.120
+Here is a zoomed-out
+view of this.
+
+00:03:48.120 --> 00:03:50.700
+So, again, we have our user,
+wherever they are in the world,
+
+00:03:50.700 --> 00:03:54.600
+on whatever device, and they're
+connecting through WebRTC.
+
+00:03:54.600 --> 00:03:58.290
+WebRTC, every modern
+device already speaks it.
+
+00:03:58.290 --> 00:04:00.330
+It is an open browser standard.
+
+00:04:00.330 --> 00:04:02.820
+And so then that connects
+to the LiveKit server,
+
+00:04:02.820 --> 00:04:04.740
+which handles transport,
+
+00:04:04.740 --> 00:04:07.770
+jitter-buffering,
+codecs, SIP, fan-out.
+
+00:04:07.770 --> 00:04:08.940
+And it's self-hosted.
+
+00:04:08.940 --> 00:04:11.040
+Again, it's open
+source, so self-hosted.
+
+00:04:11.040 --> 00:04:14.550
+Or you can use it on LiveKit
+cloud, and we host it for you.
+
+00:04:14.550 --> 00:04:16.770
+That is the transport layer.
+
+00:04:16.770 --> 00:04:18.990
+Next, we go up to the
+application layer,
+
+00:04:18.990 --> 00:04:20.550
+or the orchestration layer.
+
+00:04:20.550 --> 00:04:23.130
+And this is where the
+agent's SDK comes in.
+
+00:04:23.130 --> 00:04:24.480
+This is where your code lives.
+
+00:04:24.480 --> 00:04:29.190
+This is where you connect
+media to the model.
+
+00:04:29.190 --> 00:04:32.190
+And so this, again, is where
+the voice pipeline fits in.
+
+00:04:32.190 --> 00:04:34.920
+This is where you pick which
+models you want to use,
+
+00:04:34.920 --> 00:04:39.270
+where your tools, your MCP
+servers, your custom functions,
+
+00:04:39.270 --> 00:04:42.540
+your custom business logic,
+all of that sits here.
+
+00:04:42.540 --> 00:04:45.510
+So the box below agent's
+SDK is a zoom-in
+
+00:04:45.510 --> 00:04:49.350
+of what is inside
+the agent's SDK.
+
+00:04:49.350 --> 00:04:54.510
+And so the key takeaway here
+is that WebRTC gets users
+
+00:04:54.510 --> 00:04:58.650
+to your agent reliably, and the
+agent's SDK gets your custom
+
+00:04:58.650 --> 00:05:02.850
+business logic to
+your users reliably.
+
+00:05:02.850 --> 00:05:05.370
+LiveKit is actually
+model agnostic.
+
+00:05:05.370 --> 00:05:09.060
+We don't have any models, but
+this is not an exhaustive list,
+
+00:05:09.060 --> 00:05:11.310
+but this is some of the
+more popular models
+
+00:05:11.310 --> 00:05:13.110
+that you can use
+through LiveKit.
+
+00:05:13.110 --> 00:05:15.870
+So again, you pick
+which STT, which LLM,
+
+00:05:15.870 --> 00:05:18.870
+which TTS models
+you want to use.
+
+00:05:18.870 --> 00:05:21.690
+You can mix and match
+these however you want.
+
+00:05:21.690 --> 00:05:23.010
+And it's very easy
+to swap them out.
+
+00:05:23.010 --> 00:05:26.610
+It's just one line of code
+to change out a model.
+
+00:05:26.610 --> 00:05:30.510
+Now, this is also
+where Azure fits in.
+
+00:05:30.510 --> 00:05:34.170
+So we can actually use Azure
+in all three of these places.
+
+00:05:34.170 --> 00:05:35.730
+You can use the Azure STT.
+
+00:05:35.730 --> 00:05:38.790
+You can use OpenAI through
+Azure for the LLM,
+
+00:05:38.790 --> 00:05:41.400
+and then the Azure TTS.
+
+00:05:41.400 --> 00:05:43.890
+Now, as you're building with
+LiveKit, this is actually,
+
+00:05:43.890 --> 00:05:47.520
+I think, in my opinion, the
+most important slide here.
+
+00:05:47.520 --> 00:05:53.610
+Please use our LiveKit MCP docs
+server or the skill to make sure
+
+00:05:53.610 --> 00:05:56.940
+that you are using the
+most up-to-date context.
+
+00:05:56.940 --> 00:06:01.140
+So we ship new features at
+LiveKit almost every week,
+
+00:06:01.140 --> 00:06:02.850
+and our docs are amazing.
+
+00:06:02.850 --> 00:06:04.650
+They're always up-to-date.
+
+00:06:04.650 --> 00:06:06.240
+But your agent
+doesn't know this.
+
+00:06:06.240 --> 00:06:10.410
+And so your coding agent needs
+the most complete context
+
+00:06:10.410 --> 00:06:12.750
+to build accurately
+with LiveKit.
+
+00:06:12.750 --> 00:06:14.730
+So I prefer the MCP server.
+
+00:06:14.730 --> 00:06:16.170
+It's amazing.
+
+00:06:16.170 --> 00:06:17.070
+Let's get into a demo.
+
+00:06:17.070 --> 00:06:20.880
+Let's see how we can build
+one of these out using Azure
+
+00:06:20.880 --> 00:06:23.530
+and go ahead and talk to it.
+
+00:06:24.600 --> 00:06:28.230
+So first thing in your
+terminal, let's do LKAppCreate,
+
+00:06:28.230 --> 00:06:29.370
+and we're going to
+use a template,
+
+00:06:29.370 --> 00:06:31.740
+the AgentStarterPython template.
+
+00:06:31.740 --> 00:06:34.950
+And then we're going to install
+another template using the same
+
+00:06:34.950 --> 00:06:38.100
+thing, but it's the ReactStarter
+template for our front end.
+
+00:06:38.100 --> 00:06:41.760
+Now, in the Agent template,
+you'll find the Agent.py file,
+
+00:06:41.760 --> 00:06:44.430
+and this is the
+entire single file
+
+00:06:44.430 --> 00:06:46.650
+where your agent logic sits.
+
+00:06:46.650 --> 00:06:48.600
+So first thing is we are
+importing some things
+
+00:06:48.600 --> 00:06:51.390
+from LiveKit agents
+and LiveKit plugins,
+
+00:06:51.390 --> 00:06:54.360
+namely the Azure
+plugin for LiveKit.
+
+00:06:54.360 --> 00:06:57.450
+A little bit below this,
+we have our Assistant.
+
+00:06:57.450 --> 00:06:58.560
+So this is our Agent.
+
+00:06:58.560 --> 00:07:00.570
+You can name this
+anything you'd like.
+
+00:07:00.570 --> 00:07:03.600
+But what we're setting up in
+here is our LLM initially.
+
+00:07:03.600 --> 00:07:05.940
+And so, again, we're
+using Azure LLM,
+
+00:07:05.940 --> 00:07:08.220
+and these are some
+environment variables
+
+00:07:08.220 --> 00:07:09.960
+from my Azure deployment.
+
+00:07:09.960 --> 00:07:14.610
+So I'm going to be using an
+open AI model here from Azure.
+
+00:07:14.610 --> 00:07:16.110
+Then we have our Instructions.
+
+00:07:16.110 --> 00:07:19.950
+Of course, you're a friendly and
+reliable voice assistant demoing
+
+00:07:19.950 --> 00:07:22.950
+at Microsoft Build, and
+I gave it some Microsoft
+
+00:07:22.950 --> 00:07:24.570
+Build information.
+
+00:07:24.570 --> 00:07:27.990
+We can collapse that, and we'll
+move down here to OnEnter.
+
+00:07:27.990 --> 00:07:30.210
+When the agent
+enters our session,
+
+00:07:30.210 --> 00:07:31.920
+we want to greet the user.
+
+00:07:31.920 --> 00:07:33.810
+So we're going to give it
+some instructions there,
+
+00:07:33.810 --> 00:07:36.660
+greet the user
+warmly, welcome them
+
+00:07:36.660 --> 00:07:39.060
+to Microsoft Build, et cetera.
+
+00:07:39.060 --> 00:07:42.150
+And then we define our
+server as AgentServer.
+
+00:07:42.150 --> 00:07:44.460
+We're setting up our
+Solero VAD here,
+
+00:07:44.460 --> 00:07:46.650
+and then here is our session.
+
+00:07:46.650 --> 00:07:49.530
+So we're going to name our
+session, named it MyAgent.
+
+00:07:49.530 --> 00:07:51.570
+But this is so that
+the front end knows
+
+00:07:51.570 --> 00:07:53.100
+which agent to connect to.
+
+00:07:53.100 --> 00:07:56.460
+So the front end needs
+that same identifier.
+
+00:07:56.460 --> 00:07:58.140
+Now, below this is where
+we're actually setting
+
+00:07:58.140 --> 00:07:59.610
+up our agent session.
+
+00:07:59.610 --> 00:08:02.700
+And so here's where we
+define our STT, our TTS,
+
+00:08:02.700 --> 00:08:04.620
+and other variables here.
+
+00:08:04.620 --> 00:08:08.490
+But again, we're using the
+Azure STT and the Azure TTS,
+
+00:08:08.490 --> 00:08:11.340
+and I'm defining the
+voice right here.
+
+00:08:11.340 --> 00:08:15.090
+When we start our session with
+the agent that we defined,
+
+00:08:15.090 --> 00:08:17.670
+and then we await
+the connection,
+
+00:08:17.670 --> 00:08:20.130
+and then we go ahead
+and run this file.
+
+00:08:20.130 --> 00:08:21.450
+It's actually very, very simple
+
+00:08:21.450 --> 00:08:23.550
+to get this agent
+up and running.
+
+00:08:23.550 --> 00:08:26.610
+Next, we just need to define
+some environment variables.
+
+00:08:26.610 --> 00:08:28.290
+So you get three
+environment variables
+
+00:08:28.290 --> 00:08:30.300
+from LiveKit Cloud
+once you've signed up.
+
+00:08:30.300 --> 00:08:31.650
+Of course, completely free.
+
+00:08:31.650 --> 00:08:34.610
+You'll also need some Azure
+environment variables here
+
+00:08:34.610 --> 00:08:37.730
+for your STT and TTS models.
+
+00:08:37.730 --> 00:08:42.270
+And then OpenAI API key, of
+course, as well from Azure.
+
+00:08:42.270 --> 00:08:44.190
+And then we just CD into Agent.
+
+00:08:44.190 --> 00:08:48.120
+We're going to UV Sync, and then
+UV Run the Agent Pi download
+
+00:08:48.120 --> 00:08:48.960
+files, which is going
+
+00:08:48.960 --> 00:08:53.550
+to download our small Solero VAD
+voice activity detection model.
+
+00:08:53.550 --> 00:08:54.150
+And then we're going to CD
+
+00:08:54.150 --> 00:08:56.580
+into the front end,
+PMPM install that.
+
+00:08:56.580 --> 00:08:59.610
+And then we're going to UV
+Run the Agent in Dev mode,
+
+00:08:59.610 --> 00:09:01.740
+and PMPM Dev on the front end.
+
+00:09:01.740 --> 00:09:03.780
+So I've customized my front
+end just a little bit,
+
+00:09:03.780 --> 00:09:08.230
+Microsoft Build theme here, and
+we're going to start talking.
+
+00:09:10.470 --> 00:09:11.040
+COMPUTER VOICE: Hi there.
+
+00:09:11.040 --> 00:09:13.170
+Welcome to Microsoft Build.
+
+00:09:13.170 --> 00:09:15.810
+I can help with questions
+about Microsoft technologies
+
+00:09:15.810 --> 00:09:20.280
+like Azure, Windows,
+Microsoft 365, GitHub,
+
+00:09:20.280 --> 00:09:23.610
+or the latest AI work
+Microsoft is sharing here.
+
+00:09:23.610 --> 00:09:25.920
+What would you like to explore?
+
+00:09:25.920 --> 00:09:26.220
+JESSE HALL: Awesome.
+
+00:09:26.220 --> 00:09:29.980
+Yeah. Tell me, what are the
+dates for Microsoft Build?
+
+00:09:32.190 --> 00:09:34.770
+COMPUTER VOICE: Microsoft
+Build 2026 takes place
+
+00:09:34.770 --> 00:09:36.960
+on June 2nd and June 3rd.
+
+00:09:36.960 --> 00:09:40.170
+It is a two-day event in
+San Francisco at Fort Mason
+
+00:09:40.170 --> 00:09:42.600
+with an online
+experience as well.
+
+00:09:42.600 --> 00:09:46.200
+Are you planning to attend
+in person or join online?
+
+00:09:46.200 --> 00:09:48.000
+JESSE HALL: That's today,
+and I'm already there.
+
+00:09:48.000 --> 00:09:49.080
+We'll see you.
+
+00:09:49.080 --> 00:09:49.560
+So that's it.
+
+00:09:49.560 --> 00:09:50.400
+Quick and easy.
+
+00:09:50.400 --> 00:09:51.600
+Integrate Azure.
+
+00:09:51.600 --> 00:09:54.760
+Give it a try today, and
+let us know what you think.

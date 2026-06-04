@@ -1,0 +1,799 @@
+**[00:00:00]** [ Music ]
+**[00:00:06]** ANISH TALLAPUREDDY: Hello, everyone.
+**[00:00:07]** Welcome to our session on governing AI models, tools,
+**[00:00:09]** and agents with Azure API Management.
+**[00:00:12]** In this session today, Mike, Sreekanth,
+**[00:00:15]** and I from the API Management team will walk you guys
+**[00:00:18]** through the latest developments on API Management
+**[00:00:21]** to govern models, tools, and agents, and also walk you
+**[00:00:25]** through some demos to showcase how our product is helping
+**[00:00:29]** developers and enterprises manage various kinds
+**[00:00:32]** of AI endpoints and governance.
+**[00:00:35]** In this session today, we are going to walk you
+**[00:00:37]** through how we can help enterprises deploy AI
+**[00:00:41]** in production and apply their governance framework.
+**[00:00:45]** Then we'll walk into details on the latest developments in terms
+**[00:00:49]** of model governance, tool governance,
+**[00:00:52]** enterprise registry, and agent governance.
+**[00:00:55]** And obviously, across these sessions,
+**[00:00:57]** we will be showcasing demos to show you how the product works
+**[00:01:02]** in real life in action.
+**[00:01:04]** We've been talking about AI and AI workflows since 2023,
+**[00:01:09]** but AI is no longer a pilot.
+**[00:01:11]** Most enterprises are starting to deploy AI in production.
+**[00:01:15]** In fact, Gartner says that by 2028, more than 95%
+**[00:01:18]** of enterprises will be using LLMs, GenAI APIs, and models
+**[00:01:24]** and deploying them into applications in production.
+**[00:01:28]** So it's very important for enterprises to think about:
+**[00:01:32]** How do we govern various AI endpoints?
+**[00:01:35]** How do we ensure security and access to these endpoints?
+**[00:01:38]** And how do we observe what's really going on in terms
+**[00:01:41]** of cost management, security, as well as double-clicking
+**[00:01:46]** into issues that might be coming
+**[00:01:47]** up with these kinds of applications?
+**[00:01:50]** But AI comes with its own set of challenges.
+**[00:01:53]** It's similar to APIs.
+**[00:01:55]** AI comes with its own set
+**[00:01:56]** of challenges related to governance.
+**[00:01:58]** How can I control the cost and ensure compliance
+**[00:02:01]** with my organizational policies?
+**[00:02:04]** How do I prepare my systems to proliferation
+**[00:02:07]** of various AI agents, which would be in hundreds
+**[00:02:11]** to thousands to millions as it scales?
+**[00:02:15]** How do I ensure security and safety
+**[00:02:17]** of my systems and applications?
+**[00:02:19]** How do I monitor and troubleshoot my AI systems?
+**[00:02:22]** And how do I empower my developers
+**[00:02:24]** to build better AI systems faster?
+**[00:02:26]** All of these are problems that we have dealt
+**[00:02:28]** with traditionally with APIs.
+**[00:02:30]** But AI, these problems are magnified to another level.
+**[00:02:35]** So let's figure out how API Management can help you solve
+**[00:02:39]** all of these challenges.
+**[00:02:42]** Before we double-click into API Management,
+**[00:02:44]** just wanted to provide context to everyone here.
+**[00:02:47]** API Management platform consists of two products.
+**[00:02:50]** One is API Management.
+**[00:02:52]** It is our gateway solution to securely publish, manage,
+**[00:02:55]** and analyze APIs across all environments
+**[00:02:58]** through a managed gateway.
+**[00:03:00]** We also have a self-hosted gateway offering,
+**[00:03:02]** and together we call that as API Management.
+**[00:03:05]** We have API Center, which is our catalog to track, discover,
+**[00:03:10]** and govern APIs within an organization,
+**[00:03:12]** regardless of the type of APIs or the location
+**[00:03:16]** where these APIs are located.
+**[00:03:18]** Together, these two products form the Azure API Management
+**[00:03:21]** platform, and that is what we'll be talking
+**[00:03:24]** about throughout this presentation.
+**[00:03:26]** So Azure API Management has provided support
+**[00:03:31]** across the customer lifecycle, all the way from design,
+**[00:03:34]** develop, secure, publish, scale, monitor,
+**[00:03:36]** and analyze for traditional APIs for over a decade.
+**[00:03:40]** We have over 40,000 customers processing trillions
+**[00:03:43]** of requests on a monthly basis.
+**[00:03:46]** But we are evolving API Management into more
+**[00:03:49]** of a universal gateway.
+**[00:03:51]** We not only support traditional APIs,
+**[00:03:53]** but we also support model APIs, including Azure AI Foundry,
+**[00:03:57]** Bedrock, Google Vertex AI, OpenAI, Anthropic, Mistral,
+**[00:04:01]** or any other place where your models are hosted.
+**[00:04:04]** And similarly, we are also supporting tools,
+**[00:04:08]** be it MCP endpoints, Open API specs,
+**[00:04:10]** or your own custom connectors that you're building.
+**[00:04:13]** And finally, if you are building agents
+**[00:04:16]** through specific protocols like A2A,
+**[00:04:19]** Azure API Management also supports those things
+**[00:04:22]** in applying the same governance lens
+**[00:04:24]** that we apply to traditional APIs.
+**[00:04:26]** So Azure API Management is considered more
+**[00:04:29]** of a universal gateway.
+**[00:04:31]** That is the direction we are evolving the product to so
+**[00:04:34]** that you don't need to piecemeal your efforts
+**[00:04:37]** across various kinds of gateway solutions, various kinds
+**[00:04:40]** of governance solutions.
+**[00:04:42]** One solution to offer governance
+**[00:04:44]** across all kinds of API endpoints.
+**[00:04:48]** So it is your API gateway.
+**[00:04:49]** It is your AI Gateway, which includes a model gateway,
+**[00:04:53]** tools gateway, or agents gateway.
+**[00:04:55]** Everything all put together, a universal gateway
+**[00:04:58]** for your entire product stack.
+**[00:05:02]** So let's double-click into what is AI Gateway.
+**[00:05:05]** AI Gateway capabilities within Azure API Management,
+**[00:05:10]** which we are simply calling as AI Gateway for simplicity,
+**[00:05:13]** is the bridge to mediate all kinds of AI usage.
+**[00:05:16]** On the left side of this slide, you see our clients.
+**[00:05:20]** Clients could be users.
+**[00:05:21]** Clients could be apps and services, agents, or Copilots.
+**[00:05:26]** And on the right side, you see what these clients are trying
+**[00:05:29]** to access.
+**[00:05:30]** They are trying to access AI models from various sources
+**[00:05:34]** that we just talked about.
+**[00:05:35]** They are trying to access tools
+**[00:05:37]** like MCP servers and APIs or agents.
+**[00:05:41]** All of these things are mediated.
+**[00:05:43]** The access from clients to these particular endpoints are
+**[00:05:46]** mediated by AI Gateway, which includes governance,
+**[00:05:49]** scalability, security, safety, observability, and velocity,
+**[00:05:53]** exactly the problems we talked about earlier in terms
+**[00:05:56]** of how AI complicates governance, scalability,
+**[00:06:00]** observability, velocity.
+**[00:06:01]** And AI Gateway capabilities within API Management is built
+**[00:06:05]** to solve all those problems.
+**[00:06:08]** Now let's double click into how are we solving those problems.
+**[00:06:13]** Like I said, we are combining traditional API Gateway
+**[00:06:16]** capabilities and AI Gateway capabilities
+**[00:06:18]** to manage your entire API estate.
+**[00:06:21]** So the columns you see are the various problems we had called
+**[00:06:26]** out earlier.
+**[00:06:27]** So we will be using a combination of capabilities
+**[00:06:29]** that we already provide within our API Gateway
+**[00:06:32]** and a combination of capabilities
+**[00:06:34]** that we have built specifically for AI purpose
+**[00:06:38]** within the AI Gateway capabilities.
+**[00:06:40]** So for governance,
+**[00:06:42]** API Management has an extensive selection of policies.
+**[00:06:46]** And similarly, we also provide federated API Management
+**[00:06:49]** with workspaces.
+**[00:06:51]** We also have enterprise-wide catalogs.
+**[00:06:54]** Now we are extending the same concept with approved models,
+**[00:06:58]** MCP servers, skills, plugins, and A2A agents.
+**[00:07:02]** You are able to apply granular token rate limits and quotas.
+**[00:07:05]** Cost management is a big concern today in AI workflows
+**[00:07:10]** and within enterprises.
+**[00:07:12]** And using these kinds of specific capabilities,
+**[00:07:14]** you are able to control and manage your costs.
+**[00:07:17]** You also can enforce policies for MCPs and A2A endpoints
+**[00:07:21]** to make sure that you have secured access
+**[00:07:24]** to these endpoints and you are able to apply specific policies,
+**[00:07:28]** such as content safety, etc.,
+**[00:07:30]** to make sure you are not doing any harm
+**[00:07:31]** or you are not leaking any secrets, for example.
+**[00:07:35]** Similarly, within security and safety,
+**[00:07:37]** we already support the OWASP API top 10 protections.
+**[00:07:41]** We support client authentication and authorization,
+**[00:07:45]** keyless management identity, credential manager.
+**[00:07:48]** All of these capabilities are extended
+**[00:07:50]** to all the API Management as well as AI endpoints.
+**[00:07:55]** So within AI Gateway, now we are able
+**[00:07:57]** to moderate prompts and completions.
+**[00:07:59]** We are able to prevent PII leakage.
+**[00:08:01]** Any kind of private information,
+**[00:08:03]** we are able to prevent the leakage of that.
+**[00:08:06]** Observability, API Management provides robust observability
+**[00:08:09]** with logs, metrics, and tracing.
+**[00:08:11]** We are extending that with ability
+**[00:08:13]** to track token consumption, log the prompts and completions,
+**[00:08:17]** log MCP tool interactions, both the requests and responses,
+**[00:08:21]** and tracing the entire end-to-end agentic interactions.
+**[00:08:26]** Scalability, I won't spend much time here,
+**[00:08:28]** but you can improve scalability.
+**[00:08:31]** And let's take a look at what we do,
+**[00:08:33]** especially for AI capabilities like saving tokens,
+**[00:08:37]** improving latency and semantic caching, prioritizing routing
+**[00:08:41]** to provision capacity and specific models,
+**[00:08:44]** implementing model fallback in case of reliability issues
+**[00:08:48]** or in case of cost concerns.
+**[00:08:50]** SSE and streaming HTTP protocols,
+**[00:08:53]** we support both protocols depending
+**[00:08:55]** on whichever protocol your tool is built on.
+**[00:09:00]** And finally, Velocity.
+**[00:09:03]** Using API Management,
+**[00:09:04]** we are able to provide a developer portal.
+**[00:09:06]** We have VS Code extensions, Copilot for policies,
+**[00:09:09]** which will improve the velocity of your developers
+**[00:09:11]** within your enterprise.
+**[00:09:13]** We also have test consoles for tools directly built
+**[00:09:16]** within our API Management portal
+**[00:09:19]** so that you can directly test the tools
+**[00:09:21]** that you're building with MCP protocol.
+**[00:09:23]** We're also extending that with AI Gateway
+**[00:09:25]** with importing AI Foundry models tools from other providers.
+**[00:09:30]** It's not just within Foundry or within API Management,
+**[00:09:35]** but you can import it from anywhere else.
+**[00:09:37]** You can wrap existing MCP servers
+**[00:09:40]** or external MCP servers hosted either on Azure or outside
+**[00:09:44]** of Azure or even on-prem.
+**[00:09:46]** You can wrap them within API Management
+**[00:09:48]** and make it a private endpoint to share
+**[00:09:50]** with various kinds of clients.
+**[00:09:52]** You can convert your existing estate of REST APIs
+**[00:09:56]** to MCP servers so that you don't have to duplicate the work
+**[00:10:00]** or invest more time that you have already invested
+**[00:10:03]** in building all your REST APIs.
+**[00:10:05]** You can discover and consume these assets
+**[00:10:08]** from across the places and various agents via MCP server
+**[00:10:12]** that we have created for API Center.
+**[00:10:15]** So let's double-click into model governance with API Management.
+**[00:10:20]** Let me invite my colleague, Mike Budzynski, to come over
+**[00:10:24]** and discuss model governance.
+**[00:10:26]** Mike, over to you.
+**[00:10:28]** MIKE BUDZYNSKI: Thank you, Anish.
+**[00:10:29]** Anish did a great job explaining all the capabilities
+**[00:10:31]** that we offer as part of Model Gateway in API Management.
+**[00:10:35]** They include token rate limits and quotas that allow you
+**[00:10:38]** to monitor token consumption, attribute it to certain users
+**[00:10:42]** or agents, and set up alerts or build dashboards based on that.
+**[00:10:46]** You can also moderate prompts and completions,
+**[00:10:49]** log them for your investigations or audit,
+**[00:10:52]** as well as apply functions like semantic caching
+**[00:10:54]** to reduce token consumption or the cost
+**[00:10:57]** of actual time consumption on the models.
+**[00:11:00]** You can also do some source of routing, for example,
+**[00:11:04]** to prioritize provisioned capacity for certain models
+**[00:11:08]** and implement model fallback strategies.
+**[00:11:11]** In terms of model backends, API Management supports all sorts
+**[00:11:15]** of model providers, including, of course, Microsoft Foundry,
+**[00:11:19]** OpenAI, Google Vertex AI, AWS Bedrock, Hugging Face,
+**[00:11:24]** and many other model provider.
+**[00:11:26]** Clients include users, agents,
+**[00:11:29]** and coding agents like GitHub Copilot.
+**[00:11:32]** Let me show you a quick demonstration
+**[00:11:33]** of how API Management helps govern models.
+**[00:11:36]** In this example, we'll be looking
+**[00:11:38]** at the model deployed on AWS Bedrock.
+**[00:11:42]** This model is deployed on AWS Bedrock in Amazon Cloud,
+**[00:11:46]** and it is important as an API in API Management
+**[00:11:49]** that has a few policies applied on it.
+**[00:11:51]** One policy limits the number of tokens consumed by its user
+**[00:11:54]** to 10 per minute, and the other policy specifies content safety.
+**[00:11:59]** I have a sample application that loops requests to this model API
+**[00:12:03]** to demonstrate the execution of policies.
+**[00:12:06]** First, I will call this model
+**[00:12:07]** to explain Azure API Management in 10 words.
+**[00:12:11]** The first request to this model succeeds
+**[00:12:13]** with a proper answer and a response.
+**[00:12:15]** But the second request fails
+**[00:12:17]** because of the token limit policy.
+**[00:12:19]** I have exceeded my allocated token quota,
+**[00:12:22]** and now I'm being throttled by AI Gateway.
+**[00:12:25]** Now I can also change the prompt to a hateful prompt,
+**[00:12:30]** such as "I hate you," and execute the model again.
+**[00:12:34]** This time, AI Gateway will block this request due
+**[00:12:38]** to the compliance of content safety policies that I applied.
+**[00:12:42]** This is considered a hateful request,
+**[00:12:43]** and AI Gateway successfully blocks it before it reaches the
+**[00:12:46]** model in the backend.
+**[00:12:48]** Of course, similar capabilities work today for OpenAI models,
+**[00:12:52]** Microsoft Foundry models, and other models
+**[00:12:55]** that are compatible with OpenAI.
+**[00:12:57]** I'm also excited to announce
+**[00:12:58]** that we are just GA-ing the capability
+**[00:13:02]** for applying the same sort of policies
+**[00:13:05]** to Anthropic and Vertex models.
+**[00:13:07]** So starting June, this month, you're able to apply those sorts
+**[00:13:12]** of LLM policies like token limits, token metrics,
+**[00:13:15]** content safety, semantic caching, etc., to models coming
+**[00:13:19]** from the Anthropic provider using the Anthropic Messages API
+**[00:13:22]** and Vertex models deployed on the Google Cloud.
+**[00:13:26]** You can also collect logs and metrics for those models,
+**[00:13:29]** as well as import Claude operations as part
+**[00:13:31]** of the Microsoft Foundry import in API Management.
+**[00:13:36]** I'm also excited to announce general availability
+**[00:13:39]** of additional token metrics capability in API Management.
+**[00:13:42]** This allows you to collect metrics and build dashboards
+**[00:13:46]** for all token types, not just completions and prompt tokens,
+**[00:13:50]** but also thinking, reasoning, cash tokens,
+**[00:13:53]** and other token types using the LLM-emit-token-metric policy.
+**[00:13:58]** This policy forwards the token metrics to Application Insights,
+**[00:14:02]** where you can set up alerts or build more complete
+**[00:14:05]** and accurate dashboards to represent token usage,
+**[00:14:07]** or maybe even cost of consumption of models.
+**[00:14:11]** I'm also excited to announce a new capability that's available
+**[00:14:14]** now in preview called Unified Model API.
+**[00:14:18]** This API creates a single API in API Management
+**[00:14:21]** for various backend model providers.
+**[00:14:26]** For now, those backend providers are Anthropic models using the
+**[00:14:29]** Messages API
+**[00:14:31]** and OpenAI-compatible models using Chat Completions API.
+**[00:14:35]** You can have a client-facing Chat Completions API interface
+**[00:14:38]** that automatically translates calls
+**[00:14:40]** to Anthropic models and to OpenAI models.
+**[00:14:43]** This allows users to standardize on a single SDK
+**[00:14:46]** or a single client-facing interface,
+**[00:14:49]** while you can implement a lot of different models on the backend.
+**[00:14:54]** You can also use aliases, a new functionality that's part
+**[00:14:57]** of this feature, to decouple backend and client model names.
+**[00:15:01]** For example, you can create an alias called GPT
+**[00:15:05]** that will forward the request to the GPT 5.3 backend.
+**[00:15:11]** But, with time, you can reswap this alias, for example,
+**[00:15:15]** to upgrade your model to GPT 5.4, maybe swap it
+**[00:15:19]** for another model provider like Anthropic
+**[00:15:21]** without affecting any clients.
+**[00:15:23]** So clients will be able to just use the areas while you have
+**[00:15:27]** full control over what's actually the backend model
+**[00:15:31]** on the backend behind the API Management.
+**[00:15:35]** This Unified Model API also allows you
+**[00:15:37]** to centralize governance of policies across models
+**[00:15:39]** from different providers.
+**[00:15:41]** So you apply your policy once, and it works for all
+**[00:15:44]** of these models on the backend.
+**[00:15:46]** You can also configure failover across providers.
+**[00:15:48]** So, for example, you can failover
+**[00:15:50]** from an OpenAI GPT model to an Anthropic Claude model,
+**[00:15:54]** even though there are technically different API
+**[00:15:57]** formats on the back end, but API Management handles
+**[00:15:59]** that translation for you.
+**[00:16:01]** Lastly, I'm also excited to announce general availability
+**[00:16:03]** of Bring Your Own Model functionality
+**[00:16:05]** in Microsoft Foundry.
+**[00:16:07]** This capability allows you to add any model proxied
+**[00:16:11]** by AI Gateways, such as Azure API Management
+**[00:16:14]** or third-party gateways that is Chat Completions API compatible,
+**[00:16:20]** and use that model for building prompt agents
+**[00:16:23]** in the Foundry Agent Service.
+**[00:16:24]** You can learn more about this functionality at the link below.
+**[00:16:29]** And with that, I would like to hand it over to Anish to talk
+**[00:16:31]** about tool governance in API Management.
+**[00:16:35]** ANISH TALLAPUREDDY: Thank you, Mike.
+**[00:16:36]** Excited for these new launches.
+**[00:16:39]** Now let's look into tool governance
+**[00:16:41]** within API Management.
+**[00:16:43]** Before we get started,
+**[00:16:44]** let's talk about what exactly we define as tools.
+**[00:16:47]** Tools are APIs or MCP servers that you use
+**[00:16:51]** within your enterprise, basically to drive action.
+**[00:16:55]** AI models and LLMs, they provide the intelligence.
+**[00:16:58]** But in order to drive action, you need to have these agents
+**[00:17:02]** and LLMs connect to these tools, such as APIs and services,
+**[00:17:06]** to turn that intelligence into actions.
+**[00:17:09]** But this creates a new set of challenges.
+**[00:17:12]** Enterprises, for the last couple of decades,
+**[00:17:15]** have built a huge sprawl and portfolio of APIs
+**[00:17:19]** and various kinds of tools.
+**[00:17:21]** How do they repurpose this into the new world of AI?
+**[00:17:25]** API Management could help solve for that particular problem,
+**[00:17:28]** which we will dig into in a second.
+**[00:17:30]** The more tools you add, the more risk you create.
+**[00:17:33]** In fact, the risk grows exponentially according
+**[00:17:36]** to lots of surveys.
+**[00:17:37]** So where every tool you add, the potential security, compliance,
+**[00:17:40]** and performance challenges increase exponentially.
+**[00:17:42]** So how do we solve for these problems?
+**[00:17:45]** Let's double-click into that.
+**[00:17:47]** AI Gateway, just like how it is the bridge
+**[00:17:50]** to mediate model usage, it is also the bridge
+**[00:17:52]** to mediate tool usage.
+**[00:17:54]** We solve for the same issues, such as governance, security,
+**[00:17:58]** observability, velocity, and scalability,
+**[00:18:01]** when you are interacting with various kinds of tool backends,
+**[00:18:04]** like I mentioned before, APIs.
+**[00:18:06]** It could be cloud services or connectors.
+**[00:18:08]** Here, I have just listed a few examples, such as logic apps,
+**[00:18:12]** functions, container apps, etc. You could also want
+**[00:18:16]** to mediate access to third-party MCP servers natively
+**[00:18:21]** and apply the same set of governance policies
+**[00:18:23]** that you are applying to your first-party APIs and services.
+**[00:18:26]** You could talk to any kind of third-party MCP server,
+**[00:18:29]** such as Atlassian, Stripe, Box, Neon, or anything else.
+**[00:18:34]** So let's look at what can you do with Azure API Management today.
+**[00:18:39]** One, you can create MCP servers.
+**[00:18:41]** You can convert your existing portfolio of REST APIs
+**[00:18:45]** into MCP servers in a matter of a few clicks.
+**[00:18:48]** No rewrites.
+**[00:18:49]** You can just expose any HTTP backend as an MCP server in less
+**[00:18:53]** than a minute, in a matter of a few clicks.
+**[00:18:56]** You can also proxy existing MCP servers,
+**[00:19:00]** either first-party MCP servers that you're hosting
+**[00:19:03]** or third-party MCP servers hosted by another party,
+**[00:19:06]** third-party, like we just talked about, Stripe or Jira
+**[00:19:10]** that you might be using in your organization, and proxy them
+**[00:19:13]** with this particular gateway to apply the same governance
+**[00:19:17]** and the same security perimeter.
+**[00:19:19]** In terms of securing MCP servers, after you create,
+**[00:19:24]** the next big challenge becomes how do I secure these endpoints
+**[00:19:27]** to make sure agents and LLMs accessing these endpoints are
+**[00:19:31]** authenticated, and we make sure that they have the right access
+**[00:19:35]** and scopes to access these particular MCP servers?
+**[00:19:39]** And similarly, we also make sure how do we streamline
+**[00:19:43]** and simplify the access to these MCP servers,
+**[00:19:46]** which might have their own auth mechanism,
+**[00:19:48]** such as API keys or OAuth?
+**[00:19:51]** All of those things are supported using capabilities
+**[00:19:54]** such as credential manager and policies within API Management.
+**[00:20:00]** The third part is, okay, you have created
+**[00:20:02]** and you have secured these MCP servers.
+**[00:20:04]** Now I want to apply various kinds
+**[00:20:05]** of organizational policies.
+**[00:20:08]** I might want to apply content safety policies
+**[00:20:12]** where I don't want to leak any PII information.
+**[00:20:15]** I want to apply throttling policies
+**[00:20:17]** so that I will make sure there is no abuse of my tools
+**[00:20:23]** by various kinds of agents and LLMs.
+**[00:20:25]** So you can apply all kinds of policies,
+**[00:20:27]** and all those are supported
+**[00:20:28]** for all these MCP endpoints and tool endpoints.
+**[00:20:31]** Lastly, observability for every call.
+**[00:20:34]** Anytime you try to call a particular tool,
+**[00:20:37]** you want clear logs, traces,
+**[00:20:38]** and metrics to understand what exactly is happening
+**[00:20:42]** so that you can root cause issues as well
+**[00:20:44]** as improve the performance of your applications
+**[00:20:48]** and the agentic workflows that you're building.
+**[00:20:51]** So it's the same gateway, same policies.
+**[00:20:53]** Whether it's a REST client or an agent
+**[00:20:56]** or an MCP-aware call coding tool, we are able to support all
+**[00:21:00]** of these capabilities within API Management.
+**[00:21:03]** So let's talk about what's new.
+**[00:21:05]** We recently shipped more capabilities for MCP servers
+**[00:21:09]** and tools within API Management.
+**[00:21:12]** So one of the first things we recently shipped was the ability
+**[00:21:16]** to add MCPs to the product concept within API Management.
+**[00:21:20]** This enables you to bundle one or more MCP servers
+**[00:21:23]** into API Management products, subscriptions, quotas,
+**[00:21:27]** and approval workflows.
+**[00:21:29]** It gives you the ability to create specific bundles
+**[00:21:34]** so that you can specify the specific set of curated rules
+**[00:21:38]** for those particular products.
+**[00:21:39]** You can also apply subscriptions and quotas and various kinds
+**[00:21:42]** of approval workflows for those products.
+**[00:21:45]** Similarly, we also got a lot of asks from customers,
+**[00:21:50]** the ability to A-B test these kinds of MCP servers
+**[00:21:53]** that are being created within API Management.
+**[00:21:56]** So we enabled MCP versions.
+**[00:21:58]** So you can create multiple versions of an MCP server
+**[00:22:02]** so that you can run various kinds of testing,
+**[00:22:04]** experimentation, or even have one version in prod
+**[00:22:08]** and one version in deployment
+**[00:22:10]** and start making changes simultaneously to test
+**[00:22:14]** and to improve your development workflow.
+**[00:22:19]** Then we also further improved the overall observability
+**[00:22:22]** with more fine-grained data and metrics for MCP tools.
+**[00:22:27]** It's more about having metrics, traces,
+**[00:22:30]** and logs in open telemetry.
+**[00:22:32]** And we are able to track end-to-end metrics for a request
+**[00:22:37]** from the time it originates from a client
+**[00:22:39]** to the time it hits API Management gateway
+**[00:22:42]** to the time it goes to a particular MCP server,
+**[00:22:45]** to understand which tool got invoked,
+**[00:22:47]** what auth mechanism got invoked, etc. You have access
+**[00:22:50]** to all of this information.
+**[00:22:52]** And finally, we also improved our automation capabilities
+**[00:22:57]** by making MCP a first-class element in management API,
+**[00:23:02]** our REST API for API Management.
+**[00:23:04]** So you can use this automation to directly create MCPs,
+**[00:23:08]** secure MCPs, and apply policies directly through the REST API
+**[00:23:12]** and not having to go through the Azure API Management portal.
+**[00:23:17]** So let's look through a quick demo
+**[00:23:19]** of the new capabilities we launched.
+**[00:23:21]** It should be a very quick demo so that you understand
+**[00:23:23]** where these capabilities are located
+**[00:23:25]** and how you can leverage them.
+**[00:23:28]** So this is my API Management portal.
+**[00:23:31]** And this is a basic V2 instance.
+**[00:23:33]** As you can see in the TOC on the left side, I've clicked
+**[00:23:36]** on "MCP Servers" within AI Gateway.
+**[00:23:37]** You can see a bunch of MCP servers already there.
+**[00:23:41]** I'm trying to create an MCP server.
+**[00:23:43]** I'm using an existing MCP server,
+**[00:23:46]** a third-party MCP server, mcp.stripe.com.
+**[00:23:49]** I've added a display name and a base path,
+**[00:23:52]** and I'm also assigning it to a product.
+**[00:23:54]** So you can see, during the creation flow, any time,
+**[00:23:57]** you can assign a particular MCP server to a particular product,
+**[00:24:00]** and it gets assigned to that product.
+**[00:24:01]** And then you can go to the product
+**[00:24:03]** and start making all kinds of changes that you want to do.
+**[00:24:07]** So that is the first feature we launched.
+**[00:24:09]** The second thing you can see
+**[00:24:10]** that once the MCP server got created,
+**[00:24:13]** you can apply various kinds of policies.
+**[00:24:17]** And you also have settings there
+**[00:24:19]** where you can apply subscription keys to authenticate access
+**[00:24:23]** to this particular MCP server.
+**[00:24:25]** Let's apply a policy.
+**[00:24:26]** I will just apply a very simple access policy
+**[00:24:30]** so that we understand that, hey,
+**[00:24:32]** we can access this particular MCP server.
+**[00:24:34]** Here I'm just posting a particular key.
+**[00:24:38]** It is just hard-coded here just for simplicity.
+**[00:24:41]** We also launched a new test console within API Management.
+**[00:24:44]** You don't need to go to an MCP Inspector outside or spin
+**[00:24:47]** up your own MCP Inspector.
+**[00:24:49]** The test console will automatically enable you
+**[00:24:51]** to test the MCP server created.
+**[00:24:53]** It is listing all the tools here,
+**[00:24:55]** and you can invoke them directly from there.
+**[00:24:58]** And lastly, like I mentioned, versioning.
+**[00:25:00]** We also have the ability
+**[00:25:02]** to version MCP servers that you create.
+**[00:25:05]** So here I'm creating a V2 version
+**[00:25:07]** of the MCP test build 2026 MCP server.
+**[00:25:13]** As you can see here, I have two versions.
+**[00:25:15]** There is the original, and there is the V2 version
+**[00:25:18]** with two particular private endpoints that I could use
+**[00:25:21]** for experimentation, A-B testing,
+**[00:25:23]** blue-green deployments, etc.
+**[00:25:26]** So we have another demo.
+**[00:25:28]** This would be quite interesting, I think.
+**[00:25:31]** We also have enabled the ability to use API Management
+**[00:25:35]** for tool selection at agent design time.
+**[00:25:38]** So Mike, my colleague, has created a good demo
+**[00:25:42]** to showcase this capability.
+**[00:25:44]** Let's walk through that now.
+**[00:25:46]** MIKE BUDZYNSKI: Let me show you a quick prototype
+**[00:25:48]** of how AI Gateway simplifies agent tool discovery
+**[00:25:51]** at design time.
+**[00:25:52]** I'll start with a simple intent: "I want to build an agent
+**[00:25:57]** that calculates shipping costs for online orders."
+**[00:26:00]** From that intent alone,
+**[00:26:02]** GitHub compiled queries AI Gateway's MCP server
+**[00:26:06]** to discover available tools.
+**[00:26:07]** It automatically selects the tools that matter,
+**[00:26:10]** such as order lookup, into US,
+**[00:26:12]** and international shipping cost calculation,
+**[00:26:15]** and intelligently excludes tools
+**[00:26:17]** that don't contribute to the goal.
+**[00:26:20]** I review and confirm the selected tools.
+**[00:26:22]** And Copilot generates the full agent code using the GitHub
+**[00:26:26]** Copilot SDK.
+**[00:26:27]** This isn't just a basic scaffold.
+**[00:26:30]** It includes the correct tool definitions
+**[00:26:32]** and chaining logic derived entirely
+**[00:26:35]** from tool metadata and descriptions.
+**[00:26:37]** At this point, the agent is ready to run locally
+**[00:26:40]** or be deployed directly to Foundry.
+**[00:26:43]** So how did we get here?
+**[00:26:44]** First, a lightweight custom skill connects GitHub Copilot
+**[00:26:48]** to AI Gateway, enabling Copilot to discover tools
+**[00:26:52]** and generate the agent code automatically.
+**[00:26:55]** Second, the GitHub Copilot CLI is configured
+**[00:26:58]** with the AI Gateway's MCP server,
+**[00:27:01]** which acts as the discovery endpoint
+**[00:27:03]** for all tools exposed through AI Gateway.
+**[00:27:07]** For this prototype, AI Gateway,
+**[00:27:10]** which will combine the capabilities of API Management
+**[00:27:12]** and API Center into a Foundry-native, multi-tenant,
+**[00:27:16]** always-on component, is mocked with standalone API Management
+**[00:27:21]** and API Center resources.
+**[00:27:23]** API Center exposes the MCP server
+**[00:27:26]** with all the tools automatically synchronized
+**[00:27:28]** from API Management.
+**[00:27:29]** Tools that don't match the developer's intent,
+**[00:27:32]** like weather forecasting in this case, are filtered
+**[00:27:36]** out by Copilot during discovery.
+**[00:27:39]** API Management facilitates the tool's runtime
+**[00:27:42]** and enables conversion of existing enterprise REST APIs,
+**[00:27:46]** such as order lookup, shipping cost calculation,
+**[00:27:48]** and weather forecasting, into MCP servers.
+**[00:27:52]** Finally, we are also actively prototyping more
+**[00:27:54]** advanced capabilities.
+**[00:27:56]** This includes AI Gateway dynamically selecting tools
+**[00:27:59]** at the agent's runtime, not just at design time, and ensuring
+**[00:28:03]** that all model calls are routed through AI Gateway
+**[00:28:06]** to enforce governance policies,
+**[00:28:08]** such as token consumption limits.
+**[00:28:11]** ANISH TALLAPUREDDY: Okay, that's all on tools governance.
+**[00:28:13]** Let me invite my colleague Sreekanth to walk
+**[00:28:16]** through the enterprise catalog for AI assets.
+**[00:28:20]** Sreekanth, over to you.
+**[00:28:23]** SREEKANTH THIRTHALA: Thank you, Anish.
+**[00:28:25]** And we're going to talk
+**[00:28:26]** about the enterprise catalog for AI assets.
+**[00:28:30]** As enterprises scale their AI investments,
+**[00:28:33]** one question keeps coming up: How do we manage all of it,
+**[00:28:36]** the agents, the skills, the MCP servers, and models?
+**[00:28:39]** How do teams discover what exists and ensure quality
+**[00:28:42]** and prevent duplication?
+**[00:28:43]** That's exactly what Azure API Center solves.
+**[00:28:46]** It's the enterprise catalog for all your AI assets,
+**[00:28:49]** a single system of record for the enterprise
+**[00:28:51]** where every tool an agent might call is registered, tracked,
+**[00:28:55]** and discoverable across your organization.
+**[00:28:58]** The catalog spans across four asset types: REST APIs;
+**[00:29:03]** MCP tools, skills, plugins; models; and agents.
+**[00:29:07]** Keeping the catalog current is effortless.
+**[00:29:09]** You can register via portal, the CLI, or sync directly
+**[00:29:13]** with your GitHub repo.
+**[00:29:15]** There is no manual drift, and assets ship as
+**[00:29:18]** and when new commits are made.
+**[00:29:20]** Quality assessment also is provided for all these assets,
+**[00:29:24]** using LLM as a judge to evaluate your skills for clarity,
+**[00:29:28]** parameter design, and safety so developers
+**[00:29:31]** and agents can trust what they consume.
+**[00:29:34]** And for the agentic world, API Center serves as the marketplace
+**[00:29:39]** for agents, exposing a marketplace endpoint
+**[00:29:42]** that enables developer tools like Claude Code and Copilot CLI
+**[00:29:45]** to discover and load enterprise skills, plugins,
+**[00:29:48]** and MCP servers directly from the catalog.
+**[00:29:51]** With the same lifecycle and quality signals,
+**[00:29:54]** your platform teams curate.
+**[00:29:56]** All of this works across Azure, other clouds,
+**[00:30:00]** on-premises, and third-party SaaS.
+**[00:30:03]** One catalog, every asset.
+**[00:30:05]** Let's see a demo of it in action.
+**[00:30:07]** SPEAKER 1: API Center is the enterprise catalog
+**[00:30:10]** for all your AI assets, including skills, plugins,
+**[00:30:13]** MCP tools, and agents.
+**[00:30:15]** Let us start with registering skills.
+**[00:30:17]** Click on "Register a Skill" in the Asset sidebar menu.
+**[00:30:20]** Provide details of the skill's capabilities,
+**[00:30:23]** use cases, and behavior.
+**[00:30:25]** You can also enter the Git repository URL
+**[00:30:27]** for the skill source code.
+**[00:30:28]** In this example, we added a new code review skill
+**[00:30:31]** to the API Center asset catalog and provided the Git repo URL
+**[00:30:35]** of the Skill Markdown file.
+**[00:30:36]** With skills registered, let's look at how
+**[00:30:38]** to keep them up to date at scale.
+**[00:30:40]** To automate skill registration and updates,
+**[00:30:43]** integrate a Git repository with your API Center.
+**[00:30:46]** Any skills added or updated
+**[00:30:47]** in the repository are automatically synchronized
+**[00:30:50]** with your API Center inventory, eliminating manual updates
+**[00:30:54]** and keeping your catalog always current.
+**[00:30:56]** In this demo, we have integrated the Azure Skills Git repository
+**[00:31:00]** to show how seamlessly external skill sources can be connected
+**[00:31:03]** and kept in sync with API Center.
+**[00:31:05]** Once the Git repo is synchronized,
+**[00:31:07]** Azure API Center will automatically import all Azure
+**[00:31:10]** skills as assets, making them easily discoverable
+**[00:31:13]** across the enterprise.
+**[00:31:15]** API Center portal provides an easy way for developers
+**[00:31:18]** to discover skills and its capabilities.
+**[00:31:20]** Let us try to find the Azure cloud migrate skill
+**[00:31:23]** from the Azure Skills Catalog, which we just imported
+**[00:31:25]** through the Git repository integration.
+**[00:31:28]** Azure cloud migrate skill is essential for agents looking
+**[00:31:30]** to assess and migrate cross-cloud workloads to Azure.
+**[00:31:34]** Clicking on the skill name
+**[00:31:35]** in Azure API Center portal opens the skill's definition,
+**[00:31:38]** including its reference documentation, common tasks,
+**[00:31:41]** and its defined inputs and outputs.
+**[00:31:43]** Further, developers can contribute new skills
+**[00:31:45]** by committing directly
+**[00:31:46]** to the Git repository integrated with API Center.
+**[00:31:49]** And once pushed, those skills are automatically synchronized
+**[00:31:52]** with the catalog and made available to the entire team
+**[00:31:55]** without any manual intervention.
+**[00:32:00]** Let us now talk about skills assessment.
+**[00:32:03]** AI skill assessments using the LLM-as-a-judge technique
+**[00:32:06]** leverage a large language model to evaluate AI outputs
+**[00:32:09]** against defined quality criteria, scoring responses
+**[00:32:13]** across dimensions like accuracy, coherence, and helpfulness.
+**[00:32:17]** The judge model can be prompted with rubrics, reference answers,
+**[00:32:20]** or pairwise comparisons, enabling scalable feedback
+**[00:32:23]** at a fraction of the cost of human annotation.
+**[00:32:25]** API Center comes with default skill assessment criteria
+**[00:32:29]** out of the box, evaluating skills
+**[00:32:31]** across four key dimensions, each scored on a 1 to 5 scale
+**[00:32:35]** with a default threshold of 3.
+**[00:32:37]** Documentation Clarity evaluates how clearly a skill's purpose
+**[00:32:41]** and behavior are communicated.
+**[00:32:42]** Help Completeness assesses whether the output serves
+**[00:32:45]** as a comprehensive standalone reference.
+**[00:32:48]** Discoverability measures how easily functionality can be
+**[00:32:51]** navigated and found.
+**[00:32:53]** Safe Usage evaluates whether sufficient guidance is provided
+**[00:32:56]** for safe operation.
+**[00:32:58]** Enterprise platform administrators can further
+**[00:33:00]** extend these defaults
+**[00:33:01]** by defining custom assessment criteria tailored
+**[00:33:04]** to their organization's specific standards,
+**[00:33:06]** compliance requirements, and governance policies.
+**[00:33:09]** Once skills assessment is enabled,
+**[00:33:11]** developers can view a detailed AI quality score report
+**[00:33:14]** for each skill directly within the API Center portal.
+**[00:33:18]** This report provides an at-a-glance pass
+**[00:33:20]** or fail status along with per-dimension scores
+**[00:33:23]** and actionable feedback.
+**[00:33:25]** Alongside the LLM-based scores,
+**[00:33:27]** the report includes structural checks,
+**[00:33:29]** verifying foundational elements like valid front matter,
+**[00:33:32]** skill name, and body content, and schema validation,
+**[00:33:36]** which flags missing sections
+**[00:33:37]** such as examples or error handling.
+**[00:33:39]** As a developer, this means you can quickly understand the
+**[00:33:42]** quality and reliability of a skill before adopting it,
+**[00:33:46]** making informed decisions about which skills are ready to use
+**[00:33:49]** and which may need further refinement.
+**[00:33:51]** Let us now transition into MCP tools.
+**[00:33:54]** As the MCP ecosystem grows, organizations need a scalable,
+**[00:33:58]** automated way to register and manage MCP tools
+**[00:34:02]** without manual overhead.
+**[00:34:03]** To automate MCP tool registration
+**[00:34:05]** and keep your inventory up to date,
+**[00:34:07]** you can integrate a Git repository with your API center,
+**[00:34:11]** eliminating manual onboarding, and ensuring your catalog stays
+**[00:34:14]** in sync as tools evolve.
+**[00:34:16]** Any changes pushed
+**[00:34:17]** to the repository are automatically reflected
+**[00:34:20]** in the catalog, giving teams a single source of truth
+**[00:34:23]** for all MCP tools across the organization.
+**[00:34:25]** In this demo, we showcase this end-to-end
+**[00:34:28]** by importing the Azure MCP server into API Center
+**[00:34:31]** through Git repo sync,
+**[00:34:32]** demonstrating how quickly a real-world MCP server can go
+**[00:34:35]** from a repository to a fully registered,
+**[00:34:38]** discoverable asset in your catalog.
+**[00:34:42]** The API Center portal enables developers
+**[00:34:44]** to discover MCP servers and interact with MCP tools
+**[00:34:47]** by listing and running them directly.
+**[00:34:50]** Through the built-in MCP Inspector,
+**[00:34:51]** developers can explore available tools, inspect their inputs
+**[00:34:55]** and outputs, and test them in real-time,
+**[00:34:57]** all without writing a single line of code.
+**[00:35:00]** In this example, the API Center Data plane MCP server lets
+**[00:35:04]** developers list every MCP tool in the catalog and search
+**[00:35:07]** for a specific server, making it easy to evaluate
+**[00:35:10]** and integrate the right tool into their workflow.
+**[00:35:13]** Now let us talk about plugins.
+**[00:35:14]** Plugins are self-contained extensions
+**[00:35:16]** that supercharge any supported AI development tool,
+**[00:35:20]** adding custom commands, agents, hooks, and MCP integrations
+**[00:35:24]** to Copilot CLI, Claude Code, and beyond.
+**[00:35:27]** Here we are on the plugin registration form
+**[00:35:29]** in Azure API Center.
+**[00:35:31]** We start by providing a title, summary, and description
+**[00:35:34]** to make the plugin discoverable and meaningful to developers
+**[00:35:37]** and agents browsing the catalog.
+**[00:35:39]** We then specify a version to track releases over time.
+**[00:35:42]** What makes this powerful is the ability to bundle skills
+**[00:35:45]** and MCP servers directly within the plugin.
+**[00:35:48]** So consumers get a single, self-contained asset
+**[00:35:51]** that is not just discoverable, but immediately actionable.
+**[00:35:55]** With just a few fields, the plugin is registered, governed,
+**[00:35:58]** and ready to be consumed by agents, Copilots, and developers
+**[00:36:02]** across your organization.
+**[00:36:05]** The API Center portal gives developers
+**[00:36:07]** and agents a single place to browse, search,
+**[00:36:09]** and discover plugins alongside APIs, skills, and MCP servers,
+**[00:36:14]** eliminating scattered repositories
+**[00:36:16]** and tribal knowledge.
+**[00:36:17]** Each plugin surfaces its bundled skills and MCP servers
+**[00:36:21]** in one unified view, giving consumers everything they need
+**[00:36:24]** to evaluate and connect with the right asset quickly.
+**[00:36:29]** Now let's look at how the API Center Data plane brings it
+**[00:36:32]** all together.
+**[00:36:33]** API Center exposes a marketplace endpoint
+**[00:36:36]** through its Data plane API, surfacing plugins directly
+**[00:36:39]** to Claude Code in Copilot CLI, making discovery seamless
+**[00:36:43]** without leaving your development environment.
+**[00:36:45]** Register the endpoint with Copilot CLI in one step,
+**[00:36:48]** and the full plugin catalog is instantly unlocked.
+**[00:36:52]** From there, browsing, selecting, and plugging in happens right
+**[00:36:55]** from the CLI, keeping workflows fast and friction-free.
+**[00:37:00]** SREEKANTH THIRTHALA: Let's now transition
+**[00:37:01]** into agent governance.
+**[00:37:04]** As agents proliferate, raw, unmediated access
+**[00:37:07]** to backends doesn't scale.
+**[00:37:09]** Users, apps, agents, and Copilots are all making calls.
+**[00:37:13]** And A2A, REST, and HTTP backends spanning any cloud
+**[00:37:17]** and on-premises.
+**[00:37:19]** You need something in the middle that you can trust,
+**[00:37:21]** and that's the AI Gateway.
+**[00:37:24]** It delivers five things: governance, scalability, safety,
+**[00:37:29]** and security, observability, and velocity,
+**[00:37:32]** one bridge for every agent fully governed.
+**[00:37:36]** And now for an announcement.
+**[00:37:37]** Agent-to-agent support in Azure API Management is generally
+**[00:37:40]** available today.
+**[00:37:42]** A2A is becoming the backbone of multi-agent architectures.
+**[00:37:46]** And starting now, you can bring your A2A agents
+**[00:37:49]** under the same enterprise-grade management you rely
+**[00:37:53]** on for REST APIs.
+**[00:37:54]** Same governance, same security, and same observability.
+**[00:37:58]** Today, we are GA-ing governance, security, and observability
+**[00:38:02]** across A2A agent APIs alongside all your other APIs.
+**[00:38:07]** You can expose agent cards and runtime operations.
+**[00:38:10]** You can log open telemetry traces using GenAI semantic
+**[00:38:14]** conventions for deep and standardized visibility.
+**[00:38:18]** You can apply policies like throttling, IP filtering,
+**[00:38:22]** and content safety to every agent call.
+**[00:38:25]** And you can inventory and publish APIs.
+**[00:38:29]** As you can see, registering an A2A agent is now very simple,
+**[00:38:33]** with agent-specific metadata like agent card
+**[00:38:36]** and agent URL surfaced natively alongside lifecycle
+**[00:38:39]** and deployment details.
+**[00:38:41]** A2A support is now generally available.
+**[00:38:44]** And that's a wrap.
+**[00:38:45]** Thank you for attending the Azure API Management session
+**[00:38:48]** at Microsoft Build today.
+**[00:38:50]** What we showed you today is all available for you
+**[00:38:53]** to use and for you to build.
+**[00:38:55]** More details on it can be found at aka.ms/apim/blog.
+**[00:38:59]** We can't wait to see what you will build
+**[00:39:01]** with Azure API Management.
+**[00:39:03]** Thank you.
+**[00:39:04]** [ Music ]

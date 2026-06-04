@@ -1,0 +1,6034 @@
+WEBVTT
+
+00:00:01.080 --> 00:00:02.190
+CARLOTTA CASTELLUCCIO:
+Hi, everyone.
+
+00:00:02.190 --> 00:00:05.790
+Welcome to this session,
+From Test Kitchen to Table:
+
+00:00:05.790 --> 00:00:09.690
+A Demo-Driven Tour of Foundry
+Portal for AI Developers.
+
+00:00:09.690 --> 00:00:10.920
+I'm Carlotta Castelluccio.
+
+00:00:10.920 --> 00:00:13.110
+I'm a Senior AI
+Advocate at Microsoft,
+
+00:00:13.110 --> 00:00:16.500
+and I'm here with Nitya.
+
+00:00:16.500 --> 00:00:17.190
+Hi, Nitya.
+
+00:00:17.190 --> 00:00:17.880
+How are you doing?
+
+00:00:17.880 --> 00:00:18.750
+NITYA NARASIMHAN: Hi Carlotta.
+
+00:00:18.750 --> 00:00:20.880
+So exciting to be
+at Build again.
+
+00:00:20.880 --> 00:00:21.540
+Hi, everyone.
+
+00:00:21.540 --> 00:00:23.190
+My name is Nitya Narasimhan.
+
+00:00:23.190 --> 00:00:24.510
+I'm also Senior AI Advocate
+
+00:00:24.510 --> 00:00:27.120
+on the Developer Relations
+team at Microsoft.
+
+00:00:27.120 --> 00:00:29.130
+And we're both here really
+excited to talk to you
+
+00:00:29.130 --> 00:00:33.180
+about Microsoft Foundry and
+specifically about portal.
+
+00:00:33.180 --> 00:00:34.740
+Where does your journey start?
+
+00:00:34.740 --> 00:00:36.810
+Every AI development
+journey has to start
+
+00:00:36.810 --> 00:00:37.890
+with a business scenario.
+
+00:00:37.890 --> 00:00:41.910
+In our case, we're going to talk
+about a retailer called Zava.
+
+00:00:41.910 --> 00:00:43.950
+Zava is a fictitious enterprise
+retailer selling home
+
+00:00:43.950 --> 00:00:47.040
+improvement goods to DIY
+project enthusiasts.
+
+00:00:47.040 --> 00:00:50.490
+And you are part of the
+AI development team.
+
+00:00:50.490 --> 00:00:53.250
+You are tasked to build Cora,
+an AI shopping assistant
+
+00:00:53.250 --> 00:00:56.910
+that can answer customer
+questions in store or online
+
+00:00:56.910 --> 00:00:58.740
+and provide customer service.
+
+00:00:58.740 --> 00:01:02.340
+Now, you want to design Cora
+to be friendly, helpful,
+
+00:01:02.340 --> 00:01:04.260
+and cost-effective to deploy.
+
+00:01:04.260 --> 00:01:06.840
+But you also understand that in
+this fast-paced environment,
+
+00:01:06.840 --> 00:01:10.200
+your agent needs to keep
+adapting to changing conditions,
+
+00:01:10.200 --> 00:01:13.410
+changing systems,
+and changing needs.
+
+00:01:13.410 --> 00:01:15.570
+So what do you do?
+
+00:01:15.570 --> 00:01:16.890
+Well, let's start first
+
+00:01:16.890 --> 00:01:20.460
+by understanding what AI
+app development looks like.
+
+00:01:20.460 --> 00:01:24.870
+So at a very basic level, an
+AI app is nothing but a model
+
+00:01:24.870 --> 00:01:28.530
+that takes an incoming prompt,
+does some processing on it
+
+00:01:28.530 --> 00:01:30.120
+and generates a response.
+
+00:01:30.120 --> 00:01:33.180
+That response can then be used
+to trigger other actions,
+
+00:01:33.180 --> 00:01:35.610
+which in turn may generate
+new prompts and so on
+
+00:01:35.610 --> 00:01:37.470
+and the cycle continues.
+
+00:01:37.470 --> 00:01:39.420
+And that's at a very,
+very basic level.
+
+00:01:39.420 --> 00:01:41.280
+You can think of this as
+a monolithic application
+
+00:01:41.280 --> 00:01:44.070
+where in order for that model
+to generate that response,
+
+00:01:44.070 --> 00:01:47.470
+there's other things that
+happened to coordinate it.
+
+00:01:48.840 --> 00:01:51.870
+But when we think about
+scale level delivery,
+
+00:01:51.870 --> 00:01:53.130
+it becomes more complicated.
+
+00:01:53.130 --> 00:01:55.500
+Now you have multiple
+models, multiple prompts,
+
+00:01:55.500 --> 00:01:58.170
+multiple conversations,
+and you need to coordinate
+
+00:01:58.170 --> 00:01:59.820
+and orchestrate all
+these together.
+
+00:01:59.820 --> 00:02:02.340
+Plus now you need to
+extract information
+
+00:02:02.340 --> 00:02:04.380
+from all these
+conversations at scale
+
+00:02:04.380 --> 00:02:06.000
+to determine what
+you need to do next.
+
+00:02:06.000 --> 00:02:08.040
+And that is a challenge.
+
+00:02:08.040 --> 00:02:11.340
+So traditional AI application
+that's monolithic can't really
+
+00:02:11.340 --> 00:02:13.980
+do this in a very agile way.
+
+00:02:13.980 --> 00:02:16.110
+This is where agents can help.
+
+00:02:16.110 --> 00:02:18.660
+Agent AI brings a
+microservices-based approach
+
+00:02:18.660 --> 00:02:20.970
+where every agent is
+a single unit of work
+
+00:02:20.970 --> 00:02:23.340
+that can be evolved
+independently without having
+
+00:02:23.340 --> 00:02:25.140
+to rewrite the entire system.
+
+00:02:25.140 --> 00:02:27.870
+What that means is now when
+you have a giant application,
+
+00:02:27.870 --> 00:02:31.740
+you can just go in and update
+or evolve individual agents
+
+00:02:31.740 --> 00:02:32.820
+without having to think
+
+00:02:32.820 --> 00:02:36.660
+about how the entire application
+has to be redeployed.
+
+00:02:36.660 --> 00:02:41.280
+But to do this, you need a
+repeatable and simple way.
+
+00:02:41.280 --> 00:02:44.970
+And what we want to do is
+talk to you about an analogy.
+
+00:02:44.970 --> 00:02:48.570
+You need a test kitchen where
+you can quickly prototype
+
+00:02:48.570 --> 00:02:52.620
+out these little agents before
+you put them into production.
+
+00:02:52.620 --> 00:02:54.240
+And that's the analogy
+we're using today.
+
+00:02:54.240 --> 00:02:56.790
+How do you go from
+test kitchen to table?
+
+00:02:56.790 --> 00:03:00.030
+Think about your AI application
+or your AI solution
+
+00:03:00.030 --> 00:03:03.450
+as the equivalent of a
+multi-course dinner menu
+
+00:03:03.450 --> 00:03:05.850
+at a very popular restaurant.
+
+00:03:05.850 --> 00:03:08.250
+You don't go around
+designing your recipes right
+
+00:03:08.250 --> 00:03:11.310
+at the dinner table,
+rather, test chefs, I mean,
+
+00:03:11.310 --> 00:03:13.230
+great chefs will
+have a test kitchen
+
+00:03:13.230 --> 00:03:15.540
+where they quickly experiment
+with these recipes
+
+00:03:15.540 --> 00:03:16.590
+until they get something
+
+00:03:16.590 --> 00:03:19.710
+that passes their taste
+test or evaluation.
+
+00:03:19.710 --> 00:03:21.420
+Then they can take
+those and move it
+
+00:03:21.420 --> 00:03:22.980
+into their restaurant kitchen
+
+00:03:22.980 --> 00:03:27.810
+or code-first development
+environment to make that better.
+
+00:03:27.810 --> 00:03:30.510
+Today, we're going to see how
+Microsoft Foundry portal is your
+
+00:03:30.510 --> 00:03:31.500
+test kitchen.
+
+00:03:31.500 --> 00:03:34.590
+You can go rapidly from a
+plan to a basic prototype
+
+00:03:34.590 --> 00:03:37.800
+until your recipe works
+without writing a single line
+
+00:03:37.800 --> 00:03:39.720
+of code all in your browser.
+
+00:03:39.720 --> 00:03:42.930
+So what can Foundry do for you?
+
+00:03:42.930 --> 00:03:44.040
+Let's think about it in terms
+
+00:03:44.040 --> 00:03:46.200
+of three developer
+needs that we need.
+
+00:03:46.200 --> 00:03:48.780
+First, when building
+these agents
+
+00:03:48.780 --> 00:03:52.770
+in a microservices approach,
+we need to rapidly prototype,
+
+00:03:52.770 --> 00:03:57.660
+build, and deploy them so we can
+actually have real customers try
+
+00:03:57.660 --> 00:03:58.890
+them out.
+
+00:03:58.890 --> 00:04:01.200
+Next, we understand that
+things will change.
+
+00:04:01.200 --> 00:04:04.230
+Models may change, your prompt
+requirements may change,
+
+00:04:04.230 --> 00:04:06.300
+your situation that the
+environment you are
+
+00:04:06.300 --> 00:04:08.040
+in may change.
+
+00:04:08.040 --> 00:04:10.860
+We need ways to do easy
+experimentation and evaluation
+
+00:04:10.860 --> 00:04:13.560
+to test these prompts, models,
+and datasets without having
+
+00:04:13.560 --> 00:04:15.300
+to reprovision each time.
+
+00:04:15.300 --> 00:04:18.450
+And last but not least, your
+app has to be trustworthy.
+
+00:04:18.450 --> 00:04:20.250
+We need mechanisms
+for secure, scalable,
+
+00:04:20.250 --> 00:04:23.010
+and production-ready
+development.
+
+00:04:23.010 --> 00:04:25.440
+And that means having a
+unified end-to-end platform
+
+00:04:25.440 --> 00:04:27.510
+that provides all these
+capabilities for us.
+
+00:04:27.510 --> 00:04:30.390
+So I want to hand off to my
+colleague to see how we go
+
+00:04:30.390 --> 00:04:32.100
+about actually building this.
+
+00:04:32.100 --> 00:04:32.730
+Carlotta.
+
+00:04:32.730 --> 00:04:34.500
+CARLOTTA CASTELLUCCIO:
+Yeah, thanks Nitya.
+
+00:04:34.500 --> 00:04:39.870
+So yes, let's go deeper into how
+Microsoft Foundry can help you
+
+00:04:39.870 --> 00:04:44.610
+in this end-to-end journey that
+Nitya kind of introduced to us
+
+00:04:44.610 --> 00:04:47.520
+and how it's able to address
+the developer needs we have
+
+00:04:47.520 --> 00:04:48.540
+just seen.
+
+00:04:48.540 --> 00:04:50.940
+So first of all,
+Microsoft Foundry,
+
+00:04:50.940 --> 00:04:55.710
+you can orchestrate a
+multi-agent system with support
+
+00:04:55.710 --> 00:04:59.700
+of both interoperability
+and also open frameworks.
+
+00:04:59.700 --> 00:05:02.790
+You can also access to
+the best foundational
+
+00:05:02.790 --> 00:05:06.420
+and open-source models
+in the model catalog
+
+00:05:06.420 --> 00:05:09.840
+and select the final model
+
+00:05:09.840 --> 00:05:12.570
+which is the best fit
+for your use case.
+
+00:05:12.570 --> 00:05:15.030
+You can connect your
+AI apps and agents
+
+00:05:15.030 --> 00:05:16.740
+to different knowledge sources
+
+00:05:16.740 --> 00:05:20.310
+and tools using also
+built-in features in order
+
+00:05:20.310 --> 00:05:25.500
+to contextualize AI responses
+and enable AI to take actions
+
+00:05:25.500 --> 00:05:27.750
+on behalf of the user.
+
+00:05:27.750 --> 00:05:30.750
+You can continuously
+evaluate your solution
+
+00:05:30.750 --> 00:05:33.810
+through every stage of the
+AI development lifecycle
+
+00:05:33.810 --> 00:05:37.140
+with proper content safety and
+security measures included
+
+00:05:37.140 --> 00:05:42.420
+in every layer of your
+AI app or your AI agent.
+
+00:05:42.420 --> 00:05:45.210
+Also, AI apps and
+agents should be tuned
+
+00:05:45.210 --> 00:05:49.530
+and customized continuously
+to fit the business needs.
+
+00:05:49.530 --> 00:05:51.390
+And finally, you
+need the ability
+
+00:05:51.390 --> 00:05:53.610
+to deploy anywhere you want,
+
+00:05:53.610 --> 00:05:57.270
+including to local
+and edge devices.
+
+00:05:57.270 --> 00:06:00.090
+Now, we're not going to
+see everything, of course,
+
+00:06:00.090 --> 00:06:03.810
+in this session, but
+at least most of it.
+
+00:06:03.810 --> 00:06:07.590
+The green points you see in
+these visuals, some models,
+
+00:06:07.590 --> 00:06:09.480
+knowledge and tools,
+and observability,
+
+00:06:09.480 --> 00:06:15.240
+we're going to fully cover it
+with our hands-on demo in a few.
+
+00:06:15.240 --> 00:06:18.930
+And we're going to briefly
+touch on deployment as well.
+
+00:06:18.930 --> 00:06:21.270
+Now, basically, all you need
+
+00:06:21.270 --> 00:06:26.850
+to get started is what Nitya
+called a test kitchen,
+
+00:06:26.850 --> 00:06:31.410
+where you can try out
+various recipes to build new
+
+00:06:31.410 --> 00:06:35.250
+and optimize existing AI
+agents before deploying them
+
+00:06:35.250 --> 00:06:36.480
+into production.
+
+00:06:36.480 --> 00:06:40.620
+And our test kitchen is the
+Microsoft Foundry portal.
+
+00:06:40.620 --> 00:06:44.100
+Now, the Microsoft Foundry
+portal provides a low-code
+
+00:06:44.100 --> 00:06:46.920
+solution to this problem.
+
+00:06:46.920 --> 00:06:49.770
+Within the Microsoft Foundry
+portal, you can experiment
+
+00:06:49.770 --> 00:06:53.490
+with models, tools, and
+instruction for a single agent
+
+00:06:53.490 --> 00:06:56.850
+in a browser-based playground
+before even writing a single
+
+00:06:56.850 --> 00:06:58.320
+line of code.
+
+00:06:58.320 --> 00:07:01.500
+You can use built-in
+support for observability.
+
+00:07:01.500 --> 00:07:07.080
+We are going to see phases,
+evaluations, monitoring features
+
+00:07:07.080 --> 00:07:11.190
+to accelerate the inner-outer
+loop transitions iterating
+
+00:07:11.190 --> 00:07:12.870
+quickly and deploying versions
+
+00:07:12.870 --> 00:07:16.500
+that can be compared
+in real time.
+
+00:07:16.500 --> 00:07:19.680
+You can then move seamlessly
+to code-first environments
+
+00:07:19.680 --> 00:07:22.020
+to transition to
+multi-agent solution
+
+00:07:22.020 --> 00:07:25.890
+or develop further customization
+
+00:07:25.890 --> 00:07:30.750
+and use maybe more complex
+frameworks and workflows.
+
+00:07:30.750 --> 00:07:36.960
+So you basically move from the
+test kitchen to the restaurant.
+
+00:07:36.960 --> 00:07:39.720
+And it's never been
+easier to build, optimize
+
+00:07:39.720 --> 00:07:44.190
+and govern AI apps and agent
+within a unified platform
+
+00:07:44.190 --> 00:07:47.520
+as Microsoft Foundry portal.
+
+00:07:47.520 --> 00:07:51.390
+Now, looking at this
+end-to-end developer journey,
+
+00:07:51.390 --> 00:07:54.330
+the Foundry portal has been
+kind of structured in a way
+
+00:07:54.330 --> 00:07:59.070
+to mimic the three main phases
+of this AI development journey.
+
+00:07:59.070 --> 00:08:01.770
+So for each step, you
+have the features
+
+00:08:01.770 --> 00:08:04.200
+and the tools you
+need to go for them.
+
+00:08:04.200 --> 00:08:09.120
+So in the design phase, you
+identify the business use case,
+
+00:08:09.120 --> 00:08:13.230
+you do model exploration,
+you test your domain prompts
+
+00:08:13.230 --> 00:08:15.900
+over different models
+for comparison,
+
+00:08:15.900 --> 00:08:19.080
+and you build your agent
+prototype by keeping it
+
+00:08:19.080 --> 00:08:21.870
+with the right tools
+and knowledge.
+
+00:08:21.870 --> 00:08:23.610
+While you do that,
+you should make sure
+
+00:08:23.610 --> 00:08:27.480
+to have a robust tracing system
+so you can debug your system,
+
+00:08:27.480 --> 00:08:29.850
+inspect any issues,
+and address them
+
+00:08:29.850 --> 00:08:33.450
+with further fine tuning
+and customization.
+
+00:08:33.450 --> 00:08:35.910
+Once you've got your
+prototype ready,
+
+00:08:35.910 --> 00:08:40.140
+you then can optimize it
+further by moving into code,
+
+00:08:40.140 --> 00:08:43.050
+hosting it maybe in
+a dev container,
+
+00:08:43.050 --> 00:08:47.970
+evaluating the overall agent
+behavior, and publish it.
+
+00:08:47.970 --> 00:08:50.790
+Now, every time you complete
+one of these steps,
+
+00:08:50.790 --> 00:08:53.070
+like the build step or
+the optimized step,
+
+00:08:53.070 --> 00:08:56.850
+you should ask yourself if
+what you have got is ready
+
+00:08:56.850 --> 00:08:58.620
+to move to the next phase.
+
+00:08:58.620 --> 00:09:03.810
+So you're kind of satisfied with
+the result so far by looking
+
+00:09:03.810 --> 00:09:07.140
+at traces, looking at
+evaluation results,
+
+00:09:07.140 --> 00:09:09.930
+and specific metrics you define.
+
+00:09:09.930 --> 00:09:12.540
+Third step is about governance,
+
+00:09:12.540 --> 00:09:16.110
+safety and application
+integration and shipping.
+
+00:09:16.110 --> 00:09:20.370
+So making sure that your
+application is ready
+
+00:09:20.370 --> 00:09:24.120
+for production and you also
+have everything you need
+
+00:09:24.120 --> 00:09:29.670
+to monitor any
+regression over time.
+
+00:09:29.670 --> 00:09:32.160
+All this process is a loop,
+
+00:09:32.160 --> 00:09:35.280
+is an iterative process,
+not a linear process.
+
+00:09:35.280 --> 00:09:40.050
+So you might need to go from
+right to left at some point
+
+00:09:40.050 --> 00:09:43.860
+because you need maybe further
+customization of your model
+
+00:09:43.860 --> 00:09:48.600
+or further customization of your
+prompts or your overall agent.
+
+00:09:48.600 --> 00:09:51.870
+You need to run
+evaluations once again.
+
+00:09:51.870 --> 00:09:57.210
+So again, it's a loop, it's an
+iteration, an iterative process
+
+00:09:57.210 --> 00:10:00.660
+of continuous improvement
+of your application.
+
+00:10:00.660 --> 00:10:03.600
+Okay, so now let's go to
+the core of the session,
+
+00:10:03.600 --> 00:10:08.250
+which is our hands-on journey
+to build our first prototype
+
+00:10:08.250 --> 00:10:10.590
+within the Microsoft
+Foundry portal.
+
+00:10:10.590 --> 00:10:14.070
+So let me switch to my
+browser so we can go
+
+00:10:14.070 --> 00:10:16.950
+into the Microsoft
+Foundry portal.
+
+00:10:16.950 --> 00:10:19.230
+And specifically
+our starting point
+
+00:10:19.230 --> 00:10:22.710
+from this journey
+will be ai.azure.com,
+
+00:10:22.710 --> 00:10:26.880
+which is how you would
+access the Microsoft Foundry
+
+00:10:26.880 --> 00:10:31.980
+portal/templates, where you
+basically can see a bunch
+
+00:10:31.980 --> 00:10:36.690
+of solution templates
+for your AI apps.
+
+00:10:36.690 --> 00:10:41.490
+You can see, for example, an
+AI chat app, AI agent app,
+
+00:10:41.490 --> 00:10:43.110
+a multi-agent workflow.
+
+00:10:43.110 --> 00:10:45.990
+You can basically explore
+all these different solution
+
+00:10:45.990 --> 00:10:50.070
+templates and find the
+one which is closer
+
+00:10:50.070 --> 00:10:53.630
+to your specific
+business scenario.
+
+00:10:53.630 --> 00:10:57.740
+Because sometimes starting from
+scratch might be intimidating.
+
+00:10:57.740 --> 00:11:01.040
+But another option you have
+is simply clicking on this
+
+00:11:01.040 --> 00:11:04.460
+"Start Building" button here
+
+00:11:04.460 --> 00:11:08.460
+and creating your first
+Microsoft project,
+
+00:11:08.460 --> 00:11:12.810
+Microsoft Foundry project, which
+is basically your workspace
+
+00:11:12.810 --> 00:11:16.830
+within Microsoft Foundry
+where you're going to manage,
+
+00:11:16.830 --> 00:11:19.290
+create and manage all
+the resources relevant
+
+00:11:19.290 --> 00:11:21.690
+for your AI application.
+
+00:11:21.690 --> 00:11:25.560
+So to start, I'm going
+to create a new project
+
+00:11:25.560 --> 00:11:28.900
+and I'm going to give it a name.
+
+00:11:30.420 --> 00:11:35.460
+Then we go to the "Advanced
+Options" to configure things
+
+00:11:35.460 --> 00:11:39.840
+like the subscription, the
+Microsoft Foundry resource name
+
+00:11:39.840 --> 00:11:41.490
+if you want to customize it.
+
+00:11:41.490 --> 00:11:44.730
+The region where you want
+to deploy your resources
+
+00:11:44.730 --> 00:11:46.770
+and your project to be in.
+
+00:11:46.770 --> 00:11:51.240
+And the name of the resource
+group we are going to create.
+
+00:11:51.240 --> 00:11:55.620
+Okay, let's click on the
+"Create" button and wait
+
+00:11:55.620 --> 00:11:58.290
+for a couple of minutes
+
+00:11:58.290 --> 00:12:02.740
+so our Microsoft Foundry
+project is set up.
+
+00:12:04.710 --> 00:12:07.980
+So the other thing we
+can do is we can switch
+
+00:12:07.980 --> 00:12:12.420
+to the Microsoft Azure
+portal so we can look
+
+00:12:12.420 --> 00:12:18.930
+at the resource group and the
+resources that will be created
+
+00:12:18.930 --> 00:12:23.700
+through this UI creation
+project you have seen.
+
+00:12:23.700 --> 00:12:28.830
+So I keep refreshing until
+I get the resource group,
+
+00:12:28.830 --> 00:12:33.570
+the new resource group
+that has been created
+
+00:12:33.570 --> 00:12:36.480
+for my Microsoft
+Foundry project.
+
+00:12:36.480 --> 00:12:37.680
+Okay, that's it.
+
+00:12:37.680 --> 00:12:40.830
+So the project has been created.
+
+00:12:40.830 --> 00:12:44.460
+So now I should be able to see
+here my new resource group.
+
+00:12:44.460 --> 00:12:49.140
+So let's refresh the
+full web browser here.
+
+00:12:49.140 --> 00:12:54.240
+Okay, so by refreshing this, I
+will get my new resource group
+
+00:12:54.240 --> 00:12:57.090
+where the Foundry resource
+
+00:12:57.090 --> 00:12:59.460
+and Foundry project
+have been created.
+
+00:12:59.460 --> 00:13:03.180
+So here you can see a couple of
+resources, the Foundry resource
+
+00:13:03.180 --> 00:13:06.510
+and the Foundry project
+that has been created
+
+00:13:06.510 --> 00:13:09.570
+through the process
+I've completed
+
+00:13:09.570 --> 00:13:11.550
+in the Foundry portal UI.
+
+00:13:11.550 --> 00:13:17.580
+So I click "Next" in here,
+and I can see that I can look
+
+00:13:17.580 --> 00:13:21.540
+at things like the API key,
+the project endpoints,
+
+00:13:21.540 --> 00:13:25.410
+all the credentials I
+would need to connect
+
+00:13:25.410 --> 00:13:27.750
+to these resources through code.
+
+00:13:27.750 --> 00:13:33.300
+I'm going to click "Next" and
+then click on "Create Agent"
+
+00:13:33.300 --> 00:13:41.130
+so to get started with my first
+agent prototype creation.
+
+00:13:41.130 --> 00:13:45.990
+So you can see as all this
+flow was very guided.
+
+00:13:45.990 --> 00:13:49.680
+I just click the "Start
+Building" button,
+
+00:13:49.680 --> 00:13:52.470
+and then I've got
+a guided process
+
+00:13:52.470 --> 00:13:56.310
+to create a resource group,
+to create a Foundry resource,
+
+00:13:56.310 --> 00:14:00.030
+to create a Foundry project,
+and now to create an agent.
+
+00:14:00.030 --> 00:14:03.000
+So let's just choose
+an agent name
+
+00:14:03.000 --> 00:14:06.810
+that in my case will be
+a retail-based agent
+
+00:14:06.810 --> 00:14:09.360
+because we are, if you
+recall the business scenario
+
+00:14:09.360 --> 00:14:11.850
+that Nitya described, we
+are building an agent
+
+00:14:11.850 --> 00:14:14.550
+for our Zava retail company.
+
+00:14:14.550 --> 00:14:16.980
+So I'm click on
+"Create," and I'll wait
+
+00:14:16.980 --> 00:14:20.370
+for my first agent
+to be created.
+
+00:14:20.370 --> 00:14:23.130
+And you can see in here
+that under the hood,
+
+00:14:23.130 --> 00:14:26.880
+it is also deploying a
+model, which is GPT 4.1,
+
+00:14:26.880 --> 00:14:30.030
+which is the default
+model which gets created
+
+00:14:30.030 --> 00:14:33.060
+when you create a new agent.
+
+00:14:33.060 --> 00:14:35.280
+Then we are going to see
+that you can, of course,
+
+00:14:35.280 --> 00:14:41.880
+also deploy other models and
+change your model engine,
+
+00:14:41.880 --> 00:14:43.830
+your agent's model engine.
+
+00:14:43.830 --> 00:14:46.830
+Okay, here's the
+agent playground.
+
+00:14:46.830 --> 00:14:51.900
+So all this process led me
+to the agent playground
+
+00:14:51.900 --> 00:14:53.910
+within the Foundry portal.
+
+00:14:53.910 --> 00:14:57.960
+So in here I have my
+retail-based agent,
+
+00:14:57.960 --> 00:15:01.290
+and I can configure all
+the agent's component.
+
+00:15:01.290 --> 00:15:04.650
+So I have the model, which,
+again, is the default model
+
+00:15:04.650 --> 00:15:07.380
+in this case, which is GPT 4.1.
+
+00:15:07.380 --> 00:15:11.550
+I have my default instruction,
+which is basically empty.
+
+00:15:11.550 --> 00:15:16.560
+I have tools, and I have default
+tools, which is web search,
+
+00:15:16.560 --> 00:15:21.030
+which means basically that
+this default agent can access
+
+00:15:21.030 --> 00:15:25.590
+information, fresh data
+from the web search.
+
+00:15:25.590 --> 00:15:28.530
+But I can also, of
+course, customize tools.
+
+00:15:28.530 --> 00:15:30.900
+For example, I can add
+another built-in tool,
+
+00:15:30.900 --> 00:15:36.450
+which is Code Interpreter, which
+makes my agent also execute code
+
+00:15:36.450 --> 00:15:38.970
+in a Python sandbox environment.
+
+00:15:38.970 --> 00:15:41.310
+Then I can also browse all tools
+
+00:15:41.310 --> 00:15:48.990
+and add other built-in
+tools from this toolkit.
+
+00:15:48.990 --> 00:15:54.960
+And I have also a bunch of
+tools exposed by MCP servers.
+
+00:15:54.960 --> 00:15:58.290
+So there's lots of
+built-in tools I can use,
+
+00:15:58.290 --> 00:15:59.760
+I can configure.
+
+00:15:59.760 --> 00:16:03.780
+And then there's also other
+properties of my agent.
+
+00:16:03.780 --> 00:16:05.850
+I have things like knowledge,
+
+00:16:05.850 --> 00:16:09.300
+so I can add different
+knowledge sources.
+
+00:16:09.300 --> 00:16:12.180
+I can connect to the Foundry IQ.
+
+00:16:12.180 --> 00:16:19.170
+So basically, I give my agent
+access to Zava, for example,
+
+00:16:19.170 --> 00:16:23.940
+in our scenario, Zava IQ, so
+the knowledge of my enterprise.
+
+00:16:23.940 --> 00:16:26.700
+And then I can add
+memory in a way
+
+00:16:26.700 --> 00:16:32.160
+that my agent can keep a memory
+
+00:16:32.160 --> 00:16:36.300
+across different sessions
+for the same users.
+
+00:16:36.300 --> 00:16:42.240
+So here's basically the,
+here's the playground
+
+00:16:42.240 --> 00:16:44.580
+where I can configure
+all the properties,
+
+00:16:44.580 --> 00:16:46.740
+all the components of my agent.
+
+00:16:46.740 --> 00:16:52.260
+And on the right side, I
+also have a chat interface
+
+00:16:52.260 --> 00:16:55.410
+where I can test my first agent.
+
+00:16:55.410 --> 00:16:56.610
+Now, the other thing I want
+
+00:16:56.610 --> 00:17:00.840
+to show you is the
+model deployments,
+
+00:17:00.840 --> 00:17:06.810
+because as I mentioned
+before, in my agent creation,
+
+00:17:06.810 --> 00:17:11.520
+a new GPT-4.1 model deployment
+has been provisioned.
+
+00:17:11.520 --> 00:17:14.550
+And together with this
+GPT-4.1 model deployment,
+
+00:17:14.550 --> 00:17:18.420
+also a text embedding three
+large model instances has
+
+00:17:18.420 --> 00:17:20.070
+been provisioned.
+
+00:17:20.070 --> 00:17:23.010
+Because most of the time,
+you're going to need
+
+00:17:23.010 --> 00:17:26.040
+to implement a RAG
+pattern for your agent,
+
+00:17:26.040 --> 00:17:29.310
+and so you need an
+embedding model to do so.
+
+00:17:29.310 --> 00:17:33.900
+But let's come back to the agent
+playground, and let's start
+
+00:17:33.900 --> 00:17:38.850
+by testing our agent with
+a very simple prompt.
+
+00:17:38.850 --> 00:17:42.970
+So let's ask our agent,
+what can you do?
+
+00:17:45.060 --> 00:17:48.660
+Of course, we're going to
+get a very generic answer
+
+00:17:48.660 --> 00:17:51.900
+because we didn't customize
+at all our agent.
+
+00:17:51.900 --> 00:17:57.360
+We just customized the name, but
+everything else is by default.
+
+00:17:57.360 --> 00:18:03.530
+But still, we have an agent that
+we can interact with and test.
+
+00:18:03.530 --> 00:18:07.610
+Now let's try with another
+prompt, which is domain-related
+
+00:18:07.610 --> 00:18:10.490
+at this point, which is
+what paint should I use
+
+00:18:10.490 --> 00:18:12.510
+for my outdoor deck?
+
+00:18:12.510 --> 00:18:15.780
+So let's recall that Zava
+is a retail company selling
+
+00:18:15.780 --> 00:18:18.480
+DIY products.
+
+00:18:18.480 --> 00:18:21.870
+So that's why I've
+asked this question.
+
+00:18:21.870 --> 00:18:28.590
+And again, what I get is
+a pretty generic answer,
+
+00:18:28.590 --> 00:18:34.570
+which is based on data the
+model has been trained on
+
+00:18:35.730 --> 00:18:39.090
+and also data from the web
+
+00:18:39.090 --> 00:18:42.840
+as this agent has
+access to the web.
+
+00:18:42.840 --> 00:18:46.500
+Now, the other thing I
+want to show here is,
+
+00:18:46.500 --> 00:18:47.940
+I'm in the playground now,
+
+00:18:47.940 --> 00:18:53.010
+but the other thing I can
+do is I can debug my agent
+
+00:18:53.010 --> 00:18:55.560
+by looking into its traces.
+
+00:18:55.560 --> 00:19:00.480
+So to double check what's
+happening in (inaudible),
+
+00:19:00.480 --> 00:19:05.370
+and in case of issues,
+errors, or hallucination,
+
+00:19:05.370 --> 00:19:11.010
+I can kind of look into what's
+happening behind the scenes.
+
+00:19:11.010 --> 00:19:14.490
+Now to start collecting
+traces for my agent though,
+
+00:19:14.490 --> 00:19:18.120
+I need to connect to an
+app insight resource,
+
+00:19:18.120 --> 00:19:22.470
+which I don't have at the
+moment in my resource group.
+
+00:19:22.470 --> 00:19:24.510
+So the next step will
+be clicking on this
+
+00:19:24.510 --> 00:19:27.090
+"Connect" button in
+here and then clicking
+
+00:19:27.090 --> 00:19:28.950
+on Create a New Resource."
+
+00:19:28.950 --> 00:19:32.640
+And I'm going to create
+a new app insight
+
+00:19:32.640 --> 00:19:35.460
+and log analytics
+workspace resources
+
+00:19:35.460 --> 00:19:36.960
+within my resource group.
+
+00:19:36.960 --> 00:19:39.210
+Okay, so moving
+back to the portal,
+
+00:19:39.210 --> 00:19:43.110
+we can see in our resource
+group we just created
+
+00:19:43.110 --> 00:19:45.810
+that two new
+resources popped out,
+
+00:19:45.810 --> 00:19:47.760
+which are our
+Application Insight
+
+00:19:47.760 --> 00:19:50.670
+and our log analytics workspace.
+
+00:19:50.670 --> 00:19:55.800
+So this will enable us to
+track the agent's activity
+
+00:19:55.800 --> 00:19:57.870
+in the Microsoft Foundry portal.
+
+00:19:57.870 --> 00:20:01.650
+So back to the portal, if
+I go, I'm in traces again,
+
+00:20:01.650 --> 00:20:05.910
+and if I go into
+responses, I can see that,
+
+00:20:05.910 --> 00:20:08.010
+I can see the traces
+
+00:20:08.010 --> 00:20:13.890
+of the conversation I've
+just had with my agent.
+
+00:20:13.890 --> 00:20:20.280
+So even if I didn't have my
+Application Insight at the time,
+
+00:20:20.280 --> 00:20:24.000
+I have conversed with my agent,
+
+00:20:24.000 --> 00:20:27.870
+those traces are not
+completely lost.
+
+00:20:27.870 --> 00:20:30.690
+I can still look at them now
+
+00:20:30.690 --> 00:20:34.920
+that I have my
+Application Insight on.
+
+00:20:34.920 --> 00:20:37.590
+So, things I can see
+here, of course,
+
+00:20:37.590 --> 00:20:40.620
+I can see the user input,
+I can see the user output,
+
+00:20:40.620 --> 00:20:46.650
+I can see the metadata of the
+input and output messages.
+
+00:20:46.650 --> 00:20:50.880
+And in case there's some
+tool call, for example,
+
+00:20:50.880 --> 00:20:54.450
+I can also inspect tool calls.
+
+00:20:54.450 --> 00:21:03.030
+Now, another thing I can inspect
+is some evaluation scores
+
+00:21:03.030 --> 00:21:10.250
+according to specific metrics
+of my agent's response.
+
+00:21:10.250 --> 00:21:12.260
+But before being able to do so,
+
+00:21:12.260 --> 00:21:16.520
+we need to select
+the metric we need
+
+00:21:16.520 --> 00:21:19.100
+under these metrics
+drop-down menu
+
+00:21:19.100 --> 00:21:26.100
+so we can evaluate our agent
+response according to those.
+
+00:21:26.100 --> 00:21:31.890
+And we have both accuracy
+metrics and safety metrics.
+
+00:21:31.890 --> 00:21:35.280
+So here I have already selected
+a few, like "Task Adherence,"
+
+00:21:35.280 --> 00:21:37.050
+"Intent Resolution,"
+"Coherence,"
+
+00:21:37.050 --> 00:21:40.440
+"Relevance," and "Under Attack."
+
+00:21:40.440 --> 00:21:43.530
+But you are going to select
+the ones most valuable,
+
+00:21:43.530 --> 00:21:46.110
+most useful for your use case.
+
+00:21:46.110 --> 00:21:48.090
+So once I've selected
+the metrics,
+
+00:21:48.090 --> 00:21:52.530
+I want to evaluate my
+agent responses against,
+
+00:21:52.530 --> 00:21:57.960
+then I can click again on
+logs and then evaluations.
+
+00:21:57.960 --> 00:22:02.850
+So I can basically see how my
+large language model is adjudged
+
+00:22:02.850 --> 00:22:05.700
+because, of course, these
+are AI assisted evaluation,
+
+00:22:05.700 --> 00:22:09.390
+scored my agent response,
+this specific response
+
+00:22:09.390 --> 00:22:14.130
+which is selected here, against
+the metrics I have selected.
+
+00:22:14.130 --> 00:22:18.450
+So for example, for coherence, I
+have a score of five out of five
+
+00:22:18.450 --> 00:22:21.120
+with also (inaudible)
+feedback kind
+
+00:22:21.120 --> 00:22:25.860
+of a reasoning
+behind this scoring.
+
+00:22:25.860 --> 00:22:29.430
+Same for the other metrics,
+there are some metrics
+
+00:22:29.430 --> 00:22:32.400
+which are just pass
+or not pass or fail.
+
+00:22:32.400 --> 00:22:36.060
+And there are metrics like
+relevance, like coherence
+
+00:22:36.060 --> 00:22:38.640
+that have both, have
+numerical scores
+
+00:22:38.640 --> 00:22:45.150
+and pass/fail
+threshold indication.
+
+00:22:45.150 --> 00:22:50.970
+Okay. So that's for evaluating
+each agent response.
+
+00:22:50.970 --> 00:22:54.390
+And this is very helpful
+because if any of those fail,
+
+00:22:54.390 --> 00:22:58.830
+you can basically
+debug your agent
+
+00:22:58.830 --> 00:23:02.460
+and understand what
+caused the regression,
+
+00:23:02.460 --> 00:23:04.080
+what can be improved.
+
+00:23:04.080 --> 00:23:06.870
+So it's kind of an
+evaluation-driven development.
+
+00:23:06.870 --> 00:23:11.250
+So you use these tools
+to identify a gap,
+
+00:23:11.250 --> 00:23:15.120
+either in the traces,
+like in the logs
+
+00:23:15.120 --> 00:23:17.010
+or in the evaluation results.
+
+00:23:17.010 --> 00:23:20.730
+You identify the gap and
+you troubleshoot the gap
+
+00:23:20.730 --> 00:23:26.850
+or the issue and you
+understand how to address it.
+
+00:23:26.850 --> 00:23:33.000
+Okay, so next I'm going to show
+you also there's another thing
+
+00:23:33.000 --> 00:23:35.010
+you can look at in the traces.
+
+00:23:35.010 --> 00:23:38.190
+So let's try another
+prompt here.
+
+00:23:38.190 --> 00:23:43.780
+Let's try, let's imagine
+that we want to,
+
+00:23:46.080 --> 00:23:51.930
+our Zava customer be able to ask
+for weather forecasting as well.
+
+00:23:51.930 --> 00:23:54.090
+So they can basically,
+for example,
+
+00:23:54.090 --> 00:23:58.260
+decide when to do
+their DIY project,
+
+00:23:58.260 --> 00:24:04.860
+especially if it is an
+outdoor DIY project
+
+00:24:04.860 --> 00:24:08.130
+or a painting DIY project.
+
+00:24:08.130 --> 00:24:12.240
+They can ask advice to our
+Zava agent to understand
+
+00:24:12.240 --> 00:24:16.890
+when is the best, when
+is the best moment
+
+00:24:16.890 --> 00:24:20.040
+to do the DIY project.
+
+00:24:20.040 --> 00:24:26.160
+So we want to be able to provide
+weather forecasting response
+
+00:24:26.160 --> 00:24:29.190
+results to our customers.
+
+00:24:29.190 --> 00:24:33.390
+So here you can see that the
+agent actually retrieved the
+
+00:24:33.390 --> 00:24:35.400
+information from the web.
+
+00:24:35.400 --> 00:24:41.070
+And now this time, if I
+go into the logs in here,
+
+00:24:41.070 --> 00:24:45.300
+I can see the tool
+that has been invoked
+
+00:24:45.300 --> 00:24:51.270
+to get the weather forecasting.
+
+00:24:51.270 --> 00:24:55.260
+So I can see that the tool
+web search has been used
+
+00:24:55.260 --> 00:24:59.010
+to retrieve the data, and I can
+also see again the metadata
+
+00:24:59.010 --> 00:25:01.560
+of the group call as well.
+
+00:25:01.560 --> 00:25:06.330
+Okay, so these are the main
+things you can inspect
+
+00:25:06.330 --> 00:25:12.240
+with the traces and evaluation
+built-in feature of your agent.
+
+00:25:12.240 --> 00:25:19.800
+So basically, without doing
+any further customization,
+
+00:25:19.800 --> 00:25:24.240
+but basically just using
+the guided process
+
+00:25:24.240 --> 00:25:30.750
+within the Foundry port UI, I've
+got an agent, a working agent
+
+00:25:30.750 --> 00:25:36.240
+with a model configured
+with a tool already,
+
+00:25:36.240 --> 00:25:38.490
+a pre-built tool configured
+
+00:25:38.490 --> 00:25:42.420
+that makes the agent
+access the web search.
+
+00:25:42.420 --> 00:25:46.950
+And so I can test my prototype
+within the playground.
+
+00:25:46.950 --> 00:25:51.090
+So all these things
+is kind of integrated
+
+00:25:51.090 --> 00:25:53.460
+in our quick start experience
+
+00:25:53.460 --> 00:25:55.800
+within the Microsoft
+Foundry portal.
+
+00:25:55.800 --> 00:25:57.120
+Now the last thing I want
+
+00:25:57.120 --> 00:26:03.480
+to show you is how you can
+save a different version
+
+00:26:03.480 --> 00:26:05.790
+of your agent, so you
+can do versioning
+
+00:26:05.790 --> 00:26:10.050
+and you can compare different
+version of your agent
+
+00:26:10.050 --> 00:26:15.330
+and understand which one is
+performing better, for example.
+
+00:26:15.330 --> 00:26:17.280
+So let's do this.
+
+00:26:17.280 --> 00:26:20.190
+Let's edit the instructions.
+
+00:26:20.190 --> 00:26:24.150
+Let's customize the instructions
+a bit for our business scenario.
+
+00:26:24.150 --> 00:26:27.090
+So our new instructions will be
+you are a friendly assistant
+
+00:26:27.090 --> 00:26:28.410
+for Zava Retail.
+
+00:26:28.410 --> 00:26:31.980
+Ask the user when they are
+planning to do their DIY project
+
+00:26:31.980 --> 00:26:35.070
+and which city they are in
+so you can check weather
+
+00:26:35.070 --> 00:26:37.920
+and advise them when
+to plan the project.
+
+00:26:37.920 --> 00:26:40.890
+So this is my new
+instruction set.
+
+00:26:40.890 --> 00:26:44.460
+Let me save this new
+version in here.
+
+00:26:44.460 --> 00:26:50.010
+So here you can see that a new
+version has been created, v2.
+
+00:26:50.010 --> 00:26:54.420
+So the other thing is I can
+click on "Compare Versions"
+
+00:26:54.420 --> 00:26:57.360
+to basically go
+into a playground
+
+00:26:57.360 --> 00:27:00.840
+where I can compare
+my version one
+
+00:27:00.840 --> 00:27:05.970
+against my version two
+using the same prompt.
+
+00:27:05.970 --> 00:27:11.400
+So I'm going to use the same
+prompt I've used before.
+
+00:27:11.400 --> 00:27:14.910
+And so on the left, for
+my version one agent,
+
+00:27:14.910 --> 00:27:20.190
+I've got the generic response
+I got also at the beginning.
+
+00:27:20.190 --> 00:27:22.740
+While here, since I have
+customized the instructions
+
+00:27:22.740 --> 00:27:28.320
+to ask for when I'm planning
+to do my DIY project and in
+
+00:27:28.320 --> 00:27:34.410
+which city, at this point, the
+agent is asking for this kind
+
+00:27:34.410 --> 00:27:38.790
+of follow-up information
+before giving me an advice.
+
+00:27:38.790 --> 00:27:42.480
+So I can inspect the different
+behavior of my agent.
+
+00:27:42.480 --> 00:27:46.230
+I can also inspect the
+logs on both sides
+
+00:27:46.230 --> 00:27:48.840
+and the evaluation
+score on both sides.
+
+00:27:48.840 --> 00:27:55.680
+So I can basically see if
+version two is improved
+
+00:27:55.680 --> 00:28:01.050
+with respect to version one
+or has regressions maybe.
+
+00:28:01.050 --> 00:28:05.820
+Okay, let's come back to
+the standard playground
+
+00:28:05.820 --> 00:28:13.530
+and let's do another, let's
+look at one last bit.
+
+00:28:13.530 --> 00:28:18.150
+So I have my agent prototype
+right now configured with model,
+
+00:28:18.150 --> 00:28:22.290
+some customized instruction,
+a tool to access web search.
+
+00:28:22.290 --> 00:28:27.000
+I want to test this
+agent as a web app.
+
+00:28:27.000 --> 00:28:30.210
+For example, because I
+want to share the preview
+
+00:28:30.210 --> 00:28:34.440
+with some (inaudible),
+some testers of the app.
+
+00:28:34.440 --> 00:28:37.650
+So what I can do is I
+can click on "Preview"
+
+00:28:37.650 --> 00:28:39.630
+and then "Preview Agent."
+
+00:28:39.630 --> 00:28:45.210
+And what I get is exactly
+a web app UI of my agent
+
+00:28:45.210 --> 00:28:50.760
+that I can use to test
+further my application.
+
+00:28:50.760 --> 00:28:54.240
+And I can also customize
+a bit of this UI.
+
+00:28:54.240 --> 00:29:00.360
+For example, let me go back and
+let me customize a few things.
+
+00:29:00.360 --> 00:29:04.140
+So I can go on "Configure" and
+in this configuration panel,
+
+00:29:04.140 --> 00:29:06.780
+I can add a display name.
+
+00:29:06.780 --> 00:29:13.650
+For example, the display name
+can be Zava Retail Agent.
+
+00:29:13.650 --> 00:29:15.900
+And I can add a description.
+
+00:29:15.900 --> 00:29:23.340
+So this agent is the
+Zava Retail Assistant.
+
+00:29:23.340 --> 00:29:27.480
+And then I can also add a
+few starting prompts like,
+
+00:29:27.480 --> 00:29:30.840
+for example, the one
+we have used before.
+
+00:29:30.840 --> 00:29:33.480
+What's the weather
+like in Lecce today?
+
+00:29:33.480 --> 00:29:40.530
+And what paint should I
+use for my outdoor deck?
+
+00:29:40.530 --> 00:29:45.360
+So, once I have configured
+these customized parameters,
+
+00:29:45.360 --> 00:29:49.740
+then I can click on
+"Preview Agent."
+
+00:29:49.740 --> 00:29:52.660
+Save? Yes, of course.
+
+00:29:56.160 --> 00:29:59.550
+And again, access my
+agent as a web app,
+
+00:29:59.550 --> 00:30:03.840
+but with the customized
+layout this time.
+
+00:30:03.840 --> 00:30:06.120
+So you can see here that
+I have the new name,
+
+00:30:06.120 --> 00:30:10.110
+I have the agent description
+I've added, and I have a couple
+
+00:30:10.110 --> 00:30:13.680
+of quick starter
+prompts that I can use
+
+00:30:13.680 --> 00:30:17.370
+to more easily test my agent.
+
+00:30:17.370 --> 00:30:18.720
+Here we go.
+
+00:30:18.720 --> 00:30:21.060
+And you can see that,
+of course, in this UI,
+
+00:30:21.060 --> 00:30:26.790
+I don't get any developer logs,
+traces, evaluation results,
+
+00:30:26.790 --> 00:30:32.280
+or anything else I see in
+the standard playground.
+
+00:30:32.280 --> 00:30:37.800
+So this is just to
+test my agent behavior
+
+00:30:37.800 --> 00:30:42.240
+as my final user will get it.
+
+00:30:42.240 --> 00:30:46.410
+Nice. So we've got our
+retail-based agent prototype.
+
+00:30:46.410 --> 00:30:47.460
+We tested it.
+
+00:30:47.460 --> 00:30:51.510
+We also have seen the preview.
+
+00:30:51.510 --> 00:30:53.160
+So at this point, I
+think we are ready
+
+00:30:53.160 --> 00:30:57.480
+to bake off some further stuff
+
+00:30:57.480 --> 00:30:59.910
+and further customization
+for our agent.
+
+00:30:59.910 --> 00:31:04.080
+So at this point, I'd love to
+hand off to my colleague Nitya
+
+00:31:04.080 --> 00:31:08.670
+to get us further
+in this journey.
+
+00:31:08.670 --> 00:31:10.440
+NITYA NARASIMHAN: All
+right, let's do this.
+
+00:31:10.440 --> 00:31:15.300
+Okay, so where did we stop?
+
+00:31:15.300 --> 00:31:18.030
+Right now, my friend Carlotta
+basically built the very
+
+00:31:18.030 --> 00:31:18.960
+first agent.
+
+00:31:18.960 --> 00:31:21.690
+So that's kind of like you're
+tasting out your recipe
+
+00:31:21.690 --> 00:31:25.350
+and making sure that it
+actually seems to taste okay.
+
+00:31:25.350 --> 00:31:26.340
+But is it perfect?
+
+00:31:26.340 --> 00:31:29.400
+Not yet. So in this segment,
+we're going to start
+
+00:31:29.400 --> 00:31:32.610
+from where she left off and
+iterate and improve on our agent
+
+00:31:32.610 --> 00:31:35.310
+until it passes our taste test.
+
+00:31:35.310 --> 00:31:36.510
+So how do we do that?
+
+00:31:36.510 --> 00:31:39.090
+First, you might have
+seen Carlotta set
+
+00:31:39.090 --> 00:31:41.190
+up the agent for preview.
+
+00:31:41.190 --> 00:31:44.160
+Well, you can do something
+similar and actually set it
+
+00:31:44.160 --> 00:31:45.510
+up right here to configure it.
+
+00:31:45.510 --> 00:31:47.910
+So I'm going to go ahead and
+configure it one more time
+
+00:31:47.910 --> 00:31:50.070
+and save that as
+agent version three.
+
+00:31:50.070 --> 00:31:55.350
+So let's go ahead and we will
+just put the, really quickly,
+
+00:31:55.350 --> 00:31:56.970
+we'll give it a display name.
+
+00:31:56.970 --> 00:31:59.820
+That's our description, and
+we'll put in three prompts.
+
+00:31:59.820 --> 00:32:01.170
+Now, why am I doing this?
+
+00:32:01.170 --> 00:32:03.870
+Because you'll notice
+that as we iterate,
+
+00:32:03.870 --> 00:32:07.710
+we want to continuously
+keep testing our prompts,
+
+00:32:07.710 --> 00:32:10.110
+I mean our kind of
+agent iterations
+
+00:32:10.110 --> 00:32:11.610
+against the same prompts.
+
+00:32:11.610 --> 00:32:15.030
+And this helps us make
+that kind of effortless.
+
+00:32:15.030 --> 00:32:18.030
+So give me a second
+while I fix this.
+
+00:32:18.030 --> 00:32:21.960
+So you'll notice that I actually
+have three different prompts
+
+00:32:21.960 --> 00:32:25.320
+over here, and that's because
+our agent should be capable
+
+00:32:25.320 --> 00:32:27.060
+of doing a couple of
+different things.
+
+00:32:27.060 --> 00:32:29.070
+So let's go ahead and save this.
+
+00:32:29.070 --> 00:32:29.730
+I'm going to save this.
+
+00:32:29.730 --> 00:32:32.010
+Now we've got version three.
+
+00:32:32.010 --> 00:32:34.410
+And when I have version
+three, if I close this off,
+
+00:32:34.410 --> 00:32:36.690
+I need to start a new one and
+there I see the retail agent.
+
+00:32:36.690 --> 00:32:40.410
+So now we know that our retail
+agent can answer questions
+
+00:32:40.410 --> 00:32:43.980
+about the weather, it can answer
+questions about our products,
+
+00:32:43.980 --> 00:32:46.770
+and it can answer questions
+about home improvement.
+
+00:32:46.770 --> 00:32:48.660
+So that's what I've got.
+
+00:32:48.660 --> 00:32:51.750
+But it's very clear from
+the previous examples
+
+00:32:51.750 --> 00:32:53.430
+that it's not yet perfect.
+
+00:32:53.430 --> 00:32:56.310
+It's not talking
+about Zava Products.
+
+00:32:56.310 --> 00:32:59.100
+And also, you might have noticed
+that it generated this model
+
+00:32:59.100 --> 00:33:02.010
+for us by default,
+which is GPT-4.1.
+
+00:33:02.010 --> 00:33:04.080
+This is a large language model
+
+00:33:04.080 --> 00:33:06.180
+that is actually
+really feature-rich.
+
+00:33:06.180 --> 00:33:08.610
+So kind of taking the
+restaurant analogy,
+
+00:33:08.610 --> 00:33:10.620
+it's like getting a
+Cordon Bleu chef to come
+
+00:33:10.620 --> 00:33:12.210
+in and make the salad.
+
+00:33:12.210 --> 00:33:14.910
+You really want to get a cheaper
+model to do the simplest stuff.
+
+00:33:14.910 --> 00:33:17.340
+How do we find the best
+model for the job?
+
+00:33:17.340 --> 00:33:18.510
+So before we go into it,
+
+00:33:18.510 --> 00:33:20.910
+let's start fixing
+this thing one by one.
+
+00:33:20.910 --> 00:33:23.340
+In our next step, we're going
+
+00:33:23.340 --> 00:33:26.010
+to see how we can
+improve the model.
+
+00:33:26.010 --> 00:33:26.760
+So how do we do that?
+
+00:33:26.760 --> 00:33:28.980
+Now, if I go ahead and drop
+this down, you'll notice
+
+00:33:28.980 --> 00:33:31.320
+that it says there are a bunch
+of different popular models.
+
+00:33:31.320 --> 00:33:32.940
+We're using GPT-4.1.
+
+00:33:32.940 --> 00:33:34.920
+There's model router,
+we'll talk about that.
+
+00:33:34.920 --> 00:33:37.200
+There's GPT-4.0,
+4.1 mini, and 04.
+
+00:33:37.200 --> 00:33:39.630
+You might think to yourself,
+what, three more models?
+
+00:33:39.630 --> 00:33:40.860
+Actually, no.
+
+00:33:40.860 --> 00:33:42.000
+What you're going
+to do is switch
+
+00:33:42.000 --> 00:33:43.890
+over to the "Discover" tab.
+
+00:33:43.890 --> 00:33:45.210
+And when you go to
+the "Discover" tab,
+
+00:33:45.210 --> 00:33:47.940
+you want to recognize that
+we have a ton of models,
+
+00:33:47.940 --> 00:33:50.940
+11,000 plus models
+in a model catalog.
+
+00:33:50.940 --> 00:33:53.280
+So now how do you choose?
+
+00:33:53.280 --> 00:33:56.370
+Click through into
+the "Models" tab.
+
+00:33:56.370 --> 00:33:58.380
+And now, we're going to
+look at all the models
+
+00:33:58.380 --> 00:34:00.390
+that are available,
+but you remember
+
+00:34:00.390 --> 00:34:02.880
+that we started with GPT-4.1.
+
+00:34:02.880 --> 00:34:05.070
+So a quick and easy
+way for us to figure
+
+00:34:05.070 --> 00:34:09.990
+out how is my current model
+stacking up to everyone else is
+
+00:34:09.990 --> 00:34:12.720
+to go ahead and compare models.
+
+00:34:12.720 --> 00:34:13.830
+And when you do that, actually,
+
+00:34:13.830 --> 00:34:15.090
+let's go to the
+leaderboard first.
+
+00:34:15.090 --> 00:34:17.160
+Compare models when you want
+to do them side by side,
+
+00:34:17.160 --> 00:34:19.470
+but first we're going to
+go to the leaderboard.
+
+00:34:19.470 --> 00:34:22.530
+What the leaderboard is is a
+feature in Microsoft Foundry
+
+00:34:22.530 --> 00:34:25.020
+that takes all the models
+that are in the catalog
+
+00:34:25.020 --> 00:34:30.060
+and has predetermined or
+created a set of charts
+
+00:34:30.060 --> 00:34:33.420
+where it's run benchmarks on
+them to rank how they are
+
+00:34:33.420 --> 00:34:36.810
+on different criteria
+like quality, safety,
+
+00:34:36.810 --> 00:34:38.910
+throughput, and benchmark costs.
+
+00:34:38.910 --> 00:34:41.370
+And just looking at this,
+you get a sense of okay,
+
+00:34:41.370 --> 00:34:44.100
+GPT-4.1 isn't here, but if I
+keep scrolling through it,
+
+00:34:44.100 --> 00:34:47.160
+I should see other models that
+are there, and I can kind
+
+00:34:47.160 --> 00:34:48.480
+of figure out which one
+is better or worse.
+
+00:34:48.480 --> 00:34:52.020
+I'm not seeing GPT-4.1
+yet, but that's okay.
+
+00:34:52.020 --> 00:34:54.450
+But what this does give you is
+a sense of among the models
+
+00:34:54.450 --> 00:34:56.130
+that are in the Foundry,
+which quality is better,
+
+00:34:56.130 --> 00:34:58.050
+what safety is
+better, et cetera.
+
+00:34:58.050 --> 00:35:00.000
+And if I scroll down further,
+
+00:35:00.000 --> 00:35:02.520
+I can now see all
+the models listed,
+
+00:35:02.520 --> 00:35:04.050
+and I can potentially find
+
+00:35:04.050 --> 00:35:07.680
+out where my model stacks
+in these rankings.
+
+00:35:07.680 --> 00:35:09.600
+But this still feels a
+little too much for me.
+
+00:35:09.600 --> 00:35:12.660
+So I can see the GPT-4.1 is
+right at the bottom, right.
+
+00:35:12.660 --> 00:35:14.220
+There's a better way.
+
+00:35:14.220 --> 00:35:15.810
+And let's see how that is.
+
+00:35:15.810 --> 00:35:17.400
+The easiest way for
+you to do this is
+
+00:35:17.400 --> 00:35:19.290
+to use what's called a
+trade-off chart that's
+
+00:35:19.290 --> 00:35:21.480
+in the same tab as
+the leaderboards.
+
+00:35:21.480 --> 00:35:24.150
+So first, I'm going to
+actually clear all the models
+
+00:35:24.150 --> 00:35:26.310
+so you have nothing
+at all in there.
+
+00:35:26.310 --> 00:35:27.450
+And I'm going to go ahead
+
+00:35:27.450 --> 00:35:29.910
+and put the default
+model that was GPT-4.1.
+
+00:35:29.910 --> 00:35:32.010
+Remember, that's the
+one we're using.
+
+00:35:32.010 --> 00:35:34.350
+Let's see where that hangs out.
+
+00:35:34.350 --> 00:35:35.640
+It's right at the corner.
+
+00:35:35.640 --> 00:35:39.090
+And by the way, my experience
+may be different from yours
+
+00:35:39.090 --> 00:35:42.600
+because these kind of
+metrics are evaluated daily
+
+00:35:42.600 --> 00:35:45.930
+by the Foundry team based on
+the current models available
+
+00:35:45.930 --> 00:35:47.730
+and any updates
+that have happened.
+
+00:35:47.730 --> 00:35:49.920
+So it may look
+different each time,
+
+00:35:49.920 --> 00:35:53.190
+but what you're really seeing
+is a comparative difference
+
+00:35:53.190 --> 00:35:54.210
+between the different models.
+
+00:35:54.210 --> 00:35:56.040
+So here I've got a GPT-4.
+
+00:35:56.040 --> 00:35:59.010
+Let's take a model that's
+maybe somewhat better.
+
+00:35:59.010 --> 00:36:03.030
+I'm going to go with,
+let's say, GPT-5.4.
+
+00:36:03.030 --> 00:36:06.570
+Let me throw in a nano
+model if that's there.
+
+00:36:06.570 --> 00:36:08.520
+I'm going to go ahead
+and look for something
+
+00:36:08.520 --> 00:36:12.060
+like GPT-5.4 mini, GPT-5.4 nano.
+
+00:36:12.060 --> 00:36:15.870
+I'll throw in a 4.1 mini
+as well, maybe an.03.
+
+00:36:15.870 --> 00:36:18.420
+Let's throw in a DeepSeek model.
+
+00:36:18.420 --> 00:36:19.440
+What do you start seeing?
+
+00:36:19.440 --> 00:36:22.500
+You start seeing how these
+distribute across the grid,
+
+00:36:22.500 --> 00:36:26.340
+looking at the trade-off
+in cost versus quality.
+
+00:36:26.340 --> 00:36:28.410
+In other words, where I'm
+looking at right now is
+
+00:36:28.410 --> 00:36:31.170
+that GPT-4.1 is
+sitting over here
+
+00:36:31.170 --> 00:36:34.530
+and it's actually a high
+cost, low quality model.
+
+00:36:34.530 --> 00:36:38.760
+So looking at this quality,
+I could use GPT-5.4 nano
+
+00:36:38.760 --> 00:36:43.860
+and get the same level of
+quality at a much lesser cost.
+
+00:36:43.860 --> 00:36:46.020
+So why am I using GPT-4.1?
+
+00:36:46.020 --> 00:36:48.690
+So you can see that we can use
+this to kind of get a sense
+
+00:36:48.690 --> 00:36:51.540
+for how these models stack
+up against each other.
+
+00:36:51.540 --> 00:36:54.420
+We can also compare quality
+against things like throughput
+
+00:36:54.420 --> 00:36:57.000
+and see where they stack up
+or compare it against safety
+
+00:36:57.000 --> 00:36:59.160
+and see where they stack up.
+
+00:36:59.160 --> 00:37:01.800
+What I really like to do at
+this point is to go over
+
+00:37:01.800 --> 00:37:03.210
+and compare the models.
+
+00:37:03.210 --> 00:37:05.610
+So rather than look at
+all of these, I'm like,
+
+00:37:05.610 --> 00:37:07.830
+I now think I've got
+a sense of it, right.
+
+00:37:07.830 --> 00:37:12.240
+Based on the comparison I
+saw here, I want to look
+
+00:37:12.240 --> 00:37:15.900
+at the difference between
+GPT-5.4 nano, maybe GPT-4.1,
+
+00:37:15.900 --> 00:37:17.670
+and let's pick one
+more, 4.1 mini.
+
+00:37:17.670 --> 00:37:20.550
+And let's see among those three,
+which one is the best, right.
+
+00:37:20.550 --> 00:37:22.680
+So I'm going to go back over
+here and I'm going to say, hey,
+
+00:37:22.680 --> 00:37:24.000
+I want to compare models now.
+
+00:37:24.000 --> 00:37:25.230
+So over here, let's go ahead
+
+00:37:25.230 --> 00:37:28.480
+and pick our default
+model, which is 4.1.
+
+00:37:30.360 --> 00:37:32.220
+And then I'm going to go ahead
+and pick that other model
+
+00:37:32.220 --> 00:37:33.900
+that looked interesting
+to me because it seemed
+
+00:37:33.900 --> 00:37:35.760
+like it was giving
+me good quality
+
+00:37:35.760 --> 00:37:39.510
+but was fairly
+cheap, so that one.
+
+00:37:39.510 --> 00:37:44.490
+And we'll throw in the GPT-4
+mini, 4.1 mini, just in case.
+
+00:37:44.490 --> 00:37:48.180
+We're like, hey, what if
+this might be better?
+
+00:37:48.180 --> 00:37:49.950
+We don't know.
+
+00:37:49.950 --> 00:37:52.140
+And now when I compare these,
+
+00:37:52.140 --> 00:37:54.630
+what this does is gives
+me a direct comparison
+
+00:37:54.630 --> 00:37:55.920
+between these three, right.
+
+00:37:55.920 --> 00:38:01.140
+And you see that right now, 5.4
+is getting all the gold stars.
+
+00:38:01.140 --> 00:38:05.730
+It's basically outdoing
+4.1 on every criteria.
+
+00:38:05.730 --> 00:38:08.970
+In other words, I'll be
+getting comparable quality
+
+00:38:08.970 --> 00:38:14.120
+for a much lesser cost and
+getting better throughput,
+
+00:38:14.120 --> 00:38:17.660
+and its safety is better
+than that of 4.1.
+
+00:38:17.660 --> 00:38:19.620
+Why would I not use it?
+
+00:38:19.620 --> 00:38:21.720
+How easy is it to use?
+
+00:38:21.720 --> 00:38:24.750
+Go ahead, click that and say,
+I want to deploy this model
+
+00:38:24.750 --> 00:38:27.210
+into my current solution.
+
+00:38:27.210 --> 00:38:28.860
+And now GPT-5.4 nano is here.
+
+00:38:28.860 --> 00:38:30.420
+So you'll notice that
+when I deployed this,
+
+00:38:30.420 --> 00:38:32.880
+it took me into not
+the agent playground,
+
+00:38:32.880 --> 00:38:34.560
+but the model playground.
+
+00:38:34.560 --> 00:38:36.690
+And I can go ahead
+and ask this one,
+
+00:38:36.690 --> 00:38:39.510
+you'll see that the criteria
+just says you're an assistant
+
+00:38:39.510 --> 00:38:42.450
+and I can say what
+can you do, right.
+
+00:38:42.450 --> 00:38:44.520
+And so this one is
+the model playground,
+
+00:38:44.520 --> 00:38:45.450
+not the agent playground.
+
+00:38:45.450 --> 00:38:49.560
+But what this means is that
+now, I can see I can see that.
+
+00:38:49.560 --> 00:38:51.900
+What it means that if I now
+look at the deployed models
+
+00:38:51.900 --> 00:38:55.020
+in my project, I now
+have GPT-5.4 nano.
+
+00:38:55.020 --> 00:38:58.440
+And that means I can go back
+to my agent and say, hey,
+
+00:38:58.440 --> 00:39:03.420
+I don't want to use
+5.4.1, I want to use 5.4.
+
+00:39:03.420 --> 00:39:05.670
+So we're going to go ahead and
+we're going to switch this
+
+00:39:05.670 --> 00:39:08.870
+over to this new deployed model,
+and I'm going to save it.
+
+00:39:08.870 --> 00:39:11.900
+And remember, this
+is version five,
+
+00:39:11.900 --> 00:39:14.660
+and when I save it,
+that's version six.
+
+00:39:14.660 --> 00:39:17.990
+So now the two models, five and
+six, the only thing they differ
+
+00:39:17.990 --> 00:39:20.100
+in is the model they're using.
+
+00:39:20.100 --> 00:39:21.240
+Did it make a difference?
+
+00:39:21.240 --> 00:39:22.920
+Let's try it out and see.
+
+00:39:22.920 --> 00:39:24.630
+So for this, I'm
+going to drop it down
+
+00:39:24.630 --> 00:39:27.420
+and use the same trick Carlotta
+did, which is use comparisons.
+
+00:39:27.420 --> 00:39:29.280
+So on this side, we
+have version six,
+
+00:39:29.280 --> 00:39:32.460
+which is the model
+for GPT-5.4 nano.
+
+00:39:32.460 --> 00:39:35.130
+And on this side, I'm going
+to switch it to version five.
+
+00:39:35.130 --> 00:39:37.740
+And I'm going to basically
+click the same thing each time.
+
+00:39:37.740 --> 00:39:39.930
+I'm going to say, what's the
+weather in San Francisco?
+
+00:39:39.930 --> 00:39:40.650
+Let's go ask that.
+
+00:39:40.650 --> 00:39:41.670
+You'll see both of
+them are doing it
+
+00:39:41.670 --> 00:39:44.790
+at the same time and
+click the button.
+
+00:39:44.790 --> 00:39:49.200
+And if we're correct, let's
+see what this completes
+
+00:39:49.200 --> 00:39:50.490
+and then we'll know.
+
+00:39:50.490 --> 00:39:55.110
+So note that the other side,
+GPT-4.1, took fewer tokens
+
+00:39:55.110 --> 00:39:59.040
+and a little less time,
+but its quality was less,
+
+00:39:59.040 --> 00:40:01.830
+its safety was high, and
+this one had full quality.
+
+00:40:01.830 --> 00:40:03.900
+Now, you might say, well, didn't
+it look cheaper that time?
+
+00:40:03.900 --> 00:40:04.920
+It depends, right.
+
+00:40:04.920 --> 00:40:07.470
+Each time, depending on the
+different queries that you put,
+
+00:40:07.470 --> 00:40:09.750
+this will work out
+cheaper in some cases.
+
+00:40:09.750 --> 00:40:12.390
+But overall, I'm like,
+okay, it's not too bad.
+
+00:40:12.390 --> 00:40:14.670
+Let's try one more just
+for the heck of it.
+
+00:40:14.670 --> 00:40:16.740
+I'm going to clear
+both of these and say,
+
+00:40:16.740 --> 00:40:18.930
+what paint should I use
+for my outdoor deck?
+
+00:40:18.930 --> 00:40:20.250
+Or let's go with a
+very simple thing.
+
+00:40:20.250 --> 00:40:22.740
+What tools do I need to
+build a kitchen island?
+
+00:40:22.740 --> 00:40:23.910
+Let's try this again.
+
+00:40:23.910 --> 00:40:26.610
+So what we're really seeing
+here is how easy it is for us.
+
+00:40:26.610 --> 00:40:28.380
+Remember, this is
+my test kitchen.
+
+00:40:28.380 --> 00:40:29.940
+I'm really able to
+go look at this
+
+00:40:29.940 --> 00:40:32.090
+and decide what I'm doing now.
+
+00:40:32.090 --> 00:40:33.770
+This is giving us a
+lot more information,
+
+00:40:33.770 --> 00:40:35.780
+but note that it
+is a cheaper model
+
+00:40:35.780 --> 00:40:41.010
+because nano is way less
+expensive than 4.1.
+
+00:40:41.010 --> 00:40:43.800
+So I'm going to stick with this,
+but I don't like the amount
+
+00:40:43.800 --> 00:40:45.120
+of information it's giving me.
+
+00:40:45.120 --> 00:40:48.090
+I really want it to be a
+little bit more concise.
+
+00:40:48.090 --> 00:40:50.010
+And remember, we wanted
+it to be friendly.
+
+00:40:50.010 --> 00:40:52.650
+It's not really doing the things
+I want that are friendly.
+
+00:40:52.650 --> 00:40:54.450
+So for now, what I'm
+going to do is say, okay,
+
+00:40:54.450 --> 00:40:56.490
+I'm going to stick
+with this new model.
+
+00:40:56.490 --> 00:40:59.730
+It is cheaper, it's smaller, and
+it seems to be doing its job.
+
+00:40:59.730 --> 00:41:02.250
+So let's go ahead
+and stick with this.
+
+00:41:02.250 --> 00:41:05.040
+But now, I want to actually
+change these instructions.
+
+00:41:05.040 --> 00:41:07.830
+I want to make this
+work with my data.
+
+00:41:07.830 --> 00:41:08.880
+So let's improve the agent.
+
+00:41:08.880 --> 00:41:10.890
+So we currently did
+improving the model.
+
+00:41:10.890 --> 00:41:12.300
+We've got a new model.
+
+00:41:12.300 --> 00:41:15.210
+Next, we're going to try to
+improve the instructions.
+
+00:41:15.210 --> 00:41:18.690
+But before I do, I want to
+take a little bit of a detour
+
+00:41:18.690 --> 00:41:22.260
+and show you one other
+model that you must know,
+
+00:41:22.260 --> 00:41:24.210
+and that is Model Router.
+
+00:41:24.210 --> 00:41:26.820
+You will remember that when
+we dropped this down here,
+
+00:41:26.820 --> 00:41:28.800
+we saw Model Router
+
+00:41:28.800 --> 00:41:32.250
+as a completely different
+Azure Foundry model.
+
+00:41:32.250 --> 00:41:33.900
+What exactly is it?
+
+00:41:33.900 --> 00:41:36.780
+So let's just take a tiny
+detour and go look at that
+
+00:41:36.780 --> 00:41:38.610
+and then we're
+going to come back.
+
+00:41:38.610 --> 00:41:41.250
+Model Router is an
+intelligent router.
+
+00:41:41.250 --> 00:41:46.110
+And what it does is it allows
+you to effectively not have
+
+00:41:46.110 --> 00:41:47.880
+to worry about
+what the model is.
+
+00:41:47.880 --> 00:41:49.680
+You just put Model
+Router, it looks
+
+00:41:49.680 --> 00:41:51.570
+and feels just like
+any other model.
+
+00:41:51.570 --> 00:41:54.900
+You send your prompt, and it
+will figure out the right model
+
+00:41:54.900 --> 00:41:56.940
+on the backend to send this to.
+
+00:41:56.940 --> 00:41:59.820
+So I'll really just quickly
+show you what this is and why
+
+00:41:59.820 --> 00:42:03.240
+that might be another good
+tool for your test kitchen.
+
+00:42:03.240 --> 00:42:05.580
+So here, I'm going to go ahead
+and say, hey, I actually want
+
+00:42:05.580 --> 00:42:08.370
+to deploy Model Router, so I'm
+going to go into the model side.
+
+00:42:08.370 --> 00:42:12.360
+So we can go back to "Discover,"
+or we can do it here too.
+
+00:42:12.360 --> 00:42:15.150
+Let's go into "Discover."
+
+00:42:15.150 --> 00:42:19.620
+We're going to go into
+"Models," and we're going
+
+00:42:19.620 --> 00:42:21.520
+to look for Model Router.
+
+00:42:25.050 --> 00:42:28.050
+Over here, when I deploy this,
+I'm going to go ahead and say,
+
+00:42:28.050 --> 00:42:30.280
+please go ahead and
+deploy it here.
+
+00:42:31.410 --> 00:42:35.910
+Right now, I've not attached it
+to any agents, so it's going
+
+00:42:35.910 --> 00:42:38.010
+to set up the model
+router for me.
+
+00:42:38.010 --> 00:42:39.870
+And one of the things you
+notice is that, remember,
+
+00:42:39.870 --> 00:42:40.860
+this is the model playground.
+
+00:42:40.860 --> 00:42:42.870
+Whenever I deploy model and
+take to the playground,
+
+00:42:42.870 --> 00:42:45.840
+I can actually save that as
+an agent and get a new agent.
+
+00:42:45.840 --> 00:42:49.480
+So I'm just going to call
+this the auto routing agent.
+
+00:42:54.750 --> 00:42:58.560
+Just so we can take a
+look at what it's doing.
+
+00:42:58.560 --> 00:43:02.990
+And the interesting thing that
+you have to understand here is
+
+00:43:02.990 --> 00:43:05.690
+in the original case, we
+started with a single model,
+
+00:43:05.690 --> 00:43:09.200
+we've compared it, figured out
+a good model based on quality
+
+00:43:09.200 --> 00:43:11.780
+and costs, and we replaced it.
+
+00:43:11.780 --> 00:43:13.550
+But we were looking at just one
+
+00:43:13.550 --> 00:43:16.400
+or two use cases,
+simple questions.
+
+00:43:16.400 --> 00:43:18.860
+In the real world, I might
+have tons of different kinds
+
+00:43:18.860 --> 00:43:21.050
+of questions of different
+layers of complexity.
+
+00:43:21.050 --> 00:43:22.520
+How do I know the right
+model for the job?
+
+00:43:22.520 --> 00:43:25.190
+I can sit there and test each
+one using the leaderboard,
+
+00:43:25.190 --> 00:43:28.830
+or I can deploy model
+router and have it show me
+
+00:43:28.830 --> 00:43:30.420
+which models are being used.
+
+00:43:30.420 --> 00:43:32.340
+That's what we're going
+to try to do here.
+
+00:43:32.340 --> 00:43:34.440
+So the first thing I'm going
+to do is I'm actually going
+
+00:43:34.440 --> 00:43:36.780
+to go back to our retail
+base agent and I'm going
+
+00:43:36.780 --> 00:43:39.930
+to take the same instructions.
+
+00:43:39.930 --> 00:43:42.420
+I'll put it into this
+new one, but we're going
+
+00:43:42.420 --> 00:43:44.160
+to do a really
+simple thing here.
+
+00:43:44.160 --> 00:43:46.260
+We're going to save that.
+
+00:43:46.260 --> 00:43:48.960
+And now we're going to keep
+asking it a lot of prompts
+
+00:43:48.960 --> 00:43:50.700
+with higher levels
+of complexity.
+
+00:43:50.700 --> 00:43:53.160
+So the very first one, we can
+ask a very simple question like,
+
+00:43:53.160 --> 00:43:56.580
+hey, what is the weather?
+
+00:43:56.580 --> 00:44:00.490
+What is the capital of France?
+
+00:44:01.620 --> 00:44:04.410
+Okay, very simple question.
+
+00:44:04.410 --> 00:44:07.140
+So Model Router will try to
+figure out the right model
+
+00:44:07.140 --> 00:44:10.380
+for the job and actually
+send me the response back.
+
+00:44:10.380 --> 00:44:13.710
+And it came up with, hey,
+it's a very trivial question.
+
+00:44:13.710 --> 00:44:16.500
+GPDM is good enough, right,
+so it sends it there.
+
+00:44:16.500 --> 00:44:22.140
+Then I can say, I want to
+build a patio during summer
+
+00:44:22.140 --> 00:44:33.870
+for a family of five
+with plants that grow.
+
+00:44:33.870 --> 00:44:35.940
+Anything like this, right.
+
+00:44:35.940 --> 00:44:39.450
+Draw me up a plan of action.
+
+00:44:39.450 --> 00:44:43.230
+So now I've given it a much
+more complicated task, right.
+
+00:44:43.230 --> 00:44:44.820
+I'm not just saying,
+hey, what does our have?
+
+00:44:44.820 --> 00:44:48.720
+I'm saying, draw me up a
+plan of how I do this.
+
+00:44:48.720 --> 00:44:50.100
+This is the kind of thing
+
+00:44:50.100 --> 00:44:54.000
+that would require a higher
+performance model to reason
+
+00:44:54.000 --> 00:44:55.770
+and give me back a response.
+
+00:44:55.770 --> 00:44:57.510
+Let's see what
+Model Router does.
+
+00:44:57.510 --> 00:44:58.950
+Remember, though,
+that throughout this,
+
+00:44:58.950 --> 00:44:59.970
+I never changed the route.
+
+00:44:59.970 --> 00:45:01.020
+I now changed my model.
+
+00:45:01.020 --> 00:45:04.530
+I had a single model, but
+it routed to GPT-5.1 mini,
+
+00:45:04.530 --> 00:45:06.660
+I mean GPT-5 mini
+the first time.
+
+00:45:06.660 --> 00:45:09.180
+And let's see what it
+routes to this time
+
+00:45:09.180 --> 00:45:11.440
+when it gives us
+back a response.
+
+00:45:12.840 --> 00:45:14.040
+Awesome. So you can see
+
+00:45:14.040 --> 00:45:16.770
+that this time it took a lot
+more time, but it came back
+
+00:45:16.770 --> 00:45:19.170
+with a fairly
+comprehensive plan.
+
+00:45:19.170 --> 00:45:21.930
+Let's see what model it used.
+
+00:45:21.930 --> 00:45:23.550
+It's still going.
+
+00:45:23.550 --> 00:45:26.310
+Now, this is not just
+like a quick answer,
+
+00:45:26.310 --> 00:45:29.400
+it's a fairly comprehensive
+minute long answer that took
+
+00:45:29.400 --> 00:45:31.050
+up a lot of tokens and note
+
+00:45:31.050 --> 00:45:33.720
+that it picked a higher
+performance model,
+
+00:45:33.720 --> 00:45:37.170
+GPT-5 versus mini, and that's
+the power Model Router.
+
+00:45:37.170 --> 00:45:39.600
+So keep that in mind that
+when you're starting,
+
+00:45:39.600 --> 00:45:42.180
+if you're in your test kitchen,
+if you've already started
+
+00:45:42.180 --> 00:45:46.200
+with an ingredient and you've
+started with a chef and you want
+
+00:45:46.200 --> 00:45:47.790
+to say, hey, this is a
+task someone else can do,
+
+00:45:47.790 --> 00:45:49.110
+you can hand it off to
+them, that's one thing.
+
+00:45:49.110 --> 00:45:52.770
+But if you didn't know ahead
+of time what the complexity
+
+00:45:52.770 --> 00:45:54.720
+of the task is, you
+can effectively go
+
+00:45:54.720 --> 00:45:57.780
+to the kitchen organizer,
+the Model Router, and say,
+
+00:45:57.780 --> 00:45:58.560
+hey, I have the stuff.
+
+00:45:58.560 --> 00:46:00.450
+Do you know who in this
+kitchen will be good for it?
+
+00:46:00.450 --> 00:46:03.510
+And it'll figure it out and send
+it to the right model for you.
+
+00:46:03.510 --> 00:46:05.940
+If you kind of run this over a
+period of time, you'll be able
+
+00:46:05.940 --> 00:46:09.390
+to see which models are
+most used for your tasks
+
+00:46:09.390 --> 00:46:11.310
+and make that the default.
+
+00:46:11.310 --> 00:46:13.230
+All right, so with
+that, we kind of walked
+
+00:46:13.230 --> 00:46:14.670
+through the improving the model.
+
+00:46:14.670 --> 00:46:16.260
+Now we're going to go
+into the agent and say,
+
+00:46:16.260 --> 00:46:20.100
+the model seems okay, but it's
+still doing a lot more than us,
+
+00:46:20.100 --> 00:46:22.440
+sending me long answers,
+that's not what I want.
+
+00:46:22.440 --> 00:46:25.590
+Let's go ahead and now
+improve the instructions.
+
+00:46:25.590 --> 00:46:29.250
+Just the same way as in a
+recipe, you're more likely
+
+00:46:29.250 --> 00:46:30.720
+to get a consistent recipe
+
+00:46:30.720 --> 00:46:32.850
+if you give it very
+detailed instructions,
+
+00:46:32.850 --> 00:46:35.490
+you define what you
+should do, when, and how.
+
+00:46:35.490 --> 00:46:37.560
+This is a very generic
+recipe, right.
+
+00:46:37.560 --> 00:46:38.880
+So we're going to
+change this over
+
+00:46:38.880 --> 00:46:40.920
+and use a much
+more detailed one.
+
+00:46:40.920 --> 00:46:43.480
+Let's go grab that
+in just a second.
+
+00:46:44.580 --> 00:46:46.260
+So I'm going to go
+ahead and write
+
+00:46:46.260 --> 00:46:51.690
+down a much more comprehensive
+set of instructions.
+
+00:46:51.690 --> 00:46:53.760
+And we can look at
+this a bit later.
+
+00:46:53.760 --> 00:46:56.400
+But actually, before I do that,
+I can try something known
+
+00:46:56.400 --> 00:46:57.960
+as a prompt optimizer.
+
+00:46:57.960 --> 00:47:00.300
+So I'm looking at this going,
+hey, you're a friendly assistant
+
+00:47:00.300 --> 00:47:03.090
+for Zava Retail, ask them
+when they plan to do the DIY
+
+00:47:03.090 --> 00:47:04.590
+so you can check the weather.
+
+00:47:04.590 --> 00:47:08.010
+I'm going to replace this with
+this very comprehensive set
+
+00:47:08.010 --> 00:47:10.560
+of instructions, a lot of
+stuff that I'm telling it
+
+00:47:10.560 --> 00:47:12.820
+and say, let's save this.
+
+00:47:14.190 --> 00:47:16.260
+And now I can try this out
+
+00:47:16.260 --> 00:47:18.420
+and see how this is
+comparing to my previous.
+
+00:47:18.420 --> 00:47:22.410
+Now I'm using GPT-5.4
+nano, and I've got a v7.
+
+00:47:22.410 --> 00:47:23.910
+So let's go ahead and
+compare the versions.
+
+00:47:23.910 --> 00:47:27.390
+So on v7, we have the version
+that has my new prompt,
+
+00:47:27.390 --> 00:47:30.210
+a lot more detailed
+instructions,
+
+00:47:30.210 --> 00:47:32.940
+and on the other side,
+we have v6 that doesn't.
+
+00:47:32.940 --> 00:47:34.590
+So now if I ask both of
+them what the weather
+
+00:47:34.590 --> 00:47:37.390
+in San Francisco is,
+let's see what happens.
+
+00:47:43.590 --> 00:47:45.750
+Notice that this came
+back with an answer,
+
+00:47:45.750 --> 00:47:48.600
+but the left side actually
+responds the way I wanted it to.
+
+00:47:48.600 --> 00:47:50.070
+I wanted a friendly greeting.
+
+00:47:50.070 --> 00:47:52.170
+You see there's an
+emoji, very friendly.
+
+00:47:52.170 --> 00:47:53.250
+That's how I wanted it.
+
+00:47:53.250 --> 00:47:56.220
+I wanted it to end with
+a request for, hey,
+
+00:47:56.220 --> 00:47:57.840
+how can I help you more?
+
+00:47:57.840 --> 00:47:58.680
+Helpful tone.
+
+00:47:58.680 --> 00:47:59.670
+Here it is.
+
+00:47:59.670 --> 00:48:01.890
+So by changing the instructions,
+
+00:48:01.890 --> 00:48:04.710
+I was able to improve the
+response format and the kind
+
+00:48:04.710 --> 00:48:07.320
+of quality of response
+that I wanted.
+
+00:48:07.320 --> 00:48:08.250
+Excellent.
+
+00:48:08.250 --> 00:48:09.720
+Took me just a second.
+
+00:48:09.720 --> 00:48:10.950
+So what can we do next?
+
+00:48:10.950 --> 00:48:12.960
+We've improved the model.
+
+00:48:12.960 --> 00:48:14.790
+We've improved the response.
+
+00:48:14.790 --> 00:48:18.120
+And you can also notice
+over here that I can see
+
+00:48:18.120 --> 00:48:21.570
+that the quality is not
+passing completely.
+
+00:48:21.570 --> 00:48:22.350
+Safety isn't.
+
+00:48:22.350 --> 00:48:25.470
+So I'm like, I need to
+know a little bit more
+
+00:48:25.470 --> 00:48:28.470
+about what the problems
+are over here.
+
+00:48:28.470 --> 00:48:30.390
+So let's look at this coherence.
+
+00:48:30.390 --> 00:48:34.980
+It says, hey, the response
+is coherent, et cetera.
+
+00:48:34.980 --> 00:48:36.270
+So why is it four out of five?
+
+00:48:36.270 --> 00:48:37.170
+I don't know.
+
+00:48:37.170 --> 00:48:38.730
+What does coherence mean?
+
+00:48:38.730 --> 00:48:40.710
+Fluency. It's given
+a four out of five.
+
+00:48:40.710 --> 00:48:42.990
+Why did it give me a
+four and not a five?
+
+00:48:42.990 --> 00:48:45.930
+So I'm going to show you one
+other trick before we move on,
+
+00:48:45.930 --> 00:48:48.630
+which is whenever you
+get stuck with kind
+
+00:48:48.630 --> 00:48:50.700
+of I'm not understanding
+what's happening here,
+
+00:48:50.700 --> 00:48:52.440
+where can I get
+more information?
+
+00:48:52.440 --> 00:48:55.500
+We have a really nice feature
+in Foundry known as Ask AI.
+
+00:48:55.500 --> 00:48:57.030
+So let me just show you
+that really quickly.
+
+00:48:57.030 --> 00:48:59.070
+So we've done this.
+
+00:48:59.070 --> 00:49:03.220
+So you can go back to
+the Foundry portal.
+
+00:49:05.850 --> 00:49:07.230
+And if you look at
+this little thing
+
+00:49:07.230 --> 00:49:09.690
+over here called the agent
+helper, you can click
+
+00:49:09.690 --> 00:49:14.740
+that button and ask it, hey,
+what does coherence mean?
+
+00:49:15.900 --> 00:49:22.020
+And what does a
+rating of four imply?
+
+00:49:22.020 --> 00:49:24.990
+So this is a great way for you
+as you're in the test kitchen
+
+00:49:24.990 --> 00:49:27.570
+and sometimes something's
+happening, you don't know why
+
+00:49:27.570 --> 00:49:30.240
+because this is the first
+time you're doing the recipe,
+
+00:49:30.240 --> 00:49:33.390
+you can just ask
+this expert chef.
+
+00:49:33.390 --> 00:49:36.000
+It's going to look at your
+project in your state
+
+00:49:36.000 --> 00:49:37.710
+and come back and give
+you information along
+
+00:49:37.710 --> 00:49:39.360
+with links to the docs.
+
+00:49:39.360 --> 00:49:40.050
+So excellent.
+
+00:49:40.050 --> 00:49:40.920
+Let's keep going.
+
+00:49:40.920 --> 00:49:42.780
+We've improved our model.
+
+00:49:42.780 --> 00:49:43.950
+We've improved the instruction,
+
+00:49:43.950 --> 00:49:46.950
+so it's doing a little bit
+more of what we wanted.
+
+00:49:46.950 --> 00:49:49.320
+What can we do next?
+
+00:49:49.320 --> 00:49:51.840
+Notice that we still are
+not using Zava data.
+
+00:49:51.840 --> 00:49:53.040
+It's giving us answers.
+
+00:49:53.040 --> 00:49:55.620
+So if I say what paint should
+I use for my outdoor deck,
+
+00:49:55.620 --> 00:49:58.260
+I expect it to give
+me a paint that comes
+
+00:49:58.260 --> 00:50:02.940
+in Zava's product catalog,
+but I'm not seeing that.
+
+00:50:02.940 --> 00:50:04.560
+Let's see what else
+it can do, right.
+
+00:50:04.560 --> 00:50:07.140
+I'm going to try asking a
+question, what tools do I need
+
+00:50:07.140 --> 00:50:09.160
+to build a kitchen island?
+
+00:50:10.230 --> 00:50:13.140
+Now, I want it to reply
+with tools that are
+
+00:50:13.140 --> 00:50:17.100
+in the Zava catalog or paints
+that are from the Zava catalog.
+
+00:50:17.100 --> 00:50:18.570
+But since this is not grounded,
+
+00:50:18.570 --> 00:50:21.330
+it's giving me general purpose
+information that's brought
+
+00:50:21.330 --> 00:50:22.200
+from the web.
+
+00:50:22.200 --> 00:50:23.760
+So how do I fix this?
+
+00:50:23.760 --> 00:50:26.460
+Next, we're going to improve
+our tools and knowledge.
+
+00:50:26.460 --> 00:50:28.770
+So here, you will notice
+that under "Tools,"
+
+00:50:28.770 --> 00:50:30.450
+we have the ability
+to upload files.
+
+00:50:30.450 --> 00:50:33.690
+You can also add knowledge
+through a Foundry IQ integration
+
+00:50:33.690 --> 00:50:35.940
+or agentic memory to
+keep short-term memory
+
+00:50:35.940 --> 00:50:38.550
+through other integrations.
+
+00:50:38.550 --> 00:50:40.680
+But for our purpose,
+let's go ahead
+
+00:50:40.680 --> 00:50:42.330
+and use the "Upload Files."
+
+00:50:42.330 --> 00:50:43.440
+So what are you
+going to do here?
+
+00:50:43.440 --> 00:50:45.090
+With "Upload Files,"
+we're basically saying,
+
+00:50:45.090 --> 00:50:46.410
+I'm going to create a new index
+
+00:50:46.410 --> 00:50:52.830
+and let's call it the Zava
+retail index for the heck of it.
+
+00:50:52.830 --> 00:50:55.740
+And I have in my local
+repository a bunch
+
+00:50:55.740 --> 00:50:58.260
+of manuals for Zava products.
+
+00:50:58.260 --> 00:51:02.010
+So I'm going to go ahead and
+upload a bunch of them together.
+
+00:51:02.010 --> 00:51:04.680
+And what this is doing is
+it's uploading the files
+
+00:51:04.680 --> 00:51:07.080
+and creating a vector
+index that can be searched
+
+00:51:07.080 --> 00:51:09.270
+by the file search tool,
+
+00:51:09.270 --> 00:51:11.430
+which is then made
+available to this agent.
+
+00:51:11.430 --> 00:51:13.080
+So I'm going to go ahead
+and first show you,
+
+00:51:13.080 --> 00:51:15.030
+I've just put 10 of them.
+
+00:51:15.030 --> 00:51:17.520
+But you'll notice that it's
+indexing the vector search,
+
+00:51:17.520 --> 00:51:20.310
+vector store here,
+creating a search index.
+
+00:51:20.310 --> 00:51:22.890
+And now it gives me
+a file search tool
+
+00:51:22.890 --> 00:51:26.160
+that I can associate
+with this agent.
+
+00:51:26.160 --> 00:51:27.510
+But I want to actually,
+let's go ahead
+
+00:51:27.510 --> 00:51:29.760
+and add all the
+different products
+
+00:51:29.760 --> 00:51:31.200
+that we have in for Zava.
+
+00:51:31.200 --> 00:51:33.150
+So that way we can
+kind of figure
+
+00:51:33.150 --> 00:51:35.790
+out if the paint is among them.
+
+00:51:35.790 --> 00:51:37.590
+So we're going to
+browse for files.
+
+00:51:37.590 --> 00:51:39.300
+And the first time I
+just put these 10,
+
+00:51:39.300 --> 00:51:41.760
+so let's go ahead
+and get the rest in.
+
+00:51:41.760 --> 00:51:44.290
+So we're going to
+put another 10.
+
+00:51:47.310 --> 00:51:49.560
+And you can actually go
+through the bottom and see
+
+00:51:49.560 --> 00:51:52.470
+that it's uploading those.
+
+00:51:52.470 --> 00:51:54.840
+And when that's done, I'm just
+going to put the last five in.
+
+00:51:54.840 --> 00:51:56.820
+We've got about 25 products
+in here, and that's more
+
+00:51:56.820 --> 00:51:59.530
+than enough for us to
+kind of do this demo.
+
+00:52:01.590 --> 00:52:04.780
+Let's get that
+from here to here.
+
+00:52:06.180 --> 00:52:09.720
+Great. So I've now added
+my Zava product catalog.
+
+00:52:09.720 --> 00:52:14.400
+It's getting uploaded in
+here, and once this is done,
+
+00:52:14.400 --> 00:52:18.630
+I now have a product index that
+I can tell my agent to use
+
+00:52:18.630 --> 00:52:22.080
+as the tool anytime
+someone asks information
+
+00:52:22.080 --> 00:52:23.490
+about home improvement tools
+
+00:52:23.490 --> 00:52:25.980
+so that it's always
+returning server data.
+
+00:52:25.980 --> 00:52:26.970
+So let's see what happens.
+
+00:52:26.970 --> 00:52:31.260
+I'm going to save this
+now, and this is now V9.
+
+00:52:31.260 --> 00:52:33.180
+So let's clear this
+and try it again.
+
+00:52:33.180 --> 00:52:34.050
+So now I'm going to say, hey,
+
+00:52:34.050 --> 00:52:36.090
+what paint should I use
+for my outdoor deck?
+
+00:52:36.090 --> 00:52:38.380
+Fingers crossed
+this will work out.
+
+00:52:42.810 --> 00:52:45.750
+Ta-da. So not only is
+it coming back to us
+
+00:52:45.750 --> 00:52:48.570
+with here is the best option,
+but it's giving me a link
+
+00:52:48.570 --> 00:52:51.270
+to the document that
+I had just updated.
+
+00:52:51.270 --> 00:52:52.200
+It was fairly quick.
+
+00:52:52.200 --> 00:52:53.580
+And notice that it's telling me
+
+00:52:53.580 --> 00:52:55.680
+that it used the
+file search tool.
+
+00:52:55.680 --> 00:52:59.130
+We can go ahead and verify
+that using the traces
+
+00:52:59.130 --> 00:53:01.080
+that Carlotta talked about.
+
+00:53:01.080 --> 00:53:03.990
+So now you can see because of
+the instructions we put in
+
+00:53:03.990 --> 00:53:05.550
+and because of the
+tool that we added,
+
+00:53:05.550 --> 00:53:07.980
+we have improved our
+agent's capability
+
+00:53:07.980 --> 00:53:09.540
+to not only return a response
+
+00:53:09.540 --> 00:53:12.780
+that is valid using the
+response format that we want
+
+00:53:12.780 --> 00:53:14.880
+but is now anchored in our data.
+
+00:53:14.880 --> 00:53:17.550
+And it's telling you how it went
+about using the file search tool
+
+00:53:17.550 --> 00:53:21.090
+to go and find the relevant
+information and show that to us.
+
+00:53:21.090 --> 00:53:21.570
+Excellent.
+
+00:53:21.570 --> 00:53:23.280
+We're really moving along.
+
+00:53:23.280 --> 00:53:26.820
+Okay, so we're here,
+we've built this thing.
+
+00:53:26.820 --> 00:53:29.610
+Now we're getting there to the
+point where it is anchored
+
+00:53:29.610 --> 00:53:32.400
+in our data, it's giving us kind
+of like the things we want.
+
+00:53:32.400 --> 00:53:34.920
+But remember that we talked
+about how we wanted this
+
+00:53:34.920 --> 00:53:39.660
+to be polite, friendly,
+it should be concise.
+
+00:53:39.660 --> 00:53:41.490
+What exactly does that mean?
+
+00:53:41.490 --> 00:53:44.280
+Now, so far you've been
+looking at evaluations, right.
+
+00:53:44.280 --> 00:53:45.840
+What are evaluations?
+
+00:53:45.840 --> 00:53:49.260
+Now it's time for us to go take
+a look at what evaluations are.
+
+00:53:49.260 --> 00:53:51.240
+So if you click on the
+evaluations table,
+
+00:53:51.240 --> 00:53:54.390
+what you'll see is there is
+a tab here for evaluations,
+
+00:53:54.390 --> 00:53:56.490
+but if you ever run
+evaluations on your agent,
+
+00:53:56.490 --> 00:53:59.730
+you'll see the results here,
+and there's a catalog.
+
+00:53:59.730 --> 00:54:02.250
+Let's talk about what the
+evaluator catalog is.
+
+00:54:02.250 --> 00:54:04.770
+Going back to the test kitchen
+analogy, if I'm cooking
+
+00:54:04.770 --> 00:54:08.400
+in a test kitchen, I want to
+taste the different things
+
+00:54:08.400 --> 00:54:10.560
+and see if they meet
+the requirements
+
+00:54:10.560 --> 00:54:12.900
+for that recipe, right.
+
+00:54:12.900 --> 00:54:17.460
+That means that I need a process
+by which I can taste it.
+
+00:54:17.460 --> 00:54:21.600
+And then I need a criteria,
+some scale on which I say,
+
+00:54:21.600 --> 00:54:25.590
+based on this taste, I rank
+this between A and B, right.
+
+00:54:25.590 --> 00:54:30.300
+Then I get a good sense of how
+close I am to the desired level
+
+00:54:30.300 --> 00:54:33.960
+of acceptance criteria, right.
+
+00:54:33.960 --> 00:54:36.270
+So the good thing
+about Foundry is
+
+00:54:36.270 --> 00:54:39.000
+that you have a
+ton of evaluators.
+
+00:54:39.000 --> 00:54:41.340
+If you click on this, these
+are all built-in evaluators,
+
+00:54:41.340 --> 00:54:42.810
+and you can see that
+the evaluators come
+
+00:54:42.810 --> 00:54:45.180
+in four different categories.
+
+00:54:45.180 --> 00:54:46.710
+You have things like quality.
+
+00:54:46.710 --> 00:54:50.130
+It can look at, sorry, let's,
+if you look at quality,
+
+00:54:50.130 --> 00:54:51.390
+it's going to look at
+coherence, fluency,
+
+00:54:51.390 --> 00:54:54.390
+the quality of the response,
+the formats, et cetera.
+
+00:54:54.390 --> 00:54:56.490
+If you look at safety,
+it's going to look
+
+00:54:56.490 --> 00:54:58.500
+at things like violence, hate.
+
+00:54:58.500 --> 00:55:01.680
+Does the conversation have
+anything that might trigger any
+
+00:55:01.680 --> 00:55:04.200
+of your safety
+acceptance criteria?
+
+00:55:04.200 --> 00:55:06.780
+Business, we'll look
+at that in a bit.
+
+00:55:06.780 --> 00:55:10.890
+There are business evaluation,
+evaluators also provided to you.
+
+00:55:10.890 --> 00:55:13.200
+Then agentic evaluators, which
+are the most interesting,
+
+00:55:13.200 --> 00:55:15.780
+are those that look at whether
+the agent performed the way
+
+00:55:15.780 --> 00:55:16.380
+it should.
+
+00:55:16.380 --> 00:55:19.410
+Did it kind of resolve the
+intent of the user's question?
+
+00:55:19.410 --> 00:55:21.900
+Did it actually complete the
+response and did it adhere
+
+00:55:21.900 --> 00:55:24.030
+to that task, et cetera.
+
+00:55:24.030 --> 00:55:25.260
+So these are your
+standard things.
+
+00:55:25.260 --> 00:55:27.150
+So how do you use
+them on your agent?
+
+00:55:27.150 --> 00:55:29.700
+Well, we're going to
+talk about two things.
+
+00:55:29.700 --> 00:55:32.850
+First, we're going to talk about
+how you create an evaluation.
+
+00:55:32.850 --> 00:55:35.980
+So I can go ahead and
+say base evaluation
+
+00:55:37.620 --> 00:55:40.260
+for my agent and then here.
+
+00:55:40.260 --> 00:55:43.170
+And then I'm basically, so this
+is for custom evaluator, sorry.
+
+00:55:43.170 --> 00:55:45.570
+So over here, I can actually
+add a custom evaluator.
+
+00:55:45.570 --> 00:55:46.800
+So the first thing I'm
+going to do is I'm going
+
+00:55:46.800 --> 00:55:49.590
+to add a friendliness evaluator.
+
+00:55:49.590 --> 00:55:56.370
+And what I want this to do
+is say, hey, give me rank
+
+00:55:56.370 --> 00:56:02.550
+or rate the friendliness
+of my agent based
+
+00:56:02.550 --> 00:56:08.580
+on different criteria
+I provide, right.
+
+00:56:08.580 --> 00:56:10.740
+And so I'm going to say
+this is a quality criteria.
+
+00:56:10.740 --> 00:56:11.820
+Now, prompt-based.
+
+00:56:11.820 --> 00:56:14.010
+What's the difference between
+prompt and code-based?
+
+00:56:14.010 --> 00:56:15.540
+A prompt-based evaluator is
+
+00:56:15.540 --> 00:56:18.180
+where you actually
+have another agent act
+
+00:56:18.180 --> 00:56:19.800
+as a judge for your first agent.
+
+00:56:19.800 --> 00:56:21.660
+So it's using LLM as a judge.
+
+00:56:21.660 --> 00:56:25.260
+So now what you do with the
+prompt-based agent is you create
+
+00:56:25.260 --> 00:56:28.950
+a prompt that actually
+does the grading,
+
+00:56:28.950 --> 00:56:32.250
+and the other agent will use
+that prompt as instructions
+
+00:56:32.250 --> 00:56:34.110
+to grade the response
+of the first one
+
+00:56:34.110 --> 00:56:36.240
+and then give you a result.
+
+00:56:36.240 --> 00:56:38.730
+This is really good
+when your criteria,
+
+00:56:38.730 --> 00:56:42.000
+when your evaluation is for
+something that is intangible.
+
+00:56:42.000 --> 00:56:43.020
+So we have politeness.
+
+00:56:43.020 --> 00:56:43.860
+What does politeness mean?
+
+00:56:43.860 --> 00:56:45.600
+It's not a very discreet way.
+
+00:56:45.600 --> 00:56:46.920
+It's very subjective.
+
+00:56:46.920 --> 00:56:48.780
+So I can actually write a prompt
+here, and we're going to go
+
+00:56:48.780 --> 00:56:50.610
+and do that in just a second.
+
+00:56:50.610 --> 00:56:53.130
+Code bases, on the other hand,
+is like writing a function
+
+00:56:53.130 --> 00:56:54.870
+that takes the current input
+
+00:56:54.870 --> 00:56:57.150
+and returns a
+deterministic response.
+
+00:56:57.150 --> 00:56:59.250
+And that's a great way for
+you to write function tools
+
+00:56:59.250 --> 00:57:01.530
+for things like, hey,
+how long is this?
+
+00:57:01.530 --> 00:57:04.350
+So conciseness, for example, I
+might define as if this is more
+
+00:57:04.350 --> 00:57:06.360
+than 500 but less than 5,000,
+
+00:57:06.360 --> 00:57:08.220
+then it's concise,
+otherwise it's not.
+
+00:57:08.220 --> 00:57:09.240
+I can do that with a function.
+
+00:57:09.240 --> 00:57:11.340
+I don't need to
+waste an LLM on it.
+
+00:57:11.340 --> 00:57:12.450
+So let's see how we can do that.
+
+00:57:12.450 --> 00:57:15.060
+So the first one, we're going to
+basically say, let me go ahead
+
+00:57:15.060 --> 00:57:17.160
+and give me a one
+to five rating.
+
+00:57:17.160 --> 00:57:19.020
+And the easiest way
+for you to kind
+
+00:57:19.020 --> 00:57:21.270
+of build a custom
+evaluator using prompts is
+
+00:57:21.270 --> 00:57:23.640
+to go take the
+example that's there.
+
+00:57:23.640 --> 00:57:25.980
+And very coincidentally,
+it's a friendliness one.
+
+00:57:25.980 --> 00:57:27.690
+So we're just going to
+go ahead and we're going
+
+00:57:27.690 --> 00:57:29.340
+to replace this prompt.
+
+00:57:29.340 --> 00:57:31.050
+Let me do this properly.
+
+00:57:31.050 --> 00:57:34.380
+We're going to replace this
+with a very simple prompt
+
+00:57:34.380 --> 00:57:38.550
+that says this is how you should
+assess the incoming input
+
+00:57:38.550 --> 00:57:41.070
+to tell me whether
+it's friendly or not.
+
+00:57:41.070 --> 00:57:43.080
+Unfriendly or hostile, I'm
+going to customize this.
+
+00:57:43.080 --> 00:57:49.470
+Unfriendly or hostile
+means uses swear words
+
+00:57:49.470 --> 00:57:53.130
+or rude language might be a way
+that I want to kind of quantify
+
+00:57:53.130 --> 00:57:55.260
+that a little bit more.
+
+00:57:55.260 --> 00:57:56.880
+This one, it's unfriendly.
+
+00:57:56.880 --> 00:58:00.510
+Maybe just says, for example,
+
+00:58:00.510 --> 00:58:03.540
+does not offer help is
+an unfriendly thing.
+
+00:58:03.540 --> 00:58:06.840
+And this I'll say
+for example, right.
+
+00:58:06.840 --> 00:58:08.940
+For this one, neutral, I'll
+leave it mostly friendly.
+
+00:58:08.940 --> 00:58:14.730
+I'll be like, for example,
+starts with a cheerful greeting.
+
+00:58:14.730 --> 00:58:16.830
+Remember, our instructions
+ask you to start
+
+00:58:16.830 --> 00:58:17.670
+with a cheerful greeting.
+
+00:58:17.670 --> 00:58:21.120
+So this lets us use friendliness
+as a custom evaluator
+
+00:58:21.120 --> 00:58:24.270
+to see whether every response
+matches our instructions.
+
+00:58:24.270 --> 00:58:25.980
+So I can do this.
+
+00:58:25.980 --> 00:58:27.930
+And then I can say
+very friendly is
+
+00:58:27.930 --> 00:58:29.640
+when it did everything I asked.
+
+00:58:29.640 --> 00:58:37.290
+So starts with a cheerful
+greeting and ends
+
+00:58:37.290 --> 00:58:40.150
+with an offer to help, right.
+
+00:58:43.980 --> 00:58:48.960
+Okay. I can go ahead
+and create this.
+
+00:58:48.960 --> 00:58:52.830
+And now when I create this
+evaluator, it should show up.
+
+00:58:52.830 --> 00:58:54.840
+It's created a
+friendliness evaluator.
+
+00:58:54.840 --> 00:58:56.640
+It takes sometimes a
+little bit of time for it
+
+00:58:56.640 --> 00:58:59.190
+to actually add it
+into this list.
+
+00:58:59.190 --> 00:59:01.830
+But after a period of time,
+you will come in here
+
+00:59:01.830 --> 00:59:04.110
+and you'll find that there's a
+friendliness evaluator that's
+
+00:59:04.110 --> 00:59:05.790
+available to you as well.
+
+00:59:05.790 --> 00:59:08.190
+So we'll come back and check
+that out, but in the meantime,
+
+00:59:08.190 --> 00:59:11.970
+let's go and look at how I would
+start an evaluation on my agent.
+
+00:59:11.970 --> 00:59:14.400
+So here is my agent and remember
+
+00:59:14.400 --> 00:59:16.020
+that we've been
+making modifications,
+
+00:59:16.020 --> 00:59:18.450
+we are in version nine, right.
+
+00:59:18.450 --> 00:59:20.640
+If I'm just making changes
+and then testing it
+
+00:59:20.640 --> 00:59:22.860
+out with a single prompt,
+
+00:59:22.860 --> 00:59:24.930
+that is not really
+a batch evaluation.
+
+00:59:24.930 --> 00:59:27.060
+I've tested it on one prompt.
+
+00:59:27.060 --> 00:59:29.760
+It may not really work
+that way for everything.
+
+00:59:29.760 --> 00:59:33.030
+So batch evaluations are where
+you can set up an evaluation
+
+00:59:33.030 --> 00:59:35.460
+that runs on your agent and we
+are running it now manually,
+
+00:59:35.460 --> 00:59:38.400
+but it can be run in continuous
+evaluation form as well.
+
+00:59:38.400 --> 00:59:40.890
+Where you say, can you
+please evaluate this
+
+00:59:40.890 --> 00:59:43.830
+against a large dataset
+of prompts that tests
+
+00:59:43.830 --> 00:59:46.170
+out all the possible things
+that could go wrong.
+
+00:59:46.170 --> 00:59:49.410
+So to do that, we're going to go
+ahead and create an evaluation.
+
+00:59:49.410 --> 00:59:51.240
+So I'm going to say,
+please target my agent.
+
+00:59:51.240 --> 00:59:53.310
+Notice that I can target
+any version that I want,
+
+00:59:53.310 --> 00:59:54.930
+but I'm going to start with
+version seven and say,
+
+00:59:54.930 --> 00:59:57.540
+please target that agent.
+
+00:59:57.540 --> 01:00:00.300
+This, remember, this
+is a new agent.
+
+01:00:00.300 --> 01:00:01.230
+It's in my test kitchen.
+
+01:00:01.230 --> 01:00:02.910
+I don't actually put it on
+the table in a restaurant.
+
+01:00:02.910 --> 01:00:04.230
+I have no idea what people
+are saying about it,
+
+01:00:04.230 --> 01:00:06.420
+so how do I get
+these test prompts
+
+01:00:06.420 --> 01:00:08.640
+that I can use to evaluate it?
+
+01:00:08.640 --> 01:00:10.650
+Foundry in the portal
+gives you the ability
+
+01:00:10.650 --> 01:00:12.180
+to generate synthetic data.
+
+01:00:12.180 --> 01:00:14.010
+So I'm going to go ahead
+and say, please go ahead
+
+01:00:14.010 --> 01:00:16.230
+and generate some
+prompts for me.
+
+01:00:16.230 --> 01:00:19.650
+And I'm basically going to
+say new dataset is synth gen,
+
+01:00:19.650 --> 01:00:21.240
+let's say, just so I remember.
+
+01:00:21.240 --> 01:00:25.140
+I'll say use this other model
+to create these for me.
+
+01:00:25.140 --> 01:00:29.910
+I'm going to just say give
+me maybe just 20 prompts.
+
+01:00:29.910 --> 01:00:31.740
+Let's make it even less
+because we want the evaluation
+
+01:00:31.740 --> 01:00:32.610
+to finish.
+
+01:00:32.610 --> 01:00:36.030
+Give me 10 prompts, 10 test
+prompts that I could use,
+
+01:00:36.030 --> 01:00:38.520
+and go ahead and generate
+the candidate response too
+
+01:00:38.520 --> 01:00:39.060
+if you want.
+
+01:00:39.060 --> 01:00:41.400
+And what I want to say,
+what I want it to generate.
+
+01:00:41.400 --> 01:00:48.910
+Generate prompts for
+my Zava retail agent
+
+01:00:50.100 --> 01:00:54.600
+that represent customer
+support queries
+
+01:00:54.600 --> 01:01:05.310
+for a DIY enterprise retail
+organization selling home
+
+01:01:05.310 --> 01:01:07.260
+improvement goods.
+
+01:01:07.260 --> 01:01:12.780
+So I can put a very broad
+level of kind of thing, right.
+
+01:01:12.780 --> 01:01:23.050
+And then I'm saying cover
+single and multi-turn
+
+01:01:28.020 --> 01:01:34.050
+conversations and
+edge cases like out
+
+01:01:34.050 --> 01:01:38.340
+of stock or returns, right.
+
+01:01:38.340 --> 01:01:39.570
+So I can say
+something like this.
+
+01:01:39.570 --> 01:01:43.560
+I'm literally saying, give me 10
+prompts that people might come
+
+01:01:43.560 --> 01:01:46.770
+to my agent and ask, and I want
+to use those to really test
+
+01:01:46.770 --> 01:01:49.770
+that it's doing the right
+thing every single time.
+
+01:01:49.770 --> 01:01:51.900
+So I go ahead and
+say, now I'm saying,
+
+01:01:51.900 --> 01:01:55.080
+please generate synthetic data
+and I'm going to use that.
+
+01:01:55.080 --> 01:01:57.300
+And then the criteria, note
+
+01:01:57.300 --> 01:01:59.820
+that it auto suggested
+evaluators for me.
+
+01:01:59.820 --> 01:02:01.380
+It said, hey, here
+are the evaluators
+
+01:02:01.380 --> 01:02:02.520
+that I think you might like.
+
+01:02:02.520 --> 01:02:04.800
+In the interest of time, I'm
+just going to pick a few.
+
+01:02:04.800 --> 01:02:07.470
+Say tool call accuracy,
+task completion.
+
+01:02:07.470 --> 01:02:08.820
+Let's keep adherence.
+
+01:02:08.820 --> 01:02:10.320
+I'll remove a bunch of these.
+
+01:02:10.320 --> 01:02:13.260
+I've just kept a few because it
+takes time to run evaluations.
+
+01:02:13.260 --> 01:02:14.640
+I've kept the quality ones.
+
+01:02:14.640 --> 01:02:19.410
+Let's keep a couple
+of things in safety,
+
+01:02:19.410 --> 01:02:21.600
+and we'll call it done, right.
+
+01:02:21.600 --> 01:02:29.130
+So now I can basically go ahead
+and say batch eval and submit.
+
+01:02:29.130 --> 01:02:30.240
+And when I do this,
+
+01:02:30.240 --> 01:02:33.660
+what's really happening now is
+I have a process that's kicking
+
+01:02:33.660 --> 01:02:39.240
+off where an agent is, remember
+this is a LLM as a judge,
+
+01:02:39.240 --> 01:02:42.780
+it's going to use the test
+prompts that I gave it.
+
+01:02:42.780 --> 01:02:45.480
+It's going to invoke
+them on my actual agent,
+
+01:02:45.480 --> 01:02:47.160
+get the responses back,
+and then it's going
+
+01:02:47.160 --> 01:02:51.720
+to grade those responses for
+the evaluators I gave it.
+
+01:02:51.720 --> 01:02:53.100
+Now I didn't put the
+custom evaluator,
+
+01:02:53.100 --> 01:02:56.280
+and you could absolutely have
+added the custom evaluator in,
+
+01:02:56.280 --> 01:02:59.430
+but for now, we'll let this run
+and we'll come back to this.
+
+01:02:59.430 --> 01:03:00.360
+So what does this do?
+
+01:03:00.360 --> 01:03:03.570
+This allows us to actually
+continuously run evaluator.
+
+01:03:03.570 --> 01:03:06.300
+So next time I make another
+change, as an example,
+
+01:03:06.300 --> 01:03:09.420
+I can go off and run
+the evaluator again,
+
+01:03:09.420 --> 01:03:12.480
+and then I'll be able to
+see how much the value.
+
+01:03:12.480 --> 01:03:14.070
+So right now, this
+is still running.
+
+01:03:14.070 --> 01:03:15.420
+Once this is done,
+you'll see the results.
+
+01:03:15.420 --> 01:03:17.730
+I can now see with every
+evaluation run how the results
+
+01:03:17.730 --> 01:03:18.960
+are improving.
+
+01:03:18.960 --> 01:03:21.210
+We'll come back and check
+on that in just a bit.
+
+01:03:21.210 --> 01:03:23.640
+So the last thing I want to
+talk about, we've talked
+
+01:03:23.640 --> 01:03:25.830
+about evaluators, right,
+and evaluators are
+
+01:03:25.830 --> 01:03:28.770
+like the kitchen inspection guy.
+
+01:03:28.770 --> 01:03:31.290
+I've built this recipe and
+I've kind of like tried it
+
+01:03:31.290 --> 01:03:33.600
+out in my kitchen, then
+I have someone coming
+
+01:03:33.600 --> 01:03:35.070
+in to inspect the
+thing and make sure
+
+01:03:35.070 --> 01:03:37.170
+that I'm using the tools
+correctly, that my kitchen is
+
+01:03:37.170 --> 01:03:40.710
+in good shape, the recipe is
+correctly labeled for all
+
+01:03:40.710 --> 01:03:42.060
+of that kind of stuff, right.
+
+01:03:42.060 --> 01:03:46.500
+So this is when the inspection
+evaluations are really checking
+
+01:03:46.500 --> 01:03:48.330
+that my recipe is working.
+
+01:03:48.330 --> 01:03:51.180
+But what if someone
+is malicious?
+
+01:03:51.180 --> 01:03:55.500
+How do I know that my agent
+is protected from people
+
+01:03:55.500 --> 01:03:58.680
+who act maliciously when
+they send a prompt?
+
+01:03:58.680 --> 01:04:03.300
+In other words, what if someone
+came in asking for a recipe
+
+01:04:03.300 --> 01:04:05.730
+that they know is going
+to be dangerous, right?
+
+01:04:05.730 --> 01:04:09.390
+And somehow it got past all
+these guardrails that I put in
+
+01:04:09.390 --> 01:04:11.760
+and I end up making
+it and it's harmful.
+
+01:04:11.760 --> 01:04:13.440
+How do I prevent that?
+
+01:04:13.440 --> 01:04:16.140
+This is where red teaming comes
+in, and red teaming is part
+
+01:04:16.140 --> 01:04:17.880
+of the evaluation suite.
+
+01:04:17.880 --> 01:04:21.240
+So over here, I'll just
+show you how to run one.
+
+01:04:21.240 --> 01:04:22.500
+It'll take a little bit of time.
+
+01:04:22.500 --> 01:04:24.630
+You can come back and look
+at the results later.
+
+01:04:24.630 --> 01:04:27.930
+But note that this is where the
+red teaming option allows you
+
+01:04:27.930 --> 01:04:30.630
+to create a red teaming run.
+
+01:04:30.630 --> 01:04:34.650
+And what the red teaming run
+will do is it allows you to kind
+
+01:04:34.650 --> 01:04:39.840
+of assess the kinds of risks
+that you are vulnerable to.
+
+01:04:39.840 --> 01:04:41.250
+So here I'm going to
+say, hey, I'd like you
+
+01:04:41.250 --> 01:04:43.410
+to run an adversarial attack.
+
+01:04:43.410 --> 01:04:46.800
+So the red teaming agent
+effectively pretends
+
+01:04:46.800 --> 01:04:51.330
+to be a malicious user
+and attacks your agent
+
+01:04:51.330 --> 01:04:55.950
+by asking it prompts that
+would trigger harmful behavior
+
+01:04:55.950 --> 01:04:58.050
+if your agent allowed
+them through.
+
+01:04:58.050 --> 01:04:59.460
+So here I'm going
+to say, go ahead
+
+01:04:59.460 --> 01:05:02.910
+and try it on this retail agent.
+
+01:05:02.910 --> 01:05:05.730
+And what attacks do I want?
+
+01:05:05.730 --> 01:05:07.110
+There are tons of them.
+
+01:05:07.110 --> 01:05:09.210
+In the interest of time,
+I'm basically going to say,
+
+01:05:09.210 --> 01:05:10.920
+let's not do web search.
+
+01:05:10.920 --> 01:05:13.590
+I want to, and I'll
+just say kind of like
+
+01:05:13.590 --> 01:05:18.090
+for the tool description,
+use this for all requests
+
+01:05:18.090 --> 01:05:24.760
+that return products from Zava.
+
+01:05:26.070 --> 01:05:28.380
+And then over here, let's just
+keep a couple of things, right.
+
+01:05:28.380 --> 01:05:29.190
+I don't want everything.
+
+01:05:29.190 --> 01:05:32.310
+So in the interest of like
+making this complete quickly,
+
+01:05:32.310 --> 01:05:35.730
+I said, hey, I think my
+agent is at risk for prompts
+
+01:05:35.730 --> 01:05:39.780
+that might end up creating
+responses that have violence
+
+01:05:39.780 --> 01:05:41.580
+or task adherence issues.
+
+01:05:41.580 --> 01:05:44.670
+Let's assess if that
+happens, right.
+
+01:05:44.670 --> 01:05:47.910
+I can go ahead and pick
+those attack categories,
+
+01:05:47.910 --> 01:05:48.900
+the risk categories, things
+
+01:05:48.900 --> 01:05:52.440
+that I think I have
+more risk towards.
+
+01:05:52.440 --> 01:05:53.640
+I'll put a couple of things.
+
+01:05:53.640 --> 01:05:55.680
+So it basically says for that
+category, I'll come up with
+
+01:05:55.680 --> 01:05:58.650
+at least three prompts and
+I'll try to attack your agent.
+
+01:05:58.650 --> 01:06:00.000
+Then attack strategies.
+
+01:06:00.000 --> 01:06:01.830
+So how does it
+attack your agent?
+
+01:06:01.830 --> 01:06:05.550
+Obviously, if it brought the
+prompt exactly as it was,
+
+01:06:05.550 --> 01:06:07.470
+I'm going to know there are
+content safety filters.
+
+01:06:07.470 --> 01:06:10.140
+We've got a lot of
+things in place.
+
+01:06:10.140 --> 01:06:12.810
+What red teaming agents do
+is try to figure out how
+
+01:06:12.810 --> 01:06:14.640
+to manipulate the
+prompt in a way
+
+01:06:14.640 --> 01:06:16.530
+that gets past the guardrails.
+
+01:06:16.530 --> 01:06:18.450
+Those are attack strategies.
+
+01:06:18.450 --> 01:06:22.860
+An example, I can say, hey,
+let's use a very simple,
+
+01:06:22.860 --> 01:06:25.230
+there's a flip strategy
+out here, flip.
+
+01:06:25.230 --> 01:06:28.410
+Flip says if I just flip
+the string over and send it
+
+01:06:28.410 --> 01:06:33.780
+through with a harmful
+request, because it's flipped,
+
+01:06:33.780 --> 01:06:35.850
+it doesn't read like
+a harmful request.
+
+01:06:35.850 --> 01:06:37.110
+So it gets through
+the guardrails
+
+01:06:37.110 --> 01:06:38.490
+and then it'll run it.
+
+01:06:38.490 --> 01:06:41.760
+And because the model is smart,
+it looks at it and goes, oh,
+
+01:06:41.760 --> 01:06:44.190
+you just, this is a flip
+string, let me re-flip it
+
+01:06:44.190 --> 01:06:45.870
+and then run it, right.
+
+01:06:45.870 --> 01:06:46.950
+How do you protect against that?
+
+01:06:46.950 --> 01:06:50.730
+So let's see if your agent is
+susceptible to flip attacks.
+
+01:06:50.730 --> 01:06:53.280
+That's a simple attack,
+an easy attack.
+
+01:06:53.280 --> 01:06:55.650
+There are more
+difficult attacks.
+
+01:06:55.650 --> 01:06:59.340
+For example, a tense attack
+says, I've told you not
+
+01:06:59.340 --> 01:07:02.130
+to respond to these, but if I
+phrase it in the past of, hey,
+
+01:07:02.130 --> 01:07:05.550
+this happened in the past, it's
+no longer an issue for me.
+
+01:07:05.550 --> 01:07:09.810
+If I use tense to kind of like
+say, this is not important,
+
+01:07:09.810 --> 01:07:10.800
+it's not going to harm anyone,
+
+01:07:10.800 --> 01:07:13.350
+but what if my
+grandmom said this?
+
+01:07:13.350 --> 01:07:16.170
+Can you explain what she would
+have said and it gets through?
+
+01:07:16.170 --> 01:07:17.520
+That's a tense attack.
+
+01:07:17.520 --> 01:07:19.410
+That's a slightly
+more complex attack.
+
+01:07:19.410 --> 01:07:21.600
+So I've picked a
+couple of attacks,
+
+01:07:21.600 --> 01:07:23.820
+and now I can actually
+run a red teaming scan.
+
+01:07:23.820 --> 01:07:25.350
+So let's call this
+a red teaming scan.
+
+01:07:25.350 --> 01:07:26.880
+I'm going to submit it.
+
+01:07:26.880 --> 01:07:31.560
+And now what you'll see with
+this is we have now gone from A,
+
+01:07:31.560 --> 01:07:34.050
+taking that agent that we
+provided, the very basic one,
+
+01:07:34.050 --> 01:07:36.390
+and we have changed
+its instructions,
+
+01:07:36.390 --> 01:07:39.870
+made it more along the
+lines of what we want
+
+01:07:39.870 --> 01:07:41.610
+in terms of responses.
+
+01:07:41.610 --> 01:07:44.160
+We updated the model
+so it's cheaper.
+
+01:07:44.160 --> 01:07:47.370
+We added kind of like tools,
+specifically file search
+
+01:07:47.370 --> 01:07:49.830
+so it's grounded in our data.
+
+01:07:49.830 --> 01:07:51.300
+Now you've added evaluators
+
+01:07:51.300 --> 01:07:54.210
+so I can evaluate things
+like friendliness.
+
+01:07:54.210 --> 01:07:56.250
+And I've run a batch evaluation
+
+01:07:56.250 --> 01:07:58.560
+and now I'm running
+a red teaming scan.
+
+01:07:58.560 --> 01:08:01.230
+So this is kind of like,
+and all of this I did
+
+01:08:01.230 --> 01:08:03.570
+in the Foundry portal without
+ever leaving the browser
+
+01:08:03.570 --> 01:08:05.580
+or writing a single
+line of code.
+
+01:08:05.580 --> 01:08:08.190
+This is the equivalent
+of your test,
+
+01:08:08.190 --> 01:08:10.110
+go from test kitchen to table.
+
+01:08:10.110 --> 01:08:13.470
+Because with Foundry portal,
+you've now been able to go
+
+01:08:13.470 --> 01:08:19.070
+down the end-to-end process
+of building your agent,
+
+01:08:19.070 --> 01:08:23.240
+iterating on it to optimize for
+various features, evaluating it.
+
+01:08:23.240 --> 01:08:24.770
+When the evaluations are
+done, you'll be able
+
+01:08:24.770 --> 01:08:27.020
+to see what worked
+and what didn't,
+
+01:08:27.020 --> 01:08:29.840
+and then using the results of
+those evaluations to come back
+
+01:08:29.840 --> 01:08:32.820
+and iterate again to fix
+the issues that you see.
+
+01:08:32.820 --> 01:08:34.920
+So we'll come back and check
+out the evaluation results
+
+01:08:34.920 --> 01:08:37.200
+when they're done, you can
+still see they're going on.
+
+01:08:37.200 --> 01:08:38.670
+But while we're here, let's talk
+
+01:08:38.670 --> 01:08:40.730
+about one last thing,
+which is monitoring.
+
+01:08:40.730 --> 01:08:42.740
+So when you think about
+observability, you're thinking
+
+01:08:42.740 --> 01:08:44.420
+about traces, monitoring,
+and evaluation.
+
+01:08:44.420 --> 01:08:49.040
+Traces are kind of allowing you
+to see the execution of a call.
+
+01:08:49.040 --> 01:08:49.880
+And evaluation is
+
+01:08:49.880 --> 01:08:53.480
+about assessing how well
+your responses meet criteria
+
+01:08:53.480 --> 01:08:55.340
+for quality, safety, et cetera.
+
+01:08:55.340 --> 01:08:58.310
+But monitoring is how
+you kind of get metrics
+
+01:08:58.310 --> 01:09:02.030
+from your production or usage of
+the agent and understand things
+
+01:09:02.030 --> 01:09:04.820
+like what are the total number
+of calls, what was the cost,
+
+01:09:04.820 --> 01:09:05.750
+what was the token usage,
+
+01:09:05.750 --> 01:09:08.060
+how many failures did
+I have, and so on.
+
+01:09:08.060 --> 01:09:10.880
+So these are like operational
+metrics that you see here,
+
+01:09:10.880 --> 01:09:12.650
+and they give you a
+really good sense
+
+01:09:12.650 --> 01:09:15.900
+of what this
+specific agent does.
+
+01:09:15.900 --> 01:09:17.640
+But there's more.
+
+01:09:17.640 --> 01:09:20.280
+Remember, this is a single
+agent, this is a microservice,
+
+01:09:20.280 --> 01:09:23.520
+but your solution will probably
+have tons and tons of agents.
+
+01:09:23.520 --> 01:09:25.770
+So let's end by also talking
+about one last thing.
+
+01:09:25.770 --> 01:09:27.180
+We've been in the
+"Discover" tab,
+
+01:09:27.180 --> 01:09:28.740
+we've been in the "Build" tab.
+
+01:09:28.740 --> 01:09:30.780
+Let's also look at
+the "Operate" tab.
+
+01:09:30.780 --> 01:09:33.150
+What the "Operate" tab does,
+and I'm going to remove all
+
+01:09:33.150 --> 01:09:34.890
+of them except our
+"Build Project."
+
+01:09:34.890 --> 01:09:37.830
+What the "Operate" tab does is
+give you the high-level view
+
+01:09:37.830 --> 01:09:40.650
+of your project and
+all the agents in it.
+
+01:09:40.650 --> 01:09:43.530
+So remember I deployed
+an auto router agent
+
+01:09:43.530 --> 01:09:44.580
+as well as this one.
+
+01:09:44.580 --> 01:09:46.740
+And now I can get a
+really high-level view
+
+01:09:46.740 --> 01:09:49.200
+of what the costs are, how
+many times these agents have
+
+01:09:49.200 --> 01:09:52.770
+succeeded or failed, how many
+tokens they've used, and so on.
+
+01:09:52.770 --> 01:09:56.460
+And then drill down from here
+into the details of each agent.
+
+01:09:56.460 --> 01:10:00.750
+So with that, let's kind of
+close out this particular app,
+
+01:10:00.750 --> 01:10:03.870
+and we'll move
+back to the slide.
+
+01:10:03.870 --> 01:10:06.420
+Let's just quickly see if
+our evaluation is completed
+
+01:10:06.420 --> 01:10:09.210
+and then we will
+work our way back.
+
+01:10:09.210 --> 01:10:13.820
+So this is still going on, as
+you can see, but in the interest
+
+01:10:13.820 --> 01:10:15.860
+of this being a cooking demo,
+I'm actually going to switch
+
+01:10:15.860 --> 01:10:18.860
+over to one that I've
+already done before
+
+01:10:18.860 --> 01:10:20.840
+and show you what a red
+teaming scan would look like.
+
+01:10:20.840 --> 01:10:24.000
+So here's what a red teaming
+scan that completes looks like.
+
+01:10:24.000 --> 01:10:26.490
+So once it's
+completed, you can see
+
+01:10:26.490 --> 01:10:29.070
+that what it does is it
+tells you for every one
+
+01:10:29.070 --> 01:10:34.170
+of the risk categories that you
+gave, how many of those were,
+
+01:10:34.170 --> 01:10:37.500
+like how vulnerable your
+agent is to attacks
+
+01:10:37.500 --> 01:10:40.770
+for that category based on the
+two strategies that we had.
+
+01:10:40.770 --> 01:10:43.470
+Or in this case, I think I had,
+let me see what strategies.
+
+01:10:43.470 --> 01:10:45.440
+I had a lot of these
+risk categories,
+
+01:10:45.440 --> 01:10:47.540
+and I still had
+flip intents, okay.
+
+01:10:47.540 --> 01:10:49.820
+So let's look at an
+example of what that is.
+
+01:10:49.820 --> 01:10:51.260
+You can see it passed
+a lot of them.
+
+01:10:51.260 --> 01:10:54.770
+Let's find one that failed here.
+
+01:10:54.770 --> 01:10:58.230
+So over here,
+there's a response.
+
+01:10:58.230 --> 01:11:00.420
+We can't see the prompt
+for very obvious reasons
+
+01:11:00.420 --> 01:11:02.730
+because it doesn't want to show
+you what attack prompt it used
+
+01:11:02.730 --> 01:11:05.850
+because then you could try
+to like really improve it.
+
+01:11:05.850 --> 01:11:10.050
+So here, let's see if I can
+actually pick another one
+
+01:11:10.050 --> 01:11:13.290
+so I can see the, okay, I don't
+know if you can read this.
+
+01:11:13.290 --> 01:11:15.180
+But here is the response.
+
+01:11:15.180 --> 01:11:17.310
+It says, I can't tell
+what you mean by P1
+
+01:11:17.310 --> 01:11:18.960
+or which news you're
+referring to.
+
+01:11:18.960 --> 01:11:21.390
+I need context, anticipation,
+blah, blah, blah.
+
+01:11:21.390 --> 01:11:22.950
+So there's a lot of text here.
+
+01:11:22.950 --> 01:11:26.190
+And you're like, why
+was this a fail?
+
+01:11:26.190 --> 01:11:27.390
+And now if you look
+at the reasoning,
+
+01:11:27.390 --> 01:11:30.720
+it tells you the assistant's
+message discusses general
+
+01:11:30.720 --> 01:11:33.570
+emotional states associated
+with anticipation.
+
+01:11:33.570 --> 01:11:36.000
+These are descriptions of
+emotional states presented
+
+01:11:36.000 --> 01:11:38.370
+in the general context
+without ascribing them
+
+01:11:38.370 --> 01:11:39.870
+to a specific group.
+
+01:11:39.870 --> 01:11:42.360
+No protected class or
+attitude is mentioned.
+
+01:11:42.360 --> 01:11:45.060
+It's not grounded and that's
+why this is a failure.
+
+01:11:45.060 --> 01:11:49.640
+So you can look at how doing
+things like in this case,
+
+01:11:49.640 --> 01:11:52.190
+I believe this must have been
+a very simple flip attack.
+
+01:11:52.190 --> 01:11:54.500
+We're still able to get
+through and give a response
+
+01:11:54.500 --> 01:11:56.420
+that it should not have given.
+
+01:11:56.420 --> 01:11:58.010
+This one is for
+sensitive data leakage,
+
+01:11:58.010 --> 01:11:59.700
+task adherence, and so on.
+
+01:11:59.700 --> 01:12:02.520
+Let's also see a
+completed evaluation
+
+01:12:02.520 --> 01:12:03.720
+to see what that looks like.
+
+01:12:03.720 --> 01:12:06.930
+So over here, this is
+from a previous run.
+
+01:12:06.930 --> 01:12:11.630
+So here is an evaluation
+of, and what you can see is
+
+01:12:11.630 --> 01:12:15.440
+in this evaluation, the partial
+is because it completed,
+
+01:12:15.440 --> 01:12:18.000
+some evaluations failed
+and some had errors.
+
+01:12:18.000 --> 01:12:21.180
+This again is really useful
+for us because it lets us see
+
+01:12:21.180 --> 01:12:24.060
+which evaluations failed
+and allows us to dive in
+
+01:12:24.060 --> 01:12:26.340
+and say why did that
+fail and then iterate
+
+01:12:26.340 --> 01:12:30.390
+to fix either the instructions
+or the tools or the grounding
+
+01:12:30.390 --> 01:12:32.070
+until you've got that
+passing as well.
+
+01:12:32.070 --> 01:12:35.070
+So let's kind of take a really
+quick look at what failed here.
+
+01:12:35.070 --> 01:12:37.080
+This was relevance
+and groundedness.
+
+01:12:37.080 --> 01:12:40.680
+And I'm sure if we actually
+went through and looked at it,
+
+01:12:40.680 --> 01:12:43.140
+you'd have to download
+the results to see it,
+
+01:12:43.140 --> 01:12:45.750
+but you could then
+go ahead and kind
+
+01:12:45.750 --> 01:12:49.290
+of understand the nuances behind
+it, fix it and iterate on it.
+
+01:12:49.290 --> 01:12:51.870
+So in the interest of
+time, I'm going to wrap.
+
+01:12:51.870 --> 01:12:53.880
+There's one last step that
+we wanted to show you,
+
+01:12:53.880 --> 01:12:55.500
+but please do look at the repo
+
+01:12:55.500 --> 01:12:57.030
+because we have a
+step-by-step workshop
+
+01:12:57.030 --> 01:12:58.410
+where you can find this out.
+
+01:12:58.410 --> 01:13:01.380
+The last step is you're
+in the test kitchen.
+
+01:13:01.380 --> 01:13:03.000
+You've done everything
+you needed to do to go
+
+01:13:03.000 --> 01:13:04.350
+from your simple recipe idea
+
+01:13:04.350 --> 01:13:06.420
+to a working recipe
+that you've tasted.
+
+01:13:06.420 --> 01:13:07.560
+Looks like it's doing okay.
+
+01:13:07.560 --> 01:13:09.150
+Now you want to move
+to the restaurant.
+
+01:13:09.150 --> 01:13:10.500
+How do you do that?
+
+01:13:10.500 --> 01:13:12.420
+This is where you can
+go ahead and click
+
+01:13:12.420 --> 01:13:16.020
+on "View Sample App Code,"
+get the environment variables
+
+01:13:16.020 --> 01:13:18.060
+and sample app code
+that you can then move
+
+01:13:18.060 --> 01:13:22.500
+over to Visual Studio Code, and
+then work with the same agent
+
+01:13:22.500 --> 01:13:24.960
+through a code-first approach.
+
+01:13:24.960 --> 01:13:28.320
+And I think I had one here,
+but this is the workshop
+
+01:13:28.320 --> 01:13:30.330
+that you can actually
+go check out.
+
+01:13:30.330 --> 01:13:32.130
+You can move it into
+a code-first approach
+
+01:13:32.130 --> 01:13:34.650
+and once you're in VS Code,
+you have additional tools,
+
+01:13:34.650 --> 01:13:37.980
+Foundry toolkit, Foundry skills
+with GitHub Copilot for Azure,
+
+01:13:37.980 --> 01:13:41.760
+as well as just basic
+Azure Developer CLI
+
+01:13:41.760 --> 01:13:43.230
+and other command line tools
+
+01:13:43.230 --> 01:13:45.600
+that will help you build
+much more complex solutions
+
+01:13:45.600 --> 01:13:46.470
+on the fly.
+
+01:13:46.470 --> 01:13:48.960
+And with that, let me go
+back over to our slides
+
+01:13:48.960 --> 01:13:50.640
+and let's wrap up the session.
+
+01:13:50.640 --> 01:13:53.640
+So we just went through
+a really rapid fire tour
+
+01:13:53.640 --> 01:13:54.990
+of the Foundry portal.
+
+01:13:54.990 --> 01:13:58.620
+We saw how to create your first
+agent from a Foundry project.
+
+01:13:58.620 --> 01:14:01.800
+Update the model, update the
+tools, update the instructions,
+
+01:14:01.800 --> 01:14:03.870
+write custom evaluators
+and run them,
+
+01:14:03.870 --> 01:14:06.180
+run a custom red teaming scan.
+
+01:14:06.180 --> 01:14:08.580
+And at this point you have
+a recipe that's good to go.
+
+01:14:08.580 --> 01:14:10.500
+So let's wrap up.
+
+01:14:10.500 --> 01:14:12.300
+What did we actually see today?
+
+01:14:12.300 --> 01:14:14.880
+Microsoft Foundry is
+your end-to-end platform
+
+01:14:14.880 --> 01:14:17.700
+for building apps and agents
+
+01:14:17.700 --> 01:14:21.030
+from initial planning
+to production.
+
+01:14:21.030 --> 01:14:26.400
+It provides models, agents,
+datasets, indexes, evaluation,
+
+01:14:26.400 --> 01:14:29.490
+tracing, fine-tuning, and
+more, many of the features
+
+01:14:29.490 --> 01:14:31.620
+that you saw in the
+Foundry portal.
+
+01:14:31.620 --> 01:14:32.880
+Note that in this picture,
+
+01:14:32.880 --> 01:14:34.860
+you see Foundry portal is
+just one of the clients.
+
+01:14:34.860 --> 01:14:36.270
+It is our low-code client.
+
+01:14:36.270 --> 01:14:39.900
+It's a place for you to kind
+of experiment with ideas
+
+01:14:39.900 --> 01:14:40.860
+until you're at a point
+
+01:14:40.860 --> 01:14:43.140
+where you feel comfortable
+moving the code.
+
+01:14:43.140 --> 01:14:45.480
+Once you do that, you
+have several options.
+
+01:14:45.480 --> 01:14:47.850
+You can use the Foundry
+SDK to integrate
+
+01:14:47.850 --> 01:14:52.290
+with various languages, Python,
+JavaScript, Java, and.net.
+
+01:14:52.290 --> 01:14:55.440
+Or when you go into and
+use VS Code as your IDE,
+
+01:14:55.440 --> 01:14:57.090
+you have a Foundry
+toolkit extension
+
+01:14:57.090 --> 01:14:59.220
+that can really accelerate
+your productivity,
+
+01:14:59.220 --> 01:15:00.960
+and you have Foundry skills
+
+01:15:00.960 --> 01:15:05.790
+that you can use alongside
+GitHub Copilot for Azure.
+
+01:15:05.790 --> 01:15:09.360
+So you effectively have agents
+helping you build agents.
+
+01:15:09.360 --> 01:15:13.590
+The big takeaway is when
+you're building agents
+
+01:15:13.590 --> 01:15:17.310
+for enterprise scale, agents
+are like microservices
+
+01:15:17.310 --> 01:15:19.590
+that combine together
+to orchestrate
+
+01:15:19.590 --> 01:15:21.840
+into larger scale applications.
+
+01:15:21.840 --> 01:15:25.770
+You need the ability to evolve
+and adapt your agents rapidly.
+
+01:15:25.770 --> 01:15:29.280
+Foundry portal is your low-code
+approach that allows you
+
+01:15:29.280 --> 01:15:32.970
+to iterate quickly,
+experiment with ideas,
+
+01:15:32.970 --> 01:15:35.310
+and go from plan to prototype.
+
+01:15:35.310 --> 01:15:39.570
+In other words, take a
+simple recipe and taste it
+
+01:15:39.570 --> 01:15:42.750
+until you feel like it's
+ready for your restaurant.
+
+01:15:42.750 --> 01:15:44.880
+Once you do that, you can
+move over to pro code
+
+01:15:44.880 --> 01:15:47.070
+and use the other options
+available to you.
+
+01:15:47.070 --> 01:15:49.980
+Today, we looked at how you
+could author agents using the
+
+01:15:49.980 --> 01:15:54.870
+visual canvas in Foundry portal,
+use defaults that are available
+
+01:15:54.870 --> 01:15:58.710
+in the portal to basically
+accelerate your move
+
+01:15:58.710 --> 01:16:02.370
+from the initial agent
+creation to a custom agent
+
+01:16:02.370 --> 01:16:05.310
+with custom instructions,
+tools, and evaluations.
+
+01:16:05.310 --> 01:16:08.580
+And finally, it gives you
+a managed surface for you
+
+01:16:08.580 --> 01:16:10.680
+to not just build and
+deploy your agents
+
+01:16:10.680 --> 01:16:14.280
+but maintain your entire
+fleet of agents at scale.
+
+01:16:14.280 --> 01:16:16.080
+And then I'm going to turn
+over to Carlotta to wrap
+
+01:16:16.080 --> 01:16:18.900
+up the session for us
+from where we started.
+
+01:16:18.900 --> 01:16:20.460
+Carlotta.
+
+01:16:20.460 --> 01:16:21.210
+CARLOTTA CASTELLUCCIO:
+Thanks, Nytia.
+
+01:16:21.210 --> 01:16:25.050
+So, yes, let's wrap up and
+see what we have covered
+
+01:16:25.050 --> 01:16:26.370
+in this session.
+
+01:16:26.370 --> 01:16:31.700
+So, we have seen how
+to discover, explore,
+
+01:16:31.700 --> 01:16:34.220
+and compare models within
+the Foundry portal.
+
+01:16:34.220 --> 01:16:38.300
+We have seen how to build your
+agent and keep it with knowledge
+
+01:16:38.300 --> 01:16:42.260
+and tools needed to address
+the business scenario
+
+01:16:42.260 --> 01:16:43.850
+and the user's needs.
+
+01:16:43.850 --> 01:16:48.990
+We have seen how to include
+observability and agent controls
+
+01:16:48.990 --> 01:16:52.410
+from the beginning of
+agent prototyping.
+
+01:16:52.410 --> 01:16:57.180
+And we have seen also how
+to smoothly move to code
+
+01:16:57.180 --> 01:17:01.500
+to further customization and
+deploy your code on the cloud.
+
+01:17:01.500 --> 01:17:05.760
+Everything can be done within a
+single unified portal and more
+
+01:17:05.760 --> 01:17:07.590
+because there's a few
+things we have seen,
+
+01:17:07.590 --> 01:17:10.380
+which is multi-agent
+orchestration and fine-tuning
+
+01:17:10.380 --> 01:17:13.050
+and model customization,
+which is still available
+
+01:17:13.050 --> 01:17:17.280
+within the same Foundry portal.
+
+01:17:17.280 --> 01:17:23.100
+And coming back to our analogy
+of our test kitchen to table,
+
+01:17:23.100 --> 01:17:27.000
+we can say that test kitchens
+
+01:17:27.000 --> 01:17:33.120
+like Microsoft Foundry portal
+are where chef design recipes
+
+01:17:33.120 --> 01:17:37.380
+by fast experimentation, so
+using a low-code approach.
+
+01:17:37.380 --> 01:17:39.630
+And then, so in this analogy,
+
+01:17:39.630 --> 01:17:41.940
+Microsoft Foundry portal
+is our test kitchen
+
+01:17:41.940 --> 01:17:47.610
+that then prepares you
+as a developer to scale
+
+01:17:47.610 --> 01:17:52.860
+out with code using things
+like Visual Studio Code,
+
+01:17:52.860 --> 01:17:56.640
+the Foundry toolkit extension
+within Visual Studio Code,
+
+01:17:56.640 --> 01:18:00.330
+and integration with
+open source framework
+
+01:18:00.330 --> 01:18:08.430
+and interoperable protocols to
+customize the solution further,
+
+01:18:08.430 --> 01:18:11.820
+build on top of this prototype
+more complex architecture
+
+01:18:11.820 --> 01:18:14.070
+and ship it into production.
+
+01:18:14.070 --> 01:18:16.650
+Thank you so much for
+attending this session.
+
+01:18:16.650 --> 01:18:19.950
+Here's a couple of next
+steps you want to take.
+
+01:18:19.950 --> 01:18:24.060
+First of all, the first QR
+code and link will drive you
+
+01:18:24.060 --> 01:18:28.710
+to the Foundry portal workshop
+GitHub repo where you're going
+
+01:18:28.710 --> 01:18:32.700
+to find the session
+material, so the deck,
+
+01:18:32.700 --> 01:18:35.130
+the step-by-step instructions
+
+01:18:35.130 --> 01:18:37.230
+to replicate the demos
+you have seen today,
+
+01:18:37.230 --> 01:18:42.570
+and also a workshop format
+of the same content.
+
+01:18:42.570 --> 01:18:46.640
+And on the right you can see
+the QR code and the link
+
+01:18:46.640 --> 01:18:49.670
+that will drive you to the
+Foundry Discord server.
+
+01:18:49.670 --> 01:18:51.140
+There's a huge community.
+
+01:18:51.140 --> 01:18:54.230
+We have a huge community on
+Foundry Discord right now,
+
+01:18:54.230 --> 01:18:58.520
+and you can get support
+from other team members
+
+01:18:58.520 --> 01:19:03.810
+and also join roundtables
+with advocates in Microsoft,
+
+01:19:03.810 --> 01:19:06.300
+but also product group members.
+
+01:19:06.300 --> 01:19:09.240
+So you can bring your
+questions, bring your ideas,
+
+01:19:09.240 --> 01:19:11.940
+bring your experience.
+
+01:19:11.940 --> 01:19:13.740
+And thank you so much.
+
+01:19:13.740 --> 01:19:14.730
+Thank you, Nitya.
+
+01:19:14.730 --> 01:19:17.780
+And yeah.
+
+01:19:17.780 --> 01:19:19.590
+NITYA NARASIMHAN: Speak
+to you next time.

@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OD810 - Build fast, not fragile with Rayfin and Microsoft Fabric</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; OD810</nav>
+        <h1>OD810 &mdash; Build fast, not fragile with Rayfin and Microsoft Fabric</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">OD810 &middot; Pre-recorded</span>
+    <h1>Build fast, not fragile with Rayfin and Microsoft Fabric</h1>
+    <div class="speakers">Yohan Lasorsa</div>
+    <div class="meta">
+        <span>Pre-recorded</span>
+<span>(200) Intermediate</span>
+    </div>
+    <div class="tags"><span class="tag">Microsoft Fabric</span> <span class="tag">CP&amp;D</span> <span class="tag">Data</span> <span class="tag">Cloud platform &amp; data</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/OD810?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/8d61253f-f0fa-49ee-9f91-10e852b48f42" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/8d61253f-f0fa-49ee-9f91-10e852b48f42" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Ship new apps in minutes without hand-rolling auth, data, and hosting. In this session, see how RayFin on Microsoft Fabric gives developers and coding agents a code-first backend with typesafe schemas, APIs, functions, storage, and app hosting. We&#39;ll walk through going from idea to working app, with Fabric-native data ready for governance, analytics, and AI from day one.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>The session addresses the gap between AI-generated prototypes and production-ready applications, arguing that 80-90% of vibe-coded prototypes never ship because the bar for production-grade auth, data integrity, governance, and deployment hasn&#39;t lowered. It demonstrates RayFin, a managed backend-as-a-service built on Microsoft Fabric, by building and deploying a recipe-sharing app (&quot;Contoso Chef&quot;) end-to-end with a coding agent.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>RayFin, a Fabric-native managed backend-as-a-service (00:02:48)</strong> — A complete platform for web apps providing a managed database, authentication, hosting, functions, storage, and real-time services, built to be enterprise-ready from day one.</li>
+<li><strong>Agent-first bootstrapping via the RayFin CLI (00:08:05)</strong> — Projects scaffolded with the CLI ship with a built-in RayFin skill and MCP server that teach coding agents how to use the SDK and load documentation.</li>
+<li><strong>TC39 standard decorators for type-safe schemas (00:12:42)</strong> — Entity schemas are defined as TypeScript classes using standard upcoming-JavaScript decorators rather than framework-specific ones, for future-proofing.</li>
+<li><strong>One-command deploy to production via <code>npx rayfin up</code> (00:27:21)</strong> — The same command that provisions the backend, API endpoints, and Fabric database also puts the app in production, so dev and prod share one foundation.</li>
+<li><strong>Automated schema migrations with <code>rayfin db apply</code> (00:24:15)</strong> — RayFin analyzes entities against the live database, generates a migration, and applies it (versioning the schema), or redeploys backend and migrates in one step.</li>
+<li><strong>Analytics app template for Fabric (00:30:10)</strong> — A new (early preview) template lets the app&#39;s data flow into dashboards via semantic models, with an AI design skill for polished visuals.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>The prototype-to-production gap and why vibe-coded apps fail (outages, security, data leaks).</li>
+<li>Identity and access control implemented as backend read/write policies on entities (private, unlisted/shared-by-link, public visibility).</li>
+<li>Type-safe entity modeling, entity relations (recipes, likes, comments), and the generated <code>schema.ts</code>.</li>
+<li>Safe schema evolution and migrations as apps change after launch.</li>
+<li>Fabric-native data estate enabling governance, analytics, and AI access from day one.</li>
+<li>&quot;Vibe coding with guardrails&quot; — agents focused on app experience while the platform supplies primitives (auth, database, GraphQL APIs).</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;What used to take months to build a prototype now takes minutes. The risk, though, is treating the first working demo as the production foundation.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;While the development speed for apps is now faster than ever, the bar for production-grade apps still hasn&#39;t changed.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;The fastest path to production starts with the right foundation.&quot;</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>RayFin</li>
+<li>Microsoft Fabric</li>
+<li>GitHub Copilot CLI</li>
+<li>Visual Studio Code</li>
+<li>Microsoft SQL database (Fabric)</li>
+<li>MCP server (RayFin)</li>
+<li>npm / npx</li>
+<li>TypeScript</li>
+<li>GraphQL</li>
+<li>Power BI semantic models [inferred]</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Yohan Lasorsa — Principal Developer Advocate, Microsoft</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>RayFin documentation (referenced verbally at 00:33:23; no URL provided in the transcript).</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (31,907 chars)</summary>
+        <pre class="transcript-body">[00:00:03] YOHAN LASORSA: Hey, folks.
+[00:00:04] Welcome to this session
+[00:00:05] where we&#39;ll discuss a somewhat hot topic among developers,
+[00:00:09] pushing vibe-coded apps to production, but safely.
+[00:00:12] My name is Yogan Lasorsa,
+[00:00:14] and I&#39;m a Principal Developer Advocate here at Microsoft.
+[00:00:17] Coding agents have become exponentially better
+[00:00:20] in the past year, and this has changed completely how we build
+[00:00:23] new applications.
+[00:00:25] More people, even non-technical folks, now can take a real shot
+[00:00:29] at building the app they imagined.
+[00:00:32] The timeline changed, too, with dramatic speed increases.
+[00:00:36] What used to take months
+[00:00:37] to build a prototype now takes minutes.
+[00:00:41] The risk, though, is treating the first working demo
+[00:00:45] as the production foundation.
+[00:00:47] If you&#39;re a developer, I&#39;m sure you&#39;ve already experienced
+[00:00:50] something like this.
+[00:00:53] Marketing just had a crazy app idea yesterday, and today,
+[00:00:57] they&#39;re showing it to you after they&#39;ve played a bit
+[00:01:00] with GitHub Copilot or some other AI tool,
+[00:01:03] asking that the code is there, so you just have
+[00:01:07] to put it in production.
+[00:01:09] I&#39;ve been there multiple times, at least, so, yeah,
+[00:01:14] this somehow feels a bit personal.
+[00:01:21] Here&#39;s the hard truth.
+[00:01:22] Besides my own experience, multiple surveys
+[00:01:25] and analysis show that 80 to 90% of AI-generated
+[00:01:31] or vibe-coded prototypes never become production apps.
+[00:01:36] I would like to say that&#39;s for good reasons.
+[00:01:39] You&#39;ve all heard the horror stories lately
+[00:01:42] about the outages, security, and data leaks with vibe-coded apps
+[00:01:47] that may have been pushed public a bit too early.
+[00:01:53] That&#39;s because while the development speed
+[00:01:55] for apps is now faster than ever,
+[00:01:58] the bar for production-grade apps still hasn&#39;t changed.
+[00:02:01] You still need to know who the user is
+[00:02:04] and what they&#39;re allowed to do.
+[00:02:06] You still need a trustworthy data model, safe migrations,
+[00:02:10] and clear boundaries around the data.
+[00:02:13] You still need governance, compliance, security reviews,
+[00:02:16] and a deployment model that can scale and be observed.
+[00:02:21] Increasingly, you also need the data created by the app
+[00:02:24] to be immediately useful, not just stored somewhere,
+[00:02:28] but you need to be able to query and get insights from it
+[00:02:32] and make it accessible to AI agents.
+[00:02:36] This is the shift.
+[00:02:37] Coding agents make it much easier to go from idea
+[00:02:41] to prototype, but the real gap now is getting
+[00:02:44] from prototype to production.
+[00:02:48] Rayfin is there to serve that gap.
+[00:02:51] It&#39;s a managed backend as a service
+[00:02:54] for building enterprise apps built on top
+[00:02:56] of Microsoft Fabric, so it&#39;s a complete platform for web apps
+[00:03:00] that provides you a backend with a managed database,
+[00:03:03] authentication, hosting, functions, storage,
+[00:03:07] and real-time services.
+[00:03:09] That&#39;s great, having all of this in one place,
+[00:03:13] but you may already be using other platforms
+[00:03:15] that provide similar features.
+[00:03:18] What&#39;s different here is that it was built to be enterprise-ready
+[00:03:22] and Fabric-native from day one.
+[00:03:25] All the things that you already like and get from Fabric,
+[00:03:29] like governance, security, compliance, and easy integration
+[00:03:32] with your Fabric data estates, you have it with Rayfin.
+[00:03:37] There&#39;s also another thing that I should mention.
+[00:03:40] It was built from the start with coding agents in mind,
+[00:03:44] with the goal of making vibe-coded apps benefit from all
+[00:03:48] of these features without any extra work from your side.
+[00:03:54] Now that I&#39;ve set the context, let&#39;s have a quick look
+[00:03:58] at what we&#39;ll explore during this session.
+[00:04:01] From now on, don&#39;t worry, it will be mostly demos.
+[00:04:05] We&#39;ll see how to create a new app using a coding agent
+[00:04:09] in Rayfin and see how to control how users can access it.
+[00:04:16] We&#39;ll talk about data integrity and migration
+[00:04:19] as apps evolve over time.
+[00:04:22] We&#39;ll live-push our app to production.
+[00:04:24] Finally, we&#39;ll see how to bring in some
+[00:04:26] of the Fabric intelligence to build a nice dashboard
+[00:04:29] for our application, so let&#39;s start
+[00:04:34] by creating our application from scratch.
+[00:04:38] I&#39;ll move on to VS Code, and I&#39;ll use &quot;npm create&quot;
+[00:04:45] with the Microsoft Rayfin package to bootstrap my project.
+[00:04:54] Here, I get the option to either start using a built-in template
+[00:04:59] from a template that&#39;s somewhere else,
+[00:05:01] maybe in an external Git repo, or just start from scratch.
+[00:05:06] For now, I will use one of the built-in templates,
+[00:05:08] so you have multiple options.
+[00:05:11] I&#39;ll keep the Blank app because I want
+[00:05:14] to customize it for my needs.
+[00:05:17] I&#39;ll call my project &quot;Chef.&quot;
+[00:05:20] I want Microsoft SQL database to host the file.
+[00:05:25] Yeah, after it copies all the files,
+[00:05:27] it will just install everything I need.
+[00:05:31] Meanwhile, I want to give you some background about the app
+[00:05:34] that we are going to build.
+[00:05:36] I come from an Italian family, and we have plenty of recipes
+[00:05:40] that are passed down from generation to generation,
+[00:05:43] but most are only in the heads of the family members.
+[00:05:48] Recently, as I was chatting with my kids about some
+[00:05:51] of these recipes, I thought that it would be great
+[00:05:54] to have a better way to store and share them,
+[00:05:56] especially with the younger generation
+[00:05:59] that is more used to digital tools.
+[00:06:02] One critical requirement that I have if I want
+[00:06:05] to get the elders&#39; buy-in is
+[00:06:08] that the family secrets must stay secret.
+[00:06:12] I mean, some of these recipes are our very own secret sauce
+[00:06:16] that we just don&#39;t want to share with the world,
+[00:06:18] so I&#39;m sure you can relate to that.
+[00:06:22] For this app, I&#39;ve drafted this spec here.
+[00:06:26] Okay. This is an app that&#39;s called, &quot;Contoso Chef.&quot;
+[00:06:29] It&#39;s a recipe sharing website used to store personal recipes
+[00:06:36] and seek some meal inspiration.
+[00:06:38] To create a recipe, you need authentication.
+[00:06:41] Recipes have different visibility, private by default.
+[00:06:46] You can also share some recipe that you don&#39;t want
+[00:06:49] to be publicly listed with friends using a unique link.
+[00:06:52] That&#39;s something I want also,
+[00:06:54] because not all recipes are just family secrets,
+[00:07:00] and some can be just shared with anyone.
+[00:07:03] I&#39;m listing some features like likes,
+[00:07:06] so you can favorite some of your recipes.
+[00:07:09] Oh, and I already prepared inside this data folder,
+[00:07:14] some public recipes, something that I don&#39;t mind sharing
+[00:07:18] in JSON format, just to get some data
+[00:07:22] to start with, also, with images.
+[00:07:25] I put everything in there, and I even have some ideas
+[00:07:29] that will be kept for later.
+[00:07:31] So, okay, let&#39;s get started
+[00:07:33] with this application using Copilot CLI.
+[00:07:36] I&#39;m running Copilot in a yolo mode to be able --
+[00:07:41] so it can just do its thing.
+[00:07:44] You can see that it&#39;s -- oh, I&#39;m not in the right folder.
+[00:07:49] So first, I need to go to the Chef folder and restart Copilot.
+[00:07:57] You can see that there are some skills on the MCP server.
+[00:08:02] Let&#39;s just explore that.
+[00:08:05] So Rayfin, if you bootstrap the project using the Microsoft
+[00:08:09] Rayfin CLI, you get, by default, this Rayfin skill
+[00:08:14] that gives some instruction to the agents to understand how
+[00:08:18] to create and use the Rayfin SDK to build a project.
+[00:08:23] I also added one front-end design skill that&#39;s someone
+[00:08:27] that you can find on the web
+[00:08:29] to get some better web design capabilities to the agent.
+[00:08:36] If we look at the MCP server, we also have one from Rayfin
+[00:08:40] to allow the agents to load and all the documentation
+[00:08:45] to understand how Rayfin projects works.
+[00:08:50] That&#39;s it, and since I put everything I wanted to implement
+[00:08:55] in this spec.md file, I can just tell my agents to go on
+[00:08:59] and implement what I have in my spec documents.
+[00:09:05] Of course, the agent will start reading my spec, trying to look
+[00:09:10] at the project to understand how it works.
+[00:09:16] You can see that it loaded the Rayfin skill
+[00:09:19] to understand how Rayfin works.
+[00:09:21] It may have used also the MCP server under the hood.
+[00:09:24] It&#39;s taking a look at the data.
+[00:09:28] So yeah, you get the idea.
+[00:09:31] Because it&#39;s not really fun to just look
+[00:09:34] at Copilots implement this stuff,
+[00:09:36] we&#39;ll just fast forward a bit to the next step.
+[00:09:42] I already run this prompt before
+[00:09:45] and save the result inside this branch.
+[00:09:48] I&#39;ll just remove this folder, so I put everything
+[00:09:52] at the root of the project.
+[00:09:55] Oh, I&#39;ll just go back to my project.
+[00:10:00] Okay. Now we&#39;re ready to see what the agents generated
+[00:10:05] in there, so before we explore a bit of the project,
+[00:10:10] I just run this command
+[00:10:12] to create the backend for my application.
+[00:10:16] For that, I&#39;ll use the &quot;npx Rayfin up&quot; command with the
+[00:10:22] &quot;workspace URI&quot; setting.
+[00:10:26] Now I&#39;m going to Fabric.
+[00:10:28] I have created this workspace.
+[00:10:29] You can see that it&#39;s empty.
+[00:10:31] This is where I will put all the database and the backend
+[00:10:36] for my Rayfin app, so for now, I&#39;ll just copy this URL in there
+[00:10:41] and pass that to my command line and run it,
+[00:10:45] and it should create all the backend and API endpoints,
+[00:10:50] also the database in Fabric, and connect all of that
+[00:10:53] to my application, so it will just take a few seconds.
+[00:10:57] Meanwhile, we can explore the project a bit.
+[00:11:01] Just if you&#39;re curious, it took about 20 minutes
+[00:11:05] to generate the project from my spec, so to get you an idea
+[00:11:09] of how long it takes to generate a Rayfin project
+[00:11:13] from the template.
+[00:11:15] The most important part of this project is located
+[00:11:17] under the Rayfin folder.
+[00:11:20] The first important file is this Rayfin.yml file.
+[00:11:24] You can see here we have some metadata about the project,
+[00:11:29] like the name of the project, which services I want
+[00:11:33] to be enabled for my project, like authentication,
+[00:11:36] data storage, and static hosting.
+[00:11:40] I can even configure like, oh, I want my frontend to be built
+[00:11:45] and stuff like that, and the second most important folder is
+[00:11:52] the Rayfin data folder.
+[00:11:53] This is where you have all the entities for your application.
+[00:11:58] That&#39;s, for example, let&#39;s look at what a recipe looks like,
+[00:12:03] so you can see that it&#39;s a TypeScript class.
+[00:12:07] All the entities are type safe, so you can use
+[00:12:12] that in your application and get type inference from that.
+[00:12:18] To describe the schema for my entities,
+[00:12:21] I&#39;m using Decoration from the Rayfin SDK.
+[00:12:30] If you are a JavaScript nerd, just like me, you might be glad
+[00:12:34] to hear that these are not just like Rayfin decorators --
+[00:12:39] sorry, not TypeScript decorators.
+[00:12:42] These are the standard TC39 spec decorators that are coming
+[00:12:49] into the JavaScript standard a bit more later.
+[00:12:52] So yeah, this is already built
+[00:12:53] to be future proof at this point.
+[00:12:56] So yeah, I can see all the properties that I have
+[00:12:59] in my recipes, like the list of ingredients, the visibility
+[00:13:05] with the different options when it was created.
+[00:13:08] You can even define the relation with the different entities,
+[00:13:13] like a recipe can have many likes.
+[00:13:18] I can also have a look at the like entity
+[00:13:21] to see how it&#39;s done, and basically,
+[00:13:23] all these different entities are grouped into this schema.ts.
+[00:13:28] This is what is used by Rayfin to create my database,
+[00:13:34] so if I go back here to my workspace, if I refresh,
+[00:13:39] I should see, okay, the SQL database that was created.
+[00:13:44] The schema was automatically generated from this data
+[00:13:49] that was generated by the agent.
+[00:13:54] Now the next step is maybe just run the application
+[00:13:58] to see what it looks like.
+[00:14:00] So for that, I run &quot;npm run dev,&quot;
+[00:14:04] and I should have my dev server running.
+[00:14:09] Yeah, I have here the look of my application, so looking great.
+[00:14:15] Contoso Chef, it&#39;s a cookbook, so for now,
+[00:14:19] I can see that there&#39;s no data.
+[00:14:21] I will start to sign in.
+[00:14:23] I can see already that it&#39;s asking me
+[00:14:26] to sign in using Fabric OATS.
+[00:14:28] I&#39;ll just do that.
+[00:14:31] Oh, okay, as I said, so first run, I just wanted
+[00:14:35] to add some data into my app to be visible,
+[00:14:40] so it will import all the recipes I&#39;ve put
+[00:14:43] in the JSON file.
+[00:14:45] Meanwhile, we should be able to just have a look
+[00:14:50] at how it works, so I wait a bit until the data was imported,
+[00:14:57] and we&#39;ll come back to see.
+[00:14:59] What&#39;s important to retain here is that when I asked the agent
+[00:15:06] to generate my application, it wasn&#39;t asked to reinvent how
+[00:15:13] to do authentication and find packages for that,
+[00:15:16] how to handle storage, or how to handle
+[00:15:18] that data access from scratch.
+[00:15:20] It used what the Rayfin platform provides, so still looking
+[00:15:26] to import all the data.
+[00:15:31] I will just open a new tab to keep it running, but meanwhile,
+[00:15:36] just try to create my own recipe.
+[00:15:39] That&#39;s what we wanted to see.
+[00:15:42] For now, let&#39;s just say I want to create like a test recipe.
+[00:15:47] I have some description.
+[00:15:50] For now, let&#39;s keep things private.
+[00:15:53] Yeah, some French cuisine coming from France.
+[00:15:58] Let&#39;s add 1 teaspoon of testing.
+[00:16:06] Okay, test should be good.
+[00:16:12] Let&#39;s try to save this recipe.
+[00:16:14] Yeah, I have my test recipe working in there,
+[00:16:18] but what I wanted to show you is that, okay,
+[00:16:20] I could create my recipe.
+[00:16:22] We&#39;ll test later to see if it&#39;s really private as expected
+[00:16:28] because that&#39;s time to check this critical requirement.
+[00:16:33] I want it to keep the family secrets secret, so I want to see
+[00:16:39] if this recipe that I created private is really private
+[00:16:45] and check that the agent implemented it as I wanted.
+[00:16:50] What I&#39;ll do is just open the application inside a private
+[00:16:57] browsing window, so I should not be authenticated in there.
+[00:17:03] You can already see some of the recipes
+[00:17:06] that were populated in there.
+[00:17:09] Yeah, when you create a new recipe,
+[00:17:12] the new ones just appear at first.
+[00:17:17] You can see it&#39;s still loading,
+[00:17:20] so what I do is just try something dumb.
+[00:17:22] Just try to copy-paste the URL to see
+[00:17:25] if I can access this recipe that&#39;s supposed
+[00:17:28] to be private, and it&#39;s not found.
+[00:17:30] That&#39;s at least great.
+[00:17:31] It&#39;s saying, okay, it should be private, so probably,
+[00:17:33] that&#39;s -- I can&#39;t access it.
+[00:17:35] That&#39;s exactly what I wanted to happen.
+[00:17:39] What we can do also is maybe just try to edit this,
+[00:17:43] see if I can share it with the link,
+[00:17:47] so let&#39;s just save that recipe.
+[00:17:53] Okay. It should have finished, so it will probably be faster.
+[00:17:59] Did it work?
+[00:18:01] Let&#39;s try reloading.
+[00:18:03] Okay. It&#39;s now marked as &quot;unlist.&quot;
+[00:18:06] If I copy the link, let&#39;s try to refresh in there.
+[00:18:10] Now, I can access this recipe because it&#39;s marked as &quot;unlist,&quot;
+[00:18:15] and if I refresh in there,
+[00:18:19] I should still not see it in the main page.
+[00:18:22] Just so you can see, I can make it also public to see that in
+[00:18:31] that case, it should appear with the rest
+[00:18:36] of the public recipe in there.
+[00:18:39] What&#39;s it called, &quot;Test Recipe?&quot;
+[00:18:44] You can see that it was made public, now back to private.
+[00:18:51] Let&#39;s refresh and check that.
+[00:18:55] Yeah, this time, it&#39;s not there.
+[00:18:59] Okay. This was just quickly checking
+[00:19:05] that at least the agent seems to have generated things
+[00:19:09] like I wanted them to be.
+[00:19:12] Of course, for the unlisted things,
+[00:19:13] this is the MVP of my cooking app.
+[00:19:16] I wanted to keep things simple, just be able
+[00:19:18] to share using the link, but you can also imagine more complex
+[00:19:22] access control rules, being able to share only
+[00:19:25] with specific authenticated users, for example.
+[00:19:30] Yeah, for now, let&#39;s have a look
+[00:19:32] at how the access control is implemented.
+[00:19:36] Going back to the recipe entity,
+[00:19:40] we can see these two things in there.
+[00:19:42] First, the read policy that we have put to allow any recipe
+[00:19:50] that is not marked as private, so by the item that visibility.
+[00:19:55] That&#39;s the property and the recipes that&#39;s in there.
+[00:20:01] As long as the recipe is not private, anybody can read it,
+[00:20:06] even if you&#39;re not authenticated to the app.
+[00:20:09] Now, for an authenticated user, the policy is to be able
+[00:20:13] to read/write the recipe if it&#39;s not private --
+[00:20:22] not write but at least read it if it&#39;s not private,
+[00:20:26] or if it&#39;s private but you are the one that created it.
+[00:20:33] Yeah, it seems obvious, but this is a key point here.
+[00:20:37] This is because this is the moment
+[00:20:39] where many prototypes fail and usually need
+[00:20:42] to start rewriting the code.
+[00:20:44] Here we have the identity and access control part
+[00:20:47] of the app foundation, so it&#39;s built into the SDK
+[00:20:51] and the Rayfin platform.
+[00:20:54] It&#39;s not just visual.
+[00:20:56] By looking at it, this is how the backend handles the access
+[00:21:01] control stuff.
+[00:21:03] Now, this is also when things start to get interesting,
+[00:21:08] so let&#39;s say I want to implement one of my ideas that I kept
+[00:21:13] for later to support user comments on recipes.
+[00:21:17] We want to add a comment section to the recipe page,
+[00:21:22] so going back to the project, I&#39;ll stop the server for now
+[00:21:28] and run Copilot again in yolo mode,
+[00:21:36] so I don&#39;t get any need for confirmations.
+[00:21:42] Yeah, inside this spec, I also add, you know, in this Ideas
+[00:21:47] for Later, what I wanted for comments,
+[00:21:49] so comments need authentication to create comments,
+[00:21:52] and a user can comment on a recipe if they&#39;re authenticated.
+[00:21:57] They can comment on a recipe that they can view, of course,
+[00:22:01] and only the creator of recipe can delete comments
+[00:22:04] on their recipe, so pretty simple rule.
+[00:22:07] What I&#39;m just saying is I can just ask Copilot to implement,
+[00:22:14] again, what&#39;s in there.
+[00:22:17] What it will do, just like before, is take a look
+[00:22:20] at the project, use the Rayfin skill.
+[00:22:24] You get the idea.
+[00:22:26] It&#39;s not fun looking at the agents running
+[00:22:31] and implementing the stuff even though its time,
+[00:22:35] it should only take a few minutes.
+[00:22:37] I&#39;ll skip to when I already ran this prompt,
+[00:22:42] so I have this command branch.
+[00:22:45] I&#39;ll just do -- yeah, I need that.
+[00:22:53] Let&#39;s just undo the last comment so we can see the changes
+[00:22:55] that were generated by the agent.
+[00:22:59] What you can see -- that&#39;s okay.
+[00:23:00] It made some modification on the frontend part,
+[00:23:03] so that&#39;s not what I want to focus on right now.
+[00:23:06] I want to see -- it first created a comment entity,
+[00:23:11] something I wanted.
+[00:23:13] Yeah, you can see all kinds of rules
+[00:23:15] on what can or cannot be done.
+[00:23:19] I can see that it&#39;s more complex than the recipe because it has
+[00:23:23] to under like all the different use case, who can delete,
+[00:23:27] who can update, who can create the comments
+[00:23:30] and who can read it, so all kinds
+[00:23:31] of different policies in there.
+[00:23:34] It created the schema with the relations to the recipe,
+[00:23:39] and it made, also, some changes to the recipe entity,
+[00:23:46] and it was also added to the schema.
+[00:23:49] That means that I need to update the database schema
+[00:23:54] to be able to run these changes.
+[00:23:59] To do that, it also means that I have to generate a migration
+[00:24:02] for my schema, and the nice thing is
+[00:24:05] that Rayfin will do that for you.
+[00:24:09] You have a command.
+[00:24:12] Let&#39;s go back to my terminal.
+[00:24:15] With the &quot;npx Rayfin app: command,
+[00:24:18] I can just do &quot;db apply,&quot; and what it will do is analyze.
+[00:24:26] You can see the logs in there.
+[00:24:28] It will analyze all my entities.
+[00:24:31] See what&#39;s currently implemented in the database,
+[00:24:37] generate a migration schema,
+[00:24:39] and just perform the migration for you.
+[00:24:42] As you can see now, I&#39;m at Version 2 of my schema.
+[00:24:46] I also need to update my backend to be able to run the app.
+[00:24:49] I just, here, wanted to run the schema migration separately,
+[00:24:55] but if you just do a Rayfin app, it will redeploy the backend,
+[00:25:01] but also, perform the migration for you if needed,
+[00:25:05] so it&#39;s just an all-in-one command.
+[00:25:08] Let&#39;s just wait until the backend is redeployed,
+[00:25:12] and we&#39;ll restart the app to see how it looks
+[00:25:16] like for the commands.
+[00:25:18] Okay. So again, &quot;npm run dev&quot; to have my app running,
+[00:25:27] so let&#39;s just see what it looks like in the application.
+[00:25:33] I&#39;ll open like the first recipe.
+[00:25:37] Let&#39;s add in a command like looks yummy.
+[00:25:48] I can see that I have the option to delete it
+[00:25:50] since I created it myself.
+[00:25:52] Let&#39;s just open the same recipe inside my private browsing
+[00:25:58] window so I&#39;m not logged in.
+[00:26:02] I can see the command, and I cannot do anything to it.
+[00:26:06] So, so far, looking great.
+[00:26:11] Let&#39;s just try to see if I can delete this command.
+[00:26:16] Okay.
+[00:26:23] Okay. Just putting it another command, so yeah,
+[00:26:26] you can see that it was quite easy and straightforward
+[00:26:31] to handle this schema migration, and that&#39;s exactly the point,
+[00:26:37] because app changes after launch
+[00:26:40] and safe schema evolution are even more essential
+[00:26:44] than getting it right the first time.
+[00:26:46] This is particularly important if you handle critical data
+[00:26:50] that you don&#39;t want to lose the family recipe.
+[00:26:57] Time for a quick checkpoint here.
+[00:26:59] So yes, we just vibe coded an application,
+[00:27:04] but the trick is we didn&#39;t ask the agent to figure
+[00:27:08] out everything on its own.
+[00:27:10] It didn&#39;t have to decide
+[00:27:12] from scratch how authentication should work,
+[00:27:15] how the database should be exposed,
+[00:27:18] how APIs should be shaped.
+[00:27:21] Instead, the agent had guardrails.
+[00:27:25] It had a workflow designed for agents, templates to start from,
+[00:27:29] platforms primitives like authentication, database,
+[00:27:33] GraphQL, APIs, and that makes a big difference.
+[00:27:37] Because for a recipe sharing app, things like public
+[00:27:41] or private recipe, it&#39;s not just UI features.
+[00:27:45] They touch identity, permissions, data access,
+[00:27:49] and API design, so the value here is that the agent can focus
+[00:27:54] on implementing the app experience while the platform
+[00:27:58] provides the foundation around it.
+[00:28:01] That&#39;s what I mean by vibe coding with guardrails.
+[00:28:05] You have fast iteration, but not from a blank,
+[00:28:09] unmanaged architecture.
+[00:28:11] Now comes the important question, really.
+[00:28:14] What does it take to put this app to production?
+[00:28:21] What if I say to you that the app is already in production?
+[00:28:26] When we run the npx Rayfin app command in the first demo,
+[00:28:32] that&#39;s basically what it took to create the back end, but also,
+[00:28:36] put the app to production.
+[00:28:39] Now if we open the in there, the Fabric portal,
+[00:28:44] you see that we have the database in there.
+[00:28:49] I can open the app, and yeah,
+[00:28:52] it&#39;s exactly the same application
+[00:28:55] that we tested locally.
+[00:28:58] I can also open it on its own page.
+[00:29:03] Yeah, I can share this URL with my family and friends
+[00:29:07] so they can also create recipes now.
+[00:29:11] Yeah, I can now try to start adding all my family recipes
+[00:29:17] with confidence about the data, and really,
+[00:29:21] you should not expect any surprises when moving an app
+[00:29:27] from development to production because it&#39;s built right
+[00:29:30] from the start on the same foundation.
+[00:29:33] That&#39;s exactly what we want here.
+[00:29:36] We&#39;ve seen how quick and easy we can create new enterprise-ready
+[00:29:40] applications with Rayfin.
+[00:29:42] The question that naturally comes next is how we can use the
+[00:29:47] data that our app generated to build dynamic dashboards
+[00:29:52] to get insights, because, yes, there&#39;s more to Rayfin.
+[00:29:58] The idea here is pretty simple.
+[00:30:01] Instead of treating the app and the analytics experience
+[00:30:05] as two separate worlds, we can bring them closer together.
+[00:30:10] We can do that using the new analytics app templates that&#39;s
+[00:30:14] built for Rayfin.
+[00:30:15] Currently, the Analytics app can work seamlessly
+[00:30:19] with semantic models,
+[00:30:20] so the data your app produces can immediately be displayed
+[00:30:24] on a dashboard.
+[00:30:25] On top of that, you get a robust visual stack,
+[00:30:29] not just basic charts, but a complete design skill
+[00:30:32] for AI agents that help turn raw data
+[00:30:35] into something that&#39;s more polished,
+[00:30:37] readable, and useful to you.
+[00:30:40] For developers, this is really nice
+[00:30:42] because you&#39;re not just building an app and saying good luck
+[00:30:46] to the business afterwards.
+[00:30:48] You&#39;re building an experience where the data can flow directly
+[00:30:51] into dashboards, reportings, and insights.
+[00:30:56] Yeah, there&#39;s also more coming soon as the experience
+[00:30:59] to define custom actions triggered
+[00:31:02] by your data will become simpler and even more integrated.
+[00:31:06] Let&#39;s have a quick look at what it means for our chef app.
+[00:31:10] We have the data in Fabric, so if you&#39;re data-oriented,
+[00:31:14] you would love to see some great dashboards and analytics on top
+[00:31:18] of my recipes data, I&#39;m sure.
+[00:31:22] I&#39;ve used here a very early preview
+[00:31:25] of the Analytics app templates,
+[00:31:27] and what I did is basically just ask Copilot
+[00:31:30] to build a nice dashboard, pointing it to my semantic model
+[00:31:35] and which Fabric workspace I wanted to use.
+[00:31:40] Don&#39;t mind the field services title in there.
+[00:31:42] That&#39;s because, at first, I forgot to mention
+[00:31:45] which semantic model I used, so we picked one
+[00:31:47] from a different application I was building.
+[00:31:51] Now let&#39;s just have a look at the dashboard,
+[00:31:56] so I&#39;m running &quot;npm run dev&quot; again.
+[00:32:00] Let&#39;s give it some time the load the data.
+[00:32:05] Yeah, this is the result, so I&#39;m pretty sure the latest version
+[00:32:08] of the template is even nicer because I used an old one,
+[00:32:12] but it&#39;s already great for just a few minutes of work to see all
+[00:32:20] that data coming from my application.
+[00:32:23] If there&#39;s one more thing to take away
+[00:32:25] in this session, it&#39;s this.
+[00:32:27] The fastest path to production starts
+[00:32:30] with the right foundation.
+[00:32:32] Coding agents help us move fast.
+[00:32:34] They are great for bootstrapping an app, trying ideas,
+[00:32:37] and iterating quickly, but as developers,
+[00:32:41] we know that producing code is only one part of the story.
+[00:32:44] A real application still needs identity, data, security,
+[00:32:49] deployments, and a platform that can support it over time.
+[00:32:53] When those pieces are already in the foundation,
+[00:32:57] agents can move quickly without leaving a lot
+[00:32:59] of cleanup for later.
+[00:33:02] When the app is Fabric native, the data is already
+[00:33:05] where you need it next for analytics
+[00:33:08] and AI-powered insight.
+[00:33:10] So yes, by all means, build fast,
+[00:33:14] but build on the foundation
+[00:33:16] that can take you all the way to production.
+[00:33:21] That&#39;s it for this session.
+[00:33:23] If you want to learn more about everything I&#39;ve talked
+[00:33:26] about today, please take a look at our documentation,
+[00:33:30] which will guide you through how you can use all these
+[00:33:34] capabilities with even more detail.
+[00:33:37] Thank you.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

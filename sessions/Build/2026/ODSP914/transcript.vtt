@@ -1,0 +1,1777 @@
+WEBVTT
+
+00:00:01.290 --> 00:00:01.620
+KATARINA STANLEY: Welcome
+
+00:00:01.620 --> 00:00:04.590
+to this session on
+Anyscale on Azure.
+
+00:00:04.590 --> 00:00:07.650
+I'm Katarina, a Product
+Marketing Manager at Anyscale,
+
+00:00:07.650 --> 00:00:10.170
+and I'm joined today by my
+colleague Daniel Arrizza,
+
+00:00:10.170 --> 00:00:12.190
+a Field Engineer here.
+
+00:00:13.380 --> 00:00:14.190
+Quick agenda.
+
+00:00:14.190 --> 00:00:17.250
+I'll cover why teams are
+choosing to own their AI stack,
+
+00:00:17.250 --> 00:00:19.770
+what makes that hard to
+scale, and how Anyscale
+
+00:00:19.770 --> 00:00:21.690
+in Azure addresses it.
+
+00:00:21.690 --> 00:00:23.760
+Daniel's going to follow
+with a technical demo,
+
+00:00:23.760 --> 00:00:27.210
+and we'll close with
+some next steps.
+
+00:00:27.210 --> 00:00:29.460
+To jump right in,
+every team building
+
+00:00:29.460 --> 00:00:33.120
+with AI today is making
+a choice on a spectrum.
+
+00:00:33.120 --> 00:00:35.430
+On one end, you can
+rent intelligence,
+
+00:00:35.430 --> 00:00:38.820
+calling someone else's
+model through an API.
+
+00:00:38.820 --> 00:00:40.710
+On the other end,
+you can own it.
+
+00:00:40.710 --> 00:00:42.750
+And owning is not binary.
+
+00:00:42.750 --> 00:00:45.810
+It's a spectrum that includes
+deploying open-source models,
+
+00:00:45.810 --> 00:00:48.540
+customizing open-source
+models with your own data,
+
+00:00:48.540 --> 00:00:51.240
+and training your own models.
+
+00:00:51.240 --> 00:00:54.270
+Most teams use a mix of
+both renting and owning.
+
+00:00:54.270 --> 00:00:56.340
+The question is when
+ownership makes sense
+
+00:00:56.340 --> 00:00:59.010
+for a given workload.
+
+00:00:59.010 --> 00:01:00.870
+So, when is that the case?
+
+00:01:00.870 --> 00:01:03.540
+It usually comes down
+to a few things.
+
+00:01:03.540 --> 00:01:06.840
+Control over your models
+and your operations,
+
+00:01:06.840 --> 00:01:09.210
+so you're not exposed
+to model deprecations,
+
+00:01:09.210 --> 00:01:11.970
+rate limits or outages.
+
+00:01:11.970 --> 00:01:14.130
+Data and differentiation,
+when you need
+
+00:01:14.130 --> 00:01:17.760
+to keep proprietary data
+inside your boundary.
+
+00:01:17.760 --> 00:01:21.360
+And cost and latency, for
+better unit economics at scale
+
+00:01:21.360 --> 00:01:24.540
+and faster end-to-end
+response times.
+
+00:01:24.540 --> 00:01:27.750
+When one or more of these
+apply, that's typically
+
+00:01:27.750 --> 00:01:31.980
+when we see teams move
+towards ownership.
+
+00:01:31.980 --> 00:01:34.560
+But here is the challenge point.
+
+00:01:34.560 --> 00:01:37.350
+Building AI is getting
+harder because both data
+
+00:01:37.350 --> 00:01:39.990
+and models are scaling fast.
+
+00:01:39.990 --> 00:01:43.500
+What used to be structured
+tabular data is now multimodal.
+
+00:01:43.500 --> 00:01:46.860
+Data set sizes have moved
+from gigabytes to petabytes.
+
+00:01:46.860 --> 00:01:48.660
+Single models are
+now many models,
+
+00:01:48.660 --> 00:01:52.710
+and parameter counts are
+growing exponentially.
+
+00:01:52.710 --> 00:01:54.240
+Across the AI lifecycle,
+
+00:01:54.240 --> 00:01:57.000
+that complexity is
+showing up everywhere.
+
+00:01:57.000 --> 00:02:00.660
+Building requires coordinated
+CPU and GPU compute.
+
+00:02:00.660 --> 00:02:02.940
+Training must be
+distributed across nodes,
+
+00:02:02.940 --> 00:02:05.280
+with fault tolerance built in.
+
+00:02:05.280 --> 00:02:07.950
+And serving requires
+composing many models,
+
+00:02:07.950 --> 00:02:10.140
+often on different hardware.
+
+00:02:10.140 --> 00:02:13.440
+These are problems legacy
+tools were not designed for.
+
+00:02:13.440 --> 00:02:17.400
+And teams are increasingly
+hitting their limits.
+
+00:02:17.400 --> 00:02:20.280
+It's why we're seeing
+teams converge on Ray,
+
+00:02:20.280 --> 00:02:22.500
+the open-source distributed
+compute framework
+
+00:02:22.500 --> 00:02:25.080
+for Python and AI workloads.
+
+00:02:25.080 --> 00:02:26.820
+As AI workloads
+have grown in scale
+
+00:02:26.820 --> 00:02:29.790
+and complexity, so
+has Ray adoption.
+
+00:02:29.790 --> 00:02:32.310
+It has over 12 million
+downloads per week
+
+00:02:32.310 --> 00:02:35.250
+and it's the most widely
+adopted AI compute framework
+
+00:02:35.250 --> 00:02:38.940
+across both AI labs and
+enterprises used by teams
+
+00:02:38.940 --> 00:02:43.310
+like OpenAI, Uber,
+TripAdvisor and more.
+
+00:02:43.310 --> 00:02:46.820
+So, this brings us to Anyscale
+on Azure from the creators
+
+00:02:46.820 --> 00:02:50.300
+of Ray and powered
+by Ray on AKS.
+
+00:02:50.300 --> 00:02:52.020
+Three core things to know.
+
+00:02:52.020 --> 00:02:55.980
+First, it accelerates dev to
+prod with a unified runtime
+
+00:02:55.980 --> 00:02:59.130
+for multimodal data curation,
+distributed training
+
+00:02:59.130 --> 00:03:02.100
+and multimodal online surveying.
+
+00:03:02.100 --> 00:03:04.890
+Second, it runs
+reliably at scale
+
+00:03:04.890 --> 00:03:08.250
+with a fully managed
+Ray lifecycle on AKS,
+
+00:03:08.250 --> 00:03:11.910
+a priority aware scheduler
+that maximizes GPU utilization
+
+00:03:11.910 --> 00:03:15.090
+and 24/7 Ray expert support.
+
+00:03:15.090 --> 00:03:17.010
+And third, it's Azure native.
+
+00:03:17.010 --> 00:03:19.530
+It runs on AKS in your
+own subscription,
+
+00:03:19.530 --> 00:03:22.560
+integrates with Entra ID
+for RBAC and is available
+
+00:03:22.560 --> 00:03:24.150
+through the Azure portal.
+
+00:03:24.150 --> 00:03:27.180
+So, your data and IP stay
+inside your existing security
+
+00:03:27.180 --> 00:03:29.520
+and governance boundaries.
+
+00:03:29.520 --> 00:03:32.040
+So, with that, I'm going to hand
+it over to Daniel to walk you
+
+00:03:32.040 --> 00:03:35.190
+through what building, training
+and serving on Anyscale
+
+00:03:35.190 --> 00:03:38.430
+in Azure looks like in practice.
+
+00:03:38.430 --> 00:03:38.910
+DANIEL ARRIZZA: All right,
+
+00:03:38.910 --> 00:03:41.070
+well thank you Katarina
+for that intro.
+
+00:03:41.070 --> 00:03:43.770
+Now that we have some more
+context as to the types
+
+00:03:43.770 --> 00:03:45.720
+of problems that we
+solve, I'm going to get
+
+00:03:45.720 --> 00:03:47.310
+into the technical demo.
+
+00:03:47.310 --> 00:03:50.700
+And this is going to start with
+a very brief part of looking
+
+00:03:50.700 --> 00:03:54.780
+at the infrastructure and
+how we set up a console
+
+00:03:54.780 --> 00:03:57.540
+of any scale in
+the Azure console.
+
+00:03:57.540 --> 00:04:01.710
+And then from there, we will
+look at a actual use case
+
+00:04:01.710 --> 00:04:04.380
+of creating our own
+recommendation engine
+
+00:04:04.380 --> 00:04:06.780
+and how we can do
+fine-tuning, batch embedding,
+
+00:04:06.780 --> 00:04:08.400
+serving, things like that.
+
+00:04:08.400 --> 00:04:09.300
+All right?
+
+00:04:09.300 --> 00:04:12.180
+So, I'm going to start
+here in the Azure console,
+
+00:04:12.180 --> 00:04:14.880
+and I want to create
+an Anyscale cloud.
+
+00:04:14.880 --> 00:04:19.830
+So, to do that, I just say from
+Anyscale clouds, I'll say Create
+
+00:04:19.830 --> 00:04:22.380
+and it'll ask me
+for a few details
+
+00:04:22.380 --> 00:04:24.810
+like what subscription I
+want to launch this in,
+
+00:04:24.810 --> 00:04:27.570
+what resource group
+and I'll just pick one
+
+00:04:27.570 --> 00:04:33.030
+that I've created earlier, the
+name of my cloud, so My Cloud
+
+00:04:33.030 --> 00:04:35.520
+and what region I want
+to launch things in.
+
+00:04:35.520 --> 00:04:38.700
+And then I can select
+an AKS cluster.
+
+00:04:38.700 --> 00:04:42.450
+So, if you've used
+Kubernetes before,
+
+00:04:42.450 --> 00:04:44.430
+already have a Kubernetes
+cluster set up,
+
+00:04:44.430 --> 00:04:46.380
+we could deploy
+straight into that.
+
+00:04:46.380 --> 00:04:50.310
+If you're not a Kubernetes
+wiz, then we have a one liner
+
+00:04:50.310 --> 00:04:52.470
+to just create the
+Kubernetes cluster for you,
+
+00:04:52.470 --> 00:04:54.960
+and you don't have to think
+about the infrastructure side
+
+00:04:54.960 --> 00:04:56.610
+of things if you want.
+
+00:04:56.610 --> 00:04:58.350
+But the good thing is
+we integrate very,
+
+00:04:58.350 --> 00:05:00.930
+very deeply inside
+of Kubernetes,
+
+00:05:00.930 --> 00:05:04.470
+so we have all the power
+of that really rock-solid
+
+00:05:04.470 --> 00:05:05.910
+infrastructure layer.
+
+00:05:05.910 --> 00:05:09.090
+So, I'm going to pick a
+cluster that I had earlier.
+
+00:05:09.090 --> 00:05:10.950
+I'll say Next.
+
+00:05:10.950 --> 00:05:13.290
+I'll pick a couple
+things here just so,
+
+00:05:13.290 --> 00:05:16.080
+like the storage account that
+I'm going to store things in
+
+00:05:16.080 --> 00:05:18.600
+and the identity I'm
+going to use to connect
+
+00:05:18.600 --> 00:05:21.060
+to that storage account.
+
+00:05:21.060 --> 00:05:24.390
+And then I'll pick an
+Azure container registry.
+
+00:05:24.390 --> 00:05:28.020
+It's just going to create all
+these new resources for me.
+
+00:05:28.020 --> 00:05:32.760
+And support plan, tags and we're
+off to the races to be able
+
+00:05:32.760 --> 00:05:34.350
+to get this thing started.
+
+00:05:34.350 --> 00:05:35.010
+All right?
+
+00:05:35.010 --> 00:05:37.470
+So, I can hit Create
+and then it'll go off
+
+00:05:37.470 --> 00:05:38.790
+and create this for me.
+
+00:05:38.790 --> 00:05:39.870
+This takes a little bit of time.
+
+00:05:39.870 --> 00:05:42.900
+So, I've already
+pre-created this for you.
+
+00:05:42.900 --> 00:05:47.490
+And let's launch up
+the Anyscale cloud.
+
+00:05:47.490 --> 00:05:50.370
+So, here is the cloud
+that I pre-created.
+
+00:05:50.370 --> 00:05:54.450
+And now, I'm going to show you
+what the console looks like,
+
+00:05:54.450 --> 00:05:57.120
+its capabilities and then
+we'll get into the notebook.
+
+00:05:57.120 --> 00:05:58.350
+So, the main three things
+
+00:05:58.350 --> 00:06:02.190
+on the left here are
+workspaces, jobs and services.
+
+00:06:02.190 --> 00:06:05.940
+Workspaces are for interactive
+development as you want
+
+00:06:05.940 --> 00:06:10.770
+to be able to write some code,
+run it, see how it works,
+
+00:06:10.770 --> 00:06:14.160
+look -- look at the
+observability like your metrics
+
+00:06:14.160 --> 00:06:15.810
+and logs and things like that.
+
+00:06:15.810 --> 00:06:18.630
+Workspaces will be for
+that interactive stuff.
+
+00:06:18.630 --> 00:06:20.970
+Once I have some code
+that I want to run
+
+00:06:20.970 --> 00:06:26.100
+on maybe a larger data set or
+a more production environment,
+
+00:06:26.100 --> 00:06:30.150
+then I'll launch a job
+and the job will run.
+
+00:06:30.150 --> 00:06:32.400
+It'll work over time
+in the background.
+
+00:06:32.400 --> 00:06:35.820
+When it's done, it'll
+turn off the cluster.
+
+00:06:35.820 --> 00:06:37.110
+And lastly is a service.
+
+00:06:37.110 --> 00:06:42.030
+So, a service is an always-on,
+ready to listen to requests
+
+00:06:42.030 --> 00:06:45.600
+to be able to serve
+up your models.
+
+00:06:45.600 --> 00:06:48.810
+And yes, let's start
+our services over here.
+
+00:06:48.810 --> 00:06:50.790
+So, I'm going to
+start in workspaces.
+
+00:06:50.790 --> 00:06:52.920
+We'll spend the majority
+of our time here.
+
+00:06:52.920 --> 00:06:55.500
+And I'm going to
+open up a workspace.
+
+00:06:55.500 --> 00:06:57.000
+Just note that if you want,
+
+00:06:57.000 --> 00:06:59.400
+there are many templates
+available as well, too.
+
+00:06:59.400 --> 00:07:03.900
+So, you can pick up a bunch
+of templates that we have on.
+
+00:07:03.900 --> 00:07:08.130
+If you want to do some inference
+or some training or be able
+
+00:07:08.130 --> 00:07:11.010
+to create a RAG system,
+all that's here.
+
+00:07:11.010 --> 00:07:14.370
+So, I'm going to
+open up a workspace.
+
+00:07:14.370 --> 00:07:19.110
+And in my workspace, I am
+starting here with a workspace
+
+00:07:19.110 --> 00:07:21.300
+that I've already
+pre-created before.
+
+00:07:21.300 --> 00:07:23.670
+On the right, you'll
+notice that I am running
+
+00:07:23.670 --> 00:07:25.410
+on a Ray cluster here.
+
+00:07:25.410 --> 00:07:29.700
+So, this Ray cluster has 8
+CPUs and 32 gigs on one node.
+
+00:07:29.700 --> 00:07:32.100
+And I have only one
+worker node for now.
+
+00:07:32.100 --> 00:07:36.270
+This is just one CPU-based node.
+
+00:07:36.270 --> 00:07:39.420
+But if I wanted to add a
+whole bunch more nodes,
+
+00:07:39.420 --> 00:07:41.310
+I could really, really
+easily scale this
+
+00:07:41.310 --> 00:07:45.210
+up by hitting Add Worker Nodes.
+
+00:07:45.210 --> 00:07:48.240
+And say maybe I want some GPUs.
+
+00:07:48.240 --> 00:07:53.970
+I want some A100s and I want
+10 or 100 or maybe 1,000,
+
+00:07:53.970 --> 00:07:56.670
+depending on how much
+availability and scale
+
+00:07:56.670 --> 00:07:58.920
+that you need in
+your environment
+
+00:07:58.920 --> 00:08:01.350
+and for the job you're running.
+
+00:08:01.350 --> 00:08:03.030
+But there isn't a
+lot to do in order
+
+00:08:03.030 --> 00:08:04.290
+to be able to scale things up.
+
+00:08:04.290 --> 00:08:06.450
+And it makes that really,
+really easy to do.
+
+00:08:06.450 --> 00:08:09.270
+For now, I'm just going to run
+this on a CPU based cluster just
+
+00:08:09.270 --> 00:08:12.270
+because I'm just testing
+out some things for now.
+
+00:08:12.270 --> 00:08:16.050
+So, I want to launch into
+the code part of it.
+
+00:08:16.050 --> 00:08:20.040
+And I could launch a VS
+Code desktop connection
+
+00:08:20.040 --> 00:08:21.630
+to this cluster.
+
+00:08:21.630 --> 00:08:25.320
+And so, I can go up here and
+say Open in VS Code Desktop
+
+00:08:25.320 --> 00:08:27.450
+and it would launch
+up VS Code Desktop
+
+00:08:27.450 --> 00:08:31.050
+and SSH directly
+into this cluster.
+
+00:08:31.050 --> 00:08:34.590
+And that's really great because
+that means my development
+
+00:08:34.590 --> 00:08:37.230
+and my production environments
+are very, very similar.
+
+00:08:37.230 --> 00:08:39.630
+I'm running on the
+same type of hardware,
+
+00:08:39.630 --> 00:08:41.520
+same type of environment.
+
+00:08:41.520 --> 00:08:44.580
+But instead, I'm going to
+open up VS Code and I'm going
+
+00:08:44.580 --> 00:08:47.880
+to have a little web
+interface to be able
+
+00:08:47.880 --> 00:08:49.800
+to do everything
+that I want here.
+
+00:08:49.800 --> 00:08:52.830
+I have all my code in
+here in this notebook.
+
+00:08:52.830 --> 00:08:55.920
+But I can have many Python
+files of course, too.
+
+00:08:55.920 --> 00:08:58.380
+I can install many
+dependencies as well
+
+00:08:58.380 --> 00:09:01.380
+by installing through pip.
+
+00:09:01.380 --> 00:09:03.660
+Or if I go to Dependencies,
+I can add them
+
+00:09:03.660 --> 00:09:05.310
+over here as well, too.
+
+00:09:05.310 --> 00:09:07.530
+I can also freeze all the
+dependencies and everything
+
+00:09:07.530 --> 00:09:08.820
+into a container image,
+
+00:09:08.820 --> 00:09:11.220
+so I have a fully
+reproducible environment.
+
+00:09:11.220 --> 00:09:14.070
+So, going from that
+development to production,
+
+00:09:14.070 --> 00:09:16.460
+once again, a lot easier to do.
+
+00:09:16.460 --> 00:09:18.290
+So, I'm going to be in the
+code here and I'm going
+
+00:09:18.290 --> 00:09:20.090
+to walk you through a use case.
+
+00:09:20.090 --> 00:09:21.470
+And the use case is I want
+
+00:09:21.470 --> 00:09:24.590
+to create an E Commerce
+recommendation engine.
+
+00:09:24.590 --> 00:09:28.070
+And I had a few choices,
+like Katarina mentioned.
+
+00:09:28.070 --> 00:09:32.060
+I could go and use
+an endpoint from one
+
+00:09:32.060 --> 00:09:34.310
+of the AI model providers,
+
+00:09:34.310 --> 00:09:38.300
+but that probably would
+be very expensive to run,
+
+00:09:38.300 --> 00:09:41.480
+and I'd lose control
+over everything.
+
+00:09:41.480 --> 00:09:45.320
+But then the next step is
+to use an open-source model
+
+00:09:45.320 --> 00:09:48.320
+and that's a lot cheaper
+to run, which is great,
+
+00:09:48.320 --> 00:09:51.200
+but it's probably
+not as effective
+
+00:09:51.200 --> 00:09:53.570
+because it doesn't
+really know my data
+
+00:09:53.570 --> 00:09:56.450
+and they're smaller
+models in general.
+
+00:09:56.450 --> 00:09:58.310
+So, what I want to
+do instead is I want
+
+00:09:58.310 --> 00:10:00.680
+to fine tune an
+open-source model.
+
+00:10:00.680 --> 00:10:03.630
+And I'm going to use Ray
+to be able to do that.
+
+00:10:03.630 --> 00:10:06.090
+And to do the fine tuning,
+all that training,
+
+00:10:06.090 --> 00:10:10.170
+I'm going to need some data
+processing as part of that.
+
+00:10:10.170 --> 00:10:14.820
+And lastly, once I have
+my fine-tuned model,
+
+00:10:14.820 --> 00:10:17.310
+I'm going to want to be able
+to do some batch embeddings.
+
+00:10:17.310 --> 00:10:21.750
+So, I want to do some
+inference on that model
+
+00:10:21.750 --> 00:10:23.580
+with all the data that I have.
+
+00:10:23.580 --> 00:10:24.120
+All right?
+
+00:10:24.120 --> 00:10:26.640
+So, that's kind of the use
+case that I'm setting up here.
+
+00:10:26.640 --> 00:10:29.520
+And think as well
+that I probably have
+
+00:10:29.520 --> 00:10:33.690
+for a large e-commerce store, I
+have maybe a million products,
+
+00:10:33.690 --> 00:10:36.570
+10% of them are changing
+week over week.
+
+00:10:36.570 --> 00:10:41.220
+And so, I need to constantly
+be re-running this thing.
+
+00:10:41.220 --> 00:10:43.290
+And so, that's going to need
+to be a job that I'm going
+
+00:10:43.290 --> 00:10:45.720
+to schedule after as well, too.
+
+00:10:45.720 --> 00:10:47.400
+And we're going to need
+some scale to be able to --
+
+00:10:47.400 --> 00:10:50.220
+to deal with that level
+of data and to make --
+
+00:10:50.220 --> 00:10:51.840
+make this like a
+really good model.
+
+00:10:51.840 --> 00:10:54.810
+Right? The other thing
+about this use case is
+
+00:10:54.810 --> 00:10:56.520
+that it's multimodal
+data, right?
+
+00:10:56.520 --> 00:10:59.970
+So, I have not only text
+descriptions about the products,
+
+00:10:59.970 --> 00:11:03.450
+but I also have images that show
+what the product looks like.
+
+00:11:03.450 --> 00:11:06.090
+Right? And so, when I'm
+creating an embedding space
+
+00:11:06.090 --> 00:11:09.000
+to show how similar
+things are to each other
+
+00:11:09.000 --> 00:11:11.130
+for recommendations, I'm
+going to need to be able
+
+00:11:11.130 --> 00:11:13.530
+to process all of
+that multimodal data
+
+00:11:13.530 --> 00:11:15.000
+as well together, too.
+
+00:11:15.000 --> 00:11:17.460
+Right? And lastly,
+when I serve it,
+
+00:11:17.460 --> 00:11:18.930
+I'm going to need
+multiple models,
+
+00:11:18.930 --> 00:11:22.740
+maybe I'll need one model
+forwarding some image to text.
+
+00:11:22.740 --> 00:11:26.160
+I'll use my fine-tuned
+model after as well, too.
+
+00:11:26.160 --> 00:11:28.560
+And I'm going to
+need an endpoint
+
+00:11:28.560 --> 00:11:30.030
+to be able to serve all that.
+
+00:11:30.030 --> 00:11:33.270
+So, I'm really trying to show
+you a really full end-to-end
+
+00:11:33.270 --> 00:11:36.930
+solution here where I'm
+doing preprocessing of data,
+
+00:11:36.930 --> 00:11:39.900
+I'm doing some fine tuning,
+doing some batch embeddings
+
+00:11:39.900 --> 00:11:41.610
+and then I'm serving
+all of that.
+
+00:11:41.610 --> 00:11:44.670
+And that's what this
+use case is really for.
+
+00:11:44.670 --> 00:11:48.840
+Okay? So, let's get into
+the use case starting here
+
+00:11:48.840 --> 00:11:52.620
+with installing all my
+dependencies and looking
+
+00:11:52.620 --> 00:11:56.370
+at all the images that I have
+for just a sample of images
+
+00:11:56.370 --> 00:12:00.600
+that I have of my
+product catalog.
+
+00:12:00.600 --> 00:12:04.770
+And so the first part here is
+just sampling some of the data
+
+00:12:04.770 --> 00:12:08.130
+and creating a
+training data set.
+
+00:12:08.130 --> 00:12:09.810
+And so, I've sampled
+some of the records
+
+00:12:09.810 --> 00:12:12.360
+to create my training data set.
+
+00:12:12.360 --> 00:12:14.790
+Down here I'm in
+this Torch trainer.
+
+00:12:14.790 --> 00:12:15.870
+I'm going to make this
+a little bit bigger,
+
+00:12:15.870 --> 00:12:17.700
+a little bit easier to see.
+
+00:12:17.700 --> 00:12:22.260
+Okay? So, in this Torch trainer
+so I'm actually using PyTorch,
+
+00:12:22.260 --> 00:12:27.810
+right, which is an open source
+very, very commonly used library
+
+00:12:27.810 --> 00:12:31.050
+for doing deep learning and AI.
+
+00:12:31.050 --> 00:12:33.780
+And what is special about Ray is
+
+00:12:33.780 --> 00:12:36.360
+that it doesn't take
+that stuff away.
+
+00:12:36.360 --> 00:12:38.580
+All it does, is it wraps a lot
+
+00:12:38.580 --> 00:12:42.270
+of the open source regular
+frameworks that you use
+
+00:12:42.270 --> 00:12:45.540
+and creates an orchestration
+layer around all of it
+
+00:12:45.540 --> 00:12:49.410
+so that we have better
+performance and better stability
+
+00:12:49.410 --> 00:12:51.660
+and also great scalability.
+
+00:12:51.660 --> 00:12:56.070
+So, being able to increase
+to many, many CPUs, GPUs,
+
+00:12:56.070 --> 00:12:57.270
+all that kind of stuff.
+
+00:12:57.270 --> 00:12:58.140
+All right?
+
+00:12:58.140 --> 00:13:01.410
+So, my Torch trainer, I'll
+go into this in a second,
+
+00:13:01.410 --> 00:13:05.250
+but this is the -- my PyTorch
+code is basically in here.
+
+00:13:05.250 --> 00:13:09.090
+I can say what kind of config I
+want to run, how many epochs,
+
+00:13:09.090 --> 00:13:11.310
+my batch size, things like that.
+
+00:13:11.310 --> 00:13:12.420
+How much I want to scale?
+
+00:13:12.420 --> 00:13:16.980
+So, maybe I want to run on one
+worker, maybe 1,000 workers?
+
+00:13:16.980 --> 00:13:20.280
+How many GPUs do I
+want to scale on?
+
+00:13:20.280 --> 00:13:23.610
+And some things like
+checkpointing here as well, too.
+
+00:13:23.610 --> 00:13:27.000
+So, one great thing about Ray
+Train is that what it can do is
+
+00:13:27.000 --> 00:13:29.640
+if there is a failure
+at any point,
+
+00:13:29.640 --> 00:13:32.970
+it can really easily resume
+
+00:13:32.970 --> 00:13:36.390
+from where it left
+off, even mid-epoch.
+
+00:13:36.390 --> 00:13:40.290
+So, you're not having as many
+failed runs and you're able
+
+00:13:40.290 --> 00:13:42.720
+to resume your
+runs as well, too.
+
+00:13:42.720 --> 00:13:46.380
+So, it -- it is really able
+to work with the scale
+
+00:13:46.380 --> 00:13:48.990
+where things are
+not always running
+
+00:13:48.990 --> 00:13:51.270
+as seamlessly as we want.
+
+00:13:51.270 --> 00:13:54.990
+As we do just one machine on
+my laptop, this is being able
+
+00:13:54.990 --> 00:13:59.970
+to scale the thousands of GPUs
+and still run in a reliable way.
+
+00:13:59.970 --> 00:14:02.280
+So, just opening up that
+train loop per worker code.
+
+00:14:02.280 --> 00:14:04.260
+I just want to open that one up.
+
+00:14:04.260 --> 00:14:06.030
+And I have it right here.
+
+00:14:06.030 --> 00:14:09.780
+So, the code itself, I have a
+little bit of data loading,
+
+00:14:09.780 --> 00:14:11.640
+so I'll talk about
+Ray data in a second.
+
+00:14:11.640 --> 00:14:15.090
+But right here is some
+standard PyTorch code.
+
+00:14:15.090 --> 00:14:18.540
+Right? But if I want
+to add checkpointing,
+
+00:14:18.540 --> 00:14:21.090
+all I need to do is
+add a little bit
+
+00:14:21.090 --> 00:14:24.120
+of checkpointing
+code right here.
+
+00:14:24.120 --> 00:14:25.740
+It's just basically
+10% more code
+
+00:14:25.740 --> 00:14:27.690
+than you would normally have.
+
+00:14:27.690 --> 00:14:30.780
+But then it -- it does
+all that reliability
+
+00:14:30.780 --> 00:14:31.920
+and checkpointing for you.
+
+00:14:31.920 --> 00:14:32.970
+All right?
+
+00:14:32.970 --> 00:14:35.520
+So, the other part here
+is this data loader.
+
+00:14:35.520 --> 00:14:39.450
+Right? So, I'm actually using
+Ray data to be able to feed
+
+00:14:39.450 --> 00:14:42.660
+in data to the this
+array train portion.
+
+00:14:42.660 --> 00:14:47.820
+And what Ray data is helping
+me with is allowing the data
+
+00:14:47.820 --> 00:14:52.530
+to stream to the GPU,
+keeping the GPU always fed
+
+00:14:52.530 --> 00:14:55.140
+as in it always has
+data to work on.
+
+00:14:55.140 --> 00:14:57.420
+So, you're fully
+utilizing your GPU.
+
+00:14:57.420 --> 00:15:01.410
+You're not getting those
+20, 30 % GPU utilization,
+
+00:15:01.410 --> 00:15:05.520
+which is such a shame because we
+have such little availability
+
+00:15:05.520 --> 00:15:08.700
+of GPUs and if you're
+not keeping them fed,
+
+00:15:08.700 --> 00:15:11.550
+you're wasting money or
+just wasting the potential
+
+00:15:11.550 --> 00:15:13.380
+of how good your model can get.
+
+00:15:13.380 --> 00:15:17.490
+So, Ray data is streaming
+the data always to the GPU,
+
+00:15:17.490 --> 00:15:20.070
+keeping it ready to go.
+
+00:15:20.070 --> 00:15:23.310
+And so, that's pretty awesome
+that it's able to do that.
+
+00:15:23.310 --> 00:15:26.760
+Another reason why it's able to
+do it is because it can scale
+
+00:15:26.760 --> 00:15:32.820
+up some CPU nodes, so that the
+CPU is not the bottleneck.
+
+00:15:32.820 --> 00:15:35.370
+I can create as many CPU
+nodes as I need to be able
+
+00:15:35.370 --> 00:15:37.950
+to keep the GPUs always fed.
+
+00:15:37.950 --> 00:15:39.780
+Right? So, that's pretty cool.
+
+00:15:39.780 --> 00:15:44.790
+And I ran that earlier and
+just only had a couple
+
+00:15:44.790 --> 00:15:46.170
+of epochs here.
+
+00:15:46.170 --> 00:15:48.720
+And yes, so I can see that
+my training loss went
+
+00:15:48.720 --> 00:15:51.480
+down so that's good to see.
+
+00:15:51.480 --> 00:15:52.860
+Next, I'm going to do
+some batch embeddings.
+
+00:15:52.860 --> 00:15:55.080
+So, actually I already have
+a fine-tuned model now.
+
+00:15:55.080 --> 00:15:56.370
+So, that's great.
+
+00:15:56.370 --> 00:15:58.260
+I'm going to load in that model
+
+00:15:58.260 --> 00:16:00.960
+and then do some
+batch embeddings.
+
+00:16:00.960 --> 00:16:03.960
+So, I have my embedding
+code in here.
+
+00:16:03.960 --> 00:16:06.720
+How big I want to run this line?
+
+00:16:06.720 --> 00:16:09.270
+This is running only one
+CPU, but I can scale this
+
+00:16:09.270 --> 00:16:12.270
+to num GPUs, 1,000 if I want.
+
+00:16:12.270 --> 00:16:16.290
+So, very, very little code
+needs to change there.
+
+00:16:16.290 --> 00:16:18.510
+And it embedded the products.
+
+00:16:18.510 --> 00:16:22.770
+Right? So, let's see if that
+embedding model is good.
+
+00:16:22.770 --> 00:16:24.030
+So, right here,
+I'm going to look
+
+00:16:24.030 --> 00:16:26.220
+at the product
+embedding similarity.
+
+00:16:26.220 --> 00:16:29.040
+So, I can see that
+speakers and laptops
+
+00:16:29.040 --> 00:16:31.350
+and webcams are all pretty
+similar to each other,
+
+00:16:31.350 --> 00:16:33.960
+but not very similar
+to shoes or sweaters.
+
+00:16:33.960 --> 00:16:37.140
+Right? So, just very basically
+you can do that type
+
+00:16:37.140 --> 00:16:40.350
+of embedding and see what's
+similar to each other.
+
+00:16:40.350 --> 00:16:43.440
+And I can see previously
+with the open-source model,
+
+00:16:43.440 --> 00:16:47.250
+my light blue here is not
+all together necessarily,
+
+00:16:47.250 --> 00:16:51.540
+but if I look here, things
+are just a little bit better
+
+00:16:51.540 --> 00:16:53.370
+clustered together
+than they were
+
+00:16:53.370 --> 00:16:56.640
+in the base open-source model.
+
+00:16:56.640 --> 00:17:00.090
+So, my fine-tuned model is
+just looking a little better
+
+00:17:00.090 --> 00:17:01.140
+than the previous one.
+
+00:17:01.140 --> 00:17:06.300
+Yes. And I can also see here
+comparing the base model
+
+00:17:06.300 --> 00:17:09.990
+to the fine-tuned model and
+how things have gotten better.
+
+00:17:09.990 --> 00:17:10.680
+So, that's great.
+
+00:17:10.680 --> 00:17:14.010
+So, I've done my batch
+embeddings, my fine-tuned model
+
+00:17:14.010 --> 00:17:16.710
+and it's looking
+like better results
+
+00:17:16.710 --> 00:17:18.930
+than the open source one.
+
+00:17:18.930 --> 00:17:21.420
+So, lastly I want to show you
+
+00:17:21.420 --> 00:17:23.460
+in this code here
+the serving model.
+
+00:17:23.460 --> 00:17:27.510
+So, I want to create an
+endpoint where it is listening
+
+00:17:27.510 --> 00:17:30.810
+in for recommendation
+requests and running
+
+00:17:30.810 --> 00:17:36.360
+through a couple models starting
+with an image to text model
+
+00:17:36.360 --> 00:17:41.490
+and then going to running
+my actual fine-tuned model.
+
+00:17:41.490 --> 00:17:45.780
+And what I would do without Ray
+here is maybe create a whole
+
+00:17:45.780 --> 00:17:47.910
+bunch of microservices and try
+
+00:17:47.910 --> 00:17:51.510
+to get them all
+deployed in Kubernetes.
+
+00:17:51.510 --> 00:17:56.100
+That could be a pain to do to
+stitch all that stuff together.
+
+00:17:56.100 --> 00:18:00.030
+But instead, the code is a lot
+simpler when I use Ray Serve.
+
+00:18:00.030 --> 00:18:04.320
+So, I'm going to open
+up the serving code.
+
+00:18:04.320 --> 00:18:07.890
+But you see right here actually,
+I've run the serve service
+
+00:18:07.890 --> 00:18:12.360
+and run some recommendations,
+and I can see what is similar
+
+00:18:12.360 --> 00:18:15.110
+to travel wireless headphones
+and other wireless headphones
+
+00:18:15.110 --> 00:18:16.760
+of course pretty similar to it,
+
+00:18:16.760 --> 00:18:20.390
+and what other recommendations
+would be similar.
+
+00:18:20.390 --> 00:18:24.590
+And then I'm going to open up
+this serving stuff here and see
+
+00:18:24.590 --> 00:18:28.880
+that it starts with a
+recommendation endpoint
+
+00:18:28.880 --> 00:18:33.950
+that takes in an image, runs
+through my image to text model
+
+00:18:33.950 --> 00:18:37.040
+and then the fine-tuned model,
+the one that we created earlier,
+
+00:18:37.040 --> 00:18:39.530
+and returns the JSON response.
+
+00:18:39.530 --> 00:18:43.670
+And I'm going to
+show you in here,
+
+00:18:43.670 --> 00:18:45.560
+we can just call it
+right here if we want.
+
+00:18:45.560 --> 00:18:47.600
+But then if I want to
+deploy this on Anyscale
+
+00:18:47.600 --> 00:18:49.370
+so that it's always available,
+
+00:18:49.370 --> 00:18:52.070
+this Anyscale Service
+Deploy will get this thing
+
+00:18:52.070 --> 00:18:53.840
+up and ready to go.
+
+00:18:53.840 --> 00:18:56.060
+And as I have new
+versions, it'll be able
+
+00:18:56.060 --> 00:19:00.900
+to have zero downtime as I
+go to create new versions
+
+00:19:00.900 --> 00:19:05.670
+and scale this thing up as
+maybe I'm getting more requests
+
+00:19:05.670 --> 00:19:07.350
+to one model versus another
+
+00:19:07.350 --> 00:19:10.290
+and they can scale
+things independently.
+
+00:19:10.290 --> 00:19:12.600
+It has prefix aware caching.
+
+00:19:12.600 --> 00:19:15.600
+So, really, really, really
+cool stuff built in here.
+
+00:19:15.600 --> 00:19:19.530
+So, yes, all the serve code is
+in here, so I can see my image
+
+00:19:19.530 --> 00:19:23.850
+to text model and
+I load that one up
+
+00:19:23.850 --> 00:19:26.540
+and create some captioning
+
+00:19:26.540 --> 00:19:30.320
+and then I can run my product
+recommender one as well too.
+
+00:19:30.320 --> 00:19:32.030
+So, this is the
+fine-tuned model.
+
+00:19:32.030 --> 00:19:38.760
+And I'm loading up my model and
+running this embeddings norm.
+
+00:19:38.760 --> 00:19:40.830
+This is just a little
+bit of PyTorch code.
+
+00:19:40.830 --> 00:19:42.030
+Pretty standard stuff here.
+
+00:19:42.030 --> 00:19:45.270
+Right? So, that's
+my serving side.
+
+00:19:45.270 --> 00:19:48.960
+So, you've seen a little
+bit of the code, right?
+
+00:19:48.960 --> 00:19:50.700
+Just note that you
+don't necessarily need
+
+00:19:50.700 --> 00:19:52.530
+to write all this code by hand.
+
+00:19:52.530 --> 00:19:55.020
+We actually have some
+agents that make working
+
+00:19:55.020 --> 00:19:57.900
+with this a lot easier.
+
+00:19:57.900 --> 00:20:00.420
+So, I'm just going to
+load up my terminal.
+
+00:20:00.420 --> 00:20:02.910
+And I can see if
+I have Anyscale.
+
+00:20:02.910 --> 00:20:05.280
+I have my Anyscale
+CLI installed.
+
+00:20:05.280 --> 00:20:08.070
+I can say Anyscale Skills.
+
+00:20:08.070 --> 00:20:11.460
+And we have a whole bunch
+of skills available to run
+
+00:20:11.460 --> 00:20:17.550
+in your favorite code AI
+assistants like being able
+
+00:20:17.550 --> 00:20:20.220
+to set up the infra,
+setting up the platform
+
+00:20:20.220 --> 00:20:23.010
+and then actually creating
+workloads like Ray Data,
+
+00:20:23.010 --> 00:20:25.500
+serve train serving
+and more coming.
+
+00:20:25.500 --> 00:20:28.890
+We have RL for post training.
+
+00:20:28.890 --> 00:20:30.830
+A lot available there.
+
+00:20:30.830 --> 00:20:34.410
+Right The CLI also, you can
+-- you can use create jobs
+
+00:20:34.410 --> 00:20:37.260
+and services, but anyways, the
+setting up all the skills,
+
+00:20:37.260 --> 00:20:38.910
+it's all available here.
+
+00:20:38.910 --> 00:20:43.440
+And those skills can also
+know how to go to the metrics
+
+00:20:43.440 --> 00:20:46.740
+and observability that's
+available in the workspace.
+
+00:20:46.740 --> 00:20:50.190
+So, in the metrics tab, I
+can see a lot of information
+
+00:20:50.190 --> 00:20:53.700
+about what is going on around
+utilization, how many nodes,
+
+00:20:53.700 --> 00:20:56.640
+my memory CPU, a
+lot of information.
+
+00:20:56.640 --> 00:20:58.770
+That's just core
+stuff and getting
+
+00:20:58.770 --> 00:21:01.560
+into all the libraries
+that are in Ray.
+
+00:21:01.560 --> 00:21:06.180
+If I open up Ray workloads,
+it'll also run this earlier.
+
+00:21:06.180 --> 00:21:10.380
+It can get really deep into the
+different stages and figure
+
+00:21:10.380 --> 00:21:12.000
+out where my bottlenecks are.
+
+00:21:12.000 --> 00:21:16.460
+And if I'm not an expert in
+this, then my agent can know
+
+00:21:16.460 --> 00:21:19.730
+to be able to grab all this
+stuff and do some writing
+
+00:21:19.730 --> 00:21:21.800
+of the code and
+also optimization
+
+00:21:21.800 --> 00:21:22.940
+of the code as well too.
+
+00:21:22.940 --> 00:21:24.410
+So, really, really powerful.
+
+00:21:24.410 --> 00:21:27.740
+And that observability is
+something that is really key
+
+00:21:27.740 --> 00:21:32.430
+for not only the day one if
+I wrote a little bit of code
+
+00:21:32.430 --> 00:21:36.420
+and it works, but also the day
+two when I've scaled things
+
+00:21:36.420 --> 00:21:39.120
+and things aren't working
+as well as they were before
+
+00:21:39.120 --> 00:21:41.790
+and I need to do some
+debugging and things
+
+00:21:41.790 --> 00:21:42.900
+like that as well, too.
+
+00:21:42.900 --> 00:21:43.590
+All right?
+
+00:21:43.590 --> 00:21:46.050
+So, there's a lot
+more in the platform.
+
+00:21:46.050 --> 00:21:49.800
+I just wanted to show a
+little bit of the workspaces,
+
+00:21:49.800 --> 00:21:55.110
+job services, getting to the
+code, into my cluster config,
+
+00:21:55.110 --> 00:21:57.330
+talking about some of the
+Ray libraries and then some
+
+00:21:57.330 --> 00:21:58.920
+of the observability and agents.
+
+00:21:58.920 --> 00:22:01.620
+So, hopefully that gives
+you a quick orientation
+
+00:22:01.620 --> 00:22:04.590
+as to overall
+what's all in here.
+
+00:22:04.590 --> 00:22:07.500
+So, I'll hand it back
+to Katarina to talk
+
+00:22:07.500 --> 00:22:11.260
+about next steps but thank you
+for checking out this part.
+
+00:22:14.340 --> 00:22:16.770
+KATARINA STANLEY: Thanks
+for joining us today.
+
+00:22:16.770 --> 00:22:19.080
+If you'd like to learn more,
+the first QR code takes you
+
+00:22:19.080 --> 00:22:20.970
+to our webpage for
+the Build conference
+
+00:22:20.970 --> 00:22:23.640
+where you can see our scheduled
+table talks, including one
+
+00:22:23.640 --> 00:22:24.570
+that Daniel is leading
+
+00:22:24.570 --> 00:22:26.760
+on building multimodal
+data pipelines.
+
+00:22:26.760 --> 00:22:29.640
+And you can also request
+a meeting with our team.
+
+00:22:29.640 --> 00:22:32.790
+The second QR code gets you
+started on any scale in Azure,
+
+00:22:32.790 --> 00:22:36.180
+so you can try everything we
+just walked through, hands on.
+
+00:22:36.180 --> 00:22:37.560
+And if you're at
+Build in person,
+
+00:22:37.560 --> 00:22:39.450
+come find us at Booth G201.
+
+00:22:39.450 --> 00:22:40.470
+We'd love to meet you.
+
+00:22:40.470 --> 00:22:42.010
+Thanks again.

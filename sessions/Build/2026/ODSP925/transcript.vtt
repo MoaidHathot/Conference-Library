@@ -1,0 +1,1061 @@
+WEBVTT
+
+00:00:01.560 --> 00:00:01.980
+ED CHARBENEAU: Hi.
+
+00:00:01.980 --> 00:00:04.560
+I'm Ed Charbeneau, principal
+developer advocate here
+
+00:00:04.560 --> 00:00:08.580
+at Progress Software and
+10 time Microsoft MVP.
+
+00:00:08.580 --> 00:00:10.470
+And today I'll be giving
+you an introduction
+
+00:00:10.470 --> 00:00:12.690
+to retrieval
+augmented generation.
+
+00:00:12.690 --> 00:00:14.400
+Over the next few
+minutes we'll talk
+
+00:00:14.400 --> 00:00:16.170
+about why you should use RAG,
+
+00:00:16.170 --> 00:00:18.720
+how retrieval augmented
+generation compares
+
+00:00:18.720 --> 00:00:20.970
+to context augmented generation,
+
+00:00:20.970 --> 00:00:23.220
+and the key concepts
+involved in RAG.
+
+00:00:23.220 --> 00:00:26.790
+I'll also share an introduction
+to Progress Agentic RAG,
+
+00:00:26.790 --> 00:00:28.740
+a RAG as a service platform.
+
+00:00:28.740 --> 00:00:32.400
+First let's start with why
+retrieval augmented generation
+
+00:00:32.400 --> 00:00:33.870
+is important today.
+
+00:00:33.870 --> 00:00:36.810
+Using retrieval augmented
+generation is all
+
+00:00:36.810 --> 00:00:38.670
+about making sense of your data.
+
+00:00:38.670 --> 00:00:42.900
+I gave a session back at
+the M3 conference in 2016
+
+00:00:42.900 --> 00:00:45.750
+where I talked about the
+future of data storage
+
+00:00:45.750 --> 00:00:47.910
+and how it relates
+to machine learning.
+
+00:00:47.910 --> 00:00:49.980
+In that session it was estimated
+
+00:00:49.980 --> 00:00:55.110
+that 44 zettabytes would have
+been collected by the year 2020.
+
+00:00:55.110 --> 00:00:59.010
+Here we are in 2026
+and we are generating
+
+00:00:59.010 --> 00:01:03.300
+and collecting roughly
+400 million terabytes
+
+00:01:03.300 --> 00:01:06.150
+of data every day worldwide.
+
+00:01:06.150 --> 00:01:11.850
+That's about 0.4 zettabytes a
+day or 147 zettabytes per year.
+
+00:01:11.850 --> 00:01:13.350
+So why does that matter?
+
+00:01:13.350 --> 00:01:17.220
+Well, we need to make sense
+of all that data we collect.
+
+00:01:17.220 --> 00:01:20.790
+And back in 2016 my
+suggestion for doing this was
+
+00:01:20.790 --> 00:01:22.680
+to use machine learning.
+
+00:01:22.680 --> 00:01:24.900
+The reason for that
+is really simple.
+
+00:01:24.900 --> 00:01:28.140
+It's not humanly possible
+to make use of all
+
+00:01:28.140 --> 00:01:32.160
+that data we collect without
+using some sort of AI.
+
+00:01:32.160 --> 00:01:35.190
+Today machine learning is
+a commodity in the form
+
+00:01:35.190 --> 00:01:39.030
+of large language models and the
+task of sifting through data
+
+00:01:39.030 --> 00:01:41.010
+for answers can be performed
+
+00:01:41.010 --> 00:01:44.610
+by human operators assisted
+by agentic systems.
+
+00:01:44.610 --> 00:01:45.600
+Before we can talk
+
+00:01:45.600 --> 00:01:48.510
+about retrieval augmented
+generation it's important
+
+00:01:48.510 --> 00:01:51.360
+to talk about context
+augmented generation.
+
+00:01:51.360 --> 00:01:54.030
+These core concepts will help
+you understand the scale
+
+00:01:54.030 --> 00:01:56.790
+of the technologies and
+architectures involved.
+
+00:01:56.790 --> 00:01:59.880
+Context augmented generation
+is where we add data
+
+00:01:59.880 --> 00:02:02.820
+to the context window of
+a large language model.
+
+00:02:02.820 --> 00:02:05.520
+For example, we might
+take a file and upload it
+
+00:02:05.520 --> 00:02:08.280
+in to the context window
+so we can ask questions
+
+00:02:08.280 --> 00:02:10.620
+about the data
+contained in that file.
+
+00:02:10.620 --> 00:02:13.440
+An example of this can
+be seen on YouTube.
+
+00:02:13.440 --> 00:02:16.350
+There's a Gemini button
+on some YouTube videos
+
+00:02:16.350 --> 00:02:18.690
+and when you click on that
+button the transcript
+
+00:02:18.690 --> 00:02:21.750
+of that video is loaded
+in to the context window
+
+00:02:21.750 --> 00:02:23.790
+of the large language model.
+
+00:02:23.790 --> 00:02:27.210
+That allows you to query
+the video conversationally.
+
+00:02:27.210 --> 00:02:31.290
+Another form of context
+augmented generation is cache
+
+00:02:31.290 --> 00:02:33.240
+augmented generation.
+
+00:02:33.240 --> 00:02:35.460
+This involves taking
+even more data
+
+00:02:35.460 --> 00:02:37.980
+and storing it in vector memory.
+
+00:02:37.980 --> 00:02:40.470
+You can then search through
+that memory structure,
+
+00:02:40.470 --> 00:02:43.590
+pull out pertinent pieces
+of information and data,
+
+00:02:43.590 --> 00:02:45.540
+and insert those
+in to the context
+
+00:02:45.540 --> 00:02:47.010
+of the large language model.
+
+00:02:47.010 --> 00:02:50.310
+An example of this can be
+seen inside of Copilot
+
+00:02:50.310 --> 00:02:51.960
+within Visual Studio Code.
+
+00:02:51.960 --> 00:02:54.930
+Your agent has memory
+of conversation.
+
+00:02:54.930 --> 00:02:57.780
+Your project files are
+also loaded in to memory
+
+00:02:57.780 --> 00:03:00.990
+as vector data for quick
+semantic searching.
+
+00:03:00.990 --> 00:03:03.750
+And the large language
+model has access to all
+
+00:03:03.750 --> 00:03:05.520
+of this data in its context.
+
+00:03:05.520 --> 00:03:09.030
+When you ask it to perform
+coding activities it can reach
+
+00:03:09.030 --> 00:03:11.940
+in to its cache, retrieve
+pertinent pieces of data,
+
+00:03:11.940 --> 00:03:15.840
+and use those to generate
+code, answer questions,
+
+00:03:15.840 --> 00:03:18.150
+create summaries,
+and so much more.
+
+00:03:18.150 --> 00:03:21.240
+Retrieval augmented
+generation is another form
+
+00:03:21.240 --> 00:03:23.310
+of context augmented generation.
+
+00:03:23.310 --> 00:03:26.550
+This time it's using a
+vector database to store
+
+00:03:26.550 --> 00:03:27.870
+and retrieve information
+
+00:03:27.870 --> 00:03:31.800
+from large volumes using
+semantic similarity.
+
+00:03:31.800 --> 00:03:33.060
+The retrieval portion
+
+00:03:33.060 --> 00:03:35.760
+of retrieval augmented
+generation is all
+
+00:03:35.760 --> 00:03:39.900
+about finding useful information
+through vector search.
+
+00:03:39.900 --> 00:03:42.840
+This is different from
+traditional key word search.
+
+00:03:42.840 --> 00:03:46.470
+Instead of searching for exact
+key words we use AI to search
+
+00:03:46.470 --> 00:03:49.980
+for content with semantic
+similar meaning.
+
+00:03:49.980 --> 00:03:52.230
+Once we find that
+information we retrieve it
+
+00:03:52.230 --> 00:03:54.060
+from the vector
+database and place it
+
+00:03:54.060 --> 00:03:57.150
+in to the context window of
+the large language model.
+
+00:03:57.150 --> 00:03:59.070
+We then ask the
+large language model
+
+00:03:59.070 --> 00:04:02.520
+to generate a new response
+using that information.
+
+00:04:02.520 --> 00:04:06.480
+We can also ask it to create
+citations so users can trace
+
+00:04:06.480 --> 00:04:08.820
+where the information
+originated.
+
+00:04:08.820 --> 00:04:12.510
+Citations are an important
+feature for tracing answers back
+
+00:04:12.510 --> 00:04:14.460
+to their origin and providing
+
+00:04:14.460 --> 00:04:17.490
+that the answer is grounded
+in real knowledge.
+
+00:04:17.490 --> 00:04:20.250
+In other words, the
+system can show receipts
+
+00:04:20.250 --> 00:04:22.730
+that prove the answer
+was not hallucinated.
+
+00:04:22.730 --> 00:04:26.060
+When we work with retrieval
+augmented generation we use
+
+00:04:26.060 --> 00:04:29.120
+vector databases to store
+large amounts of data.
+
+00:04:29.120 --> 00:04:32.060
+We do this by ingesting
+resources and passing them
+
+00:04:32.060 --> 00:04:33.990
+through a vector
+embedding model.
+
+00:04:33.990 --> 00:04:37.050
+That embedding model extracts
+the meaning from the text
+
+00:04:37.050 --> 00:04:40.740
+so we can perform searches
+using semantic similarity.
+
+00:04:40.740 --> 00:04:43.980
+If a document is large enough we
+may need to chuck that document
+
+00:04:43.980 --> 00:04:46.380
+in to smaller bite sized pieces.
+
+00:04:46.380 --> 00:04:49.200
+That makes it easier to
+ingest and store inside
+
+00:04:49.200 --> 00:04:50.670
+of the vector database.
+
+00:04:50.670 --> 00:04:54.480
+Because RAG can store large
+volumes of data it's perfect
+
+00:04:54.480 --> 00:04:56.820
+for generative AI search.
+
+00:04:56.820 --> 00:04:59.730
+Generative AI search empowers
+users by allowing them
+
+00:04:59.730 --> 00:05:02.940
+to use natural language
+to query large data sets
+
+00:05:02.940 --> 00:05:05.730
+without memorizing
+specific query syntax.
+
+00:05:05.730 --> 00:05:07.860
+It also helps make
+sense of large volumes
+
+00:05:07.860 --> 00:05:10.950
+of business data stored
+in unstructured formats
+
+00:05:10.950 --> 00:05:14.940
+such as websites,
+PDFs, images, videos,
+
+00:05:14.940 --> 00:05:16.530
+and many other resources.
+
+00:05:16.530 --> 00:05:18.630
+And it does this all
+while querying them
+
+00:05:18.630 --> 00:05:19.620
+as if they were coming
+
+00:05:19.620 --> 00:05:22.920
+from a relational
+database thanks to AI.
+
+00:05:22.920 --> 00:05:27.600
+And end to end RAG architecture
+is actually pretty complex.
+
+00:05:27.600 --> 00:05:30.300
+It requires multiple
+system components
+
+00:05:30.300 --> 00:05:33.570
+that are often sourced
+from multiple vendors.
+
+00:05:33.570 --> 00:05:36.090
+For example, you'll
+need a user interface.
+
+00:05:36.090 --> 00:05:38.310
+You'll need embedding
+and chat models.
+
+00:05:38.310 --> 00:05:41.940
+You'll need to have a data
+strategy and document providers
+
+00:05:41.940 --> 00:05:45.330
+for all of the documents I
+talked about whether it's PDF,
+
+00:05:45.330 --> 00:05:48.510
+Office files, video
+images, etcetera.
+
+00:05:48.510 --> 00:05:52.380
+You'll need a provider
+to translate those types
+
+00:05:52.380 --> 00:05:55.800
+of documents in to text
+so they can be embedded
+
+00:05:55.800 --> 00:05:57.900
+in to the vector database.
+
+00:05:57.900 --> 00:06:00.690
+And then of course you'll
+want to evaluate the quality
+
+00:06:00.690 --> 00:06:03.870
+of the data coming in and
+out of your RAG system.
+
+00:06:03.870 --> 00:06:07.140
+This requires a lot of
+expertise to glue together all
+
+00:06:07.140 --> 00:06:08.760
+of these different pieces
+
+00:06:08.760 --> 00:06:12.270
+and the expertise involved
+is software engineering,
+
+00:06:12.270 --> 00:06:15.000
+data science, and AI experts.
+
+00:06:15.000 --> 00:06:16.830
+It's very difficult to scale
+
+00:06:16.830 --> 00:06:19.680
+and it's also difficult
+to predict cost.
+
+00:06:19.680 --> 00:06:22.500
+Some of these concerns were
+cited in a recent article
+
+00:06:22.500 --> 00:06:25.110
+by VentureBeat where
+they suggested
+
+00:06:25.110 --> 00:06:27.510
+that enterprises are
+transitioning away
+
+00:06:27.510 --> 00:06:29.700
+of their current RAG stacks.
+
+00:06:29.700 --> 00:06:33.570
+These were RAG systems
+that were built in house
+
+00:06:33.570 --> 00:06:35.910
+and didn't have the
+fundamental knowledge
+
+00:06:35.910 --> 00:06:39.120
+of agentic retrieval
+augmented generation
+
+00:06:39.120 --> 00:06:42.660
+where agents help
+rerank search results
+
+00:06:42.660 --> 00:06:46.920
+and evaluate system metrics as
+data's ingested and retrieved.
+
+00:06:46.920 --> 00:06:50.160
+For a complete end to end
+solution that solves all
+
+00:06:50.160 --> 00:06:54.600
+of these problems for you
+is Progress Agentic RAG.
+
+00:06:54.600 --> 00:06:58.320
+Progress Agentic RAG is a
+rag as a service platform
+
+00:06:58.320 --> 00:07:02.880
+that can ingest all sorts of
+documents whether it's video,
+
+00:07:02.880 --> 00:07:06.090
+audio, chat logs or
+other information.
+
+00:07:06.090 --> 00:07:08.850
+Document providers are
+already there in place
+
+00:07:08.850 --> 00:07:10.440
+for you to ingest data.
+
+00:07:10.440 --> 00:07:13.260
+It makes sense of structured
+and unstructured data
+
+00:07:13.260 --> 00:07:15.090
+and there's agents
+within the system
+
+00:07:15.090 --> 00:07:18.960
+that can extract key
+texts, tags, entities,
+
+00:07:18.960 --> 00:07:22.980
+and generate embeddings all
+with large language models.
+
+00:07:22.980 --> 00:07:26.520
+It has a hybrid search feature
+that includes key word search,
+
+00:07:26.520 --> 00:07:29.400
+semantic search,
+and graph search.
+
+00:07:29.400 --> 00:07:32.010
+And all of that is
+reranked by an agent.
+
+00:07:32.010 --> 00:07:34.470
+It also has an embedded quality
+
+00:07:34.470 --> 00:07:36.990
+and evaluation metric
+known as REMi.
+
+00:07:36.990 --> 00:07:40.860
+This is an AI agent that
+evaluates the system's stability
+
+00:07:40.860 --> 00:07:43.080
+as data's ingested
+and retrieved.
+
+00:07:43.080 --> 00:07:46.770
+And all of Progress Agentic RAG
+can be managed through an easy
+
+00:07:46.770 --> 00:07:50.220
+to use user interface that a
+system administrator can log
+
+00:07:50.220 --> 00:07:55.620
+in to to ingest and manage
+data, orchestrate AI agents,
+
+00:07:55.620 --> 00:07:57.900
+and check evaluation metrics.
+
+00:07:57.900 --> 00:07:59.760
+For projects that
+require a quick turn
+
+00:07:59.760 --> 00:08:03.870
+around time administrators can
+use an HTML widget builder
+
+00:08:03.870 --> 00:08:06.420
+to create robust
+search experiences
+
+00:08:06.420 --> 00:08:09.540
+that also include
+citation and retrieval.
+
+00:08:09.540 --> 00:08:14.220
+For more complex scenarios such
+as building custom agents,
+
+00:08:14.220 --> 00:08:15.750
+custom user interfaces,
+
+00:08:15.750 --> 00:08:18.960
+or complete application
+architectures,
+
+00:08:18.960 --> 00:08:22.890
+SDKs for.NET type
+script in Javascript
+
+00:08:22.890 --> 00:08:27.180
+and Python are available
+as well as rest APIs.
+
+00:08:27.180 --> 00:08:29.580
+Let's take a look at a
+customization scenario
+
+00:08:29.580 --> 00:08:32.640
+and see how this would
+work with.NET and Blazor.
+
+00:08:32.640 --> 00:08:34.080
+For this demo we're going
+
+00:08:34.080 --> 00:08:38.580
+to create a business dashboard
+using Progress Agentic RAG
+
+00:08:38.580 --> 00:08:42.900
+and Blazor Server and connect
+them using the C Sharp SDK.
+
+00:08:42.900 --> 00:08:44.820
+The financial dashboard
+that we're going
+
+00:08:44.820 --> 00:08:48.300
+to create will ingest
+PDF financial statements
+
+00:08:48.300 --> 00:08:51.720
+and extract pertinent
+information from those PDFs
+
+00:08:51.720 --> 00:08:54.660
+so we can generate
+visualizations such as charts
+
+00:08:54.660 --> 00:08:57.150
+and graphs and also
+have conversations
+
+00:08:57.150 --> 00:09:00.660
+with the AI regarding
+the data in those PDFs.
+
+00:09:00.660 --> 00:09:04.620
+The first step is to log in to
+our Progress Agentic RAG system
+
+00:09:04.620 --> 00:09:06.570
+and once we log in we're greeted
+
+00:09:06.570 --> 00:09:09.690
+with our Progress
+Agentic RAG dashboard.
+
+00:09:09.690 --> 00:09:14.490
+From here we can see metrics
+on quality, storage,
+
+00:09:14.490 --> 00:09:17.460
+and the last resources
+that were ingested.
+
+00:09:17.460 --> 00:09:21.600
+From the upload tab we can
+upload new resources in the form
+
+00:09:21.600 --> 00:09:27.840
+of files, folders, links, text
+resources, entire site maps,
+
+00:09:27.840 --> 00:09:29.820
+and Q and A resources.
+
+00:09:29.820 --> 00:09:33.210
+The file resources can
+be any office type.
+
+00:09:33.210 --> 00:09:37.980
+They can be videos, images,
+and audio files like MP3s.
+
+00:09:37.980 --> 00:09:40.200
+I've already ingested
+some resources here
+
+00:09:40.200 --> 00:09:42.990
+and I can see them
+in my resource list
+
+00:09:42.990 --> 00:09:45.570
+and I have some
+reports from some
+
+00:09:45.570 --> 00:09:47.700
+of the big companies
+of the world.
+
+00:09:47.700 --> 00:09:51.330
+We have Amazon,
+Apple, and so on.
+
+00:09:51.330 --> 00:09:54.900
+So if I look at Apple's
+SEC filings I can see
+
+00:09:54.900 --> 00:09:58.050
+that I have a resource
+here in my file field
+
+00:09:58.050 --> 00:10:00.690
+and this is the
+entire SEC filing
+
+00:10:00.690 --> 00:10:02.850
+in PDF form that's been ingested
+
+00:10:02.850 --> 00:10:05.370
+in to the Progress
+Agentic RAG system.
+
+00:10:05.370 --> 00:10:08.910
+I also have some generated
+fields and these fields are data
+
+00:10:08.910 --> 00:10:15.240
+that has been extracted from
+the PDF using AI agents
+
+00:10:15.240 --> 00:10:18.510
+that are running on the
+data in the background.
+
+00:10:18.510 --> 00:10:22.680
+Those AI agents are configured
+in our agent screen
+
+00:10:22.680 --> 00:10:26.700
+within the Progress Agentic
+RAG system and you can test
+
+00:10:26.700 --> 00:10:30.480
+and evaluate those agents
+within the UI here.
+
+00:10:30.480 --> 00:10:33.840
+This agent in particular
+has been configured
+
+00:10:33.840 --> 00:10:39.090
+to extract chart friendly data
+from the unstructured files
+
+00:10:39.090 --> 00:10:41.280
+that are being ingested
+in to the system.
+
+00:10:41.280 --> 00:10:45.870
+This is a step that helps the
+retrieval agent find the data
+
+00:10:45.870 --> 00:10:49.200
+that we're looking for when we
+start providing structured data
+
+00:10:49.200 --> 00:10:51.930
+types to the system as queries.
+
+00:10:51.930 --> 00:10:53.160
+Once I've ingested data
+
+00:10:53.160 --> 00:10:57.060
+in to the system I have a simple
+search window that I can come in
+
+00:10:57.060 --> 00:11:01.380
+and use to check my data
+that has been ingested.
+
+00:11:01.380 --> 00:11:03.660
+So, for example, I
+can ask questions
+
+00:11:03.660 --> 00:11:10.770
+about what was Apple revenue
+and I'll get a response
+
+00:11:10.770 --> 00:11:13.440
+from the system that
+Apple's total net sales
+
+00:11:13.440 --> 00:11:18.150
+from 2024 were $391 million.
+
+00:11:18.150 --> 00:11:20.820
+This simple search can be
+converted in to a widget
+
+00:11:20.820 --> 00:11:24.240
+by hitting create widget and
+then I can quickly deploy
+
+00:11:24.240 --> 00:11:29.340
+that widget to a web page
+using some HTML snippets.
+
+00:11:29.340 --> 00:11:33.690
+For something more advanced I'm
+going to use the C Sharp SDK.
+
+00:11:33.690 --> 00:11:37.080
+So I'm going to go in to
+Visual Studio now and look
+
+00:11:37.080 --> 00:11:42.810
+at an application that uses the
+C Sharp SDK alongside Blazor
+
+00:11:42.810 --> 00:11:46.740
+Server to produce a completely
+custom user interface.
+
+00:11:46.740 --> 00:11:51.390
+To quickly retrieve an answer
+from Progress Agentic RAG
+
+00:11:51.390 --> 00:11:55.170
+within the SDK I can call
+upon the search interface
+
+00:11:55.170 --> 00:11:57.840
+and use the ask async method.
+
+00:11:57.840 --> 00:12:02.670
+With the ask async method I have
+the option to supply a structure
+
+00:12:02.670 --> 00:12:06.180
+that I would like the Progress
+Agentic RAG system to fulfill.
+
+00:12:06.180 --> 00:12:08.400
+This is just a
+plain class object.
+
+00:12:08.400 --> 00:12:10.770
+This one is called
+chart augmented answer.
+
+00:12:10.770 --> 00:12:16.020
+And I'm going to pass that type
+along with the user's request
+
+00:12:16.020 --> 00:12:19.170
+and when the type is passed
+
+00:12:19.170 --> 00:12:23.400
+in to the system this chart
+augmented answer gets turned
+
+00:12:23.400 --> 00:12:25.500
+in to a JSON structure.
+
+00:12:25.500 --> 00:12:29.370
+That JSON structure is then
+seen by the retrieval agent
+
+00:12:29.370 --> 00:12:32.700
+and the retrieval agent
+will map the values
+
+00:12:32.700 --> 00:12:36.630
+from the search results
+in to the JSON structure
+
+00:12:36.630 --> 00:12:40.380
+and fulfill all of the
+properties that we ask for.
+
+00:12:40.380 --> 00:12:43.080
+That gets serialized back in to
+
+00:12:43.080 --> 00:12:47.400
+that chart augmented answer
+object within our application
+
+00:12:47.400 --> 00:12:51.090
+and then I can easily display
+that information on the screen
+
+00:12:51.090 --> 00:12:54.420
+to the user in the form
+of text and charts.
+
+00:12:54.420 --> 00:12:57.180
+Now the application is
+running in the browser
+
+00:12:57.180 --> 00:13:00.660
+and I have a completely
+customized user interface
+
+00:13:00.660 --> 00:13:05.160
+that was built using the Telerik
+UI for Blazor component library
+
+00:13:05.160 --> 00:13:07.260
+and is all backed
+
+00:13:07.260 --> 00:13:11.160
+by the Progress Agentic
+RAG C Sharp SDK.
+
+00:13:11.160 --> 00:13:14.430
+In my chat interface I
+have some suggestions here
+
+00:13:14.430 --> 00:13:17.910
+so I can compare Nvidia and
+Google's revenue at the click
+
+00:13:17.910 --> 00:13:20.790
+of a button or I can
+enter a query just using
+
+00:13:20.790 --> 00:13:22.320
+natural language.
+
+00:13:22.320 --> 00:13:25.590
+So when I compare Nvidia
+to Google you can see
+
+00:13:25.590 --> 00:13:30.240
+that I get a detailed comparison
+in text, but I also have a chart
+
+00:13:30.240 --> 00:13:33.690
+that I can open and when I open
+the chart that structured data
+
+00:13:33.690 --> 00:13:37.380
+that I asked for from Progress
+Agentic RAG is relayed back
+
+00:13:37.380 --> 00:13:41.040
+to my Blazor application so
+it can be easily passed off
+
+00:13:41.040 --> 00:13:44.130
+to some UI components for
+rendering chart data.
+
+00:13:44.130 --> 00:13:47.670
+This just shows the depth
+of how custom you can go
+
+00:13:47.670 --> 00:13:51.630
+with Progress Agentic
+RAG and SDKs available
+
+00:13:51.630 --> 00:13:54.660
+and whatever front end
+technology that you like to use.
+
+00:13:54.660 --> 00:13:55.710
+For more information
+
+00:13:55.710 --> 00:13:58.920
+about Progress Agentic
+RAG visit progress.com
+
+00:13:58.920 --> 00:14:02.280
+and you can also use the QR code
+shown on screen to gather all
+
+00:14:02.280 --> 00:14:03.930
+of the resources that were found
+
+00:14:03.930 --> 00:14:07.470
+in this presentation including
+the financial services
+
+00:14:07.470 --> 00:14:11.460
+application that uses the
+C Sharp SDK in Blazor.
+
+00:14:11.460 --> 00:14:13.770
+Thank you for joining me and
+I hope you learned something
+
+00:14:13.770 --> 00:14:16.140
+about retrieval
+augmented generation.
+
+00:14:16.140 --> 00:14:18.280
+Enjoy the rest of build.

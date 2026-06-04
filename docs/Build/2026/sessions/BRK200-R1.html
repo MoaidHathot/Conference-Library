@@ -1,0 +1,1273 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRK200-R1 - Why your AI code doesn’t ship: Closing the gap to production</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRK200-R1</nav>
+        <h1>BRK200-R1 &mdash; Why your AI code doesn’t ship: Closing the gap to production</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRK200-R1 &middot; Breakout</span>
+    <h1>Why your AI code doesn’t ship: Closing the gap to production</h1>
+    <div class="speakers">Mario Rodriguez, Evan Boyle</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(300) Advanced</span>
+<span>Building B, Level 3, BATS Improv</span>
+<span>2026-06-03 23:00 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">Agents</span> <span class="tag">Developer</span> <span class="tag">GitHub Copilot</span> <span class="tag">GitHub</span> <span class="tag">Deployment Pipelines</span> <span class="tag">GitHub Copilot CLI</span> <span class="tag">DevTools</span> <span class="tag">Developer Technologies</span> <span class="tag">Agentic SDLC</span> <span class="tag">Developer tools &amp; frameworks</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRK200-R1?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/7d0f35c8-cd91-4e97-ad44-9161a7ad7cf8" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>AI isn&#39;t just autocompleting your code anymore — it&#39;s writing plans, shipping PRs, fixing pipelines, and patching prod. In this demo-heavy session, we&#39;ll show AI agents working across the entire dev lifecycle: planning, coding, CI/CD, and live operations. You&#39;ll see how to move faster, keep agents on a leash, and build systems that fix themselves.
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>GitHub leaders Mario Rodriguez and Evan Boyle argue that AI coding models crossed a threshold in December, shifting developers from constantly correcting agents (&quot;macro delegation, micro steering&quot;) and pushing the bottleneck downstream to PR validation, verification, and shipping. The demo-heavy session showcases a new &quot;agent-native engineering system&quot; built around the GitHub Copilot app, with surfaces, sandbox runtimes, automations, quality/security gates, and a cross-device memory layer aimed at helping developers finish and ship work rather than merely generate more of it.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>GitHub Copilot app</strong> <em>(~00:08:56)</em> — A new surface focused on helping developers finish work (triage, CI, review, merge) rather than spawning ever more parallel sessions; available for download at github.com/app.</li>
+<li><strong>Canvases</strong> <em>(~00:15:34)</em> — Dynamically loaded, themeable extensions with bidirectional agent tools that let users build hyper-personalized, shareable agentic UIs (e.g., a triage board, Kanban board, log/trace visualizer), installable from a gist or repo.</li>
+<li><strong>Voice mode in the CLI</strong> <em>(~00:15:59)</em> — Dictation-driven agent control, which Boyle uses with a hot-keyed remote to direct the agent while walking around.</li>
+<li><strong><code>copilot --cloud</code> GitHub sandboxes</strong> <em>(~00:26:21)</em> — Stateful micro VMs provisioned in seconds that suspend after 10 minutes of inactivity and resume with full state, enabling work to continue after the laptop is closed.</li>
+<li><strong>Chronicle</strong> <em>(~00:29:21)</em> — A private personal data lake over all user sessions across Copilot products and devices, queryable by the agent via SQL and full-text search, with a &quot;stand up&quot; report generator.</li>
+<li><strong>Agent merge</strong> <em>(~00:33:00)</em> — An agent that polls a PR, resolves merge conflicts, monitors and fixes CI, responds to human and Copilot code review feedback (pushing back when warranted), and merges once approved and green.</li>
+<li><strong>Rubber duck</strong> <em>(~00:41:02)</em> — Cross-model-family critique that, for example, invokes a GPT-5.5 [inferred] agent to critique a plan authored by a Claude model to combine differing model strengths.</li>
+<li><strong>Cloud and local automations</strong> <em>(~00:44:41)</em> — Scheduled &quot;morning brief&quot; inbox digests and an issue-created automation that attempts to reproduce bug reports, writes failing test cases, labels issues, and comments.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>The December model improvement and the shift from macro delegation/constant correction to macro delegation with micro steering.</li>
+<li>Agents entering the workforce, with GitHub citing surging commits, PRs, issues, and Actions activity, forcing load-sharing onto Azure.</li>
+<li>Pillars of an agent-native engineering system: new surfaces, sandbox runtimes, automations, quality/security, and memory plus enterprise trust (observability, traceability, FinOps).</li>
+<li>&quot;Lower the floor, raise the ceiling&quot; framing for accessibility and professional capability.</li>
+<li>Predictability of AI workflows, context-window and model management, and &quot;AI slop&quot; as a quality problem including architecture, security, and maintainability.</li>
+<li>Sub-agent orchestration: parallel security and code review sessions each spawning multiple models (Sonnet 4.6, GPT-5.5 [inferred], Gemini).</li>
+<li>Continuity across tools (CLI, Copilot app, VS Code, github.com) and operating systems, and protecting scarce human attention.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;We don&#39;t need to focus on doing more. We need to talk about finishing more.&quot; — Evan Boyle</p>
+</blockquote>
+<blockquote>
+<p>&quot;Everything you&#39;re about to see, it is the product of me trying to avoid work.&quot; — Evan Boyle</p>
+</blockquote>
+<blockquote>
+<p>&quot;Human attention is now the limited quantity.&quot; — Evan Boyle</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>GitHub Copilot app</li>
+<li>GitHub Copilot CLI</li>
+<li>Copilot canvases</li>
+<li>GitHub sandboxes (<code>copilot --cloud</code>)</li>
+<li>Chronicle</li>
+<li>Agent merge</li>
+<li>Rubber duck</li>
+<li>Copilot code review</li>
+<li>GitHub Advanced Security</li>
+<li>Copilot SDK</li>
+<li>Microsoft Azure</li>
+<li>GitHub Actions</li>
+<li>Claude Sonnet 4.6 / Opus</li>
+<li>GPT-5.5 [inferred]</li>
+<li>Google Gemini</li>
+<li>Jupyter notebooks</li>
+<li>Miro</li>
+<li>Datadog</li>
+<li>Visual Studio Code</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Mario Rodriguez — GitHub product leadership</li>
+<li>Evan Boyle — engineering manager at GitHub, overseeing the Copilot app, CLI, and SDK</li>
+<li>John Maeda — head of design at GitHub (referenced, not present)</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>GitHub Copilot app: github.com/app</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (63,856 chars)</summary>
+        <pre class="transcript-body">[00:00:00] OK, Hello everyone.
+[00:00:02] How are we doing?
+[00:00:04] I actually had the pleasure to after the keynote to
+[00:00:07] do this same presentation and I have the pleasure now
+[00:00:10] to end all of build with this presentation as well.
+[00:00:13] I think it&#39;s was one of the last ones overall.
+[00:00:17] Thanks for all coming over here.
+[00:00:19] Since we&#39;re kind of a smaller group, we&#39;re going to
+[00:00:22] keep this a little bit more informal instead of the
+[00:00:25] other one that we did on it.
+[00:00:26] So really looking forward to it now.
+[00:00:28] One of the core things that we talked probably yesterday
+[00:00:32] actually, you know, time flies when you&#39;re having fun.
+[00:00:36] One of the core things that we talked about yesterday
+[00:00:40] was the fact that something really happened in December like
+[00:00:44] this model starting getting really, really good are coding, but
+[00:00:49] in a kind of interesting way.
+[00:00:51] Before when you macro delegate it to these agents and
+[00:00:54] it&#39;s kind of like the model plus the harness.
+[00:00:56] You have to be constantly correcting and it&#39;s kind of
+[00:00:59] like you have a toddler for anyone that has children
+[00:01:01] and you let it, like you constantly have to be
+[00:01:04] going after them, make sure that they stayed safe.
+[00:01:07] And after December, at the end of December, which came
+[00:01:11] back to work in January, what we found is that
+[00:01:14] macro delegation was actually possible.
+[00:01:17] You could delegate work to these agents and you didn&#39;t
+[00:01:21] have to be constantly be correcting them.
+[00:01:23] You could go in and trust them more and you
+[00:01:27] started micro steering more than anything.
+[00:01:31] So we started switching from this macro.
+[00:01:33] We started switching from constantly then reviewing what they&#39;re doing
+[00:01:38] into now trusting them more and doing this macro delegation
+[00:01:42] on micro steering.
+[00:01:44] What that really means like foundational is in January agents
+[00:01:48] enter the workforce and that&#39;s why you have seen a
+[00:01:52] GitHub and we published some of this data as well
+[00:01:55] that all of the anything we could count is going
+[00:01:59] like this.
+[00:02:00] In fact, I run out of data, out of data
+[00:02:03] center space.
+[00:02:04] I had to go and launch it.
+[00:02:06] We have a data center in the East Coast.
+[00:02:08] We couldn&#39;t put any more machines in that data center.
+[00:02:11] We have to load share into Asher to be able
+[00:02:13] to deal with the load that we were receiving.
+[00:02:17] Everything like you know, from commits to put request to
+[00:02:21] issue creation to agentic activity in actions as well.
+[00:02:25] And what that also means at the end is that
+[00:02:29] we need to continue to have this evolution of GitHub
+[00:02:33] being the home of open source and actually being amazing
+[00:02:38] human to human collaboration, to evolving into this new system,
+[00:02:43] this new system that is really about Asian native, that
+[00:02:47] is really about Asian and humans collaborating together.
+[00:02:53] Now, as you think about that, that also means that
+[00:02:56] as what you know today as a software development life
+[00:02:59] cycle is also completely changing, it will not be recognizable,
+[00:03:03] in my opinion, five years from now.
+[00:03:07] And what that also means is that we&#39;re going to
+[00:03:10] have new challenges today that we&#39;re going to have to
+[00:03:12] overcome as we think about how to collaborate between humans
+[00:03:16] and agents and ship code into production.
+[00:03:18] There&#39;s going to be new bottlenecks.
+[00:03:19] And some of you are already feeling this in the
+[00:03:22] sense of you could go really fast either by coding
+[00:03:24] or not by coding.
+[00:03:25] You could go really fast in the coding stage, but
+[00:03:28] then you&#39;re going to be struggling a little bit more
+[00:03:30] and more in the PR validation state and verification stage.
+[00:03:33] So we&#39;re going to hit new bottlenecks over all.
+[00:03:37] So we have to then design the system, not necessarily
+[00:03:40] from the ground up, but a system that tackles all
+[00:03:43] of these things holistically.
+[00:03:45] And the way that I think about it is we&#39;re
+[00:03:48] creating a new engineering system and some of the pillars
+[00:03:51] that we will have for that are the ones that
+[00:03:54] you see in screen number one.
+[00:03:56] I strongly believe that we&#39;re going to need new surfaces
+[00:03:59] today.
+[00:03:59] There&#39;s an IDE more and more of you are using
+[00:04:02] the CLI, but we also know that none, it&#39;s not
+[00:04:05] going to stop at a terminal like it&#39;s not going
+[00:04:09] to stop at the MS-DOS era overall.
+[00:04:11] There will be new user interfaces and we&#39;re all kind
+[00:04:15] of starting to migrate from an IDE into what some
+[00:04:18] of us call an Ade or an identic development environment.
+[00:04:22] So it&#39;s going to be innovation in those surfaces and
+[00:04:25] we&#39;ll continue to push it forward.
+[00:04:26] In fact we&#39;ll have we&#39;ll see a couple of demos
+[00:04:29] more than a demos, like 20 minutes of demos just
+[00:04:31] on that overall.
+[00:04:33] The second thing is, as you trust more and more
+[00:04:36] of what is happening, then you also need a runtime
+[00:04:39] layer that has everything included in it.
+[00:04:41] So just like what happened in CI with now you
+[00:04:44] have actions, you have this, a set of tools that
+[00:04:47] are automatically installed, you need a new primitive.
+[00:04:51] And right now what is becoming that new primitive that
+[00:04:54] I&#39;m seeing is sandboxes.
+[00:04:56] And these sandboxes not only have firewall rules, but have
+[00:04:58] the right tools installed and they&#39;re starting to be agent
+[00:05:01] native.
+[00:05:02] So we need a new runtime for this hagentic ability.
+[00:05:06] The other one is automations, and automations are important.
+[00:05:10] And I&#39;ve been trying to make an analogy and I
+[00:05:12] think it&#39;s resting a little bit.
+[00:05:13] So if you think about 3D printers, how many of
+[00:05:16] you own a 3D printer, have done that before?
+[00:05:19] It&#39;s a couple of you.
+[00:05:20] You invest a lot in a CAD drawing.
+[00:05:22] And then once you have that CAD drawing, then you
+[00:05:25] give it to a 3D printer and you get an
+[00:05:26] object at the end.
+[00:05:27] After hours or minutes, you do a little bit of
+[00:05:30] quality control and try to see if the head of
+[00:05:33] it got cold and it didn&#39;t do what it was
+[00:05:35] supposed to do.
+[00:05:36] Sometimes you shock that and then you do it again.
+[00:05:39] But then after a little while you start getting predictability
+[00:05:42] of that item and you can do 50 of them,
+[00:05:44] and you know that each one of them will cost
+[00:05:46] you $0.10 as an example, right?
+[00:05:48] We don&#39;t have that today in AI, like every time
+[00:05:51] you send a command of you have to manage context
+[00:05:53] windows, you have to manage what model, all of those
+[00:05:56] type of things.
+[00:05:56] It&#39;s very low predictability.
+[00:05:58] And I think what the industry needs to get to
+[00:06:01] at the end, it&#39;s a place where us humans that
+[00:06:04] have that creativity, that judgment can spend more time on
+[00:06:08] the CAD, more time on what is it that we&#39;re
+[00:06:11] creating and why we are creating it.
+[00:06:13] And then we just give it to automation and it
+[00:06:16] goes through the gates and then we&#39;re micro steering and
+[00:06:19] doing the right things overall.
+[00:06:21] Then from automation and that predictability, then you get quality.
+[00:06:25] You&#39;re going to have to have quality control as well.
+[00:06:28] But it&#39;s more than that, right?
+[00:06:29] It&#39;s did it actually do the intended thing?
+[00:06:32] But it&#39;s a secure and did I create a spaghetti
+[00:06:35] code which actually is not maintainable at the end.
+[00:06:38] So quality needs to go and help you on this
+[00:06:40] AI slot.
+[00:06:41] AI slot is a combination of two things.
+[00:06:44] You know, I also, I know analogy on this is
+[00:06:46] if I give my 6 year old daughter to bake
+[00:06:49] a cake, the cake might not turn out that good
+[00:06:51] without server vision.
+[00:06:52] It&#39;s messy.
+[00:06:53] If I do the cake, you know, I&#39;m not no
+[00:06:55] Michelin star chef or anything, but it will probably turn
+[00:06:58] out a little bit better, right?
+[00:06:59] So it&#39;s the same thing like as people are coming
+[00:07:02] in learning software development combined with AI, they&#39;re not always
+[00:07:06] going to create the best cake as someone that has
+[00:07:09] been in the industry for a while.
+[00:07:11] But the reality is, even as you know, professional developers
+[00:07:14] need more help in architecture and we need to help
+[00:07:17] them do that.
+[00:07:17] Models today are horrible at it.
+[00:07:19] There&#39;s no training data that is very good.
+[00:07:21] There&#39;s no RL environments are very good today on it.
+[00:07:24] So it&#39;s showing up actually in how they interact with
+[00:07:27] us.
+[00:07:27] So we&#39;re going to go and step up and be
+[00:07:30] better and better at quality all the way from what
+[00:07:33] is getting implemented from the verification platform to the security
+[00:07:37] and make sure that things are safe and into architecture
+[00:07:40] too.
+[00:07:41] Then the last thing is more about memory and enterprise
+[00:07:44] trust as we go in here and the way that
+[00:07:46] I would describe it is for us to do have
+[00:07:48] all of these agents at scale, we need a way
+[00:07:51] to trust them.
+[00:07:51] We need enterprises to scale them.
+[00:07:54] So you need observability, you need the, you know, we&#39;re
+[00:07:57] to have traceability through it.
+[00:07:59] You need a way to actually manage costs, which is
+[00:08:02] why we call fin OPS as well.
+[00:08:04] And then we want the whole system just like us
+[00:08:07] as humans, we go to sleep, we dream, we actually
+[00:08:09] get some things into long term memory.
+[00:08:11] And then through every single iteration after that, we get
+[00:08:15] better at that task.
+[00:08:16] Well, at least, you know, we hope we get better
+[00:08:18] at that task and through enough iterations that you become
+[00:08:22] craft full of that task and maybe even a master
+[00:08:24] at that task as well.
+[00:08:25] We want the same thing to happen with this agentic
+[00:08:28] ability across the SDLC too.
+[00:08:30] We want these agents, we want the skills, we want
+[00:08:32] the digital workers to get better every single iteration, every
+[00:08:36] single night.
+[00:08:37] So for me, these are the components of the new
+[00:08:40] Asian native engineering system.
+[00:08:42] And this is the evolution of from human to human
+[00:08:45] collaboration to agent to human collaboration across these pillars.
+[00:08:53] So the next thing that I wanted to do, it&#39;s
+[00:08:56] really talk about the, you know, we did an announcement
+[00:09:00] called the GitHub app.
+[00:09:01] It&#39;s one of our surfaces.
+[00:09:03] And I think this is foundational overall.
+[00:09:06] I was talking to John Maeda and John Maeda as
+[00:09:09] the head of the sign at GitHub this weekend, actually
+[00:09:12] the weekend before that.
+[00:09:14] And one of the conversations that we were having was
+[00:09:16] about how do you think about the evolution of these
+[00:09:19] surfaces going forward?
+[00:09:21] We have this Asian native engineering system.
+[00:09:23] That&#39;s great, but how do we explain the combination of
+[00:09:25] the surfaces and data and what it&#39;s going to create?
+[00:09:28] And the way that we&#39;re talking about, it was about
+[00:09:31] lower the floor or low floors and high ceilings.
+[00:09:34] So let me explain that in a second.
+[00:09:36] And then after that, I&#39;ll invite Evan to come in
+[00:09:39] and do a demo of all of this lower floor.
+[00:09:42] Lowering.
+[00:09:42] The floor for me is being able to actually reach
+[00:09:45] people that we never reach.
+[00:09:47] So if you think about it, it could be 1
+[00:09:49] billion developers on Earth.
+[00:09:51] They&#39;re not today because we cannot skill them.
+[00:09:53] But if you lower the floor, if you make software
+[00:09:56] development super accessible, yes, you&#39;re going to get a little
+[00:10:00] bit of that in a slot.
+[00:10:01] But that&#39;s not the point, right?
+[00:10:03] The point is that you allow creation, that you allow
+[00:10:06] new people to go in.
+[00:10:07] It&#39;s how you build communities too.
+[00:10:09] If you think about the OSS community, someone came in,
+[00:10:12] did a PR, you went with that person and told
+[00:10:14] them how that PR could be better.
+[00:10:16] That person got better the second PR got better on
+[00:10:19] your open source project, all the way to maybe they
+[00:10:21] became a collaborator and maybe even a Mountaineer with you.
+[00:10:25] So the same thing needs to happen.
+[00:10:27] We need to lower the floor.
+[00:10:29] You know, when Mosa was alive and was a child,
+[00:10:31] there probably was 10 Mosers on Earth, but not all
+[00:10:34] of them were able to get a piano, and that&#39;s
+[00:10:37] why you only had one in reality.
+[00:10:39] So the more we make these things accessible and we
+[00:10:42] democratize it, then the better humanity comes.
+[00:10:46] The second thing is for professionals.
+[00:10:49] Professionals, we need to go and continue to allow them
+[00:10:52] to do things that were not possible before.
+[00:10:54] And that&#39;s raising the ceiling.
+[00:10:56] So you lower the floor so more people come in,
+[00:10:58] they get better, better, better at their craft, and then
+[00:11:01] you enable them to do things that advance humanity forward.
+[00:11:04] Because really at that professional, at the people, the spirit,
+[00:11:07] that frontier where developers Live Today is where the magic
+[00:11:11] happens.
+[00:11:12] If you think about it, humanity already invented the fire
+[00:11:14] and the will.
+[00:11:15] Everything we&#39;re going to be creating from here on is
+[00:11:18] going to be powered by software and that powered by
+[00:11:21] software is going to need a system and it&#39;s going
+[00:11:23] to be able to then gives them the capability to
+[00:11:26] do that.
+[00:11:27] All right.
+[00:11:27] So with that, you know, we usually I give up
+[00:11:29] talk demos, not memos.
+[00:11:30] So what I want to do is I want to
+[00:11:33] in that event is an engineering manager, he overseas compiler
+[00:11:37] app, the CLI and also our SDK.
+[00:11:40] And we want to do this a little bit on
+[00:11:41] structure, right?
+[00:11:42] So, you know, developer countries are messy and all of
+[00:11:44] those type of things.
+[00:11:46] So we&#39;re just going to go in, do a bunch
+[00:11:47] of demos, maybe involved you in a couple of them,
+[00:11:50] and then take it from here.
+[00:11:51] All of this is live.
+[00:11:52] All of this is unscripted to a degree.
+[00:11:54] So you&#39;re going to see things real, you know, happen
+[00:11:57] in real time.
+[00:11:57] So let&#39;s see how it goes.
+[00:12:01] Hey folks, how&#39;s it going?
+[00:12:03] Good.
+[00:12:04] All right, let&#39;s get after it.
+[00:12:07] So this is the brand new GitHub Copilot app.
+[00:12:11] Now, the Copilot app is not just another session manager,
+[00:12:15] right?
+[00:12:16] Most tools in this space make it easy for you
+[00:12:18] to create lots and lots of parallel work, right?
+[00:12:22] The Copilot app is focused and built around the idea
+[00:12:25] of helping you finish it beyond implementation, triage, figuring out
+[00:12:29] what&#39;s important to your users, you know, CI, getting through
+[00:12:33] review feedback, finally merging and getting those outcomes to, you
+[00:12:37] know, your users because that&#39;s all that really matters.
+[00:12:40] Are you delivering value?
+[00:12:42] So I really have to level with all of you.
+[00:12:46] I have a, you know, big, big procrastination problem, especially
+[00:12:49] when it comes to kind of tedious work.
+[00:12:53] Show of hands.
+[00:12:54] Who among you is the same?
+[00:12:56] OK, about 60% of the room is telling the truth,
+[00:12:59] and the other 40% is lying.
+[00:13:03] So here&#39;s my problem.
+[00:13:03] When I am, you know, confronted with something that I
+[00:13:07] don&#39;t want to do, I procrastinate by building a new
+[00:13:10] primitive into the GitHub app that helps me automate that
+[00:13:13] work.
+[00:13:14] In reality, that whole process takes 10 times as long
+[00:13:17] as it would for me to just do the tedious
+[00:13:20] thing.
+[00:13:21] But the benefit is that all of you in this
+[00:13:23] room and millions of other developers now have a primitive
+[00:13:26] that can help them automate it.
+[00:13:28] So overall, a win.
+[00:13:33] So everything you&#39;re about to see, it is the product
+[00:13:36] of me trying to avoid work.
+[00:13:40] The promise of these agents, right, was that we were
+[00:13:43] going to be able to do more.
+[00:13:45] I really think we need to flip the script.
+[00:13:47] We&#39;re at a point where we don&#39;t need to focus
+[00:13:49] on doing more.
+[00:13:50] We need to talk about finishing more, right?
+[00:13:54] About focus, reclaiming our focus, our team&#39;s focus and about
+[00:13:58] outcomes over activity.
+[00:14:00] So starting with that, I&#39;m going to kick over here
+[00:14:04] to the My Work tab.
+[00:14:05] I have, you know, lots of different customized views for
+[00:14:09] issues for PRS, all the things that are assigned to
+[00:14:12] me.
+[00:14:12] This one in particular is issues in the public GitHub
+[00:14:16] app repo.
+[00:14:17] And so, you know, I&#39;m going to search for issues
+[00:14:22] related to terminal, you know, and or let&#39;s say Canvas,
+[00:14:28] let&#39;s try terminal quick chat.
+[00:14:34] So this one here we have a terminal canvas and
+[00:14:37] it&#39;s missing from quick chat.
+[00:14:39] I&#39;m going to talk about canvases in just a minute,
+[00:14:42] but I want to show you that I can from
+[00:14:44] within here, kick off a session.
+[00:14:47] And this is pretty cool.
+[00:14:49] So this session is going to have all of my
+[00:14:51] issue context already attached to it.
+[00:14:54] You can see the agent is reviewing the issue.
+[00:14:57] So we try to make it easy for you to
+[00:14:58] do this in bulk.
+[00:14:59] If you want to, you know, go and do a
+[00:15:01] quick pass through 1 area to do a quality cleanup.
+[00:15:05] You can select multiple issues on the left hand side,
+[00:15:07] kick them off in separate sessions.
+[00:15:09] That helps me personally maintain my focus by staying in
+[00:15:13] the zone of the same issue.
+[00:15:15] So, you know, this is great.
+[00:15:17] This is kind of A1 size fits all workflow.
+[00:15:20] I was able to go do a little bit of
+[00:15:22] triage, you know, kick off some work.
+[00:15:24] Now it&#39;s going to go get into that implementation.
+[00:15:26] But not all of us have one-size-fits-all workflows.
+[00:15:30] And so that&#39;s what I want to talk to you
+[00:15:32] today about canvases.
+[00:15:34] So I&#39;m going to go over to my home screen
+[00:15:36] here and I&#39;m going to dictate a little bit.
+[00:15:39] So I&#39;m going to say open the terminal canvas, then
+[00:15:43] I want you to stand up a web server that
+[00:15:46] renders a hello canvas page, wait a second for that
+[00:15:50] canvas to come up, and then finally open that URL
+[00:15:54] in the web browser.
+[00:15:58] So I&#39;m going to hit enter.
+[00:15:59] That&#39;s voice mode that also just shipped in the CLI.
+[00:16:02] When I&#39;m at home developing on my own, I actually
+[00:16:05] have like a little remote that&#39;s hot keyed plugged into
+[00:16:08] my computer so that I can walk around.
+[00:16:10] I&#39;m like, I think while I walk.
+[00:16:12] So I wander around my office with my headphones on,
+[00:16:16] click my remote, and that&#39;s how I think.
+[00:16:19] I think out loud to my agent.
+[00:16:20] That&#39;s just like super productive way for me to work.
+[00:16:23] And So what you can see here is the agent
+[00:16:25] is interpreting my instructions.
+[00:16:27] Anything on this right hand side here can be controlled
+[00:16:30] by the agent.
+[00:16:31] So it ran a Python web server inside of the
+[00:16:33] terminal, read the output from the terminal, and then saw,
+[00:16:37] hey, this is the port it&#39;s on.
+[00:16:39] I&#39;m going to open up the web browser.
+[00:16:40] So everything in the right hand side can be controlled
+[00:16:43] by the agent.
+[00:16:43] All of all of these UI elements, all of these
+[00:16:46] tabs exposed tools to the agent.
+[00:16:48] So this is great.
+[00:16:49] These are these are built insurance, right?
+[00:16:51] There are other built in tools associated with the web
+[00:16:54] browser for doing things like, you know, agentic kind of
+[00:16:57] debugging of the web browser, manipulating elements, doing automated UI
+[00:17:00] testing.
+[00:17:01] This really cool, you know, kind of pick and pick
+[00:17:04] and Polish where I can add elements into the context.
+[00:17:07] But I want to show you what it looks like
+[00:17:10] to build your own canvases.
+[00:17:12] So I am going to go ahead and get started
+[00:17:15] on this create canvas skill and actually, you know, but
+[00:17:18] before we go, before we go and do that, I
+[00:17:21] think it might be more helpful for me to show
+[00:17:24] you an existing example of a canvas that my team
+[00:17:27] and I use on a day-to-day basis.
+[00:17:29] So I&#39;m going to say open the triage canvas.
+[00:17:37] And so these canvases are extensions that can be dynamically
+[00:17:41] loaded into the app that have agent capabilities.
+[00:17:44] So this is the triage canvas that my team and
+[00:17:47] I use everyday on our public backlog during stand up
+[00:17:50] to go through.
+[00:17:51] What are the recent issues?
+[00:17:53] What are top thumbs up issues?
+[00:17:55] You know, common themes.
+[00:17:57] We try and, you know, pay attention to our most
+[00:17:59] engaged users who are giving us the most feedback.
+[00:18:01] Give them extra love.
+[00:18:03] But this isn&#39;t just a web app, right?
+[00:18:06] I have this button up here called analyze sample.
+[00:18:08] You may notice we have this common themes tab.
+[00:18:11] There&#39;s nothing inside of here.
+[00:18:12] So why don&#39;t I try and click this analyze sample
+[00:18:14] button and see what happens.
+[00:18:17] If you see over here on the chat on the
+[00:18:19] left, it sent a message.
+[00:18:21] It said, hey, we&#39;ve loaded the Top 40, you know,
+[00:18:24] up uploaded issues and the Top 40 most recent issues
+[00:18:27] into this Jason file.
+[00:18:29] I want you to create 5 to 8 feedback themes
+[00:18:32] and then you know and then populate them back into
+[00:18:36] the app.
+[00:18:37] So this app also has tools that allow the agent
+[00:18:40] to call back in.
+[00:18:41] It&#39;s this bi directional flow of data.
+[00:18:43] I can interact with the UI, manipulate the agent and
+[00:18:47] then the agent can come in and call tools that
+[00:18:49] manipulate the UI.
+[00:18:51] This really helps me kind of up level my partnership
+[00:18:53] with agents.
+[00:18:54] If I want to build a triage flow, great.
+[00:18:57] If I have other specific workflows for, you know, doing
+[00:18:59] data visualization and analysis, We&#39;ve had people in the team
+[00:19:03] build Jupiter notebook support in these canvas extensions.
+[00:19:06] Super, super cool.
+[00:19:07] So I&#39;m going to switch back over to a version
+[00:19:09] of the triage board that&#39;s already done right.
+[00:19:12] So here my common themes have been populated and none
+[00:19:15] of this stuff is a surprise to me.
+[00:19:16] Yep, we&#39;re already working on WSL, we&#39;re working on, you
+[00:19:20] know, integrating custom agents and you know, kind of getting
+[00:19:24] to parity on some of the extensibility mechanisms.
+[00:19:28] So I want to just go ahead and show you
+[00:19:31] something else.
+[00:19:32] Super cool.
+[00:19:33] So if I go to some of these recent issues,
+[00:19:35] OK, this one&#39;s asking to add a warning, so we&#39;ll
+[00:19:38] start with that.
+[00:19:40] Work tree creation timing out on a very large repo.
+[00:19:43] OK, we should definitely go and fix that and then
+[00:19:46] import chats created by VS Code.
+[00:19:48] Well, you know what, we&#39;re already working on that one,
+[00:19:51] but I&#39;ll kick one off just for good measure.
+[00:19:54] And I want you to, you know, take a look
+[00:19:56] at one of these messages.
+[00:19:58] So it says, you know, hey, the user clicked this
+[00:20:01] start message button, here&#39;s the context around the issue with
+[00:20:05] the URL.
+[00:20:06] And then it asks, use the Create Session tool.
+[00:20:09] This is pretty interesting.
+[00:20:10] So not only can I go in and, you know,
+[00:20:12] hit this little plus button up here to start a
+[00:20:15] new session, anything that I can do inside of the
+[00:20:18] GitHub app is agent driven by design.
+[00:20:20] So this agent has the ability to fork sessions, create
+[00:20:23] new sessions, archive sessions that it&#39;s actively managing.
+[00:20:27] And you can see that this shows up in this
+[00:20:29] tree hierarchy that makes it really easy for me to
+[00:20:32] group, visualize and monitor all my related work.
+[00:20:36] Well, I, I think now&#39;s a good time to maybe
+[00:20:38] do a little bit of our audience participation while some
+[00:20:41] of these, while we work on some of these PRS.
+[00:20:44] So let&#39;s see, go into the GitHub app and I
+[00:20:50] want to run create canvas.
+[00:20:54] So I, I would love to hear from the audience.
+[00:20:57] What&#39;s some sort of tool or process that you and
+[00:21:00] your team kind of engage in on whether it&#39;s like
+[00:21:03] a daily or weekly or even monthly basis where you
+[00:21:07] feel like it would be really powerful to have your
+[00:21:10] own custom agent driven tool to help with this?
+[00:21:13] Just shout it out logs and traces for.
+[00:21:18] Production traces, traces, logs.
+[00:21:20] Utilization log and trace analyzer.
+[00:21:22] OK, well, I, I love that one.
+[00:21:25] Actually.
+[00:21:26] I don&#39;t have access to your production traces, so I&#39;m
+[00:21:28] going to, I&#39;m going to build it for the local
+[00:21:30] GitHub app and we&#39;re going to see what happens here.
+[00:21:35] We want to build a log and trace visualizer for
+[00:21:40] the GitHub app.
+[00:21:43] Take a look through the GitHub app code base and
+[00:21:45] see what we have in terms of logs that are
+[00:21:47] being populated and, or any, you know, traces.
+[00:21:49] Or if not, maybe you can just use, you know,
+[00:21:52] Mac system utilities to collect your some collect some traces.
+[00:21:57] So create a canvas that allows me to kind of
+[00:22:00] use the agent to drive this process of of monitoring
+[00:22:03] the performance of the app.
+[00:22:05] What&#39;s going on with logs?
+[00:22:07] Yeah, that&#39;s it.
+[00:22:08] Go.
+[00:22:11] So this is going to invoke the create canvas skill.
+[00:22:14] So this agent knows how to create these canvases, how
+[00:22:18] to edit existing canvases.
+[00:22:20] And the coolest part about this is like this canvas
+[00:22:24] will be built live.
+[00:22:26] It&#39;s aware of the themes inside of the UI.
+[00:22:29] So if I change this to dark mode, my canvas
+[00:22:31] will update and it can define these, you know, bi
+[00:22:34] directional agent tools.
+[00:22:37] Not just that, it&#39;s also possible to share some of
+[00:22:41] these canvases, right?
+[00:22:42] So I&#39;m going to go back over to my triage
+[00:22:46] board conversation here, and I&#39;m going to pull up another
+[00:22:50] sort of example, which is an agent Kanban board.
+[00:22:55] So if I go in here, hit command K, search
+[00:22:59] for install so I can install a gist.
+[00:23:02] I can install one of these extensions from a gist.
+[00:23:05] So I&#39;m going to say I want this in project
+[00:23:07] scope.
+[00:23:08] I&#39;m going to hit enter, boom, it loaded.
+[00:23:12] And so now I can say open the Kanban board.
+[00:23:25] All right, just like that.
+[00:23:26] My, my gist has been, you know, I&#39;ve, I&#39;ve loaded
+[00:23:29] this, this extension.
+[00:23:31] So if you want to share these, if you want
+[00:23:33] to, you know, publish them, you can do the same
+[00:23:36] thing from a gist or from a repo.
+[00:23:38] So you can import from a repo.
+[00:23:40] I can hit, you know, share extension as gist.
+[00:23:43] We want to make these things easy for you to
+[00:23:45] publish and share.
+[00:23:46] And so here&#39;s just another example.
+[00:23:48] I can add cards here and say, hey, you know,
+[00:23:51] add emojis to the README and I&#39;ll just say do
+[00:23:55] the thing, add the card, go to the backlog, start
+[00:23:59] the agent and it sends the message.
+[00:24:02] And so if I&#39;m a visual person, I like working
+[00:24:05] in this style where this is how I want to
+[00:24:07] plan out work for a task.
+[00:24:08] This is great.
+[00:24:09] I can build this own, I can build this workflow
+[00:24:11] for myself.
+[00:24:15] Next thing I wanted to show real quickly is that
+[00:24:18] it&#39;s not just, you know, these canvases, right?
+[00:24:20] Like these canvases are designed to be hyper personalized software
+[00:24:24] for your workflow.
+[00:24:25] You can build them personally and store them in your
+[00:24:28] copilot folder and you can check them into the repo
+[00:24:30] so that you and your team can iterate on them
+[00:24:33] and have a shared set of agentic sort of UI
+[00:24:35] tools that you can work with.
+[00:24:37] We even have people who go full screen in these
+[00:24:39] apps and this is how they work all day long.
+[00:24:42] It really helps up level that that partnership that they
+[00:24:45] have with the agent operating at a different level of
+[00:24:48] abstraction.
+[00:24:49] But it&#39;s not just it&#39;s not just, you know, personalized.
+[00:24:54] We&#39;re also working with dozens of partners to build high
+[00:24:58] quality 3P extensions and publish them into the marketplace.
+[00:25:03] So this is Miro and Miro builds these kind of
+[00:25:06] agent driven, you know, design process automation tools.
+[00:25:11] And so you can see this this rich design dock
+[00:25:13] that we&#39;ve been building.
+[00:25:14] This is like, you know, OOP dragging around a little
+[00:25:17] bit, but similarly speaking, like, you know, Miro hooks in
+[00:25:22] and if I drag cards, it&#39;ll also kick off tasks.
+[00:25:25] So there&#39;s a rich marketplace of these canvases that we&#39;re
+[00:25:27] in the process of building, and you&#39;re going to see
+[00:25:30] more and more of these coming in the future.
+[00:25:34] OK, well, our trace visualizers still working.
+[00:25:40] I think, Mario, maybe we&#39;ll come back to that a
+[00:25:42] little later.
+[00:25:43] And so I want to talk to you a little
+[00:25:44] bit more about, you know, kind of continuity.
+[00:25:46] I think a part of regaining focus for me and
+[00:25:50] finishing more is also being able to put my computer
+[00:25:53] down, right?
+[00:25:55] It&#39;s being able to, you know, move on to the
+[00:25:58] next thing mentally check out.
+[00:26:00] And we&#39;ve had remote control in in copilot for a
+[00:26:03] long time.
+[00:26:04] The ability to leave your laptop plugged in and then
+[00:26:07] control that session from your phone.
+[00:26:09] The problem is your your laptop still needs to be
+[00:26:11] connected to the Internet, right?
+[00:26:14] And so I&#39;m going to switch over to the copilot
+[00:26:17] CLI for this one, bump up the font a couple
+[00:26:20] of times.
+[00:26:21] And so now we have copilot dash dash cloud.
+[00:26:27] So what you&#39;re going to see here, this is standing
+[00:26:30] up what is called a GitHub sandbox.
+[00:26:32] So these are micro VMS provision in a matter of
+[00:26:35] a couple of seconds.
+[00:26:37] They&#39;re completely stateful.
+[00:26:38] They suspend after 10 minutes of inactivity by the agent.
+[00:26:42] And when you resume the session from your local CLI,
+[00:26:45] that micro VMS going to spin back up with all
+[00:26:48] of that state already there.
+[00:26:50] So I&#39;m going to, you know, real quickly do yellow
+[00:26:55] on and then I&#39;m going to say, Hey, add, put
+[00:26:59] it on autopilot mode and say add one emoji to
+[00:27:03] the top of my read me.
+[00:27:08] There we go just to kind of show you the
+[00:27:10] full life cycle.
+[00:27:14] So we&#39;re going to have it do an edit here.
+[00:27:16] Then I&#39;m going to quit out of the CLI and
+[00:27:18] show you, Hey, these these changes in fact, did not
+[00:27:20] show up on my local machine.
+[00:27:21] And then we&#39;ll come back and we&#39;ll see.
+[00:27:22] We have the exact same state.
+[00:27:24] So for me, this is really nice.
+[00:27:26] If I have a plan that I&#39;ve been working on,
+[00:27:28] something I wanted to get implemented, if I know that
+[00:27:31] implementation of that plan is going to take a long
+[00:27:34] time for a big prototype, you know, at 4:50, I
+[00:27:37] can move all this work over into a sandbox, kick
+[00:27:40] it off, let the implementation run on autopilot, and then
+[00:27:43] close my laptop, commute home to my family, enjoy dinner.
+[00:27:46] By the time I come home the next day, I
+[00:27:48] have the prototype ready to go.
+[00:27:51] All right, it&#39;s done.
+[00:27:53] So I&#39;ll go ahead and quit out of this.
+[00:27:55] We&#39;ll run git status here.
+[00:27:56] I&#39;m completely clean, and then I&#39;m going to run Copilot,
+[00:28:04] Dash, dash, resume tab over to my remote sessions.
+[00:28:12] Here we go.
+[00:28:13] Add emoji to the README and it gives me the
+[00:28:16] option to either pull these changes down with the full
+[00:28:18] session, which is pretty cool, or go remote.
+[00:28:21] I just want to go back into the remote.
+[00:28:23] I&#39;m here slashed if there we go, my emoji and
+[00:28:26] the README.
+[00:28:27] So you know, this is this is great for this
+[00:28:30] sort of continuity experience where it frees me up to
+[00:28:33] keep the agent running and I don&#39;t have to be
+[00:28:36] plugged in, right?
+[00:28:37] I can set up a task, let it run, let
+[00:28:39] it run overnight.
+[00:28:41] But there&#39;s other dimensions of continuity, like so many of
+[00:28:45] us are working across different tools these days.
+[00:28:48] You know, I myself split my time between the copilot
+[00:28:52] CLI, the GitHub app I&#39;m using, you know, VS Code
+[00:28:56] at times, as well as agents on, on github.com.
+[00:29:00] And and even then our team works across Mac, Windows,
+[00:29:04] Linux.
+[00:29:04] So I have many different dev boxes with many sessions
+[00:29:07] scattered all over the place.
+[00:29:09] And sometimes I&#39;m like, you know, hey, what was that
+[00:29:12] really tricky bug that I was working on like last
+[00:29:14] week or last month?
+[00:29:15] Like I was fixing this REST bug, can&#39;t remember quite
+[00:29:18] what it was.
+[00:29:18] I don&#39;t even remember what machine it was on.
+[00:29:21] And So what we&#39;ve done is introduced something called Chronicle.
+[00:29:25] So Chronicle is a personal private data lake over all
+[00:29:29] of your user sessions, across all your Copilot products, all
+[00:29:34] of your devices.
+[00:29:35] So it exposes an interface to the agent to be
+[00:29:38] able to search.
+[00:29:40] So I can type Chronicle search and say, hey, I
+[00:29:44] was working on a really tricky Rust bug sometime over
+[00:29:49] the last week.
+[00:29:50] I don&#39;t remember what it was, but it was relevant
+[00:29:51] to the work that I&#39;m doing right now.
+[00:29:53] So can you go find that for me?
+[00:29:54] And like, let&#39;s load all that context into this session
+[00:29:58] and I can hit enter and it&#39;s going to go
+[00:30:00] ahead and do that for me, right?
+[00:30:02] We&#39;re going to see the agent is going to start
+[00:30:05] generating SQL here.
+[00:30:06] This is really cool.
+[00:30:07] The API for interfacing with this data lake is a
+[00:30:10] combination of structured SQL queries as well as full text
+[00:30:14] search queries.
+[00:30:15] And so this enables the agent to, you know, find
+[00:30:18] the relevant session search through plan files that you previously
+[00:30:23] created and and you know other things such as all
+[00:30:26] the assistant messages, turns, assistant responses, user messages, and every
+[00:30:31] single kind of line of code that you&#39;ve ever edited.
+[00:30:34] You can ask it like, hey, when was the last
+[00:30:37] time I touched app dot TSX?
+[00:30:39] Chronicle knows and it will tell you.
+[00:30:42] Sometimes the agents make some mistakes when generating sequel, but
+[00:30:45] they&#39;re pretty good at self correcting.
+[00:30:48] So while that&#39;s running, I want to show one more
+[00:30:51] Chronicle demo.
+[00:30:52] So how many of you have stand ups that in
+[00:30:56] your opinion are less than productive?
+[00:31:02] OK, that&#39;s more like 80% of the room.
+[00:31:04] All right, well, you know, it&#39;s pretty easy to, you
+[00:31:06] know, get into a situation where your manager is making
+[00:31:09] everybody go around the room.
+[00:31:11] What did you do yesterday?
+[00:31:12] What did you do today?
+[00:31:13] It&#39;s hard to run an effective stand up.
+[00:31:14] And I&#39;m I apologize to many of you that you
+[00:31:16] still have, you know, managers that are that are living
+[00:31:19] in the 80s.
+[00:31:20] But for those of you that do, if you want
+[00:31:22] to automate some of this work, there&#39;s also chronicle stand
+[00:31:25] up copilot knows everything that you&#39;ve worked on across GitHub,
+[00:31:28] across all copilot.
+[00:31:29] And so this for me is going to go we
+[00:31:32] chronicle injected all of the context of my sessions from
+[00:31:36] the last couple of days.
+[00:31:39] It&#39;s now going to pull on, you know, PRS that
+[00:31:41] I was working on issues that I filed and it&#39;s
+[00:31:44] going to produce that stand up report for me.
+[00:31:47] Right there we go.
+[00:31:49] OK, work, work tree creation timeout implementing pets in.
+[00:31:56] So this was from my live stream this morning.
+[00:31:59] These results are like shockingly good.
+[00:32:03] So coming back over here, this is still running.
+[00:32:07] I think maybe that&#39;s a good time to to transition
+[00:32:09] over.
+[00:32:10] So I want to talk a little bit about getting
+[00:32:13] work over the line right.
+[00:32:15] So you know I actually I actually don&#39;t want to
+[00:32:21] let&#39;s see.
+[00:32:22] I want to find something where I can open APR
+[00:32:28] real quick supports.
+[00:32:32] No, not this one.
+[00:32:33] Let&#39;s see.
+[00:32:42] So this was a this one is a tax data
+[00:32:44] chat box canvas.
+[00:32:46] So I&#39;m not going to click agent merge here because
+[00:32:48] this was a demo that I did earlier at the
+[00:32:50] booth.
+[00:32:51] But if I have code changes and I want to
+[00:32:53] create APR, Copilot gives me a couple of different options.
+[00:32:57] Create PR create draft PR And then there&#39;s this cool
+[00:33:00] thing called agent merge.
+[00:33:03] You know, how many of you have ever felt that
+[00:33:07] sort of mental block that comes from, you know, managing
+[00:33:11] too many pieces of in flight work all at once,
+[00:33:15] right?
+[00:33:16] Has anyone ever felt stuck?
+[00:33:17] You open that PR and you&#39;re like, I just can&#39;t
+[00:33:20] move on until someone on my team gives me this
+[00:33:23] check mark and I can merge it.
+[00:33:25] Y&#39;all y&#39;all know what I&#39;m feeling, right?
+[00:33:27] And So what agent merge does is the agent will
+[00:33:30] sit there and periodically pull your PR.
+[00:33:33] It will fix merge conflicts.
+[00:33:36] It will monitor CI.
+[00:33:38] And when it&#39;s red, it&#39;ll push changes until it&#39;s green.
+[00:33:41] It will respond to PR feedback both from agents like
+[00:33:45] copilot code review and from other humans.
+[00:33:48] And then finally, when everything&#39;s green, when you&#39;ve gotten that
+[00:33:52] approval from your Co worker, it&#39;ll merge the PR.
+[00:33:55] And so this is one way that for low risk
+[00:33:58] changes where I know, hey, this works, this is functional.
+[00:34:02] Maybe I&#39;m going to get a little bit of CCR
+[00:34:03] feedback I want to resolve.
+[00:34:05] Maybe, you know, I have that one nitpicky Co worker
+[00:34:07] who&#39;s going to say this, this, you know, function should
+[00:34:10] be 200 lines instead of 250.
+[00:34:12] And I&#39;m going to refactor it.
+[00:34:13] I can trust the agent to drive that process.
+[00:34:15] So what you&#39;re seeing here is the very first agent
+[00:34:19] merge PR from Jeremy, the one who created agent merge.
+[00:34:24] And so it&#39;s adding a health check to make sure
+[00:34:28] that the GHCLI is installed when the app starts up.
+[00:34:31] You can see this is back in March.
+[00:34:32] So we&#39;ve been working on this for a while.
+[00:34:34] These days we bundle the GHCLI so we don&#39;t have
+[00:34:36] to have this check anymore.
+[00:34:39] You can see multiple rounds of Copilot code review feedback.
+[00:34:43] So the agent and agent merge on behalf of Jeremy
+[00:34:46] responded to this batch of five comments and said, hey,
+[00:34:50] here&#39;s a link to the commit and step by step,
+[00:34:53] here&#39;s everything that I did to improve this PR, right?
+[00:34:58] And respond to the feedback.
+[00:34:59] So gated returns null.
+[00:35:01] It actually says known trade off documented with a comment.
+[00:35:04] So the agent is smart enough to push back.
+[00:35:06] It doesn&#39;t blindly follow the feedback.
+[00:35:08] So in here we kind of have these agents duking
+[00:35:11] it out, CCR in the cloud, my agent merge running
+[00:35:14] locally, all improving the quality of this of this experience
+[00:35:18] for me, right?
+[00:35:20] It keeps going.
+[00:35:21] You know, Jeremy, you know, Jeremy&#39;s agent merge responding again,
+[00:35:25] linking more fixes and responding with the rationale.
+[00:35:29] And then Jeremy doesn&#39;t, you know, send this PR over
+[00:35:32] to me.
+[00:35:33] While all of this is going on, Jeremy waits.
+[00:35:36] He waits until it&#39;s green.
+[00:35:37] All the CCR feedback is responded to, right?
+[00:35:41] This is Jeremy protecting my attention.
+[00:35:43] He&#39;s not asking me for a code review until we&#39;ve
+[00:35:45] already gone through all this.
+[00:35:48] And so hey, I come in and I say, all
+[00:35:50] right, you know, let&#39;s, let&#39;s go ahead and give him
+[00:35:54] a review.
+[00:35:55] And so I&#39;m going quickly.
+[00:35:57] I say, hey, you know, I&#39;m, I&#39;m, I&#39;m a manager.
+[00:36:00] I&#39;m trying to think about the user.
+[00:36:01] We should add a docs link here.
+[00:36:03] If we&#39;re going to block people from using the app,
+[00:36:04] we need a docs link, right?
+[00:36:06] To tell them where to go get the CLI agent
+[00:36:08] merge responds back and says, hey, dummy, did you read
+[00:36:12] 2 lines below?
+[00:36:13] I already added the docs, so it knows.
+[00:36:17] And then finally I decide I want to push this
+[00:36:20] thing.
+[00:36:20] I want to try and troll it a little bit.
+[00:36:22] And so I say, hey, app dot DSX is now
+[00:36:26] over 1000 lines.
+[00:36:27] I don&#39;t know if we want to cram all this
+[00:36:29] in here.
+[00:36:29] I suggest you do a major massive refactor trying to
+[00:36:32] see if I can send this thing off the rails.
+[00:36:35] And like any good engineer, he says I think we
+[00:36:37] should keep this, you know, code change, code change scoped.
+[00:36:40] I agree it&#39;s, you know, larger than ideal, but I&#39;ll
+[00:36:42] leave it for a follow up.
+[00:36:44] And finally, with my approval, it merges the PR.
+[00:36:50] OK, so again, all of this is about reclaiming your
+[00:36:55] focus.
+[00:36:56] It&#39;s about helping you get work over the line.
+[00:36:58] It&#39;s not about activity, right?
+[00:37:00] It&#39;s about making sure that the output is there.
+[00:37:03] Back to you, Mario now.
+[00:37:04] Let&#39;s actually check on the canvas really quick.
+[00:37:05] Oh, check on the canvas.
+[00:37:07] I think I saw a bounce there.
+[00:37:09] There you go.
+[00:37:09] So a moment.
+[00:37:10] Here trace visualizer canvas.
+[00:37:12] Whoa, debug.
+[00:37:14] All right, this one came out a little a little
+[00:37:18] funky, so let&#39;s see.
+[00:37:20] Well, it actually has a set of things, so maybe.
+[00:37:22] It does it does have a set of things.
+[00:37:24] So oh, I can even I can go down to
+[00:37:27] trace debug info.
+[00:37:29] All right, cool.
+[00:37:30] Well, let me let me ask, let me ask the
+[00:37:34] agent what kind of canvas capabilities does this log trace
+[00:37:41] viz have?
+[00:37:46] But you can see kind of the power of this,
+[00:37:47] you know, we&#39;re going to need to rate a little
+[00:37:49] bit more on it.
+[00:37:49] But now you actually do have, oh, there you go,
+[00:37:52] Awesome.
+[00:37:53] There you go.
+[00:37:54] That&#39;s more like.
+[00:37:55] It yeah, performance.
+[00:37:58] Oh, that&#39;s.
+[00:37:58] Pretty good too.
+[00:37:59] This is.
+[00:38:00] I might actually check this in.
+[00:38:01] This is great.
+[00:38:04] You can see now the power now you could just
+[00:38:06] be in one place and you could go through.
+[00:38:08] You could customize that.
+[00:38:09] You don&#39;t have to go.
+[00:38:10] Let&#39;s say if you use Datadog, you don&#39;t have to
+[00:38:12] go all the way over there.
+[00:38:13] You could just kind of start bringing the information in.
+[00:38:15] You can have one experience across that SDLC is personalized
+[00:38:19] to you.
+[00:38:20] Actually, let&#39;s keep it going and maybe let&#39;s show them
+[00:38:23] instead of going back into the deck, let&#39;s show them
+[00:38:26] the ability to do both a session that does APR
+[00:38:29] review and then also a security review.
+[00:38:32] Yeah.
+[00:38:32] So when we talk about quality, one of the main
+[00:38:34] things that we try to do too is make sure
+[00:38:37] that you get tools to be able to improve the
+[00:38:39] quality of the product and also improve the security of
+[00:38:42] it.
+[00:38:42] So we&#39;ll show you a quick demo of what that
+[00:38:44] looks like.
+[00:38:45] We already saw Chronicle, kind of that&#39;s the memory system
+[00:38:48] that we&#39;re talking about.
+[00:38:49] You saw cloud that&#39;s with the sandboxes, both local and
+[00:38:53] also in the cloud.
+[00:38:54] So we&#39;ll do this one and then we&#39;ll do one
+[00:38:56] last demo on automation and we&#39;ll call it.
+[00:38:58] That so just yesterday morning when I was doing some
+[00:39:03] last minute prep for my demo, I noticed I was
+[00:39:07] procrastinating.
+[00:39:09] You can, if Mario&#39;s around at the end, you can
+[00:39:11] ask him how often I make him sweat.
+[00:39:12] It&#39;s probably more than more than he&#39;s willing to admit.
+[00:39:15] But so I had this, I had this poll, you
+[00:39:17] know, this feedback to one of our engineers who built
+[00:39:20] all of the cloud automations.
+[00:39:22] It&#39;s like, hey, I can spawn a local session, but
+[00:39:25] can I spawn a like, I can&#39;t figure out how
+[00:39:27] to use tools to spawn a cloud session.
+[00:39:30] And he was like, oh, we just forgot to do
+[00:39:31] it.
+[00:39:32] That&#39;s easy.
+[00:39:33] So he spun up APR.
+[00:39:35] But you know, we don&#39;t rush these things.
+[00:39:37] We want to make sure that everything is high quality.
+[00:39:39] So I can go ahead and hit command K Oop,
+[00:39:42] not that one.
+[00:39:44] There we go.
+[00:39:45] I can hit command K, paste that in new session
+[00:39:49] over top of that pull request.
+[00:39:53] So now I am in PR review mode.
+[00:39:56] This is super cool.
+[00:39:58] So I can, you know, highlight, add some comments.
+[00:40:03] I can come in here and say, you know, what
+[00:40:06] does this do, you know, and I can and I
+[00:40:08] can add it to the review or I can send
+[00:40:11] it and start this like private little thread with my
+[00:40:14] agent.
+[00:40:15] My agent is going to respond back to this comment.
+[00:40:17] And this is how I can come in and quickly
+[00:40:20] build context on a change.
+[00:40:22] It&#39;s my own little, you know, little rubber duck to
+[00:40:24] work with in private.
+[00:40:26] If I, if I figure out that in fact there
+[00:40:28] is an issue, oh, see how fast that came back
+[00:40:30] error handling branch of create cloud workspace.
+[00:40:32] OK, log telemetry notifies the client looks like Enrique did
+[00:40:35] an excellent job here.
+[00:40:37] So you can see how I can use this to
+[00:40:39] kind of quickly build up context or answer my questions
+[00:40:41] go, you know, chase down some suspicion that I have
+[00:40:44] that maybe we&#39;re not using the typical error handling method
+[00:40:47] that we use.
+[00:40:49] So what I&#39;m going to do here is we have
+[00:40:52] slash review, which does code review.
+[00:40:55] We also have slash security review that does security review.
+[00:40:59] And then in addition, we have something cool called rubber
+[00:41:02] duck.
+[00:41:03] I&#39;m going to go ahead and kick off this right
+[00:41:05] now and then I&#39;m going to talk you through what
+[00:41:07] these things do.
+[00:41:08] But we&#39;re going to combine the power of like security
+[00:41:12] review powered by the tech from GitHub, Advanced Security code
+[00:41:16] review from, you know, Copilot code review, and then also
+[00:41:20] multiple models, multiple models kind of duking it out with
+[00:41:23] each other.
+[00:41:25] So I&#39;m going to go ahead and say I want
+[00:41:27] you to use the Create Session tool to create 2
+[00:41:30] sessions.
+[00:41:31] Each session needs to pull down this branch so it
+[00:41:34] can go and work on it.
+[00:41:36] What I want you to do is do a security
+[00:41:39] review in one session and then do a code review
+[00:41:42] in the other session using subagents in each of those
+[00:41:46] sessions.
+[00:41:47] We want to do SONET 4.6, GPT 5.5, and Gemini
+[00:41:52] all in parallel sub agents.
+[00:41:55] And then finally, once those results come back from those
+[00:41:59] sessions, I want you to use Rubber Duck to do
+[00:42:02] a critique of the feedback and then turn those into
+[00:42:05] comments on this pull request.
+[00:42:10] So I just did a lot there.
+[00:42:12] We&#39;re going to walk through what all of it is.
+[00:42:14] So there&#39;s a built in sub agent for code review,
+[00:42:18] very finely tuned.
+[00:42:19] So what we&#39;re asking is first use the create session
+[00:42:22] tool.
+[00:42:23] So that&#39;s that&#39;s what we did up in this triage
+[00:42:25] board to create these nested sessions.
+[00:42:27] So we&#39;re going to do the same thing here.
+[00:42:29] You&#39;re going to see that we&#39;re going to create these
+[00:42:31] two sub sessions, one focused on code review, 1 focused
+[00:42:34] on security review.
+[00:42:36] But then in addition, Copilot is a multi model harness,
+[00:42:40] right?
+[00:42:40] We tune and optimize our harness to perform state-of-the-art with
+[00:42:44] all of the various models.
+[00:42:46] That means tuning the prompts, the tools, the schemas, the
+[00:42:49] tool descriptions, everything.
+[00:42:51] And so we&#39;ve now created these two sessions.
+[00:42:55] And if we go and look inside of one of
+[00:42:57] these sessions, you can see it received a message from
+[00:42:59] the other chat.
+[00:43:00] So these things are communicating with each other.
+[00:43:01] They can pass messages back and forth.
+[00:43:04] So it&#39;s, you know, getting started looking at, you know,
+[00:43:07] the scope of the changes in the PR and it&#39;s
+[00:43:09] each of those sessions is going to spin up 3
+[00:43:12] sub agents.
+[00:43:12] So 3 sub agents for security review, 3 sub agents
+[00:43:16] for code review, and then it&#39;s going to return the
+[00:43:19] results back to this outer session.
+[00:43:21] And we&#39;re going to use something called rubber duck.
+[00:43:24] Rubber duck is the way that we do cross model
+[00:43:26] family critique and advisory.
+[00:43:28] So if you&#39;re using Opus or you know, Sonnet or
+[00:43:31] a cloud model to create a plan, we&#39;ll automatically invoke
+[00:43:36] rubber duck agent with GPT 55 to critique that.
+[00:43:39] The reason why we want to do this is these
+[00:43:42] different models have different, you know, training skews and distributions.
+[00:43:46] And so when you combine multiple state-of-the-art models, you get
+[00:43:49] the best results.
+[00:43:50] Whenever I create a plan, I always invoke the rubber
+[00:43:52] duck because I find that it ends up saving me
+[00:43:55] tokens in the long run when I&#39;m able to correct
+[00:43:57] mistakes in the plan upfront.
+[00:44:00] So this is going to take a couple of minutes.
+[00:44:04] You want to go ahead and go talk through.
+[00:44:06] Should we talk through some of the automations while this
+[00:44:07] works?
+[00:44:08] Just a tiny bit and then yes.
+[00:44:10] All right.
+[00:44:12] So, you know, that&#39;s how me and the team kind
+[00:44:14] of work together and get changes over the line, like,
+[00:44:17] you know, not just to a high degree of quality,
+[00:44:20] but to a high degree of like security as well,
+[00:44:23] right of completeness.
+[00:44:25] We do these things before we send each other PRS
+[00:44:28] to to guard our time, right?
+[00:44:29] I want to make sure I&#39;ve done a thorough review
+[00:44:31] of my code before I&#39;m asking for my Co workers
+[00:44:33] attention because human attention is now the limited quantity.
+[00:44:38] Another way that I guard my attention is via these
+[00:44:41] morning briefs.
+[00:44:42] So it looks like I think I had to close
+[00:44:44] my laptop this morning in the middle of my morning
+[00:44:46] brief and that&#39;s why that failed.
+[00:44:48] But let&#39;s go ahead and look at my morning brief
+[00:44:51] from yesterday.
+[00:44:53] So if I open this up, this one runs locally
+[00:44:56] on my machine, it&#39;s private to me, runs every day
+[00:44:59] at 6:00 AM.
+[00:45:01] And given all the different surfaces my team manages, you
+[00:45:04] know, the, the public private, you know, repos, feedback channels
+[00:45:08] working across Slack, Teams, Outlook.
+[00:45:11] I want to start every day with a very focused
+[00:45:13] inbox.
+[00:45:13] When I have my first cup of coffee, what should
+[00:45:15] I crack open?
+[00:45:16] What issues, what PRS do I have in flight that
+[00:45:18] have recent activity?
+[00:45:21] And so this produces this list for me, right?
+[00:45:23] Top 10 new issues from customers gives me a quick
+[00:45:26] glance.
+[00:45:27] I can, you know, click on links and go explore
+[00:45:29] those things, my PRS that might need attention and then,
+[00:45:33] you know, my teammates PRS.
+[00:45:35] And so this helps me give, you know, start my
+[00:45:37] day with that kind of focus, build my To Do
+[00:45:39] List and then move on to start executing right away.
+[00:45:43] The other one that I really like is this where
+[00:45:49] is it issue repro?
+[00:45:52] So I&#39;m going to open this one up.
+[00:45:53] This is actually a cloud automation, so I can close
+[00:45:56] my laptop and this one will continue to run.
+[00:46:00] This one happens on issue created and basically I tell
+[00:46:04] it we&#39;re getting a bug report in this private repo.
+[00:46:09] I want you to try and reproduce it.
+[00:46:11] If you can reproduce it, then I need you to
+[00:46:13] try and write a failing test case to verify that
+[00:46:16] that it&#39;s reproducible.
+[00:46:19] And then if it is reproducible, add a label to
+[00:46:21] the issue, add a comment with that failing test case.
+[00:46:25] And then that way the engineers and I have a,
+[00:46:28] you know, well qualified backlog of low hanging fruit.
+[00:46:31] Like if I have 15 minutes between meetings, I&#39;ll go
+[00:46:34] look at that list and filter down to that label
+[00:46:36] and I can knock out a bunch of those and
+[00:46:39] improve the product.
+[00:46:40] So let&#39;s see the most recent run that we had
+[00:46:44] here, dedupe Memo, OK, it was able to repro it,
+[00:46:47] it confirmed it, it went and it added a comment
+[00:46:51] to the issue, which is like pretty darn cool.
+[00:46:55] So all right, confirmed and reproed.
+[00:47:02] Here&#39;s the repro steps.
+[00:47:04] All right, amazing.
+[00:47:09] So these are all ways that, you know, the team
+[00:47:11] and I are using agents to kind of bring focus,
+[00:47:14] right?
+[00:47:14] Make it clear what we need to do, what&#39;s high
+[00:47:17] impact, what&#39;s actionable.
+[00:47:19] Get more over the line.
+[00:47:21] Let&#39;s come back to our rubber duck session.
+[00:47:26] We&#39;re still waiting here.
+[00:47:26] We&#39;re going to take a few more minutes.
+[00:47:28] Yeah, that&#39;s OK.
+[00:47:29] Go back into a log trace, visualize your canvas.
+[00:47:31] Does it do it real time?
+[00:47:32] Is that what I noticed?
+[00:47:33] Log Trace Visualizer, Yeah.
+[00:47:36] Is it real time?
+[00:47:36] Is it actually seeing?
+[00:47:37] It did update right there.
+[00:47:39] Wow, it&#39;s real time.
+[00:47:41] OK.
+[00:47:41] You&#39;re definitely going to go and check that, but hopefully
+[00:47:43] this gives you a little bit the security review finish.
+[00:47:46] So maybe you&#39;ll show that and then there you go,
+[00:47:48] it&#39;s going in.
+[00:47:49] OK, security review finish.
+[00:47:51] Now we&#39;re just waiting on the code review.
+[00:47:52] So once the code review comes back, then it&#39;ll trigger
+[00:47:55] the rubber duck, Yeah.
+[00:47:56] But hopefully this keeps you on IBA.
+[00:47:58] We&#39;re building an AD native engineering system across surfaces, runtime
+[00:48:02] automations, quality all the way to enterprise Trust, and then
+[00:48:06] a memory system that we didn&#39;t show you today.
+[00:48:09] We&#39;ll show you a little bit of chronicle that then
+[00:48:11] pulls it all together and makes it better every single
+[00:48:14] day.
+[00:48:14] We want to thank you for it.
+[00:48:15] Very heavy demo session.
+[00:48:17] Hopefully you saw things here that you haven&#39;t seen before
+[00:48:20] and also learn a few things.
+[00:48:21] So thank you and thanks Evan too.
+[00:48:23] Thank you everybody.
+[00:48:24] And thanks for the great canvas I just created.
+[00:48:27] Yeah, thank you for the suggestion.
+[00:48:28] Go try out the GitHub app today, it&#39;s available.
+[00:48:31] I&#39;ll post the link real quick in case in case
+[00:48:34] anyone wants to try it, it&#39;s GitHub slash app on
+[00:48:37] github.com.
+[00:48:38] So just come in here, download the release for your
+[00:48:40] operating system, give it a try, give us some feedback.
+[00:48:43] Thank you.
+[00:48:44] Thanks all.
+[00:48:46] Right, I got to go on and run the next
+[00:48:52] one.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

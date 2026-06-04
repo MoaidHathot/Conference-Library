@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DEM362 - Building a Multi-Agent Workflow in Microsoft Fabric</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; DEM362</nav>
+        <h1>DEM362 &mdash; Building a Multi-Agent Workflow in Microsoft Fabric</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">DEM362 &middot; Demo</span>
+    <h1>Building a Multi-Agent Workflow in Microsoft Fabric</h1>
+    <div class="speakers">Alexander Wachtel</div>
+    <div class="meta">
+        <span>25 min</span>
+<span>Demo</span>
+<span>(300) Advanced</span>
+<span>Gateway Pavilion, Level 2, Theater B</span>
+<span>2026-06-03 19:20 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">Microsoft Fabric</span> <span class="tag">Community</span> <span class="tag">CP&amp;D</span> <span class="tag">Data</span> <span class="tag">MVP</span> <span class="tag">Cloud platform &amp; data</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/DEM362?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/81eb53e4-8657-49d5-b228-c473ded735dc" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Learn how Microsoft Fabric and the 3 IQs, Work IQ, Fabric IQ, and Foundry IQ, enable dynamic, context‑aware multi‑agent workflows. See how semantic models, lakehouses, and pipelines form agent‑ready foundations, and how specialized agents collaborate across planning, retrieval, summarization, and execution. Discover how natural language, automation, and orchestration power real multi‑agent scenarios in Microsoft Fabric.
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>A demo-driven walkthrough of building context-aware, multi-agent workflows in Microsoft Fabric using the three &quot;IQs&quot; — Work IQ, Fabric IQ, and Foundry IQ — to give agents grounded, governed access to enterprise data. The session frames each IQ as a distinct persona (Foundry/orchestration, Fabric/data, and compliance/governance) and demonstrates connecting data agents, MCP servers, ontologies, and evaluation notebooks into production-ready pipelines.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>The three-IQ model for agent grounding</strong> — Work IQ surfaces daily-business data (emails, meetings, files, chats), Fabric IQ exposes business/ontology data, and Foundry IQ unifies a knowledge base across multiple resources <strong>[00:01:16]</strong>.</li>
+<li><strong>Work IQ exposed as MCP servers</strong> — beyond powering Microsoft 365 Copilot internally, Work IQ MCP servers (mail, Teams, calendar, Word, database) can be called from external surfaces like Foundry <strong>[00:02:06]</strong>.</li>
+<li><strong>Human-in-the-loop approval for external agents</strong> — a Foundry agent calling Work IQ mail requires explicit user approval, unlike inside-M365 Copilot which is pre-authorized <strong>[00:07:02]</strong>.</li>
+<li><strong>Fabric ontology / graph (preview)</strong> — ontologies generated from semantic models act as a graph knowledge source for agents, replacing slower SQL translation; requires enabling ontology items and graph preview in the admin portal <strong>[00:13:09, 00:19:50]</strong>.</li>
+<li><strong>Publishing Fabric data agents externally</strong> — data agents can be published to M365 Copilot or consumed in Foundry via workspace ID and artifact/agent ID <strong>[00:16:45, 00:19:01]</strong>.</li>
+<li><strong>Data agent evaluation via SDK</strong> — agents can be queried and evaluated programmatically in notebooks against critical prompts, since portal-created agents cannot be tested or evaluated in place <strong>[00:21:28]</strong>.</li>
+<li><strong>Governance through Microsoft Purview and Agent 365</strong> — agent interactions, sensitive info types, and policy violations (e.g., unauthorized invoice queries) are visible for auditing and hunting <strong>[00:26:11, 00:27:00]</strong>.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>The three-persona framing of Work IQ, Fabric IQ, and Foundry IQ</li>
+<li>Trust and the &quot;black box&quot; problem that blocked earlier Azure AI/Azure OpenAI Studio agents from reaching production</li>
+<li>MCP-based external connectivity versus native in-Fabric connections</li>
+<li>Multi-source orchestration in Copilot Studio (combining Work IQ mail with a Fabric data agent to draft email)</li>
+<li>Medallion architecture (bronze/silver/gold) feeding semantic models and ontologies</li>
+<li>Ontologies as graphs versus SQL translation for agent retrieval</li>
+<li>Chatting with data in M365 Copilot, including Python/matplotlib visualization generation</li>
+<li>Data agent evaluation, telemetry, and grounded query completion</li>
+<li>Multi-agent orchestration via Microsoft Agent Framework, Copilot Studio, and Fabric pipelines/notebooks</li>
+<li>Governance, compliance, and sensitive-data monitoring</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;The trust was not there because the agents who created three years ago, somehow it was like a black box. Nobody knows what&#39;s happening.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;What I like most is now I can chat with my data.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;In production you want to know what your data agent is doing. You cannot just deploy and then see... the end users are going to say, oh, it does not work.&quot;</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Microsoft Fabric</li>
+<li>Work IQ</li>
+<li>Fabric IQ</li>
+<li>Foundry IQ</li>
+<li>Microsoft Foundry</li>
+<li>Microsoft 365 Copilot</li>
+<li>Copilot Studio</li>
+<li>Microsoft Agent 365</li>
+<li>Microsoft Agent Framework</li>
+<li>Microsoft Purview</li>
+<li>Azure OpenAI</li>
+<li>Azure AI Studio / Azure OpenAI Studio (earlier generation) [inferred]</li>
+<li>Azure AI Search</li>
+<li>Azure Blob Storage</li>
+<li>SharePoint Online</li>
+<li>Model Context Protocol (MCP)</li>
+<li>Fabric Lakehouse</li>
+<li>Apache Iceberg [inferred]</li>
+<li>Semantic models and ontologies (graph preview)</li>
+<li>GPT-5.4 [inferred]</li>
+<li>Python / matplotlib</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Alexander Wachtel — Microsoft MVP; session presenter (also self-identified as the Foundry/orchestration persona in the demo narrative)</li>
+</ul>
+<p>Note: &quot;Hannah&quot; (Fabric/data persona) and &quot;Rafael&quot; (compliance/Copilot governance persona) are referenced as illustrative roles within the demo, not as additional session speakers.</p>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (31,809 chars)</summary>
+        <pre class="transcript-body">[00:00:01] That&#39;s nice.
+[00:00:02] Thank you very much.
+[00:00:03] Thanks for joining.
+[00:00:04] Sorry that we have not that much space here to
+[00:00:07] run this, but really happy you&#39;re here.
+[00:00:10] So we are going to talk about agents, about fabric
+[00:00:15] and about 3 Iqs till yesterday.
+[00:00:18] So right now we have another one, but I don&#39;t
+[00:00:22] care somehow because the free that is we, we&#39;ve seen
+[00:00:25] already.
+[00:00:26] If you like, you can connect on LinkedIn and I&#39;m
+[00:00:29] happy to answer all the questions that will be happening
+[00:00:32] for you all for the next month if you implementing
+[00:00:35] this kind of configuration.
+[00:00:38] What we want to look today for is Wingest data.
+[00:00:44] So Hoovio is fabric expert 1234 who is developer more
+[00:00:51] who&#39;s what&#39;s, what&#39;s the rest?
+[00:00:56] What are you doing?
+[00:00:59] OK, but OK, not too funny.
+[00:01:02] Somehow we do orchestration on the pipelines with the notebooks
+[00:01:06] right now.
+[00:01:06] Then we are talking about data agents, Foundry IQ and
+[00:01:10] worker queue.
+[00:01:11] Somehow to run all of this pipeline, all of this
+[00:01:15] workflow.
+[00:01:16] But first of all, about the Microsoft IQ infrastructure, we
+[00:01:20] have worker queue, fabric queue, Foundry IQ just to have
+[00:01:24] for our agent a context, so and knowledge.
+[00:01:27] As I have done my PhD at university 10 years
+[00:01:31] ago, we created our own database.
+[00:01:35] And the people on our chat bots, they were completely
+[00:01:38] frustrated.
+[00:01:39] Why they asked something, it was great.
+[00:01:41] I thought the knowledge base was great somehow.
+[00:01:44] And then they asked something else.
+[00:01:45] It was not in the knowledge base and it failed
+[00:01:47] directly.
+[00:01:48] So we talk a lot of bit about broken chat
+[00:01:51] bots right now.
+[00:01:52] If you summarize worker queue and then I will demo
+[00:01:55] this also if the summarize worker queue, it&#39;s about the
+[00:01:59] data, daily business data, what you have in your tenant
+[00:02:02] on your emails, meetings, files, chats, whatever you have there.
+[00:02:06] But worker queue is also enabled or enables us to
+[00:02:11] to work on this one on as MCP from different
+[00:02:15] from external positions.
+[00:02:17] So you in worker queue is directly in the Microsoft
+[00:02:21] 365 Copilot, it&#39;s uses this one.
+[00:02:23] But worker cube MCP servers, there are several, they can
+[00:02:28] be also requested from somewhere else fabric a cube the
+[00:02:32] same we talked about ontology there they have something what
+[00:02:37] we see on our business data, how the sales is
+[00:02:40] going, how the company performs and so on.
+[00:02:44] And Founder Cube is our one knowledge base over several
+[00:02:49] different resources.
+[00:02:51] Whatever you see, there are three Iqs here.
+[00:02:54] And that&#39;s why I have for the Microsoft build 3
+[00:02:56] people.
+[00:02:57] So three persons, because it&#39;s not even the one person
+[00:03:01] who does all of these three, because one person who
+[00:03:04] is on the Foundry, perhaps that&#39;s myself.
+[00:03:07] It&#39;s talk about the agent, they talk about orchestration, they
+[00:03:11] talk about whatever coding and so on.
+[00:03:14] Hannah is in the middle.
+[00:03:15] She&#39;s providing fabric, she&#39;s going for the data, running the
+[00:03:20] notebooks, providing the data for different use cases, whatever.
+[00:03:26] And then the last one.
+[00:03:27] And then from Germany, sorry for the accent.
+[00:03:29] Somehow it&#39;s a Rafael for Germany.
+[00:03:32] It&#39;s the most important people.
+[00:03:35] You can create your data, but if a compliance guy
+[00:03:37] is not on your side, you&#39;re done.
+[00:03:39] We talk in Germany a lot of data privacy topics
+[00:03:42] and so on.
+[00:03:42] So the whole project from myself and Hannah will be
+[00:03:46] killed if Rafael is not on our side and he&#39;s
+[00:03:49] going for the copilot in Agent 365 because Microsoft added
+[00:03:53] something for us that get this AI solution complete right
+[00:03:57] now.
+[00:03:59] 3-4 years ago we created on Foundry.
+[00:04:02] It was not Foundry, it was Azure AI, Azure Open,
+[00:04:05] EI Studio, some somehow we created agents and then we
+[00:04:09] ranked these agents, this data from SharePoint Online and BLOB
+[00:04:12] storage.
+[00:04:13] The people were crazy.
+[00:04:14] I was in this lab, the people like this one.
+[00:04:17] That was great.
+[00:04:18] But do we move in production on this?
+[00:04:21] No, not, not every time.
+[00:04:23] Why?
+[00:04:23] Because the people do not trust.
+[00:04:25] The intelligence is there and Satya is talking about intelligence
+[00:04:28] and trust.
+[00:04:29] The trust was not there because the agents who created
+[00:04:32] three years ago, somehow it was like a black box.
+[00:04:36] Nobody knows what&#39;s happening.
+[00:04:38] And do I put my company data there, my critical
+[00:04:40] data?
+[00:04:41] Perhaps not.
+[00:04:42] That&#39;s why we created a lot of Pocs.
+[00:04:44] It was great to whatever, demo this one, but the
+[00:04:46] customer was saying, oh, I don&#39;t see anything I cannot
+[00:04:49] control right now.
+[00:04:50] The puzzle is there.
+[00:04:52] So let&#39;s talk about work IQ and then perhaps I
+[00:04:57] can also show you this.
+[00:04:59] I can just go for my Microsoft 65 copilot and
+[00:05:04] ask something on my security emails if I like.
+[00:05:09] I can also do the same from Foundry if I&#39;m
+[00:05:12] creating from Foundry.
+[00:05:15] So here, I&#39;m sorry for this.
+[00:05:17] This one is Rafael, who is going for copilot, who
+[00:05:20] is doing governance, who is doing whatever compliance.
+[00:05:25] This is myself.
+[00:05:26] I created an agent IQ agent somehow.
+[00:05:29] And then you see here on the bottom there is
+[00:05:32] a worker qmail as MCP connected.
+[00:05:35] So my agent right now, if I do not connect
+[00:05:38] worker qmail can only answer questions on my GPT 54
+[00:05:42] knowledge.
+[00:05:43] And perhaps if I&#39;m going for the web search, perhaps
+[00:05:46] enabled web search, then I can also answer a question
+[00:05:49] through the web search.
+[00:05:50] So something what is not in the LLM because it
+[00:05:53] was trained earlier.
+[00:05:55] It&#39;s right now the data on the web search and
+[00:05:58] if we are going then to provide this one, the
+[00:06:01] worker queue e-mail.
+[00:06:03] I can also show you this in the portal if
+[00:06:05] you like.
+[00:06:06] So it should be a demo yes.
+[00:06:15] Now we have here.
+[00:06:17] This is not the data agent, the foundry, we have
+[00:06:19] the IQ.
+[00:06:20] I hope you can see this one.
+[00:06:22] The green one is new have never seen this till
+[00:06:26] today.
+[00:06:27] It&#39;s up and running that&#39;s cool the agent is running
+[00:06:31] here, so I had to use GPT 54.
+[00:06:33] I see the instructions I see the tools oh oh
+[00:06:36] that&#39;s the next step I&#39;m sorry remove this one quickly.
+[00:06:39] The work IQ mail is inside so I can query
+[00:06:43] data from from whatever my my emails from foundry.
+[00:06:48] So right now then up and running you see here
+[00:06:52] I can just connect and then say hey, please summarize
+[00:06:56] my mails and so on the agent wants to call
+[00:07:00] work IQ e-mail.
+[00:07:02] You see I need to approve this one that is
+[00:07:05] human in the loop somehow because do I want this
+[00:07:08] one I&#39;m allowed to connect an agent to my work
+[00:07:11] mail or not because it this is foundry that is
+[00:07:14] not inside M 365 on the copilot side.
+[00:07:16] If I was asked the same, I get directly the
+[00:07:20] answer because I allow the copilot to use my data
+[00:07:23] and so on.
+[00:07:24] That&#39;s worker queue is underneath, but it&#39;s allowed directly.
+[00:07:27] So you see the the, the difference here.
+[00:07:30] So I, I proved this one and then in a
+[00:07:32] moment you will see, hey, there are some emails.
+[00:07:35] OK, that&#39;s cool.
+[00:07:39] That&#39;s the first one, the worker queue.
+[00:07:42] If you want to select this one, the adjusted connection
+[00:07:46] and you see there are a lot of different tools
+[00:07:48] like worker queue, copilot teams, calendar, e-mail, word database and
+[00:07:52] so on.
+[00:07:53] So you have different MCP servers to connect to your
+[00:07:56] data from outside.
+[00:07:58] Why I&#39;m talking about outside?
+[00:08:00] Because M 365 users edge M365 copilot is inside on
+[00:08:06] the left.
+[00:08:07] What we have and if we are going from Foundry
+[00:08:10] and also from another different that for different resources you
+[00:08:15] see that we are doing here external connection to our
+[00:08:19] the worker cure e-mail, for example.
+[00:08:23] So give me only security emails then I get this
+[00:08:26] one that&#39;s great.
+[00:08:27] And then I&#39;m going for Copal Studio before I&#39;m going
+[00:08:32] for the Foundry right now, because you can see just
+[00:08:36] for visualization here.
+[00:08:37] The the most beautiful thing here is I can also
+[00:08:42] connect tools like work IQ emails.
+[00:08:45] I can also go for agents, Foundry agents, whatever.
+[00:08:49] But the, the Coppile studio is also like Foundry.
+[00:08:53] It&#39;s where you create your agents.
+[00:08:54] But Coppile Studio gets me more insights.
+[00:08:57] If I&#39;m just going for summarize my emails, for example,
+[00:09:01] here, the same just going for this.
+[00:09:03] Then you see on the left in a second.
+[00:09:18] I&#39;m sorry, I need to refresh because it was not
+[00:09:21] posting my request somehow completely.
+[00:09:24] I&#39;m sorry for this.
+[00:09:28] Come on.
+[00:09:29] I&#39;ve seen that it works.
+[00:09:33] Yeah, that&#39;s nice.
+[00:09:35] It&#39;s better.
+[00:09:36] So you see the worker queue mail was initialised, then
+[00:09:39] data agent was initialised, then I can go for both.
+[00:09:42] Right now I&#39;m going only for the context of mail.
+[00:09:46] So you see here the data agents that I don&#39;t
+[00:09:50] need it searches my e-mail and so on.
+[00:09:52] You see what I receive then it should in a
+[00:09:57] moment show me the summary.
+[00:10:00] If I then want to do something like, let&#39;s see,
+[00:10:06] show me for each store.
+[00:10:09] Ah, come on, it&#39;s not ready.
+[00:10:11] Yes, show me for each store and you freeze, operate
+[00:10:16] it and so on, create a draft mail and so
+[00:10:19] on.
+[00:10:20] So right now the freezers data is on the fabric.
+[00:10:26] So what you see here, perhaps I create a new
+[00:10:30] test session because it was already it was already here
+[00:10:36] created.
+[00:10:37] So you have seen this directly.
+[00:10:39] So work a queue, mail one more time, initialize data
+[00:10:43] engine is initialized and then you see that the data
+[00:10:47] agent is asked.
+[00:10:48] The first question is for the data agent.
+[00:10:50] So the data agent gets for each store show any
+[00:10:54] data whatever and passes this one to the data agent.
+[00:10:58] Then you see that is working right now and I&#39;m
+[00:11:00] showing you a copper studio.
+[00:11:02] Just you see what is happening behind.
+[00:11:05] So working, working, working.
+[00:11:15] Then you see we got some data.
+[00:11:18] The following store have ah, come on here.
+[00:11:23] You see there&#39;s a data there.
+[00:11:26] There is here raw output.
+[00:11:32] You see, we have Paris and we have Berlin here,
+[00:11:36] the Paris one, Berlin 1.
+[00:11:39] And then it goes for MCP, create a draft and
+[00:11:42] then goes for for the data there.
+[00:11:45] So it looks like if, if it&#39;s ready, it&#39;s last,
+[00:11:48] it&#39;s going like, hey, I received this one, it was
+[00:11:51] the last demo and then created a draft as a
+[00:11:54] e-mail.
+[00:11:54] You see, dear team, please first follow this one and
+[00:11:57] so on.
+[00:11:57] So it combines data from different sources.
+[00:12:00] Right now the copied studio goes for worker queue mail
+[00:12:04] MCP goes, then for data agent MCP combines both and
+[00:12:08] get me the information back.
+[00:12:11] So just for quick Foundry IQ, what is there?
+[00:12:16] How we use this one?
+[00:12:17] It&#39;s like a knowledge and we create this knowledge base.
+[00:12:21] We can go for Azure Search for web, for SharePoint,
+[00:12:24] for Fabric IQ, also for Azure BLOB storage.
+[00:12:27] So you can create in a knowledge base different types
+[00:12:30] of connections and then query this knowledge base and say,
+[00:12:33] hey, I search for a data, I have no idea
+[00:12:36] where does it perhaps.
+[00:12:38] Well, that&#39;s production where it is, please find it and
+[00:12:41] the agent is going and get your your job.
+[00:12:44] So this knowledge base will be then going for this
+[00:12:47] BLOB storage.
+[00:12:48] If you are compared this one and then you are
+[00:12:51] ready to go somehow you have your work IQ fabric
+[00:12:54] data agent if you like here and the knowledge base
+[00:12:57] right now if we are not talking about multi agent,
+[00:13:00] you have one in a single agent.
+[00:13:02] All of these things, what I wanted to show right
+[00:13:05] now on MCP, it&#39;s in one agent, but but now
+[00:13:08] I am not ready.
+[00:13:09] I wanted to do fabric a lot.
+[00:13:11] That&#39;s why we jump to the fabric because the new
+[00:13:14] thing, what you know about fabric is we have fabric
+[00:13:17] IQ and that&#39;s cool.
+[00:13:19] And right now we have something ontologies.
+[00:13:21] During my PhD, we created ontology for our chat board.
+[00:13:25] Right now, because this ontology is the best whatever graph
+[00:13:29] to search and also be available as a knowledge for
+[00:13:34] your agent.
+[00:13:35] It&#39;s the quickest way to provide knowledge why?
+[00:13:38] You have a lot of things there like notes and
+[00:13:41] relations.
+[00:13:42] So you can if you ask something, just figure out
+[00:13:46] OK, this node like a sales and some data for
+[00:13:50] another nodes, they are somewhat related together.
+[00:13:54] And for the agent, if you are running on this
+[00:13:57] one, it&#39;s the easiest way to do this one, Liceberg
+[00:14:00] expresses from Microsoft here.
+[00:14:02] Of course, we have ingestion data from pipelines, whatever we
+[00:14:05] can store on lake house.
+[00:14:07] We then go for the silver one, just enrich the
+[00:14:11] data, clean the data up and so on.
+[00:14:15] Then we can also do the gold and provide all
+[00:14:18] of this information for semantic model or ontology to the
+[00:14:22] data agents.
+[00:14:23] What we are talking about if you want to simplify
+[00:14:28] this one, I have one use case from Swiss Airlines.
+[00:14:32] They were going from on Prem somehow also to fabric
+[00:14:36] because they were doing something like source domain aligned data
+[00:14:40] product on a bronze, silver and then shortcut this one
+[00:14:44] and created custom aligned data product.
+[00:14:47] And then you can go and if you&#39;re going for
+[00:14:49] semantic model, you&#39;re ready to go then to create this
+[00:14:53] one for the data agents.
+[00:14:55] How does it looks like I can just go for
+[00:14:58] the ontology.
+[00:14:59] If you are already familiar on this one, perhaps I&#39;ll
+[00:15:03] show you this live.
+[00:15:04] The data agent was here, the data agent was going
+[00:15:07] for this ontology.
+[00:15:09] There&#39;s a data from freezers product sales and then we
+[00:15:14] see for each store, I wanted to know the which
+[00:15:18] store is lower than 46%.
+[00:15:20] I got Berlin and Paris, what you have seen live
+[00:15:22] already from the foundry.
+[00:15:24] But this is the easy way because I&#39;m right now
+[00:15:27] in fabric, the data edges is a part of fabric,
+[00:15:29] so it&#39;s internal connection.
+[00:15:31] What if I want to do the same somehow from
+[00:15:34] outside?
+[00:15:35] So something like perhaps I wanted to show you what
+[00:15:39] is happening behind.
+[00:15:40] So this kind you see here what was the completion?
+[00:15:44] What I like about this, I ask complete different question
+[00:15:47] and you see what was happening.
+[00:15:50] It was leased for each store, the freeze operated by
+[00:15:53] the store on each recorded value blah, blah, blah.
+[00:15:56] It was grounded.
+[00:15:58] It was somehow get more information for this query then
+[00:16:02] for the agent to run.
+[00:16:04] And then earlier perhaps last year when when we go
+[00:16:07] for ontology, we were going for lake House directly.
+[00:16:10] Then you see SQL here, that&#39;s the same somehow.
+[00:16:13] So you translate to SQL, got your query back, but
+[00:16:17] on SQL somehow it was it.
+[00:16:19] It takes more time.
+[00:16:20] If you compare for our agents, for the chat bots
+[00:16:23] we created 10 years ago, we never used SQL for
+[00:16:26] this case.
+[00:16:27] It&#39;s ontology.
+[00:16:28] It should be a graph somehow underneath then you are
+[00:16:31] ready to go.
+[00:16:32] So if Han and then from this position, so you
+[00:16:36] don&#39;t you&#39;ll go for data agent right now and want
+[00:16:40] to query the data.
+[00:16:42] It&#39;s just Hannah.
+[00:16:42] But what if I want to do this one outside?
+[00:16:45] Then I need to publish this one.
+[00:16:47] And you see that is a Microsoft 365 Copilot.
+[00:16:50] You can just easy going here.
+[00:16:52] Say I want to publish this.
+[00:16:54] It&#39;s not selected directly.
+[00:16:55] So you have to select that should be also M365
+[00:16:58] copilot.
+[00:16:59] You click on the next and then you see this
+[00:17:02] data agent that&#39;s shown up here and then I&#39;m sorry,
+[00:17:05] I&#39;m ready to go somehow to query this data entrance.
+[00:17:09] For example, for each store, give me the 2nd and
+[00:17:11] so on.
+[00:17:12] You see Paris, you see Berlin.
+[00:17:13] That is great.
+[00:17:14] What I like most is now I can chat with
+[00:17:17] my data.
+[00:17:18] So someone who is not familiar with fabric data on
+[00:17:22] underneath the Zahana from like Raphael or myself from Foundry
+[00:17:26] can go for this data and just going for Showtime
+[00:17:30] step and to do some things like convert time step
+[00:17:34] to my time zone because I was then in a
+[00:17:37] different time zone.
+[00:17:38] That is great, can give me the revenue for each
+[00:17:41] store.
+[00:17:42] So right now I see what is the problem, tell
+[00:17:44] me about the data stored and so on.
+[00:17:47] So if I don&#39;t know what is exactly there, I
+[00:17:50] see telemetry data, I see storing data, I see a
+[00:17:54] lot of things there and somehow I&#39;m ready to go
+[00:17:57] to do things like calculate me something like this or
+[00:18:01] what I like here is a lot.
+[00:18:04] I can just defined a window and then at the
+[00:18:07] end I want just to plot this one at control
+[00:18:11] group.
+[00:18:13] And at the end, I just wanted to just visualize
+[00:18:17] here.
+[00:18:18] And this one was plotting directly inside M365 Copilot just
+[00:18:23] to show me what kind of data do I talking
+[00:18:26] about right now.
+[00:18:27] So earlier I have only numbers right now I have
+[00:18:30] plotting directly in M365.
+[00:18:32] And what was there, it was coding for me.
+[00:18:35] You see Python code, How cool is this?
+[00:18:39] So it was just a math plot library that uses
+[00:18:42] here and created for me this kind of picture directly
+[00:18:46] in Copilot.
+[00:18:47] That&#39;s nice.
+[00:18:48] OK, what&#39;s next?
+[00:18:51] You see here that we can also use the same
+[00:18:55] data agent.
+[00:18:57] If I&#39;m going for the data agent on the publishing
+[00:19:01] page, if I not publish this data agent to to
+[00:19:04] M365, perhaps I just want to publish this one and
+[00:19:08] then I&#39;m ready to go to see OK, I publish
+[00:19:11] this one and then I see the workspace ID, I
+[00:19:14] see my data agent ID and then I can use
+[00:19:17] it on Foundry.
+[00:19:19] So that is the way how I insert this one
+[00:19:23] here as data agent.
+[00:19:25] You just need to provide here you can use a
+[00:19:28] new connection or existing connection and then you need the
+[00:19:31] workspace ID, the artifact ID, and then you&#39;re ready to
+[00:19:35] go.
+[00:19:35] If you have already done this, you just connect and
+[00:19:38] then you all can go for your data, HS data.
+[00:19:42] So, so what&#39;s next?
+[00:19:49] We created the ontology.
+[00:19:50] Perhaps one things, if you want to create ontologies, you
+[00:19:53] need to enable this one first.
+[00:19:55] That&#39;s your admin portal.
+[00:19:56] So you have two selections to enable the the ontology
+[00:20:00] items and graph preview and then you are ready to
+[00:20:03] go.
+[00:20:03] You are we were going from the lake house, created
+[00:20:07] the semantic model, confirm this one.
+[00:20:09] I have semantic model then generate ontology and that&#39;s cool.
+[00:20:14] After a few minutes I have the ontology here.
+[00:20:16] That&#39;s a small example.
+[00:20:17] Somehow I don&#39;t care about big data, I care about
+[00:20:20] how this all interacts.
+[00:20:21] Right now you have your big data at home and
+[00:20:23] your company right now.
+[00:20:25] But you see if I&#39;m going for the products, I
+[00:20:27] see properties and I see the connections.
+[00:20:29] So I I know exactly what is the relations on
+[00:20:32] a SQL or perhaps somewhere else.
+[00:20:35] I just go and say, OK, this kind of table
+[00:20:37] has something like 1 to add to another table, but
+[00:20:40] I have no idea what is the relation.
+[00:20:44] So I can specify what is relation.
+[00:20:45] So Alex is speaking right now at the conference.
+[00:20:48] There are a lot of speakers there, but there&#39;s only
+[00:20:50] one conference.
+[00:20:51] I can just specify the relation between and then I&#39;m
+[00:20:55] ready to go with my agents to to do things
+[00:20:59] here, also specify new things if I like.
+[00:21:03] But then I I see I have only four minutes
+[00:21:05] left.
+[00:21:06] So then I go for this one.
+[00:21:11] If I want also predict from the stocks, I have
+[00:21:13] another model.
+[00:21:15] I can also do something on these configuration if I
+[00:21:19] want to code these.
+[00:21:20] That is the the final steps on the fabric.
+[00:21:24] We all go for the coding IQ.
+[00:21:28] Ah, come on, fabric IQ.
+[00:21:31] We have here something like a data agent.
+[00:21:34] But what is the problem on a data agent that
+[00:21:36] sells?
+[00:21:38] You know, perhaps you create this one, but you cannot
+[00:21:41] configure and you don&#39;t, you cannot test this one, you
+[00:21:45] cannot evaluate this one directly in the portal.
+[00:21:48] So what you need here is if you just you
+[00:21:51] can go for the SDK somehow and see here.
+[00:21:54] If you configure this one the works with ID.
+[00:21:57] I just unlabs this one so nobody can break.
+[00:22:00] I have repeating talk for this one, so it should
+[00:22:03] work in a few hours.
+[00:22:04] Right now I can provide the open open AI or
+[00:22:08] L for this one and then I need the temporary
+[00:22:12] access token, configure the Azure Open AI and then I
+[00:22:17] can query also on my notebooks.
+[00:22:19] If I want to do this, ask the data agent
+[00:22:23] something and do the query right now what?
+[00:22:26] What will be next if I&#39;m done with SDK here?
+[00:22:30] I then connect and go for evaluation because I want
+[00:22:34] to evaluate if my data agent is working correct, Not
+[00:22:38] my end user should evaluate this one, my data agent
+[00:22:42] should go for this and I can just create the
+[00:22:45] run here also on evaluation data.
+[00:22:49] And by the way, all what you see will be
+[00:22:52] available on the repo after the build completely.
+[00:22:55] So all of this coding will be available completely for
+[00:22:59] you anonymous.
+[00:22:59] So it would be not my data somehow.
+[00:23:01] But you can run this on your own, define critical
+[00:23:04] prompts, then run the agent evaluation.
+[00:23:07] So you start the evaluation on your prompts, retrieve the
+[00:23:10] summary and so on and have something at the end,
+[00:23:13] something like this.
+[00:23:14] So you grant your data, you create your evaluation notebooks,
+[00:23:18] ask your data agent SDK.
+[00:23:21] Oh, so use your data SDK running the data agent,
+[00:23:25] then you store the data and then you visualize this
+[00:23:28] one.
+[00:23:29] Then you are ready to go because in production you
+[00:23:31] want to know what your data agent is doing.
+[00:23:34] You cannot just deploy and then see, OK, the end
+[00:23:36] users are good going to say, oh, it does not
+[00:23:38] work.
+[00:23:39] How does it do then work for for us at
+[00:23:44] the end.
+[00:23:45] So last but not least, since the time is running
+[00:23:49] away, I&#39;m really sorry, I wanted to show you more
+[00:23:53] on also on ontology, how we create an ontology and
+[00:23:56] what data we have at the end.
+[00:23:59] If we want to run here something like something like
+[00:24:03] this natively on Fabric, we do not have agent orchestration.
+[00:24:09] So we can do this one on agent, Microsoft Agent
+[00:24:14] Framework.
+[00:24:15] So we called this agents.
+[00:24:16] And then we orchestrate.
+[00:24:17] We can go for Copilot studio, create the orchestration, but
+[00:24:21] not in fabric right now.
+[00:24:22] So what I try here to use is I can
+[00:24:24] also do this on the pipeline.
+[00:24:27] I have several notebooks what you can see in repo
+[00:24:30] later.
+[00:24:31] And they, they provide the data, they prepare the, the
+[00:24:34] summary, they ask then the data agents about the information,
+[00:24:38] go for Foundry RQ and reach the data from Foundry
+[00:24:41] RQ because you, because you can call for whatever you
+[00:24:44] want.
+[00:24:45] If you&#39;re talking about, perhaps you&#39;re familiar with Microsoft agent
+[00:24:50] framework, that is the same.
+[00:24:52] You&#39;re going to create one agent, second agent.
+[00:24:55] And then you&#39;re, you&#39;re going to say, OK, this agent,
+[00:24:57] if it&#39;s ready, it&#39;s called another agent.
+[00:24:59] And then we&#39;re going to orchestrate and provide a workflow
+[00:25:03] there.
+[00:25:03] That is the same here also, but we still stay
+[00:25:06] on fabric.
+[00:25:07] That&#39;s what I wanted to do here.
+[00:25:09] And at the end, if we are going for perhaps
+[00:25:12] BLOB storage, it can be something else.
+[00:25:15] We get to send the e-mail.
+[00:25:17] So we connect to found the agent going for the
+[00:25:20] Walker fuel mail MCP and then user ending the output
+[00:25:23] the e-mail and so on.
+[00:25:25] So this is something what I will provide you as
+[00:25:28] a notebooks, they are as a template.
+[00:25:30] So they are create or I created this one as
+[00:25:32] a tabling.
+[00:25:33] So you&#39;re ready to use this one.
+[00:25:35] For example, if we&#39;re going for us to data agents,
+[00:25:41] this one that should load you see here.
+[00:25:46] So you have to payload, you have to here authorize
+[00:25:50] the running authorization and then you&#39;re going to call the
+[00:25:54] data agents.
+[00:25:55] You can do this from your notebooks also.
+[00:25:58] So on the coding style and provide the information, then
+[00:26:02] later on the valuation on run running on Foundry.
+[00:26:06] And this is something what you can do on your
+[00:26:10] own.
+[00:26:11] So last but not least, when you create all of
+[00:26:14] these agents and then I&#39;m over the time, I&#39;m really
+[00:26:17] sorry for this.
+[00:26:18] The agent 365 is the last place for us to
+[00:26:20] go for production right now because earlier we created agent
+[00:26:24] that was black box.
+[00:26:25] Right now I see all of this agent also data
+[00:26:28] agents and so on to to see what kind of
+[00:26:31] information here from the agent side will be created from
+[00:26:35] the users that can create agent on Foundry on Cobalt
+[00:26:38] Studio, on Fabric on they can query also Microsoft Copilot.
+[00:26:42] I see this one on Edge 365 and you are
+[00:26:45] going for for this one.
+[00:26:47] So the data agents are just going for this fewer
+[00:26:50] agent activity.
+[00:26:52] It brings me to purview and under the purview, I
+[00:26:55] see all of this interaction and this is the last
+[00:26:57] thing I&#39;m really sorry.
+[00:26:59] I&#39;m over the time right now.
+[00:27:00] I wanted to show you live and then I&#39;m ready.
+[00:27:04] You see all of these interactions and you see also
+[00:27:06] not only interactions but also you see sensitive info types.
+[00:27:09] So if something going wrong, you see this also, if
+[00:27:12] I&#39;m asking a data agent something on the invoice, I&#39;m
+[00:27:15] not allowed.
+[00:27:16] You see this here as alarm and then you can
+[00:27:20] hunt these user and so on.
+[00:27:23] So you see different apps, you see Data Agent, you
+[00:27:26] see M365 Copilot, you see M-65 app, you see different
+[00:27:30] things here.
+[00:27:31] And this is somehow the last, yeah, the last place
+[00:27:35] where you can then get your insights what is happening
+[00:27:40] on your site.
+[00:27:41] So that&#39;s it.
+[00:27:42] Thank you for your time.
+[00:27:44] Have a great build.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

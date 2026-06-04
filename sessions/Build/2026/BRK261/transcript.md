@@ -1,0 +1,1044 @@
+**[00:00:00]** Cool.
+**[00:00:01]** Well, welcome everybody.
+**[00:00:04]** If you're in the right place, you're at the build
+**[00:00:06]** and ship faster with developer optimized experience on Windows session.
+**[00:00:10]** My name is Cale Cinnamon.
+**[00:00:11]** I'm here with Craig.
+**[00:00:13]** Hello, I'm Craig, I'm a product manager working on the
+**[00:00:15]** Windows Subsystem of Linux and other AI tools on Windows.
+**[00:00:18]** Cool and Jinya as well.
+**[00:00:20]** Windows performance and you'll hear about that.
+**[00:00:23]** Perfect.
+**[00:00:23]** So our team covers a bunch of your favorite utilities
+**[00:00:27]** on Windows.
+**[00:00:28]** Obviously, Windows itself, and then we have power toys on
+**[00:00:31]** our side, Windows terminals from our team.
+**[00:00:33]** We can get the Windows package manager and WSL, the
+**[00:00:36]** Windows Subsystem for Linux.
+**[00:00:38]** So today we're going to cover a bunch of updates
+**[00:00:41]** that have come across these utilities and we're going to
+**[00:00:43]** get into it pretty quickly.
+**[00:00:44]** We have minimal slides because that's our jam.
+**[00:00:47]** So we're going to cover building on Windows.
+**[00:00:50]** So that's going to be, you know, when you're building
+**[00:00:52]** your apps, but it's really the improvements made to Windows
+**[00:00:55]** that are the things we're going to be talking about.
+**[00:00:57]** And then also building for Windows, that's going to be
+**[00:01:00]** everything we've created to help make building those Windows apps
+**[00:01:03]** even more seamless and even easier to do.
+**[00:01:06]** So I think that's it.
+**[00:01:08]** We're going to get into some some desktop stuff right
+**[00:01:10]** now.
+**[00:01:11]** So let's hop on over to mine.
+**[00:01:13]** Sweet.
+**[00:01:14]** So a lot of this was in the keynote this
+**[00:01:16]** morning, but we're going to go a little bit deeper
+**[00:01:19]** into some of these topics.
+**[00:01:21]** But first up is all about developer setup.
+**[00:01:23]** So when you're on Windows, you know, you got to
+**[00:01:26]** go grab all of your things, you know, Python, Node,
+**[00:01:28]** all your packages, all your favorite tooling and it takes
+**[00:01:31]** a long time.
+**[00:01:32]** So our team has actually put together a win get
+**[00:01:35]** configuration file that does a bunch of this stuff for
+**[00:01:38]** you.
+**[00:01:38]** So it installs Ubuntu along with Windows hub system for
+**[00:01:42]** Linux, along with tooling like Git, GitHub, CLI, copilot, CLIVS
+**[00:01:46]** code, all of those things to make that step a
+**[00:01:49]** little bit easier.
+**[00:01:50]** And what's really cool about these win get configuration files
+**[00:01:53]** is that they're item potent.
+**[00:01:54]** So if you already had git, which most of us,
+**[00:01:56]** I'm sure you do, it's not going to install git
+**[00:01:59]** again.
+**[00:01:59]** It's just going to make sure that git is there
+**[00:02:01]** and then it's going to move on to the next
+**[00:02:02]** thing.
+**[00:02:03]** So if you want to get this today, we have
+**[00:02:05]** a repo that we published this morning we made public.
+**[00:02:08]** It's Windows developer config.
+**[00:02:10]** We will also have a slide at the end with
+**[00:02:12]** all of the links and all the goodness.
+**[00:02:13]** So no sweat now.
+**[00:02:16]** But there's a few other things that we're going to
+**[00:02:18]** show today that are in this repo, but the config
+**[00:02:20]** file is here and you can download it and see
+**[00:02:23]** what it's going to install, and then you can run
+**[00:02:25]** it and go from there.
+**[00:02:26]** So that's a quick way to get your developer device
+**[00:02:29]** set up.
+**[00:02:29]** And then some things that we've added to Windows itself
+**[00:02:33]** that will are in the Insider program and our shipping
+**[00:02:37]** is some taskbar personalization, in particular movable taskbar.
+**[00:02:42]** So this has been a very popular request.
+**[00:02:44]** We're excited to bring it back.
+**[00:02:46]** Here's the taskbar on the left.
+**[00:02:47]** You can put on the top, put on the bottom
+**[00:02:49]** where it's always been.
+**[00:02:50]** But yeah, thank you.
+**[00:02:53]** So force a habit, I'm going to keep it on
+**[00:02:55]** the bottom because I'm going to lose my icons if
+**[00:02:57]** I put it on the left.
+**[00:02:58]** But this is in the Insider program.
+**[00:03:00]** And another thing that's coming is the new run dialogue.
+**[00:03:05]** So very exciting.
+**[00:03:08]** So this is run.
+**[00:03:10]** It looks somewhat similar, but a little bit more streamlined
+**[00:03:13]** of the UI.
+**[00:03:14]** And what's really neat about this is that it's built
+**[00:03:16]** leveraging the architecture of Power Toys Command Palette, which looks
+**[00:03:20]** like this.
+**[00:03:20]** So Power Toys had, well, Power Toys had Power Toys
+**[00:03:23]** Run even before this, which looked even different.
+**[00:03:26]** Let's see if I got that.
+**[00:03:28]** So here's the evolution.
+**[00:03:29]** We have Power Toys run, this came out first, and
+**[00:03:32]** then we evolved this into Command Palette, which has a
+**[00:03:35]** bit more extensibility, more things you can install into it,
+**[00:03:38]** a different UI based off feedback.
+**[00:03:40]** And then this architecture is now inside run and you
+**[00:03:43]** can, you know, search for your tooling and it looks
+**[00:03:46]** very similar to how Command Palette was maybe just inverted.
+**[00:03:51]** So what's really great about that is, you know, we're
+**[00:03:53]** all about open source.
+**[00:03:54]** That slide I showed at the beginning, I think almost
+**[00:03:56]** everything on there except Windows was is open source.
+**[00:03:59]** So if you contributed to the command Palette on power
+**[00:04:02]** toys, there's a good chance that your code is now
+**[00:04:04]** in Windows, which is very cool.
+**[00:04:07]** So that was vertical taskbar we have run.
+**[00:04:10]** And now one thing I want to cover, also open
+**[00:04:13]** source, is an experiment that we are trying out that
+**[00:04:17]** we want to see how you guys like it.
+**[00:04:20]** So this is intelligent terminal and it kind of came
+**[00:04:22]** from, you know, we're working with all these agents, but
+**[00:04:25]** when you go into Copilot CLI, it takes over your
+**[00:04:28]** whole terminal.
+**[00:04:29]** So it would be really nice if you had a
+**[00:04:31]** companion working with you so you can still stay in
+**[00:04:33]** your prompt, but then have an agent helping you along
+**[00:04:36]** the way.
+**[00:04:37]** So here's a regex command that I asked an agent
+**[00:04:40]** to write for me because I don't know regex, but
+**[00:04:43]** I also asked it to make it not work and
+**[00:04:46]** the agent has detected that it doesn't work.
+**[00:04:48]** This is meant to be like a password verification regex
+**[00:04:52]** and the agent is now thinking about how to fix
+**[00:04:55]** this and it should give me a solution to create
+**[00:04:58]** a better regex so it's not giving me a command
+**[00:05:01]** specifically because it doesn't know my desired outcome.
+**[00:05:05]** Do I want to check for an uppercase letter?
+**[00:05:07]** Do I want to check for a unique character so
+**[00:05:09]** I can work with the agent to come up with
+**[00:05:12]** a better syntax of regex without having to leave the
+**[00:05:14]** terminal?
+**[00:05:16]** And what's really cool is when you first get intelligent
+**[00:05:18]** terminal, it's going to ask you like, hey, which agent
+**[00:05:21]** do you want to work with?
+**[00:05:22]** I only have GitHub copilot installed because I'm GitHub copilot
+**[00:05:25]** fan.
+**[00:05:26]** But you can add in clod, codex, open code, anything.
+**[00:05:29]** Once you install in your machine, it should automatically get
+**[00:05:32]** picked up by Intelligent Terminal and you can pick your
+**[00:05:35]** preferred model as well.
+**[00:05:36]** So this is available today.
+**[00:05:38]** We want to get your feedback on this.
+**[00:05:39]** Like how does this agentic pain feel when you're working
+**[00:05:42]** with it?
+**[00:05:43]** What kind of things do you want to change or
+**[00:05:45]** have added to the experience?
+**[00:05:46]** We want to know.
+**[00:05:47]** So this is open source.
+**[00:05:49]** It's on GitHub, published I think this morning as well.
+**[00:05:52]** Everything is fresh this morning.
+**[00:05:54]** So yeah, go ahead and try this out and let
+**[00:05:56]** us know how you like it.
+**[00:05:58]** But since we're on the topic of terminal things, I
+**[00:06:00]** want to hand it over to Craig to show a
+**[00:06:02]** little bit more.
+**[00:06:03]** Yeah, so let's take a look at my machine and
+**[00:06:05]** we're going to take a look at WSL containers, also
+**[00:06:08]** freshly announced this morning and something we're really excited about.
+**[00:06:12]** My goal today is to convince you if you have
+**[00:06:14]** never used containers before, why you might want to get
+**[00:06:17]** started using them and show you how you can do
+**[00:06:19]** all this with WSL containers.
+**[00:06:21]** So we've added a new binary to WSL called WSLCI
+**[00:06:24]** can go ahead and run this and I can run
+**[00:06:27]** tons of different Linux container commands.
+**[00:06:30]** So a Linux container is basically just a very nice
+**[00:06:33]** little package where I can run arbitrary Linux binaries or
+**[00:06:37]** distributions.
+**[00:06:38]** In this case, I just ran Ubuntu, right?
+**[00:06:41]** I ran the latest version of Ubuntu.
+**[00:06:43]** But if I'm more of a Debian fan, I can
+**[00:06:45]** very easily just go here and say, hey, give me
+**[00:06:47]** the latest version of Debian and then it will be
+**[00:06:49]** able to go pull it down for me, even though
+**[00:06:51]** I didn't have that.
+**[00:06:52]** Downloaded it, pulled it down and and ran that.
+**[00:06:55]** So I can run that directly here inside of my
+**[00:06:58]** terminal where containers get really powerful and where this really
+**[00:07:01]** shows for WSL Container is you can use this to
+**[00:07:04]** build powerful Linux environments that you can share to the
+**[00:07:07]** cloud or locally.
+**[00:07:08]** And now this all works just directly as part of
+**[00:07:11]** WSL.
+**[00:07:12]** On top of that, we have container as an alias
+**[00:07:14]** that's built in.
+**[00:07:15]** So you can use either WSLC or Container, whichever is
+**[00:07:18]** more to your heart's desire.
+**[00:07:20]** So if I go to this file here I have
+**[00:07:22]** a container folder and in it I have some different
+**[00:07:26]** container files.
+**[00:07:27]** And So what I can do is actually build this
+**[00:07:30]** image.
+**[00:07:31]** So I'm going to build a service directly inside of
+**[00:07:35]** my terminal.
+**[00:07:36]** So it's going to go ahead, grab that image, build
+**[00:07:40]** it.
+**[00:07:40]** I actually ran this before, so everything was cached.
+**[00:07:42]** And if we go ahead and take a look at
+**[00:07:44]** that, at that container file with edit, great editor tool.
+**[00:07:48]** If you haven't seen this in the command line, it's
+**[00:07:50]** beautiful.
+**[00:07:50]** It works with your mouse, which I probably my favorite
+**[00:07:53]** part.
+**[00:07:54]** And if I go and take a look at this,
+**[00:07:56]** I can see I'm grabbing Python 3.13 and then I
+**[00:07:59]** am going and running a bunch of different Linux commands
+**[00:08:02]** to set up a specific Linux environment.
+**[00:08:05]** Now that I've built that container, let's go ahead and
+**[00:08:08]** take a look at it in my list.
+**[00:08:10]** So I just ran WSLC image LS and then I
+**[00:08:13]** piped it to grep and ran mark it down.
+**[00:08:16]** Well, hold on.
+**[00:08:17]** Piping it to grip is pretty cool because we have
+**[00:08:20]** just released core utils, which is a new way to
+**[00:08:23]** run a ton of different Linux core utilities all directly
+**[00:08:26]** on Windows.
+**[00:08:27]** So things like grip are now available as part of
+**[00:08:30]** that.
+**[00:08:31]** I can even go ahead and take a look at
+**[00:08:33]** here's I'm looking at that list.
+**[00:08:36]** And then I piped this to WC, which counts the
+**[00:08:38]** word count.
+**[00:08:39]** It's telling me there's 165 different tools inside of this.
+**[00:08:43]** So let's let's take a look at the list.
+**[00:08:46]** Things like test.exetail.exe.
+**[00:08:50]** I'm personally really excited about env.exe, which shows your environment
+**[00:08:54]** variables, because I only really know how to do that
+**[00:08:57]** in Bash, speaking from personal experience.
+**[00:09:00]** And it's just a super awesome and powerful way to,
+**[00:09:04]** if you're a big Linux fan like I am and
+**[00:09:06]** you're a big fan of bringing those worlds together, they
+**[00:09:10]** can just coexist so nicely.
+**[00:09:12]** And so let's kind of go back to our example.
+**[00:09:15]** And I am going to run that market down service
+**[00:09:20]** which I built and so I can go and run
+**[00:09:23]** that here.
+**[00:09:24]** And so I, I took that container that I, I
+**[00:09:27]** defined in that container file and then now I'm starting
+**[00:09:30]** it up.
+**[00:09:31]** What you'll notice is that I use this dash P
+**[00:09:34]** to say, please take port 8000 in the container and
+**[00:09:38]** forward that onto Windows.
+**[00:09:41]** And so now when I have that and I go
+**[00:09:44]** to Edge and I go to local host 8000, I
+**[00:09:47]** get that what that container is.
+**[00:09:50]** So that container is defining a very neat little web
+**[00:09:53]** app for me.
+**[00:09:54]** That web app allows me to go in and take
+**[00:09:58]** any folder.
+**[00:10:00]** So let's go and find my samples, which I have
+**[00:10:05]** very conveniently placed about 30 folders down just 3029 more,
+**[00:10:12]** just 39 more.
+**[00:10:13]** All right, here we go.
+**[00:10:15]** So there we go.
+**[00:10:16]** And then I can drag and drop this in.
+**[00:10:18]** All this does is it takes any PDF file so
+**[00:10:21]** or any file in here like dot docx.
+**[00:10:23]** So it took this complex PDF and then it converted
+**[00:10:26]** that into markdown and it shows me that on the
+**[00:10:29]** left and on the right.
+**[00:10:31]** So that could be my full website right contained right
+**[00:10:34]** there.
+**[00:10:35]** I was able to go run that.
+**[00:10:36]** And so, you know, if that didn't convince you, I
+**[00:10:39]** think the the last thing I'd really show is you
+**[00:10:42]** can do things like light your whole terminal on fire
+**[00:10:44]** by running different containers.
+**[00:10:46]** So that someone built that, that you can go run
+**[00:10:49]** with just one command line, a super powerful tool.
+**[00:10:53]** And I think it begs the question of why did
+**[00:10:55]** we build a Linux container CLI and when there are
+**[00:10:59]** other awesome CLI tools like there's Padman Desktop, Docker Desktop,
+**[00:11:03]** Rancher desktop.
+**[00:11:04]** And the answer is these are all great tools, but
+**[00:11:07]** we actually also built an API for this as well.
+**[00:11:10]** And we're going to be showing that in Part 2
+**[00:11:13]** on the building for Windows, right?
+**[00:11:15]** Right.
+**[00:11:16]** And so we'll show that.
+**[00:11:18]** And because we wanted to be opinionated about how this
+**[00:11:21]** would work, like for example, we added this system session
+**[00:11:24]** command.
+**[00:11:25]** This doesn't exist in Docker or Podman where we're being
+**[00:11:27]** opinionated about making sure that these things, the API and
+**[00:11:31]** the CLI can work together.
+**[00:11:33]** So we knew we were going to make some decisions
+**[00:11:36]** like that.
+**[00:11:36]** That's why we created the CLI.
+**[00:11:38]** But the best part is this is all open source.
+**[00:11:40]** We have ton of improvements coming to the underlying virtual
+**[00:11:43]** machine technology powering this and those will all go to
+**[00:11:47]** Docker, Podman, Rancher, all for free.
+**[00:11:49]** For example, we are improving cross OS file performance by
+**[00:11:53]** two times when accessing Windows files from Linux.
+**[00:11:56]** And so something we're really excited for, and that is
+**[00:12:01]** the Whirlwind Tour.
+**[00:12:03]** Cool, let's jump back.
+**[00:12:03]** Yeah, well, so actually I pulled this up while you
+**[00:12:06]** were chatting the core utils that he showed with all
+**[00:12:09]** the 75 command line utilities available on GitHub.
+**[00:12:12]** So if you want to go grab this today and
+**[00:12:14]** have all those utilities right away, you can come over
+**[00:12:17]** to this repo and download them from here.
+**[00:12:19]** And you know, something else, like we're talking about WSL
+**[00:12:22]** and all that stuff.
+**[00:12:23]** Something else that comes in this Windows developer config is
+**[00:12:27]** a comfort shell.
+**[00:12:29]** So this is a customized flavor, not flavor, but like
+**[00:12:33]** a it's.
+**[00:12:35]** Like a customized implementation of Ubuntu.
+**[00:12:38]** There you go, right what he said.
+**[00:12:40]** It's a setup script.
+**[00:12:42]** Yeah, so it will come with everything pre installed that
+**[00:12:44]** you're familiar with.
+**[00:12:46]** So if you're someone who likes to use Homebrew or
+**[00:12:49]** ZSH, Starship, those kinds of tools, we pre install all
+**[00:12:52]** of these for you with that comfort shell and it'll
+**[00:12:55]** plug right into your Ubuntu distro.
+**[00:12:58]** So one of my favorites.
+**[00:12:59]** I showed this at the keynote, but like, how cool
+**[00:13:01]** is that?
+**[00:13:01]** It's B top.
+**[00:13:03]** So this comes baked in along with a lot of
+**[00:13:05]** those other tools.
+**[00:13:07]** I think that's what we've got for building on Windows.
+**[00:13:10]** We might want to do a little recap because that
+**[00:13:12]** was a lot.
+**[00:13:13]** So let's jump back and kind of walk through the
+**[00:13:16]** things we showed so far.
+**[00:13:18]** So we started with optimizing your setup with that config
+**[00:13:21]** file available in that GitHub repo.
+**[00:13:23]** That includes a lot of fan favorite tooling.
+**[00:13:26]** And then there's also that intelligent terminal, which is an
+**[00:13:29]** experimental experience that we're playing with of how you can
+**[00:13:32]** have an agent helping you in your terminal.
+**[00:13:35]** Then those there's those Windows improvements, so new run leveraging
+**[00:13:38]** the power toys command palette architecture along with vertical taskbar.
+**[00:13:42]** And then we've got those core utils as well.
+**[00:13:45]** And then as Craig covered, the WSL container, new implementation
+**[00:13:48]** for having a native container solution that works with your
+**[00:13:52]** existing container files.
+**[00:13:54]** And then of course, Comfort Shell, which we just showed
+**[00:13:56]** with that cool B top thing at the end.
+**[00:13:58]** So that is building on Windows.
+**[00:14:01]** Now we're going to talk about building for Windows and
+**[00:14:03]** how you can streamline building your apps directly on Windows
+**[00:14:07]** that are like Win UI apps, that sort of thing.
+**[00:14:09]** So I think it's still me, so I'll keep going.
+**[00:14:13]** So something that we have come out with that is
+**[00:14:17]** intended to make building Windows apps a little bit easier
+**[00:14:21]** is the Win App CLI.
+**[00:14:23]** So this is a command line interface, also open source.
+**[00:14:25]** That's our jam.
+**[00:14:26]** Everything's on GitHub, it's great.
+**[00:14:28]** But this is a single CLI for managing Windows SDKS,
+**[00:14:31]** packaging, generating app identity manifests, certificates, and build tools.
+**[00:14:37]** And you can use it to really just jumpstart building
+**[00:14:40]** all of your Windows apps.
+**[00:14:41]** And it covers the hard part like publishing and all
+**[00:14:44]** that stuff.
+**[00:14:46]** So it's got, let me see, there was a section
+**[00:14:49]** that I wanted to show that I am now missing.
+**[00:14:52]** Oh, yeah, here's some things that package having package identity
+**[00:14:56]** for your app unlocks.
+**[00:14:57]** So this is a really great thing to use if
+**[00:15:00]** you want to have package identity, but having interactive native
+**[00:15:04]** notifications along with integration with Explorer, taskbar share, share sheet,
+**[00:15:08]** that kind of thing.
+**[00:15:09]** And then there's also instructions for how to get started
+**[00:15:11]** with this as well.
+**[00:15:13]** And of course, it's on Winget because everything we make
+**[00:15:15]** goes on Winget.
+**[00:15:16]** So it's really easy, one line install and then something
+**[00:15:20]** that leverages this is the Windev skills.
+**[00:15:24]** So this is an agent plugin and plugins for agents
+**[00:15:27]** is really just a bundle of like skills, MCP servers,
+**[00:15:30]** custom agents, that kind of thing.
+**[00:15:32]** And then they just called it a plugin.
+**[00:15:33]** But it's really just all those other things we know
+**[00:15:37]** and one installer.
+**[00:15:39]** So this is what you can use with your agents.
+**[00:15:43]** Oh, there's a talk later I should go to that
+**[00:15:46]** you can use with your agents to build Win UI
+**[00:15:49]** 3 and Win App SDK apps.
+**[00:15:52]** So this comes with a lot of skills that are
+**[00:15:55]** really helpful like building and running the workflow, having Win
+**[00:16:00]** UI design, Win UI code review, testing, packaging, migrating from
+**[00:16:05]** WPF session report along with Win UI setup.
+**[00:16:08]** What I like about it is it's showing you up
+**[00:16:11]** to date information.
+**[00:16:12]** Your agent doesn't need to go out and waste tokens
+**[00:16:14]** on like a web search.
+**[00:16:15]** It can directly access some of the stuff.
+**[00:16:17]** That's not older information either.
+**[00:16:19]** Yes, totally.
+**[00:16:20]** So this is that.
+**[00:16:21]** That's a great point.
+**[00:16:21]** This is a really great way to be more efficient
+**[00:16:23]** with your token usage.
+**[00:16:24]** If you already provide that context to your to your
+**[00:16:27]** agent saying, hey, here's the skills, here's how to get
+**[00:16:30]** all this stuff rather than researching Win UI 3, it's
+**[00:16:32]** going to know all about it with this plugin.
+**[00:16:35]** And I installed it by running this long prompt.
+**[00:16:38]** I just pasted it and copilot because it's a little
+**[00:16:40]** bit easier, but you can also do it by hand
+**[00:16:42]** if that's your jam too.
+**[00:16:44]** And I think it it might be kind of fun
+**[00:16:46]** to try to build a win UI app right now.
+**[00:16:48]** I don't know how long this is going to take,
+**[00:16:51]** so bear with me, but I liked Craig's mark it
+**[00:16:55]** down app.
+**[00:16:55]** I think we could try to build it again.
+**[00:16:57]** That's.
+**[00:16:57]** OK, you can steal my idea.
+**[00:16:58]** Yeah, that's fine.
+**[00:16:59]** All my ideas are original.
+**[00:17:01]** What do you mean?
+**[00:17:02]** So I'm going to jump into copilot and then we're
+**[00:17:04]** going to I already have this plug in installed because
+**[00:17:06]** I ran that long prompt, right?
+**[00:17:09]** And when you get here, what first thing you want
+**[00:17:13]** to do so that the agent is in the right
+**[00:17:15]** state is you want to set the agent to the
+**[00:17:18]** win dev win UI dev plug in.
+**[00:17:20]** So after you install it, you're going to get a
+**[00:17:21]** custom agent.
+**[00:17:22]** So this is going to know to route to those
+**[00:17:24]** skills to get all of that win UI when I
+**[00:17:26]** have SDK goodness too.
+**[00:17:27]** So we're going to set this.
+**[00:17:30]** So now here you can see I've got win UI
+**[00:17:32]** dev set as my custom agent.
+**[00:17:33]** So that's how you know you're in the right place.
+**[00:17:35]** And then I'm going to try to use the voice
+**[00:17:37]** feature of copilot CLI since I'm on stage and everything.
+**[00:17:40]** I don't know how this is going to go, but
+**[00:17:42]** I'm going to just a yap to copilot really quick
+**[00:17:45]** to build his market down app.
+**[00:17:46]** So let's see how this goes.
+**[00:17:50]** Let's build a native Win UI3 app that takes any
+**[00:17:53]** file and converts it to markdown.
+**[00:17:55]** Have it have a side by side view and display
+**[00:17:58]** the contents of both files on each side of the
+**[00:18:01]** app.
+**[00:18:02]** Make it look prettier than Craig's mark it down app
+**[00:18:05]** and then do UI testing and run it after it's
+**[00:18:08]** done.
+**[00:18:10]** Cool.
+**[00:18:11]** I'm also going to put this into autopilot mode.
+**[00:18:14]** I just switched modes with shift tab.
+**[00:18:16]** So you got plan autopilot and like regular, and we're
+**[00:18:19]** just going to kick this off, enable all permissions.
+**[00:18:21]** This is fine.
+**[00:18:22]** Everything's great.
+**[00:18:24]** It's not like this is my real machine, right?
+**[00:18:26]** Yeah, or it's a live demo or anything.
+**[00:18:28]** Right.
+**[00:18:28]** We don't know what's going to happen and I don't
+**[00:18:31]** know if this is going to finish either, but something
+**[00:18:34]** that comes with those skills and that plugin is the
+**[00:18:37]** UI testing.
+**[00:18:37]** So it's going to hopefully build the app, deploy it,
+**[00:18:40]** and then it's going to do UI testing that comes
+**[00:18:42]** baked in.
+**[00:18:43]** So it's already going to know how to do it.
+**[00:18:44]** And my mouse would be like bouncing around and clicking
+**[00:18:46]** all the buttons and checking all the text boxes and
+**[00:18:48]** everything.
+**[00:18:49]** So I'm going to let this run.
+**[00:18:52]** I did do this before.
+**[00:18:54]** I didn't say make it prettier than Craig's, so it's
+**[00:18:58]** not beautiful.
+**[00:18:59]** But I did build this Win UI app with that
+**[00:19:02]** prompt.
+**[00:19:03]** Well, different prompt, but with that plug in to kind
+**[00:19:06]** of do the same thing and it worked on the
+**[00:19:07]** first try, which was awesome.
+**[00:19:08]** Lynda.
+**[00:19:09]** What's great is it's using all the modern tools, right?
+**[00:19:12]** The modern button buttons et.
+**[00:19:13]** Cetera, right, right.
+**[00:19:14]** Like this is truly a Win UI3 component along with
+**[00:19:17]** the text box and everything and this browse file button
+**[00:19:20]** and all of that.
+**[00:19:21]** So and then, you know, we got to talk about
+**[00:19:24]** power toys too.
+**[00:19:24]** I'm just shoehorning this in because I love power toys,
+**[00:19:27]** but they just added this new utility.
+**[00:19:29]** It's grab and move.
+**[00:19:30]** So you know, like so I have, I don't know,
+**[00:19:33]** 50 tabs open on edge.
+**[00:19:35]** Don't judge me.
+**[00:19:36]** I'm one of those like many tab people, not many
+**[00:19:38]** windows people.
+**[00:19:40]** So I can never grab the taskbar or the title
+**[00:19:42]** bar because my tabs are in the way.
+**[00:19:44]** So grab and move.
+**[00:19:45]** Let's just hold alt and you can just click from
+**[00:19:48]** anywhere and you're just dragging the whole thing around so
+**[00:19:51]** it makes it a little bit easier, which is awesome
+**[00:19:53]** so I'm going to let this run hopefully we can
+**[00:19:56]** hopefully it'll build in the next 25 minutes we're going
+**[00:19:59]** to see but I think now would be a really
+**[00:20:01]** good time.
+**[00:20:01]** You know we're talking about building apps and what comes
+**[00:20:04]** with that is maybe having more performance optimization with those
+**[00:20:08]** apps, especially with compilation.
+**[00:20:10]** So I'm going to hand it over to Jinya.
+**[00:20:12]** We're going to pull up a slide first because we've
+**[00:20:15]** got some great stuff to show us.
+**[00:20:17]** But let's.
+**[00:20:19]** Whoa, our slides must be the old one.
+**[00:20:22]** This is our old slides.
+**[00:20:23]** We don't have a slide.
+**[00:20:23]** I'm so sorry, but we're going to let you.
+**[00:20:26]** We're just going to leave this up.
+**[00:20:28]** OK, You go, You go.
+**[00:20:29]** So without.
+**[00:20:31]** Performance without performance on Windows when it works right, There's
+**[00:20:34]** a lot of things.
+**[00:20:35]** A lot of people like me here.
+**[00:20:36]** So when you work on performance, you may have heard
+**[00:20:38]** about the.
+**[00:20:39]** Yeah, Deanna, can you move your mic up a little
+**[00:20:41]** higher?
+**[00:20:41]** I'm.
+**[00:20:42]** Not there.
+**[00:20:43]** Hi, how about now?
+**[00:20:45]** No.
+**[00:20:46]** How about if I just hold it?
+**[00:20:48]** Do you have my mic?
+**[00:20:50]** Works.
+**[00:20:51]** Can I hold my?
+**[00:20:51]** OK, it's working now.
+**[00:20:52]** OK, so if you ever work on say performance on
+**[00:20:56]** Windows, you must heard about say Profile guided optimization called
+**[00:21:00]** PGO.
+**[00:21:01]** There the basic idea is just to collect the the
+**[00:21:04]** actual say executable running and sample the data where it
+**[00:21:07]** goes, which part will be executed and fit that into
+**[00:21:10]** the compiler.
+**[00:21:11]** So that compiler would do a better job about optimizing
+**[00:21:14]** it when you're spitting out the binary code there.
+**[00:21:16]** So we've heard say good performance number improvements from the
+**[00:21:20]** PGO, say 5 percent, 10%.
+**[00:21:22]** The benefit is very real, but the cost is a
+**[00:21:25]** little bit hindering the adoption among the ISP like you
+**[00:21:28]** here.
+**[00:21:29]** The two major things that we heard about is that
+**[00:21:31]** one, it requires some instrumentation, which means some extra code
+**[00:21:34]** in your app there.
+**[00:21:35]** You need to do that.
+**[00:21:37]** Second, when you run that, when you build that, there
+**[00:21:39]** will be an extra fork in your build pipeline there.
+**[00:21:42]** And not everyone is a is a friend about extra
+**[00:21:45]** things to mess it with your to mess with your
+**[00:21:47]** build pipeline on that one.
+**[00:21:49]** And last but not the least, when you run the
+**[00:21:51]** instrument build, usually it's very slow.
+**[00:21:54]** So it's not actually mimicking what the end user will
+**[00:21:58]** see, making the quality of your profile questionable on that
+**[00:22:02]** one.
+**[00:22:02]** So this is where the SPGO, the sample base SPG
+**[00:22:05]** OS come in to rescue user is that using the
+**[00:22:08]** app code instrumentation is actually using the hardware counters very
+**[00:22:12]** lightweight from you can use your release wheel to actually
+**[00:22:16]** run that and use the hardware counters to collect the
+**[00:22:19]** profile so that you can enjoy the same performance benefit,
+**[00:22:23]** but without all those fiction that we just talked about
+**[00:22:26]** them.
+**[00:22:27]** So the impact is really, really real.
+**[00:22:29]** We work with the Adobe Photoshop team there and they
+**[00:22:32]** try it and they're seeing up to 20% of the
+**[00:22:35]** improvement in the real workflow.
+**[00:22:37]** Some of the CPU abound workflow on that one.
+**[00:22:40]** So in the next few minutes I'm going to show
+**[00:22:43]** you how to apply the SPGL end to end.
+**[00:22:46]** Unfortunately I cannot show the source code from the Photoshop
+**[00:22:48]** there, so I have to build something myself I got.
+**[00:22:54]** Clint, I got my folder.
+**[00:22:55]** Thanks, Clint.
+**[00:23:04]** Right now.
+**[00:23:05]** Yeah, nice.
+**[00:23:06]** Thank you.
+**[00:23:06]** That's a hero.
+**[00:23:09]** All right, let's put you up.
+**[00:23:10]** Here we go.
+**[00:23:11]** Yep.
+**[00:23:13]** So on the lab you're, you're seeing a sample code
+**[00:23:15]** that I'm going to use here.
+**[00:23:16]** It's just a stack based virtual machine calculating the Fibonacci
+**[00:23:20]** series.
+**[00:23:21]** That one there you will see all the sample code
+**[00:23:24]** when we published the the repo on that one.
+**[00:23:26]** So don't worry about that one.
+**[00:23:28]** But I want to draw your attention to something here,
+**[00:23:32]** the switch OP.
+**[00:23:33]** So this is just the running the every single operator
+**[00:23:36]** of your virtual machine instead.
+**[00:23:40]** Microphone Guy.
+**[00:23:42]** OK.
+**[00:23:43]** So you'll see the switch here, which which means it
+**[00:23:46]** will jump based on the operator, it will jump from
+**[00:23:49]** here to there.
+**[00:23:50]** And and as you can imagine in this stack, actually
+**[00:23:53]** a lot of the branching can be very predictable.
+**[00:23:56]** And while the others is rarely used because there's so
+**[00:23:59]** many loops on that one there.
+**[00:24:01]** So this is where the PGO and SPGO are really
+**[00:24:03]** good at.
+**[00:24:03]** So optimizing.
+**[00:24:06]** OK, now let's do it end to end.
+**[00:24:12]** First step, let's just build it.
+**[00:24:15]** No fancy thing, no SPGO, just the compiler optimizations for
+**[00:24:19]** things like that one and then.
+**[00:24:26]** Clint's the four speaker for her talk, actually, yeah.
+**[00:24:32]** So I need a favor from you color.
+**[00:24:36]** So can you document the the runtime here?
+**[00:24:40]** What the baseline look like?
+**[00:24:42]** I got 3 seconds.
+**[00:24:43]** OK, 3 seconds there.
+**[00:24:44]** OK, that's the baseline.
+**[00:24:45]** No SPGO, no optimization so far.
+**[00:24:49]** Now this is the first step you need to do.
+**[00:24:52]** It's just to compile your, your code as you compare
+**[00:24:55]** the the original 1 and this one here, everything is
+**[00:24:58]** the same except there's a slash SPGO here.
+**[00:25:01]** So you are not actually optimizing anything yet because you
+**[00:25:04]** don't have any sample yet.
+**[00:25:05]** But it's telling the compiler I'm going to apply SPGL
+**[00:25:09]** now prep your executable PDP and everything because you will
+**[00:25:13]** need that information to consume the SPD file later on
+**[00:25:17]** that one.
+**[00:25:19]** So just run it, OK?
+**[00:25:22]** Yeah, it comes out and say, hey, the SPD is
+**[00:25:25]** not found too because we haven't fed anything yet.
+**[00:25:29]** OK, next one, I think many of you are familiar
+**[00:25:32]** with the Xperf run something and then Xperf again.
+**[00:25:35]** So this is a traditional way you capture the ETL
+**[00:25:37]** traces and do a lot of the profiling about that
+**[00:25:40]** one there.
+**[00:25:41]** You will see here there's a lot of numbers and
+**[00:25:44]** speech or whatever.
+**[00:25:45]** Don't worry about it now.
+**[00:25:47]** So you would go, there was a tutorial at the
+**[00:25:48]** end and you can go and see hey, what exactly
+**[00:25:50]** how you should want to come in here.
+**[00:25:52]** But believe me, this is one for the expert to
+**[00:25:56]** collect the hardware counters which will be used for the
+**[00:26:00]** PGO optimization.
+**[00:26:03]** OK, I'll just run everything here.
+**[00:26:13]** OK, should be fine.
+**[00:26:19]** OK, stop the X perf here.
+**[00:26:22]** One thing as you may notice, we are just running
+**[00:26:25]** the release build to no instrumentation, no nothing fancy, it's
+**[00:26:28]** just how your end user will actually run your executable
+**[00:26:32]** here that that's what we are collecting the data from.
+**[00:26:36]** Next step, now you have the ETL traces with all
+**[00:26:40]** the information here.
+**[00:26:42]** Let's abstract those informations and then put it in the
+**[00:26:45]** SPT file there so that the compilers can can understand
+**[00:26:49]** what's going on in that one.
+**[00:26:52]** And this is the step one.
+**[00:26:53]** And the Step 2 here is actually convert the SPT
+**[00:26:57]** into the SPD file which will be directly fed to
+**[00:27:01]** the the the compiler.
+**[00:27:03]** Why don't we just combine these two into one single
+**[00:27:06]** step?
+**[00:27:07]** Why have two steps here?
+**[00:27:08]** The reason is for a lot of the, the big
+**[00:27:11]** software there, there are many, many important workflows.
+**[00:27:15]** Some of them are benchmarks, some of the user interaction.
+**[00:27:18]** There are quite a few thing you want to optimize
+**[00:27:20]** together.
+**[00:27:21]** So by splitting them into several things like this one
+**[00:27:24]** for HX perf, say capturing the ETL, you can capture
+**[00:27:28]** one thing.
+**[00:27:28]** So 1 workflow for one ETL, for one SPD and
+**[00:27:31]** you can just several times in parallel.
+**[00:27:33]** And at the end you can combine all those SPTS.
+**[00:27:36]** It signals information into one single profile data, the SPD
+**[00:27:40]** into that one.
+**[00:27:42]** OK, Did I do that now?
+**[00:27:45]** Yes, SPD here.
+**[00:27:47]** OK, And this is the last step.
+**[00:27:52]** I'm ready for fireworks.
+**[00:27:53]** Yeah, more terminal fire.
+**[00:27:56]** When does it light on fire?
+**[00:27:57]** Yeah.
+**[00:27:59]** It's coming.
+**[00:28:00]** The fire.
+**[00:28:00]** It's coming.
+**[00:28:01]** It's coming.
+**[00:28:01]** Yeah, I promise you.
+**[00:28:03]** So when you rebuild with the profile data, everything is
+**[00:28:06]** exactly the same as you did before, except for the
+**[00:28:09]** last step here is that, hey, now I have the
+**[00:28:12]** profile data at hand fitted to the compiler.
+**[00:28:15]** And again, that's the last step you have here.
+**[00:28:17]** And then it build yet another executable.
+**[00:28:19]** Yeah.
+**[00:28:20]** How do we know whether it works or not?
+**[00:28:23]** You can't tell until you run something here.
+**[00:28:27]** Now it's optimized.
+**[00:28:29]** Bill, how long does it take?
+**[00:28:32]** 2 seconds.
+**[00:28:33]** 2 seconds OK and the original baseline is?
+**[00:28:37]** 3 seconds.
+**[00:28:37]** So without bringing up the calculator, I can tell you
+**[00:28:41]** it's almost 33% improvement by just running up all these
+**[00:28:44]** kind of things here.
+**[00:28:46]** So of course, your mileage may vary because the app
+**[00:28:49]** code, the quality of your samples, the hardware and everything
+**[00:28:52]** like that one.
+**[00:28:53]** But we heard reports from the Isvs somewhere between 5
+**[00:28:57]** to 15% of performance improvement by just going through this
+**[00:29:01]** step here.
+**[00:29:02]** So you can see what actually really matter.
+**[00:29:04]** It starts from Step 2 here and then we profile
+**[00:29:07]** and then we convert it to SPD and review it
+**[00:29:10]** again with the profile data.
+**[00:29:12]** And that's a whole end to end apply to your
+**[00:29:15]** application.
+**[00:29:16]** That's how it works here.
+**[00:29:18]** So we talk about the 20% improvement from Adobe and
+**[00:29:21]** they really like it because that means not just a
+**[00:29:24]** benchmark numbers better, but that's more responsive and out of
+**[00:29:28]** the way when their users are using the Photoshop on
+**[00:29:31]** Windows, that one there, besides the performance number, they also
+**[00:29:35]** see that this is a, a rethinking about how they
+**[00:29:38]** think about optimization there.
+**[00:29:40]** They previously they did a lot of low, low level
+**[00:29:42]** tunings and doing this and doing that, yes, that would
+**[00:29:45]** give you something, but the SPG is something say, hey,
+**[00:29:48]** this is more a scalable and sustainable way to do
+**[00:29:51]** that.
+**[00:29:51]** It's about, hey, this is a whole procedure and they
+**[00:29:54]** already very naturally integrate this one into their product build
+**[00:29:57]** pipeline because as you can see, it's not intrusive at
+**[00:30:00]** all.
+**[00:30:02]** So several small things you need to do, but it's
+**[00:30:04]** not forking an instrument view other things that one and
+**[00:30:07]** they see that and they love that and they are
+**[00:30:09]** going to release the SP optimized version to the public
+**[00:30:12]** in the coming days there so that everyone, the customers
+**[00:30:15]** on Windows, you'll be able to see the benefit yourself.
+**[00:30:19]** 11 more tips that Adobe want to want to share
+**[00:30:22]** with all of us.
+**[00:30:23]** We see, hey, now we have 33%, but is that
+**[00:30:26]** the end?
+**[00:30:27]** What happened?
+**[00:30:28]** If I change my code, because this is a product
+**[00:30:30]** code, it is a commercial product code.
+**[00:30:32]** They keep evolving every year there.
+**[00:30:34]** Even if your code doesn't change at all, your customers
+**[00:30:37]** may use it differently.
+**[00:30:38]** Sometimes they use this one and later they might switch
+**[00:30:40]** to the other one there.
+**[00:30:43]** The the the the way to think about SP2O.
+**[00:30:46]** This is not a one shot thing.
+**[00:30:47]** It's an iterated things.
+**[00:30:48]** Yeah, you see, you do this one pass here.
+**[00:30:51]** Oh, the code change or the customer use passions changes
+**[00:30:54]** there.
+**[00:30:56]** Go back to number 3 here.
+**[00:30:58]** Run the new scenario, run your new executable and collect
+**[00:31:01]** the profile again.
+**[00:31:02]** Refresh your profile and feed it back to your optimizer.
+**[00:31:05]** You keep doing that again and again.
+**[00:31:07]** Again.
+**[00:31:07]** This is that could be easily part of your build
+**[00:31:09]** pipeline already.
+**[00:31:11]** And this is the way you keep evolving your code
+**[00:31:14]** and the optimized results as your code evolves and as
+**[00:31:17]** your user calls that one there.
+**[00:31:19]** So I hope in the past few minutes you agree
+**[00:31:23]** with me.
+**[00:31:23]** This is not just a demo, it's reshaping how you
+**[00:31:26]** think about optimization.
+**[00:31:28]** Think about shaping how you think about optimization for the
+**[00:31:31]** user experience for your customers on that one.
+**[00:31:34]** And this is also something you can go back home
+**[00:31:37]** tonight and start applying to your product there and let
+**[00:31:40]** us know how that works for you.
+**[00:31:43]** Yeah.
+**[00:31:43]** And that's the performance story.
+**[00:31:44]** That's awesome.
+**[00:31:45]** Nice.
+**[00:31:46]** Yeah.
+**[00:31:46]** And 33% performance boost on compilation, which is great.
+**[00:31:49]** And you built your app, then trained a profile on
+**[00:31:52]** it, and then rebuilt the app with that profile.
+**[00:31:55]** And that's where that boost came from.
+**[00:31:56]** Exactly.
+**[00:31:57]** Everything in 10 seconds.
+**[00:31:58]** That's how killers summarize everything.
+**[00:32:01]** That's for your keynote material.
+**[00:32:03]** Yeah, I see it.
+**[00:32:04]** They only gave me 10 seconds.
+**[00:32:07]** Sweet.
+**[00:32:07]** That was awesome.
+**[00:32:08]** Thank you, Jinya.
+**[00:32:09]** So I think one of the last things we want
+**[00:32:12]** to cover.
+**[00:32:12]** Also, my app did build and then it did all
+**[00:32:14]** the UI testing and then it finished.
+**[00:32:16]** So very cool, very cool.
+**[00:32:18]** Looks like this still not as pretty as Craig's, but
+**[00:32:21]** what can you do?
+**[00:32:23]** But actually Speaking of Craig, I'm going to hand it
+**[00:32:26]** back to him because there's more things with devices, containers
+**[00:32:28]** that you tease at the beginning that I think we
+**[00:32:30]** should cover.
+**[00:32:31]** Yeah, so let's talk about that API.
+**[00:32:33]** Kayla, you've inspired me.
+**[00:32:34]** I want to make my own Mark it Down app
+**[00:32:37]** that's on Windows as well.
+**[00:32:39]** And so I want to use an API on Windows.
+**[00:32:42]** I want to take all that awesome Linux container code
+**[00:32:44]** that I had and just build it into a Windows
+**[00:32:46]** app.
+**[00:32:47]** And I don't want to rewrite everything.
+**[00:32:49]** So if you take a look on the left side
+**[00:32:51]** of my screen, I have this Gray container file.
+**[00:32:53]** I have all my Linux code sitting here, right?
+**[00:32:56]** And I've made that as part of a project.
+**[00:32:59]** So this lives inside of AC project.
+**[00:33:03]** And in the C project.
+**[00:33:05]** I went to the CS project and let me zoom
+**[00:33:07]** up a little bit.
+**[00:33:09]** I've added a WSL containers Nugent package right here, and
+**[00:33:13]** then I've defined that exact same container that I ran
+**[00:33:17]** in the CLI earlier.
+**[00:33:18]** So I said here's what you want to call it,
+**[00:33:21]** here's where you can find it, and then here's where
+**[00:33:24]** I want you to outputitandnowaspartof.net buildand.net run.
+**[00:33:28]** It will automatically build that container.
+**[00:33:30]** Whenever I edit that, it will just automatically make it
+**[00:33:32]** part of the build process so I don't have to
+**[00:33:34]** think about it.
+**[00:33:34]** It truly is part of my source code and I
+**[00:33:37]** can go and run net run and it will build
+**[00:33:40]** and run this app.
+**[00:33:42]** And so I went ahead and created the same market
+**[00:33:45]** down app, but this time I did it fully in
+**[00:33:48]** Win UI.
+**[00:33:49]** So it looks nice and modern.
+**[00:33:51]** And really the big take away here while this is
+**[00:33:53]** building is this looks exactly like a Windows app.
+**[00:33:56]** In fact, if I didn't tell you that this was
+**[00:33:58]** running Linux in the back end, you would not know
+**[00:34:01]** which is fine that's great.
+**[00:34:02]** There are a lot of customers who want to be
+**[00:34:04]** able to use the power of Linux or don't even
+**[00:34:06]** know that they need the power of Linux and they
+**[00:34:08]** don't want to know about it.
+**[00:34:10]** For example, my mom and dad don't need to know
+**[00:34:12]** that they're doing some great Linux stuff in the background.
+**[00:34:15]** They just need to run powerful apps.
+**[00:34:17]** So let's take a look at that is same receipt
+**[00:34:20]** that I put in earlier.
+**[00:34:22]** Well, here we go.
+**[00:34:22]** It goes in the Windows app and it does the
+**[00:34:25]** exact same rendering, which is pretty great.
+**[00:34:29]** And so I've made this log here that would show
+**[00:34:31]** how quickly things start up or, you know, don't or
+**[00:34:34]** shut down.
+**[00:34:35]** If I go and run this app again, I'll I'll
+**[00:34:37]** watch that.
+**[00:34:38]** And you can see the speed that we're starting up
+**[00:34:40]** that container.
+**[00:34:41]** It basically takes about 2 1/2 seconds is how long
+**[00:34:44]** we're benchmarking from a cold start.
+**[00:34:46]** And so it's going and initializing the session and then
+**[00:34:50]** it will start up the container and then that's it
+**[00:34:53]** started.
+**[00:34:54]** And then now it's running the Linux code inside of
+**[00:34:56]** it.
+**[00:34:57]** So then it executed my Python service.
+**[00:34:59]** And all of this is powered by.
+**[00:35:01]** If I go to my task manager, I can see
+**[00:35:04]** that I have a new process here that mark it
+**[00:35:08]** down.
+**[00:35:09]** Service runs in its own WSLVM, so it's exact same
+**[00:35:12]** VM technology that powers your WSL distros.
+**[00:35:15]** We're now applying it to Linux containers running as part
+**[00:35:18]** of a Windows application.
+**[00:35:20]** So each Windows app gets its own WSLVM and you
+**[00:35:22]** can run as many containers as you want inside of
+**[00:35:25]** it.
+**[00:35:26]** And this wouldn't be a demo without taking a look
+**[00:35:28]** at the code, so we for sure have to go
+**[00:35:30]** see how we're actually doing this.
+**[00:35:32]** And as you can see, it's just some C code
+**[00:35:35]** that's not too long.
+**[00:35:37]** I'm able to go in here and say, hey, please
+**[00:35:40]** start a new session for me that starts the virtual
+**[00:35:44]** machine and with these CPU and memory count, and then
+**[00:35:48]** I can start that.
+**[00:35:49]** I can pull a specific image.
+**[00:35:51]** In this case, I'm running that locally and where it's
+**[00:35:53]** really powerful is I can configure this to have exactly
+**[00:35:56]** what options I need.
+**[00:35:58]** So in this case, I said I want only port
+**[00:36:01]** 8000 to be mapped over so that I'm exposing that
+**[00:36:04]** API that I used before.
+**[00:36:06]** And you can add other options here like you can
+**[00:36:09]** do volume mounting, for example, to say, hey, I want
+**[00:36:12]** to be able to run or access only specific Windows
+**[00:36:15]** folders.
+**[00:36:16]** Or you can even do things like, hey, I want
+**[00:36:18]** to give this access to my GPU.
+**[00:36:19]** And so super powerful way that runs.
+**[00:36:22]** And when it's all closed and done, all of those
+**[00:36:25]** resources are cleaned up.
+**[00:36:26]** You can see the VM has gone away and it
+**[00:36:29]** works just like any other app.
+**[00:36:31]** And the last thing I'd want to show is we're
+**[00:36:34]** also improving the ecosystem.
+**[00:36:36]** So we're really trying to make this a very comprehensive
+**[00:36:39]** end to end story of developing with containers wherever you
+**[00:36:42]** are, API or CLI.
+**[00:36:43]** So we're doing fun things like if you go to
+**[00:36:47]** there's a project lazy WSLC, you can get a very
+**[00:36:50]** nice TUI demo or TUI interface for all of your
+**[00:36:53]** containers.
+**[00:36:54]** So you can go ahead and take this as a
+**[00:36:56]** nice dashboard.
+**[00:36:58]** On top of that, this will also be supported with
+**[00:37:00]** dev containers.
+**[00:37:01]** So if you do commands like attach to running container,
+**[00:37:04]** reopening container or use it in VS Code, WSL container
+**[00:37:08]** will be supported there as well.
+**[00:37:10]** And then last but not least, for our WSL container
+**[00:37:13]** demos, we also wanted to highlight an amazing partner that
+**[00:37:16]** we've been working with.
+**[00:37:18]** So we've been working with the Moonray team.
+**[00:37:21]** They're a team that builds a super powerful Linux based
+**[00:37:24]** rendering engine and that is used to render tons of
+**[00:37:27]** movies that you might be aware of like the bad
+**[00:37:30]** guys two or the wild robot, which I'm a big
+**[00:37:32]** fan of as I love robots.
+**[00:37:34]** And so this is a team that has all of
+**[00:37:37]** their code in Linux and is open source, fully open
+**[00:37:40]** source, just like WSL, and they want to bring this
+**[00:37:44]** awesome tool to Windows users to easily use.
+**[00:37:48]** Well, how do you bridge that gap and make it
+**[00:37:50]** production ready?
+**[00:37:51]** That's where we've been able to work together on taking
+**[00:37:54]** a look at the Windows Subsystem for Linux containers.
+**[00:37:57]** And so I can go ahead and take a quick
+**[00:37:59]** look here.
+**[00:38:00]** I have a demo app of their code.
+**[00:38:02]** So I have the WCLC Moonray folder, and I have
+**[00:38:06]** built this and created moonray.exe.
+**[00:38:09]** So that's very obviously a Windows executable.
+**[00:38:12]** And I'm also inputting inputs to this.
+**[00:38:15]** And if you note the back slash, these are definitely
+**[00:38:18]** Windows files that I'm giving in.
+**[00:38:20]** And these are Windows files of RDLA, which are basically
+**[00:38:24]** render inputs.
+**[00:38:25]** And then I'm asking it, hey, could you please render
+**[00:38:28]** out this JPG for me?
+**[00:38:29]** And when I run this, it's going to run exactly
+**[00:38:32]** the same as what I showed earlier, just a command
+**[00:38:34]** line version.
+**[00:38:35]** And I've shown that these I've kept in this like
+**[00:38:39]** debug information here.
+**[00:38:41]** So you can see the that was the machine starting.
+**[00:38:43]** Now we have the actual rendering happening.
+**[00:38:45]** It's using up all of my CPU, which is exactly
+**[00:38:48]** what you want to see when you're doing a nice
+**[00:38:51]** render.
+**[00:38:52]** And then once it's done, it will perfectly shut down,
+**[00:38:55]** clean up the VM.
+**[00:38:57]** And I can go ahead and take a look at
+**[00:38:59]** the beautiful image we rendered, which was this lovely orange
+**[00:39:03]** coffee maker.
+**[00:39:05]** And so that was all done exactly as a Windows
+**[00:39:09]** CLI, right?
+**[00:39:10]** its.exe.
+**[00:39:11]** It was all Windows inputs and outputs.
+**[00:39:13]** I opened a Windows file, but everything, all of the
+**[00:39:16]** code that was running in the back end, beyond just
+**[00:39:19]** the integration code for the API was fully Linux.
+**[00:39:22]** So something we're really, really excited to see what you
+**[00:39:25]** could do with, from AI containers, AI containerization to cloud
+**[00:39:29]** to local, I think there's tons of exciting opportunities.
+**[00:39:33]** Cool.
+**[00:39:34]** Sweet.
+**[00:39:35]** Yeah, that was great.
+**[00:39:35]** And you know, we're running out of time here, so
+**[00:39:38]** I'm going to kind of wrap it up with one
+**[00:39:40]** last note.
+**[00:39:40]** So we, you know, on our team, we've been working
+**[00:39:43]** on all these open source tools and we've been working
+**[00:39:46]** on open source for years.
+**[00:39:47]** And actually, Clint had the great idea of exporting the
+**[00:39:52]** list of contributors of everyone who's contributed to Terminal WSL
+**[00:39:58]** when UI power toys and the file is 16,000 lines
+**[00:40:02]** long.
+**[00:40:03]** So we've had over 16,000 open source contributors on all
+**[00:40:06]** of our projects, which is huge.
+**[00:40:08]** So we want to truly, truly thank everybody that's contributed
+**[00:40:11]** to everything that we've been working on because the products
+**[00:40:14]** would not be where they are today without without y'all.
+**[00:40:17]** I should have my name my name ZZZZZZZ so I
+**[00:40:19]** show.
+**[00:40:19]** Up.
+**[00:40:19]** Yeah, you should have been.
+**[00:40:20]** I should have wasted opportunity.
+**[00:40:23]** And of course, we're very excited about Core Utils.
+**[00:40:25]** So we thought it would be fun to do a
+**[00:40:27]** little graph with one of our friends, Nora, who's been
+**[00:40:30]** a really awesome contributor and especially for Power Toys.
+**[00:40:34]** So want to give a huge shout out to our
+**[00:40:36]** contributors and Nora as well.
+**[00:40:38]** But we want to just thank everyone who's made these
+**[00:40:40]** products, you know, shape up to where they are today.
+**[00:40:44]** So here's that slide with all the links that I
+**[00:40:46]** told you about.
+**[00:40:48]** So we're going to maybe recap a little bit, but
+**[00:40:50]** we talked about config file.
+**[00:40:52]** We had that Comfort shell and that same repo SPGO
+**[00:40:55]** that Jinye covered.
+**[00:40:57]** This link will show you how to run that with
+**[00:40:59]** your own projects and get that performance boost with compilation.
+**[00:41:03]** And then of course, there's Intelligent Terminal and its own
+**[00:41:06]** repo.
+**[00:41:07]** The Win F CLI and Win F skills have their
+**[00:41:09]** own repos, and Power Toys also has its own repo.
+**[00:41:12]** So if you want to get started with any of
+**[00:41:15]** these, this is the slide to grab.
+**[00:41:18]** And with that we can jump into Q&A.
+**[00:41:21]** Thank you so much everybody for listening and watching and
+**[00:41:24]** feel free to scan this because it's I think it's
+**[00:41:27]** important.
+**[00:41:28]** So thank you, everybody and we're happy to answer my
+**[00:41:30]** questions.
+**[00:41:30]** Thank you.

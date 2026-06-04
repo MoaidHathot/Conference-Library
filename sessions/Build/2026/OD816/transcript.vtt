@@ -1,0 +1,2448 @@
+WEBVTT
+
+00:00:03.390 --> 00:00:05.730
+KIM MANIS: Welcome to this
+session on securing, scaling,
+
+00:00:05.730 --> 00:00:09.300
+and sustaining your data
+estate in Microsoft Fabric.
+
+00:00:09.300 --> 00:00:12.090
+I'm Kim Manis, Corporate
+Vice President of Product
+
+00:00:12.090 --> 00:00:14.740
+of the Microsoft
+Fabric Platform.
+
+00:00:15.780 --> 00:00:17.670
+We all know AI is
+changing the world.
+
+00:00:17.670 --> 00:00:20.400
+It's enabling everyone to
+move faster than ever,
+
+00:00:20.400 --> 00:00:23.490
+whether it's data professionals
+who are implementing code faster
+
+00:00:23.490 --> 00:00:25.680
+than ever, analysts
+and data citizens
+
+00:00:25.680 --> 00:00:27.540
+who are spending less
+time finding the data
+
+00:00:27.540 --> 00:00:30.180
+and more time getting
+into the deep analysis,
+
+00:00:30.180 --> 00:00:32.670
+and line-of-business
+users who can go and ask
+
+00:00:32.670 --> 00:00:34.860
+and answer their own
+questions without the need
+
+00:00:34.860 --> 00:00:37.860
+of an analyst for help.
+
+00:00:37.860 --> 00:00:40.950
+And this is all great, but
+that broad data access
+
+00:00:40.950 --> 00:00:44.250
+and generative AI, it does
+bring additional risk,
+
+00:00:44.250 --> 00:00:48.540
+increased risky behavior,
+increased risk of data breaches.
+
+00:00:48.540 --> 00:00:51.960
+And often security professionals
+are feeling like that security
+
+00:00:51.960 --> 00:00:55.200
+and data culture, they
+seem in conflict.
+
+00:00:55.200 --> 00:01:00.120
+And achieving those goals, they
+can feel diametrically opposed,
+
+00:01:00.120 --> 00:01:03.570
+whether it's fostering a data
+culture by driving broad access
+
+00:01:03.570 --> 00:01:07.230
+to data and securing your data
+and making sure it's governed
+
+00:01:07.230 --> 00:01:09.720
+and people are doing the
+right things with the data.
+
+00:01:09.720 --> 00:01:12.390
+And this is really where
+Microsoft Fabric comes in.
+
+00:01:12.390 --> 00:01:15.960
+Microsoft Fabric allows you to
+foster a data-driven culture
+
+00:01:15.960 --> 00:01:19.260
+through automated, repeatable,
+and governed data development
+
+00:01:19.260 --> 00:01:22.110
+in Fabric, and you
+can get broad access
+
+00:01:22.110 --> 00:01:24.420
+through a single
+discoverable data catalog
+
+00:01:24.420 --> 00:01:27.600
+with the OneLake catalog that's
+accessible everywhere your
+
+00:01:27.600 --> 00:01:29.970
+business users and
+your developers work,
+
+00:01:29.970 --> 00:01:33.870
+whether it's Teams,
+Excel, Foundry, and more.
+
+00:01:33.870 --> 00:01:36.540
+And this is great because it's
+easy to discover the data,
+
+00:01:36.540 --> 00:01:37.830
+find what you're looking for,
+
+00:01:37.830 --> 00:01:39.780
+ask and answer your
+own questions.
+
+00:01:39.780 --> 00:01:42.390
+But with that comes security
+
+00:01:42.390 --> 00:01:44.970
+and making sure your data
+is governed and secure,
+
+00:01:44.970 --> 00:01:47.370
+whether it's through
+isolating your sensitive data
+
+00:01:47.370 --> 00:01:49.380
+with always-on network security
+
+00:01:49.380 --> 00:01:52.530
+and managing data access
+centrally at the item, folder,
+
+00:01:52.530 --> 00:01:55.950
+row, column level, and being
+able to govern your data
+
+00:01:55.950 --> 00:01:57.540
+and capacity centrally.
+
+00:01:57.540 --> 00:02:00.390
+So this allows you to give
+broad access to everyone
+
+00:02:00.390 --> 00:02:02.340
+in your organization
+who needs data,
+
+00:02:02.340 --> 00:02:05.310
+while making sure they only see
+what they're supposed to see,
+
+00:02:05.310 --> 00:02:07.980
+and they're only accessing the
+data the way they're supposed
+
+00:02:07.980 --> 00:02:09.550
+to access it.
+
+00:02:10.920 --> 00:02:14.550
+And Microsoft Fabric is a
+complete end-and data platform,
+
+00:02:14.550 --> 00:02:16.560
+covering the whole
+gamut of tools,
+
+00:02:16.560 --> 00:02:19.050
+all the way from databases,
+data integration,
+
+00:02:19.050 --> 00:02:21.810
+to our newest capabilities
+with Fabric IQ.
+
+00:02:21.810 --> 00:02:24.000
+And today we're really
+going to focus on the admin
+
+00:02:24.000 --> 00:02:26.070
+and governance space and
+how we're enabling all
+
+00:02:26.070 --> 00:02:28.800
+of these workloads,
+workloads with key admin
+
+00:02:28.800 --> 00:02:30.840
+and governance capabilities.
+
+00:02:30.840 --> 00:02:34.620
+And Fabric has all the tools
+to support every user engaged
+
+00:02:34.620 --> 00:02:36.600
+in Fabric when it
+comes to governance,
+
+00:02:36.600 --> 00:02:39.150
+whether it's the Fabric
+tenant admins, the capacity
+
+00:02:39.150 --> 00:02:42.900
+and workspace admins, or
+the data and AI developers.
+
+00:02:42.900 --> 00:02:46.530
+So let's kick it off by talking
+about the Fabric tenant admins,
+
+00:02:46.530 --> 00:02:49.590
+and tenant admins have a ton
+to do, and as we talked about,
+
+00:02:49.590 --> 00:02:51.090
+a lot to worry
+about when it comes
+
+00:02:51.090 --> 00:02:53.430
+to governance and security.
+
+00:02:53.430 --> 00:02:55.290
+Let's take a look at
+a demo to see the day
+
+00:02:55.290 --> 00:02:57.660
+in the life of a tenant admin.
+
+00:02:57.660 --> 00:02:58.890
+SPEAKER 1: Okay, everyone,
+
+00:02:58.890 --> 00:03:00.720
+let's start with the
+admin experience,
+
+00:03:00.720 --> 00:03:02.310
+and I gotta tell
+you, this is one
+
+00:03:02.310 --> 00:03:04.290
+of my favorite things
+to show people.
+
+00:03:04.290 --> 00:03:07.020
+So picture this: you're a
+Microsoft Fabric admin.
+
+00:03:07.020 --> 00:03:09.210
+You've got hundreds,
+maybe thousands
+
+00:03:09.210 --> 00:03:10.650
+of items in your tenant.
+
+00:03:10.650 --> 00:03:13.380
+People are building
+lakehouses, creating reports,
+
+00:03:13.380 --> 00:03:16.140
+connecting data from
+everywhere, and your job:
+
+00:03:16.140 --> 00:03:20.130
+make sure it's all secure,
+compliant, and actually usable.
+
+00:03:20.130 --> 00:03:21.900
+That's a tall order, right?
+
+00:03:21.900 --> 00:03:24.090
+Well, here's where it gets good.
+
+00:03:24.090 --> 00:03:26.910
+My day starts here in the
+OneLake catalog on the
+
+00:03:26.910 --> 00:03:28.830
+"Govern" tab, and look at this.
+
+00:03:28.830 --> 00:03:31.740
+I land on this page, and
+immediately I can see the health
+
+00:03:31.740 --> 00:03:33.960
+of my entire tenant,
+and I'm not digging
+
+00:03:33.960 --> 00:03:35.670
+through five different portals.
+
+00:03:35.670 --> 00:03:37.170
+I'm not hunting for settings.
+
+00:03:37.170 --> 00:03:40.440
+It's all right here: insights,
+recommended actions,
+
+00:03:40.440 --> 00:03:43.290
+and quick access to every
+management tool I need.
+
+00:03:43.290 --> 00:03:44.550
+How cool is that?
+
+00:03:44.550 --> 00:03:45.480
+Now, check this out.
+
+00:03:45.480 --> 00:03:47.820
+I've got two recommended
+actions waiting for me.
+
+00:03:47.820 --> 00:03:50.310
+The first one is
+telling me, hey,
+
+00:03:50.310 --> 00:03:53.100
+your sensitivity labels aren't
+applied broadly enough.
+
+00:03:53.100 --> 00:03:55.560
+That means there
+are items out there
+
+00:03:55.560 --> 00:03:57.630
+that might not have
+the protection your
+
+00:03:57.630 --> 00:03:59.070
+organization requires.
+
+00:03:59.070 --> 00:04:02.970
+The second one says you should
+improve data curation with tags.
+
+00:04:02.970 --> 00:04:06.990
+These aren't just alerts; these
+are actionable recommendations.
+
+00:04:06.990 --> 00:04:09.990
+Microsoft Fabric is literally
+coaching you on how
+
+00:04:09.990 --> 00:04:11.580
+to become a better admin.
+
+00:04:11.580 --> 00:04:12.570
+I love this.
+
+00:04:12.570 --> 00:04:14.610
+Before I jump on that
+sensitivity label
+
+00:04:14.610 --> 00:04:17.310
+recommendation, I want to
+understand the full picture.
+
+00:04:17.310 --> 00:04:20.160
+So I click "View More,"
+and now I'm looking
+
+00:04:20.160 --> 00:04:21.660
+at the governance report,
+
+00:04:21.660 --> 00:04:23.970
+and this is where it
+gets really interesting
+
+00:04:23.970 --> 00:04:26.520
+because I can see
+three key areas.
+
+00:04:26.520 --> 00:04:31.080
+First, my data estate: domains,
+capacities, feature usage.
+
+00:04:31.080 --> 00:04:34.140
+Second, security and
+compliance, sensitivity labels
+
+00:04:34.140 --> 00:04:37.770
+for Microsoft Purview, and
+data loss prevention policies,
+
+00:04:37.770 --> 00:04:39.240
+or DLP.
+
+00:04:39.240 --> 00:04:42.300
+Finally, trust and
+reuse, data freshness,
+
+00:04:42.300 --> 00:04:45.360
+how well things are curated
+and what's being shared.
+
+00:04:45.360 --> 00:04:49.680
+This is the 360-degree view
+every admin has been asking for.
+
+00:04:49.680 --> 00:04:52.920
+Now, here's where I'm going to
+blow your mind a little bit.
+
+00:04:52.920 --> 00:04:55.110
+I'm going to open up
+Copilot and just ask
+
+00:04:55.110 --> 00:04:58.050
+which domains has the
+most unlabeled items?
+
+00:04:58.050 --> 00:05:00.660
+Boom, it tells me it's
+the sales domain.
+
+00:05:00.660 --> 00:05:01.560
+Of course.
+
+00:05:01.560 --> 00:05:03.030
+I didn't have to run a report.
+
+00:05:03.030 --> 00:05:06.090
+I didn't have to export to
+Excel and do a pivot table.
+
+00:05:06.090 --> 00:05:07.050
+I just asked.
+
+00:05:07.050 --> 00:05:07.950
+Are you kidding me?
+
+00:05:07.950 --> 00:05:09.270
+This is powerful.
+
+00:05:09.270 --> 00:05:11.430
+All right, so now I know
+the sales domain is
+
+00:05:11.430 --> 00:05:12.540
+where the gap is.
+
+00:05:12.540 --> 00:05:15.570
+I go back to my recommended
+action, review the steps,
+
+00:05:15.570 --> 00:05:16.950
+and here's what I love:
+
+00:05:16.950 --> 00:05:20.160
+Microsoft Fabric has built-in
+features to handle this.
+
+00:05:20.160 --> 00:05:21.810
+I don't need a third-party tool.
+
+00:05:21.810 --> 00:05:23.550
+I don't need a custom script.
+
+00:05:23.550 --> 00:05:26.310
+I activate the default
+sensitivity label policy
+
+00:05:26.310 --> 00:05:29.580
+at the domain level, and because
+I've delegated the settings,
+
+00:05:29.580 --> 00:05:32.880
+domain owners can fine-tune
+it for their own context.
+
+00:05:32.880 --> 00:05:34.800
+I pop into the sales
+domain settings,
+
+00:05:34.800 --> 00:05:37.290
+set the appropriate label,
+and just like that,
+
+00:05:37.290 --> 00:05:39.540
+every new item created
+in this domain is
+
+00:05:39.540 --> 00:05:41.100
+automatically protected.
+
+00:05:41.100 --> 00:05:43.620
+Let me say that again:
+automatically protected,
+
+00:05:43.620 --> 00:05:45.480
+no user action required.
+
+00:05:45.480 --> 00:05:46.590
+That is huge.
+
+00:05:46.590 --> 00:05:48.990
+Now, for my second
+recommendation -- tags.
+
+00:05:48.990 --> 00:05:52.380
+I'd heard about tags before,
+but I hadn't set them up yet,
+
+00:05:52.380 --> 00:05:54.390
+so let's do it right now, live.
+
+00:05:54.390 --> 00:05:57.060
+I created a few tags for
+organization-wide use,
+
+00:05:57.060 --> 00:05:59.880
+plus some specific ones
+for sales, and now --
+
+00:05:59.880 --> 00:06:01.350
+now every user
+
+00:06:01.350 --> 00:06:03.300
+in my organization
+can apply these tags
+
+00:06:03.300 --> 00:06:05.370
+to their items and workspaces.
+
+00:06:05.370 --> 00:06:07.470
+This makes everything
+more discoverable,
+
+00:06:07.470 --> 00:06:10.260
+more organized, and
+more trustworthy.
+
+00:06:10.260 --> 00:06:11.970
+So let's just step
+back for a second.
+
+00:06:11.970 --> 00:06:12.990
+What just happened?
+
+00:06:12.990 --> 00:06:15.420
+The OneLake catalog gave
+me governance insights,
+
+00:06:15.420 --> 00:06:17.040
+told me exactly what to fix,
+
+00:06:17.040 --> 00:06:20.520
+showed me unused capabilities
+I wasn't taken advantage of,
+
+00:06:20.520 --> 00:06:22.980
+and gave me direct links
+to go fix everything.
+
+00:06:22.980 --> 00:06:24.750
+This is an admin's best friend.
+
+00:06:24.750 --> 00:06:26.670
+I'm not even exaggerating.
+
+00:06:26.670 --> 00:06:29.040
+KIM MANIS: The OneLake catalog
+provides a one-stop shop
+
+00:06:29.040 --> 00:06:32.220
+for tenant admins to go and see
+everything they need to see
+
+00:06:32.220 --> 00:06:34.260
+to govern their entire tenant.
+
+00:06:34.260 --> 00:06:36.990
+In the OneLake catalog "Govern"
+tab, you can gain insights
+
+00:06:36.990 --> 00:06:40.140
+on items, workspaces,
+capacities, domains,
+
+00:06:40.140 --> 00:06:42.900
+and you can chat with Copilot
+to dig deeper into the insights
+
+00:06:42.900 --> 00:06:45.660
+and find out what's really
+going on in your tenant.
+
+00:06:45.660 --> 00:06:48.630
+And now you can take action
+in place in the "Govern" tab
+
+00:06:48.630 --> 00:06:51.900
+by reviewing and fixing
+recommended updates directly
+
+00:06:51.900 --> 00:06:53.860
+in the catalog.
+
+00:06:55.320 --> 00:06:59.010
+The One Link catalog also allows
+you to implement a data estate
+
+00:06:59.010 --> 00:07:01.620
+in a flexible
+federated data mesh.
+
+00:07:01.620 --> 00:07:04.920
+You can define domains,
+subdomains, workspaces,
+
+00:07:04.920 --> 00:07:07.380
+and then you can implement
+these tenant-wide settings
+
+00:07:07.380 --> 00:07:11.040
+and delegate control to the
+admins of those domains
+
+00:07:11.040 --> 00:07:13.830
+or workspaces or capacities,
+really allowing you
+
+00:07:13.830 --> 00:07:15.900
+to curate your
+governance posture,
+
+00:07:15.900 --> 00:07:18.360
+depending on the workload
+and depending on the parts
+
+00:07:18.360 --> 00:07:22.810
+of the organization, and you
+have a ton of flexibility there.
+
+00:07:24.780 --> 00:07:26.550
+Fabric goes hand in hand
+
+00:07:26.550 --> 00:07:29.700
+with Purview's data
+security capabilities.
+
+00:07:29.700 --> 00:07:33.030
+Here you can use Purview
+information protection labels
+
+00:07:33.030 --> 00:07:35.550
+and Purview data loss
+prevention policies
+
+00:07:35.550 --> 00:07:38.100
+to really secure not
+just your data estate
+
+00:07:38.100 --> 00:07:40.200
+but your entire
+Microsoft estate.
+
+00:07:40.200 --> 00:07:44.130
+Because these capabilities
+work side-by-side with Office,
+
+00:07:44.130 --> 00:07:47.580
+so something's marked highly
+confidential in Fabric,
+
+00:07:47.580 --> 00:07:49.620
+if you export that
+data to Excel,
+
+00:07:49.620 --> 00:07:53.170
+that highly confidential
+label flows with it.
+
+00:07:54.510 --> 00:07:59.010
+And this now joins with the
+Purview Insider Risk Management
+
+00:07:59.010 --> 00:08:02.670
+capabilities and Purview Data
+Security Posture Management
+
+00:08:02.670 --> 00:08:04.890
+that allows you to fully
+audit what's going
+
+00:08:04.890 --> 00:08:08.880
+on in your organization, and
+even see risky usage of Copilot,
+
+00:08:08.880 --> 00:08:13.000
+including Copilot and Power
+BI and Fabric data agents.
+
+00:08:15.480 --> 00:08:19.440
+Fabric also allows you to meet
+the strictest data residency
+
+00:08:19.440 --> 00:08:22.950
+requirements across the globe,
+available in many regions,
+
+00:08:22.950 --> 00:08:24.780
+across many data centers,
+and all the sort
+
+00:08:24.780 --> 00:08:30.010
+of certifications you need, both
+regional and industry-specific.
+
+00:08:31.530 --> 00:08:32.700
+Okay, let's switch gears.
+
+00:08:32.700 --> 00:08:34.560
+We talked about tenant admins.
+
+00:08:34.560 --> 00:08:37.590
+Now let's talk about capacity
+and workspace admins,
+
+00:08:37.590 --> 00:08:40.590
+and these are the folks that are
+often in charge of the project
+
+00:08:40.590 --> 00:08:46.320
+and getting things done
+hands-on with the developers.
+
+00:08:46.320 --> 00:08:48.300
+So let's take a look
+at the day in the life
+
+00:08:48.300 --> 00:08:52.050
+of a capacity admin
+in Microsoft Fabric.
+
+00:08:52.050 --> 00:08:54.270
+SPEAKER 1: It's December,
+year-end close.
+
+00:08:54.270 --> 00:08:56.670
+Every query matters, and
+somewhere in marketing,
+
+00:08:56.670 --> 00:08:58.890
+someone just kicked
+off a monster report
+
+00:08:58.890 --> 00:09:00.600
+across three years of data.
+
+00:09:00.600 --> 00:09:03.000
+The CFO's dashboard
+is about to crawl.
+
+00:09:03.000 --> 00:09:04.140
+Guess who gets the call?
+
+00:09:04.140 --> 00:09:07.200
+So I open the "Admin portal,"
+head to the "Capacity settings,"
+
+00:09:07.200 --> 00:09:09.510
+and click into my
+production capacity.
+
+00:09:09.510 --> 00:09:10.860
+First layer of defense:
+
+00:09:10.860 --> 00:09:12.960
+workspace level
+"Surge Protection."
+
+00:09:12.960 --> 00:09:15.360
+I'm capping every ad
+hoc reporting workspace
+
+00:09:15.360 --> 00:09:17.730
+at 25% of the capacity.
+
+00:09:17.730 --> 00:09:19.560
+Marketing can still
+run their reports;
+
+00:09:19.560 --> 00:09:21.420
+they just can't eat
+the whole buffet.
+
+00:09:21.420 --> 00:09:24.030
+I also flip on capacity
+level surge protection,
+
+00:09:24.030 --> 00:09:26.730
+which rejects background
+operations above the threshold,
+
+00:09:26.730 --> 00:09:29.100
+keeping room for the
+interactive reports
+
+00:09:29.100 --> 00:09:31.770
+that actually matter right now.
+
+00:09:31.770 --> 00:09:34.440
+But the sales workspaces,
+those are different.
+
+00:09:34.440 --> 00:09:36.180
+I marked them as
+mission-critical.
+
+00:09:36.180 --> 00:09:38.190
+That means they're exempt
+from the surge cap.
+
+00:09:38.190 --> 00:09:40.350
+They get whatever
+capacity they need
+
+00:09:40.350 --> 00:09:43.500
+because year-end close
+doesn't wait for anyone.
+
+00:09:43.500 --> 00:09:45.300
+Now I need a safety valve.
+
+00:09:45.300 --> 00:09:49.650
+I enable capacity overage and
+set a 24-hour rolling CU limit.
+
+00:09:49.650 --> 00:09:52.590
+If sales needs to spike beyond
+our capacity during crunch time,
+
+00:09:52.590 --> 00:09:55.740
+it can -- no throttling,
+no angry CFO.
+
+00:09:55.740 --> 00:09:58.290
+But protection without
+visibility is just a hope.
+
+00:09:58.290 --> 00:09:59.940
+So I open the "Real-Time" Hub,
+
+00:09:59.940 --> 00:10:03.270
+select capacity overview
+events and set an alert.
+
+00:10:03.270 --> 00:10:06.630
+I name the rule pick summary
+events, and I add a filter
+
+00:10:06.630 --> 00:10:09.140
+when the interactive
+delay threshold hits 90%.
+
+00:10:09.140 --> 00:10:10.430
+Fire a Teams message.
+
+00:10:10.430 --> 00:10:11.120
+That's it.
+
+00:10:11.120 --> 00:10:13.250
+A few clicks, and I've
+got real-time eyes
+
+00:10:13.250 --> 00:10:15.680
+on my capacity before
+the dashboard spins,
+
+00:10:15.680 --> 00:10:16.940
+before the phone rings,
+
+00:10:16.940 --> 00:10:19.380
+before anyone even knows
+there's a problem.
+
+00:10:19.380 --> 00:10:23.100
+Four layers: noisy neighbors
+cap, crown jewels protected,
+
+00:10:23.100 --> 00:10:26.100
+overflow valve set, real time
+eyes on the whole thing.
+
+00:10:26.100 --> 00:10:29.730
+The CFO's dashboards,
+it never even blinked.
+
+00:10:29.730 --> 00:10:32.100
+KIM MANIS: There's a ton of
+new capabilities when it comes
+
+00:10:32.100 --> 00:10:35.430
+to capacity administration
+and how you can govern both
+
+00:10:35.430 --> 00:10:38.970
+with proactive guardrails
+and reactive monitoring.
+
+00:10:38.970 --> 00:10:40.410
+And so, definitely,
+you want to check
+
+00:10:40.410 --> 00:10:43.020
+out the new surge
+protection capabilities,
+
+00:10:43.020 --> 00:10:45.840
+including marking workspaces
+now as mission-critical
+
+00:10:45.840 --> 00:10:48.180
+to make sure they
+don't get throttled.
+
+00:10:48.180 --> 00:10:50.850
+Capacity overage
+allows you to spike
+
+00:10:50.850 --> 00:10:55.050
+up above your capacity spend
+for excess consumption.
+
+00:10:55.050 --> 00:10:57.090
+Say you have a quarterly
+report running,
+
+00:10:57.090 --> 00:10:59.670
+or you want to make sure this
+specific workspace never
+
+00:10:59.670 --> 00:11:00.510
+gets throttled.
+
+00:11:00.510 --> 00:11:02.880
+Capacity overage is
+your option there.
+
+00:11:02.880 --> 00:11:05.970
+And then capacity events
+in Real-Time Hub allow you
+
+00:11:05.970 --> 00:11:09.270
+to know what's going on in your
+capacity in real time and set
+
+00:11:09.270 --> 00:11:11.520
+up triggers and actions.
+
+00:11:11.520 --> 00:11:14.280
+And you can dive deeper
+with the capacity metrics
+
+00:11:14.280 --> 00:11:17.100
+and chargeback apps that allow
+you to know everything going
+
+00:11:17.100 --> 00:11:20.820
+on in your capacity and
+really identify root causes
+
+00:11:20.820 --> 00:11:23.670
+and inform capacity planning.
+
+00:11:23.670 --> 00:11:26.490
+And if you need more, we have
+this awesome Fabric capacity
+
+00:11:26.490 --> 00:11:28.980
+guidance white paper that gives
+you everything you need to know
+
+00:11:28.980 --> 00:11:32.400
+about capacities and how to
+manage and monitor them.
+
+00:11:32.400 --> 00:11:34.860
+Okay, so we talked
+about capacities.
+
+00:11:34.860 --> 00:11:37.110
+Now let's talk about
+workspace admins
+
+00:11:37.110 --> 00:11:39.690
+and see what capabilities
+we have for them
+
+00:11:39.690 --> 00:11:42.960
+to secure their workspaces
+end-to-end in Fabric.
+
+00:11:42.960 --> 00:11:45.840
+SPEAKER 1: At Zava, we
+start with identity.
+
+00:11:45.840 --> 00:11:48.630
+Entra Conditional Access
+policies ensure only managed
+
+00:11:48.630 --> 00:11:50.670
+devices can reach
+this workspace.
+
+00:11:50.670 --> 00:11:52.410
+Not on a
+company-approved device?
+
+00:11:52.410 --> 00:11:53.520
+You don't get in.
+
+00:11:53.520 --> 00:11:55.050
+Simple, decisive.
+
+00:11:55.050 --> 00:11:58.380
+Inside the workspace roles
+define what you can do.
+
+00:11:58.380 --> 00:11:59.730
+Megan is a contributor.
+
+00:11:59.730 --> 00:12:01.890
+She can create and delete items.
+
+00:12:01.890 --> 00:12:03.360
+David is a viewer.
+
+00:12:03.360 --> 00:12:04.200
+Read only.
+
+00:12:04.200 --> 00:12:07.560
+The right access for the right
+person at the right level.
+
+00:12:07.560 --> 00:12:09.630
+Now I could go further.
+
+00:12:09.630 --> 00:12:13.530
+"Inbound networking" lets me
+block public access entirely
+
+00:12:13.530 --> 00:12:16.560
+and restrict connections
+to our corporate IP range
+
+00:12:16.560 --> 00:12:18.720
+through the firewall,
+but honestly,
+
+00:12:18.720 --> 00:12:22.860
+Conditional Access plus
+workspace roles already gives me
+
+00:12:22.860 --> 00:12:25.320
+a strong balance of
+security and usability,
+
+00:12:25.320 --> 00:12:27.960
+so I'll keep the default
+inbound access for now.
+
+00:12:27.960 --> 00:12:30.270
+Where it gets
+serious is outbound.
+
+00:12:30.270 --> 00:12:32.580
+I enable outbound
+access protection,
+
+00:12:32.580 --> 00:12:36.120
+which blocks every outgoing
+connection from this workspace.
+
+00:12:36.120 --> 00:12:38.400
+Nothing leaves unless I say so.
+
+00:12:38.400 --> 00:12:40.530
+Then I open the doors I trust.
+
+00:12:40.530 --> 00:12:43.440
+I connect the rule for our
+sales aggregation pipeline
+
+00:12:43.440 --> 00:12:47.250
+to reach order data in Azure
+and a managed private endpoint
+
+00:12:47.250 --> 00:12:50.760
+for a partner storage account
+with currency conversion rates.
+
+00:12:50.760 --> 00:12:53.610
+This is active only after
+the storage account owner
+
+00:12:53.610 --> 00:12:54.570
+approves it.
+
+00:12:54.570 --> 00:12:55.650
+Now, watch.
+
+00:12:55.650 --> 00:12:57.270
+A user tries to
+connect the notebook
+
+00:12:57.270 --> 00:12:58.980
+to a personal storage account,
+
+00:12:58.980 --> 00:13:01.740
+maybe copying some data
+somewhere it shouldn't go.
+
+00:13:01.740 --> 00:13:05.970
+Fabric blocks it, no warning,
+no negotiation, just no.
+
+00:13:05.970 --> 00:13:09.450
+Conditional Access, workspace
+rows, outbound protection.
+
+00:13:09.450 --> 00:13:12.930
+Three layers: identity,
+permissions, and network.
+
+00:13:12.930 --> 00:13:15.090
+And the data never
+leaves the building.
+
+00:13:15.090 --> 00:13:18.480
+That's not a policy
+document; that's a platform.
+
+00:13:18.480 --> 00:13:20.430
+KIM MANIS: We have all
+the capabilities you need
+
+00:13:20.430 --> 00:13:23.670
+to secure your data estate
+with Microsoft Fabric.
+
+00:13:23.670 --> 00:13:26.190
+At the tenant level, you
+can use Microsoft Entra
+
+00:13:26.190 --> 00:13:29.850
+to authenticate every inbound
+request using all available data
+
+00:13:29.850 --> 00:13:34.530
+points like identity, location,
+device, and risk detection.
+
+00:13:34.530 --> 00:13:37.890
+Or for specific scenarios, you
+can use Azure Private Link
+
+00:13:37.890 --> 00:13:41.520
+to send traffic over Microsoft's
+own private network,
+
+00:13:41.520 --> 00:13:43.980
+and of course,
+everything is encrypted
+
+00:13:43.980 --> 00:13:46.680
+and secured by
+default in Fabric.
+
+00:13:46.680 --> 00:13:48.240
+However, we've heard
+from customers
+
+00:13:48.240 --> 00:13:52.020
+that you need more granular
+control at the workspace level,
+
+00:13:52.020 --> 00:13:54.780
+project by project, to make
+sure you're securing your data
+
+00:13:54.780 --> 00:13:57.630
+appropriately for
+the project at hand,
+
+00:13:57.630 --> 00:14:01.110
+and that's why we have workspace
+level security for all
+
+00:14:01.110 --> 00:14:02.370
+of the capabilities you need,
+
+00:14:02.370 --> 00:14:05.190
+whether it's outbound
+trusted workspace access,
+
+00:14:05.190 --> 00:14:07.860
+Azure Private Link,
+outbound access protection,
+
+00:14:07.860 --> 00:14:09.420
+customer managed keys,
+
+00:14:09.420 --> 00:14:12.000
+workspace-level IP
+firewall rules.
+
+00:14:12.000 --> 00:14:14.460
+All of these capabilities
+are generally available
+
+00:14:14.460 --> 00:14:17.250
+and allow you to give
+the granularity you need
+
+00:14:17.250 --> 00:14:19.410
+and the security levels
+you need for each
+
+00:14:19.410 --> 00:14:21.900
+of the different projects
+going on in Fabric.
+
+00:14:21.900 --> 00:14:24.510
+Okay, so we already talked
+about Fabric tenant admins
+
+00:14:24.510 --> 00:14:26.640
+and capacity and
+workspace admins.
+
+00:14:26.640 --> 00:14:30.150
+Now let's switch gears and talk
+about data and AI developers
+
+00:14:30.150 --> 00:14:31.770
+and how they can take advantage
+
+00:14:31.770 --> 00:14:34.960
+of the governance
+capabilities in Fabric.
+
+00:14:36.510 --> 00:14:40.260
+And automating developer
+workflows are critical
+
+00:14:40.260 --> 00:14:41.790
+for governance.
+
+00:14:41.790 --> 00:14:45.180
+You need to make sure you
+reduce manual configurations,
+
+00:14:45.180 --> 00:14:47.760
+and you don't want humans
+in the loop creating issues
+
+00:14:47.760 --> 00:14:49.290
+that you could automate.
+
+00:14:49.290 --> 00:14:52.110
+And you need visibility
+into what is going
+
+00:14:52.110 --> 00:14:54.720
+on to make sure you
+can audit everything,
+
+00:14:54.720 --> 00:14:58.200
+and inconsistent processes
+are really hard to enforce,
+
+00:14:58.200 --> 00:15:00.270
+and again, this is
+where automation
+
+00:15:00.270 --> 00:15:03.660
+around those developer workloads
+really help you make sure
+
+00:15:03.660 --> 00:15:07.290
+that every project is
+following best practices.
+
+00:15:07.290 --> 00:15:10.530
+And Fabric's promise to
+developers are simple.
+
+00:15:10.530 --> 00:15:12.930
+We rely on consistent
+open formats,
+
+00:15:12.930 --> 00:15:15.780
+making sure your
+data is your data.
+
+00:15:15.780 --> 00:15:19.740
+Developers need access
+to scriptable APIs.
+
+00:15:19.740 --> 00:15:21.930
+They need automation
+for provisioning
+
+00:15:21.930 --> 00:15:23.880
+through tools like Terraform.
+
+00:15:23.880 --> 00:15:26.400
+We need to make
+collaboration simple
+
+00:15:26.400 --> 00:15:29.160
+through Git-based source
+control, and then, of course,
+
+00:15:29.160 --> 00:15:31.920
+whether you're
+developing in the UI
+
+00:15:31.920 --> 00:15:35.700
+through low-friction navigation
+and built-in experiences,
+
+00:15:35.700 --> 00:15:38.940
+or through agents in
+your AI tool of choice,
+
+00:15:38.940 --> 00:15:42.150
+we need to make sure that
+agentic development is simple
+
+00:15:42.150 --> 00:15:44.920
+and obvious with
+Microsoft Fabric.
+
+00:15:46.050 --> 00:15:48.810
+So now let's take a look
+at the day in the life
+
+00:15:48.810 --> 00:15:53.520
+of the data developer setting
+up a new project in Fabric.
+
+00:15:53.520 --> 00:15:55.680
+SPEAKER 2: Let's provision
+a complete Fabric Analytics
+
+00:15:55.680 --> 00:15:58.870
+project with a
+single pipeline run.
+
+00:16:00.630 --> 00:16:03.270
+Everything's parameterized:
+workspace name,
+
+00:16:03.270 --> 00:16:06.480
+capacity, auth method, storage.
+
+00:16:06.480 --> 00:16:09.340
+Configure what you
+need and "Run."
+
+00:16:12.840 --> 00:16:15.000
+The pipeline starts
+with a Terraform plan,
+
+00:16:15.000 --> 00:16:16.110
+cleaning up prior state
+
+00:16:16.110 --> 00:16:19.470
+and showing exactly
+what it will create.
+
+00:16:19.470 --> 00:16:21.360
+It pauses for manual approval.
+
+00:16:21.360 --> 00:16:24.000
+You review the full plan
+before anything gets created
+
+00:16:24.000 --> 00:16:25.690
+and then "Resume."
+
+00:16:27.060 --> 00:16:30.300
+The Terraform Fabric provider
+creates 12 resources:
+
+00:16:30.300 --> 00:16:33.540
+workspaces, identity,
+storage connections,
+
+00:16:33.540 --> 00:16:36.130
+Git sync -- all as code.
+
+00:16:38.070 --> 00:16:41.100
+Now the Fabric CLI steps
+in, patching notebooks,
+
+00:16:41.100 --> 00:16:44.920
+building the Direct Lake model,
+and publishing the environment.
+
+00:16:49.020 --> 00:16:52.260
+Copy jobs pull data from ADLS
+into the Bronze Lakehouse.
+
+00:16:52.260 --> 00:16:53.970
+Notebooks transform
+it to Silver,
+
+00:16:53.970 --> 00:16:56.790
+and shortcuts link the
+tables across lakehouses --
+
+00:16:56.790 --> 00:16:59.160
+medallion architecture
+fully automated.
+
+00:16:59.160 --> 00:17:00.990
+And now the pipeline is done.
+
+00:17:00.990 --> 00:17:02.890
+Let's see the results.
+
+00:17:06.120 --> 00:17:10.440
+Eleven items, the full stack:
+lakehouses to reports.
+
+00:17:10.440 --> 00:17:13.200
+Nothing created manually.
+
+00:17:13.200 --> 00:17:14.490
+Here's the full lineage:
+
+00:17:14.490 --> 00:17:17.070
+ingestion to transformation
+to reporting.
+
+00:17:17.070 --> 00:17:19.800
+The semantic model connects to
+Silver through Direct Lake,
+
+00:17:19.800 --> 00:17:23.350
+querying the lakehouse
+directly, no import step.
+
+00:17:25.680 --> 00:17:30.690
+And in the Silver Lakehouse,
+tables and data ready to query.
+
+00:17:30.690 --> 00:17:35.040
+Infrastructure, data, analytics
+-- all from one pipeline run.
+
+00:17:35.040 --> 00:17:36.270
+That's the whole story.
+
+00:17:36.270 --> 00:17:39.630
+Full automation with Fabric.
+
+00:17:39.630 --> 00:17:42.120
+KIM MANIS: Developers have a lot
+to deal with, and in Fabric,
+
+00:17:42.120 --> 00:17:45.030
+we really want to make it
+simple, whether it's how you set
+
+00:17:45.030 --> 00:17:47.040
+up the project through
+automation with tools
+
+00:17:47.040 --> 00:17:51.260
+like Terraform, the developer
+workflow, just making it easier
+
+00:17:51.260 --> 00:17:53.810
+to jump from dev to test to prod
+
+00:17:53.810 --> 00:17:56.220
+to collaborate with
+your coworkers.
+
+00:17:56.220 --> 00:17:59.310
+And when you deploy to
+production, making it simple
+
+00:17:59.310 --> 00:18:01.500
+to automate that deployment
+
+00:18:01.500 --> 00:18:05.000
+so that you can reliably
+deploy quality code.
+
+00:18:05.000 --> 00:18:07.610
+And then, of course, monitoring
+and operating that code
+
+00:18:07.610 --> 00:18:09.980
+in production so that you
+know what's going on,
+
+00:18:09.980 --> 00:18:12.780
+and you can monitor
+everything in the system.
+
+00:18:15.350 --> 00:18:18.230
+So now let's take a look at
+the life of a data engineer
+
+00:18:18.230 --> 00:18:20.330
+and how they can use
+the OneLake catalog
+
+00:18:20.330 --> 00:18:22.880
+to discover all the data
+they need and curate it
+
+00:18:22.880 --> 00:18:24.650
+for their organization.
+
+00:18:24.650 --> 00:18:26.540
+SPEAKER 1: I'm so
+excited about this one.
+
+00:18:26.540 --> 00:18:27.920
+I'm a data engineer now.
+
+00:18:27.920 --> 00:18:32.450
+My name is -- well, it doesn't
+matter, but my job is critical.
+
+00:18:32.450 --> 00:18:35.540
+I'm responsible for curating
+trusted data that hundreds
+
+00:18:35.540 --> 00:18:37.340
+of analysts, business users --
+
+00:18:37.340 --> 00:18:41.460
+and this is the important part
+-- AI experiences all rely on.
+
+00:18:41.460 --> 00:18:42.690
+Let me be real with you.
+
+00:18:42.690 --> 00:18:45.480
+My job is not just about
+building pipelines.
+
+00:18:45.480 --> 00:18:48.120
+That's part of it,
+sure, but the real job:
+
+00:18:48.120 --> 00:18:51.960
+making sure the right data
+can be found, understood,
+
+00:18:51.960 --> 00:18:54.720
+and trusted before
+anyone touches it.
+
+00:18:54.720 --> 00:18:55.950
+If you're a data engineer,
+
+00:18:55.950 --> 00:18:57.990
+you know exactly what
+I'm talking about.
+
+00:18:57.990 --> 00:19:00.900
+So I start in the OneLake
+catalog, the single place
+
+00:19:00.900 --> 00:19:04.350
+where I discover and govern
+my entire data estate,
+
+00:19:04.350 --> 00:19:06.120
+and look at what
+we're seeing here.
+
+00:19:06.120 --> 00:19:09.180
+This spans everything my
+organization works with:
+
+00:19:09.180 --> 00:19:13.230
+lakehouses, mirrored data from
+Azure and Snowflake, warehouses,
+
+00:19:13.230 --> 00:19:16.230
+SQL databases, semantic
+models, pipelines,
+
+00:19:16.230 --> 00:19:20.130
+even organizational apps
+-- all in one place.
+
+00:19:20.130 --> 00:19:22.770
+No more swivel cheering
+between portals.
+
+00:19:22.770 --> 00:19:25.050
+No more where did
+that dataset go?
+
+00:19:25.050 --> 00:19:26.100
+This is it.
+
+00:19:26.100 --> 00:19:28.800
+Now, discovery starts
+with business intent,
+
+00:19:28.800 --> 00:19:31.350
+and I love that phrase
+because it's so true.
+
+00:19:31.350 --> 00:19:32.760
+I'm not searching randomly.
+
+00:19:32.760 --> 00:19:35.670
+I'm going to the "Sales"
+domain, scoping down to the
+
+00:19:35.670 --> 00:19:38.580
+"EMEA" subdomain,
+and look at that.
+
+00:19:38.580 --> 00:19:40.860
+I see the domain branding,
+the description.
+
+00:19:40.860 --> 00:19:43.920
+I instantly know I'm in the
+right business context.
+
+00:19:43.920 --> 00:19:45.390
+From here, I can filter
+
+00:19:45.390 --> 00:19:48.360
+by endorsements,
+tags, and workspaces.
+
+00:19:48.360 --> 00:19:51.900
+I'm zeroing in on only the
+trusted relevant data --
+
+00:19:51.900 --> 00:19:53.850
+no noise, just signal.
+
+00:19:53.850 --> 00:19:56.550
+Let me show you what any
+item looks like up close,
+
+00:19:56.550 --> 00:19:58.080
+and it's gorgeous, by the way.
+
+00:19:58.080 --> 00:20:01.470
+Key metadata is right there,
+front and center: descriptions,
+
+00:20:01.470 --> 00:20:04.980
+tags, owners, endorsements,
+sensitivity labels.
+
+00:20:04.980 --> 00:20:06.690
+Remember that default
+sensitivity label
+
+00:20:06.690 --> 00:20:08.430
+that the admin set up earlier?
+
+00:20:08.430 --> 00:20:11.340
+That's flowing through right
+here, automatically applied.
+
+00:20:11.340 --> 00:20:14.190
+The admin did their job,
+and now I benefit from it.
+
+00:20:14.190 --> 00:20:17.550
+And, oh, if a description
+is missing, one click.
+
+00:20:17.550 --> 00:20:19.350
+Copilot generates it for me
+
+00:20:19.350 --> 00:20:22.050
+so analysts can understand
+exactly what they're looking
+
+00:20:22.050 --> 00:20:24.840
+at without sending me a
+message on Teams asking,
+
+00:20:24.840 --> 00:20:26.520
+hey, what's in that table?
+
+00:20:26.520 --> 00:20:28.620
+We've all gotten
+that message, right?
+
+00:20:28.620 --> 00:20:31.470
+No more. Now, let's ground
+this in something real.
+
+00:20:31.470 --> 00:20:32.520
+It's the end of the year.
+
+00:20:32.520 --> 00:20:35.040
+The sales team is
+finalizing revenue numbers,
+
+00:20:35.040 --> 00:20:36.660
+and I'm the data
+engineer who needs
+
+00:20:36.660 --> 00:20:38.880
+to make sure the
+customer data is ready
+
+00:20:38.880 --> 00:20:41.730
+for consumption before
+your close deadline.
+
+00:20:41.730 --> 00:20:42.570
+Pressure is on.
+
+00:20:42.570 --> 00:20:46.560
+Let's go. I search for orders
+and immediately narrow the list
+
+00:20:46.560 --> 00:20:48.570
+to sales on order data.
+
+00:20:48.570 --> 00:20:51.810
+Easy. Now I see more than
+one item called orders,
+
+00:20:51.810 --> 00:20:54.090
+and if you've worked
+in a real data estate,
+
+00:20:54.090 --> 00:20:56.130
+you know this happens
+all the time.
+
+00:20:56.130 --> 00:20:57.570
+So which one is the real one?
+
+00:20:57.570 --> 00:20:59.910
+I open the details
+pane and look at this.
+
+00:20:59.910 --> 00:21:02.790
+I can see it's connected to the
+production deployment pipeline.
+
+00:21:02.790 --> 00:21:06.210
+That tells me this isn't some
+test copy someone forgot
+
+00:21:06.210 --> 00:21:06.870
+to delete.
+
+00:21:06.870 --> 00:21:09.420
+This is the real asset,
+flowing to production.
+
+00:21:09.420 --> 00:21:12.780
+I can see the full metadata and
+the data schema all the way
+
+00:21:12.780 --> 00:21:14.250
+down to the column level.
+
+00:21:14.250 --> 00:21:15.330
+No guesswork.
+
+00:21:15.330 --> 00:21:16.890
+And then I open the
+"Lineage" view,
+
+00:21:16.890 --> 00:21:18.840
+and this is where it
+all comes together.
+
+00:21:18.840 --> 00:21:21.810
+I can see the sensitivity label
+is inherited from the source.
+
+00:21:21.810 --> 00:21:24.390
+Protection flows
+downstream automatically
+
+00:21:24.390 --> 00:21:26.640
+through the lakehouse,
+through the semantic models,
+
+00:21:26.640 --> 00:21:28.230
+all the way into the reports.
+
+00:21:28.230 --> 00:21:30.150
+I'm not guessing at
+the downstream impact.
+
+00:21:30.150 --> 00:21:31.860
+I could see it clearly.
+
+00:21:31.860 --> 00:21:33.690
+That gives me confidence
+to make changes
+
+00:21:33.690 --> 00:21:35.700
+because I know exactly
+what's affected.
+
+00:21:35.700 --> 00:21:38.010
+As a data engineer,
+I review everything,
+
+00:21:38.010 --> 00:21:41.400
+set up proper descriptions,
+and I can certify this asset.
+
+00:21:41.400 --> 00:21:42.540
+Now it's discoverable.
+
+00:21:42.540 --> 00:21:45.270
+Now the sales team can rely
+on it with confidence.
+
+00:21:45.270 --> 00:21:47.610
+And if you want to zoom out,
+the "Govern" tab is there
+
+00:21:47.610 --> 00:21:49.230
+for me as a data owner too.
+
+00:21:49.230 --> 00:21:53.010
+It shows me the completeness and
+compliance of everything I own,
+
+00:21:53.010 --> 00:21:56.160
+where descriptions are missing,
+where trust signals are weak,
+
+00:21:56.160 --> 00:21:57.840
+and what I should do next.
+
+00:21:57.840 --> 00:22:01.110
+It's like having a governance
+checklist that updates itself.
+
+00:22:01.110 --> 00:22:03.030
+One more thing before
+I hand this off.
+
+00:22:03.030 --> 00:22:05.130
+Before I promote this
+lakehouse to the end users,
+
+00:22:05.130 --> 00:22:08.010
+I always check security, always.
+
+00:22:08.010 --> 00:22:11.190
+In the "Secure" tab, I can
+see exactly who has access,
+
+00:22:11.190 --> 00:22:13.710
+which roles, which
+users, which groups,
+
+00:22:13.710 --> 00:22:16.740
+all the way down to specific
+tables and columns.
+
+00:22:16.740 --> 00:22:18.270
+For the year-end close,
+
+00:22:18.270 --> 00:22:20.850
+sales needs broad
+access to order data.
+
+00:22:20.850 --> 00:22:23.370
+They can see everything
+except for one column
+
+00:22:23.370 --> 00:22:25.980
+that contains customer
+social security numbers.
+
+00:22:25.980 --> 00:22:27.180
+I deliberately excluded
+
+00:22:27.180 --> 00:22:30.240
+that using column-level
+security via OneLake security.
+
+00:22:30.240 --> 00:22:33.390
+Think about that -- broad
+access for productivity,
+
+00:22:33.390 --> 00:22:35.520
+granular protection
+for compliance.
+
+00:22:35.520 --> 00:22:36.480
+You get both.
+
+00:22:36.480 --> 00:22:37.980
+That's the sweet spot.
+
+00:22:37.980 --> 00:22:39.030
+So where are we?
+
+00:22:39.030 --> 00:22:41.040
+The data is ready;
+it's discoverable,
+
+00:22:41.040 --> 00:22:42.570
+governed, and trusted.
+
+00:22:42.570 --> 00:22:45.660
+Now it can be used by data
+scientists, analysts,
+
+00:22:45.660 --> 00:22:49.110
+business users, and by
+Copilot and AI agents
+
+00:22:49.110 --> 00:22:52.200
+that need trusted data to
+generate reliable answers.
+
+00:22:52.200 --> 00:22:54.660
+That's foundation,
+and it's solid.
+
+00:22:54.660 --> 00:22:58.800
+Okay. Last set of demos, and
+honestly, this might be the one
+
+00:22:58.800 --> 00:23:00.630
+that gets the biggest reaction
+
+00:23:00.630 --> 00:23:02.220
+because everything
+we've built --
+
+00:23:02.220 --> 00:23:04.980
+the governance, the trust
+signals, the security --
+
+00:23:04.980 --> 00:23:07.350
+it doesn't just live
+inside Microsoft Fabric;
+
+00:23:07.350 --> 00:23:08.850
+it goes everywhere.
+
+00:23:08.850 --> 00:23:11.100
+The OneLake catalog is
+integrated into more
+
+00:23:11.100 --> 00:23:14.400
+than 100 places across
+Microsoft Fabric and Office:
+
+00:23:14.400 --> 00:23:16.110
+Microsoft Teams, Excel,
+
+00:23:16.110 --> 00:23:18.120
+Microsoft Copilot
+Studio, and more.
+
+00:23:18.120 --> 00:23:21.810
+Users find and analyze data from
+the tools they already use,
+
+00:23:21.810 --> 00:23:24.690
+and here's the beautiful part:
+the governance travels with it.
+
+00:23:24.690 --> 00:23:26.670
+When I use OneLake
+catalog in Excel,
+
+00:23:26.670 --> 00:23:28.950
+I can only see the data
+I'm allowed to see based
+
+00:23:28.950 --> 00:23:32.460
+on my access permissions and
+my organization's DLP rules.
+
+00:23:32.460 --> 00:23:35.460
+When I connect to the sales
+orders lakehouse, I connect only
+
+00:23:35.460 --> 00:23:37.800
+to the data I'm authorized
+to access based
+
+00:23:37.800 --> 00:23:39.990
+on that OneLake security
+we just set up.
+
+00:23:39.990 --> 00:23:42.600
+Same rules, same
+protection, different tool.
+
+00:23:42.600 --> 00:23:43.860
+That's how it should work.
+
+00:23:43.860 --> 00:23:45.420
+And it doesn't stop in the UI.
+
+00:23:45.420 --> 00:23:49.620
+The same catalog is accessible
+through public APIs and MCP.
+
+00:23:49.620 --> 00:23:50.640
+Watch this.
+
+00:23:50.640 --> 00:23:54.510
+I'm in Visual Studio Code
+using an LLM-powered app,
+
+00:23:54.510 --> 00:23:56.460
+and I just ask in
+natural language,
+
+00:23:56.460 --> 00:23:59.220
+what sales-related
+lakehouses does Zava have?
+
+00:23:59.220 --> 00:24:00.840
+And it comes back
+with the results
+
+00:24:00.840 --> 00:24:04.650
+from the same trusted catalog,
+same governance, same security.
+
+00:24:04.650 --> 00:24:08.730
+Whether it's a person searching
+in Excel or an AI agent querying
+
+00:24:08.730 --> 00:24:12.720
+through an API, the same
+governed truth is discoverable
+
+00:24:12.720 --> 00:24:14.400
+and usable everywhere.
+
+00:24:14.400 --> 00:24:16.350
+Folks, this is what it looks
+
+00:24:16.350 --> 00:24:19.920
+like when governance isn't
+bottleneck; it's an accelerator.
+
+00:24:19.920 --> 00:24:21.720
+Your admins set the guardrails.
+
+00:24:21.720 --> 00:24:23.580
+Your data engineers build trust.
+
+00:24:23.580 --> 00:24:27.300
+And then every user,
+every app, every AI agent
+
+00:24:27.300 --> 00:24:29.550
+in your organization
+benefits from it.
+
+00:24:29.550 --> 00:24:32.850
+That is the power of One Lake
+catalog in Microsoft Fabric.
+
+00:24:32.850 --> 00:24:37.290
+And I could not be more excited
+about where things are going.
+
+00:24:37.290 --> 00:24:39.450
+KIM MANIS: The One Lake
+catalog is the trusted data
+
+00:24:39.450 --> 00:24:44.190
+catalog for over 240,000
+organizations worldwide,
+
+00:24:44.190 --> 00:24:49.140
+and the OneLake catalog really
+consists of three key pillars.
+
+00:24:49.140 --> 00:24:52.080
+We have unified data
+discovery, making it easy
+
+00:24:52.080 --> 00:24:55.530
+to find the data no matter
+where you work, whether it's
+
+00:24:55.530 --> 00:25:00.090
+in Power BI, Excel,
+Fabric, Foundry, and more.
+
+00:25:00.090 --> 00:25:02.670
+And we have built-in governance,
+as we talked before,
+
+00:25:02.670 --> 00:25:06.690
+not just for the tenant admins,
+but for any data owner.
+
+00:25:06.690 --> 00:25:10.200
+And of course, Zero Trust
+protection with the Secure tab,
+
+00:25:10.200 --> 00:25:12.960
+where you can set up those
+security rules centrally
+
+00:25:12.960 --> 00:25:16.140
+for OneLake, and it
+applies regardless
+
+00:25:16.140 --> 00:25:19.230
+of which engine you're
+using to get the job done.
+
+00:25:19.230 --> 00:25:21.900
+And now we have enhanced
+support for tables and columns
+
+00:25:21.900 --> 00:25:24.000
+when you're exploring
+data, allowing you
+
+00:25:24.000 --> 00:25:27.570
+to reveal the underlying data
+schema for any data item stored
+
+00:25:27.570 --> 00:25:30.660
+in Fabric, and you can preview
+the data right in line
+
+00:25:30.660 --> 00:25:34.480
+in the catalog and take quick
+actions just from there.
+
+00:25:36.240 --> 00:25:39.090
+Okay, so we talked a lot about
+the experience in Fabric,
+
+00:25:39.090 --> 00:25:41.370
+but what about an AI
+developer in Foundry,
+
+00:25:41.370 --> 00:25:43.500
+leveraging the data
+to build agents?
+
+00:25:43.500 --> 00:25:46.230
+Let's take a look at what
+the new capabilities are
+
+00:25:46.230 --> 00:25:49.200
+with Fabric in Foundry.
+
+00:25:49.200 --> 00:25:51.630
+SPEAKER 3: Most organizations
+already have a huge amount
+
+00:25:51.630 --> 00:25:54.570
+of valuable unstructured
+data sitting in SharePoint.
+
+00:25:54.570 --> 00:25:56.820
+That includes business
+documents, PDFs,
+
+00:25:56.820 --> 00:25:58.710
+and of course Excel files.
+
+00:25:58.710 --> 00:26:01.650
+The challenge is that this
+content often contains some
+
+00:26:01.650 --> 00:26:03.990
+of the most important
+business contexts,
+
+00:26:03.990 --> 00:26:07.500
+but is usually disconnected
+from analytics and AI.
+
+00:26:07.500 --> 00:26:10.740
+Now, moving over to my
+lakehouse in Microsoft Fabric,
+
+00:26:10.740 --> 00:26:13.620
+I can bring all of the
+data together in OneLake.
+
+00:26:13.620 --> 00:26:16.680
+Here my unstructured SharePoint
+files can live alongside my
+
+00:26:16.680 --> 00:26:20.100
+structured data, and because
+I'm using OneLake shortcuts,
+
+00:26:20.100 --> 00:26:22.230
+the files are
+virtualized into place.
+
+00:26:22.230 --> 00:26:24.240
+There is no copy,
+no data movement,
+
+00:26:24.240 --> 00:26:26.700
+and no extra
+duplication to manage.
+
+00:26:26.700 --> 00:26:29.760
+I can also unify this with
+data from other sources,
+
+00:26:29.760 --> 00:26:32.850
+including multi-cloud
+data from S3 net of files
+
+00:26:32.850 --> 00:26:35.730
+that are network protected,
+or from Azure Blob Storage,
+
+00:26:35.730 --> 00:26:38.610
+where I have my customer
+support transcripts.
+
+00:26:38.610 --> 00:26:41.130
+So instead of creating
+another data silo,
+
+00:26:41.130 --> 00:26:43.500
+OneLake gives me one
+logical data layer
+
+00:26:43.500 --> 00:26:46.380
+across my organization's data.
+
+00:26:46.380 --> 00:26:49.710
+Now I want to use this
+data to build an AI agent.
+
+00:26:49.710 --> 00:26:52.470
+In Microsoft AI Foundry,
+I can use knowledge
+
+00:26:52.470 --> 00:26:56.160
+to index this context and make
+it available for grounding.
+
+00:26:56.160 --> 00:26:59.550
+This indexing step is important
+because it turns raw files
+
+00:26:59.550 --> 00:27:02.850
+into searchable, retrievable
+knowledge that the agent can use
+
+00:27:02.850 --> 00:27:06.240
+to answer questions with
+the right business context.
+
+00:27:06.240 --> 00:27:07.980
+As part of Foundry knowledge,
+
+00:27:07.980 --> 00:27:10.650
+OneLake catalog is
+natively integrated.
+
+00:27:10.650 --> 00:27:13.680
+Here I can search
+across available data,
+
+00:27:13.680 --> 00:27:17.460
+see what has been endorsed in my
+organization, and use signals
+
+00:27:17.460 --> 00:27:19.560
+like sensitivity
+labels to understand
+
+00:27:19.560 --> 00:27:22.350
+which data is trusted
+and ready to use.
+
+00:27:22.350 --> 00:27:25.140
+This lakehouse is promoted,
+so I know it is intended
+
+00:27:25.140 --> 00:27:29.040
+for broader use and is ready
+to power AI experiences.
+
+00:27:29.040 --> 00:27:31.950
+From here, I can directly add
+this OneLake knowledge source
+
+00:27:31.950 --> 00:27:35.370
+to my agent, and now I can
+start asking business questions
+
+00:27:35.370 --> 00:27:37.380
+like what are my
+best-selling products,
+
+00:27:37.380 --> 00:27:39.570
+and how can I improve my sales?
+
+00:27:39.570 --> 00:27:41.670
+That is the value of
+bringing OneLake Fabric
+
+00:27:41.670 --> 00:27:42.870
+and Foundry together.
+
+00:27:42.870 --> 00:27:45.930
+You can connect to business
+data where it already lives,
+
+00:27:45.930 --> 00:27:47.970
+unify structured and
+unstructured data
+
+00:27:47.970 --> 00:27:50.700
+without copying it,
+discover trusted data
+
+00:27:50.700 --> 00:27:53.730
+through the OneLake catalog,
+and use it natively in Foundry
+
+00:27:53.730 --> 00:27:56.670
+to build grounded AI agents.
+
+00:27:56.670 --> 00:27:57.420
+KIM MANIS: So you just saw
+
+00:27:57.420 --> 00:28:01.020
+in that demo the OneLake catalog
+just built into Foundry,
+
+00:28:01.020 --> 00:28:03.270
+and the OneLake catalog
+is built into hundreds
+
+00:28:03.270 --> 00:28:06.090
+of other applications, including
+many of the products we know
+
+00:28:06.090 --> 00:28:09.810
+and love in Office,
+Excel, PowerPoint, Teams,
+
+00:28:09.810 --> 00:28:14.760
+as well as Copilot Studio for
+building agents there as well.
+
+00:28:14.760 --> 00:28:17.550
+And in that demo you saw the
+OneLake catalog just built
+
+00:28:17.550 --> 00:28:21.660
+into Foundry, so now agent
+developers can discover the data
+
+00:28:21.660 --> 00:28:22.800
+they have access to.
+
+00:28:22.800 --> 00:28:24.960
+And again, all that
+role-level security,
+
+00:28:24.960 --> 00:28:26.730
+all those governance
+policies that you set
+
+00:28:26.730 --> 00:28:30.010
+up in Fabric apply
+in Foundry as well.
+
+00:28:31.680 --> 00:28:34.470
+So we covered a lot here across
+the governance, security,
+
+00:28:34.470 --> 00:28:37.470
+and capacity spectrum in Fabric,
+and there's a lot more to learn,
+
+00:28:37.470 --> 00:28:38.730
+so check out these links.
+
+00:28:38.730 --> 00:28:41.700
+And I highly recommend the
+Fabric security white paper.
+
+00:28:41.700 --> 00:28:45.030
+It's a very long paper, but one
+recommendation I always give is
+
+00:28:45.030 --> 00:28:47.940
+put that in Copilot, and then
+you can ask lots of questions
+
+00:28:47.940 --> 00:28:49.650
+and get your answers
+on everything
+
+00:28:49.650 --> 00:28:52.680
+to do with Fabric security.
+
+00:28:52.680 --> 00:28:54.390
+Thank you so much,
+and super excited
+
+00:28:54.390 --> 00:28:56.530
+to see what you build with this.

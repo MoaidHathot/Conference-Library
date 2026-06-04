@@ -1,0 +1,481 @@
+**[00:00:04]** Well, hey, so thanks everybody.
+**[00:00:05]** My name is Jim Perrin.
+**[00:00:07]** I've got Poorvinder rang with me too.
+**[00:00:09]** We are the PMS for the Azure Linux team and
+**[00:00:12]** we're here today to talk to you about the slide
+**[00:00:16]** that we are not on.
+**[00:00:18]** There we go.
+**[00:00:21]** Yeah, 1.
+**[00:00:23]** So we've got a few things that we want to
+**[00:00:24]** cover today.
+**[00:00:25]** 1 is what is Azure Linux, give you a little
+**[00:00:28]** bit of walkthrough, what we're doing, what we're building, what
+**[00:00:32]** the intent is.
+**[00:00:33]** And then I want to talk a little bit about
+**[00:00:35]** the Azure container Linux side of things for the containerized
+**[00:00:39]** and Kubernetes flavored people in the audience.
+**[00:00:42]** We'll have a little bit of a demo there and
+**[00:00:44]** hopefully a little bit of time for some Q&A.
+**[00:00:46]** Poorvi, if you can give us the next one.
+**[00:00:50]** For those of you in the Linux ecosystem, you might
+**[00:00:54]** be familiar with Red Hat Enterprise Linux, Fedora Linux.
+**[00:00:58]** Fedora is the the upstream innovation distribution that Red Hat
+**[00:01:03]** uses, and in the Azure Linux space we're using it
+**[00:01:06]** as well.
+**[00:01:07]** We are partnering very closely with the Fedora community.
+**[00:01:11]** We're working with them for some of the innovation around
+**[00:01:14]** the Linux distribution and we want to make sure that
+**[00:01:18]** the the Linux community in Microsoft is able to see
+**[00:01:21]** what changes we're making, what sort of tweaks we're doing
+**[00:01:25]** for performance, for Azure flavouring, things like that.
+**[00:01:29]** So in addition to the upstream communication, we're also looking
+**[00:01:34]** at a a very clear declarative set of differences.
+**[00:01:37]** All of the source code for the distribution is public
+**[00:01:41]** in GitHub.
+**[00:01:42]** We want people to see where we are deviating from,
+**[00:01:45]** what Fedora has done, what the the other distros are
+**[00:01:49]** doing.
+**[00:01:50]** But the choice for Fedora really helps simplify things.
+**[00:01:55]** Using them as an upstream distribution allows us to get
+**[00:01:59]** some of the ISV support that already exists in the
+**[00:02:02]** ecosystem.
+**[00:02:03]** It allows us to add our own and contribute that
+**[00:02:06]** back into the Fedora community where it makes sense.
+**[00:02:09]** We can partner with CVE discovery, CVE remediation, but a
+**[00:02:14]** lot of what Microsoft is adding is kind of the
+**[00:02:17]** program management and value out-of-the-box around the Fedora ecosystem.
+**[00:02:23]** So we're putting in place the FIPS compliance, Fedramp compliance,
+**[00:02:28]** setting clear determinations.
+**[00:02:30]** Microsoft is famous for Patch Tuesday.
+**[00:02:33]** We're doing a lot of the same thing here.
+**[00:02:35]** So you get a lot of that upstream open source
+**[00:02:38]** innovation and that upstream open source speed, but with the
+**[00:02:42]** programmatic reliability that customers want for Azure, it's consistent for
+**[00:02:47]** release times, it's consistent for CV fixes and it's consistent
+**[00:02:51]** across the different application families.
+**[00:02:53]** So I mentioned at the beginning, Azure Container Linux and
+**[00:02:57]** Azure Linux, they are derived from the exact same sources,
+**[00:03:01]** the same binaries exist in both.
+**[00:03:02]** It is completely compatible across the board.
+**[00:03:07]** So what we're effectively or what we have announced and
+**[00:03:09]** what we're talking to you today about, it's really what
+**[00:03:12]** we're doing with containers, what we're doing in the VM
+**[00:03:15]** space and what we're doing to provide a hardened set
+**[00:03:18]** of images for people who want an immutable build system
+**[00:03:21]** that we'll get into in a little bit later.
+**[00:03:25]** A lot of the value for us is around the
+**[00:03:27]** kernel tuning specifically for Azure, for performance, for reliability.
+**[00:03:33]** A hardware enabled kernel gives us the both the LTS
+**[00:03:36]** stability that some customers want, but also allows us to
+**[00:03:39]** iterate more quickly for the customers who want that rapid
+**[00:03:43]** transition, that rapid turnover.
+**[00:03:45]** So that's pretty much what we're baking into the distribution
+**[00:03:48]** along with streamlined management.
+**[00:03:50]** All of the Azure tools that you're used to using
+**[00:03:53]** Azure Update Manager, things like that will all work.
+**[00:03:56]** That sort of consistency across across Azure is something that
+**[00:04:00]** we're really trying to get into.
+**[00:04:02]** And if we can, I think you're up for the
+**[00:04:04]** next.
+**[00:04:05]** I'm going to hand it off to Porvi to walk
+**[00:04:07]** us through the demo.
+**[00:04:08]** She's got the technical side.
+**[00:04:09]** I'm here is the smiling face.
+**[00:04:11]** Porvi, take it away.
+**[00:04:12]** Awesome.
+**[00:04:12]** Thanks, Jim.
+**[00:04:14]** Swap up or no, you need to click.
+**[00:04:15]** Yeah.
+**[00:04:16]** I'm just going to set it up so that I
+**[00:04:19]** can show you in action what we just talked about.
+**[00:04:24]** Give me a second here, OK?
+**[00:04:40]** Awesome.
+**[00:04:43]** Its OK, we still have 20 minutes.
+**[00:04:46]** OK.
+**[00:04:46]** So Jim talked a little bit about our strategy here
+**[00:04:51]** behind Azure Linux, how we'll have declarative deviations, which means
+**[00:04:57]** that we'll reduce the surface area, the Cves that you
+**[00:05:02]** might have to patch.
+**[00:05:04]** And I'm going to show you how you can run
+**[00:05:09]** Azure Linux through WSL VMS and Kubernetes.
+**[00:05:15]** So, and I hope this works.
+**[00:05:21]** OK, so we're going to start with WSL and I
+**[00:05:26]** am already inside my WSL running 4.0, but I want
+**[00:05:30]** to show you live here that I'm actually running it
+**[00:05:35]** on Azure Linux 4.0.
+**[00:05:38]** So let me go ahead and verify that for you
+**[00:05:41]** quickly.
+**[00:05:47]** You said quickly.
+**[00:05:50]** Not quick enough, but that's what you see there.
+**[00:05:56]** You're actually running WSL on Azure Linux 4.0.
+**[00:06:05]** I'm going to start an application here on WSL, and
+**[00:06:09]** then I'm going to start the same application on Azure
+**[00:06:13]** Linux VM and on Azure Linux 4.0 with ASK.
+**[00:06:16]** And so you're going to see how the same application
+**[00:06:19]** gives you the same experience through three different platforms.
+**[00:06:22]** And that's how you can use one OS everywhere.
+**[00:06:28]** It's a simple Python application.
+**[00:06:30]** And right now I just started it in WSL.
+**[00:06:32]** Now I'm going to show you how this looks.
+**[00:06:51]** That's not how it should look, but I'm going to
+**[00:06:55]** do some magic.
+**[00:06:56]** It's going to refresh into that.
+**[00:06:59]** So now you have WSL lit up here and I'm
+**[00:07:02]** going to do same thing on Azure Linux on 4.0
+**[00:07:05]** on VM and on AKS with our Azure Container Linux
+**[00:07:09]** which also went generally available today.
+**[00:07:14]** Going back to our demo while.
+**[00:07:20]** Purvi is pulling the demo up.
+**[00:07:22]** One of the selling points that we want to talk
+**[00:07:25]** about for Azure Container Linux is the immutability, the additional
+**[00:07:30]** support that it provides.
+**[00:07:31]** Am I, Are you ready to go?
+**[00:07:33]** Am I OK?
+**[00:07:34]** Yeah, I'll give you more time to talk about Azure
+**[00:07:36]** Container Linux.
+**[00:07:37]** We're going to do another short demo specifically on that
+**[00:07:40]** because I know that's something that people want to hear
+**[00:07:43]** more about.
+**[00:07:45]** But on to the VM side of things.
+**[00:07:49]** We're now going to deploy the same application on an
+**[00:07:52]** Azure Linux 4.0 VM right here live.
+**[00:07:57]** First of all, I'm going to SSH into the VM
+**[00:08:01]** that I've already created to show you that we're running
+**[00:08:06]** Azure Linux 4.0, and I'm hoping that works OK.
+**[00:08:11]** It did.
+**[00:08:11]** So like you can see here, you're actually running Azure
+**[00:08:15]** Linux 4.0 on an Azure VM.
+**[00:08:18]** Next, we're going to go a little bit in depth
+**[00:08:21]** on what the VM actually has on to the kernel
+**[00:08:24]** version.
+**[00:08:28]** So I want to show you that we're running kernel
+**[00:08:30]** 618, which is the latest upstream kernel, and we're going
+**[00:08:33]** to maintain this for the lifetime of our distribution.
+**[00:08:39]** Next, a little bit on security.
+**[00:08:41]** So we have emphasized really hard on security when it
+**[00:08:44]** comes to Azure Linux.
+**[00:08:45]** That's one of our most important things as being in
+**[00:08:49]** Azure distribution.
+**[00:08:51]** And so we have SC Linux.
+**[00:08:53]** And if you see here, this is security out-of-the-box.
+**[00:08:57]** So you don't have to do extra configurations to make
+**[00:09:00]** make sure that it's secure.
+**[00:09:02]** We already have SC Linux enabled by default in enforcing
+**[00:09:07]** mode.
+**[00:09:08]** That's something I think that will make our MVP at
+**[00:09:11]** the back of the audience.
+**[00:09:13]** Very happy to see SC Linux enforcing out-of-the-box.
+**[00:09:17]** That's a very nice selling point to show how much
+**[00:09:19]** we care about security in this.
+**[00:09:23]** And then another thing that Jim talked about was something
+**[00:09:27]** called declarative deviations.
+**[00:09:29]** So even though we wanted to give you the familiarity
+**[00:09:32]** of Fedora and the trust of Fedora, we're not just
+**[00:09:34]** getting everything from from Fedora.
+**[00:09:37]** Like you can see here, our image is very lean
+**[00:09:39]** because we want to make it very optimized for Azure
+**[00:09:42]** workloads and cloud native workloads.
+**[00:09:45]** So the image size is going to be way smaller.
+**[00:09:48]** And that's why we call it declarative deviations, because we're
+**[00:09:52]** intentionally deferring and getting things only that our Azure customers
+**[00:09:55]** need.
+**[00:09:56]** One of the things that you will see if you
+**[00:09:59]** dig into the distribution itself is that we have pulled
+**[00:10:02]** out most of the graphical stack where Fedora targets a
+**[00:10:05]** lot of desktop users, things like that.
+**[00:10:08]** That's not as exciting for cloud use.
+**[00:10:11]** And so we are pulling desktop out.
+**[00:10:13]** We are focusing primarily on cloud workloads, on WSL workloads,
+**[00:10:17]** on containers.
+**[00:10:18]** There's no need for a graphical stack.
+**[00:10:21]** That's added package bloat, it's added CVE complication.
+**[00:10:25]** We've pulled everything out of the distribution that is not
+**[00:10:28]** necessarily required for cloud use.
+**[00:10:31]** Which results in a very minimal attack surface, fewer Cves.
+**[00:10:40]** On the same front, we also have the latest package
+**[00:10:43]** management with DNF 5.
+**[00:10:46]** And once I show you that it's actually DNF five,
+**[00:10:49]** I'm also going to show you how quickly it works
+**[00:10:52]** in the background to install something like Azure CLI, for
+**[00:10:56]** example.
+**[00:10:57]** And so now that you can see we are using
+**[00:11:00]** DNF 5 here, I'm going to install Azure CLI with
+**[00:11:03]** DNF 5 within a few seconds, hopefully less than a
+**[00:11:07]** week.
+**[00:11:07]** We hope, We hope.
+**[00:11:08]** If the network gods allow it.
+**[00:11:10]** Yep, OK, this is now running in the background, resolving
+**[00:11:16]** dependencies quickly getting it from the repository and hopefully it
+**[00:11:24]** should take not too long now to get you Azure
+**[00:11:29]** CLI.
+**[00:11:29]** It's.
+**[00:11:32]** Always tricky doing live demos.
+**[00:11:34]** This, this is the part that makes us a little
+**[00:11:36]** nervous.
+**[00:11:45]** Count till 1010 more seconds.
+**[00:11:50]** OK, in theory, it runs faster than this when we're
+**[00:11:52]** not dealing with.
+**[00:11:54]** There we go.
+**[00:11:54]** OK.
+**[00:11:55]** That was really quick.
+**[00:11:56]** That took us.
+**[00:11:57]** Pretend that was like 2 seconds, not 12.
+**[00:12:02]** I'm going to verify that the right Azure CLI was
+**[00:12:05]** brought into the image.
+**[00:12:09]** That's the latest version of Azure CLI that's in our
+**[00:12:12]** repository, and with DNF five you can get it into
+**[00:12:15]** your Azure Linux 4 dot OVM image very quickly.
+**[00:12:23]** The next thing regarding security is also our out-of-the-box Firewall
+**[00:12:28]** D enablement.
+**[00:12:30]** So as you can see, Firewall D if I've not
+**[00:12:34]** already disabled it, Yeah, it's running out-of-the-box.
+**[00:12:38]** You don't have to do anything.
+**[00:12:39]** It's preconfigured.
+**[00:12:40]** That's another thing in our security out-of-the-box philosophy.
+**[00:12:45]** And now I'm going to manually open a port so
+**[00:12:48]** that you can see that it's easy to open, but
+**[00:12:51]** it's still under your control.
+**[00:12:54]** We should touch on the fact that by default the
+**[00:12:57]** only thing you can actually do with the firewall as
+**[00:13:00]** it is is SSH in for management to configure the
+**[00:13:04]** machine.
+**[00:13:04]** So out-of-the-box, there are no additional services running beyond SSH.
+**[00:13:09]** The DHCP V6 client piece is only there because the
+**[00:13:13]** IPV 6 protocol has a weird ICMP requirement in it
+**[00:13:17]** to get an address.
+**[00:13:18]** That's the only thing it's used for.
+**[00:13:20]** That's the only reason that additional port is open.
+**[00:13:22]** Consider this, just SSH.
+**[00:13:27]** And so now I want to show you that I
+**[00:13:30]** manually opened the port and it's here now explicit control.
+**[00:13:36]** You have to manually allow anything to be enabled.
+**[00:13:39]** Its security out-of-the-box and I'm repeating it again because its
+**[00:13:44]** one of our primary principles with Azure Linux 4 dot
+**[00:13:48]** org.
+**[00:13:48]** Now I'm going to start the same app, the same
+**[00:13:51]** Python app that we just saw magically appear on WSL
+**[00:13:54]** here on the VM image as well.
+**[00:13:58]** Just going to SSH into that and that should now
+**[00:14:05]** be running.
+**[00:14:09]** Let's see that one, the same app is now running
+**[00:14:14]** on the VM as well and that this just constantly
+**[00:14:19]** refreshes the CPU usage, memory uptime.
+**[00:14:23]** So WSL, for example, is running on my desktop VM.
+**[00:14:26]** Image is the one that we just saw going back
+**[00:14:30]** to our demo and we're going to see the last
+**[00:14:34]** part and we're going to see the Azure Kubernetes Service
+**[00:14:38]** using Azure Container Linux.
+**[00:14:45]** So all this is coming up, who in the audience
+**[00:14:48]** uses Linux on Azure or uses Kubernetes on Azure?
+**[00:14:52]** Corey, you don't count.
+**[00:14:56]** Hayden kind of counts.
+**[00:15:01]** And so as you can see there, it says Azure
+**[00:15:03]** Container Linux, which is another thing that we are making
+**[00:15:07]** generally available at build.
+**[00:15:10]** It's our hardened Azure Linux image.
+**[00:15:14]** And I'll give it to you, Jim, to talk a
+**[00:15:17]** bit more about it while I play the specific ACL
+**[00:15:20]** demo in the background.
+**[00:15:23]** But for now we're just enabling our third column with
+**[00:15:26]** Azure Container Linux.
+**[00:15:29]** The one piece that I would call out on this
+**[00:15:32]** one, this says as your container Linux version 3.0.
+**[00:15:35]** That's because 4.0 is in preview right now.
+**[00:15:39]** When 4.0 goes generally available as your container, Linux will
+**[00:15:43]** move to match the 4.0 release as well.
+**[00:15:46]** So it's it's only 3.0 while we're in the preview.
+**[00:15:51]** When we GA everything will become 4.0 across the board
+**[00:15:54]** and be consistent.
+**[00:15:56]** And so it says right there, Azure Container Linux 3.0,
+**[00:15:59]** that's the one that we're talking about right now.
+**[00:16:03]** And then I'm going to do this so that I
+**[00:16:06]** can deploy the same app that I've deployed on WSL
+**[00:16:09]** and VM.
+**[00:16:09]** Now on the Ask cluster as well.
+**[00:16:14]** We have done this verification.
+**[00:16:16]** Now I want to go ahead and deploy my app,
+**[00:16:22]** and that should have now happened.
+**[00:16:28]** OK, now the final column is lit up and you
+**[00:16:32]** can see that all the three WSL, AKS and Azure
+**[00:16:36]** Linux VMS are running on Azure Linux.
+**[00:16:40]** So you can use the same OS everywhere.
+**[00:16:42]** That's the consistency that Azure Linux brings to you.
+**[00:16:47]** You can also ping our VM if you want to.
+**[00:16:51]** That's a long URL.
+**[00:16:52]** I'm not a.
+**[00:16:53]** Slightly interactive version for the lighting.
+**[00:16:56]** Here I don't.
+**[00:16:57]** Think there's a chat where I can put this?
+**[00:16:59]** The one of the key benefits here is no matter
+**[00:17:02]** how you're using Azure Linux, be it through WSL, through
+**[00:17:06]** VM, through container, through Azure Container Linux, it does not
+**[00:17:10]** matter using the same version of Python, you're using the
+**[00:17:14]** same kernel, you're using the same internal library.
+**[00:17:17]** So if you validate your application on one, you can
+**[00:17:20]** have confidence that it will work across all of them.
+**[00:17:24]** So the, the developer story for WSL into a local
+**[00:17:27]** deployment area, into your production deployment area, like that's the
+**[00:17:31]** simplicity that we're looking for.
+**[00:17:34]** We want to make it as easy as we can
+**[00:17:36]** across your developer workflow from local laptop into GitHub into
+**[00:17:41]** the cloud, into your AI space.
+**[00:17:43]** Like we we want to make this as easy as
+**[00:17:45]** we can.
+**[00:17:46]** OK, that was our Azure Linux 4 dot O demo.
+**[00:17:51]** The VM image is now in public preview and available
+**[00:17:55]** to you to use, test, validate and give us your
+**[00:17:59]** feedback.
+**[00:18:00]** So towards the end we will let you know how
+**[00:18:03]** to reach out to us.
+**[00:18:04]** But now I let Jim talk a bit about our
+**[00:18:08]** Azure Container Linux.
+**[00:18:10]** Yep, 11 down.
+**[00:18:13]** Yeah.
+**[00:18:13]** Let me also bring this back to presenter view so
+**[00:18:18]** that.
+**[00:18:22]** You can.
+**[00:18:22]** You're going to have to.
+**[00:18:23]** Yeah, not yet.
+**[00:18:32]** One more.
+**[00:18:33]** There we go.
+**[00:18:33]** OK.
+**[00:18:34]** So for Azure Container Linux, we talked a little bit
+**[00:18:37]** about this being an an immutable distribution.
+**[00:18:40]** This is derived from the Flat Car Container Linux distribution
+**[00:18:46]** that was contributed into the CNCF by Microsoft.
+**[00:18:50]** I want to say last year, I think that landed
+**[00:18:53]** in the CNCF as an incubating project.
+**[00:18:56]** And what we're doing basically is partnering with the Flat
+**[00:19:01]** Car team and with the CNCF to make a productized
+**[00:19:04]** version based on same libraries.
+**[00:19:07]** We want that consistency in the use case.
+**[00:19:10]** So we we're deviating from Flat Car a little bit
+**[00:19:13]** in terms of where the binaries come from, but that
+**[00:19:16]** is purely for application consistency.
+**[00:19:18]** We are still supporting the flat Car container Linux distribution
+**[00:19:22]** upstream.
+**[00:19:23]** We are still heavily engaged with their developer team for
+**[00:19:26]** new features.
+**[00:19:27]** We just want the customers to have the product ready
+**[00:19:30]** consistency and feel without disrupting what existing flat car users
+**[00:19:34]** are expecting without trying to change product workflows within Azure
+**[00:19:38]** or anything like that.
+**[00:19:40]** So the only reason I bring that up is I've
+**[00:19:43]** heard some rumors that, you know, we're deprecating Flat car
+**[00:19:46]** in favor of.
+**[00:19:47]** That is not true.
+**[00:19:48]** They serve different purposes.
+**[00:19:49]** Flat Car will continue to grow.
+**[00:19:51]** It continues to exist upstream.
+**[00:19:53]** We continue to support it upstream.
+**[00:19:55]** We want it to succeed there so we can do
+**[00:19:57]** new feature development, so we can help things like that.
+**[00:20:01]** All we're doing is consolidating the two immutable images that
+**[00:20:05]** were in ASK and basically putting them both together in
+**[00:20:08]** a usable thing that customers can interact with.
+**[00:20:12]** And I think that roughly sums it up.
+**[00:20:15]** Short demo for ACL.
+**[00:20:17]** In in the four minutes and 30 seconds we have
+**[00:20:20]** left, we can play another video for you.
+**[00:20:30]** We already saw this in the live demo where we
+**[00:20:32]** created an ask cluster using Azure Container Linux.
+**[00:20:41]** If you're familiar with Azure CLI, you're doing a cluster
+**[00:20:44]** create through the command line.
+**[00:20:46]** That's basically all we're doing here.
+**[00:20:48]** Provisions.
+**[00:20:48]** A node gets credentials showing the status.
+**[00:20:57]** We'll give a shout out to Flora who actually put
+**[00:20:59]** this demo together, which is why you're seeing her name
+**[00:21:02]** in there.
+**[00:21:03]** If you're attending cube cons, you will probably get a
+**[00:21:05]** chance to run into her and here you'll see that
+**[00:21:08]** it we have the the ID like as flat car.
+**[00:21:10]** We are basically telling our customers exactly what's going on.
+**[00:21:15]** This is the one difference again for the kernel being
+**[00:21:18]** a 66 based kernel rather than 618.
+**[00:21:20]** When we GA 4 O everything will be consistent across
+**[00:21:23]** the board.
+**[00:21:23]** So we want to make sure that that's clear.
+**[00:21:32]** Secure Boot is set up and enabled.
+**[00:21:35]** We've got the DM Verity set up so that we
+**[00:21:38]** can verify the images on boot testing to make sure
+**[00:21:41]** it's a read only file system.
+**[00:21:44]** Again, SC Linux enabled by default here.
+**[00:21:46]** That's a key differentiator.
+**[00:21:48]** A lot of people in the ASK space currently are
+**[00:21:51]** looking at App Armor type things with flat car and
+**[00:21:54]** with Azure Container Linux.
+**[00:21:56]** It really is going to be an SE Linux piece.
+**[00:21:58]** So this is the one thing we expect to be
+**[00:22:01]** a little tricky for some customers is the conversion from
+**[00:22:06]** App Armor to Southeast Linux.
+**[00:22:09]** And then yeah, that was Azure Linux 4 dot O
+**[00:22:13]** on WSL entering preview on VMS.
+**[00:22:17]** WSL will be a fast follow for preview and then
+**[00:22:20]** Azure Container Linux which is now generally available to use
+**[00:22:24]** and immutable variant of Asher Linux 3.0.
+**[00:22:27]** Right now you'll see it on 4.0 whenever 4.0 becomes
+**[00:22:30]** generally available.
+**[00:22:32]** We've got a few minutes left, not quite as long
+**[00:22:34]** as we wanted to take questions, but if there are
+**[00:22:37]** people in the audience who want to raise a hand,
+**[00:22:40]** shout, you know, send smoke signals, I am happy to
+**[00:22:43]** take whatever questions you have.
+**[00:22:45]** We can talk afterwards.
+**[00:22:48]** We're really excited to bring a Linux distribution from Microsoft
+**[00:22:52]** out for everyone to use and.
+**[00:22:54]** Feel free to reach out to us on GitHub, we
+**[00:22:58]** have a community call.
+**[00:23:01]** There are other resources that you can check out.
+**[00:23:04]** We have a.
+**[00:23:04]** We do have one question from the audience.
+**[00:23:07]** Hayden had his hand up.
+**[00:23:08]** He didn't, but I'm going to call on him as
+**[00:23:10]** my audience plant.
+**[00:23:11]** Hayden, what is your question, Sir?
+**[00:23:20]** Firewall D rules as part of the package.
+**[00:23:23]** Yes, so.
+**[00:23:24]** I saw cockpit.
+**[00:23:25]** It's going to open 88 under your manual firewall.
+**[00:23:28]** D Will.
+**[00:23:35]** OK, so the question was around firewall rules.
+**[00:23:39]** Some packages are designed by default to install their own
+**[00:23:43]** rules through firewall D to remove or to make things
+**[00:23:46]** simpler for the administrators.
+**[00:23:49]** Some of the packages that we are going to have
+**[00:23:51]** in the distribution will do that.
+**[00:23:53]** For that same reason, some of the packages will not.
+**[00:23:57]** Where we are taking an opinion on that, you will
+**[00:24:00]** be able to define or to find that both in
+**[00:24:03]** the product documentation and in that declarative change state in
+**[00:24:07]** GitHub.
+**[00:24:07]** So where we're telling people we're making changes and deviations,
+**[00:24:11]** you can very clearly see in GitHub this package that
+**[00:24:14]** we got from upstream was this.
+**[00:24:16]** We have made these select changes.
+**[00:24:18]** Here's what we have done and it'll tell you in
+**[00:24:20]** the firewall set up what's there clearly.
+**[00:24:23]** Thank you for that.
+**[00:24:23]** That is a good question.
+**[00:24:24]** We.
+**[00:24:26]** Have 30 seconds.
+**[00:24:27]** We have a short video that we can play.
+**[00:24:31]** Do it.
+**[00:24:39]** It does not want to play.
+**[00:24:40]** It it's not going to play the audio.
+**[00:24:51]** Get the audio.
+**[00:24:52]** No its its not going to give the audio I
+**[00:24:57]** don't think and time.
+**[00:25:04]** Please feel free to reach out to us to know
+**[00:25:06]** more about Azure Linux on our GitHub.
+**[00:25:09]** I'll put this slide for a second here.
+**[00:25:11]** If anybody wants more information on how you can reach
+**[00:25:14]** out, you can reach out to us to get the
+**[00:25:16]** image.
+**[00:25:17]** If you want to be a partner, a software validated
+**[00:25:20]** partner on Azure Linux, we'll be happy to guide you
+**[00:25:23]** through that and and have you validated on Azure Linux
+**[00:25:27]** 4.0.
+**[00:25:29]** Are we your last session for today or is there
+**[00:25:31]** another one following us?
+**[00:25:34]** OK, so we do need to get out.

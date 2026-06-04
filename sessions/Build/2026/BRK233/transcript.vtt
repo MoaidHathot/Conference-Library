@@ -1,0 +1,5360 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.9204730987548828
+
+00:00:01.240 --> 00:00:02.120
+Hello, everyone.
+
+NOTE Confidence: 0.6622961759567261
+
+00:00:03.640 --> 00:00:04.240
+Hey there.
+
+NOTE Confidence: 0.8317810893058777
+
+00:00:04.640 --> 00:00:05.760
+So I am chip.
+
+NOTE Confidence: 0.9625945091247559
+
+00:00:06.120 --> 00:00:08.520
+Thank you so much for coming to my talk.
+
+NOTE Confidence: 0.7777999639511108
+
+00:00:08.920 --> 00:00:12.211
+I my career has been mostly with building AI systems,
+
+NOTE Confidence: 0.7777999639511108
+
+00:00:12.273 --> 00:00:15.006
+like trying to get make AI useful in the, in
+
+NOTE Confidence: 0.7777999639511108
+
+00:00:15.068 --> 00:00:15.999
+the real world.
+
+NOTE Confidence: 0.8515129089355469
+
+00:00:16.239 --> 00:00:18.906
+So I started with NVIDIA and then I work on
+
+NOTE Confidence: 0.8515129089355469
+
+00:00:18.968 --> 00:00:21.200
+Snorkel AI, which is a data company.
+
+NOTE Confidence: 0.7770063281059265
+
+00:00:21.200 --> 00:00:24.109
+And then I start another AI infrastructure startup, which is
+
+NOTE Confidence: 0.7770063281059265
+
+00:00:24.157 --> 00:00:24.399
+sold.
+
+NOTE Confidence: 0.9542794823646545
+
+00:00:24.720 --> 00:00:27.175
+And since then, I'm doing a new company which is
+
+NOTE Confidence: 0.9542794823646545
+
+00:00:27.226 --> 00:00:27.840
+in robotics.
+
+NOTE Confidence: 0.7213202118873596
+
+00:00:28.520 --> 00:00:30.640
+Anyone here into robotics?
+
+NOTE Confidence: 0.7413799166679382
+
+00:00:31.880 --> 00:00:32.920
+One person's.
+
+NOTE Confidence: 0.5034801959991455
+
+00:00:34.880 --> 00:00:35.240
+So yeah.
+
+NOTE Confidence: 0.731694221496582
+
+00:00:35.240 --> 00:00:36.839
+So this is a bunch of like robots that I
+
+NOTE Confidence: 0.731694221496582
+
+00:00:36.879 --> 00:00:37.279
+work with.
+
+NOTE Confidence: 0.8748682737350464
+
+00:00:37.280 --> 00:00:39.846
+Like this one, I'm trying to fit the ring on
+
+NOTE Confidence: 0.8748682737350464
+
+00:00:39.904 --> 00:00:43.113
+the robot hands, which is weird because like they don't
+
+NOTE Confidence: 0.8748682737350464
+
+00:00:43.171 --> 00:00:45.679
+quite have the same width as human fingers.
+
+NOTE Confidence: 0.7880956530570984
+
+00:00:46.159 --> 00:00:49.589
+But yeah, so today's talk is about like software defensibility
+
+NOTE Confidence: 0.7880956530570984
+
+00:00:49.645 --> 00:00:52.742
+because that the type of questions that have been trying
+
+NOTE Confidence: 0.7880956530570984
+
+00:00:52.798 --> 00:00:55.564
+to like think about in the last few years, because
+
+NOTE Confidence: 0.7880956530570984
+
+00:00:55.619 --> 00:00:58.330
+there are two things that we thought of myself as
+
+NOTE Confidence: 0.7880956530570984
+
+00:00:58.385 --> 00:00:59.160
+being good at.
+
+NOTE Confidence: 0.9619953632354736
+
+00:00:59.680 --> 00:01:02.480
+One is writing and the other is coding.
+
+NOTE Confidence: 0.7538085579872131
+
+00:01:02.760 --> 00:01:05.374
+And I think that those are the top two things
+
+NOTE Confidence: 0.7538085579872131
+
+00:01:05.432 --> 00:01:07.639
+that I could easily automate nowadays.
+
+NOTE Confidence: 0.7887470722198486
+
+00:01:07.840 --> 00:01:10.532
+So it make me feel like, OK, so like what
+
+NOTE Confidence: 0.7887470722198486
+
+00:01:10.598 --> 00:01:14.078
+should I do that can reasonably that I can reasonably
+
+NOTE Confidence: 0.7887470722198486
+
+00:01:14.144 --> 00:01:15.720
+defend in the age of AI?
+
+NOTE Confidence: 0.9083510637283325
+
+00:01:17.240 --> 00:01:21.440
+So how many people here consider yourself software engineer?
+
+NOTE Confidence: 0.8069609999656677
+
+00:01:23.120 --> 00:01:24.360
+Wow, a lot of you.
+
+NOTE Confidence: 0.9478140473365784
+
+00:01:25.160 --> 00:01:29.429
+How many of you are worried about AI automating your
+
+NOTE Confidence: 0.9478140473365784
+
+00:01:29.511 --> 00:01:29.840
+job?
+
+NOTE Confidence: 0.9108369946479797
+
+00:01:31.720 --> 00:01:32.520
+One person.
+
+NOTE Confidence: 0.7612437009811401
+
+00:01:32.640 --> 00:01:34.000
+OK, a few more people.
+
+NOTE Confidence: 0.6024737358093262
+
+00:01:34.000 --> 00:01:35.671
+I feel like this kind of thing, I don't say
+
+NOTE Confidence: 0.6024737358093262
+
+00:01:35.710 --> 00:01:37.654
+out loud, you know, it's like, yes, it's like keep
+
+NOTE Confidence: 0.6024737358093262
+
+00:01:37.693 --> 00:01:38.159
+it a secret.
+
+NOTE Confidence: 0.7539145350456238
+
+00:01:39.480 --> 00:01:42.989
+OK, so so one thing I keep hearing people telling
+
+NOTE Confidence: 0.7539145350456238
+
+00:01:43.060 --> 00:01:46.140
+me is that the cost of building subway is a
+
+NOTE Confidence: 0.7539145350456238
+
+00:01:46.212 --> 00:01:47.000
+bridging 0.
+
+NOTE Confidence: 0.7847513556480408
+
+00:01:47.400 --> 00:01:49.977
+So I keep hearing about sayings, OK, it's extremely cheap
+
+NOTE Confidence: 0.7847513556480408
+
+00:01:50.022 --> 00:01:51.560
+right now to generate code, right?
+
+NOTE Confidence: 0.7469093203544617
+
+00:01:51.560 --> 00:01:53.902
+You can just like get AI and it can write
+
+NOTE Confidence: 0.7469093203544617
+
+00:01:53.960 --> 00:01:57.160
+you like an app of feature build website extremely fast.
+
+NOTE Confidence: 0.8530864119529724
+
+00:01:57.440 --> 00:02:00.235
+So I keep hearing companies who who in the past,
+
+NOTE Confidence: 0.8530864119529724
+
+00:02:00.293 --> 00:02:03.788
+maybe they could only create like maybe like 1020 variations
+
+NOTE Confidence: 0.8530864119529724
+
+00:02:03.846 --> 00:02:04.719
+for AB testing.
+
+NOTE Confidence: 0.7586737275123596
+
+00:02:04.960 --> 00:02:07.884
+Now they could generate like 1000 variations for AB testing
+
+NOTE Confidence: 0.7586737275123596
+
+00:02:07.933 --> 00:02:09.519
+because it cost extremely cheap.
+
+NOTE Confidence: 0.8403770327568054
+
+00:02:10.520 --> 00:02:13.106
+So it made me think about like, OK, if the
+
+NOTE Confidence: 0.8403770327568054
+
+00:02:13.168 --> 00:02:16.494
+cost of building software is operating 0, does it mean
+
+NOTE Confidence: 0.8403770327568054
+
+00:02:16.556 --> 00:02:20.128
+that the value of building software is also approaching 0,
+
+NOTE Confidence: 0.8403770327568054
+
+00:02:20.190 --> 00:02:20.559
+right?
+
+NOTE Confidence: 0.8872392177581787
+
+00:02:20.560 --> 00:02:22.600
+If the cost is 0, then the value is 0.
+
+NOTE Confidence: 0.6838312149047852
+
+00:02:23.639 --> 00:02:26.742
+So it makes me think about like it's so it's
+
+NOTE Confidence: 0.6838312149047852
+
+00:02:26.812 --> 00:02:30.408
+like it made me realize like, OK, what, what should
+
+NOTE Confidence: 0.6838312149047852
+
+00:02:30.479 --> 00:02:31.959
+I be building, right?
+
+NOTE Confidence: 0.8302571177482605
+
+00:02:31.960 --> 00:02:36.042
+Like what is the point of building anything nowaday if
+
+NOTE Confidence: 0.8302571177482605
+
+00:02:36.118 --> 00:02:38.839
+there's no value associated with it?
+
+NOTE Confidence: 0.7925752997398376
+
+00:02:39.480 --> 00:02:42.543
+So a few months ago, I had launched a side
+
+NOTE Confidence: 0.7925752997398376
+
+00:02:42.616 --> 00:02:43.199
+project.
+
+NOTE Confidence: 0.8093747496604919
+
+00:02:43.200 --> 00:02:44.320
+It's like a weekend project.
+
+NOTE Confidence: 0.5955929756164551
+
+00:02:44.320 --> 00:02:45.560
+And I like it, It's fun.
+
+NOTE Confidence: 0.871086835861206
+
+00:02:46.200 --> 00:02:49.132
+It got some traction, like my 300,000 views within a
+
+NOTE Confidence: 0.871086835861206
+
+00:02:49.188 --> 00:02:49.639
+weekend.
+
+NOTE Confidence: 0.8722314834594727
+
+00:02:50.560 --> 00:02:53.656
+And then within a day somebody emailed me saying that
+
+NOTE Confidence: 0.8722314834594727
+
+00:02:53.714 --> 00:02:55.000
+I'd love what you did.
+
+NOTE Confidence: 0.7389354705810547
+
+00:02:55.440 --> 00:02:58.120
+So I asked Clark Code to do exactly that.
+
+NOTE Confidence: 0.7311378717422485
+
+00:02:58.280 --> 00:03:00.796
+And here's a link to the website, exactly what you
+
+NOTE Confidence: 0.7311378717422485
+
+00:03:00.846 --> 00:03:01.400
+just built.
+
+NOTE Confidence: 0.7374534010887146
+
+00:03:01.840 --> 00:03:03.800
+So I felt very ambivalent by it, right?
+
+NOTE Confidence: 0.8474991321563721
+
+00:03:03.800 --> 00:03:06.520
+I was like, on the one hand, like I'm flattered,
+
+NOTE Confidence: 0.8474991321563721
+
+00:03:06.576 --> 00:03:09.296
+thank you, but on the other hand, like, what the
+
+NOTE Confidence: 0.8474991321563721
+
+00:03:09.353 --> 00:03:09.920
+heck, man?
+
+NOTE Confidence: 0.6980099081993103
+
+00:03:09.919 --> 00:03:11.675
+Like it's just like lead your toe kit and like
+
+NOTE Confidence: 0.6980099081993103
+
+00:03:11.713 --> 00:03:12.400
+copy and paste it.
+
+NOTE Confidence: 0.8217994570732117
+
+00:03:13.120 --> 00:03:15.556
+So, so, so it makes me realize it's like any
+
+NOTE Confidence: 0.8217994570732117
+
+00:03:15.612 --> 00:03:18.879
+software that exists today can easily be replicated, right?
+
+NOTE Confidence: 0.6432352662086487
+
+00:03:19.200 --> 00:03:21.766
+And like, if you can ask, yeah, actually like Airtable,
+
+NOTE Confidence: 0.6432352662086487
+
+00:03:21.813 --> 00:03:22.559
+it can build it.
+
+NOTE Confidence: 0.540886402130127
+
+00:03:22.560 --> 00:03:24.320
+If you actually build Arsenet, it can build it.
+
+NOTE Confidence: 0.8230745196342468
+
+00:03:25.200 --> 00:03:26.400
+And I see there's a lot of this.
+
+NOTE Confidence: 0.7788563966751099
+
+00:03:26.440 --> 00:03:28.120
+I'm actually building this side project.
+
+NOTE Confidence: 0.6737295985221863
+
+00:03:28.120 --> 00:03:31.497
+It's going to kill kill by gbt.com where we can
+
+NOTE Confidence: 0.6737295985221863
+
+00:03:31.569 --> 00:03:35.090
+vote and like which product is going to be killed
+
+NOTE Confidence: 0.6737295985221863
+
+00:03:35.162 --> 00:03:36.239
+by by AI first?
+
+NOTE Confidence: 0.7308344841003418
+
+00:03:36.320 --> 00:03:38.912
+I'm I'm launching it like next week, hopefully and you
+
+NOTE Confidence: 0.7308344841003418
+
+00:03:38.960 --> 00:03:41.120
+guys can like use card codec to replicate it.
+
+NOTE Confidence: 0.8146972060203552
+
+00:03:41.720 --> 00:03:44.688
+But but yeah, so, so much curious about like, so
+
+NOTE Confidence: 0.8146972060203552
+
+00:03:44.750 --> 00:03:47.471
+like things yeah so, so it made me feel like
+
+NOTE Confidence: 0.8146972060203552
+
+00:03:47.533 --> 00:03:51.120
+what excitement because like now I can build anything that
+
+NOTE Confidence: 0.8146972060203552
+
+00:03:51.182 --> 00:03:53.965
+I want, but at the same time, like anyone can
+
+NOTE Confidence: 0.8146972060203552
+
+00:03:54.026 --> 00:03:56.995
+build any things that I want and of course, like
+
+NOTE Confidence: 0.8146972060203552
+
+00:03:57.057 --> 00:03:59.160
+not everything is the same, right?
+
+NOTE Confidence: 0.7810555100440979
+
+00:03:59.160 --> 00:04:02.234
+Like people talking about like, OK, not everything can be
+
+NOTE Confidence: 0.7810555100440979
+
+00:04:02.288 --> 00:04:05.416
+easily buildable because you cannot just build Google in a
+
+NOTE Confidence: 0.7810555100440979
+
+00:04:05.470 --> 00:04:06.280
+weekend, right?
+
+NOTE Confidence: 0.8301206231117249
+
+00:04:06.760 --> 00:04:09.137
+But at the same time, I see that are you
+
+NOTE Confidence: 0.8301206231117249
+
+00:04:09.197 --> 00:04:11.039
+familiar with meter, like METR?
+
+NOTE Confidence: 0.5558766722679138
+
+00:04:12.240 --> 00:04:15.154
+So they just study like the progress of like AI
+
+NOTE Confidence: 0.5558766722679138
+
+00:04:15.216 --> 00:04:15.960
+automations.
+
+NOTE Confidence: 0.8180826902389526
+
+00:04:16.279 --> 00:04:19.545
+And they do a benchmark like, OK, let's take all
+
+NOTE Confidence: 0.8180826902389526
+
+00:04:19.613 --> 00:04:23.082
+the tasks that usually take like let's say an hour,
+
+NOTE Confidence: 0.8180826902389526
+
+00:04:23.150 --> 00:04:26.960
+how often that AI can reliably complete the task, right?
+
+NOTE Confidence: 0.7240782976150513
+
+00:04:27.320 --> 00:04:30.668
+So it benchmark like on the the length of tasks
+
+NOTE Confidence: 0.7240782976150513
+
+00:04:30.740 --> 00:04:34.160
+that AI can complete about like 50% of the time.
+
+NOTE Confidence: 0.833073616027832
+
+00:04:34.640 --> 00:04:36.985
+And you can see this like, OK, in the beginning
+
+NOTE Confidence: 0.833073616027832
+
+00:04:37.035 --> 00:04:39.380
+it start very little, like a few seconds of the
+
+NOTE Confidence: 0.833073616027832
+
+00:04:39.430 --> 00:04:39.679
+task.
+
+NOTE Confidence: 0.7520249485969543
+
+00:04:39.960 --> 00:04:43.046
+But now we can reliably complete task that like takes
+
+NOTE Confidence: 0.7520249485969543
+
+00:04:43.104 --> 00:04:43.920
+like 16 hours.
+
+NOTE Confidence: 0.8955898880958557
+
+00:04:44.160 --> 00:04:47.560
+So it's a very long horizon, extremely complicated task, right?
+
+NOTE Confidence: 0.8427900075912476
+
+00:04:47.760 --> 00:04:50.026
+Because I feel like there were for a lot of
+
+NOTE Confidence: 0.8427900075912476
+
+00:04:50.079 --> 00:04:52.926
+engineers, like I don't think people can just sit down
+
+NOTE Confidence: 0.8427900075912476
+
+00:04:52.978 --> 00:04:55.719
+for 16 hours and course something extremely complex.
+
+NOTE Confidence: 0.6575742363929749
+
+00:04:56.400 --> 00:04:58.440
+So, so yeah, so things have been getting very complex.
+
+NOTE Confidence: 0.7361396551132202
+
+00:04:58.440 --> 00:05:01.941
+So maybe like AI cannot build Google nowaday given the
+
+NOTE Confidence: 0.7361396551132202
+
+00:05:02.006 --> 00:05:02.719
+trajectory.
+
+NOTE Confidence: 0.7269592881202698
+
+00:05:02.720 --> 00:05:04.040
+So this is log scale by the way.
+
+NOTE Confidence: 0.8338472843170166
+
+00:05:04.040 --> 00:05:06.697
+But if you do like linear scale will look like
+
+NOTE Confidence: 0.8338472843170166
+
+00:05:06.755 --> 00:05:09.240
+a very much like a exponential exponential.
+
+NOTE Confidence: 0.927935004234314
+
+00:05:09.880 --> 00:05:12.760
+So things like AI can at some point get there.
+
+NOTE Confidence: 0.7140094637870789
+
+00:05:13.560 --> 00:05:15.939
+So I think it's like the Ghibli moment of of
+
+NOTE Confidence: 0.7140094637870789
+
+00:05:15.993 --> 00:05:16.480
+software.
+
+NOTE Confidence: 0.5982945561408997
+
+00:05:16.760 --> 00:05:19.842
+So I did anyone use a open AI to Jared
+
+NOTE Confidence: 0.5982945561408997
+
+00:05:19.923 --> 00:05:22.600
+Ghibli picture style of yourself?
+
+NOTE Confidence: 0.6473203301429749
+
+00:05:23.320 --> 00:05:25.646
+O so so in the AST, I feel like there's
+
+NOTE Confidence: 0.6473203301429749
+
+00:05:25.706 --> 00:05:29.226
+a trend of like everyone using image generation to generate
+
+NOTE Confidence: 0.6473203301429749
+
+00:05:29.286 --> 00:05:30.360
+a style of Ghibli.
+
+NOTE Confidence: 0.580946147441864
+
+00:05:30.360 --> 00:05:33.331
+And I was thinking that there's no way Ghibli agrees
+
+NOTE Confidence: 0.580946147441864
+
+00:05:33.388 --> 00:05:33.960
+with this.
+
+NOTE Confidence: 0.6705944538116455
+
+00:05:34.000 --> 00:05:35.200
+Like there's just no way.
+
+NOTE Confidence: 0.7147424817085266
+
+00:05:35.880 --> 00:05:37.837
+But in so at the point we think of like
+
+NOTE Confidence: 0.7147424817085266
+
+00:05:37.887 --> 00:05:40.397
+a style is something like, if you can't describe a
+
+NOTE Confidence: 0.7147424817085266
+
+00:05:40.447 --> 00:05:42.706
+style, it's a shorthand for the for the AI to
+
+NOTE Confidence: 0.7147424817085266
+
+00:05:42.756 --> 00:05:43.560
+know what to do.
+
+NOTE Confidence: 0.769450843334198
+
+00:05:43.720 --> 00:05:46.020
+And the artists were very upset, right, because they spent
+
+NOTE Confidence: 0.769450843334198
+
+00:05:46.060 --> 00:05:48.162
+the whole career developing the style and we can just
+
+NOTE Confidence: 0.769450843334198
+
+00:05:48.202 --> 00:05:48.440
+do it.
+
+NOTE Confidence: 0.8078821897506714
+
+00:05:48.680 --> 00:05:51.079
+And I think it's similar with software like anything that
+
+NOTE Confidence: 0.8078821897506714
+
+00:05:51.121 --> 00:05:53.478
+exists, just make it easier for people to like shorthand
+
+NOTE Confidence: 0.8078821897506714
+
+00:05:53.520 --> 00:05:54.319
+and build it right.
+
+NOTE Confidence: 0.6986626982688904
+
+00:05:54.520 --> 00:05:56.496
+Maybe if they want to be something like Arsena, it
+
+NOTE Confidence: 0.6986626982688904
+
+00:05:56.535 --> 00:05:57.879
+take me a lot of time to describe.
+
+NOTE Confidence: 0.7104476690292358
+
+00:05:57.880 --> 00:06:00.480
+OK, here's the specs, here's the functionality, here's the workflow.
+
+NOTE Confidence: 0.7979286313056946
+
+00:06:00.760 --> 00:06:02.757
+But if it exists, I can say, OK, let's just
+
+NOTE Confidence: 0.7979286313056946
+
+00:06:02.803 --> 00:06:04.754
+do it like, you know, you know what it is,
+
+NOTE Confidence: 0.7979286313056946
+
+00:06:04.801 --> 00:06:05.080
+right?
+
+NOTE Confidence: 0.7491960525512695
+
+00:06:05.480 --> 00:06:07.466
+So, so by the act of you putting out the
+
+NOTE Confidence: 0.7491960525512695
+
+00:06:07.515 --> 00:06:09.800
+software, you make it easier for the comparer.
+
+NOTE Confidence: 0.7817751169204712
+
+00:06:09.800 --> 00:06:11.160
+Should I do exactly what you want?
+
+NOTE Confidence: 0.7745224237442017
+
+00:06:12.240 --> 00:06:14.162
+So the question we think with AI is no longer
+
+NOTE Confidence: 0.7745224237442017
+
+00:06:14.204 --> 00:06:14.760
+how to build.
+
+NOTE Confidence: 0.831719696521759
+
+00:06:15.080 --> 00:06:16.918
+Like if you know what you want to do, it's
+
+NOTE Confidence: 0.831719696521759
+
+00:06:16.962 --> 00:06:17.399
+very easy.
+
+NOTE Confidence: 0.6580701470375061
+
+00:06:17.680 --> 00:06:20.480
+The question is like what you build?
+
+NOTE Confidence: 0.7925242781639099
+
+00:06:20.720 --> 00:06:22.917
+And then once you build it, like how do you
+
+NOTE Confidence: 0.7925242781639099
+
+00:06:22.968 --> 00:06:23.479
+defend it?
+
+NOTE Confidence: 0.7873894572257996
+
+00:06:24.560 --> 00:06:27.937
+So I am curious, it's like, what do you think
+
+NOTE Confidence: 0.7873894572257996
+
+00:06:28.012 --> 00:06:30.639
+would be the most for your product?
+
+NOTE Confidence: 0.9007288217544556
+
+00:06:31.640 --> 00:06:33.120
+Anyone here is doing a startup?
+
+NOTE Confidence: 0.7408329844474792
+
+00:06:36.520 --> 00:06:40.326
+So I'm curious like what do you think would be
+
+NOTE Confidence: 0.7408329844474792
+
+00:06:40.409 --> 00:06:43.720
+the Moat for your software startup, huh?
+
+NOTE Confidence: 0.530205488204956
+
+00:06:45.600 --> 00:06:46.640
+Proprietary data.
+
+NOTE Confidence: 0.638134777545929
+
+00:06:46.880 --> 00:06:48.440
+So who you think that data is the Moat?
+
+NOTE Confidence: 0.9364136457443237
+
+00:06:50.840 --> 00:06:51.480
+A few people.
+
+NOTE Confidence: 0.8002871870994568
+
+00:06:51.480 --> 00:06:53.118
+So you think that if you have a lot of
+
+NOTE Confidence: 0.8002871870994568
+
+00:06:53.161 --> 00:06:55.359
+proprietary data, compares cannot compete with you?
+
+NOTE Confidence: 0.7553077936172485
+
+00:06:57.000 --> 00:06:57.800
+OK, what else?
+
+NOTE Confidence: 0.7288137078285217
+
+00:06:57.839 --> 00:07:00.248
+What else would you consider like a Moat for a
+
+NOTE Confidence: 0.7288137078285217
+
+00:07:00.301 --> 00:07:00.719
+company?
+
+NOTE Confidence: 0.23906704783439636
+
+00:07:02.000 --> 00:07:02.200
+Huh.
+
+NOTE Confidence: 0.7710718512535095
+
+00:07:04.680 --> 00:07:07.480
+Trust like branding trust branding.
+
+NOTE Confidence: 0.7412081360816956
+
+00:07:07.760 --> 00:07:09.440
+It's another very interesting question.
+
+NOTE Confidence: 0.6061511039733887
+
+00:07:10.160 --> 00:07:10.680
+Who else?
+
+NOTE Confidence: 0.7881414890289307
+
+00:07:11.200 --> 00:07:11.640
+What else?
+
+NOTE Confidence: 0.8613901138305664
+
+00:07:15.120 --> 00:07:16.320
+Customer service.
+
+NOTE Confidence: 0.6158129572868347
+
+00:07:16.880 --> 00:07:17.760
+It's a human layer.
+
+NOTE Confidence: 0.7522232532501221
+
+00:07:17.760 --> 00:07:22.738
+So when you say customer service, it's like AI agent
+
+NOTE Confidence: 0.7522232532501221
+
+00:07:22.834 --> 00:07:26.759
+as customer service or I see interesting.
+
+NOTE Confidence: 0.7705764770507812
+
+00:07:27.040 --> 00:07:30.109
+I feel like more and more a veer toward like
+
+NOTE Confidence: 0.7705764770507812
+
+00:07:30.179 --> 00:07:32.759
+just not going through human service.
+
+NOTE Confidence: 0.7572879791259766
+
+00:07:33.000 --> 00:07:34.440
+I feel like we can get away with it.
+
+NOTE Confidence: 0.8525604605674744
+
+00:07:34.440 --> 00:07:37.880
+I would probably like try something automated, but it's interesting.
+
+NOTE Confidence: 0.8084130883216858
+
+00:07:38.160 --> 00:07:40.502
+So the question of trust, I think it's like people
+
+NOTE Confidence: 0.8084130883216858
+
+00:07:40.549 --> 00:07:41.440
+have been realized.
+
+NOTE Confidence: 0.762751579284668
+
+00:07:41.440 --> 00:07:44.687
+It's like trust is not sufficient because in in the
+
+NOTE Confidence: 0.762751579284668
+
+00:07:44.751 --> 00:07:47.871
+past people were lot more loyal to a product, but
+
+NOTE Confidence: 0.762751579284668
+
+00:07:47.935 --> 00:07:51.501
+with AI because the step change, like the improvement is
+
+NOTE Confidence: 0.762751579284668
+
+00:07:51.564 --> 00:07:52.520
+so significant.
+
+NOTE Confidence: 0.6099458336830139
+
+00:07:52.720 --> 00:07:55.139
+So you can see both switch models very quickly, right
+
+NOTE Confidence: 0.6099458336830139
+
+00:07:55.184 --> 00:07:57.741
+When charge PDF first came out, everyone tells like, OK,
+
+NOTE Confidence: 0.6099458336830139
+
+00:07:57.786 --> 00:08:00.480
+there's no way something can compete with charge PD, right?
+
+NOTE Confidence: 0.6616563200950623
+
+00:08:00.480 --> 00:08:03.227
+And then suddenly like cloud anthropic came out and said,
+
+NOTE Confidence: 0.6616563200950623
+
+00:08:03.275 --> 00:08:04.240
+OK, now I can do it.
+
+NOTE Confidence: 0.6807519793510437
+
+00:08:04.400 --> 00:08:06.238
+And then dipstick came out and everyone a lot will
+
+NOTE Confidence: 0.6807519793510437
+
+00:08:06.275 --> 00:08:06.680
+jump to it.
+
+NOTE Confidence: 0.5067423582077026
+
+00:08:06.680 --> 00:08:08.360
+And then dipstick turned out to not work quite well.
+
+NOTE Confidence: 0.5101456642150879
+
+00:08:08.360 --> 00:08:09.280
+We will jump to Quen.
+
+NOTE Confidence: 0.7054368257522583
+
+00:08:09.520 --> 00:08:12.026
+So I think like a lot of a lot of
+
+NOTE Confidence: 0.7054368257522583
+
+00:08:12.102 --> 00:08:16.203
+the product we have seen that customer loyalty is hard
+
+NOTE Confidence: 0.7054368257522583
+
+00:08:16.279 --> 00:08:20.759
+to compete with like improvement, like product improvement.
+
+NOTE Confidence: 0.7960379719734192
+
+00:08:20.920 --> 00:08:23.040
+But I think I definitely agree with you.
+
+NOTE Confidence: 0.6350231170654297
+
+00:08:23.040 --> 00:08:25.720
+This building trust is never gonna be a pain.
+
+NOTE Confidence: 0.720135509967804
+
+00:08:26.280 --> 00:08:27.800
+On the question of like data.
+
+NOTE Confidence: 0.5287495255470276
+
+00:08:28.520 --> 00:08:31.730
+So data is, I usually think that like proprietary data
+
+NOTE Confidence: 0.5287495255470276
+
+00:08:31.789 --> 00:08:32.800
+is a Moat, right?
+
+NOTE Confidence: 0.8805623054504395
+
+00:08:32.800 --> 00:08:33.960
+Because you have a lot of data.
+
+NOTE Confidence: 0.5039781928062439
+
+00:08:33.960 --> 00:08:34.240
+Then what?
+
+NOTE Confidence: 0.7609041333198547
+
+00:08:34.240 --> 00:08:35.040
+Can I compete with you?
+
+NOTE Confidence: 0.8425006866455078
+
+00:08:35.559 --> 00:08:38.905
+But then I realized given how many companies, how much
+
+NOTE Confidence: 0.8425006866455078
+
+00:08:38.967 --> 00:08:42.684
+money companies are spending on acquiring data, then data is
+
+NOTE Confidence: 0.8425006866455078
+
+00:08:42.746 --> 00:08:43.799
+no longer a Moat.
+
+NOTE Confidence: 0.6729433536529541
+
+00:08:43.920 --> 00:08:45.320
+Like money is a Moat, right?
+
+NOTE Confidence: 0.9518802762031555
+
+00:08:45.320 --> 00:08:46.800
+If you have money, you can just buy it.
+
+NOTE Confidence: 0.9122493863105774
+
+00:08:47.040 --> 00:08:49.894
+Have you seen a lot of AI Frontier Labs buying
+
+NOTE Confidence: 0.9122493863105774
+
+00:08:49.956 --> 00:08:51.879
+companies just to get the data?
+
+NOTE Confidence: 0.8469514846801758
+
+00:08:52.840 --> 00:08:53.440
+Have you seen that?
+
+NOTE Confidence: 0.7670316696166992
+
+00:08:53.679 --> 00:08:55.370
+So like if you see, if you look at the
+
+NOTE Confidence: 0.7670316696166992
+
+00:08:55.415 --> 00:08:58.040
+Frontier Labs list of the acquiring companies, like some of
+
+NOTE Confidence: 0.7670316696166992
+
+00:08:58.085 --> 00:09:00.621
+them acquire company, like two or three companies a week,
+
+NOTE Confidence: 0.7670316696166992
+
+00:09:00.666 --> 00:09:03.113
+because the reason is just like acquire company so that
+
+NOTE Confidence: 0.7670316696166992
+
+00:09:03.158 --> 00:09:04.760
+they can get data from that company.
+
+NOTE Confidence: 0.7763680815696716
+
+00:09:05.160 --> 00:09:07.746
+So maybe the competitors do not have the data, but
+
+NOTE Confidence: 0.7763680815696716
+
+00:09:07.797 --> 00:09:10.694
+maybe a Frontier Lab can acquire the comparison data and
+
+NOTE Confidence: 0.7763680815696716
+
+00:09:10.746 --> 00:09:13.642
+then build something that's like work quite well for the
+
+NOTE Confidence: 0.7763680815696716
+
+00:09:13.694 --> 00:09:14.160
+use case.
+
+NOTE Confidence: 0.8062800765037537
+
+00:09:15.040 --> 00:09:18.503
+And it's quite interesting because given how fast people were
+
+NOTE Confidence: 0.8062800765037537
+
+00:09:18.559 --> 00:09:20.944
+able to build a model, a new, launch a new
+
+NOTE Confidence: 0.8062800765037537
+
+00:09:21.001 --> 00:09:24.407
+model to compete with existing existing models, it turns out
+
+NOTE Confidence: 0.8062800765037537
+
+00:09:24.464 --> 00:09:27.359
+that the acquiring data is not a hard part anymore.
+
+NOTE Confidence: 0.535222589969635
+
+00:09:27.640 --> 00:09:29.600
+And if data has any more like commodity.
+
+NOTE Confidence: 0.8374852538108826
+
+00:09:29.840 --> 00:09:31.720
+So let's say that like you have a QuickBooks, right?
+
+NOTE Confidence: 0.7328382730484009
+
+00:09:31.720 --> 00:09:34.627
+And I say QuickBooks will never sell data to Open
+
+NOTE Confidence: 0.7328382730484009
+
+00:09:34.687 --> 00:09:37.001
+AI, but Open AI can just go to my scale
+
+NOTE Confidence: 0.7328382730484009
+
+00:09:37.061 --> 00:09:39.672
+AI search micro on and say, OK, now create a
+
+NOTE Confidence: 0.7328382730484009
+
+00:09:39.731 --> 00:09:44.063
+software that looks exactly like QuickBooks, hire like 10,000 accountants
+
+NOTE Confidence: 0.7328382730484009
+
+00:09:44.123 --> 00:09:46.675
+that do own the workflow you need as if you
+
+NOTE Confidence: 0.7328382730484009
+
+00:09:46.734 --> 00:09:48.039
+were using QuickBooks.
+
+NOTE Confidence: 0.8565837144851685
+
+00:09:48.240 --> 00:09:50.040
+And then use that data to train the model.
+
+NOTE Confidence: 0.8804492950439453
+
+00:09:50.880 --> 00:09:52.960
+So people can do that pretty quickly.
+
+NOTE Confidence: 0.7421403527259827
+
+00:09:52.960 --> 00:09:56.373
+And that's why they own this data labeling companies like
+
+NOTE Confidence: 0.7421403527259827
+
+00:09:56.432 --> 00:09:59.845
+have revenues like a billion of dollars just because they
+
+NOTE Confidence: 0.7421403527259827
+
+00:09:59.905 --> 00:10:02.719
+create a lot of that extremely, extremely fast.
+
+NOTE Confidence: 0.703477680683136
+
+00:10:06.080 --> 00:10:08.919
+Another thing that people told me about is like distributions,
+
+NOTE Confidence: 0.703477680683136
+
+00:10:08.965 --> 00:10:09.239
+right?
+
+NOTE Confidence: 0.7405165433883667
+
+00:10:09.240 --> 00:10:13.370
+Especially for enterprise, let's say they have spent like months
+
+NOTE Confidence: 0.7405165433883667
+
+00:10:13.435 --> 00:10:17.049
+and months trying to get the software into the customers
+
+NOTE Confidence: 0.7405165433883667
+
+00:10:17.113 --> 00:10:19.759
+and they work with like Oracle and stuff.
+
+NOTE Confidence: 0.6779375672340393
+
+00:10:19.760 --> 00:10:23.080
+I know it's very much embedded into the ecosystem.
+
+NOTE Confidence: 0.7734978795051575
+
+00:10:23.280 --> 00:10:27.200
+It's extremely hard for people to move away from it.
+
+NOTE Confidence: 0.7679194211959839
+
+00:10:28.040 --> 00:10:30.239
+I think it's just still a lot of validity in
+
+NOTE Confidence: 0.7679194211959839
+
+00:10:30.289 --> 00:10:30.439
+it.
+
+NOTE Confidence: 0.7701730728149414
+
+00:10:31.080 --> 00:10:33.363
+But I also want to ask about like, OK, how
+
+NOTE Confidence: 0.7701730728149414
+
+00:10:33.417 --> 00:10:35.319
+about for consumer products, right?
+
+NOTE Confidence: 0.6506008505821228
+
+00:10:35.320 --> 00:10:38.647
+And some things that's like do not require heavy integrations
+
+NOTE Confidence: 0.6506008505821228
+
+00:10:38.701 --> 00:10:41.429
+And I was like actually do not know, right because
+
+NOTE Confidence: 0.6506008505821228
+
+00:10:41.483 --> 00:10:43.119
+of consumer product like this.
+
+NOTE Confidence: 0.8048520684242249
+
+00:10:43.120 --> 00:10:45.711
+And that is like a pretty much easy issue to
+
+NOTE Confidence: 0.8048520684242249
+
+00:10:45.770 --> 00:10:46.359
+replicate.
+
+NOTE Confidence: 0.6716933250427246
+
+00:10:46.720 --> 00:10:50.380
+And also like having a distribution as the mode also
+
+NOTE Confidence: 0.6716933250427246
+
+00:10:50.450 --> 00:10:53.899
+make it feel a bit uneasy because like the entire
+
+NOTE Confidence: 0.6716933250427246
+
+00:10:53.970 --> 00:10:57.560
+most strategy depends on people's annoyance, right?
+
+NOTE Confidence: 0.8003559708595276
+
+00:10:57.559 --> 00:10:59.930
+Like something that is really hard to you so that
+
+NOTE Confidence: 0.8003559708595276
+
+00:10:59.978 --> 00:11:01.719
+people cannot get off your platform.
+
+NOTE Confidence: 0.8258076310157776
+
+00:11:02.400 --> 00:11:05.210
+And also another interesting model is that like, so I
+
+NOTE Confidence: 0.8258076310157776
+
+00:11:05.263 --> 00:11:07.543
+have a friend who used to be like a partner
+
+NOTE Confidence: 0.8258076310157776
+
+00:11:07.596 --> 00:11:09.399
+with a very big firm like PV form.
+
+NOTE Confidence: 0.7401838302612305
+
+00:11:09.920 --> 00:11:11.781
+And he also he tried to sell to a lot
+
+NOTE Confidence: 0.7401838302612305
+
+00:11:11.832 --> 00:11:13.039
+of manufacturers, right?
+
+NOTE Confidence: 0.8028685450553894
+
+00:11:13.320 --> 00:11:15.808
+And if you go through the compare old school project,
+
+NOTE Confidence: 0.8028685450553894
+
+00:11:15.855 --> 00:11:18.109
+old school approach, you have to go reach out to
+
+NOTE Confidence: 0.8028685450553894
+
+00:11:18.156 --> 00:11:20.598
+all these manufacturers and like, OK, try to sell to
+
+NOTE Confidence: 0.8028685450553894
+
+00:11:20.645 --> 00:11:20.880
+them.
+
+NOTE Confidence: 0.8687013983726501
+
+00:11:21.160 --> 00:11:23.815
+And what he did was that, OK, he just bought
+
+NOTE Confidence: 0.8687013983726501
+
+00:11:23.875 --> 00:11:27.435
+a software company that's already has a 10,000 factories as
+
+NOTE Confidence: 0.8687013983726501
+
+00:11:27.496 --> 00:11:28.159
+a customer.
+
+NOTE Confidence: 0.6012791991233826
+
+00:11:28.360 --> 00:11:29.920
+He was like, OK, is this software companies?
+
+NOTE Confidence: 0.5739193558692932
+
+00:11:29.920 --> 00:11:31.160
+Is it not AI companies?
+
+NOTE Confidence: 0.7649043798446655
+
+00:11:31.320 --> 00:11:32.520
+It's actually a lot cheaper.
+
+NOTE Confidence: 0.8023420572280884
+
+00:11:32.800 --> 00:11:34.891
+Like if you have AI money, you can go and
+
+NOTE Confidence: 0.8023420572280884
+
+00:11:34.942 --> 00:11:37.390
+buy this companies and that that way you can own
+
+NOTE Confidence: 0.8023420572280884
+
+00:11:37.441 --> 00:11:38.360
+the distributions.
+
+NOTE Confidence: 0.6940345764160156
+
+00:11:38.559 --> 00:11:41.225
+So it's like so contribution in a way can be
+
+NOTE Confidence: 0.6940345764160156
+
+00:11:41.285 --> 00:11:42.799
+acquired with more money.
+
+NOTE Confidence: 0.573390543460846
+
+00:11:43.760 --> 00:11:45.680
+Another thought about is expertise.
+
+NOTE Confidence: 0.7315449118614197
+
+00:11:46.520 --> 00:11:49.664
+So people was like OK, but I know the domain
+
+NOTE Confidence: 0.7315449118614197
+
+00:11:49.736 --> 00:11:50.879
+the best, right?
+
+NOTE Confidence: 0.7756118178367615
+
+00:11:51.160 --> 00:11:54.069
+I have years and years, like iterations and make it
+
+NOTE Confidence: 0.7756118178367615
+
+00:11:54.126 --> 00:11:54.640
+the best.
+
+NOTE Confidence: 0.8172948360443115
+
+00:11:55.040 --> 00:11:58.869
+But like expertise is so interesting because expertise, like for
+
+NOTE Confidence: 0.8172948360443115
+
+00:11:58.929 --> 00:12:01.861
+it to be useful, you have to encode it somewhere,
+
+NOTE Confidence: 0.8172948360443115
+
+00:12:01.920 --> 00:12:02.279
+right?
+
+NOTE Confidence: 0.8344966769218445
+
+00:12:02.280 --> 00:12:04.342
+You don't want to be a service model where you
+
+NOTE Confidence: 0.8344966769218445
+
+00:12:04.386 --> 00:12:06.852
+can just like use like exchange service for like hourly
+
+NOTE Confidence: 0.8344966769218445
+
+00:12:06.897 --> 00:12:07.480
+money, right?
+
+NOTE Confidence: 0.8062638640403748
+
+00:12:07.480 --> 00:12:08.600
+You talk to people or not.
+
+NOTE Confidence: 0.6944917440414429
+
+00:12:08.760 --> 00:12:09.880
+So you want to just scale it.
+
+NOTE Confidence: 0.8048040270805359
+
+00:12:09.880 --> 00:12:11.240
+So that means you have to encode that.
+
+NOTE Confidence: 0.8149005174636841
+
+00:12:11.440 --> 00:12:15.033
+And now expertise become software and like all the workflows
+
+NOTE Confidence: 0.8149005174636841
+
+00:12:15.093 --> 00:12:17.967
+you spend years and years design can be, can be,
+
+NOTE Confidence: 0.8149005174636841
+
+00:12:18.027 --> 00:12:20.722
+can be just copy and like people can just use
+
+NOTE Confidence: 0.8149005174636841
+
+00:12:20.782 --> 00:12:21.920
+that as a workflow.
+
+NOTE Confidence: 0.5444954037666321
+
+00:12:22.400 --> 00:12:24.449
+So I think that's only one thing that I realized
+
+NOTE Confidence: 0.5444954037666321
+
+00:12:24.492 --> 00:12:26.200
+is this like what part of like momentum?
+
+NOTE Confidence: 0.6921795606613159
+
+00:12:26.640 --> 00:12:28.974
+So the only way to spend ahead of like customers,
+
+NOTE Confidence: 0.6921795606613159
+
+00:12:29.021 --> 00:12:31.879
+electric competitors is just that you move faster than that.
+
+NOTE Confidence: 0.8211039900779724
+
+00:12:32.280 --> 00:12:34.895
+Like anything like it makes a lot of pressure for
+
+NOTE Confidence: 0.8211039900779724
+
+00:12:34.949 --> 00:12:37.511
+like a lot of companies because now you want to,
+
+NOTE Confidence: 0.8211039900779724
+
+00:12:37.564 --> 00:12:40.180
+you want to be a product you're like committed to
+
+NOTE Confidence: 0.8211039900779724
+
+00:12:40.233 --> 00:12:43.169
+like a never ending treadmill of like just doing faster
+
+NOTE Confidence: 0.8211039900779724
+
+00:12:43.222 --> 00:12:45.998
+and faster than the competitors, which is like for a
+
+NOTE Confidence: 0.8211039900779724
+
+00:12:46.052 --> 00:12:47.439
+lot of people, it's great.
+
+NOTE Confidence: 0.6935235261917114
+
+00:12:47.440 --> 00:12:50.955
+People love it, but it's just like create a lot
+
+NOTE Confidence: 0.6935235261917114
+
+00:12:51.030 --> 00:12:54.171
+of pressure on, on, on the part of like on
+
+NOTE Confidence: 0.6935235261917114
+
+00:12:54.246 --> 00:12:57.387
+the part of, of like how to stay with your
+
+NOTE Confidence: 0.6935235261917114
+
+00:12:57.462 --> 00:12:58.360
+competitors.
+
+NOTE Confidence: 0.8702844977378845
+
+00:12:59.400 --> 00:13:00.560
+How, how do you feel so far?
+
+NOTE Confidence: 0.6390547156333923
+
+00:13:00.560 --> 00:13:01.560
+Is this like too bleak?
+
+NOTE Confidence: 0.5524818301200867
+
+00:13:05.760 --> 00:13:08.174
+So, so like, so here's the question like what you
+
+NOTE Confidence: 0.5524818301200867
+
+00:13:08.224 --> 00:13:08.519
+build.
+
+NOTE Confidence: 0.7930819988250732
+
+00:13:09.200 --> 00:13:11.160
+I think it's like a lot of form.
+
+NOTE Confidence: 0.7515569925308228
+
+00:13:11.640 --> 00:13:13.734
+I do think it's like there's a lot of value
+
+NOTE Confidence: 0.7515569925308228
+
+00:13:13.783 --> 00:13:16.316
+in building because buildings one thing I do spend a
+
+NOTE Confidence: 0.7515569925308228
+
+00:13:16.365 --> 00:13:18.459
+lot of time like right now I have like both
+
+NOTE Confidence: 0.7515569925308228
+
+00:13:18.508 --> 00:13:21.139
+cloud code and like codecs running because I feel like
+
+NOTE Confidence: 0.7515569925308228
+
+00:13:21.187 --> 00:13:23.672
+I just like building and building things makes me I
+
+NOTE Confidence: 0.7515569925308228
+
+00:13:23.720 --> 00:13:26.399
+feel like it makes me better problem solver like right.
+
+NOTE Confidence: 0.6932058334350586
+
+00:13:26.400 --> 00:13:28.619
+It's like because when you build building, you don't you
+
+NOTE Confidence: 0.6932058334350586
+
+00:13:28.658 --> 00:13:30.679
+don't build products that exist in a vacuum, right?
+
+NOTE Confidence: 0.7533388137817383
+
+00:13:30.679 --> 00:13:33.463
+You build something to address and some, some annoyances that
+
+NOTE Confidence: 0.7533388137817383
+
+00:13:33.509 --> 00:13:33.920
+you have.
+
+NOTE Confidence: 0.7575405836105347
+
+00:13:34.280 --> 00:13:36.485
+So being able to like building just like help me
+
+NOTE Confidence: 0.7575405836105347
+
+00:13:36.531 --> 00:13:38.966
+understand the problems I want to solve more and have
+
+NOTE Confidence: 0.7575405836105347
+
+00:13:39.012 --> 00:13:41.080
+the experience of like, OK, here's a problem.
+
+NOTE Confidence: 0.7683082818984985
+
+00:13:41.080 --> 00:13:42.480
+Here's a solution I think would work.
+
+NOTE Confidence: 0.8012636303901672
+
+00:13:42.520 --> 00:13:44.280
+Let's let's let's build it and launch it.
+
+NOTE Confidence: 0.8335954546928406
+
+00:13:44.480 --> 00:13:46.049
+And I put in front of users and I see
+
+NOTE Confidence: 0.8335954546928406
+
+00:13:46.092 --> 00:13:47.279
+like what they say about it.
+
+NOTE Confidence: 0.8407907485961914
+
+00:13:47.920 --> 00:13:50.233
+But if you want to build it as a company,
+
+NOTE Confidence: 0.8407907485961914
+
+00:13:50.289 --> 00:13:52.941
+like as a startup, then you need to think about
+
+NOTE Confidence: 0.8407907485961914
+
+00:13:52.997 --> 00:13:55.761
+like not just like today, but like how it's going
+
+NOTE Confidence: 0.8407907485961914
+
+00:13:55.818 --> 00:13:57.680
+to work like 2 years from now on.
+
+NOTE Confidence: 0.7964914441108704
+
+00:13:57.960 --> 00:14:00.871
+Because one of the case I actually like invested in
+
+NOTE Confidence: 0.7964914441108704
+
+00:14:00.928 --> 00:14:03.840
+this company and they did great for the first three
+
+NOTE Confidence: 0.7964914441108704
+
+00:14:03.897 --> 00:14:04.239
+years.
+
+NOTE Confidence: 0.6058201193809509
+
+00:14:04.640 --> 00:14:06.995
+My first first three years, I grew from my 0
+
+NOTE Confidence: 0.6058201193809509
+
+00:14:07.049 --> 00:14:08.119
+ARR, 10 million ARR.
+
+NOTE Confidence: 0.7430017590522766
+
+00:14:08.480 --> 00:14:10.704
+And now they just cannot, like they just don't know
+
+NOTE Confidence: 0.7430017590522766
+
+00:14:10.747 --> 00:14:12.710
+like, OK, now we have 10 minute ARR, but then
+
+NOTE Confidence: 0.7430017590522766
+
+00:14:12.753 --> 00:14:14.280
+they cannot get to 100 million ARR.
+
+NOTE Confidence: 0.565138578414917
+
+00:14:14.520 --> 00:14:16.171
+And if it's not a VC world, like it's kind
+
+NOTE Confidence: 0.565138578414917
+
+00:14:16.210 --> 00:14:16.840
+of stuck, right?
+
+NOTE Confidence: 0.7866023182868958
+
+00:14:16.840 --> 00:14:19.019
+Like you can't, you're not going to be big enough
+
+NOTE Confidence: 0.7866023182868958
+
+00:14:19.064 --> 00:14:21.021
+to go IPO, but then you can't also like then
+
+NOTE Confidence: 0.7866023182868958
+
+00:14:21.065 --> 00:14:22.400
+what are you going to do next?
+
+NOTE Confidence: 0.8319438099861145
+
+00:14:22.560 --> 00:14:24.757
+So like, so like, yeah, so I think it's very
+
+NOTE Confidence: 0.8319438099861145
+
+00:14:24.807 --> 00:14:27.304
+easy to get like keep on building CLD momentum and
+
+NOTE Confidence: 0.8319438099861145
+
+00:14:27.354 --> 00:14:29.702
+then don't know if you don't have a strategy of
+
+NOTE Confidence: 0.8319438099861145
+
+00:14:29.752 --> 00:14:31.800
+like going big, it's hard to raise money.
+
+NOTE Confidence: 0.7243587970733643
+
+00:14:33.200 --> 00:14:35.609
+So, so one thing, just like I do have this
+
+NOTE Confidence: 0.7243587970733643
+
+00:14:35.667 --> 00:14:38.363
+belief that like no matter how good AI is, they
+
+NOTE Confidence: 0.7243587970733643
+
+00:14:38.421 --> 00:14:40.200
+will always be prompt to solve.
+
+NOTE Confidence: 0.835622251033783
+
+00:14:40.680 --> 00:14:42.975
+Because I think it's like, no matter how good AI
+
+NOTE Confidence: 0.835622251033783
+
+00:14:43.023 --> 00:14:45.367
+is, I would never stop being angry at like people
+
+NOTE Confidence: 0.835622251033783
+
+00:14:45.415 --> 00:14:47.806
+on the Internet and I would never stop being angry
+
+NOTE Confidence: 0.835622251033783
+
+00:14:47.854 --> 00:14:49.720
+at like united customer service, right?
+
+NOTE Confidence: 0.7551016807556152
+
+00:14:49.960 --> 00:14:52.328
+I mean, there's a lot of like problems that it's
+
+NOTE Confidence: 0.7551016807556152
+
+00:14:52.378 --> 00:14:53.760
+just like AI will not solve.
+
+NOTE Confidence: 0.6986121535301208
+
+00:14:54.120 --> 00:14:56.722
+And I do think it's like, as AI become better,
+
+NOTE Confidence: 0.6986121535301208
+
+00:14:56.779 --> 00:14:58.759
+it expands the surface area, right?
+
+NOTE Confidence: 0.759650468826294
+
+00:14:58.800 --> 00:15:01.507
+As like AI allow us to build more use cases
+
+NOTE Confidence: 0.759650468826294
+
+00:15:01.570 --> 00:15:04.152
+as it expand like it, it might not be the
+
+NOTE Confidence: 0.759650468826294
+
+00:15:04.215 --> 00:15:07.427
+same problems as we had before, but I introduce new
+
+NOTE Confidence: 0.759650468826294
+
+00:15:07.490 --> 00:15:10.198
+problems and I want you to cover a few like
+
+NOTE Confidence: 0.759650468826294
+
+00:15:10.261 --> 00:15:14.039
+categories of problems if things that have emerged with AIS.
+
+NOTE Confidence: 0.7171260118484497
+
+00:15:14.640 --> 00:15:16.585
+So before I go into that, I think I raised
+
+NOTE Confidence: 0.7171260118484497
+
+00:15:16.631 --> 00:15:18.160
+a problem is a long tail problem.
+
+NOTE Confidence: 0.5973641276359558
+
+00:15:19.200 --> 00:15:20.600
+It's just a long term distributions.
+
+NOTE Confidence: 0.6602721810340881
+
+00:15:21.160 --> 00:15:22.280
+So like there are problems.
+
+NOTE Confidence: 0.6492506861686707
+
+00:15:22.280 --> 00:15:24.640
+So like everyone can everyone face, right?
+
+NOTE Confidence: 0.6904914379119873
+
+00:15:24.640 --> 00:15:26.040
+Everyone wants to write better emails.
+
+NOTE Confidence: 0.703898012638092
+
+00:15:26.040 --> 00:15:28.182
+Everyone want a lot of people want to write better
+
+NOTE Confidence: 0.703898012638092
+
+00:15:28.225 --> 00:15:28.439
+code.
+
+NOTE Confidence: 0.8415676951408386
+
+00:15:28.760 --> 00:15:31.261
+A lot of people want like I know once you
+
+NOTE Confidence: 0.8415676951408386
+
+00:15:31.322 --> 00:15:34.494
+like help with like small little things like OK, fix
+
+NOTE Confidence: 0.8415676951408386
+
+00:15:34.555 --> 00:15:36.080
+my essay, do my homework.
+
+NOTE Confidence: 0.7236911654472351
+
+00:15:36.360 --> 00:15:39.010
+So this are like, they're like a category of very,
+
+NOTE Confidence: 0.7236911654472351
+
+00:15:39.063 --> 00:15:41.502
+very big problems that I do believe that a lot
+
+NOTE Confidence: 0.7236911654472351
+
+00:15:41.555 --> 00:15:43.994
+of AI frontier labs will try to get the models
+
+NOTE Confidence: 0.7236911654472351
+
+00:15:44.047 --> 00:15:45.319
+to do well on right now.
+
+NOTE Confidence: 0.7513351440429688
+
+00:15:45.360 --> 00:15:45.960
+Let's look at them.
+
+NOTE Confidence: 0.6833038330078125
+
+00:15:46.040 --> 00:15:48.563
+OK, here are the problems that face by the 99%
+
+NOTE Confidence: 0.6833038330078125
+
+00:15:48.618 --> 00:15:51.855
+of the populations versus the problems that face maybe like
+
+NOTE Confidence: 0.6833038330078125
+
+00:15:51.910 --> 00:15:55.092
+1% of the populations that AI frontier labs would probably
+
+NOTE Confidence: 0.6833038330078125
+
+00:15:55.147 --> 00:15:57.725
+focus on the ones of like 99% as the population
+
+NOTE Confidence: 0.6833038330078125
+
+00:15:57.780 --> 00:15:58.000
+has.
+
+NOTE Confidence: 0.7830411195755005
+
+00:15:58.280 --> 00:16:01.207
+So that's one reason why like a lot of this
+
+NOTE Confidence: 0.7830411195755005
+
+00:16:01.275 --> 00:16:03.998
+AI labs still focus on, of on like a few
+
+NOTE Confidence: 0.7830411195755005
+
+00:16:04.066 --> 00:16:05.359
+standard use cases.
+
+NOTE Confidence: 0.8431650400161743
+
+00:16:05.600 --> 00:16:07.999
+And like a lot of them still focus on English
+
+NOTE Confidence: 0.8431650400161743
+
+00:16:08.053 --> 00:16:11.413
+for many, many languages, for example, like Arabic, AI actually
+
+NOTE Confidence: 0.8431650400161743
+
+00:16:11.466 --> 00:16:14.079
+doesn't quite work well, doesn't work quite well.
+
+NOTE Confidence: 0.8713594675064087
+
+00:16:14.360 --> 00:16:17.230
+So I have a friend who is Iranian and she
+
+NOTE Confidence: 0.8713594675064087
+
+00:16:17.300 --> 00:16:18.560
+told me the story.
+
+NOTE Confidence: 0.6003248691558838
+
+00:16:18.560 --> 00:16:21.840
+She's the professor at CMU.
+
+NOTE Confidence: 0.7559410333633423
+
+00:16:21.840 --> 00:16:24.404
+So she does a lot of work with like AI
+
+NOTE Confidence: 0.7559410333633423
+
+00:16:24.471 --> 00:16:27.845
+and she tells the story of like, because she speak
+
+NOTE Confidence: 0.7559410333633423
+
+00:16:27.913 --> 00:16:30.679
+Parsi, it's just a language Farsi, right?
+
+NOTE Confidence: 0.9404561519622803
+
+00:16:30.680 --> 00:16:33.040
+Sorry, I feel very stupid right now.
+
+NOTE Confidence: 0.6440140604972839
+
+00:16:33.440 --> 00:16:34.080
+You're Farsi.
+
+NOTE Confidence: 0.8818748593330383
+
+00:16:34.360 --> 00:16:37.389
+And and she has an issue of like her friends
+
+NOTE Confidence: 0.8818748593330383
+
+00:16:37.458 --> 00:16:40.831
+would ask her to explain a sentence like an idiom
+
+NOTE Confidence: 0.8818748593330383
+
+00:16:40.900 --> 00:16:41.519
+in Farsi.
+
+NOTE Confidence: 0.788689911365509
+
+00:16:41.760 --> 00:16:44.078
+And she explains a sentence that like, oh, that meant
+
+NOTE Confidence: 0.788689911365509
+
+00:16:44.122 --> 00:16:44.560
+like that.
+
+NOTE Confidence: 0.950104832649231
+
+00:16:44.760 --> 00:16:46.320
+And that friend was like, no, you're lying.
+
+NOTE Confidence: 0.7799424529075623
+
+00:16:46.520 --> 00:16:50.306
+Because apparently ChatGPT gives a different answer to that to
+
+NOTE Confidence: 0.7799424529075623
+
+00:16:50.367 --> 00:16:52.199
+that to that different answer.
+
+NOTE Confidence: 0.6830551624298096
+
+00:16:52.600 --> 00:16:55.280
+And the friends somehow trust ChatGPT more.
+
+NOTE Confidence: 0.8014947175979614
+
+00:16:55.280 --> 00:16:57.280
+Even my friends like, no, no, I am correct.
+
+NOTE Confidence: 0.7280442118644714
+
+00:16:57.360 --> 00:17:00.282
+But just because ChatGPT this doesn't do very well in
+
+NOTE Confidence: 0.7280442118644714
+
+00:17:00.337 --> 00:17:01.440
+like Farsi language.
+
+NOTE Confidence: 0.6451354026794434
+
+00:17:02.040 --> 00:17:04.192
+So, so yeah, so they allow so and so work
+
+NOTE Confidence: 0.6451354026794434
+
+00:17:04.245 --> 00:17:06.240
+with some a lot of the voice chat bot.
+
+NOTE Confidence: 0.878065824508667
+
+00:17:06.680 --> 00:17:09.377
+And another problem with voice chat bot is that you
+
+NOTE Confidence: 0.878065824508667
+
+00:17:09.430 --> 00:17:11.440
+have to like respond very fast, right?
+
+NOTE Confidence: 0.7926403284072876
+
+00:17:11.680 --> 00:17:14.000
+Like a human, human to human interactions.
+
+NOTE Confidence: 0.7819862961769104
+
+00:17:14.240 --> 00:17:16.694
+So latency is like you want it to be like
+
+NOTE Confidence: 0.7819862961769104
+
+00:17:16.753 --> 00:17:19.627
+under like 800 milliseconds for it to be like to
+
+NOTE Confidence: 0.7819862961769104
+
+00:17:19.686 --> 00:17:22.560
+be like a good reasonable natural conversations.
+
+NOTE Confidence: 0.692634642124176
+
+00:17:23.200 --> 00:17:25.813
+But like for voice chat bot, it actually go through
+
+NOTE Confidence: 0.692634642124176
+
+00:17:25.864 --> 00:17:26.479
+three steps.
+
+NOTE Confidence: 0.8142553567886353
+
+00:17:26.760 --> 00:17:29.681
+So first step is to be able to translate from
+
+NOTE Confidence: 0.8142553567886353
+
+00:17:29.746 --> 00:17:31.239
+audio into text, right?
+
+NOTE Confidence: 0.7595013976097107
+
+00:17:31.640 --> 00:17:33.302
+And then you send the text to an LM to
+
+NOTE Confidence: 0.7595013976097107
+
+00:17:33.346 --> 00:17:34.440
+get back to the response.
+
+NOTE Confidence: 0.7566040754318237
+
+00:17:34.760 --> 00:17:37.832
+And then you get you send the response to like
+
+NOTE Confidence: 0.7566040754318237
+
+00:17:37.898 --> 00:17:41.238
+text to speech, to synthesize the voice to send it
+
+NOTE Confidence: 0.7566040754318237
+
+00:17:41.305 --> 00:17:42.240
+back to users.
+
+NOTE Confidence: 0.7742828726768494
+
+00:17:43.040 --> 00:17:45.511
+So a challenge we we have was that like this
+
+NOTE Confidence: 0.7742828726768494
+
+00:17:45.567 --> 00:17:48.712
+voice chat bot work really well for English because like
+
+NOTE Confidence: 0.7742828726768494
+
+00:17:48.768 --> 00:17:52.025
+the speed of like synthesizing English is pretty fast, but
+
+NOTE Confidence: 0.7742828726768494
+
+00:17:52.082 --> 00:17:54.160
+for Arabic or Russian extremely slow.
+
+NOTE Confidence: 0.6582584381103516
+
+00:17:54.400 --> 00:17:56.470
+Like it's like, so it's make like it's to make
+
+NOTE Confidence: 0.6582584381103516
+
+00:17:56.515 --> 00:17:59.035
+it really, really hard to create natural voice chat bots
+
+NOTE Confidence: 0.6582584381103516
+
+00:17:59.080 --> 00:18:00.160
+for different languages.
+
+NOTE Confidence: 0.6806710958480835
+
+00:18:00.640 --> 00:18:01.200
+So, so yeah.
+
+NOTE Confidence: 0.7639514207839966
+
+00:18:01.200 --> 00:18:02.793
+So, so I think I see for a lot of
+
+NOTE Confidence: 0.7639514207839966
+
+00:18:02.842 --> 00:18:03.759
+long tail problems.
+
+NOTE Confidence: 0.7126705050468445
+
+00:18:03.920 --> 00:18:05.800
+I do see the AI labs.
+
+NOTE Confidence: 0.7455047965049744
+
+00:18:05.800 --> 00:18:08.467
+It's not quite doing it and it doesn't mean that
+
+NOTE Confidence: 0.7455047965049744
+
+00:18:08.523 --> 00:18:11.080
+they're not doing it like 2 years from now on.
+
+NOTE Confidence: 0.8396357297897339
+
+00:18:11.320 --> 00:18:13.707
+But I can see that like if you can pick
+
+NOTE Confidence: 0.8396357297897339
+
+00:18:13.769 --> 00:18:16.340
+a problems that is, I think of them as big
+
+NOTE Confidence: 0.8396357297897339
+
+00:18:16.402 --> 00:18:19.524
+enough to be profitable, but not big enough that AI
+
+NOTE Confidence: 0.8396357297897339
+
+00:18:19.585 --> 00:18:22.279
+Frontier labs didn't want to take the lunch.
+
+NOTE Confidence: 0.6864092946052551
+
+00:18:22.280 --> 00:18:23.360
+That's the kind of thing.
+
+NOTE Confidence: 0.7229981422424316
+
+00:18:24.320 --> 00:18:26.908
+OK, so so here's some of the long tail problems
+
+NOTE Confidence: 0.7229981422424316
+
+00:18:26.963 --> 00:18:27.679
+I could find.
+
+NOTE Confidence: 0.6636902093887329
+
+00:18:27.680 --> 00:18:28.960
+Like I thought it's interesting.
+
+NOTE Confidence: 0.9410301446914673
+
+00:18:29.400 --> 00:18:31.000
+One is human preferences.
+
+NOTE Confidence: 0.7985947132110596
+
+00:18:31.760 --> 00:18:34.200
+Are you here familiar with IOHF?
+
+NOTE Confidence: 0.8475940823554993
+
+00:18:34.520 --> 00:18:37.834
+Have you heard of the term reinforcement learning by human
+
+NOTE Confidence: 0.8475940823554993
+
+00:18:37.891 --> 00:18:38.520
+preference?
+
+NOTE Confidence: 0.7105267643928528
+
+00:18:40.120 --> 00:18:41.760
+You heard the term so yeah.
+
+NOTE Confidence: 0.6998471617698669
+
+00:18:41.760 --> 00:18:45.283
+So like in the early day of LLMS, like in
+
+NOTE Confidence: 0.6998471617698669
+
+00:18:45.369 --> 00:18:48.892
+the early day of GBT 4 and it's early day
+
+NOTE Confidence: 0.6998471617698669
+
+00:18:48.978 --> 00:18:52.673
+of this models, ILHP is one of the most are
+
+NOTE Confidence: 0.6998471617698669
+
+00:18:52.759 --> 00:18:57.399
+the most popular terms that people want to understand.
+
+NOTE Confidence: 0.7429096102714539
+
+00:18:57.680 --> 00:19:00.829
+So the way the model trained, they trained the model
+
+NOTE Confidence: 0.7429096102714539
+
+00:19:00.890 --> 00:19:03.373
+is that they have, they want the AI to go
+
+NOTE Confidence: 0.7429096102714539
+
+00:19:03.434 --> 00:19:06.159
+to Jared responses that humans prefer, right?
+
+NOTE Confidence: 0.7654164433479309
+
+00:19:06.480 --> 00:19:08.954
+So it has so it wouldn't give a prompt and
+
+NOTE Confidence: 0.7654164433479309
+
+00:19:09.013 --> 00:19:11.841
+they give like 2 responses side by side and then
+
+NOTE Confidence: 0.7654164433479309
+
+00:19:11.900 --> 00:19:14.434
+the human will pick, OK, this is the one to
+
+NOTE Confidence: 0.7654164433479309
+
+00:19:14.492 --> 00:19:15.199
+I like more.
+
+NOTE Confidence: 0.7975496053695679
+
+00:19:15.480 --> 00:19:18.017
+And then you will use that to train the model
+
+NOTE Confidence: 0.7975496053695679
+
+00:19:18.073 --> 00:19:21.400
+to, to notch it towards sharing more like better responses.
+
+NOTE Confidence: 0.8395639061927795
+
+00:19:21.800 --> 00:19:24.882
+So a challenge with that is that like it's trying
+
+NOTE Confidence: 0.8395639061927795
+
+00:19:24.945 --> 00:19:27.840
+to encode human preference into one equations.
+
+NOTE Confidence: 0.6608077883720398
+
+00:19:28.000 --> 00:19:31.040
+So it assume that there's some like universal preference, right?
+
+NOTE Confidence: 0.8616533875465393
+
+00:19:31.400 --> 00:19:33.880
+Like like everyone somehow like prefers the same thing.
+
+NOTE Confidence: 0.7531303763389587
+
+00:19:34.080 --> 00:19:36.831
+So when I was going through the Anthropic IHF data
+
+NOTE Confidence: 0.7531303763389587
+
+00:19:36.886 --> 00:19:39.418
+set limit online, I realize it's like a lot of
+
+NOTE Confidence: 0.7531303763389587
+
+00:19:39.473 --> 00:19:41.840
+what people consider the winning responses.
+
+NOTE Confidence: 0.790869414806366
+
+00:19:42.200 --> 00:19:44.200
+Actually, I do not prefer the winning response.
+
+NOTE Confidence: 0.7485901117324829
+
+00:19:44.200 --> 00:19:46.560
+I actually prefer the losing responses.
+
+NOTE Confidence: 0.6011806130409241
+
+00:19:46.560 --> 00:19:49.693
+Just like somehow the note is like Mark is not,
+
+NOTE Confidence: 0.6011806130409241
+
+00:19:49.759 --> 00:19:50.759
+not not better.
+
+NOTE Confidence: 0.866180419921875
+
+00:19:51.400 --> 00:19:55.101
+So human preference are extremely hard and it requires to
+
+NOTE Confidence: 0.866180419921875
+
+00:19:55.166 --> 00:19:56.919
+understand users very well.
+
+NOTE Confidence: 0.8470755219459534
+
+00:19:57.120 --> 00:19:58.880
+So going back to the voice chat bot, right?
+
+NOTE Confidence: 0.8545021414756775
+
+00:20:00.040 --> 00:20:03.366
+So, so, so humans actually have a very different preference,
+
+NOTE Confidence: 0.8545021414756775
+
+00:20:03.422 --> 00:20:05.640
+like how fast the other person responds.
+
+NOTE Confidence: 0.9419173002243042
+
+00:20:05.920 --> 00:20:06.920
+So I'm from Vietnam.
+
+NOTE Confidence: 0.8213486671447754
+
+00:20:07.280 --> 00:20:11.314
+So in Vietnam people actually like prefer the other person
+
+NOTE Confidence: 0.8213486671447754
+
+00:20:11.384 --> 00:20:13.679
+to give some time before respond.
+
+NOTE Confidence: 0.8032938241958618
+
+00:20:14.040 --> 00:20:16.180
+So, so I have a niece who is like 10
+
+NOTE Confidence: 0.8032938241958618
+
+00:20:16.240 --> 00:20:19.034
+years old and I have my godmother who's like 70
+
+NOTE Confidence: 0.8032938241958618
+
+00:20:19.094 --> 00:20:20.640
+years old, American woman.
+
+NOTE Confidence: 0.8731513023376465
+
+00:20:20.880 --> 00:20:22.649
+So I tried to put them on a call and
+
+NOTE Confidence: 0.8731513023376465
+
+00:20:22.698 --> 00:20:24.320
+it was like the worst experience.
+
+NOTE Confidence: 0.7193360328674316
+
+00:20:24.800 --> 00:20:26.735
+It was so, so the thing so like when my
+
+NOTE Confidence: 0.7193360328674316
+
+00:20:26.785 --> 00:20:28.920
+godmother, she tried to be friendly, right?
+
+NOTE Confidence: 0.9069511294364929
+
+00:20:28.920 --> 00:20:31.280
+So, so when my niece took time to respond, my
+
+NOTE Confidence: 0.9069511294364929
+
+00:20:31.332 --> 00:20:34.060
+godmother was like, OK, she is shy, she doesn't know
+
+NOTE Confidence: 0.9069511294364929
+
+00:20:34.112 --> 00:20:36.839
+how to talk and she didn't want the awkward silence.
+
+NOTE Confidence: 0.695849597454071
+
+00:20:37.000 --> 00:20:38.701
+So she just kept like, if the my niece like
+
+NOTE Confidence: 0.695849597454071
+
+00:20:38.740 --> 00:20:40.600
+went a little bit long and didn't say anything.
+
+NOTE Confidence: 0.8134044408798218
+
+00:20:41.200 --> 00:20:43.760
+My godmother was like kept on asking questions, right?
+
+NOTE Confidence: 0.9021065831184387
+
+00:20:43.960 --> 00:20:46.162
+And then after that my niece told me it's like,
+
+NOTE Confidence: 0.9021065831184387
+
+00:20:46.209 --> 00:20:48.365
+wow, she didn't give me any time to respond at
+
+NOTE Confidence: 0.9021065831184387
+
+00:20:48.412 --> 00:20:48.600
+all.
+
+NOTE Confidence: 0.7769798636436462
+
+00:20:48.880 --> 00:20:51.395
+So it turns out it's actually a well known study
+
+NOTE Confidence: 0.7769798636436462
+
+00:20:51.448 --> 00:20:51.919
+about it.
+
+NOTE Confidence: 0.807513952255249
+
+00:20:52.640 --> 00:20:55.468
+It's about like in the West, people actually like prefer
+
+NOTE Confidence: 0.807513952255249
+
+00:20:55.518 --> 00:20:57.639
+conversation respond rate to be very fast.
+
+NOTE Confidence: 0.43759655952453613
+
+00:20:57.640 --> 00:20:59.040
+Maybe it's only 80 milliseconds.
+
+NOTE Confidence: 0.8902340531349182
+
+00:20:59.280 --> 00:21:02.315
+Like if I finish, if you finish talking, you expect
+
+NOTE Confidence: 0.8902340531349182
+
+00:21:02.374 --> 00:21:04.159
+me to respond very, very fast.
+
+NOTE Confidence: 0.741291344165802
+
+00:21:04.359 --> 00:21:07.368
+Whereas in the, in the some culture like Vietnam, like
+
+NOTE Confidence: 0.741291344165802
+
+00:21:07.424 --> 00:21:10.710
+after you finished, I finished you finish talking like you,
+
+NOTE Confidence: 0.741291344165802
+
+00:21:10.766 --> 00:21:13.830
+you give the person maybe like 200 milliseconds so that
+
+NOTE Confidence: 0.741291344165802
+
+00:21:13.886 --> 00:21:16.504
+you can so that the other persons can make sure
+
+NOTE Confidence: 0.741291344165802
+
+00:21:16.560 --> 00:21:19.680
+the other person has finished and formulates a response.
+
+NOTE Confidence: 0.7230214476585388
+
+00:21:19.920 --> 00:21:21.926
+So all of these nuances you need to be able
+
+NOTE Confidence: 0.7230214476585388
+
+00:21:21.973 --> 00:21:23.279
+to understand the customers.
+
+NOTE Confidence: 0.7574880719184875
+
+00:21:23.280 --> 00:21:26.040
+So to build a product that work quite well.
+
+NOTE Confidence: 0.6564094424247742
+
+00:21:27.560 --> 00:21:30.497
+So I guess part of this expertise, expertise that part
+
+NOTE Confidence: 0.6564094424247742
+
+00:21:30.551 --> 00:21:34.087
+of the mode like it's more like user understanding, understanding
+
+NOTE Confidence: 0.6564094424247742
+
+00:21:34.142 --> 00:21:35.719
+what who you're building for.
+
+NOTE Confidence: 0.8092895150184631
+
+00:21:36.640 --> 00:21:40.025
+Another thing is like the human AI interactions and since
+
+NOTE Confidence: 0.8092895150184631
+
+00:21:40.084 --> 00:21:42.994
+we had Microsoft built, I want to talk about like
+
+NOTE Confidence: 0.8092895150184631
+
+00:21:43.053 --> 00:21:45.132
+a lot of like a lot of you are like
+
+NOTE Confidence: 0.8092895150184631
+
+00:21:45.191 --> 00:21:46.320
+software engineers.
+
+NOTE Confidence: 0.8328068852424622
+
+00:21:46.640 --> 00:21:48.256
+How many of you are using AI to write code
+
+NOTE Confidence: 0.8328068852424622
+
+00:21:48.295 --> 00:21:48.680
+right now?
+
+NOTE Confidence: 0.925469696521759
+
+00:21:50.440 --> 00:21:51.640
+Almost all of you, yeah.
+
+NOTE Confidence: 0.8433452844619751
+
+00:21:52.160 --> 00:21:54.200
+How many of you using it via the terminal?
+
+NOTE Confidence: 0.819720983505249
+
+00:21:55.840 --> 00:21:56.600
+Some of you are right.
+
+NOTE Confidence: 0.7310723662376404
+
+00:21:57.359 --> 00:22:00.257
+How many of you use it for your like ID
+
+NOTE Confidence: 0.7310723662376404
+
+00:22:00.331 --> 00:22:02.039
+like how many use both?
+
+NOTE Confidence: 0.5171971321105957
+
+00:22:03.520 --> 00:22:04.720
+OK well most of you use both.
+
+NOTE Confidence: 0.8141590356826782
+
+00:22:05.040 --> 00:22:07.625
+So when I was looking it's like terminal is a
+
+NOTE Confidence: 0.8141590356826782
+
+00:22:07.683 --> 00:22:09.120
+very interesting product.
+
+NOTE Confidence: 0.8247841000556946
+
+00:22:09.480 --> 00:22:12.072
+So terminal I think of it as a more legacy
+
+NOTE Confidence: 0.8247841000556946
+
+00:22:12.134 --> 00:22:15.405
+product because do you think that terminal is easy to
+
+NOTE Confidence: 0.8247841000556946
+
+00:22:15.467 --> 00:22:16.639
+use or hard to use?
+
+NOTE Confidence: 0.6433049440383911
+
+00:22:18.000 --> 00:22:21.228
+Who think is terminals are easy to use one person,
+
+NOTE Confidence: 0.6433049440383911
+
+00:22:21.292 --> 00:22:21.680
+right?
+
+NOTE Confidence: 0.7124384045600891
+
+00:22:21.680 --> 00:22:22.280
+Few people.
+
+NOTE Confidence: 0.6628625392913818
+
+00:22:22.600 --> 00:22:24.712
+So terminal as like so So when I start using
+
+NOTE Confidence: 0.6628625392913818
+
+00:22:24.760 --> 00:22:27.880
+terminal for like writing code, it's like pretty annoying, right?
+
+NOTE Confidence: 0.7949343919754028
+
+00:22:27.880 --> 00:22:30.519
+It's like it's very hard to move the cursor around
+
+NOTE Confidence: 0.7949343919754028
+
+00:22:30.571 --> 00:22:32.999
+you kind of just like throw an image in there.
+
+NOTE Confidence: 0.7107250690460205
+
+00:22:33.000 --> 00:22:34.909
+Like it's like if you see like a user build
+
+NOTE Confidence: 0.7107250690460205
+
+00:22:34.953 --> 00:22:37.439
+website, it's like, OK, this is like horrible interface.
+
+NOTE Confidence: 0.737018346786499
+
+00:22:37.640 --> 00:22:39.520
+I want I just see that like this is terrible,
+
+NOTE Confidence: 0.737018346786499
+
+00:22:39.562 --> 00:22:41.360
+but I cannot easily drop an image in there.
+
+NOTE Confidence: 0.7392432689666748
+
+00:22:41.920 --> 00:22:44.543
+And it's make me think like, why are terminals so
+
+NOTE Confidence: 0.7392432689666748
+
+00:22:44.597 --> 00:22:45.239
+hard to use?
+
+NOTE Confidence: 0.686405599117279
+
+00:22:45.600 --> 00:22:47.948
+And it's make me think of like, OK terminals, actually
+
+NOTE Confidence: 0.686405599117279
+
+00:22:47.992 --> 00:22:50.775
+very powerful terminals like the control plate for the computer,
+
+NOTE Confidence: 0.686405599117279
+
+00:22:50.819 --> 00:22:51.080
+right?
+
+NOTE Confidence: 0.8106441497802734
+
+00:22:51.080 --> 00:22:53.680
+It's very easy to do stupid thing there.
+
+NOTE Confidence: 0.753944456577301
+
+00:22:53.920 --> 00:22:55.820
+Like you can remove RF like and remove the whole
+
+NOTE Confidence: 0.753944456577301
+
+00:22:55.860 --> 00:22:57.840
+operating system and you would be like in trouble.
+
+NOTE Confidence: 0.8815426826477051
+
+00:22:58.200 --> 00:23:00.792
+So terminals in a way was designed to be hard
+
+NOTE Confidence: 0.8815426826477051
+
+00:23:00.850 --> 00:23:03.557
+to use on purpose so that people who don't know
+
+NOTE Confidence: 0.8815426826477051
+
+00:23:03.615 --> 00:23:06.956
+what they are doing don't do something stupid by accident,
+
+NOTE Confidence: 0.8815426826477051
+
+00:23:07.014 --> 00:23:07.359
+right?
+
+NOTE Confidence: 0.7403064370155334
+
+00:23:07.840 --> 00:23:10.212
+So ID, on the other hand, was just like makes
+
+NOTE Confidence: 0.7403064370155334
+
+00:23:10.265 --> 00:23:11.319
+a lot easier to use.
+
+NOTE Confidence: 0.7998340725898743
+
+00:23:11.920 --> 00:23:14.028
+But then I think like I thought about it, it's
+
+NOTE Confidence: 0.7998340725898743
+
+00:23:14.074 --> 00:23:16.367
+like, there's not really a reason why they need to
+
+NOTE Confidence: 0.7998340725898743
+
+00:23:16.412 --> 00:23:17.880
+be in a separate product, right?
+
+NOTE Confidence: 0.789029061794281
+
+00:23:18.160 --> 00:23:19.937
+But one of them is like ease of use and
+
+NOTE Confidence: 0.789029061794281
+
+00:23:19.983 --> 00:23:22.079
+the other like make it like harder to control.
+
+NOTE Confidence: 0.8072596788406372
+
+00:23:22.400 --> 00:23:24.211
+So so I think of like, what if we have
+
+NOTE Confidence: 0.8072596788406372
+
+00:23:24.259 --> 00:23:25.879
+something that's like as a hybrid?
+
+NOTE Confidence: 0.7756578326225281
+
+00:23:26.240 --> 00:23:28.230
+And I think it's like a lot of those codecs
+
+NOTE Confidence: 0.7756578326225281
+
+00:23:28.276 --> 00:23:30.868
+desktop or like cloud code desktop or like the different
+
+NOTE Confidence: 0.7756578326225281
+
+00:23:30.915 --> 00:23:33.275
+desktop from like design should be a mixture of it,
+
+NOTE Confidence: 0.7756578326225281
+
+00:23:33.322 --> 00:23:33.599
+right?
+
+NOTE Confidence: 0.6937929391860962
+
+00:23:33.600 --> 00:23:35.897
+Like it has an ease of use of like ID,
+
+NOTE Confidence: 0.6937929391860962
+
+00:23:35.958 --> 00:23:38.558
+but then Even so, like allow it to access a
+
+NOTE Confidence: 0.6937929391860962
+
+00:23:38.619 --> 00:23:41.582
+file systems the ways that a terminal can so that
+
+NOTE Confidence: 0.6937929391860962
+
+00:23:41.642 --> 00:23:43.880
+it they give them more power of that.
+
+NOTE Confidence: 0.6677561402320862
+
+00:23:44.080 --> 00:23:48.184
+And another thing is about people have quickly realized that
+
+NOTE Confidence: 0.6677561402320862
+
+00:23:48.253 --> 00:23:51.811
+like which also give like we quickly realize this is
+
+NOTE Confidence: 0.6677561402320862
+
+00:23:51.879 --> 00:23:55.779
+like, have you ever walked around with your computer open
+
+NOTE Confidence: 0.6677561402320862
+
+00:23:55.847 --> 00:23:59.199
+because of code Codex is running on the computer?
+
+NOTE Confidence: 0.7597444653511047
+
+00:24:00.160 --> 00:24:01.740
+Yeah, I think I walk around the airport and when
+
+NOTE Confidence: 0.7597444653511047
+
+00:24:01.773 --> 00:24:03.715
+I see somebody walking around the computer open, it's like,
+
+NOTE Confidence: 0.7597444653511047
+
+00:24:03.748 --> 00:24:04.999
+OK, that person has something running.
+
+NOTE Confidence: 0.8509271740913391
+
+00:24:05.840 --> 00:24:08.265
+So there's no reason why you need to do that,
+
+NOTE Confidence: 0.8509271740913391
+
+00:24:08.319 --> 00:24:11.445
+right, Because everything about all the work is being done
+
+NOTE Confidence: 0.8509271740913391
+
+00:24:11.499 --> 00:24:12.199
+on the cloud.
+
+NOTE Confidence: 0.8559858202934265
+
+00:24:12.240 --> 00:24:14.433
+Like there's no reason why you need to keep the
+
+NOTE Confidence: 0.8559858202934265
+
+00:24:14.479 --> 00:24:15.599
+computer open to run it.
+
+NOTE Confidence: 0.7336568236351013
+
+00:24:16.040 --> 00:24:19.110
+But then so there's a lot of tools to make
+
+NOTE Confidence: 0.7336568236351013
+
+00:24:19.183 --> 00:24:22.546
+it easy for you to access, to make your things
+
+NOTE Confidence: 0.7336568236351013
+
+00:24:22.619 --> 00:24:24.519
+run without your computer.
+
+NOTE Confidence: 0.5944697856903076
+
+00:24:24.520 --> 00:24:27.000
+So somebody makes the open client early day.
+
+NOTE Confidence: 0.8064579963684082
+
+00:24:27.080 --> 00:24:28.720
+A lot of people bought some MacBook mini.
+
+NOTE Confidence: 0.8759506344795227
+
+00:24:29.160 --> 00:24:31.201
+So the idea is that you have a server that
+
+NOTE Confidence: 0.8759506344795227
+
+00:24:31.249 --> 00:24:33.485
+hosts your agent so that you can just leave it
+
+NOTE Confidence: 0.8759506344795227
+
+00:24:33.533 --> 00:24:34.360
+run all the time.
+
+NOTE Confidence: 0.7632426619529724
+
+00:24:34.359 --> 00:24:36.546
+So you don't need to do the computer, But and
+
+NOTE Confidence: 0.7632426619529724
+
+00:24:36.595 --> 00:24:39.219
+after that it creates the whole challenge of like, OK,
+
+NOTE Confidence: 0.7632426619529724
+
+00:24:39.267 --> 00:24:40.919
+you need to like create a sandbox.
+
+NOTE Confidence: 0.5333948731422424
+
+00:24:41.040 --> 00:24:43.760
+You need to like to recreate the environment.
+
+NOTE Confidence: 0.8766827583312988
+
+00:24:44.000 --> 00:24:45.479
+So now you have to be on the cloud so
+
+NOTE Confidence: 0.8766827583312988
+
+00:24:45.519 --> 00:24:47.079
+you can access from a different device.
+
+NOTE Confidence: 0.7024162411689758
+
+00:24:47.080 --> 00:24:49.372
+And there's some people who create like mobile apps, so
+
+NOTE Confidence: 0.7024162411689758
+
+00:24:49.414 --> 00:24:51.456
+you can control the cloud code or codecs from the
+
+NOTE Confidence: 0.7024162411689758
+
+00:24:51.498 --> 00:24:52.040
+mobile phone.
+
+NOTE Confidence: 0.6661949157714844
+
+00:24:52.240 --> 00:24:54.818
+Somebody like actually one of my fun project was like,
+
+NOTE Confidence: 0.6661949157714844
+
+00:24:54.866 --> 00:24:57.206
+I can actually like control my cloud code from my
+
+NOTE Confidence: 0.6661949157714844
+
+00:24:57.253 --> 00:24:58.399
+S or my my telegram bot.
+
+NOTE Confidence: 0.5146597027778625
+
+00:24:58.680 --> 00:25:00.272
+So you can send me like message it, OK, now
+
+NOTE Confidence: 0.5146597027778625
+
+00:25:00.309 --> 00:25:00.679
+it's done.
+
+NOTE Confidence: 0.6342806220054626
+
+00:25:00.680 --> 00:25:01.800
+They ask me, it's no question.
+
+NOTE Confidence: 0.7335350513458252
+
+00:25:01.800 --> 00:25:02.960
+They go, OK, do it, do it.
+
+NOTE Confidence: 0.5746965408325195
+
+00:25:03.280 --> 00:25:05.218
+So I think like all of that is like human
+
+NOTE Confidence: 0.5746965408325195
+
+00:25:05.265 --> 00:25:05.879
+interactions.
+
+NOTE Confidence: 0.7266287207603455
+
+00:25:05.880 --> 00:25:07.440
+It's like quite interesting.
+
+NOTE Confidence: 0.8526164293289185
+
+00:25:08.240 --> 00:25:11.600
+Another challenge, another example with like GitHub.
+
+NOTE Confidence: 0.7178352475166321
+
+00:25:12.560 --> 00:25:15.032
+So you, I imagine just like a lot of you
+
+NOTE Confidence: 0.7178352475166321
+
+00:25:15.094 --> 00:25:18.679
+pre use GitHub for like code review collaborations, right?
+
+NOTE Confidence: 0.7225515246391296
+
+00:25:19.560 --> 00:25:22.158
+And one thing I noticed with like code review is
+
+NOTE Confidence: 0.7225515246391296
+
+00:25:22.212 --> 00:25:24.920
+that people don't review code the old way anymore.
+
+NOTE Confidence: 0.7447046637535095
+
+00:25:25.280 --> 00:25:28.225
+So I worked with a team recently and the most
+
+NOTE Confidence: 0.7447046637535095
+
+00:25:28.290 --> 00:25:31.498
+senior person told me that he still review on the
+
+NOTE Confidence: 0.7447046637535095
+
+00:25:31.563 --> 00:25:33.199
+code line by line, right?
+
+NOTE Confidence: 0.845859706401825
+
+00:25:33.359 --> 00:25:35.537
+Which is like shocking to me because it's like sounds
+
+NOTE Confidence: 0.845859706401825
+
+00:25:35.578 --> 00:25:36.399
+so painful nowadays.
+
+NOTE Confidence: 0.8087646961212158
+
+00:25:36.400 --> 00:25:38.840
+Like I don't read code line by line anymore, right?
+
+NOTE Confidence: 0.6063700914382935
+
+00:25:38.840 --> 00:25:40.040
+This is just too painful.
+
+NOTE Confidence: 0.8274350762367249
+
+00:25:40.280 --> 00:25:42.604
+But he said he did it because he want to
+
+NOTE Confidence: 0.8274350762367249
+
+00:25:42.662 --> 00:25:45.683
+go to give feedback to junior engineers so that they
+
+NOTE Confidence: 0.8274350762367249
+
+00:25:45.741 --> 00:25:48.240
+can learn, OK, this is not good or not bad.
+
+NOTE Confidence: 0.47678902745246887
+
+00:25:48.560 --> 00:25:49.920
+And then I went to the engineers.
+
+NOTE Confidence: 0.6886943578720093
+
+00:25:49.920 --> 00:25:52.680
+I was like, OK, do you read his reviews?
+
+NOTE Confidence: 0.9518936276435852
+
+00:25:53.120 --> 00:25:54.040
+And they were like, no.
+
+NOTE Confidence: 0.739989697933197
+
+00:25:54.800 --> 00:25:57.580
+And the reason he's told me, they told me that
+
+NOTE Confidence: 0.739989697933197
+
+00:25:57.640 --> 00:26:01.629
+because the feedback is not actionable because the senior engineer
+
+NOTE Confidence: 0.739989697933197
+
+00:26:01.689 --> 00:26:04.530
+will say OK, do not write this FL function like
+
+NOTE Confidence: 0.739989697933197
+
+00:26:04.590 --> 00:26:05.920
+this, write like that.
+
+NOTE Confidence: 0.766281008720398
+
+00:26:06.280 --> 00:26:08.972
+But then those junior engineers are not the people who
+
+NOTE Confidence: 0.766281008720398
+
+00:26:09.022 --> 00:26:10.120
+write the code, right?
+
+NOTE Confidence: 0.8036637902259827
+
+00:26:10.119 --> 00:26:12.481
+Like it can't just, it can tell AI like, OK,
+
+NOTE Confidence: 0.8036637902259827
+
+00:26:12.535 --> 00:26:15.111
+don't write this thing, but it's not going to be
+
+NOTE Confidence: 0.8036637902259827
+
+00:26:15.164 --> 00:26:16.560
+applicable for the future.
+
+NOTE Confidence: 0.6766956448554993
+
+00:26:16.880 --> 00:26:20.873
+So once the engineers want feedback on it's like how
+
+NOTE Confidence: 0.6766956448554993
+
+00:26:20.950 --> 00:26:24.560
+to write the instructions for the for the code.
+
+NOTE Confidence: 0.8524791598320007
+
+00:26:24.960 --> 00:26:27.108
+And it's something I feel like GitHub is not quite
+
+NOTE Confidence: 0.8524791598320007
+
+00:26:27.151 --> 00:26:28.440
+designed for right now, right?
+
+NOTE Confidence: 0.7530064582824707
+
+00:26:28.480 --> 00:26:30.989
+Because I think I with the new AI coding, the
+
+NOTE Confidence: 0.7530064582824707
+
+00:26:31.045 --> 00:26:34.113
+artifact is no longer the code like GitHub was designed
+
+NOTE Confidence: 0.7530064582824707
+
+00:26:34.169 --> 00:26:36.400
+around code as the main artifact, right?
+
+NOTE Confidence: 0.8246502876281738
+
+00:26:36.400 --> 00:26:38.560
+Like you, you have the code base.
+
+NOTE Confidence: 0.8199849128723145
+
+00:26:38.560 --> 00:26:41.720
+People like protect the code base.
+
+NOTE Confidence: 0.6961209177970886
+
+00:26:43.120 --> 00:26:44.600
+The code is the main artifact.
+
+NOTE Confidence: 0.7914193868637085
+
+00:26:44.800 --> 00:26:47.326
+But like nowadays with AI coding, like the main artifact
+
+NOTE Confidence: 0.7914193868637085
+
+00:26:47.371 --> 00:26:48.680
+actually is the instructions.
+
+NOTE Confidence: 0.8477136492729187
+
+00:26:48.960 --> 00:26:50.680
+Like how do you like the specs?
+
+NOTE Confidence: 0.5207707285881042
+
+00:26:50.680 --> 00:26:53.280
+I think some people call it specs driven development.
+
+NOTE Confidence: 0.8088989853858948
+
+00:26:53.480 --> 00:26:55.626
+It's like, how do you like, if you have a
+
+NOTE Confidence: 0.8088989853858948
+
+00:26:55.678 --> 00:26:57.772
+good specs, it can give it to AI, it can
+
+NOTE Confidence: 0.8088989853858948
+
+00:26:57.824 --> 00:27:00.965
+generate code maybe even better than like what you currently
+
+NOTE Confidence: 0.8088989853858948
+
+00:27:01.018 --> 00:27:01.280
+have.
+
+NOTE Confidence: 0.8060005903244019
+
+00:27:02.240 --> 00:27:04.217
+So, so yeah, so, so I think it's a lot
+
+NOTE Confidence: 0.8060005903244019
+
+00:27:04.269 --> 00:27:07.339
+of work, like thinking about designing like, OK, what could
+
+NOTE Confidence: 0.8060005903244019
+
+00:27:07.391 --> 00:27:09.524
+be the workflow for us to work with AI so
+
+NOTE Confidence: 0.8060005903244019
+
+00:27:09.576 --> 00:27:12.022
+that it can be more meaningful because a lot of
+
+NOTE Confidence: 0.8060005903244019
+
+00:27:12.074 --> 00:27:14.520
+the workflows that we have nowadays are legacy.
+
+NOTE Confidence: 0.7415012717247009
+
+00:27:15.120 --> 00:27:17.600
+So I guess it's like also part like human collaborations.
+
+NOTE Confidence: 0.8168463706970215
+
+00:27:17.600 --> 00:27:20.872
+It's like, how do we get different people to work
+
+NOTE Confidence: 0.8168463706970215
+
+00:27:20.939 --> 00:27:24.078
+on a code base effectively with AI and the loop
+
+NOTE Confidence: 0.8168463706970215
+
+00:27:24.145 --> 00:27:24.680
+as well.
+
+NOTE Confidence: 0.6086530685424805
+
+00:27:25.560 --> 00:27:30.119
+And another category of proof of problems is extremely exciting
+
+NOTE Confidence: 0.6086530685424805
+
+00:27:30.192 --> 00:27:33.159
+is the human AI environment interactions.
+
+NOTE Confidence: 0.9016035795211792
+
+00:27:33.520 --> 00:27:36.320
+So to make AI work better in production, right?
+
+NOTE Confidence: 0.8492632508277893
+
+00:27:36.840 --> 00:27:39.527
+One way to go is to make AI better and
+
+NOTE Confidence: 0.8492632508277893
+
+00:27:39.597 --> 00:27:40.800
+do things better.
+
+NOTE Confidence: 0.742141842842102
+
+00:27:41.200 --> 00:27:43.771
+Another way to go is to make the world an
+
+NOTE Confidence: 0.742141842842102
+
+00:27:43.834 --> 00:27:46.280
+easy environment for AI to operate int.
+
+NOTE Confidence: 0.8288956880569458
+
+00:27:46.960 --> 00:27:49.175
+So I do work also like one thing with AI
+
+NOTE Confidence: 0.8288956880569458
+
+00:27:49.230 --> 00:27:51.999
+coding is that people have noticed that AI works a
+
+NOTE Confidence: 0.8288956880569458
+
+00:27:52.055 --> 00:27:54.159
+lot better with new code bases, right?
+
+NOTE Confidence: 0.7456148266792297
+
+00:27:54.359 --> 00:27:56.179
+Like if we have a new code base, AI can
+
+NOTE Confidence: 0.7456148266792297
+
+00:27:56.226 --> 00:27:57.159
+just like do things.
+
+NOTE Confidence: 0.7982326745986938
+
+00:27:57.520 --> 00:28:00.960
+It also work a lot better with modular code base.
+
+NOTE Confidence: 0.6711808443069458
+
+00:28:01.200 --> 00:28:03.193
+Like OK, if you get it's like, OK, just build
+
+NOTE Confidence: 0.6711808443069458
+
+00:28:03.238 --> 00:28:04.080
+this new functions.
+
+NOTE Confidence: 0.8773359656333923
+
+00:28:04.080 --> 00:28:05.967
+It's a lot easier than trying to fix the old
+
+NOTE Confidence: 0.8773359656333923
+
+00:28:06.010 --> 00:28:06.439
+code base.
+
+NOTE Confidence: 0.7925306558609009
+
+00:28:06.840 --> 00:28:10.815
+So there's a whole new category of like consulting firms
+
+NOTE Confidence: 0.7925306558609009
+
+00:28:10.886 --> 00:28:14.578
+that like go and retrofit the big existing code base
+
+NOTE Confidence: 0.7925306558609009
+
+00:28:14.649 --> 00:28:18.199
+to make them more more friendly to like AI coding.
+
+NOTE Confidence: 0.8385236263275146
+
+00:28:18.200 --> 00:28:21.319
+So make it more modular with like different like separate
+
+NOTE Confidence: 0.8385236263275146
+
+00:28:21.373 --> 00:28:24.438
+and massive mono repo into like smaller repos and things
+
+NOTE Confidence: 0.8385236263275146
+
+00:28:24.492 --> 00:28:25.040
+like that.
+
+NOTE Confidence: 0.6552016735076904
+
+00:28:25.800 --> 00:28:28.720
+And another example is like they also like API.
+
+NOTE Confidence: 0.7694162726402283
+
+00:28:29.119 --> 00:28:31.373
+So in the past, like a lot of the tools
+
+NOTE Confidence: 0.7694162726402283
+
+00:28:31.431 --> 00:28:34.377
+and apps were built for humans and what humans want
+
+NOTE Confidence: 0.7694162726402283
+
+00:28:34.435 --> 00:28:36.920
+are like are like G or like the GUI, right?
+
+NOTE Confidence: 0.828719437122345
+
+00:28:36.920 --> 00:28:40.400
+Like the graphic user interface, because humans were very visual.
+
+NOTE Confidence: 0.6639720797538757
+
+00:28:40.600 --> 00:28:42.107
+We want to go to like if you go to
+
+NOTE Confidence: 0.6639720797538757
+
+00:28:42.152 --> 00:28:44.369
+Salesforce, we want to open the website, We go and
+
+NOTE Confidence: 0.6639720797538757
+
+00:28:44.413 --> 00:28:46.497
+like see, oh, like here's the button we want to
+
+NOTE Confidence: 0.6639720797538757
+
+00:28:46.541 --> 00:28:48.360
+click and we want the color to look nice.
+
+NOTE Confidence: 0.6497188806533813
+
+00:28:48.360 --> 00:28:49.440
+We want things to represent it.
+
+NOTE Confidence: 0.7788057923316956
+
+00:28:49.720 --> 00:28:52.298
+But AI actually do not, doesn't do very well with
+
+NOTE Confidence: 0.7788057923316956
+
+00:28:52.351 --> 00:28:53.719
+like on the visual, right?
+
+NOTE Confidence: 0.7031244039535522
+
+00:28:53.720 --> 00:28:55.881
+Like if you ask AI to do Salesforce thing, you
+
+NOTE Confidence: 0.7031244039535522
+
+00:28:55.928 --> 00:28:58.043
+would really want to call a bunch of like API
+
+NOTE Confidence: 0.7031244039535522
+
+00:28:58.090 --> 00:28:58.559
+functions.
+
+NOTE Confidence: 0.8345674872398376
+
+00:28:58.760 --> 00:29:01.551
+So we see that a lot of like companies like
+
+NOTE Confidence: 0.8345674872398376
+
+00:29:01.616 --> 00:29:04.603
+trying to move a lot more of their design into
+
+NOTE Confidence: 0.8345674872398376
+
+00:29:04.668 --> 00:29:07.719
+like API design instead of like the GUI design.
+
+NOTE Confidence: 0.7563371062278748
+
+00:29:08.840 --> 00:29:11.094
+And I think it's very curious to see like the
+
+NOTE Confidence: 0.7563371062278748
+
+00:29:11.144 --> 00:29:13.699
+usage of like for instable, like let's say you have
+
+NOTE Confidence: 0.7563371062278748
+
+00:29:13.750 --> 00:29:16.154
+a, a tool like Salesforce, you can see there's a
+
+NOTE Confidence: 0.7563371062278748
+
+00:29:16.205 --> 00:29:18.660
+usage and a Salesforce, how much of that was used
+
+NOTE Confidence: 0.7563371062278748
+
+00:29:18.710 --> 00:29:20.714
+by human and how much is used by you can
+
+NOTE Confidence: 0.7563371062278748
+
+00:29:20.764 --> 00:29:23.520
+see the distribution changes like a lot like over time.
+
+NOTE Confidence: 0.7795056104660034
+
+00:29:24.120 --> 00:29:25.680
+Another thing, more physical world.
+
+NOTE Confidence: 0.8156534433364868
+
+00:29:26.120 --> 00:29:28.615
+So I work a lot with robotics nowadays and a
+
+NOTE Confidence: 0.8156534433364868
+
+00:29:28.672 --> 00:29:31.395
+lot of time people, a lot of the argument people
+
+NOTE Confidence: 0.8156534433364868
+
+00:29:31.451 --> 00:29:34.458
+have against general purpose robot is like, why do we
+
+NOTE Confidence: 0.8156534433364868
+
+00:29:34.514 --> 00:29:37.634
+need a robot that can do everything and work everywhere
+
+NOTE Confidence: 0.8156534433364868
+
+00:29:37.691 --> 00:29:40.527
+instead of just change my house or change the road
+
+NOTE Confidence: 0.8156534433364868
+
+00:29:40.584 --> 00:29:43.079
+to be better, like easier for robots, right.
+
+NOTE Confidence: 0.7036065459251404
+
+00:29:43.840 --> 00:29:46.880
+So one example is like, it's a food delivery robot.
+
+NOTE Confidence: 0.8490047454833984
+
+00:29:46.880 --> 00:29:49.075
+Do you know this little food delivery robot that like
+
+NOTE Confidence: 0.8490047454833984
+
+00:29:49.117 --> 00:29:51.022
+move around, I think in the South, but you see
+
+NOTE Confidence: 0.8490047454833984
+
+00:29:51.064 --> 00:29:51.519
+them a lot.
+
+NOTE Confidence: 0.8376786708831787
+
+00:29:52.080 --> 00:29:52.800
+They're very cute.
+
+NOTE Confidence: 0.8395164608955383
+
+00:29:52.880 --> 00:29:53.600
+They're very tiny.
+
+NOTE Confidence: 0.7661359906196594
+
+00:29:53.600 --> 00:29:54.320
+They shot like this.
+
+NOTE Confidence: 0.7906855940818787
+
+00:29:54.320 --> 00:29:55.955
+So you can put so that you can put the
+
+NOTE Confidence: 0.7906855940818787
+
+00:29:55.998 --> 00:29:57.892
+foot inside and it take you to your home and
+
+NOTE Confidence: 0.7906855940818787
+
+00:29:57.935 --> 00:29:58.280
+open it.
+
+NOTE Confidence: 0.5179181098937988
+
+00:29:58.280 --> 00:29:59.840
+And it's, it's, it's adorable.
+
+NOTE Confidence: 0.8270274996757507
+
+00:30:00.400 --> 00:30:02.684
+So I was talking to the team as asking like,
+
+NOTE Confidence: 0.8270274996757507
+
+00:30:02.736 --> 00:30:05.176
+so, So what is the weird challenge you had with
+
+NOTE Confidence: 0.8270274996757507
+
+00:30:05.228 --> 00:30:05.799
+this robot?
+
+NOTE Confidence: 0.868746280670166
+
+00:30:06.160 --> 00:30:08.255
+And they were like, Oh, the biggest challenge was the
+
+NOTE Confidence: 0.868746280670166
+
+00:30:08.294 --> 00:30:09.560
+robot couldn't cross the street.
+
+NOTE Confidence: 0.7760571241378784
+
+00:30:10.400 --> 00:30:12.250
+So, so when the, when the robot go in the
+
+NOTE Confidence: 0.7760571241378784
+
+00:30:12.295 --> 00:30:14.281
+street and it need to like the light to turn
+
+NOTE Confidence: 0.7760571241378784
+
+00:30:14.326 --> 00:30:16.357
+green and a lot of street light need to press
+
+NOTE Confidence: 0.7760571241378784
+
+00:30:16.402 --> 00:30:18.298
+a button so that you so that the light can
+
+NOTE Confidence: 0.7760571241378784
+
+00:30:18.343 --> 00:30:18.839
+turn green.
+
+NOTE Confidence: 0.9178361296653748
+
+00:30:19.120 --> 00:30:21.400
+But like the robots do not have arms.
+
+NOTE Confidence: 0.8948314189910889
+
+00:30:21.400 --> 00:30:22.240
+It's very tiny.
+
+NOTE Confidence: 0.808265209197998
+
+00:30:22.600 --> 00:30:25.410
+So, so we cannot press a button to like cross
+
+NOTE Confidence: 0.808265209197998
+
+00:30:25.472 --> 00:30:26.159
+the street.
+
+NOTE Confidence: 0.8367109298706055
+
+00:30:26.520 --> 00:30:29.420
+So somebody has an interesting innovation of like, if the
+
+NOTE Confidence: 0.8367109298706055
+
+00:30:29.471 --> 00:30:31.659
+robot can go up to a pedestrian and ask the
+
+NOTE Confidence: 0.8367109298706055
+
+00:30:31.710 --> 00:30:34.000
+person, hey, can you press the button for me?
+
+NOTE Confidence: 0.636564314365387
+
+00:30:34.280 --> 00:30:35.480
+There was some video of it online.
+
+NOTE Confidence: 0.8123341798782349
+
+00:30:35.480 --> 00:30:37.280
+And the pedestrian was like, what is happening?
+
+NOTE Confidence: 0.7664676308631897
+
+00:30:37.280 --> 00:30:39.264
+Like this robot asking me to do manual labor for
+
+NOTE Confidence: 0.7664676308631897
+
+00:30:39.305 --> 00:30:41.330
+it, like actually be asking you to do things, not
+
+NOTE Confidence: 0.7664676308631897
+
+00:30:41.372 --> 00:30:42.240
+the other way around.
+
+NOTE Confidence: 0.643428385257721
+
+00:30:44.000 --> 00:30:45.772
+But yeah, so so but like he told me, it's
+
+NOTE Confidence: 0.643428385257721
+
+00:30:45.816 --> 00:30:48.151
+like actually some cities they have this kind of thing
+
+NOTE Confidence: 0.643428385257721
+
+00:30:48.194 --> 00:30:50.400
+of like they called building that street light API.
+
+NOTE Confidence: 0.7230919599533081
+
+00:30:50.840 --> 00:30:53.377
+So that's all this robotics company can actually access the
+
+NOTE Confidence: 0.7230919599533081
+
+00:30:53.420 --> 00:30:55.441
+city street light and they can tell it when the
+
+NOTE Confidence: 0.7230919599533081
+
+00:30:55.484 --> 00:30:56.559
+lights on the turn green.
+
+NOTE Confidence: 0.85970538854599
+
+00:30:56.760 --> 00:30:59.138
+And instead of pressing the button for the light turn
+
+NOTE Confidence: 0.85970538854599
+
+00:30:59.182 --> 00:31:01.336
+green, you can actually call the API to turn the
+
+NOTE Confidence: 0.85970538854599
+
+00:31:01.381 --> 00:31:01.919
+light green.
+
+NOTE Confidence: 0.8263427019119263
+
+00:31:02.160 --> 00:31:05.590
+So that's another example of like getting the world to
+
+NOTE Confidence: 0.8263427019119263
+
+00:31:05.654 --> 00:31:07.560
+be more AI friendly long term.
+
+NOTE Confidence: 0.618183970451355
+
+00:31:07.560 --> 00:31:09.280
+I think this is a whole field of it.
+
+NOTE Confidence: 0.8053601384162903
+
+00:31:09.280 --> 00:31:11.800
+I think that not that we are still very early,
+
+NOTE Confidence: 0.8053601384162903
+
+00:31:11.855 --> 00:31:14.704
+because we still don't quite know what use cases are
+
+NOTE Confidence: 0.8053601384162903
+
+00:31:14.758 --> 00:31:17.169
+going to be possible and how we can make the
+
+NOTE Confidence: 0.8053601384162903
+
+00:31:17.224 --> 00:31:18.320
+world better for it.
+
+NOTE Confidence: 0.8395118117332458
+
+00:31:20.520 --> 00:31:23.920
+Another thing is it's still pretty important for the robot
+
+NOTE Confidence: 0.8395118117332458
+
+00:31:23.979 --> 00:31:25.680
+to operate in the real world.
+
+NOTE Confidence: 0.34031248092651367
+
+00:31:25.920 --> 00:31:28.360
+It's like irreversibility.
+
+NOTE Confidence: 0.7596811056137085
+
+00:31:28.720 --> 00:31:32.080
+So recently Cloud Code actually deleted my database.
+
+NOTE Confidence: 0.6876232624053955
+
+00:31:32.800 --> 00:31:35.055
+So so I asked you to do an app and
+
+NOTE Confidence: 0.6876232624053955
+
+00:31:35.122 --> 00:31:37.842
+it once you like deploy on a port like on
+
+NOTE Confidence: 0.6876232624053955
+
+00:31:37.908 --> 00:31:40.761
+a it's like a docker post grade port and it
+
+NOTE Confidence: 0.6876232624053955
+
+00:31:40.828 --> 00:31:43.879
+was and have another app only using that port.
+
+NOTE Confidence: 0.6819544434547424
+
+00:31:44.120 --> 00:31:46.409
+So Clark was like, I saw that the port is
+
+NOTE Confidence: 0.6819544434547424
+
+00:31:46.465 --> 00:31:46.800
+taken.
+
+NOTE Confidence: 0.7912600636482239
+
+00:31:46.800 --> 00:31:49.272
+Let me clear it so that we could deploy this
+
+NOTE Confidence: 0.7912600636482239
+
+00:31:49.328 --> 00:31:52.419
+app and then it completely deleted the other post grade
+
+NOTE Confidence: 0.7912600636482239
+
+00:31:52.475 --> 00:31:53.880
+database like wow, smart.
+
+NOTE Confidence: 0.8371336460113525
+
+00:31:54.480 --> 00:31:57.314
+So, so I was mighty amused, but I was not
+
+NOTE Confidence: 0.8371336460113525
+
+00:31:57.383 --> 00:32:00.840
+frustrated because I mean, I have a backup, right?
+
+NOTE Confidence: 0.7563101053237915
+
+00:32:01.360 --> 00:32:03.360
+So, so it was like, but it could happens, right?
+
+NOTE Confidence: 0.7966232299804688
+
+00:32:03.360 --> 00:32:05.880
+So for a lot of things that happens in on
+
+NOTE Confidence: 0.7966232299804688
+
+00:32:05.942 --> 00:32:09.077
+your computer, there's like a way for you to revert
+
+NOTE Confidence: 0.7966232299804688
+
+00:32:09.139 --> 00:32:09.999
+what happened.
+
+NOTE Confidence: 0.8606782555580139
+
+00:32:10.040 --> 00:32:11.440
+Like git is great for it.
+
+NOTE Confidence: 0.6548206210136414
+
+00:32:11.440 --> 00:32:14.248
+Like if you submit a PR, like make a committee,
+
+NOTE Confidence: 0.6548206210136414
+
+00:32:14.308 --> 00:32:16.519
+don't like reverse is the old commit.
+
+NOTE Confidence: 0.9238409399986267
+
+00:32:16.880 --> 00:32:19.232
+But for a lot of use cases, you don't have
+
+NOTE Confidence: 0.9238409399986267
+
+00:32:19.288 --> 00:32:19.960
+that luxury.
+
+NOTE Confidence: 0.7348572015762329
+
+00:32:20.280 --> 00:32:22.362
+So let's say you ask an AI agent to like
+
+NOTE Confidence: 0.7348572015762329
+
+00:32:22.414 --> 00:32:25.120
+submit a form right after you submit the form, maybe
+
+NOTE Confidence: 0.7348572015762329
+
+00:32:25.172 --> 00:32:27.619
+it's a form like the data now lives in somebody
+
+NOTE Confidence: 0.7348572015762329
+
+00:32:27.671 --> 00:32:28.399
+else's server.
+
+NOTE Confidence: 0.7623254656791687
+
+00:32:28.880 --> 00:32:31.843
+You cannot undo it unless you ask the server, the
+
+NOTE Confidence: 0.7623254656791687
+
+00:32:31.904 --> 00:32:33.839
+form owner to delete it for you.
+
+NOTE Confidence: 0.9070974588394165
+
+00:32:34.200 --> 00:32:35.440
+So you don't have that luxury.
+
+NOTE Confidence: 0.7972722053527832
+
+00:32:35.440 --> 00:32:37.978
+Like you cannot just like transfer money to another bank
+
+NOTE Confidence: 0.7972722053527832
+
+00:32:38.023 --> 00:32:40.471
+account and then ask the bank account to like transfer
+
+NOTE Confidence: 0.7972722053527832
+
+00:32:40.517 --> 00:32:40.879
+it back.
+
+NOTE Confidence: 0.7041745185852051
+
+00:32:40.880 --> 00:32:41.480
+They might.
+
+NOTE Confidence: 0.6961753964424133
+
+00:32:41.680 --> 00:32:43.646
+But if they are like a scam, the scammer they
+
+NOTE Confidence: 0.6961753964424133
+
+00:32:43.689 --> 00:32:44.519
+really want, right?
+
+NOTE Confidence: 0.762646496295929
+
+00:32:44.840 --> 00:32:47.864
+So there are a lot of like things that like,
+
+NOTE Confidence: 0.762646496295929
+
+00:32:47.933 --> 00:32:51.233
+as we give AI more power, more tools, it's just,
+
+NOTE Confidence: 0.762646496295929
+
+00:32:51.302 --> 00:32:53.639
+it's just the risk is just higher.
+
+NOTE Confidence: 0.8961913585662842
+
+00:32:54.480 --> 00:32:57.303
+So we need to design the whole system around like
+
+NOTE Confidence: 0.8961913585662842
+
+00:32:57.360 --> 00:32:59.723
+how to make it very, very hard for AI not
+
+NOTE Confidence: 0.8961913585662842
+
+00:32:59.780 --> 00:33:02.949
+to make mistakes because mistake can be very costly and
+
+NOTE Confidence: 0.8961913585662842
+
+00:33:03.007 --> 00:33:05.599
+not reversible for like many, many use cases.
+
+NOTE Confidence: 0.7711620926856995
+
+00:33:05.840 --> 00:33:09.032
+And especially like working robotics, it's like important, more important
+
+NOTE Confidence: 0.7711620926856995
+
+00:33:09.076 --> 00:33:11.132
+than ever because like, if like a robot step on
+
+NOTE Confidence: 0.7711620926856995
+
+00:33:11.175 --> 00:33:13.231
+a choice, I don't think we can just like revert
+
+NOTE Confidence: 0.7711620926856995
+
+00:33:13.275 --> 00:33:13.800
+that, right?
+
+NOTE Confidence: 0.618659257888794
+
+00:33:13.800 --> 00:33:14.960
+Like the choice already heard.
+
+NOTE Confidence: 0.631965696811676
+
+00:33:15.680 --> 00:33:18.321
+So, so actually like one of the robotic companies I
+
+NOTE Confidence: 0.631965696811676
+
+00:33:18.373 --> 00:33:20.653
+work with is that one use cases is that like
+
+NOTE Confidence: 0.631965696811676
+
+00:33:20.704 --> 00:33:22.000
+they get asked for a lot.
+
+NOTE Confidence: 0.8220490217208862
+
+00:33:22.200 --> 00:33:23.920
+It's like elderly care, right?
+
+NOTE Confidence: 0.6652467846870422
+
+00:33:24.080 --> 00:33:26.364
+I'm not sure sure any one of you have like
+
+NOTE Confidence: 0.6652467846870422
+
+00:33:26.419 --> 00:33:28.159
+have deal with like hourly care.
+
+NOTE Confidence: 0.7559879422187805
+
+00:33:28.360 --> 00:33:29.520
+It's extremely expensive.
+
+NOTE Confidence: 0.8377092480659485
+
+00:33:29.600 --> 00:33:32.141
+Like some people pay like $20,000 a month like to
+
+NOTE Confidence: 0.8377092480659485
+
+00:33:32.193 --> 00:33:34.319
+like take care of like an elderly parent.
+
+NOTE Confidence: 0.7639392018318176
+
+00:33:34.920 --> 00:33:36.840
+So, so the need for it is like very high.
+
+NOTE Confidence: 0.8118464350700378
+
+00:33:37.800 --> 00:33:39.960
+And but like hourly care has a thing.
+
+NOTE Confidence: 0.6019638776779175
+
+00:33:39.960 --> 00:33:41.400
+It's like it's, it's scary, right?
+
+NOTE Confidence: 0.8019422888755798
+
+00:33:41.400 --> 00:33:44.626
+But because a robot is heavy and robot has very
+
+NOTE Confidence: 0.8019422888755798
+
+00:33:44.695 --> 00:33:46.000
+low batteries life.
+
+NOTE Confidence: 0.7767344117164612
+
+00:33:46.520 --> 00:33:50.365
+So like for example, like have you seen the unitary
+
+NOTE Confidence: 0.7767344117164612
+
+00:33:50.441 --> 00:33:51.119
+G1 robot?
+
+NOTE Confidence: 0.513336718082428
+
+00:33:51.120 --> 00:33:52.400
+It's like, yeah, high, right.
+
+NOTE Confidence: 0.8834324479103088
+
+00:33:52.640 --> 00:33:53.760
+So it's like 80 lbs.
+
+NOTE Confidence: 0.8120648860931396
+
+00:33:54.600 --> 00:33:56.040
+So it's like it's metal, right?
+
+NOTE Confidence: 0.8424110412597656
+
+00:33:56.040 --> 00:33:58.000
+Imagine that falling on you.
+
+NOTE Confidence: 0.9314693808555603
+
+00:33:58.440 --> 00:34:00.400
+That is not that does not feel good.
+
+NOTE Confidence: 0.874220073223114
+
+00:34:01.240 --> 00:34:03.226
+And you can do a lot of things to help
+
+NOTE Confidence: 0.874220073223114
+
+00:34:03.278 --> 00:34:05.840
+with it, but like one failure most is quite dumb.
+
+NOTE Confidence: 0.6088801026344299
+
+00:34:05.880 --> 00:34:07.560
+It's like this battery just dies.
+
+NOTE Confidence: 0.7024924159049988
+
+00:34:07.760 --> 00:34:10.120
+So let's imagine that the boys doing some walking, right?
+
+NOTE Confidence: 0.6536835432052612
+
+00:34:10.320 --> 00:34:11.640
+And then the battery just dies.
+
+NOTE Confidence: 0.7113955616950989
+
+00:34:11.960 --> 00:34:14.549
+So the board like mid action can just like flop
+
+NOTE Confidence: 0.7113955616950989
+
+00:34:14.604 --> 00:34:14.879
+over.
+
+NOTE Confidence: 0.8974425792694092
+
+00:34:15.080 --> 00:34:16.480
+So it's quite quite challenging.
+
+NOTE Confidence: 0.6312471032142639
+
+00:34:16.480 --> 00:34:18.120
+So like we're doing like things.
+
+NOTE Confidence: 0.7292279601097107
+
+00:34:18.240 --> 00:34:20.560
+Oh, do you know about the one wheel accident?
+
+NOTE Confidence: 0.8201397657394409
+
+00:34:20.560 --> 00:34:22.200
+Do you know the one wheel?
+
+NOTE Confidence: 0.648527204990387
+
+00:34:23.280 --> 00:34:24.976
+The one just like you have one wheel and it
+
+NOTE Confidence: 0.648527204990387
+
+00:34:25.015 --> 00:34:26.159
+can like go and drive around.
+
+NOTE Confidence: 0.8599210381507874
+
+00:34:26.160 --> 00:34:28.760
+It's like it looks very dangerous but very cool.
+
+NOTE Confidence: 0.6482157111167908
+
+00:34:29.320 --> 00:34:31.932
+O they have one failure mode just like got them
+
+NOTE Confidence: 0.6482157111167908
+
+00:34:31.988 --> 00:34:32.599
+sued a lot.
+
+NOTE Confidence: 0.6722621321678162
+
+00:34:33.000 --> 00:34:35.654
+It's just like if you are on the wheel and
+
+NOTE Confidence: 0.6722621321678162
+
+00:34:35.717 --> 00:34:39.003
+the battery die, it will just fly over there because
+
+NOTE Confidence: 0.6722621321678162
+
+00:34:39.066 --> 00:34:40.519
+we're just stuck there.
+
+NOTE Confidence: 0.8222183585166931
+
+00:34:40.840 --> 00:34:43.739
+So that could happen with robots, let's say the robot
+
+NOTE Confidence: 0.8222183585166931
+
+00:34:43.794 --> 00:34:46.146
+do a lot of actions and the battery die, it
+
+NOTE Confidence: 0.8222183585166931
+
+00:34:46.201 --> 00:34:48.280
+will just have no control over itself.
+
+NOTE Confidence: 0.6873252391815186
+
+00:34:48.680 --> 00:34:51.728
+So there are a lot of toolings work to make
+
+NOTE Confidence: 0.6873252391815186
+
+00:34:51.799 --> 00:34:55.556
+it safer, maybe detect when the battery is maybe low,
+
+NOTE Confidence: 0.6873252391815186
+
+00:34:55.627 --> 00:34:58.960
+then you don't attempt any complicated actions.
+
+NOTE Confidence: 0.6687724590301514
+
+00:34:59.160 --> 00:35:01.775
+Or cell charging is a very important feature so that
+
+NOTE Confidence: 0.6687724590301514
+
+00:35:01.826 --> 00:35:04.190
+we develop so that if we know it's robot thing,
+
+NOTE Confidence: 0.6687724590301514
+
+00:35:04.240 --> 00:35:06.454
+OK, if we want to go our battery, let's move
+
+NOTE Confidence: 0.6687724590301514
+
+00:35:06.504 --> 00:35:07.360
+back to the base.
+
+NOTE Confidence: 0.7522276043891907
+
+00:35:08.280 --> 00:35:10.421
+And so there are other rules that we can do
+
+NOTE Confidence: 0.7522276043891907
+
+00:35:10.471 --> 00:35:12.861
+like around safety with how much time do we have
+
+NOTE Confidence: 0.7522276043891907
+
+00:35:12.911 --> 00:35:13.159
+left?
+
+NOTE Confidence: 0.32456398010253906
+
+00:35:15.480 --> 00:35:16.960
+Yeah, yeah.
+
+NOTE Confidence: 0.8122175335884094
+
+00:35:16.960 --> 00:35:19.306
+So I think there's a lot of problems that we
+
+NOTE Confidence: 0.8122175335884094
+
+00:35:19.359 --> 00:35:22.026
+can build for AI with AI, Like I'm actually pretty
+
+NOTE Confidence: 0.8122175335884094
+
+00:35:22.079 --> 00:35:24.906
+excited because one thing I realized is like with AI,
+
+NOTE Confidence: 0.8122175335884094
+
+00:35:24.959 --> 00:35:27.253
+I get to build more things because now I do
+
+NOTE Confidence: 0.8122175335884094
+
+00:35:27.306 --> 00:35:29.653
+not have to do a lot of boring stuff because
+
+NOTE Confidence: 0.8122175335884094
+
+00:35:29.706 --> 00:35:32.533
+it's focused on like thinking about, OK, what kind of
+
+NOTE Confidence: 0.8122175335884094
+
+00:35:32.586 --> 00:35:34.719
+new things, new problem I want to solve.
+
+NOTE Confidence: 0.7677427530288696
+
+00:35:34.960 --> 00:35:37.560
+And a lot of this boring stuff like to be
+
+NOTE Confidence: 0.7677427530288696
+
+00:35:37.624 --> 00:35:40.986
+fair, like I actually do not like manual writing code
+
+NOTE Confidence: 0.7677427530288696
+
+00:35:41.049 --> 00:35:45.235
+because in college, one thing I really hated what virtualizations,
+
+NOTE Confidence: 0.7677427530288696
+
+00:35:45.299 --> 00:35:45.679
+right?
+
+NOTE Confidence: 0.7822749018669128
+
+00:35:45.680 --> 00:35:47.637
+Like you have to do something is OK, you have
+
+NOTE Confidence: 0.7822749018669128
+
+00:35:47.680 --> 00:35:49.725
+to make it like super fast or like writing else
+
+NOTE Confidence: 0.7822749018669128
+
+00:35:49.768 --> 00:35:50.159
+function.
+
+NOTE Confidence: 0.8459034562110901
+
+00:35:50.160 --> 00:35:51.880
+And never found that very, very exciting.
+
+NOTE Confidence: 0.7183208465576172
+
+00:35:52.080 --> 00:35:54.564
+But now with AI, a plate code now with AI,
+
+NOTE Confidence: 0.7183208465576172
+
+00:35:54.623 --> 00:35:56.279
+we can do that a lot faster.
+
+NOTE Confidence: 0.7310980558395386
+
+00:35:57.200 --> 00:35:59.682
+But so when we talk about a software defensibility for
+
+NOTE Confidence: 0.7310980558395386
+
+00:35:59.728 --> 00:36:00.279
+the product.
+
+NOTE Confidence: 0.785265326499939
+
+00:36:00.480 --> 00:36:02.944
+But another question is that I also think a lot
+
+NOTE Confidence: 0.785265326499939
+
+00:36:02.996 --> 00:36:05.671
+about is like how to make myself more defensible in
+
+NOTE Confidence: 0.785265326499939
+
+00:36:05.723 --> 00:36:06.720
+terms of AI, right?
+
+NOTE Confidence: 0.8442389965057373
+
+00:36:06.719 --> 00:36:09.880
+Because like how, how do I make sure that like
+
+NOTE Confidence: 0.8442389965057373
+
+00:36:09.948 --> 00:36:13.040
+I can learn the skills that AI want automate.
+
+NOTE Confidence: 0.734137237071991
+
+00:36:13.440 --> 00:36:15.885
+So in the early day of ChatGPT, one thing that
+
+NOTE Confidence: 0.734137237071991
+
+00:36:15.938 --> 00:36:17.640
+I just spent time on, am I good?
+
+NOTE Confidence: 0.7037182450294495
+
+00:36:17.640 --> 00:36:20.232
+Love to like learn more from like people like how
+
+NOTE Confidence: 0.7037182450294495
+
+00:36:20.285 --> 00:36:22.349
+they do it is what I call like a career
+
+NOTE Confidence: 0.7037182450294495
+
+00:36:22.402 --> 00:36:22.719
+audit.
+
+NOTE Confidence: 0.7526324391365051
+
+00:36:22.880 --> 00:36:26.347
+So for the whole week actually went through like note
+
+NOTE Confidence: 0.7526324391365051
+
+00:36:26.413 --> 00:36:29.161
+down everything that I did it and I try to
+
+NOTE Confidence: 0.7526324391365051
+
+00:36:29.226 --> 00:36:32.563
+think of like, OK, what can this thing be automated
+
+NOTE Confidence: 0.7526324391365051
+
+00:36:32.629 --> 00:36:33.480
+by AI, right?
+
+NOTE Confidence: 0.7784157991409302
+
+00:36:33.719 --> 00:36:37.451
+If it can, is there someone already doing it or
+
+NOTE Confidence: 0.7784157991409302
+
+00:36:37.530 --> 00:36:40.865
+it cannot be automated by AI or if it does
+
+NOTE Confidence: 0.7784157991409302
+
+00:36:40.944 --> 00:36:44.199
+not exist yet, then maybe I can build it.
+
+NOTE Confidence: 0.7981016635894775
+
+00:36:44.320 --> 00:36:46.128
+So they give me a lot of ideas and so
+
+NOTE Confidence: 0.7981016635894775
+
+00:36:46.177 --> 00:36:47.840
+give me a better understanding of.
+
+NOTE Confidence: 0.7728866338729858
+
+00:36:49.239 --> 00:36:51.655
+So we will call this a term of like AI
+
+NOTE Confidence: 0.7728866338729858
+
+00:36:51.719 --> 00:36:55.278
+exposure, like what percentage of your job is exposed to
+
+NOTE Confidence: 0.7728866338729858
+
+00:36:55.342 --> 00:36:58.838
+AI And the higher the percentage like the higher chance
+
+NOTE Confidence: 0.7728866338729858
+
+00:36:58.902 --> 00:37:01.000
+of your your job being automated.
+
+NOTE Confidence: 0.685233473777771
+
+00:37:01.600 --> 00:37:03.667
+So yeah, I'm a bit curious to see like how
+
+NOTE Confidence: 0.685233473777771
+
+00:37:03.716 --> 00:37:04.799
+it will approach that.
+
+NOTE Confidence: 0.8641740083694458
+
+00:37:06.560 --> 00:37:08.460
+So I think like just to bring it home, I
+
+NOTE Confidence: 0.8641740083694458
+
+00:37:08.508 --> 00:37:11.359
+think about like any software that exists can be replicated.
+
+NOTE Confidence: 0.7232011556625366
+
+00:37:12.400 --> 00:37:15.464
+And so I spent the last two years similar company
+
+NOTE Confidence: 0.7232011556625366
+
+00:37:15.527 --> 00:37:18.655
+to think about like, OK, if that's the case, maybe
+
+NOTE Confidence: 0.7232011556625366
+
+00:37:18.717 --> 00:37:21.719
+I should like, should I go like beyond software?
+
+NOTE Confidence: 0.7571234703063965
+
+00:37:22.239 --> 00:37:24.729
+So I think of AI agent as AI agent, it
+
+NOTE Confidence: 0.7571234703063965
+
+00:37:24.794 --> 00:37:26.760
+should perform actions, right?
+
+NOTE Confidence: 0.7947709560394287
+
+00:37:27.880 --> 00:37:30.880
+In the earliest, in the simplest form of action.
+
+NOTE Confidence: 0.6260570287704468
+
+00:37:30.880 --> 00:37:33.831
+It's just like token, like Jared's the next token, which
+
+NOTE Confidence: 0.6260570287704468
+
+00:37:33.884 --> 00:37:36.520
+is the early day of like ChatGPT, like LLM, right?
+
+NOTE Confidence: 0.718460738658905
+
+00:37:36.520 --> 00:37:39.214
+It's just like give one Jared like 1 token after
+
+NOTE Confidence: 0.718460738658905
+
+00:37:39.270 --> 00:37:39.720
+another.
+
+NOTE Confidence: 0.7696444988250732
+
+00:37:39.719 --> 00:37:42.967
+Should I turn to an essay in e-mail question answering
+
+NOTE Confidence: 0.7696444988250732
+
+00:37:43.027 --> 00:37:46.094
+And then the next, the next category, next level of
+
+NOTE Confidence: 0.7696444988250732
+
+00:37:46.154 --> 00:37:48.440
+like actions are like digital actions.
+
+NOTE Confidence: 0.9371102452278137
+
+00:37:48.480 --> 00:37:50.440
+Right now the agent can do fancy things.
+
+NOTE Confidence: 0.7143356800079346
+
+00:37:50.440 --> 00:37:52.783
+It can read file, It can write into file, which
+
+NOTE Confidence: 0.7143356800079346
+
+00:37:52.833 --> 00:37:54.280
+is like important for coding.
+
+NOTE Confidence: 0.6032193899154663
+
+00:37:54.480 --> 00:37:57.009
+It can call different APIs from get up API, It
+
+NOTE Confidence: 0.6032193899154663
+
+00:37:57.064 --> 00:37:57.559
+can call.
+
+NOTE Confidence: 0.7387866973876953
+
+00:37:58.120 --> 00:38:00.080
+It can call like image generation API.
+
+NOTE Confidence: 0.8564136028289795
+
+00:38:00.080 --> 00:38:03.351
+It can call whatever the banking or like internal API,
+
+NOTE Confidence: 0.8564136028289795
+
+00:38:03.412 --> 00:38:04.200
+external API.
+
+NOTE Confidence: 0.7474278211593628
+
+00:38:04.600 --> 00:38:07.680
+It can do search, search, very important digital action.
+
+NOTE Confidence: 0.7622288465499878
+
+00:38:08.280 --> 00:38:09.600
+I think this is the next tier.
+
+NOTE Confidence: 0.7470478415489197
+
+00:38:09.600 --> 00:38:11.480
+I believe it's a physical actions.
+
+NOTE Confidence: 0.7871277928352356
+
+00:38:12.160 --> 00:38:15.252
+So for example, like now instead of like imagine, right,
+
+NOTE Confidence: 0.7871277928352356
+
+00:38:15.307 --> 00:38:17.902
+imagine that you, you have a, you have an agent
+
+NOTE Confidence: 0.7871277928352356
+
+00:38:17.957 --> 00:38:20.829
+that like running some code, maybe like open claw or
+
+NOTE Confidence: 0.7871277928352356
+
+00:38:20.884 --> 00:38:22.319
+something on the terminal.
+
+NOTE Confidence: 0.6537836194038391
+
+00:38:22.719 --> 00:38:25.559
+And it's suddenly it takes like, OK, for this to
+
+NOTE Confidence: 0.6537836194038391
+
+00:38:25.618 --> 00:38:26.919
+do complete this task.
+
+NOTE Confidence: 0.8463873267173767
+
+00:38:27.239 --> 00:38:30.210
+Maybe I need to, I need to build this small
+
+NOTE Confidence: 0.8463873267173767
+
+00:38:30.279 --> 00:38:33.112
+things and it can run out and like buy it
+
+NOTE Confidence: 0.8463873267173767
+
+00:38:33.181 --> 00:38:35.599
+or it can do like, OK, I want to do
+
+NOTE Confidence: 0.8463873267173767
+
+00:38:35.669 --> 00:38:37.879
+this task like hosting an event.
+
+NOTE Confidence: 0.7517377138137817
+
+00:38:38.160 --> 00:38:40.259
+Maybe you can think, OK, for hosting event, I can
+
+NOTE Confidence: 0.7517377138137817
+
+00:38:40.302 --> 00:38:41.159
+create a guest list.
+
+NOTE Confidence: 0.8347408175468445
+
+00:38:41.200 --> 00:38:43.686
+I can invite the guest, but I also need to
+
+NOTE Confidence: 0.8347408175468445
+
+00:38:43.745 --> 00:38:45.640
+go out and buy some like plates.
+
+NOTE Confidence: 0.8377874493598938
+
+00:38:45.840 --> 00:38:48.240
+Like if you can like sense, like get some robots
+
+NOTE Confidence: 0.8377874493598938
+
+00:38:48.290 --> 00:38:51.040
+and do this physical actions, that could be super cool.
+
+NOTE Confidence: 0.8454992771148682
+
+00:38:51.200 --> 00:38:53.184
+So I do think it is the next another layer
+
+NOTE Confidence: 0.8454992771148682
+
+00:38:53.231 --> 00:38:55.309
+of like action in the real world like you do
+
+NOTE Confidence: 0.8454992771148682
+
+00:38:55.356 --> 00:38:56.160
+physical actions.
+
+NOTE Confidence: 0.8441641926765442
+
+00:38:56.719 --> 00:38:59.435
+And I do think of this like physical AI agent
+
+NOTE Confidence: 0.8441641926765442
+
+00:38:59.496 --> 00:39:02.694
+actually do not look different from the AI agent that
+
+NOTE Confidence: 0.8441641926765442
+
+00:39:02.755 --> 00:39:03.599
+we know today.
+
+NOTE Confidence: 0.79585200548172
+
+00:39:04.040 --> 00:39:06.629
+We've got an agent it's anything that can interact with
+
+NOTE Confidence: 0.79585200548172
+
+00:39:06.676 --> 00:39:07.760
+the environment, right?
+
+NOTE Confidence: 0.8449203968048096
+
+00:39:08.080 --> 00:39:10.730
+Take it back from the environment and perform actions on
+
+NOTE Confidence: 0.8449203968048096
+
+00:39:10.778 --> 00:39:10.920
+it.
+
+NOTE Confidence: 0.6868758201599121
+
+00:39:11.160 --> 00:39:15.437
+So according agent, the so environment here is like the
+
+NOTE Confidence: 0.6868758201599121
+
+00:39:15.515 --> 00:39:16.759
+computer, right?
+
+NOTE Confidence: 0.6797274947166443
+
+00:39:17.080 --> 00:39:19.549
+And the action you can do is like read file,
+
+NOTE Confidence: 0.6797274947166443
+
+00:39:19.605 --> 00:39:20.559
+write file, edit.
+
+NOTE Confidence: 0.7679439187049866
+
+00:39:20.760 --> 00:39:23.736
+So it can perform actions, it can perform action in
+
+NOTE Confidence: 0.7679439187049866
+
+00:39:23.795 --> 00:39:26.479
+the environment by making changes to the file.
+
+NOTE Confidence: 0.9496207237243652
+
+00:39:26.760 --> 00:39:29.080
+It can get feedback from the environment.
+
+NOTE Confidence: 0.6073915362358093
+
+00:39:29.080 --> 00:39:31.372
+First of all, it can try to run the file,
+
+NOTE Confidence: 0.6073915362358093
+
+00:39:31.428 --> 00:39:33.833
+try to see if it compiles, to see it's like
+
+NOTE Confidence: 0.6073915362358093
+
+00:39:33.889 --> 00:39:34.839
+it passed a test.
+
+NOTE Confidence: 0.5312442779541016
+
+00:39:36.320 --> 00:39:38.600
+So that's how like organization work.
+
+NOTE Confidence: 0.8283694386482239
+
+00:39:38.840 --> 00:39:41.985
+And it's the same thing with like physical agent, but
+
+NOTE Confidence: 0.8283694386482239
+
+00:39:42.044 --> 00:39:45.545
+now the environment is physical instead of just like purely
+
+NOTE Confidence: 0.8283694386482239
+
+00:39:45.605 --> 00:39:46.079
+digital.
+
+NOTE Confidence: 0.7233015298843384
+
+00:39:46.719 --> 00:39:50.314
+And the action here is more physical motions like walk,
+
+NOTE Confidence: 0.7233015298843384
+
+00:39:50.379 --> 00:39:54.039
+pick up things, placing things, pushing, pulling and AI.
+
+NOTE Confidence: 0.8603948950767517
+
+00:39:54.120 --> 00:39:56.260
+We have seen that it has worked quite well with
+
+NOTE Confidence: 0.8603948950767517
+
+00:39:56.305 --> 00:39:57.080
+reasoning, right?
+
+NOTE Confidence: 0.7680147886276245
+
+00:39:57.280 --> 00:39:59.933
+With AI visual AI agent, we can see you can
+
+NOTE Confidence: 0.7680147886276245
+
+00:39:59.995 --> 00:40:02.771
+give it a task, It can reason through step by
+
+NOTE Confidence: 0.7680147886276245
+
+00:40:02.833 --> 00:40:05.240
+step how to accomplish the task, right?
+
+NOTE Confidence: 0.661007821559906
+
+00:40:05.239 --> 00:40:07.267
+Like, OK, if it wants to build this app first
+
+NOTE Confidence: 0.661007821559906
+
+00:40:07.312 --> 00:40:08.800
+I need to like create a database.
+
+NOTE Confidence: 0.6197507381439209
+
+00:40:08.840 --> 00:40:09.880
+I need to like build this work.
+
+NOTE Confidence: 0.6809399127960205
+
+00:40:10.080 --> 00:40:12.160
+I need to like I need to.
+
+NOTE Confidence: 0.7774190902709961
+
+00:40:13.160 --> 00:40:15.341
+Write the script and things like that and you can
+
+NOTE Confidence: 0.7774190902709961
+
+00:40:15.385 --> 00:40:15.919
+do anything.
+
+NOTE Confidence: 0.2340276837348938
+
+00:40:15.920 --> 00:40:16.400
+You've seen it.
+
+NOTE Confidence: 0.9132660627365112
+
+00:40:16.400 --> 00:40:18.201
+Like AI can do the same thing for a lot
+
+NOTE Confidence: 0.9132660627365112
+
+00:40:18.247 --> 00:40:19.680
+of the tasks in the real world.
+
+NOTE Confidence: 0.7321866154670715
+
+00:40:19.880 --> 00:40:21.962
+Let's say if you ask me to like do laundry,
+
+NOTE Confidence: 0.7321866154670715
+
+00:40:22.011 --> 00:40:24.336
+you can first thing, OK, first I need to collect
+
+NOTE Confidence: 0.7321866154670715
+
+00:40:24.384 --> 00:40:25.160
+all the clothes.
+
+NOTE Confidence: 0.7984211444854736
+
+00:40:25.280 --> 00:40:28.347
+Second, I need to like take them to the washing
+
+NOTE Confidence: 0.7984211444854736
+
+00:40:28.412 --> 00:40:28.999
+machines.
+
+NOTE Confidence: 0.7094736695289612
+
+00:40:29.080 --> 00:40:31.160
+I can do a lot of random things.
+
+NOTE Confidence: 0.7923526763916016
+
+00:40:31.320 --> 00:40:34.672
+So I think it's the reasoning part is like it's
+
+NOTE Confidence: 0.7923526763916016
+
+00:40:34.743 --> 00:40:35.599
+pretty good.
+
+NOTE Confidence: 0.8397570848464966
+
+00:40:35.600 --> 00:40:38.832
+I do think I have pretty strong convictions that AI
+
+NOTE Confidence: 0.8397570848464966
+
+00:40:38.895 --> 00:40:40.480
+is pretty good reasoning.
+
+NOTE Confidence: 0.7166684865951538
+
+00:40:41.560 --> 00:40:44.604
+AI need to give it a physical understanding because I
+
+NOTE Confidence: 0.7166684865951538
+
+00:40:44.662 --> 00:40:47.591
+need to go through like for digital digital AIA lot
+
+NOTE Confidence: 0.7166684865951538
+
+00:40:47.649 --> 00:40:50.579
+of the product, a lot of environments are very well
+
+NOTE Confidence: 0.7166684865951538
+
+00:40:50.636 --> 00:40:52.359
+described with documentations.
+
+NOTE Confidence: 0.6852877140045166
+
+00:40:52.560 --> 00:40:55.763
+Not everything is like a good documentations, but ideally a
+
+NOTE Confidence: 0.6852877140045166
+
+00:40:55.817 --> 00:40:58.424
+lot of AP is, you know, like what what endpoints
+
+NOTE Confidence: 0.6852877140045166
+
+00:40:58.478 --> 00:41:01.573
+you can call right, like you notice, like what parameters
+
+NOTE Confidence: 0.6852877140045166
+
+00:41:01.627 --> 00:41:04.559
+it expects you notice like, OK, here's the error code.
+
+NOTE Confidence: 0.8430924415588379
+
+00:41:04.560 --> 00:41:05.400
+You know what that means.
+
+NOTE Confidence: 0.7887821197509766
+
+00:41:05.840 --> 00:41:09.355
+But for physical world, we don't quite have that nice
+
+NOTE Confidence: 0.7887821197509766
+
+00:41:09.421 --> 00:41:11.079
+description of the world.
+
+NOTE Confidence: 0.7384865283966064
+
+00:41:11.320 --> 00:41:15.311
+Like there's no, there's no documentation about like how to
+
+NOTE Confidence: 0.7384865283966064
+
+00:41:15.379 --> 00:41:16.799
+handle an egg, right?
+
+NOTE Confidence: 0.8008856773376465
+
+00:41:16.800 --> 00:41:18.889
+There's no one to say, OK, if you put this
+
+NOTE Confidence: 0.8008856773376465
+
+00:41:18.939 --> 00:41:20.879
+much force into the egg, it will break.
+
+NOTE Confidence: 0.6583970189094543
+
+00:41:21.120 --> 00:41:23.276
+Or like if you, if you like, put the legs
+
+NOTE Confidence: 0.6583970189094543
+
+00:41:23.329 --> 00:41:24.959
+this way, you're going to fall.
+
+NOTE Confidence: 0.6631602048873901
+
+00:41:25.160 --> 00:41:29.560
+So there's not good description of the like physical environment.
+
+NOTE Confidence: 0.7765598893165588
+
+00:41:29.800 --> 00:41:31.760
+So that's the part that we need to teach AI.
+
+NOTE Confidence: 0.7837954163551331
+
+00:41:31.960 --> 00:41:34.445
+Like we humans, we know, we learn how to operate
+
+NOTE Confidence: 0.7837954163551331
+
+00:41:34.497 --> 00:41:36.879
+in the real world to like try an arrow, right?
+
+NOTE Confidence: 0.6756374835968018
+
+00:41:36.880 --> 00:41:39.383
+For a child, it takes like like a long time,
+
+NOTE Confidence: 0.6756374835968018
+
+00:41:39.440 --> 00:41:41.830
+maybe a year or so just to learn just what
+
+NOTE Confidence: 0.6756374835968018
+
+00:41:41.887 --> 00:41:44.960
+to walk, like learn to control the muscles, the joint.
+
+NOTE Confidence: 0.6664848923683167
+
+00:41:45.480 --> 00:41:49.360
+We don't have the information encoded, you know, encoded anything.
+
+NOTE Confidence: 0.7920246124267578
+
+00:41:49.360 --> 00:41:51.912
+Like that's why there's a lot of effort going to
+
+NOTE Confidence: 0.7920246124267578
+
+00:41:51.965 --> 00:41:54.784
+what is called a word modelling, like trying to model
+
+NOTE Confidence: 0.7920246124267578
+
+00:41:54.837 --> 00:41:56.964
+the world so that we can teach AI how to
+
+NOTE Confidence: 0.7920246124267578
+
+00:41:57.017 --> 00:41:58.560
+understand and operate in it.
+
+NOTE Confidence: 0.8577508330345154
+
+00:41:59.520 --> 00:42:01.040
+But yeah, so I'm very excited about it.
+
+NOTE Confidence: 0.8753008842468262
+
+00:42:01.640 --> 00:42:04.609
+So we actually have a, one of the companies that
+
+NOTE Confidence: 0.8753008842468262
+
+00:42:04.670 --> 00:42:07.639
+I work with have a demo tomorrow for the robots.
+
+NOTE Confidence: 0.7152557969093323
+
+00:42:07.640 --> 00:42:09.080
+They have this, this dark robot.
+
+NOTE Confidence: 0.6907821297645569
+
+00:42:09.360 --> 00:42:13.377
+Unfortunately, they they kind of spare a humanoid A humanoid
+
+NOTE Confidence: 0.6907821297645569
+
+00:42:13.444 --> 00:42:15.519
+are really cool to to to watch.
+
+NOTE Confidence: 0.7195545434951782
+
+00:42:16.760 --> 00:42:19.064
+But yeah, unfortunately I think the docs are also very
+
+NOTE Confidence: 0.7195545434951782
+
+00:42:19.106 --> 00:42:19.320
+cute.
+
+NOTE Confidence: 0.7889086604118347
+
+00:42:20.360 --> 00:42:22.803
+Yeah, if you want to come for it and if
+
+NOTE Confidence: 0.7889086604118347
+
+00:42:22.866 --> 00:42:25.559
+you want to talk about robot, get in touch.
+
+NOTE Confidence: 0.8469505310058594
+
+00:42:26.200 --> 00:42:29.144
+I'm talking more about I'm trying to write more about
+
+NOTE Confidence: 0.8469505310058594
+
+00:42:29.200 --> 00:42:32.200
+software defensibility and AI for robotics in general.
+
+NOTE Confidence: 0.6798981428146362
+
+00:42:32.560 --> 00:42:32.760
+Yeah.
+
+NOTE Confidence: 0.9656394124031067
+
+00:42:32.760 --> 00:42:33.920
+Thank you so much, everyone.
+

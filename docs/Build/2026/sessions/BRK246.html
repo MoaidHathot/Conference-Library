@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRK246 - Foundry IQ: Fuel agents with enterprise knowledge and agentic retrieval</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; BRK246</nav>
+        <h1>BRK246 &mdash; Foundry IQ: Fuel agents with enterprise knowledge and agentic retrieval</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">BRK246 &middot; Breakout</span>
+    <h1>Foundry IQ: Fuel agents with enterprise knowledge and agentic retrieval</h1>
+    <div class="speakers">Pablo Castro, Allison Sparrow</div>
+    <div class="meta">
+        <span>45 min</span>
+<span>Breakout</span>
+<span>(300) Advanced</span>
+<span>Festival Pavilion, Breakout 2</span>
+<span>2026-06-03 16:00 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">AI</span> <span class="tag">Azure</span> <span class="tag">Security</span> <span class="tag">Developer</span> <span class="tag">Foundry IQ</span> <span class="tag">Microsoft Foundry</span> <span class="tag">Foundry Agents</span> <span class="tag">Context Engineer</span> <span class="tag">Grounding</span> <span class="tag">Evaluations</span> <span class="tag">Enterprise</span> <span class="tag">Agents &amp; apps</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/BRK246?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/ae80fe5d-7c1e-4fc5-ab1c-a37839c0a9bd" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Foundry IQ is Microsoft&#39;s context engineering platform that enables agents to unlock knowledge from everywhere, with state-of-the-art agentic RAG and enterprise-grade security built in. In this technical deep dive, we share the latest developments in Foundry IQ and Azure AI Search, new knowledge sources, agentic retrieval enhancements, and present retrieval performance innovations and evals for our 3rd year in a row — all designed to help you ship higher-quality agents faster.
+
+
+Seating for this session is first-come, first-served. Add it to your schedule to plan your day and arrive early to secure a spot.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>Foundry IQ is Microsoft&#39;s context engineering platform for connecting agents to enterprise knowledge using agentic retrieval built on Azure AI Search. The session walks through the full lifecycle—provisioning, ingesting knowledge sources, and retrieving—while emphasizing ease of onboarding, layered versatility, and state-of-the-art ranking quality, all with enterprise-grade security.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Serverless Foundry IQ (public preview)</strong> — A no-friction tier that provisions in 10–20 seconds, scales to zero, charges only for storage and usage, and is production-ready for dynamic workloads including agents that create and delete services on the fly [00:09:00].</li>
+<li><strong>Every knowledge base is exposed as an MCP server out of the box</strong> — Created knowledge bases are immediately consumable via an MCP endpoint (<code>/MCP</code>) or API with no extra setup [00:03:16].</li>
+<li><strong>Second-generation agentic retrieval</strong> — The retrieval stack was revamped to exploit newer language models&#39; tool-calling, showing material gains in recall, answer correctness, and completeness over BM25, hybrid search, and minimal mode [00:32:08].</li>
+<li><strong>New semantic ranker model</strong> — A newly trained ranker continues the team&#39;s multi-year ranking work, contributing to improved relevance [00:34:08].</li>
+<li><strong>Web IQ</strong> — Announced the prior day, providing web search grounding that can be added to a knowledge base as an MCP knowledge source [00:20:55].</li>
+<li><strong>Azure Content Understanding integration</strong> — Powers OCR, document layout, reading-order preservation, table extraction, and image verbalization during ingestion [00:16:50].</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>The three-layer Foundry IQ architecture: Foundry integration, agentic knowledge retrieval, and the core retrieval engine (vector + lexical with ranking models).</li>
+<li>Serverless versus dedicated capacity trade-offs (usage-based and dynamic versus predictable, isolated, confidential-computing-capable).</li>
+<li>Knowledge bases as a scope-and-policy abstraction (retrieval effort, steering instructions, answer synthesis) over multiple knowledge sources.</li>
+<li>Knowledge source spectrum: loose files, file knowledge source with full processing, blob storage / OneLake ingestion with chunking and vectorization, Work IQ (M365), Fabric IQ (OneLake catalog, data agents, natural-language-to-SQL), and MCP-based extensibility.</li>
+<li>Incremental, change-tracking ingestion that keeps indexes fresh.</li>
+<li>Document-level security: propagating access control from SharePoint and blob storage, Entra group membership, delegated user tokens, and Purview sensitivity-label integration.</li>
+<li>Agentic retrieval pipeline: query planning, iterative search, answer synthesis, and references/activity for debugging.</li>
+<li>Token efficiency and prefix/token caching to reduce cost and latency.</li>
+<li>Index-level control: vector compression (default 8-bit quantization), re-ranking policies, and schema customization.</li>
+<li>Retrieval speed demonstrated on an English Wikipedia index of roughly 22 million chunks.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;Foundry IQ is the thing you use to connect agents to knowledge.&quot; — Pablo Castro</p>
+</blockquote>
+<blockquote>
+<p>&quot;Document level security is not the kind of thing you just want to improvise real quick while you&#39;re building the rest of the stack.&quot; — Pablo Castro</p>
+</blockquote>
+<blockquote>
+<p>&quot;This thing searches at the speed that I can type... So this is searching on every keystroke and I still can&#39;t keep up.&quot; — Pablo Castro</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Foundry IQ</li>
+<li>Microsoft Foundry</li>
+<li>Azure AI Search</li>
+<li>Serverless Foundry IQ</li>
+<li>Work IQ</li>
+<li>Fabric IQ</li>
+<li>Web IQ</li>
+<li>Microsoft Fabric</li>
+<li>OneLake</li>
+<li>Azure Content Understanding</li>
+<li>Azure Blob Storage</li>
+<li>GitHub Copilot</li>
+<li>Model Context Protocol (MCP)</li>
+<li>GitHub MCP server</li>
+<li>Microsoft Entra</li>
+<li>Microsoft Purview</li>
+<li>Microsoft 365</li>
+<li>Azure portal</li>
+<li>GPT-4.1 mini [inferred]</li>
+<li>BM25</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Pablo Castro — Foundry IQ team, Microsoft (presenter)</li>
+<li>Allison Sparrow — listed co-speaker (does not appear in the transcript)</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+<section class="section">
+    <h2>References</h2>
+    <ul class="refs-list">
+<li><a href="@{link=https://aka.ms/build/foundrydiscord; backpackLink=; label=Microsoft Foundry in Discord; category=Web link}" target="_blank" rel="noopener">Microsoft Foundry in Discord</a></li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (58,413 chars)</summary>
+        <pre class="transcript-body">[00:00:00] All right, let&#39;s get going.
+[00:00:02] Good morning, everyone.
+[00:00:05] I&#39;m Pablo.
+[00:00:06] I work in the Foundry IQ team.
+[00:00:08] And what what we&#39;ll do in this session is talk
+[00:00:11] about what it takes to connect agents and your AI
+[00:00:14] models with the knowledge that makes them connect to your
+[00:00:17] applications, to your company and to the data they need
+[00:00:20] to get their job done.
+[00:00:24] So you&#39;re cutting to the chase.
+[00:00:27] Foundry IQ is the thing you use to connect agents
+[00:00:30] to knowledge.
+[00:00:31] Now when we think about Foundry IQ, we think about
+[00:00:34] getting this done in with three fundamental elements in consideration.
+[00:00:38] First, we want it to be piece of cake to
+[00:00:41] get started.
+[00:00:43] Second, we want versatility so that as your application gets
+[00:00:46] sophisticated, your needs grow or the problems get hard, you
+[00:00:50] have what you need right in the same platform.
+[00:00:53] And 3rd, like any AI based system, you want top
+[00:00:56] quality across the entire set of components that are AI
+[00:01:01] powered.
+[00:01:02] In particular for retrieval, you want great ranking, great relevance,
+[00:01:06] great content understanding.
+[00:01:08] So that&#39;s what we are aiming for.
+[00:01:10] So before we go into the details, we said we
+[00:01:12] want it to be easy to get started.
+[00:01:14] So let&#39;s let&#39;s actually test that out first.
+[00:01:18] So I&#39;m here in Foundry and we&#39;ll, we&#39;ll go back
+[00:01:21] and forth between a few different developer surface areas so
+[00:01:24] you can get a flavor of all of them.
+[00:01:27] But I&#39;m going to start in Foundry.
+[00:01:28] So I&#39;m going to go to build.
+[00:01:31] I have a, a foundry project already created.
+[00:01:33] And what I&#39;ll do is I&#39;ll go to knowledge.
+[00:01:35] Oh, I&#39;m sorry, this is very small.
+[00:01:37] Hopefully that&#39;s a little better.
+[00:01:40] So, so this is the, the part of Foundry where
+[00:01:43] you manage all your knowledge bases.
+[00:01:47] So what I&#39;ll do is I&#39;ll create a new knowledge
+[00:01:49] base and we said easy.
+[00:01:50] So let&#39;s just take an easy case where we just
+[00:01:52] have a bunch of files and we want to make
+[00:01:54] it the way you do.
+[00:01:56] You would do it in a chat application today where
+[00:01:58] you can drag and drop some files and ask some
+[00:02:00] questions.
+[00:02:00] If you want to build your own version of that,
+[00:02:02] it&#39;s kind of the same thing.
+[00:02:03] You can now just say, hey, my data is just
+[00:02:06] in files, and I&#39;m going to give this kind of
+[00:02:10] knowledge source a name.
+[00:02:12] I have a few files about movies, so I&#39;m going
+[00:02:14] to call it Movies Wiki because I took them from
+[00:02:17] Wikipedia, and I&#39;m going to describe what this what this
+[00:02:20] does.
+[00:02:20] So the agents know.
+[00:02:22] So I&#39;ll say use for, or rather will say full
+[00:02:25] articles about movies.
+[00:02:33] Yeah.
+[00:02:33] So there are microphones in the back, but yeah, I&#39;ll.
+[00:02:36] I&#39;ll speak up.
+[00:02:37] And I think folks turned it up.
+[00:02:38] Thank you.
+[00:02:38] All right, So what I&#39;ll do is I&#39;m going to
+[00:02:41] grab some files.
+[00:02:42] I&#39;m going to just drop them here.
+[00:02:45] These are kind of just movies, like articles for movies
+[00:02:48] I took from Wikipedia and I&#39;m going to go hit
+[00:02:51] save on this.
+[00:02:53] So now I have like a knowledge base and this
+[00:02:56] knowledge base I&#39;m going to grab the name.
+[00:03:02] This knowledge base lives in the in a particular Foundry
+[00:03:06] IQ instance I already created called here Demo 3.
+[00:03:10] So if I want to use it, I could go
+[00:03:12] call APIs to go consume this or out-of-the-box, every one
+[00:03:16] of these knowledge bases is an MCP server that I
+[00:03:20] don&#39;t have to really do anything to to to kind
+[00:03:23] of stand up or run.
+[00:03:25] So, you know, because I&#39;m being a little lazy, instead
+[00:03:28] of writing a new agent, I&#39;m going to use GitHub
+[00:03:31] copilot as my agent.
+[00:03:32] So here I&#39;m interested in a new GitHub copilot session.
+[00:03:36] What I&#39;ll do is I&#39;ll say MCP to see what
+[00:03:38] I have configured.
+[00:03:40] I&#39;m going to add a new MCP server.
+[00:03:41] I&#39;ll call it Wikipedia if I can type.
+[00:03:47] And So what I&#39;ll do is I&#39;m going to use
+[00:03:50] an odd proxy to to connect the dots between these
+[00:03:54] two things.
+[00:03:55] And I&#39;ll say I&#39;m going to point it to my
+[00:03:58] new MCP server.
+[00:03:58] In this case, Demo 3 was the name of my
+[00:04:01] Foundry IQ instance.
+[00:04:03] So I&#39;ll say that.
+[00:04:04] And I&#39;ll say that search.windows.net, because this is backed by
+[00:04:08] Azure Search, going to say knowledge bases.
+[00:04:11] And I&#39;m going to paste the knowledge base we just
+[00:04:13] created.
+[00:04:14] And this is the entry point to your API.
+[00:04:15] But if you want an MCP server, you should say
+[00:04:18] slash MCP.
+[00:04:18] And you&#39;re done.
+[00:04:18] You have an MCP server right there.
+[00:04:21] And like all of our APIs, they have an API
+[00:04:24] version.
+[00:04:26] In this case, this is the API we shipped today.
+[00:04:32] So I&#39;m going to hit save on that.
+[00:04:34] And now I have just a new MCP server connected
+[00:04:36] here that is backed by the data I just uploaded
+[00:04:38] a second ago.
+[00:04:39] Like if we go here and take a quick look,
+[00:04:43] you&#39;ll see that all the files I uploaded before are
+[00:04:47] like now, right?
+[00:04:49] They are processed and ready to go.
+[00:04:51] So once I have this if, if it works, let&#39;s
+[00:04:57] see, let&#39;s give it one more shot.
+[00:05:08] Let&#39;s see if it still does it.
+[00:05:14] All right, let&#39;s try it one more time, and if
+[00:05:16] not, I&#39;ll just use one that I already have.
+[00:05:24] OK, now it&#39;s gone.
+[00:05:24] Let&#39;s do it again.
+[00:05:30] So we said MCP Auth proxy.
+[00:05:36] We said Demo 3 was the name of our service
+[00:05:40] search thatwindows.net knowledge bases and then the name of our
+[00:05:47] knowledge base, MCP API version and brand new API version.
+[00:05:57] All right, so we&#39;ll give this a second and see
+[00:05:59] if it goes.
+[00:06:00] But the idea is once I have this, then I
+[00:06:03] can ask questions about this knowledge base if network and
+[00:06:06] everything kind of helps us.
+[00:06:08] So I know some of the movies there.
+[00:06:09] So I&#39;m going to say which feel the Neo take.
+[00:06:17] And so now what this will do is, you know,
+[00:06:19] to answer my question, it wants to ground on on
+[00:06:21] the MCP servers that we want that we have.
+[00:06:24] So it&#39;ll go try the knowledge base I created.
+[00:06:27] It&#39;ll send a few questions, get kind of grounding information,
+[00:06:31] and then it&#39;ll say Neo took the red pill and
+[00:06:34] kind of this came from the Matrix.
+[00:06:36] So it took a minute to just go from serial
+[00:06:39] to a working knowledge base that I can connect from
+[00:06:43] my agent using MCP or using an API.
+[00:06:46] Now, of course, like this is a super simplified scenario,
+[00:06:50] but we said we wanted to make it easy to
+[00:06:52] get started and then be able to continue from there.
+[00:06:57] So the way we built Foundry IQ is to be
+[00:07:00] a comprehensive system that is layered in a way that
+[00:07:03] doesn&#39;t hide options from you.
+[00:07:05] You just choose to use whatever layer you want.
+[00:07:08] At the top, we have the Foundry integration layer where
+[00:07:12] you just saw how quickly and how productive you can
+[00:07:15] be in building new agents.
+[00:07:17] In the middle, we have a complete knowledge retrieval system
+[00:07:21] that uses agentic retrieval when needle and it&#39;ll handle things
+[00:07:25] like iterative query planning.
+[00:07:27] It handles multiple sources and chooses when to query what.
+[00:07:30] And it connects to entire Microsoft IQ surface and it
+[00:07:33] has APIs that you can use directly to connect from
+[00:07:35] there.
+[00:07:37] And in turn, that is built on this foundation of
+[00:07:39] our code retrieval engine.
+[00:07:41] Think of this as a state-of-the-art system that will do
+[00:07:45] vector retrieval, it&#39;ll do lexical search and combine the two.
+[00:07:49] It has state-of-the-art ranking models, all the things you need
+[00:07:52] to get the best quality results during ranking without having
+[00:07:56] to rebuild all of this from scratch and in the
+[00:07:58] backdrop of of enterprise grade security, quality and scale.
+[00:08:05] Now, when you use Foundry IQ, I just did a
+[00:08:07] quick pass, but if you look into the process in
+[00:08:10] detail, usually what you do is you start by provisioning
+[00:08:13] a new Foundry IQ instance.
+[00:08:15] Then you create a knowledge base like I just did.
+[00:08:17] You add some knowledge sources, and then you retrieve.
+[00:08:20] So let&#39;s walk through this process and talk about how
+[00:08:22] are we improving each of these stages to make it
+[00:08:25] easier and to be able to enable you to do
+[00:08:27] more things with it.
+[00:08:30] When it comes to provisioning, so far, Foundry IQ and
+[00:08:33] the underlying Usher AI search technology has required you to
+[00:08:37] create what we call dedicated capacity.
+[00:08:40] Dedicated capacity is great when you have a steady workload
+[00:08:43] because it&#39;s it&#39;s very predictable.
+[00:08:45] It&#39;s isolated to your to your environment, and you control
+[00:08:49] exactly what happens in there in terms of competing workloads.
+[00:08:54] On the flip side, you have to know how much
+[00:08:56] capacity you need all of that, and we want to
+[00:08:58] make this a little easier.
+[00:09:00] So I&#39;m excited to announce the public preview of the
+[00:09:03] serverless version of Foundry IQ.
+[00:09:06] With serverless, there is no friction.
+[00:09:07] To start, it takes 1020 seconds to create a service.
+[00:09:11] The service doesn&#39;t cost anything until you actually use it.
+[00:09:14] And when you&#39;re not using it, the service scales to
+[00:09:17] 0 and you only pay for the storage that your
+[00:09:19] index is used.
+[00:09:21] Serverless Foundry IQ is production ready.
+[00:09:24] You can use it for developer workloads, but you can
+[00:09:27] also use it for this very dynamic workloads, like for
+[00:09:30] example agents creating services or cases where your application may
+[00:09:34] need to create and delete services on the flight.
+[00:09:36] So you can start experimenting easy, but you can go
+[00:09:39] to production as is, and it&#39;s based on the same
+[00:09:42] state-of-the-art technology that powers the existing Foundry IQ stack.
+[00:09:46] So that means state-of-the-art ranking, instant Rag stack ready to
+[00:09:51] go and a rock solid foundation, but with all the
+[00:09:54] dynamic characteristics of serverless.
+[00:09:58] So now you have choice.
+[00:10:00] Serverless is great when you want a usage based plan,
+[00:10:03] Dedicated is great when you want a highly predictable plan
+[00:10:07] and when you look at the application patterns in general.
+[00:10:11] Serverless is great when you have lots of medium and
+[00:10:14] medium sized or small indexes, great for the developer workflow,
+[00:10:17] great for unit test where you create and delete things
+[00:10:20] on the spot, and also great for agents when you
+[00:10:23] want to let the agents create services and indexes and
+[00:10:26] whatnot on its own.
+[00:10:28] On the flip side, dedicated gives you isolated capacity and
+[00:10:31] even gives you the option to run on confidential computing
+[00:10:34] stacks top to bottom.
+[00:10:37] So to use serverless, you can do it from multiple
+[00:10:40] places.
+[00:10:40] We talked about agents and about and about people using
+[00:10:43] them.
+[00:10:43] So let&#39;s try both.
+[00:10:45] I&#39;m going to start by, I&#39;m going to grab a
+[00:10:47] quick prompt and I&#39;ll show you what it does in
+[00:10:50] a second.
+[00:10:51] Going to go here and paste it.
+[00:10:53] And what I&#39;ll do is I&#39;ll say, so I also
+[00:10:55] have this movie data like movie titles and whatnot from
+[00:10:58] IMDb.
+[00:10:59] So I&#39;m going to tell my agent just go look
+[00:11:02] at that file and create a new Foundry IQ service,
+[00:11:05] create an index and load the 1st 100 rows from
+[00:11:09] that file or so.
+[00:11:10] So I&#39;m going to let that cook for a minute,
+[00:11:12] and I&#39;m going to show you what it looks like
+[00:11:14] to also use serverless in the other surface areas.
+[00:11:18] If I&#39;m here in Foundry, one of the things I
+[00:11:20] can do is I, like I showed you before how
+[00:11:23] I&#39;m using this Demo 3 service.
+[00:11:25] I can go and create a new instance or connect
+[00:11:27] to an existing one if I have one already.
+[00:11:29] But in this case, I&#39;ll say create new resource, give
+[00:11:33] it a name, a resource group.
+[00:11:35] I&#39;m going to pick this guy.
+[00:11:38] And if you&#39;re in one of the regions that supports
+[00:11:44] serverless, like for example, let&#39;s do West Central, not that
+[00:11:51] one, let&#39;s find West central US.
+[00:11:58] Then you can choose serverless as one of these queues
+[00:12:00] in addition to all the existing ones, of course.
+[00:12:02] So I&#39;m going to say yes to this.
+[00:12:03] Click create and you know, this will take again 10
+[00:12:07] to 20 seconds and and we&#39;ll have a new serverless
+[00:12:11] service created.
+[00:12:12] So and you know, here is like ready to use
+[00:12:15] to create knowledge bases on whatnot on it and switch
+[00:12:18] back to this and I&#39;ll forget later.
+[00:12:21] So this is what it takes to create a serverless
+[00:12:23] service Ray to go in in Foundry.
+[00:12:25] You&#39;ll find the same thing in the Azure portal.
+[00:12:27] And and if we look at this, the so this
+[00:12:31] is making progress.
+[00:12:33] So we&#39;ll let it run a little more, but at
+[00:12:35] the end we&#39;ll see that it&#39;ll be done creating everything
+[00:12:38] on its own as well.
+[00:12:39] So we&#39;ll come back to this in a second.
+[00:12:44] So once we have a Foundry IQ instance, next thing
+[00:12:48] is we got to get data to it.
+[00:12:51] So we have to create knowledge bases and bring data
+[00:12:54] from knowledge sources.
+[00:12:56] Now I mentioned knowledge bases a few times, so I
+[00:12:58] want to give you a sense of what it is.
+[00:13:00] So think of a knowledge base as the scope of
+[00:13:02] knowledge, not how we access it.
+[00:13:04] That is inside and hidden from the agent to kind
+[00:13:07] of separate concerns, but it&#39;s what, what is the domain
+[00:13:10] of knowledge and what&#39;s the policy for using that information?
+[00:13:13] So for example, you can say how much retrieval effort
+[00:13:16] you want us to take, like should we do it
+[00:13:19] a quick thing and come back or do iterative retrieval?
+[00:13:22] You can give us steering instructions to kind of influence
+[00:13:25] how the model works.
+[00:13:26] You can choose what you want us to do, answer
+[00:13:28] synthesis and whatnot.
+[00:13:31] And and then underneath this agentic retrieval stack are all
+[00:13:34] the knowledge sources where you know most of them is
+[00:13:37] typical that what we&#39;ll do is you point us at
+[00:13:39] where the knowledge is and we&#39;ll create indexes with it.
+[00:13:42] So we&#39;ll create vector and lexical indexes and whatnot.
+[00:13:46] But we also support federating out to knowledge sources that
+[00:13:50] we need to access online.
+[00:13:52] And regardless of how they are represented at runtime, we
+[00:13:56] can choose which knowledge sources to to use for any
+[00:13:59] given scenario and then go query those.
+[00:14:03] So now the question is, I should show you at
+[00:14:06] the beginning just to use a few files to ground
+[00:14:09] data.
+[00:14:09] And you know, sometimes you have an easy scenario for
+[00:14:11] that.
+[00:14:11] And by all means for easy scenarios we should do
+[00:14:14] easy things.
+[00:14:16] Now, in practice, data is all over the place.
+[00:14:19] We see sometimes you have loose files, maybe the user
+[00:14:21] gives you there in your desktop.
+[00:14:23] Sometimes the data is in an object store or in
+[00:14:25] the file on the Microsoft IQ platform or even in
+[00:14:27] other applications.
+[00:14:29] So we offered like a spectrum of options.
+[00:14:31] So in all these cases, you don&#39;t have to reinvent
+[00:14:33] all the plumbing to go through this.
+[00:14:37] So first, one of the things you can do is
+[00:14:39] you can use just files.
+[00:14:42] The thing with files is, you know, one of the
+[00:14:44] things we learned, we all learned using coding agents is
+[00:14:47] how good coding agents are at local file access.
+[00:14:50] And that works great if you have, I don&#39;t know,
+[00:14:52] maybe 50 or 100 files and a few megs worth
+[00:14:54] of content.
+[00:14:55] But I&#39;m surprised how often I&#39;m talking to developers and
+[00:14:58] they&#39;re like, look, I have a million PDFs in this
+[00:15:00] BLOB storage account.
+[00:15:01] What what do I do?
+[00:15:03] You can certainly not grab your way through a million
+[00:15:06] PDFs, not if you want to issue, you know, 1020
+[00:15:09] queries in a second just to try different angles to
+[00:15:13] get the data.
+[00:15:14] So we have this file knowledge source that what it
+[00:15:16] does is it allows you to just upload content.
+[00:15:20] So it&#39;s the same as files, except that it it
+[00:15:23] has the whole retrieval engine behind them that creates indexes
+[00:15:28] and that&#39;s fast retrieval.
+[00:15:30] Not only that, but when you push the files like
+[00:15:32] I did before, we&#39;ll run them through full content processing
+[00:15:35] like so.
+[00:15:35] We&#39;ll do content extraction, even we&#39;ll deal with images, we&#39;ll
+[00:15:39] vectorize the content, everything you need to do sort of
+[00:15:42] at retrieval time, things work.
+[00:15:46] Now, what we see a lot in practice is when
+[00:15:49] you have an application that manages content internally, you usually
+[00:15:52] land this content in some store, like either in BLOB
+[00:15:55] storage or in a database or in one lake if
+[00:15:57] you&#39;re using Fabric.
+[00:15:59] So we work very hard to make it easy to
+[00:16:02] connect the search tag with all of these object stores
+[00:16:05] without you having to deal with the mechanics of it.
+[00:16:09] So when you point us at say, any of these
+[00:16:12] BLOB storage, one leg and whatnot, we&#39;ll run a full
+[00:16:15] ingestion pipeline, which we&#39;ll assemble by default.
+[00:16:18] So if you don&#39;t want to think too much about
+[00:16:19] it, just point us at it.
+[00:16:21] And we&#39;ll do chunking, vectorization, all of that, and you&#39;ll
+[00:16:23] get very, quite, very high quality results.
+[00:16:26] If you want the control, you can customize every step
+[00:16:29] of it, inject your own custom steps and whatnot so
+[00:16:31] you can get exactly what you want out of it.
+[00:16:34] And while these things tend to be tax heavy, we&#39;ll
+[00:16:36] also deal with multimedia as well.
+[00:16:39] Now when we&#39;re processing these things, first step is we
+[00:16:42] look at a set of files.
+[00:16:43] You know, PDFs are a typical thing and we have
+[00:16:45] to understand what exactly is inside so we can present
+[00:16:48] it to agents.
+[00:16:50] So for that, we&#39;ve integrated Foundry IQ with Azure content
+[00:16:53] understanding, which gives you like high end components for things
+[00:16:57] like optical character recognition, document layout.
+[00:17:01] You know, typical challenge is reading order is complicated and
+[00:17:03] you need to preserve it to understand the document.
+[00:17:06] Dealing with tables is in the category of life is
+[00:17:08] too short to kind of handle things like tables that
+[00:17:11] span pages, sparse tables, you know, all of these things.
+[00:17:15] So through content understanding, what we get is high quality
+[00:17:19] extraction from the additional content that then we can use
+[00:17:23] to index and then feed the the models.
+[00:17:26] So let me show you a couple of these things
+[00:17:27] in action.
+[00:17:28] So I&#39;ll come back here.
+[00:17:30] I&#39;ll go to the knowledge base I created before and
+[00:17:33] let&#39;s start by saying maybe my application uses BLOB storage
+[00:17:36] to learn content that is internally managed by by the
+[00:17:39] app itself.
+[00:17:40] Maybe it&#39;s PDFs or Markdown files or things like that.
+[00:17:43] So I&#39;m going to say I want to use BLOB
+[00:17:45] storage.
+[00:17:48] I have like a bunch of files with notes.
+[00:17:50] I&#39;m going to say notes, I&#39;m going to say annotations
+[00:17:55] for movies, and I&#39;m going to pick my storage account.
+[00:18:01] It&#39;s called Build 26.
+[00:18:05] Let&#39;s see if we find it.
+[00:18:06] There we go.
+[00:18:08] I&#39;m going to pick my container.
+[00:18:10] I&#39;m going to say I&#39;m giving a system identity.
+[00:18:13] And for content extraction, I&#39;m going to say standard, which
+[00:18:17] means use content, the full content understanding capability.
+[00:18:20] There is an embedding model already set so that we&#39;ll
+[00:18:23] do vectorization with that.
+[00:18:24] And if you want, you can give us a chat
+[00:18:26] completion model too.
+[00:18:27] And that will enable us to do image verbalization to
+[00:18:30] handle media as well.
+[00:18:32] So I&#39;m going to just kick this off.
+[00:18:34] And once this process runs, so it&#39;ll run in the
+[00:18:37] background and it&#39;s not a one shot thing.
+[00:18:39] It will import everything now, but it&#39;ll also make it
+[00:18:42] so it runs continuously and it tracks changes.
+[00:18:45] And when things change in the source will incrementally feed
+[00:18:48] the changes into a search index.
+[00:18:50] So you automatically have a search index that is always
+[00:18:53] fresh and the Foundry IQ can use for grounding.
+[00:18:56] And now I have multiple knowledge sources here, which means
+[00:18:59] the agentic routing system can make choices about what do
+[00:19:02] you want to use what, and that&#39;s what descriptions are
+[00:19:05] for, among other things.
+[00:19:08] So just to give you a quick example, since I&#39;m
+[00:19:11] here, let me show you a couple of examples of
+[00:19:14] content understanding.
+[00:19:17] So typical things you need to deal with this one
+[00:19:19] is a lot of PDFs actually have pictures inside like
+[00:19:22] it scans.
+[00:19:22] And in this case, this is a table that is
+[00:19:25] actually have have have written handwritten and whatnot.
+[00:19:28] And you can see that the markdown file has actual
+[00:19:31] even extracted not just the tables, but even the check
+[00:19:34] boxes.
+[00:19:35] And if you have a business looking document like that,
+[00:19:38] we&#39;ll understand the layout, we&#39;ll catch the reading order that
+[00:19:41] there is 2 columns, we&#39;ll extract the pictures and whatnot.
+[00:19:44] And sometimes you have more structured content and what you
+[00:19:47] can do is you can give us a schema of
+[00:19:49] what elements of the document you want us to extract
+[00:19:52] and we&#39;ll isolate that and extract it.
+[00:19:54] So you can fill it to to the agent or
+[00:19:56] use it as filters and things like that.
+[00:20:04] The other place where your data may be is so
+[00:20:06] far we talked about data inside the application.
+[00:20:09] And you know, a lot of what we see in
+[00:20:11] use of Foundry IQ is you have your application, you
+[00:20:13] have your own data and you want to power agents
+[00:20:15] with that.
+[00:20:16] Now that data rarely lives in isolation.
+[00:20:20] We, if you think about the data in your organization,
+[00:20:22] there&#39;s probably a bunch of, you know, Word documents and
+[00:20:25] all of your calendar and e-mail and whatnot.
+[00:20:27] It&#39;s all sitting in your M365 tenant.
+[00:20:30] And we have a work IQ that enables direct access
+[00:20:33] to that.
+[00:20:35] We also have in Fabric all your analytics state, so
+[00:20:38] all your data lake, your data warehouses, and you can
+[00:20:41] build data agents and whatnot on top.
+[00:20:43] And they found that Fabric IQ layer allows agents to
+[00:20:46] communicate with all that information in and it&#39;ll handle things
+[00:20:50] like natural language to SQL and navigating multiple data sources
+[00:20:53] and whatnot.
+[00:20:55] And then finally to access the web, we have Web
+[00:20:57] IQ that we just announced yesterday.
+[00:20:59] Now we built each of these IQ components so that
+[00:21:02] they work fine in isolation.
+[00:21:04] And if you your data is in one of these
+[00:21:06] places, please don&#39;t complicate things.
+[00:21:07] Just use the one that you need and you&#39;ll be
+[00:21:09] all set.
+[00:21:10] Now it&#39;s very common to have an agent that has
+[00:21:13] to deal with your own application data and then maybe
+[00:21:16] interact with your M365 content or your analytics structured data.
+[00:21:20] And we want to make it easy for you to
+[00:21:22] connect all these dots.
+[00:21:24] So Foundry IQ out-of-the-box supports integrating and connecting to the
+[00:21:28] entire spectrum of the IQ platform.
+[00:21:31] I&#39;ll show you a little bit more in a second
+[00:21:33] now before I go there.
+[00:21:35] The last bit of kinds of data we can connect
+[00:21:38] to is the the thing you use when the when
+[00:21:42] the built in options don&#39;t do it for you.
+[00:21:46] So if you have data in one of our supported
+[00:21:47] knowledge sources, just point us at it and we&#39;ll deal
+[00:21:50] with everything.
+[00:21:51] Now, sometimes what you have is not just data.
+[00:21:53] You have an application that you want us to connect
+[00:21:56] to and treat U.S.
+[00:21:56] data.
+[00:21:57] So we debate about what is the right interface for
+[00:22:01] this.
+[00:22:01] I kind of wish there was like AODBC for agents
+[00:22:03] or something, but there&#39;s no such a thing.
+[00:22:06] And the thing about MCP is that it&#39;s universal, like
+[00:22:09] it&#39;s not exactly meant for data integration, but it&#39;s everywhere.
+[00:22:13] And if you don&#39;t have an MCP server, it&#39;s easy
+[00:22:14] to make one.
+[00:22:15] So it became at a great integration point.
+[00:22:17] What we&#39;ll do is we&#39;ll turn the MCP output through
+[00:22:20] heuristics into like an item oriented list of things if
+[00:22:23] we can.
+[00:22:24] And then we&#39;ll even run our own ranking system on
+[00:22:26] top to improve the relevance of results.
+[00:22:28] Even at MCP, this means you can bring any data
+[00:22:30] source either of your own application or I&#39;ve seen things
+[00:22:33] like for example, using the GitHub MCP server to turn
+[00:22:36] issues into one of the tables that you feed into
+[00:22:38] the system and it kind of just works.
+[00:22:41] So let me show you a couple of examples of
+[00:22:43] this.
+[00:22:45] So first I&#39;m going to go back to the same
+[00:22:47] knowledge base.
+[00:22:49] So I&#39;ll start with work IQ.
+[00:22:51] The interesting thing about work IQ is because you just
+[00:22:54] need to point us at your tenant, there is actually
+[00:22:56] nothing to configure you just tell us that you want
+[00:22:58] us to integrate with work IQ.
+[00:23:00] Now your, your tenant admin has to give consent because
+[00:23:02] of course this is your office data.
+[00:23:04] You have to, you know, allow us to access it.
+[00:23:06] But once we have that, then it&#39;ll just work.
+[00:23:11] Now for Fabric, the interesting thing about fabric is that
+[00:23:15] Fabric has all sorts of things in it.
+[00:23:17] Like, you know, it starts with A1 lake at the
+[00:23:20] bottom where you can have all your kind of all
+[00:23:22] your but both structure files like parquet and things like
+[00:23:25] that and unstructured content.
+[00:23:28] And then you can have on top of that semantic
+[00:23:31] models and, and power VI reports and whatnot.
+[00:23:35] And then you can build data agents and even ontologies
+[00:23:37] on top of that.
+[00:23:38] So what we did in terms of integration is we
+[00:23:41] actually integrated with entire one leg catalog.
+[00:23:45] So you can see here that when I say one
+[00:23:47] layer fabric IQ, I see all sorts of objects here,
+[00:23:50] like I see lake houses, I see data agents, ontologies
+[00:23:53] and whatnot.
+[00:23:54] So I&#39;m going to give this a name.
+[00:23:56] I&#39;m going to say movie stats.
+[00:24:00] I&#39;m going to say use for ratings and other stats.
+[00:24:06] And if I go real quick to my fabric instance,
+[00:24:11] this a little bigger, you can see that I have
+[00:24:15] I have in one of my lake houses.
+[00:24:18] What I have is a few parquet files that just
+[00:24:20] represent statistics about movies like ratings and yeah, things like
+[00:24:24] that.
+[00:24:25] And So what I did is I created a very
+[00:24:29] simple data agent that works on that structure data.
+[00:24:35] So I just told it what what files to to
+[00:24:37] what part K files to use.
+[00:24:39] And now I can ask questions in natural language which
+[00:24:42] fabric will turn into SQL as needed and run all
+[00:24:44] these questions.
+[00:24:45] Now if I only needed this, I cannot ask the
+[00:24:47] questions right here.
+[00:24:48] But if I&#39;m building an knowledge base that combines the
+[00:24:51] unstructured content from one place with the structure content from
+[00:24:55] here, I want them to work together.
+[00:24:58] So what I&#39;ll do here is I&#39;ll actually, I can
+[00:25:00] just choose data agent.
+[00:25:01] And you know, in some cases, if I choose a
+[00:25:03] lake house, for example, I&#39;ll get indexing options because we&#39;ll
+[00:25:06] go index that data in the case of movies age.
+[00:25:09] In the case of this agent, there is really nothing
+[00:25:11] to index because we&#39;ll kind of integrate the questions at
+[00:25:15] retrieval time.
+[00:25:15] So I&#39;ll just say create and and now I have
+[00:25:18] a like another knowledge source, except this knowledge source will
+[00:25:23] send kind of, we&#39;ll talk agent to agent to the
+[00:25:26] data agent and then retrieve the contents and then integrate
+[00:25:31] into the rest of the retrieval workload.
+[00:25:34] All right, so let&#39;s add one more piece to this
+[00:25:37] knowledge base.
+[00:25:38] We talked about extensibility and we talked about web IQ.
+[00:25:41] Let me actually put these two things together.
+[00:25:44] So what I&#39;ll do is I&#39;m going to use instead
+[00:25:46] of one of these data sources, I&#39;m going to go
+[00:25:49] to browse for more.
+[00:25:50] You can see that we have more things that we
+[00:25:51] support.
+[00:25:52] And I&#39;ll say I want to use an MCP server
+[00:25:56] and I&#39;m going to call this MCP server YYQ, maybe
+[00:26:01] Y Q2 because I already have a Web IQ used
+[00:26:05] for web search.
+[00:26:07] And then what I need here is my endpoint into
+[00:26:13] into web YQ, which I have here.
+[00:26:16] When you sign up for the Web IQ preview, you&#39;ll
+[00:26:19] get this information.
+[00:26:21] And then I need to authenticate, which I&#39;ll do here.
+[00:26:33] And last, I need to say which tool I&#39;m going
+[00:26:35] to use, which I&#39;ll use web search.
+[00:26:38] So now I have no.
+[00:26:41] So now I have a single knowledge base that can
+[00:26:44] answer questions just like I used before.
+[00:26:46] In fact, the agent that consumes it doesn&#39;t need to
+[00:26:49] know that I added all this more importance, except now
+[00:26:52] this will use, you know, my content in Wikipedia articles
+[00:26:55] when I need that.
+[00:26:56] It&#39;ll use the web when he needs these and it&#39;ll
+[00:26:58] use fabric data agents when he needs that.
+[00:27:01] And the agentic orchestration will kind of make the choices
+[00:27:06] about what to use when go back to slides.
+[00:27:12] So one of the things that what&#39;s interesting in the
+[00:27:15] early days of kind of rag, when we all realized
+[00:27:18] you can build this kind of chat with your documents
+[00:27:21] applications is I think as an industry, we, there was
+[00:27:24] a lot of novelty and, and desire to understand how
+[00:27:27] that works.
+[00:27:28] So we took all of our documents, put them in
+[00:27:30] this thing, put a chat interface on top and we&#39;re
+[00:27:32] like here, like we can do this now.
+[00:27:35] Now here&#39;s the thing, in real world, if you look
+[00:27:37] at the documents in your company, it&#39;s not like everybody
+[00:27:40] can see every document.
+[00:27:42] And so this is, you know, document level security is
+[00:27:45] not the kind of thing you just want to improvise
+[00:27:47] real quick while you&#39;re building the rest of the stack.
+[00:27:50] So it&#39;s important that the actual retrieval system supports the
+[00:27:53] same security model than the underlying data supports.
+[00:27:57] So in Foundry IQ, we support propagating all the access
+[00:28:00] control information from sources that support access control, like say
+[00:28:03] SharePoint or you know, BLOB storage with a hierarchical namespaces
+[00:28:07] on where you can put access control lists.
+[00:28:10] And we&#39;ll propagate that into the indexes we build under
+[00:28:13] the covers.
+[00:28:14] And this is integrated with Entra.
+[00:28:16] So things like group membership works and all, like all
+[00:28:18] the things you would expect.
+[00:28:20] So at query time, you just present the credentials of
+[00:28:23] the user that is using.
+[00:28:25] So it&#39;s just the kind of the delegated token of
+[00:28:27] the user that is calling.
+[00:28:29] And based on that, it would look like the thing
+[00:28:31] you&#39;re searching only has the subset of items that that
+[00:28:34] person can see.
+[00:28:36] So security is enforced at the bottom of the stack.
+[00:28:38] You don&#39;t have to layer your own on top.
+[00:28:41] And actually same with a purview.
+[00:28:43] So if your documents have document sensitivity labels, those are
+[00:28:46] encrypted.
+[00:28:47] You can&#39;t just index them like with a random tool,
+[00:28:50] but we support integration with Purview.
+[00:28:52] So we will you know, they could them index them
+[00:28:54] and then secure them with the additional access control information
+[00:28:58] so that you can first control who can see them.
+[00:29:00] And second, you can propagate the sensitivity labels to the
+[00:29:04] UI that you are building so that you like your,
+[00:29:07] your application will look like Office from the perspective of
+[00:29:11] propagating labels and whatnot.
+[00:29:13] And we shipped a complete example for this residual there
+[00:29:17] in case you want to put kind of all these
+[00:29:20] mooring parts together now.
+[00:29:23] So first of all, let&#39;s go back to our agent,
+[00:29:26] which should be done.
+[00:29:28] So remember we kicked off that at the beginning.
+[00:29:31] I forgot to come back.
+[00:29:33] So we can see that what ended up happening is
+[00:29:35] this agent was like, yeah, got it.
+[00:29:37] I need to go provisional service.
+[00:29:38] It went created a new a new Foundry IQ service,
+[00:29:41] picked some name, give it an endpoint, create an index
+[00:29:44] and add a few files and we can actually go
+[00:29:47] check.
+[00:29:48] So if I go here, I&#39;m going to use the
+[00:29:51] Azure portal for this, make it a little bigger.
+[00:29:57] So let&#39;s find this resource group that where we&#39;re creating
+[00:30:02] things and the name of the services FIQIMDB something something.
+[00:30:07] This is this one.
+[00:30:09] And we can see that it created a serverless service.
+[00:30:12] It created an index inside the service.
+[00:30:14] There is 100 documents there and actually we can go
+[00:30:17] inside and pick up the content and see it actually
+[00:30:21] kind of got all the movie information in here.
+[00:30:24] So I just, this was a one liner that I
+[00:30:26] told the agent and I have a working index as
+[00:30:29] a result.
+[00:30:30] So we expect, in addition to developer workflows and whatnot,
+[00:30:33] we expect this serverless Foundry IQ instances to be great
+[00:30:36] for agents that want to create their own things on
+[00:30:39] the fly and delete them later, create new ones and
+[00:30:42] so on.
+[00:30:46] All right, So we talked about creating an instance of
+[00:30:50] Foundry IQ, then we talked about putting data in it.
+[00:30:55] Now let&#39;s talk about retrieval.
+[00:30:57] So retrieval is the moment that where you&#39;re all the
+[00:31:00] work that you do actually delivers value in the end.
+[00:31:03] When it comes to retrieval or search engines, The thing
+[00:31:06] is useful, the moment you, your top 3 or 4
+[00:31:08] results are what the agent needed to ground the answer
+[00:31:11] they&#39;re looking for.
+[00:31:14] So in Foundry IQ we have an identical retrieval pipeline
+[00:31:17] that is built into the system that you can choose
+[00:31:20] to, to use.
+[00:31:20] Remember the layers of the system.
+[00:31:22] If you just want raw indexes, you can use them.
+[00:31:24] But if you want a full fully featured retrieval pipeline
+[00:31:28] that is just uses kind of an agentic method for
+[00:31:30] retrieval, it&#39;s built into a system.
+[00:31:33] Now the agentic retrieval pipeline will what, what it&#39;ll do
+[00:31:37] is it&#39;ll take the question or kind of data requirements
+[00:31:40] from the agent that is calling it.
+[00:31:42] And first thing it&#39;ll do is it&#39;ll do query planning
+[00:31:45] what it&#39;ll look at, what data sources should it go
+[00:31:48] look at and how the query should be decomposed into
+[00:31:51] parts and then go search.
+[00:31:52] It&#39;ll run a few searches and then come back, look
+[00:31:55] at the results and decide if it got what it
+[00:31:57] was hoping to get.
+[00:31:58] And if not, depending on the retrieval effort you configured,
+[00:32:01] it&#39;ll kind of iterate and they&#39;ll search again based on
+[00:32:04] the new information and then produce a final result to
+[00:32:07] show to the agent.
+[00:32:08] Now, this is something that we&#39;ve been working on for
+[00:32:12] a while.
+[00:32:12] And at this point we are in kind of the
+[00:32:15] second generation of agentic retrieval with, you know, one of
+[00:32:18] the interesting things we saw is, you know, it&#39;s interesting
+[00:32:22] how from about say October of last year to now,
+[00:32:25] the models have changed significantly, including how good they are,
+[00:32:29] the things like tool calling loops and things like that.
+[00:32:32] So we significantly revamped the agentic retrieval stack to take
+[00:32:36] advantage of the latest that the language models can do.
+[00:32:39] So you can see in the charts like improvements across
+[00:32:43] the board.
+[00:32:43] So just to give you a kind of a little
+[00:32:46] bit of orientation of what these charts say is this
+[00:32:49] is a composition of multiple metrics.
+[00:32:51] In this case, how good these systems are at recall,
+[00:32:54] how often the answer is correct, how often the answer
+[00:32:57] is complete, and also how often the model says that
+[00:33:00] it doesn&#39;t know the answer even though the answer was
+[00:33:03] present in the underlying data set.
+[00:33:06] And we compare this against just lexical indexes, BM25 indexes
+[00:33:10] against hybrid search, so vector plus plus lexical systems, and
+[00:33:14] also against knowledge base with a genetic retrieval off.
+[00:33:18] We call it minimal mode, so you can see material
+[00:33:21] improvements across the entire set of metrics for all of
+[00:33:25] them.
+[00:33:25] Of course, this comes as a trade off and the
+[00:33:27] trade off is latency.
+[00:33:29] So if you use a search index, those things are
+[00:33:31] so fast that you just don&#39;t need to account for
+[00:33:34] it in your latency budget.
+[00:33:35] They are instantaneous.
+[00:33:37] Now when you call agentic retrieval, that could be a
+[00:33:40] few seconds or sometimes maybe 10 seconds or something like
+[00:33:43] that.
+[00:33:43] If you have to iterate multiple times before we get
+[00:33:46] to an answer.
+[00:33:47] Now where does this where do these improvements compared to
+[00:33:50] last iterations come from?
+[00:33:52] Well, it&#39;s a mix of things.
+[00:33:53] So first, as I said before, the agent, the language
+[00:33:56] models got better.
+[00:33:57] So our workflow for retrieval, we, we had to kind
+[00:34:00] of update significantly to fit the style of the models
+[00:34:04] that do really well today and then made a huge
+[00:34:07] difference.
+[00:34:08] Second, we trained a new semantic mode and semantic ranker.
+[00:34:12] We&#39;ve been training 3 rankers for a while and we
+[00:34:14] keep being able to push the boundary on that.
+[00:34:17] Then we worked on our answer synthesis.
+[00:34:19] We have significant improvements there.
+[00:34:21] And then for some tasks like for example MCP parameter
+[00:34:24] binding, we did a lot of work to tune depending
+[00:34:27] on the model you&#39;re using, we do model specific prompt
+[00:34:30] to get it exactly right for that model because there
+[00:34:32] is enough variability between between them.
+[00:34:36] So we did the science team behind this publishes very
+[00:34:39] detailed write ups and this if you are in the
+[00:34:41] from into information retrieval or you want to understand how
+[00:34:45] we evaluate how these systems are working, I recommend checking
+[00:34:48] out that URL where you&#39;ll see a lot a lot
+[00:34:51] longer of a write up, including some of these data
+[00:34:53] you see on the screen and a lot more.
+[00:34:57] Now, in addition to that token efficiency these days is
+[00:35:01] a thing like that we all kind of think about.
+[00:35:04] So the other thing that we we looked at is,
+[00:35:07] you know, in terms of what it takes to get
+[00:35:09] a right answer, not what it takes to do a
+[00:35:12] search.
+[00:35:12] Like anybody can do a search with just a few
+[00:35:14] tokens.
+[00:35:14] The question is, did you get it right?
+[00:35:17] So what you see here is kind of like a
+[00:35:19] Pareto line of what is what is the best you
+[00:35:22] can do with the fewest possible tokens.
+[00:35:25] And again, we compare against ourselves like we compare what
+[00:35:28] is just hybrid search versus using full agentic retrieval where
+[00:35:32] you need an outer agent to orchestrate more or we
+[00:35:34] do the orchestration.
+[00:35:36] And you can see first, that we need fewer tokens
+[00:35:38] to produce better answers.
+[00:35:41] And 2nd, which is not necessarily part of this chart.
+[00:35:44] We&#39;ve worked a lot in making sure that the way
+[00:35:47] we construct prompts like, you know, the way we manage
+[00:35:50] our own context is aware of how token caching caching
+[00:35:53] works to, to make sure that first, it&#39;s faster because
+[00:35:56] you, you, you hit the, the prefix cache on the
+[00:35:59] on the language model you&#39;re hitting.
+[00:36:02] And 2nd, it&#39;s cheaper because cache tokens are always cheaper
+[00:36:05] than the running full on, full on tokens.
+[00:36:09] So to give you a sense of kind of how
+[00:36:11] all of this can be put together.
+[00:36:14] So what I, what I, what I did is I
+[00:36:16] just crafted a quick, I mean craft testing vibe.
+[00:36:19] I used to say I wrote as in I wrote
+[00:36:21] the code.
+[00:36:21] I don&#39;t know what to say these days, but I
+[00:36:24] have a thing that what it does is it just
+[00:36:27] calls the retrieve API for, for the knowledge base we
+[00:36:31] just created.
+[00:36:32] And it&#39;ll show you, show us a little bit of
+[00:36:34] the internals.
+[00:36:35] So I&#39;m going to ask you to run in medium.
+[00:36:37] So it&#39;ll run a little longer.
+[00:36:38] And I have a quick prompt that I want to,
+[00:36:40] I want to give it.
+[00:36:42] I&#39;m going to ask to go do this.
+[00:36:46] So now, now that we have a set of moving
+[00:36:49] parts in that knowledge base, I want to go use
+[00:36:52] that knowledge base to go perform a number of tasks.
+[00:36:58] Oh, I forgot to show you this.
+[00:37:01] So now that I have multiple data sources and some
+[00:37:04] of them are actually online data sources, we can&#39;t just
+[00:37:08] create a knowledge base without telling us which model we
+[00:37:12] use for the actual orchestration, which is what I forgot
+[00:37:16] before.
+[00:37:16] So what I do here is I&#39;ll say use GPT
+[00:37:20] 454 mini.
+[00:37:21] I&#39;m going to choose a default reasoning effort.
+[00:37:23] You can override it later.
+[00:37:24] And I can also choose whether I want answer synthesis
+[00:37:27] or not.
+[00:37:28] And I can optionally give steering instructions for for both
+[00:37:32] of these things.
+[00:37:34] So now with that in place, we&#39;re going to call
+[00:37:37] retrieve again.
+[00:37:40] And so this will take a second to run, but
+[00:37:43] once it runs, I run it a little bit before.
+[00:37:46] So let me show you the output.
+[00:37:48] So in this case, you can see, you know, it
+[00:37:51] went to the ratings part.
+[00:37:53] The ratings are in.
+[00:37:55] They are this data agent that is running in Fabric
+[00:37:57] quoting this part K files in Sequel.
+[00:38:00] So you can see the results from that.
+[00:38:03] And then part of the question is how do they
+[00:38:05] do in the box office, which is not of my
+[00:38:07] data sets.
+[00:38:08] So what he did is just use the web grounding
+[00:38:10] part, went to the web, grabbed the movies that were
+[00:38:13] in the top ten.
+[00:38:14] You know, I&#39;ll leave you to decide whether or not
+[00:38:16] those are the actual best three sci-fi movies.
+[00:38:19] And and then he pulled the results and they gave
+[00:38:22] us an answer on some of them.
+[00:38:24] And some of them he was like, yeah, this was
+[00:38:25] not on the web.
+[00:38:26] Who knows why but we got a very comprehensive answer
+[00:38:29] and you can see the activity here where you know
+[00:38:32] the planner run.
+[00:38:33] Then first he went to the data agent.
+[00:38:35] I assume we went there to find what are the
+[00:38:37] top sci-fi movies.
+[00:38:40] And then he hit the MCP server for web, discarded
+[00:38:42] some of the content, the synthesis step where he constructed
+[00:38:46] an answer and then finished the reasoning process with that.
+[00:38:50] And along with this, I have all the references where
+[00:38:52] in each one of them you can see where this
+[00:38:54] data came from, what is the kind of knowledge source?
+[00:38:56] And you know, when the knowledge source gives us information,
+[00:38:59] maybe a link to the underlying file and whatnot, we&#39;ll
+[00:39:01] present it here as well.
+[00:39:03] So all this information usually you won&#39;t present in the
+[00:39:06] UX, but it&#39;s great if you want to fit it
+[00:39:08] to an agent to understand the dynamic, yeah, the interaction
+[00:39:11] better.
+[00:39:11] Or you can use it for debugging as well.
+[00:39:18] Go back here and the interesting thing is all the
+[00:39:21] technology and all the science that I talked about for
+[00:39:24] improving ranking and relevance and agentic retrieval is behind that
+[00:39:28] one API.
+[00:39:29] Either they&#39;re behind that one MCP server call or behind
+[00:39:32] the retrieve call and everything else will happen under the
+[00:39:35] covers.
+[00:39:36] Now that said, a bit of a little bit coming
+[00:39:39] back to the beginning.
+[00:39:42] Like I said, the the we designed the system to
+[00:39:45] be cleanly stacked in a way that allows you to
+[00:39:48] decide what layer of the system to use at what
+[00:39:52] point in time.
+[00:39:53] One of the design tricks that was non trivial to
+[00:39:56] pull off was to make sure that even when you
+[00:39:58] pick a layer, even though you can pick layers, once
+[00:40:00] you pick one, you don&#39;t want to be stuck in
+[00:40:02] it.
+[00:40:03] You want to have the versatility to go up and
+[00:40:05] down the stack.
+[00:40:06] And that&#39;s what we&#39;ve done with the Foundry IQ stack
+[00:40:09] where you can do.
+[00:40:10] Found the integration first, or you can do knowledge bases
+[00:40:14] or you can go straight to the core retrieval engine
+[00:40:17] that we built around like this is on on Azure
+[00:40:20] AI search and you can go up and down the
+[00:40:22] stack as you need or you can change your mind
+[00:40:25] once you build 1 and I wanted to show you
+[00:40:27] a few examples of that so remember that we built
+[00:40:30] this knowledge base here.
+[00:40:33] This is the kind of funky name that we got.
+[00:40:35] And then we built some knowledge sources that are remote
+[00:40:38] and some knowledge sources that have indexed content.
+[00:40:42] So let&#39;s actually peek into what&#39;s happening under the covers.
+[00:40:45] So I&#39;m going to just go to Azure in the
+[00:40:47] Azure portal and let me switch back to the resource
+[00:40:51] group that has particular service.
+[00:40:55] And remember, this service was called MO Three.
+[00:40:58] And 1st, I can find the knowledge base we created
+[00:41:00] there right here in the Azure Search Blade.
+[00:41:03] So this is the one we just used.
+[00:41:06] We can see all the knowledge sources, but if I
+[00:41:09] pick a little more, remember 2 of them were actually
+[00:41:13] indexed content.
+[00:41:14] So I can see the actual indexer.
+[00:41:16] This is a job that does all the transformation.
+[00:41:19] It&#39;s effectively the data pipeline that pulls data into the
+[00:41:21] index.
+[00:41:22] I can look at the runs, I can kind of
+[00:41:24] configure the internals and whatnot and actually go in and
+[00:41:27] look at the index.
+[00:41:29] For example, this was the the this one was the
+[00:41:32] the one the index that we created when we got
+[00:41:36] all the files with the articles.
+[00:41:40] And if, if I want, I can look at the
+[00:41:42] schema where I can see what is the construction of
+[00:41:45] the index.
+[00:41:46] I can even pick up things like you may have,
+[00:41:49] you may not care and then we&#39;ll choose reasonable defaults.
+[00:41:52] Or you may have very specific comparisons like or opinions
+[00:41:55] like.
+[00:41:55] For example, here is like what is the vector search
+[00:41:58] compression options where by default we do 8 bit quantization.
+[00:42:02] But you may want a different quantization policy or a
+[00:42:05] different kind of re ranking policy or things like that.
+[00:42:09] And you can control all this all the way to
+[00:42:12] details like this.
+[00:42:14] And you can also look at the actual data, like
+[00:42:16] for example here, if I pull the content of this
+[00:42:19] index, I mean, I could, I could also search, but
+[00:42:23] you can see these are the content.
+[00:42:25] This is the actual snippet that was a result of
+[00:42:27] chunking.
+[00:42:28] And I can see the actual vector here, which of
+[00:42:30] course is not very useful to look at it.
+[00:42:32] But is this the vector we use when we&#39;re computing
+[00:42:34] kind of vector differences for vector search?
+[00:42:37] Not only you have the control to do this, but
+[00:42:40] this also allows you to make choices about things like
+[00:42:43] latency trade-offs where you can do fully genetic retrieval and
+[00:42:47] it&#39;ll take a few seconds, but it&#39;ll give you great
+[00:42:49] results.
+[00:42:50] And maybe in other cases you are like, well, I
+[00:42:52] want to do something like sort of what you do
+[00:42:54] with files where you just issue a whole bunch of
+[00:42:56] searches and you want real quick results so you can
+[00:42:58] iterate on them.
+[00:42:59] And that can happen really, really fast.
+[00:43:02] I guess to give you like a last example of
+[00:43:04] these, let me show you one last thing, which is
+[00:43:07] just to give you a sense of the difference in
+[00:43:09] speed of these things.
+[00:43:12] So what I&#39;ll do is I have this other service
+[00:43:14] where instead of those 345 files I showed you before,
+[00:43:17] I took all of Wikipedia in English Wikipedia, chunked it
+[00:43:20] up and put it in an index.
+[00:43:22] So this has about 22 or so million chunks.
+[00:43:25] So it&#39;s a sizable index at this point.
+[00:43:28] And then I just wrote a simple client to so
+[00:43:32] we can kind of hit that endpoint.
+[00:43:35] So if I, if I search for simple things, we&#39;re
+[00:43:38] talking about Neo before and peel.
+[00:43:40] Like you can see this thing searches at the speed
+[00:43:42] that I can type.
+[00:43:43] In fact, I can&#39;t force the lag like I can
+[00:43:46] say Microsoft build if I didn&#39;t have any typos.
+[00:43:50] So this is searching on every crystal keystroke and I
+[00:43:53] still can&#39;t keep up.
+[00:43:54] So if you want an agent to say issue 10
+[00:43:56] searches or issue multiple rounds of 10/20 searches each, all
+[00:44:00] of them will finish well within the second all together
+[00:44:03] in parallel, which means you can could completely change the
+[00:44:06] way you think about retrieval.
+[00:44:08] You can get us to run your agentic retrieval loop
+[00:44:11] for you, or you can give us give the agent
+[00:44:14] these entry points and let them hit the the search
+[00:44:17] index as hard as you want and it&#39;ll be just
+[00:44:20] fine.
+[00:44:21] I even at 10s or hundreds of millions of documents
+[00:44:25] like in the example here.
+[00:44:28] So with that, this is all I wanted to share
+[00:44:31] with you today.
+[00:44:33] This is everything I showed you today.
+[00:44:35] You can use today.
+[00:44:36] So you can go to Foundry or the Azure Portal
+[00:44:39] or get our SD KS and get going with this.
+[00:44:42] And here&#39;s a bunch of other things that are going
+[00:44:45] on at Build that are related to the topic I
+[00:44:47] talked about.
+[00:44:48] Hope this information was useful to you all and thank
+[00:44:51] you very much for coming here this morning.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

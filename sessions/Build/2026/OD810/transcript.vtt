@@ -1,0 +1,1992 @@
+WEBVTT
+
+00:00:03.540 --> 00:00:04.290
+YOHAN LASORSA: Hey, folks.
+
+00:00:04.290 --> 00:00:05.430
+Welcome to this session
+
+00:00:05.430 --> 00:00:09.030
+where we'll discuss a somewhat
+hot topic among developers,
+
+00:00:09.030 --> 00:00:12.720
+pushing vibe-coded apps to
+production, but safely.
+
+00:00:12.720 --> 00:00:14.070
+My name is Yogan Lasorsa,
+
+00:00:14.070 --> 00:00:17.250
+and I'm a Principal Developer
+Advocate here at Microsoft.
+
+00:00:17.250 --> 00:00:20.070
+Coding agents have become
+exponentially better
+
+00:00:20.070 --> 00:00:23.910
+in the past year, and this has
+changed completely how we build
+
+00:00:23.910 --> 00:00:25.470
+new applications.
+
+00:00:25.470 --> 00:00:29.730
+More people, even non-technical
+folks, now can take a real shot
+
+00:00:29.730 --> 00:00:32.880
+at building the
+app they imagined.
+
+00:00:32.880 --> 00:00:36.450
+The timeline changed, too,
+with dramatic speed increases.
+
+00:00:36.450 --> 00:00:37.890
+What used to take months
+
+00:00:37.890 --> 00:00:41.610
+to build a prototype
+now takes minutes.
+
+00:00:41.610 --> 00:00:45.150
+The risk, though, is treating
+the first working demo
+
+00:00:45.150 --> 00:00:47.910
+as the production foundation.
+
+00:00:47.910 --> 00:00:50.820
+If you're a developer, I'm sure
+you've already experienced
+
+00:00:50.820 --> 00:00:53.130
+something like this.
+
+00:00:53.130 --> 00:00:57.570
+Marketing just had a crazy app
+idea yesterday, and today,
+
+00:00:57.570 --> 00:01:00.390
+they're showing it to you
+after they've played a bit
+
+00:01:00.390 --> 00:01:03.450
+with GitHub Copilot or
+some other AI tool,
+
+00:01:03.450 --> 00:01:07.830
+asking that the code is
+there, so you just have
+
+00:01:07.830 --> 00:01:09.240
+to put it in production.
+
+00:01:09.240 --> 00:01:14.670
+I've been there multiple
+times, at least, so, yeah,
+
+00:01:14.670 --> 00:01:18.490
+this somehow feels
+a bit personal.
+
+00:01:21.060 --> 00:01:22.830
+Here's the hard truth.
+
+00:01:22.830 --> 00:01:25.860
+Besides my own experience,
+multiple surveys
+
+00:01:25.860 --> 00:01:31.950
+and analysis show that 80
+to 90% of AI-generated
+
+00:01:31.950 --> 00:01:36.540
+or vibe-coded prototypes
+never become production apps.
+
+00:01:36.540 --> 00:01:39.450
+I would like to say
+that's for good reasons.
+
+00:01:39.450 --> 00:01:42.960
+You've all heard the
+horror stories lately
+
+00:01:42.960 --> 00:01:47.940
+about the outages, security, and
+data leaks with vibe-coded apps
+
+00:01:47.940 --> 00:01:52.270
+that may have been pushed
+public a bit too early.
+
+00:01:53.730 --> 00:01:55.830
+That's because while
+the development speed
+
+00:01:55.830 --> 00:01:58.140
+for apps is now
+faster than ever,
+
+00:01:58.140 --> 00:02:01.770
+the bar for production-grade
+apps still hasn't changed.
+
+00:02:01.770 --> 00:02:04.680
+You still need to
+know who the user is
+
+00:02:04.680 --> 00:02:06.840
+and what they're allowed to do.
+
+00:02:06.840 --> 00:02:10.830
+You still need a trustworthy
+data model, safe migrations,
+
+00:02:10.830 --> 00:02:13.770
+and clear boundaries
+around the data.
+
+00:02:13.770 --> 00:02:16.800
+You still need governance,
+compliance, security reviews,
+
+00:02:16.800 --> 00:02:21.060
+and a deployment model that
+can scale and be observed.
+
+00:02:21.060 --> 00:02:24.480
+Increasingly, you also need
+the data created by the app
+
+00:02:24.480 --> 00:02:28.830
+to be immediately useful,
+not just stored somewhere,
+
+00:02:28.830 --> 00:02:32.700
+but you need to be able to
+query and get insights from it
+
+00:02:32.700 --> 00:02:36.390
+and make it accessible
+to AI agents.
+
+00:02:36.390 --> 00:02:37.620
+This is the shift.
+
+00:02:37.620 --> 00:02:41.130
+Coding agents make it much
+easier to go from idea
+
+00:02:41.130 --> 00:02:44.190
+to prototype, but the
+real gap now is getting
+
+00:02:44.190 --> 00:02:46.960
+from prototype to production.
+
+00:02:48.750 --> 00:02:51.510
+Rayfin is there to
+serve that gap.
+
+00:02:51.510 --> 00:02:54.240
+It's a managed
+backend as a service
+
+00:02:54.240 --> 00:02:56.910
+for building enterprise
+apps built on top
+
+00:02:56.910 --> 00:03:00.780
+of Microsoft Fabric, so it's a
+complete platform for web apps
+
+00:03:00.780 --> 00:03:03.900
+that provides you a backend
+with a managed database,
+
+00:03:03.900 --> 00:03:07.260
+authentication, hosting,
+functions, storage,
+
+00:03:07.260 --> 00:03:09.750
+and real-time services.
+
+00:03:09.750 --> 00:03:13.200
+That's great, having all
+of this in one place,
+
+00:03:13.200 --> 00:03:15.540
+but you may already be
+using other platforms
+
+00:03:15.540 --> 00:03:18.300
+that provide similar features.
+
+00:03:18.300 --> 00:03:22.170
+What's different here is that it
+was built to be enterprise-ready
+
+00:03:22.170 --> 00:03:25.890
+and Fabric-native from day one.
+
+00:03:25.890 --> 00:03:29.310
+All the things that you already
+like and get from Fabric,
+
+00:03:29.310 --> 00:03:32.760
+like governance, security,
+compliance, and easy integration
+
+00:03:32.760 --> 00:03:37.710
+with your Fabric data estates,
+you have it with Rayfin.
+
+00:03:37.710 --> 00:03:40.770
+There's also another thing
+that I should mention.
+
+00:03:40.770 --> 00:03:44.550
+It was built from the start
+with coding agents in mind,
+
+00:03:44.550 --> 00:03:48.330
+with the goal of making
+vibe-coded apps benefit from all
+
+00:03:48.330 --> 00:03:52.960
+of these features without any
+extra work from your side.
+
+00:03:54.870 --> 00:03:58.560
+Now that I've set the context,
+let's have a quick look
+
+00:03:58.560 --> 00:04:01.650
+at what we'll explore
+during this session.
+
+00:04:01.650 --> 00:04:05.550
+From now on, don't worry,
+it will be mostly demos.
+
+00:04:05.550 --> 00:04:09.810
+We'll see how to create a
+new app using a coding agent
+
+00:04:09.810 --> 00:04:16.380
+in Rayfin and see how to control
+how users can access it.
+
+00:04:16.380 --> 00:04:19.470
+We'll talk about data
+integrity and migration
+
+00:04:19.470 --> 00:04:22.110
+as apps evolve over time.
+
+00:04:22.110 --> 00:04:24.900
+We'll live-push our
+app to production.
+
+00:04:24.900 --> 00:04:26.880
+Finally, we'll see
+how to bring in some
+
+00:04:26.880 --> 00:04:29.940
+of the Fabric intelligence
+to build a nice dashboard
+
+00:04:29.940 --> 00:04:34.440
+for our application,
+so let's start
+
+00:04:34.440 --> 00:04:38.070
+by creating our
+application from scratch.
+
+00:04:38.070 --> 00:04:45.150
+I'll move on to VS Code,
+and I'll use "npm create"
+
+00:04:45.150 --> 00:04:51.580
+with the Microsoft Rayfin
+package to bootstrap my project.
+
+00:04:54.780 --> 00:04:59.190
+Here, I get the option to either
+start using a built-in template
+
+00:04:59.190 --> 00:05:01.860
+from a template that's
+somewhere else,
+
+00:05:01.860 --> 00:05:06.300
+maybe in an external Git repo,
+or just start from scratch.
+
+00:05:06.300 --> 00:05:08.730
+For now, I will use one of
+the built-in templates,
+
+00:05:08.730 --> 00:05:11.540
+so you have multiple options.
+
+00:05:11.540 --> 00:05:14.510
+I'll keep the Blank
+app because I want
+
+00:05:14.510 --> 00:05:17.450
+to customize it for my needs.
+
+00:05:17.450 --> 00:05:20.640
+I'll call my project "Chef."
+
+00:05:20.640 --> 00:05:25.620
+I want Microsoft SQL
+database to host the file.
+
+00:05:25.620 --> 00:05:27.870
+Yeah, after it copies
+all the files,
+
+00:05:27.870 --> 00:05:31.350
+it will just install
+everything I need.
+
+00:05:31.350 --> 00:05:34.920
+Meanwhile, I want to give you
+some background about the app
+
+00:05:34.920 --> 00:05:36.810
+that we are going to build.
+
+00:05:36.810 --> 00:05:40.740
+I come from an Italian family,
+and we have plenty of recipes
+
+00:05:40.740 --> 00:05:43.800
+that are passed down from
+generation to generation,
+
+00:05:43.800 --> 00:05:48.120
+but most are only in the
+heads of the family members.
+
+00:05:48.120 --> 00:05:51.360
+Recently, as I was chatting
+with my kids about some
+
+00:05:51.360 --> 00:05:54.480
+of these recipes, I thought
+that it would be great
+
+00:05:54.480 --> 00:05:56.940
+to have a better way to
+store and share them,
+
+00:05:56.940 --> 00:05:59.640
+especially with the
+younger generation
+
+00:05:59.640 --> 00:06:02.940
+that is more used
+to digital tools.
+
+00:06:02.940 --> 00:06:05.580
+One critical requirement
+that I have if I want
+
+00:06:05.580 --> 00:06:08.310
+to get the elders' buy-in is
+
+00:06:08.310 --> 00:06:12.060
+that the family secrets
+must stay secret.
+
+00:06:12.060 --> 00:06:16.380
+I mean, some of these recipes
+are our very own secret sauce
+
+00:06:16.380 --> 00:06:18.720
+that we just don't want
+to share with the world,
+
+00:06:18.720 --> 00:06:22.410
+so I'm sure you can
+relate to that.
+
+00:06:22.410 --> 00:06:26.310
+For this app, I've
+drafted this spec here.
+
+00:06:26.310 --> 00:06:29.610
+Okay. This is an app that's
+called, "Contoso Chef."
+
+00:06:29.610 --> 00:06:36.150
+It's a recipe sharing website
+used to store personal recipes
+
+00:06:36.150 --> 00:06:38.940
+and seek some meal inspiration.
+
+00:06:38.940 --> 00:06:41.610
+To create a recipe, you
+need authentication.
+
+00:06:41.610 --> 00:06:46.230
+Recipes have different
+visibility, private by default.
+
+00:06:46.230 --> 00:06:49.230
+You can also share some
+recipe that you don't want
+
+00:06:49.230 --> 00:06:52.770
+to be publicly listed with
+friends using a unique link.
+
+00:06:52.770 --> 00:06:54.990
+That's something I want also,
+
+00:06:54.990 --> 00:07:00.120
+because not all recipes
+are just family secrets,
+
+00:07:00.120 --> 00:07:03.330
+and some can be just
+shared with anyone.
+
+00:07:03.330 --> 00:07:06.570
+I'm listing some
+features like likes,
+
+00:07:06.570 --> 00:07:09.840
+so you can favorite
+some of your recipes.
+
+00:07:09.840 --> 00:07:14.490
+Oh, and I already prepared
+inside this data folder,
+
+00:07:14.490 --> 00:07:18.180
+some public recipes, something
+that I don't mind sharing
+
+00:07:18.180 --> 00:07:22.380
+in JSON format, just
+to get some data
+
+00:07:22.380 --> 00:07:25.800
+to start with,
+also, with images.
+
+00:07:25.800 --> 00:07:29.640
+I put everything in there,
+and I even have some ideas
+
+00:07:29.640 --> 00:07:31.350
+that will be kept for later.
+
+00:07:31.350 --> 00:07:33.690
+So, okay, let's get started
+
+00:07:33.690 --> 00:07:36.990
+with this application
+using Copilot CLI.
+
+00:07:36.990 --> 00:07:41.430
+I'm running Copilot in a
+yolo mode to be able --
+
+00:07:41.430 --> 00:07:44.520
+so it can just do its thing.
+
+00:07:44.520 --> 00:07:49.920
+You can see that it's -- oh,
+I'm not in the right folder.
+
+00:07:49.920 --> 00:07:57.510
+So first, I need to go to the
+Chef folder and restart Copilot.
+
+00:07:57.510 --> 00:08:02.850
+You can see that there are
+some skills on the MCP server.
+
+00:08:02.850 --> 00:08:05.460
+Let's just explore that.
+
+00:08:05.460 --> 00:08:09.240
+So Rayfin, if you bootstrap the
+project using the Microsoft
+
+00:08:09.240 --> 00:08:14.430
+Rayfin CLI, you get, by
+default, this Rayfin skill
+
+00:08:14.430 --> 00:08:18.570
+that gives some instruction to
+the agents to understand how
+
+00:08:18.570 --> 00:08:23.220
+to create and use the Rayfin
+SDK to build a project.
+
+00:08:23.220 --> 00:08:27.480
+I also added one front-end
+design skill that's someone
+
+00:08:27.480 --> 00:08:29.370
+that you can find on the web
+
+00:08:29.370 --> 00:08:36.000
+to get some better web design
+capabilities to the agent.
+
+00:08:36.000 --> 00:08:40.560
+If we look at the MCP server,
+we also have one from Rayfin
+
+00:08:40.560 --> 00:08:45.270
+to allow the agents to load
+and all the documentation
+
+00:08:45.270 --> 00:08:48.940
+to understand how
+Rayfin projects works.
+
+00:08:50.250 --> 00:08:55.410
+That's it, and since I put
+everything I wanted to implement
+
+00:08:55.410 --> 00:08:59.910
+in this spec.md file, I can
+just tell my agents to go on
+
+00:08:59.910 --> 00:09:04.630
+and implement what I have
+in my spec documents.
+
+00:09:05.730 --> 00:09:10.650
+Of course, the agent will start
+reading my spec, trying to look
+
+00:09:10.650 --> 00:09:15.040
+at the project to
+understand how it works.
+
+00:09:16.560 --> 00:09:19.650
+You can see that it
+loaded the Rayfin skill
+
+00:09:19.650 --> 00:09:21.450
+to understand how Rayfin works.
+
+00:09:21.450 --> 00:09:24.900
+It may have used also the
+MCP server under the hood.
+
+00:09:24.900 --> 00:09:28.140
+It's taking a look at the data.
+
+00:09:28.140 --> 00:09:31.170
+So yeah, you get the idea.
+
+00:09:31.170 --> 00:09:34.380
+Because it's not really
+fun to just look
+
+00:09:34.380 --> 00:09:36.450
+at Copilots implement
+this stuff,
+
+00:09:36.450 --> 00:09:40.930
+we'll just fast forward
+a bit to the next step.
+
+00:09:42.210 --> 00:09:45.540
+I already run this prompt before
+
+00:09:45.540 --> 00:09:48.180
+and save the result
+inside this branch.
+
+00:09:48.180 --> 00:09:52.110
+I'll just remove this
+folder, so I put everything
+
+00:09:52.110 --> 00:09:55.410
+at the root of the project.
+
+00:09:55.410 --> 00:10:00.150
+Oh, I'll just go
+back to my project.
+
+00:10:00.150 --> 00:10:05.790
+Okay. Now we're ready to see
+what the agents generated
+
+00:10:05.790 --> 00:10:10.350
+in there, so before we
+explore a bit of the project,
+
+00:10:10.350 --> 00:10:12.750
+I just run this command
+
+00:10:12.750 --> 00:10:16.410
+to create the backend
+for my application.
+
+00:10:16.410 --> 00:10:22.410
+For that, I'll use the "npx
+Rayfin up" command with the
+
+00:10:22.410 --> 00:10:26.460
+"workspace URI" setting.
+
+00:10:26.460 --> 00:10:28.470
+Now I'm going to Fabric.
+
+00:10:28.470 --> 00:10:29.880
+I have created this workspace.
+
+00:10:29.880 --> 00:10:31.470
+You can see that it's empty.
+
+00:10:31.470 --> 00:10:36.330
+This is where I will put all
+the database and the backend
+
+00:10:36.330 --> 00:10:41.430
+for my Rayfin app, so for now,
+I'll just copy this URL in there
+
+00:10:41.430 --> 00:10:45.570
+and pass that to my
+command line and run it,
+
+00:10:45.570 --> 00:10:50.610
+and it should create all the
+backend and API endpoints,
+
+00:10:50.610 --> 00:10:53.550
+also the database in Fabric,
+and connect all of that
+
+00:10:53.550 --> 00:10:57.120
+to my application, so it will
+just take a few seconds.
+
+00:10:57.120 --> 00:11:01.770
+Meanwhile, we can explore
+the project a bit.
+
+00:11:01.770 --> 00:11:05.100
+Just if you're curious,
+it took about 20 minutes
+
+00:11:05.100 --> 00:11:09.840
+to generate the project from
+my spec, so to get you an idea
+
+00:11:09.840 --> 00:11:13.020
+of how long it takes to
+generate a Rayfin project
+
+00:11:13.020 --> 00:11:15.180
+from the template.
+
+00:11:15.180 --> 00:11:17.820
+The most important part of
+this project is located
+
+00:11:17.820 --> 00:11:20.970
+under the Rayfin folder.
+
+00:11:20.970 --> 00:11:24.750
+The first important file
+is this Rayfin.yml file.
+
+00:11:24.750 --> 00:11:29.070
+You can see here we have some
+metadata about the project,
+
+00:11:29.070 --> 00:11:33.120
+like the name of the project,
+which services I want
+
+00:11:33.120 --> 00:11:36.150
+to be enabled for my project,
+like authentication,
+
+00:11:36.150 --> 00:11:40.890
+data storage, and
+static hosting.
+
+00:11:40.890 --> 00:11:45.510
+I can even configure like, oh,
+I want my frontend to be built
+
+00:11:45.510 --> 00:11:52.530
+and stuff like that, and the
+second most important folder is
+
+00:11:52.530 --> 00:11:53.790
+the Rayfin data folder.
+
+00:11:53.790 --> 00:11:58.380
+This is where you have all the
+entities for your application.
+
+00:11:58.380 --> 00:12:03.420
+That's, for example, let's look
+at what a recipe looks like,
+
+00:12:03.420 --> 00:12:07.350
+so you can see that it's
+a TypeScript class.
+
+00:12:07.350 --> 00:12:12.180
+All the entities are type
+safe, so you can use
+
+00:12:12.180 --> 00:12:18.690
+that in your application and
+get type inference from that.
+
+00:12:18.690 --> 00:12:21.840
+To describe the schema
+for my entities,
+
+00:12:21.840 --> 00:12:30.720
+I'm using Decoration
+from the Rayfin SDK.
+
+00:12:30.720 --> 00:12:34.710
+If you are a JavaScript nerd,
+just like me, you might be glad
+
+00:12:34.710 --> 00:12:39.900
+to hear that these are not
+just like Rayfin decorators --
+
+00:12:39.900 --> 00:12:42.060
+sorry, not TypeScript
+decorators.
+
+00:12:42.060 --> 00:12:49.380
+These are the standard TC39
+spec decorators that are coming
+
+00:12:49.380 --> 00:12:52.170
+into the JavaScript
+standard a bit more later.
+
+00:12:52.170 --> 00:12:53.790
+So yeah, this is already built
+
+00:12:53.790 --> 00:12:56.160
+to be future proof
+at this point.
+
+00:12:56.160 --> 00:12:59.190
+So yeah, I can see all the
+properties that I have
+
+00:12:59.190 --> 00:13:05.130
+in my recipes, like the list
+of ingredients, the visibility
+
+00:13:05.130 --> 00:13:08.430
+with the different options
+when it was created.
+
+00:13:08.430 --> 00:13:13.920
+You can even define the relation
+with the different entities,
+
+00:13:13.920 --> 00:13:18.270
+like a recipe can
+have many likes.
+
+00:13:18.270 --> 00:13:21.150
+I can also have a look
+at the like entity
+
+00:13:21.150 --> 00:13:23.580
+to see how it's
+done, and basically,
+
+00:13:23.580 --> 00:13:28.560
+all these different entities are
+grouped into this schema.ts.
+
+00:13:28.560 --> 00:13:34.050
+This is what is used by
+Rayfin to create my database,
+
+00:13:34.050 --> 00:13:39.420
+so if I go back here to my
+workspace, if I refresh,
+
+00:13:39.420 --> 00:13:44.730
+I should see, okay, the SQL
+database that was created.
+
+00:13:44.730 --> 00:13:49.800
+The schema was automatically
+generated from this data
+
+00:13:49.800 --> 00:13:53.320
+that was generated by the agent.
+
+00:13:54.990 --> 00:13:58.710
+Now the next step is maybe
+just run the application
+
+00:13:58.710 --> 00:14:00.780
+to see what it looks like.
+
+00:14:00.780 --> 00:14:04.530
+So for that, I run
+"npm run dev,"
+
+00:14:04.530 --> 00:14:09.960
+and I should have my
+dev server running.
+
+00:14:09.960 --> 00:14:15.750
+Yeah, I have here the look of my
+application, so looking great.
+
+00:14:15.750 --> 00:14:19.380
+Contoso Chef, it's a
+cookbook, so for now,
+
+00:14:19.380 --> 00:14:21.600
+I can see that there's no data.
+
+00:14:21.600 --> 00:14:23.760
+I will start to sign in.
+
+00:14:23.760 --> 00:14:26.130
+I can see already
+that it's asking me
+
+00:14:26.130 --> 00:14:28.230
+to sign in using Fabric OATS.
+
+00:14:28.230 --> 00:14:31.080
+I'll just do that.
+
+00:14:31.080 --> 00:14:35.760
+Oh, okay, as I said, so
+first run, I just wanted
+
+00:14:35.760 --> 00:14:40.560
+to add some data into
+my app to be visible,
+
+00:14:40.560 --> 00:14:43.050
+so it will import all
+the recipes I've put
+
+00:14:43.050 --> 00:14:45.300
+in the JSON file.
+
+00:14:45.300 --> 00:14:50.130
+Meanwhile, we should be
+able to just have a look
+
+00:14:50.130 --> 00:14:57.030
+at how it works, so I wait a bit
+until the data was imported,
+
+00:14:57.030 --> 00:14:59.220
+and we'll come back to see.
+
+00:14:59.220 --> 00:15:06.750
+What's important to retain here
+is that when I asked the agent
+
+00:15:06.750 --> 00:15:13.110
+to generate my application, it
+wasn't asked to reinvent how
+
+00:15:13.110 --> 00:15:16.590
+to do authentication and
+find packages for that,
+
+00:15:16.590 --> 00:15:18.510
+how to handle storage,
+or how to handle
+
+00:15:18.510 --> 00:15:20.610
+that data access from scratch.
+
+00:15:20.610 --> 00:15:26.040
+It used what the Rayfin platform
+provides, so still looking
+
+00:15:26.040 --> 00:15:29.230
+to import all the data.
+
+00:15:31.860 --> 00:15:36.840
+I will just open a new tab to
+keep it running, but meanwhile,
+
+00:15:36.840 --> 00:15:39.960
+just try to create
+my own recipe.
+
+00:15:39.960 --> 00:15:42.510
+That's what we wanted to see.
+
+00:15:42.510 --> 00:15:47.250
+For now, let's just say I want
+to create like a test recipe.
+
+00:15:47.250 --> 00:15:50.070
+I have some description.
+
+00:15:50.070 --> 00:15:53.940
+For now, let's keep
+things private.
+
+00:15:53.940 --> 00:15:58.080
+Yeah, some French cuisine
+coming from France.
+
+00:15:58.080 --> 00:16:04.990
+Let's add 1 teaspoon of testing.
+
+00:16:06.780 --> 00:16:12.090
+Okay, test should be good.
+
+00:16:12.090 --> 00:16:14.160
+Let's try to save this recipe.
+
+00:16:14.160 --> 00:16:18.120
+Yeah, I have my test
+recipe working in there,
+
+00:16:18.120 --> 00:16:20.100
+but what I wanted to
+show you is that, okay,
+
+00:16:20.100 --> 00:16:22.440
+I could create my recipe.
+
+00:16:22.440 --> 00:16:27.550
+We'll test later to see if it's
+really private as expected
+
+00:16:28.920 --> 00:16:33.120
+because that's time to check
+this critical requirement.
+
+00:16:33.120 --> 00:16:39.240
+I want it to keep the family
+secrets secret, so I want to see
+
+00:16:39.240 --> 00:16:45.270
+if this recipe that I created
+private is really private
+
+00:16:45.270 --> 00:16:50.640
+and check that the agent
+implemented it as I wanted.
+
+00:16:50.640 --> 00:16:57.960
+What I'll do is just open the
+application inside a private
+
+00:16:57.960 --> 00:17:03.210
+browsing window, so I should
+not be authenticated in there.
+
+00:17:03.210 --> 00:17:06.240
+You can already see
+some of the recipes
+
+00:17:06.240 --> 00:17:09.990
+that were populated in there.
+
+00:17:09.990 --> 00:17:12.480
+Yeah, when you
+create a new recipe,
+
+00:17:12.480 --> 00:17:17.520
+the new ones just
+appear at first.
+
+00:17:17.520 --> 00:17:20.060
+You can see it's still loading,
+
+00:17:20.060 --> 00:17:22.850
+so what I do is just
+try something dumb.
+
+00:17:22.850 --> 00:17:25.310
+Just try to copy-paste
+the URL to see
+
+00:17:25.310 --> 00:17:28.370
+if I can access this
+recipe that's supposed
+
+00:17:28.370 --> 00:17:30.050
+to be private, and
+it's not found.
+
+00:17:30.050 --> 00:17:31.790
+That's at least great.
+
+00:17:31.790 --> 00:17:33.980
+It's saying, okay, it should
+be private, so probably,
+
+00:17:33.980 --> 00:17:35.630
+that's -- I can't access it.
+
+00:17:35.630 --> 00:17:39.560
+That's exactly what
+I wanted to happen.
+
+00:17:39.560 --> 00:17:43.130
+What we can do also is maybe
+just try to edit this,
+
+00:17:43.130 --> 00:17:47.150
+see if I can share
+it with the link,
+
+00:17:47.150 --> 00:17:53.370
+so let's just save that recipe.
+
+00:17:53.370 --> 00:17:59.210
+Okay. It should have finished,
+so it will probably be faster.
+
+00:17:59.210 --> 00:18:01.260
+Did it work?
+
+00:18:01.260 --> 00:18:03.000
+Let's try reloading.
+
+00:18:03.000 --> 00:18:06.240
+Okay. It's now
+marked as "unlist."
+
+00:18:06.240 --> 00:18:10.980
+If I copy the link, let's
+try to refresh in there.
+
+00:18:10.980 --> 00:18:15.270
+Now, I can access this recipe
+because it's marked as "unlist,"
+
+00:18:15.270 --> 00:18:19.230
+and if I refresh in there,
+
+00:18:19.230 --> 00:18:22.920
+I should still not see
+it in the main page.
+
+00:18:22.920 --> 00:18:31.590
+Just so you can see, I can make
+it also public to see that in
+
+00:18:31.590 --> 00:18:36.150
+that case, it should
+appear with the rest
+
+00:18:36.150 --> 00:18:39.360
+of the public recipe in there.
+
+00:18:39.360 --> 00:18:42.550
+What's it called, "Test Recipe?"
+
+00:18:44.460 --> 00:18:50.080
+You can see that it was made
+public, now back to private.
+
+00:18:51.780 --> 00:18:55.650
+Let's refresh and check that.
+
+00:18:55.650 --> 00:18:57.940
+Yeah, this time, it's not there.
+
+00:18:59.760 --> 00:19:05.400
+Okay. This was just
+quickly checking
+
+00:19:05.400 --> 00:19:09.870
+that at least the agent seems
+to have generated things
+
+00:19:09.870 --> 00:19:12.240
+like I wanted them to be.
+
+00:19:12.240 --> 00:19:13.740
+Of course, for the
+unlisted things,
+
+00:19:13.740 --> 00:19:16.140
+this is the MVP of
+my cooking app.
+
+00:19:16.140 --> 00:19:18.630
+I wanted to keep things
+simple, just be able
+
+00:19:18.630 --> 00:19:22.380
+to share using the link, but you
+can also imagine more complex
+
+00:19:22.380 --> 00:19:25.710
+access control rules,
+being able to share only
+
+00:19:25.710 --> 00:19:29.320
+with specific authenticated
+users, for example.
+
+00:19:30.600 --> 00:19:32.880
+Yeah, for now, let's have a look
+
+00:19:32.880 --> 00:19:36.750
+at how the access
+control is implemented.
+
+00:19:36.750 --> 00:19:40.770
+Going back to the recipe entity,
+
+00:19:40.770 --> 00:19:42.840
+we can see these two
+things in there.
+
+00:19:42.840 --> 00:19:50.010
+First, the read policy that we
+have put to allow any recipe
+
+00:19:50.010 --> 00:19:55.080
+that is not marked as private,
+so by the item that visibility.
+
+00:19:55.080 --> 00:20:01.230
+That's the property and the
+recipes that's in there.
+
+00:20:01.230 --> 00:20:06.300
+As long as the recipe is not
+private, anybody can read it,
+
+00:20:06.300 --> 00:20:09.240
+even if you're not
+authenticated to the app.
+
+00:20:09.240 --> 00:20:13.920
+Now, for an authenticated
+user, the policy is to be able
+
+00:20:13.920 --> 00:20:22.530
+to read/write the recipe
+if it's not private --
+
+00:20:22.530 --> 00:20:26.550
+not write but at least read
+it if it's not private,
+
+00:20:26.550 --> 00:20:32.410
+or if it's private but you
+are the one that created it.
+
+00:20:33.840 --> 00:20:37.860
+Yeah, it seems obvious, but
+this is a key point here.
+
+00:20:37.860 --> 00:20:39.330
+This is because
+this is the moment
+
+00:20:39.330 --> 00:20:42.990
+where many prototypes
+fail and usually need
+
+00:20:42.990 --> 00:20:44.970
+to start rewriting the code.
+
+00:20:44.970 --> 00:20:47.670
+Here we have the identity
+and access control part
+
+00:20:47.670 --> 00:20:51.030
+of the app foundation, so
+it's built into the SDK
+
+00:20:51.030 --> 00:20:54.660
+and the Rayfin platform.
+
+00:20:54.660 --> 00:20:56.640
+It's not just visual.
+
+00:20:56.640 --> 00:21:01.290
+By looking at it, this is how
+the backend handles the access
+
+00:21:01.290 --> 00:21:03.600
+control stuff.
+
+00:21:03.600 --> 00:21:08.160
+Now, this is also when things
+start to get interesting,
+
+00:21:08.160 --> 00:21:13.350
+so let's say I want to implement
+one of my ideas that I kept
+
+00:21:13.350 --> 00:21:17.880
+for later to support user
+comments on recipes.
+
+00:21:17.880 --> 00:21:22.440
+We want to add a comment
+section to the recipe page,
+
+00:21:22.440 --> 00:21:28.230
+so going back to the project,
+I'll stop the server for now
+
+00:21:28.230 --> 00:21:36.630
+and run Copilot
+again in yolo mode,
+
+00:21:36.630 --> 00:21:42.530
+so I don't get any need
+for confirmations.
+
+00:21:42.530 --> 00:21:47.360
+Yeah, inside this spec, I also
+add, you know, in this Ideas
+
+00:21:47.360 --> 00:21:49.580
+for Later, what I
+wanted for comments,
+
+00:21:49.580 --> 00:21:52.940
+so comments need authentication
+to create comments,
+
+00:21:52.940 --> 00:21:57.530
+and a user can comment on a
+recipe if they're authenticated.
+
+00:21:57.530 --> 00:22:01.380
+They can comment on a recipe
+that they can view, of course,
+
+00:22:01.380 --> 00:22:04.770
+and only the creator of
+recipe can delete comments
+
+00:22:04.770 --> 00:22:07.500
+on their recipe, so
+pretty simple rule.
+
+00:22:07.500 --> 00:22:14.070
+What I'm just saying is I can
+just ask Copilot to implement,
+
+00:22:14.070 --> 00:22:17.070
+again, what's in there.
+
+00:22:17.070 --> 00:22:20.220
+What it will do, just like
+before, is take a look
+
+00:22:20.220 --> 00:22:24.930
+at the project, use
+the Rayfin skill.
+
+00:22:24.930 --> 00:22:26.130
+You get the idea.
+
+00:22:26.130 --> 00:22:31.710
+It's not fun looking
+at the agents running
+
+00:22:31.710 --> 00:22:35.940
+and implementing the stuff
+even though its time,
+
+00:22:35.940 --> 00:22:37.890
+it should only take
+a few minutes.
+
+00:22:37.890 --> 00:22:42.960
+I'll skip to when I
+already ran this prompt,
+
+00:22:42.960 --> 00:22:45.480
+so I have this command branch.
+
+00:22:45.480 --> 00:22:53.100
+I'll just do --
+yeah, I need that.
+
+00:22:53.100 --> 00:22:55.710
+Let's just undo the last comment
+so we can see the changes
+
+00:22:55.710 --> 00:22:59.100
+that were generated
+by the agent.
+
+00:22:59.100 --> 00:23:00.750
+What you can see -- that's okay.
+
+00:23:00.750 --> 00:23:03.210
+It made some modification
+on the frontend part,
+
+00:23:03.210 --> 00:23:06.900
+so that's not what I want
+to focus on right now.
+
+00:23:06.900 --> 00:23:11.310
+I want to see -- it first
+created a comment entity,
+
+00:23:11.310 --> 00:23:13.200
+something I wanted.
+
+00:23:13.200 --> 00:23:15.150
+Yeah, you can see
+all kinds of rules
+
+00:23:15.150 --> 00:23:19.320
+on what can or cannot be done.
+
+00:23:19.320 --> 00:23:23.220
+I can see that it's more complex
+than the recipe because it has
+
+00:23:23.220 --> 00:23:27.990
+to under like all the different
+use case, who can delete,
+
+00:23:27.990 --> 00:23:30.300
+who can update, who can
+create the comments
+
+00:23:30.300 --> 00:23:31.950
+and who can read
+it, so all kinds
+
+00:23:31.950 --> 00:23:34.200
+of different policies in there.
+
+00:23:34.200 --> 00:23:39.150
+It created the schema with
+the relations to the recipe,
+
+00:23:39.150 --> 00:23:46.320
+and it made, also, some
+changes to the recipe entity,
+
+00:23:46.320 --> 00:23:49.590
+and it was also
+added to the schema.
+
+00:23:49.590 --> 00:23:54.630
+That means that I need to
+update the database schema
+
+00:23:54.630 --> 00:23:59.280
+to be able to run these changes.
+
+00:23:59.280 --> 00:24:02.460
+To do that, it also means that
+I have to generate a migration
+
+00:24:02.460 --> 00:24:05.610
+for my schema, and
+the nice thing is
+
+00:24:05.610 --> 00:24:09.840
+that Rayfin will
+do that for you.
+
+00:24:09.840 --> 00:24:12.840
+You have a command.
+
+00:24:12.840 --> 00:24:15.450
+Let's go back to my terminal.
+
+00:24:15.450 --> 00:24:18.540
+With the "npx Rayfin
+app: command,
+
+00:24:18.540 --> 00:24:26.280
+I can just do "db apply," and
+what it will do is analyze.
+
+00:24:26.280 --> 00:24:28.410
+You can see the logs in there.
+
+00:24:28.410 --> 00:24:31.980
+It will analyze all my entities.
+
+00:24:31.980 --> 00:24:37.200
+See what's currently
+implemented in the database,
+
+00:24:37.200 --> 00:24:39.480
+generate a migration schema,
+
+00:24:39.480 --> 00:24:42.180
+and just perform the
+migration for you.
+
+00:24:42.180 --> 00:24:46.350
+As you can see now, I'm at
+Version 2 of my schema.
+
+00:24:46.350 --> 00:24:49.980
+I also need to update my backend
+to be able to run the app.
+
+00:24:49.980 --> 00:24:55.290
+I just, here, wanted to run the
+schema migration separately,
+
+00:24:55.290 --> 00:25:01.080
+but if you just do a Rayfin app,
+it will redeploy the backend,
+
+00:25:01.080 --> 00:25:05.250
+but also, perform the
+migration for you if needed,
+
+00:25:05.250 --> 00:25:08.010
+so it's just an
+all-in-one command.
+
+00:25:08.010 --> 00:25:12.630
+Let's just wait until the
+backend is redeployed,
+
+00:25:12.630 --> 00:25:16.470
+and we'll restart the
+app to see how it looks
+
+00:25:16.470 --> 00:25:18.810
+like for the commands.
+
+00:25:18.810 --> 00:25:27.180
+Okay. So again, "npm run
+dev" to have my app running,
+
+00:25:27.180 --> 00:25:31.720
+so let's just see what it
+looks like in the application.
+
+00:25:33.090 --> 00:25:37.290
+I'll open like the first recipe.
+
+00:25:37.290 --> 00:25:44.710
+Let's add in a command
+like looks yummy.
+
+00:25:48.000 --> 00:25:50.490
+I can see that I have
+the option to delete it
+
+00:25:50.490 --> 00:25:52.980
+since I created it myself.
+
+00:25:52.980 --> 00:25:58.440
+Let's just open the same recipe
+inside my private browsing
+
+00:25:58.440 --> 00:26:01.240
+window so I'm not logged in.
+
+00:26:02.280 --> 00:26:06.690
+I can see the command, and
+I cannot do anything to it.
+
+00:26:06.690 --> 00:26:10.060
+So, so far, looking great.
+
+00:26:11.400 --> 00:26:16.200
+Let's just try to see if I
+can delete this command.
+
+00:26:16.200 --> 00:26:17.920
+Okay.
+
+00:26:23.280 --> 00:26:26.550
+Okay. Just putting it
+another command, so yeah,
+
+00:26:26.550 --> 00:26:31.890
+you can see that it was quite
+easy and straightforward
+
+00:26:31.890 --> 00:26:37.680
+to handle this schema migration,
+and that's exactly the point,
+
+00:26:37.680 --> 00:26:40.380
+because app changes after launch
+
+00:26:40.380 --> 00:26:44.130
+and safe schema evolution
+are even more essential
+
+00:26:44.130 --> 00:26:46.650
+than getting it right
+the first time.
+
+00:26:46.650 --> 00:26:50.790
+This is particularly important
+if you handle critical data
+
+00:26:50.790 --> 00:26:56.650
+that you don't want to
+lose the family recipe.
+
+00:26:57.960 --> 00:26:59.910
+Time for a quick
+checkpoint here.
+
+00:26:59.910 --> 00:27:04.620
+So yes, we just vibe
+coded an application,
+
+00:27:04.620 --> 00:27:08.220
+but the trick is we didn't
+ask the agent to figure
+
+00:27:08.220 --> 00:27:10.890
+out everything on its own.
+
+00:27:10.890 --> 00:27:12.540
+It didn't have to decide
+
+00:27:12.540 --> 00:27:15.750
+from scratch how
+authentication should work,
+
+00:27:15.750 --> 00:27:18.210
+how the database
+should be exposed,
+
+00:27:18.210 --> 00:27:21.750
+how APIs should be shaped.
+
+00:27:21.750 --> 00:27:25.230
+Instead, the agent
+had guardrails.
+
+00:27:25.230 --> 00:27:29.760
+It had a workflow designed for
+agents, templates to start from,
+
+00:27:29.760 --> 00:27:33.030
+platforms primitives like
+authentication, database,
+
+00:27:33.030 --> 00:27:37.380
+GraphQL, APIs, and that
+makes a big difference.
+
+00:27:37.380 --> 00:27:41.940
+Because for a recipe sharing
+app, things like public
+
+00:27:41.940 --> 00:27:45.750
+or private recipe, it's
+not just UI features.
+
+00:27:45.750 --> 00:27:49.440
+They touch identity,
+permissions, data access,
+
+00:27:49.440 --> 00:27:54.600
+and API design, so the value
+here is that the agent can focus
+
+00:27:54.600 --> 00:27:58.680
+on implementing the app
+experience while the platform
+
+00:27:58.680 --> 00:28:01.260
+provides the
+foundation around it.
+
+00:28:01.260 --> 00:28:05.970
+That's what I mean by vibe
+coding with guardrails.
+
+00:28:05.970 --> 00:28:09.090
+You have fast iteration,
+but not from a blank,
+
+00:28:09.090 --> 00:28:11.190
+unmanaged architecture.
+
+00:28:11.190 --> 00:28:14.610
+Now comes the important
+question, really.
+
+00:28:14.610 --> 00:28:19.660
+What does it take to put
+this app to production?
+
+00:28:21.150 --> 00:28:26.790
+What if I say to you that the
+app is already in production?
+
+00:28:26.790 --> 00:28:32.250
+When we run the npx Rayfin app
+command in the first demo,
+
+00:28:32.250 --> 00:28:36.900
+that's basically what it took to
+create the back end, but also,
+
+00:28:36.900 --> 00:28:39.660
+put the app to production.
+
+00:28:39.660 --> 00:28:44.910
+Now if we open the in
+there, the Fabric portal,
+
+00:28:44.910 --> 00:28:49.590
+you see that we have
+the database in there.
+
+00:28:49.590 --> 00:28:52.860
+I can open the app, and yeah,
+
+00:28:52.860 --> 00:28:55.680
+it's exactly the
+same application
+
+00:28:55.680 --> 00:28:58.620
+that we tested locally.
+
+00:28:58.620 --> 00:29:03.060
+I can also open it
+on its own page.
+
+00:29:03.060 --> 00:29:07.680
+Yeah, I can share this URL
+with my family and friends
+
+00:29:07.680 --> 00:29:11.640
+so they can also
+create recipes now.
+
+00:29:11.640 --> 00:29:17.520
+Yeah, I can now try to start
+adding all my family recipes
+
+00:29:17.520 --> 00:29:21.630
+with confidence about
+the data, and really,
+
+00:29:21.630 --> 00:29:27.540
+you should not expect any
+surprises when moving an app
+
+00:29:27.540 --> 00:29:30.990
+from development to production
+because it's built right
+
+00:29:30.990 --> 00:29:33.180
+from the start on
+the same foundation.
+
+00:29:33.180 --> 00:29:36.210
+That's exactly
+what we want here.
+
+00:29:36.210 --> 00:29:40.590
+We've seen how quick and easy we
+can create new enterprise-ready
+
+00:29:40.590 --> 00:29:42.690
+applications with Rayfin.
+
+00:29:42.690 --> 00:29:47.400
+The question that naturally
+comes next is how we can use the
+
+00:29:47.400 --> 00:29:52.290
+data that our app generated
+to build dynamic dashboards
+
+00:29:52.290 --> 00:29:57.250
+to get insights, because,
+yes, there's more to Rayfin.
+
+00:29:58.740 --> 00:30:01.410
+The idea here is pretty simple.
+
+00:30:01.410 --> 00:30:05.550
+Instead of treating the app
+and the analytics experience
+
+00:30:05.550 --> 00:30:10.320
+as two separate worlds, we can
+bring them closer together.
+
+00:30:10.320 --> 00:30:14.340
+We can do that using the new
+analytics app templates that's
+
+00:30:14.340 --> 00:30:15.990
+built for Rayfin.
+
+00:30:15.990 --> 00:30:19.200
+Currently, the Analytics
+app can work seamlessly
+
+00:30:19.200 --> 00:30:20.220
+with semantic models,
+
+00:30:20.220 --> 00:30:24.210
+so the data your app produces
+can immediately be displayed
+
+00:30:24.210 --> 00:30:25.440
+on a dashboard.
+
+00:30:25.440 --> 00:30:29.100
+On top of that, you get
+a robust visual stack,
+
+00:30:29.100 --> 00:30:32.190
+not just basic charts, but
+a complete design skill
+
+00:30:32.190 --> 00:30:35.760
+for AI agents that
+help turn raw data
+
+00:30:35.760 --> 00:30:37.770
+into something that's
+more polished,
+
+00:30:37.770 --> 00:30:40.680
+readable, and useful to you.
+
+00:30:40.680 --> 00:30:42.750
+For developers,
+this is really nice
+
+00:30:42.750 --> 00:30:46.680
+because you're not just building
+an app and saying good luck
+
+00:30:46.680 --> 00:30:48.540
+to the business afterwards.
+
+00:30:48.540 --> 00:30:51.870
+You're building an experience
+where the data can flow directly
+
+00:30:51.870 --> 00:30:56.550
+into dashboards,
+reportings, and insights.
+
+00:30:56.550 --> 00:30:59.430
+Yeah, there's also more
+coming soon as the experience
+
+00:30:59.430 --> 00:31:02.250
+to define custom
+actions triggered
+
+00:31:02.250 --> 00:31:06.480
+by your data will become simpler
+and even more integrated.
+
+00:31:06.480 --> 00:31:10.770
+Let's have a quick look at what
+it means for our chef app.
+
+00:31:10.770 --> 00:31:14.850
+We have the data in Fabric,
+so if you're data-oriented,
+
+00:31:14.850 --> 00:31:18.180
+you would love to see some great
+dashboards and analytics on top
+
+00:31:18.180 --> 00:31:22.290
+of my recipes data, I'm sure.
+
+00:31:22.290 --> 00:31:25.590
+I've used here a
+very early preview
+
+00:31:25.590 --> 00:31:27.990
+of the Analytics app templates,
+
+00:31:27.990 --> 00:31:30.990
+and what I did is
+basically just ask Copilot
+
+00:31:30.990 --> 00:31:35.790
+to build a nice dashboard,
+pointing it to my semantic model
+
+00:31:35.790 --> 00:31:40.230
+and which Fabric workspace
+I wanted to use.
+
+00:31:40.230 --> 00:31:42.540
+Don't mind the field
+services title in there.
+
+00:31:42.540 --> 00:31:45.270
+That's because, at first,
+I forgot to mention
+
+00:31:45.270 --> 00:31:47.820
+which semantic model I
+used, so we picked one
+
+00:31:47.820 --> 00:31:51.570
+from a different
+application I was building.
+
+00:31:51.570 --> 00:31:56.670
+Now let's just have a
+look at the dashboard,
+
+00:31:56.670 --> 00:32:00.420
+so I'm running "npm
+run dev" again.
+
+00:32:00.420 --> 00:32:05.400
+Let's give it some time
+the load the data.
+
+00:32:05.400 --> 00:32:08.820
+Yeah, this is the result, so I'm
+pretty sure the latest version
+
+00:32:08.820 --> 00:32:12.870
+of the template is even nicer
+because I used an old one,
+
+00:32:12.870 --> 00:32:20.130
+but it's already great for just
+a few minutes of work to see all
+
+00:32:20.130 --> 00:32:23.400
+that data coming
+from my application.
+
+00:32:23.400 --> 00:32:25.740
+If there's one more
+thing to take away
+
+00:32:25.740 --> 00:32:27.720
+in this session, it's this.
+
+00:32:27.720 --> 00:32:30.090
+The fastest path to
+production starts
+
+00:32:30.090 --> 00:32:32.100
+with the right foundation.
+
+00:32:32.100 --> 00:32:34.890
+Coding agents help us move fast.
+
+00:32:34.890 --> 00:32:37.890
+They are great for bootstrapping
+an app, trying ideas,
+
+00:32:37.890 --> 00:32:41.310
+and iterating quickly,
+but as developers,
+
+00:32:41.310 --> 00:32:44.940
+we know that producing code is
+only one part of the story.
+
+00:32:44.940 --> 00:32:49.260
+A real application still needs
+identity, data, security,
+
+00:32:49.260 --> 00:32:53.550
+deployments, and a platform
+that can support it over time.
+
+00:32:53.550 --> 00:32:57.000
+When those pieces are
+already in the foundation,
+
+00:32:57.000 --> 00:32:59.580
+agents can move quickly
+without leaving a lot
+
+00:32:59.580 --> 00:33:02.280
+of cleanup for later.
+
+00:33:02.280 --> 00:33:05.820
+When the app is Fabric
+native, the data is already
+
+00:33:05.820 --> 00:33:08.730
+where you need it
+next for analytics
+
+00:33:08.730 --> 00:33:10.650
+and AI-powered insight.
+
+00:33:10.650 --> 00:33:14.400
+So yes, by all
+means, build fast,
+
+00:33:14.400 --> 00:33:16.170
+but build on the foundation
+
+00:33:16.170 --> 00:33:20.380
+that can take you all
+the way to production.
+
+00:33:21.870 --> 00:33:23.910
+That's it for this session.
+
+00:33:23.910 --> 00:33:26.760
+If you want to learn more
+about everything I've talked
+
+00:33:26.760 --> 00:33:30.840
+about today, please take a
+look at our documentation,
+
+00:33:30.840 --> 00:33:34.020
+which will guide you through
+how you can use all these
+
+00:33:34.020 --> 00:33:37.470
+capabilities with
+even more detail.
+
+00:33:37.470 --> 00:33:38.950
+Thank you.

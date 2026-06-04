@@ -1,0 +1,473 @@
+**[00:00:01]** KATARINA STANLEY: Welcome
+**[00:00:01]** to this session on Anyscale on Azure.
+**[00:00:04]** I'm Katarina, a Product Marketing Manager at Anyscale,
+**[00:00:07]** and I'm joined today by my colleague Daniel Arrizza,
+**[00:00:10]** a Field Engineer here.
+**[00:00:13]** Quick agenda.
+**[00:00:14]** I'll cover why teams are choosing to own their AI stack,
+**[00:00:17]** what makes that hard to scale, and how Anyscale
+**[00:00:19]** in Azure addresses it.
+**[00:00:21]** Daniel's going to follow with a technical demo,
+**[00:00:23]** and we'll close with some next steps.
+**[00:00:27]** To jump right in, every team building
+**[00:00:29]** with AI today is making a choice on a spectrum.
+**[00:00:33]** On one end, you can rent intelligence,
+**[00:00:35]** calling someone else's model through an API.
+**[00:00:38]** On the other end, you can own it.
+**[00:00:40]** And owning is not binary.
+**[00:00:42]** It's a spectrum that includes deploying open-source models,
+**[00:00:45]** customizing open-source models with your own data,
+**[00:00:48]** and training your own models.
+**[00:00:51]** Most teams use a mix of both renting and owning.
+**[00:00:54]** The question is when ownership makes sense
+**[00:00:56]** for a given workload.
+**[00:00:59]** So, when is that the case?
+**[00:01:00]** It usually comes down to a few things.
+**[00:01:03]** Control over your models and your operations,
+**[00:01:06]** so you're not exposed to model deprecations,
+**[00:01:09]** rate limits or outages.
+**[00:01:11]** Data and differentiation, when you need
+**[00:01:14]** to keep proprietary data inside your boundary.
+**[00:01:17]** And cost and latency, for better unit economics at scale
+**[00:01:21]** and faster end-to-end response times.
+**[00:01:24]** When one or more of these apply, that's typically
+**[00:01:27]** when we see teams move towards ownership.
+**[00:01:31]** But here is the challenge point.
+**[00:01:34]** Building AI is getting harder because both data
+**[00:01:37]** and models are scaling fast.
+**[00:01:39]** What used to be structured tabular data is now multimodal.
+**[00:01:43]** Data set sizes have moved from gigabytes to petabytes.
+**[00:01:46]** Single models are now many models,
+**[00:01:48]** and parameter counts are growing exponentially.
+**[00:01:52]** Across the AI lifecycle,
+**[00:01:54]** that complexity is showing up everywhere.
+**[00:01:57]** Building requires coordinated CPU and GPU compute.
+**[00:02:00]** Training must be distributed across nodes,
+**[00:02:02]** with fault tolerance built in.
+**[00:02:05]** And serving requires composing many models,
+**[00:02:07]** often on different hardware.
+**[00:02:10]** These are problems legacy tools were not designed for.
+**[00:02:13]** And teams are increasingly hitting their limits.
+**[00:02:17]** It's why we're seeing teams converge on Ray,
+**[00:02:20]** the open-source distributed compute framework
+**[00:02:22]** for Python and AI workloads.
+**[00:02:25]** As AI workloads have grown in scale
+**[00:02:26]** and complexity, so has Ray adoption.
+**[00:02:29]** It has over 12 million downloads per week
+**[00:02:32]** and it's the most widely adopted AI compute framework
+**[00:02:35]** across both AI labs and enterprises used by teams
+**[00:02:38]** like OpenAI, Uber, TripAdvisor and more.
+**[00:02:43]** So, this brings us to Anyscale on Azure from the creators
+**[00:02:46]** of Ray and powered by Ray on AKS.
+**[00:02:50]** Three core things to know.
+**[00:02:52]** First, it accelerates dev to prod with a unified runtime
+**[00:02:55]** for multimodal data curation, distributed training
+**[00:02:59]** and multimodal online surveying.
+**[00:03:02]** Second, it runs reliably at scale
+**[00:03:04]** with a fully managed Ray lifecycle on AKS,
+**[00:03:08]** a priority aware scheduler that maximizes GPU utilization
+**[00:03:11]** and 24/7 Ray expert support.
+**[00:03:15]** And third, it's Azure native.
+**[00:03:17]** It runs on AKS in your own subscription,
+**[00:03:19]** integrates with Entra ID for RBAC and is available
+**[00:03:22]** through the Azure portal.
+**[00:03:24]** So, your data and IP stay inside your existing security
+**[00:03:27]** and governance boundaries.
+**[00:03:29]** So, with that, I'm going to hand it over to Daniel to walk you
+**[00:03:32]** through what building, training and serving on Anyscale
+**[00:03:35]** in Azure looks like in practice.
+**[00:03:38]** DANIEL ARRIZZA: All right,
+**[00:03:38]** well thank you Katarina for that intro.
+**[00:03:41]** Now that we have some more context as to the types
+**[00:03:43]** of problems that we solve, I'm going to get
+**[00:03:45]** into the technical demo.
+**[00:03:47]** And this is going to start with a very brief part of looking
+**[00:03:50]** at the infrastructure and how we set up a console
+**[00:03:54]** of any scale in the Azure console.
+**[00:03:57]** And then from there, we will look at a actual use case
+**[00:04:01]** of creating our own recommendation engine
+**[00:04:04]** and how we can do fine-tuning, batch embedding,
+**[00:04:06]** serving, things like that.
+**[00:04:08]** All right?
+**[00:04:09]** So, I'm going to start here in the Azure console,
+**[00:04:12]** and I want to create an Anyscale cloud.
+**[00:04:14]** So, to do that, I just say from Anyscale clouds, I'll say Create
+**[00:04:19]** and it'll ask me for a few details
+**[00:04:22]** like what subscription I want to launch this in,
+**[00:04:24]** what resource group and I'll just pick one
+**[00:04:27]** that I've created earlier, the name of my cloud, so My Cloud
+**[00:04:33]** and what region I want to launch things in.
+**[00:04:35]** And then I can select an AKS cluster.
+**[00:04:38]** So, if you've used Kubernetes before,
+**[00:04:42]** already have a Kubernetes cluster set up,
+**[00:04:44]** we could deploy straight into that.
+**[00:04:46]** If you're not a Kubernetes wiz, then we have a one liner
+**[00:04:50]** to just create the Kubernetes cluster for you,
+**[00:04:52]** and you don't have to think about the infrastructure side
+**[00:04:54]** of things if you want.
+**[00:04:56]** But the good thing is we integrate very,
+**[00:04:58]** very deeply inside of Kubernetes,
+**[00:05:00]** so we have all the power of that really rock-solid
+**[00:05:04]** infrastructure layer.
+**[00:05:05]** So, I'm going to pick a cluster that I had earlier.
+**[00:05:09]** I'll say Next.
+**[00:05:10]** I'll pick a couple things here just so,
+**[00:05:13]** like the storage account that I'm going to store things in
+**[00:05:16]** and the identity I'm going to use to connect
+**[00:05:18]** to that storage account.
+**[00:05:21]** And then I'll pick an Azure container registry.
+**[00:05:24]** It's just going to create all these new resources for me.
+**[00:05:28]** And support plan, tags and we're off to the races to be able
+**[00:05:32]** to get this thing started.
+**[00:05:34]** All right?
+**[00:05:35]** So, I can hit Create and then it'll go off
+**[00:05:37]** and create this for me.
+**[00:05:38]** This takes a little bit of time.
+**[00:05:39]** So, I've already pre-created this for you.
+**[00:05:42]** And let's launch up the Anyscale cloud.
+**[00:05:47]** So, here is the cloud that I pre-created.
+**[00:05:50]** And now, I'm going to show you what the console looks like,
+**[00:05:54]** its capabilities and then we'll get into the notebook.
+**[00:05:57]** So, the main three things
+**[00:05:58]** on the left here are workspaces, jobs and services.
+**[00:06:02]** Workspaces are for interactive development as you want
+**[00:06:05]** to be able to write some code, run it, see how it works,
+**[00:06:10]** look -- look at the observability like your metrics
+**[00:06:14]** and logs and things like that.
+**[00:06:15]** Workspaces will be for that interactive stuff.
+**[00:06:18]** Once I have some code that I want to run
+**[00:06:20]** on maybe a larger data set or a more production environment,
+**[00:06:26]** then I'll launch a job and the job will run.
+**[00:06:30]** It'll work over time in the background.
+**[00:06:32]** When it's done, it'll turn off the cluster.
+**[00:06:35]** And lastly is a service.
+**[00:06:37]** So, a service is an always-on, ready to listen to requests
+**[00:06:42]** to be able to serve up your models.
+**[00:06:45]** And yes, let's start our services over here.
+**[00:06:48]** So, I'm going to start in workspaces.
+**[00:06:50]** We'll spend the majority of our time here.
+**[00:06:52]** And I'm going to open up a workspace.
+**[00:06:55]** Just note that if you want,
+**[00:06:57]** there are many templates available as well, too.
+**[00:06:59]** So, you can pick up a bunch of templates that we have on.
+**[00:07:03]** If you want to do some inference or some training or be able
+**[00:07:08]** to create a RAG system, all that's here.
+**[00:07:11]** So, I'm going to open up a workspace.
+**[00:07:14]** And in my workspace, I am starting here with a workspace
+**[00:07:19]** that I've already pre-created before.
+**[00:07:21]** On the right, you'll notice that I am running
+**[00:07:23]** on a Ray cluster here.
+**[00:07:25]** So, this Ray cluster has 8 CPUs and 32 gigs on one node.
+**[00:07:29]** And I have only one worker node for now.
+**[00:07:32]** This is just one CPU-based node.
+**[00:07:36]** But if I wanted to add a whole bunch more nodes,
+**[00:07:39]** I could really, really easily scale this
+**[00:07:41]** up by hitting Add Worker Nodes.
+**[00:07:45]** And say maybe I want some GPUs.
+**[00:07:48]** I want some A100s and I want 10 or 100 or maybe 1,000,
+**[00:07:53]** depending on how much availability and scale
+**[00:07:56]** that you need in your environment
+**[00:07:58]** and for the job you're running.
+**[00:08:01]** But there isn't a lot to do in order
+**[00:08:03]** to be able to scale things up.
+**[00:08:04]** And it makes that really, really easy to do.
+**[00:08:06]** For now, I'm just going to run this on a CPU based cluster just
+**[00:08:09]** because I'm just testing out some things for now.
+**[00:08:12]** So, I want to launch into the code part of it.
+**[00:08:16]** And I could launch a VS Code desktop connection
+**[00:08:20]** to this cluster.
+**[00:08:21]** And so, I can go up here and say Open in VS Code Desktop
+**[00:08:25]** and it would launch up VS Code Desktop
+**[00:08:27]** and SSH directly into this cluster.
+**[00:08:31]** And that's really great because that means my development
+**[00:08:34]** and my production environments are very, very similar.
+**[00:08:37]** I'm running on the same type of hardware,
+**[00:08:39]** same type of environment.
+**[00:08:41]** But instead, I'm going to open up VS Code and I'm going
+**[00:08:44]** to have a little web interface to be able
+**[00:08:47]** to do everything that I want here.
+**[00:08:49]** I have all my code in here in this notebook.
+**[00:08:52]** But I can have many Python files of course, too.
+**[00:08:55]** I can install many dependencies as well
+**[00:08:58]** by installing through pip.
+**[00:09:01]** Or if I go to Dependencies, I can add them
+**[00:09:03]** over here as well, too.
+**[00:09:05]** I can also freeze all the dependencies and everything
+**[00:09:07]** into a container image,
+**[00:09:08]** so I have a fully reproducible environment.
+**[00:09:11]** So, going from that development to production,
+**[00:09:14]** once again, a lot easier to do.
+**[00:09:16]** So, I'm going to be in the code here and I'm going
+**[00:09:18]** to walk you through a use case.
+**[00:09:20]** And the use case is I want
+**[00:09:21]** to create an E Commerce recommendation engine.
+**[00:09:24]** And I had a few choices, like Katarina mentioned.
+**[00:09:28]** I could go and use an endpoint from one
+**[00:09:32]** of the AI model providers,
+**[00:09:34]** but that probably would be very expensive to run,
+**[00:09:38]** and I'd lose control over everything.
+**[00:09:41]** But then the next step is to use an open-source model
+**[00:09:45]** and that's a lot cheaper to run, which is great,
+**[00:09:48]** but it's probably not as effective
+**[00:09:51]** because it doesn't really know my data
+**[00:09:53]** and they're smaller models in general.
+**[00:09:56]** So, what I want to do instead is I want
+**[00:09:58]** to fine tune an open-source model.
+**[00:10:00]** And I'm going to use Ray to be able to do that.
+**[00:10:03]** And to do the fine tuning, all that training,
+**[00:10:06]** I'm going to need some data processing as part of that.
+**[00:10:10]** And lastly, once I have my fine-tuned model,
+**[00:10:14]** I'm going to want to be able to do some batch embeddings.
+**[00:10:17]** So, I want to do some inference on that model
+**[00:10:21]** with all the data that I have.
+**[00:10:23]** All right?
+**[00:10:24]** So, that's kind of the use case that I'm setting up here.
+**[00:10:26]** And think as well that I probably have
+**[00:10:29]** for a large e-commerce store, I have maybe a million products,
+**[00:10:33]** 10% of them are changing week over week.
+**[00:10:36]** And so, I need to constantly be re-running this thing.
+**[00:10:41]** And so, that's going to need to be a job that I'm going
+**[00:10:43]** to schedule after as well, too.
+**[00:10:45]** And we're going to need some scale to be able to --
+**[00:10:47]** to deal with that level of data and to make --
+**[00:10:50]** make this like a really good model.
+**[00:10:51]** Right? The other thing about this use case is
+**[00:10:54]** that it's multimodal data, right?
+**[00:10:56]** So, I have not only text descriptions about the products,
+**[00:10:59]** but I also have images that show what the product looks like.
+**[00:11:03]** Right? And so, when I'm creating an embedding space
+**[00:11:06]** to show how similar things are to each other
+**[00:11:09]** for recommendations, I'm going to need to be able
+**[00:11:11]** to process all of that multimodal data
+**[00:11:13]** as well together, too.
+**[00:11:15]** Right? And lastly, when I serve it,
+**[00:11:17]** I'm going to need multiple models,
+**[00:11:18]** maybe I'll need one model forwarding some image to text.
+**[00:11:22]** I'll use my fine-tuned model after as well, too.
+**[00:11:26]** And I'm going to need an endpoint
+**[00:11:28]** to be able to serve all that.
+**[00:11:30]** So, I'm really trying to show you a really full end-to-end
+**[00:11:33]** solution here where I'm doing preprocessing of data,
+**[00:11:36]** I'm doing some fine tuning, doing some batch embeddings
+**[00:11:39]** and then I'm serving all of that.
+**[00:11:41]** And that's what this use case is really for.
+**[00:11:44]** Okay? So, let's get into the use case starting here
+**[00:11:48]** with installing all my dependencies and looking
+**[00:11:52]** at all the images that I have for just a sample of images
+**[00:11:56]** that I have of my product catalog.
+**[00:12:00]** And so the first part here is just sampling some of the data
+**[00:12:04]** and creating a training data set.
+**[00:12:08]** And so, I've sampled some of the records
+**[00:12:09]** to create my training data set.
+**[00:12:12]** Down here I'm in this Torch trainer.
+**[00:12:14]** I'm going to make this a little bit bigger,
+**[00:12:15]** a little bit easier to see.
+**[00:12:17]** Okay? So, in this Torch trainer so I'm actually using PyTorch,
+**[00:12:22]** right, which is an open source very, very commonly used library
+**[00:12:27]** for doing deep learning and AI.
+**[00:12:31]** And what is special about Ray is
+**[00:12:33]** that it doesn't take that stuff away.
+**[00:12:36]** All it does, is it wraps a lot
+**[00:12:38]** of the open source regular frameworks that you use
+**[00:12:42]** and creates an orchestration layer around all of it
+**[00:12:45]** so that we have better performance and better stability
+**[00:12:49]** and also great scalability.
+**[00:12:51]** So, being able to increase to many, many CPUs, GPUs,
+**[00:12:56]** all that kind of stuff.
+**[00:12:57]** All right?
+**[00:12:58]** So, my Torch trainer, I'll go into this in a second,
+**[00:13:01]** but this is the -- my PyTorch code is basically in here.
+**[00:13:05]** I can say what kind of config I want to run, how many epochs,
+**[00:13:09]** my batch size, things like that.
+**[00:13:11]** How much I want to scale?
+**[00:13:12]** So, maybe I want to run on one worker, maybe 1,000 workers?
+**[00:13:16]** How many GPUs do I want to scale on?
+**[00:13:20]** And some things like checkpointing here as well, too.
+**[00:13:23]** So, one great thing about Ray Train is that what it can do is
+**[00:13:27]** if there is a failure at any point,
+**[00:13:29]** it can really easily resume
+**[00:13:32]** from where it left off, even mid-epoch.
+**[00:13:36]** So, you're not having as many failed runs and you're able
+**[00:13:40]** to resume your runs as well, too.
+**[00:13:42]** So, it -- it is really able to work with the scale
+**[00:13:46]** where things are not always running
+**[00:13:48]** as seamlessly as we want.
+**[00:13:51]** As we do just one machine on my laptop, this is being able
+**[00:13:54]** to scale the thousands of GPUs and still run in a reliable way.
+**[00:13:59]** So, just opening up that train loop per worker code.
+**[00:14:02]** I just want to open that one up.
+**[00:14:04]** And I have it right here.
+**[00:14:06]** So, the code itself, I have a little bit of data loading,
+**[00:14:09]** so I'll talk about Ray data in a second.
+**[00:14:11]** But right here is some standard PyTorch code.
+**[00:14:15]** Right? But if I want to add checkpointing,
+**[00:14:18]** all I need to do is add a little bit
+**[00:14:21]** of checkpointing code right here.
+**[00:14:24]** It's just basically 10% more code
+**[00:14:25]** than you would normally have.
+**[00:14:27]** But then it -- it does all that reliability
+**[00:14:30]** and checkpointing for you.
+**[00:14:31]** All right?
+**[00:14:32]** So, the other part here is this data loader.
+**[00:14:35]** Right? So, I'm actually using Ray data to be able to feed
+**[00:14:39]** in data to the this array train portion.
+**[00:14:42]** And what Ray data is helping me with is allowing the data
+**[00:14:47]** to stream to the GPU, keeping the GPU always fed
+**[00:14:52]** as in it always has data to work on.
+**[00:14:55]** So, you're fully utilizing your GPU.
+**[00:14:57]** You're not getting those 20, 30 % GPU utilization,
+**[00:15:01]** which is such a shame because we have such little availability
+**[00:15:05]** of GPUs and if you're not keeping them fed,
+**[00:15:08]** you're wasting money or just wasting the potential
+**[00:15:11]** of how good your model can get.
+**[00:15:13]** So, Ray data is streaming the data always to the GPU,
+**[00:15:17]** keeping it ready to go.
+**[00:15:20]** And so, that's pretty awesome that it's able to do that.
+**[00:15:23]** Another reason why it's able to do it is because it can scale
+**[00:15:26]** up some CPU nodes, so that the CPU is not the bottleneck.
+**[00:15:32]** I can create as many CPU nodes as I need to be able
+**[00:15:35]** to keep the GPUs always fed.
+**[00:15:37]** Right? So, that's pretty cool.
+**[00:15:39]** And I ran that earlier and just only had a couple
+**[00:15:44]** of epochs here.
+**[00:15:46]** And yes, so I can see that my training loss went
+**[00:15:48]** down so that's good to see.
+**[00:15:51]** Next, I'm going to do some batch embeddings.
+**[00:15:52]** So, actually I already have a fine-tuned model now.
+**[00:15:55]** So, that's great.
+**[00:15:56]** I'm going to load in that model
+**[00:15:58]** and then do some batch embeddings.
+**[00:16:00]** So, I have my embedding code in here.
+**[00:16:03]** How big I want to run this line?
+**[00:16:06]** This is running only one CPU, but I can scale this
+**[00:16:09]** to num GPUs, 1,000 if I want.
+**[00:16:12]** So, very, very little code needs to change there.
+**[00:16:16]** And it embedded the products.
+**[00:16:18]** Right? So, let's see if that embedding model is good.
+**[00:16:22]** So, right here, I'm going to look
+**[00:16:24]** at the product embedding similarity.
+**[00:16:26]** So, I can see that speakers and laptops
+**[00:16:29]** and webcams are all pretty similar to each other,
+**[00:16:31]** but not very similar to shoes or sweaters.
+**[00:16:33]** Right? So, just very basically you can do that type
+**[00:16:37]** of embedding and see what's similar to each other.
+**[00:16:40]** And I can see previously with the open-source model,
+**[00:16:43]** my light blue here is not all together necessarily,
+**[00:16:47]** but if I look here, things are just a little bit better
+**[00:16:51]** clustered together than they were
+**[00:16:53]** in the base open-source model.
+**[00:16:56]** So, my fine-tuned model is just looking a little better
+**[00:17:00]** than the previous one.
+**[00:17:01]** Yes. And I can also see here comparing the base model
+**[00:17:06]** to the fine-tuned model and how things have gotten better.
+**[00:17:09]** So, that's great.
+**[00:17:10]** So, I've done my batch embeddings, my fine-tuned model
+**[00:17:14]** and it's looking like better results
+**[00:17:16]** than the open source one.
+**[00:17:18]** So, lastly I want to show you
+**[00:17:21]** in this code here the serving model.
+**[00:17:23]** So, I want to create an endpoint where it is listening
+**[00:17:27]** in for recommendation requests and running
+**[00:17:30]** through a couple models starting with an image to text model
+**[00:17:36]** and then going to running my actual fine-tuned model.
+**[00:17:41]** And what I would do without Ray here is maybe create a whole
+**[00:17:45]** bunch of microservices and try
+**[00:17:47]** to get them all deployed in Kubernetes.
+**[00:17:51]** That could be a pain to do to stitch all that stuff together.
+**[00:17:56]** But instead, the code is a lot simpler when I use Ray Serve.
+**[00:18:00]** So, I'm going to open up the serving code.
+**[00:18:04]** But you see right here actually, I've run the serve service
+**[00:18:07]** and run some recommendations, and I can see what is similar
+**[00:18:12]** to travel wireless headphones and other wireless headphones
+**[00:18:15]** of course pretty similar to it,
+**[00:18:16]** and what other recommendations would be similar.
+**[00:18:20]** And then I'm going to open up this serving stuff here and see
+**[00:18:24]** that it starts with a recommendation endpoint
+**[00:18:28]** that takes in an image, runs through my image to text model
+**[00:18:33]** and then the fine-tuned model, the one that we created earlier,
+**[00:18:37]** and returns the JSON response.
+**[00:18:39]** And I'm going to show you in here,
+**[00:18:43]** we can just call it right here if we want.
+**[00:18:45]** But then if I want to deploy this on Anyscale
+**[00:18:47]** so that it's always available,
+**[00:18:49]** this Anyscale Service Deploy will get this thing
+**[00:18:52]** up and ready to go.
+**[00:18:53]** And as I have new versions, it'll be able
+**[00:18:56]** to have zero downtime as I go to create new versions
+**[00:19:00]** and scale this thing up as maybe I'm getting more requests
+**[00:19:05]** to one model versus another
+**[00:19:07]** and they can scale things independently.
+**[00:19:10]** It has prefix aware caching.
+**[00:19:12]** So, really, really, really cool stuff built in here.
+**[00:19:15]** So, yes, all the serve code is in here, so I can see my image
+**[00:19:19]** to text model and I load that one up
+**[00:19:23]** and create some captioning
+**[00:19:26]** and then I can run my product recommender one as well too.
+**[00:19:30]** So, this is the fine-tuned model.
+**[00:19:32]** And I'm loading up my model and running this embeddings norm.
+**[00:19:38]** This is just a little bit of PyTorch code.
+**[00:19:40]** Pretty standard stuff here.
+**[00:19:42]** Right? So, that's my serving side.
+**[00:19:45]** So, you've seen a little bit of the code, right?
+**[00:19:48]** Just note that you don't necessarily need
+**[00:19:50]** to write all this code by hand.
+**[00:19:52]** We actually have some agents that make working
+**[00:19:55]** with this a lot easier.
+**[00:19:57]** So, I'm just going to load up my terminal.
+**[00:20:00]** And I can see if I have Anyscale.
+**[00:20:02]** I have my Anyscale CLI installed.
+**[00:20:05]** I can say Anyscale Skills.
+**[00:20:08]** And we have a whole bunch of skills available to run
+**[00:20:11]** in your favorite code AI assistants like being able
+**[00:20:17]** to set up the infra, setting up the platform
+**[00:20:20]** and then actually creating workloads like Ray Data,
+**[00:20:23]** serve train serving and more coming.
+**[00:20:25]** We have RL for post training.
+**[00:20:28]** A lot available there.
+**[00:20:30]** Right The CLI also, you can -- you can use create jobs
+**[00:20:34]** and services, but anyways, the setting up all the skills,
+**[00:20:37]** it's all available here.
+**[00:20:38]** And those skills can also know how to go to the metrics
+**[00:20:43]** and observability that's available in the workspace.
+**[00:20:46]** So, in the metrics tab, I can see a lot of information
+**[00:20:50]** about what is going on around utilization, how many nodes,
+**[00:20:53]** my memory CPU, a lot of information.
+**[00:20:56]** That's just core stuff and getting
+**[00:20:58]** into all the libraries that are in Ray.
+**[00:21:01]** If I open up Ray workloads, it'll also run this earlier.
+**[00:21:06]** It can get really deep into the different stages and figure
+**[00:21:10]** out where my bottlenecks are.
+**[00:21:12]** And if I'm not an expert in this, then my agent can know
+**[00:21:16]** to be able to grab all this stuff and do some writing
+**[00:21:19]** of the code and also optimization
+**[00:21:21]** of the code as well too.
+**[00:21:22]** So, really, really powerful.
+**[00:21:24]** And that observability is something that is really key
+**[00:21:27]** for not only the day one if I wrote a little bit of code
+**[00:21:32]** and it works, but also the day two when I've scaled things
+**[00:21:36]** and things aren't working as well as they were before
+**[00:21:39]** and I need to do some debugging and things
+**[00:21:41]** like that as well, too.
+**[00:21:42]** All right?
+**[00:21:43]** So, there's a lot more in the platform.
+**[00:21:46]** I just wanted to show a little bit of the workspaces,
+**[00:21:49]** job services, getting to the code, into my cluster config,
+**[00:21:55]** talking about some of the Ray libraries and then some
+**[00:21:57]** of the observability and agents.
+**[00:21:58]** So, hopefully that gives you a quick orientation
+**[00:22:01]** as to overall what's all in here.
+**[00:22:04]** So, I'll hand it back to Katarina to talk
+**[00:22:07]** about next steps but thank you for checking out this part.
+**[00:22:14]** KATARINA STANLEY: Thanks for joining us today.
+**[00:22:16]** If you'd like to learn more, the first QR code takes you
+**[00:22:19]** to our webpage for the Build conference
+**[00:22:20]** where you can see our scheduled table talks, including one
+**[00:22:23]** that Daniel is leading
+**[00:22:24]** on building multimodal data pipelines.
+**[00:22:26]** And you can also request a meeting with our team.
+**[00:22:29]** The second QR code gets you started on any scale in Azure,
+**[00:22:32]** so you can try everything we just walked through, hands on.
+**[00:22:36]** And if you're at Build in person,
+**[00:22:37]** come find us at Booth G201.
+**[00:22:39]** We'd love to meet you.
+**[00:22:40]** Thanks again.

@@ -1,0 +1,1090 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.7026389241218567
+
+00:00:00.200 --> 00:00:03.080
+Hi everyone, welcome to Microsoft Build 2D6.
+
+NOTE Confidence: 0.7502558827400208
+
+00:00:03.600 --> 00:00:07.369
+I'm Spurs KC Developer Relations Manager at Test Me AI
+
+NOTE Confidence: 0.7502558827400208
+
+00:00:07.439 --> 00:00:10.511
+and we are very much excited to be back here
+
+NOTE Confidence: 0.7502558827400208
+
+00:00:10.581 --> 00:00:10.999
+today.
+
+NOTE Confidence: 0.8121485114097595
+
+00:00:11.119 --> 00:00:14.665
+I'm going to talk about a very interesting topic, agent
+
+NOTE Confidence: 0.8121485114097595
+
+00:00:14.730 --> 00:00:16.599
+testing, because here we are.
+
+NOTE Confidence: 0.9337670803070068
+
+00:00:17.040 --> 00:00:18.360
+Agents can write code now.
+
+NOTE Confidence: 0.8385090827941895
+
+00:00:18.600 --> 00:00:20.840
+They can also run it, break it and patch it.
+
+NOTE Confidence: 0.8718132376670837
+
+00:00:21.360 --> 00:00:24.406
+What they haven't been really able to do is test
+
+NOTE Confidence: 0.8718132376670837
+
+00:00:24.469 --> 00:00:27.325
+it not in the way that you would trust before
+
+NOTE Confidence: 0.8718132376670837
+
+00:00:27.388 --> 00:00:29.800
+shipping an application to production.
+
+NOTE Confidence: 0.9490169882774353
+
+00:00:30.800 --> 00:00:31.560
+And that's the gap.
+
+NOTE Confidence: 0.8557839393615723
+
+00:00:32.200 --> 00:00:35.372
+An agent can generate hundreds of codes in seconds, but
+
+NOTE Confidence: 0.8557839393615723
+
+00:00:35.429 --> 00:00:37.159
+the speed is in the hard part.
+
+NOTE Confidence: 0.9572157859802246
+
+00:00:38.680 --> 00:00:40.040
+The hard part is trust.
+
+NOTE Confidence: 0.8661673665046692
+
+00:00:40.720 --> 00:00:42.400
+Did it test the right thing?
+
+NOTE Confidence: 0.876645565032959
+
+00:00:42.760 --> 00:00:45.300
+Can you actually rely on what it tells you when
+
+NOTE Confidence: 0.876645565032959
+
+00:00:45.354 --> 00:00:46.760
+it says everything passed?
+
+NOTE Confidence: 0.9667508006095886
+
+00:00:47.640 --> 00:00:48.960
+And that's what I want to talk.
+
+NOTE Confidence: 0.7691717147827148
+
+00:00:48.960 --> 00:00:52.550
+About today and specifically I want to show you around
+
+NOTE Confidence: 0.7691717147827148
+
+00:00:52.617 --> 00:00:56.208
+Keynes CLI, the newest product launched by Tesma AI to
+
+NOTE Confidence: 0.7691717147827148
+
+00:00:56.274 --> 00:00:59.267
+help ship end to end product in an agent take
+
+NOTE Confidence: 0.7691717147827148
+
+00:00:59.333 --> 00:00:59.599
+era.
+
+NOTE Confidence: 0.7790871858596802
+
+00:01:00.640 --> 00:01:03.509
+It is an command line tool built so that agents
+
+NOTE Confidence: 0.7790871858596802
+
+00:01:03.570 --> 00:01:06.684
+can test the code in the careful engineer, Not just
+
+NOTE Confidence: 0.7790871858596802
+
+00:01:06.745 --> 00:01:10.530
+running checks, but giving you something that you can actually
+
+NOTE Confidence: 0.7790871858596802
+
+00:01:10.591 --> 00:01:11.079
+rely on.
+
+NOTE Confidence: 0.8505669832229614
+
+00:01:13.920 --> 00:01:16.891
+Everyone is focused on how fast we are building, but
+
+NOTE Confidence: 0.8505669832229614
+
+00:01:16.948 --> 00:01:19.748
+very few of our are asking the real question, How
+
+NOTE Confidence: 0.8505669832229614
+
+00:01:19.805 --> 00:01:21.120
+fast we are validating.
+
+NOTE Confidence: 0.8905202746391296
+
+00:01:21.959 --> 00:01:24.911
+How we are able to trust an application that was
+
+NOTE Confidence: 0.8905202746391296
+
+00:01:24.972 --> 00:01:28.477
+built by set of autonomous agents and deployed by another
+
+NOTE Confidence: 0.8905202746391296
+
+00:01:28.539 --> 00:01:29.399
+set of agents.
+
+NOTE Confidence: 0.8338640928268433
+
+00:01:30.040 --> 00:01:32.968
+How we are able to trust and feature or an
+
+NOTE Confidence: 0.8338640928268433
+
+00:01:33.038 --> 00:01:36.455
+page that was developed by an agent is doing what
+
+NOTE Confidence: 0.8338640928268433
+
+00:01:36.524 --> 00:01:40.360
+it is supposed to be doing without any human intuition.
+
+NOTE Confidence: 0.8362079858779907
+
+00:01:41.480 --> 00:01:43.760
+This is the exact blind spot that we are targeting
+
+NOTE Confidence: 0.8362079858779907
+
+00:01:43.806 --> 00:01:44.080
+today.
+
+NOTE Confidence: 0.8660009503364563
+
+00:01:44.920 --> 00:01:48.783
+The fix is adding more intelligent smarter system, but is
+
+NOTE Confidence: 0.8660009503364563
+
+00:01:48.851 --> 00:01:53.800
+to add a deterministic validation layer between shipping and development.
+
+NOTE Confidence: 0.7165851593017578
+
+00:01:55.640 --> 00:01:59.240
+To solve this we at Tesma AI released Keynes CLI.
+
+NOTE Confidence: 0.829892635345459
+
+00:02:00.000 --> 00:02:04.002
+Keynes CLI is a command line validation layer that helps
+
+NOTE Confidence: 0.829892635345459
+
+00:02:04.074 --> 00:02:04.360
+you.
+
+NOTE Confidence: 0.7606825232505798
+
+00:02:04.520 --> 00:02:05.440
+Test any.
+
+NOTE Confidence: 0.9164858460426331
+
+00:02:05.440 --> 00:02:07.880
+Feature application on a local browser.
+
+NOTE Confidence: 0.8240223526954651
+
+00:02:09.120 --> 00:02:12.377
+Keynes CLI can be used by humans and directly by
+
+NOTE Confidence: 0.8240223526954651
+
+00:02:12.445 --> 00:02:12.919
+agents.
+
+NOTE Confidence: 0.7494428753852844
+
+00:02:13.880 --> 00:02:14.200
+It is.
+
+NOTE Confidence: 0.8071562647819519
+
+00:02:14.400 --> 00:02:17.080
+It natively integrates with all of your agents.
+
+NOTE Confidence: 0.8709908127784729
+
+00:02:17.160 --> 00:02:17.560
+Could be.
+
+NOTE Confidence: 0.2676805853843689
+
+00:02:17.760 --> 00:02:18.640
+Cloud Codex.
+
+NOTE Confidence: 0.48164212703704834
+
+00:02:18.920 --> 00:02:21.240
+Gemni, Copilot etc.
+
+NOTE Confidence: 0.7803922295570374
+
+00:02:21.520 --> 00:02:24.168
+You can describe KSLI what you want in a natural
+
+NOTE Confidence: 0.7803922295570374
+
+00:02:24.223 --> 00:02:24.720
+language.
+
+NOTE Confidence: 0.8249543309211731
+
+00:02:24.720 --> 00:02:28.404
+Prompts and KSLI will open a local browser, test it,
+
+NOTE Confidence: 0.8249543309211731
+
+00:02:28.475 --> 00:02:32.018
+test your feature out and you also have the option
+
+NOTE Confidence: 0.8249543309211731
+
+00:02:32.089 --> 00:02:36.341
+to validate that on cloud, on different cross browser, cross
+
+NOTE Confidence: 0.8249543309211731
+
+00:02:36.412 --> 00:02:38.679
+device, cross environment setup.
+
+NOTE Confidence: 0.9127485752105713
+
+00:02:39.720 --> 00:02:44.440
+This helps you release your features and products with confidence.
+
+NOTE Confidence: 0.8576536774635315
+
+00:02:46.880 --> 00:02:49.080
+So what do you get out-of-the-box with kcli?
+
+NOTE Confidence: 0.6950114965438843
+
+00:02:49.960 --> 00:02:51.640
+First is intent based control.
+
+NOTE Confidence: 0.860129714012146
+
+00:02:51.960 --> 00:02:52.320
+You just.
+
+NOTE Confidence: 0.8307441473007202
+
+00:02:52.320 --> 00:02:56.120
+Need to describe kcli, the natural language objectives.
+
+NOTE Confidence: 0.653782308101654
+
+00:02:56.360 --> 00:03:00.436
+There is no betel test scripts, no locators, no selectors,
+
+NOTE Confidence: 0.653782308101654
+
+00:03:00.506 --> 00:03:01.280
+no X paths.
+
+NOTE Confidence: 0.682005763053894
+
+00:03:02.400 --> 00:03:04.680
+Kcli also helps with resilient runs.
+
+NOTE Confidence: 0.8619982004165649
+
+00:03:05.480 --> 00:03:07.829
+It stays on the task even when there is a
+
+NOTE Confidence: 0.8619982004165649
+
+00:03:07.887 --> 00:03:09.320
+complex journey involved.
+
+NOTE Confidence: 0.8523792624473572
+
+00:03:10.200 --> 00:03:15.087
+KSLI also automatically discover bugs while it is executing and
+
+NOTE Confidence: 0.8523792624473572
+
+00:03:15.165 --> 00:03:19.199
+if there is any failure it has vision based waiting.
+
+NOTE Confidence: 0.8279486298561096
+
+00:03:19.440 --> 00:03:23.853
+It actually waits on the required rendered page or feature
+
+NOTE Confidence: 0.8279486298561096
+
+00:03:23.929 --> 00:03:26.440
+then adding arbitrary time waits.
+
+NOTE Confidence: 0.7838536500930786
+
+00:03:29.080 --> 00:03:32.777
+KSLI by default generates the playwright code of the test
+
+NOTE Confidence: 0.7838536500930786
+
+00:03:32.842 --> 00:03:33.879
+that is created.
+
+NOTE Confidence: 0.815909743309021
+
+00:03:34.360 --> 00:03:37.509
+So you can put in the natural language prompts and
+
+NOTE Confidence: 0.815909743309021
+
+00:03:37.572 --> 00:03:39.839
+playwright test case comes out back.
+
+NOTE Confidence: 0.8786767721176147
+
+00:03:41.760 --> 00:03:44.654
+It also has a test MD framework which has all
+
+NOTE Confidence: 0.8786767721176147
+
+00:03:44.718 --> 00:03:47.869
+the test cases that we have written in a markdown
+
+NOTE Confidence: 0.8786767721176147
+
+00:03:47.934 --> 00:03:48.319
+value.
+
+NOTE Confidence: 0.8645126223564148
+
+00:03:49.000 --> 00:03:51.906
+You can autoplay it anytime and you can also trigger
+
+NOTE Confidence: 0.8645126223564148
+
+00:03:51.962 --> 00:03:53.359
+it by your CICD pipeline.
+
+NOTE Confidence: 0.8390618562698364
+
+00:03:55.680 --> 00:03:58.771
+All the test cases generated by Knci also has auto
+
+NOTE Confidence: 0.8390618562698364
+
+00:03:58.833 --> 00:04:01.430
+heals so if there is any UI change on your
+
+NOTE Confidence: 0.8390618562698364
+
+00:04:01.492 --> 00:04:05.079
+page, Knci will automatically heal the test cases and give
+
+NOTE Confidence: 0.8390618562698364
+
+00:04:05.141 --> 00:04:07.119
+you the new test code in return.
+
+NOTE Confidence: 0.8878772258758545
+
+00:04:08.760 --> 00:04:12.380
+Also have a shareable evidence so you have video logs
+
+NOTE Confidence: 0.8878772258758545
+
+00:04:12.448 --> 00:04:14.840
+as well as trace runs for each run.
+
+NOTE Confidence: 0.8292261958122253
+
+00:04:16.960 --> 00:04:21.033
+Kncli also gives out agent native ND Jason format so
+
+NOTE Confidence: 0.8292261958122253
+
+00:04:21.111 --> 00:04:25.733
+it's a structured output which is understandable by all the
+
+NOTE Confidence: 0.8292261958122253
+
+00:04:25.811 --> 00:04:26.359
+agents.
+
+NOTE Confidence: 0.8236495852470398
+
+00:04:28.960 --> 00:04:32.298
+To use kncli, we have three options you can directly
+
+NOTE Confidence: 0.8236495852470398
+
+00:04:32.362 --> 00:04:35.701
+use in your command line CLI by running this command
+
+NOTE Confidence: 0.8236495852470398
+
+00:04:35.765 --> 00:04:39.617
+and Justice add your prompts in natural language prompts and
+
+NOTE Confidence: 0.8236495852470398
+
+00:04:39.681 --> 00:04:41.800
+KNCLI will start automating that.
+
+NOTE Confidence: 0.8143672347068787
+
+00:04:42.960 --> 00:04:46.031
+We also have an SDK where you can just import
+
+NOTE Confidence: 0.8143672347068787
+
+00:04:46.100 --> 00:04:48.830
+KN from our SDK and which can be used in
+
+NOTE Confidence: 0.8143672347068787
+
+00:04:48.899 --> 00:04:52.039
+your CI pipeline or any custom agent or any of
+
+NOTE Confidence: 0.8143672347068787
+
+00:04:52.107 --> 00:04:53.199
+your test suite.
+
+NOTE Confidence: 0.8015719056129456
+
+00:04:53.760 --> 00:04:57.798
+KNCLI can also automatically talk to your agent tool, so
+
+NOTE Confidence: 0.8015719056129456
+
+00:04:57.871 --> 00:05:01.188
+just point your agent to our agent MD file and
+
+NOTE Confidence: 0.8015719056129456
+
+00:05:01.260 --> 00:05:05.660
+your agent will understand how to use KNCLI effectively while
+
+NOTE Confidence: 0.8015719056129456
+
+00:05:05.732 --> 00:05:07.680
+building your applications.
+
+NOTE Confidence: 0.889823317527771
+
+00:05:08.800 --> 00:05:10.240
+So let's see this in action.
+
+NOTE Confidence: 0.771431565284729
+
+00:05:11.480 --> 00:05:15.100
+To start using KSLI, you just need to download the
+
+NOTE Confidence: 0.771431565284729
+
+00:05:15.173 --> 00:05:18.793
+NPM module in your system so you can directly copy
+
+NOTE Confidence: 0.771431565284729
+
+00:05:18.866 --> 00:05:22.559
+this command and paste in the terminal and let your
+
+NOTE Confidence: 0.771431565284729
+
+00:05:22.631 --> 00:05:24.080
+KSLI get downloaded.
+
+NOTE Confidence: 0.8179032802581787
+
+00:05:25.320 --> 00:05:28.580
+Once downloaded, you can open any terminal and call KSLI
+
+NOTE Confidence: 0.8179032802581787
+
+00:05:28.638 --> 00:05:30.560
+to start running your test cases.
+
+NOTE Confidence: 0.7665189504623413
+
+00:05:31.440 --> 00:05:35.552
+For now, I will open KSLI in an interactive mode,
+
+NOTE Confidence: 0.7665189504623413
+
+00:05:35.636 --> 00:05:39.917
+the session get initialized and we get an option to
+
+NOTE Confidence: 0.7665189504623413
+
+00:05:40.001 --> 00:05:41.680
+paste our objective.
+
+NOTE Confidence: 0.866702139377594
+
+00:05:42.360 --> 00:05:44.957
+So I can write any kind of objective here and
+
+NOTE Confidence: 0.866702139377594
+
+00:05:45.015 --> 00:05:47.440
+KNCLI will start completing that workflow.
+
+NOTE Confidence: 0.8792957663536072
+
+00:05:48.480 --> 00:05:51.888
+For now I have a sample website where we are
+
+NOTE Confidence: 0.8792957663536072
+
+00:05:51.965 --> 00:05:56.458
+trying to complete the checkout flow and pasting the order
+
+NOTE Confidence: 0.8792957663536072
+
+00:05:56.536 --> 00:05:59.480
+ID from our first session into Google.
+
+NOTE Confidence: 0.7761648893356323
+
+00:06:00.120 --> 00:06:05.007
+In our another session, KNCLI will start understanding the objective
+
+NOTE Confidence: 0.7761648893356323
+
+00:06:05.079 --> 00:06:08.529
+and as you can see it has beautificated into two
+
+NOTE Confidence: 0.7761648893356323
+
+00:06:08.601 --> 00:06:09.319
+workflows.
+
+NOTE Confidence: 0.8748403787612915
+
+00:06:09.920 --> 00:06:12.897
+The first task is to complete the checkout flow and
+
+NOTE Confidence: 0.8748403787612915
+
+00:06:12.956 --> 00:06:15.466
+the second task is to copy the order ID and
+
+NOTE Confidence: 0.8748403787612915
+
+00:06:15.525 --> 00:06:17.160
+paste it in another session.
+
+NOTE Confidence: 0.8911451101303101
+
+00:06:19.440 --> 00:06:22.532
+And to complete this, KNCLI will open a local browser
+
+NOTE Confidence: 0.8911451101303101
+
+00:06:22.590 --> 00:06:25.799
+and start completing and thinking about the next steps.
+
+NOTE Confidence: 0.8945339918136597
+
+00:06:26.520 --> 00:06:29.683
+As you can see, it has automatically opened the sample
+
+NOTE Confidence: 0.8945339918136597
+
+00:06:29.742 --> 00:06:32.613
+website that we have added and it is thinking how
+
+NOTE Confidence: 0.8945339918136597
+
+00:06:32.672 --> 00:06:34.840
+how it can navigate to the next step.
+
+NOTE Confidence: 0.9417580366134644
+
+00:06:47.550 --> 00:06:50.461
+You can also see all of the steps that it
+
+NOTE Confidence: 0.9417580366134644
+
+00:06:50.532 --> 00:06:53.230
+has identified in the terminal itself.
+
+NOTE Confidence: 0.9568482637405396
+
+00:06:55.150 --> 00:06:57.070
+And it will take some time to complete this.
+
+NOTE Confidence: 0.8411961197853088
+
+00:06:57.589 --> 00:07:01.638
+So let's also check out another method where you can
+
+NOTE Confidence: 0.8411961197853088
+
+00:07:01.716 --> 00:07:04.829
+use KNC Alide directly with your agents.
+
+NOTE Confidence: 0.8859984874725342
+
+00:07:06.920 --> 00:07:10.695
+To do this, you just need to paste this agent
+
+NOTE Confidence: 0.8859984874725342
+
+00:07:10.779 --> 00:07:15.141
+MD file to your agent and your agent will understand
+
+NOTE Confidence: 0.8859984874725342
+
+00:07:15.225 --> 00:07:18.749
+how to use knci while it is building out a
+
+NOTE Confidence: 0.8859984874725342
+
+00:07:18.833 --> 00:07:19.840
+new feature.
+
+NOTE Confidence: 0.7977597713470459
+
+00:07:21.800 --> 00:07:32.226
+For this, let's open another browser and call out plot
+
+NOTE Confidence: 0.7977597713470459
+
+00:07:32.419 --> 00:07:34.929
+to call knci.
+
+NOTE Confidence: 0.689897894859314
+
+00:07:34.930 --> 00:07:40.855
+Within your agent browser you can just used by directly
+
+NOTE Confidence: 0.689897894859314
+
+00:07:40.963 --> 00:07:45.920
+adding slash and typing key NCLI and key NCLI.
+
+NOTE Confidence: 0.8653395771980286
+
+00:07:45.920 --> 00:07:48.600
+Session will be initialized within your agent environment.
+
+NOTE Confidence: 0.8331164717674255
+
+00:07:50.120 --> 00:07:53.953
+It is identifying my user ID and key NCLI is
+
+NOTE Confidence: 0.8331164717674255
+
+00:07:54.040 --> 00:07:56.480
+ready to use As you can see.
+
+NOTE Confidence: 0.8111210465431213
+
+00:07:56.480 --> 00:07:59.482
+You will also see what are the different types of
+
+NOTE Confidence: 0.8111210465431213
+
+00:07:59.543 --> 00:08:01.320
+actions key NCLI can perform.
+
+NOTE Confidence: 0.8961398601531982
+
+00:08:01.880 --> 00:08:06.116
+It can perform any type of actions, assertions, It can
+
+NOTE Confidence: 0.8961398601531982
+
+00:08:06.194 --> 00:08:09.960
+extract any type of top results and also run any
+
+NOTE Confidence: 0.8961398601531982
+
+00:08:10.038 --> 00:08:14.039
+test suite that we already have within our project.
+
+NOTE Confidence: 0.8589287996292114
+
+00:08:14.040 --> 00:08:14.200
+File.
+
+NOTE Confidence: 0.816373348236084
+
+00:08:15.480 --> 00:08:17.600
+For this, let's let's try something simple.
+
+NOTE Confidence: 0.8033048510551453
+
+00:08:17.880 --> 00:08:28.480
+Go to testmuai.com and validate if the page opens.
+
+NOTE Confidence: 0.8626371622085571
+
+00:08:35.760 --> 00:08:39.630
+KNCLI directly interacts with your AI agent and think about
+
+NOTE Confidence: 0.8626371622085571
+
+00:08:39.696 --> 00:08:40.680
+the next steps.
+
+NOTE Confidence: 0.8589400053024292
+
+00:08:41.640 --> 00:08:44.640
+So while you are building with any of your AI
+
+NOTE Confidence: 0.8589400053024292
+
+00:08:44.706 --> 00:08:48.173
+agent, let's say it is cloud codecs or Copilot, your
+
+NOTE Confidence: 0.8589400053024292
+
+00:08:48.240 --> 00:08:51.506
+agent can directly define what kind of end to end
+
+NOTE Confidence: 0.8589400053024292
+
+00:08:51.573 --> 00:08:55.040
+test cases it want to write according to the feature
+
+NOTE Confidence: 0.8589400053024292
+
+00:08:55.106 --> 00:08:57.440
+or product that you are developing.
+
+NOTE Confidence: 0.8778030276298523
+
+00:08:57.840 --> 00:09:01.844
+And KNCLI will provide them hands and eyes to perform
+
+NOTE Confidence: 0.8778030276298523
+
+00:09:01.919 --> 00:09:03.959
+those end to end workflows.
+
+NOTE Confidence: 0.8751833438873291
+
+00:09:06.240 --> 00:09:09.942
+By default for any agent, it runs in a headless
+
+NOTE Confidence: 0.8751833438873291
+
+00:09:10.020 --> 00:09:13.801
+mode and you will see all the results popping up
+
+NOTE Confidence: 0.8751833438873291
+
+00:09:13.880 --> 00:09:16.480
+here once this step is completed.
+
+NOTE Confidence: 0.8350129127502441
+
+00:09:18.679 --> 00:09:21.840
+Meanwhile, let's go back and check out what is happening
+
+NOTE Confidence: 0.8350129127502441
+
+00:09:21.896 --> 00:09:22.799
+in our TUI mode.
+
+NOTE Confidence: 0.8504277467727661
+
+00:09:23.480 --> 00:09:26.736
+As you can see it is placing an order and
+
+NOTE Confidence: 0.8504277467727661
+
+00:09:26.815 --> 00:09:28.960
+also thinking about adding.
+
+NOTE Confidence: 0.9201787114143372
+
+00:09:29.240 --> 00:09:32.527
+As you can see, it can also automatically generate some
+
+NOTE Confidence: 0.9201787114143372
+
+00:09:32.587 --> 00:09:34.440
+test data to complete the card.
+
+NOTE Confidence: 0.6809598803520203
+
+00:09:34.880 --> 00:09:35.760
+Checkout process.
+
+NOTE Confidence: 0.8753573894500732
+
+00:09:41.550 --> 00:09:45.597
+It has completed the order and it has completed almost
+
+NOTE Confidence: 0.8753573894500732
+
+00:09:45.672 --> 00:09:49.270
+completed the first flow that it has identified.
+
+NOTE Confidence: 0.938754141330719
+
+00:09:50.070 --> 00:09:53.480
+Now it is extracting the order ID from the first
+
+NOTE Confidence: 0.938754141330719
+
+00:09:53.551 --> 00:09:54.829
+flow confirmation.
+
+NOTE Confidence: 0.9563734531402588
+
+00:10:02.760 --> 00:10:04.480
+Now it has completed the first flow.
+
+NOTE Confidence: 0.9118130803108215
+
+00:10:04.880 --> 00:10:08.055
+It has extracted and saved the order ID from our
+
+NOTE Confidence: 0.9118130803108215
+
+00:10:08.121 --> 00:10:11.033
+first flow and now it will try to complete a
+
+NOTE Confidence: 0.9118130803108215
+
+00:10:11.099 --> 00:10:14.804
+second step that is opening a google.com and pasting the
+
+NOTE Confidence: 0.9118130803108215
+
+00:10:14.870 --> 00:10:17.120
+order ID from our first Test case.
+
+NOTE Confidence: 0.7953833341598511
+
+00:10:25.000 --> 00:10:31.066
+Now it is opened google.com and it will now paste
+
+NOTE Confidence: 0.7953833341598511
+
+00:10:31.190 --> 00:10:32.800
+our order ID.
+
+NOTE Confidence: 0.8402475118637085
+
+00:10:45.000 --> 00:10:50.288
+It has successfully pasted the order ID from our first
+
+NOTE Confidence: 0.8402475118637085
+
+00:10:50.386 --> 00:10:54.990
+flow into the second flow and it has passed all
+
+NOTE Confidence: 0.8402475118637085
+
+00:10:55.088 --> 00:10:55.479
+the.
+
+NOTE Confidence: 0.8368843197822571
+
+00:10:55.760 --> 00:10:58.129
+It has completed the workflow and it has passed the
+
+NOTE Confidence: 0.8368843197822571
+
+00:10:58.175 --> 00:10:58.639
+test case.
+
+NOTE Confidence: 0.9363831877708435
+
+00:10:59.320 --> 00:11:02.997
+Now once my test case is completed, I can click
+
+NOTE Confidence: 0.9363831877708435
+
+00:11:03.075 --> 00:11:06.597
+on exit and it will save the session into the
+
+NOTE Confidence: 0.9363831877708435
+
+00:11:06.675 --> 00:11:10.039
+particular file folder that we have wanted.
+
+NOTE Confidence: 0.8903321623802185
+
+00:11:15.520 --> 00:11:18.706
+And it will also download the create a playwright script
+
+NOTE Confidence: 0.8903321623802185
+
+00:11:18.763 --> 00:11:21.040
+of the test case that we have completed.
+
+NOTE Confidence: 0.8084160089492798
+
+00:11:21.360 --> 00:11:24.840
+And it will also show us a shareable link.
+
+NOTE Confidence: 0.9639990329742432
+
+00:11:25.400 --> 00:11:29.546
+So I can just directly copy this and open it
+
+NOTE Confidence: 0.9639990329742432
+
+00:11:29.640 --> 00:11:30.959
+in my browser.
+
+NOTE Confidence: 0.9351397156715393
+
+00:11:38.200 --> 00:11:40.816
+Here we get all the logs of the steps that
+
+NOTE Confidence: 0.9351397156715393
+
+00:11:40.878 --> 00:11:42.000
+we have completed.
+
+NOTE Confidence: 0.7177141904830933
+
+00:11:42.280 --> 00:11:47.173
+I can automatically autoplay this and it will play how
+
+NOTE Confidence: 0.7177141904830933
+
+00:11:47.263 --> 00:11:51.160
+Cane CLI basically completed this workflow.
+
+NOTE Confidence: 0.8948008418083191
+
+00:11:51.480 --> 00:11:55.008
+You can also see the cursor, what kind of decisions
+
+NOTE Confidence: 0.8948008418083191
+
+00:11:55.077 --> 00:11:58.398
+it is making and how it is completing the user's
+
+NOTE Confidence: 0.8948008418083191
+
+00:11:58.468 --> 00:11:59.160
+objective.
+
+NOTE Confidence: 0.8501826524734497
+
+00:12:02.520 --> 00:12:05.779
+And this becomes a shareable proof of any any step,
+
+NOTE Confidence: 0.8501826524734497
+
+00:12:05.843 --> 00:12:08.079
+any test cases that we are running.
+
+NOTE Confidence: 0.8698211908340454
+
+00:12:08.400 --> 00:12:14.133
+So you can validate it before completing before merging this
+
+NOTE Confidence: 0.8698211908340454
+
+00:12:14.228 --> 00:12:16.999
+feature or product into your.
+
+NOTE Confidence: 0.837197482585907
+
+00:12:25.200 --> 00:12:29.210
+And if there are any bugs that are identified within
+
+NOTE Confidence: 0.837197482585907
+
+00:12:29.287 --> 00:12:33.991
+this step, you will also see KNCLI automatically marking that
+
+NOTE Confidence: 0.837197482585907
+
+00:12:34.069 --> 00:12:35.920
+bug to the user as well.
+
+NOTE Confidence: 0.7719773054122925
+
+00:12:36.920 --> 00:12:41.224
+Now let's also see what happened while using KNCLI with
+
+NOTE Confidence: 0.7719773054122925
+
+00:12:41.302 --> 00:12:42.320
+our AI agent.
+
+NOTE Confidence: 0.7383055090904236
+
+00:12:44.480 --> 00:12:48.297
+I, our AI agent run the objective in an headless
+
+NOTE Confidence: 0.7383055090904236
+
+00:12:48.376 --> 00:12:51.240
+mode and it gave us lot many starts.
+
+NOTE Confidence: 0.7695547342300415
+
+00:12:51.840 --> 00:12:55.154
+The test case was passed, the objective was completed, and
+
+NOTE Confidence: 0.7695547342300415
+
+00:12:55.211 --> 00:12:57.039
+it also gave us an agent rating.
+
+NOTE Confidence: 0.8471786975860596
+
+00:12:57.920 --> 00:13:00.998
+You can also see the shareable proof by copying this
+
+NOTE Confidence: 0.8471786975860596
+
+00:13:01.057 --> 00:13:03.840
+and pasting and viewing it in your own browser.
+

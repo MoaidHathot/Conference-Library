@@ -1,0 +1,1322 @@
+**[00:00:02]** We are live.
+**[00:00:04]** Hello everybody, this is the coolest demo happening at this
+**[00:00:08]** time slot, I promise.
+**[00:00:10]** This is overflow.
+**[00:00:11]** It's not.
+**[00:00:11]** It's not overflow.
+**[00:00:12]** This is the flow.
+**[00:00:13]** Thank you for coming.
+**[00:00:14]** If you have any problems hearing, I know it's loud
+**[00:00:16]** in here because there's the other sessions happening.
+**[00:00:18]** There are headsets in the back so you can actually
+**[00:00:20]** get your own volume and turn it up manual.
+**[00:00:21]** Can I get one?
+**[00:00:22]** Keep it low because we talk really loud.
+**[00:00:25]** So you know, but if you need that, welcome to
+**[00:00:28]** Aspire for Agents Transform how you build and deploy distributed
+**[00:00:33]** apps.
+**[00:00:33]** How many people here think they are building a distributed
+**[00:00:37]** app?
+**[00:00:39]** OK, how many people have a website with a database?
+**[00:00:42]** OK, that's a distributed app.
+**[00:00:44]** So good job self identifying.
+**[00:00:47]** I'm Maddie Monicola.
+**[00:00:48]** I'm APM First Fire.
+**[00:00:50]** I'm David, the boss.
+**[00:00:52]** Hey, thanks, Susan.
+**[00:00:53]** No one's allowed to report to him.
+**[00:00:54]** That was written out.
+**[00:00:55]** It'd be a bad day.
+**[00:00:57]** We are going to try and show a lot in
+**[00:00:59]** 45 minutes, but we have Beth on our team at
+**[00:01:02]** the booth and then we'll go back to the booth
+**[00:01:04]** right over in the dev tools and framework section after
+**[00:01:07]** this talk for Q&A.
+**[00:01:08]** If people want to come by and get a sticker
+**[00:01:10]** and say hi.
+**[00:01:11]** We are here to talk about Aspire, who has used
+**[00:01:16]** Aspire 00.
+**[00:01:20]** We had a good room here.
+**[00:01:21]** So the slides we're going to try to blow through
+**[00:01:23]** because we want to mostly do code.
+**[00:01:26]** The reason I'm going to show the slides and a
+**[00:01:28]** is so that if you watch the recording back, you
+**[00:01:30]** can pause it, and B so that you can screenshot
+**[00:01:32]** them and send them to your Co workers when they
+**[00:01:34]** ask you what Aspire is, right?
+**[00:01:36]** Easy peasy.
+**[00:01:38]** The latest way we've been talking about Aspire is that
+**[00:01:41]** any modern distributed app, you can pick anything on any
+**[00:01:43]** of these boxes.
+**[00:01:45]** It is confusing, right?
+**[00:01:46]** The second you go from just one NPM run to
+**[00:01:50]** NPM run and docker compose up, or to NPM run
+**[00:01:54]** and a.net run.
+**[00:01:55]** And you have to make sure the ports are in
+**[00:01:57]** the right places or your agent starts running in the
+**[00:01:59]** NPM run and then it trips over itself and stops
+**[00:02:01]** it.
+**[00:02:01]** And then it's like, oh, the app died.
+**[00:02:03]** Oh, I have to restart the app.
+**[00:02:05]** The second any of that starts happening, apps get complicated
+**[00:02:09]** and what we do in the dev loop doesn't always
+**[00:02:13]** translate well to deployment.
+**[00:02:16]** So when you have something that works on your box,
+**[00:02:18]** it may work in isolation, but then you try to
+**[00:02:21]** put it up in a containerized environment or an app
+**[00:02:24]** service or in a vanilla Kubernetes cluster, your own hand
+**[00:02:27]** rolled deployment runtime.
+**[00:02:29]** And it doesn't work or feel at all the same
+**[00:02:31]** as it did when you were developing it locally.
+**[00:02:35]** And that was originally the premise of Aspire.
+**[00:02:38]** It was twofold.
+**[00:02:38]** One was to turn on things that we thought you
+**[00:02:40]** should turn on in an app, which is much less
+**[00:02:42]** important now because Copilot does that for you or your
+**[00:02:45]** agent.
+**[00:02:46]** But the other was to glue stick together all the
+**[00:02:49]** individual pieces of your stack so that when you run
+**[00:02:52]** locally, it feels as close to real life as possible
+**[00:02:56]** and you're able to compose and debug that in an
+**[00:02:59]** actually meaningful way instead of everything in isolation.
+**[00:03:04]** So the one liner Aspire is an agent ready code
+**[00:03:06]** first tool to compose, debug and deploy any distributed app.
+**[00:03:09]** That's one line.
+**[00:03:10]** That's one line.
+**[00:03:11]** It's almost a run on sentence, but grammatically it is
+**[00:03:14]** correct and it uses an Oxford.
+**[00:03:16]** Thank you very much.
+**[00:03:17]** I expect that to be used always.
+**[00:03:20]** If that's people say, what's this fire?
+**[00:03:22]** And we're like, wow, we had, I've seen a bunch
+**[00:03:24]** of people who have been by the booth this week
+**[00:03:26]** too, just asking what it is.
+**[00:03:27]** And we're like, it's a tool.
+**[00:03:28]** It's a tool.
+**[00:03:30]** It's kind of like a bootstrapper.
+**[00:03:31]** It's kind of like Docker compose replacement, better types.
+**[00:03:35]** You have to really dive into it to get it,
+**[00:03:38]** but there's a lot of individual pieces.
+**[00:03:41]** And what's good to know about Aspire is all of
+**[00:03:43]** the pieces can be wielded on their own.
+**[00:03:46]** So we talk about the CLI as the thing that
+**[00:03:48]** actually runs everything, all the other pieces.
+**[00:03:50]** But there's this app host file, which is where we're
+**[00:03:53]** going to spend most of the time today talking about
+**[00:03:55]** how to build out an app host to be a
+**[00:03:56]** custom developer experience for your app.
+**[00:03:59]** There are our integrations, which are how we package up
+**[00:04:02]** what we think the right way to turn on, run
+**[00:04:04]** and connect to resources locally and in the cloud are,
+**[00:04:08]** and then you can totally overwrite those however you need.
+**[00:04:12]** And then we have a dashboard which you can run
+**[00:04:14]** completely in isolation of an app host.
+**[00:04:16]** You don't need to have a fully aspirified app to
+**[00:04:18]** use the dashboard.
+**[00:04:20]** There's a really good demo on the VS Code YouTube
+**[00:04:22]** right now, yeah, of using the Aspire dashboard as just
+**[00:04:25]** a stand alone open telemetry viewer to see what your
+**[00:04:28]** copilot is doing, because it emits telemetry now, so you
+**[00:04:31]** can see all the tokens and things it's doing and
+**[00:04:34]** all the tool calls and turns and apps.
+**[00:04:37]** There's a lot.
+**[00:04:37]** There's a lot.
+**[00:04:38]** But the best way to onboard your team is to
+**[00:04:40]** use the dashboard as a viewer, and that becomes the
+**[00:04:43]** Trojan horse for more stuff.
+**[00:04:44]** Yeah, so.
+**[00:04:45]** That's how we sneak Aspire into everything we we say
+**[00:04:49]** one of our main principles for Aspire a lot of
+**[00:04:52]** times.
+**[00:04:53]** How is this different than Plumey?
+**[00:04:54]** How is this different than insert cloud IAC thing here?
+**[00:04:58]** Aspire really is about the developer experience 1st and then
+**[00:05:01]** taking the developer experience and translating that into something that's
+**[00:05:05]** OPS appropriate, OPS friendly.
+**[00:05:07]** So we have never thought originally when we started building
+**[00:05:10]** Aspire we were in no way trying to replace deployment
+**[00:05:13]** manifests.
+**[00:05:14]** At this point the app host has become so mature
+**[00:05:16]** that you can use the same file to generate manifests
+**[00:05:19]** and assets to run on whatever deployment runtime you want.
+**[00:05:23]** I do it.
+**[00:05:23]** I have apps that a couple 100 people hit every
+**[00:05:25]** month that are fully.
+**[00:05:27]** My CI is Aspire Deploy.
+**[00:05:29]** Your side hustle.
+**[00:05:30]** My side hustle, I mean, it's bingo, but it's not
+**[00:05:32]** really.
+**[00:05:33]** It's not good, but the point being your app host,
+**[00:05:36]** that one file becomes a single source of truth for
+**[00:05:39]** both dev and deploy.
+**[00:05:41]** And there's no config drift, which is very helpful, especially
+**[00:05:44]** in this world where we're moving like 1,000,000 miles an
+**[00:05:47]** hour.
+**[00:05:48]** Our integrations, we have 110 hosting, we have a lot.
+**[00:05:54]** The point of Aspire and all of our integrations is
+**[00:05:56]** that they're all built on the same primitives.
+**[00:05:58]** So you have access to every single thing that we
+**[00:06:01]** use to build out custom experiences for Redis or for
+**[00:06:05]** Azure Container apps or for Elastic Cache like insert thing
+**[00:06:09]** here.
+**[00:06:10]** Those same primitives are accessible to everyone.
+**[00:06:12]** So your app host can literally be just like run
+**[00:06:15]** LS, run grip.
+**[00:06:17]** And that is a fully valid app host and everything
+**[00:06:19]** is built on that.
+**[00:06:20]** So it's code, it's code.
+**[00:06:22]** You can comment it out, you can if statement it,
+**[00:06:24]** you can.
+**[00:06:24]** You can use launch profiles, I don't care.
+**[00:06:26]** We had Aspire Fridays where the team that built code
+**[00:06:29]** spaces came on and they turned their random script in
+**[00:06:32]** the repository into an app host and it made it
+**[00:06:34]** super nice and unorganized.
+**[00:06:36]** It was amazing.
+**[00:06:36]** It was so cool.
+**[00:06:39]** And then this is a screenshot of the dashboard.
+**[00:06:40]** I'm not going to dissect it here.
+**[00:06:41]** It's more fun to do it click Clacky.
+**[00:06:43]** But if you don't know what open telemetry is, hotel,
+**[00:06:45]** we'll call it hotel for the rest of the day.
+**[00:06:47]** Open telemetry.
+**[00:06:48]** It's it's the eminent standard of tracing.
+**[00:06:52]** Telemetry, tracing, logs, metrics.
+**[00:06:53]** Yeah, and it works in container resources, back ends, front
+**[00:06:56]** ends, everything, a lot of stuff.
+**[00:06:58]** So and then in the last, I don't know, year
+**[00:07:00]** ish, I don't know if anyone's heard of this thing
+**[00:07:03]** called like AI.
+**[00:07:04]** It's like around a little bit.
+**[00:07:06]** Hold on, who has heard about hotel or open Telemetry
+**[00:07:10]** HH?
+**[00:07:10]** Oh, it's good.
+**[00:07:11]** That's awesome.
+**[00:07:12]** OK.
+**[00:07:12]** Whoever is using coding agents.
+**[00:07:16]** Good, good answer.
+**[00:07:18]** Good.
+**[00:07:19]** If you ask your coding agent to put Otel in
+**[00:07:21]** your app for you, it will do it in one
+**[00:07:23]** shot.
+**[00:07:23]** That works now.
+**[00:07:24]** So very exciting.
+**[00:07:26]** We have spent a lot of time building certain features
+**[00:07:31]** of Aspire Out specifically to optimize your coding agent's interaction
+**[00:07:36]** with your app experience, usability.
+**[00:07:40]** And So what we've done, I think the last, like
+**[00:07:43]** it says, old 789 months old slide, old slide.
+**[00:07:46]** Oh yeah, we have more skills now.
+**[00:07:47]** There's more skills.
+**[00:07:48]** But this slide is better.
+**[00:07:50]** What we do with Aspire is we try to give
+**[00:07:52]** your agent, we do give your agent, a deterministic harness
+**[00:07:55]** on how the app runs and how it all connects
+**[00:07:58]** to each other.
+**[00:07:59]** So when you start up a new session, you don't
+**[00:08:01]** have to, It doesn't grip through all the files and
+**[00:08:03]** figure out you're reading me and oh I need to
+**[00:08:06]** start this and then I need to start this and
+**[00:08:08]** just fall over itself.
+**[00:08:09]** There is a single source of truth for how your
+**[00:08:12]** app runs and how everything connects to each other that
+**[00:08:15]** your agent can just one CLI command.
+**[00:08:18]** Inspected.
+**[00:08:19]** And we've built a ton of features into the CLI
+**[00:08:21]** specific for agents that you can use.
+**[00:08:23]** They're just CLI calls.
+**[00:08:25]** But we do, we'll show a little bit, but we,
+**[00:08:27]** we do things like we manage reports for you so
+**[00:08:29]** that if you're doing multiple agents and multiple work trees,
+**[00:08:32]** you don't have to deal with everything trying to launch
+**[00:08:35]** on 3000 or 8080 and them all conflicting.
+**[00:08:38]** We have a bunch of integration specifically for getting more
+**[00:08:41]** information back out to the coding agent.
+**[00:08:43]** So we'll show you how you can debug a browser
+**[00:08:46]** and actually get your F-12 developer logs into the coding
+**[00:08:48]** agent without having to take a screenshot and paste it
+**[00:08:51]** in.
+**[00:08:51]** There is a whole bunch of stuff we do, but
+**[00:08:54]** Aspire is really dev first, human first person sitting, typing
+**[00:08:58]** or prompting or whatever it is now.
+**[00:09:01]** And then we just try to bring the same experience
+**[00:09:04]** we give you to coding agents and on the other
+**[00:09:06]** side, like to people new to your team coming in
+**[00:09:09]** and sitting in an onboarding.
+**[00:09:11]** Yep, make it really easy.
+**[00:09:12]** So how did I do?
+**[00:09:13]** Oh, Oh my God, I said.
+**[00:09:14]** Under 10 minutes.
+**[00:09:15]** Pretty good.
+**[00:09:15]** I nailed it.
+**[00:09:16]** Pretty good.
+**[00:09:16]** I nailed it.
+**[00:09:17]** OK, so so we're going to just just to give,
+**[00:09:20]** has everyone seen the Aspire site?
+**[00:09:23]** Wonderful that the docs are updated super often.
+**[00:09:26]** Now we have AI, we actually automate docs and we
+**[00:09:28]** we humans review them.
+**[00:09:29]** But they every change that goes into Aspire gets sent
+**[00:09:32]** APR to the docs repository.
+**[00:09:34]** So now we our docs should be pretty up to
+**[00:09:35]** date with our product, which is a big win for
+**[00:09:37]** us because it was not that that way in the
+**[00:09:39]** in the beginning.
+**[00:09:40]** So go here and get information.
+**[00:09:42]** We change Aspire, we ship every four weeks to 4:00-ish
+**[00:09:47]** weeks and they're big changes.
+**[00:09:49]** So it's worthwhile.
+**[00:09:50]** If you want to keep up to date with what's
+**[00:09:52]** going on, look here to figure out what's new.
+**[00:09:54]** Aspire dot dev Easiest aspire.
+**[00:09:56]** Dot Dev that was fun to get to buy.
+**[00:10:00]** We ship 413.4 on Monday at like 3:00 PM and
+**[00:10:06]** there's a 13.42 now.
+**[00:10:08]** Yeah.
+**[00:10:08]** We service.
+**[00:10:09]** So we just shipped 2 patches, oops, bugs, but whatever.
+**[00:10:13]** So I will not update in the in the talk
+**[00:10:15]** live because that'll be fun.
+**[00:10:16]** I will do at the end.
+**[00:10:18]** But I want to show you the app we have
+**[00:10:20]** for for build.
+**[00:10:20]** So this idea we no, we're all about agents now.
+**[00:10:23]** So agents need to exist.
+**[00:10:25]** And you can imagine a problem where you have to,
+**[00:10:28]** you want to book an appointment in your calendar, right?
+**[00:10:31]** So you do it, you book an appointment, but you
+**[00:10:34]** want the agent to go off and do really smart
+**[00:10:36]** things like tell me on that day if I should
+**[00:10:38]** wear like long, long, long pants or short pants.
+**[00:10:41]** Tell me if there's gonna be a conflict.
+**[00:10:42]** Tell me if I can prep somewhere earlier in the
+**[00:10:45]** day before the meeting happens.
+**[00:10:47]** And then for that meeting, if there's an agenda, like
+**[00:10:49]** tell me why should it prep for the agenda?
+**[00:10:52]** I think it's kind of what you would expect coming
+**[00:10:55]** from like Google or or Office.
+**[00:10:57]** We built like a mini version with Aspire and the
+**[00:10:59]** thought process was how would you build that kind of
+**[00:11:01]** system, right?
+**[00:11:02]** And it's never one.
+**[00:11:03]** It's never one thing.
+**[00:11:04]** It's like the web front end, the back end, the
+**[00:11:06]** agent runs in the background.
+**[00:11:07]** It has to be secure, runs in the sample in
+**[00:11:09]** the container.
+**[00:11:09]** So when you're dreaming up the system, you're trying to
+**[00:11:12]** figure out, OK, how do I snap the parts together?
+**[00:11:14]** What what should exist?
+**[00:11:16]** What should I?
+**[00:11:17]** Build it.
+**[00:11:17]** Lego bricks, Yeah.
+**[00:11:18]** And you're like, how do I get them to all
+**[00:11:20]** to play together?
+**[00:11:20]** The same thing, Yeah.
+**[00:11:21]** So Spark gives you what what you call the Lego
+**[00:11:23]** base plate to give you this system.
+**[00:11:25]** That you stick them on.
+**[00:11:26]** And you can, yeah.
+**[00:11:27]** And you can just like front end, back end agent
+**[00:11:30]** and then do this, right?
+**[00:11:32]** So this app host was slopped together perfectly.
+**[00:11:38]** Perfect 8 hours by the way.
+**[00:11:39]** Three days, not two days.
+**[00:11:41]** So I'm going to run Aspire start.
+**[00:11:43]** So when you use Aspire, you've installed the CLI, the
+**[00:11:46]** CLI you get from Spire dot dev.
+**[00:11:48]** If you go on this wonderful site, there's this button
+**[00:11:50]** here that no one can figure out what it means.
+**[00:11:53]** Glenn.
+**[00:11:53]** It's a download.
+**[00:11:54]** Link.
+**[00:11:55]** That's the button you're looking for.
+**[00:11:56]** We are as of yesterday in Winget.
+**[00:11:59]** So you can Winget install Aspire dot CLI.
+**[00:12:01]** We are going to be in Homebrew pretty soon.
+**[00:12:04]** Pretty soon we'll figure that out and we'll be in
+**[00:12:07]** MPM soon.
+**[00:12:07]** So you can get it from anywhere.
+**[00:12:09]** So that that should just work.
+**[00:12:10]** So I have the CLI installed.
+**[00:12:11]** You can run and I'll help see the old commands
+**[00:12:14]** that Maddie loves.
+**[00:12:15]** So many commands, Maddie.
+**[00:12:17]** So many commands and Aspire app sire.
+**[00:12:22]** App sire start.
+**[00:12:24]** Aspire start runs the apples in the background.
+**[00:12:26]** This is new start happening because as coding you just
+**[00:12:29]** run these long running commands.
+**[00:12:30]** They get confused.
+**[00:12:31]** They start the command.
+**[00:12:32]** Hate blocking processes?
+**[00:12:34]** Yeah.
+**[00:12:34]** And some got better at putting it in the background,
+**[00:12:37]** but for the most part, they're trying to see when
+**[00:12:39]** the command ends to know when it's done.
+**[00:12:41]** Yeah, so start just kicks off the app post in
+**[00:12:43]** the background, dumps a bunch of information, and now I
+**[00:12:46]** can look at my app post, which is an MTS
+**[00:12:48]** file.
+**[00:12:48]** This is a big change.
+**[00:12:49]** If you were not paying attention, Aspire supports both C#
+**[00:12:52]** and TypeScript now.
+**[00:12:53]** Yep.
+**[00:12:54]** So this is for the app post.
+**[00:12:55]** For the app for the definition of your app model.
+**[00:12:57]** I mean we support every language in the actual app
+**[00:13:00]** post itself, but you can author the app post in
+**[00:13:04]** C# or TypeScript now in 20262026 so.
+**[00:13:07]** And, and Aspire Run is the blocking command version of
+**[00:13:11]** Aspire Start.
+**[00:13:12]** So we even made shirts that were like Aspire Run.
+**[00:13:14]** We're so cool.
+**[00:13:15]** Exactly.
+**[00:13:15]** And we were like, oh man, we're going to, we're
+**[00:13:16]** going to change that.
+**[00:13:17]** Yeah.
+**[00:13:17]** So.
+**[00:13:18]** But they both exist, so you can use them.
+**[00:13:19]** Both.
+**[00:13:19]** The benefit is I can kind of see what's on
+**[00:13:21]** the machine.
+**[00:13:22]** So I can do Aspire PS and see the running
+**[00:13:24]** aspires on my machine.
+**[00:13:25]** Yeah, I can control them, stop them, see the versions.
+**[00:13:27]** It's kind of a nice way to manage your overall
+**[00:13:30]** Aspire runs.
+**[00:13:31]** So I am going to show the app first and
+**[00:13:34]** then we'll talk about the dashboard features and what it.
+**[00:13:37]** Gives you.
+**[00:13:37]** So what just happened when you did Aspire start is
+**[00:13:40]** like a lot of different things.
+**[00:13:42]** Aspire is not a runtime, it is not something that's
+**[00:13:45]** going to host your threads.
+**[00:13:47]** It is literally a process starter and stopper.
+**[00:13:51]** Process and other.
+**[00:13:52]** Things and other things, but if you think about it,
+**[00:13:54]** everything's on a thread right somewhere, whether that thread's in
+**[00:13:56]** Docker or not.
+**[00:13:57]** So what Aspire just did, if you look at his
+**[00:14:00]** app post, it ran a couple NPM installs, so it
+**[00:14:03]** found package Jasons.
+**[00:14:04]** It said, oh, you have dependencies, Let me make sure
+**[00:14:06]** those are restored.
+**[00:14:07]** It ran NPM run dev and NPM run dev with
+**[00:14:10]** a custom port for the web front end, which is
+**[00:14:12]** how we handle our port management so that we don't
+**[00:14:15]** conflict in work trees.
+**[00:14:18]** It ran it.
+**[00:14:20]** Ran the container image.
+**[00:14:21]** So it pulled, I mean, you had the container image
+**[00:14:23]** because we weren't going to make you watch a Docker
+**[00:14:25]** pull live.
+**[00:14:26]** But if he did not have the Postgres container, it
+**[00:14:29]** would go into Docker or pod man or Rancher and
+**[00:14:31]** pull the container image and then open it up, make
+**[00:14:34]** sure that the connection values and strings and everything are
+**[00:14:38]** good to go.
+**[00:14:39]** And then it starts everything.
+**[00:14:41]** Everything has a different way of saying it's healthy or
+**[00:14:44]** not, or we just take our best guess.
+**[00:14:46]** It says everything's healthy, Cool.
+**[00:14:47]** Thumbs up.
+**[00:14:47]** Educated guess.
+**[00:14:48]** Educated guess.
+**[00:14:49]** So let's look at the app.
+**[00:14:51]** So the app is a really simple app and because
+**[00:14:53]** we have ages now you can over engineer all the
+**[00:14:56]** UI to make it look beautiful so.
+**[00:14:59]** To make it look like.
+**[00:15:00]** Beautiful, beautiful, beautiful.
+**[00:15:03]** So I can just like drag on.
+**[00:15:05]** Oh, this is so nice.
+**[00:15:06]** I can drag to book a meeting and I can
+**[00:15:09]** hit book.
+**[00:15:11]** So the idea is this, I book a meeting, this
+**[00:15:13]** is clipped.
+**[00:15:14]** Oh my gosh, I got to fix it.
+**[00:15:15]** Anyway, it's clipped.
+**[00:15:17]** I book a meeting and the agent goes off and
+**[00:15:19]** it runs this background process and it will tell me
+**[00:15:22]** things like I should have booked my prep time at
+**[00:15:25]** 10:45, ten to 10:45.
+**[00:15:26]** It's going to be wet in Seattle because it's, I
+**[00:15:28]** mean, I think this is fixed because it's always raining
+**[00:15:30]** in Seattle.
+**[00:15:30]** So it's always wet.
+**[00:15:31]** So wear a raincoat, travel time and then a build
+**[00:15:35]** checklist.
+**[00:15:36]** So this is the overall demo.
+**[00:15:37]** Like you book a meeting and the agent runs and
+**[00:15:39]** it tells you stuff, right?
+**[00:15:40]** So very, very simple experience, but behind the scenes, a
+**[00:15:42]** lot of stuff has to happen to me.
+**[00:15:44]** It's all we're end to end.
+**[00:15:45]** So I was making this demo and I thought to
+**[00:15:48]** myself, what are some super useful things you would want
+**[00:15:51]** to do if you were developing?
+**[00:15:53]** I've lost like my thing.
+**[00:15:55]** Where's the browser?
+**[00:15:55]** Well, here I've lost the the plot.
+**[00:15:58]** So the the app starts and I was thinking what
+**[00:16:01]** would be useful?
+**[00:16:02]** So you have an app that has events and I
+**[00:16:04]** want to be able to kind of clear the calendar
+**[00:16:06]** to start over and like play around, right?
+**[00:16:08]** And that's a useful thing to have in your app,
+**[00:16:10]** but it's not really part of the app.
+**[00:16:12]** So what you would do is build an admin UI
+**[00:16:14]** somewhere in your app or somewhere like on your app
+**[00:16:17]** and it and it would only be for admins, so
+**[00:16:19]** you'd have auth behind it the aspired dashboard.
+**[00:16:22]** Swagger or scaler or something and just like raw hit
+**[00:16:24]** the endpoints.
+**[00:16:25]** I hit the endpoints directly.
+**[00:16:26]** Yeah, it's always fun.
+**[00:16:27]** But for these admin things that aren't part of your
+**[00:16:29]** app, you can put it somewhere else.
+**[00:16:31]** So the aspired dashboard has way for you to author
+**[00:16:33]** commands and commands show up on individual resources.
+**[00:16:36]** Each one of these is a resource, a container or
+**[00:16:38]** process, all these things.
+**[00:16:40]** Two finger scroll.
+**[00:16:41]** Now it's like much that's different.
+**[00:16:42]** You don't want the zoom.
+**[00:16:44]** No, I want the, I want the.
+**[00:16:46]** Nice you want this zoom.
+**[00:16:46]** Control 2 finger scroll.
+**[00:16:48]** That's zoom.
+**[00:16:49]** See how nice that is?
+**[00:16:50]** It zooms.
+**[00:16:51]** What's better?
+**[00:16:52]** Yeah.
+**[00:16:52]** OK, So I added two commands.
+**[00:16:56]** One is to make a random calendar, and the other
+**[00:16:59]** one is to clear the calendar.
+**[00:17:00]** So I can just click on this, ask for a
+**[00:17:02]** confirmation, clear the calendar.
+**[00:17:05]** And in my app, no, they're all gone.
+**[00:17:07]** Right.
+**[00:17:07]** No more events.
+**[00:17:08]** Pretty cool.
+**[00:17:09]** And then I can generate a calendar based on build
+**[00:17:12]** or based on something random.
+**[00:17:14]** This is like database seating.
+**[00:17:16]** So all you'll have a script, MPM script or a
+**[00:17:19]** script or ACMD script that is like run this giant
+**[00:17:22]** bash file that no one keys up to date.
+**[00:17:24]** It's always stale, never works.
+**[00:17:26]** New dev joins your team, they run the command, it
+**[00:17:29]** fails and they read me, it's out of date because
+**[00:17:31]** no one takes care of it, right?
+**[00:17:32]** That can be part of your app.
+**[00:17:34]** It can be part of the thing that you run.
+**[00:17:36]** So it's always working.
+**[00:17:37]** So the the goal here is to let you express
+**[00:17:40]** behavior for individual apps and your projects in the app
+**[00:17:43]** post.
+**[00:17:43]** So I can see with like build information, it should
+**[00:17:45]** show me a bunch of events now that are like
+**[00:17:47]** build, build the whatever that means.
+**[00:17:50]** And this UI is driven by code in the app
+**[00:17:53]** post.
+**[00:17:54]** So if I go to the app post, Nope.
+**[00:17:56]** What?
+**[00:17:57]** We need to show people the dashboard.
+**[00:17:58]** We have not even showed this dashboard.
+**[00:18:00]** This dashboard.
+**[00:18:01]** Oh, we have.
+**[00:18:01]** Oh, the feature is the.
+**[00:18:02]** Dashboard, Yeah.
+**[00:18:02]** So the dashboard, this is the Aspire dashboard.
+**[00:18:04]** I know a lot of you are familiar already using
+**[00:18:07]** Aspire, but for those of you who haven't seen it
+**[00:18:09]** haven't, there are a lot of things here.
+**[00:18:12]** It is a really good command Center for your app.
+**[00:18:16]** And like Fowler said, it's all driven from this app
+**[00:18:18]** host.
+**[00:18:18]** It's all driven from one file.
+**[00:18:19]** What we do is we just show it to you
+**[00:18:21]** in ways that are useful.
+**[00:18:23]** So the best example, like click on a resource row
+**[00:18:25]** here.
+**[00:18:27]** We know everything about this resource.
+**[00:18:28]** We know the thread it's running on.
+**[00:18:30]** We know where it's running from, we know what process
+**[00:18:32]** it is.
+**[00:18:33]** But if you keep scrolling, we also are able to
+**[00:18:35]** keep going, keep going, keep going.
+**[00:18:38]** We are able to actually see and manage all of
+**[00:18:40]** the config that's been injected to it, mostly through environment
+**[00:18:43]** variables, right?
+**[00:18:44]** So in the case of a front end, the number
+**[00:18:46]** one thing you need in there is your back end
+**[00:18:48]** URL.
+**[00:18:49]** And a lot of times you just hard code it
+**[00:18:51]** and you say my back end runs on 8080 and
+**[00:18:53]** that's that.
+**[00:18:54]** But then your work tree throws up.
+**[00:18:56]** And So what we do is we actually are just
+**[00:18:59]** using environment variables to override common config.
+**[00:19:03]** It's really not magic.
+**[00:19:05]** It feels a little bit magical.
+**[00:19:07]** So team appreciation, it's amazing the amount of stuff we
+**[00:19:10]** made work.
+**[00:19:10]** So for example this is running on HTTPS://ITS.
+**[00:19:13]** Using dev certs.
+**[00:19:14]** Create certificates.
+**[00:19:15]** You have to inject certificates for every language for node,
+**[00:19:17]** and they're all different.
+**[00:19:19]** So each of these integrations, the add node JS, the
+**[00:19:23]** add C, they all encapsulate behaviors for build, debug, dev
+**[00:19:27]** deploy for that thing, for next, for for uvicorn, for
+**[00:19:31]** Python.
+**[00:19:32]** And you can encapsulate those behaviors in an integration and
+**[00:19:34]** they appear as these things.
+**[00:19:35]** So this look, this looks pretty simple.
+**[00:19:37]** It's like you call it a single line like add
+**[00:19:39]** node JS app, but it had to inject the OTL
+**[00:19:41]** config for that specific language.
+**[00:19:42]** It had to inject the search for that language, It
+**[00:19:44]** had to inject the node environment.
+**[00:19:46]** This is a like node specific valueand.net is different.
+**[00:19:49]** So we have to understand each language, each integration and
+**[00:19:52]** then kind of explain how to how to convert the
+**[00:19:55]** aspire behaviors into that language.
+**[00:19:57]** So.
+**[00:19:57]** The reason I always bring this up is just because
+**[00:20:00]** a lot of people are like, what magic?
+**[00:20:02]** What time are you using?
+**[00:20:03]** And we're like, we're not, we're just sticking environment variables
+**[00:20:05]** in the right place.
+**[00:20:06]** We just have really smart people who know which environment
+**[00:20:08]** variables need to be set and when.
+**[00:20:10]** Exactly.
+**[00:20:10]** So it's it's yeah.
+**[00:20:11]** So you go to the traces tab on the side.
+**[00:20:14]** So this app is instrumented with open telemetry.
+**[00:20:16]** It's going to pull like every second.
+**[00:20:17]** It's really annoying if you hit the pause button up
+**[00:20:19]** top to pause collecting traces.
+**[00:20:20]** You can pause, you can pause.
+**[00:20:22]** It's very nice.
+**[00:20:23]** So.
+**[00:20:24]** Open telemetry, like we said, standard for viewing and traces,
+**[00:20:29]** metrics and structured logs.
+**[00:20:31]** Yep.
+**[00:20:31]** So we have a console log viewer.
+**[00:20:34]** So all your console logs, instead of being between 7
+**[00:20:36]** different terminals or seven different background tasks in a coding
+**[00:20:39]** agent, we can consolidate that all here in the dashboard.
+**[00:20:41]** And then you can filter by resource.
+**[00:20:43]** Of course, you can download all of these and export
+**[00:20:45]** them, by the way.
+**[00:20:46]** So when something's really broken, you just download the logs
+**[00:20:49]** and then you send the whole log stream to your
+**[00:20:51]** team and you say why is this broken?
+**[00:20:52]** Guys do.
+**[00:20:52]** It here and export the logs and traces and metrics.
+**[00:20:55]** Yeah, there's a lot of buttons, but the traces there
+**[00:20:57]** are there are a lot of buttons.
+**[00:20:59]** Buttons.
+**[00:21:00]** The traces, if you click into one of these, we
+**[00:21:03]** have a full end to end trace of when Fowler
+**[00:21:06]** clicks on a button, or when we pull the database,
+**[00:21:10]** or when the agent asks if there's been any changes
+**[00:21:13]** or anything.
+**[00:21:15]** You can see this is just a 204 from the
+**[00:21:17]** worker, which is where the agent runs into the API
+**[00:21:20]** API, which then hits the Postgres database.
+**[00:21:24]** And you can use this to not only debug your
+**[00:21:26]** flows and see what's going on, but you can also
+**[00:21:29]** use this to actually profile your app performance.
+**[00:21:32]** Yep, performance wise.
+**[00:21:33]** So there's a really good way to be like, why
+**[00:21:34]** does this call take so long?
+**[00:21:35]** It's because it's calling the database 17 times.
+**[00:21:37]** Like we could probably streamline that.
+**[00:21:39]** And this is cool for humans.
+**[00:21:40]** So like the dashboard, the visuals modes?
+**[00:21:43]** If you go back to the resources tab and you
+**[00:21:46]** open a browser, open a browser down, down scroll there
+**[00:21:50]** is a way and we'll show this the how we
+**[00:21:53]** did this in code to annotate web front end resources
+**[00:21:57]** as well with the ability to open them in a
+**[00:21:59]** tracked debuggable browser.
+**[00:22:02]** Which means that the logs from your F-12 can come
+**[00:22:05]** back into this dashboard and whatever other place you're exporting.
+**[00:22:09]** So if you also, if you use something like Rafana
+**[00:22:12]** or Prometheus or whatever Honeycomb, if you use those for
+**[00:22:16]** local dev, you can have Aspire also seek is 1
+**[00:22:18]** see, you can have Aspire export to the Aspire dashboard
+**[00:22:22]** as kind of the control plane of the actual app
+**[00:22:24]** and also those tools if you have really built in
+**[00:22:27]** reporting and you're advanced with Otel, so.
+**[00:22:31]** The theme is just that if you can visualize all
+**[00:22:33]** the parts of your app, if you can see connections
+**[00:22:36]** between the front end, the client app and the browser,
+**[00:22:39]** the back end, the database, yeah, and you can drag
+**[00:22:41]** this around for fun for hours.
+**[00:22:43]** Yes, the graph it, it makes it easier to debug
+**[00:22:47]** these more complex apps.
+**[00:22:49]** If you have a single app, it's a static file
+**[00:22:52]** or a database on a on disk.
+**[00:22:53]** Maybe you don't need Aspire because it's not doing enough
+**[00:22:56]** for you.
+**[00:22:56]** But the moment you build anything more real that requires
+**[00:22:59]** a database or a cache or anything like a front
+**[00:23:02]** end and back end, this becomes like invaluable, right?
+**[00:23:06]** How many times we've been on stream when the front
+**[00:23:08]** end is buggy or it works for 5 minutes locally,
+**[00:23:10]** then you deploy it, then it's broken.
+**[00:23:13]** And just having the end to end trace, having the
+**[00:23:15]** end to end loss between client and server, it not
+**[00:23:17]** only helps us, but it helps agents.
+**[00:23:19]** So that we made a big change in 13 Zero
+**[00:23:21]** where we said everything in the dashboard must be visible
+**[00:23:24]** to agents.
+**[00:23:25]** Yep.
+**[00:23:25]** So this is just UI over an API and the
+**[00:23:27]** API has to be exposed to both the CLI and
+**[00:23:30]** a dashboard.
+**[00:23:31]** So now you know in 13 four and beyond, the
+**[00:23:34]** agent can do the same things humans can do.
+**[00:23:37]** So if you said to copilot or clot or whatever
+**[00:23:40]** else, hey, tell me why the app is slow, it'll
+**[00:23:42]** open up Aspire, the command line, Aspire word and Aspire
+**[00:23:46]** hotel and it will get traces, export them, analyze, look
+**[00:23:49]** at the code, make changes, rerun trace again in its
+**[00:23:52]** loop and and you can, you can kind of optimize
+**[00:23:55]** a bunch of things.
+**[00:23:56]** So as a fun story for 13.4, I was trying
+**[00:23:59]** to profile why aspire start was so slow for non
+**[00:24:02]** apps.
+**[00:24:03]** And I instrumented the CLI, the dashboard, the orchestrator, the
+**[00:24:10]** RPC.
+**[00:24:10]** So there's like we run like 5 things when Aspire
+**[00:24:12]** starts happens, right?
+**[00:24:13]** And I added it everywhere.
+**[00:24:16]** And then I added a command that booted the dashboard,
+**[00:24:19]** ran the thing, got all the traces, and the agent
+**[00:24:21]** just read it in a loop and optimized like 4
+**[00:24:24]** parts of it.
+**[00:24:25]** Super incredible.
+**[00:24:26]** So once you start giving the agent information, Aspire helps
+**[00:24:29]** you close the loop.
+**[00:24:30]** We call it given the agent eyes or senses or
+**[00:24:32]** whatever it is.
+**[00:24:33]** Give it eyes, yeah.
+**[00:24:34]** So, OK, so flip back.
+**[00:24:35]** Let's look at the app host.
+**[00:24:37]** So Fowler mentioned this right now you can orchestrate, you
+**[00:24:40]** can author the app, post the orchestrator in TypeScript or
+**[00:24:44]** C, Python, Java, Go coming soon, God knows what's next.
+**[00:24:49]** But the way that Aspire works, the way that you
+**[00:24:52]** build out your app host or app model, is with
+**[00:24:55]** a set of resources.
+**[00:24:56]** So a resource is the individual line of a thing
+**[00:24:59]** that shows up in the dashboard.
+**[00:25:01]** So add the app is 1 resource.
+**[00:25:03]** That's one resource.
+**[00:25:04]** Sometimes it has children resources it brings in too, like
+**[00:25:07]** we'll bring in the NPM installer.
+**[00:25:08]** Yep, by default you can switch it to PNPM.
+**[00:25:11]** Like yes, it works with that.
+**[00:25:12]** Like stop asking us does it work with this?
+**[00:25:14]** Yes, it is.
+**[00:25:15]** It is just.
+**[00:25:16]** You can ask us still.
+**[00:25:17]** You can ask us, but I'm going to say yes.
+**[00:25:19]** Just for the record, It works and integrations are are
+**[00:25:23]** our opinions on the right way to turn on a
+**[00:25:27]** Vt app and to run it?
+**[00:25:29]** So there's the dev certs, the OTEL environment injection there.
+**[00:25:33]** In this case, we're overriding the port variable for you
+**[00:25:36]** so that we can manage the port and not Vt.
+**[00:25:39]** And just to, to appreciate how, how easy and difficult
+**[00:25:42]** some of these things are, if you want to enable
+**[00:25:45]** HTTPS in Veet or Redis, like that is a whole
+**[00:25:47]** day of work or a week of work just to
+**[00:25:49]** figure out how to configure it for that one thing.
+**[00:25:53]** And then when you want to connect that thing to
+**[00:25:55]** a separate thing, there is like 4 weeks of work.
+**[00:25:57]** So take that to everything that you have in your
+**[00:26:00]** app.
+**[00:26:00]** I want to Postgres a front end.
+**[00:26:03]** So you're using like 4 different technologies because every app
+**[00:26:05]** mail has four different things, right?
+**[00:26:07]** And you're trying to make sense of it.
+**[00:26:08]** And the app post helps you reasonable all the parts,
+**[00:26:10]** how they connect, how, how they pass data across each
+**[00:26:13]** other and then how, how calls work at runtime, right?
+**[00:26:15]** So we're trying to give you a model for expressing
+**[00:26:18]** that that overall intent, right?
+**[00:26:20]** So.
+**[00:26:20]** We, yeah, we give you a lot of basically methods
+**[00:26:23]** that you add on to your builder to these resources
+**[00:26:25]** that let you define the model of your app, how
+**[00:26:28]** things relate to each other and in what order.
+**[00:26:31]** Yeah.
+**[00:26:31]** And what can access what.
+**[00:26:32]** So the the web app here, the V app, it
+**[00:26:35]** is waiting for the API to start and and report
+**[00:26:37]** healthy or 200 before it starts and then it knows
+**[00:26:40]** the API exists, it has that reference.
+**[00:26:43]** So that's passed in as API under HTTPS_HTTP.
+**[00:26:46]** IS what was in there And if you look here
+**[00:26:48]** like you don't see any port numbers, right, that's key.
+**[00:26:52]** So this thing is saying out of the app with
+**[00:26:54]** the computer environment ACA set the environment variable API based
+**[00:26:58]** URL, but get the endpoint from the API reference.
+**[00:27:00]** This is how you, this is passing in a specific
+**[00:27:02]** endpoint called HTTP from the back end to the front
+**[00:27:05]** end.
+**[00:27:05]** And this is important because when it resolves locally, it
+**[00:27:08]** is some localhost address that's random.
+**[00:27:10]** When you deploy it, when you go somewhere else, when
+**[00:27:12]** you change the environment, you have a reference to the
+**[00:27:14]** endpoint.
+**[00:27:15]** You don't have like the value, you don't have hardcore
+**[00:27:17]** port 8000, you don't have the HTTPS or HTTP port.
+**[00:27:20]** And we spent so many hours like trying to figure
+**[00:27:23]** out how to go from like local environment working, working
+**[00:27:26]** well, You're super happy.
+**[00:27:27]** You deploy it to Azure somewhere in Azure, somewhere remotely
+**[00:27:31]** and the endpoints change or HTTPS://ISNT on or HTTP is
+**[00:27:34]** on.
+**[00:27:34]** So we handle that for you.
+**[00:27:35]** We handle if you use references, if you use our
+**[00:27:38]** model, we will do the work to kind of like
+**[00:27:40]** figure out in that environment, what are all the quirks?
+**[00:27:43]** How do you manage HTTPS in this environment?
+**[00:27:45]** How do you configure stress in that environment?
+**[00:27:47]** And we do all the mapping to turn this super
+**[00:27:49]** simple looking model into like if you want this to
+**[00:27:51]** work in that environment, this environment very well, these five
+**[00:27:54]** things.
+**[00:27:55]** So it's this like master Configurator for your like dev
+**[00:27:58]** app right?
+**[00:27:59]** So scroll through this a little bit because there's a
+**[00:28:02]** lot, there's a lot in this app host.
+**[00:28:03]** We'll talk a bit about Foundry Can.
+**[00:28:07]** You see all you.
+**[00:28:07]** Give me heartburn.
+**[00:28:11]** Yeah, go back to the top.
+**[00:28:12]** Let's see what we have here.
+**[00:28:14]** We're doing a bunch.
+**[00:28:14]** This is a chunky app host, but the first thing
+**[00:28:17]** in here is just turning on the database.
+**[00:28:20]** So this is builder dot addpostgres.
+**[00:28:22]** Postgres is an integration that we have that pulls on
+**[00:28:25]** the Postgres database image.
+**[00:28:26]** You could add on to that or you have it
+**[00:28:29]** with PG web which adds the Postgres web viewer for
+**[00:28:32]** the database.
+**[00:28:33]** You could do something like with Postgres MCP where we
+**[00:28:37]** will wire up the MCP for you.
+**[00:28:39]** Now you can define that in here so you don't
+**[00:28:41]** have to pull and install the MCP on your own
+**[00:28:43]** anymore.
+**[00:28:43]** We'll give it the ports that it's running on and
+**[00:28:48]** whatever with MCP, with MCP, MCP.
+**[00:28:53]** With MCP server.
+**[00:28:55]** Sorry, I don't know what the command is called.
+**[00:28:57]** Thanks MCP.
+**[00:28:59]** Intellisense.
+**[00:28:59]** Bad intellisense.
+**[00:29:00]** Bad Intellisense?
+**[00:29:01]** Yeah, I'm terrible intellisense.
+**[00:29:02]** Bad intellisense.
+**[00:29:03]** We're checking in some environment variables here.
+**[00:29:05]** We're saying, hey, is this running in this mode?
+**[00:29:08]** Should we enable inference with the Copilot SDK here or
+**[00:29:11]** not?
+**[00:29:11]** We're processing environment variables to to kind of determine the
+**[00:29:14]** run mode.
+**[00:29:15]** What's cool about environment variables, if you use the built
+**[00:29:18]** in Aspire parameters is what we call like strongly resourced
+**[00:29:22]** environment variables that you define in the app host.
+**[00:29:25]** You can set and unset and change those within the
+**[00:29:28]** dashboard or over the CLI.
+**[00:29:30]** I should do that, should I?
+**[00:29:31]** You should do that.
+**[00:29:31]** OK, let me do it.
+**[00:29:32]** So I'm going to set this environment variable.
+**[00:29:36]** Go into the Yeah, go into the dashboard.
+**[00:29:39]** What?
+**[00:29:41]** Oh, let's, let's, let's go all the way.
+**[00:29:43]** You you misspelled inference.
+**[00:29:45]** Infrink.
+**[00:29:46]** Infrink.
+**[00:29:47]** There you go.
+**[00:29:48]** No this.
+**[00:29:49]** Fire stop.
+**[00:29:49]** Just this it'll work right?
+**[00:29:54]** I don't.
+**[00:29:55]** Know I don't know if this is going to work.
+**[00:29:57]** Probably OK, hopefully keep going.
+**[00:30:03]** So did it work?
+**[00:30:06]** Yeah, OK, good.
+**[00:30:06]** Of course.
+**[00:30:07]** Good.
+**[00:30:07]** OK.
+**[00:30:08]** So what that just did was turned on a whole
+**[00:30:10]** new resource that's defined in the app host.
+**[00:30:12]** That's Microsoft Foundry.
+**[00:30:15]** So Foundry is a our agent.
+**[00:30:18]** Paas, our agent platform agent.
+**[00:30:20]** Paas, Yeah, I think everyone's probably heard about it if.
+**[00:30:22]** You did anyone here use Foundry agent?
+**[00:30:24]** Foundry is.
+**[00:30:25]** Nice.
+**[00:30:26]** You can.
+**[00:30:26]** Don't bother Glenn with your issues after in the back.
+**[00:30:29]** Yeah, he's shaking his head.
+**[00:30:30]** He's in the Scally Cap, so I'll just argue with
+**[00:30:33]** him.
+**[00:30:35]** What we do with Foundry is at dev time, if
+**[00:30:38]** you are authenticated anywhere on your machine with Azure, whether
+**[00:30:42]** that's the Azure CLI or VS Code or AZD, what
+**[00:30:46]** we do is say, hey, we know that you have
+**[00:30:49]** an Azure account.
+**[00:30:50]** Would you like us to provision a resource for you
+**[00:30:53]** to develop against?
+**[00:30:54]** So the dashboard pops it.
+**[00:30:55]** This comes in as part of our Foundry integration.
+**[00:30:57]** The dashboard's going to pop it and say hey I
+**[00:30:59]** need resources for your Azure subscription.
+**[00:31:01]** So if you hit enter values.
+**[00:31:02]** This happens for any Azure resource, not just Foundry.
+**[00:31:04]** Yes, any Azure resource.
+**[00:31:06]** You can also build this experience out for anything.
+**[00:31:09]** Super important.
+**[00:31:10]** Super important.
+**[00:31:11]** This is not an aspire.
+**[00:31:13]** This is an aspire that lets you pop dialogs and
+**[00:31:16]** show all these kinds of UI.
+**[00:31:18]** This is in the specific Azure, like the Azure based
+**[00:31:22]** libraries.
+**[00:31:23]** It says I need auth to do anything in Azure
+**[00:31:25]** and it says I'm going to query the address DLI
+**[00:31:28]** on your machine, find your application and then show you
+**[00:31:32]** a dialogue that you log in to Azure.
+**[00:31:34]** So normally when you're doing this, you have a read
+**[00:31:36]** me somewhere in your apps that's out of date.
+**[00:31:39]** And it dot N.
+**[00:31:40]** Dot N and then some dev join your team and
+**[00:31:42]** then they have to figure out where the creds are.
+**[00:31:45]** How do you enter my credentials for my subscription?
+**[00:31:46]** Or they have to go?
+**[00:31:47]** Or maybe share the portal.
+**[00:31:48]** Yeah they have to find the devs up.
+**[00:31:50]** They have to copy paste the subscription ID, so then
+**[00:31:52]** they have to go and put that in end, put
+**[00:31:53]** it in end, and then they have to go back
+**[00:31:55]** and they have to get the tenant ID and then
+**[00:31:56]** they have to put that in.
+**[00:31:58]** And then they have to figure out if they want
+**[00:31:59]** to make a new resource group, they have to do
+**[00:32:01]** that manually or they have to, God forbid, use the
+**[00:32:03]** AZCLI to do it by hand.
+**[00:32:04]** That's terrifying.
+**[00:32:05]** The AZCLI now exists solely for Copilot.
+**[00:32:08]** I will never use it again.
+**[00:32:10]** Never again.
+**[00:32:10]** Too many commands.
+**[00:32:12]** We're picking Sweden Central because that's where we know the
+**[00:32:14]** model will probably deploy and run right now because the
+**[00:32:16]** Swedes are asleep.
+**[00:32:21]** So this is cool because it does a lot of
+**[00:32:23]** things.
+**[00:32:23]** It is going to provision the resource.
+**[00:32:25]** In Azure, this model is very much each dev gets
+**[00:32:28]** their own subscription to to be a sandbox.
+**[00:32:31]** You aren't sharing resources.
+**[00:32:32]** I can imagine a model where you want to share
+**[00:32:34]** the same subscription, but you want to have different resource
+**[00:32:36]** names of what conflicts.
+**[00:32:37]** But we heard from developers that one big source of
+**[00:32:40]** pain is like, I am sharing a subscription with my
+**[00:32:43]** team and we conflict on the same thing in Azure
+**[00:32:45]** all the time.
+**[00:32:46]** So how do you make it so each dev gets
+**[00:32:48]** their own play space and they don't have to worry
+**[00:32:50]** about connection strings or going to the portal or figuring
+**[00:32:53]** out how to like grab the right URL to put
+**[00:32:55]** into their app once they have it provisioned.
+**[00:32:57]** This experience just says, you know, add a foundry resource
+**[00:33:00]** with, with reference, passing the value of the foundry resource
+**[00:33:04]** to my app.
+**[00:33:04]** And then we populate the data in your in your
+**[00:33:07]** environment to make that this work.
+**[00:33:09]** So we're doing the things you do already.
+**[00:33:11]** We just like codify those as patterns.
+**[00:33:13]** So you don't have to like think about, OK, let
+**[00:33:15]** me grow here, copy and paste that value, put it
+**[00:33:17]** in a secret file, do it over here.
+**[00:33:19]** It just codifies the entire experience into this model.
+**[00:33:22]** Yeah.
+**[00:33:22]** So with Aspire, you're able to clone and run an
+**[00:33:25]** app with provisioned resources whether they're in Azure or wherever,
+**[00:33:29]** or just external endpoints somewhere without having to open any
+**[00:33:32]** portals.
+**[00:33:33]** Like there's no click OPS involved in getting it set
+**[00:33:35]** up.
+**[00:33:36]** I mean, the click OPS are clicking in the dashboard.
+**[00:33:39]** Click your thing.
+**[00:33:40]** You can also have the agent do it.
+**[00:33:41]** The agent's able to set parameters and secrets like that.
+**[00:33:44]** So what's cool about our parameter system is we don't
+**[00:33:47]** save it in your environment.
+**[00:33:48]** We don't do a end file.
+**[00:33:49]** We actually put it in your user profile.
+**[00:33:52]** So it is unique per work tree, which means you
+**[00:33:54]** can test against different Subs and different work trees, but
+**[00:33:57]** more importantly, you cannot accidentally commit it to source, which
+**[00:34:01]** is a big issue right now with Copilot.
+**[00:34:03]** It's gotten a lot better at it.
+**[00:34:04]** You can read that, but for a while, like if
+**[00:34:06]** you didn't ignore things the right way, people were pushing
+**[00:34:09]** tokens of left and right.
+**[00:34:11]** It was a whole.
+**[00:34:11]** Thing they still do.
+**[00:34:12]** This is also for Azure resources.
+**[00:34:15]** I know at build we have a lot of Azure
+**[00:34:17]** people who are actually like real OPS people.
+**[00:34:19]** So you see stuff like this and you're like, that
+**[00:34:22]** will never work in my enterprise environment like blah, blah,
+**[00:34:24]** blah.
+**[00:34:25]** We're actually, we've worked with all the Azure teams for
+**[00:34:28]** the integrations we have and AWS is an integration for
+**[00:34:31]** us.
+**[00:34:31]** We have vanilla Kubernetes, we have vanilla Docker Compose.
+**[00:34:33]** It's not vendor lock to Azure, but we're work for
+**[00:34:36]** Microsoft so we did spend a lot of time talking
+**[00:34:38]** to our friends on the Azure team.
+**[00:34:40]** We are not only provisioning the resource group and the
+**[00:34:43]** Foundry project and deploying a model, but we're also provisioning
+**[00:34:47]** roles so that only the correct things inside of my
+**[00:34:50]** app post can talk to that resource.
+**[00:34:52]** So I am doing security things now.
+**[00:34:54]** At this point I'm saying the front end is what
+**[00:34:57]** knows about Foundry, so that role gets now assigned to
+**[00:34:59]** that resource in Azure.
+**[00:35:01]** Meaning I can't have some random person come in and
+**[00:35:03]** hit this from the Internet.
+**[00:35:05]** Funny story, it's so secure I couldn't do it myself.
+**[00:35:08]** So the app could talk to my agent but I
+**[00:35:10]** couldn't see it.
+**[00:35:11]** Yes, it is very funny.
+**[00:35:13]** OK, good rules.
+**[00:35:13]** Let's talk about how to transition all of this into
+**[00:35:16]** deployment while this is deploying, because we'll show the demo
+**[00:35:19]** with the agent after.
+**[00:35:20]** It takes about 5 to 7 minutes depending on conference
+**[00:35:22]** WI.
+**[00:35:23]** Fi so we didn't show the web browser logs.
+**[00:35:26]** We spoke about it, but I think it's worthwhile showing
+**[00:35:28]** you how it works.
+**[00:35:29]** So like when you add the, there's a piece of
+**[00:35:33]** code in your app that is this with browser logs
+**[00:35:37]** method.
+**[00:35:38]** This is new, it's an integration, it's an Aspire hosting
+**[00:35:40]** browser.
+**[00:35:41]** And when you add it to a resource, it will
+**[00:35:44]** open up the track browser, the debug port, and it
+**[00:35:46]** will scrape, scrape.
+**[00:35:48]** It'll ask for logs from the console and network requests.
+**[00:35:51]** So you can imagine how annoying it is to debug
+**[00:35:53]** like client failures.
+**[00:35:54]** You're always like in your app in a terminal trying
+**[00:35:57]** to debug your thing.
+**[00:35:58]** And then you're in the browser F-12 in this little
+**[00:36:00]** cramped space, course everywhere and course doesn't work and you're
+**[00:36:03]** super unhappy.
+**[00:36:04]** So this resource is added to that project and I
+**[00:36:08]** can launch this little track browser thing and it spawned
+**[00:36:12]** the browser and it looks normal.
+**[00:36:15]** But what's happening behind the scenes is I open up
+**[00:36:18]** this log panel.
+**[00:36:19]** You can see the network traffic and the console debug
+**[00:36:22]** logs.
+**[00:36:23]** So this is just showing V output and it's showing
+**[00:36:24]** all the requests from the client.
+**[00:36:26]** You can use this to debug your entire stack, your
+**[00:36:29]** full stack right your like client to back end to
+**[00:36:33]** database entire thing.
+**[00:36:35]** The beauty of this thing is that the agent has
+**[00:36:36]** the same information.
+**[00:36:37]** So if I now go into my console and I'm,
+**[00:36:40]** if I were to run Aspire logs, it can dump
+**[00:36:43]** the whole the same information.
+**[00:36:45]** So the agent can just use this and it can
+**[00:36:47]** search.
+**[00:36:47]** So I can do Aspire log search like, I don't
+**[00:36:49]** know, bug, whatever gonna find things.
+**[00:36:51]** But in general, you can search logs, you can search
+**[00:36:54]** traces, you can search all the information, all that information
+**[00:36:58]** in the dashboard in the model it's exposed to the
+**[00:37:01]** CLI for agents and the dashboard.
+**[00:37:03]** So do.
+**[00:37:03]** You have an agent open anywhere?
+**[00:37:04]** I have lots of agents, so here's an app Maddie
+**[00:37:07]** was telling me I should add another language for fun
+**[00:37:11]** because why not just for a talk.
+**[00:37:13]** So I told the the agent like tell me what
+**[00:37:15]** I should add and I added the Python for some
+**[00:37:17]** reason.
+**[00:37:18]** No.
+**[00:37:19]** Hey, I love Python And it, you know, added the
+**[00:37:21]** Python app to my application.
+**[00:37:23]** And has anyone here used the GitHub app?
+**[00:37:25]** It's brand new.
+**[00:37:26]** It's awesome.
+**[00:37:26]** It came out I think like last week, no, last
+**[00:37:29]** week and it became available today, yes.
+**[00:37:33]** So if you don't have it, here's a preview of
+**[00:37:35]** what it is on.
+**[00:37:36]** On the left, there's sessions.
+**[00:37:37]** This is my demo app.
+**[00:37:39]** I have a bunch of different things that I made
+**[00:37:41]** at work before this talk and they were all in
+**[00:37:43]** worktree.
+**[00:37:44]** So each one of these is a unique worktree.
+**[00:37:46]** And the benefit of using Aspire with agents here is
+**[00:37:49]** that I have this like there's this run button.
+**[00:37:52]** I have this configured script, the GitHub that's you configure
+**[00:37:56]** scripts to run an app and it can do whatever.
+**[00:37:59]** But what it can do is you can say whenever
+**[00:38:02]** you start a workspace or start an app, run the
+**[00:38:05]** app host isolated.
+**[00:38:07]** Let me isolated that says take all the ports that
+**[00:38:10]** I had in my application and randomize them.
+**[00:38:14]** Make sure there's no conflicts.
+**[00:38:16]** Because when I want to run many sessions, I don't
+**[00:38:18]** want port conflicts across work trees.
+**[00:38:20]** Any state that I had that were secrets for my
+**[00:38:22]** dev environment, make a unique one per work tree.
+**[00:38:25]** So it does that and then on stop, it'll delete
+**[00:38:28]** the work tree and it will get rid of the
+**[00:38:31]** app host.
+**[00:38:32]** So it will tear down that lets me preview multiple
+**[00:38:35]** app posts in parallel while working in the same like
+**[00:38:39]** source street, right?
+**[00:38:40]** And if you scroll up in here, did it use
+**[00:38:42]** any Aspire commands that we can look at in the
+**[00:38:44]** session?
+**[00:38:44]** I don't know.
+**[00:38:45]** We have some skills that we give you now with
+**[00:38:47]** Aspire.
+**[00:38:48]** So just straight up the CLI, like we don't even
+**[00:38:50]** need an MCP or anything.
+**[00:38:51]** We do have an MCP but you don't need it,
+**[00:38:54]** you can just use skills.
+**[00:38:55]** Yeah, so.
+**[00:38:56]** If you run Aspire agent init, if you're already using
+**[00:38:59]** Aspire, that gives you the option to add or update
+**[00:39:03]** or add the new aspire skills.
+**[00:39:05]** We have a whole repo of them.
+**[00:39:06]** They do a whole bunch of things, like one of
+**[00:39:08]** them is literally just the right way for the agent
+**[00:39:10]** to monitor the app.
+**[00:39:11]** One of them is how to wield custom commands and
+**[00:39:13]** resources.
+**[00:39:14]** So if the agent wants to see in my database
+**[00:39:16]** and knows how to search what custom commands are available
+**[00:39:18]** and use them exactly and and one of them is
+**[00:39:20]** wait, that's a great one.
+**[00:39:21]** Wait for this thing to happen or or be healthy
+**[00:39:24]** or be successful.
+**[00:39:25]** So you don't have to have the agent go, OK,
+**[00:39:27]** I'm going to sleep for 120 seconds, B or B.
+**[00:39:29]** Can probably show.
+**[00:39:33]** There's a lot of stuff going.
+**[00:39:33]** On there's a lot of stuff here so I'll just.
+**[00:39:35]** But anyways, just yeah, you can ask like if you
+**[00:39:37]** ask the agent on the one that there.
+**[00:39:38]** It is, yeah.
+**[00:39:39]** So I told it to check the logs and it's
+**[00:39:40]** looking at the skill to monitor the app found the
+**[00:39:42]** skill and it's going to start running commands like Aspire,
+**[00:39:45]** logs, Aspire, all these things to figure out what's going
+**[00:39:47]** on.
+**[00:39:48]** And and the app is pretty cool.
+**[00:39:49]** The app can actually launch a browser in the terms
+**[00:39:51]** to kind of see the browser and do things with
+**[00:39:53]** it.
+**[00:39:54]** But yeah, so Aspire is agent ready.
+**[00:39:56]** I would say it is optimized for agents.
+**[00:39:58]** So you can use it to kind of performance profile,
+**[00:40:00]** look at logs, do development and it helps you like
+**[00:40:03]** completely close the overall loop agent loop.
+**[00:40:06]** OK, go back to the app because we need to
+**[00:40:07]** talk about appointment.
+**[00:40:08]** All right, so 4 minutes I am like lost, but
+**[00:40:11]** it's here.
+**[00:40:12]** OK.
+**[00:40:13]** So at the very top of this, I believe, yes.
+**[00:40:18]** So what we did we, this is deployed to an
+**[00:40:20]** Azure Container App environment.
+**[00:40:22]** We pulled in add Azure Container App environment, which is
+**[00:40:24]** also an integration, same building block, but this one's specific
+**[00:40:27]** for deployment.
+**[00:40:28]** And so each of these individual resources know how to
+**[00:40:31]** generate themselves into a Docker file or whatever the deployable
+**[00:40:34]** asset that makes sense for them is.
+**[00:40:36]** What Azure Container Apps environment integration does is how to
+**[00:40:39]** take those things and translate them into BICEP or YAML
+**[00:40:43]** or whatever.
+**[00:40:44]** Home charts, I don't know, name your integration here and
+**[00:40:47]** how to overwrite properties on that so you don't actually
+**[00:40:50]** have to manually hand edit Bicep ever.
+**[00:40:52]** So if you run Aspire publish, Fowler pre deployed this
+**[00:40:56]** because we weren't going to wait for it.
+**[00:40:58]** So if you run Aspire deploy, it will generate assets,
+**[00:41:03]** it will use whatever.
+**[00:41:05]** The correct thing for the runtime based on that integration
+**[00:41:08]** is to deploy it to the cloud, to a container
+**[00:41:10]** apps environment, connect things together, make sure everything is seated
+**[00:41:13]** correctly.
+**[00:41:15]** What did you do in?
+**[00:41:16]** Theory it works.
+**[00:41:16]** In theory it works.
+**[00:41:17]** Did.
+**[00:41:17]** You add more things to it.
+**[00:41:18]** Did you break something?
+**[00:41:20]** Yeah.
+**[00:41:20]** Open a different work tree.
+**[00:41:21]** I don't know.
+**[00:41:23]** It's good.
+**[00:41:24]** Yeah.
+**[00:41:25]** But you can also do something.
+**[00:41:26]** Aspire Publish.
+**[00:41:27]** We kind of give you escape hatches along the way
+**[00:41:30]** for deployment.
+**[00:41:30]** We do because it really depends if this is a
+**[00:41:33]** Greenfield app, if this is an app that has a
+**[00:41:35]** really advanced DevOps team like your DevOps people or the
+**[00:41:38]** DevOps people here do not want you just black box
+**[00:41:41]** running a single Aspire deploy and them having no idea
+**[00:41:44]** what's actually happening.
+**[00:41:46]** Not in production, but for for a federal environment, it
+**[00:41:48]** makes sense for for dev to have a environment you
+**[00:41:51]** can spin up, see the entire thing working.
+**[00:41:53]** But then when you promote, you want like more lock
+**[00:41:55]** down, more rules, more whatever else, right?
+**[00:41:56]** But Aspire is really good for the the right both
+**[00:41:59]** stages.
+**[00:42:00]** Or if you're a smaller team or smaller apps, you
+**[00:42:02]** can do the entire end to end with the fire.
+**[00:42:04]** And you can overwrite things.
+**[00:42:06]** Are you?
+**[00:42:06]** Oh, is it gonna work now?
+**[00:42:08]** No, no, he says.
+**[00:42:11]** It failed before.
+**[00:42:13]** It should be fine.
+**[00:42:14]** It should be fine.
+**[00:42:16]** OK well just go into the code because I want
+**[00:42:19]** to show customizing configuring it.
+**[00:42:21]** I see what happened.
+**[00:42:22]** So if you go into like the front end.
+**[00:42:25]** The front.
+**[00:42:25]** End.
+**[00:42:25]** I'd go to a resource.
+**[00:42:28]** So one example is that we're setting the capacity SKU
+**[00:42:31]** for a foundry resource.
+**[00:42:33]** When you add a foundry project or a deployment, we're
+**[00:42:36]** adding a GPT 5 mini model, and when deploying, it
+**[00:42:39]** will set the capacity to 10, whatever it means, like
+**[00:42:42]** 10 times something.
+**[00:42:43]** But we expose the entire Bicep object model.
+**[00:42:47]** This is not our team.
+**[00:42:48]** The Azure SDK team actually built this.
+**[00:42:50]** We expressed the Bicep model in your language, so C#
+**[00:42:53]** or TypeScript, and you can mutate all the properties you
+**[00:42:56]** want to mutate.
+**[00:42:57]** We don't lock it down.
+**[00:42:58]** We give you defaults and then your job is to
+**[00:43:00]** customize it and do more things from there.
+**[00:43:02]** Right.
+**[00:43:03]** So then you can create the correct bicep for your
+**[00:43:05]** use case.
+**[00:43:06]** And what's really nice about this is you can literally
+**[00:43:09]** do await chat dot and then just scroll through all
+**[00:43:12]** of the things like everything that you get on your
+**[00:43:16]** container app resource or your app service or your helm
+**[00:43:19]** resource.
+**[00:43:21]** So this is deployed to.
+**[00:43:23]** Show the deployed version before we land.
+**[00:43:26]** This is deployed in Azure Container Apps with the front
+**[00:43:30]** end, the back end for the agent.
+**[00:43:32]** Actually there's there's a, there's a front end website, there's
+**[00:43:36]** a back end worker process in Azure Container Apps and
+**[00:43:39]** there's an agent container sandbox and halted agents.
+**[00:43:42]** So there's a bunch of different Azure resources hosted in
+**[00:43:45]** different places in Foundry.
+**[00:43:46]** You can see I have two agents here hanging out.
+**[00:43:49]** So this system is like spread across multiple platforms, multiple
+**[00:43:52]** computer environments.
+**[00:43:54]** Doing that is completely nontrivial by default because you have
+**[00:43:58]** to span not only ACA but like Foundry hosted service.
+**[00:44:01]** And the way Aspire makes that easier is you can
+**[00:44:04]** kind of stay in Aspire, my front end and my
+**[00:44:07]** application can be an ACA.
+**[00:44:08]** This is with computer environment.
+**[00:44:10]** So I'm saying take my API resource and the worker
+**[00:44:13]** and the front end PUT put it in SCA.
+**[00:44:15]** But I want the sandboxes to be in the hosted
+**[00:44:17]** agent service because it's secure.
+**[00:44:19]** I can spin up one on the fly and have
+**[00:44:20]** it go away.
+**[00:44:21]** I can have my coding agent crap on disk and
+**[00:44:23]** then not worry about messing with other customers information.
+**[00:44:27]** Right?
+**[00:44:28]** So I'm kind of building that design with Aspire and
+**[00:44:30]** it becomes pretty trivial to do.
+**[00:44:32]** Yeah, the online stream cuts off in exactly 15 seconds,
+**[00:44:35]** so that's why I'm switching back to the slides.
+**[00:44:37]** Aspire dot Dev is where everything is.
+**[00:44:41]** Join our discord, join us.
+**[00:44:42]** Most Fridays we live stream to YouTube.
+**[00:44:44]** Please fill out the session evaluation and get some details.
+**[00:44:48]** The sample code for this app will be uploaded tonight.
+**[00:44:51]** Yep.
+**[00:44:53]** And then for those of you in the room, I
+**[00:44:54]** nailed that timing.
+**[00:44:55]** That's pretty good, right?
+**[00:44:56]** For those of you, I can chill now because the
+**[00:44:58]** stream's offline.
+**[00:44:59]** So for those of you in the room, we're going
+**[00:45:01]** to go hang out at the booth for the rest
+**[00:45:03]** of the afternoon or until one of us falls over.
+**[00:45:05]** So immediately, immediately, yeah.
+**[00:45:07]** So we're more than happy to talk.
+**[00:45:09]** We would love to hear if you're using Aspire already,
+**[00:45:12]** how you're using it, what has been easy to sell
+**[00:45:14]** people on your team on?
+**[00:45:16]** What's been hard?
+**[00:45:17]** We the best way to learn what Aspire is, is
+**[00:45:20]** to use it or to show it.
+**[00:45:22]** And so it does make it hard to explain what
+**[00:45:24]** it is.
+**[00:45:25]** But we're really working on arming our fans, the people
+**[00:45:28]** who are using it and get it and our contributors
+**[00:45:31]** with the tools to help people explain, you know, and
+**[00:45:34]** use it.
+**[00:45:35]** Because once you use it, you're never going to be
+**[00:45:37]** able to go back, I promise you.
+**[00:45:38]** Like the Chris Redington who did all the setup for
+**[00:45:41]** the machines and the dev tools and frameworks area.
+**[00:45:44]** He said that he only just used it for the
+**[00:45:45]** first time 2 weeks ago because we made him install
+**[00:45:48]** it on everything.
+**[00:45:49]** And since then he has not been able to create
+**[00:45:50]** a project without it.
+**[00:45:51]** He won't stop using it.
+**[00:45:53]** So anecdotally, like you will get hooked and we're going
+**[00:45:56]** to make it easy for you to get hooked even
+**[00:45:58]** further.
+**[00:45:58]** So thank you so much.
+**[00:46:00]** We really appreciate it.
+**[00:46:03]** That works.

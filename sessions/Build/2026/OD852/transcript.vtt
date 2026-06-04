@@ -1,0 +1,1794 @@
+WEBVTT
+
+00:00:01.320 --> 00:00:02.190
+JOYDEEP MUKHERJEE:
+Welcome, everyone.
+
+00:00:02.190 --> 00:00:04.320
+Thank you for joining
+us at Microsoft Build.
+
+00:00:04.320 --> 00:00:05.340
+I'm Joydeep Mukherjee.
+
+00:00:05.340 --> 00:00:09.090
+I'm Principal PM for
+Windows 365 for Agents.
+
+00:00:09.090 --> 00:00:09.930
+JIACHEN YANG: I'm Jiachen Yang,
+
+00:00:09.930 --> 00:00:12.240
+Co-founder and CTO of Simular.
+
+00:00:12.240 --> 00:00:13.170
+SAM SHAPIRO: And
+I'm Sam Shapiro,
+
+00:00:13.170 --> 00:00:16.890
+a Senior Product Manager
+here at Microsoft.
+
+00:00:16.890 --> 00:00:18.330
+JOYDEEP MUKHERJEE:
+Today, we will walk you
+
+00:00:18.330 --> 00:00:19.710
+through how Windows 365
+
+00:00:19.710 --> 00:00:22.680
+for Agents provides
+enterprise-grade execution
+
+00:00:22.680 --> 00:00:24.900
+environments for
+agentic workloads
+
+00:00:24.900 --> 00:00:26.640
+and highlight a
+real-world example
+
+00:00:26.640 --> 00:00:28.260
+from our friends at Simular.
+
+00:00:28.260 --> 00:00:31.050
+We are going to show you
+what the platform is,
+
+00:00:31.050 --> 00:00:34.470
+a real AI agent running on
+Windows 365 for Agents,
+
+00:00:34.470 --> 00:00:38.250
+plus how to build and
+scale with this platform.
+
+00:00:38.250 --> 00:00:42.000
+We will also touch on how
+Windows 365 is being designed
+
+00:00:42.000 --> 00:00:45.780
+and evolved to support
+modern developers.
+
+00:00:45.780 --> 00:00:47.490
+Let's start with the platform.
+
+00:00:47.490 --> 00:00:50.610
+Every AI agent builder
+hits the same wall.
+
+00:00:50.610 --> 00:00:51.780
+Your agent can reason.
+
+00:00:51.780 --> 00:00:52.500
+It can plan.
+
+00:00:52.500 --> 00:00:53.850
+It can call APIs.
+
+00:00:53.850 --> 00:00:56.520
+But the moment you need
+it to actually do work,
+
+00:00:56.520 --> 00:01:00.420
+open an application, fill out a
+form, navigate a legacy system,
+
+00:01:00.420 --> 00:01:03.450
+use any app that exists
+on Windows, you're stuck.
+
+00:01:03.450 --> 00:01:06.480
+You need to give your
+agent a computer.
+
+00:01:06.480 --> 00:01:09.240
+That's what Windows
+365 for Agents does.
+
+00:01:09.240 --> 00:01:12.450
+It gives your agents
+their own cloud PCs,
+
+00:01:12.450 --> 00:01:16.080
+full Windows environments that
+can see, interact with apps,
+
+00:01:16.080 --> 00:01:18.960
+and operate the way
+a real person would.
+
+00:01:18.960 --> 00:01:21.840
+And today, I'm here to
+tell you that Windows 365
+
+00:01:21.840 --> 00:01:24.960
+for Agents is
+generally available.
+
+00:01:24.960 --> 00:01:28.830
+Now, let's look at
+why this matters.
+
+00:01:28.830 --> 00:01:32.160
+The problems it solves for
+agent makers, in other words.
+
+00:01:32.160 --> 00:01:34.980
+First, the GUI gap.
+
+00:01:34.980 --> 00:01:38.640
+Most enterprise work was
+built for people working
+
+00:01:38.640 --> 00:01:43.020
+with graphical applications,
+not APIs and MCP servers.
+
+00:01:43.020 --> 00:01:46.620
+So, a SAS-defined agent hits
+a roadblock when they try
+
+00:01:46.620 --> 00:01:48.930
+to interact with
+these applications.
+
+00:01:48.930 --> 00:01:52.380
+That is why you need
+computer-using agents.
+
+00:01:52.380 --> 00:01:55.110
+Second, the legacy gap.
+
+00:01:55.110 --> 00:01:58.320
+Enterprises rely on
+important applications
+
+00:01:58.320 --> 00:02:00.750
+that will not be modernized
+in the near term.
+
+00:02:00.750 --> 00:02:03.450
+These applications
+sit on Windows 32,
+
+00:02:03.450 --> 00:02:06.990
+which is why you need
+computer-using agents
+
+00:02:06.990 --> 00:02:10.350
+that can have a
+Windows computer.
+
+00:02:10.350 --> 00:02:12.510
+Third, the scale gap.
+
+00:02:12.510 --> 00:02:16.650
+Imagine running up and
+creating computer environments
+
+00:02:16.650 --> 00:02:18.870
+for agents at a global scale.
+
+00:02:18.870 --> 00:02:20.760
+Do you really want to
+be in that business?
+
+00:02:20.760 --> 00:02:21.930
+I think not.
+
+00:02:21.930 --> 00:02:26.550
+You want a scalable solution
+that can scale across the globe,
+
+00:02:26.550 --> 00:02:30.330
+provide all the enterprise
+security and governance.
+
+00:02:30.330 --> 00:02:34.230
+And that is where Windows
+365 for Agents helps you
+
+00:02:34.230 --> 00:02:37.380
+to bridge all of these gaps.
+
+00:02:37.380 --> 00:02:38.190
+All right.
+
+00:02:38.190 --> 00:02:40.860
+Now, let's dig in to
+understand the core components
+
+00:02:40.860 --> 00:02:44.130
+of Windows 365 for Agents.
+
+00:02:44.130 --> 00:02:44.730
+All right.
+
+00:02:44.730 --> 00:02:46.320
+What is Windows 365 for Agents?
+
+00:02:46.320 --> 00:02:48.300
+At its core, it's three things.
+
+00:02:48.300 --> 00:02:51.630
+First, it's cloud PCs
+built for agents.
+
+00:02:51.630 --> 00:02:53.400
+These are full
+Windows environments,
+
+00:02:53.400 --> 00:02:56.850
+the same Windows 365 Cloud
+PCs that people use today
+
+00:02:56.850 --> 00:03:00.210
+but provisioned, connected,
+and managed for agent use.
+
+00:03:00.210 --> 00:03:02.790
+Your agent has a
+desktop, a screen,
+
+00:03:02.790 --> 00:03:04.680
+all the peripherals it needs,
+
+00:03:04.680 --> 00:03:08.040
+and can access any application
+that runs on Windows.
+
+00:03:08.040 --> 00:03:11.430
+Second, it's an MCP tool layer.
+
+00:03:11.430 --> 00:03:14.250
+MCP, the Model Context Protocol,
+which is the open standard
+
+00:03:14.250 --> 00:03:16.320
+for connecting agents to tools.
+
+00:03:16.320 --> 00:03:18.420
+We ship a set of MCP tools
+
+00:03:18.420 --> 00:03:21.450
+that lets your agent provision
+a cloud PC, connect to it,
+
+00:03:21.450 --> 00:03:24.540
+interact with it, and
+manage its lifecycle.
+
+00:03:24.540 --> 00:03:27.150
+If your agent
+framework speaks MCP,
+
+00:03:27.150 --> 00:03:29.940
+it works with Windows
+365 for Agents.
+
+00:03:29.940 --> 00:03:33.330
+Third, it is enterprise
+control and operations
+
+00:03:33.330 --> 00:03:34.830
+that you know already.
+
+00:03:34.830 --> 00:03:37.050
+Cloud PC pools are
+managed in Intune.
+
+00:03:37.050 --> 00:03:40.170
+Identity goes through
+intra-agentic identity.
+
+00:03:40.170 --> 00:03:41.370
+Policies, compliance,
+
+00:03:41.370 --> 00:03:43.740
+conditional access,
+it all just works.
+
+00:03:43.740 --> 00:03:45.960
+There's nothing new
+for IT to learn.
+
+00:03:45.960 --> 00:03:48.720
+They manage agent
+cloud PCs the same way
+
+00:03:48.720 --> 00:03:51.360
+that they manage user cloud PCs.
+
+00:03:51.360 --> 00:03:54.180
+And all of this sits
+within Agent 365.
+
+00:03:54.180 --> 00:03:58.110
+The MCP tool is managed
+within the Agent 365 portal,
+
+00:03:58.110 --> 00:04:00.570
+and all of the observability
+and governance
+
+00:04:00.570 --> 00:04:04.620
+for your Windows 365-enabled
+agents surface the same way
+
+00:04:04.620 --> 00:04:07.800
+that they do for any
+Agent 365-enabled agent.
+
+00:04:07.800 --> 00:04:11.970
+This makes it easy for your AI
+admins to configure Windows 365
+
+00:04:11.970 --> 00:04:14.880
+for Agents alongside
+all the other agents
+
+00:04:14.880 --> 00:04:17.010
+in your enterprise tenant.
+
+00:04:17.010 --> 00:04:17.730
+All right.
+
+00:04:17.730 --> 00:04:20.700
+Now that we have an
+idea of the platform,
+
+00:04:20.700 --> 00:04:24.120
+let me invite my good
+friend Jiachen from Simular
+
+00:04:24.120 --> 00:04:26.940
+to show you a
+real-world use case.
+
+00:04:26.940 --> 00:04:27.810
+JIACHEN YANG: Hello, everyone.
+
+00:04:27.810 --> 00:04:29.880
+I'm Jiachen Yang at Simular.
+
+00:04:29.880 --> 00:04:32.850
+Our mission is to solve
+digital autonomy and use it
+
+00:04:32.850 --> 00:04:35.010
+to improve everyone's lives.
+
+00:04:35.010 --> 00:04:37.830
+Since becoming a Lighthouse
+customer in November,
+
+00:04:37.830 --> 00:04:41.370
+we've partnered with the Windows
+team to run our AI agent product
+
+00:04:41.370 --> 00:04:45.480
+on Windows 365 for Agents
+so they're enterprise ready
+
+00:04:45.480 --> 00:04:48.380
+with security and IT governance.
+
+00:04:48.380 --> 00:04:50.120
+Let me introduce you to Sai,
+
+00:04:50.120 --> 00:04:53.660
+Simular's always-available
+agentic coworker.
+
+00:04:53.660 --> 00:04:56.300
+Sai sees the screen,
+moves the mouse,
+
+00:04:56.300 --> 00:04:59.120
+and types on the keyboard,
+just like a human.
+
+00:04:59.120 --> 00:05:03.290
+It also uses APIs, operates
+the terminal, and writes code.
+
+00:05:03.290 --> 00:05:05.870
+This means it works with
+your existing software
+
+00:05:05.870 --> 00:05:10.370
+out of the box, including legacy
+enterprise tools with no APIs,
+
+00:05:10.370 --> 00:05:14.160
+most of which are running on
+Windows and Windows only.
+
+00:05:14.160 --> 00:05:18.120
+That's why Windows 365 for
+Agents is such a natural fit
+
+00:05:18.120 --> 00:05:23.160
+since Sai can operate anything
+that runs on a Windows desktop.
+
+00:05:23.160 --> 00:05:27.120
+As more people rely on Sai for
+repeatable and recurring tasks,
+
+00:05:27.120 --> 00:05:29.790
+we need to scale up
+and down flexibly.
+
+00:05:29.790 --> 00:05:35.160
+With Windows 365 for Agents, Sai
+can spin up cloud PCs on demand,
+
+00:05:35.160 --> 00:05:38.340
+scale up to maximize
+performance on large workloads,
+
+00:05:38.340 --> 00:05:40.860
+and spin them down after
+finishing the work
+
+00:05:40.860 --> 00:05:43.080
+to minimize cost.
+
+00:05:43.080 --> 00:05:45.150
+Additionally, Windows 365
+
+00:05:45.150 --> 00:05:48.660
+for Agents gives Sai a
+secure execution layer,
+
+00:05:48.660 --> 00:05:52.860
+isolated cloud PCs governed
+by Entra ID and Intune
+
+00:05:52.860 --> 00:05:55.530
+so developers can
+focus on agent logic
+
+00:05:55.530 --> 00:05:58.860
+and not enterprise requirements.
+
+00:05:58.860 --> 00:06:01.680
+Let's look at an example.
+
+00:06:01.680 --> 00:06:04.920
+Here, Sai runs an overnight
+claims processing workflow
+
+00:06:04.920 --> 00:06:08.460
+in a Contoso claims
+app with no APIs.
+
+00:06:08.460 --> 00:06:11.790
+Users can launch Sai using
+a single instruction.
+
+00:06:11.790 --> 00:06:16.290
+Sai opens and reads the scanned
+handwritten claim form.
+
+00:06:16.290 --> 00:06:19.770
+It extracts key fields
+such as claimant, policy,
+
+00:06:19.770 --> 00:06:21.900
+and estimated damages.
+
+00:06:21.900 --> 00:06:26.250
+It directly enters it into
+the application with no API,
+
+00:06:26.250 --> 00:06:28.440
+just the user interface.
+
+00:06:28.440 --> 00:06:31.080
+It fills out the policy
+details such as number,
+
+00:06:31.080 --> 00:06:34.590
+coverage type, and deductible.
+
+00:06:34.590 --> 00:06:38.520
+Notice how the zip code has
+some duplicate numbers.
+
+00:06:38.520 --> 00:06:43.380
+Sai is able to catch that and
+fix the data entry error.
+
+00:06:43.380 --> 00:06:46.890
+It keeps going, selecting "Burst
+Pipe" from the dropdown menu,
+
+00:06:46.890 --> 00:06:50.970
+navigating the UI
+just like a human.
+
+00:06:50.970 --> 00:06:53.310
+While it's doing this,
+Sai can alert you
+
+00:06:53.310 --> 00:06:56.070
+to its current progress
+and always allow you
+
+00:06:56.070 --> 00:06:59.460
+to take control when needed.
+
+00:06:59.460 --> 00:07:03.630
+The claim form is filled, and
+Sai stands by for the next one.
+
+00:07:03.630 --> 00:07:06.990
+All this can be done on
+Windows 365 for Agents.
+
+00:07:06.990 --> 00:07:10.380
+The bottom line is that
+Simular and Sai is the brain
+
+00:07:10.380 --> 00:07:13.500
+for an autonomous
+computer, and Windows 365
+
+00:07:13.500 --> 00:07:17.460
+for Agents provides the
+secure execution environment.
+
+00:07:17.460 --> 00:07:20.250
+Now let me hand over to Sam.
+
+00:07:20.250 --> 00:07:21.570
+SAM SHAPIRO: So that's
+what's possible.
+
+00:07:21.570 --> 00:07:25.350
+Real agents, real enterprise
+workloads running today.
+
+00:07:25.350 --> 00:07:27.660
+Now let's take a look at
+the experiences we've built
+
+00:07:27.660 --> 00:07:30.600
+within the Windows 365
+for Agents platform.
+
+00:07:30.600 --> 00:07:32.730
+I'm going to walk you through
+how agent builders can integrate
+
+00:07:32.730 --> 00:07:36.480
+the Windows 365 for Agents
+MCP server, configure agents
+
+00:07:36.480 --> 00:07:39.270
+in their enterprise, and then
+how real employees can interact
+
+00:07:39.270 --> 00:07:44.250
+with Windows 365 for Agents,
+enable cloud-using agents.
+
+00:07:44.250 --> 00:07:46.470
+Let me start out by
+demonstrating how easy it is
+
+00:07:46.470 --> 00:07:48.810
+to integrate and test
+within the Windows 365
+
+00:07:48.810 --> 00:07:51.210
+for Agents MCP server.
+
+00:07:51.210 --> 00:07:54.630
+What you're looking at here is a
+sample computer use agent built
+
+00:07:54.630 --> 00:07:59.040
+on Azure OpenAI and powered
+by a GPT 5.4 model.
+
+00:07:59.040 --> 00:08:01.140
+The logic for this
+agent is pretty simple.
+
+00:08:01.140 --> 00:08:03.960
+It receives a user message,
+connects to the MCP server
+
+00:08:03.960 --> 00:08:07.620
+to get its toolkit, provisions
+and controls a cloud PC session,
+
+00:08:07.620 --> 00:08:09.390
+and then enters its core loop.
+
+00:08:09.390 --> 00:08:12.690
+Capture a screenshot, reason
+over it, take an action,
+
+00:08:12.690 --> 00:08:15.240
+and repeat until the
+task is complete.
+
+00:08:15.240 --> 00:08:18.390
+It's a simple agent, but it's
+fully integrated with Agent 365
+
+00:08:18.390 --> 00:08:21.220
+and Windows 365 for Agents.
+
+00:08:23.280 --> 00:08:25.830
+The agent is made up
+of a few key pieces.
+
+00:08:25.830 --> 00:08:28.830
+The most important one, the
+computer use orchestrator,
+
+00:08:28.830 --> 00:08:31.770
+this is where the screenshot
+action repeat loop lives,
+
+00:08:31.770 --> 00:08:33.120
+along with a clear prompt
+
+00:08:33.120 --> 00:08:36.190
+that tells the agent what
+it's supposed to be doing.
+
+00:08:39.270 --> 00:08:42.090
+Inside myagent.cs, you'll
+find all the integration
+
+00:08:42.090 --> 00:08:45.000
+with Agent 365, the
+observability tooling,
+
+00:08:45.000 --> 00:08:47.820
+and the Windows 365
+computer use logic.
+
+00:08:47.820 --> 00:08:51.300
+At runtime, based on the tooling
+configuration that we specify,
+
+00:08:51.300 --> 00:08:54.660
+the agent reaches out, discovers
+what MCP server it has access
+
+00:08:54.660 --> 00:08:57.990
+to, and based on the model
+context protocol metadata,
+
+00:08:57.990 --> 00:09:00.700
+knows how and when to call them.
+
+00:09:09.330 --> 00:09:11.160
+And this is the
+tooling manifest.
+
+00:09:11.160 --> 00:09:14.820
+It's where we declare which MCP
+server this agent has access to.
+
+00:09:14.820 --> 00:09:16.260
+Right now, it's empty.
+
+00:09:16.260 --> 00:09:17.790
+No server is configured,
+
+00:09:17.790 --> 00:09:21.300
+so the agent can't actually
+access Windows 365 for Agents.
+
+00:09:21.300 --> 00:09:22.680
+To see what's available
+in the tenant,
+
+00:09:22.680 --> 00:09:27.330
+I'll use the Agent 365 CLI
+and run list available.
+
+00:09:27.330 --> 00:09:30.150
+You can see there's a rich set
+of MCP servers ready to go
+
+00:09:30.150 --> 00:09:33.060
+out of the box available
+through Agent 365.
+
+00:09:33.060 --> 00:09:36.390
+The one we care about today is
+the Windows 365 computer use
+
+00:09:36.390 --> 00:09:37.920
+MCP server.
+
+00:09:37.920 --> 00:09:41.010
+Wiring it up is genuinely
+a configuration change,
+
+00:09:41.010 --> 00:09:42.510
+not a code rewrite.
+
+00:09:42.510 --> 00:09:47.070
+I just run add MCP server
+through the A365 CLI tool,
+
+00:09:47.070 --> 00:09:49.890
+and it pulls the MCP
+server into the manifest
+
+00:09:49.890 --> 00:09:52.020
+and writes all the
+configuration the agent needs
+
+00:09:52.020 --> 00:09:54.600
+to authorize and use it.
+
+00:09:54.600 --> 00:09:55.860
+And there it is.
+
+00:09:55.860 --> 00:09:58.800
+The manifest is updated, and
+this agent now has access
+
+00:09:58.800 --> 00:10:01.440
+to every tool inside
+of that MCP server.
+
+00:10:01.440 --> 00:10:03.450
+While we're here,
+let's add one more.
+
+00:10:03.450 --> 00:10:06.990
+How about the mail tools so
+our agent can access Outlook?
+
+00:10:06.990 --> 00:10:10.920
+Same command, same experience.
+
+00:10:10.920 --> 00:10:13.770
+Done. The agent now has a
+much more powerful toolkit
+
+00:10:13.770 --> 00:10:15.420
+with almost no effort.
+
+00:10:15.420 --> 00:10:17.040
+Now let's run it locally
+
+00:10:17.040 --> 00:10:19.680
+and make sure the MCP
+server is actually working.
+
+00:10:19.680 --> 00:10:21.600
+Kicking off, the
+local build spins
+
+00:10:21.600 --> 00:10:24.280
+up the agent as a local server.
+
+00:10:29.840 --> 00:10:32.990
+From there, I can open
+the Agent 365 playground
+
+00:10:32.990 --> 00:10:36.390
+and connect directly
+to the local agent.
+
+00:10:38.670 --> 00:10:40.740
+You can see I'm now
+connected to the agent.
+
+00:10:40.740 --> 00:10:44.400
+It has access to the Windows
+365 for Agents MCP server,
+
+00:10:44.400 --> 00:10:46.590
+and I've got live
+logs on the right.
+
+00:10:46.590 --> 00:10:48.510
+This is a really tight
+development loop.
+
+00:10:48.510 --> 00:10:51.030
+I can see exactly how the
+agent is using each tool,
+
+00:10:51.030 --> 00:10:52.590
+where I can make
+it more efficient
+
+00:10:52.590 --> 00:10:54.210
+and optimize in real time.
+
+00:10:54.210 --> 00:10:55.740
+It's a great environment
+for iterating
+
+00:10:55.740 --> 00:10:58.090
+on your agent and
+your tool calls.
+
+00:10:59.940 --> 00:11:02.190
+For our first test, I'll
+ask it to open Notepad
+
+00:11:02.190 --> 00:11:03.840
+and type a simple phrase.
+
+00:11:03.840 --> 00:11:05.550
+You can see it step
+through the flow.
+
+00:11:05.550 --> 00:11:08.670
+First, it acquires a Windows
+365 Cloud PC session,
+
+00:11:08.670 --> 00:11:10.710
+checking which pools
+it has access to
+
+00:11:10.710 --> 00:11:13.680
+and which machines are available
+to check out right now.
+
+00:11:13.680 --> 00:11:16.290
+The first-time spin-up
+takes a few moments.
+
+00:11:16.290 --> 00:11:17.220
+And there we go.
+
+00:11:17.220 --> 00:11:18.660
+The session is starting.
+
+00:11:18.660 --> 00:11:19.770
+We've configured the agent
+
+00:11:19.770 --> 00:11:21.960
+to generate a screenshot
+on every step.
+
+00:11:21.960 --> 00:11:24.120
+So as it passes the
+commands to the Cloud PC
+
+00:11:24.120 --> 00:11:27.820
+and performs actions, each one
+is captured along the way.
+
+00:11:35.880 --> 00:11:37.410
+Task completed successfully.
+
+00:11:37.410 --> 00:11:40.690
+Let's look at the screenshots
+to see what actually happened.
+
+00:11:41.760 --> 00:11:43.740
+Four screenshots in total.
+
+00:11:43.740 --> 00:11:46.320
+And in the final screenshot
+we can see the Cloud PC
+
+00:11:46.320 --> 00:11:48.240
+with a Notepad
+window open reading,
+
+00:11:48.240 --> 00:11:50.550
+this is a demo of a Windows 365.
+
+00:11:50.550 --> 00:11:52.830
+Exactly what we asked for.
+
+00:11:52.830 --> 00:11:55.650
+Now let's jump into how
+agents that are integrated
+
+00:11:55.650 --> 00:11:59.970
+with Agent 365 and Windows 365
+for Agents can be made available
+
+00:11:59.970 --> 00:12:02.650
+to your entire
+enterprise tenant.
+
+00:12:03.810 --> 00:12:06.000
+I'm going to walk you through
+how an admin configures a
+
+00:12:06.000 --> 00:12:09.540
+Windows 365 for Agents
+blueprint in their tenant.
+
+00:12:09.540 --> 00:12:13.860
+This is Agent 365 inside of
+the Microsoft Admin Center.
+
+00:12:13.860 --> 00:12:15.480
+It gives you an overarching view
+
+00:12:15.480 --> 00:12:18.640
+of every agent in
+your organization.
+
+00:12:19.950 --> 00:12:25.200
+If I select a specific blueprint
+in my tenant, I can see all
+
+00:12:25.200 --> 00:12:27.480
+of the details of
+that blueprint.
+
+00:12:27.480 --> 00:12:28.560
+I can see it has access
+
+00:12:28.560 --> 00:12:31.800
+to the Windows 365
+computer use MCP server,
+
+00:12:31.800 --> 00:12:34.750
+as well as a few
+other MCP servers.
+
+00:12:38.250 --> 00:12:39.990
+Right now, no users
+are permitted
+
+00:12:39.990 --> 00:12:41.370
+to create instances of it.
+
+00:12:41.370 --> 00:12:43.380
+So let me update the
+permission so that every user
+
+00:12:43.380 --> 00:12:45.030
+in my tenant can
+spin up an instance,
+
+00:12:45.030 --> 00:12:47.220
+effectively giving my
+entire enterprise access
+
+00:12:47.220 --> 00:12:50.460
+to Windows 365 for Agents.
+
+00:12:50.460 --> 00:12:53.010
+I'll also confirm that the
+server itself is broadly
+
+00:12:53.010 --> 00:12:55.680
+available by scrolling
+through the tools list
+
+00:12:55.680 --> 00:12:57.420
+and finding the Windows 365
+
+00:12:57.420 --> 00:13:01.710
+for Agents MCP server
+available through Agent 365.
+
+00:13:01.710 --> 00:13:05.040
+Let's update the status
+here to unblocked.
+
+00:13:05.040 --> 00:13:10.770
+Now my agent can access Windows
+365 for Agents MCP server.
+
+00:13:10.770 --> 00:13:14.380
+Pool creation and assignment
+happen in Intune.
+
+00:13:15.570 --> 00:13:18.960
+Inside of the Intune Admin
+Center, under "Devices"
+
+00:13:18.960 --> 00:13:22.680
+in Windows 365 Cloud PCs,
+there's a dedicated experience
+
+00:13:22.680 --> 00:13:26.260
+for provisioning cloud PCs
+specifically for agents.
+
+00:13:27.510 --> 00:13:30.690
+I'll create a new
+provisioning policy.
+
+00:13:30.690 --> 00:13:33.090
+To get started, I'll add a
+name to my provisioning policy
+
+00:13:33.090 --> 00:13:34.110
+so that I can identify it
+
+00:13:34.110 --> 00:13:36.810
+if I have multiple policies
+created in my tenant.
+
+00:13:36.810 --> 00:13:38.460
+Next, I add a brief description
+
+00:13:38.460 --> 00:13:40.560
+to help identify what
+provisioning policy will be
+
+00:13:40.560 --> 00:13:41.370
+used for.
+
+00:13:41.370 --> 00:13:43.080
+I select a billing plan
+which will be used
+
+00:13:43.080 --> 00:13:45.630
+for consumption-based charge
+and then associate a number
+
+00:13:45.630 --> 00:13:48.220
+of always available cloud PCs.
+
+00:13:52.020 --> 00:13:54.240
+Next, I add my agents.
+
+00:13:54.240 --> 00:13:56.730
+This is actually where the
+agent instances get assigned
+
+00:13:56.730 --> 00:13:57.870
+to the cloud PC.
+
+00:13:57.870 --> 00:14:00.990
+I won't add any now, but as
+agent instances get created
+
+00:14:00.990 --> 00:14:03.030
+by employees, I'll have
+the ability to add them
+
+00:14:03.030 --> 00:14:06.390
+to my existing
+provisioning policies.
+
+00:14:06.390 --> 00:14:07.980
+Next, I have an image.
+
+00:14:07.980 --> 00:14:09.450
+Out of the box, custom images
+
+00:14:09.450 --> 00:14:11.310
+and gallery images
+are supported.
+
+00:14:11.310 --> 00:14:14.100
+Today I'll be using
+a gallery image.
+
+00:14:14.100 --> 00:14:18.120
+Finally, I can select a language
+for this provisioning policy.
+
+00:14:18.120 --> 00:14:19.740
+Here's all the
+information associated
+
+00:14:19.740 --> 00:14:21.810
+with my provisioning
+policy, and I can create it
+
+00:14:21.810 --> 00:14:24.270
+by clicking the "Create" button.
+
+00:14:24.270 --> 00:14:26.550
+Now that we've enabled the
+agent blueprint in the tenant
+
+00:14:26.550 --> 00:14:29.040
+and created a provisioning
+policy, let's take a look
+
+00:14:29.040 --> 00:14:31.950
+at how enterprise workers
+can create agent instances,
+
+00:14:31.950 --> 00:14:35.280
+get them assigned a provisioning
+policy, and perform real work
+
+00:14:35.280 --> 00:14:38.490
+with Windows 365 for Agents.
+
+00:14:38.490 --> 00:14:40.290
+To start, I'm in Teams.
+
+00:14:40.290 --> 00:14:41.550
+I go to the agent section
+
+00:14:41.550 --> 00:14:43.740
+where I can see all
+my agents available
+
+00:14:43.740 --> 00:14:45.450
+within my enterprise tenant.
+
+00:14:45.450 --> 00:14:46.380
+I'll search for the agent
+
+00:14:46.380 --> 00:14:48.390
+that I just configured
+the blueprint for,
+
+00:14:48.390 --> 00:14:52.470
+the Build Win365A Blueprint.
+
+00:14:52.470 --> 00:14:55.800
+I can create agent instances
+directly with Teams.
+
+00:14:55.800 --> 00:14:58.890
+I'll add a name, which will
+be used to identify my agent,
+
+00:14:58.890 --> 00:15:00.570
+and then I'll add an alias.
+
+00:15:00.570 --> 00:15:03.730
+This is how the agent will
+be registered in Entra.
+
+00:15:04.860 --> 00:15:07.740
+I hit "Create" and now I
+can see that my agent is
+
+00:15:07.740 --> 00:15:10.740
+in the process of being created.
+
+00:15:10.740 --> 00:15:13.890
+During this time, it's creating
+an agent instance in Entra,
+
+00:15:13.890 --> 00:15:16.260
+pulling down the
+blueprint, copying it,
+
+00:15:16.260 --> 00:15:18.270
+and assigning the right
+permissions that it needs
+
+00:15:18.270 --> 00:15:20.950
+to do meaningful
+work right away.
+
+00:15:23.700 --> 00:15:25.410
+And there's my
+agent ready to go.
+
+00:15:25.410 --> 00:15:27.570
+I can now chat directly with it.
+
+00:15:27.570 --> 00:15:30.090
+Before I can run computer-using
+workflows, I need to take
+
+00:15:30.090 --> 00:15:31.260
+that agent and give it access
+
+00:15:31.260 --> 00:15:33.930
+to a provisioning
+policy that I created.
+
+00:15:33.930 --> 00:15:36.420
+So now let's imagine
+I'm an IT admin asked
+
+00:15:36.420 --> 00:15:39.390
+to provide Cloud PC access
+to a newly created agent.
+
+00:15:39.390 --> 00:15:41.730
+I navigate to provisioning
+policies for agents.
+
+00:15:41.730 --> 00:15:46.050
+I find the policy that I want
+to assign this agent to.
+
+00:15:46.050 --> 00:15:48.960
+Here I can see all of the
+agents that already have access
+
+00:15:48.960 --> 00:15:50.580
+to this Cloud PC pool.
+
+00:15:50.580 --> 00:15:55.350
+I'll add my newly created
+agent by clicking "Add Agent."
+
+00:15:55.350 --> 00:15:57.930
+I see a list of all the
+agents in my tenant
+
+00:15:57.930 --> 00:16:00.570
+and I select the
+relevant agent instance.
+
+00:16:00.570 --> 00:16:03.750
+I confirm the assignment,
+update the policy,
+
+00:16:03.750 --> 00:16:05.730
+and I see a success
+message indicating
+
+00:16:05.730 --> 00:16:10.320
+that the agent now has
+access to the Cloud PC pool.
+
+00:16:10.320 --> 00:16:12.240
+So now that the
+agent has access,
+
+00:16:12.240 --> 00:16:14.430
+let's run a real workflow.
+
+00:16:14.430 --> 00:16:16.080
+I'll start with
+something simple.
+
+00:16:16.080 --> 00:16:19.680
+I ask the agent to open Notepad
+and type "This is a build demo."
+
+00:16:19.680 --> 00:16:21.270
+It's a basic task
+but a great way
+
+00:16:21.270 --> 00:16:23.490
+to demonstrate how a
+computer-using agent can check
+
+00:16:23.490 --> 00:16:25.860
+out a Cloud PC,
+open applications,
+
+00:16:25.860 --> 00:16:29.730
+and perform real work by typing
+and interacting with the system.
+
+00:16:29.730 --> 00:16:33.030
+The agent connects to the
+Cloud PC, starts a session,
+
+00:16:33.030 --> 00:16:36.270
+and provides a folder where
+screenshots will be stored.
+
+00:16:36.270 --> 00:16:38.010
+The task completes successfully.
+
+00:16:38.010 --> 00:16:40.200
+Let's take a look
+at what it did.
+
+00:16:40.200 --> 00:16:41.490
+In the first step, we see
+
+00:16:41.490 --> 00:16:44.310
+that it successfully
+checked out a Cloud PC.
+
+00:16:44.310 --> 00:16:47.550
+Next, it opened Notepad
+and finally it typed
+
+00:16:47.550 --> 00:16:50.340
+"This is a build demo"
+exactly as requested,
+
+00:16:50.340 --> 00:16:53.700
+interacting with the UI
+just like a human would.
+
+00:16:53.700 --> 00:16:55.530
+Now let's try something
+more advanced.
+
+00:16:55.530 --> 00:16:57.060
+I'll ask the agent to open Edge,
+
+00:16:57.060 --> 00:16:59.280
+find the Windows
+365 product page,
+
+00:16:59.280 --> 00:17:00.720
+and determine the best offering
+
+00:17:00.720 --> 00:17:02.880
+for a 500-person
+remote organization
+
+00:17:02.880 --> 00:17:05.310
+across North America and LATAM.
+
+00:17:05.310 --> 00:17:07.440
+This is something a person
+normally would have
+
+00:17:07.440 --> 00:17:10.530
+to research manually
+across multiple pages.
+
+00:17:10.530 --> 00:17:12.150
+Let's see if the
+agent can do it.
+
+00:17:12.150 --> 00:17:14.910
+The agent starts working,
+connects to a Cloud PC,
+
+00:17:14.910 --> 00:17:17.580
+and processes the request.
+
+00:17:17.580 --> 00:17:21.180
+And there's the answer, a clear
+explanation and a reason why,
+
+00:17:21.180 --> 00:17:22.620
+based on information
+that it gathered
+
+00:17:22.620 --> 00:17:24.390
+from the website directly.
+
+00:17:24.390 --> 00:17:26.040
+Let's break down what happened.
+
+00:17:26.040 --> 00:17:28.050
+First, it opened
+Edge, then searched
+
+00:17:28.050 --> 00:17:30.210
+for the Windows
+365 product page.
+
+00:17:30.210 --> 00:17:32.130
+It waited for the page to load,
+
+00:17:32.130 --> 00:17:34.170
+navigated to the
+relevant sections,
+
+00:17:34.170 --> 00:17:36.540
+and moved into the Enterprise
+and Pricing views.
+
+00:17:36.540 --> 00:17:39.510
+From there it analyzed the
+content, compared options,
+
+00:17:39.510 --> 00:17:41.220
+and pulled together
+the information needed
+
+00:17:41.220 --> 00:17:43.950
+to generate a clear,
+well-reasoned recommendation,
+
+00:17:43.950 --> 00:17:46.470
+tailored to the
+scenario I gave it.
+
+00:17:46.470 --> 00:17:49.230
+This just scratches the
+surface of what's possible
+
+00:17:49.230 --> 00:17:51.360
+with Windows 365 for Agents.
+
+00:17:51.360 --> 00:17:55.020
+It enables agents to take on
+complex, multi-step tasks
+
+00:17:55.020 --> 00:17:58.880
+across real applications and
+the web, turning what used
+
+00:17:58.880 --> 00:18:03.120
+to be manual work into
+automated end-to-end outcomes.
+
+00:18:03.120 --> 00:18:04.710
+So let's bring it all together.
+
+00:18:04.710 --> 00:18:06.240
+Three things to take away.
+
+00:18:06.240 --> 00:18:09.030
+One, stay focused
+on agent logic.
+
+00:18:09.030 --> 00:18:12.510
+Windows 365 for Agent handles
+the execution environment
+
+00:18:12.510 --> 00:18:14.250
+underneath, so your time goes
+
+00:18:14.250 --> 00:18:16.530
+into what makes your
+agent valuable.
+
+00:18:16.530 --> 00:18:20.700
+Two, extend the reach of your
+agent past the API boundary.
+
+00:18:20.700 --> 00:18:23.310
+A lot of enterprise work
+still happens in that line
+
+00:18:23.310 --> 00:18:25.590
+of business application
+that falls outside
+
+00:18:25.590 --> 00:18:27.360
+of the modernization efforts.
+
+00:18:27.360 --> 00:18:30.000
+With a cloud PC, your
+agent can operate them
+
+00:18:30.000 --> 00:18:31.800
+in the current state.
+
+00:18:31.800 --> 00:18:35.430
+Three, build on the one
+streamlined Microsoft stack,
+
+00:18:35.430 --> 00:18:39.900
+from MCP server to Agent
+365 to Intune and Entra.
+
+00:18:39.900 --> 00:18:41.460
+Build, publish, govern,
+
+00:18:41.460 --> 00:18:45.120
+and scale on your tools your
+organization already trusts.
+
+00:18:45.120 --> 00:18:47.370
+That's Windows 365 for Agents.
+
+00:18:47.370 --> 00:18:48.690
+Back to you, Joydeep.
+
+00:18:48.690 --> 00:18:49.410
+JOYDEEP MUKHERJEE: All
+right, so we looked
+
+00:18:49.410 --> 00:18:51.540
+at Windows 365 for Agents.
+
+00:18:51.540 --> 00:18:52.920
+That is just one offering.
+
+00:18:52.920 --> 00:18:56.190
+Now, let me walk you
+through Windows 365,
+
+00:18:56.190 --> 00:18:59.160
+a different offering, and
+how it helps developers work
+
+00:18:59.160 --> 00:19:02.010
+with less friction.
+
+00:19:02.010 --> 00:19:03.870
+As you all know, as developers,
+
+00:19:03.870 --> 00:19:05.970
+you guys face new
+challenges now.
+
+00:19:05.970 --> 00:19:09.990
+Fifty percent or more developer
+time is spent on maintenance,
+
+00:19:09.990 --> 00:19:13.110
+complex configuration, and
+operational tasks rather
+
+00:19:13.110 --> 00:19:14.340
+than writing new code.
+
+00:19:14.340 --> 00:19:15.510
+The story is familiar, right?
+
+00:19:15.510 --> 00:19:17.670
+You sit down to write
+code, and then you've got
+
+00:19:17.670 --> 00:19:21.450
+to manage your environment,
+do a bunch of configurations,
+
+00:19:21.450 --> 00:19:23.340
+and this takes cycles
+away from what you need
+
+00:19:23.340 --> 00:19:25.620
+to be doing, coding
+and shipping.
+
+00:19:25.620 --> 00:19:29.940
+Seventy-five percent or more
+developers need secure,
+
+00:19:29.940 --> 00:19:33.390
+virtualized environments
+during development.
+
+00:19:33.390 --> 00:19:38.220
+Forty percent or more of you
+work across platforms like Mac
+
+00:19:38.220 --> 00:19:41.310
+and Windows and Linux
+and other stuff.
+
+00:19:41.310 --> 00:19:44.400
+So these are the
+exact challenges
+
+00:19:44.400 --> 00:19:48.700
+for which we designed
+Windows 365.
+
+00:19:51.180 --> 00:19:54.420
+Microsoft is uniquely
+positioned to bring the PC
+
+00:19:54.420 --> 00:19:55.800
+and the cloud together,
+
+00:19:55.800 --> 00:19:59.160
+and Windows 365 delivers
+those benefits directly
+
+00:19:59.160 --> 00:20:00.600
+to modern development.
+
+00:20:00.600 --> 00:20:03.660
+It provides a cloud
+development environment
+
+00:20:03.660 --> 00:20:07.410
+with a ready-to-code Windows
+Cloud PC preconfigured
+
+00:20:07.410 --> 00:20:09.780
+with GitHub and preferred
+developer tools,
+
+00:20:09.780 --> 00:20:11.640
+helping teams get
+productive faster
+
+00:20:11.640 --> 00:20:14.100
+and reduce environment friction.
+
+00:20:14.100 --> 00:20:17.910
+Now, just as Office 365 brought
+productivity to the cloud,
+
+00:20:17.910 --> 00:20:20.810
+Windows 365 brings
+Windows to the cloud.
+
+00:20:20.810 --> 00:20:24.200
+For you, this means that the
+right environment is right there
+
+00:20:24.200 --> 00:20:26.390
+at your fingertips
+for each task.
+
+00:20:26.390 --> 00:20:29.210
+You can assign one or
+multiple cloud PCs,
+
+00:20:29.210 --> 00:20:32.330
+each set up for specific
+workloads, whether for coding,
+
+00:20:32.330 --> 00:20:35.010
+testing, or AI development.
+
+00:20:35.010 --> 00:20:38.760
+With Windows App, you can access
+your cloud PCs from any device
+
+00:20:38.760 --> 00:20:41.280
+and switch seamlessly
+between your local desktop
+
+00:20:41.280 --> 00:20:46.560
+and cloud environment using
+familiar gestures and shortcuts.
+
+00:20:46.560 --> 00:20:49.710
+Windows 365 streams a
+full Windows experience.
+
+00:20:49.710 --> 00:20:50.730
+This is very important.
+
+00:20:50.730 --> 00:20:54.180
+Apps, data, settings, everything
+from the Microsoft Cloud
+
+00:20:54.180 --> 00:20:57.690
+to any device, giving you
+consistent, secured access
+
+00:20:57.690 --> 00:21:02.220
+without being constrained by
+local hardware or config issues.
+
+00:21:02.220 --> 00:21:06.180
+With Windows 365, you can focus
+less on managing environments,
+
+00:21:06.180 --> 00:21:08.400
+more on coding and shipping.
+
+00:21:08.400 --> 00:21:12.120
+Let me now walk you through
+what Windows 365 can do
+
+00:21:12.120 --> 00:21:13.230
+for developers.
+
+00:21:13.230 --> 00:21:15.180
+Development today isn't
+tied to one machine.
+
+00:21:15.180 --> 00:21:17.100
+You can switch between
+devices all day,
+
+00:21:17.100 --> 00:21:18.900
+and every switch
+comes with friction.
+
+00:21:18.900 --> 00:21:20.820
+So we start on my
+personal Mac device,
+
+00:21:20.820 --> 00:21:24.840
+but I'm connecting straight
+into my development cloud PC
+
+00:21:24.840 --> 00:21:26.130
+through the Windows App.
+
+00:21:26.130 --> 00:21:27.210
+You see I have two there.
+
+00:21:27.210 --> 00:21:28.410
+I'm choosing today to go
+
+00:21:28.410 --> 00:21:31.560
+into the 16-core cloud
+PC for development.
+
+00:21:31.560 --> 00:21:34.290
+You see that it's setting
+it up, configuring it,
+
+00:21:34.290 --> 00:21:37.710
+and it will shortly
+connect to my cloud PC.
+
+00:21:37.710 --> 00:21:41.820
+Now, once I'm inside, look
+at what is already on there.
+
+00:21:41.820 --> 00:21:43.980
+GitHub Copilot,
+Visual Studio Code,
+
+00:21:43.980 --> 00:21:46.020
+everything is ready
+for me to go.
+
+00:21:46.020 --> 00:21:51.570
+Now, today, my project also
+requires WinGet, Docker,
+
+00:21:51.570 --> 00:21:53.370
+Postman, and a bunch
+of other stuff.
+
+00:21:53.370 --> 00:21:57.630
+And you see there the cloud PC
+automatically puts everything
+
+00:21:57.630 --> 00:21:58.260
+on there.
+
+00:21:58.260 --> 00:22:00.360
+I don't have to spend
+my cycles there.
+
+00:22:00.360 --> 00:22:01.560
+It's all ready.
+
+00:22:01.560 --> 00:22:07.470
+I log in, and then I am
+ready to begin coding.
+
+00:22:07.470 --> 00:22:09.180
+Thank you, everyone,
+for joining us today.
+
+00:22:09.180 --> 00:22:10.860
+Before we wrap,
+we'd love for you
+
+00:22:10.860 --> 00:22:12.810
+to continue your
+journey with us.
+
+00:22:12.810 --> 00:22:16.290
+If you're interested in running
+AI Agents on Windows 365
+
+00:22:16.290 --> 00:22:18.750
+for Agents, check out
+our documentation.
+
+00:22:18.750 --> 00:22:22.830
+For a deep dive into the Windows
+365 for Developers offering,
+
+00:22:22.830 --> 00:22:25.890
+watch session OD855, hosted
+
+00:22:25.890 --> 00:22:29.190
+by Roop Kiran Chevuri
+and Phil Gerity.
+
+00:22:29.190 --> 00:22:30.760
+Thanks again.

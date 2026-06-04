@@ -1,0 +1,3595 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.5166462063789368
+
+00:00:00.360 --> 00:00:00.520
+Yeah.
+
+NOTE Confidence: 0.6094439029693604
+
+00:00:03.720 --> 00:00:04.480
+Lower is yours, it is ours.
+
+NOTE Confidence: 0.7073467373847961
+
+00:00:04.680 --> 00:00:06.960
+It is ours OK, but the timer is going.
+
+NOTE Confidence: 0.6282351016998291
+
+00:00:07.600 --> 00:00:08.560
+The time is going OK.
+
+NOTE Confidence: 0.6535750031471252
+
+00:00:09.560 --> 00:00:13.000
+Matt Torgeson here, lead designer of C#.
+
+NOTE Confidence: 0.8571001291275024
+
+00:00:16.680 --> 00:00:17.680
+And I'm Dustin Campbell.
+
+NOTE Confidence: 0.7704779505729675
+
+00:00:17.680 --> 00:00:19.800
+I'm an engineer also on the C# team.
+
+NOTE Confidence: 0.9148315787315369
+
+00:00:21.000 --> 00:00:21.960
+And we do C#.
+
+NOTE Confidence: 0.791010856628418
+
+00:00:22.120 --> 00:00:22.960
+We do C#.
+
+NOTE Confidence: 0.862522304058075
+
+00:00:23.040 --> 00:00:25.661
+And today we'll talk about just one tiny little feature
+
+NOTE Confidence: 0.862522304058075
+
+00:00:25.708 --> 00:00:27.519
+that we're adding to C# called Unions.
+
+NOTE Confidence: 0.6283228397369385
+
+00:00:28.160 --> 00:00:28.920
+Union Types.
+
+NOTE Confidence: 0.6395961046218872
+
+00:00:29.160 --> 00:00:30.480
+C# 15.
+
+NOTE Confidence: 0.7474436163902283
+
+00:00:30.960 --> 00:00:33.160
+C# 15, it's coming out November.
+
+NOTE Confidence: 0.9447855949401855
+
+00:00:34.120 --> 00:00:35.360
+Stuff is already in preview.
+
+NOTE Confidence: 0.8843156099319458
+
+00:00:35.360 --> 00:00:37.008
+We can talk a little bit at at the end
+
+NOTE Confidence: 0.8843156099319458
+
+00:00:37.052 --> 00:00:37.919
+about how to try it.
+
+NOTE Confidence: 0.9518053531646729
+
+00:00:40.080 --> 00:00:43.680
+Unions is a thing that other languages have.
+
+NOTE Confidence: 0.8781298398971558
+
+00:00:44.160 --> 00:00:45.600
+TypeScript has unions.
+
+NOTE Confidence: 0.9512135982513428
+
+00:00:46.120 --> 00:00:49.999
+Most functional programming languages have some sort of discriminated unions,
+
+NOTE Confidence: 0.9512135982513428
+
+00:00:50.050 --> 00:00:51.360
+and they're all different.
+
+NOTE Confidence: 0.890434741973877
+
+00:00:51.440 --> 00:00:54.917
+And we're now adding unions to C# and they're different
+
+NOTE Confidence: 0.890434741973877
+
+00:00:54.980 --> 00:00:55.359
+again.
+
+NOTE Confidence: 0.8201643824577332
+
+00:00:55.360 --> 00:00:58.716
+They're our own little we call it Goldilocks, but you
+
+NOTE Confidence: 0.8201643824577332
+
+00:00:58.779 --> 00:01:01.439
+can also call it compromise version of it.
+
+NOTE Confidence: 0.7775278687477112
+
+00:01:01.880 --> 00:01:05.200
+So if you know unions already, this will be different.
+
+NOTE Confidence: 0.8873732089996338
+
+00:01:05.200 --> 00:01:06.934
+If you don't, you don't have to worry about it
+
+NOTE Confidence: 0.8873732089996338
+
+00:01:06.972 --> 00:01:09.009
+because we're just going to show you how unions should
+
+NOTE Confidence: 0.8873732089996338
+
+00:01:09.046 --> 00:01:09.160
+be.
+
+NOTE Confidence: 0.9079116582870483
+
+00:01:11.560 --> 00:01:15.115
+And as this is a demo session, there's your slide
+
+NOTE Confidence: 0.9079116582870483
+
+00:01:15.188 --> 00:01:16.639
+moving over to demo.
+
+NOTE Confidence: 0.9224459528923035
+
+00:01:16.840 --> 00:01:20.760
+OK, so we have code here, right?
+
+NOTE Confidence: 0.8080303072929382
+
+00:01:20.760 --> 00:01:23.845
+And it's a, it's some modern C# code with top
+
+NOTE Confidence: 0.8080303072929382
+
+00:01:23.914 --> 00:01:25.080
+level statements.
+
+NOTE Confidence: 0.9163861870765686
+
+00:01:25.440 --> 00:01:28.332
+And what it is, we've got a series of records
+
+NOTE Confidence: 0.9163861870765686
+
+00:01:28.397 --> 00:01:29.040
+down here.
+
+NOTE Confidence: 0.8769119381904602
+
+00:01:29.040 --> 00:01:32.015
+Well, not all records, just a bunch of types that
+
+NOTE Confidence: 0.8769119381904602
+
+00:01:32.076 --> 00:01:34.080
+represent pets or animals, right?
+
+NOTE Confidence: 0.6055787801742554
+
+00:01:34.080 --> 00:01:35.560
+Animals like animals.
+
+NOTE Confidence: 0.8646350502967834
+
+00:01:35.680 --> 00:01:37.714
+And let's imagine they're not really here like in the
+
+NOTE Confidence: 0.8646350502967834
+
+00:01:37.752 --> 00:01:38.520
+real world scenario.
+
+NOTE Confidence: 0.879538893699646
+
+00:01:38.520 --> 00:01:39.920
+They're just types all around.
+
+NOTE Confidence: 0.8159494996070862
+
+00:01:39.920 --> 00:01:40.840
+There's a dog library.
+
+NOTE Confidence: 0.791533350944519
+
+00:01:40.840 --> 00:01:41.720
+There's a cat library.
+
+NOTE Confidence: 0.8467040061950684
+
+00:01:41.760 --> 00:01:43.987
+Yeah, but they don't talk to each other because dog
+
+NOTE Confidence: 0.8467040061950684
+
+00:01:44.031 --> 00:01:45.080
+and cat people and yeah.
+
+NOTE Confidence: 0.8555307388305664
+
+00:01:45.400 --> 00:01:47.640
+And we want to talk about pets.
+
+NOTE Confidence: 0.7685034275054932
+
+00:01:47.720 --> 00:01:48.680
+Pets, right?
+
+NOTE Confidence: 0.9443983435630798
+
+00:01:48.680 --> 00:01:50.730
+So up here we have if we want to talk
+
+NOTE Confidence: 0.9443983435630798
+
+00:01:50.785 --> 00:01:53.777
+about pets, we have to they don't really have anything
+
+NOTE Confidence: 0.9443983435630798
+
+00:01:53.833 --> 00:01:55.440
+in common these types, right?
+
+NOTE Confidence: 0.9142617583274841
+
+00:01:55.440 --> 00:01:57.254
+So the best we can do is go all the
+
+NOTE Confidence: 0.9142617583274841
+
+00:01:57.306 --> 00:01:59.328
+way to the top and go, well, we have to
+
+NOTE Confidence: 0.9142617583274841
+
+00:01:59.380 --> 00:02:01.039
+treat them all as object, right?
+
+NOTE Confidence: 0.8852415680885315
+
+00:02:01.040 --> 00:02:03.480
+So we have a list of object of pets, right?
+
+NOTE Confidence: 0.8481746315956116
+
+00:02:03.480 --> 00:02:06.388
+And then we for each over these pets, we produce
+
+NOTE Confidence: 0.8481746315956116
+
+00:02:06.448 --> 00:02:09.236
+it as we got a switch expression over each pet
+
+NOTE Confidence: 0.8481746315956116
+
+00:02:09.296 --> 00:02:12.508
+to kind of deconstruct those values out and turn them
+
+NOTE Confidence: 0.8481746315956116
+
+00:02:12.568 --> 00:02:13.719
+into a description.
+
+NOTE Confidence: 0.781737744808197
+
+00:02:13.720 --> 00:02:17.706
+And then we write to the console, OK, and this
+
+NOTE Confidence: 0.781737744808197
+
+00:02:17.793 --> 00:02:22.040
+will in fact demonstrate that there are 4 pets in
+
+NOTE Confidence: 0.781737744808197
+
+00:02:22.126 --> 00:02:22.560
+this.
+
+NOTE Confidence: 0.39668548107147217
+
+00:02:23.440 --> 00:02:24.920
+Right, the four somethings.
+
+NOTE Confidence: 0.9444647431373596
+
+00:02:25.840 --> 00:02:28.515
+Yeah, and one of them is not what I would
+
+NOTE Confidence: 0.9444647431373596
+
+00:02:28.581 --> 00:02:29.560
+consider a pet.
+
+NOTE Confidence: 0.883567750453949
+
+00:02:30.080 --> 00:02:32.610
+OK, we're in San Francisco, so hey, to each his
+
+NOTE Confidence: 0.883567750453949
+
+00:02:32.664 --> 00:02:32.880
+own.
+
+NOTE Confidence: 0.7578291296958923
+
+00:02:33.280 --> 00:02:35.160
+But maybe sharks or pets here in San?
+
+NOTE Confidence: 0.8582584857940674
+
+00:02:35.160 --> 00:02:37.993
+Francisco not with that many teeth, but yeah, so we
+
+NOTE Confidence: 0.8582584857940674
+
+00:02:38.048 --> 00:02:40.159
+have in here, we have a shark as well.
+
+NOTE Confidence: 0.6510762572288513
+
+00:02:40.280 --> 00:02:43.000
+And so they there's no type safety, right?
+
+NOTE Confidence: 0.8283560276031494
+
+00:02:43.320 --> 00:02:46.194
+You want a certain set of types, but there's no
+
+NOTE Confidence: 0.8283560276031494
+
+00:02:46.255 --> 00:02:49.434
+way to protect against the other ones either in when
+
+NOTE Confidence: 0.8283560276031494
+
+00:02:49.496 --> 00:02:53.531
+you're constructing that list or when we're switching against them
+
+NOTE Confidence: 0.8283560276031494
+
+00:02:53.593 --> 00:02:53.960
+after.
+
+NOTE Confidence: 0.8950948715209961
+
+00:02:53.960 --> 00:02:56.420
+And you can actually also see there's a little squiggle
+
+NOTE Confidence: 0.8950948715209961
+
+00:02:56.465 --> 00:02:58.747
+on the switch there saying and you are not checking
+
+NOTE Confidence: 0.8950948715209961
+
+00:02:58.792 --> 00:03:01.074
+all the other things an object could be, You're not
+
+NOTE Confidence: 0.8950948715209961
+
+00:03:01.118 --> 00:03:02.639
+checking for crocodiles and so on.
+
+NOTE Confidence: 0.9266365766525269
+
+00:03:02.640 --> 00:03:03.240
+Go down the list.
+
+NOTE Confidence: 0.7811400294303894
+
+00:03:03.240 --> 00:03:06.063
+Yeah, I mean all the other natural pets like crocodiles
+
+NOTE Confidence: 0.7811400294303894
+
+00:03:06.115 --> 00:03:06.680
+and snails.
+
+NOTE Confidence: 0.7185652852058411
+
+00:03:06.800 --> 00:03:09.910
+So there's really, yeah, Keep, Yeah, like we only have
+
+NOTE Confidence: 0.7185652852058411
+
+00:03:09.968 --> 00:03:11.120
+25 minutes, I guess.
+
+NOTE Confidence: 0.8354942202568054
+
+00:03:11.120 --> 00:03:14.059
+But yeah, so, so this is not great, but this
+
+NOTE Confidence: 0.8354942202568054
+
+00:03:14.126 --> 00:03:16.464
+is sort of the best we can do in C#
+
+NOTE Confidence: 0.8354942202568054
+
+00:03:16.531 --> 00:03:17.400
+up until now.
+
+NOTE Confidence: 0.4287603199481964
+
+00:03:17.720 --> 00:03:17.880
+Yeah.
+
+NOTE Confidence: 0.8568037748336792
+
+00:03:18.600 --> 00:03:21.047
+But wouldn't it be nice if even they, even though
+
+NOTE Confidence: 0.8568037748336792
+
+00:03:21.097 --> 00:03:23.744
+these types were not created in a context where there
+
+NOTE Confidence: 0.8568037748336792
+
+00:03:23.794 --> 00:03:25.892
+was a notion of pet, why can't we create a
+
+NOTE Confidence: 0.8568037748336792
+
+00:03:25.942 --> 00:03:27.840
+notion of pet that they can belong to?
+
+NOTE Confidence: 0.9115287065505981
+
+00:03:28.160 --> 00:03:29.920
+And that's what union types are in C#.
+
+NOTE Confidence: 0.47028717398643494
+
+00:03:30.080 --> 00:03:30.320
+Right.
+
+NOTE Confidence: 0.8946295380592346
+
+00:03:30.520 --> 00:03:33.827
+And so we create them with just typing union and
+
+NOTE Confidence: 0.8946295380592346
+
+00:03:33.896 --> 00:03:37.066
+then we can say we're creating a union of pets
+
+NOTE Confidence: 0.8946295380592346
+
+00:03:37.135 --> 00:03:40.443
+and I can just put the different types that make
+
+NOTE Confidence: 0.8946295380592346
+
+00:03:40.512 --> 00:03:43.544
+up that set of that thing, that set of types
+
+NOTE Confidence: 0.8946295380592346
+
+00:03:43.613 --> 00:03:44.439
+that is pet.
+
+NOTE Confidence: 0.6681215167045593
+
+00:03:45.080 --> 00:03:45.480
+OK.
+
+NOTE Confidence: 0.878601610660553
+
+00:03:45.800 --> 00:03:47.520
+And it's that simple, right?
+
+NOTE Confidence: 0.8748831152915955
+
+00:03:47.760 --> 00:03:49.948
+Then I can take pet and I don't have to
+
+NOTE Confidence: 0.8748831152915955
+
+00:03:50.004 --> 00:03:51.799
+talk to these as object anymore.
+
+NOTE Confidence: 0.866965651512146
+
+00:03:51.800 --> 00:03:53.319
+I can say, well, no, this is a list of
+
+NOTE Confidence: 0.866965651512146
+
+00:03:53.359 --> 00:03:53.519
+pet.
+
+NOTE Confidence: 0.8137816190719604
+
+00:03:54.080 --> 00:03:58.181
+And now we get an error because shark not a
+
+NOTE Confidence: 0.8137816190719604
+
+00:03:58.276 --> 00:04:00.279
+pet shark saying and.
+
+NOTE Confidence: 0.9004135131835938
+
+00:04:00.880 --> 00:04:03.228
+It says, if you look at the error there, it
+
+NOTE Confidence: 0.9004135131835938
+
+00:04:03.283 --> 00:04:05.960
+says cannot implicitly convert type shark to pet.
+
+NOTE Confidence: 0.9472561478614807
+
+00:04:06.360 --> 00:04:07.200
+So that's good.
+
+NOTE Confidence: 0.8377440571784973
+
+00:04:07.760 --> 00:04:10.041
+But and that says something important and we can, it
+
+NOTE Confidence: 0.8377440571784973
+
+00:04:10.085 --> 00:04:11.839
+means we should go and delete that line.
+
+NOTE Confidence: 0.862910807132721
+
+00:04:12.080 --> 00:04:15.709
+But what it also says is that you can implicitly
+
+NOTE Confidence: 0.862910807132721
+
+00:04:15.784 --> 00:04:18.279
+convert the other types to heads.
+
+NOTE Confidence: 0.9037868976593018
+
+00:04:18.680 --> 00:04:21.790
+So one of the things that a union type apparently
+
+NOTE Confidence: 0.9037868976593018
+
+00:04:21.854 --> 00:04:24.393
+can do in C# is you can convert from the
+
+NOTE Confidence: 0.9037868976593018
+
+00:04:24.457 --> 00:04:27.504
+case types, the things in the list down there to
+
+NOTE Confidence: 0.9037868976593018
+
+00:04:27.567 --> 00:04:28.519
+the union type.
+
+NOTE Confidence: 0.9074580669403076
+
+00:04:28.600 --> 00:04:29.520
+That makes sense, right?
+
+NOTE Confidence: 0.6621885299682617
+
+00:04:29.880 --> 00:04:32.680
+So OK, implicit conversions, right?
+
+NOTE Confidence: 0.7140981554985046
+
+00:04:32.680 --> 00:04:33.040
+Check.
+
+NOTE Confidence: 0.8333749175071716
+
+00:04:33.920 --> 00:04:36.002
+And then as we come down, we're doing our pattern
+
+NOTE Confidence: 0.8333749175071716
+
+00:04:36.045 --> 00:04:36.640
+matching here.
+
+NOTE Confidence: 0.7860106229782104
+
+00:04:36.640 --> 00:04:37.800
+It's our switch expression.
+
+NOTE Confidence: 0.816606342792511
+
+00:04:38.040 --> 00:04:40.573
+And then and then, you know, decomposing each of these
+
+NOTE Confidence: 0.816606342792511
+
+00:04:40.620 --> 00:04:41.839
+shark again has the error.
+
+NOTE Confidence: 0.8261622190475464
+
+00:04:42.080 --> 00:04:44.563
+Hey, look, it can't you know, expression of type pet
+
+NOTE Confidence: 0.8261622190475464
+
+00:04:44.611 --> 00:04:46.759
+cannot be handled by a pattern of type shark.
+
+NOTE Confidence: 0.6534359455108643
+
+00:04:47.120 --> 00:04:47.360
+It.
+
+NOTE Confidence: 0.6306595802307129
+
+00:04:47.880 --> 00:04:48.880
+Yeah, not a pet.
+
+NOTE Confidence: 0.1587584912776947
+
+00:04:49.440 --> 00:04:49.680
+Doesn't.
+
+NOTE Confidence: 0.7845013737678528
+
+00:04:49.680 --> 00:04:50.960
+Match so we can take rid of this.
+
+NOTE Confidence: 0.9406809210777283
+
+00:04:50.960 --> 00:04:53.849
+But what's really cool here is that warning that was
+
+NOTE Confidence: 0.9406809210777283
+
+00:04:53.905 --> 00:04:56.461
+on the switch that said that it was not, could
+
+NOTE Confidence: 0.9406809210777283
+
+00:04:56.517 --> 00:04:58.239
+not be proven to be exhaustive.
+
+NOTE Confidence: 0.8435851335525513
+
+00:04:58.480 --> 00:05:02.400
+It is now we've covered all the cases, right?
+
+NOTE Confidence: 0.8555198311805725
+
+00:05:02.400 --> 00:05:04.480
+Everything that's a pet is covered by the switch.
+
+NOTE Confidence: 0.9049531817436218
+
+00:05:04.480 --> 00:05:06.240
+And we now get compiler support.
+
+NOTE Confidence: 0.9039711356163025
+
+00:05:06.240 --> 00:05:08.365
+We get compiler help to let us know that yes,
+
+NOTE Confidence: 0.9039711356163025
+
+00:05:08.412 --> 00:05:10.159
+we have correctly handled everything.
+
+NOTE Confidence: 0.7278653979301453
+
+00:05:10.160 --> 00:05:13.365
+Yeah, and to prove the point, let's comment out one
+
+NOTE Confidence: 0.7278653979301453
+
+00:05:13.428 --> 00:05:14.999
+of the actual case types.
+
+NOTE Confidence: 0.6882979273796082
+
+00:05:15.000 --> 00:05:15.760
+Yeah, we get that back.
+
+NOTE Confidence: 0.6369211077690125
+
+00:05:15.920 --> 00:05:18.160
+Right, so you get the warning back.
+
+NOTE Confidence: 0.9167877435684204
+
+00:05:18.160 --> 00:05:20.667
+So it's really helping you make sure you hit all
+
+NOTE Confidence: 0.9167877435684204
+
+00:05:20.719 --> 00:05:22.599
+the cases and nothing but the cases.
+
+NOTE Confidence: 0.8657183051109314
+
+00:05:22.960 --> 00:05:25.840
+That's part of the strong typing you get here.
+
+NOTE Confidence: 0.6321673393249512
+
+00:05:26.080 --> 00:05:26.320
+Yeah.
+
+NOTE Confidence: 0.7800117135047913
+
+00:05:26.320 --> 00:05:27.120
+And it's smart, right?
+
+NOTE Confidence: 0.8755190968513489
+
+00:05:27.120 --> 00:05:30.029
+Like you could actually have like we could say pet
+
+NOTE Confidence: 0.8755190968513489
+
+00:05:30.087 --> 00:05:32.647
+is actually a union of dog and cat and maybe
+
+NOTE Confidence: 0.8755190968513489
+
+00:05:32.705 --> 00:05:33.520
+a bird, right?
+
+NOTE Confidence: 0.8966718912124634
+
+00:05:33.520 --> 00:05:35.200
+So you could say it's like a nullable bird.
+
+NOTE Confidence: 0.8979926705360413
+
+00:05:35.440 --> 00:05:37.992
+And now again, the warnings back because now that null
+
+NOTE Confidence: 0.8979926705360413
+
+00:05:38.040 --> 00:05:40.309
+should be handled as well as one of the possible
+
+NOTE Confidence: 0.8979926705360413
+
+00:05:40.356 --> 00:05:40.640
+cases.
+
+NOTE Confidence: 0.8947185277938843
+
+00:05:40.640 --> 00:05:41.880
+So it's now not exhaustive.
+
+NOTE Confidence: 0.958048403263092
+
+00:05:41.880 --> 00:05:44.280
+So it's very smart around these kinds of things.
+
+NOTE Confidence: 0.5946348905563354
+
+00:05:44.280 --> 00:05:45.560
+It's cool.
+
+NOTE Confidence: 0.9560643434524536
+
+00:05:45.800 --> 00:05:46.640
+That's the feature.
+
+NOTE Confidence: 0.9677926301956177
+
+00:05:46.800 --> 00:05:47.120
+Yeah.
+
+NOTE Confidence: 0.9040765166282654
+
+00:05:47.240 --> 00:05:49.090
+Thank you very much and have a good have a
+
+NOTE Confidence: 0.9040765166282654
+
+00:05:49.134 --> 00:05:49.840
+good conference.
+
+NOTE Confidence: 0.6639422178268433
+
+00:05:50.080 --> 00:05:50.400
+It is.
+
+NOTE Confidence: 0.6004631519317627
+
+00:05:50.960 --> 00:05:51.600
+It's the feature.
+
+NOTE Confidence: 0.7027827501296997
+
+00:05:51.760 --> 00:05:53.280
+So, so, so far is this.
+
+NOTE Confidence: 0.8528004884719849
+
+00:05:53.440 --> 00:05:53.920
+Do you like it?
+
+NOTE Confidence: 0.7435804605484009
+
+00:05:53.920 --> 00:05:55.880
+It's OK, yeah.
+
+NOTE Confidence: 0.5522831678390503
+
+00:05:55.880 --> 00:05:56.560
+Some nodding.
+
+NOTE Confidence: 0.606444239616394
+
+00:05:56.560 --> 00:05:56.880
+OK.
+
+NOTE Confidence: 0.44434022903442383
+
+00:05:56.920 --> 00:05:57.760
+Yeah, yeah, I guess.
+
+NOTE Confidence: 0.18372075259685516
+
+00:05:57.760 --> 00:05:58.000
+Smiling.
+
+NOTE Confidence: 0.49134954810142517
+
+00:05:58.080 --> 00:05:58.200
+Yeah.
+
+NOTE Confidence: 0.6902081370353699
+
+00:05:58.960 --> 00:05:59.200
+OK.
+
+NOTE Confidence: 0.6611132621765137
+
+00:05:59.200 --> 00:05:59.480
+Thank you.
+
+NOTE Confidence: 0.7723017930984497
+
+00:06:01.320 --> 00:06:02.920
+I, I we should do more crowd.
+
+NOTE Confidence: 0.9288915991783142
+
+00:06:02.920 --> 00:06:05.345
+Work, I feel like one of the things we get,
+
+NOTE Confidence: 0.9288915991783142
+
+00:06:05.402 --> 00:06:07.771
+we get a lot of feedback that we always do
+
+NOTE Confidence: 0.9288915991783142
+
+00:06:07.827 --> 00:06:10.309
+these demos that are like a a domain of like
+
+NOTE Confidence: 0.9288915991783142
+
+00:06:10.366 --> 00:06:13.525
+something like not really like the code you're trying to
+
+NOTE Confidence: 0.9288915991783142
+
+00:06:13.581 --> 00:06:13.919
+write.
+
+NOTE Confidence: 0.8749961256980896
+
+00:06:14.160 --> 00:06:17.192
+Like we're always doing person and student and here we're
+
+NOTE Confidence: 0.8749961256980896
+
+00:06:17.245 --> 00:06:19.320
+doing pets and dogs and cats and birds.
+
+NOTE Confidence: 0.8712537884712219
+
+00:06:20.080 --> 00:06:23.833
+We should probably try something that is more in that
+
+NOTE Confidence: 0.8712537884712219
+
+00:06:23.904 --> 00:06:24.400
+domain.
+
+NOTE Confidence: 0.3855345845222473
+
+00:06:24.720 --> 00:06:25.080
+Let's do.
+
+NOTE Confidence: 0.744293749332428
+
+00:06:25.200 --> 00:06:28.680
+The Let's Show Do we want to show members on?
+
+NOTE Confidence: 0.6469672322273254
+
+00:06:28.680 --> 00:06:29.000
+Oh yeah.
+
+NOTE Confidence: 0.8372133374214172
+
+00:06:29.040 --> 00:06:29.840
+We should do that first.
+
+NOTE Confidence: 0.8293164968490601
+
+00:06:29.839 --> 00:06:33.452
+Actually, I want to do show one more thing here
+
+NOTE Confidence: 0.8293164968490601
+
+00:06:33.528 --> 00:06:36.679
+now before we dig into that union itself.
+
+NOTE Confidence: 0.8288461565971375
+
+00:06:36.680 --> 00:06:38.734
+Like it's a very, very short description, but of course,
+
+NOTE Confidence: 0.8288461565971375
+
+00:06:38.771 --> 00:06:40.753
+you know, you could actually write a class or instruct
+
+NOTE Confidence: 0.8288461565971375
+
+00:06:40.789 --> 00:06:41.120
+that way.
+
+NOTE Confidence: 0.9262412786483765
+
+00:06:41.120 --> 00:06:42.240
+It's just not very useful.
+
+NOTE Confidence: 0.8543760180473328
+
+00:06:42.400 --> 00:06:44.750
+What we usually do, right is we put braces on
+
+NOTE Confidence: 0.8543760180473328
+
+00:06:44.802 --> 00:06:46.839
+it and then you declare members, right?
+
+NOTE Confidence: 0.8950394988059998
+
+00:06:47.080 --> 00:06:48.480
+So we can declare a member in here.
+
+NOTE Confidence: 0.9280562400817871
+
+00:06:48.480 --> 00:06:50.960
+We can actually declare this whole description thing.
+
+NOTE Confidence: 0.9103548526763916
+
+00:06:51.080 --> 00:06:55.506
+This whole description calculation could just copy down here and
+
+NOTE Confidence: 0.9103548526763916
+
+00:06:55.575 --> 00:06:58.964
+we could say, well, let's make this like a public
+
+NOTE Confidence: 0.9103548526763916
+
+00:06:59.034 --> 00:07:01.039
+property, strict, not strict.
+
+NOTE Confidence: 0.5327057242393494
+
+00:07:01.320 --> 00:07:02.280
+We don't even.
+
+NOTE Confidence: 0.43870818614959717
+
+00:07:02.280 --> 00:07:02.760
+That's C#.
+
+NOTE Confidence: 0.6368904113769531
+
+00:07:02.800 --> 00:07:03.800
+We don't even have.
+
+NOTE Confidence: 0.5274174809455872
+
+00:07:03.800 --> 00:07:05.240
+That in that world, yeah.
+
+NOTE Confidence: 0.9135293960571289
+
+00:07:05.520 --> 00:07:08.059
+And we can make it like, you know, a calculated
+
+NOTE Confidence: 0.9135293960571289
+
+00:07:08.113 --> 00:07:08.599
+property.
+
+NOTE Confidence: 0.9329932928085327
+
+00:07:08.600 --> 00:07:10.600
+But I can't switch on pet anymore.
+
+NOTE Confidence: 0.9738743901252747
+
+00:07:11.000 --> 00:07:12.960
+I mean, I have to switch on this.
+
+NOTE Confidence: 0.951466977596283
+
+00:07:12.960 --> 00:07:15.440
+What kind of pet is this right now?
+
+NOTE Confidence: 0.9471105933189392
+
+00:07:15.440 --> 00:07:17.648
+So now I can switch on that and then we
+
+NOTE Confidence: 0.9471105933189392
+
+00:07:17.705 --> 00:07:19.970
+can come up here and we can just get rid
+
+NOTE Confidence: 0.9471105933189392
+
+00:07:20.026 --> 00:07:20.479
+of that.
+
+NOTE Confidence: 0.5887259840965271
+
+00:07:22.520 --> 00:07:23.880
+Yeah, just say pet the description.
+
+NOTE Confidence: 0.1703556627035141
+
+00:07:23.880 --> 00:07:24.040
+Yeah.
+
+NOTE Confidence: 0.891692578792572
+
+00:07:24.040 --> 00:07:26.332
+So, so you can add your own function members to
+
+NOTE Confidence: 0.891692578792572
+
+00:07:26.381 --> 00:07:28.040
+it that compute stuff or whatever.
+
+NOTE Confidence: 0.9044740200042725
+
+00:07:28.400 --> 00:07:31.168
+We we do draw a line at things that introduce
+
+NOTE Confidence: 0.9044740200042725
+
+00:07:31.230 --> 00:07:34.306
+more state because we think you should think of it
+
+NOTE Confidence: 0.9044740200042725
+
+00:07:34.367 --> 00:07:37.136
+as the state of this thing is just the actual
+
+NOTE Confidence: 0.9044740200042725
+
+00:07:37.198 --> 00:07:40.951
+dog or cattle bird that's inside it shouldn't have additional
+
+NOTE Confidence: 0.9044740200042725
+
+00:07:41.012 --> 00:07:42.119
+state, right that.
+
+NOTE Confidence: 0.8664103746414185
+
+00:07:42.120 --> 00:07:43.600
+So we we prevent you from that.
+
+NOTE Confidence: 0.8658217787742615
+
+00:07:44.160 --> 00:07:46.551
+But as long as it's just a function member, a
+
+NOTE Confidence: 0.8658217787742615
+
+00:07:46.604 --> 00:07:50.696
+computer property, method, whatever, whatever static members you want, that's
+
+NOTE Confidence: 0.8658217787742615
+
+00:07:50.749 --> 00:07:51.439
+totally fine.
+
+NOTE Confidence: 0.8868635296821594
+
+00:07:51.440 --> 00:07:54.176
+So you can still do abstraction here and and the
+
+NOTE Confidence: 0.8868635296821594
+
+00:07:54.233 --> 00:07:56.855
+kind, some of the common things you want to do
+
+NOTE Confidence: 0.8868635296821594
+
+00:07:56.912 --> 00:08:00.275
+across the types in this concept you just created implement
+
+NOTE Confidence: 0.8868635296821594
+
+00:08:00.332 --> 00:08:00.959
+them there.
+
+NOTE Confidence: 0.8280460834503174
+
+00:08:01.360 --> 00:08:04.046
+OK, so that's that's how that's pretty much how I
+
+NOTE Confidence: 0.8280460834503174
+
+00:08:04.101 --> 00:08:06.240
+think most people will use the feature.
+
+NOTE Confidence: 0.9588231444358826
+
+00:08:06.320 --> 00:08:06.880
+I hope so.
+
+NOTE Confidence: 0.9394992589950562
+
+00:08:06.880 --> 00:08:07.760
+I hope this is useful.
+
+NOTE Confidence: 0.6276185512542725
+
+00:08:07.760 --> 00:08:08.080
+Yeah.
+
+NOTE Confidence: 0.9204325079917908
+
+00:08:09.040 --> 00:08:11.240
+Because it is really great for collecting together these things.
+
+NOTE Confidence: 0.8919801712036133
+
+00:08:11.240 --> 00:08:13.006
+And I was kind of alluding trying to head there
+
+NOTE Confidence: 0.8919801712036133
+
+00:08:13.043 --> 00:08:13.720
+just a second ago.
+
+NOTE Confidence: 0.4982993006706238
+
+00:08:13.840 --> 00:08:14.480
+Yeah, right.
+
+NOTE Confidence: 0.7792848348617554
+
+00:08:14.760 --> 00:08:17.105
+I'd like, we'd like to just show you again, but
+
+NOTE Confidence: 0.7792848348617554
+
+00:08:17.155 --> 00:08:19.201
+like kind of in a in a domain that's like
+
+NOTE Confidence: 0.7792848348617554
+
+00:08:19.251 --> 00:08:20.000
+closer to what?
+
+NOTE Confidence: 0.9300541877746582
+
+00:08:20.000 --> 00:08:22.236
+Like maybe you might be using this in normal code
+
+NOTE Confidence: 0.9300541877746582
+
+00:08:22.282 --> 00:08:23.880
+that isn't all about cats and dogs.
+
+NOTE Confidence: 0.838494062423706
+
+00:08:23.880 --> 00:08:26.235
+That is about in fact one of the things that
+
+NOTE Confidence: 0.838494062423706
+
+00:08:26.289 --> 00:08:28.858
+almost everyone who asked us to add unions to C#
+
+NOTE Confidence: 0.838494062423706
+
+00:08:28.912 --> 00:08:30.999
+been asking about, specifically at the.
+
+NOTE Confidence: 0.16301381587982178
+
+00:08:31.000 --> 00:08:31.320
+Scenario.
+
+NOTE Confidence: 0.4443248212337494
+
+00:08:31.400 --> 00:08:31.920
+So let's go there.
+
+NOTE Confidence: 0.8415383696556091
+
+00:08:32.400 --> 00:08:33.640
+What you see here is like.
+
+NOTE Confidence: 0.9365769028663635
+
+00:08:34.920 --> 00:08:36.280
+This is nothing right now, sorry.
+
+NOTE Confidence: 0.7435916066169739
+
+00:08:36.280 --> 00:08:37.120
+You want to go back?
+
+NOTE Confidence: 0.41991373896598816
+
+00:08:37.440 --> 00:08:37.600
+No.
+
+NOTE Confidence: 0.50407475233078
+
+00:08:37.600 --> 00:08:38.160
+And it's good.
+
+NOTE Confidence: 0.6517156362533569
+
+00:08:38.320 --> 00:08:38.600
+It's good.
+
+NOTE Confidence: 0.619962751865387
+
+00:08:38.880 --> 00:08:40.440
+OK, let's start over.
+
+NOTE Confidence: 0.7981874346733093
+
+00:08:40.640 --> 00:08:43.814
+So let's do another, let's do a slightly different kind
+
+NOTE Confidence: 0.7981874346733093
+
+00:08:43.872 --> 00:08:45.200
+of union scenario here.
+
+NOTE Confidence: 0.41178274154663086
+
+00:08:45.200 --> 00:08:45.360
+Yeah.
+
+NOTE Confidence: 0.8339273929595947
+
+00:08:46.240 --> 00:08:50.394
+So stuff on the wire, you get something back on
+
+NOTE Confidence: 0.8339273929595947
+
+00:08:50.483 --> 00:08:55.257
+the wire, either there's something or maybe you get an
+
+NOTE Confidence: 0.8339273929595947
+
+00:08:55.345 --> 00:08:56.759
+error, right so.
+
+NOTE Confidence: 0.717982828617096
+
+00:08:57.640 --> 00:09:01.960
+There's like you get like a success, right?
+
+NOTE Confidence: 0.8484824895858765
+
+00:09:01.960 --> 00:09:04.338
+You get back, you're going to model that data as
+
+NOTE Confidence: 0.8484824895858765
+
+00:09:04.388 --> 00:09:06.618
+like you get a success and that could be like
+
+NOTE Confidence: 0.8484824895858765
+
+00:09:06.667 --> 00:09:07.560
+anything in there.
+
+NOTE Confidence: 0.8669083714485168
+
+00:09:07.560 --> 00:09:08.680
+Yeah, it has some kind of payload.
+
+NOTE Confidence: 0.5120135545730591
+
+00:09:08.800 --> 00:09:11.466
+So put in like, yeah, data T, yeah, make that
+
+NOTE Confidence: 0.5120135545730591
+
+00:09:11.525 --> 00:09:12.000
+generic.
+
+NOTE Confidence: 0.9271329045295715
+
+00:09:12.040 --> 00:09:13.560
+That's what you want, that's what you want.
+
+NOTE Confidence: 0.8174835443496704
+
+00:09:13.840 --> 00:09:14.760
+What you get is.
+
+NOTE Confidence: 0.6046229004859924
+
+00:09:14.960 --> 00:09:16.600
+Yeah, and and an error.
+
+NOTE Confidence: 0.8569391965866089
+
+00:09:16.600 --> 00:09:18.336
+And then you want an error or you get an
+
+NOTE Confidence: 0.8569391965866089
+
+00:09:18.379 --> 00:09:18.640
+error.
+
+NOTE Confidence: 0.9365308880805969
+
+00:09:18.880 --> 00:09:20.440
+So you need to model this as well, right?
+
+NOTE Confidence: 0.8276960849761963
+
+00:09:20.440 --> 00:09:22.418
+So we'd say it could be one of these two
+
+NOTE Confidence: 0.8276960849761963
+
+00:09:22.467 --> 00:09:23.159
+things, right?
+
+NOTE Confidence: 0.9725866913795471
+
+00:09:24.400 --> 00:09:25.560
+And then we can come in here.
+
+NOTE Confidence: 0.7398443818092346
+
+00:09:25.960 --> 00:09:27.573
+Yeah, these are just records that are in the language
+
+NOTE Confidence: 0.7398443818092346
+
+00:09:27.604 --> 00:09:28.000
+today, right?
+
+NOTE Confidence: 0.45528995990753174
+
+00:09:28.000 --> 00:09:29.320
+Yeah, you can just write these already.
+
+NOTE Confidence: 0.8841075897216797
+
+00:09:29.360 --> 00:09:30.440
+These are not new features.
+
+NOTE Confidence: 0.9195860028266907
+
+00:09:30.480 --> 00:09:32.760
+These are old features that you're not using yet.
+
+NOTE Confidence: 0.9134382605552673
+
+00:09:33.000 --> 00:09:36.038
+It's fine, but with unions now I can bring these
+
+NOTE Confidence: 0.9134382605552673
+
+00:09:36.101 --> 00:09:39.520
+together and connect them, kind of glue them together.
+
+NOTE Confidence: 0.838176965713501
+
+00:09:39.520 --> 00:09:42.120
+So the compiler knows if these are related things, right?
+
+NOTE Confidence: 0.91324383020401
+
+00:09:42.280 --> 00:09:45.160
+And I can use those generics within it, right?
+
+NOTE Confidence: 0.8376732468605042
+
+00:09:45.160 --> 00:09:48.493
+So I can say, you know, let's say we'll call
+
+NOTE Confidence: 0.8376732468605042
+
+00:09:48.569 --> 00:09:50.160
+this like result, OK.
+
+NOTE Confidence: 0.9600783586502075
+
+00:09:50.160 --> 00:09:52.840
+And that has two cases, right?
+
+NOTE Confidence: 0.8617997765541077
+
+00:09:52.840 --> 00:09:55.156
+It has success of T and it has error and
+
+NOTE Confidence: 0.8617997765541077
+
+00:09:55.214 --> 00:09:57.994
+now I could have a method that returns result of
+
+NOTE Confidence: 0.8617997765541077
+
+00:09:58.051 --> 00:10:00.599
+T and it can return one of these two things.
+
+NOTE Confidence: 0.4373074173927307
+
+00:10:00.600 --> 00:10:00.800
+Yeah, you.
+
+NOTE Confidence: 0.6386646032333374
+
+00:10:01.360 --> 00:10:02.360
+Make it sound so cool I.
+
+NOTE Confidence: 0.8600090146064758
+
+00:10:02.480 --> 00:10:06.120
+I do try to make it sound cool, actually.
+
+NOTE Confidence: 0.9540277719497681
+
+00:10:06.120 --> 00:10:08.072
+Let's put together some data that we can kind of
+
+NOTE Confidence: 0.9540277719497681
+
+00:10:08.112 --> 00:10:08.560
+model this.
+
+NOTE Confidence: 0.9521993398666382
+
+00:10:08.760 --> 00:10:11.000
+Like I'm getting stuff off the wire, right?
+
+NOTE Confidence: 0.7975376844406128
+
+00:10:11.000 --> 00:10:13.628
+So we'll say like, we'll make a queue of of
+
+NOTE Confidence: 0.7975376844406128
+
+00:10:13.689 --> 00:10:16.868
+like results of say like like we're getting ints off
+
+NOTE Confidence: 0.7975376844406128
+
+00:10:16.929 --> 00:10:17.480
+the wire.
+
+NOTE Confidence: 0.7388092279434204
+
+00:10:17.600 --> 00:10:20.326
+Yeah, we're not heading totally into like realistic scenario territory
+
+NOTE Confidence: 0.7388092279434204
+
+00:10:20.365 --> 00:10:20.560
+here.
+
+NOTE Confidence: 0.6292579174041748
+
+00:10:20.560 --> 00:10:21.840
+We still got to have ints inside.
+
+NOTE Confidence: 0.7504985928535461
+
+00:10:22.240 --> 00:10:25.063
+But like, it's the stuff where we're like, well, let's
+
+NOTE Confidence: 0.7504985928535461
+
+00:10:25.115 --> 00:10:27.624
+in queue a couple of things that come from like,
+
+NOTE Confidence: 0.7504985928535461
+
+00:10:27.677 --> 00:10:29.925
+you know, the data, we'll say we we want to
+
+NOTE Confidence: 0.7504985928535461
+
+00:10:29.977 --> 00:10:32.487
+get a, let's get a success, say like, yeah, 42's
+
+NOTE Confidence: 0.7504985928535461
+
+00:10:32.539 --> 00:10:34.160
+returned, that'd be successful.
+
+NOTE Confidence: 0.9232950210571289
+
+00:10:35.080 --> 00:10:39.197
+And then like a new error like the error that
+
+NOTE Confidence: 0.9232950210571289
+
+00:10:39.288 --> 00:10:42.399
+I couldn't type, nothing happened.
+
+NOTE Confidence: 0.9289241433143616
+
+00:10:43.520 --> 00:10:44.240
+That's a good error.
+
+NOTE Confidence: 0.8389987349510193
+
+00:10:44.280 --> 00:10:45.600
+Yeah, sorry.
+
+NOTE Confidence: 0.9535825848579407
+
+00:10:46.320 --> 00:10:46.600
+Yeah.
+
+NOTE Confidence: 0.8843997716903687
+
+00:10:46.960 --> 00:10:47.320
+OK.
+
+NOTE Confidence: 0.7618994116783142
+
+00:10:47.600 --> 00:10:49.520
+So we've got some results and then we went to
+
+NOTE Confidence: 0.7618994116783142
+
+00:10:49.562 --> 00:10:50.800
+like loop over these results.
+
+NOTE Confidence: 0.826402485370636
+
+00:10:50.800 --> 00:10:53.343
+So I could like do a while loop and you
+
+NOTE Confidence: 0.826402485370636
+
+00:10:53.409 --> 00:10:56.475
+know in there we could try and dequeue and grab
+
+NOTE Confidence: 0.826402485370636
+
+00:10:56.540 --> 00:10:59.279
+out the result and then come down in here.
+
+NOTE Confidence: 0.9591626524925232
+
+00:10:59.600 --> 00:11:00.160
+And do a switch.
+
+NOTE Confidence: 0.9217287302017212
+
+00:11:00.160 --> 00:11:02.200
+Again and do a switch to get that data out.
+
+NOTE Confidence: 0.934184730052948
+
+00:11:02.200 --> 00:11:03.440
+So switching on result.
+
+NOTE Confidence: 0.7753543257713318
+
+00:11:03.960 --> 00:11:09.182
+So say switch and what's the first switch going to
+
+NOTE Confidence: 0.7753543257713318
+
+00:11:09.286 --> 00:11:09.600
+be?
+
+NOTE Confidence: 0.7791199684143066
+
+00:11:09.600 --> 00:11:10.080
+It's going to be a.
+
+NOTE Confidence: 0.9151031970977783
+
+00:11:10.080 --> 00:11:10.440
+Success, right?
+
+NOTE Confidence: 0.6301519274711609
+
+00:11:10.440 --> 00:11:10.680
+Yeah.
+
+NOTE Confidence: 0.627798318862915
+
+00:11:10.760 --> 00:11:13.840
+So assuming it's a success of int of int.
+
+NOTE Confidence: 0.9148566722869873
+
+00:11:14.000 --> 00:11:15.560
+But now we can deconstruct it.
+
+NOTE Confidence: 0.7928308248519897
+
+00:11:15.720 --> 00:11:17.040
+Because it's a record, yeah.
+
+NOTE Confidence: 0.6803151369094849
+
+00:11:17.640 --> 00:11:17.920
+Which is.
+
+NOTE Confidence: 0.7573060393333435
+
+00:11:18.160 --> 00:11:19.320
+That's why you should use records.
+
+NOTE Confidence: 0.43805211782455444
+
+00:11:19.680 --> 00:11:19.760
+See.
+
+NOTE Confidence: 0.9014859199523926
+
+00:11:19.880 --> 00:11:21.840
+You can deconstruct the data right out of it.
+
+NOTE Confidence: 0.6417884826660156
+
+00:11:21.880 --> 00:11:22.200
+Yeah, and.
+
+NOTE Confidence: 0.8106966614723206
+
+00:11:22.440 --> 00:11:24.240
+I can just pull out the D, right?
+
+NOTE Confidence: 0.8205315470695496
+
+00:11:24.240 --> 00:11:26.480
+Pull out that data and then down here we're going.
+
+NOTE Confidence: 0.6295760869979858
+
+00:11:26.480 --> 00:11:27.520
+To do notice.
+
+NOTE Confidence: 0.543727695941925
+
+00:11:27.840 --> 00:11:28.080
+Yeah.
+
+NOTE Confidence: 0.5676490664482117
+
+00:11:28.080 --> 00:11:29.040
+Oh, and now I have the.
+
+NOTE Confidence: 0.5921351909637451
+
+00:11:29.040 --> 00:11:30.000
+Switch on the switch.
+
+NOTE Confidence: 0.7578321695327759
+
+00:11:30.400 --> 00:11:31.320
+Because I haven't.
+
+NOTE Confidence: 0.4972533583641052
+
+00:11:31.320 --> 00:11:32.040
+You haven't.
+
+NOTE Confidence: 0.6618964076042175
+
+00:11:32.600 --> 00:11:33.520
+Dealt with the errors.
+
+NOTE Confidence: 0.8914138674736023
+
+00:11:33.520 --> 00:11:35.351
+So it's reminding us to deal with the errors, which
+
+NOTE Confidence: 0.8914138674736023
+
+00:11:35.387 --> 00:11:36.679
+is what you've always wanted, right?
+
+NOTE Confidence: 0.721802830696106
+
+00:11:36.840 --> 00:11:37.040
+Yeah.
+
+NOTE Confidence: 0.9298854470252991
+
+00:11:38.200 --> 00:11:39.560
+OK, so let's go ahead and do that.
+
+NOTE Confidence: 0.6994374990463257
+
+00:11:39.559 --> 00:11:43.082
+We'll grab out that message and you know, we'll just
+
+NOTE Confidence: 0.6994374990463257
+
+00:11:43.150 --> 00:11:43.760
+throw it.
+
+NOTE Confidence: 0.6425442099571228
+
+00:11:44.000 --> 00:11:46.120
+Throw it, fine, bad things happen.
+
+NOTE Confidence: 0.44384846091270447
+
+00:11:46.120 --> 00:11:46.600
+Sorry.
+
+NOTE Confidence: 0.7862788438796997
+
+00:11:47.840 --> 00:11:50.960
+And I think that's what do we want to do.
+
+NOTE Confidence: 0.7821568250656128
+
+00:11:50.960 --> 00:11:51.840
+No, we should write it.
+
+NOTE Confidence: 0.6345000863075256
+
+00:11:51.840 --> 00:11:52.880
+We should write the like, you know, do.
+
+NOTE Confidence: 0.39165592193603516
+
+00:11:52.880 --> 00:11:54.040
+It like write it and.
+
+NOTE Confidence: 0.599907636642456
+
+00:11:54.680 --> 00:11:55.560
+Then we should run it.
+
+NOTE Confidence: 0.8067606091499329
+
+00:11:55.760 --> 00:11:58.640
+OK, let's make sure Dustin typed everything right.
+
+NOTE Confidence: 0.534767210483551
+
+00:12:01.200 --> 00:12:01.680
+There you go.
+
+NOTE Confidence: 0.6995736956596375
+
+00:12:01.800 --> 00:12:03.600
+Gets 42, throws the exception.
+
+NOTE Confidence: 0.8919563889503479
+
+00:12:04.400 --> 00:12:06.200
+And so, yeah, we're really in the business.
+
+NOTE Confidence: 0.8797935843467712
+
+00:12:06.200 --> 00:12:06.760
+It's funny, right?
+
+NOTE Confidence: 0.812713623046875
+
+00:12:06.760 --> 00:12:09.431
+We're in the business of giving you more errors and
+
+NOTE Confidence: 0.812713623046875
+
+00:12:09.483 --> 00:12:11.736
+you and you love us for giving us more, for
+
+NOTE Confidence: 0.812713623046875
+
+00:12:11.788 --> 00:12:13.360
+giving you more errors, right.
+
+NOTE Confidence: 0.8576233386993408
+
+00:12:13.360 --> 00:12:16.076
+It's like because you're getting a a tighter control of
+
+NOTE Confidence: 0.8576233386993408
+
+00:12:16.125 --> 00:12:17.360
+your scenario here again.
+
+NOTE Confidence: 0.8883735537528992
+
+00:12:17.559 --> 00:12:21.320
+Yeah, One thing I so now you've seen this union
+
+NOTE Confidence: 0.8883735537528992
+
+00:12:21.400 --> 00:12:23.000
+type can be generic.
+
+NOTE Confidence: 0.7123098373413086
+
+00:12:23.000 --> 00:12:24.839
+They can so we they can have members, they can
+
+NOTE Confidence: 0.7123098373413086
+
+00:12:24.879 --> 00:12:25.319
+be generic.
+
+NOTE Confidence: 0.8677108287811279
+
+00:12:25.320 --> 00:12:27.960
+They can do most things that other types can do.
+
+NOTE Confidence: 0.9138404130935669
+
+00:12:28.280 --> 00:12:30.829
+The the case types themselves can be most things as
+
+NOTE Confidence: 0.9138404130935669
+
+00:12:30.879 --> 00:12:33.079
+long as they can, as long as they convert to
+
+NOTE Confidence: 0.9138404130935669
+
+00:12:33.129 --> 00:12:34.679
+object, they can be case types.
+
+NOTE Confidence: 0.9335833787918091
+
+00:12:34.680 --> 00:12:36.280
+It's fine if they overlap or whatever.
+
+NOTE Confidence: 0.8953972458839417
+
+00:12:36.480 --> 00:12:37.920
+There's no like restrictions on that.
+
+NOTE Confidence: 0.9172192811965942
+
+00:12:37.920 --> 00:12:40.200
+They can be interfaces or type parameters or whatever.
+
+NOTE Confidence: 0.9379251003265381
+
+00:12:40.640 --> 00:12:42.120
+So it's a pretty general feature.
+
+NOTE Confidence: 0.9052191972732544
+
+00:12:42.600 --> 00:12:44.608
+But I wanted, I want you just to call out
+
+NOTE Confidence: 0.9052191972732544
+
+00:12:44.657 --> 00:12:47.253
+this scenario is subtly different than the one we had
+
+NOTE Confidence: 0.9052191972732544
+
+00:12:47.302 --> 00:12:49.948
+before in that it's not working on existing types that
+
+NOTE Confidence: 0.9052191972732544
+
+00:12:49.997 --> 00:12:51.319
+were already in the system.
+
+NOTE Confidence: 0.865732729434967
+
+00:12:51.320 --> 00:12:54.919
+It's not trying to bring stuff together that others declared
+
+NOTE Confidence: 0.865732729434967
+
+00:12:54.979 --> 00:12:55.159
+it.
+
+NOTE Confidence: 0.8700858950614929
+
+00:12:55.400 --> 00:12:59.075
+We are declaring the case types afresh here together with
+
+NOTE Confidence: 0.8700858950614929
+
+00:12:59.140 --> 00:13:02.106
+the union type and that is sort of like that's
+
+NOTE Confidence: 0.8700858950614929
+
+00:13:02.171 --> 00:13:06.363
+the kind of usage that functional people would call discriminated
+
+NOTE Confidence: 0.8700858950614929
+
+00:13:06.427 --> 00:13:10.555
+unions that we're essentially emulating that here where you are,
+
+NOTE Confidence: 0.8700858950614929
+
+00:13:10.619 --> 00:13:13.908
+where the you are modeling the whole package, so to
+
+NOTE Confidence: 0.8700858950614929
+
+00:13:13.973 --> 00:13:14.360
+speak.
+
+NOTE Confidence: 0.8759617805480957
+
+00:13:14.360 --> 00:13:17.479
+You're modeling the kinds of thing, things it can be
+
+NOTE Confidence: 0.8759617805480957
+
+00:13:17.539 --> 00:13:20.359
+and the union saying that it can be those kinds
+
+NOTE Confidence: 0.8759617805480957
+
+00:13:20.419 --> 00:13:20.959
+together.
+
+NOTE Confidence: 0.8829240202903748
+
+00:13:21.160 --> 00:13:22.979
+And and I think that's going to be a common
+
+NOTE Confidence: 0.8829240202903748
+
+00:13:23.022 --> 00:13:24.079
+pattern of usage as well.
+
+NOTE Confidence: 0.7523789405822754
+
+00:13:24.240 --> 00:13:28.680
+Yeah, well, and one thing that stuck with me.
+
+NOTE Confidence: 0.9433218836784363
+
+00:13:28.680 --> 00:13:29.640
+So I love this.
+
+NOTE Confidence: 0.955974817276001
+
+00:13:29.720 --> 00:13:30.520
+I think it's cool.
+
+NOTE Confidence: 0.959222137928009
+
+00:13:30.920 --> 00:13:32.560
+I think I will find it useful.
+
+NOTE Confidence: 0.8172006011009216
+
+00:13:32.840 --> 00:13:36.520
+OK, but how is the sausage made?
+
+NOTE Confidence: 0.8481893539428711
+
+00:13:36.840 --> 00:13:38.280
+Yeah, what's under the hood, Right.
+
+NOTE Confidence: 0.9570776224136353
+
+00:13:38.280 --> 00:13:39.760
+What's actually happening here?
+
+NOTE Confidence: 0.8340126276016235
+
+00:13:39.960 --> 00:13:42.425
+Because it seems like, I mean, if you work with
+
+NOTE Confidence: 0.8340126276016235
+
+00:13:42.477 --> 00:13:45.152
+T sharp type systems, this feels kind of magical in
+
+NOTE Confidence: 0.8340126276016235
+
+00:13:45.205 --> 00:13:45.520
+a way.
+
+NOTE Confidence: 0.8891962170600891
+
+00:13:45.520 --> 00:13:47.479
+If you've ever tried to write this sort of thing,
+
+NOTE Confidence: 0.8891962170600891
+
+00:13:47.519 --> 00:13:48.839
+it requires a lot of boilerplate.
+
+NOTE Confidence: 0.8912030458450317
+
+00:13:49.280 --> 00:13:50.600
+So what are we doing here?
+
+NOTE Confidence: 0.7231593132019043
+
+00:13:51.480 --> 00:13:52.400
+It's actually.
+
+NOTE Confidence: 0.9010867476463318
+
+00:13:53.560 --> 00:13:56.240
+So it's actually in some ways fairly simple.
+
+NOTE Confidence: 0.6795365810394287
+
+00:13:56.400 --> 00:13:59.188
+Well, then the feature is there's a whole like language
+
+NOTE Confidence: 0.6795365810394287
+
+00:13:59.239 --> 00:13:59.999
+feature on top.
+
+NOTE Confidence: 0.8645752668380737
+
+00:14:00.000 --> 00:14:03.158
+But you, if you're wondering what's underneath, what is that
+
+NOTE Confidence: 0.8645752668380737
+
+00:14:03.211 --> 00:14:06.159
+union actually in terms that you you already have today.
+
+NOTE Confidence: 0.9538653492927551
+
+00:14:06.640 --> 00:14:07.760
+We can actually show you.
+
+NOTE Confidence: 0.9316074252128601
+
+00:14:07.880 --> 00:14:10.702
+We can, we can comment that out and we can
+
+NOTE Confidence: 0.9316074252128601
+
+00:14:10.769 --> 00:14:12.919
+write it in a long form instead.
+
+NOTE Confidence: 0.9687884449958801
+
+00:14:12.920 --> 00:14:14.240
+That actually also works.
+
+NOTE Confidence: 0.5989946126937866
+
+00:14:14.400 --> 00:14:18.680
+Yeah, because unions, under the hood, there's they're they're structs.
+
+NOTE Confidence: 0.8714746236801147
+
+00:14:18.679 --> 00:14:21.927
+When we create them, we give you kind of a,
+
+NOTE Confidence: 0.8714746236801147
+
+00:14:22.002 --> 00:14:26.760
+a very, very like like prescriptive form, very opinionated form
+
+NOTE Confidence: 0.8714746236801147
+
+00:14:26.836 --> 00:14:28.799
+of what a union should be.
+
+NOTE Confidence: 0.87626051902771
+
+00:14:28.800 --> 00:14:31.728
+When we produce 1 and what that prescription is, it's
+
+NOTE Confidence: 0.87626051902771
+
+00:14:31.783 --> 00:14:34.160
+like we're going to create a struct, right?
+
+NOTE Confidence: 0.8381640911102295
+
+00:14:35.200 --> 00:14:37.440
+And that struct, what's that?
+
+NOTE Confidence: 0.8488430976867676
+
+00:14:37.720 --> 00:14:41.320
+Yeah, we want to tell the compiler so.
+
+NOTE Confidence: 0.8924819827079773
+
+00:14:41.560 --> 00:14:43.592
+So what are we saying here is you can build
+
+NOTE Confidence: 0.8924819827079773
+
+00:14:43.639 --> 00:14:46.098
+your own union types that are different from what we
+
+NOTE Confidence: 0.8924819827079773
+
+00:14:46.145 --> 00:14:47.279
+produce from the syntax.
+
+NOTE Confidence: 0.8951951265335083
+
+00:14:47.920 --> 00:14:50.269
+And it's just, it just takes a little more work,
+
+NOTE Confidence: 0.8951951265335083
+
+00:14:50.318 --> 00:14:51.200
+but not that much.
+
+NOTE Confidence: 0.8841488361358643
+
+00:14:51.200 --> 00:14:53.039
+So we're going to use that little more work to
+
+NOTE Confidence: 0.8841488361358643
+
+00:14:53.079 --> 00:14:54.679
+actually produce exactly the same thing.
+
+NOTE Confidence: 0.7739262580871582
+
+00:14:54.920 --> 00:14:56.720
+But you could have done made different choices.
+
+NOTE Confidence: 0.9313876032829285
+
+00:14:57.040 --> 00:14:59.557
+You have to tell the compiler, hey, I know this
+
+NOTE Confidence: 0.9313876032829285
+
+00:14:59.610 --> 00:15:01.966
+is just a struct or a class or whatever, but
+
+NOTE Confidence: 0.9313876032829285
+
+00:15:02.020 --> 00:15:03.520
+I mean for it to be a union.
+
+NOTE Confidence: 0.9588493704795837
+
+00:15:04.360 --> 00:15:06.360
+So we do that by putting an attribute on it.
+
+NOTE Confidence: 0.7954513430595398
+
+00:15:06.400 --> 00:15:08.360
+It's really complicated attribute.
+
+NOTE Confidence: 0.7335704565048218
+
+00:15:08.800 --> 00:15:11.440
+It's already in.net 11 Preview 4.
+
+NOTE Confidence: 0.8891756534576416
+
+00:15:12.200 --> 00:15:15.946
+There is a union attribute that makes us work with
+
+NOTE Confidence: 0.8891756534576416
+
+00:15:16.020 --> 00:15:16.920
+five errors.
+
+NOTE Confidence: 0.8980924487113953
+
+00:15:17.720 --> 00:15:18.960
+Actually more than that, there's more.
+
+NOTE Confidence: 0.8708648681640625
+
+00:15:18.960 --> 00:15:20.240
+There's two errors on the spot.
+
+NOTE Confidence: 0.7764193415641785
+
+00:15:20.600 --> 00:15:21.560
+And these are just errors.
+
+NOTE Confidence: 0.7873161435127258
+
+00:15:21.560 --> 00:15:23.724
+The compilers giving you to say like this doesn't work,
+
+NOTE Confidence: 0.7873161435127258
+
+00:15:23.763 --> 00:15:23.999
+right?
+
+NOTE Confidence: 0.7868541479110718
+
+00:15:24.200 --> 00:15:26.821
+Because you're saying this is a result, but nothing connects
+
+NOTE Confidence: 0.7868541479110718
+
+00:15:26.864 --> 00:15:29.617
+success and error with this any anymore because we've commented
+
+NOTE Confidence: 0.7868541479110718
+
+00:15:29.660 --> 00:15:30.359
+that down below.
+
+NOTE Confidence: 0.9736104011535645
+
+00:15:30.640 --> 00:15:32.120
+So we need to do that, right?
+
+NOTE Confidence: 0.9011224508285522
+
+00:15:32.120 --> 00:15:35.592
+First of all, the very bottom warning or error says,
+
+NOTE Confidence: 0.9011224508285522
+
+00:15:35.659 --> 00:15:38.597
+hey, a union member like it must have have a
+
+NOTE Confidence: 0.9011224508285522
+
+00:15:38.664 --> 00:15:40.199
+public instance, right?
+
+NOTE Confidence: 0.7277747988700867
+
+00:15:40.920 --> 00:15:42.774
+Like if if this is a, this is a union,
+
+NOTE Confidence: 0.7277747988700867
+
+00:15:42.823 --> 00:15:45.409
+it must have a public instance value property of type
+
+NOTE Confidence: 0.7277747988700867
+
+00:15:45.458 --> 00:15:45.800
+object.
+
+NOTE Confidence: 0.872452437877655
+
+00:15:45.960 --> 00:15:48.790
+And that's actually something that I didn't poke into up
+
+NOTE Confidence: 0.872452437877655
+
+00:15:48.841 --> 00:15:51.267
+here, but when we just had the union earlier, if
+
+NOTE Confidence: 0.872452437877655
+
+00:15:51.318 --> 00:15:54.200
+I dotted into that, you'd see that value property, right?
+
+NOTE Confidence: 0.9189692139625549
+
+00:15:54.720 --> 00:15:55.960
+So we need to have one too.
+
+NOTE Confidence: 0.9509409666061401
+
+00:15:56.040 --> 00:15:59.040
+And it looks really complicated.
+
+NOTE Confidence: 0.6962705254554749
+
+00:15:59.880 --> 00:16:00.200
+No.
+
+NOTE Confidence: 0.9452674984931946
+
+00:16:00.520 --> 00:16:01.320
+It's like that.
+
+NOTE Confidence: 0.8903287053108215
+
+00:16:01.680 --> 00:16:04.200
+OK, and that gets rid of one of those errors.
+
+NOTE Confidence: 0.6663781404495239
+
+00:16:04.360 --> 00:16:06.524
+So that's just a oh, and you're hiding it right
+
+NOTE Confidence: 0.6663781404495239
+
+00:16:06.570 --> 00:16:07.399
+now I'm hiding it.
+
+NOTE Confidence: 0.793931245803833
+
+00:16:07.400 --> 00:16:09.080
+But that's just an auto property.
+
+NOTE Confidence: 0.793804943561554
+
+00:16:09.080 --> 00:16:11.123
+It's just it has a field behind it of type
+
+NOTE Confidence: 0.793804943561554
+
+00:16:11.172 --> 00:16:14.091
+object that contains whatever it is that this union actually
+
+NOTE Confidence: 0.793804943561554
+
+00:16:14.140 --> 00:16:15.599
+is now wrapped in this struct.
+
+NOTE Confidence: 0.8498488664627075
+
+00:16:16.400 --> 00:16:18.560
+But let's get rid of these other errors up here.
+
+NOTE Confidence: 0.47919830679893494
+
+00:16:18.560 --> 00:16:19.120
+Yeah, let's start.
+
+NOTE Confidence: 0.8600427508354187
+
+00:16:19.520 --> 00:16:22.040
+How would it connect success and error?
+
+NOTE Confidence: 0.930190920829773
+
+00:16:22.360 --> 00:16:25.187
+Well, it says it needs at least one union creation
+
+NOTE Confidence: 0.930190920829773
+
+00:16:25.244 --> 00:16:25.639
+member.
+
+NOTE Confidence: 0.9649087190628052
+
+00:16:25.640 --> 00:16:26.880
+How do you create things?
+
+NOTE Confidence: 0.6187523603439331
+
+00:16:27.360 --> 00:16:28.080
+Constructors.
+
+NOTE Confidence: 0.3967002034187317
+
+00:16:28.080 --> 00:16:28.640
+Constructors.
+
+NOTE Confidence: 0.6522513031959534
+
+00:16:28.640 --> 00:16:28.920
+Right.
+
+NOTE Confidence: 0.8656111359596252
+
+00:16:28.920 --> 00:16:32.442
+So we'll add a constructor to this type that takes
+
+NOTE Confidence: 0.8656111359596252
+
+00:16:32.513 --> 00:16:35.120
+first one will take a success of int.
+
+NOTE Confidence: 0.7788339257240295
+
+00:16:35.600 --> 00:16:37.360
+We'll call that parameter, we'll call it value.
+
+NOTE Confidence: 0.8031741976737976
+
+00:16:37.360 --> 00:16:40.897
+And then we'll just kind of assign the, we'll assign
+
+NOTE Confidence: 0.8031741976737976
+
+00:16:40.965 --> 00:16:44.640
+the big value property to the little value down there.
+
+NOTE Confidence: 0.8552274107933044
+
+00:16:44.960 --> 00:16:47.089
+And if you look, you see that the success errors
+
+NOTE Confidence: 0.8552274107933044
+
+00:16:47.134 --> 00:16:47.799
+went away, Yes.
+
+NOTE Confidence: 0.721738338470459
+
+00:16:48.600 --> 00:16:49.760
+And now we just have one on.
+
+NOTE Confidence: 0.8556124567985535
+
+00:16:49.800 --> 00:16:52.246
+Error and the error on the result went away as
+
+NOTE Confidence: 0.8556124567985535
+
+00:16:52.299 --> 00:16:54.639
+well because now it does have one case type.
+
+NOTE Confidence: 0.896858811378479
+
+00:16:55.400 --> 00:16:56.920
+So now it's a union of one thing.
+
+NOTE Confidence: 0.948046863079071
+
+00:16:57.080 --> 00:16:58.680
+And we just need to add the other, right?
+
+NOTE Confidence: 0.6896044015884399
+
+00:16:59.000 --> 00:17:01.040
+Just another constructive for each case type.
+
+NOTE Confidence: 0.4174800515174866
+
+00:17:01.280 --> 00:17:01.640
+Yeah.
+
+NOTE Confidence: 0.7261757254600525
+
+00:17:01.640 --> 00:17:02.520
+And so we'll just add.
+
+NOTE Confidence: 0.8890219330787659
+
+00:17:02.520 --> 00:17:04.520
+Error in here and.
+
+NOTE Confidence: 0.7819619178771973
+
+00:17:04.520 --> 00:17:05.360
+Now we have a Union.
+
+NOTE Confidence: 0.6079496145248413
+
+00:17:05.360 --> 00:17:06.280
+You need to go now.
+
+NOTE Confidence: 0.8975023031234741
+
+00:17:06.280 --> 00:17:09.550
+We've constructed everything the compiler is going to look for
+
+NOTE Confidence: 0.8975023031234741
+
+00:17:09.603 --> 00:17:11.079
+in treating this as a union.
+
+NOTE Confidence: 0.8788507580757141
+
+00:17:11.080 --> 00:17:13.640
+Yeah, we do add one more thing when we generate
+
+NOTE Confidence: 0.8788507580757141
+
+00:17:13.695 --> 00:17:16.909
+from the syntax, which is it implements an interface called
+
+NOTE Confidence: 0.8788507580757141
+
+00:17:16.964 --> 00:17:17.399
+I union.
+
+NOTE Confidence: 0.7399704456329346
+
+00:17:17.640 --> 00:17:19.640
+It's also already in.net 11.
+
+NOTE Confidence: 0.850335955619812
+
+00:17:19.680 --> 00:17:22.360
+And which just says it has the value property that's.
+
+NOTE Confidence: 0.6716288328170776
+
+00:17:22.359 --> 00:17:23.682
+All it does is all it does is have the
+
+NOTE Confidence: 0.6716288328170776
+
+00:17:23.717 --> 00:17:24.239
+value property.
+
+NOTE Confidence: 0.8415314555168152
+
+00:17:24.240 --> 00:17:26.474
+So if you want to check for unions or you
+
+NOTE Confidence: 0.8415314555168152
+
+00:17:26.528 --> 00:17:28.926
+know to do a runtime check and call that and
+
+NOTE Confidence: 0.8415314555168152
+
+00:17:28.980 --> 00:17:31.760
+and some just like generic runtime code you can so.
+
+NOTE Confidence: 0.9072993993759155
+
+00:17:31.840 --> 00:17:33.360
+Yeah, but so why are we doing this?
+
+NOTE Confidence: 0.9180497527122498
+
+00:17:33.359 --> 00:17:34.716
+Why are we letting you do it this way as
+
+NOTE Confidence: 0.9180497527122498
+
+00:17:34.750 --> 00:17:34.919
+well?
+
+NOTE Confidence: 0.9413777589797974
+
+00:17:35.160 --> 00:17:37.855
+It is so that you can make other implementation choices
+
+NOTE Confidence: 0.9413777589797974
+
+00:17:37.904 --> 00:17:38.639
+for your union.
+
+NOTE Confidence: 0.8576930165290833
+
+00:17:38.720 --> 00:17:42.033
+If you don't like our our default that our syntax
+
+NOTE Confidence: 0.8576930165290833
+
+00:17:42.101 --> 00:17:46.158
+generates that takes whatever case types and boxes them into
+
+NOTE Confidence: 0.8576930165290833
+
+00:17:46.226 --> 00:17:49.404
+an object field and so on, then they're kind of
+
+NOTE Confidence: 0.8576930165290833
+
+00:17:49.472 --> 00:17:53.799
+two major reasons why you might want a different implementation.
+
+NOTE Confidence: 0.8882461786270142
+
+00:17:54.080 --> 00:17:58.393
+1 is you are like really performance, you know, in
+
+NOTE Confidence: 0.8882461786270142
+
+00:17:58.479 --> 00:18:03.396
+a very sort of tight loop or whatever, really performance
+
+NOTE Confidence: 0.8882461786270142
+
+00:18:03.482 --> 00:18:03.999
+aware.
+
+NOTE Confidence: 0.9151734709739685
+
+00:18:04.359 --> 00:18:06.215
+And you have, you want a union of two little
+
+NOTE Confidence: 0.9151734709739685
+
+00:18:06.257 --> 00:18:08.365
+value types and you don't like that they get boxed
+
+NOTE Confidence: 0.9151734709739685
+
+00:18:08.407 --> 00:18:10.515
+every time you create a union value from that's an
+
+NOTE Confidence: 0.9151734709739685
+
+00:18:10.557 --> 00:18:12.160
+allocation that's expensive, whatever.
+
+NOTE Confidence: 0.7788440585136414
+
+00:18:12.600 --> 00:18:14.720
+Well, choose your own form of storage.
+
+NOTE Confidence: 0.874409556388855
+
+00:18:14.720 --> 00:18:16.689
+Like have a field of the one type of field
+
+NOTE Confidence: 0.874409556388855
+
+00:18:16.736 --> 00:18:18.845
+of the other type and a third field that says
+
+NOTE Confidence: 0.874409556388855
+
+00:18:18.892 --> 00:18:20.440
+which one of them that is inside.
+
+NOTE Confidence: 0.9627687335014343
+
+00:18:20.640 --> 00:18:21.920
+And you can avoid the boxing.
+
+NOTE Confidence: 0.9134058952331543
+
+00:18:21.920 --> 00:18:23.483
+And there are extra things we're not going to show
+
+NOTE Confidence: 0.9134058952331543
+
+00:18:23.514 --> 00:18:23.640
+you.
+
+NOTE Confidence: 0.8888213038444519
+
+00:18:23.680 --> 00:18:27.039
+You can have the compiler generate different code and usage
+
+NOTE Confidence: 0.8888213038444519
+
+00:18:27.096 --> 00:18:28.520
+that also avoids the box.
+
+NOTE Confidence: 0.8137189149856567
+
+00:18:28.880 --> 00:18:31.512
+So the ways that you can make it non boxing
+
+NOTE Confidence: 0.8137189149856567
+
+00:18:31.573 --> 00:18:34.757
+at at significant expense like it's going to be more
+
+NOTE Confidence: 0.8137189149856567
+
+00:18:34.818 --> 00:18:37.879
+complicated from a like a developer point of view.
+
+NOTE Confidence: 0.8551954030990601
+
+00:18:38.920 --> 00:18:42.326
+But if you want to save, save those extra allocations
+
+NOTE Confidence: 0.8551954030990601
+
+00:18:42.390 --> 00:18:44.639
+or whatever, that's a way to do it.
+
+NOTE Confidence: 0.6741964817047119
+
+00:18:44.640 --> 00:18:46.771
+And Copilot's going to write that part anyway, so that's
+
+NOTE Confidence: 0.6741964817047119
+
+00:18:46.809 --> 00:18:46.999
+fine.
+
+NOTE Confidence: 0.5107224583625793
+
+00:18:47.080 --> 00:18:47.640
+Yeah, right.
+
+NOTE Confidence: 0.8289139866828918
+
+00:18:47.880 --> 00:18:48.920
+As long as you all teach it.
+
+NOTE Confidence: 0.5550187230110168
+
+00:18:49.320 --> 00:18:50.560
+Yeah, it'll be fine.
+
+NOTE Confidence: 0.7108095288276672
+
+00:18:51.320 --> 00:18:52.040
+So that is.
+
+NOTE Confidence: 0.8233178853988647
+
+00:18:52.240 --> 00:18:53.760
+That's one scenario, yeah.
+
+NOTE Confidence: 0.851931631565094
+
+00:18:53.760 --> 00:18:56.751
+And the other one is, hey, we had we haven't
+
+NOTE Confidence: 0.851931631565094
+
+00:18:56.819 --> 00:18:59.199
+had unions for 20 some years in C#.
+
+NOTE Confidence: 0.9585294723510742
+
+00:18:59.520 --> 00:19:01.352
+And so you did your best to write your own
+
+NOTE Confidence: 0.9585294723510742
+
+00:19:01.396 --> 00:19:01.920
+union types.
+
+NOTE Confidence: 0.9630292654037476
+
+00:19:01.920 --> 00:19:04.554
+Some of you, you have your own things that represent
+
+NOTE Confidence: 0.9630292654037476
+
+00:19:04.605 --> 00:19:04.960
+unions.
+
+NOTE Confidence: 0.8577705025672913
+
+00:19:04.960 --> 00:19:08.107
+You're like comment, do not derive from this class or
+
+NOTE Confidence: 0.8577705025672913
+
+00:19:08.166 --> 00:19:11.195
+comment, do not assign any other types to you know,
+
+NOTE Confidence: 0.8577705025672913
+
+00:19:11.254 --> 00:19:12.680
+you're trying your best.
+
+NOTE Confidence: 0.8323521018028259
+
+00:19:13.160 --> 00:19:14.944
+And now here we are with a brand new language
+
+NOTE Confidence: 0.8323521018028259
+
+00:19:14.984 --> 00:19:17.205
+feature and we're stomping all over you and saying, Nah,
+
+NOTE Confidence: 0.8323521018028259
+
+00:19:17.245 --> 00:19:17.879
+Alice is better.
+
+NOTE Confidence: 0.9253917932510376
+
+00:19:18.280 --> 00:19:21.576
+So instead you can put that union attribute on your
+
+NOTE Confidence: 0.9253917932510376
+
+00:19:21.640 --> 00:19:24.937
+existing types that you want to be unions and maybe
+
+NOTE Confidence: 0.9253917932510376
+
+00:19:25.001 --> 00:19:27.845
+add a few more members and stuff to make the
+
+NOTE Confidence: 0.9253917932510376
+
+00:19:27.910 --> 00:19:28.879
+compiler happy.
+
+NOTE Confidence: 0.9142102003097534
+
+00:19:29.160 --> 00:19:31.920
+And now your existing type can also become a union.
+
+NOTE Confidence: 0.8589381575584412
+
+00:19:31.920 --> 00:19:34.538
+Types in the eyes of C# in the eyes of
+
+NOTE Confidence: 0.8589381575584412
+
+00:19:34.607 --> 00:19:38.605
+the compiler can get that exhaustiveness in the switch and
+
+NOTE Confidence: 0.8589381575584412
+
+00:19:38.674 --> 00:19:42.119
+the implicit conversions and all of that for free.
+
+NOTE Confidence: 0.8477669358253479
+
+00:19:42.680 --> 00:19:46.542
+So that is, those are the reasons why the underpinnings
+
+NOTE Confidence: 0.8477669358253479
+
+00:19:46.612 --> 00:19:49.842
+of the syntax itself are exposed for you to to
+
+NOTE Confidence: 0.8477669358253479
+
+00:19:49.912 --> 00:19:52.159
+do whichever way you like, yeah.
+
+NOTE Confidence: 0.835247278213501
+
+00:19:52.240 --> 00:19:54.498
+It's sort of like, I mean, there's a lot of
+
+NOTE Confidence: 0.835247278213501
+
+00:19:54.550 --> 00:19:57.492
+features in C really starting with, I mean starting from
+
+NOTE Confidence: 0.835247278213501
+
+00:19:57.544 --> 00:19:58.280
+the beginning.
+
+NOTE Confidence: 0.8526470065116882
+
+00:19:58.280 --> 00:20:01.330
+But we've had a lot of features that like that
+
+NOTE Confidence: 0.8526470065116882
+
+00:20:01.396 --> 00:20:03.320
+are built on patterns, right?
+
+NOTE Confidence: 0.8696925044059753
+
+00:20:03.320 --> 00:20:06.360
+Things convention that we put in that you can go
+
+NOTE Confidence: 0.8696925044059753
+
+00:20:06.423 --> 00:20:07.879
+and implement yourself.
+
+NOTE Confidence: 0.8608285188674927
+
+00:20:07.880 --> 00:20:08.960
+They're not necessarily.
+
+NOTE Confidence: 0.7303548455238342
+
+00:20:09.400 --> 00:20:11.440
+You know, in the type system per SE, but the
+
+NOTE Confidence: 0.7303548455238342
+
+00:20:11.486 --> 00:20:13.480
+compiler will triple them specially, right?
+
+NOTE Confidence: 0.8453484177589417
+
+00:20:13.480 --> 00:20:14.960
+And so that's what we've done with unions.
+
+NOTE Confidence: 0.8984902501106262
+
+00:20:15.280 --> 00:20:17.626
+And this is just kind of like the basics and
+
+NOTE Confidence: 0.8984902501106262
+
+00:20:17.679 --> 00:20:19.866
+you can go deep, you can go far, and it's
+
+NOTE Confidence: 0.8984902501106262
+
+00:20:19.919 --> 00:20:20.559
+pretty cool.
+
+NOTE Confidence: 0.9386545419692993
+
+00:20:20.840 --> 00:20:23.044
+And most of you will never need to do this
+
+NOTE Confidence: 0.9386545419692993
+
+00:20:23.096 --> 00:20:26.140
+manual union writing stuff, but it's probably good for you
+
+NOTE Confidence: 0.9386545419692993
+
+00:20:26.193 --> 00:20:28.660
+to see how our default one what that looks like
+
+NOTE Confidence: 0.9386545419692993
+
+00:20:28.712 --> 00:20:29.079
+inside.
+
+NOTE Confidence: 0.8547112345695496
+
+00:20:29.080 --> 00:20:31.466
+Now you know that it is in fact a struct
+
+NOTE Confidence: 0.8547112345695496
+
+00:20:31.525 --> 00:20:34.687
+with a single reference field inside that it, that it
+
+NOTE Confidence: 0.8547112345695496
+
+00:20:34.747 --> 00:20:38.147
+puts the whatever values they're into and boxes and casts
+
+NOTE Confidence: 0.8547112345695496
+
+00:20:38.207 --> 00:20:39.519
+on the way in and out.
+
+NOTE Confidence: 0.8537886142730713
+
+00:20:40.480 --> 00:20:43.613
+Good to know for like when you're thinking about performance
+
+NOTE Confidence: 0.8537886142730713
+
+00:20:43.665 --> 00:20:44.240
+or whatnot.
+
+NOTE Confidence: 0.9624468088150024
+
+00:20:44.600 --> 00:20:48.800
+So that's pretty much it for the.
+
+NOTE Confidence: 0.6335703134536743
+
+00:20:50.120 --> 00:20:51.080
+Unions in C#?
+
+NOTE Confidence: 0.8134433627128601
+
+00:20:51.080 --> 00:20:54.773
+Unions in C#, Yeah, that we would love to take
+
+NOTE Confidence: 0.8134433627128601
+
+00:20:54.853 --> 00:20:59.028
+questions, but we'll probably only like get to 1 and
+
+NOTE Confidence: 0.8134433627128601
+
+00:20:59.109 --> 00:21:02.079
+then we have a final slide we'll say.
+
+NOTE Confidence: 0.4180893898010254
+
+00:21:02.080 --> 00:21:02.720
+Exhaustive.
+
+NOTE Confidence: 0.822306752204895
+
+00:21:02.720 --> 00:21:03.200
+It's huge.
+
+NOTE Confidence: 0.8934140205383301
+
+00:21:03.680 --> 00:21:06.652
+Yeah, but we before we do the questions like I
+
+NOTE Confidence: 0.8934140205383301
+
+00:21:06.716 --> 00:21:09.559
+know more, more of you might want to talk to
+
+NOTE Confidence: 0.8934140205383301
+
+00:21:09.624 --> 00:21:10.399
+us about it.
+
+NOTE Confidence: 0.8864985108375549
+
+00:21:10.760 --> 00:21:13.954
+We'll try to sneak away far enough that we're not
+
+NOTE Confidence: 0.8864985108375549
+
+00:21:14.020 --> 00:21:17.736
+upsetting the next session here when we're done, and then
+
+NOTE Confidence: 0.8864985108375549
+
+00:21:17.801 --> 00:21:20.279
+we will do our best to make it over to
+
+NOTE Confidence: 0.8864985108375549
+
+00:21:20.344 --> 00:21:22.040
+the experts zone over the.
+
+NOTE Confidence: 0.7637635469436646
+
+00:21:22.560 --> 00:21:23.480
+Pavilion over there the.
+
+NOTE Confidence: 0.7033114433288574
+
+00:21:23.520 --> 00:21:27.280
+Pavilion over there, that's the green dev tools area.
+
+NOTE Confidence: 0.8160762786865234
+
+00:21:27.280 --> 00:21:28.400
+That's like a big cube.
+
+NOTE Confidence: 0.38809409737586975
+
+00:21:28.560 --> 00:21:29.480
+We'll be hanging over here.
+
+NOTE Confidence: 0.6791355013847351
+
+00:21:29.480 --> 00:21:30.640
+We'll try to be there.
+
+NOTE Confidence: 0.8214378952980042
+
+00:21:31.080 --> 00:21:32.400
+So come talk to us about unions there.
+
+NOTE Confidence: 0.5144990682601929
+
+00:21:32.800 --> 00:21:32.920
+OK.
+
+NOTE Confidence: 0.6488656997680664
+
+00:21:33.640 --> 00:21:33.840
+All right.
+
+NOTE Confidence: 0.8647342920303345
+
+00:21:34.280 --> 00:21:35.160
+Let's take the question though.
+
+NOTE Confidence: 0.7218031287193298
+
+00:21:35.440 --> 00:21:35.680
+Yeah.
+
+NOTE Confidence: 0.3164590895175934
+
+00:21:52.850 --> 00:21:53.170
+Excellent.
+
+NOTE Confidence: 0.6545933485031128
+
+00:21:53.170 --> 00:21:54.458
+You're gonna have to say it again, but you got
+
+NOTE Confidence: 0.6545933485031128
+
+00:21:54.486 --> 00:21:54.570
+to.
+
+NOTE Confidence: 0.63567715883255
+
+00:21:54.650 --> 00:21:55.650
+You have to practice and.
+
+NOTE Confidence: 0.6299002170562744
+
+00:21:55.650 --> 00:21:57.010
+That's OK, Fantastic case.
+
+NOTE Confidence: 0.7891682386398315
+
+00:21:57.010 --> 00:21:58.010
+I'll even stand up for you.
+
+NOTE Confidence: 0.8651710152626038
+
+00:21:58.370 --> 00:21:59.170
+So can you.
+
+NOTE Confidence: 0.9302400350570679
+
+00:21:59.410 --> 00:22:02.209
+Obviously this exists in TypeScript JavaScript, which is probably what
+
+NOTE Confidence: 0.9302400350570679
+
+00:22:02.249 --> 00:22:04.329
+many people are familiar with, and it's used kind of
+
+NOTE Confidence: 0.9302400350570679
+
+00:22:04.369 --> 00:22:05.129
+in a different way.
+
+NOTE Confidence: 0.8813822865486145
+
+00:22:05.130 --> 00:22:07.911
+A lot of times because it doesn't support overloads, you
+
+NOTE Confidence: 0.8813822865486145
+
+00:22:07.960 --> 00:22:10.791
+end up using that with inbound parameters and things like
+
+NOTE Confidence: 0.8813822865486145
+
+00:22:10.841 --> 00:22:11.089
+that.
+
+NOTE Confidence: 0.9276319146156311
+
+00:22:11.760 --> 00:22:14.295
+I'm sure you had tons of discussion about how this
+
+NOTE Confidence: 0.9276319146156311
+
+00:22:14.345 --> 00:22:15.359
+should be done here.
+
+NOTE Confidence: 0.8095154166221619
+
+00:22:15.680 --> 00:22:17.501
+Can you just like expose us to a little bit
+
+NOTE Confidence: 0.8095154166221619
+
+00:22:17.543 --> 00:22:19.279
+of that internal dialogue from your team?
+
+NOTE Confidence: 0.7823115587234497
+
+00:22:19.360 --> 00:22:20.760
+Yeah, we'll do so.
+
+NOTE Confidence: 0.8572689294815063
+
+00:22:21.520 --> 00:22:26.000
+So in TypeScript, union types are they're kind of structural.
+
+NOTE Confidence: 0.9674418568611145
+
+00:22:26.000 --> 00:22:27.480
+You don't have to declare them by name.
+
+NOTE Confidence: 0.9186348915100098
+
+00:22:27.480 --> 00:22:28.975
+You can just sort of cook them up on the
+
+NOTE Confidence: 0.9186348915100098
+
+00:22:29.013 --> 00:22:29.200
+spot.
+
+NOTE Confidence: 0.8236892819404602
+
+00:22:29.240 --> 00:22:31.282
+Like, you know, you can say dog or cat or
+
+NOTE Confidence: 0.8236892819404602
+
+00:22:31.332 --> 00:22:33.176
+bird and like it just in as a type of
+
+NOTE Confidence: 0.8236892819404602
+
+00:22:33.225 --> 00:22:34.920
+something and it'll figure it out.
+
+NOTE Confidence: 0.9659284949302673
+
+00:22:36.240 --> 00:22:38.633
+And we were really like, we had some envy of
+
+NOTE Confidence: 0.9659284949302673
+
+00:22:38.687 --> 00:22:38.959
+that.
+
+NOTE Confidence: 0.7301065325737
+
+00:22:39.800 --> 00:22:40.880
+Took a stab at it I think.
+
+NOTE Confidence: 0.8698850274085999
+
+00:22:41.200 --> 00:22:45.445
+Yeah, we tried designing down that, down that path, but
+
+NOTE Confidence: 0.8698850274085999
+
+00:22:45.523 --> 00:22:49.537
+what we found was TypeScript has it easy because all
+
+NOTE Confidence: 0.8698850274085999
+
+00:22:49.614 --> 00:22:53.319
+the types in TypeScript go away at compile time.
+
+NOTE Confidence: 0.8771914839744568
+
+00:22:53.320 --> 00:22:54.520
+They don't exist at runtime.
+
+NOTE Confidence: 0.8663647174835205
+
+00:22:54.520 --> 00:22:56.280
+Types don't have to exist at runtime.
+
+NOTE Confidence: 0.9123492240905762
+
+00:22:56.640 --> 00:22:58.739
+But if we do union types in C#, they have
+
+NOTE Confidence: 0.9123492240905762
+
+00:22:58.790 --> 00:23:00.480
+to mean something at runtime too.
+
+NOTE Confidence: 0.8952137231826782
+
+00:23:00.480 --> 00:23:03.137
+You have to be able to, to ask questions about
+
+NOTE Confidence: 0.8952137231826782
+
+00:23:03.195 --> 00:23:04.120
+them at runtime.
+
+NOTE Confidence: 0.8000046014785767
+
+00:23:05.160 --> 00:23:06.640
+That's just how.net works.
+
+NOTE Confidence: 0.9438810348510742
+
+00:23:07.040 --> 00:23:08.480
+So we can't just throw them away.
+
+NOTE Confidence: 0.9026046395301819
+
+00:23:08.760 --> 00:23:11.040
+And for that, it's better to have types at the
+
+NOTE Confidence: 0.9026046395301819
+
+00:23:11.089 --> 00:23:13.369
+end of the day, it's just better to have types
+
+NOTE Confidence: 0.9026046395301819
+
+00:23:13.419 --> 00:23:15.649
+that you then declare and give a name like if
+
+NOTE Confidence: 0.9026046395301819
+
+00:23:15.699 --> 00:23:18.028
+you want, you can create a, a library and maybe
+
+NOTE Confidence: 0.9026046395301819
+
+00:23:18.078 --> 00:23:20.110
+we will one day that is union of T, union
+
+NOTE Confidence: 0.9026046395301819
+
+00:23:20.160 --> 00:23:21.993
+of T1, T2 and so on that you can kind
+
+NOTE Confidence: 0.9026046395301819
+
+00:23:22.043 --> 00:23:24.720
+of get some of that structuralness back with generics.
+
+NOTE Confidence: 0.8664559125900269
+
+00:23:25.480 --> 00:23:27.211
+We haven't done that yet, but that's a, that's a
+
+NOTE Confidence: 0.8664559125900269
+
+00:23:27.247 --> 00:23:27.679
+possibility.
+
+NOTE Confidence: 0.7796346545219421
+
+00:23:27.920 --> 00:23:30.861
+So we kind of had to, we like the TypeScript
+
+NOTE Confidence: 0.7796346545219421
+
+00:23:30.928 --> 00:23:32.599
+is a, is unions of types.
+
+NOTE Confidence: 0.8763501048088074
+
+00:23:32.720 --> 00:23:36.089
+They are type unions and we took that, but these
+
+NOTE Confidence: 0.8763501048088074
+
+00:23:36.159 --> 00:23:39.879
+are, these are like nominal declared unions of types.
+
+NOTE Confidence: 0.8696590662002563
+
+00:23:39.880 --> 00:23:42.160
+We couldn't do the other thing we made.
+
+NOTE Confidence: 0.713628888130188
+
+00:23:42.640 --> 00:23:43.720
+I think we may come back to it.
+
+NOTE Confidence: 0.4731634259223938
+
+00:23:43.960 --> 00:23:44.040
+We.
+
+NOTE Confidence: 0.8479628562927246
+
+00:23:44.160 --> 00:23:45.520
+May come back to it at some point.
+
+NOTE Confidence: 0.9055812358856201
+
+00:23:45.560 --> 00:23:46.846
+There might be a layer on top of this or
+
+NOTE Confidence: 0.9055812358856201
+
+00:23:46.878 --> 00:23:47.199
+something.
+
+NOTE Confidence: 0.3888331651687622
+
+00:23:47.200 --> 00:23:48.080
+That's their proposals.
+
+NOTE Confidence: 0.86745685338974
+
+00:23:48.080 --> 00:23:51.970
+But for now, the compromise is this is more like
+
+NOTE Confidence: 0.86745685338974
+
+00:23:52.052 --> 00:23:57.240
+delegates that you know some some languages have function types.
+
+NOTE Confidence: 0.9555075764656067
+
+00:23:57.400 --> 00:24:00.284
+We don't have anonymous function types, but we have ways
+
+NOTE Confidence: 0.9555075764656067
+
+00:24:00.335 --> 00:24:01.159
+you can declare.
+
+NOTE Confidence: 0.8839209675788879
+
+00:24:01.200 --> 00:24:04.050
+Them and and in a functional programming language where you
+
+NOTE Confidence: 0.8839209675788879
+
+00:24:04.098 --> 00:24:08.108
+have discriminated unions, that's very different, right, Where everything's nominal
+
+NOTE Confidence: 0.8839209675788879
+
+00:24:08.156 --> 00:24:08.640
+than that.
+
+NOTE Confidence: 0.8913578391075134
+
+00:24:08.640 --> 00:24:10.619
+And so this is kind of like going right in
+
+NOTE Confidence: 0.8913578391075134
+
+00:24:10.666 --> 00:24:12.740
+the middle and trying to say like, can we do
+
+NOTE Confidence: 0.8913578391075134
+
+00:24:12.787 --> 00:24:13.399
+kind of both?
+
+NOTE Confidence: 0.588990330696106
+
+00:24:13.680 --> 00:24:14.080
+Yeah.
+
+NOTE Confidence: 0.7004824876785278
+
+00:24:14.400 --> 00:24:15.440
+And now we're right.
+
+NOTE Confidence: 0.8859343528747559
+
+00:24:15.560 --> 00:24:16.920
+So let's put that slide up.
+
+NOTE Confidence: 0.8180735111236572
+
+00:24:16.920 --> 00:24:18.689
+But now you've got a taste of what will happen
+
+NOTE Confidence: 0.8180735111236572
+
+00:24:18.727 --> 00:24:19.919
+if you ask us a question after.
+
+NOTE Confidence: 0.5826241970062256
+
+00:24:20.560 --> 00:24:20.760
+Yeah.
+
+NOTE Confidence: 0.7834085822105408
+
+00:24:21.000 --> 00:24:23.362
+So we're going to, we're going to do something like
+
+NOTE Confidence: 0.7834085822105408
+
+00:24:23.408 --> 00:24:23.640
+that.
+
+NOTE Confidence: 0.8840740919113159
+
+00:24:24.960 --> 00:24:27.514
+We, it took us five years roughly to get to
+
+NOTE Confidence: 0.8840740919113159
+
+00:24:27.574 --> 00:24:28.999
+this very simple design.
+
+NOTE Confidence: 0.9025478363037109
+
+00:24:29.640 --> 00:24:31.546
+So we, we went down a lot of paths and
+
+NOTE Confidence: 0.9025478363037109
+
+00:24:31.596 --> 00:24:33.904
+we were happy to talk about it at length here,
+
+NOTE Confidence: 0.9025478363037109
+
+00:24:33.955 --> 00:24:35.359
+though just a few resources.
+
+NOTE Confidence: 0.8535513281822205
+
+00:24:36.760 --> 00:24:41.898
+The preview of Visual Studio for instance that's out has
+
+NOTE Confidence: 0.8535513281822205
+
+00:24:41.990 --> 00:24:48.138
+support for uniontypesthe.net 11 preview VS Code, especially if you
+
+NOTE Confidence: 0.8535513281822205
+
+00:24:48.230 --> 00:24:50.799
+run the C# extension in pre.
+
+NOTE Confidence: 0.4165607988834381
+
+00:24:50.800 --> 00:24:52.120
+And the insiders are pre release.
+
+NOTE Confidence: 0.7664374709129333
+
+00:24:52.160 --> 00:24:54.785
+Extension, Yeah, it will get what we showed will be
+
+NOTE Confidence: 0.7664374709129333
+
+00:24:54.836 --> 00:24:57.153
+there in about a couple of weeks, I think, so
+
+NOTE Confidence: 0.7664374709129333
+
+00:24:57.204 --> 00:24:58.439
+it will get even better.
+
+NOTE Confidence: 0.8446213603019714
+
+00:24:58.440 --> 00:24:59.760
+There's some bugs in there, but that's it.
+
+NOTE Confidence: 0.8610445857048035
+
+00:24:59.760 --> 00:25:00.600
+So go try it.
+
+NOTE Confidence: 0.9695829749107361
+
+00:25:00.800 --> 00:25:01.840
+Thank you for listening.
+
+NOTE Confidence: 0.8325191736221313
+
+00:25:01.960 --> 00:25:03.040
+Come ask questions.
+
+NOTE Confidence: 0.7778617143630981
+
+00:25:03.320 --> 00:25:04.040
+See you all later.
+
+NOTE Confidence: 0.8627906441688538
+
+00:25:04.040 --> 00:25:04.560
+Hope you like it.
+
+NOTE Confidence: 0.28940263390541077
+
+00:25:04.760 --> 00:25:05.000
+Yeah.
+

@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DEMSP390 - Create multimodal AI agents with persistent memory</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; DEMSP390</nav>
+        <h1>DEMSP390 &mdash; Create multimodal AI agents with persistent memory</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">DEMSP390 &middot; Demo</span>
+    <h1>Create multimodal AI agents with persistent memory</h1>
+    <div class="speakers">Edo Segal</div>
+    <div class="meta">
+        <span>25 min</span>
+<span>Demo</span>
+<span>(300) Advanced</span>
+<span>Gateway Pavilion, Level 2, Theater B</span>
+<span>2026-06-03 22:00 UTC</span>
+    </div>
+    <div class="tags"><span class="tag">AI</span> <span class="tag">API</span> <span class="tag">Agents</span> <span class="tag">Enterprise</span> <span class="tag">Agents &amp; apps</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/DEMSP390?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/9228bcee-53b2-4fd0-b6a7-83ca65070cfd" target="_blank" rel="noopener">Medius player</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Your users reach you through your website, your app, your store, your support line. And whether they were in touch five minutes or five days ago, every channel starts from zero, every time. Multimodal AI agents with persistent memory close that gap, and you can have them up and running now. In this session, Napster CTPO Edo Segal builds a working video AI agent live using the Napster Omniagent API. You&#39;ll leave with the architecture, the code patterns, and a clear next step to build your own agent that lives across every surface your organization touches.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>Napster CTPO Edo Segal presents the Napster Omni Agent API, a single multimodal interface for building AI agents that appear as lifelike video avatars across web, app, kiosk, phone, and messaging surfaces while retaining persistent memory of each user. The session pairs a live development walkthrough with the announcement of Napster&#39;s availability on Azure, positioning the product as an &quot;experience layer&quot; sitting atop Azure AI Foundry as the underlying intelligence layer.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Public preview of Napster on Azure</strong> <em>(approx. [00:04:38])</em> — Delivered through Azure Native Integrations with unified marketplace billing, Azure portal provisioning, and single sign-on into the Napster portal.</li>
+<li><strong>Omni Agent API</strong> <em>([00:03:38])</em> — A single API that exposes one agent across video, audio, text, WhatsApp, and phone calls, with persistent memory so the agent recognizes returning users.</li>
+<li><strong>Edge MCP architecture</strong> <em>([00:07:19])</em> — A &quot;vibe coding&quot; prompt analyzes a site&#39;s source code and generates an MCP server embedded in the page&#39;s JavaScript, letting the agent act and perceive locally via the DOM instead of through a slower vision-language model loop.</li>
+<li><strong>Video avatars at one cent per minute</strong> <em>([00:11:26])</em> — Engineering work cuts avatar cost from roughly $0.20 to $0.01 per minute, a claimed 20x reduction intended to make production rollouts viable.</li>
+<li><strong>New Foundry deployment skills</strong> <em>([00:09:33])</em> — Prompt-driven skills deploy an agent to Azure AI Foundry and generate the Napster visual layer, requiring only the Cognitive Services User and Azure AI Foundry User roles in Entra ID.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Three-layer agent architecture: the app as source of truth, the Edge MCP &quot;agent bridge&quot; in the browser, and the avatar agent on top.</li>
+<li>&quot;Hands&quot; (capabilities) and &quot;eyes&quot; (state providers) exposed by the Edge MCP, avoiding per-frame VLM screenshot analysis by front-loading cognitive work at authoring time.</li>
+<li>Using an existing Foundry agent (memory, knowledge, tools) as the &quot;brain&quot; and layering the Napster avatar as the &quot;face.&quot;</li>
+<li>Real-world scenarios: retail associates, airport seat booking, and hospital triage where an agent operates the same systems a human employee would.</li>
+<li>Persona generation, where the avatar&#39;s appearance is inferred from the website&#39;s domain and content.</li>
+<li>Hardware form factors, including a holographic desktop display called The View and an in-store kiosk.</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;The next surface is relationship. It&#39;s all about creating relationships for our users with the agents.&quot; — Edo Segal</p>
+</blockquote>
+<blockquote>
+<p>&quot;We could not have done this three months ago. This is only possible because of the frontier models we have now.&quot;</p>
+</blockquote>
+<blockquote>
+<p>&quot;We put the cognitive load of teaching the agent how to use the site at authoring time, once, on your computer as a developer.&quot;</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Napster Omni Agent API</li>
+<li>Azure AI Foundry</li>
+<li>Azure Native Integrations</li>
+<li>Azure Marketplace</li>
+<li>Azure portal</li>
+<li>Microsoft Entra ID</li>
+<li>The View (Napster holographic display)</li>
+<li>Napster kiosk hardware</li>
+<li>Edge MCP (HMCP) server</li>
+<li>Claude Code</li>
+<li>Visual Studio</li>
+<li>OpenAI frontier models</li>
+<li>Claude Opus 4.8 [inferred]</li>
+<li>Heygen [inferred]</li>
+<li>Synthesia</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Edo Segal — CTPO, Napster</li>
+<li>Igor — Lead Engineer, Napster</li>
+<li>Mary (Marius) — Product Manager, Napster</li>
+<li>Microsoft partner representative (name unclear in transcript) — announced the Napster on Azure public preview</li>
+<li>Tenil — runs the Napster hackathon</li>
+</ul>
+<h2>Follow-up resources</h2>
+<ul>
+<li>QR codes shown in-session for an API key, free token offer, and the setup prompt.</li>
+<li>QR code for Edo Segal&#39;s book on AI and &quot;human emulators.&quot;</li>
+<li>Napster booth down the hall, with a live hackathon offering over $2,000 in prizes.</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+<section class="section">
+    <h2>References</h2>
+    <ul class="refs-list">
+<li><a href="@{link=https://static.rainfocus.com/microsoft/build26/static/staticfile/staticfile/Live%20Demo_1779385317341001sOfV_1780513463412001YxSh.pptx; backpackLink=; label=; category=Download}" target="_blank" rel="noopener"></a></li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (23,269 chars)</summary>
+        <pre class="transcript-body">[00:00:00] Welcome everyone to build 2027.
+[00:00:03] We&#39;re going to use a little time machine.
+[00:00:05] This has been a very exciting build.
+[00:00:06] I&#39;ve been to many.
+[00:00:06] This is one of the most exciting builds.
+[00:00:08] The stuff that the Microsoft is doing is incredible across
+[00:00:11] the entire stack from these new amazing laptops.
+[00:00:14] The fact we&#39;re going to have everything working on the
+[00:00:16] edge and on the cloud.
+[00:00:17] And today I want to talk to you about what&#39;s
+[00:00:18] going to happen next year.
+[00:00:19] When you come here next year, you&#39;re going to come
+[00:00:21] and you&#39;re going to see agents that are no longer
+[00:00:23] just chat bots.
+[00:00:24] You&#39;re going to see agents that are like people, exactly
+[00:00:26] like people like the video that I&#39;m about to show
+[00:00:28] you.
+[00:00:37] Not once.
+[00:00:37] And then?
+[00:00:37] She and it.
+[00:00:38] Was good.
+[00:00:39] Was.
+[00:00:39] It good it.
+[00:00:41] Was epic.
+[00:00:41] You have more volume.
+[00:00:43] Oh, hey.
+[00:00:44] Welcome to Napster.
+[00:00:45] Yes, that Napster.
+[00:00:48] We give everyone access to a crew of AI agents
+[00:00:50] that can help them get their job done, whatever your
+[00:00:53] job.
+[00:01:02] Is and I.
+[00:01:05] And I just helped someone write their first song.
+[00:01:12] So what are you working on?
+[00:01:15] So this crew of agents is available to you today.
+[00:01:18] Of course, these people don&#39;t exist.
+[00:01:19] They&#39;re all AI agents.
+[00:01:21] And today with Foundry, you can actually go from setting
+[00:01:24] up an agent to bringing it to life as a
+[00:01:26] multimodal agent with a matter of a few clicks.
+[00:01:30] Yeah, please.
+[00:01:31] As Napster, we&#39;ve been building a complete stack which includes
+[00:01:34] a hardware set of solutions that lets you explore this
+[00:01:37] in different ways.
+[00:01:38] Whether you&#39;re an end user that wants to have an
+[00:01:41] actual set of crew members that are supporting you at
+[00:01:43] every time with a holographic display that sits on top
+[00:01:46] of your screen called The View.
+[00:01:48] Or a full kiosk that can show up in a
+[00:01:50] store that can survive even a very noisy environment like
+[00:01:53] this where you can walk up and make an order
+[00:01:55] for a fast food joint.
+[00:01:56] You can see all of that in our booth down
+[00:01:58] the hall.
+[00:01:58] It&#39;s really amazing, and what I want to share with
+[00:02:01] you today is the magic of how easy it is
+[00:02:03] to create this in the age of vibe coding.
+[00:02:06] Please raise your hand if you&#39;ve lost a few hours
+[00:02:09] to Claude Code, who here has walked around with the
+[00:02:12] laptop open while the agent is doing stuff.
+[00:02:15] All right, so let&#39;s move to the next slide to
+[00:02:19] the book.
+[00:02:22] So I wrote a book about it.
+[00:02:24] You&#39;re welcome to explore it.
+[00:02:26] If you scan the QR code, it talks about this
+[00:02:28] moment that we&#39;re all experiencing about us on AI and
+[00:02:31] what it means for all of us, what it means
+[00:02:33] for the future of our kids and our companies where
+[00:02:36] AI can do everything we do.
+[00:02:38] So we&#39;re basically all creating these human emulators.
+[00:02:41] What does that mean?
+[00:02:42] How do we ascend?
+[00:02:42] How do we do more and how do we help
+[00:02:45] our companies, our kids be able to leverage this next.
+[00:02:50] So let&#39;s talk about how you can start so you
+[00:02:53] can get your API key right here.
+[00:02:56] So if you want to start with a multimodal agent
+[00:02:59] right now, scan that key, you get a free offer,
+[00:03:02] you can get tokens and you can start playing When
+[00:03:05] you finish scanning that you get the prompt and that&#39;s
+[00:03:09] all you need because all you need is a vibe
+[00:03:12] coding harness the API key and that prompt and you
+[00:03:15] can create what we&#39;re about to see together.
+[00:03:18] It&#39;s that easy.
+[00:03:19] It&#39;s remarkable to me after years of managing very complex
+[00:03:22] teams and very complex projects, spending literally months or years
+[00:03:26] with a big company on rolling out an agent, and
+[00:03:28] now all of that can happen in one day for
+[00:03:30] each one of you.
+[00:03:31] You don&#39;t need to even have a team involved.
+[00:03:38] So we call this the Omni Agent API.
+[00:03:42] It&#39;s basically a single API that allows you to create
+[00:03:45] an agent that is Omni in that it is multimodal.
+[00:03:48] It could be video, it could be audio, it could
+[00:03:51] be text, it could be over WhatsApp, it could be
+[00:03:53] over a phone call.
+[00:03:54] So you can call the same agent over a call
+[00:03:57] like they&#39;re in a call center or meet them in
+[00:03:59] a kiosk.
+[00:04:00] When you walk up to them and they know who
+[00:04:02] you are, they have persistent memory, they remember you just
+[00:04:04] like a person that you have a relationship with.
+[00:04:07] And that&#39;s the next dimension of our innovation as an
+[00:04:10] industry.
+[00:04:10] If you think about things like, you know, the iPhone
+[00:04:13] added multi touch, the next surface is relationship.
+[00:04:16] It&#39;s all about creating relationships for our users with their
+[00:04:20] with the agents and how do we create that emulator
+[00:04:22] layer.
+[00:04:26] So I want to mention that we are now offered
+[00:04:28] as an Azure native offering and I&#39;d like to involve
+[00:04:31] involve my colleague here from Microsoft, SIGIO, a great partner
+[00:04:35] and explain what that means.
+[00:04:37] Thanks Cito.
+[00:04:38] So everyone, I&#39;m really happy to announce the public preview
+[00:04:42] of Napster on Azure, powered through Azure Native Integrations.
+[00:04:56] Yeah, you can hear me right.
+[00:04:58] Yeah.
+[00:04:58] So what that means is that you get unified billing
+[00:05:01] through marketplace and in addition to that you have value
+[00:05:05] added benefits.
+[00:05:06] The fact that you&#39;re developers, you&#39;d be using the Azure
+[00:05:09] portal and you&#39;d be using other native Azure tooling to
+[00:05:12] provision your resource.
+[00:05:14] So think of it from an AI scenario, since Ito
+[00:05:16] spoke about it, a developer would come to the Azure
+[00:05:20] portal, would provision an Azure resource.
+[00:05:23] We&#39;ll click on the single sign on link, get navigated
+[00:05:26] to the Napster portal where they use the Omni agent,
+[00:05:29] which will talk to your Foundry agent, which is the
+[00:05:32] underlying intelligence layer.
+[00:05:34] So you have Napster, which is the experienced layer on
+[00:05:36] top, talking to the intelligence layer, which is Foundry below.
+[00:05:39] And it&#39;s all natively integrated within Azure, right?
+[00:05:43] So we&#39;ll walk you through a few demos and I&#39;ll
+[00:05:46] hand it over to Edo.
+[00:05:47] Thank.
+[00:05:48] You so much an amazing partnership with Microsoft enabling developers
+[00:05:51] like yourselves to go on this journey with minimal friction
+[00:05:54] and also down the road with terms of procurement for
+[00:05:57] an enterprise.
+[00:05:58] It&#39;s something that&#39;s already solved because it&#39;s in the marketplace.
+[00:06:01] I&#39;m going to show you a quick time lapse of
+[00:06:03] what it looks like to develop an Omni agent.
+[00:06:05] So I am a developer and I&#39;ve created Watson, which
+[00:06:08] is the website for this e-commerce provider.
+[00:06:11] I go into my environment, I put in the prompt
+[00:06:14] and my API key and basically after a few minutes
+[00:06:17] when I come back, there is an agent that actually
+[00:06:20] knows the content because it sits in the git on
+[00:06:23] your laptop and it studies the code of your website
+[00:06:26] and creates that agent that can use your website.
+[00:06:30] So unlike your traditional agent setups, which is you have
+[00:06:33] an agent, you go there and you set up the
+[00:06:35] knowledge and you set up the the tool calling and
+[00:06:37] MCPS, which suddenly involves a lot of people in your
+[00:06:40] org.
+[00:06:40] Now an individual developer that is controlling the front end
+[00:06:44] business logic can just have the git on their computer
+[00:06:47] run this prompt and it will automatically augment it with
+[00:06:50] an Omni agent like this.
+[00:06:52] So literally cutting through all of the red tape associated
+[00:06:55] with herding all the cats, getting all the knowledge, and
+[00:06:57] then the knowledge changes.
+[00:06:59] You have to go back and update it.
+[00:07:00] Suddenly you have two parallel universes in your code base.
+[00:07:03] Now it&#39;s just one Omni universe that can support this.
+[00:07:06] So in this case, you can actually talk to the
+[00:07:09] agent, you can ask her things, and she controls the
+[00:07:12] website in the same way that a vision model would
+[00:07:15] have controlled it.
+[00:07:16] And the way we achieved this, and this is done
+[00:07:19] through this prompt is through an incredible, I think, breakthrough
+[00:07:22] that we&#39;ve had, which is this idea of creating an
+[00:07:25] MCP server that&#39;s actually built into the JavaScript of the
+[00:07:28] site at the source level.
+[00:07:30] So part of our prompt is it analyzes your website,
+[00:07:33] your code, and creates a virtual instance of a, we
+[00:07:36] call it an edge MCP that&#39;s in the JavaScript.
+[00:07:39] So when the agent is in the page and you
+[00:07:41] ask it a question, instead of needing to call 2
+[00:07:44] callings from an endpoint, it&#39;s actually all happening locally through
+[00:07:47] the Dom by connecting to that MCP locally.
+[00:07:50] And that MCP is basically a harness to your website.
+[00:07:53] It does the preprocessing when you compile the code and
+[00:07:56] it knows everything about your website.
+[00:07:57] What is the intent of the user?
+[00:07:59] What are the steps they need to take?
+[00:08:00] And all of that is covered.
+[00:08:02] So as you can see here in this diagram, this
+[00:08:04] is effectively what happens when you use the Omni Agent
+[00:08:07] API and you apply these two skills.
+[00:08:09] The identify skill will take the source code of your
+[00:08:13] web app and effectively create this MCP server that controls
+[00:08:17] it.
+[00:08:17] It&#39;s like wiring up everything on your website.
+[00:08:19] And then the agent skill will effectively create the agent
+[00:08:23] in Foundry.
+[00:08:24] So you can continue to maintain it all happening in
+[00:08:26] your code environment or soon on the Foundry playground.
+[00:08:30] I&#39;ll let Igor explain a bit about this.
+[00:08:33] And you want to show your.
+[00:08:35] You can show what you&#39;re doing on the computer there.
+[00:08:40] Can you hear me so the.
+[00:08:43] Closer to the mouth.
+[00:08:46] So the idea is what we are doing, OK, What
+[00:08:51] we are doing, Yeah, I&#39;m sorry.
+[00:08:55] Like I don&#39;t know how you.
+[00:08:57] Can see he&#39;s a good engineer.
+[00:09:00] Let me just get out from the presentation mode in
+[00:09:03] a second SO.
+[00:09:04] This is going to work in Visual Studio any any
+[00:09:07] code harness you use.
+[00:09:08] Effectively it&#39;s about the Foundation model.
+[00:09:10] We could not have done this three months ago.
+[00:09:12] This is only possible because of the frontier models we
+[00:09:15] have now with the new Open AI and Opus 4.8,
+[00:09:17] because the ability of looking at your entire code base
+[00:09:20] and predicting what a user might do and wiring it
+[00:09:23] up as an MCP interface was not something we could
+[00:09:26] have done before.
+[00:09:27] But now we can.
+[00:09:27] It&#39;s one of those moments where it changes the whole
+[00:09:30] paradigm of how we identify our experiences.
+[00:09:32] Yeah.
+[00:09:33] And what we also introducing is a new skills which
+[00:09:37] will allow you easily create with just a prompting with
+[00:09:42] just a request to your compiler.
+[00:09:46] Like create for me an Azure AI 11 OK, it
+[00:09:55] will deploy an agent to the Azure AI Foundry and
+[00:10:05] afterwards it will create inside the Napster platform and visual
+[00:10:18] layer for you.
+[00:10:22] So you will be you will have afterwards the URL
+[00:10:26] to which you will go like this.
+[00:10:30] You will see here the Microsoft Foundry key and with
+[00:10:34] just one click you will be able to talk with
+[00:10:37] your agent.
+[00:10:39] And the beauty of this solution is all is controlled
+[00:10:43] inside the Azure AI Foundry.
+[00:10:45] You can use all the tools built in and you
+[00:10:49] do not need to expose access to any of your
+[00:10:52] services.
+[00:10:53] All what you need to do is to allow to
+[00:10:56] the enter ID just two simple roles is Cognitive Services
+[00:11:01] user and Azure AI Foundry user, nothing else.
+[00:11:05] Yeah.
+[00:11:05] Thank you.
+[00:11:10] SO one of the challenges into having video agents and
+[00:11:12] you&#39;ve seen them from companies like Haygen, Synthesia, the amazing
+[00:11:16] video agents, but their cost is inhibitive.
+[00:11:18] It&#39;s great for a demo, but you can&#39;t really roll
+[00:11:20] it out.
+[00:11:21] One of the things this engineering team at Napster has
+[00:11:23] been doing for the last few years is engineering the
+[00:11:26] heck out of that to the point where we can
+[00:11:28] offer it for one cent a minute as opposed to
+[00:11:30] $0.20 a minute.
+[00:11:31] So it&#39;s a 20X factor of pricing, which really means
+[00:11:34] you can put it on your website, you can put
+[00:11:37] it in your app, you can now have video avatars
+[00:11:39] fully fledged talking to your users and solving their problems
+[00:11:43] with one day of development.
+[00:11:45] So the cost element is not exciting from engineers, but
+[00:11:48] it means that you&#39;re not just wasting your time building
+[00:11:51] a prototype.
+[00:11:52] You can spend a few hours tomorrow or today and
+[00:11:54] come back with your existing web app working with this
+[00:11:57] robot inside of it that just looks like a person.
+[00:12:00] Now, I should mention that when you use the Omni
+[00:12:03] agent API and you use it with the with the
+[00:12:05] vibe coding, it actually creates the persona like what the
+[00:12:08] person looks like.
+[00:12:09] Like if you&#39;re working on an electronics website, it would
+[00:12:11] actually understand and create a persona that looks like that.
+[00:12:14] It&#39;s all in this latent space of an endless universe
+[00:12:16] of agents.
+[00:12:18] So, you know, we think that the web is is
+[00:12:21] built for humans and the interface is the human interface.
+[00:12:25] Like what I&#39;m doing right now.
+[00:12:26] Everything else we&#39;re doing is just translating into using text,
+[00:12:30] using terminal, but now we&#39;re going to be in a
+[00:12:32] position where you&#39;re literally interacting with people across every application,
+[00:12:37] and those people can leverage and use the applications that
+[00:12:40] you&#39;re building.
+[00:12:43] So let&#39;s see, what else do we have here?
+[00:12:44] Do you want to mention Marius?
+[00:12:53] Maybe explain this?
+[00:12:58] OK, So what you see here, it&#39;s the way we
+[00:13:01] think about solving the problem that Ito just mentioned earlier.
+[00:13:06] So there are three layers.
+[00:13:08] At the bottom is your app, it&#39;s the one source
+[00:13:10] of truth.
+[00:13:11] At the top is the agent and in between is
+[00:13:13] the middle layer which actually helps the the agent communicate
+[00:13:17] with with the app.
+[00:13:18] We call it the agent bridge, which is the Edge,
+[00:13:22] which is an Edge MCP server which lives in the
+[00:13:25] browser.
+[00:13:26] And the idea is the following with with with this
+[00:13:30] HMCP, it exposes a few things.
+[00:13:32] First, it&#39;s the capabilities that this is what the the
+[00:13:36] agent can can do inside your application.
+[00:13:40] And think of it as the, as the hands right
+[00:13:44] of the agent.
+[00:13:46] And the other thing it&#39;s the eyes, the state providers
+[00:13:49] is what what the what the agent can actually see
+[00:13:53] on the screen.
+[00:13:54] It&#39;s like exactly like like a human.
+[00:13:56] Without a VLM, right?
+[00:13:57] So you&#39;ve seen these agentic examples where an agent is
+[00:14:00] using something in the browser and that typically works through
+[00:14:03] a VLM that needs to analyze the take the picture,
+[00:14:06] upload it.
+[00:14:06] Incredibly slow, incredibly costly.
+[00:14:09] This is lightning fast because we put the cognitive load
+[00:14:11] of teaching the agent how to use the site at
+[00:14:14] authoring time once on your computer as a developer.
+[00:14:20] OK.
+[00:14:21] So, yeah, we, we can speak about this as well.
+[00:14:26] So, so the idea is that you can, if you
+[00:14:29] already have an agent on Foundry, that&#39;s great.
+[00:14:34] It has already configured everything, the memory, the, the knowledge,
+[00:14:38] the tools.
+[00:14:39] You don&#39;t have to change anything.
+[00:14:41] That&#39;s actually the brain, right?
+[00:14:44] On top of that, you add the Napster Omni Agent
+[00:14:46] API, which is the face, which is, which is an
+[00:14:49] avatar.
+[00:14:50] It, it provides the presence, people will be able to
+[00:14:54] hear it, to see it, to talk about it, to
+[00:14:57] talk with it.
+[00:14:58] And in the end, what you&#39;re going to get, it&#39;s
+[00:15:02] actually a coworker that will help you to get real
+[00:15:06] work done using the principle we explained earlier in such
+[00:15:11] a way that you will be able to have this
+[00:15:15] coworker inside your own application.
+[00:15:18] Yes Sir.
+[00:15:18] Imagine a situation where you walk into a Best Buy
+[00:15:20] and you walk up to the associate, if you can
+[00:15:23] find one and you ask.
+[00:15:24] I&#39;m looking for a GPU that has 32 gig of
+[00:15:27] VRAM.
+[00:15:28] What do they do?
+[00:15:29] They walk over to the monitor and they&#39;re using the
+[00:15:32] website of Best Buy to help you filter and find
+[00:15:35] the product.
+[00:15:37] That is literally what this is.
+[00:15:39] And think of the same situation where you&#39;re trying to
+[00:15:42] book your seat on a flight in an airport or
+[00:15:44] when you&#39;re talking to the nurse at the counter on
+[00:15:46] triage.
+[00:15:47] All of these examples where you have people using systems
+[00:15:50] can now be done by an Omni agent that can
+[00:15:52] use the systems that you&#39;re building and implementing.
+[00:15:55] That takes one day.
+[00:15:57] It doesn&#39;t take months.
+[00:15:58] Just like this talk was scheduled for 25 minutes and
+[00:16:01] I don&#39;t need 25 minutes.
+[00:16:03] I was done 10 minutes ago.
+[00:16:05] If you go to the QR codes at the beginning,
+[00:16:07] no.
+[00:16:07] What do you got?
+[00:16:09] Oh, you can add something else.
+[00:16:15] So show this demo, which actually is the real implementation
+[00:16:19] of I I will let the video speak for itself.
+[00:16:33] What was the question you asked?
+[00:16:40] OLED TV&#39;s for under $2000.
+[00:16:48] On the left side you see the the capabilities from
+[00:16:51] the Edge MCP server being called real time.
+[00:16:54] You can also see the stat updates that are being
+[00:16:58] sent from the web page to the agent.
+[00:17:26] Playlist or anything else?
+[00:17:27] Yeah, in this case the the action to our to
+[00:17:29] card is reversible.
+[00:18:02] All right, so that&#39;s that&#39;s it.
+[00:18:04] So this is this is a demo where the the
+[00:18:07] agent having that Edge MCP server in the in the
+[00:18:10] browser is able to to control the the website.
+[00:18:14] And more than that, it it can also see what
+[00:18:17] the user is doing in the website.
+[00:18:20] So it has the full context all the time.
+[00:18:22] So that&#39;s your debug window basically for the MCP.
+[00:18:26] You&#39;ve seen demos like this from Open AI from Google,
+[00:18:29] and they typically involve building a whole new system, but
+[00:18:32] this happens with one prompt and the agent knows there&#39;s
+[00:18:35] examples where you can ask it compare this this screen
+[00:18:39] to this screen.
+[00:18:39] It creates the comparison.
+[00:18:40] It does amazing stuff that you didn&#39;t even plan for
+[00:18:43] it to do because it&#39;s got all this really strong
+[00:18:46] intelligence that author time for on your laptop, which is
+[00:18:49] really an incredible moment to be doing this kind of
+[00:18:52] work.
+[00:18:53] Anything else you got there?
+[00:18:55] That&#39;s it.
+[00:18:55] Let&#39;s go back to the QR codes.
+[00:18:58] Yeah, one second.
+[00:19:02] All right, so again, if you didn&#39;t scan this, get
+[00:19:05] your tokens here, get your prompt there.
+[00:19:08] If you want to speak with us, we&#39;re down the
+[00:19:11] hall, come see our fancy toys, and we have a
+[00:19:14] hackathon with over $2000 in prizes that is open right
+[00:19:18] now.
+[00:19:19] Let&#39;s go to that QR code.
+[00:19:21] Oh, it&#39;s the prompt.
+[00:19:22] OK, you get the view, the hardware device, you get
+[00:19:25] a book if you need a physical one, you get
+[00:19:28] a lot of tokens.
+[00:19:30] And Tenil, who runs the hackathon, is here.
+[00:19:32] She can answer any questions you have.
+[00:19:34] Thank you, Mary, as the product manager for this amazing
+[00:19:36] product.
+[00:19:37] Thank you Igor, the Lead engineer, and thank you for
+[00:19:40] all your support with Microsoft.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

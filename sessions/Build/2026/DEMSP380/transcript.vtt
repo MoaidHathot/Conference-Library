@@ -1,0 +1,2255 @@
+WEBVTT
+
+NOTE
+language:en-US
+
+NOTE Confidence: 0.8436564803123474
+
+00:00:01.320 --> 00:00:04.443
+So as the title suggests, we are trying to show
+
+NOTE Confidence: 0.8436564803123474
+
+00:00:04.509 --> 00:00:08.563
+you how to build automated agents using optimized models that
+
+NOTE Confidence: 0.8436564803123474
+
+00:00:08.630 --> 00:00:12.816
+are available on the Microsoft Foundry that's optimized for the
+
+NOTE Confidence: 0.8436564803123474
+
+00:00:12.883 --> 00:00:13.879
+Snapdragon PCs.
+
+NOTE Confidence: 0.8559175729751587
+
+00:00:16.160 --> 00:00:19.684
+So today quite a lot of the enterprise workflows have
+
+NOTE Confidence: 0.8559175729751587
+
+00:00:19.750 --> 00:00:23.275
+chat applications with a model that is running on the
+
+NOTE Confidence: 0.8559175729751587
+
+00:00:23.341 --> 00:00:26.932
+cloud and you are essentially sending a prompt and the
+
+NOTE Confidence: 0.8559175729751587
+
+00:00:26.999 --> 00:00:30.590
+prompt fetches an answer and it provides you with what
+
+NOTE Confidence: 0.8559175729751587
+
+00:00:30.656 --> 00:00:31.920
+you're looking for.
+
+NOTE Confidence: 0.8359173536300659
+
+00:00:32.760 --> 00:00:36.644
+But what if that workflow that you are trying to
+
+NOTE Confidence: 0.8359173536300659
+
+00:00:36.725 --> 00:00:41.822
+build is essentially repetitive, is pretty complex, it could be
+
+NOTE Confidence: 0.8359173536300659
+
+00:00:41.903 --> 00:00:45.626
+multi step and also you expect it to run based
+
+NOTE Confidence: 0.8359173536300659
+
+00:00:45.707 --> 00:00:46.840
+on a schedule.
+
+NOTE Confidence: 0.9104454517364502
+
+00:00:47.720 --> 00:00:52.205
+You also have in enterprise settings a security component which
+
+NOTE Confidence: 0.9104454517364502
+
+00:00:52.276 --> 00:00:55.480
+might necessitate running your model locally.
+
+NOTE Confidence: 0.9512350559234619
+
+00:00:56.080 --> 00:00:58.800
+So you could have all of these different requirements.
+
+NOTE Confidence: 0.8368918299674988
+
+00:00:59.200 --> 00:01:02.870
+And what if also without having to prompt, you could
+
+NOTE Confidence: 0.8368918299674988
+
+00:01:02.941 --> 00:01:06.400
+run automated workflows that are schedule driven?
+
+NOTE Confidence: 0.8790725469589233
+
+00:01:07.200 --> 00:01:10.516
+What we are going to show you today is with
+
+NOTE Confidence: 0.8790725469589233
+
+00:01:10.593 --> 00:01:15.375
+LLMware's Model HQ and on Snapdragon PCs with models optimized
+
+NOTE Confidence: 0.8790725469589233
+
+00:01:15.452 --> 00:01:20.466
+for the Snapdragon PCs from the Microsoft Foundry through Windows
+
+NOTE Confidence: 0.8790725469589233
+
+00:01:20.543 --> 00:01:23.320
+ML API, you can essentially do that.
+
+NOTE Confidence: 0.9096073508262634
+
+00:01:26.440 --> 00:01:29.059
+So what we expect all of you to walk away
+
+NOTE Confidence: 0.9096073508262634
+
+00:01:29.122 --> 00:01:30.720
+learning are four things.
+
+NOTE Confidence: 0.8982316255569458
+
+00:01:32.160 --> 00:01:35.540
+First, you build a multi step AI workflow that are
+
+NOTE Confidence: 0.8982316255569458
+
+00:01:35.608 --> 00:01:37.839
+powered by small language models.
+
+NOTE Confidence: 0.9140214920043945
+
+00:01:39.200 --> 00:01:42.453
+We have the capability to build these automated workflows for
+
+NOTE Confidence: 0.9140214920043945
+
+00:01:42.506 --> 00:01:45.919
+different kind of enterprise scenarios for different industries.
+
+NOTE Confidence: 0.8236745595932007
+
+00:01:45.920 --> 00:01:49.520
+However, we will showcase one example using a Jira workflow.
+
+NOTE Confidence: 0.945873498916626
+
+00:01:49.520 --> 00:01:54.920
+Today you can make that workflow automated on the Snapdragon
+
+NOTE Confidence: 0.945873498916626
+
+00:01:55.010 --> 00:01:55.280
+PC.
+
+NOTE Confidence: 0.8475667238235474
+
+00:01:55.920 --> 00:01:59.870
+You can provide you can get optimized performance on the
+
+NOTE Confidence: 0.8475667238235474
+
+00:01:59.941 --> 00:02:03.256
+NPU by running the model locally on the NPU and
+
+NOTE Confidence: 0.8475667238235474
+
+00:02:03.327 --> 00:02:07.559
+you also implement a scheduled run of your automated agents.
+
+NOTE Confidence: 0.9281884431838989
+
+00:02:07.560 --> 00:02:09.535
+So those are the four things that we hope at
+
+NOTE Confidence: 0.9281884431838989
+
+00:02:09.580 --> 00:02:11.600
+a minimum that you will walk away today from.
+
+NOTE Confidence: 0.841575026512146
+
+00:02:14.360 --> 00:02:17.652
+So as an enterprise workflow, we are going to focus
+
+NOTE Confidence: 0.841575026512146
+
+00:02:17.716 --> 00:02:21.460
+today on Jira, but we also understand that different types
+
+NOTE Confidence: 0.841575026512146
+
+00:02:21.525 --> 00:02:24.817
+of enterprise software will need to be hooked in to
+
+NOTE Confidence: 0.841575026512146
+
+00:02:24.882 --> 00:02:27.400
+perform these agentic workflows, right?
+
+NOTE Confidence: 0.8780051469802856
+
+00:02:28.080 --> 00:02:31.682
+And if we were to focus on this JIRA implementation
+
+NOTE Confidence: 0.8780051469802856
+
+00:02:31.753 --> 00:02:36.345
+today, in any large enterprise, you have multiple JIRA databases,
+
+NOTE Confidence: 0.8780051469802856
+
+00:02:36.416 --> 00:02:36.839
+right?
+
+NOTE Confidence: 0.8977470993995667
+
+00:02:37.120 --> 00:02:40.536
+Product managers could be using it for storing different user
+
+NOTE Confidence: 0.8977470993995667
+
+00:02:40.592 --> 00:02:41.040
+stories.
+
+NOTE Confidence: 0.906681478023529
+
+00:02:41.040 --> 00:02:44.240
+You have different feature requests, you have bug requests.
+
+NOTE Confidence: 0.8657549619674683
+
+00:02:44.600 --> 00:02:47.856
+So there there are a plethora of different types of
+
+NOTE Confidence: 0.8657549619674683
+
+00:02:47.920 --> 00:02:51.240
+databases that have data sitting in different silos.
+
+NOTE Confidence: 0.9115864634513855
+
+00:02:51.680 --> 00:02:54.955
+But what if you were to glean the relevant data
+
+NOTE Confidence: 0.9115864634513855
+
+00:02:55.025 --> 00:02:58.440
+and form the kind of knowledge base that you need
+
+NOTE Confidence: 0.9115864634513855
+
+00:02:58.510 --> 00:03:01.368
+to run the kind of prompts or the kind of
+
+NOTE Confidence: 0.9115864634513855
+
+00:03:01.438 --> 00:03:03.320
+requests locally on the PC?
+
+NOTE Confidence: 0.8638190031051636
+
+00:03:04.160 --> 00:03:08.138
+In just a few simple steps, using Llmware's Model HQ,
+
+NOTE Confidence: 0.8638190031051636
+
+00:03:08.213 --> 00:03:12.266
+which is a number code drag and drop design interface,
+
+NOTE Confidence: 0.8638190031051636
+
+00:03:12.341 --> 00:03:16.320
+we will show you how to build such agentic workflows.
+
+NOTE Confidence: 0.8818004727363586
+
+00:03:16.800 --> 00:03:20.850
+So essentially we will use a CSV file that's structured
+
+NOTE Confidence: 0.8818004727363586
+
+00:03:20.924 --> 00:03:24.460
+data, thousands of rows of data and show you how
+
+NOTE Confidence: 0.8818004727363586
+
+00:03:24.533 --> 00:03:28.879
+we can gather the relevant information and just extract the
+
+NOTE Confidence: 0.8818004727363586
+
+00:03:28.952 --> 00:03:32.120
+most important summary that you might need.
+
+NOTE Confidence: 0.9588860273361206
+
+00:03:36.440 --> 00:03:39.379
+So since this is a demo session, we really do
+
+NOTE Confidence: 0.9588860273361206
+
+00:03:39.444 --> 00:03:41.600
+not want to have too many slides.
+
+NOTE Confidence: 0.9569565057754517
+
+00:03:41.840 --> 00:03:44.280
+However, this is the last slide.
+
+NOTE Confidence: 0.8221359252929688
+
+00:03:44.800 --> 00:03:47.838
+What it essentially shows is the LLM Ware model HQ,
+
+NOTE Confidence: 0.8221359252929688
+
+00:03:47.898 --> 00:03:50.520
+which is the application at the very middle.
+
+NOTE Confidence: 0.8677588105201721
+
+00:03:50.520 --> 00:03:53.285
+In the middle it has got a very no code
+
+NOTE Confidence: 0.8677588105201721
+
+00:03:53.356 --> 00:03:58.036
+integration through the software to Microsoft Foundry local and to
+
+NOTE Confidence: 0.8677588105201721
+
+00:03:58.107 --> 00:03:59.879
+other model repositories.
+
+NOTE Confidence: 0.881874680519104
+
+00:04:00.960 --> 00:04:04.930
+On the back end you can integrate Windows ML API
+
+NOTE Confidence: 0.881874680519104
+
+00:04:05.013 --> 00:04:08.240
+or you could use the Onyx Runtime APIs.
+
+NOTE Confidence: 0.8943405151367188
+
+00:04:08.680 --> 00:04:13.099
+But underneath it's using the Qualcomm Execution providers to give
+
+NOTE Confidence: 0.8943405151367188
+
+00:04:13.166 --> 00:04:16.917
+you the best performance by running the model locally on
+
+NOTE Confidence: 0.8943405151367188
+
+00:04:16.984 --> 00:04:17.519
+the MPU.
+
+NOTE Confidence: 0.950616180896759
+
+00:04:18.440 --> 00:04:21.697
+So before we dive into a live demo session, we
+
+NOTE Confidence: 0.950616180896759
+
+00:04:21.767 --> 00:04:24.600
+want to show you a quick 2 minute video.
+
+NOTE Confidence: 0.8476627469062805
+
+00:04:25.600 --> 00:04:28.364
+Don't worry, the video does not have any audio on
+
+NOTE Confidence: 0.8476627469062805
+
+00:04:28.421 --> 00:04:30.960
+it, so we understand it's a nice environment.
+
+NOTE Confidence: 0.9282177686691284
+
+00:04:31.400 --> 00:04:33.881
+What we want to showcase is just a glimpse of
+
+NOTE Confidence: 0.9282177686691284
+
+00:04:33.936 --> 00:04:36.583
+what the live session is going to cover and once
+
+NOTE Confidence: 0.9282177686691284
+
+00:04:36.638 --> 00:04:39.560
+the two-minute video is done, we'll dive right into a
+
+NOTE Confidence: 0.9282177686691284
+
+00:04:39.616 --> 00:04:41.159
+live demo session with that.
+
+NOTE Confidence: 0.6373748183250427
+
+00:04:41.720 --> 00:04:43.720
+Darren, can you take it away?
+
+NOTE Confidence: 0.13474681973457336
+
+00:05:00.220 --> 00:05:00.780
+That's not funny.
+
+NOTE Confidence: 0.8370738625526428
+
+00:05:25.360 --> 00:05:27.640
+Excuse me, can we get some help with the audio?
+
+NOTE Confidence: 0.740902304649353
+
+00:05:27.800 --> 00:05:36.040
+Yeah, we're not able to toggle applications on screen This.
+
+NOTE Confidence: 0.6272459030151367
+
+00:05:39.760 --> 00:05:40.400
+Is this is the video?
+
+NOTE Confidence: 0.5532132387161255
+
+00:05:43.000 --> 00:05:45.926
+Do you have your power group your slideshow at the
+
+NOTE Confidence: 0.5532132387161255
+
+00:05:45.985 --> 00:05:47.800
+same time close the PowerPoint?
+
+NOTE Confidence: 0.5611038208007812
+
+00:06:26.000 --> 00:06:27.000
+Yeah, yeah, we did yesterday.
+
+NOTE Confidence: 0.6422715187072754
+
+00:06:27.360 --> 00:06:30.960
+Yeah, yesterday, no problems there.
+
+NOTE Confidence: 0.5449556708335876
+
+00:06:30.960 --> 00:06:31.440
+Now it's showing.
+
+NOTE Confidence: 0.8864150643348694
+
+00:06:31.440 --> 00:06:33.200
+At least down here it is.
+
+NOTE Confidence: 0.45326536893844604
+
+00:06:35.280 --> 00:06:35.560
+OK, want.
+
+NOTE Confidence: 0.5992136001586914
+
+00:06:46.180 --> 00:06:47.500
+To just reintroduce it, yeah, I.
+
+NOTE Confidence: 0.43780553340911865
+
+00:06:47.540 --> 00:06:47.940
+Think you go.
+
+NOTE Confidence: 0.4260573387145996
+
+00:06:50.500 --> 00:06:50.660
+Ahead.
+
+NOTE Confidence: 0.7509738802909851
+
+00:06:50.660 --> 00:06:50.980
+OK.
+
+NOTE Confidence: 0.8579625487327576
+
+00:06:51.940 --> 00:06:52.540
+Hi, everybody.
+
+NOTE Confidence: 0.8820662498474121
+
+00:06:52.860 --> 00:06:55.730
+So what you're seeing on the screen, it's just a
+
+NOTE Confidence: 0.8820662498474121
+
+00:06:55.789 --> 00:06:58.659
+quick overview of what we're going to show live.
+
+NOTE Confidence: 0.9237680435180664
+
+00:06:59.540 --> 00:07:01.780
+So you're walking through the steps.
+
+NOTE Confidence: 0.967090904712677
+
+00:07:02.320 --> 00:07:04.520
+All of this is built with no code.
+
+NOTE Confidence: 0.9638687968254089
+
+00:07:05.440 --> 00:07:08.840
+We're actually going to be integrating 3 different components.
+
+NOTE Confidence: 0.9156593084335327
+
+00:07:09.200 --> 00:07:13.533
+We're integrating our JIRA API configured and integrated into our
+
+NOTE Confidence: 0.9156593084335327
+
+00:07:13.599 --> 00:07:14.399
+application.
+
+NOTE Confidence: 0.9237708449363708
+
+00:07:15.080 --> 00:07:18.810
+We're integrating Windows Local Foundry and we're integrating an e-mail
+
+NOTE Confidence: 0.9237708449363708
+
+00:07:18.863 --> 00:07:21.806
+client because at the end of the process, we're actually
+
+NOTE Confidence: 0.9237708449363708
+
+00:07:21.858 --> 00:07:23.120
+going to send an e-mail.
+
+NOTE Confidence: 0.8481169939041138
+
+00:07:24.320 --> 00:07:29.714
+Once we've gone through that, we're actually going to, we're
+
+NOTE Confidence: 0.8481169939041138
+
+00:07:29.804 --> 00:07:34.119
+going to select an NPU model from Foundry Local.
+
+NOTE Confidence: 0.874272882938385
+
+00:07:34.720 --> 00:07:37.994
+It's been optimized for performance on the Snapdragon X2, so
+
+NOTE Confidence: 0.874272882938385
+
+00:07:38.048 --> 00:07:40.886
+it's going to run really, really fast and you'll see
+
+NOTE Confidence: 0.874272882938385
+
+00:07:40.941 --> 00:07:41.759
+that in action.
+
+NOTE Confidence: 0.9037485718727112
+
+00:07:42.920 --> 00:07:44.600
+We then compose our process.
+
+NOTE Confidence: 0.9321501851081848
+
+00:07:45.000 --> 00:07:48.933
+Our process can be composed entirely with no code drag
+
+NOTE Confidence: 0.9321501851081848
+
+00:07:49.006 --> 00:07:53.304
+and drop components to define every step in delivering this
+
+NOTE Confidence: 0.9321501851081848
+
+00:07:53.377 --> 00:07:53.959
+service.
+
+NOTE Confidence: 0.91939777135849
+
+00:07:55.280 --> 00:07:59.164
+Starting with pulling information from our JIRA API, running a
+
+NOTE Confidence: 0.91939777135849
+
+00:07:59.227 --> 00:08:02.298
+few basic filters that we wanted in this use case
+
+NOTE Confidence: 0.91939777135849
+
+00:08:02.360 --> 00:08:05.556
+of basically figuring out what are some of the most
+
+NOTE Confidence: 0.91939777135849
+
+00:08:05.619 --> 00:08:09.880
+important open and critical issues that had certain characteristics.
+
+NOTE Confidence: 0.9693323373794556
+
+00:08:10.520 --> 00:08:13.340
+And then we go ahead and we run a summarization
+
+NOTE Confidence: 0.9693323373794556
+
+00:08:13.400 --> 00:08:14.840
+of all of that activity.
+
+NOTE Confidence: 0.969851553440094
+
+00:08:15.680 --> 00:08:18.419
+Here's the agent actually running, and we're going to show
+
+NOTE Confidence: 0.969851553440094
+
+00:08:18.466 --> 00:08:20.120
+this running live in just a minute.
+
+NOTE Confidence: 0.9564995169639587
+
+00:08:21.160 --> 00:08:23.720
+But then most importantly, what we get is our output.
+
+NOTE Confidence: 0.9654585123062134
+
+00:08:24.320 --> 00:08:27.418
+Instead of hundreds and hundreds of rows of JIRA, we
+
+NOTE Confidence: 0.9654585123062134
+
+00:08:27.478 --> 00:08:30.338
+get just the output that we were looking for now
+
+NOTE Confidence: 0.9654585123062134
+
+00:08:30.397 --> 00:08:33.019
+with an AI summary for each row, giving us a
+
+NOTE Confidence: 0.9654585123062134
+
+00:08:33.079 --> 00:08:35.880
+distillation of what that individual issue was.
+
+NOTE Confidence: 0.9518245458602905
+
+00:08:36.760 --> 00:08:39.037
+And then at the end, we actually e-mail it to
+
+NOTE Confidence: 0.9518245458602905
+
+00:08:39.088 --> 00:08:39.239
+us.
+
+NOTE Confidence: 0.9673393368721008
+
+00:08:40.200 --> 00:08:42.503
+Now, the power of this is that you could put
+
+NOTE Confidence: 0.9673393368721008
+
+00:08:42.555 --> 00:08:43.759
+it on a scheduling API.
+
+NOTE Confidence: 0.9253263473510742
+
+00:08:44.240 --> 00:08:47.407
+Once you've built it entirely with no code, schedule it
+
+NOTE Confidence: 0.9253263473510742
+
+00:08:47.464 --> 00:08:50.113
+every single day so that when you or your team
+
+NOTE Confidence: 0.9253263473510742
+
+00:08:50.171 --> 00:08:53.108
+come in in the morning, what you get immediately in
+
+NOTE Confidence: 0.9253263473510742
+
+00:08:53.165 --> 00:08:56.793
+your inbox, safely, securely, and without any token charges, is
+
+NOTE Confidence: 0.9253263473510742
+
+00:08:56.851 --> 00:08:59.903
+a distillation of the most critical JIRA issues and a
+
+NOTE Confidence: 0.9253263473510742
+
+00:08:59.961 --> 00:09:03.185
+summarization of it all in a common spreadsheet that you
+
+NOTE Confidence: 0.9253263473510742
+
+00:09:03.243 --> 00:09:04.279
+can all work from.
+
+NOTE Confidence: 0.9513878226280212
+
+00:09:05.240 --> 00:09:07.811
+Hopefully that gives you a sense of an overview of
+
+NOTE Confidence: 0.9513878226280212
+
+00:09:07.862 --> 00:09:08.480
+the process.
+
+NOTE Confidence: 0.9514940977096558
+
+00:09:08.960 --> 00:09:12.320
+This video was actually created kind of in real time.
+
+NOTE Confidence: 0.9486757516860962
+
+00:09:12.320 --> 00:09:14.431
+It took about 15 minutes to do end to end,
+
+NOTE Confidence: 0.9486757516860962
+
+00:09:14.481 --> 00:09:17.045
+and then we just compressed it down for the purpose
+
+NOTE Confidence: 0.9486757516860962
+
+00:09:17.096 --> 00:09:17.799
+of showing it.
+
+NOTE Confidence: 0.9158068895339966
+
+00:09:19.080 --> 00:09:20.800
+Hopefully that sets the context.
+
+NOTE Confidence: 0.9450960159301758
+
+00:09:21.160 --> 00:09:23.956
+Now, what we'd actually like to do is really amplify
+
+NOTE Confidence: 0.9450960159301758
+
+00:09:24.009 --> 00:09:26.752
+some of these elements live so you can actually see
+
+NOTE Confidence: 0.9450960159301758
+
+00:09:26.805 --> 00:09:27.720
+the code working.
+
+NOTE Confidence: 0.9299655556678772
+
+00:09:28.360 --> 00:09:30.953
+But then most importantly, what we want to do is
+
+NOTE Confidence: 0.9299655556678772
+
+00:09:31.007 --> 00:09:33.817
+show you how you can actually leverage and extend it
+
+NOTE Confidence: 0.9299655556678772
+
+00:09:33.871 --> 00:09:34.519
+beyond that.
+
+NOTE Confidence: 0.9321480989456177
+
+00:09:35.080 --> 00:09:37.854
+How do you start to share these agents once you've
+
+NOTE Confidence: 0.9321480989456177
+
+00:09:37.909 --> 00:09:38.519
+built them?
+
+NOTE Confidence: 0.9562535881996155
+
+00:09:38.840 --> 00:09:40.840
+How do you start to extend them and call them
+
+NOTE Confidence: 0.9562535881996155
+
+00:09:40.884 --> 00:09:41.640
+programmatically?
+
+NOTE Confidence: 0.9316560626029968
+
+00:09:41.880 --> 00:09:43.706
+Again, we're going to walk through a couple of those
+
+NOTE Confidence: 0.9316560626029968
+
+00:09:43.741 --> 00:09:44.759
+in the live part of the demo.
+
+NOTE Confidence: 0.8799643516540527
+
+00:09:44.760 --> 00:09:50.552
+All right, So what you see this actually is a
+
+NOTE Confidence: 0.8799643516540527
+
+00:09:50.681 --> 00:09:51.839
+model HQ.
+
+NOTE Confidence: 0.9202129244804382
+
+00:09:52.200 --> 00:09:54.200
+This is just a Windows application.
+
+NOTE Confidence: 0.9559359550476074
+
+00:09:54.200 --> 00:09:56.800
+It is running entirely locally on the device.
+
+NOTE Confidence: 0.8995683789253235
+
+00:09:57.440 --> 00:10:00.254
+The only Wi-Fi dependency that we have is we are
+
+NOTE Confidence: 0.8995683789253235
+
+00:10:00.312 --> 00:10:01.719
+going to pull from JIRA.
+
+NOTE Confidence: 0.9478014707565308
+
+00:10:02.360 --> 00:10:04.607
+Since we've been here at the conference, we've had pretty
+
+NOTE Confidence: 0.9478014707565308
+
+00:10:04.647 --> 00:10:05.160
+good success.
+
+NOTE Confidence: 0.8736240863800049
+
+00:10:05.400 --> 00:10:07.845
+But that is the only place that the demo gods
+
+NOTE Confidence: 0.8736240863800049
+
+00:10:07.899 --> 00:10:10.181
+may may strike us here is if we can't pull
+
+NOTE Confidence: 0.8736240863800049
+
+00:10:10.236 --> 00:10:11.159
+that information.
+
+NOTE Confidence: 0.894489049911499
+
+00:10:11.679 --> 00:10:13.564
+We do have a fully air gap version of this
+
+NOTE Confidence: 0.894489049911499
+
+00:10:13.609 --> 00:10:15.359
+which we can pivot over to to show you.
+
+NOTE Confidence: 0.9339954257011414
+
+00:10:15.720 --> 00:10:17.240
+But let's, let's take our chances.
+
+NOTE Confidence: 0.8615291118621826
+
+00:10:17.240 --> 00:10:20.284
+All right, So we're going to show you running this
+
+NOTE Confidence: 0.8615291118621826
+
+00:10:20.345 --> 00:10:24.119
+scenario live, pulling the information from JIRA in real time.
+
+NOTE Confidence: 0.9368045330047607
+
+00:10:24.120 --> 00:10:25.400
+That's going to take the longest part.
+
+NOTE Confidence: 0.9453698992729187
+
+00:10:25.400 --> 00:10:27.118
+And then we're going to run through all the steps
+
+NOTE Confidence: 0.9453698992729187
+
+00:10:27.153 --> 00:10:28.239
+that you just saw in the video.
+
+NOTE Confidence: 0.8859890699386597
+
+00:10:41.570 --> 00:10:44.667
+So here is the process that you just shot, saw
+
+NOTE Confidence: 0.8859890699386597
+
+00:10:44.734 --> 00:10:45.609
+in the video.
+
+NOTE Confidence: 0.8133207559585571
+
+00:10:45.929 --> 00:10:48.579
+It was as easy as dragging and dropping elements onto
+
+NOTE Confidence: 0.8133207559585571
+
+00:10:48.629 --> 00:10:49.129
+a palette.
+
+NOTE Confidence: 0.8916028738021851
+
+00:10:49.490 --> 00:10:52.131
+Most of you have probably worked with some type of
+
+NOTE Confidence: 0.8916028738021851
+
+00:10:52.184 --> 00:10:55.618
+drag and drop process automator, maybe with a data transformation
+
+NOTE Confidence: 0.8916028738021851
+
+00:10:55.671 --> 00:10:57.889
+process, maybe in conjunction with agents.
+
+NOTE Confidence: 0.8844321370124817
+
+00:10:58.280 --> 00:11:01.329
+Very, very simple, very intuitive and can even be used
+
+NOTE Confidence: 0.8844321370124817
+
+00:11:01.385 --> 00:11:05.564
+by completely non-technical people to really start automating complex work
+
+NOTE Confidence: 0.8844321370124817
+
+00:11:05.621 --> 00:11:05.959
+flows.
+
+NOTE Confidence: 0.8560335040092468
+
+00:11:05.960 --> 00:11:09.130
+What we're going to do in this case, you can
+
+NOTE Confidence: 0.8560335040092468
+
+00:11:09.202 --> 00:11:12.012
+see, just to give you a sense of the UI
+
+NOTE Confidence: 0.8560335040092468
+
+00:11:12.084 --> 00:11:16.480
+again, all these elements are simply dropped onto the pallet.
+
+NOTE Confidence: 0.8551332950592041
+
+00:11:17.800 --> 00:11:19.468
+And then what we wanted to do is to run
+
+NOTE Confidence: 0.8551332950592041
+
+00:11:19.511 --> 00:11:19.639
+it.
+
+NOTE Confidence: 0.9560193419456482
+
+00:11:27.320 --> 00:11:29.859
+And one of the things that we wanted to bring
+
+NOTE Confidence: 0.9560193419456482
+
+00:11:29.916 --> 00:11:32.399
+to life was the power of the Snapdragon NPU.
+
+NOTE Confidence: 0.9270367622375488
+
+00:11:32.880 --> 00:11:36.059
+This really is the secret sauce of running AI locally
+
+NOTE Confidence: 0.9270367622375488
+
+00:11:36.119 --> 00:11:39.719
+is the accelerators that are increasingly built into the kit
+
+NOTE Confidence: 0.9270367622375488
+
+00:11:39.779 --> 00:11:43.199
+that every single person in this room is carrying around.
+
+NOTE Confidence: 0.9438421726226807
+
+00:11:43.520 --> 00:11:47.000
+You don't have to send everything up to the cloud.
+
+NOTE Confidence: 0.9409992694854736
+
+00:11:47.200 --> 00:11:50.914
+You don't have to incur token charges, privacy risk, because
+
+NOTE Confidence: 0.9409992694854736
+
+00:11:50.976 --> 00:11:55.000
+you have now inside your laptop this really powerful accelerator.
+
+NOTE Confidence: 0.9101079702377319
+
+00:11:55.640 --> 00:11:58.104
+So the demo gods, looks like they were nice to
+
+NOTE Confidence: 0.9101079702377319
+
+00:11:58.157 --> 00:11:58.640
+us today.
+
+NOTE Confidence: 0.8852416276931763
+
+00:11:58.880 --> 00:12:01.205
+So we actually were able to pull the information from
+
+NOTE Confidence: 0.8852416276931763
+
+00:12:01.249 --> 00:12:01.599
+the API.
+
+NOTE Confidence: 0.9210672378540039
+
+00:12:01.800 --> 00:12:03.560
+That's what actually ran in real time.
+
+NOTE Confidence: 0.9327086806297302
+
+00:12:04.040 --> 00:12:06.160
+And it looks like we're already done.
+
+NOTE Confidence: 0.9303226470947266
+
+00:12:06.520 --> 00:12:09.053
+So you can see how fast actually it was able
+
+NOTE Confidence: 0.9303226470947266
+
+00:12:09.111 --> 00:12:11.933
+to run through all of those inferences and all of
+
+NOTE Confidence: 0.9303226470947266
+
+00:12:11.991 --> 00:12:14.697
+it powered by that NPU that you can see running
+
+NOTE Confidence: 0.9303226470947266
+
+00:12:14.755 --> 00:12:16.080
+up in the task manager.
+
+NOTE Confidence: 0.6142427921295166
+
+00:12:19.880 --> 00:12:20.240
+All right.
+
+NOTE Confidence: 0.9032852649688721
+
+00:12:25.800 --> 00:12:28.803
+The next thing that I wanted to show you is
+
+NOTE Confidence: 0.9032852649688721
+
+00:12:28.873 --> 00:12:32.436
+first, all the outputs that you get are actually in
+
+NOTE Confidence: 0.9032852649688721
+
+00:12:32.506 --> 00:12:35.649
+the formats that you would want to be able to
+
+NOTE Confidence: 0.9032852649688721
+
+00:12:35.719 --> 00:12:40.399
+consume, their CSV files, their Excel workbooks, their PowerPoints.
+
+NOTE Confidence: 0.9105309247970581
+
+00:12:40.720 --> 00:12:43.510
+So you're using the AI to drive some real productivity
+
+NOTE Confidence: 0.9105309247970581
+
+00:12:43.562 --> 00:12:46.404
+by creating them the custom outputs already in the form
+
+NOTE Confidence: 0.9105309247970581
+
+00:12:46.456 --> 00:12:47.799
+that can then be consumed.
+
+NOTE Confidence: 0.8719779253005981
+
+00:12:48.160 --> 00:12:50.982
+And as you saw in this case, actually emailed out
+
+NOTE Confidence: 0.8719779253005981
+
+00:12:51.039 --> 00:12:53.919
+to somebody, shared over teams, shared over Slack.
+
+NOTE Confidence: 0.8918549418449402
+
+00:12:55.400 --> 00:12:58.382
+But what I really wanted to get to, to bring
+
+NOTE Confidence: 0.8918549418449402
+
+00:12:58.450 --> 00:13:02.110
+this to life, since this is a developer conference, is
+
+NOTE Confidence: 0.8918549418449402
+
+00:13:02.178 --> 00:13:04.957
+I wanted to talk about how you can take a
+
+NOTE Confidence: 0.8918549418449402
+
+00:13:05.025 --> 00:13:09.159
+no code asset like that and now leverage it programmatically.
+
+NOTE Confidence: 0.8809687495231628
+
+00:13:09.800 --> 00:13:12.159
+Because one of the most common things is we all
+
+NOTE Confidence: 0.8809687495231628
+
+00:13:12.210 --> 00:13:14.519
+can get stuck in develop mode, prototype mode.
+
+NOTE Confidence: 0.8546427488327026
+
+00:13:14.840 --> 00:13:16.910
+You see this at a conference, you're like, well, that's
+
+NOTE Confidence: 0.8546427488327026
+
+00:13:16.948 --> 00:13:17.399
+pretty cool.
+
+NOTE Confidence: 0.9026627540588379
+
+00:13:17.640 --> 00:13:20.122
+I'll go demo this for my boss, but then the
+
+NOTE Confidence: 0.9026627540588379
+
+00:13:20.180 --> 00:13:23.298
+real challenge is, well, how do you actually move this
+
+NOTE Confidence: 0.9026627540588379
+
+00:13:23.356 --> 00:13:24.280
+into production?
+
+NOTE Confidence: 0.9691600203514099
+
+00:13:24.280 --> 00:13:25.880
+How do you share this with somebody?
+
+NOTE Confidence: 0.9309108257293701
+
+00:13:26.040 --> 00:13:28.220
+How do you start integrating it into some kind of
+
+NOTE Confidence: 0.9309108257293701
+
+00:13:28.265 --> 00:13:29.199
+operational workflow?
+
+NOTE Confidence: 0.9138879179954529
+
+00:13:29.440 --> 00:13:31.600
+How do you integrate it into a custom application?
+
+NOTE Confidence: 0.900724470615387
+
+00:13:32.320 --> 00:13:36.943
+And So what we're going to do is in addition
+
+NOTE Confidence: 0.900724470615387
+
+00:13:37.048 --> 00:13:42.196
+to being a UI based app, all of the functionality
+
+NOTE Confidence: 0.900724470615387
+
+00:13:42.301 --> 00:13:47.030
+can be exposed as a back end Windows service.
+
+NOTE Confidence: 0.9549548029899597
+
+00:13:47.520 --> 00:13:50.749
+So by just flipping that switch, all the functionality of
+
+NOTE Confidence: 0.9549548029899597
+
+00:13:50.806 --> 00:13:52.959
+the product now is available over API.
+
+NOTE Confidence: 0.8624308705329895
+
+00:13:53.560 --> 00:13:55.000
+It's running on local host.
+
+NOTE Confidence: 0.819007933139801
+
+00:13:55.440 --> 00:13:57.440
+You could expose it over to external port.
+
+NOTE Confidence: 0.9573591947555542
+
+00:13:57.800 --> 00:14:00.263
+So let's say you actually wanted to take a laptop
+
+NOTE Confidence: 0.9573591947555542
+
+00:14:00.313 --> 00:14:02.827
+and turn it into a mini server, you actually could
+
+NOTE Confidence: 0.9573591947555542
+
+00:14:02.877 --> 00:14:03.279
+do that.
+
+NOTE Confidence: 0.9472953081130981
+
+00:14:03.760 --> 00:14:05.597
+But in this case, all we're going to be doing
+
+NOTE Confidence: 0.9472953081130981
+
+00:14:05.638 --> 00:14:07.640
+is we're going to be exposing it over local host.
+
+NOTE Confidence: 0.904370129108429
+
+00:14:07.920 --> 00:14:09.920
+So nothing is actually leaving the machine.
+
+NOTE Confidence: 0.9222089052200317
+
+00:14:11.120 --> 00:14:13.759
+But once we do that, that agent that we just
+
+NOTE Confidence: 0.9222089052200317
+
+00:14:13.819 --> 00:14:16.999
+created with no code can now be accessed and extended
+
+NOTE Confidence: 0.9222089052200317
+
+00:14:17.059 --> 00:14:18.079
+programmatically.
+
+NOTE Confidence: 0.8062742352485657
+
+00:14:20.480 --> 00:14:26.360
+So we have an SDK and I've just slipped over.
+
+NOTE Confidence: 0.8911598920822144
+
+00:14:26.360 --> 00:14:28.160
+So hopefully everybody feels more comfortable now.
+
+NOTE Confidence: 0.9271143078804016
+
+00:14:28.160 --> 00:14:30.315
+Now we're looking at some code, we're doing some real
+
+NOTE Confidence: 0.9271143078804016
+
+00:14:30.356 --> 00:14:30.560
+work.
+
+NOTE Confidence: 0.9550692439079285
+
+00:14:31.720 --> 00:14:35.001
+But the power is that you can build that agent
+
+NOTE Confidence: 0.9550692439079285
+
+00:14:35.072 --> 00:14:36.000
+with no code.
+
+NOTE Confidence: 0.9002174735069275
+
+00:14:36.320 --> 00:14:39.570
+You can have a business domain expert, an SME, someone
+
+NOTE Confidence: 0.9002174735069275
+
+00:14:39.630 --> 00:14:42.519
+that does reporting, operations, transformation.
+
+NOTE Confidence: 0.9454987645149231
+
+00:14:42.960 --> 00:14:46.124
+They can go build that agent and then that agent
+
+NOTE Confidence: 0.9454987645149231
+
+00:14:46.190 --> 00:14:48.959
+is exposed and available programmatically.
+
+NOTE Confidence: 0.8746559619903564
+
+00:14:50.040 --> 00:14:54.273
+So for anyone that's ever used, let's say an open
+
+NOTE Confidence: 0.8746559619903564
+
+00:14:54.360 --> 00:14:58.248
+AISDK or any type of high level sort of model
+
+NOTE Confidence: 0.8746559619903564
+
+00:14:58.334 --> 00:15:03.000
+based API, some level you instantiate a client object.
+
+NOTE Confidence: 0.9421365857124329
+
+00:15:03.480 --> 00:15:06.912
+The client object carries your credentials and then within that
+
+NOTE Confidence: 0.9421365857124329
+
+00:15:06.966 --> 00:15:09.200
+client object you invoke various methods.
+
+NOTE Confidence: 0.8714784979820251
+
+00:15:09.680 --> 00:15:12.095
+So in this case, what we're going to do with
+
+NOTE Confidence: 0.8714784979820251
+
+00:15:12.150 --> 00:15:14.457
+our client is we have two AP is that we're
+
+NOTE Confidence: 0.8714784979820251
+
+00:15:14.511 --> 00:15:15.719
+actually going to use.
+
+NOTE Confidence: 0.9683741927146912
+
+00:15:15.720 --> 00:15:17.960
+The first one is just call agent.
+
+NOTE Confidence: 0.8593153953552246
+
+00:15:18.800 --> 00:15:21.404
+In effect, that agent that we just built is all
+
+NOTE Confidence: 0.8593153953552246
+
+00:15:21.460 --> 00:15:23.399
+now being exposed over an endpoint.
+
+NOTE Confidence: 0.9718108773231506
+
+00:15:24.000 --> 00:15:26.320
+We can call that agent by name.
+
+NOTE Confidence: 0.8979241847991943
+
+00:15:27.240 --> 00:15:29.920
+So with a simple command of client call agent.
+
+NOTE Confidence: 0.9404528141021729
+
+00:15:30.520 --> 00:15:32.858
+In this case, there aren't any inputs because they're all
+
+NOTE Confidence: 0.9404528141021729
+
+00:15:32.899 --> 00:15:33.720
+coming from the API.
+
+NOTE Confidence: 0.9413489699363708
+
+00:15:34.280 --> 00:15:37.709
+But in another case, you could be passing inputs inside
+
+NOTE Confidence: 0.9413489699363708
+
+00:15:37.771 --> 00:15:38.519
+API as well.
+
+NOTE Confidence: 0.9596051573753357
+
+00:15:40.040 --> 00:15:43.614
+When we do run agent, that actually launches the agent
+
+NOTE Confidence: 0.9596051573753357
+
+00:15:43.680 --> 00:15:45.600
+asynchronously on the device.
+
+NOTE Confidence: 0.8492152690887451
+
+00:15:46.200 --> 00:15:48.920
+You're given a receipt and execution ID.
+
+NOTE Confidence: 0.9437992572784424
+
+00:15:49.440 --> 00:15:52.213
+You can come back about a minute later with that
+
+NOTE Confidence: 0.9437992572784424
+
+00:15:52.271 --> 00:15:54.813
+execution ID and then you can get all of the
+
+NOTE Confidence: 0.9437992572784424
+
+00:15:54.871 --> 00:15:55.680
+agent outputs.
+
+NOTE Confidence: 0.8644269108772278
+
+00:15:56.120 --> 00:15:58.925
+So again, as simple as run the agent and then
+
+NOTE Confidence: 0.8644269108772278
+
+00:15:58.988 --> 00:16:00.359
+get the agent outputs.
+
+NOTE Confidence: 0.8786463737487793
+
+00:16:03.320 --> 00:16:11.190
+So hopefully that's pretty clear.
+
+NOTE Confidence: 0.9391263127326965
+
+00:16:11.350 --> 00:16:13.150
+Let's go ahead and let's quickly run this.
+
+NOTE Confidence: 0.8832444548606873
+
+00:16:23.080 --> 00:16:26.214
+All right, now all that's happened is that request has
+
+NOTE Confidence: 0.8832444548606873
+
+00:16:26.272 --> 00:16:28.999
+actually been initiated within the application.
+
+NOTE Confidence: 0.9127380847930908
+
+00:16:29.720 --> 00:16:32.880
+That process has started to run asynchronously in the background.
+
+NOTE Confidence: 0.9670626521110535
+
+00:16:33.440 --> 00:16:35.080
+So you don't have to have the app open.
+
+NOTE Confidence: 0.9600237607955933
+
+00:16:35.080 --> 00:16:36.320
+You don't have to have any of that.
+
+NOTE Confidence: 0.9680156111717224
+
+00:16:36.560 --> 00:16:38.880
+It could just be running quietly in the background.
+
+NOTE Confidence: 0.9686300158500671
+
+00:16:39.240 --> 00:16:41.800
+You could be running this API on a schedule.
+
+NOTE Confidence: 0.8858987092971802
+
+00:16:42.240 --> 00:16:44.785
+So every morning or every night, as long as that
+
+NOTE Confidence: 0.8858987092971802
+
+00:16:44.838 --> 00:16:48.127
+Windows service is running, even if somebody closes the laptop
+
+NOTE Confidence: 0.8858987092971802
+
+00:16:48.180 --> 00:16:50.779
+and all of that, you could be running these kinds
+
+NOTE Confidence: 0.8858987092971802
+
+00:16:50.832 --> 00:16:51.839
+of agent processes.
+
+NOTE Confidence: 0.9444136619567871
+
+00:16:52.240 --> 00:16:53.760
+The agent is now running.
+
+NOTE Confidence: 0.6086867451667786
+
+00:16:53.760 --> 00:17:01.411
+In fact, if we see, we see this NPU is
+
+NOTE Confidence: 0.6086867451667786
+
+00:17:01.612 --> 00:17:11.479
+a little bit off and the agent process is already
+
+NOTE Confidence: 0.6086867451667786
+
+00:17:11.680 --> 00:17:21.950
+run, but we'll see e-mail being to the end process.
+
+NOTE Confidence: 0.4680108428001404
+
+00:17:21.950 --> 00:17:23.510
+Wi-Fi is all working.
+
+NOTE Confidence: 0.9466407299041748
+
+00:17:23.790 --> 00:17:27.973
+We will get that e-mail then at the end of
+
+NOTE Confidence: 0.9466407299041748
+
+00:17:28.073 --> 00:17:32.156
+the process and then what we can do is we
+
+NOTE Confidence: 0.9466407299041748
+
+00:17:32.256 --> 00:17:36.440
+can go back and we can pick up our output.
+
+NOTE Confidence: 0.9371693134307861
+
+00:17:48.090 --> 00:17:50.983
+So once we run this command, this will actually give
+
+NOTE Confidence: 0.9371693134307861
+
+00:17:51.039 --> 00:17:53.543
+us then a zip folder that has all those files
+
+NOTE Confidence: 0.9371693134307861
+
+00:17:53.599 --> 00:17:56.215
+that we were looking at when we ran the process
+
+NOTE Confidence: 0.9371693134307861
+
+00:17:56.270 --> 00:17:57.050
+interactively.
+
+NOTE Confidence: 0.9136139750480652
+
+00:17:57.770 --> 00:18:00.747
+And so this becomes how easy you can start taking
+
+NOTE Confidence: 0.9136139750480652
+
+00:18:00.807 --> 00:18:04.331
+high level objects like an agent, like custom data sources
+
+NOTE Confidence: 0.9136139750480652
+
+00:18:04.392 --> 00:18:08.584
+and information that's within that JIRA repository and start exposing
+
+NOTE Confidence: 0.9136139750480652
+
+00:18:08.645 --> 00:18:11.439
+and integrating this into another application.
+
+NOTE Confidence: 0.9418628215789795
+
+00:18:12.400 --> 00:18:14.905
+Now this same thing, if you wanted to put it
+
+NOTE Confidence: 0.9418628215789795
+
+00:18:14.962 --> 00:18:17.240
+on a server, we have a server component.
+
+NOTE Confidence: 0.9118591547012329
+
+00:18:17.800 --> 00:18:20.471
+So once you create that agent and it's working, that
+
+NOTE Confidence: 0.9118591547012329
+
+00:18:20.522 --> 00:18:22.988
+agent can then be exposed as an endpoint on that
+
+NOTE Confidence: 0.9118591547012329
+
+00:18:23.040 --> 00:18:23.399
+server.
+
+NOTE Confidence: 0.9212689399719238
+
+00:18:23.920 --> 00:18:26.777
+And so you can go from developing this, starting to
+
+NOTE Confidence: 0.9212689399719238
+
+00:18:26.833 --> 00:18:29.579
+share it point to point with a few colleagues who
+
+NOTE Confidence: 0.9212689399719238
+
+00:18:29.635 --> 00:18:32.437
+are also all running it locally to then being able
+
+NOTE Confidence: 0.9212689399719238
+
+00:18:32.493 --> 00:18:34.902
+to push this up to a server and running the
+
+NOTE Confidence: 0.9212689399719238
+
+00:18:34.958 --> 00:18:37.479
+whole thing then in a much more scalable way.
+
+NOTE Confidence: 0.9030014872550964
+
+00:18:38.280 --> 00:18:43.731
+So last thing I wanted to show is just that
+
+NOTE Confidence: 0.9030014872550964
+
+00:18:43.858 --> 00:18:50.704
+is let's say we've just created this and we've created
+
+NOTE Confidence: 0.9030014872550964
+
+00:18:50.831 --> 00:18:56.410
+it over the course of a 2025 minute session.
+
+NOTE Confidence: 0.9649938941001892
+
+00:18:57.050 --> 00:18:58.090
+How do we share it?
+
+NOTE Confidence: 0.8569399118423462
+
+00:18:59.850 --> 00:19:05.570
+So sharing it is as easy as that.
+
+NOTE Confidence: 0.9054781794548035
+
+00:19:08.640 --> 00:19:11.612
+All of the agent, everything that we just looked at,
+
+NOTE Confidence: 0.9054781794548035
+
+00:19:11.669 --> 00:19:14.756
+this gets distilled down to hundreds of lines of Jason
+
+NOTE Confidence: 0.9054781794548035
+
+00:19:14.814 --> 00:19:18.529
+configuration code combined with the custom data assets that were
+
+NOTE Confidence: 0.9054781794548035
+
+00:19:18.587 --> 00:19:21.845
+part of that agent, including the custom services that we
+
+NOTE Confidence: 0.9054781794548035
+
+00:19:21.902 --> 00:19:22.360
+created.
+
+NOTE Confidence: 0.8961377739906311
+
+00:19:22.359 --> 00:19:26.003
+In terms of the JIRA integration, no credentials are ever
+
+NOTE Confidence: 0.8961377739906311
+
+00:19:26.067 --> 00:19:29.327
+shared or passed, but that agent now can be wrapped
+
+NOTE Confidence: 0.8961377739906311
+
+00:19:29.391 --> 00:19:31.692
+up in a ZIP file and it's as easy to
+
+NOTE Confidence: 0.8961377739906311
+
+00:19:31.756 --> 00:19:35.144
+share as a PowerPoint file or an Excel spreadsheet to
+
+NOTE Confidence: 0.8961377739906311
+
+00:19:35.208 --> 00:19:38.660
+send to a colleague over e-mail posted in a SharePoint
+
+NOTE Confidence: 0.8961377739906311
+
+00:19:38.724 --> 00:19:41.665
+site and say, hey, I just built this agent, go
+
+NOTE Confidence: 0.8961377739906311
+
+00:19:41.728 --> 00:19:42.560
+check it out.
+
+NOTE Confidence: 0.967871904373169
+
+00:19:42.600 --> 00:19:44.200
+You might have some fun running with it.
+
+NOTE Confidence: 0.90083909034729
+
+00:19:44.560 --> 00:19:48.288
+And it becomes that easy then to start sharing and
+
+NOTE Confidence: 0.90083909034729
+
+00:19:48.363 --> 00:19:53.135
+collaborating all entirely with no code and all entirely powered
+
+NOTE Confidence: 0.90083909034729
+
+00:19:53.210 --> 00:19:55.000
+by Snapdragon X2 and PU.
+
+NOTE Confidence: 0.9609673619270325
+
+00:19:56.080 --> 00:19:57.360
+So let me pause here.
+
+NOTE Confidence: 0.8814599514007568
+
+00:19:57.480 --> 00:19:59.886
+We actually have about 4 minutes left, but let me
+
+NOTE Confidence: 0.8814599514007568
+
+00:19:59.935 --> 00:20:02.440
+just pause here and see if there are any questions.
+
+NOTE Confidence: 0.8739907741546631
+
+00:20:03.760 --> 00:20:04.120
+Yes, Sir.
+
+NOTE Confidence: 0.823982834815979
+
+00:20:17.040 --> 00:20:17.840
+It's a great question.
+
+NOTE Confidence: 0.8768589496612549
+
+00:20:18.240 --> 00:20:21.175
+So the question is, OK, small models are good, but
+
+NOTE Confidence: 0.8768589496612549
+
+00:20:21.234 --> 00:20:24.169
+there are some things that you're going to want to
+
+NOTE Confidence: 0.8768589496612549
+
+00:20:24.228 --> 00:20:25.519
+use larger models for.
+
+NOTE Confidence: 0.9652830958366394
+
+00:20:26.440 --> 00:20:27.320
+Can you do that?
+
+NOTE Confidence: 0.9263988137245178
+
+00:20:28.119 --> 00:20:31.612
+So the first thing is that we actually support about
+
+NOTE Confidence: 0.9263988137245178
+
+00:20:31.679 --> 00:20:35.508
+200 models in our model catalog, including the ability to
+
+NOTE Confidence: 0.9263988137245178
+
+00:20:35.575 --> 00:20:37.120
+use cloud based models.
+
+NOTE Confidence: 0.8936161994934082
+
+00:20:37.720 --> 00:20:40.682
+So let's say you developed some process and perhaps there's
+
+NOTE Confidence: 0.8936161994934082
+
+00:20:40.732 --> 00:20:43.243
+some very complex reasoning that you want to do or
+
+NOTE Confidence: 0.8936161994934082
+
+00:20:43.294 --> 00:20:45.654
+analytics and you're like, no, no, I need to be
+
+NOTE Confidence: 0.8936161994934082
+
+00:20:45.704 --> 00:20:48.014
+able to use, you know, Gemini, you know, to do
+
+NOTE Confidence: 0.8936161994934082
+
+00:20:48.064 --> 00:20:49.319
+this, there's no problem.
+
+NOTE Confidence: 0.8091468214988708
+
+00:20:49.440 --> 00:20:52.079
+You'd simply add as a node in your process a
+
+NOTE Confidence: 0.8091468214988708
+
+00:20:52.139 --> 00:20:53.519
+call out to that model.
+
+NOTE Confidence: 0.8769014477729797
+
+00:20:54.200 --> 00:20:57.545
+As an example, might be some really complex multimodal or
+
+NOTE Confidence: 0.8769014477729797
+
+00:20:57.603 --> 00:21:01.125
+visual input that you want to do some complex transformation
+
+NOTE Confidence: 0.8769014477729797
+
+00:21:01.183 --> 00:21:01.360
+to.
+
+NOTE Confidence: 0.881727397441864
+
+00:21:01.880 --> 00:21:04.287
+You can now take a process and say for the
+
+NOTE Confidence: 0.881727397441864
+
+00:21:04.344 --> 00:21:08.414
+other 10 steps where I'm extracting information, where I'm summarizing,
+
+NOTE Confidence: 0.881727397441864
+
+00:21:08.471 --> 00:21:11.279
+where it's text based, I can do all that locally.
+
+NOTE Confidence: 0.9347248077392578
+
+00:21:11.720 --> 00:21:13.862
+And then for that one critical step, I can go
+
+NOTE Confidence: 0.9347248077392578
+
+00:21:13.910 --> 00:21:16.434
+punch out to that model and bring all the information
+
+NOTE Confidence: 0.9347248077392578
+
+00:21:16.481 --> 00:21:16.719
+back.
+
+NOTE Confidence: 0.8377324938774109
+
+00:21:17.119 --> 00:21:19.146
+So you have the ability to kind of combine through
+
+NOTE Confidence: 0.8377324938774109
+
+00:21:19.186 --> 00:21:20.200
+that best of both worlds.
+
+NOTE Confidence: 0.834021806716919
+
+00:21:24.240 --> 00:21:28.200
+Any other questions you want to see some more code?
+
+NOTE Confidence: 0.6343528628349304
+
+00:21:28.560 --> 00:21:29.600
+Should we do another example?
+
+NOTE Confidence: 0.3161570429801941
+
+00:21:30.520 --> 00:21:30.720
+Yeah.
+
+NOTE Confidence: 0.8365865349769592
+
+00:21:34.480 --> 00:21:35.520
+Any other questions?
+
+NOTE Confidence: 0.5776506662368774
+
+00:21:36.320 --> 00:21:39.786
+Yes, work well on other CPUs as whether like what's
+
+NOTE Confidence: 0.5776506662368774
+
+00:21:39.854 --> 00:21:44.000
+the what's the big advantage of using a Snapdragon processor?
+
+NOTE Confidence: 0.9309509992599487
+
+00:21:44.000 --> 00:21:46.261
+So question is what is the advantage of using a
+
+NOTE Confidence: 0.9309509992599487
+
+00:21:46.309 --> 00:21:47.319
+Snapdragon processor?
+
+NOTE Confidence: 0.8354960083961487
+
+00:21:47.560 --> 00:21:49.236
+I'm going to give first an example to an ISV
+
+NOTE Confidence: 0.8354960083961487
+
+00:21:49.274 --> 00:21:51.331
+and then I'll actually let the Qualcomm team answer as
+
+NOTE Confidence: 0.8354960083961487
+
+00:21:51.369 --> 00:21:51.559
+well.
+
+NOTE Confidence: 0.9561041593551636
+
+00:21:52.440 --> 00:21:54.640
+It's fast, really, really fast.
+
+NOTE Confidence: 0.8862542510032654
+
+00:21:55.120 --> 00:21:58.640
+And so the NPU fully integrated onto your device.
+
+NOTE Confidence: 0.9467834830284119
+
+00:21:59.480 --> 00:22:04.074
+The latest generation of the X2 Snapdragon has 80 tops,
+
+NOTE Confidence: 0.9467834830284119
+
+00:22:04.158 --> 00:22:08.585
+which means it's a lot of capability to start running
+
+NOTE Confidence: 0.9467834830284119
+
+00:22:08.669 --> 00:22:11.760
+more models and bigger models faster.
+
+NOTE Confidence: 0.9419469237327576
+
+00:22:12.280 --> 00:22:14.896
+So ultimately, when it comes to any discussion about a
+
+NOTE Confidence: 0.9419469237327576
+
+00:22:14.944 --> 00:22:17.560
+processor with models, it's just going to be the speed
+
+NOTE Confidence: 0.9419469237327576
+
+00:22:17.609 --> 00:22:19.692
+and the size of the model that it starts to
+
+NOTE Confidence: 0.9419469237327576
+
+00:22:19.740 --> 00:22:20.079
+unlock.
+
+NOTE Confidence: 0.9386507868766785
+
+00:22:20.320 --> 00:22:23.174
+And this is really a state-of-the-art platform to enable you
+
+NOTE Confidence: 0.9386507868766785
+
+00:22:23.222 --> 00:22:25.363
+to use kind of the biggest and best models in
+
+NOTE Confidence: 0.9386507868766785
+
+00:22:25.410 --> 00:22:26.599
+the fastest possible way.
+
+NOTE Confidence: 0.796094536781311
+
+00:22:27.800 --> 00:22:29.200
+And I didn't mean to steal the message.
+
+NOTE Confidence: 0.5515718460083008
+
+00:22:29.240 --> 00:22:30.200
+No, no, not at all.
+
+NOTE Confidence: 0.7160940766334534
+
+00:22:30.240 --> 00:22:31.640
+You covered it exceptionally well.
+
+NOTE Confidence: 0.7156510353088379
+
+00:22:31.680 --> 00:22:32.040
+Thank you.
+
+NOTE Confidence: 0.9536932110786438
+
+00:22:33.520 --> 00:22:35.569
+And if you want to see any other use cases,
+
+NOTE Confidence: 0.9536932110786438
+
+00:22:35.617 --> 00:22:36.999
+we are at the Qualcomm booth.
+
+NOTE Confidence: 0.9561633467674255
+
+00:22:37.000 --> 00:22:39.665
+So you can, you know you all come from different
+
+NOTE Confidence: 0.9561633467674255
+
+00:22:39.720 --> 00:22:40.719
+industries, right?
+
+NOTE Confidence: 0.8766283988952637
+
+00:22:41.080 --> 00:22:43.727
+We would like to show you additional examples of what's
+
+NOTE Confidence: 0.8766283988952637
+
+00:22:43.775 --> 00:22:46.470
+possible for your industry to build agentic use cases at
+
+NOTE Confidence: 0.8766283988952637
+
+00:22:46.518 --> 00:22:46.999
+the booth.
+
+NOTE Confidence: 0.8967450261116028
+
+00:22:47.760 --> 00:22:49.600
+We could only cover one use case here.
+
+NOTE Confidence: 0.830198347568512
+
+00:22:49.600 --> 00:22:50.280
+We apologize.
+
+NOTE Confidence: 0.9027893543243408
+
+00:22:50.280 --> 00:22:53.480
+For that you can see we have 15 other scenarios.
+
+NOTE Confidence: 0.9600138068199158
+
+00:22:54.280 --> 00:22:56.880
+Unlike some demos, this actually is a commercial product.
+
+NOTE Confidence: 0.884979248046875
+
+00:22:57.040 --> 00:22:59.420
+So you can go, you can check out the, the
+
+NOTE Confidence: 0.884979248046875
+
+00:22:59.478 --> 00:23:02.845
+the product, come to the Qualcomm booth, you'll build your
+
+NOTE Confidence: 0.884979248046875
+
+00:23:02.903 --> 00:23:03.600
+first agent.
+
+NOTE Confidence: 0.841713547706604
+
+00:23:03.760 --> 00:23:05.840
+I'm using this technique in just a minute.
+
+NOTE Confidence: 0.9041429162025452
+
+00:23:06.359 --> 00:23:09.449
+Again, regardless of your technical depth, we want to be
+
+NOTE Confidence: 0.9041429162025452
+
+00:23:09.504 --> 00:23:12.262
+able to enable people that can't program at all to
+
+NOTE Confidence: 0.9041429162025452
+
+00:23:12.317 --> 00:23:14.800
+do some really powerful repeatable workflows.
+
+NOTE Confidence: 0.8895824551582336
+
+00:23:15.400 --> 00:23:18.384
+But then to the most sophisticated programmer, the ability to
+
+NOTE Confidence: 0.8895824551582336
+
+00:23:18.432 --> 00:23:21.514
+combine some of those assets and start extending and leveraging
+
+NOTE Confidence: 0.8895824551582336
+
+00:23:21.563 --> 00:23:22.639
+them programmatically.
+
+NOTE Confidence: 0.750298798084259
+
+00:23:25.640 --> 00:23:25.800
+Yeah.
+
+NOTE Confidence: 0.8613836765289307
+
+00:23:25.800 --> 00:23:28.651
+And we also showed one model for the entire use
+
+NOTE Confidence: 0.8613836765289307
+
+00:23:28.712 --> 00:23:29.440
+case, right?
+
+NOTE Confidence: 0.8919134736061096
+
+00:23:29.440 --> 00:23:31.809
+There is also a possibility where you can mix and
+
+NOTE Confidence: 0.8919134736061096
+
+00:23:31.858 --> 00:23:34.759
+match different models for different parts of your use case.
+
+NOTE Confidence: 0.8100215792655945
+
+00:23:34.760 --> 00:23:36.598
+So we can show you how to do that at
+
+NOTE Confidence: 0.8100215792655945
+
+00:23:36.649 --> 00:23:37.159
+the point.
+
+NOTE Confidence: 0.8732694983482361
+
+00:23:37.840 --> 00:23:41.320
+I guess my closing message is look into local AI.
+
+NOTE Confidence: 0.83370041847229
+
+00:23:42.080 --> 00:23:44.137
+I know there's a lot of messages being shared over
+
+NOTE Confidence: 0.83370041847229
+
+00:23:44.179 --> 00:23:44.920
+the next two days.
+
+NOTE Confidence: 0.8725932240486145
+
+00:23:45.440 --> 00:23:49.751
+Look outlook into local AI cost privacy and the kinds
+
+NOTE Confidence: 0.8725932240486145
+
+00:23:49.832 --> 00:23:55.039
+of capabilities that you're finding now in next generation Aipcs
+
+NOTE Confidence: 0.8725932240486145
+
+00:23:55.120 --> 00:23:57.479
+unlock a lot of capabilities.
+
+NOTE Confidence: 0.9022349715232849
+
+00:23:58.000 --> 00:24:00.316
+What we as an ISV were committed to pushing on
+
+NOTE Confidence: 0.9022349715232849
+
+00:24:00.366 --> 00:24:03.437
+that innovation from the hardware level and starting to bring
+
+NOTE Confidence: 0.9022349715232849
+
+00:24:03.488 --> 00:24:06.509
+really, really innovative solutions to enable you to do just
+
+NOTE Confidence: 0.9022349715232849
+
+00:24:06.559 --> 00:24:09.328
+about anything you're doing with a cloud based model to
+
+NOTE Confidence: 0.9022349715232849
+
+00:24:09.379 --> 00:24:12.098
+increasingly be able to do all of that locally without
+
+NOTE Confidence: 0.9022349715232849
+
+00:24:12.148 --> 00:24:15.018
+having to worry about token charges, without having to be
+
+NOTE Confidence: 0.9022349715232849
+
+00:24:15.068 --> 00:24:16.679
+worrying about privacy concerns.
+
+NOTE Confidence: 0.9307066798210144
+
+00:24:19.760 --> 00:24:20.480
+I think that's it.
+
+NOTE Confidence: 0.7595569491386414
+
+00:24:20.480 --> 00:24:22.720
+We have 10 seconds left so time is it?
+
+NOTE Confidence: 0.8724217414855957
+
+00:24:22.720 --> 00:24:23.000
+OK?
+
+NOTE Confidence: 0.686246395111084
+
+00:24:23.000 --> 00:24:23.360
+Thank you.
+
+NOTE Confidence: 0.4001827538013458
+
+00:24:23.360 --> 00:24:23.640
+Everyone.
+

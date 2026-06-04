@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ODSP932 - Ship safer code from your IDE with Aikido</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; ODSP932</nav>
+        <h1>ODSP932 &mdash; Ship safer code from your IDE with Aikido</h1>
+        <nav><a href="../index.html">All sessions in Build 2026</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated per session by Build-Book.ps1. -->
+
+<section class="session-hero">
+    <span class="code">ODSP932 &middot; Pre-recorded</span>
+    <h1>Ship safer code from your IDE with Aikido</h1>
+    <div class="speakers"></div>
+    <div class="meta">
+        <span>Pre-recorded</span>
+<span>(200) Intermediate</span>
+    </div>
+    <div class="tags"><span class="tag">AI</span> <span class="tag">Resiliency</span> <span class="tag">Security</span> <span class="tag">.NET</span> <span class="tag">Developer</span> <span class="tag">Visual Studio Code</span> <span class="tag">Community</span> <span class="tag">VS Code</span> <span class="tag">App Developers</span> <span class="tag">Platform Security</span> <span class="tag">Secure App Development</span> <span class="tag">Attack Surface Reduction</span> <span class="tag">DevTools</span> <span class="tag">Agentic Security</span> <span class="tag">Developer Technologies</span> <span class="tag">Dev Tools</span> <span class="tag">DevSecOps</span> <span class="tag">Developer tools &amp; frameworks</span></div>
+</section>
+
+<nav class="session-actions">
+    <a href="https://build.microsoft.com/en-US/sessions/ODSP932?source=sessions" class="primary" target="_blank" rel="noopener">Open on build.microsoft.com</a>
+<a href="https://medius.microsoft.com/Embed/video-nc/0f705703-0b2f-42ca-871e-a21648b9f954" target="_blank" rel="noopener">Medius player</a>
+<a href="https://medius.microsoft.com/video/asset/HIGHMP4/0f705703-0b2f-42ca-871e-a21648b9f954" target="_blank" rel="noopener">Download MP4</a>
+</nav>
+
+<section class="section">
+    <h2>Official description</h2>
+    <p>Learn how you can integrate security scanning directly into the IDE with Aikido. Using Aikido’s extension, you can ensure that you are shipping less vulnerabilities with your PRs, are not introducing secrets into your commits, and even block malware from making it onto your machine. Best of all, it&#39;s extremely lightweight and doesn&#39;t slow you down.</p>
+</section>
+
+<section class="section">
+    <div class="summary">
+<h1>Summary</h1>
+<h2>Overview</h2>
+<p>A product demonstration of the Aikido plugin for Visual Studio Code, which integrates security scanning directly into the developer&#39;s IDE. The session shows how the extension detects secrets, code security issues, infrastructure-as-code issues, code quality problems, and vulnerable dependencies while developers write code, embodying a &quot;shift-left&quot; security approach.</p>
+<h2>Key announcements</h2>
+<ul>
+<li><strong>Aikido plugin for VS Code</strong> [00:00:03] — An IDE extension that scans files for secrets, code security issues, infrastructure-as-code issues, and code quality issues during development.</li>
+<li><strong>Pre-commit hook</strong> [00:00:24] — Checks for any secrets before a commit is made.</li>
+<li><strong>Safe Chain malware package scanner</strong> [00:00:32] — Bundled malware scanner for packages, included with the plugin.</li>
+<li><strong>Aikido MCP</strong> [00:00:36] — Runs on generated code and executed prompts to support workflows such as vibe coding.</li>
+<li><strong>Fix with Aikido AI</strong> [00:00:27] — AI-generated fixes that can be pushed directly into a file or rejected, with red lines marking problematic code and green lines marking the suggested replacement.</li>
+<li><strong>Workspace and dependency scans</strong> [00:01:50] — A full workspace scan lists all files with detected issues, and a dependency scan surfaces vulnerable open-source dependencies with autofix capability in the IDE.</li>
+</ul>
+<h2>Topics covered</h2>
+<ul>
+<li>Shift-left security and in-IDE scanning during development</li>
+<li>Secret detection and pre-commit secret checking</li>
+<li>Code security, infrastructure-as-code, and code quality issue detection</li>
+<li>AI-assisted impact assessment and automated fixes</li>
+<li>False-positive reporting</li>
+<li>Malware package scanning via Safe Chain</li>
+<li>Open-source dependency scanning, including outdated package detection in POM XML</li>
+<li>MCP integration for AI-assisted (&quot;vibe&quot;) coding</li>
+<li>Installation via Aikido license, login button, or personal access token</li>
+</ul>
+<h2>Notable quotes</h2>
+<blockquote>
+<p>&quot;The Aikido plugin is built to scan your files for secrets, code security issues, IEC issues, and code quality issues while you&#39;re developing. This is the ultimate shift-left movement.&quot; — Simon Mahieu</p>
+</blockquote>
+<blockquote>
+<p>&quot;On every code that gets created or every prompt that is ran, we will also run the Aikido MCP.&quot; — Simon Mahieu</p>
+</blockquote>
+<h2>Products and tools mentioned</h2>
+<ul>
+<li>Aikido plugin for VS Code</li>
+<li>Visual Studio Code</li>
+<li>Aikido AI</li>
+<li>Aikido MCP</li>
+<li>Safe Chain</li>
+<li>Aikido personal access token / license</li>
+</ul>
+<h2>Speakers featured</h2>
+<ul>
+<li>Simon Mahieu — Aikido</li>
+</ul>
+
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <h2>Transcript</h2>
+    <details class="transcript">
+        <summary>Show / hide transcript (4,829 chars)</summary>
+        <pre class="transcript-body">[00:00:01] SIMON MAHIEU: Hi, everyone, Simon here from Aikido.
+[00:00:03] Today we&#39;re going to show you the Aikido plugin for VS Code.
+[00:00:08] The Aikido plugin is built to scan your files for secrets,
+[00:00:13] code security issues, IEC issues,
+[00:00:16] and code quality issues while you&#39;re developing.
+[00:00:19] This is the ultimate shift-left movement.
+[00:00:21] Our plugin also comes with a couple
+[00:00:24] of extra really neat features such as a pre-commit hook.
+[00:00:27] Basically, we&#39;re going to check
+[00:00:29] if there&#39;s any secrets before you commit.
+[00:00:32] We&#39;ve got Safe Chain included there as well,
+[00:00:34] which is a malware package scanner,
+[00:00:36] and then we also have the Aikido MCP, which helps you with,
+[00:00:40] for example, vibe coding.
+[00:00:41] On every code that gets created or every prompt that is ran,
+[00:00:47] we will also run the Aikido MCP, so let&#39;s take a closer look.
+[00:00:51] Super easy to install, by the way.
+[00:00:53] You just have to have an Aikido license.
+[00:00:55] You log in through a login button here
+[00:00:57] or through a personal access token.
+[00:01:00] As you can see, I&#39;ve got a couple of files open here.
+[00:01:02] It&#39;s going to look at these files and it&#39;s going to show me,
+[00:01:06] for example, what the issues are.
+[00:01:08] It looks like this file right here has a couple of issues.
+[00:01:12] If I click into some of these issues, it&#39;s going to showcase
+[00:01:15] where exactly that issue is, and it&#39;s always going
+[00:01:18] to tell me what the issue is.
+[00:01:21] I can then assess the impact with Aikido AI.
+[00:01:24] I can report a false positive in case that&#39;s needed.
+[00:01:27] Plus, we can also fix it with Aikido AI, so whenever I click
+[00:01:31] that button on the right-hand side, a new tab will pop up
+[00:01:35] and that one is going to give me a fix, if available, of course.
+[00:01:39] Then that&#39;s going to allow us to push that fix straight
+[00:01:42] into the file, or I can reject it if I don&#39;t
+[00:01:45] like the solution provided.
+[00:01:48] Once this is done, you&#39;ll see that popping up here.
+[00:01:50] While this is running, you can also run a dependency scan,
+[00:01:55] and you will also be able to do a full-on workspace scan.
+[00:01:58] I have an entire repo loaded here in my VS Code.
+[00:02:01] I will go through all those files
+[00:02:04] and then just showcase how we find things while you&#39;re coding.
+[00:02:08] On the right-hand side here, by the way, it&#39;s loaded our fix.
+[00:02:12] Basically, the red lines are the bad lines,
+[00:02:14] the green ones are the good ones.
+[00:02:16] We can now reject those changes or apply those changes.
+[00:02:20] When you do a workspace scan, as I said, it&#39;s going to go and run
+[00:02:24] through the entire workspace and then it&#39;s going to give me all
+[00:02:27] of the files where we&#39;ve detected an issue.
+[00:02:31] Once this is done running, you will see
+[00:02:33] that they will all be lined here,
+[00:02:35] and then I can click through all of them.
+[00:02:38] In the meantime, I&#39;m going to fire off a dependency scan.
+[00:02:42] This is then going to showcase
+[00:02:43] if there&#39;s open-source dependencies.
+[00:02:45] Here we go.
+[00:02:46] We&#39;ve got all the files,
+[00:02:47] and it tells us how many issues we have.
+[00:02:49] I can go into this one right here.
+[00:02:51] It&#39;s going to open up the file.
+[00:02:54] If I click into one of these issues so they&#39;ll open
+[00:02:56] up right here, and then on the left-hand side here,
+[00:02:59] you can see that it&#39;s found a bunch of code issues.
+[00:03:03] Again, if I hover over it, it&#39;s telling me what the issue is.
+[00:03:07] I can again fix it with Aikido AI
+[00:03:09] or even report false positives to Aikido.
+[00:03:13] We&#39;ve got this open-source dependency scan running here.
+[00:03:16] It&#39;s almost done.
+[00:03:17] Once that is done, I will showcase what it will find.
+[00:03:21] There we go.
+[00:03:22] We found some issues here in POM XML, and then if I click
+[00:03:26] into it, it&#39;s basically telling me, hey, there&#39;s a couple
+[00:03:29] of packages that probably need to get updated.
+[00:03:32] I can actually create an autofix in my IDE as well.
+[00:03:38] So yeah, there&#39;s a lot of different things that we can do.
+[00:03:42] Again, with the expansion packs, you&#39;ll be able to get all
+[00:03:46] of these included in the IDE plugin, so thank you so much.
+[00:03:52] Have a great rest of your day.
+</pre>
+    </details>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-04T13:54:22.0667026Z.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

@@ -1,0 +1,2264 @@
+WEBVTT
+
+00:00:02.790 --> 00:00:03.570
+CHRIS ANDERSON: Hi.
+
+00:00:03.570 --> 00:00:04.770
+Thanks for watching the video.
+
+00:00:04.770 --> 00:00:05.730
+My name is Chris Anderson.
+
+00:00:05.730 --> 00:00:07.740
+I'm an Engineer on
+the Windows UI team,
+
+00:00:07.740 --> 00:00:11.070
+working on some new experimental
+frameworks features
+
+00:00:11.070 --> 00:00:11.610
+going forward.
+
+00:00:11.610 --> 00:00:13.110
+And I want to talk
+about some of the stuff
+
+00:00:13.110 --> 00:00:15.840
+that we've been working
+on behind the scenes
+
+00:00:15.840 --> 00:00:18.660
+and really trying to move this
+to more of in the public.
+
+00:00:18.660 --> 00:00:21.030
+So welcome.
+
+00:00:21.030 --> 00:00:23.580
+First, I really want to spend
+the time, before I dive
+
+00:00:23.580 --> 00:00:28.530
+into the new and exciting things
+that I think are attractive
+
+00:00:28.530 --> 00:00:31.500
+and shiny bobbles in the
+feature, I want to talk
+
+00:00:31.500 --> 00:00:33.510
+about the stuff that
+we need to get going
+
+00:00:33.510 --> 00:00:35.940
+so that we can earn the right
+to build some of these things.
+
+00:00:35.940 --> 00:00:38.400
+And this is really
+the core features
+
+00:00:38.400 --> 00:00:41.760
+that people have been
+asking for and really need
+
+00:00:41.760 --> 00:00:43.470
+to be productive
+on top of WinUI.
+
+00:00:43.470 --> 00:00:46.590
+The first and foremost is
+performance, fundamentals,
+
+00:00:46.590 --> 00:00:48.810
+quality, fixing a lot of bugs.
+
+00:00:48.810 --> 00:00:51.510
+On the performance side,
+we've invested heavily
+
+00:00:51.510 --> 00:00:55.650
+in really improving memory
+usage as well as switching
+
+00:00:55.650 --> 00:00:56.700
+over to a system compositor,
+
+00:00:56.700 --> 00:00:59.700
+which should yield some even
+better performance improvements.
+
+00:00:59.700 --> 00:01:03.450
+And this stuff all actually hit
+the public in our Git repo.
+
+00:01:03.450 --> 00:01:06.090
+And so it should be available
+to go play with today.
+
+00:01:06.090 --> 00:01:08.430
+And there will be
+WinApp SDK versions
+
+00:01:08.430 --> 00:01:10.980
+that incorporate these
+changes available shortly
+
+00:01:10.980 --> 00:01:13.410
+through the experimental
+preview branches.
+
+00:01:13.410 --> 00:01:15.720
+We're also adding in a
+lot of new controls.
+
+00:01:15.720 --> 00:01:18.060
+We have DataGrid and Charting
+that are up and coming
+
+00:01:18.060 --> 00:01:19.800
+that should be out
+relatively shortly.
+
+00:01:19.800 --> 00:01:21.870
+These will be showing up
+in the core WinUI bits
+
+00:01:21.870 --> 00:01:24.390
+and will allow you to
+go after a lot more
+
+00:01:24.390 --> 00:01:26.610
+of these data-oriented
+scenarios.
+
+00:01:26.610 --> 00:01:28.410
+One of the big things that
+I'm personally really excited
+
+00:01:28.410 --> 00:01:31.260
+about is for us to complete
+our journey to open source.
+
+00:01:31.260 --> 00:01:33.360
+We've started on this
+path quite a while ago.
+
+00:01:33.360 --> 00:01:35.280
+We recently hit our Phase 3,
+
+00:01:35.280 --> 00:01:37.590
+which was when we could
+actually run tests in public.
+
+00:01:37.590 --> 00:01:40.650
+And so anyone can grab
+the bits, compile WinUI,
+
+00:01:40.650 --> 00:01:42.210
+and then run the test to make
+sure that they have something
+
+00:01:42.210 --> 00:01:43.230
+that is fully functional.
+
+00:01:43.230 --> 00:01:44.880
+If they want to make changes,
+they can run the test
+
+00:01:44.880 --> 00:01:45.900
+and make sure they
+haven't broken anything,
+
+00:01:45.900 --> 00:01:48.690
+which is an important part of
+having an open source library.
+
+00:01:48.690 --> 00:01:51.660
+The big next phase
+for us is Phase 4.
+
+00:01:51.660 --> 00:01:53.880
+And really, that is
+where we move the team
+
+00:01:53.880 --> 00:01:58.500
+from using internal source
+repos to working primarily
+
+00:01:58.500 --> 00:02:01.590
+and almost exclusively
+in the public repos.
+
+00:02:01.590 --> 00:02:03.390
+And so you'll see the
+team start to land all
+
+00:02:03.390 --> 00:02:06.300
+of their pull requests in
+the public repo side of it.
+
+00:02:06.300 --> 00:02:08.040
+And that's really just
+about getting to a place
+
+00:02:08.040 --> 00:02:10.860
+where we can accept changes from
+the community, we can engage
+
+00:02:10.860 --> 00:02:12.390
+in the community, and the
+community can see the work
+
+00:02:12.390 --> 00:02:15.000
+instantly as soon as
+we've got it going.
+
+00:02:15.000 --> 00:02:18.990
+With these changes, we've really
+heard a common set of themes.
+
+00:02:18.990 --> 00:02:22.050
+Probably the number
+one thing is,
+
+00:02:22.050 --> 00:02:23.640
+are you guys actually
+serious this time?
+
+00:02:23.640 --> 00:02:25.200
+Are you going to stick
+with this framework?
+
+00:02:25.200 --> 00:02:29.930
+WinUI 3 is four years old.
+
+00:02:29.930 --> 00:02:31.430
+Are you going to keep
+going, or is this the year
+
+00:02:31.430 --> 00:02:33.770
+that you're going to announce a
+brand-new framework yet again?
+
+00:02:33.770 --> 00:02:35.750
+And I will say that, no,
+we have no intention
+
+00:02:35.750 --> 00:02:37.310
+of building a new framework.
+
+00:02:37.310 --> 00:02:39.590
+In fact, we're dropping the
+number, and we're referring
+
+00:02:39.590 --> 00:02:42.650
+to WinUI as just WinUI
+because we have no intention
+
+00:02:42.650 --> 00:02:46.490
+of really making a massive
+shift, breaking change on it.
+
+00:02:46.490 --> 00:02:49.460
+And we're really trying to
+push hard to stretch WinUI
+
+00:02:49.460 --> 00:02:52.220
+to be accessible for any
+use case that we want.
+
+00:02:52.220 --> 00:02:54.530
+We've started to integrate
+it into the shell
+
+00:02:54.530 --> 00:02:55.940
+at a much faster rate.
+
+00:02:55.940 --> 00:02:57.390
+And so you're going to see a lot
+
+00:02:57.390 --> 00:02:58.860
+of the first-party
+features coming
+
+00:02:58.860 --> 00:03:01.200
+from Microsoft being
+built on top of WinUI.
+
+00:03:01.200 --> 00:03:02.220
+And we hope to see a lot
+
+00:03:02.220 --> 00:03:05.790
+of third-party developers
+really start to adopt it.
+
+00:03:05.790 --> 00:03:09.420
+We've seen some pickup already,
+but we know that the move
+
+00:03:09.420 --> 00:03:12.510
+to adopt a new UI framework
+can take a long time,
+
+00:03:12.510 --> 00:03:13.860
+especially in enterprise spaces.
+
+00:03:13.860 --> 00:03:17.580
+And so we see this as our
+time to really start showing
+
+00:03:17.580 --> 00:03:19.080
+that we are putting
+our muscle behind this
+
+00:03:19.080 --> 00:03:21.390
+and that we're committed
+to move WinUI forward.
+
+00:03:21.390 --> 00:03:24.150
+And that is fully our intention.
+
+00:03:24.150 --> 00:03:26.670
+The second thing we've heard
+a lot is, beyond DataGrid
+
+00:03:26.670 --> 00:03:30.150
+and Charting, there's just a ton
+of feature gaps in the platform.
+
+00:03:30.150 --> 00:03:32.130
+Everything from what are
+you doing on system tray?
+
+00:03:32.130 --> 00:03:34.410
+And you have limited
+use of Windows.
+
+00:03:34.410 --> 00:03:36.480
+A bunch of people use
+open source libraries
+
+00:03:36.480 --> 00:03:39.840
+to fix these gaps, and can we
+just get the platform fixed?
+
+00:03:39.840 --> 00:03:41.460
+And so we have a large backlog.
+
+00:03:41.460 --> 00:03:42.540
+We're going to start
+working through that
+
+00:03:42.540 --> 00:03:45.030
+and really start trying to
+address the feature gaps
+
+00:03:45.030 --> 00:03:46.410
+that people are calling out.
+
+00:03:46.410 --> 00:03:48.690
+But it's been one of
+the biggest issues.
+
+00:03:48.690 --> 00:03:51.360
+The third thing that
+is a constant source
+
+00:03:51.360 --> 00:03:54.360
+that people bring up is, how
+are we going to migrate?
+
+00:03:54.360 --> 00:03:55.980
+How are we going to go
+from the current set
+
+00:03:55.980 --> 00:03:57.480
+of frameworks we have?
+
+00:03:57.480 --> 00:03:59.340
+Can we just incrementally
+adopt WinUI?
+
+00:03:59.340 --> 00:04:01.170
+Or are you making an
+all-or-nothing proposition
+
+00:04:01.170 --> 00:04:03.450
+where you have to
+rewrite everything?
+
+00:04:03.450 --> 00:04:07.380
+We have a reasonable story
+of WinForms interop today.
+
+00:04:07.380 --> 00:04:08.970
+It's not great, but it's
+a reasonable story.
+
+00:04:08.970 --> 00:04:10.500
+It works pretty well.
+
+00:04:10.500 --> 00:04:11.310
+But we want to build on that.
+
+00:04:11.310 --> 00:04:13.380
+We want to make it that that
+should be a bulletproof part
+
+00:04:13.380 --> 00:04:16.590
+of the story, that WinForms
+interopting with WinUI
+
+00:04:16.590 --> 00:04:20.010
+in either direction should
+be just super easy to do.
+
+00:04:20.010 --> 00:04:20.880
+So we intend to do that.
+
+00:04:20.880 --> 00:04:23.400
+We want to make WPF
+migration equally good
+
+00:04:23.400 --> 00:04:25.560
+that you should be able
+to mix and match WPF
+
+00:04:25.560 --> 00:04:27.810
+and WinUI with no problems.
+
+00:04:27.810 --> 00:04:30.090
+And so that's a big chunk
+of work that we want
+
+00:04:30.090 --> 00:04:31.830
+to get to in the future.
+
+00:04:31.830 --> 00:04:37.110
+What we've also seen is that the
+development style is changing
+
+00:04:37.110 --> 00:04:38.340
+quite a bit.
+
+00:04:38.340 --> 00:04:42.960
+The AI assistance has changed
+the way people write software.
+
+00:04:42.960 --> 00:04:43.980
+It's changed the way
+I write software.
+
+00:04:43.980 --> 00:04:46.260
+I rarely type
+semicolons anymore.
+
+00:04:46.260 --> 00:04:48.360
+I'm almost always
+using AI to drive most
+
+00:04:48.360 --> 00:04:49.980
+of the code that I'm writing.
+
+00:04:49.980 --> 00:04:54.000
+I use it for code reviews,
+for writing tests.
+
+00:04:54.000 --> 00:04:55.410
+I have it help me with specs.
+
+00:04:55.410 --> 00:04:58.920
+It's like this whole notion
+of this AI shift has really,
+
+00:04:58.920 --> 00:05:02.010
+really transformed the way
+you write all the code.
+
+00:05:02.010 --> 00:05:04.590
+At the same time, we've
+seen this journey of more
+
+00:05:04.590 --> 00:05:08.040
+and more dynamic UI continue.
+
+00:05:08.040 --> 00:05:10.080
+It accelerated in a lot of ways.
+
+00:05:10.080 --> 00:05:13.500
+And I look at things
+like SwiftUI, Compose,
+
+00:05:13.500 --> 00:05:16.710
+and React as examples
+of the best practice
+
+00:05:16.710 --> 00:05:19.890
+in the industry today for
+building these dynamic UI.
+
+00:05:19.890 --> 00:05:22.050
+And it becomes super
+straightforward to build things
+
+00:05:22.050 --> 00:05:24.450
+that are incredibly
+flexible and responsive
+
+00:05:24.450 --> 00:05:25.350
+to what the user does.
+
+00:05:25.350 --> 00:05:28.020
+And so that's another
+trend that we really see.
+
+00:05:28.020 --> 00:05:31.200
+And the second one is really
+this notion of getting to code
+
+00:05:31.200 --> 00:05:33.480
+as the primary way
+to write things.
+
+00:05:33.480 --> 00:05:35.610
+On one way, you can
+say that this move
+
+00:05:35.610 --> 00:05:40.350
+to CLI-based coding tools with
+Claude Code, GitHub Copilot,
+
+00:05:40.350 --> 00:05:45.840
+things like this have led to
+Visual Studio Code becoming one
+
+00:05:45.840 --> 00:05:48.690
+of the most productive places
+to be to work on your project
+
+00:05:48.690 --> 00:05:50.430
+with your terminal
+window next to you.
+
+00:05:50.430 --> 00:05:51.660
+And this really gets to a world
+
+00:05:51.660 --> 00:05:54.930
+where code first becomes
+the de facto standard.
+
+00:05:54.930 --> 00:05:57.660
+And so what we really
+want to do is get C#
+
+00:05:57.660 --> 00:06:01.830
+as a primary way
+to target WinUI.
+
+00:06:01.830 --> 00:06:05.820
+We want to elevate C# from being
+a way to do code behind for XAML
+
+00:06:05.820 --> 00:06:08.640
+to a way that you can actually
+write an entire application.
+
+00:06:08.640 --> 00:06:12.930
+So you should be able to build
+an existing WinUI framework,
+
+00:06:12.930 --> 00:06:15.720
+use the controls, the templates.
+
+00:06:15.720 --> 00:06:17.340
+All of those features
+should be accessible
+
+00:06:17.340 --> 00:06:19.380
+from a C#-first experience.
+
+00:06:19.380 --> 00:06:21.720
+Several of those are currently
+locked behind needing
+
+00:06:21.720 --> 00:06:22.170
+to have XAML.
+
+00:06:22.170 --> 00:06:25.050
+And so we really want to
+bring C# up to parity.
+
+00:06:25.050 --> 00:06:28.440
+We're also announcing today a
+new experimental framework,
+
+00:06:28.440 --> 00:06:31.800
+which is called Reactor.
+
+00:06:31.800 --> 00:06:36.120
+Microsoft UI Reactor is a
+way for us to experiment
+
+00:06:36.120 --> 00:06:39.900
+with the new styles of
+programming, new controls,
+
+00:06:39.900 --> 00:06:43.200
+and new app models as
+we think about it.
+
+00:06:43.200 --> 00:06:46.740
+The Reactor repository, you
+should think of as a place
+
+00:06:46.740 --> 00:06:48.270
+for us to experiment with ideas
+
+00:06:48.270 --> 00:06:51.090
+that we don't necessarily
+have full conviction behind,
+
+00:06:51.090 --> 00:06:52.920
+and that we really want to
+engage with the community
+
+00:06:52.920 --> 00:06:54.660
+and do development
+out in the open.
+
+00:06:54.660 --> 00:06:56.760
+And so it was started
+as an open project.
+
+00:06:56.760 --> 00:06:58.050
+It is very early.
+
+00:06:58.050 --> 00:07:01.260
+It is a high churn rate.
+
+00:07:01.260 --> 00:07:04.950
+We're changing lots of the
+code on a daily basis.
+
+00:07:04.950 --> 00:07:08.970
+So you should really think of
+this as a place that is open
+
+00:07:08.970 --> 00:07:12.210
+for a ton of feedback, a ton of
+guidance from the community,
+
+00:07:12.210 --> 00:07:13.920
+a ton of participation
+from the community.
+
+00:07:13.920 --> 00:07:16.590
+We already have PRs landing
+from some of the community,
+
+00:07:16.590 --> 00:07:18.390
+and we would like to get more.
+
+00:07:18.390 --> 00:07:20.220
+And the idea is that
+as we find good ideas
+
+00:07:20.220 --> 00:07:21.900
+and as we bake those ideas,
+we'll be pushing them
+
+00:07:21.900 --> 00:07:25.680
+down into the production WinUI
+bits, and that they will,
+
+00:07:25.680 --> 00:07:28.590
+at that point, become
+consistent and standard
+
+00:07:28.590 --> 00:07:31.260
+across the WinUI stack so
+that it doesn't stand out.
+
+00:07:31.260 --> 00:07:34.950
+So you may see things that look
+foreign in the Reactor layer.
+
+00:07:34.950 --> 00:07:37.560
+And really don't panic
+about that stuff.
+
+00:07:37.560 --> 00:07:40.230
+It is a place for us to try
+these ideas out and then see
+
+00:07:40.230 --> 00:07:42.780
+which of these makes sense
+to go get pushed in.
+
+00:07:42.780 --> 00:07:44.100
+So really, the main
+action I would say
+
+00:07:44.100 --> 00:07:48.210
+for people watching this video
+today is please pick up WinUI.
+
+00:07:48.210 --> 00:07:49.110
+Go build something with it.
+
+00:07:49.110 --> 00:07:50.220
+Keep using it.
+
+00:07:50.220 --> 00:07:51.240
+Keep making it forward.
+
+00:07:51.240 --> 00:07:54.630
+We have no plans
+on deviating off
+
+00:07:54.630 --> 00:07:56.700
+that as our primary
+way of moving forward.
+
+00:07:56.700 --> 00:07:57.660
+We're investing in it.
+
+00:07:57.660 --> 00:07:59.130
+We hope that you will too.
+
+00:07:59.130 --> 00:08:01.350
+And then the last thing is,
+let's go try out Reactor.
+
+00:08:01.350 --> 00:08:02.520
+Give us feedback.
+
+00:08:02.520 --> 00:08:04.560
+Go clone the repo
+and try it out.
+
+00:08:04.560 --> 00:08:06.360
+Let's start by diving in
+and showing you what's
+
+00:08:06.360 --> 00:08:10.000
+in the new Reactor repo,
+and let me show you that.
+
+00:08:12.420 --> 00:08:15.630
+Let's dive right into
+Microsoft UI Reactor,
+
+00:08:15.630 --> 00:08:19.200
+which is a new open source
+project that we're releasing
+
+00:08:19.200 --> 00:08:22.290
+that shows the future direction
+
+00:08:22.290 --> 00:08:24.210
+that we're thinking
+of for WinUI.
+
+00:08:24.210 --> 00:08:27.090
+It includes a bunch of
+controls that are experiences
+
+00:08:27.090 --> 00:08:28.710
+that we think are going
+to be delivered as part
+
+00:08:28.710 --> 00:08:31.800
+of the core WinUI bits using
+the XAML you know and love,
+
+00:08:31.800 --> 00:08:34.080
+data binding, the
+MVVM architecture,
+
+00:08:34.080 --> 00:08:35.880
+all the features
+you're looking for.
+
+00:08:35.880 --> 00:08:37.440
+As well, there's included
+
+00:08:37.440 --> 00:08:40.770
+in the project a new
+domain-specific language
+
+00:08:40.770 --> 00:08:43.910
+or a new projection
+into C# for all
+
+00:08:43.910 --> 00:08:46.310
+of the WinUI controls
+that are out there.
+
+00:08:46.310 --> 00:08:48.440
+And this allows you to use C#
+
+00:08:48.440 --> 00:08:51.110
+with your primary programming
+experience if you're the person
+
+00:08:51.110 --> 00:08:52.940
+who would like to do
+a more functional,
+
+00:08:52.940 --> 00:08:56.060
+reactive-style
+approach as opposed
+
+00:08:56.060 --> 00:08:58.920
+to an XAML-based approach.
+
+00:08:58.920 --> 00:09:02.460
+The library itself, if you go
+look at the open source project,
+
+00:09:02.460 --> 00:09:03.930
+you'll find that
+almost everything
+
+00:09:03.930 --> 00:09:06.930
+in there is written
+using this new C# style.
+
+00:09:06.930 --> 00:09:08.820
+That's mostly because
+we wanted to experiment
+
+00:09:08.820 --> 00:09:11.100
+with this new style
+of programming
+
+00:09:11.100 --> 00:09:13.740
+as we built these controls
+to see what it felt like
+
+00:09:13.740 --> 00:09:16.680
+and where the edges were
+of the thing of it.
+
+00:09:16.680 --> 00:09:19.650
+We don't really expect that this
+is going to be the right way
+
+00:09:19.650 --> 00:09:21.720
+to build most of these controls.
+
+00:09:21.720 --> 00:09:24.480
+A lot of them are going to be
+integrated directly into WinUI.
+
+00:09:24.480 --> 00:09:26.940
+They'll be written in C++ using
+the same WinRT frameworks
+
+00:09:26.940 --> 00:09:28.560
+that you're familiar with.
+
+00:09:28.560 --> 00:09:31.650
+This is just more of a way for
+us to experiment and learn.
+
+00:09:31.650 --> 00:09:34.860
+And so don't take that just
+because you see DataGrid that's
+
+00:09:34.860 --> 00:09:38.670
+in there, that's written using
+this Reactor-style syntax,
+
+00:09:38.670 --> 00:09:39.480
+it doesn't mean that's
+how we're going
+
+00:09:39.480 --> 00:09:40.710
+to eventually ship the DataGrid.
+
+00:09:40.710 --> 00:09:42.510
+This is more of just an
+experimental playground.
+
+00:09:42.510 --> 00:09:44.370
+This is a good time
+to give this context
+
+00:09:44.370 --> 00:09:46.140
+on what I mean by experimental.
+
+00:09:46.140 --> 00:09:49.290
+This is a place where we are
+likely to change every line
+
+00:09:49.290 --> 00:09:50.340
+of code in this project.
+
+00:09:50.340 --> 00:09:51.390
+We are very early.
+
+00:09:51.390 --> 00:09:53.640
+We want to do the
+development out in the open,
+
+00:09:53.640 --> 00:09:55.350
+which means that we're going
+to change a lot of things.
+
+00:09:55.350 --> 00:09:56.400
+We're going to
+change the syntax.
+
+00:09:56.400 --> 00:09:59.940
+The current syntax is using
+this fluent functional style
+
+00:09:59.940 --> 00:10:02.730
+expression, but that
+may completely change.
+
+00:10:02.730 --> 00:10:04.500
+We're working with the C#
+team about the right way
+
+00:10:04.500 --> 00:10:08.160
+to express these kinds of
+construction patterns.
+
+00:10:08.160 --> 00:10:09.720
+And we really want
+to do it in a way
+
+00:10:09.720 --> 00:10:11.430
+that feels very natural
+in the language.
+
+00:10:11.430 --> 00:10:12.120
+And so we're going to iterate.
+
+00:10:12.120 --> 00:10:13.380
+We're going to change
+a lot of stuff.
+
+00:10:13.380 --> 00:10:16.140
+Now is really a chance for
+you to play with the team
+
+00:10:16.140 --> 00:10:17.700
+in the project and take a look.
+
+00:10:17.700 --> 00:10:20.790
+We've already had some
+contributors from outside
+
+00:10:20.790 --> 00:10:23.400
+of the company who've added some
+new features to the product
+
+00:10:23.400 --> 00:10:26.340
+and have given a lot of
+feedback, have issued some PRs.
+
+00:10:26.340 --> 00:10:28.950
+So we're really looking
+forward to collaborating
+
+00:10:28.950 --> 00:10:31.320
+with the community
+on all of this.
+
+00:10:31.320 --> 00:10:34.740
+So let's dive in and look at the
+code and how this functions.
+
+00:10:34.740 --> 00:10:37.050
+So we see here we have
+a "ReactorApp.Run,"
+
+00:10:37.050 --> 00:10:39.450
+which is just starting up the
+project, creates a window.
+
+00:10:39.450 --> 00:10:42.030
+The devtools flag, we'll
+talk about it a little bit.
+
+00:10:42.030 --> 00:10:43.380
+It's something that
+you'd normally only put
+
+00:10:43.380 --> 00:10:45.090
+in a debug build
+of your product.
+
+00:10:45.090 --> 00:10:46.710
+And then here we
+have a component,
+
+00:10:46.710 --> 00:10:48.720
+which is the main
+unit of composition.
+
+00:10:48.720 --> 00:10:50.640
+And we "override Element
+Render," create a title bar,
+
+00:10:50.640 --> 00:10:52.710
+heading, text block, put
+it in a flex column.
+
+00:10:52.710 --> 00:10:54.800
+And that's what you see
+over here on the left.
+
+00:10:54.800 --> 00:10:55.880
+So the first thing
+I'm going to say is
+
+00:10:55.880 --> 00:10:57.620
+that the text block
+is hard to see,
+
+00:10:57.620 --> 00:11:00.330
+so let's just make
+the font size larger.
+
+00:11:01.670 --> 00:11:05.300
+We'll save, and then we're
+going to come over here,
+
+00:11:05.300 --> 00:11:08.700
+and we'll create a flex
+column because I want
+
+00:11:08.700 --> 00:11:11.250
+to take this header
+and Hello text
+
+00:11:11.250 --> 00:11:13.260
+and indent them a little bit.
+
+00:11:13.260 --> 00:11:19.290
+So I'm going to just say
+"Margin24," and then I also want
+
+00:11:19.290 --> 00:11:20.970
+to have it occupy all the space.
+
+00:11:20.970 --> 00:11:25.440
+So I'm going to say
+"grow:1, basis:0."
+
+00:11:25.440 --> 00:11:27.780
+Save that, and we see
+that the app is updating.
+
+00:11:27.780 --> 00:11:28.830
+Down here on the bottom left,
+
+00:11:28.830 --> 00:11:33.000
+I'm just running a normal
+standard.NET watch command,
+
+00:11:33.000 --> 00:11:34.980
+and up on the left
+is the app running.
+
+00:11:34.980 --> 00:11:36.480
+At some point, this might crash.
+
+00:11:36.480 --> 00:11:38.880
+It turns out hot reload,
+not always the most stable.
+
+00:11:38.880 --> 00:11:40.620
+We will see how this goes.
+
+00:11:40.620 --> 00:11:44.010
+But in the meantime, we can
+just continue to iterate.
+
+00:11:44.010 --> 00:11:46.860
+So we can see basically
+hot reload is working.
+
+00:11:46.860 --> 00:11:48.000
+We can create our functions.
+
+00:11:48.000 --> 00:11:49.050
+We have a nesting.
+
+00:11:49.050 --> 00:11:52.290
+In this case, we can do
+imperative construction.
+
+00:11:52.290 --> 00:11:55.110
+We can also do more of your
+expression-based construction.
+
+00:11:55.110 --> 00:11:58.410
+Whatever you'd like to do,
+it's your place to play.
+
+00:11:58.410 --> 00:12:00.000
+Let's make this
+interactive, though.
+
+00:12:00.000 --> 00:12:01.260
+So let's create some state.
+
+00:12:01.260 --> 00:12:06.630
+So we'll say we want
+a count, UseState.
+
+00:12:06.630 --> 00:12:07.440
+It could be 0.
+
+00:12:07.440 --> 00:12:09.690
+And then we'll just have a name.
+
+00:12:09.690 --> 00:12:11.980
+Feels like what you need to do.
+
+00:12:14.400 --> 00:12:17.200
+And we'll just say "name."
+
+00:12:18.240 --> 00:12:20.860
+And then we'll go
+update our text here.
+
+00:12:26.430 --> 00:12:28.260
+And we'll just use "name."
+
+00:12:28.260 --> 00:12:32.910
+And then we'll say
+"count: count."
+
+00:12:32.910 --> 00:12:34.170
+Great. So we see it updates.
+
+00:12:34.170 --> 00:12:35.820
+We got the name of the text.
+
+00:12:35.820 --> 00:12:37.560
+And like you see,
+as you'd expect,
+
+00:12:37.560 --> 00:12:40.680
+you can do any C# function
+you want in here.
+
+00:12:40.680 --> 00:12:42.660
+Let's make this interactive.
+
+00:12:42.660 --> 00:12:46.540
+So the first thing we'll do
+is we'll add a "nameField."
+
+00:12:48.120 --> 00:12:51.900
+And we'll just say it takes
+a name and it sets a name.
+
+00:12:51.900 --> 00:12:55.450
+And then we'll have
+a row of buttons.
+
+00:12:56.490 --> 00:12:58.350
+We'll just have a "FlexRow."
+
+00:12:58.350 --> 00:13:03.700
+And we'll create a
+button that's "-."
+
+00:13:05.190 --> 00:13:10.000
+And for that, we'll just say
+set count to "count -1."
+
+00:13:11.010 --> 00:13:15.270
+And then we'll
+have a button "+."
+
+00:13:15.270 --> 00:13:18.760
+And we'll do
+"setCount, count+1."
+
+00:13:21.930 --> 00:13:25.830
+Great.
+
+00:13:25.830 --> 00:13:27.600
+If I can type today.
+
+00:13:27.600 --> 00:13:29.130
+And then last, I want
+to just put some space.
+
+00:13:29.130 --> 00:13:34.350
+So I'll say "with
+ColumnGap = 4."
+
+00:13:34.350 --> 00:13:36.750
+Great. And let's add these
+into our header here.
+
+00:13:36.750 --> 00:13:39.660
+So we'll have it
+be the name field.
+
+00:13:39.660 --> 00:13:42.660
+And then we'll have the buttons.
+
+00:13:42.660 --> 00:13:46.200
+"Save." We've got
+our name field.
+
+00:13:46.200 --> 00:13:49.500
+The buttons are a little weird,
+but we'll just type the buttons.
+
+00:13:49.500 --> 00:13:51.360
+We can type in the
+name field now.
+
+00:13:51.360 --> 00:13:54.510
+And if I click "+," we see
+that the count updates.
+
+00:13:54.510 --> 00:13:57.210
+Perfect. We'll get that little
+layout glitch there fixed
+
+00:13:57.210 --> 00:13:58.770
+in just a second here.
+
+00:13:58.770 --> 00:14:00.370
+Let's continue.
+
+00:14:01.440 --> 00:14:03.570
+So we have basic
+state, single state.
+
+00:14:03.570 --> 00:14:04.830
+Let's do a little richer one.
+
+00:14:04.830 --> 00:14:06.750
+Let's do collection.
+
+00:14:06.750 --> 00:14:09.430
+So we'll just say I
+want "Enumerable"
+
+00:14:14.070 --> 00:14:18.630
+that is "Range to 100."
+
+00:14:18.630 --> 00:14:21.450
+And we'll say, let's
+just take the index,
+
+00:14:21.450 --> 00:14:23.070
+and we'll create another string.
+
+00:14:23.070 --> 00:14:28.080
+We'll just say "Item # i."
+
+00:14:28.080 --> 00:14:32.220
+And we'll do a "Guid.NewGuid.
+
+00:14:32.220 --> 00:14:35.700
+ToString" and grab
+eight characters of it.
+
+00:14:35.700 --> 00:14:37.950
+And we'll make that into a list.
+
+00:14:37.950 --> 00:14:43.690
+Great. If we want to visualize
+this, let's create a "listView."
+
+00:14:47.910 --> 00:14:50.940
+And we're going to take
+the items we just created.
+
+00:14:50.940 --> 00:14:52.920
+We need to create
+a "keySelector."
+
+00:14:52.920 --> 00:14:55.030
+So we're just going to say,
+
+00:14:57.780 --> 00:15:01.110
+because all of our items are
+unique strings, pretty easy.
+
+00:15:01.110 --> 00:15:03.390
+We can do that.
+
+00:15:03.390 --> 00:15:05.340
+I have a little typo here.
+
+00:15:05.340 --> 00:15:06.840
+Let's go fix that.
+
+00:15:06.840 --> 00:15:09.960
+And then we need to
+create a "viewBuilder,"
+
+00:15:09.960 --> 00:15:11.130
+which is just how we
+want to create it.
+
+00:15:11.130 --> 00:15:12.540
+So we'll say "item."
+
+00:15:12.540 --> 00:15:13.710
+We don't need a second argument.
+
+00:15:13.710 --> 00:15:16.830
+And we'll create a "TextBlock"
+with the item in it
+
+00:15:16.830 --> 00:15:21.480
+and a margin of 8 all around it.
+
+00:15:21.480 --> 00:15:23.640
+And last, just
+because I don't want
+
+00:15:23.640 --> 00:15:26.190
+to have it animate too much,
+we'll put that in here.
+
+00:15:26.190 --> 00:15:30.780
+And we'll add our list
+item to our listView here.
+
+00:15:30.780 --> 00:15:33.030
+And because we're putting
+it in a flex grid,
+
+00:15:33.030 --> 00:15:36.060
+I want to have this guy
+be the largest piece.
+
+00:15:36.060 --> 00:15:38.820
+So it's going to fix that
+little glitch we saw earlier,
+
+00:15:38.820 --> 00:15:40.950
+also because that will consume
+the rest of the space.
+
+00:15:40.950 --> 00:15:43.590
+So now we see our list of items.
+
+00:15:43.590 --> 00:15:44.430
+They're in a list box.
+
+00:15:44.430 --> 00:15:45.390
+They scroll.
+
+00:15:45.390 --> 00:15:46.140
+And we click "+."
+
+00:15:46.140 --> 00:15:47.280
+Everything works.
+
+00:15:47.280 --> 00:15:48.930
+But the first thing you should
+notice is that when I click "+,"
+
+00:15:48.930 --> 00:15:50.880
+all of these become new guids.
+
+00:15:50.880 --> 00:15:53.070
+That's because this render
+method is being called
+
+00:15:53.070 --> 00:15:53.880
+every frame.
+
+00:15:53.880 --> 00:15:55.290
+Every time you make a
+change, it's being called.
+
+00:15:55.290 --> 00:15:57.000
+It's recomputing the display.
+
+00:15:57.000 --> 00:15:58.980
+And then we're diffing
+between the two things.
+
+00:15:58.980 --> 00:16:01.500
+So we only update the things
+that are actually changed.
+
+00:16:01.500 --> 00:16:03.420
+And in this case, we're
+rerunning this every time.
+
+00:16:03.420 --> 00:16:04.650
+So these state variables,
+
+00:16:04.650 --> 00:16:07.320
+because we did UseState,
+they stick around.
+
+00:16:07.320 --> 00:16:10.650
+And so here we'll do a
+"UseReducer," which is the name
+
+00:16:10.650 --> 00:16:13.530
+for the thing that we do
+that is a collection value.
+
+00:16:13.530 --> 00:16:16.770
+And now we'll go in
+here and say we want
+
+00:16:16.770 --> 00:16:19.530
+"items" and "updateItems".
+
+00:16:19.530 --> 00:16:21.060
+And so this is how we'll
+be able to mutate this.
+
+00:16:21.060 --> 00:16:22.140
+And if we save this,
+
+00:16:22.140 --> 00:16:24.030
+we'll notice right
+away it fixes the bug.
+
+00:16:24.030 --> 00:16:25.650
+We can increment and decrement.
+
+00:16:25.650 --> 00:16:26.520
+We can change our text.
+
+00:16:26.520 --> 00:16:29.250
+And these are no longer
+recomputing on every frame.
+
+00:16:29.250 --> 00:16:32.070
+Great. Quite an improvement.
+
+00:16:32.070 --> 00:16:33.690
+Let's go and actually update it
+
+00:16:33.690 --> 00:16:35.190
+so we can add something
+to that list.
+
+00:16:35.190 --> 00:16:39.780
+So add "Add" button.
+
+00:16:39.780 --> 00:16:44.580
+And we'll say what we want
+to do is "updateItems."
+
+00:16:44.580 --> 00:16:46.770
+And this, you take in a
+list, you return a list.
+
+00:16:46.770 --> 00:16:49.080
+And so it's going to be
+the list that's coming in,
+
+00:16:49.080 --> 00:16:51.720
+it's going to be called "list."
+
+00:16:51.720 --> 00:16:55.260
+And it will say what we want
+to return is a new list.
+
+00:16:55.260 --> 00:16:59.820
+And the first item we'll
+have is "New item #,"
+
+00:16:59.820 --> 00:17:05.080
+and we'll do "list.Count + 1."
+
+00:17:06.480 --> 00:17:08.490
+And then I won't
+bother with the guid.
+
+00:17:08.490 --> 00:17:11.800
+And then we'll just give
+the rest of the list here.
+
+00:17:13.080 --> 00:17:15.000
+We've got our basic thing.
+
+00:17:15.000 --> 00:17:15.720
+We'll save that.
+
+00:17:15.720 --> 00:17:17.730
+And now, if we come over
+here and click "Add,"
+
+00:17:17.730 --> 00:17:20.130
+we see we can add the
+new items at the top.
+
+00:17:20.130 --> 00:17:22.180
+Everything still functions.
+
+00:17:25.200 --> 00:17:27.360
+One thing I'd like to show,
+I want to demonstrate,
+
+00:17:27.360 --> 00:17:29.130
+I've been talking about
+this diffing thing
+
+00:17:29.130 --> 00:17:30.540
+and this incremental update.
+
+00:17:30.540 --> 00:17:31.620
+And so let's go take
+a look at that.
+
+00:17:31.620 --> 00:17:34.560
+So I mentioned before, we
+had this DevTools idea.
+
+00:17:34.560 --> 00:17:40.350
+And so the idea is that we
+hypothesize that there is a case
+
+00:17:40.350 --> 00:17:42.990
+to have some more
+developer-friendly things built
+
+00:17:42.990 --> 00:17:43.980
+into the framework.
+
+00:17:43.980 --> 00:17:45.750
+And so here, what I'm going
+to do is I'm going to turn in
+
+00:17:45.750 --> 00:17:48.840
+and say, I want to have this
+"DevToolsMenu" show up.
+
+00:17:48.840 --> 00:17:51.990
+Now, this DevToolsMenu actually
+is automatically conditional
+
+00:17:51.990 --> 00:17:54.630
+on you having set this
+DevTools property
+
+00:17:54.630 --> 00:17:56.070
+that you wanted
+to opt into this.
+
+00:17:56.070 --> 00:17:56.970
+And then on the command line
+
+00:17:56.970 --> 00:17:57.990
+that you actually
+specified you'd
+
+00:17:57.990 --> 00:18:00.060
+like to run this specific
+instance with these on.
+
+00:18:00.060 --> 00:18:02.010
+And this lets you turn
+on developer features
+
+00:18:02.010 --> 00:18:04.440
+in your product so you can debug
+it better, you can use things,
+
+00:18:04.440 --> 00:18:06.120
+and you can just write
+conditional code
+
+00:18:06.120 --> 00:18:07.590
+pretty trivially.
+
+00:18:07.590 --> 00:18:09.780
+We have a couple of
+features built in.
+
+00:18:09.780 --> 00:18:11.940
+So here I'm going to say
+highlight reconciler changers.
+
+00:18:11.940 --> 00:18:14.610
+And now, when I click "+,"
+you'll see that it shows that,
+
+00:18:14.610 --> 00:18:15.840
+oh, we're just
+updating the string
+
+00:18:15.840 --> 00:18:16.800
+because that's one big string.
+
+00:18:16.800 --> 00:18:19.260
+And if I click the text, you can
+see we also are updating the
+
+00:18:19.260 --> 00:18:21.150
+text box as we do it.
+
+00:18:21.150 --> 00:18:23.490
+And so, really,
+this is just a way
+
+00:18:23.490 --> 00:18:26.070
+to visualize what is
+changing each frame.
+
+00:18:26.070 --> 00:18:28.410
+And so what I'd like to do
+is demonstrate what happens
+
+00:18:28.410 --> 00:18:29.220
+with a list like this.
+
+00:18:29.220 --> 00:18:30.570
+So let's go into our list.
+
+00:18:30.570 --> 00:18:35.700
+And instead of just doing a
+TextBlock, let's do a "FlexRow."
+
+00:18:35.700 --> 00:18:39.480
+And we'll put a second thing,
+which is another "TextBlock"
+
+00:18:39.480 --> 00:18:44.130
+that says ""Count: " + count."
+
+00:18:44.130 --> 00:18:46.540
+And we'll do the
+same margin of 8.
+
+00:18:48.120 --> 00:18:50.220
+Great. And so now we see,
+we saw a big red thing
+
+00:18:50.220 --> 00:18:52.590
+because it got
+re-rendered completely,
+
+00:18:52.590 --> 00:18:54.030
+like new elements created.
+
+00:18:54.030 --> 00:18:55.020
+But now, when we click "+,"
+
+00:18:55.020 --> 00:18:58.020
+you'll see all we're doing
+is changing that portion.
+
+00:18:58.020 --> 00:18:59.790
+But this top one, we're
+changing the whole thing.
+
+00:18:59.790 --> 00:19:03.150
+And that's because this is one
+text block that says "Hello"
+
+00:19:03.150 --> 00:19:04.110
+and it does a big string.
+
+00:19:04.110 --> 00:19:05.760
+And so we have to update
+that whole string.
+
+00:19:05.760 --> 00:19:06.990
+That's an atomic thing.
+
+00:19:06.990 --> 00:19:09.630
+But here we were able to
+update only the Count part
+
+00:19:09.630 --> 00:19:11.730
+because that was a separate
+element, and we're able
+
+00:19:11.730 --> 00:19:14.440
+to do incremental
+updates to that element.
+
+00:19:15.870 --> 00:19:19.180
+Great. Let's turn off
+the flashy blinky.
+
+00:19:23.750 --> 00:19:27.620
+Great. So the next thing
+I'd like to touch on is how
+
+00:19:27.620 --> 00:19:28.910
+to build new components.
+
+00:19:28.910 --> 00:19:30.320
+So here we have this flex row.
+
+00:19:30.320 --> 00:19:33.020
+The easiest way to build a new
+component is I can just simply
+
+00:19:33.020 --> 00:19:34.640
+extract a method.
+
+00:19:34.640 --> 00:19:40.260
+And we'll call this
+"ListItemView."
+
+00:19:40.260 --> 00:19:43.470
+And it turns out that's
+all we had to do.
+
+00:19:43.470 --> 00:19:44.340
+This is the new function.
+
+00:19:44.340 --> 00:19:45.540
+This the new component.
+
+00:19:45.540 --> 00:19:46.500
+We don't have to
+do anything else.
+
+00:19:46.500 --> 00:19:47.820
+It just works.
+
+00:19:47.820 --> 00:19:50.070
+So we're able to add, in fact,
+if I change this and say,
+
+00:19:50.070 --> 00:19:53.700
+actually, I want this
+to say "Countish."
+
+00:19:53.700 --> 00:19:55.450
+And we save it.
+
+00:20:00.720 --> 00:20:02.830
+Sometimes you get a crash.
+
+00:20:04.110 --> 00:20:09.210
+As promised, the.NET watch
+is not always a thousand
+
+00:20:09.210 --> 00:20:10.470
+percent reliable.
+
+00:20:10.470 --> 00:20:12.510
+Great. While we're waiting for
+that to load, let's go through
+
+00:20:12.510 --> 00:20:15.040
+and do the next thing that
+we could create here.
+
+00:20:19.860 --> 00:20:23.960
+I'll just go make a quick change
+here to force the reload.
+
+00:20:23.960 --> 00:20:27.090
+So instead of just
+creating a function,
+
+00:20:27.090 --> 00:20:28.860
+you can also create
+a full component.
+
+00:20:28.860 --> 00:20:30.900
+And so the component
+gives you a life cycle.
+
+00:20:30.900 --> 00:20:33.660
+It lets you know when
+the component is mounted
+
+00:20:33.660 --> 00:20:34.530
+into the tree.
+
+00:20:34.530 --> 00:20:36.420
+There's an update method
+you can override.
+
+00:20:36.420 --> 00:20:40.050
+And so if I want to create a
+new component from scratch,
+
+00:20:40.050 --> 00:20:41.760
+it's a little more work
+than just a function.
+
+00:20:41.760 --> 00:20:44.640
+And so what I'll do here is
+I'll create "ListItemView."
+
+00:20:44.640 --> 00:20:46.980
+I'll delete this version.
+
+00:20:46.980 --> 00:20:50.640
+And we see that we have a class
+that derives from component.
+
+00:20:50.640 --> 00:20:52.110
+It declares what
+properties it takes,
+
+00:20:52.110 --> 00:20:53.640
+in this case, an
+item and a count.
+
+00:20:53.640 --> 00:20:57.540
+It has roughly the same
+content that was in there.
+
+00:20:57.540 --> 00:21:00.160
+And then we have a
+little helper method
+
+00:21:03.360 --> 00:21:06.510
+that gives you the
+convenience function call
+
+00:21:06.510 --> 00:21:08.130
+of just calling it
+ListItemView instead of having
+
+00:21:08.130 --> 00:21:09.630
+to do a bunch of construction.
+
+00:21:09.630 --> 00:21:13.080
+And so what I'll do is I'll
+come up here and I'll add
+
+00:21:13.080 --> 00:21:16.080
+"using static Components."
+
+00:21:16.080 --> 00:21:19.050
+And so now this list item
+view is now binding to that.
+
+00:21:19.050 --> 00:21:25.510
+And so if I save, it's still
+working and no real change.
+
+00:21:32.640 --> 00:21:34.360
+We think.
+
+00:21:38.700 --> 00:21:40.140
+All right.
+
+00:21:40.140 --> 00:21:42.340
+We'll try to get
+that going again.
+
+00:21:43.380 --> 00:21:47.730
+Great. Beyond the list
+view, I want to show one
+
+00:21:47.730 --> 00:21:48.510
+of these new controls.
+
+00:21:48.510 --> 00:21:50.430
+We talked about new controls
+that we're thinking of adding
+
+00:21:50.430 --> 00:21:51.510
+to the platform
+that we're looking
+
+00:21:51.510 --> 00:21:53.190
+at that we want feedback on.
+
+00:21:53.190 --> 00:21:55.080
+And so let's go
+replace this list view
+
+00:21:55.080 --> 00:21:56.490
+with something a little richer.
+
+00:21:56.490 --> 00:22:01.060
+And so what I'll do is I'm going
+to go and replace this with a --
+
+00:22:09.720 --> 00:22:12.810
+We'll replace this
+with a "PieChart."
+
+00:22:12.810 --> 00:22:15.090
+And PieChart takes
+in the list of data
+
+00:22:15.090 --> 00:22:17.640
+that you want, in
+this case, items.
+
+00:22:17.640 --> 00:22:22.260
+And then you have to provide it
+with a way to get a function
+
+00:22:22.260 --> 00:22:24.460
+for the individual component.
+
+00:22:28.470 --> 00:22:30.780
+So I need to get the
+value, so we'll say "d,"
+
+00:22:30.780 --> 00:22:31.740
+and we're just
+going to return 1,
+
+00:22:31.740 --> 00:22:35.200
+so everything is a unit 1 thing.
+
+00:22:36.900 --> 00:22:41.850
+And then I will just
+say I'd like to have --
+
+00:22:41.850 --> 00:22:44.080
+See if this refreshes.
+
+00:22:53.760 --> 00:22:55.150
+Come on.
+
+00:23:01.830 --> 00:23:04.680
+I have to have code that
+compiles for it to work.
+
+00:23:04.680 --> 00:23:05.340
+There we go.
+
+00:23:05.340 --> 00:23:09.360
+So probably a few, two things.
+
+00:23:09.360 --> 00:23:11.950
+Let's just take the first five.
+
+00:23:12.960 --> 00:23:14.160
+That's better.
+
+00:23:14.160 --> 00:23:16.110
+But what I'd like to do is
+have a label on these things.
+
+00:23:16.110 --> 00:23:18.450
+And so we'll say the
+LabelView that I'd
+
+00:23:18.450 --> 00:23:22.930
+like to use is taking a item.
+
+00:23:24.840 --> 00:23:26.680
+Too much noise in there.
+
+00:23:28.650 --> 00:23:33.750
+And we'll just return
+"ListItemView" of that item
+
+00:23:33.750 --> 00:23:35.970
+and the count property.
+
+00:23:35.970 --> 00:23:39.210
+And so now we see our counts,
+and in fact if we "+,"
+
+00:23:39.210 --> 00:23:42.570
+we see that they
+increment as they should.
+
+00:23:42.570 --> 00:23:44.430
+Those are a little hard to
+see, so let's go in here
+
+00:23:44.430 --> 00:23:47.700
+and just say, we can
+do a little offset.
+
+00:23:47.700 --> 00:23:52.890
+So we'll say "LabelRadiusOffset"
+and make it be 30.
+
+00:23:52.890 --> 00:23:54.090
+And we say, okay, great,
+they're out there.
+
+00:23:54.090 --> 00:23:55.290
+But, actually, let's do this.
+
+00:23:55.290 --> 00:23:59.430
+Let's make this be "15 * count."
+
+00:23:59.430 --> 00:24:04.020
+And now, as we plus and minus
+the count, those labels move.
+
+00:24:04.020 --> 00:24:06.930
+So you can see this system
+is really giving this a lot
+
+00:24:06.930 --> 00:24:08.910
+of flexibility of
+what you can do,
+
+00:24:08.910 --> 00:24:12.630
+how you can transform the code,
+and that the UI just continues
+
+00:24:12.630 --> 00:24:14.010
+to update and keep up with it.
+
+00:24:14.010 --> 00:24:17.310
+But so far, everything we've
+shown is synchronous code,
+
+00:24:17.310 --> 00:24:18.570
+which works really well.
+
+00:24:18.570 --> 00:24:20.280
+But what I'd like to do
+is see what this looks
+
+00:24:20.280 --> 00:24:22.980
+like if we get
+asynchronous code.
+
+00:24:22.980 --> 00:24:26.070
+And so here what I
+have is a resource,
+
+00:24:26.070 --> 00:24:28.020
+which is an asynchronous value.
+
+00:24:28.020 --> 00:24:29.550
+And I've just hard-coded it.
+
+00:24:29.550 --> 00:24:31.440
+At the moment, it's just
+a delay for two seconds.
+
+00:24:31.440 --> 00:24:34.650
+And then randomly, every 20%,
+let's just have it pretend
+
+00:24:34.650 --> 00:24:37.440
+that it fails, just because
+that's what the network does.
+
+00:24:37.440 --> 00:24:40.320
+This guy had a little different
+code in what it wants to show,
+
+00:24:40.320 --> 00:24:43.230
+so we'll leave that
+so we can see it.
+
+00:24:43.230 --> 00:24:45.480
+And we see if we compile,
+it doesn't work right now,
+
+00:24:45.480 --> 00:24:47.370
+so we got to, first off,
+we can't update this item
+
+00:24:47.370 --> 00:24:50.580
+because it's now an
+asynchronous thing coming in.
+
+00:24:50.580 --> 00:24:53.880
+And then last, you'll see that
+this isn't even a list yet.
+
+00:24:53.880 --> 00:24:56.550
+It says there is
+no take on this.
+
+00:24:56.550 --> 00:24:58.440
+And so what we need to do
+is get the data out of
+
+00:24:58.440 --> 00:24:59.520
+that asynchronous result.
+
+00:24:59.520 --> 00:25:01.920
+So we'll say "items.Match."
+
+00:25:01.920 --> 00:25:03.690
+We're going to
+return the element.
+
+00:25:03.690 --> 00:25:06.180
+And we can basically set
+what element we want
+
+00:25:06.180 --> 00:25:06.900
+for different states.
+
+00:25:06.900 --> 00:25:08.460
+So for loading, we're going
+
+00:25:08.460 --> 00:25:14.970
+to have it return a text
+block that says "loading."
+
+00:25:14.970 --> 00:25:18.540
+And if we get into an error
+state, we'll ignore the error
+
+00:25:18.540 --> 00:25:24.430
+for now and say, show me a
+"TextBlock" that says "error."
+
+00:25:25.470 --> 00:25:37.920
+And we'll make that be red.
+
+00:25:37.920 --> 00:25:40.050
+And then the last one we
+can do is what happens
+
+00:25:40.050 --> 00:25:41.760
+if we actually get
+the data we wanted.
+
+00:25:41.760 --> 00:25:43.950
+Hey, that would be great.
+
+00:25:43.950 --> 00:25:45.510
+And so we'll say that
+that takes something
+
+00:25:45.510 --> 00:25:47.130
+which we'll call "data."
+
+00:25:47.130 --> 00:25:50.550
+And now we can use our
+function down here.
+
+00:25:50.550 --> 00:25:52.480
+And we'll say "data."
+
+00:25:53.670 --> 00:25:57.720
+And now, if we save, we see
+it says "loading" briefly.
+
+00:25:57.720 --> 00:25:59.160
+Goes into an error state.
+
+00:25:59.160 --> 00:26:02.460
+So what I want to do is have
+it that I can kick this
+
+00:26:02.460 --> 00:26:05.130
+and have it try in
+because we lost the race.
+
+00:26:05.130 --> 00:26:07.440
+So what we'll do is we'll say,
+hey, whenever name changes,
+
+00:26:07.440 --> 00:26:10.380
+pretend that's a dependency
+of this resource.
+
+00:26:10.380 --> 00:26:12.910
+And so now I can come in here,
+
+00:26:14.520 --> 00:26:17.190
+and if I change the name,
+it goes to "loading."
+
+00:26:17.190 --> 00:26:18.600
+And we won the
+lottery this time,
+
+00:26:18.600 --> 00:26:20.040
+and so we get to see the value.
+
+00:26:20.040 --> 00:26:21.480
+So you can see that
+what we've built
+
+00:26:21.480 --> 00:26:26.370
+in is easy-to-use asynchronous
+functions that can allow you
+
+00:26:26.370 --> 00:26:29.520
+to handle the normal
+cases you see in UI,
+
+00:26:29.520 --> 00:26:32.580
+be able to very easily show
+loading states, error states.
+
+00:26:32.580 --> 00:26:34.980
+And you can do this with
+any asynchronous values.
+
+00:26:34.980 --> 00:26:37.810
+You can have lists that
+return these, etc.
+
+00:26:39.570 --> 00:26:44.370
+So we've now seen the breadth of
+the main core pieces of what's
+
+00:26:44.370 --> 00:26:46.290
+in Microsoft UI Reactor.
+
+00:26:46.290 --> 00:26:47.790
+It's an experimental framework.
+
+00:26:47.790 --> 00:26:50.610
+We have a new set of controls,
+which, like Charting,
+
+00:26:50.610 --> 00:26:53.130
+would be something that's
+just generally in WinUI.
+
+00:26:53.130 --> 00:26:56.130
+It's not going to be specific
+to the Reactor syntax.
+
+00:26:56.130 --> 00:26:59.340
+Very few things would ever be
+specific to the Reactor syntax.
+
+00:26:59.340 --> 00:27:00.960
+But we can play
+with this new way
+
+00:27:00.960 --> 00:27:03.810
+of doing C#-first development
+and see how it feels,
+
+00:27:03.810 --> 00:27:04.590
+see what it looks like.
+
+00:27:04.590 --> 00:27:08.130
+Please go try out the repo,
+clone it, build something
+
+00:27:08.130 --> 00:27:12.810
+with it, send feedback, file
+feedback items, issue a PR.
+
+00:27:12.810 --> 00:27:14.280
+Let's go see what we can
+do with this and see
+
+00:27:14.280 --> 00:27:16.050
+if this is something
+that is interesting
+
+00:27:16.050 --> 00:27:18.870
+to the community,
+and learn together.
+
+00:27:18.870 --> 00:27:20.200
+Thank you.

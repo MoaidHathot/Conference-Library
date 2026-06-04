@@ -1,0 +1,946 @@
+WEBVTT
+
+00:00:00.870 --> 00:00:04.350
+PAUL USHER: Welcome to this
+Microsoft build 2026 session.
+
+00:00:04.350 --> 00:00:06.780
+I'm Paul Usher from DevExpress.
+
+00:00:06.780 --> 00:00:09.990
+Today we're looking at how AI
+can create a more natural user
+
+00:00:09.990 --> 00:00:13.380
+experience inside a modern
+Blazor application.
+
+00:00:13.380 --> 00:00:15.780
+This is not about generating
+code and it's not
+
+00:00:15.780 --> 00:00:18.330
+about dropping a chat bot
+beside an existing app
+
+00:00:18.330 --> 00:00:19.830
+and calling it done.
+
+00:00:19.830 --> 00:00:23.370
+This is about connecting AI
+to the controls, to the data,
+
+00:00:23.370 --> 00:00:27.150
+and to the workflows
+users already rely on.
+
+00:00:27.150 --> 00:00:30.810
+The demo app is built in
+Visual Studio using.NET.
+
+00:00:30.810 --> 00:00:34.470
+DevExpress Blazor controls,
+DevExpress reporting,
+
+00:00:34.470 --> 00:00:38.790
+and Azure Open AI
+through iChat client.
+
+00:00:38.790 --> 00:00:41.130
+We'll look at three examples.
+
+00:00:41.130 --> 00:00:46.140
+First how AI drives DevExpress
+grid using tool calling.
+
+00:00:46.140 --> 00:00:49.530
+Second AI is built in to the
+DevExpress report viewer
+
+00:00:49.530 --> 00:00:51.090
+for translation.
+
+00:00:51.090 --> 00:00:54.630
+And third Azure Open AI
+to review a contract
+
+00:00:54.630 --> 00:00:58.620
+and DevExpress report to
+visualize the risky clauses.
+
+00:00:58.620 --> 00:01:03.030
+We have a simple command center
+here featuring some KPI cards,
+
+00:01:03.030 --> 00:01:06.450
+a DX chart control, DX grid,
+
+00:01:06.450 --> 00:01:10.500
+and on the right-hand
+side DX AI chat.
+
+00:01:10.500 --> 00:01:13.590
+I've got some prebaked
+recording prompts.
+
+00:01:13.590 --> 00:01:17.130
+So we're starting on the
+main home razor page.
+
+00:01:17.130 --> 00:01:19.800
+The cell's data is
+coming from a CSV loaded
+
+00:01:19.800 --> 00:01:21.570
+through a data service
+
+00:01:21.570 --> 00:01:24.150
+and a simple method
+call to get orders.
+
+00:01:24.150 --> 00:01:27.510
+It's also using a get
+summary for the KPI cards
+
+00:01:27.510 --> 00:01:30.990
+and a get region
+metrics for the chart.
+
+00:01:30.990 --> 00:01:32.340
+The grid itself is bound
+
+00:01:32.340 --> 00:01:35.850
+to around 10,000 rows
+of USA sales data.
+
+00:01:35.850 --> 00:01:39.540
+Now traditionally users will
+work with data by filtering,
+
+00:01:39.540 --> 00:01:42.210
+sorting, grouping,
+paging, and exporting.
+
+00:01:42.210 --> 00:01:45.270
+And that still matters and the
+DevExpress grid is very good
+
+00:01:45.270 --> 00:01:46.800
+at that.
+
+00:01:46.800 --> 00:01:50.230
+Let's filter to just Texas.
+
+00:01:51.510 --> 00:01:54.580
+And then maybe group by region.
+
+00:01:56.340 --> 00:02:00.900
+Expand. And sort
+by customer name.
+
+00:02:00.900 --> 00:02:04.980
+We could also create some
+buttons that will build
+
+00:02:04.980 --> 00:02:07.530
+that functionality in.
+
+00:02:07.530 --> 00:02:11.110
+They only cover the scenarios
+we thought ahead of time.
+
+00:02:12.180 --> 00:02:15.210
+So the question is can we give
+the user a more natural way
+
+00:02:15.210 --> 00:02:17.320
+to work with this data.
+
+00:02:19.080 --> 00:02:25.260
+Well, on the right-hand side
+I've got a DX AI chat control.
+
+00:02:25.260 --> 00:02:26.790
+And what (inaudible)
+here is the fact
+
+00:02:26.790 --> 00:02:30.300
+that the user can ask questions
+in a more natural language.
+
+00:02:30.300 --> 00:02:34.710
+For example, how did
+we perform this week?
+
+00:02:34.710 --> 00:02:36.000
+The prompt is going
+to be handled
+
+00:02:36.000 --> 00:02:38.160
+by the cell's analysis tool.
+
+00:02:38.160 --> 00:02:41.490
+It can call methods such
+as summarize performance
+
+00:02:41.490 --> 00:02:44.550
+which uses a build
+executive summary method
+
+00:02:44.550 --> 00:02:47.670
+and produces a concise
+business summary.
+
+00:02:47.670 --> 00:02:50.790
+What if we want the chat to
+actually interact with the grid?
+
+00:02:50.790 --> 00:02:54.250
+Let's ask, "Group the
+orders by customer."
+
+00:02:56.760 --> 00:02:59.250
+And we can see that the
+grid has now responded
+
+00:02:59.250 --> 00:03:02.380
+and is grouping the
+data by customer.
+
+00:03:04.260 --> 00:03:05.790
+What if I was to
+actually say instead
+
+00:03:05.790 --> 00:03:09.030
+of customer group by profit?
+
+00:03:09.030 --> 00:03:11.190
+And we can see that the
+code behind has been set
+
+00:03:11.190 --> 00:03:13.770
+up to allow specific
+functionality.
+
+00:03:13.770 --> 00:03:15.900
+The user doesn't
+just get told no.
+
+00:03:15.900 --> 00:03:19.470
+It's provided an explanation
+as to what's going on.
+
+00:03:19.470 --> 00:03:24.060
+Maybe now I ask it to highlight
+the payment risk accounts.
+
+00:03:24.060 --> 00:03:27.990
+And again that grid
+information is updated.
+
+00:03:27.990 --> 00:03:31.560
+In the background it's calling
+a filter risk account method.
+
+00:03:31.560 --> 00:03:34.200
+Now that I've got that
+information I want
+
+00:03:34.200 --> 00:03:36.270
+to export it to Excel.
+
+00:03:36.270 --> 00:03:39.160
+So just ask export.
+
+00:03:40.800 --> 00:03:44.070
+And we can see now that a
+download's been created
+
+00:03:44.070 --> 00:03:47.100
+with an Excel SX file.
+
+00:03:47.100 --> 00:03:49.320
+This is the difference
+between a chat answer
+
+00:03:49.320 --> 00:03:51.210
+and an application assistant.
+
+00:03:51.210 --> 00:03:54.600
+The AI is not telling
+the user how to export.
+
+00:03:54.600 --> 00:03:58.320
+It's triggering the exports for
+a controlled DevExpress API.
+
+00:03:58.320 --> 00:04:01.560
+Think in terms of the
+AI handles the intent.
+
+00:04:01.560 --> 00:04:05.580
+DevExpress handles
+the interaction.
+
+00:04:05.580 --> 00:04:07.950
+Jumping in to Visual
+Studio we'll take a peek
+
+00:04:07.950 --> 00:04:10.240
+inside home.razor.
+
+00:04:11.280 --> 00:04:15.430
+First thing we want to do
+is find the chat control.
+
+00:04:17.160 --> 00:04:20.400
+This is the DX AI chat
+control for the page.
+
+00:04:20.400 --> 00:04:23.940
+The important setting is the
+chat client service key equals
+
+00:04:23.940 --> 00:04:25.050
+DX tools.
+
+00:04:25.050 --> 00:04:26.520
+This is telling the chat control
+
+00:04:26.520 --> 00:04:28.500
+to use the tool
+enabled AI client
+
+00:04:28.500 --> 00:04:31.980
+that we register in program.CS.
+
+00:04:31.980 --> 00:04:34.470
+I've said include function
+calling for to true
+
+00:04:34.470 --> 00:04:37.650
+so the demo can show the calls
+the tool actually makes.
+
+00:04:37.650 --> 00:04:40.900
+Typically in production
+you'd set it to false.
+
+00:04:42.240 --> 00:04:43.410
+Now if we scroll down to the
+
+00:04:43.410 --> 00:04:49.410
+on after render we
+can see the creation
+
+00:04:49.410 --> 00:04:52.680
+of a new AI tools
+context builder.
+
+00:04:52.680 --> 00:04:55.380
+And this context registers
+two live targets,
+
+00:04:55.380 --> 00:05:00.390
+the actual DX grid instance
+and the cell's data service.
+
+00:05:00.390 --> 00:05:03.600
+Then it registers the methods
+that the AI is allowed to call.
+
+00:05:03.600 --> 00:05:04.710
+Filter by region.
+
+00:05:04.710 --> 00:05:05.970
+Filter by state.
+
+00:05:05.970 --> 00:05:07.380
+Filter risk accounts.
+
+00:05:07.380 --> 00:05:09.030
+Group by. Clear view.
+
+00:05:09.030 --> 00:05:10.650
+Export. Summarize.
+
+00:05:10.650 --> 00:05:13.620
+And list top customers.
+
+00:05:13.620 --> 00:05:16.770
+Think of this as the toolbox
+for the current screen.
+
+00:05:16.770 --> 00:05:19.320
+The AI does not get
+the whole application,
+
+00:05:19.320 --> 00:05:23.490
+simply the approved capabilities
+that we register here.
+
+00:05:23.490 --> 00:05:26.900
+And we can see at the bottom of
+the method the context is added
+
+00:05:26.900 --> 00:05:29.510
+to the AI tools container
+which makes it available
+
+00:05:29.510 --> 00:05:33.450
+to the DevExpress tool
+calling pipeline.
+
+00:05:33.450 --> 00:05:38.310
+Switching across to the cell's
+grid AI tools we'll scroll
+
+00:05:38.310 --> 00:05:42.270
+down to the filter
+by region method.
+
+00:05:42.270 --> 00:05:45.210
+So this is just one of the
+tools the model can call
+
+00:05:45.210 --> 00:05:48.930
+and it's just normal static C
+Sharp method with meta data.
+
+00:05:48.930 --> 00:05:53.850
+So the AI integration tool gives
+the model the function name.
+
+00:05:53.850 --> 00:05:55.950
+And then we've got
+the description
+
+00:05:55.950 --> 00:05:58.200
+which tells the model
+when to use the function
+
+00:05:58.200 --> 00:06:00.300
+and what the parameters mean.
+
+00:06:00.300 --> 00:06:01.740
+Now these descriptions matter
+
+00:06:01.740 --> 00:06:04.720
+because they guide
+the tool selection.
+
+00:06:06.270 --> 00:06:09.600
+So this is the DevExpress
+specific part.
+
+00:06:09.600 --> 00:06:11.910
+The model does not
+provide the grid.
+
+00:06:11.910 --> 00:06:14.790
+DevExpress injects the
+live DX grid instance
+
+00:06:14.790 --> 00:06:17.490
+from the tool's
+context at run time.
+
+00:06:17.490 --> 00:06:20.700
+The body then calls the
+normal DevExpress grid API.
+
+00:06:20.700 --> 00:06:21.780
+It's the same sort of code
+
+00:06:21.780 --> 00:06:24.480
+that I could write
+from a button click.
+
+00:06:24.480 --> 00:06:30.480
+And the rest of the tools follow
+exactly the same behavior.
+
+00:06:30.480 --> 00:06:32.610
+Not every tool changes the UI.
+
+00:06:32.610 --> 00:06:36.090
+Some of them provide
+an analysis.
+
+00:06:36.090 --> 00:06:38.520
+Jumping in to program
+CS we can see
+
+00:06:38.520 --> 00:06:42.720
+where the actual chat
+client has been added.
+
+00:06:42.720 --> 00:06:44.850
+We can see the
+configuration is picking
+
+00:06:44.850 --> 00:06:50.370
+up from our.NET user secrets
+the Azure Open AI end point,
+
+00:06:50.370 --> 00:06:54.310
+the Azure Open AI key,
+and the deployment name.
+
+00:06:55.500 --> 00:06:59.290
+This next element is an
+important one for the grid demo.
+
+00:07:00.360 --> 00:07:05.580
+We can see that we're creating a
+key chat client called DX tools.
+
+00:07:05.580 --> 00:07:10.410
+And then we use DX tools as the
+DevExpress tool definitions.
+
+00:07:10.410 --> 00:07:13.320
+Use function invocation
+executes the tool calls
+
+00:07:13.320 --> 00:07:16.230
+and feeds the results
+back to the model.
+
+00:07:16.230 --> 00:07:19.230
+And that's what's being
+used by the DX AI chat back
+
+00:07:19.230 --> 00:07:22.050
+on the home razor page.
+
+00:07:22.050 --> 00:07:25.410
+One of the key take aways here
+is that this is the main loop.
+
+00:07:25.410 --> 00:07:30.600
+The user prompt Azure Open AI
+DevExpress tool public control
+
+00:07:30.600 --> 00:07:33.870
+API real UI action.
+
+00:07:33.870 --> 00:07:39.420
+Let's jump back and look at some
+more built in AI functionality.
+
+00:07:39.420 --> 00:07:42.900
+This time we're going to jump
+in to the report viewer.
+
+00:07:42.900 --> 00:07:45.780
+And what we can see here is a
+generative report using the
+
+00:07:45.780 --> 00:07:47.700
+DevExpress reporting tools
+
+00:07:47.700 --> 00:07:50.340
+and it's actually a
+quarterly memo report.
+
+00:07:50.340 --> 00:07:54.120
+The problem is it's
+been written in French.
+
+00:07:54.120 --> 00:07:58.380
+Using the built in AI tooling
+I can select that I want
+
+00:07:58.380 --> 00:08:04.860
+to translate the entire
+document back to English.
+
+00:08:04.860 --> 00:08:07.710
+I'll press the translate button.
+
+00:08:07.710 --> 00:08:10.530
+Now note that there's no custom
+chat (inaudible) on this page.
+
+00:08:10.530 --> 00:08:15.240
+The DevExpress report viewer
+owns the AI experience.
+
+00:08:15.240 --> 00:08:18.060
+Now the report itself is
+a standard extra report.
+
+00:08:18.060 --> 00:08:20.130
+It sets up for
+French memo section
+
+00:08:20.130 --> 00:08:22.620
+and builds a simple
+report header,
+
+00:08:22.620 --> 00:08:26.070
+detail banned footer
+and page footer.
+
+00:08:26.070 --> 00:08:31.950
+And if we jump back in to Visual
+Studio and scroll down to
+
+00:08:31.950 --> 00:08:34.860
+where the report
+engine is initialized
+
+00:08:34.860 --> 00:08:37.500
+so the AI behavior's
+enabled in program CS
+
+00:08:37.500 --> 00:08:40.350
+through the ad Blazor reporting
+AI integration methods
+
+00:08:40.350 --> 00:08:42.390
+and ad translation.
+
+00:08:42.390 --> 00:08:44.850
+We can see that the configured
+languages include English,
+
+00:08:44.850 --> 00:08:48.000
+French, Spanish,
+German, Japanese.
+
+00:08:48.000 --> 00:08:51.270
+The enable translation
+method adds the translation
+
+00:08:51.270 --> 00:08:54.630
+and enable inline translation
+allows the translated content
+
+00:08:54.630 --> 00:08:58.980
+to appear inside the
+rendered report experience.
+
+00:08:58.980 --> 00:09:03.610
+In this pattern the control
+owns the AI experience.
+
+00:09:05.190 --> 00:09:08.610
+So let's jump back to
+the app and take a look
+
+00:09:08.610 --> 00:09:12.990
+at where we can compose
+our own workflow.
+
+00:09:12.990 --> 00:09:16.710
+This time we're going to
+go to contract review.
+
+00:09:16.710 --> 00:09:19.920
+We've got a master service
+agreement rendered inside the
+
+00:09:19.920 --> 00:09:22.730
+DevExpress report viewer.
+
+00:09:22.730 --> 00:09:26.660
+So the goal here is not just
+to ask AI for a tech summary.
+
+00:09:26.660 --> 00:09:31.010
+We want Azure Open AI to
+identify risky clauses
+
+00:09:31.010 --> 00:09:32.540
+and then we want
+the document itself
+
+00:09:32.540 --> 00:09:35.310
+to show those risky clauses.
+
+00:09:37.130 --> 00:09:38.150
+I've wired up a button
+
+00:09:38.150 --> 00:09:43.440
+to ask the chat control
+to review for issues.
+
+00:09:43.440 --> 00:09:45.750
+So the AI's now
+reviewing the contract.
+
+00:09:45.750 --> 00:09:49.110
+It's going to identify
+risky or one sided clauses.
+
+00:09:49.110 --> 00:09:52.650
+And the report renders
+with visual warnings.
+
+00:09:52.650 --> 00:09:55.470
+We can see the side
+panel findings.
+
+00:09:55.470 --> 00:09:59.550
+We can see the highlighted
+clauses, a warning tag,
+
+00:09:59.550 --> 00:10:02.950
+and the red border on
+the left as a warning.
+
+00:10:04.380 --> 00:10:06.450
+The answers are on
+the right-hand side,
+
+00:10:06.450 --> 00:10:10.230
+but the experience is
+inside the document.
+
+00:10:10.230 --> 00:10:14.040
+Back in Visual Studio we'll
+scroll down and take a look
+
+00:10:14.040 --> 00:10:17.870
+at the review async method.
+
+00:10:17.870 --> 00:10:22.310
+Inside review async we know that
+there is no DX AI chat control.
+
+00:10:22.310 --> 00:10:26.160
+The page injects the
+iChat client directly.
+
+00:10:26.160 --> 00:10:28.020
+The system prompt
+asks the model to act
+
+00:10:28.020 --> 00:10:30.090
+as a commercial
+contract attorney
+
+00:10:30.090 --> 00:10:33.030
+and the user prompt sends
+the full contract text using
+
+00:10:33.030 --> 00:10:36.600
+contractreport.getfulltext.
+
+00:10:36.600 --> 00:10:39.210
+Chat client get respond
+async sends the request
+
+00:10:39.210 --> 00:10:41.970
+to the configured AI client.
+
+00:10:41.970 --> 00:10:46.280
+And then the response is
+stored for the findings panel.
+
+00:10:46.280 --> 00:10:49.430
+The parse risky clause
+numbers extracts references
+
+00:10:49.430 --> 00:10:51.560
+like clause four or clause nine
+
+00:10:51.560 --> 00:10:54.440
+and then the page creates a
+new contract report passing
+
+00:10:54.440 --> 00:10:56.730
+in the risky clause numbers.
+
+00:10:56.730 --> 00:10:59.820
+Finally render findings
+formats the AI response
+
+00:10:59.820 --> 00:11:01.980
+for the side panel by
+preserving the line breaks
+
+00:11:01.980 --> 00:11:03.660
+and bold headings.
+
+00:11:03.660 --> 00:11:04.950
+So the key take away here is
+
+00:11:04.950 --> 00:11:07.800
+that the report doesn't
+know anything about AI.
+
+00:11:07.800 --> 00:11:11.310
+It only knows whether
+a clause is risky.
+
+00:11:11.310 --> 00:11:14.790
+So a contract report contains
+the 12 contract clauses
+
+00:11:14.790 --> 00:11:17.190
+and clauses source.
+
+00:11:17.190 --> 00:11:19.560
+Get full text joins
+those clauses
+
+00:11:19.560 --> 00:11:22.290
+in to a plain text that's
+sent to the model.
+
+00:11:22.290 --> 00:11:24.510
+The constructor receives
+the risky clause numbers
+
+00:11:24.510 --> 00:11:27.330
+and projects each clause in
+to the report data source
+
+00:11:27.330 --> 00:11:30.600
+with a is risky set
+to true or false.
+
+00:11:30.600 --> 00:11:32.940
+So the report doesn't
+know anything about AI.
+
+00:11:32.940 --> 00:11:36.130
+It only knows whether
+each clause is risky.
+
+00:11:37.590 --> 00:11:41.280
+And if the clause is risky it's
+going to change the band color
+
+00:11:41.280 --> 00:11:43.530
+and add the warning tag.
+
+00:11:43.530 --> 00:11:45.570
+AI creates the state.
+
+00:11:45.570 --> 00:11:48.540
+DevExpress presents the state.
+
+00:11:48.540 --> 00:11:49.410
+If we take a quick look
+
+00:11:49.410 --> 00:11:55.560
+at the program structure we've
+got our component pages,
+
+00:11:55.560 --> 00:11:59.130
+AI folder, report services,
+and then the data.
+
+00:11:59.130 --> 00:12:00.540
+And what I like about
+this structure is
+
+00:12:00.540 --> 00:12:03.750
+that the AI layer doesn't
+swallow the application.
+
+00:12:03.750 --> 00:12:06.120
+The page still uses the
+DevExpress controls
+
+00:12:06.120 --> 00:12:07.710
+for the user experience.
+
+00:12:07.710 --> 00:12:10.560
+The services still own
+the business data.
+
+00:12:10.560 --> 00:12:14.610
+And the AI tools expose
+selected capabilities.
+
+00:12:14.610 --> 00:12:18.330
+The report renders through the
+DevExpress reporting APIs.
+
+00:12:18.330 --> 00:12:21.870
+And the DevExpress controls
+help make the AI useful
+
+00:12:21.870 --> 00:12:26.250
+because they give the AI
+somewhere structured to act.
+
+00:12:26.250 --> 00:12:28.860
+A grid can filter,
+group, sort, and export.
+
+00:12:28.860 --> 00:12:33.660
+A report viewer can translate
+and render document content.
+
+00:12:33.660 --> 00:12:36.270
+And a report can visualize
+AI derived state
+
+00:12:36.270 --> 00:12:38.790
+through conditional formatting.
+
+00:12:38.790 --> 00:12:43.950
+So the AI is powerful, but
+the control gives it shape.
+
+00:12:43.950 --> 00:12:48.150
+Across three pages we've shown
+practical ways to bring AI
+
+00:12:48.150 --> 00:12:51.300
+in to a DevExpress application.
+
+00:12:51.300 --> 00:12:54.360
+On the demo page AI drives
+the DevExpress grid
+
+00:12:54.360 --> 00:12:56.040
+through tool calling.
+
+00:12:56.040 --> 00:12:58.890
+On the report viewer page
+AI is built directly
+
+00:12:58.890 --> 00:13:00.540
+in to the control.
+
+00:13:00.540 --> 00:13:03.330
+And on the contract review
+page AI becomes part
+
+00:13:03.330 --> 00:13:04.860
+of a custom workflow
+
+00:13:04.860 --> 00:13:08.760
+and DevExpress reports
+visualize the result.
+
+00:13:08.760 --> 00:13:12.930
+The point is not add a
+chat bot beside every app.
+
+00:13:12.930 --> 00:13:16.800
+It's to let users express
+intent and then use controls
+
+00:13:16.800 --> 00:13:20.950
+such as the DevExpress tools to
+turn that intent in to action.
+
+00:13:22.860 --> 00:13:25.680
+Azure Open AI provides
+the intelligence.
+
+00:13:25.680 --> 00:13:28.320
+DevExpress provides the
+application service.
+
+00:13:28.320 --> 00:13:31.570
+And Visual Studio
+brings it all together.
