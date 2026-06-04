@@ -202,10 +202,21 @@ function Build-LunrIndex {
             Set-Content -LiteralPath $docsPath -Encoding utf8
 
         # Inline node build script. Loads vendored Lunr from the absolute
-        # path, ingests docs.json, writes the serialised index to stdout.
+        # path, ingests docs.json, writes the serialised index DIRECTLY to
+        # OutputPath via fs.writeFileSync.
+        #
+        # IMPORTANT: we deliberately do NOT pipe node's stdout back through
+        # PowerShell. On Windows, [Console]::OutputEncoding defaults to the
+        # OEM code page (CP437/CP850), which mis-decodes UTF-8 multi-byte
+        # sequences in JSON values (e.g. U+2011 'NON-BREAKING HYPHEN' becomes
+        # 'Γ Ç æ' = bytes CE 93 C3 87 C3 A6 after the round trip). The
+        # corrupted output then breaks Lunr's "tokens must be sorted"
+        # invariant on load, throwing "Out of order word insertion" in the
+        # browser. Writing the file from node keeps the bytes intact.
         $js = @"
 const lunr = require('$($vendorLunr.Replace('\','\\'))');
-const docs = JSON.parse(require('fs').readFileSync('$($docsPath.Replace('\','\\'))', 'utf8'));
+const fs = require('fs');
+const docs = JSON.parse(fs.readFileSync('$($docsPath.Replace('\','\\'))', 'utf8'));
 const idx = lunr(function () {
   this.ref('ref');
   this.field('title',    { boost: 12 });
@@ -216,17 +227,16 @@ const idx = lunr(function () {
   this.field('body');
   docs.forEach(d => this.add(d));
 });
-process.stdout.write(JSON.stringify(idx));
+fs.writeFileSync('$($OutputPath.Replace('\','\\'))', JSON.stringify(idx), 'utf8');
 "@
         Set-Content -LiteralPath $script -Value $js -Encoding utf8
-        $out = & $node $script 2>&1
+        $stderr = & $node $script 2>&1
         if ($LASTEXITCODE -ne 0) {
-            Write-Warning "Lunr build via node failed (exit $LASTEXITCODE); writing fallback index. stderr:`n$out"
+            Write-Warning "Lunr build via node failed (exit $LASTEXITCODE); writing fallback index. stderr:`n$stderr"
             @{ __fallback = $true; documents = $Documents } | ConvertTo-Json -Depth 6 -Compress |
                 Set-Content -LiteralPath $OutputPath -Encoding utf8
             return
         }
-        Set-Content -LiteralPath $OutputPath -Value $out -Encoding utf8
     }
     finally {
         Remove-Item -LiteralPath $stage -Recurse -Force -ErrorAction SilentlyContinue

@@ -102,13 +102,25 @@
         let candidates;
         if (f.q) {
             if (lunrIndex) {
-                // Lunr query — fuzzy-ish (wildcards). Falls back to a literal
-                // text scan if Lunr throws (malformed query syntax).
+                // For each whitespace-separated user term, query Lunr with
+                // BOTH the plain term and a wildcard variant:
+                //   - plain term runs through the Porter stemmer pipeline so
+                //     "keynote" matches the indexed stem "keynot"
+                //   - "term*" bypasses the pipeline and matches the literal
+                //     prefix in the token set, so "keyn*" still works
+                // Lunr OR-combines the terms by default, maximising recall.
+                // Strip Lunr's own query operators (':', '+', '-', '~', '^')
+                // to keep the parser happy on punctuation-heavy free text.
                 let hits = [];
+                const clean = f.q.toLowerCase().replace(/[:+\-~^]/g, ' ');
+                const terms = clean.split(/\s+/).filter(Boolean);
+                const query = terms.map(t => `${t} ${t}*`).join(' ');
                 try {
-                    hits = lunrIndex.search(f.q.split(/\s+/).map(t => t + '*').join(' '));
+                    hits = lunrIndex.search(query);
                 } catch {
-                    hits = lunrIndex.search(f.q.toLowerCase().replace(/[^\w\s]/g, ' '));
+                    // Fall back to literal-term query (no wildcards) when the
+                    // parser still rejects something odd.
+                    try { hits = lunrIndex.search(terms.join(' ')); } catch { hits = []; }
                 }
                 candidates = hits
                     .map(h => byCode.get(h.ref))
