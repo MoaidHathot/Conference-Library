@@ -448,3 +448,205 @@ details.transcript .transcript-body {
 .year-card strong { font-size: var(--fs-xl); color: var(--c-accent); }
 .year-card span   { color: var(--c-text-muted); font-size: var(--fs-sm); }
 .year-card small  { color: var(--c-text-muted); font-size: var(--fs-xs); font-family: var(--font-mono); }
+
+/* Session-page cover frame: oversized hero image above the player. */
+.cover {
+    margin: var(--s-5) 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--c-surface-alt);
+}
+.cover .cover-link {
+    display: block;
+    cursor: zoom-in;
+}
+.cover img {
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    object-fit: cover;
+    display: block;
+}
+
+/* Embedded video / iframe player. 16:9 responsive wrapper. */
+.player {
+    margin: var(--s-5) 0;
+    background: #000;
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+}
+.player video,
+.player iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* Status badge - upcoming / live / ended. Filled in by client JS via
+   data-start / data-end attributes on .status-line. */
+.status-line {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    margin-top: var(--s-2);
+    font-size: var(--fs-sm);
+}
+.status-line:empty { display: none; }
+.status-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: var(--c-surface-alt);
+    color: var(--c-text-muted);
+}
+.status-badge:empty { display: none; }
+.status-badge.is-upcoming { background: #fff3cd; color: #7a5b00; }
+.status-badge.is-live     { background: #d4edda; color: #155724; animation: pulse 1.6s ease-in-out infinite; }
+.status-badge.is-ended    { background: #e2e3e5; color: #383d41; }
+.status-detail { color: var(--c-text-muted); }
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(40,167,69,0.4); }
+    50%      { box-shadow: 0 0 0 6px rgba(40,167,69,0); }
+}
+
+/* Multi-select tag pills on the per-event index. */
+.filters-pills {
+    margin: var(--s-3) 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    align-items: center;
+}
+.filters-pills .pill-label {
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-right: var(--s-2);
+}
+.filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-1);
+    padding: 4px 12px;
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    background: var(--c-surface);
+    color: var(--c-text);
+    font-size: var(--fs-xs);
+    cursor: pointer;
+    user-select: none;
+    transition: all 100ms ease;
+}
+.filter-pill:hover { border-color: var(--c-accent); }
+.filter-pill.is-on {
+    background: var(--c-accent);
+    color: white;
+    border-color: var(--c-accent);
+}
+.filter-pill .pill-count {
+    opacity: 0.65;
+    font-size: 0.85em;
+}
+.filter-pill.is-on .pill-count { opacity: 0.85; }
+.pills-toggle {
+    background: none;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-sm);
+    padding: 2px 10px;
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+    cursor: pointer;
+}
+.pills-toggle:hover { color: var(--c-accent); border-color: var(--c-accent); }
+
+/* Lightbox: full-viewport modal overlay (vanilla, no library). */
+.lightbox-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: zoom-out;
+}
+.lightbox-backdrop img {
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.lightbox-backdrop .lightbox-close {
+    position: absolute;
+    top: var(--s-4);
+    right: var(--s-5);
+    background: none;
+    border: 0;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Frames in the gallery: clickable anchors with zoom cursor. */
+.frames-grid a { display: block; cursor: zoom-in; text-decoration: none; }
+.frames-grid a img { transition: transform 100ms ease; }
+.frames-grid a:hover img { transform: scale(1.02); }
+
+/* Inline announcement-frame strips next to each [HH:MM:SS] timestamp in
+   the summary. The strip is invisible by default and reveals on hover/focus
+   of the surrounding .anchor span, so the summary stays scannable. */
+.anchor {
+    position: relative;
+    display: inline;
+    cursor: help;
+    color: var(--c-accent);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+.anchor .af-strip {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: var(--s-1);
+    display: none;
+    gap: var(--s-2);
+    padding: var(--s-2);
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    z-index: 50;
+}
+.anchor:hover .af-strip,
+.anchor:focus-within .af-strip {
+    display: flex;
+}
+.af-cell {
+    display: block;
+    text-decoration: none;
+    color: var(--c-text-muted);
+    text-align: center;
+    cursor: zoom-in;
+}
+.af-cell img {
+    width: 140px;
+    height: 78px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--c-border);
+    display: block;
+}
+.af-cell .af-cap {
+    display: block;
+    font-size: var(--fs-xs);
+    font-family: var(--font-mono);
+    margin-top: 2px;
+}

@@ -165,6 +165,54 @@ function Render-MarkdownInline {
     return $t
 }
 
+function Inject-AnnouncementFrames {
+    # Post-process rendered summary HTML to insert a frame strip after each
+    # HH:MM:SS timestamp marker. Matches bare timestamps regardless of
+    # surrounding punctuation - summaries use a mix of [HH:MM:SS],
+    # (HH:MM:SS), (~HH:MM:SS), and bare-in-prose forms; we wrap just the
+    # digits and preserve the original brackets/parens unchanged.
+    #
+    # The strip shows whatever frames the Get-AnnouncementFrames.ps1 helper
+    # has captured in
+    #   <sessionDir>/announcement-frames/<HH-MM-SS>/frame-<offset>s.jpg
+    # Missing frames are silently omitted; missing timestamps render
+    # unchanged.
+    param(
+        [string]$Html,
+        [string]$SessionDir,
+        [string]$Code
+    )
+    if (-not $Html) { return $Html }
+    $afRoot = Join-Path $SessionDir 'announcement-frames'
+    return [regex]::Replace($Html, '(?<![\d:])(\d{2}:\d{2}:\d{2})(?![\d:])', {
+        param($m)
+        $ts = $m.Groups[1].Value
+        $folder = $ts -replace ':', '-'
+        $folderPath = Join-Path $afRoot $folder
+        if (-not (Test-Path -LiteralPath $folderPath)) {
+            return $m.Value
+        }
+        $imgs = Get-ChildItem -LiteralPath $folderPath -File -Filter '*.jpg' -ErrorAction SilentlyContinue |
+                Sort-Object Name
+        if ($imgs.Count -eq 0) { return $m.Value }
+        $cells = foreach ($img in $imgs) {
+            $rel = "../frames/$Code/announcement-frames/$folder/$($img.Name)"
+            $offset = if ($img.BaseName -match 'frame-(.+)$') { $Matches[1] } else { '' }
+            "<a class=`"af-cell`" href=`"$rel`" data-zoom=`"1`" title=`"$ts $offset`">" +
+                "<img loading=`"lazy`" src=`"$rel`" alt=`"Frame at $ts $offset`">" +
+                "<span class=`"af-cap`">$offset</span>" +
+            "</a>"
+        }
+        $body = $cells -join ''
+        # Wrap timestamp in a span; CSS makes the strip pop out below via
+        # position:absolute, so it visually attaches to the timestamp
+        # without breaking the surrounding <li>/<p>.
+        return "<span class=`"anchor`">$($m.Value)" +
+               "<span class=`"af-strip`">$body</span>" +
+               "</span>"
+    })
+}
+
 function Build-LunrIndex {
     # Build a Lunr 2.x serialized index. Lunr.js is a JS library; we invoke
     # `node` if it's on PATH and feed it the prebuild snippet. If node is
@@ -334,16 +382,66 @@ foreach ($dir in $sessionDirs) {
 "@
     }
 
+    # Cover frame: pick the middle frame from the gallery (or first if there
+    # are fewer than 3). Hidden when no frames exist (lab/table-talk sessions).
+    $coverHtml = ''
+    $framesArr = @($m.artifacts.frames)
+    if ($framesArr.Count -gt 0) {
+        $coverIdx = [Math]::Floor($framesArr.Count / 2)
+        if ($coverIdx -ge $framesArr.Count) { $coverIdx = $framesArr.Count - 1 }
+        $coverName = Split-Path $framesArr[$coverIdx] -Leaf
+        $coverHtml = @"
+<section class="cover">
+    <a class="cover-link" href="../frames/$code/$(HtmlEncode $coverName)" data-zoom="1">
+        <img src="../frames/$code/$(HtmlEncode $coverName)" alt="Cover frame for $(HtmlEncode $code)">
+    </a>
+</section>
+"@
+    }
+
+    # Embedded player. Prefer the direct MP4 (HTML5 <video controls>) because
+    # it streams in-place via HTTP range requests; fall back to the Medius
+    # iframe embed when no MP4 is exposed. Sessions with neither (labs, no
+    # recording yet) get no player block.
+    $playerHtml = ''
+    if ($m.downloadVideoUrl) {
+        $playerHtml = @"
+<section class="player">
+    <video controls preload="metadata" playsinline crossorigin="anonymous">
+        <source src="$(HtmlEncode $m.downloadVideoUrl)" type="video/mp4">
+        Your browser doesn't support inline MP4 playback. <a href="$(HtmlEncode $m.downloadVideoUrl)">Download the MP4</a>.
+    </video>
+</section>
+"@
+    }
+    elseif ($m.onDemandUrl) {
+        $playerHtml = @"
+<section class="player">
+    <iframe src="$(HtmlEncode $m.onDemandUrl)" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
+</section>
+"@
+    }
+
     # Summary: prefer summary.md (Copilot-generated), fall back to ai-description.html (Microsoft's).
     $summaryHtml = ''
     $summaryPath = Join-Path $dir.FullName 'summary.md'
     $aiPath      = Join-Path $dir.FullName 'ai-description.html'
     if (Test-Path -LiteralPath $summaryPath) {
         $summaryMd = Get-Content -Raw -LiteralPath $summaryPath
+        $summaryRendered = Render-MarkdownLite $summaryMd
+        # Inject announcement-frame strips next to each [HH:MM:SS] timestamp.
+        # Frames are produced by scripts/Get-AnnouncementFrames.ps1 (4 frames
+        # per timestamp: T-10s, T-5s, T+5s, T+10s). The renderer only emits
+        # markup for timestamps where the frame files actually exist on disk,
+        # so old artifacts and freshly-summarized sessions both render
+        # cleanly even when Get-AnnouncementFrames hasn't run yet.
+        $summaryRendered = Inject-AnnouncementFrames -Html $summaryRendered -SessionDir $dir.FullName -Code $code
         $summaryHtml = @"
 <section class="section">
     <div class="summary">
-$(Render-MarkdownLite $summaryMd)
+$summaryRendered
     </div>
 </section>
 "@
@@ -360,7 +458,9 @@ $(Render-MarkdownLite $summaryMd)
 "@
     }
 
-    # Frames gallery.
+    # Frames gallery. Every image is a lightbox trigger (data-zoom="1"); the
+    # page-side script (../assets/app-session.js, loaded via layout.html)
+    # binds a click handler that swaps the image into a modal overlay.
     $framesHtml = ''
     if ($m.artifacts.frames -and @($m.artifacts.frames).Count -gt 0) {
         $figs = foreach ($rel in @($m.artifacts.frames)) {
@@ -368,7 +468,7 @@ $(Render-MarkdownLite $summaryMd)
             $label = if ($name -match 'frame-\d+-(.+?)\.jpg$') {
                 ($Matches[1] -replace '-', ':')
             } else { '' }
-            "<figure><img loading=`"lazy`" src=`"../frames/$code/$(HtmlEncode $name)`" alt=`"Frame at $label`"><figcaption>$(HtmlEncode $label)</figcaption></figure>"
+            "<figure><a href=`"../frames/$code/$(HtmlEncode $name)`" data-zoom=`"1`"><img loading=`"lazy`" src=`"../frames/$code/$(HtmlEncode $name)`" alt=`"Frame at $label`"></a><figcaption>$(HtmlEncode $label)</figcaption></figure>"
         }
         $framesHtml = @"
 <section class="section">
@@ -430,13 +530,26 @@ $($items -join "`n")
 "@
     }
 
+    # Derive ISO datetimes for the client-side status JS (data-attributes
+    # on .status-line). Empty string when missing - the JS hides the badge.
+    $startIso = if ($m.startDateTime -is [datetime]) {
+        $m.startDateTime.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+    } elseif ($m.startDateTime) { "$($m.startDateTime)" } else { '' }
+    $endIso = if ($m.endDateTime -is [datetime]) {
+        $m.endDateTime.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+    } elseif ($m.endDateTime) { "$($m.endDateTime)" } else { '' }
+
     $pageBody = Render-Template $sessionBody @{
         CODE             = HtmlEncode $code
         SESSION_TYPE     = HtmlEncode ($m.sessionType ?? '')
         TITLE            = HtmlEncode ($m.title ?? $code)
         SPEAKERS_HTML    = $speakers
         META_FIELDS_HTML = ($metaParts -join "`n")
+        START_DT_ISO     = HtmlEncode $startIso
+        END_DT_ISO       = HtmlEncode $endIso
         TAGS_HTML        = $tagsHtml
+        COVER_HTML       = $coverHtml
+        PLAYER_HTML      = $playerHtml
         ACTIONS_HTML     = $actionsHtml
         DESCRIPTION_HTML = $descriptionHtml
         SUMMARY_HTML     = $summaryHtml
@@ -473,6 +586,20 @@ $($items -join "`n")
             }
         }
     }
+    # ---- announcement frames (per [HH:MM:SS] in the summary) ----
+    # Mirror sessions/<conf>/<event>/<code>/announcement-frames/<ts>/*.jpg to
+    # docs/<conf>/<event>/frames/<code>/announcement-frames/<ts>/*.jpg so the
+    # summary-injected <img src="../frames/<code>/announcement-frames/..."> refs
+    # resolve. Quiet no-op when the directory doesn't exist yet (most sessions
+    # before Get-AnnouncementFrames.ps1 runs).
+    $afSrc = Join-Path $dir.FullName 'announcement-frames'
+    if (-not $NoFrames -and (Test-Path -LiteralPath $afSrc)) {
+        $afDst = Join-Path $OutputRoot ("frames\$code\announcement-frames")
+        if (Test-Path -LiteralPath $afDst) {
+            Remove-Item -LiteralPath $afDst -Recurse -Force -ErrorAction SilentlyContinue
+        }
+        Copy-Item -LiteralPath $afSrc -Destination $afDst -Recurse -Force
+    }
 
     # ---- catalog + lunr docs for the index page ----
     # IMPORTANT: PowerShell's `if` expression unwraps single-element collections
@@ -483,12 +610,15 @@ $($items -join "`n")
     $topicsArr = @(if ($m.topics) { $m.topics | ForEach-Object { "$_" } | Where-Object { $_ } })
 
     $indexCatalog.Add([pscustomobject]@{
-        code         = $code
-        title        = $m.title
-        sessionType  = $m.sessionType
-        speakerNames = $m.speakerNames
-        tags         = $tagsArr
-        topics       = $topicsArr
+        code          = $code
+        title         = $m.title
+        sessionType   = $m.sessionType
+        speakerNames  = $m.speakerNames
+        tags          = $tagsArr
+        topics        = $topicsArr
+        startDateTime = $startIso
+        endDateTime   = $endIso
+        durationMins  = $m.durationMinutes
     }) | Out-Null
 
     # Lunr search body: title + summary + first slice of transcript (limit so

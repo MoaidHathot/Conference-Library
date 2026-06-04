@@ -23,9 +23,9 @@ param(
 
     [Parameter()][string]$EventId = '2026',
 
-    [Parameter()][ValidateRange(1, 50)][int]$FrameCount = 5,
+    [Parameter()][ValidateRange(1, 200)][int]$FrameCount = 15,
 
-    [Parameter()][ValidateRange(2, 31)][int]$JpegQuality = 2,
+    [Parameter()][ValidateRange(2, 31)][int]$JpegQuality = 4,
 
     [Parameter()][ValidateRange(1, 64)][int]$Concurrency = 10,
 
@@ -154,11 +154,18 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
         return $null
     }
 
-    function Get-CaptionUrlFromMediusEmbed {
-        # Hit the Medius embed page and pick a SAS-signed VTT URL from
-        # captionsConfiguration.languageList[] using the requested language
-        # preferences (primary BCP-47 subtag match: 'en' matches 'en-US').
-        # Returns @{ Url = ...; Language = 'en-US' } or $null.
+    function Get-MediusEmbedInfo {
+        # Fetch the Medius embed HTML once and pull TWO things out of it:
+        #   1. The SAS-signed VTT caption URL matching the requested language
+        #      preferences (primary BCP-47 subtag match: 'en' matches 'en-US').
+        #   2. An HLS (.m3u8) URL pointing at the on-demand video stream, used
+        #      as a frame-sampling fallback when the catalog has no
+        #      downloadVideoLink (e.g. recent breakouts that only expose the
+        #      Medius streaming player, no direct MP4 download).
+        #
+        # Returns @{ CaptionUrl=...; CaptionLanguage=...; HlsUrl=... } with any
+        # missing piece set to $null; or $null if the page itself was
+        # unreachable.
         param([string]$EmbedUrl, [string[]]$Preferences)
         try {
             $html = Invoke-WebRequest -Uri $EmbedUrl -UseBasicParsing -TimeoutSec 60 |
@@ -167,52 +174,77 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
         catch {
             return $null
         }
+
+        $captionUrl = $null
+        $captionLang = $null
+        $hlsUrl = $null
+
+        # ---- caption pick ----
         $marker = $html.IndexOf('captionsConfiguration')
-        if ($marker -lt 0) { return $null }
-        $open = $html.IndexOf('{', $marker)
-        if ($open -lt 0) { return $null }
-        $json = Extract-BraceBalancedJson -Text $html -OpenIndex $open
-        if (-not $json) { return $null }
-        try {
-            $cfg = $json | ConvertFrom-Json -Depth 10
-        } catch { return $null }
-        if (-not $cfg.languageList) { return $null }
-
-        # Build a list of {url, language} from each entry.
-        $entries = @()
-        foreach ($entry in $cfg.languageList) {
-            if (-not $entry.src) { continue }
-            # Prefer the BCP-47 tag embedded in the filename (Caption_en-US.vtt)
-            # over the terse srclang attribute.
-            $lang = $null
-            if ($entry.src -match '/Caption_([A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*)\.(?:vtt|srt)\b') {
-                $lang = $Matches[1]
+        if ($marker -ge 0) {
+            $open = $html.IndexOf('{', $marker)
+            if ($open -ge 0) {
+                $json = Extract-BraceBalancedJson -Text $html -OpenIndex $open
+                if ($json) {
+                    try {
+                        $cfg = $json | ConvertFrom-Json -Depth 10
+                        if ($cfg.languageList) {
+                            $entries = @()
+                            foreach ($entry in $cfg.languageList) {
+                                if (-not $entry.src) { continue }
+                                $lang = $null
+                                if ($entry.src -match '/Caption_([A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*)\.(?:vtt|srt)\b') {
+                                    $lang = $Matches[1]
+                                }
+                                elseif ($entry.srclang) {
+                                    $lang = $entry.srclang
+                                }
+                                $entries += [pscustomobject]@{ Url = $entry.src; Language = $lang }
+                            }
+                            $pick = $null
+                            foreach ($pref in $Preferences) {
+                                if ([string]::IsNullOrWhiteSpace($pref)) { continue }
+                                $prefPrimary = ($pref -split '-')[0].ToLowerInvariant()
+                                $pick = $entries | Where-Object {
+                                    $entryPrimary = if ($_.Language) { ($_.Language -split '-')[0].ToLowerInvariant() } else { '' }
+                                    $entryPrimary -eq $prefPrimary
+                                } | Select-Object -First 1
+                                if ($pick) { break }
+                            }
+                            if (-not $pick) {
+                                $pick = $entries | Where-Object {
+                                    $p = if ($_.Language) { ($_.Language -split '-')[0].ToLowerInvariant() } else { '' }
+                                    $p -eq 'en'
+                                } | Select-Object -First 1
+                            }
+                            if (-not $pick -and $entries.Count -gt 0) { $pick = $entries[0] }
+                            if ($pick) {
+                                $captionUrl = $pick.Url
+                                $captionLang = $pick.Language
+                            }
+                        }
+                    }
+                    catch { }
+                }
             }
-            elseif ($entry.srclang) {
-                $lang = $entry.srclang
-            }
-            $entries += [pscustomobject]@{ Url = $entry.src; Language = $lang }
-        }
-        if ($entries.Count -eq 0) { return $null }
-
-        # Primary-subtag match: 'en' -> any 'en*' entry.
-        foreach ($pref in $Preferences) {
-            if ([string]::IsNullOrWhiteSpace($pref)) { continue }
-            $prefPrimary = ($pref -split '-')[0].ToLowerInvariant()
-            $match = $entries | Where-Object {
-                $entryPrimary = if ($_.Language) { ($_.Language -split '-')[0].ToLowerInvariant() } else { '' }
-                $entryPrimary -eq $prefPrimary
-            } | Select-Object -First 1
-            if ($match) { return $match }
         }
 
-        # Fallback: English, then the first entry.
-        $english = $entries | Where-Object {
-            $p = if ($_.Language) { ($_.Language -split '-')[0].ToLowerInvariant() } else { '' }
-            $p -eq 'en'
-        } | Select-Object -First 1
-        if ($english) { return $english }
-        return $entries[0]
+        # ---- HLS pick ----
+        # The Medius player serves HLS from stream.event.microsoft.com under
+        # two regions ('prodwe' = west europe, 'prodnc' = north central US).
+        # Both refer to the same content; either works for frame extraction.
+        # Prefer the first one the page advertises (which is usually the
+        # geo-optimal route).
+        $hlsMatches = [regex]::Matches($html, 'https?://[^"\s'']+\.m3u8[^"\s'']*')
+        if ($hlsMatches.Count -gt 0) {
+            $hlsUrl = $hlsMatches[0].Value
+        }
+
+        return [pscustomobject]@{
+            CaptionUrl      = $captionUrl
+            CaptionLanguage = $captionLang
+            HlsUrl          = $hlsUrl
+        }
     }
 
     function Convert-VttToMarkdown {
@@ -288,44 +320,53 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
 
     # ---- pipeline ----
 
-    $errors         = @()
-    $captionRel     = $null
-    $transcriptRel  = $null
+    $errors          = @()
+    $captionRel      = $null
+    $transcriptRel   = $null
     $captionLangUsed = $null
-    $framesRel      = @()
-    $summaryRel     = $null
-    $docxRel        = $null
+    $framesRel       = @()
+    $summaryRel      = $null
+    $docxRel         = $null
+    $hlsUrl          = $null
 
-    # 1. Caption + transcript via the Medius embed page (not captionFileLink,
-    #    which serves a .docx — we save that separately as docx).
+    # 1. Fetch the Medius embed once - it gives us BOTH the caption SAS URL
+    #    AND the HLS master playlist URL (a video-stream fallback when the
+    #    catalog has no direct downloadVideoLink, see step 2).
+    $mediusInfo = $null
     if ([string]::IsNullOrWhiteSpace($Session.onDemand)) {
-        $errors += 'no onDemand URL; cannot reach Medius embed for VTT'
+        $errors += 'no onDemand URL; cannot reach Medius embed for VTT or HLS'
     }
     else {
-        $pick = Get-CaptionUrlFromMediusEmbed -EmbedUrl $Session.onDemand -Preferences $CaptionLanguages
-        if (-not $pick) {
-            $errors += 'Medius embed has no parseable captionsConfiguration'
+        $mediusInfo = Get-MediusEmbedInfo -EmbedUrl $Session.onDemand -Preferences $CaptionLanguages
+        if (-not $mediusInfo) {
+            $errors += 'Medius embed unreachable or unparseable'
         }
         else {
-            try {
-                $vttPath = Join-Path $sessionDir 'transcript.vtt'
-                Invoke-WebRequest -Uri $pick.Url -OutFile $vttPath -UseBasicParsing -TimeoutSec 60 | Out-Null
-                $vttContent = Get-Content -Raw -LiteralPath $vttPath -Encoding utf8
-                $md = Convert-VttToMarkdown -VttContent $vttContent
-                $mdPath = Join-Path $sessionDir 'transcript.md'
-                Set-Content -LiteralPath $mdPath -Value $md -Encoding utf8
-                $captionRel = 'transcript.vtt'
-                $transcriptRel = 'transcript.md'
-                $captionLangUsed = $pick.Language
+            $hlsUrl = $mediusInfo.HlsUrl
+            if (-not $mediusInfo.CaptionUrl) {
+                $errors += 'Medius embed has no parseable captionsConfiguration'
             }
-            catch {
-                $errors += "Medius VTT download/parse failed ($($pick.Language)): $($_.Exception.Message)"
+            else {
+                try {
+                    $vttPath = Join-Path $sessionDir 'transcript.vtt'
+                    Invoke-WebRequest -Uri $mediusInfo.CaptionUrl -OutFile $vttPath -UseBasicParsing -TimeoutSec 60 | Out-Null
+                    $vttContent = Get-Content -Raw -LiteralPath $vttPath -Encoding utf8
+                    $md = Convert-VttToMarkdown -VttContent $vttContent
+                    $mdPath = Join-Path $sessionDir 'transcript.md'
+                    Set-Content -LiteralPath $mdPath -Value $md -Encoding utf8
+                    $captionRel = 'transcript.vtt'
+                    $transcriptRel = 'transcript.md'
+                    $captionLangUsed = $mediusInfo.CaptionLanguage
+                }
+                catch {
+                    $errors += "Medius VTT download/parse failed ($($mediusInfo.CaptionLanguage)): $($_.Exception.Message)"
+                }
             }
         }
     }
 
     # 1b. ALSO save the official Microsoft .docx transcript (captionFileLink)
-    #     as a side-artifact — useful for accessibility tooling / archival.
+    #     as a side-artifact - useful for accessibility tooling / archival.
     if (-not [string]::IsNullOrWhiteSpace($Session.captionFileLink)) {
         try {
             $docxPath = Join-Path $sessionDir 'transcript-official.docx'
@@ -338,16 +379,36 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
         }
     }
 
-    # 2. Frames.
+    # 2. Frames. Prefer the direct MP4 (downloadVideoLink) because HTTP-range
+    #    seeks are dramatically faster than HLS segment downloads. Fall back
+    #    to the HLS master playlist scraped from the Medius embed (covers
+    #    sessions like BRK260 that only expose a streaming player).
+    $videoSource = if (-not [string]::IsNullOrWhiteSpace($Session.downloadVideoLink)) {
+        @{ Url = $Session.downloadVideoLink; Kind = 'mp4' }
+    }
+    elseif ($hlsUrl) {
+        @{ Url = $hlsUrl; Kind = 'hls' }
+    }
+    else { $null }
+
     $durationSeconds = if ($Session.durationInMinutes) { [double]$Session.durationInMinutes * 60.0 } else { 0.0 }
-    if ([string]::IsNullOrWhiteSpace($Session.downloadVideoLink)) {
-        $errors += 'no downloadVideoLink'
+    if (-not $videoSource) {
+        $errors += 'no downloadVideoLink and no HLS URL on Medius embed'
     }
     elseif ($durationSeconds -le 0) {
         $errors += 'no durationInMinutes; cannot space frames'
     }
     else {
         $framesDir = Join-Path $sessionDir 'frames'
+        # Wipe stale frame files from previous runs before sampling fresh
+        # ones. Old runs used different counts/timestamps, leaving leftover
+        # frame-005-25-00.jpg etc. that we never reference but clutter disk
+        # and confuse "how many frames does this session have" diagnostics.
+        # Preserves any sibling subdirectories (e.g. announcement-frames/).
+        if (Test-Path -LiteralPath $framesDir) {
+            Get-ChildItem -LiteralPath $framesDir -File -Filter 'frame-*.jpg' -ErrorAction SilentlyContinue |
+                Remove-Item -Force -ErrorAction SilentlyContinue
+        }
         New-Item -ItemType Directory -Path $framesDir -Force | Out-Null
         $timestamps = Get-EvenlySpacedTimestamps -DurationSeconds $durationSeconds -Count $FrameCount
         for ($i = 0; $i -lt $timestamps.Count; $i++) {
@@ -355,11 +416,20 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
             $tsLabel = Format-Timestamp -Seconds $ts
             $frameName = "frame-{0:000}-{1}.jpg" -f ($i + 1), $tsLabel
             $framePath = Join-Path $framesDir $frameName
+            # `-ss BEFORE -i` works as a header-seek hint for both MP4 (HTTP
+            # range, sub-second) and HLS (playlist index, ~5-10 s per frame).
+            # Putting -ss AFTER -i forces decode-through which is ~3x slower
+            # for HLS and unnecessary for our keyframe-aligned sampling.
+            # Resize to 1280px wide + slightly-lossy q:v 4 to keep the total
+            # docs/ payload under the GitHub Pages 1 GB soft limit; full-HD
+            # is overkill for a static-site preview gallery.
             $ffArgs = @(
                 '-hide_banner','-loglevel','error','-y'
                 '-ss', ([string]::Format([System.Globalization.CultureInfo]::InvariantCulture, '{0}', $ts))
-                '-i', $Session.downloadVideoLink
-                '-frames:v','1','-q:v', $JpegQuality
+                '-i', $videoSource.Url
+                '-frames:v','1'
+                '-vf','scale=1280:-2'
+                '-q:v', $JpegQuality
                 $framePath
             )
             try {
@@ -368,7 +438,7 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
                     $framesRel += "frames/$frameName"
                 }
                 else {
-                    $errors += "ffmpeg failed at $tsLabel (exit $LASTEXITCODE)"
+                    $errors += "ffmpeg failed at $tsLabel (exit $LASTEXITCODE, source=$($videoSource.Kind))"
                 }
             }
             catch {
@@ -418,6 +488,7 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
         aslSupported      = $Session.aslSupported
         onDemandUrl       = $Session.onDemand
         downloadVideoUrl  = $Session.downloadVideoLink
+        hlsUrl            = $hlsUrl
         captionFileUrl    = $Session.captionFileLink
         slideDeckUrl      = $Session.slideDeck
         thumbnailUrl      = $Session.onDemandThumbnail
