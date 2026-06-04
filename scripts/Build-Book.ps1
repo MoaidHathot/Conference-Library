@@ -475,8 +475,12 @@ $($items -join "`n")
     }
 
     # ---- catalog + lunr docs for the index page ----
-    $tagsArr   = if ($m.tags)   { @($m.tags   | ForEach-Object { "$_" } | Where-Object { $_ }) } else { @() }
-    $topicsArr = if ($m.topics) { @($m.topics | ForEach-Object { "$_" } | Where-Object { $_ }) } else { @() }
+    # IMPORTANT: PowerShell's `if` expression unwraps single-element collections
+    # when assigned to a variable. Wrap the WHOLE if-expression in @() (not the
+    # if-branch) so a single-tag session still serializes to ["Tag"] instead of
+    # the JSON scalar "Tag" - the page-side app.js expects an array.
+    $tagsArr   = @(if ($m.tags)   { $m.tags   | ForEach-Object { "$_" } | Where-Object { $_ } })
+    $topicsArr = @(if ($m.topics) { $m.topics | ForEach-Object { "$_" } | Where-Object { $_ } })
 
     $indexCatalog.Add([pscustomobject]@{
         code         = $code

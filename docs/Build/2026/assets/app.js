@@ -38,9 +38,20 @@
     const fallbackDocs = isFallback ? indexJson.documents : null;
     const byCode = new Map(catalog.sessions.map(s => [s.code, s]));
 
+    // ---- helpers ----
+    // PowerShell's ConvertTo-Json unwraps single-element collections to
+    // scalars, so catalog.json may contain `tags: "AI"` for a single-tag
+    // session and `tags: ["AI", "Windows"]` for a multi-tag one. Normalize
+    // every list-shaped field here so the rest of the code can assume Array.
+    function toArray(v) {
+        if (Array.isArray(v)) return v;
+        if (v === null || v === undefined || v === '') return [];
+        return [v];
+    }
+
     // ---- populate dropdowns from observed values ----
     function unique(values) {
-        return [...new Set(values.flatMap(v => Array.isArray(v) ? v : (v ? [v] : [])))].sort();
+        return [...new Set(values.flatMap(v => toArray(v)))].sort();
     }
     function fillSelect(el, values, label) {
         el.innerHTML = `<option value="">All ${label}</option>` +
@@ -65,7 +76,7 @@
         }
         noResults.hidden = true;
         list.innerHTML = matches.map(s => {
-            const tags = (s.tags ?? []).slice(0, 4).map(t =>
+            const tags = toArray(s.tags).slice(0, 4).map(t =>
                 `<span class="tag">${escapeText(t)}</span>`).join('');
             const speakers = s.speakerNames || '';
             return `
@@ -89,9 +100,9 @@
 
     function applyFilters(sessions, f) {
         return sessions.filter(s => {
-            if (f.type  && s.sessionType !== f.type)             return false;
-            if (f.topic && !(s.topics ?? []).includes(f.topic))  return false;
-            if (f.tag   && !(s.tags   ?? []).includes(f.tag))    return false;
+            if (f.type  && s.sessionType !== f.type)              return false;
+            if (f.topic && !toArray(s.topics).includes(f.topic))  return false;
+            if (f.tag   && !toArray(s.tags).includes(f.tag))      return false;
             return true;
         });
     }

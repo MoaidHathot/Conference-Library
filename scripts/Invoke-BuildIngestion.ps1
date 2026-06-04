@@ -247,15 +247,21 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
     }
 
     function Get-FacetValues {
+        # IMPORTANT: PowerShell's `return` unwraps single-element collections,
+        # which would cause single-tag/single-topic sessions to serialise as
+        # JSON scalars instead of arrays in rich-manifest.json. The comma
+        # operator (`,$out`) wraps the result in a length-1 array, which the
+        # `return` unwrap then peels off back to the original $out array,
+        # preserving its collection identity even when it has one element.
         param($Facets)
-        if ($null -eq $Facets) { return @() }
+        if ($null -eq $Facets) { return ,@() }
         $out = @()
         foreach ($f in @($Facets)) {
             if ($f -is [string]) { $out += $f; continue }
             if ($f.displayValue) { $out += $f.displayValue; continue }
             if ($f.logicalValue) { $out += $f.logicalValue }
         }
-        return @($out)
+        return ,$out
     }
     function Get-FacetValue {
         param($Facet)
