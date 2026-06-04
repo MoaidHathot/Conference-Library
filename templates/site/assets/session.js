@@ -1,7 +1,11 @@
 /* session.js - per-session-page features that run on every layout:
  *   1. Lightbox: any <a data-zoom="1"> intercepts the click and shows the
  *      target image in a modal overlay. Escape / click-outside closes.
- *   2. Live status badge: any .status-line[data-start][data-end] gets its
+ *   2. Announcement-frame strips: click the [HH:MM:SS] timestamp to toggle a
+ *      sticky strip of context frames (replacing the older hover-only
+ *      behaviour which had a hover-gap bug + didn't work on touch devices).
+ *      The strip stays open until you click outside it or press Escape.
+ *   3. Live status badge: any .status-line[data-start][data-end] gets its
  *      .status-badge populated based on the current wall-clock time
  *      ("Upcoming - starts in 2h 15m" / "Live - started 30m ago" / "Ended
  *      3h ago"). Refreshes every 30 s so the badge stays fresh on an open
@@ -47,13 +51,68 @@
         document.addEventListener('keydown', onKey);
     }
 
+    // ---------- Announcement-frame strip toggle ----------
+    // The strip is hidden by default. Clicking the .anchor (the [HH:MM:SS]
+    // text) toggles an .is-open class on it; CSS then promotes the strip to
+    // display:flex. A second click anywhere outside the open anchor closes
+    // it. Hovering still works as a transient peek for desktop users.
+
+    function closeAllStrips() {
+        document.querySelectorAll('.anchor.is-open').forEach(a => a.classList.remove('is-open'));
+    }
+
+    // ---------- Global click handler ----------
+    // Single delegated handler so dynamically-injected content also works.
     document.addEventListener('click', e => {
-        const trigger = e.target.closest('a[data-zoom="1"]');
-        if (!trigger) return;
-        e.preventDefault();
-        const href = trigger.getAttribute('href');
-        const alt = trigger.querySelector('img')?.getAttribute('alt') ?? '';
-        openLightbox(href, alt);
+        // 1) Zoom-trigger: any <a data-zoom="1"> opens the lightbox.
+        //    Checked BEFORE the strip-close logic so clicking a frame inside
+        //    an open strip enlarges instead of just closing the strip.
+        const zoomTrigger = e.target.closest('a[data-zoom="1"]');
+        if (zoomTrigger) {
+            e.preventDefault();
+            e.stopPropagation();
+            const href = zoomTrigger.getAttribute('href');
+            const alt  = zoomTrigger.querySelector('img')?.getAttribute('alt') ?? '';
+            openLightbox(href, alt);
+            return;
+        }
+
+        // 2) Anchor (timestamp) click toggles the strip open/closed.
+        //    Use e.target directly so a click on a CHILD of .anchor (e.g.
+        //    when the strip itself is rendered inside it) doesn't re-toggle.
+        //    closest('.anchor') with === current check is the trick.
+        const anchorClicked = e.target.closest('.anchor');
+        if (anchorClicked) {
+            // Only the anchor's own text should toggle. Clicks inside the
+            // strip (which is a child of .anchor) shouldn't close it.
+            const insideStrip = e.target.closest('.af-strip');
+            if (!insideStrip) {
+                const willOpen = !anchorClicked.classList.contains('is-open');
+                closeAllStrips();
+                if (willOpen) anchorClicked.classList.add('is-open');
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            return;
+        }
+
+        // 3) Click anywhere else closes any open strip.
+        closeAllStrips();
+    });
+
+    // Escape closes any open strip too (in addition to closing the lightbox).
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeAllStrips();
+        // Enter or Space on a focused .anchor toggles the strip (same as click).
+        if (e.key === 'Enter' || e.key === ' ') {
+            const a = document.activeElement?.closest?.('.anchor');
+            if (a) {
+                e.preventDefault();
+                const willOpen = !a.classList.contains('is-open');
+                closeAllStrips();
+                if (willOpen) a.classList.add('is-open');
+            }
+        }
     });
 
     // ---------- Live status badge ----------

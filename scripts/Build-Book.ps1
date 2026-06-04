@@ -206,8 +206,9 @@ function Inject-AnnouncementFrames {
         $body = $cells -join ''
         # Wrap timestamp in a span; CSS makes the strip pop out below via
         # position:absolute, so it visually attaches to the timestamp
-        # without breaking the surrounding <li>/<p>.
-        return "<span class=`"anchor`">$($m.Value)" +
+        # without breaking the surrounding <li>/<p>. role=button + tabindex
+        # make it keyboard-focusable; session.js binds Enter/Space to toggle.
+        return "<span class=`"anchor`" role=`"button`" tabindex=`"0`" aria-haspopup=`"true`">$($m.Value)" +
                "<span class=`"af-strip`">$body</span>" +
                "</span>"
     })
@@ -371,6 +372,77 @@ foreach ($dir in $sessionDirs) {
     if ($m.slideDeckUrl)     { $actions += "<a href=`"$(HtmlEncode $m.slideDeckUrl)`" target=`"_blank`" rel=`"noopener`">Slide deck</a>" }
     $actionsHtml = $actions -join "`n"
 
+    # Recording notice. Four cases that visitors otherwise can't tell apart
+    # on a thinly-populated page:
+    #   A) "Will not be recorded" + no video URLs: in-person-only by design
+    #      (Table Talks, Labs, Lightning Talks). Bare page is correct.
+    #   B) "Will be recorded" + no video URLs: upload pending; re-ingest later.
+    #   C) onDemandUrl present but ingestion couldn't extract a transcript
+    #      (Medius embed has no captionsConfiguration, or the player is on
+    #      mediastream.microsoft.com which isn't supported yet). Visitor
+    #      gets a working iframe but no transcript/summary/frames.
+    #   D) Catalog has no viewingOptions value at all and no video.
+    # Sessions with full artifacts get no notice.
+    $hasAnyVideo  = $m.onDemandUrl -or $m.downloadVideoUrl -or $m.hlsUrl
+    # Probe transcript existence early - the notice logic below needs it,
+    # and the later transcript section reuses the same path.
+    $transcriptPath = Join-Path $dir.FullName 'transcript.md'
+    $hasTranscript = Test-Path -LiteralPath $transcriptPath
+    $viewingStr   = if ($m.viewingOptions) { ($m.viewingOptions -join ',') } else { '' }
+    $wontRecord   = $viewingStr -match '(?i)not\s*be\s*recorded'
+    $willRecord   = $viewingStr -match '(?i)will\s*be\s*recorded'
+    $noticeHtml   = ''
+    $stype = if ($m.sessionType) { HtmlEncode $m.sessionType } else { 'session' }
+    if (-not $hasAnyVideo) {
+        if ($wontRecord) {
+            $noticeHtml = @"
+<aside class="notice notice-info" role="note">
+    <strong>No recording &mdash; in-person $stype.</strong>
+    Microsoft Build does not record this session format on purpose
+    (it keeps the discussion candid for the small group present).
+    The information above is everything available in the public catalog;
+    visit the canonical session page for any post-event notes.
+</aside>
+"@
+        }
+        elseif ($willRecord) {
+            $noticeHtml = @"
+<aside class="notice notice-warning" role="note">
+    <strong>Recording not yet published.</strong>
+    The catalog says this session will be recorded, but Microsoft hasn't
+    released the on-demand video yet. Transcripts, summary, frames, and the
+    embedded player will appear once the recording is uploaded and this
+    repo is re-ingested.
+</aside>
+"@
+        }
+        else {
+            $noticeHtml = @"
+<aside class="notice notice-info" role="note">
+    <strong>No recording available.</strong>
+    The public catalog does not expose a video for this session. If you
+    expected one, check the canonical session page on
+    <code>build.microsoft.com</code>.
+</aside>
+"@
+        }
+    }
+    elseif (-not $hasTranscript) {
+        # Case C: player exists but we couldn't pull a transcript. Tell the
+        # visitor what they have and don't have, so the missing summary /
+        # frames don't look like a bug.
+        $noticeHtml = @"
+<aside class="notice notice-warning" role="note">
+    <strong>Player only &mdash; transcript not available.</strong>
+    The video player below works, but Microsoft's on-demand surface for
+    this session didn't expose machine-readable captions in a format we
+    recognise (likely a non-Medius player), so there's no transcript,
+    no AI summary, and no per-announcement frame strips on this page.
+    Play the video to follow along.
+</aside>
+"@
+    }
+
     # Description block (Microsoft's official). Render as a separate section.
     $descriptionHtml = ''
     if ($m.description) {
@@ -511,10 +583,10 @@ $($items -join "`n")
 "@
     }
 
-    # Transcript (collapsed).
+    # Transcript (collapsed). $transcriptPath / $hasTranscript were computed
+    # earlier so the notice block could use them.
     $transcriptHtml = ''
-    $transcriptPath = Join-Path $dir.FullName 'transcript.md'
-    if (Test-Path -LiteralPath $transcriptPath) {
+    if ($hasTranscript) {
         $transcript = Get-Content -Raw -LiteralPath $transcriptPath
         # Strip markdown emphasis (the **[ts]** wrapper from our converter) so
         # the collapsed body reads as plain text; preserve cue order + spacing.
@@ -548,6 +620,7 @@ $($items -join "`n")
         START_DT_ISO     = HtmlEncode $startIso
         END_DT_ISO       = HtmlEncode $endIso
         TAGS_HTML        = $tagsHtml
+        NOTICE_HTML      = $noticeHtml
         COVER_HTML       = $coverHtml
         PLAYER_HTML      = $playerHtml
         ACTIONS_HTML     = $actionsHtml
@@ -619,6 +692,13 @@ $($items -join "`n")
         startDateTime = $startIso
         endDateTime   = $endIso
         durationMins  = $m.durationMinutes
+        # Cover thumbnail for the index card; null when the session has no
+        # frames (Table Talks, Labs, sessions still missing duration). The
+        # path is relative to docs/<Conference>/<EventId>/index.html.
+        coverFrame    = if ($framesArr.Count -gt 0) {
+                            $coverName = Split-Path $framesArr[[Math]::Floor($framesArr.Count / 2)] -Leaf
+                            "frames/$code/$coverName"
+                        } else { $null }
     }) | Out-Null
 
     # Lunr search body: title + summary + first slice of transcript (limit so

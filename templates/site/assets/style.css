@@ -195,7 +195,7 @@ pre {
 .session-list {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--s-4);
+    gap: var(--s-3);
     list-style: none;
     padding: 0;
     margin: 0;
@@ -203,21 +203,59 @@ pre {
 @media (min-width: 720px) {
     .session-list { grid-template-columns: 1fr 1fr; }
 }
+@media (min-width: 1280px) {
+    .session-list { grid-template-columns: 1fr 1fr 1fr; }
+}
 
+/* Session card on the index. Compact horizontal layout: thumbnail on the
+   left, metadata stacked on the right. Whole card is hover-elevated, the
+   title and thumbnail both deep-link to the per-session page. */
 .session-card {
     background: var(--c-surface);
     border: 1px solid var(--c-border);
     border-radius: var(--radius);
-    padding: var(--s-4);
     box-shadow: var(--shadow-sm);
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 144px 1fr;
     gap: var(--s-3);
-    transition: box-shadow 120ms ease, transform 120ms ease;
+    padding: var(--s-3);
+    transition: box-shadow 120ms ease, transform 120ms ease, border-color 120ms ease;
 }
 .session-card:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-1px);
+    border-color: var(--c-accent);
+}
+.session-card .card-thumb-link {
+    display: block;
+    line-height: 0; /* removes inline-image baseline gap */
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+.session-card .card-thumb {
+    width: 144px;
+    height: 81px;            /* 16:9 */
+    object-fit: cover;
+    background: var(--c-surface-alt);
+    display: block;
+}
+.session-card .card-thumb-empty {
+    /* Placeholder pattern for cards with no captured frames. */
+    background: repeating-linear-gradient(
+        45deg, var(--c-surface-alt), var(--c-surface-alt) 6px,
+        var(--c-surface) 6px, var(--c-surface) 12px);
+}
+.session-card .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;            /* lets text truncate inside the grid cell */
+}
+.session-card .card-row-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-2);
 }
 .session-card .code {
     font-family: var(--font-mono);
@@ -227,19 +265,59 @@ pre {
 }
 .session-card h3 {
     margin: 0;
-    font-size: var(--fs-lg);
-    line-height: 1.35;
+    font-size: var(--fs-md);
+    line-height: 1.3;
+    /* Two-line clamp so very long titles don't blow up card height. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 .session-card h3 a { color: var(--c-text); }
 .session-card .speakers {
     color: var(--c-text-muted);
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.session-card .meta {
+.session-card .when {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--s-2);
+    gap: var(--s-1) var(--s-3);
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+    margin-top: 2px;
+}
+.session-card .when .when-start { font-weight: 600; color: var(--c-text); }
+.session-card .when .when-dur   { font-family: var(--font-mono); }
+.session-card .when .when-rel   { font-style: italic; }
+.session-card .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-1);
     margin-top: auto;
+}
+/* Smaller-than-default tag pill specifically for the card grid. */
+.tag-tiny {
+    padding: 1px 6px;
+    font-size: 11px;
+    background: var(--c-surface-alt);
+    color: var(--c-text-muted);
+    border-radius: 4px;
+}
+
+/* Stack the card vertically on very narrow screens (phones). */
+@media (max-width: 480px) {
+    .session-card {
+        grid-template-columns: 1fr;
+    }
+    .session-card .card-thumb,
+    .session-card .card-thumb-link {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
 }
 
 .tag {
@@ -449,6 +527,34 @@ details.transcript .transcript-body {
 .year-card span   { color: var(--c-text-muted); font-size: var(--fs-sm); }
 .year-card small  { color: var(--c-text-muted); font-size: var(--fs-xs); font-family: var(--font-mono); }
 
+/* In-page recording-availability notice (.notice-info for "by-policy not
+   recorded", .notice-warning for "should be recorded but isn't uploaded
+   yet"). Sits between the session-hero and the rest of the page so the
+   visitor immediately understands why there's no player below. */
+.notice {
+    margin: var(--s-4) 0;
+    padding: var(--s-3) var(--s-4);
+    border-radius: var(--radius);
+    border-left: 4px solid;
+    font-size: var(--fs-sm);
+    line-height: 1.5;
+}
+.notice strong {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+.notice-info {
+    background: var(--c-accent-soft);
+    border-color: var(--c-accent);
+    color: var(--c-text);
+}
+.notice-warning {
+    background: #fff8e6;
+    border-color: #d4a017;
+    color: #6b4f00;
+}
+
 /* Session-page cover frame: oversized hero image above the player. */
 .cover {
     margin: var(--s-5) 0;
@@ -515,13 +621,20 @@ details.transcript .transcript-body {
     50%      { box-shadow: 0 0 0 6px rgba(40,167,69,0); }
 }
 
-/* Multi-select tag pills on the per-event index. */
+/* Multi-select tag pills on the per-event index. Top-N tags shown by
+   default with a "Show all" expand toggle to keep vertical density low. */
 .filters-pills {
-    margin: var(--s-3) 0;
+    margin: var(--s-2) 0;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--s-2);
+    gap: 6px;
     align-items: center;
+    /* Hard cap on pill row height so a "Show all" expansion of 150 tags
+       doesn't push the session grid below the fold; vertical scroll is the
+       fallback. */
+    max-height: 14em;
+    overflow-y: auto;
+    padding: 2px 0;
 }
 .filters-pills .pill-label {
     font-size: var(--fs-xs);
@@ -533,13 +646,14 @@ details.transcript .transcript-body {
 .filter-pill {
     display: inline-flex;
     align-items: center;
-    gap: var(--s-1);
-    padding: 4px 12px;
+    gap: 4px;
+    padding: 2px 10px;
     border: 1px solid var(--c-border);
     border-radius: 999px;
     background: var(--c-surface);
     color: var(--c-text);
     font-size: var(--fs-xs);
+    line-height: 1.4;
     cursor: pointer;
     user-select: none;
     transition: all 100ms ease;
@@ -601,21 +715,37 @@ details.transcript .transcript-body {
 .frames-grid a:hover img { transform: scale(1.02); }
 
 /* Inline announcement-frame strips next to each [HH:MM:SS] timestamp in
-   the summary. The strip is invisible by default and reveals on hover/focus
-   of the surrounding .anchor span, so the summary stays scannable. */
+   the summary. Two trigger modes:
+     - hover (desktop quick-peek): the strip pops out below on :hover
+     - click (.is-open class added by JS): the strip becomes sticky-open
+   The sticky mode is the primary interaction because:
+     1) hover doesn't work on touch devices
+     2) the absolutely-positioned strip has a tiny gap from the anchor that
+        broke hover transitions, especially when the user moves their cursor
+        down to click a thumbnail
+   Click-to-toggle (handled in session.js) routes around both problems. */
 .anchor {
     position: relative;
-    display: inline;
-    cursor: help;
+    /* inline-block guarantees the absolutely-positioned strip is positioned
+       against a properly-sized box even when the anchor straddles a line
+       break in the surrounding <li>/<p>. */
+    display: inline-block;
+    cursor: pointer;
     color: var(--c-accent);
     font-family: var(--font-mono);
     font-size: 0.9em;
+    /* Subtle visual hint that the text is interactive. */
+    border-bottom: 1px dotted var(--c-accent);
 }
+.anchor:hover { background: var(--c-accent-soft); }
 .anchor .af-strip {
     position: absolute;
     top: 100%;
     left: 0;
-    margin-top: var(--s-1);
+    /* No margin here - any vertical gap turns into a hover-trap area where
+       the cursor leaves the anchor and the strip vanishes. Use padding on
+       the parent or absorb the space via the strip's own top padding. */
+    margin-top: 0;
     display: none;
     gap: var(--s-2);
     padding: var(--s-2);
@@ -626,8 +756,14 @@ details.transcript .transcript-body {
     z-index: 50;
 }
 .anchor:hover .af-strip,
-.anchor:focus-within .af-strip {
+.anchor:focus-within .af-strip,
+.anchor.is-open .af-strip {
     display: flex;
+}
+.anchor.is-open {
+    background: var(--c-accent-soft);
+    /* Brighter outline so the active anchor is obvious among siblings. */
+    border-bottom-style: solid;
 }
 .af-cell {
     display: block;
@@ -643,6 +779,11 @@ details.transcript .transcript-body {
     border-radius: var(--radius-sm);
     border: 1px solid var(--c-border);
     display: block;
+    transition: transform 100ms ease, border-color 100ms ease;
+}
+.af-cell:hover img {
+    transform: scale(1.03);
+    border-color: var(--c-accent);
 }
 .af-cell .af-cap {
     display: block;

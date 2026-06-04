@@ -87,19 +87,34 @@
     // Multi-select pill renderer used for both topic + tag filters. Each pill
     // toggles via click; selection set is held in `chosen` (Set<string>).
     // Pills also display a count of currently-visible sessions matching them.
-    function buildPills(container, label, values, getValues, chosen, onChange) {
+    // When the value-set is large (tags: ~150) only the top-N most common
+    // pills are shown by default, with a "Show all" toggle to reveal the
+    // rest - keeps the filter area from dominating the page.
+    function buildPills(container, label, values, getValues, chosen, onChange, opts) {
+        opts = opts ?? {};
+        const collapseAfter = opts.collapseAfter ?? Infinity;
+
         container.innerHTML = '';
         const labelEl = document.createElement('span');
         labelEl.className = 'pill-label';
         labelEl.textContent = label;
         container.appendChild(labelEl);
 
-        const pillById = new Map();
+        // Pre-compute initial frequency (total sessions matching each value)
+        // so we can sort pills by popularity and decide which to hide.
+        const freq = new Map();
         values.forEach(v => {
+            freq.set(v, catalog.sessions.filter(s => toArray(getValues(s)).includes(v)).length);
+        });
+        const sorted = [...values].sort((a, b) => (freq.get(b) ?? 0) - (freq.get(a) ?? 0) || a.localeCompare(b));
+
+        const pillById = new Map();
+        sorted.forEach((v, i) => {
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'filter-pill';
             btn.dataset.value = v;
+            btn.dataset.rank  = i;
             btn.innerHTML = `${escapeText(v)} <span class="pill-count"></span>`;
             btn.addEventListener('click', () => {
                 if (chosen.has(v)) chosen.delete(v); else chosen.add(v);
@@ -109,6 +124,23 @@
             container.appendChild(btn);
             pillById.set(v, btn);
         });
+
+        // "Show all (N)" / "Show less" toggle when the list is long.
+        let expanded = false;
+        let expandBtn = null;
+        if (sorted.length > collapseAfter) {
+            expandBtn = document.createElement('button');
+            expandBtn.type = 'button';
+            expandBtn.className = 'pills-toggle';
+            const hiddenCount = sorted.length - collapseAfter;
+            expandBtn.textContent = `Show all (+${hiddenCount})`;
+            expandBtn.addEventListener('click', () => {
+                expanded = !expanded;
+                expandBtn.textContent = expanded ? 'Show fewer' : `Show all (+${hiddenCount})`;
+                applyVisibility();
+            });
+            container.appendChild(expandBtn);
+        }
 
         // "Clear" affordance to wipe the active selection from this pill group.
         const clear = document.createElement('button');
@@ -122,13 +154,24 @@
         });
         container.appendChild(clear);
 
-        // Updater for the counts displayed in each pill - called from update().
-        return function updateCounts(visibleSessions) {
+        function applyVisibility(visibleSessions) {
+            const subset = visibleSessions ?? catalog.sessions;
             pillById.forEach((btn, val) => {
-                const n = visibleSessions.filter(s => toArray(getValues(s)).includes(val)).length;
+                const n = subset.filter(s => toArray(getValues(s)).includes(val)).length;
                 btn.querySelector('.pill-count').textContent = n ? `(${n})` : '';
-                btn.style.display = (n > 0 || chosen.has(val)) ? '' : 'none';
+                const rank = +btn.dataset.rank;
+                const overFlowed = !expanded && rank >= collapseAfter;
+                // Always show selected pills and pills with a positive count
+                // within the visible band; hide overflow when collapsed.
+                const visible = (chosen.has(val))
+                    || (n > 0 && !overFlowed);
+                btn.style.display = visible ? '' : 'none';
             });
+        }
+
+        // Updater called from update() to reflect current filter state.
+        return function updateCounts(visibleSessions) {
+            applyVisibility(visibleSessions);
         };
     }
 
@@ -137,7 +180,8 @@
     const updateTopicCounts = buildPills(topicPills, 'Topics',
         unique(catalog.sessions.map(s => s.topics)), s => s.topics, chosenTopics, () => update());
     const updateTagCounts = buildPills(tagPills, 'Tags',
-        unique(catalog.sessions.map(s => s.tags)), s => s.tags, chosenTags, () => update());
+        unique(catalog.sessions.map(s => s.tags)),   s => s.tags,   chosenTags,   () => update(),
+        { collapseAfter: 15 });
 
     let statusFilter = 'all';
     statusBtns.forEach(btn => {
@@ -183,23 +227,53 @@
         }
         noResults.hidden = true;
         list.innerHTML = matches.map(s => {
-            const tags = toArray(s.tags).slice(0, 4).map(t =>
-                `<span class="tag">${escapeText(t)}</span>`).join('');
+            // Only the two most-specific tags survive on the card; the rest
+            // would dominate vertically and the per-session page has them all.
+            const tags = toArray(s.tags).slice(0, 2).map(t =>
+                `<span class="tag tag-tiny">${escapeText(t)}</span>`).join('');
             const speakers = s.speakerNames || '';
             const st = sessionStatus(s, now);
             const badgeCls = st.kind === 'live' ? 'is-live'
                           : st.kind === 'upcoming' ? 'is-upcoming'
                           : st.kind === 'ended' ? 'is-ended' : '';
-            const statusHtml = st.label
-                ? `<span class="status-badge ${badgeCls}">${escapeText(st.label)}</span> <span class="status-detail">${escapeText(st.detail || '')}</span>`
+            const badgeHtml = st.label
+                ? `<span class="status-badge ${badgeCls}">${escapeText(st.label)}</span>`
                 : '';
+            // Time-and-duration line: prefer the precise wall-clock start
+            // when the session has a real schedule, fall back to the
+            // duration on its own for ad-hoc on-demand uploads.
+            let whenHtml = '';
+            if (s.startDateTime) {
+                const start = new Date(s.startDateTime);
+                const dateStr = start.toLocaleString(undefined,
+                    { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                whenHtml = `<span class="when-start">${escapeText(dateStr)}</span>`;
+            }
+            if (s.durationMins) {
+                whenHtml += `<span class="when-dur">${s.durationMins} min</span>`;
+            }
+            if (st.detail) {
+                whenHtml += `<span class="when-rel">${escapeText(st.detail)}</span>`;
+            }
+            // Thumbnail: lazy-loaded so 443 cards don't request 443 JPGs up
+            // front. Placeholder block keeps the grid aligned when missing.
+            const thumb = s.coverFrame
+                ? `<img class="card-thumb" loading="lazy" src="${escapeAttr(s.coverFrame)}" alt="">`
+                : `<div class="card-thumb card-thumb-empty" aria-hidden="true"></div>`;
+
             return `
               <li class="session-card">
-                <span class="code">${escapeText(s.code)} &middot; ${escapeText(s.sessionType ?? '')}</span>
-                <h3><a href="sessions/${encodeURIComponent(s.code)}.html">${escapeText(s.title)}</a></h3>
-                <div class="speakers">${escapeText(speakers)}</div>
-                <div class="status-line">${statusHtml}</div>
-                <div class="meta">${tags}</div>
+                <a class="card-thumb-link" href="sessions/${encodeURIComponent(s.code)}.html">${thumb}</a>
+                <div class="card-body">
+                  <div class="card-row-top">
+                    <span class="code">${escapeText(s.code)} &middot; ${escapeText(s.sessionType ?? '')}</span>
+                    ${badgeHtml}
+                  </div>
+                  <h3><a href="sessions/${encodeURIComponent(s.code)}.html">${escapeText(s.title)}</a></h3>
+                  <div class="speakers">${escapeText(speakers)}</div>
+                  <div class="when">${whenHtml}</div>
+                  <div class="card-tags">${tags}</div>
+                </div>
               </li>`;
         }).join('');
     }

@@ -100,35 +100,67 @@ if ($target -lt 0 -or $target -ge $videoDurationSec) {
 
 ## 4. Sessions with no captions and no HLS — totally bare pages
 
-**Symptom.** A handful of sessions (BRK201, BRK247, LIVE101 today) show in `ingestion-report.json` as:
+**Status (Dec 2026 update).** Mitigation banner now shipped — see "Fix (a)" below; this entry now describes the wider population and the two distinct sub-cases the banner addresses.
 
+**Symptom.** A session-page renders only the title, description, speaker chip, and tags. No transcript, no Frames gallery, no embedded player, no AI summary. Two very different reasons drive this; the page can't tell them apart from the artifacts alone, which made the prior version of this entry assume "broken/private session" when in fact most occurrences are by-design.
+
+**Population.** Of 443 sessions in the Build 2026 catalog:
+
+| `viewingOptions` value | Sessions | Reason |
+|---|---:|---|
+| `Will be recorded` | 205 | normal — content present (or will be) |
+| `Will not be recorded` | **233** | **by design — see case A below** |
+| (no value) | 5 | catalog gap — see case C below |
+
+Of those 233 not-by-policy-recorded sessions, ALL 68 Table Talks (TT*), all Labs (LAB*), and all Lightning Talks (LTG*) are formats Microsoft explicitly opts out of recording for the conference. These will *never* have a video, regardless of how many times we re-ingest.
+
+### Sub-case A: "Will not be recorded" by policy
+
+**Example.** TT650 — "Production MCP Servers: Auth, Tools, and the Patterns That Hold Up", a Table Talk at Gateway Pavilion Level 2 Table 3, capacity ~10–15 in-person attendees. Microsoft explicitly does not record Table Talks so attendees can speak candidly.
+
+**Catalog signature.**
+```json
+"sessionType":    "Table Talk",   // or "Lab", "Lightning Talk", "Broadcast Stage", ...
+"deliveryTypes":  ["In-person"],
+"viewingOptions": ["Will not be recorded"],
+"onDemandUrl": "", "downloadVideoUrl": "", "hlsUrl": null, "captionFileUrl": ""
 ```
-[failed] BRK201
-  - Medius embed has no parseable captionsConfiguration
-  - no downloadVideoLink and no HLS URL on Medius embed
+
+**Fix (shipped).** `scripts/Build-Book.ps1`'s session render block now emits a `<aside class="notice notice-info">` banner explaining the format and confirming nothing is missing — see the populated `$noticeHtml` block bracketed between the `# Recording notice` comment and the description block.
+
+### Sub-case B: "Will be recorded" but not yet uploaded
+
+**Example.** BRK201 — recording presumably exists but Medius hasn't published the embed yet. Three sessions sit in this state today (BRK201, BRK247, LIVE101 as of last ingestion).
+
+**Catalog signature.**
+```json
+"viewingOptions": ["Will be recorded"],
+"onDemandUrl": "https://medius.microsoft.com/Embed/video-nc/<guid>",  // populated but empty page
+// or all three video URLs empty
 ```
 
-Their session pages have title + description + speakers but no transcript, no summary, no frames, no player. Mostly metadata.
+**Fix (shipped).** Same banner mechanism emits a `<aside class="notice notice-warning">` block ("Recording not yet published") so visitors know to revisit after the conference. Re-running `Get-BuildCatalog.ps1` + `Invoke-BuildIngestion.ps1` after the conference ends will pick up newly-uploaded recordings — the catalog `fetchedAt` fingerprint triggers re-ingestion of every session whose Medius URL went from empty-page to populated-page.
 
-**Why.** These sessions exist in the catalog but their Medius embed page is incomplete — sometimes because the recording is genuinely private/restricted, sometimes because the session hasn't been encoded yet but a placeholder embed exists.
+### Sub-case C: catalog gap (no `viewingOptions` value)
 
-**Fix.** Two layers:
+Five sessions don't have a `viewingOptions` value at all. The banner code falls through to a generic "No recording available" info-blue notice that suggests checking the canonical session page.
 
-**(a) Re-run ingestion after the conference fully wraps up.** Re-run `scripts/Get-BuildCatalog.ps1` followed by `Invoke-BuildIngestion.ps1` — the latest catalog plus a fresh Medius fetch will often catch sessions that have since been published. The idempotency in `Invoke-BuildIngestion.ps1` uses `catalogFetchedAt` as the fingerprint, so a fresh catalog crawl triggers re-ingestion of every session.
+### Verifying the population is healthy
 
-**(b) Surface "no recording yet" explicitly on the page.** In `Build-Book.ps1`'s session render block, when the manifest has `ingestion.errors` containing "no captionsConfiguration" or "no downloadVideoLink and no HLS", render a banner above the (empty) description:
-
-```html
-<div class="banner banner-warning">
-    This session's recording isn't published yet. The text below comes from
-    the catalog only; check back after the conference if you'd like the
-    transcript, summary, frames, and embedded player to appear.
-</div>
+```powershell
+Get-ChildItem 'P:\github\Conference-Library\sessions\Build\2026' -Directory | ForEach-Object {
+    $m = Get-Content -Raw (Join-Path $_.FullName 'rich-manifest.json') | ConvertFrom-Json -Depth 12
+    [pscustomobject]@{
+        Code         = $_.Name
+        Type         = $m.sessionType
+        Viewing      = ($m.viewingOptions -join ',')
+        HasVideo     = [bool]($m.onDemandUrl -or $m.downloadVideoUrl -or $m.hlsUrl)
+        HasSummary   = Test-Path (Join-Path $_.FullName 'summary.md')
+    }
+} | Group-Object Viewing, HasVideo, HasSummary | Format-Table Name, Count
 ```
 
-Worth doing for visitor clarity even if the underlying data never materializes.
-
-**Cost.** Nothing — both fixes are reactive (re-run when content lands, or display a placeholder).
+The healthy distribution is: most "Will be recorded" sessions are `HasVideo=true`, most "Will not be recorded" sessions are `HasVideo=false`. Any "Will be recorded + HasVideo=false" survivors are sub-case B candidates for a re-ingestion pass.
 
 ---
 
