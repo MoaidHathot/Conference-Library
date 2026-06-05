@@ -1,1090 +1,779 @@
 WEBVTT
 
-NOTE
-language:en-US
+00:00:00.240 --> 00:00:01.140
+SPARSH KESARI: Hi, everyone.
 
-NOTE Confidence: 0.7026389241218567
+00:00:01.140 --> 00:00:03.600
+Welcome to Microsoft Build 2026.
 
-00:00:00.200 --> 00:00:03.080
-Hi everyone, welcome to Microsoft Build 2D6.
+00:00:03.600 --> 00:00:07.260
+I am Sparsh Kesari, Developer
+Relations Manager at TestMu AI,
 
-NOTE Confidence: 0.7502558827400208
+00:00:07.260 --> 00:00:10.620
+and we are very excited
+to be back here.
 
-00:00:03.600 --> 00:00:07.369
-I'm Spurs KC Developer Relations Manager at Test Me AI
+00:00:10.620 --> 00:00:13.620
+Today, I am going to talk about
+a very interesting topic,
 
-NOTE Confidence: 0.7502558827400208
+00:00:13.620 --> 00:00:18.600
+agentic testing, because here we
+are, agents can write code now.
 
-00:00:07.439 --> 00:00:10.511
-and we are very much excited to be back here
+00:00:18.600 --> 00:00:21.390
+They can also run it,
+break it, and patch it.
 
-NOTE Confidence: 0.7502558827400208
+00:00:21.390 --> 00:00:26.100
+What they haven't really able to
+do is test it, not in the way
 
-00:00:10.581 --> 00:00:10.999
-today.
+00:00:26.100 --> 00:00:29.190
+that you would trust before
+shipping an application
 
-NOTE Confidence: 0.8121485114097595
+00:00:29.190 --> 00:00:32.190
+to production, and
+that's the gap.
 
-00:00:11.119 --> 00:00:14.665
-I'm going to talk about a very interesting topic, agent
+00:00:32.190 --> 00:00:35.670
+An agent can generate
+hundreds of codes in seconds,
 
-NOTE Confidence: 0.8121485114097595
+00:00:35.670 --> 00:00:38.720
+but the speed isn't
+the hard part.
 
-00:00:14.730 --> 00:00:16.599
-testing, because here we are.
-
-NOTE Confidence: 0.9337670803070068
-
-00:00:17.040 --> 00:00:18.360
-Agents can write code now.
-
-NOTE Confidence: 0.8385090827941895
-
-00:00:18.600 --> 00:00:20.840
-They can also run it, break it and patch it.
-
-NOTE Confidence: 0.8718132376670837
-
-00:00:21.360 --> 00:00:24.406
-What they haven't been really able to do is test
-
-NOTE Confidence: 0.8718132376670837
-
-00:00:24.469 --> 00:00:27.325
-it not in the way that you would trust before
-
-NOTE Confidence: 0.8718132376670837
-
-00:00:27.388 --> 00:00:29.800
-shipping an application to production.
-
-NOTE Confidence: 0.9490169882774353
-
-00:00:30.800 --> 00:00:31.560
-And that's the gap.
-
-NOTE Confidence: 0.8557839393615723
-
-00:00:32.200 --> 00:00:35.372
-An agent can generate hundreds of codes in seconds, but
-
-NOTE Confidence: 0.8557839393615723
-
-00:00:35.429 --> 00:00:37.159
-the speed is in the hard part.
-
-NOTE Confidence: 0.9572157859802246
-
-00:00:38.680 --> 00:00:40.040
+00:00:38.720 --> 00:00:40.700
 The hard part is trust.
 
-NOTE Confidence: 0.8661673665046692
-
-00:00:40.720 --> 00:00:42.400
+00:00:40.700 --> 00:00:42.800
 Did it test the right thing?
 
-NOTE Confidence: 0.876645565032959
+00:00:42.800 --> 00:00:45.260
+Can you actually rely
+on what it tells you
 
-00:00:42.760 --> 00:00:45.300
-Can you actually rely on what it tells you when
+00:00:45.260 --> 00:00:47.850
+when it says everything passed?
 
-NOTE Confidence: 0.876645565032959
+00:00:47.850 --> 00:00:49.950
+That's what I want
+to talk about today.
 
-00:00:45.354 --> 00:00:46.760
-it says everything passed?
+00:00:49.950 --> 00:00:53.250
+Specifically, I want to
+show you our new Kane CLI,
 
-NOTE Confidence: 0.9667508006095886
+00:00:53.250 --> 00:00:56.010
+the newest product
+launched by TestMu AI
 
-00:00:47.640 --> 00:00:48.960
-And that's what I want to talk.
+00:00:56.010 --> 00:01:00.600
+to help ship end-to-end
+products in an agentic era.
 
-NOTE Confidence: 0.7691717147827148
+00:01:00.600 --> 00:01:04.470
+It is a command line tool built
+so that agents can test the code
 
-00:00:48.960 --> 00:00:52.550
-About today and specifically I want to show you around
+00:01:04.470 --> 00:01:08.400
+in a careful, ingenious way,
+not just running checks,
 
-NOTE Confidence: 0.7691717147827148
+00:01:08.400 --> 00:01:12.040
+but giving you something that
+you can actually rely on.
 
-00:00:52.617 --> 00:00:56.208
-Keynes CLI, the newest product launched by Tesma AI to
+00:01:13.890 --> 00:01:17.340
+Everyone is focused on how fast
+we are building, but very few
 
-NOTE Confidence: 0.7691717147827148
+00:01:17.340 --> 00:01:19.770
+of us are asking
+the real question,
 
-00:00:56.274 --> 00:00:59.267
-help ship end to end product in an agent take
+00:01:19.770 --> 00:01:21.960
+how fast are we validating?
 
-NOTE Confidence: 0.7691717147827148
+00:01:21.960 --> 00:01:25.500
+How are we able to trust an
+application that was built
 
-00:00:59.333 --> 00:00:59.599
-era.
+00:01:25.500 --> 00:01:28.140
+by a set of autonomous
+agents and deployed
 
-NOTE Confidence: 0.7790871858596802
+00:01:28.140 --> 00:01:30.090
+by another set of agents?
 
-00:01:00.640 --> 00:01:03.509
-It is an command line tool built so that agents
+00:01:30.090 --> 00:01:34.410
+How are we able to trust
+a feature or a page
 
-NOTE Confidence: 0.7790871858596802
+00:01:34.410 --> 00:01:37.740
+that was developed by an agent
+is doing what it is supposed
 
-00:01:03.570 --> 00:01:06.684
-can test the code in the careful engineer, Not just
+00:01:37.740 --> 00:01:41.490
+to be doing without any
+human intervention?
 
-NOTE Confidence: 0.7790871858596802
+00:01:41.490 --> 00:01:44.940
+This is the exact blind spot
+that we are targeting today.
 
-00:01:06.745 --> 00:01:10.530
-running checks, but giving you something that you can actually
+00:01:44.940 --> 00:01:48.420
+The fix isn't adding more a
+intelligent, smarter system,
 
-NOTE Confidence: 0.7790871858596802
+00:01:48.420 --> 00:01:51.600
+but it's to add a
+deterministic validation layer
 
-00:01:10.591 --> 00:01:11.079
-rely on.
+00:01:51.600 --> 00:01:55.650
+between shipping
+and development.
 
-NOTE Confidence: 0.8505669832229614
+00:01:55.650 --> 00:02:00.000
+To solve this, we at TestMu
+AI released Kane CLI.
 
-00:01:13.920 --> 00:01:16.891
-Everyone is focused on how fast we are building, but
+00:02:00.000 --> 00:02:03.510
+Kane CLI is a command
+line validation layer
 
-NOTE Confidence: 0.8505669832229614
+00:02:03.510 --> 00:02:09.090
+that helps you test any feature
+application on a local browser.
 
-00:01:16.948 --> 00:01:19.748
-very few of our are asking the real question, How
+00:02:09.090 --> 00:02:13.860
+Kane CLI can be used by humans
+and directly by agents.
 
-NOTE Confidence: 0.8505669832229614
+00:02:13.860 --> 00:02:17.130
+It natively integrates
+with all of your agents.
 
-00:01:19.805 --> 00:01:21.120
-fast we are validating.
+00:02:17.130 --> 00:02:20.820
+It could be Claude Code,
+Codex, Gemini, Copilot,
 
-NOTE Confidence: 0.8905202746391296
+00:02:20.820 --> 00:02:23.550
+etc. You can describe to
+Kane CLI what you want
 
-00:01:21.959 --> 00:01:24.911
-How we are able to trust an application that was
+00:02:23.550 --> 00:02:25.350
+in natural language prompts,
 
-NOTE Confidence: 0.8905202746391296
+00:02:25.350 --> 00:02:30.180
+and Kane CLI will open a local
+browser, test your feature out,
 
-00:01:24.972 --> 00:01:28.477
-built by set of autonomous agents and deployed by another
+00:02:30.180 --> 00:02:33.990
+and you also have the option
+to validate that on Cloud,
 
-NOTE Confidence: 0.8905202746391296
+00:02:33.990 --> 00:02:36.990
+on different cross-browser,
+cross-device,
 
-00:01:28.539 --> 00:01:29.399
-set of agents.
+00:02:36.990 --> 00:02:39.720
+cross-environment setups.
 
-NOTE Confidence: 0.8338640928268433
+00:02:39.720 --> 00:02:42.870
+This helps you
+release your features
 
-00:01:30.040 --> 00:01:32.968
-How we are able to trust and feature or an
+00:02:42.870 --> 00:02:45.460
+and products with confidence.
 
-NOTE Confidence: 0.8338640928268433
+00:02:47.130 --> 00:02:50.010
+What do you get out of
+the box with Kane CLI?
 
-00:01:33.038 --> 00:01:36.455
-page that was developed by an agent is doing what
+00:02:50.010 --> 00:02:51.960
+First is intent-based control.
 
-NOTE Confidence: 0.8338640928268433
+00:02:51.960 --> 00:02:53.760
+You just need to describe
 
-00:01:36.524 --> 00:01:40.360
-it is supposed to be doing without any human intuition.
+00:02:53.760 --> 00:02:56.400
+to Kane CLI the natural
+language objectives.
 
-NOTE Confidence: 0.8362079858779907
+00:02:56.400 --> 00:02:59.370
+There is no brittle test
+scripts, no locators,
 
-00:01:41.480 --> 00:01:43.760
-This is the exact blind spot that we are targeting
+00:02:59.370 --> 00:03:02.400
+no selectors, no exports.
 
-NOTE Confidence: 0.8362079858779907
+00:03:02.400 --> 00:03:05.490
+Kane CLI also helps
+with resilient runs.
 
-00:01:43.806 --> 00:01:44.080
-today.
+00:03:05.490 --> 00:03:07.380
+It stays on the task even
 
-NOTE Confidence: 0.8660009503364563
+00:03:07.380 --> 00:03:10.200
+when there is a complex
+journey involved.
 
-00:01:44.920 --> 00:01:48.783
-The fix is adding more intelligent smarter system, but is
+00:03:10.200 --> 00:03:14.280
+Kane CLI also automatically
+discovers bugs while it is
 
-NOTE Confidence: 0.8660009503364563
+00:03:14.280 --> 00:03:17.700
+executing and if
+there is any failure.
 
-00:01:48.851 --> 00:01:53.800
-to add a deterministic validation layer between shipping and development.
+00:03:17.700 --> 00:03:19.440
+It has vision-based waiting.
 
-NOTE Confidence: 0.7165851593017578
+00:03:19.440 --> 00:03:23.160
+It actually waits on the
+required rendered page,
 
-00:01:55.640 --> 00:01:59.240
-To solve this we at Tesma AI released Keynes CLI.
+00:03:23.160 --> 00:03:27.400
+or feature than adding
+arbitrary time waits.
 
-NOTE Confidence: 0.829892635345459
+00:03:29.070 --> 00:03:33.120
+Kane CLI, by default, generates
+the Playwright code of the test
 
-00:02:00.000 --> 00:02:04.002
-Keynes CLI is a command line validation layer that helps
+00:03:33.120 --> 00:03:37.080
+that is created, so you can put
+in the natural language prompts,
 
-NOTE Confidence: 0.829892635345459
+00:03:37.080 --> 00:03:41.760
+and the Playwright test
+case comes out back.
 
-00:02:04.074 --> 00:02:04.360
-you.
+00:03:41.760 --> 00:03:45.900
+It also has a test.md framework
+which has all the test cases
 
-NOTE Confidence: 0.7606825232505798
+00:03:45.900 --> 00:03:49.020
+that we have written
+in a markdown value.
 
-00:02:04.520 --> 00:02:05.440
-Test any.
+00:03:49.020 --> 00:03:52.080
+You can auto play it anytime
+and you can also trigger it
 
-NOTE Confidence: 0.9164858460426331
+00:03:52.080 --> 00:03:54.430
+by your CI/CD pipeline.
 
-00:02:05.440 --> 00:02:07.880
-Feature application on a local browser.
+00:03:55.710 --> 00:03:59.970
+All the test cases generated by
+Kane CLI also have Autoheals.
 
-NOTE Confidence: 0.8240223526954651
+00:03:59.970 --> 00:04:02.610
+If there is any UI
+change on your page,
 
-00:02:09.120 --> 00:02:12.377
-Keynes CLI can be used by humans and directly by
+00:04:02.610 --> 00:04:05.100
+Kane CLI will automatically
+heal the test cases
 
-NOTE Confidence: 0.8240223526954651
+00:04:05.100 --> 00:04:07.830
+and give you the new
+test code in return.
 
-00:02:12.445 --> 00:02:12.919
-agents.
+00:04:07.830 --> 00:04:11.100
+You also have
+shareable evidence.
 
-NOTE Confidence: 0.7494428753852844
+00:04:11.100 --> 00:04:15.790
+You have video logs as well
+as trace runs for each run.
 
-00:02:13.880 --> 00:02:14.200
-It is.
+00:04:16.980 --> 00:04:22.800
+Kane CLI also gives out
+agent-native NDJSON format,
 
-NOTE Confidence: 0.8071562647819519
+00:04:22.800 --> 00:04:24.000
+so it's a structured output
 
-00:02:14.400 --> 00:02:17.080
-It natively integrates with all of your agents.
+00:04:24.000 --> 00:04:27.400
+which is understandable
+by all the agents.
 
-NOTE Confidence: 0.8709908127784729
+00:04:28.980 --> 00:04:32.070
+To use Kane CLI, we
+have three options.
 
-00:02:17.160 --> 00:02:17.560
-Could be.
+00:04:32.070 --> 00:04:35.130
+You can directly use in
+your command line CLI
 
-NOTE Confidence: 0.2676805853843689
+00:04:35.130 --> 00:04:38.520
+by running this command,
+and just add your prompts
 
-00:02:17.760 --> 00:02:18.640
-Cloud Codex.
+00:04:38.520 --> 00:04:40.230
+in natural language prompts.
 
-NOTE Confidence: 0.48164212703704834
+00:04:40.230 --> 00:04:42.990
+Kane CLI will start
+automating that.
 
-00:02:18.920 --> 00:02:21.240
-Gemni, Copilot etc.
+00:04:42.990 --> 00:04:47.190
+We also have an SDK where
+you can just import Kane
 
-NOTE Confidence: 0.7803922295570374
+00:04:47.190 --> 00:04:50.970
+from our SDK and which can
+be used in your CI pipeline
 
-00:02:21.520 --> 00:02:24.168
-You can describe KSLI what you want in a natural
+00:04:50.970 --> 00:04:53.940
+or any custom agent
+or any of your tests.
 
-NOTE Confidence: 0.7803922295570374
+00:04:53.940 --> 00:04:57.540
+Kane CLI can also automatically
+talk to your agent tool.
 
-00:02:24.223 --> 00:02:24.720
-language.
+00:04:57.540 --> 00:05:01.410
+Just point your agent
+to our agent.md file,
 
-NOTE Confidence: 0.8249543309211731
+00:05:01.410 --> 00:05:02.970
+and your agent will
+understand how
 
-00:02:24.720 --> 00:02:28.404
-Prompts and KSLI will open a local browser, test it,
+00:05:02.970 --> 00:05:06.270
+to use Kane CLI
+effectively while building
 
-NOTE Confidence: 0.8249543309211731
+00:05:06.270 --> 00:05:08.970
+your applications.
 
-00:02:28.475 --> 00:02:32.018
-test your feature out and you also have the option
+00:05:08.970 --> 00:05:11.450
+Let's see this in action.
 
-NOTE Confidence: 0.8249543309211731
+00:05:11.450 --> 00:05:13.580
+To start using Kane
+CLI, you just need
 
-00:02:32.089 --> 00:02:36.341
-to validate that on cloud, on different cross browser, cross
+00:05:13.580 --> 00:05:17.630
+to download the npm
+module in your system.
 
-NOTE Confidence: 0.8249543309211731
+00:05:17.630 --> 00:05:20.210
+You can directly copy
+this command and paste
 
-00:02:36.412 --> 00:02:38.679
-device, cross environment setup.
+00:05:20.210 --> 00:05:25.320
+in the terminal and let your
+Kane CLI get downloaded.
 
-NOTE Confidence: 0.9127485752105713
+00:05:25.320 --> 00:05:29.130
+Once downloaded, you can open
+any terminal and call Kane CLI
 
-00:02:39.720 --> 00:02:44.440
-This helps you release your features and products with confidence.
+00:05:29.130 --> 00:05:31.440
+to start running
+your test cases.
 
-NOTE Confidence: 0.8576536774635315
+00:05:31.440 --> 00:05:35.680
+For now, I will open Kane
+CLI in our interactive mode.
 
-00:02:46.880 --> 00:02:49.080
-So what do you get out-of-the-box with kcli?
+00:05:37.530 --> 00:05:40.260
+The session gets initialized,
+and we get an option
 
-NOTE Confidence: 0.6950114965438843
+00:05:40.260 --> 00:05:42.780
+to paste our objective.
 
-00:02:49.960 --> 00:02:51.640
-First is intent based control.
+00:05:42.780 --> 00:05:45.090
+I can write any kind
+of objective here
 
-NOTE Confidence: 0.860129714012146
+00:05:45.090 --> 00:05:48.480
+and Kane CLI will start
+completing that workflow.
 
-00:02:51.960 --> 00:02:52.320
-You just.
+00:05:48.480 --> 00:05:52.890
+For now, I have a sample
+website where we are trying
 
-NOTE Confidence: 0.8307441473007202
+00:05:52.890 --> 00:05:56.970
+to complete the checkout flow
+and pasting the order ID
 
-00:02:52.320 --> 00:02:56.120
-Need to describe kcli, the natural language objectives.
+00:05:56.970 --> 00:06:02.580
+from our first session into
+Google in another session.
 
-NOTE Confidence: 0.653782308101654
+00:06:02.580 --> 00:06:05.400
+Kane CLI will start
+understanding the objective,
 
-00:02:56.360 --> 00:03:00.436
-There is no betel test scripts, no locators, no selectors,
+00:06:05.400 --> 00:06:09.930
+and as you can see, it has
+bifurcated into two workflows.
 
-NOTE Confidence: 0.653782308101654
+00:06:09.930 --> 00:06:13.380
+The first task is to
+complete the checkout flow,
 
-00:03:00.506 --> 00:03:01.280
-no X paths.
+00:06:13.380 --> 00:06:15.750
+and the second task is
+to copy the order ID
 
-NOTE Confidence: 0.682005763053894
+00:06:15.750 --> 00:06:18.100
+and paste it in another session.
 
-00:03:02.400 --> 00:03:04.680
-Kcli also helps with resilient runs.
+00:06:20.310 --> 00:06:23.160
+To complete this, Kane CLI
+will open a local browser
 
-NOTE Confidence: 0.8619982004165649
+00:06:23.160 --> 00:06:26.490
+and start completing and
+thinking about the next steps.
 
-00:03:05.480 --> 00:03:07.829
-It stays on the task even when there is a
+00:06:26.490 --> 00:06:27.120
+As you can see,
 
-NOTE Confidence: 0.8619982004165649
+00:06:27.120 --> 00:06:30.030
+it has automatically
+opened the sample website
 
-00:03:07.887 --> 00:03:09.320
-complex journey involved.
+00:06:30.030 --> 00:06:34.140
+that we have added, and it is
+thinking how it can navigate
 
-NOTE Confidence: 0.8523792624473572
+00:06:34.140 --> 00:06:35.800
+to the next step.
 
-00:03:10.200 --> 00:03:15.087
-KSLI also automatically discover bugs while it is executing and
+00:06:47.520 --> 00:06:52.050
+You can also see all of the
+steps that it has identified
 
-NOTE Confidence: 0.8523792624473572
+00:06:52.050 --> 00:06:55.140
+in the terminal itself,
 
-00:03:15.165 --> 00:03:19.199
-if there is any failure it has vision based waiting.
+00:06:55.140 --> 00:06:58.110
+and it will take some
+time to complete this.
 
-NOTE Confidence: 0.8279486298561096
+00:06:58.110 --> 00:06:59.970
+Let's also check
+out another method
 
-00:03:19.440 --> 00:03:23.853
-It actually waits on the required rendered page or feature
+00:06:59.970 --> 00:07:05.890
+where you can use Kane CLI
+directly with your agents.
 
-NOTE Confidence: 0.8279486298561096
+00:07:06.930 --> 00:07:12.600
+To do this, you just need
+to paste this agent.md file
 
-00:03:23.929 --> 00:03:26.440
-then adding arbitrary time waits.
+00:07:12.600 --> 00:07:15.870
+to your agent, and your
+agent will understand how
 
-NOTE Confidence: 0.7838536500930786
+00:07:15.870 --> 00:07:20.830
+to use Kane CLI while it is
+building out a new feature.
 
-00:03:29.080 --> 00:03:32.777
-KSLI by default generates the playwright code of the test
+00:07:21.840 --> 00:07:26.380
+For this, let's open another
+browser and call out Claude.
 
-NOTE Confidence: 0.7838536500930786
+00:07:33.780 --> 00:07:37.470
+To call Kane CLI within
+your agent browser,
 
-00:03:32.842 --> 00:03:33.879
-that is created.
+00:07:37.470 --> 00:07:40.860
+you can just use it by
+directly adding a slash
 
-NOTE Confidence: 0.815909743309021
+00:07:40.860 --> 00:07:42.450
+and typing "Kane CLI."
 
-00:03:34.360 --> 00:03:37.509
-So you can put in the natural language prompts and
+00:07:42.450 --> 00:07:47.070
+A Kane CLI session
+will be initialized
 
-NOTE Confidence: 0.815909743309021
+00:07:47.070 --> 00:07:50.160
+within your agent environment.
 
-00:03:37.572 --> 00:03:39.839
-playwright test case comes out back.
+00:07:50.160 --> 00:07:55.740
+It is identifying my user ID,
+and Kane CLI is ready to use.
 
-NOTE Confidence: 0.8786767721176147
+00:07:55.740 --> 00:07:59.550
+As you can see, you will also
+see what are the different types
 
-00:03:41.760 --> 00:03:44.654
-It also has a test MD framework which has all
+00:07:59.550 --> 00:08:01.860
+of actions Kane CLI can perform?
 
-NOTE Confidence: 0.8786767721176147
+00:08:01.860 --> 00:08:04.620
+It can perform any type
+of actions, assertions;
 
-00:03:44.718 --> 00:03:47.869
-the test cases that we have written in a markdown
+00:08:04.620 --> 00:08:07.470
+it can extract any
+type of top results
 
-NOTE Confidence: 0.8786767721176147
+00:08:07.470 --> 00:08:11.430
+and also run any test
+suite that we already have
 
-00:03:47.934 --> 00:03:48.319
-value.
+00:08:11.430 --> 00:08:15.450
+within our project file.
 
-NOTE Confidence: 0.8645126223564148
+00:08:15.450 --> 00:08:17.880
+For this, let's try
+something simple.
 
-00:03:49.000 --> 00:03:51.906
-You can autoplay it anytime and you can also trigger
+00:08:17.880 --> 00:08:29.440
+"Go to testmuai.com and
+validate if the page opens."
 
-NOTE Confidence: 0.8645126223564148
+00:08:36.000 --> 00:08:39.330
+Kane CLI directly interacts
+with your AI agent
 
-00:03:51.962 --> 00:03:53.359
-it by your CICD pipeline.
+00:08:39.330 --> 00:08:42.450
+and thinks about the next steps.
 
-NOTE Confidence: 0.8390618562698364
+00:08:42.450 --> 00:08:45.480
+While you are building with
+any of your AI agents,
 
-00:03:55.680 --> 00:03:58.771
-All the test cases generated by Knci also has auto
+00:08:45.480 --> 00:08:49.680
+let's say it is Claude,
+Codex, or Copilot,
 
-NOTE Confidence: 0.8390618562698364
+00:08:49.680 --> 00:08:52.410
+your agent can directly
+define what kind
 
-00:03:58.833 --> 00:04:01.430
-heals so if there is any UI change on your
+00:08:52.410 --> 00:08:55.250
+of end-to-end test cases it
+wants to write according
 
-NOTE Confidence: 0.8390618562698364
+00:08:55.250 --> 00:08:57.830
+to the feature or product
+that you are developing,
 
-00:04:01.492 --> 00:04:05.079
-page, Knci will automatically heal the test cases and give
+00:08:57.830 --> 00:09:00.950
+and Kane CLI will provide
+them hands and eyes
 
-NOTE Confidence: 0.8390618562698364
+00:09:00.950 --> 00:09:05.010
+to perform those
+end-to-end workflows.
 
-00:04:05.141 --> 00:04:07.119
-you the new test code in return.
+00:09:06.260 --> 00:09:11.820
+By default, for any agent,
+it runs in a headless mode,
 
-NOTE Confidence: 0.8878772258758545
+00:09:11.820 --> 00:09:14.580
+and you will see all
+the results popping
 
-00:04:08.760 --> 00:04:12.380
-Also have a shareable evidence so you have video logs
+00:09:14.580 --> 00:09:17.470
+up here once this
+step is completed.
 
-NOTE Confidence: 0.8878772258758545
+00:09:18.690 --> 00:09:20.550
+Meanwhile, let's
+go back and check
 
-00:04:12.448 --> 00:04:14.840
-as well as trace runs for each run.
+00:09:20.550 --> 00:09:23.490
+out what is happening
+in our UI mode.
 
-NOTE Confidence: 0.8292261958122253
+00:09:23.490 --> 00:09:27.960
+As you can see, it is placing
+an order and also thinking
 
-00:04:16.960 --> 00:04:21.033
-Kncli also gives out agent native ND Jason format so
+00:09:27.960 --> 00:09:29.880
+about adding a --
+as you can see,
 
-NOTE Confidence: 0.8292261958122253
+00:09:29.880 --> 00:09:33.420
+it can also automatically
+generate some test data
 
-00:04:21.111 --> 00:04:25.733
-it's a structured output which is understandable by all the
+00:09:33.420 --> 00:09:36.790
+to complete the card
+checkout process.
 
-NOTE Confidence: 0.8292261958122253
+00:09:41.580 --> 00:09:43.860
+It has completed the order,
 
-00:04:25.811 --> 00:04:26.359
-agents.
+00:09:43.860 --> 00:09:48.150
+and it has almost
+completed the first flow
 
-NOTE Confidence: 0.8236495852470398
+00:09:48.150 --> 00:09:50.070
+that it has identified.
 
-00:04:28.960 --> 00:04:32.298
-To use kncli, we have three options you can directly
+00:09:50.070 --> 00:09:51.870
+Now, it is extracting
+the order ID
 
-NOTE Confidence: 0.8236495852470398
-
-00:04:32.362 --> 00:04:35.701
-use in your command line CLI by running this command
-
-NOTE Confidence: 0.8236495852470398
-
-00:04:35.765 --> 00:04:39.617
-and Justice add your prompts in natural language prompts and
-
-NOTE Confidence: 0.8236495852470398
-
-00:04:39.681 --> 00:04:41.800
-KNCLI will start automating that.
-
-NOTE Confidence: 0.8143672347068787
-
-00:04:42.960 --> 00:04:46.031
-We also have an SDK where you can just import
-
-NOTE Confidence: 0.8143672347068787
-
-00:04:46.100 --> 00:04:48.830
-KN from our SDK and which can be used in
-
-NOTE Confidence: 0.8143672347068787
-
-00:04:48.899 --> 00:04:52.039
-your CI pipeline or any custom agent or any of
-
-NOTE Confidence: 0.8143672347068787
-
-00:04:52.107 --> 00:04:53.199
-your test suite.
-
-NOTE Confidence: 0.8015719056129456
-
-00:04:53.760 --> 00:04:57.798
-KNCLI can also automatically talk to your agent tool, so
-
-NOTE Confidence: 0.8015719056129456
-
-00:04:57.871 --> 00:05:01.188
-just point your agent to our agent MD file and
-
-NOTE Confidence: 0.8015719056129456
-
-00:05:01.260 --> 00:05:05.660
-your agent will understand how to use KNCLI effectively while
-
-NOTE Confidence: 0.8015719056129456
-
-00:05:05.732 --> 00:05:07.680
-building your applications.
-
-NOTE Confidence: 0.889823317527771
-
-00:05:08.800 --> 00:05:10.240
-So let's see this in action.
-
-NOTE Confidence: 0.771431565284729
-
-00:05:11.480 --> 00:05:15.100
-To start using KSLI, you just need to download the
-
-NOTE Confidence: 0.771431565284729
-
-00:05:15.173 --> 00:05:18.793
-NPM module in your system so you can directly copy
-
-NOTE Confidence: 0.771431565284729
-
-00:05:18.866 --> 00:05:22.559
-this command and paste in the terminal and let your
-
-NOTE Confidence: 0.771431565284729
-
-00:05:22.631 --> 00:05:24.080
-KSLI get downloaded.
-
-NOTE Confidence: 0.8179032802581787
-
-00:05:25.320 --> 00:05:28.580
-Once downloaded, you can open any terminal and call KSLI
-
-NOTE Confidence: 0.8179032802581787
-
-00:05:28.638 --> 00:05:30.560
-to start running your test cases.
-
-NOTE Confidence: 0.7665189504623413
-
-00:05:31.440 --> 00:05:35.552
-For now, I will open KSLI in an interactive mode,
-
-NOTE Confidence: 0.7665189504623413
-
-00:05:35.636 --> 00:05:39.917
-the session get initialized and we get an option to
-
-NOTE Confidence: 0.7665189504623413
-
-00:05:40.001 --> 00:05:41.680
-paste our objective.
-
-NOTE Confidence: 0.866702139377594
-
-00:05:42.360 --> 00:05:44.957
-So I can write any kind of objective here and
-
-NOTE Confidence: 0.866702139377594
-
-00:05:45.015 --> 00:05:47.440
-KNCLI will start completing that workflow.
-
-NOTE Confidence: 0.8792957663536072
-
-00:05:48.480 --> 00:05:51.888
-For now I have a sample website where we are
-
-NOTE Confidence: 0.8792957663536072
-
-00:05:51.965 --> 00:05:56.458
-trying to complete the checkout flow and pasting the order
-
-NOTE Confidence: 0.8792957663536072
-
-00:05:56.536 --> 00:05:59.480
-ID from our first session into Google.
-
-NOTE Confidence: 0.7761648893356323
-
-00:06:00.120 --> 00:06:05.007
-In our another session, KNCLI will start understanding the objective
-
-NOTE Confidence: 0.7761648893356323
-
-00:06:05.079 --> 00:06:08.529
-and as you can see it has beautificated into two
-
-NOTE Confidence: 0.7761648893356323
-
-00:06:08.601 --> 00:06:09.319
-workflows.
-
-NOTE Confidence: 0.8748403787612915
-
-00:06:09.920 --> 00:06:12.897
-The first task is to complete the checkout flow and
-
-NOTE Confidence: 0.8748403787612915
-
-00:06:12.956 --> 00:06:15.466
-the second task is to copy the order ID and
-
-NOTE Confidence: 0.8748403787612915
-
-00:06:15.525 --> 00:06:17.160
-paste it in another session.
-
-NOTE Confidence: 0.8911451101303101
-
-00:06:19.440 --> 00:06:22.532
-And to complete this, KNCLI will open a local browser
-
-NOTE Confidence: 0.8911451101303101
-
-00:06:22.590 --> 00:06:25.799
-and start completing and thinking about the next steps.
-
-NOTE Confidence: 0.8945339918136597
-
-00:06:26.520 --> 00:06:29.683
-As you can see, it has automatically opened the sample
-
-NOTE Confidence: 0.8945339918136597
-
-00:06:29.742 --> 00:06:32.613
-website that we have added and it is thinking how
-
-NOTE Confidence: 0.8945339918136597
-
-00:06:32.672 --> 00:06:34.840
-how it can navigate to the next step.
-
-NOTE Confidence: 0.9417580366134644
-
-00:06:47.550 --> 00:06:50.461
-You can also see all of the steps that it
-
-NOTE Confidence: 0.9417580366134644
-
-00:06:50.532 --> 00:06:53.230
-has identified in the terminal itself.
-
-NOTE Confidence: 0.9568482637405396
-
-00:06:55.150 --> 00:06:57.070
-And it will take some time to complete this.
-
-NOTE Confidence: 0.8411961197853088
-
-00:06:57.589 --> 00:07:01.638
-So let's also check out another method where you can
-
-NOTE Confidence: 0.8411961197853088
-
-00:07:01.716 --> 00:07:04.829
-use KNC Alide directly with your agents.
-
-NOTE Confidence: 0.8859984874725342
-
-00:07:06.920 --> 00:07:10.695
-To do this, you just need to paste this agent
-
-NOTE Confidence: 0.8859984874725342
-
-00:07:10.779 --> 00:07:15.141
-MD file to your agent and your agent will understand
-
-NOTE Confidence: 0.8859984874725342
-
-00:07:15.225 --> 00:07:18.749
-how to use knci while it is building out a
-
-NOTE Confidence: 0.8859984874725342
-
-00:07:18.833 --> 00:07:19.840
-new feature.
-
-NOTE Confidence: 0.7977597713470459
-
-00:07:21.800 --> 00:07:32.226
-For this, let's open another browser and call out plot
-
-NOTE Confidence: 0.7977597713470459
-
-00:07:32.419 --> 00:07:34.929
-to call knci.
-
-NOTE Confidence: 0.689897894859314
-
-00:07:34.930 --> 00:07:40.855
-Within your agent browser you can just used by directly
-
-NOTE Confidence: 0.689897894859314
-
-00:07:40.963 --> 00:07:45.920
-adding slash and typing key NCLI and key NCLI.
-
-NOTE Confidence: 0.8653395771980286
-
-00:07:45.920 --> 00:07:48.600
-Session will be initialized within your agent environment.
-
-NOTE Confidence: 0.8331164717674255
-
-00:07:50.120 --> 00:07:53.953
-It is identifying my user ID and key NCLI is
-
-NOTE Confidence: 0.8331164717674255
-
-00:07:54.040 --> 00:07:56.480
-ready to use As you can see.
-
-NOTE Confidence: 0.8111210465431213
-
-00:07:56.480 --> 00:07:59.482
-You will also see what are the different types of
-
-NOTE Confidence: 0.8111210465431213
-
-00:07:59.543 --> 00:08:01.320
-actions key NCLI can perform.
-
-NOTE Confidence: 0.8961398601531982
-
-00:08:01.880 --> 00:08:06.116
-It can perform any type of actions, assertions, It can
-
-NOTE Confidence: 0.8961398601531982
-
-00:08:06.194 --> 00:08:09.960
-extract any type of top results and also run any
-
-NOTE Confidence: 0.8961398601531982
-
-00:08:10.038 --> 00:08:14.039
-test suite that we already have within our project.
-
-NOTE Confidence: 0.8589287996292114
-
-00:08:14.040 --> 00:08:14.200
-File.
-
-NOTE Confidence: 0.816373348236084
-
-00:08:15.480 --> 00:08:17.600
-For this, let's let's try something simple.
-
-NOTE Confidence: 0.8033048510551453
-
-00:08:17.880 --> 00:08:28.480
-Go to testmuai.com and validate if the page opens.
-
-NOTE Confidence: 0.8626371622085571
-
-00:08:35.760 --> 00:08:39.630
-KNCLI directly interacts with your AI agent and think about
-
-NOTE Confidence: 0.8626371622085571
-
-00:08:39.696 --> 00:08:40.680
-the next steps.
-
-NOTE Confidence: 0.8589400053024292
-
-00:08:41.640 --> 00:08:44.640
-So while you are building with any of your AI
-
-NOTE Confidence: 0.8589400053024292
-
-00:08:44.706 --> 00:08:48.173
-agent, let's say it is cloud codecs or Copilot, your
-
-NOTE Confidence: 0.8589400053024292
-
-00:08:48.240 --> 00:08:51.506
-agent can directly define what kind of end to end
-
-NOTE Confidence: 0.8589400053024292
-
-00:08:51.573 --> 00:08:55.040
-test cases it want to write according to the feature
-
-NOTE Confidence: 0.8589400053024292
-
-00:08:55.106 --> 00:08:57.440
-or product that you are developing.
-
-NOTE Confidence: 0.8778030276298523
-
-00:08:57.840 --> 00:09:01.844
-And KNCLI will provide them hands and eyes to perform
-
-NOTE Confidence: 0.8778030276298523
-
-00:09:01.919 --> 00:09:03.959
-those end to end workflows.
-
-NOTE Confidence: 0.8751833438873291
-
-00:09:06.240 --> 00:09:09.942
-By default for any agent, it runs in a headless
-
-NOTE Confidence: 0.8751833438873291
-
-00:09:10.020 --> 00:09:13.801
-mode and you will see all the results popping up
-
-NOTE Confidence: 0.8751833438873291
-
-00:09:13.880 --> 00:09:16.480
-here once this step is completed.
-
-NOTE Confidence: 0.8350129127502441
-
-00:09:18.679 --> 00:09:21.840
-Meanwhile, let's go back and check out what is happening
-
-NOTE Confidence: 0.8350129127502441
-
-00:09:21.896 --> 00:09:22.799
-in our TUI mode.
-
-NOTE Confidence: 0.8504277467727661
-
-00:09:23.480 --> 00:09:26.736
-As you can see it is placing an order and
-
-NOTE Confidence: 0.8504277467727661
-
-00:09:26.815 --> 00:09:28.960
-also thinking about adding.
-
-NOTE Confidence: 0.9201787114143372
-
-00:09:29.240 --> 00:09:32.527
-As you can see, it can also automatically generate some
-
-NOTE Confidence: 0.9201787114143372
-
-00:09:32.587 --> 00:09:34.440
-test data to complete the card.
-
-NOTE Confidence: 0.6809598803520203
-
-00:09:34.880 --> 00:09:35.760
-Checkout process.
-
-NOTE Confidence: 0.8753573894500732
-
-00:09:41.550 --> 00:09:45.597
-It has completed the order and it has completed almost
-
-NOTE Confidence: 0.8753573894500732
-
-00:09:45.672 --> 00:09:49.270
-completed the first flow that it has identified.
-
-NOTE Confidence: 0.938754141330719
-
-00:09:50.070 --> 00:09:53.480
-Now it is extracting the order ID from the first
-
-NOTE Confidence: 0.938754141330719
-
-00:09:53.551 --> 00:09:54.829
+00:09:51.870 --> 00:09:55.810
+from the first
 flow confirmation.
 
-NOTE Confidence: 0.9563734531402588
+00:10:02.790 --> 00:10:04.920
+Now, it has completed
+the first flow.
 
-00:10:02.760 --> 00:10:04.480
-Now it has completed the first flow.
+00:10:04.920 --> 00:10:08.610
+It has extracted and saved the
+order ID from our first flow,
 
-NOTE Confidence: 0.9118130803108215
+00:10:08.610 --> 00:10:12.420
+and now it will try to
+complete our second step.
 
-00:10:04.880 --> 00:10:08.055
-It has extracted and saved the order ID from our
+00:10:12.420 --> 00:10:15.150
+That is, opening google.com
+and pasting the order ID
 
-NOTE Confidence: 0.9118130803108215
+00:10:15.150 --> 00:10:18.130
+from our first test case.
 
-00:10:08.121 --> 00:10:11.033
-first flow and now it will try to complete a
+00:10:25.020 --> 00:10:28.450
+Now, it has opened google.com,
 
-NOTE Confidence: 0.9118130803108215
+00:10:29.520 --> 00:10:33.820
+and it will now
+paste our order ID.
 
-00:10:11.099 --> 00:10:14.804
-second step that is opening a google.com and pasting the
+00:10:45.000 --> 00:10:48.540
+It has successfully pasted the
+order ID from our first flow
 
-NOTE Confidence: 0.9118130803108215
+00:10:48.540 --> 00:10:57.390
+into the second flow, and it
+has completed the workflow.
 
-00:10:14.870 --> 00:10:17.120
-order ID from our first Test case.
+00:10:57.390 --> 00:10:59.340
+It has passed the test case.
 
-NOTE Confidence: 0.7953833341598511
+00:10:59.340 --> 00:11:01.320
+Now, once my test
+case is completed,
 
-00:10:25.000 --> 00:10:31.066
-Now it is opened google.com and it will now paste
+00:11:01.320 --> 00:11:04.120
+I can click on "Exit,"
 
-NOTE Confidence: 0.7953833341598511
+00:11:05.550 --> 00:11:07.590
+and it will save the session
 
-00:10:31.190 --> 00:10:32.800
-our order ID.
+00:11:07.590 --> 00:11:11.020
+into the particular file
+folder that we have wanted.
 
-NOTE Confidence: 0.8402475118637085
+00:11:15.510 --> 00:11:18.690
+It will also download a
+created Playwright script
 
-00:10:45.000 --> 00:10:50.288
-It has successfully pasted the order ID from our first
+00:11:18.690 --> 00:11:21.330
+of the test case that
+we have completed,
 
-NOTE Confidence: 0.8402475118637085
+00:11:21.330 --> 00:11:25.590
+and it will also show
+it a shareable link.
 
-00:10:50.386 --> 00:10:54.990
-flow into the second flow and it has passed all
+00:11:25.590 --> 00:11:31.930
+I can just directly copy this
+and open it in my browser.
 
-NOTE Confidence: 0.8402475118637085
+00:11:38.220 --> 00:11:42.270
+Here, we get all the logs of the
+steps that we have completed.
 
-00:10:55.088 --> 00:10:55.479
-the.
+00:11:42.270 --> 00:11:44.850
+I can automatically
+autoplay this,
 
-NOTE Confidence: 0.8368843197822571
+00:11:44.850 --> 00:11:50.130
+and it will play how
+Kane CLI, basically,
 
-00:10:55.760 --> 00:10:58.129
-It has completed the workflow and it has passed the
+00:11:50.130 --> 00:11:51.480
+completed this workflow.
 
-NOTE Confidence: 0.8368843197822571
+00:11:51.480 --> 00:11:53.400
+You can also see the cursor,
 
-00:10:58.175 --> 00:10:58.639
-test case.
+00:11:53.400 --> 00:11:55.350
+what kind of decisions
+it is making,
 
-NOTE Confidence: 0.9363831877708435
+00:11:55.350 --> 00:12:00.160
+and how it is completing
+the user's objective,
 
-00:10:59.320 --> 00:11:02.997
-Now once my test case is completed, I can click
+00:12:02.520 --> 00:12:06.540
+and this becomes a shareable
+proof of any step,
 
-NOTE Confidence: 0.9363831877708435
+00:12:06.540 --> 00:12:09.000
+any test cases that
+we are running.
 
-00:11:03.075 --> 00:11:06.597
-on exit and it will save the session into the
+00:12:09.000 --> 00:12:12.900
+You can validate it
+before completing,
 
-NOTE Confidence: 0.9363831877708435
+00:12:12.900 --> 00:12:17.980
+before merging this feature
+or product into your --
 
-00:11:06.675 --> 00:11:10.039
-particular file folder that we have wanted.
+00:12:25.350 --> 00:12:29.310
+If there are any bugs that are
+identified within this step,
 
-NOTE Confidence: 0.8903321623802185
+00:12:29.310 --> 00:12:33.840
+you will also see Kane
+CLI automatically marking
 
-00:11:15.520 --> 00:11:18.706
-And it will also download the create a playwright script
+00:12:33.840 --> 00:12:36.930
+that bug to the user as well.
 
-NOTE Confidence: 0.8903321623802185
+00:12:36.930 --> 00:12:40.710
+Now, let's also see what
+happened while using Kane CLI
 
-00:11:18.763 --> 00:11:21.040
-of the test case that we have completed.
+00:12:40.710 --> 00:12:43.300
+with our AI agent.
 
-NOTE Confidence: 0.8084160089492798
+00:12:45.060 --> 00:12:48.510
+Our AI agent ran the
+objective in a headless mode,
 
-00:11:21.360 --> 00:11:24.840
-And it will also show us a shareable link.
+00:12:48.510 --> 00:12:51.870
+and it gave not many stats.
 
-NOTE Confidence: 0.9639990329742432
+00:12:51.870 --> 00:12:55.170
+The test case was passed,
+the objective was completed,
 
-00:11:25.400 --> 00:11:29.546
-So I can just directly copy this and open it
+00:12:55.170 --> 00:12:57.930
+and it also gave us
+an agent rating.
 
-NOTE Confidence: 0.9639990329742432
+00:12:57.930 --> 00:13:00.990
+You can also see the shareable
+proof by copying this
 
-00:11:29.640 --> 00:11:30.959
-in my browser.
-
-NOTE Confidence: 0.9351397156715393
-
-00:11:38.200 --> 00:11:40.816
-Here we get all the logs of the steps that
-
-NOTE Confidence: 0.9351397156715393
-
-00:11:40.878 --> 00:11:42.000
-we have completed.
-
-NOTE Confidence: 0.7177141904830933
-
-00:11:42.280 --> 00:11:47.173
-I can automatically autoplay this and it will play how
-
-NOTE Confidence: 0.7177141904830933
-
-00:11:47.263 --> 00:11:51.160
-Cane CLI basically completed this workflow.
-
-NOTE Confidence: 0.8948008418083191
-
-00:11:51.480 --> 00:11:55.008
-You can also see the cursor, what kind of decisions
-
-NOTE Confidence: 0.8948008418083191
-
-00:11:55.077 --> 00:11:58.398
-it is making and how it is completing the user's
-
-NOTE Confidence: 0.8948008418083191
-
-00:11:58.468 --> 00:11:59.160
-objective.
-
-NOTE Confidence: 0.8501826524734497
-
-00:12:02.520 --> 00:12:05.779
-And this becomes a shareable proof of any any step,
-
-NOTE Confidence: 0.8501826524734497
-
-00:12:05.843 --> 00:12:08.079
-any test cases that we are running.
-
-NOTE Confidence: 0.8698211908340454
-
-00:12:08.400 --> 00:12:14.133
-So you can validate it before completing before merging this
-
-NOTE Confidence: 0.8698211908340454
-
-00:12:14.228 --> 00:12:16.999
-feature or product into your.
-
-NOTE Confidence: 0.837197482585907
-
-00:12:25.200 --> 00:12:29.210
-And if there are any bugs that are identified within
-
-NOTE Confidence: 0.837197482585907
-
-00:12:29.287 --> 00:12:33.991
-this step, you will also see KNCLI automatically marking that
-
-NOTE Confidence: 0.837197482585907
-
-00:12:34.069 --> 00:12:35.920
-bug to the user as well.
-
-NOTE Confidence: 0.7719773054122925
-
-00:12:36.920 --> 00:12:41.224
-Now let's also see what happened while using KNCLI with
-
-NOTE Confidence: 0.7719773054122925
-
-00:12:41.302 --> 00:12:42.320
-our AI agent.
-
-NOTE Confidence: 0.7383055090904236
-
-00:12:44.480 --> 00:12:48.297
-I, our AI agent run the objective in an headless
-
-NOTE Confidence: 0.7383055090904236
-
-00:12:48.376 --> 00:12:51.240
-mode and it gave us lot many starts.
-
-NOTE Confidence: 0.7695547342300415
-
-00:12:51.840 --> 00:12:55.154
-The test case was passed, the objective was completed, and
-
-NOTE Confidence: 0.7695547342300415
-
-00:12:55.211 --> 00:12:57.039
-it also gave us an agent rating.
-
-NOTE Confidence: 0.8471786975860596
-
-00:12:57.920 --> 00:13:00.998
-You can also see the shareable proof by copying this
-
-NOTE Confidence: 0.8471786975860596
-
-00:13:01.057 --> 00:13:03.840
-and pasting and viewing it in your own browser.
-
+00:13:00.990 --> 00:13:04.840
+and pasting and viewing
+it in your own browser.

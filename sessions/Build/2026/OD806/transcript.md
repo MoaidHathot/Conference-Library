@@ -1,839 +1,773 @@
-**[00:00:00]** Hey folks, welcome to Microsoft Build 2026 and welcome especially
-**[00:00:05]** to a surveyof.net 11 runtime libraries and DK improvements.
-**[00:00:09]** I'm Chet Hosk and I'm a product manager on the
-**[00:00:12]** SDK and Ms.
-**[00:00:12]** Build teams and here with me today is.
-**[00:00:16]** Yeah, I'm Rich Lander.
-**[00:00:18]** I'm also a product manager on the.net team and I'm
-**[00:00:21]** going to be talking about the runtime and libraries.
-**[00:00:26]** Awesome.
-**[00:00:27]** So we've got a great pack to flow for you
-**[00:00:29]** today.
-**[00:00:30]** We're going to start by looking at some of the
-**[00:00:32]** SDK and tooling level improvements and initiatives in the.net eleven
-**[00:00:36]** time frame.
-**[00:00:37]** And then we'll yield over to Rich to go a
-**[00:00:38]** little bit lower in the stack because all the stuff
-**[00:00:41]** we're going to show you at the tooling layer builds
-**[00:00:43]** on the work that he and his teams have been
-**[00:00:45]** doing.
-**[00:00:46]** So with no further ado, let's step right in.
-**[00:00:51]** sothe.net SDK has three major work streams that we've been
-**[00:00:55]** working on forthe.net 11 releases.
-**[00:00:57]** The 1st is new capabilities and new user experiences.
-**[00:01:01]** The second is a strong focus on performance all the
-**[00:01:04]** way through the stack.
-**[00:01:06]** And the third is sort of lightening the load of
-**[00:01:09]** acquisition and management of our tools.
-**[00:01:12]** We've got some top level notes here, but we'll go
-**[00:01:15]** into a lot of these in more details as well
-**[00:01:17]** as some of the framing of, you know, why we
-**[00:01:20]** think these are important and who these units of work
-**[00:01:23]** are for.
-**[00:01:24]** Some of the things that we'll be looking at are
-**[00:01:28]** like net new CLI features as well as changes to
-**[00:01:31]** features that are well used today to make them more
-**[00:01:35]** workable or more efficient in an LLM context.
-**[00:01:39]** And performance is a focus for us because it's, you
-**[00:01:42]** know, with the rise of agents and the sort of
-**[00:01:44]** accelerated inner loop requirements that we have for these repeated
-**[00:01:48]** multi agent scenarios, we want to make sure that every
-**[00:01:51]** command you run is as fast as possible.
-**[00:01:54]** So let's dive right into some examples of the work
+**[00:00:00]** CHET HUSK: Hey, folks, welcome to Microsoft Build 2026,
+**[00:00:03]** and welcome, especially,
+**[00:00:04]** to a survey of.NET 11 runtime libraries and SDK improvements.
+**[00:00:09]** I'm Chet Husk, and I'm a Product Manager on the SDK
+**[00:00:12]** and MSBuild teams and here with me today is --
+**[00:00:16]** RICHARD LANDER: Yeah, I'm Rich Lander.
+**[00:00:18]** I'm also a Product Manager on the.NET team, and I'm going
+**[00:00:21]** to be talking about runtime and libraries.
+**[00:00:26]** CHET HUSK: Awesome.
+**[00:00:27]** We've got a great packed flow for you today.
+**[00:00:30]** We're going to start by looking at some of the SDK
+**[00:00:32]** and tooling level improvements and initiatives
+**[00:00:34]** in the.NET 11 timeframe.
+**[00:00:37]** Then we'll yield over to Rich to go a little bit lower
+**[00:00:39]** in the stack, because all the stuff we're going to show you
+**[00:00:42]** at the tooling layer builds on the work that he
+**[00:00:44]** and his teams have been doing.
+**[00:00:46]** With no further ado, let's step right in.
+**[00:00:51]** The.NET SDK has three major work streams
+**[00:00:54]** that we've been working on for the.NET 11 releases.
+**[00:00:57]** The first is new capabilities and new user experiences.
+**[00:01:01]** The second is a strong focus
+**[00:01:03]** on performance all the way through the stack.
+**[00:01:06]** The third is sort of lightening the load of acquisition
+**[00:01:10]** and management of our tools.
+**[00:01:12]** We've got some top-level notes here, but we'll go into a lot
+**[00:01:14]** of these in more detail, as well, after some of the framing
+**[00:01:17]** of why we think these are important
+**[00:01:20]** and who these units of work are for.
+**[00:01:24]** Some of the things that we'll be looking
+**[00:01:26]** at are net-new CLI features as well as changes to features
+**[00:01:31]** that are well used today to make them more workable
+**[00:01:35]** or more efficient in an LLM context.
+**[00:01:39]** Performance is a focus for us because it's --
+**[00:01:43]** with the rise of agents and the sort
+**[00:01:45]** of accelerated inner loop requirements that we have
+**[00:01:48]** for these repeated multiagent scenarios, we want to make sure
+**[00:01:51]** that every command you run is as fast as possible.
+**[00:01:54]** Let's dive right into some examples of the work
 **[00:01:58]** that we've been doing on UX.
-**[00:02:00]** So for yearsnow.net run has been sort of the backbone
-**[00:02:03]** of the inner loop when you're working on your projects.
-**[00:02:07]** youwould.net run a project and it would run.
-**[00:02:09]** And in.net 10 we added ways to expand how projects
-**[00:02:14]** could, you know, hook how they run.
-**[00:02:17]** And this led to enhancements around running Azure Functions in
-**[00:02:21]** the emulator, for example.
-**[00:02:23]** Well, one area that hadn't received quite as much love
-**[00:02:27]** here was Maui and device specific running of applications on
-**[00:02:31]** your devices.
-**[00:02:32]** When you run a Maui application, you typically have to
-**[00:02:35]** not just build the product, but also build some kind
-**[00:02:38]** of an installation payload, push it to a device, and
-**[00:02:41]** then run that payload on that device.
-**[00:02:44]** Well, starting in.net 11, the Maui team has contributed enhancements
-**[00:02:49]** to dot net run to make device flows a first
-**[00:02:52]** class citizeninthe.net run experience.
-**[00:02:55]** They've also expandedthe.net Maui targets, so that run actually handles
-**[00:02:59]** that device deployment.
-**[00:03:01]** So as you can see in the image that we're
-**[00:03:04]** looking at here, we're seeing an application thatisusing.net Run to
-**[00:03:08]** pick the target framework it wants to deploy to, pick
-**[00:03:11]** a device that is valid for that target framework, and
-**[00:03:14]** then upload the device payload to that device and launch
-**[00:03:18]** it on that simulator.
-**[00:03:19]** So this is a really powerful example of just making
-**[00:03:23]** common workflows, something that is part of the the first
-**[00:03:26]** class knowledgethat.net Run has.
-**[00:03:29]** What's important about this is that Run also now understands
-**[00:03:33]** how to query the devices you have available.
-**[00:03:36]** And this entire protocol is something that's extensible.
-**[00:03:39]** It works not just for Maui, but it could be
-**[00:03:41]** extended to support Uno or Avalonia or any of your
-**[00:03:44]** favorite UI frameworks.
-**[00:03:45]** So that was a really exciting contribution that we really
-**[00:03:49]** thank the Maui team for moving on.
-**[00:03:51]** We want to make sure that the dot net CLI
-**[00:03:54]** works nicely with agents of all kinds, and to this
-**[00:03:58]** end we put work into the.net CLI to make it
-**[00:04:01]** aware of when it is being run under an agent
-**[00:04:04]** contact.
-**[00:04:05]** This is necessarily kind of a heuristic based approach, but
-**[00:04:09]** once we have this knowledge, this lets us do 2
-**[00:04:12]** important categories of work.
+**[00:02:01]** For years now, dotnet run has been sort of the backbone
+**[00:02:04]** of the inner loop when you're working on your projects,
+**[00:02:07]** you would "dotnet run" a project and it would run,
+**[00:02:09]** and in.NET 10, we added ways to expand how projects could,
+**[00:02:16]** you know, "hook" how they run.
+**[00:02:17]** This led to enhancements around running Azure functions
+**[00:02:21]** in the emulator, for example.
+**[00:02:23]** Well, one area that hadn't received quite
+**[00:02:25]** as much love here was MAUI and device specific running
+**[00:02:29]** of applications on your devices.
+**[00:02:32]** When you run a MAUI application, you typically have
+**[00:02:34]** to not just build the product, but also build some kind
+**[00:02:37]** of an installation payload, push it to a device, and then run
+**[00:02:42]** that payload on that device.
+**[00:02:44]** Well, starting in.NET 11,
+**[00:02:46]** the MAUI team has contributed enhancements to dotnet run
+**[00:02:49]** to make device flows a first-class citizen
+**[00:02:53]** in the dotnet run experience.
+**[00:02:55]** They've also expanded the.NET MAUI targets
+**[00:02:57]** so that run actually handles that device deployment.
+**[00:03:01]** As you can see in the image that we're looking at here,
+**[00:03:04]** we're seeing an application that is using dotnet run
+**[00:03:07]** to pick the target framework it wants to deploy to,
+**[00:03:11]** pick a device that is valid for that target framework,
+**[00:03:14]** and then upload the device payload to that device
+**[00:03:17]** and launch it on that simulator.
+**[00:03:20]** This is a really powerful example
+**[00:03:21]** of just making common workflows something that is part
+**[00:03:25]** of the first-class knowledge that dotnet run has.
+**[00:03:29]** What's important about this is
+**[00:03:30]** that run also now understands how
+**[00:03:33]** to query the devices you have available,
+**[00:03:36]** and this entire protocol is something that's extensible.
+**[00:03:39]** It works not just for MAUI, but it could be extended
+**[00:03:41]** to support Uno or Avalonia or any
+**[00:03:43]** of your favorite UI frameworks.
+**[00:03:45]** So that was a really exciting contribution
+**[00:03:47]** that we really thank the MAUI team for.
+**[00:03:50]** Moving on, we want to make sure that the dotnet CLI works nicely
+**[00:03:55]** with agents of all kinds.
+**[00:03:57]** To this end, we put work into the dotnet CLI to make it aware
+**[00:04:01]** of when it is being run under an agent context.
+**[00:04:05]** This is necessarily kind of a heuristic based approach,
+**[00:04:09]** but once we have this knowledge,
+**[00:04:11]** this lets us do two important categories of work.
 **[00:04:14]** It lets us change the way that we render output
-**[00:04:17]** to the output streams that are available to us, and
-**[00:04:21]** it helps us understand more about who is driving us
-**[00:04:25]** and their usage patterns so that we can change our
-**[00:04:28]** internal behaviour.
-**[00:04:30]** Some examples of this is that the terminal logger, which
-**[00:04:34]** is the default build display starting in dot net 10,
+**[00:04:19]** to the output streams that are available to us,
+**[00:04:22]** and it helps us understand more about who is driving us
+**[00:04:26]** and their usage patterns so that we can change our
+**[00:04:29]** internal behavior.
+**[00:04:30]** Some examples of this are that the terminal logger,
+**[00:04:33]** which is the default build display starting in.NET 10,
 **[00:04:37]** has a static section where your project outputs are emitted
-**[00:04:40]** and then a dynamic portion where it's constantly updating and
-**[00:04:44]** showing what targets are being built for each project that
-**[00:04:48]** is being built.
-**[00:04:50]** Well, LLM's interpret that live portion as a very token
-**[00:04:54]** inefficient stream of constant changes and so armed with this
-**[00:04:58]** new knowledge that the CLI has, we have been able
-**[00:05:01]** to disable that live update when we are run in
-**[00:05:05]** an LLM context.
+**[00:04:41]** and then a dynamic portion where it's constantly updating
+**[00:04:45]** and showing what targets are being built
+**[00:04:47]** for each project that is being built.
+**[00:04:50]** Well, LLMs interpret that live portion
+**[00:04:53]** as a very token inefficient stream of constant changes.
+**[00:04:57]** Armed with this new knowledge that the CLI has,
+**[00:05:00]** we have been able to disable that live update
+**[00:05:04]** when we are run in an LLM context.
 **[00:05:06]** This is a very simple example, but the core idea
-**[00:05:09]** of understanding when we are in an LLM context and
-**[00:05:12]** using that to change behavior is something that we're taking
-**[00:05:16]** to heartthroughouttheentire.net CLI.
-**[00:05:19]** In addition, we are introducing and exploring new concepts that
-**[00:05:24]** are more common thanks to agents.
-**[00:05:27]** These days it's more common for agents to spawn off
-**[00:05:30]** separate work trees, which are a get technique for creating
-**[00:05:34]** shallow clones of a repo at different branches so that
-**[00:05:38]** work can be done in parallel.
-**[00:05:40]** However, whenyourun.net build, that operation is not normally aware of
-**[00:05:45]** any other bill that's going on in the machine, and
-**[00:05:48]** this can lead to significant amounts of resource tension on
-**[00:05:52]** your machine or contention rather.
-**[00:05:54]** So we're looking at strategies like a sort of central
-**[00:05:58]** gatekeeper for Ms.
-**[00:05:59]** build that all builds have to route through that can
-**[00:06:02]** delegate resources to each individual build so that your overall
-**[00:06:06]** machine remains responsive.
-**[00:06:08]** This is an example of something that was kind of
-**[00:06:10]** historically always a weakness in our tooling.
-**[00:06:13]** It was very one shot focused.
-**[00:06:16]** But with the rise of agents and the rise of
-**[00:06:19]** parallel work on a single machine, it's become much more
-**[00:06:22]** necessary that we take steps to address the scenario.
-**[00:06:25]** So this category of work is something you should expect
-**[00:06:28]** to see more of in the.net CLI overall.
-**[00:06:32]** When you do choose to do work with the.net CLI
-**[00:06:35]** though, we want that work to be fast.
-**[00:06:37]** So we are starting on a journey to make the.net
-**[00:06:40]** CLI a native AOT application.
+**[00:05:10]** of understanding when we are in an LLM context and using
+**[00:05:13]** that to change behavior is something that we're taking
+**[00:05:16]** to heart throughout the entire dotnet CLI.
+**[00:05:19]** In addition, we are introducing and exploring new concepts
+**[00:05:24]** that are more common thanks to agents.
+**[00:05:27]** These days, it's more common for agents
+**[00:05:29]** to spawn off separate worktrees, which are a Git technique
+**[00:05:33]** for creating shallow clones of a repo at different branches
+**[00:05:38]** so that work can be done in parallel.
+**[00:05:41]** However, when you run dotnet build,
+**[00:05:43]** that operation is not normally aware
+**[00:05:46]** of any other build that's going on in the machine,
+**[00:05:49]** and this can lead to significant amounts of resource tension
+**[00:05:52]** on your machine -- or contention rather.
+**[00:05:55]** We're looking at strategies like a sort of central gatekeeper
+**[00:05:58]** for MSBuild that all builds have to route
+**[00:06:00]** through that can delegate resources
+**[00:06:02]** to each individual build,
+**[00:06:04]** so that your overall machine remains responsive.
+**[00:06:08]** This is an example of something that was kind
+**[00:06:10]** of historically always a weakness in our tooling.
+**[00:06:13]** It was very one-shot focused, but with the rise of agents
+**[00:06:17]** and the rise of parallel work on a single machine,
+**[00:06:20]** it's become much more necessary that we take steps
+**[00:06:23]** to address this scenario.
+**[00:06:26]** This category of work is something you should expect
+**[00:06:28]** to see more of in the dotnet CLI overall.
+**[00:06:32]** When you do choose to do work with the dotnet CLI, though,
+**[00:06:35]** we want that work to be fast.
+**[00:06:38]** We are starting on a journey
+**[00:06:39]** to make the dotnet CLI a NativeAOT application.
 **[00:06:43]** I'm incredibly excited for this.
 **[00:06:45]** Some of the recent milestones that we've hit here are
-**[00:06:49]** that many of these sort of stand alone but bundled
-**[00:06:52]** tools you use in the.net CLI, like the User secrets,
-**[00:06:56]** dev certs and User Jason Web Token services.
-**[00:06:59]** Our native AOT as of like 2 weeks ago now,
-**[00:07:02]** so starting in Preview 6 you'll see this.
-**[00:07:05]** The net result of this is improved performance and responsiveness
-**[00:07:09]** for these commands.
-**[00:07:10]** We have some example numbers herefor.net user secrets that Damian
-**[00:07:14]** Edwards and I took like a week ago.
-**[00:07:17]** On average on his Windows machine.net user secrets, the AOT
-**[00:07:21]** form took about 54 milliseconds to run.
-**[00:07:24]** Of that, only 14 milliseconds was the actual application, The
-**[00:07:29]** rest was the managed.net CLI overhead.
-**[00:07:32]** There.
+**[00:06:48]** that many of these sort of standalone
+**[00:06:51]** but bundled tools you use in the dotnet CLI,
+**[00:06:54]** like the User Secrets, dev certs,
+**[00:06:56]** and JSON Web token services are NativeAOT
+**[00:07:01]** as of two weeks ago now.
+**[00:07:03]** Starting in Preview 6, you'll see this.
+**[00:07:05]** The net result of this is improved performance
+**[00:07:08]** and responsiveness for these commands.
+**[00:07:10]** We have some example numbers here for.NET User Secrets
+**[00:07:13]** that Damian Edwards and I took a week ago.
+**[00:07:17]** On average, on his Windows machine,.NET User Secrets,
+**[00:07:20]** the AOT form took about 54 milliseconds to run.
+**[00:07:24]** Of that, only 14 milliseconds was the actual application.
+**[00:07:28]** The rest was the managed dotnet CLI overhead there.
 **[00:07:34]** We'll talk about that more in just a second.
-**[00:07:36]** Why are we doing this native AOT push?
-**[00:07:38]** Well, First off, itsbecausethe.net CLI is used so frequently that
-**[00:07:43]** any amount of performance that we can contribute to its
-**[00:07:47]** shared basis multiplies incredibly well.
-**[00:07:50]** So even shaving 100 milliseconds off of every command translates
-**[00:07:54]** to real benefits given the number of times each individual
-**[00:07:58]** developer issues a command.
-**[00:08:00]** But also it's an ecosystem play for us.
+**[00:07:36]** Why are we doing this NativeAOT push?
+**[00:07:38]** Well, first off, it's because the dotnet CLI is used
+**[00:07:41]** so frequently that any amount of performance
+**[00:07:44]** that we can contribute
+**[00:07:46]** to its shared base multiplies incredibly well,
+**[00:07:50]** so even shaving 100 milliseconds off of every command translates
+**[00:07:54]** to real benefits given the number
+**[00:07:56]** of times each individual developer issues a command.
+**[00:08:00]** Also, it's an ecosystem play for us.
 **[00:08:03]** Many of the tools that we make depend on libraries
-**[00:08:06]** that we also make.
-**[00:08:07]** And some of those libraries we're we're not AOT or
-**[00:08:10]** TRIM friendly.
-**[00:08:12]** So by setting a milestoneofthe.net CLI being an AOT application
-**[00:08:15]** that forced us to investigate these kind of technical and
-**[00:08:19]** process blockers and start knocking them down.
-**[00:08:22]** So just over the course of the dot net 11
-**[00:08:24]** development cycle so far, we've been able to make really
-**[00:08:27]** common libraries like templating and Nougat and even parts of
-**[00:08:31]** Ms.
-**[00:08:31]** build more trim friendly.
-**[00:08:34]** This is an ongoing effort and not all use cases
-**[00:08:37]** are trim friendly yet, but it is kind of the
-**[00:08:40]** north star for the overall effort.
-**[00:08:43]** The hope is that especially with some of these Nougat
-**[00:08:46]** libraries, unblocking these core Microsoft provided libraries from being trim
-**[00:08:51]** friendly makes it possible for the entire ecosystem to make
-**[00:08:55]** trimmed and AOT applications more effectively.
-**[00:08:59]** So that's just some of the bundle tools, but the
-**[00:09:02]** big thing here, the big news is that theentire.net CLI
-**[00:09:05]** is on its ARC to be AOT as well.
-**[00:09:09]** Some of the technical blockers I mentioned I've I've touched
-**[00:09:13]** on already, but some of the other ones weren't were
-**[00:09:16]** complete replacement.
-**[00:09:17]** So we had telemetry libraries for example, that we had
-**[00:09:20]** to migrate to open telemetry.
-**[00:09:22]** We had old COM patterns that needed to be made
-**[00:09:25]** TRIM friendly.
-**[00:09:26]** A lot of this was stuff that the runtime had
-**[00:09:28]** already provided and we just had not taken advantage yet.
-**[00:09:32]** So we're hopefulthatthe.net CLI taking advantage of those will start
-**[00:09:36]** to lead to sort of real benefits to our end
-**[00:09:39]** users, as well as sort of championing native AOT as
-**[00:09:43]** a valid and awesome technology in its own right.
-**[00:09:47]** An example of some of the wins we get from
-**[00:09:49]** this, you can see in this Aspire Dashboard trace below.
-**[00:09:53]** That's right.
-**[00:09:54]** Now that the.net CLI emits hotel, you can use the
-**[00:09:57]** Aspire Dashboard and all of the Aspire tools you're familiar
-**[00:10:01]** with to trace it.
-**[00:10:02]** So in this display that you're seeing, the top five
-**[00:10:06]** spans all come from the native portionofthe.net CLI now, and
-**[00:10:11]** the bottom 5 come from the managed portion ofthe.net CLI.
-**[00:10:16]** Over time we will be moving more and more commands
-**[00:10:20]** into the native space as their technical blockers are eliminated
-**[00:10:25]** and as our resources allow.
-**[00:10:27]** We're trying to optimize commands that are both dependency free,
-**[00:10:31]** relatively speaking, as well as frequently used by the community
-**[00:10:35]** to kind of maximize the benefit there.
-**[00:10:38]** Right now we're looking at the.net solution management commands, but
-**[00:10:42]** other commands that are high up on my personal list
-**[00:10:44]** are template related and tool management related.
-**[00:10:47]** So this leads us to a place where we might
-**[00:10:51]** even have scenarios like the DNX command being a stand
-**[00:10:55]** alone native AOT application.
-**[00:10:57]** So it's a really exciting step for us and it
-**[00:11:00]** opens up a whole bunch of opportunities that will hopefully
-**[00:11:03]** be talking about later in future releases.
-**[00:11:06]** We are, you know, hitting some more highlights here.
-**[00:11:09]** We're embracing threads in Ms.
-**[00:11:11]** Build in.net 11 and not just processes.
-**[00:11:15]** Today's Ms.
-**[00:11:16]** Build uses a multi process architecture that is great for
-**[00:11:20]** isolation and safety, but has high overheads in terms of
-**[00:11:24]** inter process communication costs and things like core Clr jet
-**[00:11:28]** loading.
-**[00:11:30]** This multi threaded mode is something we've been working on
-**[00:11:33]** for a while and it's not ready to use today,
-**[00:11:36]** but it will be ready to use bythetime.net 11 launches.
+**[00:08:06]** that we also make, and some
+**[00:08:08]** of those libraries were not AOT- or trim-friendly.
+**[00:08:12]** By setting a milestone
+**[00:08:13]** of the dotnet CLI being an AOT application, that forced us
+**[00:08:17]** to investigate these technical and process blockers
+**[00:08:20]** and start knocking them down.
+**[00:08:22]** Just over the course of the.NET 11 development cycle so far,
+**[00:08:26]** we've been able to make really common libraries like templating
+**[00:08:29]** and NuGet and even parts of MSBuild more trim-friendly.
+**[00:08:34]** This is an ongoing effort,
+**[00:08:36]** and not all use cases are trim-friendly yet,
+**[00:08:39]** but it is kind of the North Star for the overall effort.
+**[00:08:43]** The hope is that especially with some of these NuGet libraries,
+**[00:08:46]** unblocking these core Microsoft provided libraries
+**[00:08:49]** from being trim friendly makes it possible
+**[00:08:52]** for the entire ecosystem to make trimmed
+**[00:08:55]** and AOT applications more effectively.
+**[00:08:59]** That's just some of the bundled tools, but the big thing here,
+**[00:09:03]** the big news, is that the entire dotnet CLI is
+**[00:09:05]** on its arc to be AOT as well.
+**[00:09:09]** Some of the technical blockers I mentioned, I've touched
+**[00:09:11]** on already, but some
+**[00:09:12]** of the other ones were complete replacements.
+**[00:09:17]** We had telemetry libraries, for example,
+**[00:09:19]** that we had to migrate to OpenTelemetry.
+**[00:09:22]** We had old com patterns that needed to be made trim friendly.
+**[00:09:26]** A lot of this was stuff that the runtime had already provided,
+**[00:09:29]** and we just had not taken advantage yet.
+**[00:09:32]** We're hopeful that the dotnet CLI taking advantage
+**[00:09:34]** of those will start to lead to, sort of, real benefits
+**[00:09:39]** to our end users, as well as championing NativeAOT as a valid
+**[00:09:44]** and awesome technology in its own right.
+**[00:09:47]** An example of some of the wins we get from this,
+**[00:09:49]** you can see in this Aspire Dashboard trace below --
+**[00:09:53]** that's right.
+**[00:09:54]** Now that the dotnet CLI emits OTEL,
+**[00:09:56]** you can use the Aspire Dashboard and all
+**[00:09:58]** of the Aspire tools you're familiar with to trace it.
+**[00:10:02]** In this display that you're seeing,
+**[00:10:05]** the top five spans all come from the native portion
+**[00:10:10]** of the dotnet CLI now, and the bottom five come
+**[00:10:13]** from the managed portion of the dotnet CLI.
+**[00:10:16]** Over time, we will be moving more and more commands
+**[00:10:19]** into the native space as their technical blockers are
+**[00:10:24]** eliminated and as our resources allow.
+**[00:10:27]** We're trying to optimize commands
+**[00:10:29]** that are both dependency free, relatively speaking,
+**[00:10:33]** as well as frequently used by the community to kind
+**[00:10:36]** of maximize the benefit there.
+**[00:10:38]** Right now, we're looking
+**[00:10:39]** at the.NET solution management commands, but other commands
+**[00:10:42]** that are high up on my personal list are template related
+**[00:10:45]** and tool management related.
+**[00:10:48]** This leads us to a place where we might even have scenarios
+**[00:10:53]** like the DNX command being a standalone
+**[00:10:55]** NativeAOT application.
+**[00:10:58]** It's a really exciting step for us, and it opens
+**[00:11:00]** up a whole bunch of opportunities
+**[00:11:02]** that we'll hopefully be talking about later in future releases.
+**[00:11:06]** We are hitting some more highlights here.
+**[00:11:09]** We're embracing threads in MSBuild, in.NET 11,
+**[00:11:13]** and not just processes.
+**[00:11:15]** Today's MSBuild uses a multi-process architecture
+**[00:11:19]** that is great for isolation and safety but has high overheads
+**[00:11:23]** in terms of inter-process communication costs in things
+**[00:11:27]** like CoreCLR JIT loading.
+**[00:11:30]** This multi-threaded mode is something we've been working
+**[00:11:32]** on for a while, and it's not ready to use today,
+**[00:11:35]** but it will be ready to use by the time.NET 11 launches.
 **[00:11:39]** Look for more announcements there.
-**[00:11:42]** If you are a task author, you can follow the
-**[00:11:45]** link on this page at the MS/MS build slash Mt
-**[00:11:47]** tasks to learn more about the changes you would need
-**[00:11:50]** to make to your task to adopt to this ecosystem.
-**[00:11:54]** We think it is very promising in terms of performance
-**[00:11:57]** here and opens up a whole bunch of additional optimizations
-**[00:12:01]** that we can layer on top.
-**[00:12:02]** But again, look for more on this as we get
-**[00:12:05]** better measurement numbers to share with you all.
-**[00:12:09]** The final sort of pillar we wanted to tackle was
-**[00:12:11]** acquisition and for this we have two main things we've
-**[00:12:14]** been working on.
-**[00:12:15]** The 1st is a native AOT toolcalled.net up, which we
-**[00:12:18]** hope will give users who work on multiple platforms or
-**[00:12:22]** across team members that work on multiple platforms A consistent
-**[00:12:26]** way to acquire and managetheir.net tool chains.
-**[00:12:30]** It does all the things that you hope it would
-**[00:12:32]** support.
-**[00:12:32]** Nightlys use global Jason if it's there, and it does
-**[00:12:36]** this using user level installs of the tooling, so no
-**[00:12:39]** admin required.
-**[00:12:41]** There'll be previews of this tool coming soon and that's
-**[00:12:44]** like the Blizzard style soon.
-**[00:12:46]** If you're a gamer.
-**[00:12:48]** I did a dedicated recording of this for build that
-**[00:12:50]** should be up now as well, so feel free to
-**[00:12:53]** check that out if you want to deep dive on
-**[00:12:55]** how it works and to take a look at it.
-**[00:12:58]** Finally, the other arc of acquisition we've been looking at
-**[00:13:02]** is how you download the SDK today and what you
-**[00:13:04]** get when you download it.
+**[00:11:42]** If you are a task author, you can follow the link
+**[00:11:44]** on this page, aka.ms/msbuild/mt-tasks,
+**[00:11:49]** to learn more about the changes you would need to make
+**[00:11:51]** to your task to adopt to this ecosystem.
+**[00:11:54]** We think it is very promising in terms of performance here
+**[00:11:58]** and opens up a whole bunch of additional optimizations
+**[00:12:01]** that we can layer on top, but, again, look for more on this
+**[00:12:05]** as we get better measurement numbers to share with you all.
+**[00:12:09]** The final sort of pillar we wanted
+**[00:12:10]** to tackle was Acquisition,
+**[00:12:12]** and for this we have two main things we've been working on.
+**[00:12:15]** The first is a NativeAOT tool called dotnet up,
+**[00:12:18]** which we hope will give users who work on multiple platforms,
+**[00:12:22]** or across team members that work on multiple platforms,
+**[00:12:25]** a consistent way to acquire and manage their.NET toolchains.
+**[00:12:30]** It does all the things that you would hope it would,
+**[00:12:32]** support nightlies, use global.json if it's there,
+**[00:12:35]** and it does this using user-level installs
+**[00:12:38]** of the tooling, so no admin required.
+**[00:12:41]** There will be previews of this tool coming soon,
+**[00:12:44]** and that's like the Blizzard-style
+**[00:12:45]** "soon" if you're a gamer.
+**[00:12:48]** I did a dedicated recording of this for Build.
+**[00:12:50]** That should be up now, as well, so feel free to check that out
+**[00:12:54]** if you want a deep dive on how it works
+**[00:12:55]** and to take a look at it.
+**[00:12:58]** Finally, the other arc of Acquisition we've been looking
+**[00:13:01]** at is how you download the SDK today,
+**[00:13:03]** and what you get when you download it.
 **[00:13:07]** The SDK is downloaded many, many times for many reasons,
-**[00:13:10]** not just for end users, but also importantly for containers
-**[00:13:14]** which are a primary way that people build their applications
-**[00:13:18]** these days.
-**[00:13:20]** To that end, we were looking at ways to reduce
-**[00:13:23]** the on disk size of the SDK and we discovered
-**[00:13:26]** that tar balls support what's called hard links, which are
-**[00:13:29]** ways of pointing, you know, Well, it's like SIM links,
-**[00:13:33]** it's pointing files that share the exact same content to
-**[00:13:37]** 1 canonical resource.
-**[00:13:39]** We found a way to inspect the layouts of the
-**[00:13:42]** SDK that we make every time we produce our tar
-**[00:13:45]** balls and our packages of all kinds and do an
-**[00:13:48]** automated unification and deduplication and that has yielded incredible results.
-**[00:13:53]** Over the course of the dot net 11 preview so
-**[00:13:56]** far we have shaved quite a few megabytes, somewhere in
-**[00:14:01]** the order of 80 ish megabytes for all these different
-**[00:14:05]** platforms and more from all of the SDK payloads.
+**[00:13:11]** not just for end users, but also, importantly,
+**[00:13:13]** for containers, which are a primary way
+**[00:13:17]** that people build their applications these days.
+**[00:13:20]** To that end, we were looking at ways to reduce the on-disk size
+**[00:13:23]** of the SDK, and we discovered
+**[00:13:25]** that tarballs support what's called hard links,
+**[00:13:30]** which are ways of pointing -- well, it's like symlinks.
+**[00:13:34]** It's pointing to files that share the exact same content
+**[00:13:37]** to one canonical resource.
+**[00:13:39]** We found a way to inspect the layouts of the SDK
+**[00:13:42]** that we make every time we produce our tarballs
+**[00:13:45]** and our packages of all kinds and do an automated unification
+**[00:13:49]** and deduplication, and that has yielded incredible results.
+**[00:13:53]** Over the course of the.NET 11 previews, so far,
+**[00:13:57]** we have shaved quite a few megabytes --
+**[00:14:01]** somewhere on the order of 80-ish megabytes --
+**[00:14:03]** for all these different platforms, and more,
+**[00:14:06]** from all of the SDK payloads.
 **[00:14:09]** This is huge.
-**[00:14:11]** A smaller payload is faster to get to you, and
-**[00:14:13]** it's also just less overall network IO, especially for those
-**[00:14:17]** SDK containers that I mentioned.
-**[00:14:19]** So this is an example of us building on the
-**[00:14:22]** run times better knowledge of tar ballsstartingin.net 7, building some
-**[00:14:26]** confidence with tar balls through the SDK containerization feature, and
-**[00:14:31]** then applying that tar ball confidence to our own packaging
-**[00:14:35]** to deliver wins for our users and our customers.
-**[00:14:39]** So I think that's a great segue to start talking
-**[00:14:41]** about the runtime here, because everything I just showed you
-**[00:14:44]** would not be possible without the work that Rich and
-**[00:14:46]** his teams have done.
-**[00:14:48]** Rich, you want to take us through what's coming in
-**[00:14:49]** 11?
-**[00:14:50]** Yes, yeah, I love the the tarball piece.
-**[00:14:52]** You are very familiar with those those APIs.
+**[00:14:11]** A smaller payload is faster to get to you,
+**[00:14:13]** and it's also just less overall network IO,
+**[00:14:16]** especially for those SDK containers that I mentioned.
+**[00:14:19]** This is an example of us building
+**[00:14:21]** on the runtime's better knowledge of tarballs starting
+**[00:14:24]** in.NET 7, building some confidence with tarballs
+**[00:14:28]** through the SDK containerization feature, and then applying
+**[00:14:31]** that tarball confidence to our own packaging to deliver wins
+**[00:14:36]** for our users and our customers.
+**[00:14:39]** I think that's a great segue to start talking
+**[00:14:41]** about the runtime here because everything I just showed you
+**[00:14:44]** would not be possible without the work that Rich
+**[00:14:46]** and his teams have done.
+**[00:14:48]** Rich, you want to take us through what's coming in 11?
+**[00:14:50]** RICHARD LANDER: Yes.
+**[00:14:51]** Yeah, I love the tarball piece.
+**[00:14:52]** You are very familiar with those APIs.
 **[00:14:55]** I think you're our best user.
-**[00:14:58]** OK, yeah.
-**[00:15:00]** So yeah, I want to talk about what's been happening
-**[00:15:04]** in the libraries.
-**[00:15:05]** So in Preview 4, we announced a big update to
-**[00:15:09]** the Process API.
-**[00:15:11]** So you typically use this API to start a process,
-**[00:15:15]** capture its results, things like that.
-**[00:15:19]** Unfortunately, this is actually somewhat difficult and has been a
-**[00:15:25]** long source of bugs for users.
-**[00:15:28]** So we now have a set of sort of like
-**[00:15:31]** convenience AP is that we expose that, do the sorts
-**[00:15:35]** of things that you want, do it correctly and do
-**[00:15:39]** it fast.
-**[00:15:39]** So I'm going to quickly go through those.
-**[00:15:43]** The first one, yeah, on the on the next slide,
-**[00:15:47]** the first one is all right.
-**[00:15:49]** This is this is actually the bad case.
-**[00:15:51]** We're going to go over that first in this particular
-**[00:15:55]** kind of somewhat made-up scenario, we're going to call.net build
-**[00:16:00]** with like full diagnostics.
-**[00:16:02]** And so we're going to have both standard error and
-**[00:16:05]** standard output like you know, yeah, both of those present.
-**[00:16:09]** And so the key point here is the 2 lines
-**[00:16:12]** that end in read to end.
-**[00:16:15]** So what actually happens and that this is this is
-**[00:16:17]** the quote UN quote.
-**[00:16:18]** The bad thing is there are buffers attached to both
-**[00:16:22]** standard output and standard error.
-**[00:16:26]** What what happens is the code says read standard output
-**[00:16:29]** to the end before reading anything from the standard error
-**[00:16:34]** stream.
-**[00:16:36]** What happens is standard error, the buffer for that gets
-**[00:16:40]** filled up and so the the writer, which is basically
-**[00:16:44]** done at build, it stops because it can't fill the
-**[00:16:48]** thing up.
-**[00:16:49]** But you're waiting for standard error to end.
-**[00:16:51]** And so this is obviously a deadlock and so you
-**[00:16:55]** have to write code a different way to avoid this.
-**[00:16:59]** So now I will transition to looking at how this
-**[00:17:04]** works better.
-**[00:17:05]** So we have a series of new AP is that
-**[00:17:08]** could do slightly different things depending on your use case.
-**[00:17:12]** So this one's called run and capture text async.
-**[00:17:15]** And so it gives you this object back, this process
-**[00:17:18]** text output object.
-**[00:17:20]** And it basically has all the information that you would
-**[00:17:24]** want on it.
-**[00:17:24]** So it gives you all the standard output, all the
-**[00:17:27]** standard error and gives you the exit codes.
-**[00:17:29]** And then you can do whatever you want with them.
-**[00:17:32]** The next one is called read all lines async.
-**[00:17:37]** And so it's it's somewhat similar except it allows you
-**[00:17:40]** to for each over all the lines.
-**[00:17:43]** And then you can ask the line if it's standard
-**[00:17:45]** error or not and do whatever it is that you
-**[00:17:47]** would like.
-**[00:17:48]** And so this is also, as you can probably guess,
-**[00:17:51]** more of a streaming type of model.
-**[00:17:54]** And then the, the next one is right.
-**[00:18:01]** Just this one allows you to do the same thing
-**[00:18:04]** as say, you know, the the example here is done
-**[00:18:07]** at help pipe to grep.
-**[00:18:10]** So if you're writing, if you're working on the shell,
-**[00:18:12]** you know, you, you might pipe all the time.
-**[00:18:14]** I, I certainly do.
-**[00:18:15]** So how do you write the same thing in C#?
-**[00:18:19]** So the big win here is actually with this create
-**[00:18:23]** anonymous pipe API.
-**[00:18:24]** So in this case we have a reader and a
-**[00:18:27]** writer, or sorry, read and write sides, and then we
-**[00:18:31]** pass the right side to the standard output of the
-**[00:18:35]** first command, and then we pass the read to the
-**[00:18:38]** standard input of the second command.
-**[00:18:42]** Makes sense, right?
-**[00:18:43]** And then we just start the two processes and exactly
-**[00:18:46]** the right thing happens.
-**[00:18:48]** This is the yeah, the entirety of the code that
-**[00:18:50]** you need.
-**[00:18:51]** And then we just wait for the the second command
-**[00:18:54]** to exit.
-**[00:18:54]** And then everything is all the resources are released correctly.
-**[00:19:00]** OK, next one is a fire and forget story.
-**[00:19:04]** So sometimes you just want to start a process and
-**[00:19:08]** just have it do its thing, have it release resources
-**[00:19:13]** correctly and not do anything.
-**[00:19:15]** So in in this case, you don't the the definition
-**[00:19:18]** of fire and forget is that you're not getting, you're
-**[00:19:21]** not trying to find out what the results were.
-**[00:19:24]** And so this does this.
-**[00:19:26]** The only the only interesting nuance is you can either
-**[00:19:30]** have the process killed on parent exit or not depending
-**[00:19:34]** on your use case.
-**[00:19:36]** OK, so Chet spent a fair bit of time talking
-**[00:19:41]** about native AOT and trimming.
-**[00:19:45]** So there's actually a separate API, separate type called safe
-**[00:19:49]** process handle.
-**[00:19:52]** So if you're trimming is something you're, you know, super
-**[00:19:56]** concerned about, then you can use this type instead.
-**[00:20:01]** We've done work so that it trims better than the
-**[00:20:06]** process type.
-**[00:20:07]** OK, so let's let's switch gears.
-**[00:20:13]** Talk about text processing.
-**[00:20:16]** So much of this is about Unicode kind of conformance.
-**[00:20:22]** So we now have two pairs of AP is for
-**[00:20:26]** UTF 8 and UTF 16.
-**[00:20:28]** One is called is valid and the other one is
-**[00:20:31]** called index of invalids subsequence.
-**[00:20:34]** So where this is useful is say if you're getting
-**[00:20:38]** Unicode text from a file or over the wire and
-**[00:20:42]** you're wanting to just validate that it's valid.
-**[00:20:46]** And then if it's not know exactly where the the
-**[00:20:48]** bad code starts, that that's what this API does and
-**[00:20:51]** allows you to produce, you know, great error messages or
-**[00:20:55]** have good diagnostics or whatever it is that you're doing.
-**[00:20:58]** Another one is if you've done any text processing, particularly
-**[00:21:02]** that comes from a variety of operating systems, you'll know
-**[00:21:06]** that Management is quite a pain.
-**[00:21:08]** So there's a new regex option called any And so it
-**[00:21:12]** works like with slash R/ON it works.
-**[00:21:15]** I think it's, you know, got this has several variance
-**[00:21:20]** that could be in the the text that you are
-**[00:21:24]** processing.
-**[00:21:25]** So that's incredibly useful.
-**[00:21:27]** And last is we've made some of the string methods
-**[00:21:34]** run aware.
-**[00:21:36]** And so just a quick take on that if you're
-**[00:21:38]** unaware.
-**[00:21:39]** So if you're say you're using UTF 16 strings and
-**[00:21:45]** it's like, oh, I've got these these car or char
-**[00:21:50]** values.
-**[00:21:50]** So clearly like this can hold any Unicode quote UN
-**[00:21:55]** quote character and we're all good to go.
+**[00:14:58]** Okay. Yeah, I want to talk
+**[00:15:02]** about what's been happening in the libraries.
+**[00:15:07]** In Preview 4, we announced a big update to the process API.
+**[00:15:12]** You typically use this API to start a process,
+**[00:15:16]** capture its results, things like that.
+**[00:15:19]** Unfortunately, this is actually somewhat difficult
+**[00:15:23]** and has been a long source of bugs for users,
+**[00:15:28]** so we now have a set of, sort of, convenience APIs
+**[00:15:33]** that we expose that do the sorts of things that you want,
+**[00:15:37]** do them correctly, and do it fast.
+**[00:15:41]** I'm going to quickly go through those.
+**[00:15:43]** The first one -- yeah, on the next slide.
+**[00:15:47]** The first one is, oh, right, this is actually the bad case.
+**[00:15:51]** We're going to go over that first.
+**[00:15:54]** In this particular kind of somewhat made-up scenario,
+**[00:15:58]** we're going to call "dotnet build" with full diagnostics.
+**[00:16:02]** We're going to have both standard error
+**[00:16:05]** and standard output, like, you know --
+**[00:16:08]** yeah, both of those present.
+**[00:16:10]** The key point here is the two lines that end in "read to end."
+**[00:16:15]** What actually happens, and this is, quote/unquote,
+**[00:16:18]** "the bad thing," is there are buffers attached
+**[00:16:23]** to both standard output and standard error.
+**[00:16:26]** What happens is the code says, "Read standard output
+**[00:16:29]** to the end before reading anything
+**[00:16:32]** from the standard error stream."
+**[00:16:36]** What happens is standard error,
+**[00:16:38]** the buffer for that, gets filled up.
+**[00:16:42]** The writer, which is basically dotnet build,
+**[00:16:46]** it stops because it can't fill the thing up, but you're waiting
+**[00:16:49]** for standard error to end.
+**[00:16:52]** This is, obviously, a deadlock,
+**[00:16:54]** so you have to write code a different way to avoid this.
+**[00:17:00]** Now I will transition to looking at how this works better.
+**[00:17:07]** We have a series of new APIs
+**[00:17:09]** that could do slightly different things depending
+**[00:17:11]** on your use case.
+**[00:17:12]** This one's called RunAndCaptureTextAsync.
+**[00:17:15]** It gives you this object back, this process text output object,
+**[00:17:20]** and it, basically, has all the information
+**[00:17:23]** that you would want on it.
+**[00:17:24]** It gives you all the standard output, all the standard error,
+**[00:17:27]** and gives you the exit codes.
+**[00:17:29]** Then you can do whatever you want with them.
+**[00:17:32]** The next one is called ReadAllLinesAsync.
+**[00:17:38]** It's somewhat similar, except it allows you
+**[00:17:40]** to "foreach over" all the lines.
+**[00:17:43]** Then you can ask the line if it's standard error or not
+**[00:17:45]** and do whatever it is that you would like.
+**[00:17:48]** This is also, as you can probably guess,
+**[00:17:50]** more of a streaming type of model.
+**[00:17:54]** The next one is -- this one allows you
+**[00:18:03]** to do the same thing as, say, you know,
+**[00:18:05]** the example here is dotnet help, pipe to grep.
+**[00:18:10]** So if you're working on the shell,
+**[00:18:12]** you might pipe all the time.
+**[00:18:14]** I certainly do, so how do you write the same thing in C#?
+**[00:18:19]** The big win here is actually
+**[00:18:21]** with this CreateAnonymousPipe API.
+**[00:18:24]** In this case, we have a reader and a writer,
+**[00:18:28]** or sorry, read and write sides.
+**[00:18:31]** Then we pass the write side to the standard output
+**[00:18:34]** of the first command, and then we pass the read
+**[00:18:38]** to the standard input of the second command.
+**[00:18:42]** It makes sense, right?
+**[00:18:43]** Then we just start the two processes,
+**[00:18:46]** and exactly the right thing happens.
+**[00:18:48]** This is the entirety of the code that you need.
+**[00:18:51]** Then we just wait for the second command to exit,
+**[00:18:54]** and then everything is --
+**[00:18:56]** all the resources are released correctly.
+**[00:19:02]** Next one is a fire-and-forget story.
+**[00:19:05]** Sometimes you just want to start a process
+**[00:19:07]** and just have it do its thing,
+**[00:19:11]** have it release resources correctly, and not do anything.
+**[00:19:15]** In this case, the definition of fire-and-forget is
+**[00:19:19]** that you're not trying to find out what the results were.
+**[00:19:24]** This does this.
+**[00:19:26]** The only interesting nuance is you can either have the process
+**[00:19:31]** killed on parent exit or not, depending on your use case.
+**[00:19:40]** Chet spent a fair bit of time talking
+**[00:19:42]** about NativeAOT and trimming.
+**[00:19:45]** There's actually a separate API, a separate type,
+**[00:19:48]** called SafeProcessHandle.
+**[00:19:54]** If trimming is something you're super-concerned about,
+**[00:19:58]** then you can use this type instead.
+**[00:20:01]** We've done work so that it trims better than the process type.
+**[00:20:10]** Let's switch gears and talk about text processing.
+**[00:20:19]** Much of this is about Unicode conformance.
+**[00:20:24]** We now have two pairs of APIs for utf8 and utf16.
+**[00:20:28]** One is called IsValid, and the other one is called
+**[00:20:31]** IndexOfInvalidSubsequence.
+**[00:20:34]** Where this is useful is, say, if you're getting Unicode text
+**[00:20:39]** from a file or over the wire, and you're wanting
+**[00:20:43]** to just validate that it's valid, and then if it's not,
+**[00:20:46]** know exactly where the bad code starts,
+**[00:20:50]** that's what this API does.
+**[00:20:51]** It allows you to produce great error messages
+**[00:20:54]** or have good diagnostics
+**[00:20:55]** or whatever it is that you're doing.
+**[00:20:57]** Another one is if you've done any text processing,
+**[00:21:00]** particularly that comes from a variety of operating systems,
+**[00:21:03]** you'll know that new line measurement is quite a pain,
+**[00:21:08]** so there's a new regex option called AnyNewLine.
+**[00:21:12]** It works like with r or n.
+**[00:21:15]** I think it's got -- it has several new line variants
+**[00:21:20]** that could be in the text that you are processing,
+**[00:21:25]** so that's incredibly useful.
+**[00:21:27]** Last is we've made some of the string methods Rune aware.
+**[00:21:36]** Just a quick take on that if you're unaware,
+**[00:21:42]** say you're using utf16 strings, and it's, like, oh,
+**[00:21:47]** I've got these char values, so clearly,
+**[00:21:52]** this can hold any Unicode quote/unquote "character,"
+**[00:21:57]** and we're all good to go.
 **[00:21:59]** Well, it doesn't actually work that way.
-**[00:22:01]** So lots of Unicode characters fit within two bytes within
-**[00:22:07]** 16 bits, but many actually don't.
-**[00:22:10]** So the emojis are the the kind of poster children
-**[00:22:14]** of ones that don't.
-**[00:22:16]** And so they can take multiple characters, you know, two
-**[00:22:19]** or more.
-**[00:22:20]** And so the rune is really describes A Unicode code
-**[00:22:25]** point.
-**[00:22:26]** And so it could be a character like it could
-**[00:22:29]** be a letter, a number or an emoji.
-**[00:22:32]** And so these APIs now now work correctly with those.
-**[00:22:38]** So I think I have a demo quick bit of
-**[00:22:40]** code for that is a little bit of an eye
-**[00:22:43]** chart.
-**[00:22:44]** What does what this is showing is say I want
-**[00:22:48]** to do some analysis of Chet's comments on GitHub.
-**[00:22:54]** It's like I think Chet is an amazing code reviewer
-**[00:22:58]** and is often telling people like looks good to me
-**[00:23:03]** ship it, but sometimes check dust is with emojis.
-**[00:23:07]** And so this code basically what it's doing is it's
-**[00:23:11]** saying like, oh, I'm going to break all this text
-**[00:23:16]** into new lines using the regex Capability.
-**[00:23:20]** And then I am going to four each or I'm
-**[00:23:24]** going to four over all of these lines and check
-**[00:23:28]** to see if Chet specified any one of these ship
-**[00:23:32]** it style declarations.
-**[00:23:36]** And then I'm going to print the context before and
-**[00:23:40]** after this this content so I can see what what
-**[00:23:44]** what Chet said for context.
-**[00:23:46]** And then I'm going to follow up where I think
-**[00:23:48]** he made the wrong call.
-**[00:23:50]** So, yeah, so that vote, that's super useful.
-**[00:23:54]** Just for one bit of clarity, I'm not like if
-**[00:23:57]** I was to like really write this thing, I'm not
-**[00:24:00]** sure I would actually use these particular AP is.
-**[00:24:03]** I might actually use the search values AP is which
-**[00:24:06]** I'm I'm a big fan of, but I thought this
-**[00:24:08]** was a good way of showing these AP is.
-**[00:24:11]** OK, let's move on.
-**[00:24:14]** So system text, Jason, you know, we've been working on
-**[00:24:17]** this, this component for, I don't know, six or seven
-**[00:24:20]** years or something like that.
-**[00:24:22]** And we keep on investing in it, which is great.
-**[00:24:26]** One of the places, and I actually see this with
-**[00:24:29]** agents as well, is you want all this policy kind
-**[00:24:32]** of in your for your serializer to say what it
-**[00:24:36]** is that you want to happen.
-**[00:24:37]** It's usually about naming or or not emitting a particular
-**[00:24:42]** property if it's null.
-**[00:24:44]** So let's let's look at the code.
-**[00:24:48]** So in this particular case, we're using, we're able to
-**[00:24:52]** specify for a whole type for event data that we
-**[00:24:56]** don't want to write any properties when they're null for
-**[00:25:00]** the entirety of the type.
-**[00:25:02]** So that's super useful.
-**[00:25:03]** And then if we go down to the bottom or
-**[00:25:06]** the middle, actually, we can see that we're setting adjacent
-**[00:25:11]** serializer options, which which says that we want to use
-**[00:25:16]** Pascal case for serializing.
-**[00:25:18]** And then you can see that when we actually do
-**[00:25:21]** serialize at the at the bottom, we use that option.
-**[00:25:24]** So then Pascal case will obviously be our default.
-**[00:25:27]** But then if you go back up to the top,
-**[00:25:30]** you'll see that for event name, we have an override
-**[00:25:34]** which says that we want to use camel case.
-**[00:25:38]** So that's a new capability that gives you a little
-**[00:25:42]** bit more control while still enabling all the convenience.
-**[00:25:46]** OK, so I'm actually a big fan of Jason lines.
+**[00:22:03]** Lots of Unicode characters fit within 2 bytes, within 16 bits,
+**[00:22:09]** but many actually don't.
+**[00:22:10]** The emojis are the kind
+**[00:22:12]** of poster children of ones that don't.
+**[00:22:16]** They can take multiple characters, two or more.
+**[00:22:21]** Rune really describes a Unicode code point.
+**[00:22:27]** It could be a character.
+**[00:22:28]** It could be a letter, a number, or an emoji.
+**[00:22:34]** These APIs now work correctly with those.
+**[00:22:38]** I think I have a demo, a quick bit of code, for that.
+**[00:22:42]** It's a little bit of an eye chart.
+**[00:22:44]** What this is showing is, say I want to do some analysis
+**[00:22:50]** of Chet's comments on GitHub.
+**[00:22:55]** I think Chet is an amazing code reviewer
+**[00:22:58]** and is often telling people, "Looks good to me, ship it."
+**[00:23:04]** but sometimes Chet does this with emojis.
+**[00:23:07]** This code, basically, what it's doing is it's saying, oh,
+**[00:23:12]** I'm going to break all this text
+**[00:23:15]** into new lines using the Regex new line capability.
+**[00:23:20]** Then I am going to "foreach over" all of these lines
+**[00:23:25]** and check to see if Chet specified any one
+**[00:23:30]** of these ship-it style declarations.
+**[00:23:36]** Then I'm going to print the context before
+**[00:23:38]** and after this, this content.
+**[00:23:41]** I can see what Chet said for context, and then I'm going
+**[00:23:47]** to follow up where I think he made the wrong call.
+**[00:23:50]** So, yeah, that's super-useful.
+**[00:23:54]** Just for one bit of clarity,
+**[00:23:58]** if I was to really write this thing,
+**[00:24:00]** I'm not sure I would actually use these particular APIs.
+**[00:24:03]** I might actually use the search values APIs,
+**[00:24:05]** which I'm a big fan of, but I thought this was a good way
+**[00:24:09]** of showing these APIs.
+**[00:24:11]** Okay. Let's move on.
+**[00:24:15]** System.text.Json, we've been working on this component for,
+**[00:24:20]** I don't know, six or seven years or something like that.
+**[00:24:22]** We keep on investing in it, which is great.
+**[00:24:26]** One of the places, and I actually see this with agents,
+**[00:24:29]** as well, is you want all this policy kind of in your --
+**[00:24:35]** for your serializer to say what it is that you want to happen.
+**[00:24:37]** It's usually about naming
+**[00:24:39]** or not emitting a particular property if it's null.
+**[00:24:46]** Let's look at the code.
+**[00:24:48]** In this particular case, we're using --
+**[00:24:52]** we're able to specify for a whole type for event data
+**[00:24:56]** that we don't want to write any properties when they're null
+**[00:25:00]** for the entirety of the type.
+**[00:25:02]** That's super useful, and then if we go down to the bottom
+**[00:25:05]** or the middle, actually,
+**[00:25:07]** we can see that we're setting adjacent serializer options,
+**[00:25:11]** which says that we want to use Pascal case for serializing.
+**[00:25:18]** Then you can see that when we actually do serialize
+**[00:25:22]** at the bottom, we use that option,
+**[00:25:24]** so then Pascal case will obviously be our default.
+**[00:25:27]** Then if you go back up to the top,
+**[00:25:29]** you'll see that for event name, we have an override,
+**[00:25:32]** which says that we want to use camel case.
+**[00:25:38]** So that's a new capability
+**[00:25:41]** that gives you a little bit more control while still enabling all
+**[00:25:45]** the convenience.
+**[00:25:46]** Okay. I'm actually a big fan of JSON Lines.
 **[00:25:54]** I've been using it for a number of years.
-**[00:25:57]** And So what Jason lines is, is 1 Jason document
-**[00:26:00]** per line.
-**[00:26:02]** There's another variant called like ND Jason, which is I
-**[00:26:05]** think that's what it's called.
+**[00:25:57]** What JSON Lines is, is one JSON document per line.
+**[00:26:02]** There's another variant called NDJSON, which is --
+**[00:26:06]** I think that's what it's called.
 **[00:26:07]** It's very, very similar.
-**[00:26:10]** And so actually if you look at certain AI agents,
-**[00:26:14]** they have these these logs of the conversations than there
-**[00:26:18]** often is Jason lines.
-**[00:26:20]** There's some scenarios where Jason lines is absolutely the right
-**[00:26:23]** choice.
-**[00:26:24]** And you can see in this example, it's showing how
-**[00:26:30]** we can async write the set of Jason documents that
-**[00:26:35]** are produced by an I async enumerable method.
-**[00:26:40]** And the way to opt into this is with this
-**[00:26:43]** top level values is true.
-**[00:26:47]** OK, just super quick.
-**[00:26:54]** We did a bunch of work on compression.
+**[00:26:11]** Actually, if you look at certain agents, they have these logs
+**[00:26:16]** of the conversations, then they're often as JSON Lines.
+**[00:26:20]** There's some scenarios
+**[00:26:21]** where JSON Lines is absolutely the right choice.
+**[00:26:24]** You can see in this example,
+**[00:26:27]** it's showing how we can async write the set of JSON documents
+**[00:26:33]** that are produced by an IAsyncEnumerable method,
+**[00:26:40]** and the way to opt into this is with this
+**[00:26:42]** "top-level values is true."
+**[00:26:49]** Just super quick, we did a bunch of work on compression.
 **[00:26:57]** I'm not going to go through all of these.
-**[00:26:59]** The perhaps the biggest change is that Z standard AP
-**[00:27:03]** is are now integrated into the product.
-**[00:27:05]** But we made improvements in in several different places for
-**[00:27:10]** several different algorithms.
-**[00:27:13]** And yeah, this is all continues to be important.
-**[00:27:16]** I have, I think I have a quick chart on
-**[00:27:19]** this, yes.
-**[00:27:20]** So just for kicks, I compressed the system IO compression
-**[00:27:29]** C# files in the.net runtime repo.
-**[00:27:34]** So you can see I was trying to be a
-**[00:27:37]** bit meta and this is just a massive caveat.
-**[00:27:41]** This is it, one example.
-**[00:27:44]** This is only text, you know, it's not, it's not
-**[00:27:47]** some other type of artifact and it's only one body
-**[00:27:50]** of text.
-**[00:27:51]** But I thought it was just interesting.
-**[00:27:54]** So I compressed with both the optimal setting, but then
-**[00:27:58]** also smallest size, which is different than optimal.
-**[00:28:04]** And you can see for this particular body of text,
-**[00:28:08]** broadly came out best with Z standard being very, very
-**[00:28:12]** close and, and quite competitive.
-**[00:28:15]** So, and I, I think, I think it was like,
-**[00:28:18]** well, it doesn't matter how big the, I think it
-**[00:28:20]** was like 15 megabytes.
+**[00:27:00]** Perhaps the biggest change is
+**[00:27:01]** that Zstandard APIs are now integrated into the product,
+**[00:27:06]** but we made improvements in several different places
+**[00:27:10]** for several different algorithms.
+**[00:27:14]** Yeah, this is all continues to be important.
+**[00:27:16]** I think I have a quick chart on this.
+**[00:27:19]** Yes, so just for kicks, I compressed the system,
+**[00:27:27]** I/O compression C# files, in the dotnet runtime repo.
+**[00:27:34]** You can see I was trying to be a bit meta, and this is --
+**[00:27:39]** just a massive caveat.
+**[00:27:41]** This is one example.
+**[00:27:44]** This is only text.
+**[00:27:45]** It's not it's not some other type of artifact,
+**[00:27:48]** and it's only one body of text,
+**[00:27:51]** but I thought it was just interesting, so I compressed
+**[00:27:56]** with both the optimal setting, but then, also a smaller size,
+**[00:28:01]** which is different than optimal.
+**[00:28:04]** You can see for this particular body of text,
+**[00:28:08]** brotli came out best with Zstandard being very, very close
+**[00:28:13]** and quite competitive.
+**[00:28:17]** I think it was like -- well, it doesn't matter how big,
+**[00:28:19]** but I think it was like 15 megabytes.
 **[00:28:21]** No, it can't have been that much.
-**[00:28:23]** I actually don't remember how large the, the source text
-**[00:28:26]** was, but this, this was, this was great.
-**[00:28:29]** And you can, you can now do this at home.
-**[00:28:33]** OK, so now we're going to switch gears a lot.
-**[00:28:37]** So I'm going to talk about 2-2 enormous runtime projects
-**[00:28:43]** that we've been working on.
-**[00:28:45]** So the first time is runtime async and I'm going
-**[00:28:48]** to give you a quick introduction first.
-**[00:28:51]** So I think everyone knows that async code is pervasive
-**[00:28:54]** and C#.
-**[00:28:55]** It's it's pervasive in many languages.
-**[00:28:58]** And so runtime async, you should think about it as
-**[00:29:01]** a new optimization for async code.
+**[00:28:23]** I actually don't remember how large the source text was,
+**[00:28:27]** but this was this was great, and you can now do this at home.
+**[00:28:33]** Okay. Now we're going to switch gears a lot.
+**[00:28:38]** I'm going to talk about two enormous runtime projects
+**[00:28:44]** that we've been working on, so the first time is Runtime Async.
+**[00:28:49]** I'm going to give you a quick introduction first.
+**[00:28:51]** I think everyone knows that Async code is pervasive in C#.
+**[00:28:55]** It's pervasive in many languages.
+**[00:28:59]** Runtime Async, you should think of it
+**[00:29:01]** as a new optimization for Async Code.
 **[00:29:03]** It's not some new model.
-**[00:29:06]** There's no new keywords that you need to learn or
-**[00:29:09]** anything like that.
-**[00:29:10]** Yeah, no, no source changes required.
-**[00:29:12]** It's really just a fast pass that's decided to compile
-**[00:29:15]** time.
-**[00:29:16]** When you, you know, compile your code with like done
-**[00:29:20]** it build, Yeah.
-**[00:29:21]** And it's completely compatible.
-**[00:29:23]** So you can enable runtime async, you can call old
-**[00:29:27]** code new, old code can call new code there, there's
-**[00:29:31]** no there's no compatibility break in in any direction.
-**[00:29:37]** The big take away is when you write new code
-**[00:29:40]** and by new code, I mean when you enable runtime
-**[00:29:42]** async, there's no state machines.
-**[00:29:44]** And what we'll talk a little bit more about what
-**[00:29:46]** that means.
-**[00:29:47]** It's opt infor.net 11 and will likely be the default
-**[00:29:51]** and like the new normal in.net 12.
-**[00:29:54]** But again, even in.net 12, you'll still be able to
-**[00:29:57]** like, yeah, there's no compatibility break ever.
-**[00:30:02]** So even when it's the default, you can still do
-**[00:30:03]** whatever you wanted before.
-**[00:30:05]** OK, so the opt in is super easy.
+**[00:29:05]** There are no new keywords that you need to learn
+**[00:29:09]** or anything like that.
+**[00:29:10]** Yeah, no source changes required.
+**[00:29:12]** It's really just a fast path that's decided at compile time
+**[00:29:16]** when you compile your code with dotnet build.
+**[00:29:21]** Yeah, and it's completely compatible.
+**[00:29:24]** You can enable Runtime Async.
+**[00:29:26]** You can call old code.
+**[00:29:30]** Old code can call new code.
+**[00:29:33]** There's no compatibility break in any direction.
+**[00:29:37]** The big takeaway is when you write new code --
+**[00:29:40]** and by "new code," I mean, when you enable Runtime Async,
+**[00:29:43]** there's no state machines.
+**[00:29:44]** We'll talk a little bit more about what that means.
+**[00:29:47]** Opt-in for.NET 11, will likely be the default
+**[00:29:50]** and the new normal in.NET 12.
+**[00:29:54]** But again, even in.NET 12, you'll still be able to --
+**[00:29:58]** yeah, there's no compatibility break ever.
+**[00:30:02]** Even when it's the default,
+**[00:30:03]** you can still do whatever you wanted before.
+**[00:30:05]** Okay. The opt in is super easy.
 **[00:30:08]** We have this features property.
-**[00:30:10]** You just type runtime dash async equals on and that's
-**[00:30:13]** that's it.
-**[00:30:15]** OK, So just a quick way to think about this.
-**[00:30:21]** So these names are not are not perfect, but these
-**[00:30:24]** are the names we're using.
-**[00:30:26]** So 1 is we call compiler async, meaning that's the
-**[00:30:30]** traditional model that say the C# compiler uses and then
-**[00:30:34]** so the source compiler owns the state machine.
-**[00:30:38]** So you have an async method gets rewritten as a
-**[00:30:42]** state machine and then it's has a certain set of
-**[00:30:46]** mechanics I'm largely not going to get into that are
-**[00:30:50]** executed by nature of how this code is written.
-**[00:30:55]** With runtime async the the code is not rewritten.
-**[00:30:58]** The state machine does not exist in your in your,
-**[00:31:01]** you know DLL or EXE that you you generate.
-**[00:31:05]** The runtime takes care of all of the so we
-**[00:31:08]** still have suspension and resumption.
+**[00:30:09]** You just type "runtime-async equals on," and that's it.
+**[00:30:18]** Just a quick way to think about this,
+**[00:30:21]** so these names are not perfect,
+**[00:30:24]** but these are the names we're using.
+**[00:30:26]** One is we call Compiler Async,
+**[00:30:29]** meaning that's the traditional model that,
+**[00:30:31]** say, the C# compiler uses.
+**[00:30:36]** The source compiler owns the state machine,
+**[00:30:38]** so you have an async method
+**[00:30:39]** that gets rewritten as a state machine.
+**[00:30:42]** Then it has a certain set of mechanics,
+**[00:30:47]** that I'm largely not going to get into, that are executed
+**[00:30:52]** by nature of how this code is written.
+**[00:30:55]** With Runtime Async, the code is not rewritten.
+**[00:30:58]** The state machine does not exist in your.dll
+**[00:31:03]** or.exe that you generate.
+**[00:31:05]** The runtime takes care of all of that,
+**[00:31:08]** so we still have suspension and resumption.
 **[00:31:11]** All of this machinery is owned by the runtime.
-**[00:31:15]** So we basically have N state machines that get boiled
-**[00:31:19]** down to 1 runtime managed system.
-**[00:31:23]** Just one kind of slight joke is so like I
-**[00:31:26]** said, compiler async is the language compiler model and runtime
-**[00:31:32]** async is the new one.
-**[00:31:34]** But the The thing is, is that it's almost all
-**[00:31:37]** implemented in the JIT.
-**[00:31:39]** So which is itself a compiler.
-**[00:31:41]** So which we'll we'll see a little bit more.
-**[00:31:45]** So they're both compiler async of a kind.
-**[00:31:47]** But anyway, we're still using these names, OK?
-**[00:31:51]** I'm sure that's served to just confuse people.
-**[00:31:54]** So in terms of the benefits, why, why did we
-**[00:31:56]** do this project?
-**[00:31:58]** So cleaner stack frames for largely for production diagnostics, there's
-**[00:32:03]** a small win on size for the binaries.
+**[00:31:16]** We basically have many state machines that get boiled
+**[00:31:19]** down to one runtime managed system.
+**[00:31:23]** Just one, it's kind of a slight joke, is, like I said,
+**[00:31:29]** Compiler Async is the language compiler model
+**[00:31:32]** and Runtime Async is the new one.
+**[00:31:35]** The thing is, is that it's almost all implemented
+**[00:31:38]** in the JIT, which is itself a compiler,
+**[00:31:43]** which we'll see a little bit more.
+**[00:31:45]** They're both Compiler Async of a kind, but anyway,
+**[00:31:47]** we're still using these names.
+**[00:31:51]** I'm sure that served to just confuse people.
+**[00:31:54]** In terms of the benefits, why did we do this project?
+**[00:31:58]** So cleaner stack frames for --
+**[00:32:01]** largely for production diagnostics, there's a small win
+**[00:32:04]** on size for the binaries.
 **[00:32:07]** A large portion of the motivation was perf.
-**[00:32:10]** We think we can make async code faster, particularly when
-**[00:32:14]** all the code is runtime async.
-**[00:32:16]** So you know, once once people start adopting this, we'll
-**[00:32:19]** encourage them to convert their whole stack to runtime async.
-**[00:32:23]** And what that all that means is just turn runtime
-**[00:32:26]** async on for all your projects.
-**[00:32:29]** And like I said, well, that'll eventually be default.
-**[00:32:32]** And there's a potential for async code to actually improve
+**[00:32:09]** We think we can make Async Code faster, particularly
+**[00:32:13]** when all the code is runtime async.
+**[00:32:18]** Once people start adopting this, we'll encourage them
+**[00:32:21]** to convert their whole stack to Runtime Async.
+**[00:32:24]** All that means is just turn Runtime Async
+**[00:32:27]** on for all your projects.
+**[00:32:29]** Like I said, that'll eventually be default,
+**[00:32:32]** and there's potential for Async code to actually improve
 **[00:32:36]** over time without recompiling your code.
-**[00:32:39]** So imagine in the future you've got a bunch of
-**[00:32:43]** you say you have your own Nugent feed for, you
-**[00:32:46]** know, your company's code and your upgrade to like you
-**[00:32:50]** Donna 13.
-**[00:32:51]** And you haven't actually recompiled that code, although it is
-**[00:32:55]** using runtime async.
-**[00:32:57]** There could be improvements to the async infrastructure within the
-**[00:33:00]** runtime and then your code would just get faster because
-**[00:33:03]** all that code is in is in the runtime and
-**[00:33:06]** not in your library anymore.
-**[00:33:07]** OK, yeah.
-**[00:33:12]** So here's here's a fun chart that I made.
-**[00:33:14]** So we turned on runtime async for the product in
-**[00:33:20]** preview 4.
-**[00:33:21]** So that's the one we released in May.
-**[00:33:25]** And so that means it was not on in preview
-**[00:33:28]** 3.
-**[00:33:29]** And so I went through the product and found some
-**[00:33:33]** heavy hitters and you can see that the product basically
-**[00:33:37]** got smaller in preview 4.
-**[00:33:39]** And that can be attributed largely to the removal of
-**[00:33:44]** the state machines.
-**[00:33:45]** So these, these these libraries all had state machines in
-**[00:33:48]** them before and now they don't.
-**[00:33:50]** OK, so here's a sample app.
-**[00:33:55]** We're not, we're not going to go into detail on
-**[00:33:57]** what it does, but it's basically just trying.
-**[00:33:59]** It's got outer async, middle async, and inner async.
-**[00:34:02]** And it's just trying to create kind of interleave nested
-**[00:34:07]** async.
-**[00:34:08]** One bit of clarification is I intentionally use tasks are
-**[00:34:11]** completed task, which is obviously not normally how you would
-**[00:34:14]** write your code.
-**[00:34:16]** And the reason is, is I wanted the stack frames
-**[00:34:19]** to just be purely about the async machinery.
-**[00:34:22]** I wanted it to not be about what the code
-**[00:34:25]** is actually doing so that you could just see the
-**[00:34:29]** the the the the most bare stack frames.
-**[00:34:32]** And then one one other piece of information that you
-**[00:34:36]** need to know is that so inner async is obviously
-**[00:34:39]** the most nested in that one we write environment dot
-**[00:34:44]** stack trace.
-**[00:34:45]** So you can see the most nested.
-**[00:34:47]** And then in middle async, after inner async is called,
-**[00:34:52]** I throw an exception and just for some reason I
-**[00:34:56]** wanted them to be in different different frames.
-**[00:35:00]** So OK, so let's see what happens.
-**[00:35:04]** So in done at 10, what we see is, yeah,
-**[00:35:08]** the first part is the stack trace.
-**[00:35:12]** And you you like immediately will see like, Oh yeah,
-**[00:35:14]** I I see these state machines that Rich is talking
-**[00:35:17]** about.
-**[00:35:18]** They're they're definitely there.
-**[00:35:19]** It's kind of a bit messy, but this is, it's
-**[00:35:23]** also accurate.
+**[00:32:39]** So imagine, in the future, you've got a bunch of --
+**[00:32:43]** you say you have your NuGet feed for, you know,
+**[00:32:47]** your company's code and you upgrade.NET 13
+**[00:32:51]** and you haven't actually recompiled that code,
+**[00:32:54]** although it is using Runtime Async,
+**[00:32:57]** there could be improvements to the Async infrastructure
+**[00:32:59]** within the runtime, and then your code would just get faster
+**[00:33:02]** because all that code is in the runtime and not
+**[00:33:05]** in your library anymore.
+**[00:33:07]** Okay.
+**[00:33:12]** Yeah, so here's a fun chart that I made.
+**[00:33:17]** We turned on runtime async for the product in Preview 4.
+**[00:33:21]** That's the one we released in May.
+**[00:33:26]** That means it was not on in Preview 3, and so I went
+**[00:33:30]** through the product and found some heavy hitters.
+**[00:33:34]** You can see that the product basically got smaller
+**[00:33:38]** in Preview 4, and that can be attributed largely
+**[00:33:42]** to the removal of the state machines.
+**[00:33:46]** These libraries all had state machines
+**[00:33:49]** in them before and now they don't.
+**[00:33:54]** Here's a sample app.
+**[00:33:56]** We're not going to go into detail on what it does,
+**[00:33:58]** but it's basically just trying -- it's got outer async,
+**[00:34:01]** middle async and inner async, and it's just trying
+**[00:34:03]** to create kind of interleaved nested async.
+**[00:34:09]** One bit of clarification is I intentionally used
+**[00:34:11]** Task.CompletedTask, which is, obviously,
+**[00:34:13]** not normally how you would write your code.
+**[00:34:16]** The reason is, is I wanted the stack frames to just be purely
+**[00:34:19]** about the Async machinery.
+**[00:34:22]** I wanted it to not be about what the code is actually doing,
+**[00:34:25]** so that you could just see the most-bare stack frames.
+**[00:34:32]** Then one other piece of information that you need
+**[00:34:34]** to know is that -- so inner async is obviously the
+**[00:34:38]** most nested.
+**[00:34:40]** In that one, we write, "Environment.StackTrace,"
+**[00:34:45]** so you can see the most nested.
+**[00:34:47]** Then in middle async after an inner async is called,
+**[00:34:53]** I throw an exception in.
+**[00:34:57]** Just for some reason, I wanted them to be in different frames.
+**[00:35:01]** Okay. Let's see what happens.
+**[00:35:05]** In.NET 10, what we see is, yeah,
+**[00:35:10]** the first part is the stack trace,
+**[00:35:12]** and you immediately will see, oh, yeah,
+**[00:35:15]** I see these state machines that Rich is talking about.
+**[00:35:18]** They're definitely there.
+**[00:35:19]** It's kind of a bit messy, but this is -- it's also accurate.
 **[00:35:24]** It's perfect fidelity of what your call stack looks like.
-**[00:35:31]** And then you can see at the, the bottom we
-**[00:35:34]** have exception 2 string and it's cleaned up.
-**[00:35:39]** Does it, you know, we had already cleaned this up.
-**[00:35:42]** It's it's basically the distinction is, is that exception to
-**[00:35:46]** string is supposed to kind of deliver you the intent
-**[00:35:50]** so that you can reason about what your app was
-**[00:35:53]** actually doing.
-**[00:35:55]** But the stack trace, like environment dot stack trace is
-**[00:35:59]** always intended to be like perfectly accurate.
-**[00:36:04]** OK, so let's let's look at the.net eleven example.
-**[00:36:08]** So now you see that they're basically the same.
-**[00:36:11]** So environment dot stack trace now is is just as
-**[00:36:15]** accurate as it was before.
-**[00:36:17]** But those state machine frames are gone.
-**[00:36:26]** OK, so let's let's and then So what I did
-**[00:36:30]** on the next slide is I like basically overlaid the
-**[00:36:34]** two slides on one another.
-**[00:36:37]** And you can see the the one you can see
-**[00:36:40]** the the frames that have been removed.
-**[00:36:43]** So it's basically you have inner async.
-**[00:36:45]** We then basically start the state machine and then we
-**[00:36:49]** come back into inner async.
-**[00:36:50]** And you know, with these state machines, you could come
-**[00:36:54]** back multiple times if there were multiple awaits in it.
-**[00:36:57]** OK, now let's.
-**[00:37:01]** Oh, right.
-**[00:37:01]** I wanted to talk about native AOT.
-**[00:37:03]** So the, the, the main point is that yeah, native
-**[00:37:07]** AOT works perfectly with this Native AOT doesn't really have
-**[00:37:13]** a runtime, you know, so it's just relying on yeah,
-**[00:37:17]** native AOT uses Ryujit, you know, our JIT compiler as
-**[00:37:22]** its code generator.
-**[00:37:26]** And so it just all of the system works perfectly
-**[00:37:30]** well with with native AOT.
-**[00:37:33]** Yeah, basically there's nothing to say here because the whole
-**[00:37:36]** system works perfectly with AOT just because of the way
-**[00:37:39]** our architecture works.
-**[00:37:40]** So that's that's great.
-**[00:37:42]** OK, so now I want to talk about memory safety.
-**[00:37:49]** So this is a massive project that we started.
-**[00:37:52]** It's a 2 release project, 11 and 12 to some
-**[00:37:55]** degree, a bit like runtime async, although runtime async will
-**[00:37:59]** actually be supported in.net 11, just not enabled by default
-**[00:38:03]** with memory safety.
-**[00:38:05]** It's in preview in.net 11.
-**[00:38:08]** And so right now we're defining a set of language
-**[00:38:12]** changes.
-**[00:38:12]** I actually wrote a blog post on this like a
-**[00:38:14]** week or so ago.
-**[00:38:16]** Goes into much more detail on what you know.
-**[00:38:18]** Yeah, goes into much more detail.
-**[00:38:20]** And yeah, so this this release, we're defining a set
-**[00:38:23]** of language changes.
-**[00:38:25]** We're applying those changes to system private Corelib, which is
-**[00:38:29]** the bottom most managed library.
-**[00:38:32]** And we're also making a bunch of changes so that
-**[00:38:36]** ourselves and anyone else needs to use unsafe less.
-**[00:38:41]** We want to reduce the need for unsafe.
-**[00:38:43]** And then I'm done at 12.
-**[00:38:44]** We're basically just finishing everything off.
-**[00:38:47]** And so the take away which the blog post gets
-**[00:38:51]** into is that we're redesigning the unsafe keywords to be
-**[00:38:56]** mean a reviewable caller contract as opposed to establishing an
-**[00:39:02]** unsafe context.
-**[00:39:04]** And so AP is like unsafe and memory Marshall, they'll
-**[00:39:07]** be marked with this contract.
-**[00:39:10]** Yeah, when when we're done.
-**[00:39:13]** So there's a ton of work that's been going on
-**[00:39:18]** to make certain patterns higher performance.
-**[00:39:22]** And a lot of this has to do with bounce
-**[00:39:26]** check elimination or yeah, or making inlining work better.
-**[00:39:32]** And so these are cases where we and others would
-**[00:39:35]** often write unsafe code because the JIT wasn't able to
-**[00:39:39]** quite do the right thing.
-**[00:39:41]** And so in these cases, we're now doing the right
-**[00:39:44]** thing.
-**[00:39:44]** So I'll show you some examples.
-**[00:39:48]** So I I like this one.
-**[00:39:50]** So in the second line you see this check the
-**[00:39:54]** it's saying like only continue if I +2 is less
-**[00:39:59]** than length.
-**[00:40:02]** So that we know for sure that the next two
-**[00:40:05]** indexes on the particular span will be safe.
-**[00:40:09]** And so the jet in, you know, 10 and before
-**[00:40:14]** it.
-**[00:40:14]** Actually that check works correctly with I + 2 because
-**[00:40:19]** the check matches I +2.
-**[00:40:22]** So it would only be able to reason about if
-**[00:40:25]** the checks, I'm sorry, if the check and the index
-**[00:40:28]** perfectly matched, it wouldn't, it would actually still do a
-**[00:40:32]** bounce check for I plus one.
-**[00:40:35]** So now it realizes that I plus one is within
-**[00:40:40]** the range of the the check as I +2.
-**[00:40:44]** And so now this code gets faster.
-**[00:40:47]** OK, next one is very, very similar, except it's just
-**[00:40:52]** like the polarity of a changes a little bit.
-**[00:40:56]** So this one we're saying basically does the span go
-**[00:41:01]** past the size of an int?
-**[00:41:04]** You know, is it, is it at least 4 bytes?
-**[00:41:08]** And then you can see then we do this span
-**[00:41:11]** dot slice that is the same size, but we're coming
-**[00:41:14]** at it from the end.
-**[00:41:17]** So the JIT previously didn't work well with this tail
-**[00:41:23]** slice pattern, so now it does and then so this
-**[00:41:28]** is an inlining 1.
-**[00:41:30]** So in the past, what would happen is get length
-**[00:41:34]** would get in lines into the demo, and then we
-**[00:41:37]** would have these two null checks on S and they
-**[00:41:41]** would both be run.
-**[00:41:44]** And in addition, the throw new argument null exception that
-**[00:41:50]** sometimes when you have an actual throw in the stack
-**[00:41:54]** frame and yeah, then that can pessimize the code as
-**[00:41:59]** well.
-**[00:42:00]** So in this particular case, when we in line, we're
-**[00:42:05]** only left with the the S is null return -1
-**[00:42:09]** cleaner code, less code.
+**[00:35:31]** Then you can see at the bottom we have Exception.ToString,
+**[00:35:37]** and it's cleaned up.
+**[00:35:40]** We had already cleaned this up.
+**[00:35:42]** It's basically -- the distinction is,
+**[00:35:44]** is that Exception.ToString is supposed to kind
+**[00:35:48]** of deliver you the intent so that you can reason
+**[00:35:52]** about what your app was actually doing, but the stack trace,
+**[00:35:59]** like Environment.StackTrace, is always intended
+**[00:36:01]** to be perfectly accurate.
+**[00:36:05]** Let's look at the.NET 11 example.
+**[00:36:09]** Now you see that they're basically the same.
+**[00:36:12]** Environment.StackTrace now is just as accurate
+**[00:36:16]** as it was before, but those state machine frames are gone.
+**[00:36:29]** What I did on the next slide is I, basically,
+**[00:36:33]** overlaid the two slides on one another.
+**[00:36:40]** You can see the frames that have been removed.
+**[00:36:43]** It's basically you have inner async.
+**[00:36:45]** We then basically start the state machine.
+**[00:36:48]** Then we come back into inner async.
+**[00:36:52]** With these state machines, you come back multiple times
+**[00:36:54]** if there were multiple awaits in it.
+**[00:36:57]** Okay. Now, let's -- all right.
+**[00:37:01]** I want to talk about NativeAOT.
+**[00:37:04]** The main point is that, yeah,
+**[00:37:09]** NativeAOT works perfectly with this.
+**[00:37:12]** NativeAOT doesn't really have a runtime, so it's just relying
+**[00:37:17]** on NativeAOT users, RyuJIT, our JIT compiler
+**[00:37:22]** as its code generator.
+**[00:37:26]** It just -- all of the system works perfectly well
+**[00:37:30]** with NativeAOT.
+**[00:37:33]** Basically, there's nothing to say here
+**[00:37:35]** because the whole system works perfectly with AOT just
+**[00:37:38]** because of the way our architecture works,
+**[00:37:40]** so that's great.
+**[00:37:45]** Now I want to talk about memory safety,
+**[00:37:49]** so this is a massive project that we started.
+**[00:37:52]** It's a two-release project, 11 and 12, to some degree,
+**[00:37:56]** a bit like Runtime Async.
+**[00:37:58]** Although Runtime Async will actually be supported
+**[00:38:00]** in.NET 11, just not enabled by default, but memory safety,
+**[00:38:05]** it's in preview in.NET 11.
+**[00:38:09]** Right now, we're defining a set of language changes.
+**[00:38:12]** I actually wrote a blog post on this like a week or so ago.
+**[00:38:15]** It goes into much more detail on what --
+**[00:38:18]** yeah, goes into much more detail.
+**[00:38:21]** Yeah, so this release,
+**[00:38:23]** we're defining a set of language changes.
+**[00:38:25]** We're applying those changes to System.Private.CoreLib,
+**[00:38:29]** which is the bottom-most managed library,
+**[00:38:32]** and we're also making a bunch of changes so that ourselves
+**[00:38:38]** and anyone else needs to use Unsafe less.
+**[00:38:41]** We want to reduce the need for Unsafe.
+**[00:38:43]** Then in.NET 12, we're basically just finishing everything off.
+**[00:38:48]** The takeaway, which the blog post gets into,
+**[00:38:51]** is that we're redesigning the Unsafe keywords
+**[00:38:56]** to mean a reviewable caller contract as opposed
+**[00:38:59]** to establishing an Unsafe context.
+**[00:39:04]** APIs like Unsafe and MemoryMarshal, they'll be marked
+**[00:39:08]** with this contract, yeah, when we're done.
+**[00:39:16]** There's a ton of work that's been going
+**[00:39:17]** on to make certain patterns higher performance,
+**[00:39:22]** and a lot of this has to do with bounds-check elimination
+**[00:39:29]** or making inlining work better.
+**[00:39:32]** These are cases where we
+**[00:39:35]** and others would often write Unsafe code
+**[00:39:38]** because the JIT wasn't able to quite do the right thing.
+**[00:39:42]** In these cases, we're not doing the right thing,
+**[00:39:44]** so I'll show you some examples.
+**[00:39:48]** I like this one, so in the second line,
+**[00:39:51]** you see this check that's saying, "only continue
+**[00:39:57]** if I plus 2 is less than length," so that we know
+**[00:40:03]** for sure that the next two indexes
+**[00:40:07]** on the particular span will be safe.
+**[00:40:10]** The JITs in.NET 10 and before, it actually --
+**[00:40:16]** that check works correctly with I plus 2
+**[00:40:19]** because the check matches I plus 2, so we would only be able
+**[00:40:23]** to reason about if the checks --
+**[00:40:26]** sorry, if the check and the index perfectly matched.
+**[00:40:30]** It would actually still do a bounds check for I plus 1.
+**[00:40:35]** Now it realizes that I plus 1 is within the range of the check
+**[00:40:43]** as I plus 2, and so now this code gets faster.
+**[00:40:48]** The next one is very, very similar, except it's just --
+**[00:40:54]** the polarity of it changes a little bit, so this one,
+**[00:40:57]** we're saying, basically,
+**[00:41:01]** does the span go past the size of an int?
+**[00:41:05]** Is it at least 4 bytes?
+**[00:41:08]** Then you can see then we do this span.Slice
+**[00:41:12]** that is the same size, but we're coming at it from the end.
+**[00:41:17]** The JIT previously didn't work well
+**[00:41:19]** with this tail slice pattern, so now it does.
+**[00:41:28]** This is an inlining one.
+**[00:41:30]** In the past, what would happen is GetLength would get inlined
+**[00:41:37]** into the demo.
+**[00:41:39]** Then we would have these two null checks on s,
+**[00:41:42]** and they would both be run.
+**[00:41:44]** In addition, the "throw new ArgumentNullException" that,
+**[00:41:51]** sometimes, when you have an actual throw in the stack frame,
+**[00:41:56]** and yes, then that can pessimize the code as well.
+**[00:42:00]** In this particular case, when we inline, we're only left
+**[00:42:05]** with the s is null return minus 1, cleaner code, less code.
 **[00:42:12]** This runs faster.
-**[00:42:15]** OK, so those are all cool, but they don't necessarily
-**[00:42:20]** like completely change the game.
-**[00:42:24]** So we've kind of like taken this work and applied
-**[00:42:28]** it to SIMD.
-**[00:42:29]** So SIMD stands for single instruction, multiple data, you know,
-**[00:42:33]** quote UN quote vector instructions.
-**[00:42:37]** And we these get used extremely pervasively across the product.
-**[00:42:42]** And so it relies on a bunch of unsafe code.
-**[00:42:46]** So if we could make SIMD memory safe, then we
-**[00:42:48]** would just be removing a whole category of unsafe code
-**[00:42:51]** from the product, which would be excellent.
-**[00:42:54]** So we'll look at an example where of what the
-**[00:42:58]** code looks like today.
-**[00:43:01]** So I'm not going to go through this line by
-**[00:43:02]** line.
-**[00:43:03]** The the take away is like, OK, count the memory
-**[00:43:06]** marshals and unsafe calls in this code block and they're
-**[00:43:10]** like, OK, yeah, probably not safe.
-**[00:43:13]** Yeah, so, and then in the the code after, you
-**[00:43:17]** can see that all those API calls are gone.
-**[00:43:21]** The JIT is able to do the right thing basically
-**[00:43:25]** in part by relying on some of those changes that
-**[00:43:28]** I showed you before.
-**[00:43:30]** And so we can now deploy this code across the
-**[00:43:34]** product and gets better.
-**[00:43:36]** OK, Hope you're, you know, installing.net 11 previews, trying out
-**[00:43:41]** some of these new features, giving us feedback on GitHub
-**[00:43:46]** and on blog posts and so that we can ship
-**[00:43:49]** the right thing.
-**[00:43:52]** OK, awesome, Jet.
-**[00:43:54]** Jet says.
-**[00:43:54]** Yes, yes.
-**[00:43:56]** And definitely the feedback on on the GitHub discussions and
-**[00:43:59]** issues, that's the team is there.
-**[00:44:01]** We look at those things all the time and the
-**[00:44:04]** the earlier you all get hands on with these changes,
+**[00:42:18]** Those are all cool, but they don't necessarily completely
+**[00:42:22]** change the game, so we've kind of taken this work
+**[00:42:26]** and applied it to SIMD.
+**[00:42:30]** SIMD stands for Single Instruction/Multiple Data,
+**[00:42:33]** quote/unquote "vector instructions."
+**[00:42:38]** These get used extremely pervasively across the product,
+**[00:42:42]** and so it relies on a bunch of Unsafe code.
+**[00:42:46]** If we could make SIMD memory safe,
+**[00:42:49]** then we would just be removing a whole category of Unsafe code
+**[00:42:52]** from the product, which would be excellent.
+**[00:42:55]** We'll look at an example of what the code looks like today.
+**[00:43:01]** I'm not going to go through this line by line.
+**[00:43:03]** The takeaway is, okay, count the MemoryMarshals
+**[00:43:07]** and Unsafe calls in this code block.
+**[00:43:09]** You're, like, okay, yeah, it's probably not safe.
+**[00:43:14]** Then in the code after, you can see
+**[00:43:18]** that all those API calls are gone.
+**[00:43:21]** The JIT is able to do the right thing, basically, in part,
+**[00:43:25]** by relying on some of those changes
+**[00:43:28]** that I showed you before.
+**[00:43:30]** We can now deploy this code
+**[00:43:32]** across the product, and it gets better.
+**[00:43:37]** I hope you're installing.NET 11 previews, trying out some
+**[00:43:44]** of these new features, giving us feedback on GitHub
+**[00:43:47]** and on blog posts, so that we can ship the right thing.
+**[00:43:52]** Okay, awesome, Chet says yes.
+**[00:43:55]** CHET HUSK: Yes, and definitely the feedback
+**[00:43:57]** on the GitHub discussions and issues.
+**[00:44:00]** The team is there.
+**[00:44:01]** We look at those things all the time,
+**[00:44:03]** and the earlier you all get hands on with these changes,
 **[00:44:07]** the better they will be for the GA this fall.
-**[00:44:10]** Absolutely.
-**[00:44:11]** And for the and for the features that we're not
-**[00:44:13]** shipping until done at 12 as well.
-**[00:44:16]** Awesome.
-**[00:44:17]** Thank you.
+**[00:44:10]** RICHARD LANDER: Absolutely, and for the features
+**[00:44:12]** that we're not shipping until.NET 12 as well.
+**[00:44:16]** Awesome. Thank you.

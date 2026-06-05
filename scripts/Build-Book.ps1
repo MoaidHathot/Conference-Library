@@ -479,7 +479,7 @@ foreach ($dir in $sessionDirs) {
     if ($m.downloadVideoUrl) {
         $playerHtml = @"
 <section class="player">
-    <video controls preload="metadata" playsinline crossorigin="anonymous">
+    <video controls preload="metadata" playsinline>
         <source src="$(HtmlEncode $m.downloadVideoUrl)" type="video/mp4">
         Your browser doesn't support inline MP4 playback. <a href="$(HtmlEncode $m.downloadVideoUrl)">Download the MP4</a>.
     </video>
@@ -530,24 +530,73 @@ $summaryRendered
 "@
     }
 
-    # Frames gallery. Every image is a lightbox trigger (data-zoom="1"); the
-    # page-side script (../assets/app-session.js, loaded via layout.html)
-    # binds a click handler that swaps the image into a modal overlay.
+    # Frames gallery. Two flavours that can both contribute, in this order:
+    #   1) Evenly-spaced "scenic" frames (15 per session) sampled by
+    #      Invoke-BuildIngestion.ps1 - the main visual TOC.
+    #   2) Announcement-context frames (4 per timestamp) sampled by
+    #      Get-AnnouncementFrames.ps1 - grouped by HH:MM:SS within an
+    #      <h3>-headed sub-grid so the reader can see them at a glance
+    #      (otherwise they're only accessible via the hover-popup strip
+    #      next to each timestamp in the summary).
+    # Every <img> is wrapped in <a data-zoom="1"> so session.js's lightbox
+    # handler picks it up.
     $framesHtml = ''
+    $mainFigs = @()
     if ($m.artifacts.frames -and @($m.artifacts.frames).Count -gt 0) {
-        $figs = foreach ($rel in @($m.artifacts.frames)) {
+        $mainFigs = foreach ($rel in @($m.artifacts.frames)) {
             $name = Split-Path $rel -Leaf
             $label = if ($name -match 'frame-\d+-(.+?)\.jpg$') {
                 ($Matches[1] -replace '-', ':')
             } else { '' }
             "<figure><a href=`"../frames/$code/$(HtmlEncode $name)`" data-zoom=`"1`"><img loading=`"lazy`" src=`"../frames/$code/$(HtmlEncode $name)`" alt=`"Frame at $label`"></a><figcaption>$(HtmlEncode $label)</figcaption></figure>"
         }
+    }
+
+    $annGroupsHtml = ''
+    $afSrcRoot = Join-Path $dir.FullName 'announcement-frames'
+    if (Test-Path -LiteralPath $afSrcRoot) {
+        $annDirs = Get-ChildItem -LiteralPath $afSrcRoot -Directory | Sort-Object Name
+        if ($annDirs.Count -gt 0) {
+            $groupBlocks = foreach ($adir in $annDirs) {
+                $tsLabel = $adir.Name -replace '-', ':'
+                $imgs = Get-ChildItem -LiteralPath $adir.FullName -File -Filter '*.jpg' | Sort-Object Name
+                if ($imgs.Count -eq 0) { continue }
+                $cells = foreach ($img in $imgs) {
+                    $rel = "../frames/$code/announcement-frames/$($adir.Name)/$($img.Name)"
+                    $offset = if ($img.BaseName -match 'frame-(.+)$') { $Matches[1] } else { '' }
+                    "<figure><a href=`"$rel`" data-zoom=`"1`"><img loading=`"lazy`" src=`"$rel`" alt=`"$tsLabel $offset`"></a><figcaption>$(HtmlEncode $offset)</figcaption></figure>"
+                }
+                @"
+<div class="ann-group">
+    <h3 class="ann-ts">$(HtmlEncode $tsLabel)</h3>
+    <div class="frames-grid frames-grid-tight">
+$($cells -join "`n")
+    </div>
+</div>
+"@
+            }
+            $annGroupsHtml = @"
+<div class="ann-frames">
+    <h3 class="section-subhead">Frames around each announcement</h3>
+$($groupBlocks -join "`n")
+</div>
+"@
+        }
+    }
+
+    if ($mainFigs.Count -gt 0 -or $annGroupsHtml) {
+        $mainGridHtml = if ($mainFigs.Count -gt 0) {
+            @"
+<div class="frames-grid">
+$($mainFigs -join "`n")
+</div>
+"@
+        } else { '' }
         $framesHtml = @"
 <section class="section">
     <h2>Frames</h2>
-    <div class="frames-grid">
-$($figs -join "`n")
-    </div>
+    $mainGridHtml
+    $annGroupsHtml
 </section>
 "@
     }

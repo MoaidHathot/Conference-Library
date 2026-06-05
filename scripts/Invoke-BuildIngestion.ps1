@@ -392,11 +392,58 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
     else { $null }
 
     $durationSeconds = if ($Session.durationInMinutes) { [double]$Session.durationInMinutes * 60.0 } else { 0.0 }
+    # OD/ODSP and a few BRK sessions have durationInMinutes=0 in the catalog
+    # because they weren't scheduled into a fixed wall-clock slot. ffprobe
+    # the actual video to discover its runtime - same network cost as one
+    # frame seek, unblocks ~30 sessions that would otherwise be frameless.
+    # Also catches cases where the catalog overstates the duration; we
+    # prefer the probed value when it's smaller so the last frames don't
+    # land past the real end of the video.
+    if ($videoSource) {
+        $ffprobePath = $FfmpegPath -replace '(?i)ffmpeg(\.exe)?$', 'ffprobe$1'
+        if (Test-Path -LiteralPath $ffprobePath) {
+            try {
+                $psi = [System.Diagnostics.ProcessStartInfo]@{
+                    FileName               = $ffprobePath
+                    UseShellExecute        = $false
+                    RedirectStandardOutput = $true
+                    RedirectStandardError  = $true
+                    CreateNoWindow         = $true
+                }
+                foreach ($a in @('-v','error','-show_entries','format=duration','-of','csv=p=0',$videoSource.Url)) {
+                    [void]$psi.ArgumentList.Add($a)
+                }
+                $proc = [System.Diagnostics.Process]::Start($psi)
+                $stdoutTask = $proc.StandardOutput.ReadToEndAsync()
+                [void]$proc.StandardError.ReadToEndAsync()
+                if ($proc.WaitForExit(15000)) {
+                    [void]$stdoutTask.Wait()
+                    $probeOut = $stdoutTask.Result
+                    if ($probeOut) {
+                        $probed = 0.0
+                        if ([double]::TryParse(($probeOut | Out-String).Trim(),
+                                [System.Globalization.NumberStyles]::Float,
+                                [System.Globalization.CultureInfo]::InvariantCulture,
+                                [ref]$probed) -and $probed -gt 0) {
+                            if ($durationSeconds -le 0) {
+                                $durationSeconds = $probed
+                            } elseif ($probed -lt $durationSeconds) {
+                                # Catalog overshot - trust ffprobe to avoid past-end seeks.
+                                $durationSeconds = $probed
+                            }
+                        }
+                    }
+                } else {
+                    try { $proc.Kill($true) } catch { }
+                }
+            } catch { }
+        }
+    }
     if (-not $videoSource) {
         $errors += 'no downloadVideoLink and no HLS URL on Medius embed'
     }
     elseif ($durationSeconds -le 0) {
-        $errors += 'no durationInMinutes; cannot space frames'
+        $errors += 'no durationInMinutes and ffprobe could not determine video length'
     }
     else {
         $framesDir = Join-Path $sessionDir 'frames'

@@ -136,6 +136,47 @@ $results = $candidates | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
         return [pscustomobject]@{ code = $session.Code; status = 'no-timestamps'; total = 0; captured = 0; skipped = 0; failed = 0; elapsedS = 0 }
     }
 
+    # ffprobe once per session for the true video duration. Caps every
+    # timestamp+offset combo to avoid past-end seeks (which produce ffmpeg
+    # exit -22 and clutter the report with bogus "failed" frames). Hard
+    # timeout via Process so a hanging stream doesn't wedge the worker.
+    # Best-effort: if ffprobe errors out or times out, we fall through to
+    # the previous "try everything" behaviour.
+    $videoDurationSec = [double]::MaxValue
+    $ffprobePath = $FfmpegPath -replace '(?i)ffmpeg(\.exe)?$', 'ffprobe$1'
+    if (Test-Path -LiteralPath $ffprobePath) {
+        try {
+            $psi = [System.Diagnostics.ProcessStartInfo]@{
+                FileName               = $ffprobePath
+                UseShellExecute        = $false
+                RedirectStandardOutput = $true
+                RedirectStandardError  = $true
+                CreateNoWindow         = $true
+            }
+            foreach ($a in @('-v','error','-show_entries','format=duration','-of','csv=p=0',$session.VideoUrl)) {
+                [void]$psi.ArgumentList.Add($a)
+            }
+            $proc = [System.Diagnostics.Process]::Start($psi)
+            $stdoutTask = $proc.StandardOutput.ReadToEndAsync()
+            [void]$proc.StandardError.ReadToEndAsync()
+            if ($proc.WaitForExit(15000)) {  # 15-second hard cap
+                [void]$stdoutTask.Wait()
+                $probeOut = $stdoutTask.Result
+                if ($probeOut) {
+                    $probed = 0.0
+                    if ([double]::TryParse(($probeOut | Out-String).Trim(),
+                            [System.Globalization.NumberStyles]::Float,
+                            [System.Globalization.CultureInfo]::InvariantCulture,
+                            [ref]$probed) -and $probed -gt 0) {
+                        $videoDurationSec = $probed
+                    }
+                }
+            } else {
+                try { $proc.Kill($true) } catch { }
+            }
+        } catch { }
+    }
+
     $afRoot = Join-Path $session.Directory 'announcement-frames'
     New-Item -ItemType Directory -Path $afRoot -Force | Out-Null
 
@@ -155,23 +196,23 @@ $results = $candidates | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
         foreach ($offset in $Offsets) {
             $total++
             $target = $tsSeconds + $offset
-            if ($target -lt 0) { $skipped++; continue }
+            if ($target -lt 0 -or $target -ge $videoDurationSec) { $skipped++; continue }
             $tag = Format-OffsetTag $offset
             $framePath = Join-Path $folderPath "frame-$tag.jpg"
             if (-not $Force -and (Test-Path -LiteralPath $framePath) -and (Get-Item -LiteralPath $framePath).Length -gt 0) {
                 $skipped++; continue
             }
             $ssArg = [string]::Format([System.Globalization.CultureInfo]::InvariantCulture, '{0}', $target)
-            # Announcement frames are previewed as hover thumbnails (~140px
-            # wide in CSS) so 640px capture + JpegQuality 5 keeps each frame
-            # ~30-50 KB. 4 frames * ~15 announcements * ~150 sessions still
-            # fits comfortably under the GitHub Pages 1 GB soft limit.
+            # Capture at 1280px wide so the lightbox view (which uses the
+            # same JPEG as the hover thumbnail) shows sharp detail when the
+            # user clicks. CSS still renders these as 140px-wide thumbnails
+            # in the hover strip. q5 keeps each frame ~70-110 KB.
             $ffArgs = @(
                 '-hide_banner','-loglevel','error','-y'
                 '-ss', $ssArg
                 '-i', $session.VideoUrl
                 '-frames:v','1'
-                '-vf','scale=640:-2'
+                '-vf','scale=1280:-2'
                 '-q:v', $JpegQuality
                 $framePath
             )

@@ -448,6 +448,36 @@ pre {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: var(--s-3);
 }
+/* Tighter grid for the per-announcement 4-frame mini-galleries; lets the
+   whole 4-frame strip fit comfortably on one row at typical viewport
+   widths while staying tappable on phones. */
+.frames-grid.frames-grid-tight {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--s-2);
+}
+/* Per-announcement sub-grouping below the main 15-frame grid. */
+.ann-frames {
+    margin-top: var(--s-5);
+}
+.section-subhead {
+    margin: var(--s-5) 0 var(--s-3) 0;
+    font-size: var(--fs-md);
+    color: var(--c-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-top: 1px solid var(--c-border);
+    padding-top: var(--s-3);
+}
+.ann-group {
+    margin-bottom: var(--s-4);
+}
+.ann-group .ann-ts {
+    margin: 0 0 var(--s-2) 0;
+    font-size: var(--fs-sm);
+    font-family: var(--font-mono);
+    color: var(--c-accent);
+}
 .frames-grid figure {
     margin: 0;
     border: 1px solid var(--c-border);
