@@ -25,6 +25,7 @@
     const topicPills  = $('#filter-topic-pills');
     const tagPills    = $('#filter-tag-pills');
     const statusBtns  = document.querySelectorAll('#filter-status [data-status]');
+    const recordedBtn = $('#recorded-toggle');
     const noResults   = $('#no-results');
 
     // ---- helpers ----
@@ -194,10 +195,28 @@
     // Default "All" selected.
     statusBtns.forEach(b => { if (b.dataset.status === 'all') b.classList.add('is-on'); });
 
+    // "Recorded only" toggle - defaults on so the index shows only sessions
+    // with playable artifacts (~210 of 443 on Build 2026). Clicking it off
+    // surfaces the ~233 by-design unrecorded sessions (Table Talks, Labs,
+    // Lightning Talks) for visitors who want to browse the full catalog.
+    let recordedOnly = true;
+    if (recordedBtn) {
+        recordedBtn.addEventListener('click', () => {
+            recordedOnly = !recordedOnly;
+            recordedBtn.classList.toggle('is-on', recordedOnly);
+            update();
+        });
+    }
+
     // ---- filtering + render ----
     function applyFilters(sessions) {
         const now = new Date();
         return sessions.filter(s => {
+            // "Recorded only" filter: drop sessions with no playable artifact
+            // (no video URL, no captured frames, no transcript). Defaults on
+            // so the index doesn't bury keynotes/breakouts under ~233
+            // metadata-only Table Talks / Labs / Lightning Talks.
+            if (recordedOnly && s.hasVideo === false) return false;
             if (filterTy.value && s.sessionType !== filterTy.value) return false;
             if (chosenTopics.size > 0) {
                 const topics = toArray(s.topics);
@@ -217,9 +236,18 @@
 
     function render(matches) {
         const now = new Date();
-        meta.textContent = matches.length
-            ? `${matches.length} of ${catalog.sessions.length} sessions`
-            : '';
+        // Clarify counts when "Recorded only" is on - otherwise visitors
+        // see "211 of 443" and wonder where the rest went.
+        if (matches.length) {
+            if (recordedOnly) {
+                const recordedTotal = catalog.sessions.filter(x => x.hasVideo !== false).length;
+                meta.textContent = `${matches.length} of ${recordedTotal} recorded sessions (${catalog.sessions.length} total in catalog)`;
+            } else {
+                meta.textContent = `${matches.length} of ${catalog.sessions.length} sessions`;
+            }
+        } else {
+            meta.textContent = '';
+        }
         if (matches.length === 0) {
             list.innerHTML = '';
             noResults.hidden = false;

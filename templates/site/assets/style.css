@@ -699,6 +699,16 @@ details.transcript .transcript-body {
     font-size: 0.85em;
 }
 .filter-pill.is-on .pill-count { opacity: 0.85; }
+.filter-pill .pill-icon {
+    /* Small check-mark prefix for boolean toggle pills like "Recorded only".
+       Hidden when the pill is off; visible (and white-on-accent) when on. */
+    display: inline-block;
+    width: 1em;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 100ms ease;
+}
+.filter-pill.is-on .pill-icon { opacity: 1; }
 .pills-toggle {
     background: none;
     border: 1px solid var(--c-border);

@@ -741,6 +741,12 @@ $($items -join "`n")
         startDateTime = $startIso
         endDateTime   = $endIso
         durationMins  = $m.durationMinutes
+        # True when the session has any kind of playable artifact: a video
+        # URL the iframe/<video> can load, OR captured frames, OR a
+        # transcript. Drives the "Recorded only" toggle on the index page,
+        # which hides ~233 by-design unrecorded sessions (Table Talks, Labs,
+        # Lightning Talks) from the default view.
+        hasVideo      = [bool]($hasAnyVideo -or $hasTranscript -or $framesArr.Count -gt 0)
         # Cover thumbnail for the index card; null when the session has no
         # frames (Table Talks, Labs, sessions still missing duration). The
         # path is relative to docs/<Conference>/<EventId>/index.html.
