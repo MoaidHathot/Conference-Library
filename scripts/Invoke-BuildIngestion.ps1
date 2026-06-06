@@ -40,6 +40,20 @@ param(
 
     [Parameter()][string]$FfmpegPath,
 
+    # Path to the Zakira.Replay CLI binary (or the .NET tool entrypoint). When set, sessions
+    # whose `onDemand` URL points to `mediastream.microsoft.com` (Microsoft Build "InstaVOD"
+    # Shaka-player wrappers like BRK247 / BRK201) are routed through `zakira-replay analyze
+    # --prefer-inline-media`, whose `MediastreamTranscriptInterceptor` fetches the player
+    # config JSON, resolves the HLS master URL, downloads the subtitle playlist's
+    # `Segment(N).vtt` files in parallel, dedupes the rolling captions, and emits a clean
+    # merged VTT this script then copies to `transcript.vtt`. Mandatory for those sessions;
+    # plain Medius sessions (medius.microsoft.com / medius.studios.ms) continue to work via
+    # the in-script `Get-MediusEmbedInfo` path even when this is unset. Resolution:
+    #   1) -ZakiraReplayPath argument
+    #   2) ZAKIRA_REPLAY env var
+    #   3) `zakira-replay` on PATH
+    [Parameter()][string]$ZakiraReplayPath,
+
     [Parameter()][string]$RepoRoot = (Split-Path -Parent $PSScriptRoot)
 )
 
@@ -59,6 +73,25 @@ if (-not $FfmpegPath) {
 }
 if (-not $FfmpegPath -or -not (Test-Path -LiteralPath $FfmpegPath)) {
     throw "ffmpeg not found. Pass -FfmpegPath, install ffmpeg on PATH, or run ``zakira-replay deps install ffmpeg``."
+}
+
+# --------------------------------------------------------------------------
+# Locate zakira-replay (optional). When unset we degrade gracefully:
+# mediastream-hosted sessions become 'partial' with a clear error message
+# instead of failing the run.
+# --------------------------------------------------------------------------
+
+if (-not $ZakiraReplayPath) {
+    if ($env:ZAKIRA_REPLAY) {
+        $ZakiraReplayPath = $env:ZAKIRA_REPLAY
+    }
+    else {
+        $ZakiraReplayPath = (Get-Command zakira-replay -ErrorAction SilentlyContinue)?.Source
+    }
+}
+if ($ZakiraReplayPath -and -not (Test-Path -LiteralPath $ZakiraReplayPath)) {
+    Write-Warning "ZakiraReplayPath '$ZakiraReplayPath' does not exist; mediastream sessions will fail with a clear error. Install via ``dotnet tool install -g Zakira.Replay`` or unset to use PATH lookup."
+    $ZakiraReplayPath = $null
 }
 
 $catalogPath = Join-Path $RepoRoot "catalog\$Conference\$EventId\catalog.json"
@@ -83,6 +116,7 @@ Write-Host "  Frames per session: $FrameCount (qscale $JpegQuality)"
 Write-Host "  Concurrency:        $Concurrency"
 Write-Host "  Caption languages:  $($CaptionLanguages -join ', ')"
 Write-Host "  ffmpeg:             $FfmpegPath"
+Write-Host "  zakira-replay:      $(if ($ZakiraReplayPath) { $ZakiraReplayPath } else { '(not configured; mediastream sessions will fail)' })"
 Write-Host "  Output root:        $sessionsRoot"
 Write-Host ''
 
@@ -101,6 +135,7 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
     $CaptionLanguages = $using:CaptionLanguages
     $CatalogFetchedAt = $using:catalogFetchedAt
     $Force            = $using:Force
+    $ZakiraReplayPath = $using:ZakiraReplayPath
 
     $code = $Session.sessionCode
     if ([string]::IsNullOrWhiteSpace($code)) {
@@ -247,6 +282,176 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
         }
     }
 
+    function Test-IsMediastreamPlayerUrl {
+        # Returns $true when $Url is a Microsoft mediastream.microsoft.com Shaka-player
+        # wrapper carrying a `path=` query (the only shape Zakira.Replay's
+        # MediastreamTranscriptInterceptor can resolve). Mirrors the C# detection in
+        # MediastreamTranscriptInterceptor.IsMediastreamPlayerUrl so the two stay in sync.
+        param([string]$Url)
+        if ([string]::IsNullOrWhiteSpace($Url)) { return $false }
+        $uri = $null
+        if (-not [Uri]::TryCreate($Url, [UriKind]::Absolute, [ref]$uri)) { return $false }
+        if ($uri.Host.ToLowerInvariant() -ne 'mediastream.microsoft.com') { return $false }
+        if ($uri.AbsolutePath -notmatch '(?i)player\.html') { return $false }
+        return $uri.Query -match '(?i)path='
+    }
+
+    function Get-MediastreamSessionInfo {
+        # For sessions whose onDemand URL points to mediastream.microsoft.com (BRK247 / BRK201
+        # shape), shell out to Zakira.Replay's `analyze --prefer-inline-media` which runs the
+        # MediastreamTranscriptInterceptor: fetches the player config JSON, resolves the HLS
+        # master URL via cdns + manifests, downloads the subtitle playlist's Segment(N).vtt
+        # files in parallel, dedupes the rolling captions, and writes a merged VTT.
+        #
+        # We then copy the merged VTT into $SessionDir as transcript.vtt (mirroring the
+        # Medius path's output shape) and read the run's manifest.json to lift the HLS master
+        # URL out for the frame-extraction step. Returns $null when zakira-replay isn't
+        # configured OR when the analyze invocation produced no usable artifacts.
+        param(
+            [string]$EmbedUrl,
+            [string]$SessionDir,
+            [string]$ZakiraReplayPath,
+            [string]$Code,
+            [string[]]$CaptionLanguages
+        )
+        if ([string]::IsNullOrWhiteSpace($ZakiraReplayPath)) {
+            return $null
+        }
+
+        # Pin a deterministic per-session run-id + runs-directory so the run is locatable from
+        # PowerShell without parsing zakira-replay's stdout. Keeping the runs alongside the
+        # session dir means cleanup is trivial (rm .zakira-runs) and the cache hits on re-run.
+        $runsDir = Join-Path $SessionDir '.zakira-runs'
+        $runId   = "mediastream-$Code"
+        New-Item -ItemType Directory -Path $runsDir -Force | Out-Null
+
+        $captionPref = if ($CaptionLanguages -and $CaptionLanguages.Count -gt 0) {
+            $CaptionLanguages -join ','
+        } else { 'auto' }
+
+        $psi = [System.Diagnostics.ProcessStartInfo]@{
+            FileName               = $ZakiraReplayPath
+            UseShellExecute        = $false
+            RedirectStandardOutput = $true
+            RedirectStandardError  = $true
+            CreateNoWindow         = $true
+        }
+        # Env var pins where the runs/ tree lands so the parallel sessions don't collide on a
+        # shared cwd. Mirrored against the official precedence in Zakira.Replay's
+        # DependencyResolver (env var > config > <cwd>/runs).
+        $psi.Environment['ZAKIRA_REPLAY_RUNS_DIRECTORY'] = $runsDir
+        foreach ($a in @(
+            'analyze', $EmbedUrl,
+            '--prefer-inline-media',
+            '--capture-mode', 'browser',
+            # Pin frames to a tiny interval-strategy budget. We're invoking Zakira.Replay
+            # ONLY for the transcript (the mediastream interceptor's caption pipeline);
+            # Conference-Library extracts its own 15 frames downstream via ffmpeg seeks
+            # against the resolved HLS URL. Without these flags the default scene-strategy
+            # extraction makes ffmpeg scan the entire 45-65 min HLS stream looking for
+            # scene cuts, which can take 5+ minutes per session and routinely trips the
+            # 7-minute timeout on longer sessions (LIVE101).
+            '--frames', '1',
+            '--frame-strategy', 'interval',
+            '--cache',
+            '--run-id', $runId,
+            '--caption-languages', $captionPref,
+            '--output-format', 'json'
+        )) { [void]$psi.ArgumentList.Add($a) }
+
+        $proc = [System.Diagnostics.Process]::Start($psi)
+        $stdoutTask = $proc.StandardOutput.ReadToEndAsync()
+        $stderrTask = $proc.StandardError.ReadToEndAsync()
+        # 7-minute cap: a typical 47-minute session like BRK247 has ~700 4s VTT segments;
+        # at 16-way parallelism (the interceptor's bounded concurrency) and ~500ms per
+        # segment fetch on Azure Front Door, that's ~22s for transcript download. The rest
+        # is browser navigation (~5-10s with --prefer-inline-media). 7 minutes is ~10x the
+        # observed ceiling, generous enough for slow networks but bounded so a hung run
+        # doesn't stall a 443-session batch.
+        if (-not $proc.WaitForExit(420000)) {
+            try { $proc.Kill($true) } catch { }
+            return [pscustomobject]@{
+                Error = "zakira-replay analyze timed out after 7 minutes for $EmbedUrl"
+            }
+        }
+        [void]$stdoutTask.Wait()
+        [void]$stderrTask.Wait()
+        if ($proc.ExitCode -ne 0) {
+            $errPayload = ($stderrTask.Result | Out-String).Trim()
+            if ([string]::IsNullOrWhiteSpace($errPayload)) { $errPayload = ($stdoutTask.Result | Out-String).Trim() }
+            return [pscustomobject]@{
+                Error = "zakira-replay analyze exit=$($proc.ExitCode): $errPayload"
+            }
+        }
+
+        # Walk the run dir for the artifacts the interceptor produced. Cleanest source of
+        # truth is manifest.json's artifact index; fall back to disk-walk if the schema
+        # shifts under us.
+        $runDir = Join-Path $runsDir $runId
+        if (-not (Test-Path -LiteralPath $runDir)) {
+            return [pscustomobject]@{
+                Error = "zakira-replay completed but produced no run directory at $runDir"
+            }
+        }
+
+        $manifestPath = Join-Path $runDir 'manifest.json'
+        $hlsFromRun   = $null
+        if (Test-Path -LiteralPath $manifestPath) {
+            try {
+                $runManifest = Get-Content -Raw -LiteralPath $manifestPath | ConvertFrom-Json -Depth 12
+                # The HLS master URL the MediastreamTranscriptInterceptor resolved (the same
+                # URL the browser frame-extraction sidestep used) isn't persisted as a
+                # top-level manifest field today; it surfaces inside the structured
+                # CAPTURE_MEDIASTREAM_TRANSCRIPT_DISCOVERED warning message in the exact
+                # form "...resolved to HLS master: <url>". Parse it back out; falls back
+                # gracefully when the warning shape ever changes.
+                $discovered = $runManifest.warnings | Where-Object {
+                    $_.code -eq 'CAPTURE_MEDIASTREAM_TRANSCRIPT_DISCOVERED'
+                } | Select-Object -First 1
+                if ($discovered -and $discovered.message -match 'resolved to HLS master:\s*(?<url>https?\S+)') {
+                    $hlsFromRun = $Matches['url']
+                }
+            }
+            catch { }
+        }
+
+        # Find the merged VTT. The interceptor writes one file matching mediastream-NNNN-*.vtt
+        # under captions/. There should be exactly one per --caption-languages pick.
+        $captionsDir = Join-Path $runDir 'captions'
+        $mergedVtt = if (Test-Path -LiteralPath $captionsDir) {
+            Get-ChildItem -LiteralPath $captionsDir -Filter 'mediastream-*.vtt' -File -ErrorAction SilentlyContinue |
+                Sort-Object Length -Descending | Select-Object -First 1
+        } else { $null }
+
+        if (-not $mergedVtt) {
+            # If no VTT but we DID get the HLS URL, frame extraction can still proceed.
+            # Caller emits a partial-status warning.
+            return [pscustomobject]@{
+                CaptionUrl      = $null
+                CaptionLanguage = $null
+                HlsUrl          = $hlsFromRun
+                LocalVttPath    = $null
+                Error           = if ($hlsFromRun) { 'mediastream session yielded no captions (frames-only)' } else { 'mediastream session yielded no captions and no HLS URL' }
+            }
+        }
+
+        # Infer the language tag from the file name: mediastream-NNNN-<lang>.vtt
+        $lang = $null
+        if ($mergedVtt.BaseName -match '^mediastream-\d{4}-(?<lang>.+)$') {
+            $lang = $Matches['lang']
+        }
+
+        return [pscustomobject]@{
+            # CaptionUrl is the player config URL (audit trail) since the actual captions are
+            # assembled from N segments, not a single URL.
+            CaptionUrl      = $EmbedUrl
+            CaptionLanguage = $lang
+            HlsUrl          = $hlsFromRun
+            LocalVttPath    = $mergedVtt.FullName
+            Error           = $null
+        }
+    }
+
     function Convert-VttToMarkdown {
         param([string]$VttContent)
         $sb = [System.Text.StringBuilder]::new()
@@ -329,14 +534,65 @@ $results = $sessions | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
     $docxRel         = $null
     $hlsUrl          = $null
 
-    # 1. Fetch the Medius embed once - it gives us BOTH the caption SAS URL
-    #    AND the HLS master playlist URL (a video-stream fallback when the
-    #    catalog has no direct downloadVideoLink, see step 2).
+    # 1. Fetch the on-demand transcript + HLS URL. Two distinct player flavours appear in the
+    #    Microsoft Build catalog and require different scraping strategies:
+    #      Medius        (medius.microsoft.com / medius.studios.ms) - inline captionsConfiguration
+    #                    + coreConfiguration in the embed HTML; Get-MediusEmbedInfo handles
+    #                    both in a single HTML fetch.
+    #      Mediastream   (mediastream.microsoft.com/.../player.html?path=Config-*.json) - the
+    #                    embed HTML has NO inline captions; the player config JSON lives at the
+    #                    URL given in the `path=` query, points to an HLS master with a separate
+    #                    Segment(N).vtt subtitle playlist, and the captions are rolling cues that
+    #                    must be downloaded in parallel and deduped. Get-MediastreamSessionInfo
+    #                    delegates to `zakira-replay analyze --prefer-inline-media` which runs
+    #                    Zakira.Replay's MediastreamTranscriptInterceptor.
     $mediusInfo = $null
     if ([string]::IsNullOrWhiteSpace($Session.onDemand)) {
-        $errors += 'no onDemand URL; cannot reach Medius embed for VTT or HLS'
+        $errors += 'no onDemand URL; cannot reach Medius/Mediastream embed for VTT or HLS'
+    }
+    elseif (Test-IsMediastreamPlayerUrl -Url $Session.onDemand) {
+        # Mediastream branch. Delegates to Zakira.Replay's interceptor; copies the merged VTT
+        # into $sessionDir to match the artifact shape the Medius branch produces.
+        if ([string]::IsNullOrWhiteSpace($ZakiraReplayPath)) {
+            $errors += 'mediastream session needs Zakira.Replay; pass -ZakiraReplayPath or install via ``dotnet tool install -g Zakira.Replay``'
+        }
+        else {
+            $mediastreamInfo = Get-MediastreamSessionInfo `
+                -EmbedUrl         $Session.onDemand `
+                -SessionDir       $sessionDir `
+                -ZakiraReplayPath $ZakiraReplayPath `
+                -Code             $code `
+                -CaptionLanguages $CaptionLanguages
+            if ($null -eq $mediastreamInfo) {
+                $errors += 'zakira-replay invocation produced no result for mediastream session'
+            }
+            elseif ($mediastreamInfo.Error) {
+                $errors += $mediastreamInfo.Error
+                if ($mediastreamInfo.HlsUrl) { $hlsUrl = $mediastreamInfo.HlsUrl }
+            }
+            else {
+                $hlsUrl = $mediastreamInfo.HlsUrl
+                if ($mediastreamInfo.LocalVttPath -and (Test-Path -LiteralPath $mediastreamInfo.LocalVttPath)) {
+                    try {
+                        $vttPath = Join-Path $sessionDir 'transcript.vtt'
+                        Copy-Item -LiteralPath $mediastreamInfo.LocalVttPath -Destination $vttPath -Force
+                        $vttContent = Get-Content -Raw -LiteralPath $vttPath -Encoding utf8
+                        $md = Convert-VttToMarkdown -VttContent $vttContent
+                        $mdPath = Join-Path $sessionDir 'transcript.md'
+                        Set-Content -LiteralPath $mdPath -Value $md -Encoding utf8
+                        $captionRel = 'transcript.vtt'
+                        $transcriptRel = 'transcript.md'
+                        $captionLangUsed = $mediastreamInfo.CaptionLanguage
+                    }
+                    catch {
+                        $errors += "mediastream VTT copy/parse failed ($($mediastreamInfo.CaptionLanguage)): $($_.Exception.Message)"
+                    }
+                }
+            }
+        }
     }
     else {
+        # Medius branch (the original path; unchanged behaviour for medius.microsoft.com URLs).
         $mediusInfo = Get-MediusEmbedInfo -EmbedUrl $Session.onDemand -Preferences $CaptionLanguages
         if (-not $mediusInfo) {
             $errors += 'Medius embed unreachable or unparseable'

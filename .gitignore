@@ -20,5 +20,14 @@ Thumbs.db
 *.run-report.json
 *.summary-report.json
 
+# Local zakira-replay run artifacts. Invoke-BuildIngestion.ps1 routes mediastream
+# sessions through `zakira-replay analyze`, which writes its raw run tree
+# (manifest.json, evidence.json, captions/, frames/, slides/, transcript/) under
+# sessions/<code>/.zakira-runs/<run-id>/. The transcript.vtt / transcript.md that
+# the ingestion needs are copied back into sessions/<code>/ proper, so the
+# .zakira-runs/ directory itself is recomputable and heavy (~10-40 MB per
+# session). Keep it out of git.
+.zakira-runs/
+
 # Stray POSIX nul file (Windows shell artifact).
 nul

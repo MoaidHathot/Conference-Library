@@ -831,3 +831,46 @@ details.transcript .transcript-body {
     font-family: var(--font-mono);
     margin-top: 2px;
 }
+
+/* Inline play-button injected next to every [HH:MM:SS] timestamp in the
+   summary by Build-Book.ps1's Inject-AnnouncementFrames. Clicking it tells
+   session.js to seek the page's session-video to (ts - 5s) and play.
+   Visually paired with the timestamp (no gap), small enough to read as an
+   affordance without dominating the prose. Subtle by default; goes
+   accent-coloured on hover / focus to confirm interactivity. */
+.ts-play {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 2px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: transparent;
+    color: var(--c-text-muted);
+    font-size: 0.7em;
+    line-height: 1;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: color 100ms ease, background 100ms ease, border-color 100ms ease, transform 80ms ease;
+}
+.ts-play:hover,
+.ts-play:focus-visible {
+    color: var(--c-accent);
+    background: var(--c-accent-soft);
+    border-color: var(--c-accent);
+    outline: none;
+}
+.ts-play:active {
+    transform: scale(0.9);
+}
+
+/* Lightweight "ts" wrapper for the case where a timestamp has no frames on
+   disk - just provides the same inline-baseline alignment as .anchor + .ts-play
+   so the play button doesn't visually drift. */
+.ts {
+    display: inline;
+    white-space: nowrap;
+}

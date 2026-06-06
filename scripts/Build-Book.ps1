@@ -172,6 +172,15 @@ function Inject-AnnouncementFrames {
     # (HH:MM:SS), (~HH:MM:SS), and bare-in-prose forms; we wrap just the
     # digits and preserve the original brackets/parens unchanged.
     #
+    # In addition to the existing hover/click-to-toggle frames strip, each
+    # timestamp now also gets a small inline play button (.ts-play) bearing
+    # the timestamp as data-ts. session.js binds this to: scroll the session
+    # video into view, seek it to ts - 5s, then call .play(). Works for both
+    # the MP4 and hls.js video paths (same <video class="session-video">
+    # element across both). The button shows for ALL sessions including ones
+    # without a video; the JS handler no-ops gracefully when no <video> is
+    # present (it logs an aria-live hint instead).
+    #
     # The strip shows whatever frames the Get-AnnouncementFrames.ps1 helper
     # has captured in
     #   <sessionDir>/announcement-frames/<HH-MM-SS>/frame-<offset>s.jpg
@@ -187,14 +196,23 @@ function Inject-AnnouncementFrames {
     return [regex]::Replace($Html, '(?<![\d:])(\d{2}:\d{2}:\d{2})(?![\d:])', {
         param($m)
         $ts = $m.Groups[1].Value
+        # The play button always appears, even when no frames are on disk for
+        # this timestamp - it's wired to the player, not the frames strip.
+        $playBtn = "<button type=`"button`" class=`"ts-play`" data-ts=`"$ts`" " +
+                   "title=`"Watch from $ts (-5s)`" aria-label=`"Watch the video from $ts minus 5 seconds`">" +
+                   "<span aria-hidden=`"true`">&#9654;</span></button>"
         $folder = $ts -replace ':', '-'
         $folderPath = Join-Path $afRoot $folder
+        # No frames on disk for this timestamp - just emit the timestamp + play button,
+        # no anchor wrapper or strip.
         if (-not (Test-Path -LiteralPath $folderPath)) {
-            return $m.Value
+            return "<span class=`"ts`">$($m.Value)$playBtn</span>"
         }
         $imgs = Get-ChildItem -LiteralPath $folderPath -File -Filter '*.jpg' -ErrorAction SilentlyContinue |
                 Sort-Object Name
-        if ($imgs.Count -eq 0) { return $m.Value }
+        if ($imgs.Count -eq 0) {
+            return "<span class=`"ts`">$($m.Value)$playBtn</span>"
+        }
         $cells = foreach ($img in $imgs) {
             $rel = "../frames/$Code/announcement-frames/$folder/$($img.Name)"
             $offset = if ($img.BaseName -match 'frame-(.+)$') { $Matches[1] } else { '' }
@@ -208,9 +226,11 @@ function Inject-AnnouncementFrames {
         # position:absolute, so it visually attaches to the timestamp
         # without breaking the surrounding <li>/<p>. role=button + tabindex
         # make it keyboard-focusable; session.js binds Enter/Space to toggle.
+        # The play button sits OUTSIDE the anchor so its click events don't
+        # bubble through the anchor's strip-toggle handler.
         return "<span class=`"anchor`" role=`"button`" tabindex=`"0`" aria-haspopup=`"true`">$($m.Value)" +
                "<span class=`"af-strip`">$body</span>" +
-               "</span>"
+               "</span>" + $playBtn
     })
 }
 
@@ -471,17 +491,41 @@ foreach ($dir in $sessionDirs) {
 "@
     }
 
-    # Embedded player. Prefer the direct MP4 (HTML5 <video controls>) because
-    # it streams in-place via HTTP range requests; fall back to the Medius
-    # iframe embed when no MP4 is exposed. Sessions with neither (labs, no
-    # recording yet) get no player block.
+    # Embedded player. Three-way fallback chain:
+    #   1. downloadVideoUrl set -> HTML5 <video> + MP4 (HTTP range requests, instant seek).
+    #   2. hlsUrl set           -> HTML5 <video> + hls.js (native on Safari; library elsewhere).
+    #                              Same <video> element as case 1, just sourced via JS, so the
+    #                              "click an announcement timestamp to seek the player" feature
+    #                              (see Inject-AnnouncementFrames + session.js) works uniformly
+    #                              across both cases. Empirically all 59 'iframe-only-today'
+    #                              sessions in the catalog have an hlsUrl, so this swap takes
+    #                              the iframe path from 59 sessions down to 0.
+    #   3. onDemandUrl set      -> opaque iframe embed. Last resort; transcripts/frames work
+    #                              but the click-to-seek feature can't reach inside the iframe
+    #                              and degrades to "open canonical session URL in a new tab".
+    #   4. None of the above    -> no player block (labs, in-person-only sessions, etc.).
+    # Sessions with neither (labs, no recording yet) get no player block.
     $playerHtml = ''
     if ($m.downloadVideoUrl) {
         $playerHtml = @"
 <section class="player">
-    <video controls preload="metadata" playsinline>
+    <video class="session-video" controls preload="metadata" playsinline>
         <source src="$(HtmlEncode $m.downloadVideoUrl)" type="video/mp4">
         Your browser doesn't support inline MP4 playback. <a href="$(HtmlEncode $m.downloadVideoUrl)">Download the MP4</a>.
+    </video>
+</section>
+"@
+    }
+    elseif ($m.hlsUrl) {
+        # session.js sees the data-hls-src attribute and either:
+        #   - attaches hls.js (Chrome/Edge/Firefox),
+        #   - or sets src directly (Safari has native HLS support).
+        # Fallback inner <a> guarantees something useful when JS is disabled.
+        $playerHtml = @"
+<section class="player">
+    <video class="session-video" controls preload="metadata" playsinline
+           data-hls-src="$(HtmlEncode $m.hlsUrl)">
+        Your browser doesn't support HLS playback. <a href="$(HtmlEncode $m.onDemandUrl)" target="_blank" rel="noopener">Open in Microsoft player</a>.
     </video>
 </section>
 "@
@@ -680,19 +724,31 @@ $($items -join "`n")
         TRANSCRIPT_HTML  = $transcriptHtml
     }
 
+    # hls.js is only needed on session pages that use the HLS player path
+    # (i.e. no downloadVideoUrl but has hlsUrl). Conditionally include it to
+    # avoid wasting ~290 KB of JS on the ~108 MP4 sessions + 276 sessions
+    # with no player at all. The "defer" attribute keeps it from blocking
+    # parse; session.js's attachHls() runs at DOMContentLoaded after this
+    # finishes loading.
+    $extraBodyScripts = ''
+    if (-not $m.downloadVideoUrl -and $m.hlsUrl) {
+        $extraBodyScripts = '<script defer src="../assets/hls.min.js"></script>'
+    }
+
     $pageHtml = Render-Template $layoutTpl @{
-        TITLE            = (HtmlEncode "$code - $($m.title)")
-        ASSETS_PREFIX    = '../'
-        BREADCRUMB       = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
-                           "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
-                           "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; " +
-                           "$(HtmlEncode $code)</nav>"
-        HEADER_TITLE     = "$(HtmlEncode $code) &mdash; $(HtmlEncode $m.title)"
-        NAV_HTML         = '<nav><a href="../index.html">All sessions in ' + (HtmlEncode "$Conference $EventId") + '</a></nav>'
-        SOURCE_NOTE      = " from <code>sessions/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/&lt;CODE&gt;/rich-manifest.json</code>"
-        EXTRA_HEAD       = ''
-        BODY             = $pageBody
-        GENERATED_AT     = HtmlEncode $generatedAt
+        TITLE             = (HtmlEncode "$code - $($m.title)")
+        ASSETS_PREFIX     = '../'
+        BREADCRUMB        = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
+                            "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
+                            "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; " +
+                            "$(HtmlEncode $code)</nav>"
+        HEADER_TITLE      = "$(HtmlEncode $code) &mdash; $(HtmlEncode $m.title)"
+        NAV_HTML          = '<nav><a href="../index.html">All sessions in ' + (HtmlEncode "$Conference $EventId") + '</a></nav>'
+        SOURCE_NOTE       = " from <code>sessions/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/&lt;CODE&gt;/rich-manifest.json</code>"
+        EXTRA_HEAD        = ''
+        EXTRA_BODY_SCRIPTS = $extraBodyScripts
+        BODY              = $pageBody
+        GENERATED_AT      = HtmlEncode $generatedAt
     }
     $pageOut = Join-Path $OutputRoot ("sessions\$code.html")
     Set-Content -LiteralPath $pageOut -Value $pageHtml -Encoding utf8
