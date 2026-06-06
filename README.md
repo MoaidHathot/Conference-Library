@@ -37,6 +37,15 @@ Conference-Library/
         sessions-index.json       # diff-friendly slim index
         ingestion-report.json     # written by Invoke-BuildIngestion.ps1
         summaries-report.json     # written by Get-SessionSummaries.ps1
+        announcements-report.json # written by Get-SessionAnnouncements.ps1
+        announcements/
+          aliases.json            # hand-edited fuzzy-merge overrides for entity resolution
+          manual-links.json       # hand-edited authoritative external links per entity
+          entities.json           # resolved canonical entities (Step 2 output)
+          mentions.json           # (entityId, sessionCode, timestamp) join table (Step 2)
+          entities-enriched.json  # entities.json + per-entity links[] + linkCounts (Step 3)
+          resolution-report.json  # diff-friendly Step 2 audit
+          enrichment-report.json  # diff-friendly Step 3 audit
   sessions/
     <Conference>/
       <EventId>/
@@ -46,6 +55,7 @@ Conference-Library/
           transcript.vtt          # raw WebVTT pulled from the source video service
           transcript-official.docx  # official transcript document, if provided
           summary.md              # Copilot-generated summary (8-section format)
+          announcements.json      # structured key-announcements extract (Step 1 output)
           ai-description.html     # source's own AI summary (HTML), if any
           frames/
             frame-001-<HH-MM-SS>.jpg
@@ -55,23 +65,36 @@ Conference-Library/
       layout.html
       index.body.html
       session.body.html
+      announcements.body.html     # landing page for the per-event announcements view
+      entity.body.html            # per-entity (per announcement) page
       assets/
         style.css
         app.js
+        announcements.js          # client-side for the announcements landing page
         lunr.min.js               # vendored, 28.8 KB
   scripts/
-    Get-BuildCatalog.ps1          # 1. crawl the Microsoft Build session catalog API
-    Invoke-BuildIngestion.ps1     # 2. download captions, sample frames, write manifests
-    Get-SessionSummary.cs         # 3a. (single-session) Copilot summarizer, .NET 10 file-based
-    Get-SessionSummaries.ps1      # 3b. drive the .cs summarizer across all sessions, in parallel
-    Build-Book.ps1                # 4. render the static docs/ HTML site
-  docs/                           # GitHub Pages deploy root (tracked in git)
-    index.html                    # multi-conference landing (auto-generated)
+    Get-BuildCatalog.ps1            # 1. crawl the Microsoft Build session catalog API
+    Invoke-BuildIngestion.ps1       # 2. download captions, sample frames, write manifests
+    Get-SessionSummary.cs           # 3a. (single-session) Copilot summarizer, .NET 10 file-based
+    Get-SessionSummaries.ps1        # 3b. drive the .cs summarizer across all sessions, in parallel
+    Get-AnnouncementFrames.ps1      # 3c. ffmpeg-sample 4 frames around each announcement timestamp
+    Get-SessionAnnouncements.cs     # 4a. (single-session) Copilot structured-extract of key announcements
+    Get-SessionAnnouncements.ps1    # 4b. drive 4a across all sessions, in parallel
+    Resolve-AnnouncementEntities.ps1 # 5. cross-session entity resolution (pure PowerShell)
+    Enrich-AnnouncementLinks.ps1    # 6. join transcript + manual external-link layers per entity
+    Build-Book.ps1                  # 7. render the static docs/ HTML site (incl. announcements view)
+  docs/                             # GitHub Pages deploy root (tracked in git)
+    index.html                      # multi-conference landing (auto-generated)
     <Conference>/
-      index.html                  # per-conference year list (auto-generated)
-      <EventId>/                  # per-event site (auto-generated)
-        index.html
-        sessions/<CODE>.html
+      index.html                    # per-conference year list (auto-generated)
+      <EventId>/                    # per-event site (auto-generated)
+        index.html                  # per-event session catalog (search + filter)
+        sessions/<CODE>.html        # per-session pages (incl. "Announcements introduced here" sidebar)
+        announcements/              # per-event announcements view (Steps 4-6 output)
+          index.html                # searchable / filterable card grid of every entity
+          <slug>.html               # per-entity page (links, code snippets, sessions)
+        announcement-catalog.json   # slim runtime catalog for announcements.js
+        announcement-search-index.json # pre-built Lunr index over entities
         assets/
         frames/<CODE>/*.jpg
         catalog.json
@@ -80,7 +103,7 @@ Conference-Library/
 
 ## Workflow
 
-All four steps are idempotent. Re-running only does work for new or updated content.
+All steps are idempotent. Re-running only does work for new or updated content.
 
 ```powershell
 # 1. Pull the full Microsoft Build 2026 session catalog (~24 s for 443 sessions).
@@ -94,7 +117,30 @@ pwsh scripts/Invoke-BuildIngestion.ps1 -Conference Build -EventId 2026
 #    Default concurrency 10. Re-runs skip sessions whose summary.md is newer than transcript.md.
 pwsh scripts/Get-SessionSummaries.ps1 -Conference Build -EventId 2026
 
-# 4. Render the static HTML site into docs/Build/2026/ (and refresh the two landing pages).
+# 3c. (Optional) Sample 4 announcement-context frames around each [HH:MM:SS] in the summaries.
+#     Re-runs skip timestamps whose folder already has all 4 frames.
+pwsh scripts/Get-AnnouncementFrames.ps1 -Conference Build -EventId 2026
+
+# 4. Extract a structured-JSON announcements.json per session: each `## Key announcements`
+#    bullet is enriched (category, long description, speakers, transcript-explicit links,
+#    code snippets) by a Copilot pass scoped to the +/-90s transcript window around the
+#    bullet's timestamp. Default concurrency 10. Re-runs skip sessions whose
+#    announcements.json is newer than summary.md.
+pwsh scripts/Get-SessionAnnouncements.ps1 -Conference Build -EventId 2026
+
+# 5. Cross-session entity resolution. Pure local PowerShell, sub-second. Writes
+#    catalog/<Conf>/<Event>/announcements/{entities,mentions,resolution-report}.json
+#    and auto-creates aliases.json (hand-editable fuzzy-merge overrides) on first run.
+pwsh scripts/Resolve-AnnouncementEntities.ps1 -Conference Build -EventId 2026
+
+# 6. External-link enrichment. Joins transcript-extracted URLs (from Step 4) with a
+#    hand-curated manual-links.json. Writes entities-enriched.json. A future
+#    -ModelSuggest flag will add a Copilot pass that suggests canonical GitHub/NuGet/
+#    docs links per entity (badged "model-suggested" in the UI).
+pwsh scripts/Enrich-AnnouncementLinks.ps1 -Conference Build -EventId 2026
+
+# 7. Render the static HTML site into docs/Build/2026/ (and refresh the two landing
+#    pages + the announcements landing + per-entity pages).
 pwsh scripts/Build-Book.ps1 -Conference Build -EventId 2026
 
 # Preview locally (any static file server works):
@@ -105,9 +151,12 @@ python -m http.server 8080 -d docs
 To rebuild just one session for development:
 
 ```powershell
-pwsh scripts/Invoke-BuildIngestion.ps1 -Conference Build -EventId 2026 -OnlyCodes KEY01 -Force
-pwsh scripts/Get-SessionSummaries.ps1 -Conference Build -EventId 2026 -OnlyCodes KEY01 -Force
-pwsh scripts/Build-Book.ps1 -Conference Build -EventId 2026
+pwsh scripts/Invoke-BuildIngestion.ps1     -Conference Build -EventId 2026 -OnlyCodes KEY01 -Force
+pwsh scripts/Get-SessionSummaries.ps1      -Conference Build -EventId 2026 -OnlyCodes KEY01 -Force
+pwsh scripts/Get-SessionAnnouncements.ps1  -Conference Build -EventId 2026 -OnlyCodes KEY01 -Force
+pwsh scripts/Resolve-AnnouncementEntities.ps1 -Conference Build -EventId 2026
+pwsh scripts/Enrich-AnnouncementLinks.ps1     -Conference Build -EventId 2026
+pwsh scripts/Build-Book.ps1                -Conference Build -EventId 2026
 ```
 
 `-Conference` defaults to `Build` for backward convenience; you can drop it while only Microsoft Build is wired up.
