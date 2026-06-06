@@ -867,6 +867,43 @@ details.transcript .transcript-body {
     transform: scale(0.9);
 }
 
+/* Inline link next to .ts-play that jumps to the per-entity announcement
+   page when this timestamp resolves to a canonical announcement entity.
+   Identical sizing + colour treatment to .ts-play so the pair reads as a
+   single 2-button control next to each timestamp; rendered as <a> so the
+   browser's native right-click / middle-click open-in-new-tab work. The
+   arrow glyph (U+2197) signals "go to a detail page", contrasting with the
+   play triangle so they're visually distinguishable at a glance. */
+.ts-open-entity {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 2px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: transparent;
+    color: var(--c-text-muted);
+    font-size: 0.85em;
+    line-height: 1;
+    vertical-align: middle;
+    text-decoration: none;
+    transition: color 100ms ease, background 100ms ease, border-color 100ms ease, transform 80ms ease;
+}
+.ts-open-entity:hover,
+.ts-open-entity:focus-visible {
+    color: var(--c-accent);
+    background: var(--c-accent-soft);
+    border-color: var(--c-accent);
+    outline: none;
+    text-decoration: none;
+}
+.ts-open-entity:active {
+    transform: scale(0.9);
+}
+
 /* Lightweight "ts" wrapper for the case where a timestamp has no frames on
    disk - just provides the same inline-baseline alignment as .anchor + .ts-play
    so the play button doesn't visually drift. */

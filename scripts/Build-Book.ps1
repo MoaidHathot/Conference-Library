@@ -187,6 +187,14 @@ function Inject-AnnouncementFrames {
     # without a video; the JS handler no-ops gracefully when no <video> is
     # present (it logs an aria-live hint instead).
     #
+    # When $EntityByTimestamp has a record for this timestamp (i.e. this
+    # bullet was extracted as a key announcement that resolved to a canonical
+    # entity), a third inline control - .ts-open-entity - is appended after
+    # the play button. It's a real <a> (no JS) that links to the per-entity
+    # announcement page; right-click / middle-click open in a new tab as
+    # expected. Renders only when the lookup hits, so non-announcement
+    # timestamps elsewhere in the summary stay untouched.
+    #
     # The strip shows whatever frames the Get-AnnouncementFrames.ps1 helper
     # has captured in
     #   <sessionDir>/announcement-frames/<HH-MM-SS>/frame-<offset>s.jpg
@@ -195,7 +203,11 @@ function Inject-AnnouncementFrames {
     param(
         [string]$Html,
         [string]$SessionDir,
-        [string]$Code
+        [string]$Code,
+        # Optional: timestamp ("HH:MM:SS") -> pscustomobject @{ Slug, Name, Category }.
+        # When a key match exists, the inline jump-to-entity link is emitted
+        # after the play button. Pass $null or @{} to disable.
+        $EntityByTimestamp = $null
     )
     if (-not $Html) { return $Html }
     $afRoot = Join-Path $SessionDir 'announcement-frames'
@@ -207,17 +219,29 @@ function Inject-AnnouncementFrames {
         $playBtn = "<button type=`"button`" class=`"ts-play`" data-ts=`"$ts`" " +
                    "title=`"Watch from $ts (-5s)`" aria-label=`"Watch the video from $ts minus 5 seconds`">" +
                    "<span aria-hidden=`"true`">&#9654;</span></button>"
+        # Entity-jump link: appears only when this timestamp resolves to a
+        # canonical entity for the current session. Catalog comes pre-joined
+        # from mentions.json by the caller.
+        $jumpLink = ''
+        if ($EntityByTimestamp -and $EntityByTimestamp.ContainsKey($ts)) {
+            $ent = $EntityByTimestamp[$ts]
+            $hrefRel = "../announcements/$([System.Net.WebUtility]::HtmlEncode($ent.Slug)).html"
+            $titleAttr = "Open announcement page: $([System.Net.WebUtility]::HtmlEncode($ent.Name))"
+            $aria = "Open the announcement page for $([System.Net.WebUtility]::HtmlEncode($ent.Name))"
+            $jumpLink = "<a class=`"ts-open-entity`" href=`"$hrefRel`" title=`"$titleAttr`" aria-label=`"$aria`">" +
+                        "<span aria-hidden=`"true`">&#x2197;</span></a>"
+        }
         $folder = $ts -replace ':', '-'
         $folderPath = Join-Path $afRoot $folder
-        # No frames on disk for this timestamp - just emit the timestamp + play button,
+        # No frames on disk for this timestamp - just emit the timestamp + play button (+ optional jump),
         # no anchor wrapper or strip.
         if (-not (Test-Path -LiteralPath $folderPath)) {
-            return "<span class=`"ts`">$($m.Value)$playBtn</span>"
+            return "<span class=`"ts`">$($m.Value)$playBtn$jumpLink</span>"
         }
         $imgs = Get-ChildItem -LiteralPath $folderPath -File -Filter '*.jpg' -ErrorAction SilentlyContinue |
                 Sort-Object Name
         if ($imgs.Count -eq 0) {
-            return "<span class=`"ts`">$($m.Value)$playBtn</span>"
+            return "<span class=`"ts`">$($m.Value)$playBtn$jumpLink</span>"
         }
         $cells = foreach ($img in $imgs) {
             $rel = "../frames/$Code/announcement-frames/$folder/$($img.Name)"
@@ -232,11 +256,11 @@ function Inject-AnnouncementFrames {
         # position:absolute, so it visually attaches to the timestamp
         # without breaking the surrounding <li>/<p>. role=button + tabindex
         # make it keyboard-focusable; session.js binds Enter/Space to toggle.
-        # The play button sits OUTSIDE the anchor so its click events don't
-        # bubble through the anchor's strip-toggle handler.
+        # The play button + jump link sit OUTSIDE the anchor so their click
+        # events don't bubble through the anchor's strip-toggle handler.
         return "<span class=`"anchor`" role=`"button`" tabindex=`"0`" aria-haspopup=`"true`">$($m.Value)" +
                "<span class=`"af-strip`">$body</span>" +
-               "</span>" + $playBtn
+               "</span>" + $playBtn + $jumpLink
     })
 }
 
@@ -659,7 +683,30 @@ foreach ($dir in $sessionDirs) {
         # markup for timestamps where the frame files actually exist on disk,
         # so old artifacts and freshly-summarized sessions both render
         # cleanly even when Get-AnnouncementFrames hasn't run yet.
-        $summaryRendered = Inject-AnnouncementFrames -Html $summaryRendered -SessionDir $dir.FullName -Code $code
+        #
+        # Build a per-session timestamp -> entity lookup so each key-
+        # announcement bullet gets a small "jump to entity page" link
+        # rendered next to its play button. The lookup uses the per-session
+        # mentions index ($annMentionsBySession) joined with the canonical
+        # entity table ($annEntities); when annEnabled is false the table
+        # is empty and no jump links are emitted.
+        $entityByTs = @{}
+        if ($annEnabled -and $annMentionsBySession.ContainsKey($code)) {
+            $entityIxLocal = @{}
+            foreach ($eRow in $annEntities) { $entityIxLocal[$eRow.id] = $eRow }
+            foreach ($mn in $annMentionsBySession[$code].ToArray()) {
+                $eRow = $entityIxLocal[$mn.entityId]
+                if (-not $eRow) { continue }
+                # Multiple mentions can share a timestamp (rare; defensive).
+                # Last one wins - they all link to the same entity anyway.
+                $entityByTs[$mn.timestamp] = [pscustomobject]@{
+                    Slug     = EntitySlug $eRow.id
+                    Name     = $eRow.canonicalName
+                    Category = $eRow.category
+                }
+            }
+        }
+        $summaryRendered = Inject-AnnouncementFrames -Html $summaryRendered -SessionDir $dir.FullName -Code $code -EntityByTimestamp $entityByTs
         $summaryHtml = @"
 <section class="section">
     <div class="summary">
