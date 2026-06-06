@@ -1,4 +1,15 @@
 {
-  "groups": [],
-  "schemaVersion": 1
+  "schemaVersion": 1,
+  "notes": "Hand-curated entity-merge overrides. Each group folds every mention whose normalised name matches one of `aliases[]` (or the canonical name itself) into a single entity with the given canonicalName + category, regardless of the per-mention category the LLM picked. Edit this file, then re-run Resolve-AnnouncementEntities.ps1 + Enrich-AnnouncementLinks.ps1 + Build-Book.ps1.",
+  "groups": [
+    {
+      "canonicalName": "Web IQ / Microsoft IQ",
+      "category": "platform",
+      "aliases": [
+        "Web IQ",
+        "Web IQ and Microsoft IQ",
+        "Web IQ and Work IQ API GA"
+      ]
+    }
+  ]
 }
