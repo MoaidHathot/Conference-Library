@@ -1212,7 +1212,11 @@ if ($annEnabled) {
                         $srcDetail = " <span class=`"source-detail`">via <a href=`"../sessions/$(HtmlEncode $l.sourceSession).html`">$(HtmlEncode $l.sourceSession)</a>$(if ($l.sourceTime) { ' @ ' + (HtmlEncode $l.sourceTime) } else { '' })</span>"
                     }
                     elseif ($l.source -eq 'search' -and $l.sourceProvider) {
-                        $srcDetail = " <span class=`"source-detail`">via $(HtmlEncode $l.sourceProvider)$(if ($l.sourceConfidence) { ' &middot; ' + (HtmlEncode $l.sourceConfidence) + ' confidence' } else { '' })</span>"
+                        # Attribution: name the tool (Zakira.Recall) AND the
+                        # underlying search provider it routed through. The
+                        # tool name links to the repo so visitors know how
+                        # to reproduce a search themselves.
+                        $srcDetail = " <span class=`"source-detail`">via <a href=`"https://github.com/MoaidHathot/Zakira.Recall`" target=`"_blank`" rel=`"noopener`">Zakira.Recall</a> &middot; $(HtmlEncode $l.sourceProvider)$(if ($l.sourceConfidence) { ' &middot; ' + (HtmlEncode $l.sourceConfidence) + ' confidence' } else { '' })</span>"
                     }
                     [void]$sectionsHtml.AppendLine(
                         '<li><span class="link-kind">' + (HtmlEncode $kg.Name) + '</span>' +
