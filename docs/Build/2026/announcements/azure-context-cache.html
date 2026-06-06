@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Azure Context Cache - Build 2026 announcements</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; <a href="index.html">Announcements</a> &raquo; Azure Context Cache</nav>
+        <h1>Azure Context Cache</h1>
+        <nav><a href="index.html">All announcements</a><a href="../index.html">All sessions</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html. Populated by Build-Book.ps1 for one per-entity
+     announcement page (docs/<Conf>/<Event>/announcements/<entity-slug>.html).
+     Server-rendered section markup (about, get-started, code snippets,
+     sessions) is substituted into the slot below; this template stays
+     trivial. -->
+
+<section class="entity-hero">
+    <div class="entity-hero-meta">
+        <span class="entity-cat entity-cat-service">Service</span>
+        
+    </div>
+    <h1>Azure Context Cache</h1>
+    <p class="entity-tagline">A storage-account-backed pooled KV cache that raised prompt cache hit rate to ~96% across servers regardless of where a request lands</p>
+    <div class="entity-stats">
+        <span><strong>1</strong> mention(s)</span>
+<span><strong>1</strong> session(s)</span>
+<span>First in <a href="../sessions/BRK226.html"><strong>BRK226</strong></a> @ 00:23:42</span>
+<span><strong>0</strong> external link(s)</span>
+    </div>
+    
+</section>
+
+<section class="entity-section"><h2>About</h2><p>Azure Context Cache, coming out in preview, is backed by a storage account that caches the KV state for inference requests behind all of the servers, so that regardless of which server a request lands on, the cached prompt and KV state can be fetched rather than re-decoded, saving time and money. This solves the problem where moving inference from one GPU or server to another would otherwise force repaying the prefill cost, and where caching only the system prompt is insufficient. A demo showed a cache hit rate of 81% at concurrency level 1, which dropped at concurrency level 10 as requests were sprayed across servers that might not have the system prompt; pooling the cache across servers raised the hit rate substantially.</p></section>
+<section class="entity-section"><h2>Sessions (1)</h2><ul class="mention-list">
+<li class="mention-card">
+  <div class="mention-card-head"><a href="../sessions/BRK226.html"><strong>BRK226</strong></a><span class="mention-ts">00:23:42</span></div>
+  <a href="../sessions/BRK226.html" class="mention-title">Inside Azure innovations with Mark Russinovich</a>
+  <div class="mention-speakers">Mark Russinovich, Darby Kosten</div>
+  <div class="mention-frames"><a href="../frames/BRK226/announcement-frames/00-23-42/frame-m05s.jpg" data-zoom="1"><img loading="lazy" src="../frames/BRK226/announcement-frames/00-23-42/frame-m05s.jpg" alt="Frame at 00:23:42"></a><a href="../frames/BRK226/announcement-frames/00-23-42/frame-m10s.jpg" data-zoom="1"><img loading="lazy" src="../frames/BRK226/announcement-frames/00-23-42/frame-m10s.jpg" alt="Frame at 00:23:42"></a><a href="../frames/BRK226/announcement-frames/00-23-42/frame-p05s.jpg" data-zoom="1"><img loading="lazy" src="../frames/BRK226/announcement-frames/00-23-42/frame-p05s.jpg" alt="Frame at 00:23:42"></a><a href="../frames/BRK226/announcement-frames/00-23-42/frame-p10s.jpg" data-zoom="1"><img loading="lazy" src="../frames/BRK226/announcement-frames/00-23-42/frame-p10s.jpg" alt="Frame at 00:23:42"></a></div>
+  <p class="mention-desc">Azure Context Cache, coming out in preview, is backed by a storage account that caches the KV state for inference requests behind all of the servers, so that regardless of which server a request lands on, the cached prompt and KV state can be fetched rather than re-decoded, saving time and money. This solves the problem where moving inference from one GPU or server to another would otherwise force repaying the prefill cost, and where caching only the system prompt is insufficient. A demo showed a cache hit rate of 81% at concurrency level 1, which dropped at concurrency level 10 as requests were sprayed across servers that might not have the system prompt; pooling the cache across servers raised the hit rate substantially.</p>
+  <div class="mention-actions">
+    <a href="../sessions/BRK226.html#t=1422" title="Open the session and seek the video to 00:23:42">Watch from 00:23:42</a>
+    <a href="../sessions/BRK226.html">Open session</a>
+  </div>
+</li>
+
+</ul></section>
+
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>catalog/Build/2026/announcements/entities-enriched.json</code>. Built at 2026-06-06T09:59:36.7231144Z.</p>
+        <p>Mediastream caption and frame ingestion is powered by <a href="https://github.com/MoaidHathot/Zakira.Replay">Zakira.Replay</a>.</p>
+    </div>
+</footer>
+
+<script src="../assets/session.js"></script>
+
+</body>
+</html>
+

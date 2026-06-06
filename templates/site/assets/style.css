@@ -874,3 +874,401 @@ details.transcript .transcript-body {
     display: inline;
     white-space: nowrap;
 }
+
+/* ============================================================
+   Announcements view
+   - Landing page (docs/<Conf>/<Event>/announcements/index.html)
+   - Per-entity page (docs/<Conf>/<Event>/announcements/<slug>.html)
+   - "Announcements introduced here" sidebar on session pages
+   Mirrors the existing session-list visual language: same card surface,
+   border radius, hover lift, accent treatment. The category chip palette
+   is the only new colour; everything else reuses the theme tokens at
+   :root.
+   ============================================================ */
+
+/* ---- landing: card grid ---- */
+
+.entity-list {
+    list-style: none;
+    margin: var(--s-5) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+}
+@media (min-width: 720px) {
+    .entity-list { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1080px) {
+    .entity-list { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.entity-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+.entity-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--c-accent);
+}
+.entity-card a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    padding: var(--s-4);
+    color: var(--c-text);
+    text-decoration: none;
+}
+.entity-card a:hover { text-decoration: none; }
+.entity-card strong {
+    font-size: var(--fs-lg);
+    color: var(--c-accent);
+    line-height: 1.25;
+}
+.entity-card small {
+    color: var(--c-text-muted);
+    font-size: var(--fs-xs);
+}
+.entity-tagline-card {
+    color: var(--c-text-muted);
+    font-size: var(--fs-sm);
+    line-height: 1.45;
+    /* Cap to 4 lines so cards stay equal-ish heights without truncating
+       on the entity detail page. */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.entity-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-2);
+}
+.entity-card-badges {
+    display: inline-flex;
+    gap: var(--s-1);
+    flex-wrap: wrap;
+}
+
+/* ---- per-entity page: hero ---- */
+
+.entity-hero {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: var(--s-5) var(--s-5);
+    margin-bottom: var(--s-5);
+}
+.entity-hero h1 {
+    margin: var(--s-2) 0 var(--s-3);
+    font-size: var(--fs-2xl);
+    line-height: 1.15;
+    color: var(--c-text);
+}
+.entity-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2);
+}
+.entity-tagline {
+    color: var(--c-text-muted);
+    font-size: var(--fs-lg);
+    margin: 0 0 var(--s-3);
+}
+.entity-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-4);
+    margin-top: var(--s-3);
+    color: var(--c-text-muted);
+    font-size: var(--fs-sm);
+}
+.entity-stats span strong { color: var(--c-text); font-weight: 600; }
+.entity-aliases {
+    margin-top: var(--s-3);
+    color: var(--c-text-muted);
+    font-size: var(--fs-sm);
+}
+.entity-aliases code {
+    background: var(--c-surface-alt);
+    padding: 0 var(--s-1);
+    border-radius: var(--radius-sm);
+}
+
+/* ---- per-entity page: sections ---- */
+
+.entity-section {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: var(--s-5);
+    margin-bottom: var(--s-4);
+}
+.entity-section h2 {
+    margin: 0 0 var(--s-3);
+    font-size: var(--fs-xl);
+}
+.entity-section h3 {
+    margin: var(--s-4) 0 var(--s-2);
+    font-size: var(--fs-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--c-text-muted);
+    font-weight: 600;
+}
+.entity-section p { margin: 0 0 var(--s-3); }
+.entity-section p:last-child { margin-bottom: 0; }
+
+/* "Get started" link groups */
+.link-group {
+    list-style: none;
+    margin: 0 0 var(--s-3);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1);
+}
+.link-group li {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    flex-wrap: wrap;
+}
+.link-group a { word-break: break-all; }
+.link-kind {
+    display: inline-block;
+    min-width: 5.5rem;
+    text-align: center;
+    background: var(--c-accent-soft);
+    color: var(--c-accent);
+    padding: 0 var(--s-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.source-badge {
+    display: inline-block;
+    padding: 0 var(--s-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    line-height: 1.6;
+    border: 1px solid var(--c-border);
+    background: var(--c-surface-alt);
+    color: var(--c-text-muted);
+}
+.source-badge[data-src="manual"]     { background: #e6f7eb; color: #1f6f3b; border-color: #cfe9d6; }
+.source-badge[data-src="transcript"] { background: var(--c-accent-soft); color: var(--c-accent); border-color: #cfe0f5; }
+.source-badge[data-src="model"]      { background: #fff1d6; color: #8a5a00; border-color: #f1dfb0; }
+.source-detail {
+    color: var(--c-text-muted);
+    font-size: var(--fs-xs);
+}
+
+/* Code snippets section reuses the global <pre> styling. */
+.entity-snippet {
+    margin: 0 0 var(--s-3);
+}
+.entity-snippet figcaption {
+    color: var(--c-text-muted);
+    font-size: var(--fs-xs);
+    margin-bottom: var(--s-1);
+}
+.entity-snippet pre {
+    margin: 0;
+}
+
+/* Sessions / mentions list on the per-entity page. */
+.mention-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-3);
+}
+@media (min-width: 720px) {
+    .mention-list { grid-template-columns: 1fr 1fr; }
+}
+.mention-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: var(--s-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+}
+.mention-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-2);
+}
+.mention-card-head .mention-ts {
+    font-family: var(--font-mono);
+    color: var(--c-text-muted);
+    font-size: var(--fs-xs);
+}
+.mention-card strong {
+    font-size: var(--fs-md);
+    color: var(--c-accent);
+}
+.mention-card .mention-speakers {
+    color: var(--c-text-muted);
+    font-size: var(--fs-sm);
+}
+.mention-card .mention-frames {
+    display: flex;
+    gap: var(--s-1);
+    overflow-x: auto;
+}
+.mention-card .mention-frames img {
+    width: 96px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--c-border);
+    flex: 0 0 96px;
+}
+.mention-card .mention-desc {
+    color: var(--c-text);
+    font-size: var(--fs-sm);
+    line-height: 1.45;
+    /* Cap to 5 lines; full text is on the session page. */
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.mention-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-top: auto;
+}
+.mention-actions a {
+    background: var(--c-accent-soft);
+    color: var(--c-accent);
+    padding: 0 var(--s-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    line-height: 1.8;
+}
+.mention-actions a:hover { background: var(--c-accent); color: white; text-decoration: none; }
+
+/* ---- category chips (12-bucket fixed taxonomy from Get-SessionAnnouncements.cs) ---- */
+
+.entity-cat {
+    display: inline-block;
+    padding: 0 var(--s-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    line-height: 1.6;
+    text-transform: lowercase;
+    letter-spacing: 0.03em;
+    border: 1px solid transparent;
+}
+/* Distinct hues per category, hand-picked for accessible contrast on
+   the neutral surface and easy at-a-glance scanning of mixed grids.
+   Values are intentionally muted so the chip blends into the card. */
+.entity-cat-model     { background: #ecdcff; color: #4d2680; }
+.entity-cat-service   { background: #d6ecff; color: #1f4f8a; }
+.entity-cat-SDK       { background: #fde6d3; color: #8a4a00; }
+.entity-cat-framework { background: #ffe0e6; color: #8a1f3a; }
+.entity-cat-library   { background: #d6e8d2; color: #2b6326; }
+.entity-cat-tool      { background: #d6e8d2; color: #2b6326; }
+.entity-cat-runtime   { background: #ddd8d2; color: #3f342a; }
+.entity-cat-hardware  { background: #ffdcdc; color: #872020; }
+.entity-cat-spec      { background: #e6e6e6; color: #3f3f3f; }
+.entity-cat-feature   { background: #e6f0fc; color: #0066d8; }
+.entity-cat-platform  { background: #ecdcff; color: #4d2680; }
+.entity-cat-concept   { background: #f1f1f3; color: #555a63; }
+
+.link-badge {
+    display: inline-block;
+    padding: 0 var(--s-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    line-height: 1.6;
+    background: var(--c-accent-soft);
+    color: var(--c-accent);
+}
+
+.pill-label {
+    color: var(--c-text-muted);
+    font-size: var(--fs-xs);
+    margin-right: var(--s-1);
+    line-height: 2;
+}
+
+/* ---- session-page sidebar: "Announcements introduced here" ---- */
+
+.session-ann-sidebar {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: var(--s-4);
+    margin: var(--s-4) 0;
+}
+.session-ann-sidebar h2 {
+    margin: 0 0 var(--s-3);
+    font-size: var(--fs-lg);
+}
+.session-ann-sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+}
+.session-ann-sidebar li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-1);
+}
+.session-ann-sidebar li a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-1);
+    padding: var(--s-1) var(--s-2);
+    background: var(--c-surface-alt);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--c-text);
+    font-size: var(--fs-sm);
+    border: 1px solid var(--c-border);
+}
+.session-ann-sidebar li a:hover {
+    border-color: var(--c-accent);
+    color: var(--c-accent);
+}
+
+/* ---- top nav link to Announcements (added inside .site-header > .page > nav) ---- */
+
+.site-header nav a + a { margin-left: var(--s-3); }
+
+/* ---- error inside list views ---- */
+.entity-list .error,
+.session-list .error {
+    grid-column: 1 / -1;
+    background: #fff7e6;
+    border: 1px solid #f1dfb0;
+    color: #8a5a00;
+    padding: var(--s-4);
+    border-radius: var(--radius);
+}

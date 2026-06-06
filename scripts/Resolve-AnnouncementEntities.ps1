@@ -307,11 +307,12 @@ foreach ($c in ($clusters.Values | Sort-Object @{ Expression = { $_.Members.Coun
 
     # Tagline: shortest non-empty shortDescription >= 40 chars (or longest if
     # all are very short). Long descriptions are paragraphs; the tagline is
-    # one line for the card grid.
-    $shorts = $members |
+    # one line for the card grid. @(...) forces array even for a single
+    # entity, otherwise $shorts[0] would index into the string's chars.
+    $shorts = @($members |
         Where-Object { -not [string]::IsNullOrWhiteSpace($_.ShortDescription) } |
         Select-Object -ExpandProperty ShortDescription |
-        Sort-Object { $_.Length }
+        Sort-Object { $_.Length })
     $tagline =
         if ($shorts.Count -eq 0) { $canonical }
         elseif ($shorts[0].Length -ge 40) { $shorts[0] }
@@ -319,10 +320,10 @@ foreach ($c in ($clusters.Values | Sort-Object @{ Expression = { $_.Members.Coun
 
     # Long description: longest non-empty longDescription that's strictly
     # different from the corresponding shortDescription (i.e. enriched).
-    $longs = $members |
+    $longs = @($members |
         Where-Object { -not [string]::IsNullOrWhiteSpace($_.LongDescription) -and ($_.LongDescription -ne $_.ShortDescription) } |
         Select-Object -ExpandProperty LongDescription |
-        Sort-Object { $_.Length } -Descending
+        Sort-Object { $_.Length } -Descending)
     $longDesc = if ($longs.Count -gt 0) { $longs[0] } else { $tagline }
 
     # Top sessions: by mention count within the cluster, then lex.

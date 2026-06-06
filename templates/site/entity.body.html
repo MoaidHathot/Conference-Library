@@ -1,0 +1,20 @@
+<!-- Body slot for layout.html. Populated by Build-Book.ps1 for one per-entity
+     announcement page (docs/<Conf>/<Event>/announcements/<entity-slug>.html).
+     Server-rendered section markup (about, get-started, code snippets,
+     sessions) is substituted into the slot below; this template stays
+     trivial. -->
+
+<section class="entity-hero">
+    <div class="entity-hero-meta">
+        <span class="entity-cat entity-cat-{{CATEGORY_SLUG}}">{{CATEGORY}}</span>
+        {{HEADER_BADGES_HTML}}
+    </div>
+    <h1>{{CANONICAL_NAME}}</h1>
+    <p class="entity-tagline">{{TAGLINE_HTML}}</p>
+    <div class="entity-stats">
+        {{STATS_HTML}}
+    </div>
+    {{ALIASES_HTML}}
+</section>
+
+{{SECTIONS_HTML}}
