@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK226",
+  "sessionTitle": "Inside Azure innovations with Mark Russinovich",
+  "sessionSpeakers": [
+    "Mark Russinovich",
+    "Darby Kosten"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:32:20.6141334+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Latest-generation Azure Boost offload card",
+      "category": "hardware",
+      "shortDescription": "Now deployed across 30%+ of the fleet, reaching 400 Gbps networking (up from 200), 20 GB/s remote storage, 1M remote IOPS, and 6.6M local NVMe IOPS",
+      "longDescription": "Azure Boost is an offload card that moves storage and networking data planes off the main server CPUs onto a card powered by DPUs, with ARM cores and an FPGA on the SoC where the data plane is processed and Microsoft's management agents run. The latest generation deploying in data centers reaches 20 GB/s remote storage, 1 million remote storage IOPS, 36 GB/s local NVMe storage [inferred], 6.6 million IOPS via NVMe offload acceleration, and 400 Gbps networking (up from 200) across two 200 Gbps ports supporting 400K connections per second. The dual ports connect to two top-of-rack switches for redundancy and sub-second servicing impact. Over 30% of the fleet now has Azure Boost enabled.",
+      "timestamp": "00:03:34",
+      "timestampSeconds": 214,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-03-34/frame-m05s.jpg",
+        "announcement-frames/00-03-34/frame-m10s.jpg",
+        "announcement-frames/00-03-34/frame-p05s.jpg",
+        "announcement-frames/00-03-34/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Bare metal instances",
+      "category": "service",
+      "shortDescription": "Currently in limited access for OpenAI's use of the Fairwater data center, with a general-purpose ND144V6 offering planned for the near future",
+      "longDescription": "By moving management services off the server onto the Azure Boost card, Azure can offer bare metal instances. These have been introduced in limited access specifically for OpenAI's use of the Fairwater data center, where the GPU servers run as bare metal instances, with a general-purpose offering planned for the near future. A demo showed an ND144V6 bare metal instance, SSH-ing in to confirm no virtualization services were running and using LSPCI to view the PCI bus, including a PCI bridge and 8 Ethernet controllers connected to Mellanox RDMA-capable adapters for the GPU back-end network.",
+      "timestamp": "00:05:36",
+      "timestampSeconds": 336,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-05-36/frame-m05s.jpg",
+        "announcement-frames/00-05-36/frame-m10s.jpg",
+        "announcement-frames/00-05-36/frame-p05s.jpg",
+        "announcement-frames/00-05-36/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "MRC (Multi-Path Reliable Connection)",
+      "category": "spec",
+      "shortDescription": "A new Ethernet-based networking protocol co-developed with OpenAI that packet-sprays across independent \"planes\" to survive congestion and link failures during massive training jobs",
+      "longDescription": "MRC (Multi-Path Reliable Connection) is a new Ethernet-based networking protocol developed with OpenAI and a growing consortium of partners, replacing RoCE (RDMA over Converged Ethernet) in the Fairwater data centers that switched from InfiniBand to Ethernet. It is designed to be resilient during massive synchronous training jobs connecting up to 100,000 GPUs, where congestion or a single failure could otherwise force a costly restart from a checkpoint. MRC sprays packets across independent network domains called planes, so when a link is dropped the spraying rebalances across the remaining available planes. A demo showed two servers sending 4 GB payloads over 4 switches, achieving roughly 95 GB/s by spraying across 8 planes at about 12 GB per plane.",
+      "timestamp": "00:07:00",
+      "timestampSeconds": 420,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-07-00/frame-m05s.jpg",
+        "announcement-frames/00-07-00/frame-m10s.jpg",
+        "announcement-frames/00-07-00/frame-p05s.jpg",
+        "announcement-frames/00-07-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Guest VM-to-VM RDMA over Azure Boost",
+      "category": "feature",
+      "shortDescription": "Demonstrated nearly doubling inference token throughput (3,400 to 7,637) and cutting median time-to-first-token from ~123k to ~47k ms in a disaggregated prefill/decode setup",
+      "longDescription": "This brings RDMA to general-purpose workloads by enabling memory-to-memory transfers between virtual machines through Azure Boost, bypassing the TCP/IP and MANA (Microsoft Accelerated Network Adapter) driver stacks to eliminate memory copies and synchronization overhead. The demo targeted a common AI inference scenario that splits work into prefill (populating the KV cache from the prompt) and decode (generating new tokens), running each in separate server pools with different memory and compute constraints. Using a VLLM benchmark over TCP/IP first, the RDMA send-request stats stayed unchanged while throughput was measured, demonstrating the contrast with the RDMA path.",
+      "timestamp": "00:11:00",
+      "timestampSeconds": 660,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-11-00/frame-m05s.jpg",
+        "announcement-frames/00-11-00/frame-m10s.jpg",
+        "announcement-frames/00-11-00/frame-p05s.jpg",
+        "announcement-frames/00-11-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Direct virtualization for Azure Container Instances",
+      "category": "feature",
+      "shortDescription": "Places Hyper-V-isolated containers directly on servers as peers to the management VM, removing virtualization overhead; full fleet migration expected to take one to two years",
+      "longDescription": "Direct virtualization removes the virtualization overhead in Azure Container Instances by placing Hyper-V-isolated containers directly on servers as peers to the management VM, rather than nested inside a virtual machine. The management VM acts as the parent partition or layer-one virtualization host, while layer-two virtualization hosts (child VMs) host individual containers or pods, providing strong hostile multi-tenant isolation without process isolation. ACI is widely adopted across Microsoft services such as GitHub Actions, Python in Excel, and Horizon DB. Migrating the entire fleet to direct virtualization is expected to take a year or two and deliver significant performance and efficiency benefits.",
+      "timestamp": "00:15:34",
+      "timestampSeconds": 934,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-15-34/frame-m05s.jpg",
+        "announcement-frames/00-15-34/frame-m10s.jpg",
+        "announcement-frames/00-15-34/frame-p05s.jpg",
+        "announcement-frames/00-15-34/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "First public demo of container live migration",
+      "category": "feature",
+      "shortDescription": "Containers moved between server pools with no gap in output",
+      "longDescription": "This was the first public demo of container live migration in Azure, moving containers from one pool of servers to another with minimal downtime, mirroring the live migration capability long available to virtual machines. In the demo, a container on server dev 6 emitted a tick every second up to tick 695, at which point migration kicked in and it stopped running on that server. The container reappeared on dev 1 already at tick 7055, and inspecting the output file with cat confirmed tick 695 was present, proving no gap in output occurred during the migration. The feature is still under development, shown via command line.",
+      "timestamp": "00:17:03",
+      "timestampSeconds": 1023,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-17-03/frame-m05s.jpg",
+        "announcement-frames/00-17-03/frame-m10s.jpg",
+        "announcement-frames/00-17-03/frame-p05s.jpg",
+        "announcement-frames/00-17-03/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Azure Context Cache (preview)",
+      "category": "service",
+      "shortDescription": "A storage-account-backed pooled KV cache that raised prompt cache hit rate to ~96% across servers regardless of where a request lands",
+      "longDescription": "Azure Context Cache, coming out in preview, is backed by a storage account that caches the KV state for inference requests behind all of the servers, so that regardless of which server a request lands on, the cached prompt and KV state can be fetched rather than re-decoded, saving time and money. This solves the problem where moving inference from one GPU or server to another would otherwise force repaying the prefill cost, and where caching only the system prompt is insufficient. A demo showed a cache hit rate of 81% at concurrency level 1, which dropped at concurrency level 10 as requests were sprayed across servers that might not have the system prompt; pooling the cache across servers raised the hit rate substantially.",
+      "timestamp": "00:23:42",
+      "timestampSeconds": 1422,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-23-42/frame-m05s.jpg",
+        "announcement-frames/00-23-42/frame-m10s.jpg",
+        "announcement-frames/00-23-42/frame-p05s.jpg",
+        "announcement-frames/00-23-42/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Memory-snapshotting for container sandboxes",
+      "category": "feature",
+      "shortDescription": "Launched 10,000 sandboxes with a ~2-second average launch time",
+      "longDescription": "To make lightweight container sandboxes start almost instantaneously for agent workloads, ACI uses memory snapshotting: a container is started, its memory is snapshotted, and subsequent requests for the same container simply map that memory, skipping all initialization. The demo launched 10,000 container sandboxes using 10 workers each launching 1,000 sandboxes, completing with an average launch time of about 2 seconds, demonstrating both speed and scale. This capability underpins agent sandboxing landing on top of Azure Container Instances.",
+      "timestamp": "00:27:33",
+      "timestampSeconds": 1653,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-27-33/frame-m05s.jpg",
+        "announcement-frames/00-27-33/frame-m10s.jpg",
+        "announcement-frames/00-27-33/frame-p05s.jpg",
+        "announcement-frames/00-27-33/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "First-ever confidential VM live migration",
+      "category": "feature",
+      "shortDescription": "Achieved with Intel using a migration TD enforcing policy across servers; not yet in production",
+      "longDescription": "Microsoft worked with Intel to achieve confidential live migration, addressing a long-standing gap in confidential computing offerings. It uses a migration TD (MIG TD), a confidential partition measured as part of the VM's measurement, where the sending side enforces a policy that the VM will only migrate to another server with a MIG TD approved for that VM, extending the confidential trust boundary across two servers via confidential computing hardware. The demo, shown publicly for the first time ever, migrated a confidential VM with a few gigabytes of RAM between two servers using Hyper-V Manager, with TD info attestations printed during the transfer and the RDP connection dropping as the CVM moved. The capability was achieved in the last few weeks and is not yet in production.",
+      "timestamp": "00:33:46",
+      "timestampSeconds": 2026,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-33-46/frame-m05s.jpg",
+        "announcement-frames/00-33-46/frame-m10s.jpg",
+        "announcement-frames/00-33-46/frame-p05s.jpg",
+        "announcement-frames/00-33-46/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Azure Integrated HSM (Manacor)",
+      "category": "hardware",
+      "shortDescription": "A FIPS 140-3 Level 3 HSM in every server; releasing an AKV key locally raised signing throughput from ~640 to 18,800 operations/second with no loss of security",
+      "longDescription": "Building on Microsoft's hardware roots of trust like Caliptra (donated to the Open Compute Project), Azure Integrated HSM—internally called Manacor—is an HSM deployed inside every single server to provide hardware key management so keys never exit the hardware trust boundary throughout their lifecycle. Keys can be released with policy from a managed HSM such as Azure Managed HSM or Azure Key Vault into the Azure Integrated HSM, which is FIPS 140-3 Level 3 certified just like the HSMs behind those services, keeping the key inside that boundary from HSM to server where the hardware is mapped into the VM for operations. A demo signing payloads with an AKV key showed the benefit, comparing signing throughput when using Azure Key Vault directly (about 640 operations/second) versus releasing the key locally (about 18,800 operations/second) with no loss of security.",
+      "timestamp": "00:36:06",
+      "timestampSeconds": 2166,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-36-06/frame-m05s.jpg",
+        "announcement-frames/00-36-06/frame-m10s.jpg",
+        "announcement-frames/00-36-06/frame-p05s.jpg",
+        "announcement-frames/00-36-06/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

@@ -464,29 +464,53 @@ static IEnumerable<ParsedAnnouncement> ParseKeyAnnouncements(string summary)
     var body = sectionMatch.Groups["body"].Value;
 
     // Bullet shapes observed across 446 summaries:
-    //   - **<name>** [HH:MM:SS] - <short>            (KEY01-style; em-dash or hyphen)
-    //   - **<name>** *(MM:SS)*: <short>              (OD858-style; italic parens)
-    //   - **<name>** (HH:MM:SS) - <short>            (occasional)
-    // Tolerant regex: any bold name, then a bracketed or parenthesised
-    // (optionally italic) timestamp, then any separator (colon, em-dash,
-    // hyphen, en-dash) and the short description.
-    var bulletRx = new Regex(
-        @"^[\-\*]\s+\*\*(?<name>.+?)\*\*\s*\*?\s*[\[\(]\s*(?<ts>\d{1,2}:\d{2}(?::\d{2})?)\s*[\]\)]\s*\*?\s*[:\-\u2013\u2014]\s+(?<short>.+?)$",
+    //   - **<name>** [HH:MM:SS] - <short>            (KEY01-style; em-dash or hyphen, ts after name)
+    //   - **<name>** *(MM:SS)*: <short>              (OD858-style; italic parens, ts after name)
+    //   - **<name>** *(~HH:MM:SS)*: <short>          (BRK202-style; ~ approximate-prefix)
+    //   - **<name>** (HH:MM:SS) - <short>            (occasional; parens, ts after name)
+    //   - **<name>** - <short> [HH:MM:SS].           (BRK204-style; ts at END of line)
+    // Two passes: front-loaded timestamps first, then trailing timestamps for
+    // bullets the first pass missed. Both passes tolerate ~ approximate
+    // prefix and optional italic markers on the timestamp delimiter.
+    var bulletFrontRx = new Regex(
+        @"^[\-\*]\s+\*\*(?<name>.+?)\*\*\s*\*?\s*[\[\(]\s*~?\s*(?<ts>\d{1,2}:\d{2}(?::\d{2})?)\s*[\]\)]\s*\*?\s*[:\-\u2013\u2014]\s+(?<short>.+?)$",
+        RegexOptions.Multiline);
+    var bulletTrailRx = new Regex(
+        @"^[\-\*]\s+\*\*(?<name>.+?)\*\*\s*[:\-\u2013\u2014]\s+(?<short>.+?)\s*[\[\(]\s*~?\s*(?<ts>\d{1,2}:\d{2}(?::\d{2})?)\s*[\]\)]\s*\.?\s*$",
         RegexOptions.Multiline);
 
-    foreach (Match m in bulletRx.Matches(body))
+    // Track matched line offsets so the trailing pass doesn't double-count a
+    // bullet the front pass already claimed (e.g. a bullet that happens to
+    // have a parenthesised timestamp both after the name and at the end).
+    var claimedOffsets = new HashSet<int>();
+
+    foreach (Match m in bulletFrontRx.Matches(body))
     {
-        var name  = m.Groups["name"].Value.Trim();
-        var tsRaw = m.Groups["ts"].Value.Trim();
-        var short_ = m.Groups["short"].Value.Trim();
+        claimedOffsets.Add(m.Index);
+        var p = BuildAnnouncement(m);
+        if (p is not null) yield return p;
+    }
+
+    foreach (Match m in bulletTrailRx.Matches(body))
+    {
+        if (claimedOffsets.Contains(m.Index)) continue;
+        var p = BuildAnnouncement(m);
+        if (p is not null) yield return p;
+    }
+
+    static ParsedAnnouncement? BuildAnnouncement(Match m)
+    {
+        var name   = m.Groups["name"].Value.Trim();
+        var tsRaw  = m.Groups["ts"].Value.Trim();
+        var short_ = m.Groups["short"].Value.Trim().TrimEnd('.', ' ', '\t');
 
         var (ts, seconds) = NormaliseTimestamp(tsRaw);
-        if (seconds < 0) continue;
+        if (seconds < 0) return null;
 
         var isInferred = name.Contains("[inferred]", StringComparison.OrdinalIgnoreCase)
                       || short_.Contains("[inferred]", StringComparison.OrdinalIgnoreCase);
 
-        yield return new ParsedAnnouncement(
+        return new ParsedAnnouncement(
             Name:             name,
             Timestamp:        ts,
             TimestampSeconds: seconds,

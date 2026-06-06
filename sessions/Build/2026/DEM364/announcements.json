@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEM364",
+  "sessionTitle": "Simplify app dev with cloud-native PostgreSQL in Azure HorizonDB",
+  "sessionSpeakers": [
+    "Maxim Lukiyanov"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:28:07.5577841+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Azure HorizonDB public preview",
+      "category": "service",
+      "shortDescription": "Announced the prior day by Satya [inferred Nadella], HorizonDB pairs the open-source PostgreSQL engine with a cloud-optimized scalable storage backend for higher resiliency, scale, and performance.",
+      "longDescription": "Azure HorizonDB is a new PostgreSQL database whose public preview was announced the prior day by Satya [inferred Nadella]. It takes the open-source PostgreSQL engine and connects it to a cloud-optimized scalable storage backend to achieve higher resiliency, larger scale, and better performance for Postgres workloads. It is designed for the new era of AI agents, shipping with built-in AI models, AI pipelines, and AI functions.",
+      "timestamp": "00:00:42",
+      "timestampSeconds": 42,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-00-42/frame-m05s.jpg",
+        "announcement-frames/00-00-42/frame-m10s.jpg",
+        "announcement-frames/00-00-42/frame-p05s.jpg",
+        "announcement-frames/00-00-42/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Performance and scale gains",
+      "category": "feature",
+      "shortDescription": "HorizonDB claims 3x higher transaction throughput, 3x faster vector search, and support for up to 15 read-only replicas.",
+      "longDescription": "HorizonDB claims 3 times higher throughput on transactions and three times faster vector search compared to standard Postgres. It can also scale to very large databases and enables up to 15 read-only replicas, providing a scalable and powerful engine. On top of this engine, AI features are built in.",
+      "timestamp": "00:01:10",
+      "timestampSeconds": 70,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-01-10/frame-m05s.jpg",
+        "announcement-frames/00-01-10/frame-m10s.jpg",
+        "announcement-frames/00-01-10/frame-p05s.jpg",
+        "announcement-frames/00-01-10/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Bundled AI models at provisioning",
+      "category": "feature",
+      "shortDescription": "A single checkbox during cluster creation activates model management plus pgvector and DiskANN vector search extensions, provisioning three managed models (chat completion, text embedding, and a semantic ranker) with the database.",
+      "longDescription": "When provisioning HorizonDB, AI models can be bundled directly into the database so it comes with all model connections already provisioned, letting developers skip the infrastructure setup of connecting models. During cluster creation (demonstrated via the Postgres extension and a 'provision Horizon DB' entry in the new server screen), a single checkbox activates model management plus the pgvector and DiskANN vector search extensions for Postgres. This makes the database ready with AI enablement and models provisioned together with it.",
+      "timestamp": "00:04:06",
+      "timestampSeconds": 246,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-04-06/frame-m05s.jpg",
+        "announcement-frames/00-04-06/frame-m10s.jpg",
+        "announcement-frames/00-04-06/frame-p05s.jpg",
+        "announcement-frames/00-04-06/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "AI pipelines with change triggers",
+      "category": "feature",
+      "shortDescription": "A SQL-defined pipeline chunks source rows, generates embeddings via the Microsoft Foundry embedding model, and attaches a trigger that incrementally and asynchronously processes new data without blocking inserts.",
+      "longDescription": "An AI pipeline is defined in SQL that takes product catalog data from a source table and generates embeddings entirely within the database. The pipeline performs a sequence of steps—first chunking the data for vector search accuracy, then generating an embedding for each chunk—using the pre-provisioned text embedding model. A trigger is attached so that any changes in the product catalog automatically flow through the pipeline, incrementally and asynchronously updating the data and generating new embeddings. The transcript also notes three managed models were auto-provisioned (chat completion, text embedding, and a semantic ranker), plus support for bringing your own enterprise models.",
+      "timestamp": "00:08:05",
+      "timestampSeconds": 485,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-05/frame-m05s.jpg",
+        "announcement-frames/00-08-05/frame-m10s.jpg",
+        "announcement-frames/00-08-05/frame-p05s.jpg",
+        "announcement-frames/00-08-05/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "PGFTS full-text search extension",
+      "category": "feature",
+      "shortDescription": "A new extension bringing Lucene-type full-text search to Postgres, combined with a DiskANN vector index to enable hybrid search.",
+      "longDescription": "PGFTS is a new extension enabled on HorizonDB that brings Lucene-type full-text search functionality to Postgres, allowing full-text search and full-text search indexes on a product catalog. Combined with a provisioned DiskANN vector index—which offers better performance than pgvector—it enables fast hybrid search that combines the strengths of both vector and full-text search. A simple function is provided to perform these sophisticated hybrid search operations with minimal syntax.",
+      "timestamp": "00:14:59",
+      "timestampSeconds": 899,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-59/frame-m05s.jpg",
+        "announcement-frames/00-14-59/frame-m10s.jpg",
+        "announcement-frames/00-14-59/frame-p05s.jpg",
+        "announcement-frames/00-14-59/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

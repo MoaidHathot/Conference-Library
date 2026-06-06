@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD804",
+  "sessionTitle": "Simplifying .NET Installs with dotnetup",
+  "sessionSpeakers": [],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:28:32.0676426+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "dotnetup, a new cross-platform .NET install manager",
+      "category": "tool",
+      "shortDescription": "A native AOT tool that behaves identically on every platform and installs .NET into the user directory without admin elevation.",
+      "longDescription": "dotnetup is a new product the .NET SDK team has been building to simplify getting .NET onto a machine and managing versions over time. Chet Husk frames the problem that users today fall into one of two buckets: Visual Studio on Windows, where the toolchain is managed and updated for you, or 'everyone else' who lacks that experience — which is the gap dotnetup aims to solve. The session previews the initial preview versions of dotnetup along with its roadmap.",
+      "timestamp": "00:00:06",
+      "timestampSeconds": 6,
+      "speakers": [
+        "Chet Husk"
+      ],
+      "frames": [
+        "announcement-frames/00-00-06/frame-m05s.jpg",
+        "announcement-frames/00-00-06/frame-p05s.jpg",
+        "announcement-frames/00-00-06/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "global.json-driven SDK installation",
+      "category": "feature",
+      "shortDescription": "Running `dotnetup sdk install` reads a repo's global.json (including roll-forward policies like `latestFeature` and `latestPatch`) and installs the matching SDK automatically.",
+      "longDescription": "Running `dotnetup sdk install` inside a repo reads that repo's global.json and installs the matching .NET SDK automatically. In the demo, a cross-platform web app's global.json specified SDK 10.0.100 with a roll-forward policy, so dotnetup rolled forward to the latestFeature band; changing the policy to latestPatch caused dotnetup to install the 100 feature band (1xx) instead, and it explained that the choice came from the global.json. With one command the developer was ready to build and run the app using the correct SDK.",
+      "timestamp": "00:18:32",
+      "timestampSeconds": 1112,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-18-32/frame-m05s.jpg",
+        "announcement-frames/00-18-32/frame-m10s.jpg",
+        "announcement-frames/00-18-32/frame-p05s.jpg",
+        "announcement-frames/00-18-32/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [
+        {
+          "language": "bash",
+          "code": "dotnetup sdk install",
+          "timestamp": "00:18:32"
+        }
+      ],
+      "isInferred": false
+    },
+    {
+      "name": "Standalone runtime installation",
+      "category": "feature",
+      "shortDescription": "`dotnetup runtime install 8.0 9.0 10.0` fetches multiple runtimes for multi-targeted test runs without installing full parallel SDKs.",
+      "longDescription": "dotnetup makes it easy to install just the runtimes needed to run an application, rather than installing entire parallel SDKs as is commonly done in CI/CD setups. Running `dotnet runtime install 8.0 9.0 10.0` fetches the latest release of each of those bands and installs them all at the same time, and specific versions can be requested if needed. This lets developers run multi-targeted tests without installing full SDKs at hundreds of megabytes apiece, and other specifiers such as ASP.NET Core (and Windows desktop on Windows) are also supported.",
+      "timestamp": "00:27:58",
+      "timestampSeconds": 1678,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-27-58/frame-m05s.jpg",
+        "announcement-frames/00-27-58/frame-m10s.jpg",
+        "announcement-frames/00-27-58/frame-p05s.jpg",
+        "announcement-frames/00-27-58/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [
+        {
+          "language": "bash",
+          "code": "dotnet runtime install 8.0 9.0 10.0",
+          "timestamp": "00:27:58"
+        }
+      ],
+      "isInferred": false
+    },
+    {
+      "name": "Tracking, updates, and uninstalls via a manifest",
+      "category": "feature",
+      "shortDescription": "`dotnetup list` tracks installed components and the channels being followed; `dotnetup update` installs new releases and removes out-of-date installs no longer needed.",
+      "longDescription": "`dotnetup list` tracks what is currently installed along with the explicit runtime requests being followed, and supports the component name @version pattern (e.g. `dotnetup runtime install aspnetcore@8.0`). When new versions of runtimes release, a simple `dotnetup update` installs them and brings out-of-date installs up to the requested state. This works because dotnetup keeps a manifest — an installation tracker in a data directory in the user directory — acting like a lock file for the declared/desired state of the system, while global.json remains the way to describe development requirements across repos and developers.",
+      "timestamp": "00:30:38",
+      "timestampSeconds": 1838,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-30-38/frame-m05s.jpg",
+        "announcement-frames/00-30-38/frame-m10s.jpg",
+        "announcement-frames/00-30-38/frame-p05s.jpg",
+        "announcement-frames/00-30-38/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [
+        {
+          "language": "bash",
+          "code": "dotnetup runtime install aspnetcore@8.0",
+          "timestamp": "00:29:32"
+        },
+        {
+          "language": "bash",
+          "code": "dotnet --list-runtimes",
+          "timestamp": "00:29:48"
+        },
+        {
+          "language": "bash",
+          "code": "dotnetup update",
+          "timestamp": "00:30:42"
+        }
+      ],
+      "isInferred": false
+    },
+    {
+      "name": "Signed binaries and manifests",
+      "category": "feature",
+      "shortDescription": "Work with the .NET releases teams to sign all binaries and manifests for provenance and supply-chain safety.",
+      "longDescription": "To bring the central management, auditability, and safety that system-level installers (like the one Visual Studio uses) have to user-level installs, the team has been working with the .NET releases teams to sign all of the binaries and all of the manifests involved. This provenance ensures the binaries you use are the ones the team intended to deliver, all the way down. The team also built a library around the tool so other tools that interact with installs can do so correctly and safely, with the hope that the manifests and bookkeeping become a shared resource for tools like Dependabot and Renovate and broader compliance infrastructure.",
+      "timestamp": "00:09:42",
+      "timestampSeconds": 582,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-42/frame-m05s.jpg",
+        "announcement-frames/00-09-42/frame-m10s.jpg",
+        "announcement-frames/00-09-42/frame-p05s.jpg",
+        "announcement-frames/00-09-42/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Roadmap milestones",
+      "category": "concept",
+      "shortDescription": "Internal preview (stable SDKs, daily builds, one-shot A/B execution), public preview (self-update, update notifications, full signature verification, agent skills) before end of summer, then GA with official docs.",
+      "longDescription": "Chet outlines the dotnetup roadmap beyond what was demoed (stable SDK management and manual runtime management). The internal preview will focus on managing SDKs, with a PR in the pipeline to manage daily/nightly SDKs — both the monthly stable previews (e.g. .NET 11 Preview 4/5) and individual hot builds from the unified build system — selectable via global.json or the command line, plus a one-shot A/B execution command for comparing behaviors. This is motivated partly by agent scenarios that work best without admin rights, in sandboxes, while staying up to date and expressing version constraints the way CI/CD tooling does today.",
+      "timestamp": "00:38:33",
+      "timestampSeconds": 2313,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-38-33/frame-m05s.jpg",
+        "announcement-frames/00-38-33/frame-m10s.jpg",
+        "announcement-frames/00-38-33/frame-p05s.jpg",
+        "announcement-frames/00-38-33/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

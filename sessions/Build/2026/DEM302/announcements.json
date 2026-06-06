@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEM302",
+  "sessionTitle": "Build and deploy an Azure app with your agent team",
+  "sessionSpeakers": [
+    "Brady Gaster",
+    "Rong Lu"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:27:43.7749182+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Zava customer-insights multi-agent system",
+      "category": "concept",
+      "shortDescription": "A team of four agents (classifier, enrichment, triage, aggregate) that analyzes customer feedback sentiment and triggers actions such as drafting replacement emails.",
+      "longDescription": "A demo system built for Zava, an online retailer, to help understand customer feedback and take actions on it. It is a team of agents fronted by a website connected to a back end running in Microsoft Foundry that understands and analyzes customer feedback to give insights on customer sentiment. Examples shown include mixed feedback (price reasonable but delivery slow) and a report of an app crash, with the system able to trigger actions such as drafting replacement emails.",
+      "timestamp": "00:01:12",
+      "timestampSeconds": 72,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-01-12/frame-m05s.jpg",
+        "announcement-frames/00-01-12/frame-m10s.jpg",
+        "announcement-frames/00-01-12/frame-p05s.jpg",
+        "announcement-frames/00-01-12/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Foundry skill in the Foundry Toolkit VS Code extension",
+      "category": "tool",
+      "shortDescription": "Supplies Copilot with up-to-date knowledge of the new Microsoft Agent Framework and Microsoft Foundry service so it can scaffold agents correctly.",
+      "longDescription": "When prompted in VS Code Copilot to build a production-ready Foundry host agent using the Microsoft Agent Framework, Copilot pulled up the Foundry skill that ships with the Foundry Toolkit VS Code extension to get the latest knowledge about the service and framework. Because the Microsoft Agent Framework (an open-source framework for orchestrating multi-agent systems) and the Microsoft Foundry service are both very new, Copilot needs this skill to learn about the new technologies and understand how to build the agent. This enabled iterating with Copilot in plan mode to design a four-agent system (classifier, enrichment, triage, aggregate).",
+      "timestamp": "00:05:06",
+      "timestampSeconds": 306,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-05-06/frame-m05s.jpg",
+        "announcement-frames/00-05-06/frame-m10s.jpg",
+        "announcement-frames/00-05-06/frame-p05s.jpg",
+        "announcement-frames/00-05-06/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Foundry toolbox with unified endpoint and authentication",
+      "category": "feature",
+      "shortDescription": "Packages multiple tools (Azure AI Search over a product catalog and a Fabric IQ connector to customer/order data) behind a single endpoint, attached only to the enrichment agent.",
+      "longDescription": "Foundry Tools and Toolbox lets you package various tools into a single entity that your program can interact with, solving how an agent running in the Microsoft Foundry service connects back to Fabric data. In this case the toolbox contains an Azure AI Search index over a product catalog and a Fabric IQ connector that links to customer and orders data, all accessible via a unified endpoint and unified authentication so you connect once. The toolbox is attached only to the enrichment agent, so that single agent can access internal data while the other agents cannot.",
+      "timestamp": "00:08:09",
+      "timestampSeconds": 489,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-09/frame-m05s.jpg",
+        "announcement-frames/00-08-09/frame-m10s.jpg",
+        "announcement-frames/00-08-09/frame-p05s.jpg",
+        "announcement-frames/00-08-09/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agent Inspector tool",
+      "category": "tool",
+      "shortDescription": "Part of the Foundry Toolkit VS Code extension; visualizes agent workflows live, acts as a playground, captures runtime events, and supports normal debugging.",
+      "longDescription": "Agent Inspector is a tool that is part of the Foundry Toolkit VS Code extension and serves multiple purposes. It acts as a visualizer showing how multiple agents in a workflow flow together (updated live from runtime object models), a playground for sending payloads, and a normal debugger where you can hover to see variables. It also captures events from runtime so you can inspect every event coming in and out of the agent.",
+      "timestamp": "00:10:22",
+      "timestampSeconds": 622,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-10-22/frame-m05s.jpg",
+        "announcement-frames/00-10-22/frame-m10s.jpg",
+        "announcement-frames/00-10-22/frame-p05s.jpg",
+        "announcement-frames/00-10-22/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Copilot-generated evaluations via Foundry MCP server",
+      "category": "feature",
+      "shortDescription": "Copilot generated a 10-row test dataset and evaluators and submitted the evaluation directly to the Foundry service.",
+      "longDescription": "By prompting Copilot with \"add evaluations to my agent,\" Copilot used its access to the source code to understand the agent's inputs and outputs and generated everything needed, including a test dataset of 10 rows simulating different customer feedback and suggested evaluators. After confirming, Copilot ran it behind the scenes using the Foundry MCP server to submit the evaluation directly to the Foundry service. The agent results can then be viewed directly inside VS Code.",
+      "timestamp": "00:13:09",
+      "timestampSeconds": 789,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-13-09/frame-m05s.jpg",
+        "announcement-frames/00-13-09/frame-m10s.jpg",
+        "announcement-frames/00-13-09/frame-p05s.jpg",
+        "announcement-frames/00-13-09/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Deploy hosted agent command",
+      "category": "feature",
+      "shortDescription": "A wizard pushes the locally running agent to the Foundry service as a fully managed, observable hosted agent, with log streaming that Copilot can read to fix errors.",
+      "longDescription": "A command, \"deploy hosted agent,\" pushes the locally running agent into the Foundry service to run as a host agent that is fully managed and observable, guided by a short wizard. Once deployed, a playground talks with the service live, and a log streaming feature returns all the call stacks happening on the server side. That log can be reviewed directly with VS Code Copilot, which extracts the messages from the service so Copilot can fix any errors, exceptions, or issues right there.",
+      "timestamp": "00:14:55",
+      "timestampSeconds": 895,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-55/frame-m05s.jpg",
+        "announcement-frames/00-14-55/frame-m10s.jpg",
+        "announcement-frames/00-14-55/frame-p05s.jpg",
+        "announcement-frames/00-14-55/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Squad multi-agent framework for GitHub Copilot",
+      "category": "framework",
+      "shortDescription": "An open-source tool Gaster built with Tamir [inferred] that spins up a team of specialized Copilot agents, each with a distinct job, to reach results faster than single-threaded conversation.",
+      "longDescription": "Squad is a tool Brady Gaster developed with his friend Tamir, a multi-agent framework for GitHub Copilot. It spins up multiple agents talking at the same time, which uses a lot of tokens but reaches the endpoint quicker than a single-threaded conversation directly with Copilot. It can be used in a brand new or existing repo, brownfield or greenfield; running \"squad init\" (with a no-workflows option) drops a bunch of files on disk, and a squad agent can then be selected as a GitHub Copilot agent to create a new squad with descriptive names.",
+      "timestamp": "00:16:41",
+      "timestampSeconds": 1001,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-16-41/frame-m05s.jpg",
+        "announcement-frames/00-16-41/frame-m10s.jpg",
+        "announcement-frames/00-16-41/frame-p05s.jpg",
+        "announcement-frames/00-16-41/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    }
+  ],
+  "errors": []
+}

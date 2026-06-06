@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEM365",
+  "sessionTitle": "Beyond REST: .NET Apps That Talk to Hardware",
+  "sessionSpeakers": [
+    "Jared Rhodes"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:32:44.8565992+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Custom hardware test harness for agentic workflows",
+      "category": "tool",
+      "shortDescription": "A scripted orchestration layer (not unit tests, mocking, or manual QA) that connects to real hardware, deploys apps, and prints line-by-line output so a coding agent can see what worked and what failed",
+      "longDescription": "The speaker built a custom test harness after finding that coding agents like Copilot would confidently generate incorrect hardware implementations (e.g. for Bluetooth and NFC) that failed on real devices. It is not a unit test framework, mocking layer, or CI system, but a scripted orchestration layer that physically connects to real hardware, composes the allowed inputs for a test, and drives the system under test by deploying and running. Crucially it prints output line by line so the coding agent can see exactly which steps were taken and what worked or failed, since the hardware itself may have failed. It runs on the dev box, can deploy apps to a phone and cross-communicate with them, and supports USB connection and ADB on Android.",
+      "timestamp": "00:07:01",
+      "timestampSeconds": 421,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-07-01/frame-m05s.jpg",
+        "announcement-frames/00-07-01/frame-m10s.jpg",
+        "announcement-frames/00-07-01/frame-p05s.jpg",
+        "announcement-frames/00-07-01/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Live NFC test-harness demo against remote hardware",
+      "category": "feature",
+      "shortDescription": "Copilot ran an Android NFC test against two phones physically connected to a Mac mini in the speaker's basement, exercising reader/writer roles and packet comparison; the test returned false because the phones were intentionally mis-stacked",
+      "longDescription": "The speaker ran a live demo asking Copilot to run the Android NFC test harness against hardware physically located in his basement, streamed to the audience. The setup centers on a Mac mini that the speaker logged into, with two phones physically connected for the NFC tests, plus Raspberry Pis connected over console; iOS is driven via a Python file and Android via ADB. The harness deploys the apps to the phones and attaches to them through the test harness to send commands. The test was expected to return false because the two phones were intentionally stacked incorrectly.",
+      "timestamp": "00:09:28",
+      "timestampSeconds": 568,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-28/frame-m05s.jpg",
+        "announcement-frames/00-09-28/frame-m10s.jpg",
+        "announcement-frames/00-09-28/frame-p05s.jpg",
+        "announcement-frames/00-09-28/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Uno Platform agent-first studio release",
+      "category": "tool",
+      "shortDescription": "The speaker noted Uno's new studio is \"agent first\" with predefined skills and an MCP server for development that can build cross-platform apps from a design",
+      "longDescription": "The speaker highlighted a new release of Uno Platform's studio, describing it as \"agent first\" with a set of predefined skills and an MCP server for development. Running the studio gives you MCP and skills, and you can point it at a design and have it build a robust app that runs across multiple platforms and the web. The speaker is using Uno alongside .NET MAUI [inferred] in his code base because they run everywhere — Win UI on Mac, iOS, and Android out of the box — and provide access to phone hardware like accelerometers and geolocation. He referred attendees to Uno's booth for more detail.",
+      "timestamp": "00:02:40",
+      "timestampSeconds": 160,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-02-40/frame-m05s.jpg",
+        "announcement-frames/00-02-40/frame-m10s.jpg",
+        "announcement-frames/00-02-40/frame-p05s.jpg",
+        "announcement-frames/00-02-40/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

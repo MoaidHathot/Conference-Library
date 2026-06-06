@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK243",
+  "sessionTitle": "Claw and agent harness in Microsoft Foundry",
+  "sessionSpeakers": [
+    "Glenn Condron",
+    "Amanda Foster",
+    "Shawn Henry"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:32:28.6226089+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Routines (preview) in Foundry",
+      "category": "feature",
+      "shortDescription": "A trigger feature letting agents react to external stimuli or schedule recurring work, including agents creating their own routines to spin a shut-down sandbox back up for self-maintenance",
+      "longDescription": "Routines is a new, in-preview capability on a Foundry agent endpoint, surfaced alongside the agent that the TUI connects to. In the demo, the Hermes agent uses a set of maintenance routines to curate and delete stale skills that accumulate on disk as it works. Because the speaker doesn't want the sandbox running forever, the agent shuts down after about 15 minutes of idle time, and these routines spin it back up when it's time to perform maintenance. A maintenance routine run was shown at the top of the terminal at launch, reflecting a prior execution.",
+      "timestamp": "00:13:44",
+      "timestampSeconds": 824,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-13-44/frame-m05s.jpg",
+        "announcement-frames/00-13-44/frame-m10s.jpg",
+        "announcement-frames/00-13-44/frame-p05s.jpg",
+        "announcement-frames/00-13-44/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Autopilot agents",
+      "category": "feature",
+      "shortDescription": "A new third agent type that acts on its own behalf and has a real user account (email alias, ability to send Teams messages and create Word documents), demoed briefly in the prior day's keynote",
+      "longDescription": "Autopilot agents are a new, third type of agent in Foundry, joining the existing assistive and autonomous agent categories. Unlike assistive agents (which act as an extension of you) and autonomous agents (which act on their own behalf but can't use work IQ-style user actions), Autopilot agents always act on their own behalf and have a real user account. This gives them their own email address alias and the ability to send Teams messages and create Word documents on their own behalf, so they can perform actions that typically require a user account. They were demoed briefly in the prior day's keynote, and Scout in Foundry is cited as one example of an out-of-the-box Autopilot agent.",
+      "timestamp": "00:39:46",
+      "timestampSeconds": 2386,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-39-46/frame-m05s.jpg",
+        "announcement-frames/00-39-46/frame-m10s.jpg",
+        "announcement-frames/00-39-46/frame-p05s.jpg",
+        "announcement-frames/00-39-46/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "One-click publish to Teams and M365 Copilot",
+      "category": "feature",
+      "shortDescription": "From the Foundry portal, deployed agents can be scoped to the creator or submitted to the Microsoft Admin Center for organization-wide approval, yielding both Teams and Copilot UIs out of the box",
+      "longDescription": "Foundry offers a one-click publish to Teams and M365 Copilot so deployed agents can appear in the surfaces people use every day rather than as a standalone UI. From the portal, a publish drop-down lets the creator fill out a few key details—name and the actions the agent can perform, which is what end users see—and then make the agent instantly available scoped just to themselves or share it with the entire organization. The speaker demonstrates clicking the \"Publish to Teams and M365 Copilot\" button on a simple prompt agent and walks through the resulting dialog.",
+      "timestamp": "00:35:35",
+      "timestampSeconds": 2135,
+      "speakers": [
+        "Amanda Foster"
+      ],
+      "frames": [
+        "announcement-frames/00-35-35/frame-m05s.jpg",
+        "announcement-frames/00-35-35/frame-m10s.jpg",
+        "announcement-frames/00-35-35/frame-p05s.jpg",
+        "announcement-frames/00-35-35/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Hermes on Foundry hosted agents",
+      "category": "platform",
+      "shortDescription": "A claw-like harness demonstrated running with a stateless, auto-shutdown back end (15-minute idle timeout) that uses Foundry models and Entra/Azure default credentials",
+      "longDescription": "Hermes is a claw-like agent harness—it has memory, owns its environment (sandbox or VM), has tools and autonomy, can run for long periods, and connects to communication channels like Telegram or Slack—but it is not a literal fork or clone of Open Claw [inferred]. The speaker demonstrates Hermes running on Foundry hosted agents, which has a sandbox built in. The setup makes the agent always available while shutting down when idle so it isn't paid for continuously, and the speaker runs it in the terminal. It emphasizes a self-improving \"collective wisdom\" layer that gets better at your tasks the more you use it.",
+      "timestamp": "00:09:57",
+      "timestampSeconds": 597,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-57/frame-m05s.jpg",
+        "announcement-frames/00-09-57/frame-m10s.jpg",
+        "announcement-frames/00-09-57/frame-p05s.jpg",
+        "announcement-frames/00-09-57/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "AGUI plus Copilot Kit integration",
+      "category": "framework",
+      "shortDescription": "Enabling an AGUI endpoint with a few lines of code gives agents a web UI, including built-in chart controls, without extra code",
+      "longDescription": "Building on the sample agent harness console, the team did work with AGUI and the Copilot Kit folks to make it easy to build a web UI on top of agents. With just a couple of lines of code—similar to enabling something in ASP.NET in C#, and similarly in Python—you enable AGUI on top of the agent, giving it an AGUI endpoint. AGUI is an open standard for UI that talks to agents, and Copilot Kit provides a library that can talk directly to that AGUI interface. The demo shows the same agent harness behaviors (such as tool calls completing) surfaced in a web UI, including with a different agent given a sales CSV.",
+      "timestamp": "00:31:31",
+      "timestampSeconds": 1891,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-31-31/frame-m05s.jpg",
+        "announcement-frames/00-31-31/frame-m10s.jpg",
+        "announcement-frames/00-31-31/frame-p05s.jpg",
+        "announcement-frames/00-31-31/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

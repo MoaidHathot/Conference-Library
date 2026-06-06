@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD823",
+  "sessionTitle": "Faster AI Responses with Semantic Caching in Azure Managed Redis",
+  "sessionSpeakers": [
+    "Philip Laussermair"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:28:30.8501447+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Azure Managed Redis as a first-party offering",
+      "category": "service",
+      "shortDescription": "A fully managed in-memory data store built on Redis Enterprise software, described as up to 15 times more performant and offering a more cost-effective TCO than Azure Cache for Redis.",
+      "longDescription": "Azure Managed Redis is a fully managed in-memory data store on Azure and a first-party offering based on the Redis Enterprise software. It offers a much more cost-effective TCO than Azure Cache for Redis and is up to 15 times more performant (the speaker corrects an initial misstatement of 15%). Beyond traditional uses like distributed caching, session management, leaderboards, and pub/sub, it can also power RAG scenarios and act as a lightweight vector data store.",
+      "timestamp": "00:01:10",
+      "timestampSeconds": 70,
+      "speakers": [
+        "Shruti Pathak"
+      ],
+      "frames": [
+        "announcement-frames/00-01-10/frame-m05s.jpg",
+        "announcement-frames/00-01-10/frame-m10s.jpg",
+        "announcement-frames/00-01-10/frame-p05s.jpg",
+        "announcement-frames/00-01-10/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Default high availability",
+      "category": "feature",
+      "shortDescription": "Zone redundant by default with a four nines SLA, and a five nines SLA available via geo-replication.",
+      "longDescription": "Azure Managed Redis is zone redundant by default and provides a four nines availability SLA out of the box. Users can also configure a five nines setup using geo-replication, which delivers a five nines availability SLA.",
+      "timestamp": "00:01:40",
+      "timestampSeconds": 100,
+      "speakers": [
+        "Shruti Pathak"
+      ],
+      "frames": [
+        "announcement-frames/00-01-40/frame-m05s.jpg",
+        "announcement-frames/00-01-40/frame-m10s.jpg",
+        "announcement-frames/00-01-40/frame-p05s.jpg",
+        "announcement-frames/00-01-40/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Redis Search module at no extra cost",
+      "category": "feature",
+      "shortDescription": "Enables vector similarity search over stored embeddings, powering both semantic caching and agent memory scenarios.",
+      "longDescription": "The Redis Search module is described as the secret sauce that can be configured at no extra cost in Azure Managed Redis. It allows Azure Managed Redis to perform vector similarity search on embeddings stored inside Redis. This capability powers both cost savings through semantic caching and the memory/context scenarios for AI agents.",
+      "timestamp": "00:05:37",
+      "timestampSeconds": 337,
+      "speakers": [
+        "Shruti Pathak",
+        "Philip Laussermair"
+      ],
+      "frames": [
+        "announcement-frames/00-05-37/frame-m05s.jpg",
+        "announcement-frames/00-05-37/frame-m10s.jpg",
+        "announcement-frames/00-05-37/frame-p05s.jpg",
+        "announcement-frames/00-05-37/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Semantic caching demo",
+      "category": "feature",
+      "shortDescription": "Compares a standard LLM workflow against a cached experience, serving similar-intent prompts as cache hits with no new tokens generated.",
+      "longDescription": "A live demo compares a regular LLM experience (left side, like Copilot, ChatGPT, or Claude) against the same workflow with semantic caching powered by an Azure Managed Redis instance (right side). Vector embeddings are stored in Redis, and as prompts come in, vector similarity search checks the cache against a configurable threshold to determine a cache hit. The approach aims to save on tokens, reduce response time, and improve consistency for prompts that share the same underlying intent, demonstrated with a Contoso e-commerce example.",
+      "timestamp": "00:09:54",
+      "timestampSeconds": 594,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-54/frame-m05s.jpg",
+        "announcement-frames/00-09-54/frame-m10s.jpg",
+        "announcement-frames/00-09-54/frame-p05s.jpg",
+        "announcement-frames/00-09-54/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Configurable similarity thresholds",
+      "category": "feature",
+      "shortDescription": "Cosine similarity thresholds (demonstrated at 50%, 75%, and 90%) let developers tune how strict a semantic cache hit must be.",
+      "longDescription": "The demo shows how a cosine vector similarity search generates similarity scores against stored prompts, with a configurable threshold set in the application or client to determine what triggers a semantic cache hit. At a 50% threshold the top four prompts qualify as cache hits; raising it to 75% excludes variation four; and at a strict 90% threshold every variation misses. An exact key-value prompt cache hit always matches 100% of the time, giving developers flexibility over how strict each scenario should be.",
+      "timestamp": "00:14:26",
+      "timestampSeconds": 866,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-26/frame-m05s.jpg",
+        "announcement-frames/00-14-26/frame-m10s.jpg",
+        "announcement-frames/00-14-26/frame-p05s.jpg",
+        "announcement-frames/00-14-26/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agent memory integration with Microsoft Agent Framework",
+      "category": "feature",
+      "shortDescription": "AMR's short-term and long-term memory capabilities are natively supported within the Microsoft Agent Framework.",
+      "longDescription": "The agent memory capability of Azure Managed Redis (AMR) supports short-term memory (full conversations with TTLs) and long-term vector facts that are tagged by categories such as interest, personal, and work. This lets multiple agents rapidly access shared durable and short-term information, improving workflow performance and user experience, as illustrated with a travel companion example. The AMR agent memory capability also fully and natively integrates with the Microsoft Agent Framework. Demo samples are noted to be available on GitHub.",
+      "timestamp": "00:29:35",
+      "timestampSeconds": 1775,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-29-35/frame-m05s.jpg",
+        "announcement-frames/00-29-35/frame-m10s.jpg",
+        "announcement-frames/00-29-35/frame-p05s.jpg",
+        "announcement-frames/00-29-35/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

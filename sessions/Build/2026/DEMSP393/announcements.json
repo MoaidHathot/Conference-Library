@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEMSP393",
+  "sessionTitle": "Orchestrate omnichannel AI agents with Foundry and Twilio",
+  "sessionSpeakers": [
+    "Rachel Baskin"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:33:04.4535366+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Twilio Agent Connect (TAC)",
+      "category": "SDK",
+      "shortDescription": "A newly launched open-source SDK with two connectors—one to Twilio, one to Foundry—that handles real-time conversation management, persistent memory, and multi-channel orchestration to create a single agent across all channels",
+      "longDescription": "Twilio Agent Connect is a new product launched a couple of weeks before the session that bridges Microsoft Foundry and Twilio to create a single AI agent across all channels. It is one open-source SDK with two connectors—one to Twilio and one to Foundry—where Twilio handles real-time conversation management, persistent memory, and multi-channel orchestration, while Foundry provides the intelligence, voice live API, foundational models, and agent framework SDK. The goal is to move from conception to production with less engineering effort and a production-ready, omnichannel agent. It was first deployed via Azure Container Apps connecting Twilio channels over WebSockets, with Azure Cosmos DB for state management and Foundry for model calls.",
+      "timestamp": "00:03:17",
+      "timestampSeconds": 197,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Hosted agents deployment option",
+      "category": "feature",
+      "shortDescription": "Following Microsoft's public preview of hosted agents with WebSocket support and the Invocations API, TAC switched to a fully serverless deployment that gives each session its own dedicated sandbox, with scale-to-zero and no idle cost",
+      "longDescription": "After finding that traditional compute with Container Apps—designed for stateless web services—wasn't built for the long-lived, stateful, per-user sessions that agents require, TAC switched to a hosted agents deployment option. Microsoft invested in hosted agents as a new compute primitive, recently going into public preview with WebSocket support and the Invocations API, which let TAC adopt it. The fully serverless option gives every session its own dedicated sandbox, predictable cold starts, scale-to-zero with no idle cost, state persistence, unique agent identity, and out-of-the-box observability, evaluations, and policies. In the new architecture, Twilio voice, SMS, and chat events flow over HTTP into an API Management Gateway that validates the Twilio signature, adds auth, and maps each Twilio conversation ID to a hosted agent session ID before routing into the sandbox, which connects to Azure Foundry for model inference.",
+      "timestamp": "00:06:18",
+      "timestampSeconds": 378,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Cross-channel shared memory demo",
+      "category": "feature",
+      "shortDescription": "A live demonstration showing an agent remembering a seat change made on a voice call when the same customer later texts via SMS, resolved through profile resolution on the phone number",
+      "longDescription": "In a live demo using an airline use case, the presenter calls the agent and Twilio handles speech in and out while TAC bridges into the Foundry agent framework for reasoning. On the voice call, the agent identifies the caller's flight 543 to Seattle and changes their seat from 23B (an aisle seat) to 23A (a window seat). The presenter then switches to SMS and texts to add a bag to the reservation, and the agent responds remembering the prior voice conversation—correctly noting the customer is on flight 543 in seat 23A, the seat just changed two seconds earlier. This demonstrates shared customer memory across channels, resolved via profile resolution on the phone number.",
+      "timestamp": "00:13:48",
+      "timestampSeconds": 828,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD853",
+  "sessionTitle": "Security for AI and Agent Augmented Coding on Windows",
+  "sessionSpeakers": [
+    "Klorida Miraj",
+    "Nazmus Sakib"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:29:00.1111674+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Microsoft Execution Containers (MXC) SDK",
+      "category": "SDK",
+      "shortDescription": "A single SDK and policy model that applies OS-enforced containment across multiple isolation primitives, so one coherent abstraction can cover many workload types.",
+      "longDescription": "Microsoft introduced the Microsoft Execution Containers (MXC) SDK, a single SDK that lets developers apply containment policies on agents that are enforced by the OS. It provides an abstraction layer across various isolation primitives, simplifying the containment of many different types of workloads. The SDK is built around a composable sandbox model so the same policy can map to different isolation boundaries depending on the workload, avoiding lock-in to one rigid container.",
+      "timestamp": "00:06:48",
+      "timestampSeconds": 408,
+      "speakers": [
+        "Nazmus Sakib"
+      ],
+      "frames": [
+        "announcement-frames/00-06-48/frame-m05s.jpg",
+        "announcement-frames/00-06-48/frame-m10s.jpg",
+        "announcement-frames/00-06-48/frame-p05s.jpg",
+        "announcement-frames/00-06-48/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Composable sandbox model",
+      "category": "concept",
+      "shortDescription": "The same policy maps to different isolation boundaries (process, micro-VM, full VM, cloud) depending on workload risk, avoiding lock-in to one rigid container.",
+      "longDescription": "Microsoft Execution Containers are built around a composable sandbox model in which the same policy and SDK can map to different isolation boundaries depending on the workload, so developers are not locked into one rigid container. Windows applies the right isolation primitive for the task while preserving one coherent abstraction, letting developers declare intent with policies and have Windows enforce the appropriate boundary. A coding agent, an interactive agent, and a cloud-managed agent do not all need the same boundary, but they share one coherent trust story—giving flexibility in implementation without fragmentation in governance.",
+      "timestamp": "00:07:13",
+      "timestampSeconds": 433,
+      "speakers": [
+        "Nazmus Sakib"
+      ],
+      "frames": [
+        "announcement-frames/00-07-13/frame-m05s.jpg",
+        "announcement-frames/00-07-13/frame-m10s.jpg",
+        "announcement-frames/00-07-13/frame-p05s.jpg",
+        "announcement-frames/00-07-13/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Hyperlight micro-VM execution",
+      "category": "runtime",
+      "shortDescription": "Hardware-level isolation with sub-second startup for higher-risk operations, demonstrated running PDF-annotation extraction via an mxc.exe [inferred] host process that leaves no traces.",
+      "longDescription": "At the stronger end of the containment spectrum is the Hyperlight micro-VM, the execution primitive at the top of the agent containment stack, suited for higher-risk workloads that need a clearly isolated space while preserving the same agent experience. Micro-VMs are also about density, providing stronger separation without paying the full cost of a larger VM every time an agent runs. The demo follows Maya, a freelance interior designer using GitHub Copilot CLI, who asks Copilot in plain English to pull review comments from three client PDFs, group them by theme, and produce a prioritized summary—processed inside the micro-VM.",
+      "timestamp": "00:10:44",
+      "timestampSeconds": 644,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-10-44/frame-m05s.jpg",
+        "announcement-frames/00-10-44/frame-m10s.jpg",
+        "announcement-frames/00-10-44/frame-p05s.jpg",
+        "announcement-frames/00-10-44/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    },
+    {
+      "name": "Process-level sandboxing in GitHub Copilot CLI",
+      "category": "feature",
+      "shortDescription": "An experimental \"sandbox enabled\" mode runs each tool execution inside a kernel-enforced boundary, keeping the developer inner loop fast.",
+      "longDescription": "Process isolation sits at the lighter-weight end of the containment spectrum and is a strong fit for coding agents and focused tool-execution scenarios where speed matters, keeping the developer inner loop fast while Windows applies platform-level boundaries to the riskiest operations such as running model-generated code. The demo shows GitHub Copilot CLI with an experimental feature enabled where Maya types \"sandbox enabled\" so every tool execution Copilot runs is contained in a sandbox. She asks Copilot to make a birthday card from cat photos; a blue dot next to \"sandbox shell\" indicates the PowerShell code is executing inside a kernel-enforced sandbox boundary that can only access what was explicitly granted.",
+      "timestamp": "00:14:22",
+      "timestampSeconds": 862,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-22/frame-m05s.jpg",
+        "announcement-frames/00-14-22/frame-m10s.jpg",
+        "announcement-frames/00-14-22/frame-p05s.jpg",
+        "announcement-frames/00-14-22/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Local capabilities discovery with detection hooks",
+      "category": "feature",
+      "shortDescription": "Hooks before/after tool use and at prompt submission give security products like Microsoft Defender stable integration points to inspect and block threats such as indirect prompt injection.",
+      "longDescription": "Local capabilities discovery gives developers and administrators a source of truth about what agent capabilities are present, enabled, allowed, and being used, and makes those actions admin-manageable to complement the security provided by containers. One of its most powerful additions is better detection and response: hooks before tool use, after tool use, and at prompt submission create stable integration points for security products like Microsoft Defender to inspect, evaluate, and respond. That consistent inspection is essential for enterprise customers to mitigate risks like indirect prompt injection, illustrated by a developer asking GitHub Copilot to fix a reported repo issue that hides a prompt injection attack in an attachment.",
+      "timestamp": "00:18:57",
+      "timestampSeconds": 1137,
+      "speakers": [
+        "Nazmus Sakib"
+      ],
+      "frames": [
+        "announcement-frames/00-18-57/frame-m05s.jpg",
+        "announcement-frames/00-18-57/frame-m10s.jpg",
+        "announcement-frames/00-18-57/frame-p05s.jpg",
+        "announcement-frames/00-18-57/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Entra Agent ID integration",
+      "category": "service",
+      "shortDescription": "Distinct, provisioned agent identities (via Entra and Intune) for session-isolated agents, plus low-cost agent-identification tags for delegated process-isolation scenarios.",
+      "longDescription": "To distinguish human from agent actions, Microsoft described two methods for identifying agents: a delegated path best suited to process-based isolation, where work done on a user's behalf still gets a low-cost agent identification tag that lets downstream systems like Entra apply agentic risk controls, and a unique agent identity for session-based isolation. Going beyond process-level to session-based isolation enables distinct agent identities with deep integration into the Entra Agent ID system, providing comprehensive authentication and authorization support for agentic actions. The example uses a modified version of the open-source OpenClaw agent, where session isolation fits better than process isolation, with the agent loop running under a separate agent user account visible in Windows Task Manager.",
+      "timestamp": "00:22:55",
+      "timestampSeconds": 1375,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-22-55/frame-m05s.jpg",
+        "announcement-frames/00-22-55/frame-m10s.jpg",
+        "announcement-frames/00-22-55/frame-p05s.jpg",
+        "announcement-frames/00-22-55/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD870",
+  "sessionTitle": "Azure Storage for AI workloads​",
+  "sessionSpeakers": [
+    "Saurabh Sensharma",
+    "Vishnu Charan TJ"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:29:11.2807980+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Azure Blob backend for NVIDIA NIXL",
+      "category": "library",
+      "shortDescription": "A first-class blob backend contributed to NVIDIA's inference transfer library lets any NIXL-speaking framework (vLLM, Dynamo, TensorRT-LLM, Ray) read and write KV blocks to Azure Blob with no custom adapter code.",
+      "longDescription": "NIXL is NVIDIA's inference transfer library, a unified API for moving model weights and KV blocks across memory tiers with a pluggable backend underneath. Microsoft has contributed a first-class Azure Blob backend into NIXL, so any framework that already speaks NIXL—such as vLLM, Dynamo, TensorRT-LLM, or Ray—can read and write KV blocks to Azure Blob with zero custom adapter code. This puts KVCache on durable Azure storage that travels with the workload rather than the GPU node.",
+      "timestamp": "00:10:43",
+      "timestampSeconds": 643,
+      "speakers": [
+        "Vishnu Charan"
+      ],
+      "frames": [
+        "announcement-frames/00-10-43/frame-m05s.jpg",
+        "announcement-frames/00-10-43/frame-m10s.jpg",
+        "announcement-frames/00-10-43/frame-p05s.jpg",
+        "announcement-frames/00-10-43/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "LMCache Azure Blob plugin",
+      "category": "library",
+      "shortDescription": "A plugin offloads KV cache blocks from the open-source LMCache layer directly to durable blob storage for use with vLLM.",
+      "longDescription": "LMCache is the open-source KVCache layer widely used with vLLM, and the most immediate payoff of the Azure Blob NIXL backend is realized through it. Microsoft's plugin lets LMCache offload KV blocks straight to Blob, keeping the picture consistent across the stack so OSS developers land on Azure Blob via NIXL and LMCache while managed customers land on Azure Context Cache. In a demo, an inference app on vLLM serving LLaMA 3.3 70B [inferred] is tensor parallel across four GPUs, with LMCache sitting alongside vLLM to build the KV cache and offload it to durable Azure storage.",
+      "timestamp": "00:11:01",
+      "timestampSeconds": 661,
+      "speakers": [
+        "Vishnu Charan"
+      ],
+      "frames": [
+        "announcement-frames/00-11-01/frame-m05s.jpg",
+        "announcement-frames/00-11-01/frame-m10s.jpg",
+        "announcement-frames/00-11-01/frame-p05s.jpg",
+        "announcement-frames/00-11-01/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Azure Container Storage distributed cache (early access)",
+      "category": "service",
+      "shortDescription": "An AKS-native distributed cache where every GPU node acts as both cache and client over local NVMe RAID, delivering roughly 2.5x faster model loading and hitting Blob only once when many pods start together.",
+      "longDescription": "To solve the cold-start problem where many pods each pull a large model from Blob at once (e.g., 100 pods pulling a 70B/140GB model equals 14TB causing throttling and NIC saturation), Microsoft built a distributed cache inside the AKS cluster itself with zero changes to the workflow on top—Hugging Face Loader, BlobFuse, and the Run AI Streamer all sit on it unchanged. Every GPU node acts as both cache and client, with local NVMe RAID holding hot data served at NVMe speed via zero-copy sendfile, and missing data coming over the network from a peer. The first pod warms the cache and the next 99 read from inside the cluster, delivering roughly 2.5x faster model loading on AKS while Blob is hit exactly once. It is in early access now; users can scan a QR code to sign up.",
+      "timestamp": "00:18:02",
+      "timestampSeconds": 1082,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-18-02/frame-m05s.jpg",
+        "announcement-frames/00-18-02/frame-m10s.jpg",
+        "announcement-frames/00-18-02/frame-p05s.jpg",
+        "announcement-frames/00-18-02/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Azure Files as a data source for Azure AI Search",
+      "category": "feature",
+      "shortDescription": "Available via a low-code Logic Apps connector and a native Azure Files Indexer, enabling vector or hybrid indexing of file shares and SMB workloads.",
+      "longDescription": "For customers with unstructured enterprise data on Azure Files—file shares, SMB workloads, and lift-and-shift estates—Microsoft has made Azure Files a data source for Azure AI Search, with two ways to bring the data to agents. First, the Azure Files Logic Apps connector offers a low-code path to connect a file share and create a vector or hybrid index, and it handles re-indexing as data changes. Second, the native Azure Files Indexer in Azure AI Search gives teams finer control over enrichment and indexing. Either way, the path from a file share to a RAG-ready index is now only a few clicks or a few lines of code.",
+      "timestamp": "00:21:56",
+      "timestampSeconds": 1316,
+      "speakers": [
+        "Saurabh Sensharma"
+      ],
+      "frames": [
+        "announcement-frames/00-21-56/frame-m05s.jpg",
+        "announcement-frames/00-21-56/frame-m10s.jpg",
+        "announcement-frames/00-21-56/frame-p05s.jpg",
+        "announcement-frames/00-21-56/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Foundry IQ with Blob as a first-class knowledge source",
+      "category": "service",
+      "shortDescription": "Microsoft's unified knowledge layer for agents can ground against an Azure Blob container directly, carrying storage security, lineage, and governance with no glue code.",
+      "longDescription": "Foundry IQ is Microsoft's unified knowledge layer for agents, giving a single governed knowledge layer that any agent in Microsoft Foundry can ground against instead of every agent reinventing its own retrieval stack. Azure Blob Storage is a first-class knowledge source for Foundry IQ: just point it at a blob container and enterprise data becomes agent-accessible knowledge with the security, lineage, and governance of Azure Storage already in place and no glue code required. Foundry IQ also supports Azure AI Search indexes with Azure Blob or Azure Files data, closing the loop between the data plane in Azure Storage and the agent plane in Microsoft Foundry.",
+      "timestamp": "00:23:04",
+      "timestampSeconds": 1384,
+      "speakers": [
+        "Saurabh Sensharma"
+      ],
+      "frames": [
+        "announcement-frames/00-23-04/frame-m05s.jpg",
+        "announcement-frames/00-23-04/frame-m10s.jpg",
+        "announcement-frames/00-23-04/frame-p05s.jpg",
+        "announcement-frames/00-23-04/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Storage Center limited preview",
+      "category": "tool",
+      "shortDescription": "A centralized hub for file, block, and object storage that provides a unified view of the storage estate and launch points into storage-for-AI experiences.",
+      "longDescription": "Storage Center is a centralized hub for file, block, and object storage in one place, giving a unified view of the storage landscape including usage, performance, and redundancy tiers, plus tools like lifecycle management and storage mover with rich visualizations. It is positioned as the best place for both admins and developers to land their data—starting with Blob—and then connect it to AI, with launch points into the storage-for-AI experiences covered in the session. Microsoft announced a limited preview of this experience, with a QR code on the slide to sign up.",
+      "timestamp": "00:24:46",
+      "timestampSeconds": 1486,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-24-46/frame-m05s.jpg",
+        "announcement-frames/00-24-46/frame-m10s.jpg",
+        "announcement-frames/00-24-46/frame-p05s.jpg",
+        "announcement-frames/00-24-46/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

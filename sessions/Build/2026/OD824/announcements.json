@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD824",
+  "sessionTitle": "Scalable Applications Without Polyglot tax: Azure SQL Hyperscale",
+  "sessionSpeakers": [],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:28:32.8145877+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Native JSON type and path-specific JSON indexes",
+      "category": "feature",
+      "shortDescription": "SQL stores JSON as a pre-parsed binary (ANSI JSON type, no longer NVARCHAR(MAX)), cutting JSON storage by 30–50% and allowing indexing of a specific JSON path rather than the whole document.",
+      "longDescription": "Microsoft SQL recently introduced a native JSON type and JSON indexes, replacing the earlier NVARCHAR(MAX) approach. The native JSON type is ANSI-compliant and stored as a pre-parsed binary, which makes JSON storage 30 to 50% smaller. Unlike other relational databases that index the entire JSON document, Microsoft SQL lets you index a particular path of the JSON (e.g. only the device attribute), and the JSON index will pick that path. JSON also retains schema flexibility for documents with varying attributes.",
+      "timestamp": "00:05:45",
+      "timestampSeconds": 345,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-05-45/frame-m05s.jpg",
+        "announcement-frames/00-05-45/frame-m10s.jpg",
+        "announcement-frames/00-05-45/frame-p05s.jpg",
+        "announcement-frames/00-05-45/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Native vector type with DiskANN and HNSW indexes",
+      "category": "feature",
+      "shortDescription": "Vectors moved from varbinary to a native type, with vector indexes built on Microsoft Research's DiskANN, including recently introduced updatable DiskANN indexes.",
+      "longDescription": "Microsoft SQL recently started supporting vectors, initially on top of varbinary before switching to a native vector type. The vector type was released first without an index, and later vector indexes were added using DiskANN, which came out of Microsoft Research and is described as pretty fast, along with HNSW. This positions SQL to handle vector workloads without needing a separate specialized vector database.",
+      "timestamp": "00:09:18",
+      "timestampSeconds": 558,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-18/frame-m05s.jpg",
+        "announcement-frames/00-09-18/frame-m10s.jpg",
+        "announcement-frames/00-09-18/frame-p05s.jpg",
+        "announcement-frames/00-09-18/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Operational-data pre-filtering for vector search",
+      "category": "concept",
+      "shortDescription": "Relational context (e.g. locating \"person Bob\") narrows the vector search space, reducing cost versus a standalone vector database.",
+      "longDescription": "Specialized vector databases that lack operational data context end up searching a large number of rows and vectors, which is costly. By using relational context—for example locating a specific person such as Bob in relational data and then selecting transactions similar to that—the search space is narrowed, acting as a pre-filter that reduces cost and is faster. Microsoft SQL also recently introduced updatable DiskANN indexes, further reducing the need for a separate vector database.",
+      "timestamp": "00:10:52",
+      "timestampSeconds": 652,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-10-52/frame-m05s.jpg",
+        "announcement-frames/00-10-52/frame-m10s.jpg",
+        "announcement-frames/00-10-52/frame-p05s.jpg",
+        "announcement-frames/00-10-52/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Hyperscale named replicas with isolated working sets",
+      "category": "feature",
+      "shortDescription": "Each named replica gets its own connection string, buffer pool, and RBPEX (Resilient Buffer Pool Extension) L2 cache, isolating read workloads from primary writes over the same up-to-128 TB dataset.",
+      "longDescription": "A major advantage of Azure SQL Hyperscale is named replicas, where each readable copy gets its own connection string. Each named replica has its own buffer pool (memory) and L2 cache—called RBPEX, the Resilient Buffer Pool Extension—giving it its own working set that is distinct from any other named replica, while all share the same underlying dataset of up to 128 TB. This isolation lets writes on the primary remain unaffected by reads, so customers can run continuous writes on the primary while pointing agents at a named replica for vector distance and cosine similarity work.",
+      "timestamp": "00:17:02",
+      "timestampSeconds": 1022,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-17-02/frame-m05s.jpg",
+        "announcement-frames/00-17-02/frame-m10s.jpg",
+        "announcement-frames/00-17-02/frame-p05s.jpg",
+        "announcement-frames/00-17-02/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Snapshot-based backups",
+      "category": "feature",
+      "shortDescription": "Because page servers write to Azure storage, backups use storage snapshots without consuming compute to read pages, unlike traditional BACKUP DATABASE operations.",
+      "longDescription": "In Hyperscale, page servers continuously write back into Azure storage as a durable tier, which allows backups to use Azure storage's snapshot technology. Because of this, the compute layer is not involved in taking backups—no pages need to be read to perform a backup. This contrasts with traditional SQL, where BACKUP DATABASE reads all the data into compute and writes it back to the .bak file; that work is no longer needed with Hyperscale snapshot backups.",
+      "timestamp": "00:16:11",
+      "timestampSeconds": 971,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-16-11/frame-m05s.jpg",
+        "announcement-frames/00-16-11/frame-m10s.jpg",
+        "announcement-frames/00-16-11/frame-p05s.jpg",
+        "announcement-frames/00-16-11/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "SQL MCP server via Data API Builder",
+      "category": "service",
+      "shortDescription": "A REST endpoint from Data API Builder can be exposed as an MCP server, enabling natural-language interaction with Hyperscale data.",
+      "longDescription": "SQL has its own MCP server, built with Data API Builder (DAB). You create a DAB to get a Data API REST endpoint, and that REST endpoint can be pointed to an MCP, which can come from Hyperscale. This enables talking to your data—even 128 TB of data with agents and writes—using natural language, such as updating a person's last name or changing a salary, all through MCP.",
+      "timestamp": "00:20:04",
+      "timestampSeconds": 1204,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-20-04/frame-m05s.jpg",
+        "announcement-frames/00-20-04/frame-m10s.jpg",
+        "announcement-frames/00-20-04/frame-p05s.jpg",
+        "announcement-frames/00-20-04/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

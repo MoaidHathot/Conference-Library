@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD815",
+  "sessionTitle": "Unify your entire data estate on a single, AI-ready data lake",
+  "sessionSpeakers": [
+    "Dipti Borkar",
+    "Joshua Caplan",
+    "Miquella de Boer",
+    "Wee hyong Tok"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:28:38.8661631+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Azure Databricks native storage in OneLake (preview)",
+      "category": "feature",
+      "shortDescription": "Azure Databricks can now natively store its data in OneLake, joining Microsoft Fabric and Snowflake's Iceberg tables.",
+      "longDescription": "Azure Databricks is now in preview with storing its data natively in OneLake, joining Microsoft Fabric (which has always stored data in OneLake) and Snowflake (which can natively store its Iceberg tables there). This is in addition to anything else that can talk to Azure Storage, since OneLake exposes the same ADLS and Blob APIs, so any service that knows how to talk to storage can natively read or write to OneLake.",
+      "timestamp": "00:09:01",
+      "timestampSeconds": 541,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-01/frame-m05s.jpg",
+        "announcement-frames/00-09-01/frame-m10s.jpg",
+        "announcement-frames/00-09-01/frame-p05s.jpg",
+        "announcement-frames/00-09-01/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Customer-managed key encryption at rest (GA)",
+      "category": "feature",
+      "shortDescription": "Data encryption with customer-managed keys is generally available, alongside immutable diagnostic logs and stronger network security (workspace private links, outbound access protection, workspace firewall, resource instance rules).",
+      "longDescription": "Generally available today is data encryption with customer-managed keys when your data is at rest in OneLake. This is accompanied by diagnostic logs with immutable storage to see and debug everything happening within the data lake, plus stronger network security including workspace-level private links, outbound access protection, workspace firewall, and new resource instance rules that specify which Azure services are allowed to connect to your data.",
+      "timestamp": "00:09:30",
+      "timestampSeconds": 570,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-30/frame-m05s.jpg",
+        "announcement-frames/00-09-30/frame-m10s.jpg",
+        "announcement-frames/00-09-30/frame-p05s.jpg",
+        "announcement-frames/00-09-30/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "OneLake File Explorer and OneLake MCP (GA)",
+      "category": "tool",
+      "shortDescription": "Both are now generally available.",
+      "longDescription": "In a recap of recent storage improvements, Josh Caplan announces that the OneLake File Explorer is now generally available along with the OneLake MCP. The OneLake File Explorer application lets users see everything in a workspace across all item types as folders and files in a single consistent view within Windows File Explorer.",
+      "timestamp": "00:12:53",
+      "timestampSeconds": 773,
+      "speakers": [
+        "Josh Caplan"
+      ],
+      "frames": [
+        "announcement-frames/00-12-53/frame-m05s.jpg",
+        "announcement-frames/00-12-53/frame-m10s.jpg",
+        "announcement-frames/00-12-53/frame-p05s.jpg",
+        "announcement-frames/00-12-53/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Item size reporting (preview) and lifecycle management with data tiering",
+      "category": "feature",
+      "shortDescription": "New storage reporting plus the ability to move infrequently-used data into cool or cold tiers to lower storage costs.",
+      "longDescription": "In public preview is new item size reporting, and as the biggest announcement, lifecycle management with data tiering is now available. New OneLake storage tiers and lifecycle management policies let users automatically move infrequently-used data into cool or cold tiers to save on storage costs, paying higher transaction prices only when the data is actually accessed. OneLake provides default tiering rules that can be customized.",
+      "timestamp": "00:13:01",
+      "timestampSeconds": 781,
+      "speakers": [
+        "Josh Caplan",
+        "Wee Hyong Tok"
+      ],
+      "frames": [
+        "announcement-frames/00-13-01/frame-m05s.jpg",
+        "announcement-frames/00-13-01/frame-m10s.jpg",
+        "announcement-frames/00-13-01/frame-p05s.jpg",
+        "announcement-frames/00-13-01/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "New shortcut and mirroring sources",
+      "category": "feature",
+      "shortDescription": "DreamView [inferred], Azure Monitor in public preview, with AWS support coming soon; recently added SharePoint and OneDrive shortcut/mirroring.",
+      "longDescription": "Many new data sources for shortcut and mirroring are entering public preview, including support for DreamView [inferred], Azure Monitor, and soon AWS [inferred] support. This builds on recently added shortcut and mirroring for SharePoint and OneDrive, and existing generally available sources like the SQL family (SQL Server 2025, on-premises SQL Server), Snowflake, Oracle Database, and SAP Datasphere. Shortcuts connect data wherever it lives with no data movement, while mirroring brings the entire data catalog into OneLake using change data capture.",
+      "timestamp": "00:15:01",
+      "timestampSeconds": 901,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-15-01/frame-m05s.jpg",
+        "announcement-frames/00-15-01/frame-m10s.jpg",
+        "announcement-frames/00-15-01/frame-p05s.jpg",
+        "announcement-frames/00-15-01/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    },
+    {
+      "name": "Mirroring support for Workspace Private Link (preview)",
+      "category": "feature",
+      "shortDescription": "Routes mirrored database traffic through Microsoft's private network for Azure Cosmos DB, Azure SQL Managed Instance, and SQL Server 2025.",
+      "longDescription": "Mirroring support for Workspace Private Link is coming to public preview today, addressing one of the top customer asks for mirrored databases. It brings private link network security to mirrored databases, routing all traffic through the Microsoft private network rather than the public internet. At launch it includes support for Azure Cosmos DB, Azure SQL Managed Instance (SQL MI), and SQL Server 2025, with more data sources coming.",
+      "timestamp": "00:15:40",
+      "timestampSeconds": 940,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-15-40/frame-m05s.jpg",
+        "announcement-frames/00-15-40/frame-m10s.jpg",
+        "announcement-frames/00-15-40/frame-p05s.jpg",
+        "announcement-frames/00-15-40/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Shortcut transformation enhancements (GA)",
+      "category": "feature",
+      "shortDescription": "Native AI enrichment with new schema preview/definition and detailed monitoring logs.",
+      "longDescription": "Shortcut transformation, which enriches data with native AI capabilities in OneLake, is generally available; it lets you point to source folders on OneLake, add defined AI transformations, and continuously auto-track source changes to sync them to the destination while enriching with AI. New improvements include the ability to preview and define schemas (a top customer ask) and to manage transformations with detailed logs and enhanced monitoring. Possible transformations include format conversions like Parquet to Table or Excel to Table, and AI enrichment such as PII detection, translation, summarization, sentiment analysis, and name recognition.",
+      "timestamp": "00:16:13",
+      "timestampSeconds": 973,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-16-13/frame-m05s.jpg",
+        "announcement-frames/00-16-13/frame-m10s.jpg",
+        "announcement-frames/00-16-13/frame-p05s.jpg",
+        "announcement-frames/00-16-13/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "SharePoint list mirroring and Excel shortcuts in OneLake",
+      "category": "feature",
+      "shortDescription": "Mirror SharePoint lists and turn Excel sheets into first-class lakehouse tables without pipelines.",
+      "longDescription": "Microsoft announces SharePoint list mirroring, which lets users mirror a SharePoint Online list by creating a mirrored item, entering the site URL or selecting a connection, choosing a list, and clicking Create—replicating rows automatically with no pipelines or copy jobs, then surfacing the data in a lakehouse via a shortcut. Also announced are Excel shortcuts in OneLake, where Fabric detects an Excel file and lets you select a sheet and accept defaults to turn it into a first-class lakehouse table. The demo uses a fictional company, Zava, tracking new store readiness in a SharePoint list and budget data in an Excel workbook.",
+      "timestamp": "00:18:37",
+      "timestampSeconds": 1117,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-18-37/frame-m05s.jpg",
+        "announcement-frames/00-18-37/frame-m10s.jpg",
+        "announcement-frames/00-18-37/frame-p05s.jpg",
+        "announcement-frames/00-18-37/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "OneLake Table API metadata write support",
+      "category": "SDK",
+      "shortDescription": "Beyond reading metadata (already GA), users can now write metadata, create tables and schemas, and publish transactions via the Table API.",
+      "longDescription": "The OneLake Table API exposes the same open-source APIs for both Delta Lake and Iceberg natively, so any application like Snowflake or Databricks that works with at least one of those formats can read all data in OneLake regardless of how it was written. While reading metadata through the Table APIs has been generally available, Microsoft now announces the ability to write metadata, create tables, create schemas, and update or publish transactions through the Table API, available today.",
+      "timestamp": "00:24:16",
+      "timestampSeconds": 1456,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-24-16/frame-m05s.jpg",
+        "announcement-frames/00-24-16/frame-m10s.jpg",
+        "announcement-frames/00-24-16/frame-p05s.jpg",
+        "announcement-frames/00-24-16/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "OneLake catalog natively integrated into Foundry",
+      "category": "feature",
+      "shortDescription": "Trusted enterprise data, including sensitivity labels and endorsements, is discoverable and usable directly in Foundry knowledge and agents.",
+      "longDescription": "Microsoft is bringing the OneLake catalog natively integrated into Foundry, letting users discover all of their trusted enterprise data in one place and immediately use it inside knowledge, agents, and any AI workloads. It contains the full capabilities of the OneLake catalog for discoverability, including sensitivity labels and endorsements, creating a consistent view of data across the entire estate of analytics and AI by making it available across both Fabric and Foundry. This data is made available without copying through a common data foundation, and can unify structured and unstructured data from sources like SharePoint and Amazon S3.",
+      "timestamp": "00:27:04",
+      "timestampSeconds": 1624,
+      "speakers": [
+        "Miquella de Boer"
+      ],
+      "frames": [
+        "announcement-frames/00-27-04/frame-m05s.jpg",
+        "announcement-frames/00-27-04/frame-m10s.jpg",
+        "announcement-frames/00-27-04/frame-p05s.jpg",
+        "announcement-frames/00-27-04/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

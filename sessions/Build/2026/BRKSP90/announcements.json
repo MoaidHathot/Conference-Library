@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRKSP90",
+  "sessionTitle": "Stop routing docstrings to 70B models with on-device AI on Snapdragon",
+  "sessionSpeakers": [
+    "Alberto Martinez",
+    "Morris Novello"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:27:41.8759029+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Three-tier routing architecture",
+      "category": "concept",
+      "shortDescription": "Route simple/medium prompts to an on-device model (≤13B), medium-to-high tasks to an on-prem workstation (14B–34B, with up to ~100–120B on larger boxes), and only complex/security work to the cloud (70B+).",
+      "longDescription": "A three-tier routing model distributes AI workloads by complexity: simple-to-medium queries (about 30% of workload, scored low on a 1-4 complexity scale) run locally on a Snapdragon X2 Elite, medium-to-high tasks go to a more capable on-prem workstation or headless machine, and the remaining complex 20-30% that the X2 Elite cannot run are sent to the cloud. The tiers map to your personal/desk computer, an on-prem workstation, and the cloud. The speaker frames this as a cost-saving distribution (contrasting with someone spending $1,000,000 a month) that can justify on-premises hardware to a CIO.",
+      "timestamp": "00:10:50",
+      "timestampSeconds": 650,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-10-50/frame-m05s.jpg",
+        "announcement-frames/00-10-50/frame-m10s.jpg",
+        "announcement-frames/00-10-50/frame-p05s.jpg",
+        "announcement-frames/00-10-50/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Snapdragon X2 Elite positioning",
+      "category": "hardware",
+      "shortDescription": "An 80 TOPS NPU offering roughly 43% greater compute than the prior generation, up to ~128 GB memory [inferred], and high memory bandwidth supporting multiple data types.",
+      "longDescription": "The Snapdragon X2 Elite is positioned as a new generation product with 80 TOPS capacity, providing about 43% greater compute capacity than the previous generation. It offers up to 122 GB of memory [inferred] with memory bandwidth up to 225 GB/s in the Stream edition and 152 in the Elite edition, and supports common data types. The speaker notes a precision/efficiency tradeoff, where integer quantization can roughly halve weight memory versus floating point.",
+      "timestamp": "00:11:18",
+      "timestampSeconds": 678,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-11-18/frame-m05s.jpg",
+        "announcement-frames/00-11-18/frame-m10s.jpg",
+        "announcement-frames/00-11-18/frame-p05s.jpg",
+        "announcement-frames/00-11-18/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    },
+    {
+      "name": "Hybrid-vs-cloud demo",
+      "category": "concept",
+      "shortDescription": "A recreated Computex demonstration races Claude Opus 4.7 against a hybrid split (one hard task to cloud Opus, others to local models), producing identical output at roughly one-quarter the cost ($0.21 vs ~5.5 cents).",
+      "longDescription": "A demo races two streams running the same prompt—designing a Snapdragon X2 Elite landing page with floating Taiwanese lanterns in the background—one running entirely on Claude Opus 4.7 in Anthropic cloud, the other in hybrid mode. In hybrid mode a classifier breaks the prompt into five tasks: one medium task needing up to a ~32B parameter model, three easy tasks runnable on a ~1B parameter model on the PC, and one hard task (the physics-based floating lanterns, requiring over a 70B parameter model) executed in the cloud on Opus 4.7. The cloud-only stream is expected to finish faster because the hybrid path is not yet optimized, though the speaker expects that to improve over time.",
+      "timestamp": "00:19:08",
+      "timestampSeconds": 1148,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-19-08/frame-m05s.jpg",
+        "announcement-frames/00-19-08/frame-m10s.jpg",
+        "announcement-frames/00-19-08/frame-p05s.jpg",
+        "announcement-frames/00-19-08/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Classifier as developer IP",
+      "category": "concept",
+      "shortDescription": "Qualcomm is researching but not yet shipping a routing classifier; Martinez encourages developers to build their own as a competitive advantage, living inside the orchestrator.",
+      "longDescription": "The routing classifier inspects signals such as cross-file reference counts and security flags (authorization requests, crypto/injection, or compliance triggers) to decide where a request should run, with adjustable thresholds and the option to make the model recursive, adaptive, and self-learning. It also uses a 'confident fallback': if the entropy of a query gets too high or execution takes too long, it stops and reshuffles the work up to the cloud, then reviews what went wrong over time. The speaker frames building a more powerful classifier as the core IP and competitive advantage developers and companies can create.",
+      "timestamp": "00:29:08",
+      "timestampSeconds": 1748,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-29-08/frame-m05s.jpg",
+        "announcement-frames/00-29-08/frame-m10s.jpg",
+        "announcement-frames/00-29-08/frame-p05s.jpg",
+        "announcement-frames/00-29-08/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Forthcoming research paper",
+      "category": "concept",
+      "shortDescription": "The underlying entropy, quantization, and routing research has not been published yet but is promised.",
+      "longDescription": "The speaker explains how the routing approach extends beyond LLMs to generative AI with multiple tracks (e.g., audio, video, and sentiment analysis), where each track has its own entropy limits and classifier, and an orchestrator aggregates inputs and handles routing logic, execution monitoring, and output aggregation. He describes this as a work in progress and notes the underlying research paper has not yet been written or published, but promises to do so, telling the audience they are getting a preview of the paper.",
+      "timestamp": "00:41:50",
+      "timestampSeconds": 2510,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-41-50/frame-m05s.jpg",
+        "announcement-frames/00-41-50/frame-m10s.jpg",
+        "announcement-frames/00-41-50/frame-p05s.jpg",
+        "announcement-frames/00-41-50/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

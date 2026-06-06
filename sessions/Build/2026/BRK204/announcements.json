@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK204",
+  "sessionTitle": "What we learned shipping VS Code weekly (without breaking everything)",
+  "sessionSpeakers": [
+    "Pierce Boggan",
+    "Josh Spicer",
+    "Anna Soracco"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:31:58.1238162+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Move from monthly to weekly stable releases (February)",
+      "category": "concept",
+      "shortDescription": "Adopted to keep pace with the rapidly turning AI space and to land smaller, lower-risk batches rather than large monthly drops",
+      "longDescription": "The VS Code team moved from monthly to weekly stable releases in February, driven by the rapidly turning AI space where features shipped to the daily Insiders build would be matched by competitors within two weeks while stable only updated once a month. Adopting AI increased their output (roughly 3X more issues and many more open pull requests since January), creating competitive pressure to release more frequently. Smaller weekly batches also reduce risk compared to landing large monthly drops, letting the team validate changes and avoid on-call incidents from big batches. The shift reflects a broader point that adopting AI requires teams to also change how they work and evolve their engineering systems.",
+      "timestamp": "00:04:37",
+      "timestampSeconds": 277,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-04-37/frame-m05s.jpg",
+        "announcement-frames/00-04-37/frame-m10s.jpg",
+        "announcement-frames/00-04-37/frame-p05s.jpg",
+        "announcement-frames/00-04-37/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Component browser for agent-driven UI validation",
+      "category": "tool",
+      "shortDescription": "Extracts VS Code components so agents can render, screenshot, and compare changes with-and-without a diff directly in a PR without a full product build",
+      "longDescription": "The component browser is a feature (rolled out around April) that slices up VS Code components so the agent can work on them effectively without running a full product build. Because components were rewritten to run and accept injected data outside the product, an agent can render a change, take screenshots with and without the change, and post the comparison directly in the PR. In the demonstrated example, adding a back button was accomplished with a single prompt and all validation was done in the PR. The tool is useful both for building new features and for catching regressions introduced as a side effect of other changes.",
+      "timestamp": "00:07:30",
+      "timestampSeconds": 450,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-07-30/frame-m05s.jpg",
+        "announcement-frames/00-07-30/frame-m10s.jpg",
+        "announcement-frames/00-07-30/frame-p05s.jpg",
+        "announcement-frames/00-07-30/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "VSC bench, a purpose-built offline evaluation stack",
+      "category": "tool",
+      "shortDescription": "Runs many daily evaluations of models and prompts against custom cases, plotting total tokens against resolution rate to inform reasoning-effort and shipping decisions",
+      "longDescription": "VSC bench [inferred] (heard as \"BSE bench\") is the team's purpose-built offline evaluation stack for VS Code, created because publicly available evaluation infrastructure and benchmarks were found insufficient for making objective product decisions. It uses the team's own cases and infrastructure to run many evaluations every day with different variations, measuring the impact of changes on metrics like total tokens and resolution rate. Sample plots of total tokens over resolution rate show trade-offs, for example that higher reasoning efforts (overlaid on the plot) do not always yield the best resolution rate and can cost significantly more tokens. These results inform pre-launch decisions about prompts and which reasoning effort to ship.",
+      "timestamp": "00:23:16",
+      "timestampSeconds": 1396,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-23-16/frame-m05s.jpg",
+        "announcement-frames/00-23-16/frame-m10s.jpg",
+        "announcement-frames/00-23-16/frame-p05s.jpg",
+        "announcement-frames/00-23-16/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Automated issue triage and AI duplicate detection",
+      "category": "tool",
+      "shortDescription": "Agentic workflows infer owners, classify issues as bugs or feature requests, and semantically dedupe issues hourly via an internal Chrome extension",
+      "longDescription": "The team built agentic workflows that automatically triage GitHub issues by classifying them as bugs/regressions or feature requests and inferring owners from data sources such as the codebase commit history and manual ownership declarations. A complementary AI duplicate-detection capability, injected via an internal Chrome extension (not a native GitHub feature), runs roughly every hour against the latest GitHub issues to find duplicates using semantic understanding rather than just keyword or lexical matching. When confident, it can automatically close an issue as a duplicate, saving the team from triaging many issues sharing the same root cause. The owner-assignment logic is debuggable via full agent logs, for instance to diagnose a multi-owner problem.",
+      "timestamp": "00:31:43",
+      "timestampSeconds": 1903,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-31-43/frame-m05s.jpg",
+        "announcement-frames/00-31-43/frame-m10s.jpg",
+        "announcement-frames/00-31-43/frame-p05s.jpg",
+        "announcement-frames/00-31-43/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Self-healing error pipeline",
+      "category": "tool",
+      "shortDescription": "An agent scans telemetry for unhandled errors, identifies root causes across processes, opens issues, and proposes fixes for human review",
+      "longDescription": "The self-healing error pipeline is an automation (run as Cron jobs many times a day) that scans VS Code telemetry for unhandled errors and tries to identify the root cause. When it finds an actionable cause it creates a GitHub issue, shares the stack trace, and is increasingly able to propose a fix and tag the correct owner for human review. The example shown was a regression from May detected from telemetry with little data beyond a stack trace, which the bot ran through and fixed. The bug spanned multiple VS Code processes—the extension host through to the main thread—involving serialization of data, and the agent was able to step back and understand the sequence of events causing the exception.",
+      "timestamp": "00:34:52",
+      "timestampSeconds": 2092,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-34-52/frame-m05s.jpg",
+        "announcement-frames/00-34-52/frame-m10s.jpg",
+        "announcement-frames/00-34-52/frame-p05s.jpg",
+        "announcement-frames/00-34-52/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Staged/incremental rollouts with freeze capability",
+      "category": "feature",
+      "shortDescription": "Replaces the previous all-at-once deployment, letting the team freeze a build after catching a problem at 8% rollout",
+      "longDescription": "The team now does staged, incremental rollouts of VS Code through their update server, replacing the previous approach of deploying to 100% all at once. This lets them observe effects in the wild across their 40+ million users, which differs greatly from internal Insiders usage, and the same data drives both the live dashboard and the update server. The capability to freeze a build and fall back to previous builds is built into their build site; in the example shown a build was frozen after reaching 8% rollout because a problem was caught, letting them stop it before it affected most users. This incremental rollout and freeze tooling is relatively new and has grown substantially as the team's needs expanded.",
+      "timestamp": "00:38:56",
+      "timestampSeconds": 2336,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-38-56/frame-m05s.jpg",
+        "announcement-frames/00-38-56/frame-m10s.jpg",
+        "announcement-frames/00-38-56/frame-p05s.jpg",
+        "announcement-frames/00-38-56/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

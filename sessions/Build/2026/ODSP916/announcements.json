@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "ODSP916",
+  "sessionTitle": "Design systems for every user, including people and LLMs",
+  "sessionSpeakers": [
+    "Guust Ysebie"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:29:11.9170205+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Embedded-text extraction outperforms OCR by roughly 200x",
+      "category": "concept",
+      "shortDescription": "Extracting four pages with iText [inferred] leveraging embedded text took 0.075 seconds versus about 18 seconds for the Docling OCR pipeline *(00:07:41)*.",
+      "longDescription": "Comparing extraction methods on a four-page PDF, the OCR-based Docling pipeline took about 18 seconds to process the pixels, while a basic Java implementation using iText to extract the embedded text and metadata took only 0.075 seconds — roughly 200 times faster. Both produced the same tables and content in the resulting Markdown, but the iText approach also correctly omitted the author's unintended watermark and preserved semantic structure like sublists. The takeaway was to design for understanding, not just rendering, especially with PDF documents.",
+      "timestamp": "00:08:50",
+      "timestampSeconds": 530,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-50/frame-m05s.jpg",
+        "announcement-frames/00-08-50/frame-m10s.jpg",
+        "announcement-frames/00-08-50/frame-p05s.jpg",
+        "announcement-frames/00-08-50/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    },
+    {
+      "name": "OCR extraction leaks unintended content",
+      "category": "concept",
+      "shortDescription": "The OCR pipeline pulled a watermark into the Markdown output, which the author never intended to expose and which could be abused to jailbreak an LLM *(00:08:20)*.",
+      "longDescription": "When running Docling to convert a PDF to Markdown via OCR, the output captured a watermark that the author never intended to be extracted. Because OCR processes the rendered pixels, such unintended content ends up in the Markdown file and could be used or abused to jailbreak an LLM if used as training data. By contrast, extracting embedded text and metadata avoids pulling in this unintended content, which is better for security.",
+      "timestamp": "00:08:00",
+      "timestampSeconds": 480,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-00/frame-m05s.jpg",
+        "announcement-frames/00-08-00/frame-m10s.jpg",
+        "announcement-frames/00-08-00/frame-p05s.jpg",
+        "announcement-frames/00-08-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "OCR loses semantic structure",
+      "category": "concept",
+      "shortDescription": "OCR failed to recognize sublists, while the embedded-metadata approach reconstructed them correctly, and such errors compound over time into wrong output.",
+      "longDescription": "The OCR pipeline (Docling) failed to recognize that certain items were sublists because the semantic meaning was lost when processing rendered pixels, whereas using the embedded document metadata reconstructed the sublist correctly. These OCR mistakes are hard to trace and can compound over time, producing very wrong output formats. The recommendation is to enable embedding of metadata when producing PDFs and ensure tags correctly convey the author's intent, which yields smart data extraction, easy search, and accessibility for free.",
+      "timestamp": "00:09:30",
+      "timestampSeconds": 570,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-30/frame-m05s.jpg",
+        "announcement-frames/00-09-30/frame-m10s.jpg",
+        "announcement-frames/00-09-30/frame-p05s.jpg",
+        "announcement-frames/00-09-30/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

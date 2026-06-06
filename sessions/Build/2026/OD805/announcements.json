@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD805",
+  "sessionTitle": "AI Building Blocks for .NET: Add intelligence to your C# apps",
+  "sessionSpeakers": [],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:33:25.6426867+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Microsoft.Extensions.AI as the provider-agnostic foundation",
+      "category": "library",
+      "shortDescription": "The `IChatClient` interface lets the same code target cloud models in Foundry or local runtimes, with integrated Entra ID identity recommended over API keys",
+      "longDescription": "Microsoft.Extensions.AI is presented as the foundation layer of the .NET AI building blocks—a provider-agnostic chat abstraction centered on the IChatClient interface. The same code can connect to a chat model running in the cloud (for example, in Foundry) or to another provider running locally. When using a backend like Foundry, instead of the standard endpoint URL, model name, and API key, you can use integrated identity and pass your Entra ID to authenticate, which is the recommended approach.",
+      "timestamp": "00:03:41",
+      "timestampSeconds": 221,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-03-41/frame-m05s.jpg",
+        "announcement-frames/00-03-41/frame-m10s.jpg",
+        "announcement-frames/00-03-41/frame-p05s.jpg",
+        "announcement-frames/00-03-41/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Local model support across runtimes",
+      "category": "feature",
+      "shortDescription": "The chat abstraction works identically with Ollama, LM Studio, or Foundry Local, demonstrated swapping models like Phi-4-mini for sentiment analysis",
+      "longDescription": "The same chat abstraction that connects to cloud models in Azure also works identically with local model runtimes. The speaker demonstrates running local models via Ollama (on port 11434), noting you can equally use LM Studio or Foundry Local. A demo creates an Ollama chat client using Phi-4-mini to analyze the sentiment of a set of sentences and produce an overall average sentiment, all running locally with the same interface.",
+      "timestamp": "00:08:05",
+      "timestampSeconds": 485,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-05/frame-m05s.jpg",
+        "announcement-frames/00-08-05/frame-m10s.jpg",
+        "announcement-frames/00-08-05/frame-p05s.jpg",
+        "announcement-frames/00-08-05/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Built-in RAG and data-ingestion pipeline",
+      "category": "feature",
+      "shortDescription": "Vector store, embeddings, chunking, and enrichment building blocks support a Reader→Chunker→Enrich→Embeddings→Vector store pipeline, shown with in-memory and SQLite stores",
+      "longDescription": "To move beyond chat and work with data that the model cannot otherwise access, the building blocks support a RAG pipeline framed as a series of steps: reader, chunk, enrich, embeddings/embedder, and vector store. Vector data handles storage and similarity search, data ingestion handles reading/chunking/enriching, and embeddings convert text into vectors representing meaning. Embeddings can run locally—ONNX mini models as small as 50–80 MB are suggested for learning—or in the cloud using models like OpenAI's text-embedding-small, allowing developers to prototype locally and switch to more powerful cloud models.",
+      "timestamp": "00:11:00",
+      "timestampSeconds": 660,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-11-00/frame-m05s.jpg",
+        "announcement-frames/00-11-00/frame-m10s.jpg",
+        "announcement-frames/00-11-00/frame-p05s.jpg",
+        "announcement-frames/00-11-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "First-class C# MCP SDK",
+      "category": "SDK",
+      "shortDescription": "A maintained SDK integrates Model Context Protocol with Microsoft.Extensions.AI, demonstrated connecting to the Microsoft Learn MCP server for live documentation retrieval",
+      "longDescription": "A first-class, maintained C# SDK integrates the Model Context Protocol (MCP) with Microsoft.Extensions.AI to connect external (and local/internal) tools to applications. MCP is described as a standard wire protocol originally created by Anthropic, and the SDK can connect to virtually any public MCP server. The demo connects a console chat client to the Microsoft Learn MCP server (located at learn.microsoft.com/api/mcp) to retrieve the latest published documentation, asking for the latest version of Microsoft Agent Framework and its URL.",
+      "timestamp": "00:23:24",
+      "timestampSeconds": 1404,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-23-24/frame-m05s.jpg",
+        "announcement-frames/00-23-24/frame-m10s.jpg",
+        "announcement-frames/00-23-24/frame-p05s.jpg",
+        "announcement-frames/00-23-24/frame-p10s.jpg"
+      ],
+      "explicitLinks": [
+        {
+          "kind": "docs",
+          "url": "learn.microsoft.com/api/mcp"
+        }
+      ],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Microsoft Agent Framework",
+      "category": "framework",
+      "shortDescription": "Adds an `IAgent` interface wrapping the chat client, supporting tools, agent orchestration patterns (sequential, round-robin), and workflows",
+      "longDescription": "Microsoft Agent Framework adds a new IAgent interface layered on top of the chat client. After creating a chat client, you call create agent to produce a minimal agent defined by a name, description, and instructions—essentially a wrapper over the chat client that retains the same patterns and capabilities, including StreamingAsync. The framework also brings in related topics such as tools, agent orchestration, workflows, agent-to-agent connections, and durable functions/workflows. The demo defines a writer agent that writes a short story about a haunted house with a character named Lucia.",
+      "timestamp": "00:33:05",
+      "timestampSeconds": 1985,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-33-05/frame-m05s.jpg",
+        "announcement-frames/00-33-05/frame-m10s.jpg",
+        "announcement-frames/00-33-05/frame-p05s.jpg",
+        "announcement-frames/00-33-05/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agent-to-agent (A2A) connectivity",
+      "category": "spec",
+      "shortDescription": "Enables connecting a Microsoft Agent Framework agent with an NVIDIA NeMo [inferred] agent via agent cards, with A2A configurable as a custom tool in Foundry",
+      "longDescription": "Agent-to-agent (A2A) connectivity lets agents communicate across URLs, demonstrated by connecting a Microsoft Agent Framework agent with an NVIDIA NeMo [inferred] agent so they work together. Mapping the A2A connection requires access to an agent card, located at /.well-known/card.json, which describes how an agent works. The sample runs a writer agent at a local URL plus a second agent, with an A2A server consumed by A2A clients. A2A was initially created and opened by Google and is noted as being part of the Linux Foundation.",
+      "timestamp": "00:39:00",
+      "timestampSeconds": 2340,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-39-00/frame-m05s.jpg",
+        "announcement-frames/00-39-00/frame-m10s.jpg",
+        "announcement-frames/00-39-00/frame-p05s.jpg",
+        "announcement-frames/00-39-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    },
+    {
+      "name": "DevUI for agents",
+      "category": "tool",
+      "shortDescription": "A visual tool to inspect agents and workflows in real time, including traces and tool calls",
+      "longDescription": "DevUI is described as a super-cool tool for web applications that lets you see in real time how agents are working through a visual interface. You can test your workflows and agents in it, and view traces, tool calls, and more within a single, nice UI application. It is presented in the context of running a workflow (which is itself internally an agent) using StreamingAsync.",
+      "timestamp": "00:38:08",
+      "timestampSeconds": 2288,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-38-08/frame-m05s.jpg",
+        "announcement-frames/00-38-08/frame-m10s.jpg",
+        "announcement-frames/00-38-08/frame-p05s.jpg",
+        "announcement-frames/00-38-08/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

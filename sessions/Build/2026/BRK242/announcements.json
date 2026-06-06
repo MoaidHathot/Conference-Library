@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK242",
+  "sessionTitle": "Turn your agents into action: Connect tools, APIs, and documents",
+  "sessionSpeakers": [
+    "Ronak Chokshi",
+    "Joe Filcik",
+    "Maria Naggaga"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:27:27.5298311+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Toolbox (Foundry Tools)",
+      "category": "feature",
+      "shortDescription": "A reusable, Foundry-managed bundle of tools that agents consume through one consistent interface and a single unified MCP-compatible endpoint, regardless of underlying tool type.",
+      "longDescription": "Toolbox is a reusable bundle of tools managed in Foundry that agents can consume through a single consistent interface regardless of the underlying tool type—whether MCP, OpenAI API spec, skill, or connector. It addresses the problem that integrating many tools (each with its own identity, protocols, and credential management) consumes more developer time than building agents. Foundry handles the lifecycle, and a single unified endpoint with one OAuth and one experience can be integrated into any agent. The four pillars are build, configure/publish, and govern, enabling tool creation, discovery, and governance while minimizing token bloat in the context window.",
+      "timestamp": "00:09:01",
+      "timestampSeconds": 541,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-01/frame-m05s.jpg",
+        "announcement-frames/00-09-01/frame-m10s.jpg",
+        "announcement-frames/00-09-01/frame-p05s.jpg",
+        "announcement-frames/00-09-01/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Tool search",
+      "category": "feature",
+      "shortDescription": "A protocol/tool inside a toolbox that searches tool metadata at runtime and loads only the tool required for a task, conserving tokens instead of loading everything into the context window.",
+      "longDescription": "Tool search is a tool within Toolbox that searches for the specific tool needed by leveraging and pulling all the tool metadata to find the right one at runtime. Instead of loading everything into the context window, it loads only the tool required to complete the task, conserving tokens. In the demonstrated flow, an agent that needs GitHub directly picks the GitHub toolbox as the only one loaded into the context window. This replaces manually wiring every tool to an agent with attaching a toolbox exposed through a unified endpoint.",
+      "timestamp": "00:14:19",
+      "timestampSeconds": 859,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-19/frame-m05s.jpg",
+        "announcement-frames/00-14-19/frame-m10s.jpg",
+        "announcement-frames/00-14-19/frame-p05s.jpg",
+        "announcement-frames/00-14-19/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Browser automation tool, available today",
+      "category": "tool",
+      "shortDescription": "A new tool built on Playwright that lets agents scrape information and fill in forms (demonstrated auto-filling a Microsoft form).",
+      "longDescription": "Browser automation is one of the new tools delivered in Foundry and is available today, built on Playwright [inferred]. It enables agents to scrape information and fill in forms. The demo showed it automatically filling in a Microsoft form based on a submitted request.",
+      "timestamp": "00:16:51",
+      "timestampSeconds": 1011,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-16-51/frame-m05s.jpg",
+        "announcement-frames/00-16-51/frame-m10s.jpg",
+        "announcement-frames/00-16-51/frame-p05s.jpg",
+        "announcement-frames/00-16-51/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Tools catalog",
+      "category": "feature",
+      "shortDescription": "Shipped in 2025, a single place for custom and ecosystem tools, with the option of a private registry via Azure API Center and Azure API Management.",
+      "longDescription": "The tools catalog, shipped in 2025, provides a single place where developers and the broader ecosystem can find all tool types—including OpenAPI, MCP, A2A, Logic App connectors, skills, CLIs, hooks, and plugins. Foundry hosts a set of custom and ecosystem-built tools in one location. For those needing their own private registry, it can be done with Azure API Center and Azure API Management for additional governance. The catalog solves tool discovery, though integrating tools remains a separate problem.",
+      "timestamp": "00:06:27",
+      "timestampSeconds": 387,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-06-27/frame-m05s.jpg",
+        "announcement-frames/00-06-27/frame-m10s.jpg",
+        "announcement-frames/00-06-27/frame-p05s.jpg",
+        "announcement-frames/00-06-27/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Content Understanding GPT-5 family integration",
+      "category": "feature",
+      "shortDescription": "Added as an engine for extraction and classification, alongside broader file-type coverage and integrations for Logic Apps, Agent Framework, LangChain, and Markitdown.",
+      "longDescription": "Content Understanding is being improved with broader coverage and quality integrations, including new file types supported. The GPT-5 family of models [inferred] is added as an engine for running extraction and classification, improving quality. Easier integration is provided with support for Logic Apps, Agent Framework, LangChain [inferred], and Markitdown—a set of open-source tools that let you use this extraction as part of your agent runtime.",
+      "timestamp": "00:26:35",
+      "timestampSeconds": 1595,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-26-35/frame-m05s.jpg",
+        "announcement-frames/00-26-35/frame-m10s.jpg",
+        "announcement-frames/00-26-35/frame-p05s.jpg",
+        "announcement-frames/00-26-35/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agentic extraction, coming July",
+      "category": "feature",
+      "shortDescription": "A mode that builds answers step-by-step by reasoning across file content for cases where values must be derived rather than simply found.",
+      "longDescription": "Agentic extraction is a new Content Understanding mode coming in July for use cases where an answer needs to be built rather than simply found—constructed step by step by reasoning across content in a file. It targets harder problems such as determining which clause applies across a contract and its chain of amendments, or root-causing an issue, where finding a single specific value isn't sufficient. For the hardest problems where standard Content Understanding doesn't work, you can turn on the agentic mode to get the best possible extractions.",
+      "timestamp": "00:30:30",
+      "timestampSeconds": 1830,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-30-30/frame-m05s.jpg",
+        "announcement-frames/00-30-30/frame-m10s.jpg",
+        "announcement-frames/00-30-30/frame-p05s.jpg",
+        "announcement-frames/00-30-30/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Section-boundary classification splitting, coming July",
+      "category": "feature",
+      "shortDescription": "Documents can be split on logical section boundaries, not just page boundaries.",
+      "longDescription": "Coming in July, Content Understanding classification will enable you to split documents not just on page boundaries but also on logical section boundaries. This addresses customer feedback that boundaries in documents often don't fall neatly on page boundaries. It builds on classification's ability to identify document types and break long documents or enterprise packages (like case files, application bundles, or tax submissions) into logical parts.",
+      "timestamp": "00:28:46",
+      "timestampSeconds": 1726,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-28-46/frame-m05s.jpg",
+        "announcement-frames/00-28-46/frame-m10s.jpg",
+        "announcement-frames/00-28-46/frame-p05s.jpg",
+        "announcement-frames/00-28-46/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Knowledge-source training for Extract, coming July",
+      "category": "feature",
+      "shortDescription": "Customers can provide example documents so Content Understanding trains on and improves extraction for their specific forms.",
+      "longDescription": "Coming in July, Content Understanding's Extract will ship a new training process using knowledge sources so customers can improve extraction on the documents that matter to them. If you have a specific document type—like a tax form or industry-specific financial document—you can provide example documents, and Content Understanding will train on them to improve its results. Alongside this, new prebuilt analyzers will offer significant token cost reductions for greater efficiency.",
+      "timestamp": "00:29:52",
+      "timestampSeconds": 1792,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-29-52/frame-m05s.jpg",
+        "announcement-frames/00-29-52/frame-m10s.jpg",
+        "announcement-frames/00-29-52/frame-p05s.jpg",
+        "announcement-frames/00-29-52/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

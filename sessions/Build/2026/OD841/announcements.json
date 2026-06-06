@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD841",
+  "sessionTitle": "Ship fast, stay secure: from code to runtime",
+  "sessionSpeakers": [
+    "James Brotsos"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:28:53.6224847+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Defender CLI powered by code name \"MDASH\"",
+      "category": "tool",
+      "shortDescription": "A multi-model agentic scanning harness that orchestrates over a hundred specialized AI agents across an ensemble of frontier and distilled models, running a five-stage pipeline (prepare attack surface, scan candidate paths, validate by agent debate, de-duplicate, prove the vulnerability with triggering inputs).",
+      "longDescription": "The Defender CLI, code-named MDASH, is a terminal-based security scanner that runs directly in the developer's environment rather than waiting on a pipeline. Instead of a single model doing pattern matching, it orchestrates over a hundred specialized AI agents across an ensemble of frontier and distilled models, running them through a five-stage pipeline: preparing the attack surface, scanning candidate code paths, validating findings by having agents debate whether a bug is reachable and exploitable, de-duplicating, and proving the vulnerability by constructing triggering inputs. In the demo it scans a repository called Benchmark Python and catches real vulnerabilities that traditional static analysis scanners miss by reasoning about what the code actually does. As the speaker puts it, the model is one input while the system around it is the product.",
+      "timestamp": "00:02:46",
+      "timestampSeconds": 166,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-02-46/frame-m05s.jpg",
+        "announcement-frames/00-02-46/frame-m10s.jpg",
+        "announcement-frames/00-02-46/frame-p05s.jpg",
+        "announcement-frames/00-02-46/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "AI-powered fix command in the CLI",
+      "category": "feature",
+      "shortDescription": "Copilot analyzes a SARIF result file, understands code context, and rewrites the vulnerable code to fix it without leaving the terminal.",
+      "longDescription": "After the CLI scan finds vulnerabilities, the developer issues a fix command that operates on a standardized SARIF result file. Copilot analyzes the vulnerability, understands the context of the code, and makes the actual change to fix it without context switching, filing a ticket, or copy-pasting. This completes the developer loop of scan, find, and fix entirely within the terminal, and the changes can then be reviewed side by side in VS Code before being committed.",
+      "timestamp": "00:04:19",
+      "timestampSeconds": 259,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-04-19/frame-m05s.jpg",
+        "announcement-frames/00-04-19/frame-m10s.jpg",
+        "announcement-frames/00-04-19/frame-p05s.jpg",
+        "announcement-frames/00-04-19/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Pull request annotations with contextual fixes",
+      "category": "feature",
+      "shortDescription": "Findings such as XPath injection surface in the PR with a plain-language explanation and a Copilot-suggested parameterized fix.",
+      "longDescription": "When code hits a pull request, the same finding the CLI caught locally surfaces directly in the PR with a plain-language explanation rather than just a red flag. For an XPath injection [inferred], Defender explains that the header value is injected directly into the XPath query, letting an attacker alter the predicate and disclose data they shouldn't see. Right below the finding, Copilot suggests a fix to parameterize the query and pass the input as a bound variable, and even prompts the developer to verify the fix works. This closes the developer security loop: the CLI catches it, the pipeline gates it, and the PR annotates it with enough context to fix in minutes.",
+      "timestamp": "00:06:22",
+      "timestampSeconds": 382,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-06-22/frame-m05s.jpg",
+        "announcement-frames/00-06-22/frame-m10s.jpg",
+        "announcement-frames/00-06-22/frame-p05s.jpg",
+        "announcement-frames/00-06-22/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "AI code security initiative view",
+      "category": "feature",
+      "shortDescription": "A single-pane-of-glass posture dashboard that rolls up findings from the CLI, pipeline, and agentless code scanning, scored and prioritized, and correlated with the cloud environment.",
+      "longDescription": "The AI code security initiative is a single-pane-of-glass dashboard for security managers that rolls up every finding from every scan, including the CLI, the pipeline, and agentless code scanning. It shows an overall score, the number of recommendations, which repositories have findings, and how they are trending, presenting a curated and prioritized view instead of a hunt-through list of alerts. Most powerfully, Defender correlates these code findings with the cloud environment, so the same vulnerability scores differently depending on whether it runs in an internet-exposed container with sensitive data versus an internal dev tool. Each recommendation traces back to the source repository and line of code, giving security teams and developers the same data through different lenses.",
+      "timestamp": "00:07:34",
+      "timestampSeconds": 454,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-07-34/frame-m05s.jpg",
+        "announcement-frames/00-07-34/frame-m10s.jpg",
+        "announcement-frames/00-07-34/frame-p05s.jpg",
+        "announcement-frames/00-07-34/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Code-to-runtime attack path mapping",
+      "category": "feature",
+      "shortDescription": "Defender traces a running container back through runtime, ship, build, and code phases, filtering on risk factors like internet exposure and sensitive data paths.",
+      "longDescription": "Attack path mapping moves beyond a list of findings to answer which vulnerabilities actually put the organization at risk by mapping them to the live cloud environment and asking whether an attacker can reach them and what they could gain. Defender lets users filter on risk factors such as internet exposure and a path to sensitive data, prioritizing the riskiest applications running in real time. The speaker notes that internet exposure, a path to something valuable, and a known vulnerability are each low priority alone but together represent the biggest risk. One example attack path is examined in the Azure portal, showing internet exposure and high-severity vulnerabilities.",
+      "timestamp": "00:08:54",
+      "timestampSeconds": 534,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-54/frame-m05s.jpg",
+        "announcement-frames/00-08-54/frame-m10s.jpg",
+        "announcement-frames/00-08-54/frame-p05s.jpg",
+        "announcement-frames/00-08-54/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "GitHub issue creation assigned to Copilot",
+      "category": "feature",
+      "shortDescription": "From the attack path view, a GitHub issue is created, assigned to Copilot, and identifies that fixing one package resolves three additional CVEs.",
+      "longDescription": "Through the GitHub Advanced Security integration with Defender for Cloud, a security team can create a GitHub issue directly from the attack path view to immediately route a vulnerability to the right developer and repository. The created issue is automatically assigned to Copilot, which identifies that fixing one package will also resolve three additional CVEs and pinpoints the exact place in the code that needs changing. In this case the fix is simply updating a package from version 0.21 to 1.13, though the issue could be buried in base images or more transitive packages. This lets security teams meet developers exactly where they work and avoid vulnerabilities getting lost in a backlog.",
+      "timestamp": "00:12:33",
+      "timestampSeconds": 753,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-12-33/frame-m05s.jpg",
+        "announcement-frames/00-12-33/frame-m10s.jpg",
+        "announcement-frames/00-12-33/frame-p05s.jpg",
+        "announcement-frames/00-12-33/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "AI model artifact scanning",
+      "category": "feature",
+      "shortDescription": "The same CLI scanner inspects model artifacts for malicious content, catching a malicious pickle serialization payload in the pipeline before deployment.",
+      "longDescription": "The same Defender CLI scanner shown earlier can also scan AI model artifacts, catching malicious content before models are ever deployed. Defender discovers models across multiple registries and flags those containing malicious or vulnerable content, in one case identifying that a specific pickle file contains a malicious serialization payload connected to a live endpoint; the recommended remediation is to disable, unpublish, or archive the affected model version and redeploy a clean one, treating it as an immutable artifact to replace rather than patch. In a separate repo with machine learning training scripts, model artifacts, and a deployment pipeline, the Defender CLI scan runs within the pipeline and catches the vulnerability before the pipeline finishes. This represents end-to-end AI security: discover what you have, scan it in the pipeline, flag what's dangerous in production, and provide a clear path to fix it from code to deployed model.",
+      "timestamp": "00:16:04",
+      "timestampSeconds": 964,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-16-04/frame-m05s.jpg",
+        "announcement-frames/00-16-04/frame-m10s.jpg",
+        "announcement-frames/00-16-04/frame-p05s.jpg",
+        "announcement-frames/00-16-04/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

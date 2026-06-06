@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK200-R1",
+  "sessionTitle": "Why your AI code doesn’t ship: Closing the gap to production",
+  "sessionSpeakers": [
+    "Mario Rodriguez",
+    "Evan Boyle"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:32:00.1968386+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "GitHub Copilot app",
+      "category": "platform",
+      "shortDescription": "A new surface focused on helping developers finish work (triage, CI, review, merge) rather than spawning ever more parallel sessions; available for download at github.com/app",
+      "longDescription": "Mario Rodriguez introduces the GitHub app as one of GitHub's surfaces and describes it as foundational to the new agent-native engineering system. He frames its purpose around \"lowering the floor and raising the ceiling\"—making software development accessible to people GitHub could never reach before while enabling creation and community-building. The surface is positioned within a broader vision combining surfaces and data across the SDLC, with Evan Boyle set to demo it.",
+      "timestamp": "00:08:56",
+      "timestampSeconds": 536,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-56/frame-m05s.jpg",
+        "announcement-frames/00-08-56/frame-m10s.jpg",
+        "announcement-frames/00-08-56/frame-p05s.jpg",
+        "announcement-frames/00-08-56/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Canvases",
+      "category": "feature",
+      "shortDescription": "Dynamically loaded, themeable extensions with bidirectional agent tools that let users build hyper-personalized, shareable agentic UIs (e.g., a triage board, Kanban board, log/trace visualizer), installable from a gist or repo",
+      "longDescription": "Boyle introduces canvases as customizable, agent-controlled UIs that move beyond one-size-fits-all workflows. He demonstrates by dictating instructions to open a terminal canvas, stand up a web server rendering a hello canvas page, and open the resulting URL in a web browser. Everything on the right-hand side of a canvas—UI elements, tabs, and the web browser—exposes tools to the agent, enabling capabilities like agentic web debugging, element manipulation, and automated UI testing. He also references opening an existing triage canvas his team uses day-to-day.",
+      "timestamp": "00:15:34",
+      "timestampSeconds": 934,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-15-34/frame-m05s.jpg",
+        "announcement-frames/00-15-34/frame-m10s.jpg",
+        "announcement-frames/00-15-34/frame-p05s.jpg",
+        "announcement-frames/00-15-34/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Voice mode in the CLI",
+      "category": "feature",
+      "shortDescription": "Dictation-driven agent control, which Boyle uses with a hot-keyed remote to direct the agent while walking around",
+      "longDescription": "Boyle notes that voice mode just shipped in the CLI, enabling dictation-driven control of the agent. He describes using it at home with a hot-keyed remote plugged into his computer so he can walk around his office with headphones on, clicking the remote to think out loud and direct his agent. He frames this as a highly productive way to work since he thinks while he walks.",
+      "timestamp": "00:15:59",
+      "timestampSeconds": 959,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-15-59/frame-m05s.jpg",
+        "announcement-frames/00-15-59/frame-m10s.jpg",
+        "announcement-frames/00-15-59/frame-p05s.jpg",
+        "announcement-frames/00-15-59/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "`copilot --cloud` GitHub sandboxes",
+      "category": "service",
+      "shortDescription": "Stateful micro VMs provisioned in seconds that suspend after 10 minutes of inactivity and resume with full state, enabling work to continue after the laptop is closed",
+      "longDescription": "Boyle demonstrates `copilot --cloud` in the Copilot CLI, which stands up what is called a GitHub sandbox—micro VMs provisioned in a matter of seconds that are completely stateful. They suspend after 10 minutes of inactivity by the agent, and resuming the session from the local CLI spins the micro VM back up with all state intact. He shows the full lifecycle by putting it on autopilot to add an emoji to his README, then notes the changes don't appear locally, illustrating how he can offload long-running implementation work to a sandbox, close his laptop, and return to a finished prototype.",
+      "timestamp": "00:26:21",
+      "timestampSeconds": 1581,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-26-21/frame-m05s.jpg",
+        "announcement-frames/00-26-21/frame-m10s.jpg",
+        "announcement-frames/00-26-21/frame-p05s.jpg",
+        "announcement-frames/00-26-21/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Chronicle",
+      "category": "service",
+      "shortDescription": "A private personal data lake over all user sessions across Copilot products and devices, queryable by the agent via SQL and full-text search, with a \"stand up\" report generator",
+      "longDescription": "Boyle introduces Chronicle, a personal private data lake spanning all of a user's sessions across all Copilot products and devices. It exposes a search interface to the agent combining structured SQL queries and full-text search, letting the agent find relevant sessions, plan files, assistant messages, turns, user messages, and every line of code ever edited. He demonstrates by asking Chronicle to find a tricky Rust bug from the past week and load that context into the session, watching the agent generate SQL; he notes agents sometimes make SQL mistakes but self-correct well. It can also answer queries like when a file such as app.tsx was last touched.",
+      "timestamp": "00:29:21",
+      "timestampSeconds": 1761,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-29-21/frame-m05s.jpg",
+        "announcement-frames/00-29-21/frame-m10s.jpg",
+        "announcement-frames/00-29-21/frame-p05s.jpg",
+        "announcement-frames/00-29-21/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agent merge",
+      "category": "feature",
+      "shortDescription": "An agent that polls a PR, resolves merge conflicts, monitors and fixes CI, responds to human and Copilot code review feedback (pushing back when warranted), and merges once approved and green",
+      "longDescription": "Boyle demonstrates agent merge, one of the options Copilot offers (alongside create PR and create draft PR) when opening a pull request. The agent periodically polls the PR, fixes merge conflicts, monitors CI and pushes changes until it's green, and responds to feedback from both agents like Copilot code review and human reviewers. Once everything is green and approval is granted, it merges the PR. He frames it for low-risk, functional changes where minor review feedback can be trusted to the agent, showing the first-ever agent merge PR from Jeremy, its creator, which adds a health check verifying the GH CLI is installed at app startup.",
+      "timestamp": "00:33:00",
+      "timestampSeconds": 1980,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-33-00/frame-m05s.jpg",
+        "announcement-frames/00-33-00/frame-m10s.jpg",
+        "announcement-frames/00-33-00/frame-p05s.jpg",
+        "announcement-frames/00-33-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Rubber duck",
+      "category": "feature",
+      "shortDescription": "Cross-model-family critique that, for example, invokes a GPT-5.5 [inferred] agent to critique a plan authored by a Claude model to combine differing model strengths",
+      "longDescription": "Boyle introduces rubber duck, presented alongside slash review (code review) and slash security review, as a way to combine multiple models duking it out with each other. He kicks off a workflow using the Create Session tool to spawn two sessions—one for security review and one for code review—running Sonnet 4.6, GPT-5.5, and Gemini in parallel sub agents, then uses Rubber Duck to critique the feedback and turn it into PR comments. Security review is powered by tech from GitHub Advanced Security and code review by Copilot code review. He also demonstrates a private \"rubber duck\" agent thread in PR review mode for quickly building context on a change.",
+      "timestamp": "00:41:02",
+      "timestampSeconds": 2462,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-41-02/frame-m05s.jpg",
+        "announcement-frames/00-41-02/frame-m10s.jpg",
+        "announcement-frames/00-41-02/frame-p05s.jpg",
+        "announcement-frames/00-41-02/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    },
+    {
+      "name": "Cloud and local automations",
+      "category": "feature",
+      "shortDescription": "Scheduled \"morning brief\" inbox digests and an issue-created automation that attempts to reproduce bug reports, writes failing test cases, labels issues, and comments",
+      "longDescription": "Boyle describes automations that guard human attention, starting with morning briefs—a local, private automation that runs every day at 6:00 AM across surfaces like Slack, Teams, and Outlook to produce a focused inbox digest of top new customer issues, his PRs needing attention, and teammates' PRs. He contrasts this with a cloud automation called issue repro that continues running even when his laptop is closed. Triggered on issue created in a private repo, it attempts to reproduce incoming bug reports and, when successful, proceeds further (writing failing test cases). The segment also continues the rubber duck cross-model-family critique discussion, noting a Cloud-authored plan is automatically critiqued by a GPT-5.5 [inferred] rubber duck agent.",
+      "timestamp": "00:44:41",
+      "timestampSeconds": 2681,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-44-41/frame-m05s.jpg",
+        "announcement-frames/00-44-41/frame-m10s.jpg",
+        "announcement-frames/00-44-41/frame-p05s.jpg",
+        "announcement-frames/00-44-41/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

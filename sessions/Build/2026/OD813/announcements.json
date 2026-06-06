@@ -1,0 +1,335 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD813",
+  "sessionTitle": "Powering modern data analytics in Fabric Data Warehouse",
+  "sessionSpeakers": [
+    "Rakesh Krishnan"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:25:30.8607150+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "GPU-accelerated data warehouse / Query Acceleration (limited preview)",
+      "category": "feature",
+      "shortDescription": "A new engine executes queries or query portions directly on GPUs, requiring no query rewrites and applying to every SQL endpoint and warehouse in a workspace once enabled.",
+      "longDescription": "The Fabric DW team built a GPU-accelerated data warehouse in Fabric, purpose-built for modern AI workloads, that accelerates analytics and AI by executing queries directly on GPUs to process complex, large-scale queries more efficiently. It requires no rearchitecting, no query rewrites, and no separate systems to manage, while delivering faster, more consistent results across analytics queries, reports, AI scenarios, and analytical applications. It is built for enterprise scale and reliability, handling high concurrency and large data volumes with predictable performance, and applies broadly across agents, applications, and workloads.",
+      "timestamp": "00:03:59",
+      "timestampSeconds": 239,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-03-59/frame-m05s.jpg",
+        "announcement-frames/00-03-59/frame-m10s.jpg",
+        "announcement-frames/00-03-59/frame-p05s.jpg",
+        "announcement-frames/00-03-59/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "ALTER COLUMN in place",
+      "category": "feature",
+      "shortDescription": "Data type changes no longer require rebuilding tables.",
+      "longDescription": "ALTER COLUMN in place lets you make data type changes to a table without rebuilding it. Previously, making data type changes meant rebuilding tables, but now you can alter columns in place with no rewrites and no disruption. Joanna describes it as a long-awaited \"finally\" moment and table stakes for the Fabric Data Warehouse.",
+      "timestamp": "00:10:57",
+      "timestampSeconds": 657,
+      "speakers": [
+        "Joanna Podgoetsky"
+      ],
+      "frames": [
+        "announcement-frames/00-10-57/frame-m05s.jpg",
+        "announcement-frames/00-10-57/frame-m10s.jpg",
+        "announcement-frames/00-10-57/frame-p05s.jpg",
+        "announcement-frames/00-10-57/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "ALTER TABLE inside a transaction",
+      "category": "feature",
+      "shortDescription": "Multiple schema changes can be grouped as a single unit with automatic rollback on failure.",
+      "longDescription": "ALTER TABLE inside a transaction brings transactional safety to schema changes in the Fabric Data Warehouse. With explicit transactions, you can group multiple ALTER TABLE operations together as a single unit so everything either succeeds or nothing does. If something goes wrong, all changes are rolled back automatically, eliminating partial updates and post-failure cleanup for safer, more predictable schema evolution.",
+      "timestamp": "00:11:16",
+      "timestampSeconds": 676,
+      "speakers": [
+        "Joanna Podgoetsky"
+      ],
+      "frames": [
+        "announcement-frames/00-11-16/frame-m05s.jpg",
+        "announcement-frames/00-11-16/frame-m10s.jpg",
+        "announcement-frames/00-11-16/frame-p05s.jpg",
+        "announcement-frames/00-11-16/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "New T-SQL functions",
+      "category": "feature",
+      "shortDescription": "Fuzzy string matching (Levenshtein, Jaro-Winkler), new concatenation operations, UNISTR, DATE_BUCKET, and the ANY_VALUE aggregate.",
+      "longDescription": "T-SQL in the Fabric Warehouse continues to evolve with recent updates that expand its expressiveness and analytical power. These include fuzzy string-matching capabilities based on Levenshtein and Jaro-Winkler algorithms, new string concatenation operations, and additional functions like UNISTR and DATE_BUCKET. New aggregates such as ANY_VALUE are also added.",
+      "timestamp": "00:11:59",
+      "timestampSeconds": 719,
+      "speakers": [
+        "Joanna Podgoetsky"
+      ],
+      "frames": [
+        "announcement-frames/00-11-59/frame-m05s.jpg",
+        "announcement-frames/00-11-59/frame-m10s.jpg",
+        "announcement-frames/00-11-59/frame-p05s.jpg",
+        "announcement-frames/00-11-59/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Enhanced scalar UDFs",
+      "category": "feature",
+      "shortDescription": "Procedural constructs including loops, multipath execution, and if/then/else branches.",
+      "longDescription": "Scalar UDFs in Fabric Data Warehouse are evolving to support richer, more complex business logic by bringing procedural constructs into SQL workflows. These include loops, multipath execution, and complex if/then/else branches. They are built for analytical scenarios and optimized for scale, letting you write cleaner, reusable logic without compromising performance.",
+      "timestamp": "00:12:25",
+      "timestampSeconds": 745,
+      "speakers": [
+        "Joanna Podgoetsky"
+      ],
+      "frames": [
+        "announcement-frames/00-12-25/frame-m05s.jpg",
+        "announcement-frames/00-12-25/frame-m10s.jpg",
+        "announcement-frames/00-12-25/frame-p05s.jpg",
+        "announcement-frames/00-12-25/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Lakehouse table health checks",
+      "category": "tool",
+      "shortDescription": "A diagnostic stored procedure (`sp_get_table_health_metrics` [inferred]) pinpoints root causes like fragmentation, small files, excessive deletes, or delayed checkpoints.",
+      "longDescription": "Lakehouse table health checks address the challenge that lakehouse data queried through a SQL analytics endpoint isn't always in an optimal state, requiring manual maintenance as small files, fragmentation, and excessive updates and deletes build up. An official customer-facing diagnostic tool—a stored procedure referred to as \"spgettablehealthmetrics\" (sp_get_table_health_metrics [inferred])—lets you check table health with a single command and pinpoint the root cause, whether fragmentation, small files, too many deletes, or delayed checkpoints. It can be plugged into pipelines so table health is continuously monitored and maintenance happens proactively at scale.",
+      "timestamp": "00:12:50",
+      "timestampSeconds": 770,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-12-50/frame-m05s.jpg",
+        "announcement-frames/00-12-50/frame-m10s.jpg",
+        "announcement-frames/00-12-50/frame-p05s.jpg",
+        "announcement-frames/00-12-50/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [
+        {
+          "language": "sql",
+          "code": "spgettablehealthmetrics",
+          "timestamp": "00:13:40"
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "name": "Configurable retention",
+      "category": "feature",
+      "shortDescription": "Default 30-day retention is now adjustable from 1 to 120 days for time travel, point-in-time restore, and table clones.",
+      "longDescription": "The Fabric Data Warehouse's out-of-the-box retention policy is 30 days, which doesn't suit all workloads since some customers want higher and others lower retention. Retention enables time travel, point-in-time restores, and table clones for the specified history period. Microsoft is announcing the ability to modify the default configurable retention setting anywhere from one to 120 days, letting teams balance operational needs with storage cost optimization.",
+      "timestamp": "00:15:03",
+      "timestampSeconds": 903,
+      "speakers": [
+        "Joanna Podgoetsky"
+      ],
+      "frames": [
+        "announcement-frames/00-15-03/frame-m05s.jpg",
+        "announcement-frames/00-15-03/frame-m10s.jpg",
+        "announcement-frames/00-15-03/frame-p05s.jpg",
+        "announcement-frames/00-15-03/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Distributed bitmap filters (coming soon)",
+      "category": "feature",
+      "shortDescription": "Compact filters from smaller tables are pushed down to large fact-table scans to eliminate non-matching rows early.",
+      "longDescription": "Distributed bitmap filters speed up queries by addressing wasted work in JOINs between large fact tables and smaller dimension tables, where many fact-table rows never match anything useful. The feature takes the smaller table, builds a compact filter from it, and pushes that filter down to where the large table is being scanned, eliminating non-matching rows early. This reduces data movement, IO, and resource requests for faster query execution, especially for selective JOINs and GROUP BY aggregations. The feature is coming soon and is expected to drive significant performance gains on common warehouse workloads.",
+      "timestamp": "00:15:21",
+      "timestampSeconds": 921,
+      "speakers": [
+        "Joanna Podgoetsky"
+      ],
+      "frames": [
+        "announcement-frames/00-15-21/frame-m05s.jpg",
+        "announcement-frames/00-15-21/frame-m10s.jpg",
+        "announcement-frames/00-15-21/frame-p05s.jpg",
+        "announcement-frames/00-15-21/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Inline Copilot in the SQL editor",
+      "category": "feature",
+      "shortDescription": "AI assistance embedded directly in the query flow for joins, optimization, and natural-language-to-SQL.",
+      "longDescription": "Copilot is now embedded directly inline in the SQL editor, placing AI assistance right in the developer's query flow. Whether you're stuck on a JOIN, want to optimize a query, or need to translate a business question into SQL, Copilot is available in context. This makes AI assistance feel like a true pair programmer rather than a bolt-on tool. It is part of a broader set of editor improvements including a new table overview page and streamlined query management.",
+      "timestamp": "00:17:46",
+      "timestampSeconds": 1066,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-17-46/frame-m05s.jpg",
+        "announcement-frames/00-17-46/frame-m10s.jpg",
+        "announcement-frames/00-17-46/frame-p05s.jpg",
+        "announcement-frames/00-17-46/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Metadata sync (public preview)",
+      "category": "feature",
+      "shortDescription": "Re-architected sync makes lakehouse data queryable in seconds rather than minutes.",
+      "longDescription": "Rakesh Krishnan announces the public preview of a re-architected metadata sync for the SQL analytics endpoint that every Fabric lakehouse uses to query data with familiar SQL constructs. Historically there was a delay after data landed in the lakehouse before it could be queried, but the new version is built on a completely different architecture that increases sync performance and minimizes data staleness. As a result, data becomes available for query in seconds rather than minutes once it lands in the lakehouse.",
+      "timestamp": "00:20:31",
+      "timestampSeconds": 1231,
+      "speakers": [
+        "Rakesh Krishnan"
+      ],
+      "frames": [
+        "announcement-frames/00-20-31/frame-m05s.jpg",
+        "announcement-frames/00-20-31/frame-m10s.jpg",
+        "announcement-frames/00-20-31/frame-p05s.jpg",
+        "announcement-frames/00-20-31/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Time travel on SQL analytics endpoint",
+      "category": "feature",
+      "shortDescription": "Query data as it appeared at any prior point, governed by the lakehouse retention period.",
+      "longDescription": "Time travel is being extended from the warehouse to the SQL analytics endpoint, letting you query data exactly as it looked at any prior point in time. This addresses common day-to-day data team needs such as audits to prove what numbers were on a specific date, point-in-time comparisons to see how a metric drifted, and recreating data when a downstream report looks wrong. It eliminates the need to create snapshots or copies of data for these scenarios, and how far back you can go is governed by the retention period configured in your lakehouse.",
+      "timestamp": "00:22:12",
+      "timestampSeconds": 1332,
+      "speakers": [
+        "Rakesh Krishnan"
+      ],
+      "frames": [
+        "announcement-frames/00-22-12/frame-m05s.jpg",
+        "announcement-frames/00-22-12/frame-m10s.jpg",
+        "announcement-frames/00-22-12/frame-p05s.jpg",
+        "announcement-frames/00-22-12/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "CI/CD for SQL analytics endpoint plus pre/post-deployment scripts (coming soon)",
+      "category": "feature",
+      "shortDescription": "Git-based version control via DacFX projects, Fabric pipeline integration, and scripted prep/cleanup steps.",
+      "longDescription": "Microsoft is bringing enterprise-grade CI/CD support to the SQL analytics endpoint, letting teams treat it like production infrastructure with version control, code review, and automated deployments. This includes git-based version control for SQL endpoint schema represented as a DacFX database project, and native integration with Fabric pipelines for deploying schema changes from dev to test to prod with minimal manual steps. Support for pre- and post-deployment scripts is also added to handle prep work (checking prerequisites, validating environments) and cleanup (applying permissions, configuring settings, running validation), turning the full release into one governed artifact. These CI/CD changes are coming soon to all regions.",
+      "timestamp": "00:23:02",
+      "timestampSeconds": 1382,
+      "speakers": [
+        "Rakesh Krishnan"
+      ],
+      "frames": [
+        "announcement-frames/00-23-02/frame-m05s.jpg",
+        "announcement-frames/00-23-02/frame-m10s.jpg",
+        "announcement-frames/00-23-02/frame-p05s.jpg",
+        "announcement-frames/00-23-02/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Migration assistant GA",
+      "category": "tool",
+      "shortDescription": "Live connectivity GA (no DACPAC extraction) and .SQL file input (public preview) supporting Azure Synapse, SQL Server, and any T-SQL source.",
+      "longDescription": "The migration assistant is now generally available with enhancements that simplify modernizing data stacks and moving customers from their existing data warehouse to Fabric. Live connectivity is now GA, connecting directly to the source system and eliminating the need for DACPAC extraction or manual prep work. Support for .SQL files as input is going into public preview for bringing existing script schema definitions or workloads across without a live connection. The tool supports a broad variety of sources including Azure Synapse, SQL Server, or effectively any T-SQL database.",
+      "timestamp": "00:25:04",
+      "timestampSeconds": 1504,
+      "speakers": [
+        "Rakesh Krishnan"
+      ],
+      "frames": [
+        "announcement-frames/00-25-04/frame-m05s.jpg",
+        "announcement-frames/00-25-04/frame-m10s.jpg",
+        "announcement-frames/00-25-04/frame-p05s.jpg",
+        "announcement-frames/00-25-04/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Custom SQL pools",
+      "category": "feature",
+      "shortDescription": "Adjustable allocation of the default 50/50 split between select and non-select workloads.",
+      "longDescription": "The Fabric Data Warehouse has had intelligent workload management built in from the start, automatically routing queries so select reporting workloads and non-select ingestion/transformation workloads don't interfere with one another, with resources split evenly by default. Because some environments are heavier on reporting while others focus on ingestion and ETL, custom SQL pools give you direct control over that 50/50 split. For example, you could increase the select workload group to 80% and leave 20% for ingestion to better match how your workloads actually behave.",
+      "timestamp": "00:26:43",
+      "timestampSeconds": 1603,
+      "speakers": [
+        "Joanna Podgoetsky"
+      ],
+      "frames": [
+        "announcement-frames/00-26-43/frame-m05s.jpg",
+        "announcement-frames/00-26-43/frame-m10s.jpg",
+        "announcement-frames/00-26-43/frame-p05s.jpg",
+        "announcement-frames/00-26-43/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Node-based billing model",
+      "category": "feature",
+      "shortDescription": "Per-compute billing with a one-minute minimum then per-second granularity.",
+      "longDescription": "Microsoft is evolving its billing model to more closely match how real data warehouse workloads behave by moving to a node-based billing model where you're billed on the actual compute used to run queries. Billing starts with a one-minute minimum and then moves to per-second granularity, so the larger and more stable your workloads, the more that initial minute is monetized. Combined with compute efficiency improvements, this results in more predictable and efficient usage for long-running analytical queries, and serves as a foundation for further engine efficiencies over time.",
+      "timestamp": "00:27:39",
+      "timestampSeconds": 1659,
+      "speakers": [
+        "Joanna Podgoetsky"
+      ],
+      "frames": [
+        "announcement-frames/00-27-39/frame-m05s.jpg",
+        "announcement-frames/00-27-39/frame-m10s.jpg",
+        "announcement-frames/00-27-39/frame-p05s.jpg",
+        "announcement-frames/00-27-39/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Cache cooldown",
+      "category": "feature",
+      "shortDescription": "Configurable window to keep compute warm and avoid cold starts.",
+      "longDescription": "Cache cooldown gives you control over how long your compute stays warm between queries. By configuring the cooldown window, you can avoid cold starts and keep frequently-accessed workloads running with low latency, while balancing performance and cost—especially for bursty or intermittent usage patterns. Because scaling remains automatic, the system can scale up or down based on demand without manual intervention, preserving warm-query performance while staying efficient when workloads are idle.",
+      "timestamp": "00:28:43",
+      "timestampSeconds": 1723,
+      "speakers": [
+        "Joanna Podgoetsky"
+      ],
+      "frames": [
+        "announcement-frames/00-28-43/frame-m05s.jpg",
+        "announcement-frames/00-28-43/frame-m10s.jpg",
+        "announcement-frames/00-28-43/frame-p05s.jpg",
+        "announcement-frames/00-28-43/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

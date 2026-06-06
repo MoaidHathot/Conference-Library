@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEM300",
+  "sessionTitle": "Supercharged profiling: Finding performance bugs with agents",
+  "sessionSpeakers": [
+    "Nik Karpinsky"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:27:36.3450852+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Profiler agent in Copilot chat",
+      "category": "feature",
+      "shortDescription": "A dedicated agent invoked via `@Profiler` that knows how to write benchmarks, run the profiler, and analyze traces directly within Visual Studio.",
+      "longDescription": "A dedicated profiler agent can be invoked from Copilot chat in Visual Studio by typing @Profiler, giving access to an agent that knows about benchmarking, how to run the profiler, and how to write benchmarks. In the demo the presenter asks it to write a benchmark for writing a CSV file, and Copilot reads the existing benchmark in the project on its own (without being told) so it can write similar code. It recognizes there is no existing benchmark covering CSV writing, then proceeds to create one and prompts to install the required benchmark packages.",
+      "timestamp": "00:07:13",
+      "timestampSeconds": 433,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-07-13/frame-m05s.jpg",
+        "announcement-frames/00-07-13/frame-m10s.jpg",
+        "announcement-frames/00-07-13/frame-p05s.jpg",
+        "announcement-frames/00-07-13/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Visual Studio integration with benchmark.net diagnosers",
+      "category": "library",
+      "shortDescription": "A Visual Studio diagnoser package published on NuGet (benchmark.net Diagnosers) lets the profiler pull diagnostic data from a benchmark while it runs.",
+      "longDescription": "When generating the benchmark, the agent installs benchmark.net Diagnosers (a diagnostics hub package). BenchmarkDotNet [inferred] has a concept of diagnosers that allow different tools to pull diagnostic information from a benchmark while it is running. Visual Studio publishes one of these diagnoser packages on NuGet that lets it interact with the profiler and pull that data, providing the integration between the Visual Studio profiler and benchmarks.",
+      "timestamp": "00:08:23",
+      "timestampSeconds": 503,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-23/frame-m05s.jpg",
+        "announcement-frames/00-08-23/frame-m10s.jpg",
+        "announcement-frames/00-08-23/frame-p05s.jpg",
+        "announcement-frames/00-08-23/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Profiler \"go to source\" guided investigation",
+      "category": "feature",
+      "shortDescription": "The agent uses profiling data rather than plain text search to identify which source lines consume the most time and steer its investigation.",
+      "longDescription": "Rather than just grepping through the source base, the agent uses the profiler's \"go to source\" functionality and the profiling data to determine exactly which lines take the most time, then uses that to guide its investigation. After analyzing a trace, it identified hotspots such as expression compile, should-quote, and a dynamic multicast delegate; the presenter steered it to optimize the should-quote logic instead of the top item. The agent read the relevant source guided by profiling data, suggested combining the character checks into a single pass to avoid multiple iterations, and then recognized it needed to rerun the benchmark to measure the improvement.",
+      "timestamp": "00:13:50",
+      "timestampSeconds": 830,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-13-50/frame-m05s.jpg",
+        "announcement-frames/00-13-50/frame-m10s.jpg",
+        "announcement-frames/00-13-50/frame-p05s.jpg",
+        "announcement-frames/00-13-50/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Trace analysis and top insights",
+      "category": "feature",
+      "shortDescription": "An analyze button and generate-top-insights feature surface known bad patterns in .NET and C++ (such as calling `Contains` on a list) and suggest concrete optimizations.",
+      "longDescription": "The profiler offers an analyze button that asks Copilot to suggest optimizations for a trace by looking at the top functions, the hot call path, and the caller/callee data. A top insights feature fires on known bad patterns in .NET and C++, such as calling IndexOf on a linked list or Contains on a regular list, and suggests concrete fixes like using a set for hashed direct access. If no insights fire automatically, a \"generate top insights\" button has Copilot read the trace and propose ideas such as removing repeated null checks, avoiding boxing an enumerator by using a concrete type with IEnumerable, and constructing the StreamWriter with a larger buffer.",
+      "timestamp": "00:21:19",
+      "timestampSeconds": 1279,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-21-19/frame-m05s.jpg",
+        "announcement-frames/00-21-19/frame-m10s.jpg",
+        "announcement-frames/00-21-19/frame-p05s.jpg",
+        "announcement-frames/00-21-19/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

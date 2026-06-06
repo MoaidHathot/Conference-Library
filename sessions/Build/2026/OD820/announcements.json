@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD820",
+  "sessionTitle": "Designing Reliable Multi‑Agent Apps with Azure Cosmos DB",
+  "sessionSpeakers": [],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:33:33.9890289+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Agent memory toolkit for Azure Cosmos DB (public preview)",
+      "category": "library",
+      "shortDescription": "A background runtime that handles fact extraction, auto-summarization, conflict resolution, and four memory types, backed by Cosmos DB",
+      "longDescription": "The agent memory toolkit for Azure Cosmos DB is now in public preview. It provides fact extraction, auto-summarization, and includes package instructions and prompts to do conflict resolution, extract different kinds of memories, and perform user and thread summarization. In the demo it resolved a dietary preference conflict (vegan to omnivore) and extracted user summaries, such as the user planning a trip to Paris, backed by a memories container in Cosmos DB.",
+      "timestamp": "00:27:21",
+      "timestampSeconds": 1641,
+      "speakers": [
+        "Justine Cocchi",
+        "Aayush Kataria"
+      ],
+      "frames": [
+        "announcement-frames/00-27-21/frame-m05s.jpg",
+        "announcement-frames/00-27-21/frame-m10s.jpg",
+        "announcement-frames/00-27-21/frame-p05s.jpg",
+        "announcement-frames/00-27-21/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "LangChain Azure Cosmos DB integration (generally available)",
+      "category": "library",
+      "shortDescription": "Packages the Cosmos DB vector store and LangGraph checkpointer store used to build the demo multi-agent app",
+      "longDescription": "The LangChain Azure Cosmos DB integration is now generally available. It is an integration package that has all the Cosmos DB integration for LangChain and LangGraph used to build the multi-agent application. You can use the vector store integration from LangChain, and for state checkpointing in a multi-agent application you can use the LangGraph checkpointer store.",
+      "timestamp": "00:27:43",
+      "timestampSeconds": 1663,
+      "speakers": [
+        "Justine Cocchi",
+        "Aayush Kataria"
+      ],
+      "frames": [
+        "announcement-frames/00-27-43/frame-m05s.jpg",
+        "announcement-frames/00-27-43/frame-m10s.jpg",
+        "announcement-frames/00-27-43/frame-p05s.jpg",
+        "announcement-frames/00-27-43/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Cosmos DB agent kit (generally available)",
+      "category": "tool",
+      "shortDescription": "An installable repo of skills usable by agent-skills-compatible coding agents (GitHub Copilot, Claude Code, Gemini CLI) to enforce partitioning, indexing, and RU best practices, droppable into CI/PR reviews",
+      "longDescription": "The Cosmos DB agent kit is generally available now. It is not a service or an account you provision, but a repo of skills that any agent-skills-compatible coding agent—such as GitHub Copilot, Claude Code, Gemini CLI, and others—can pull in to give the agent Cosmos DB instincts around partitioning, indexing, RU economics, and modeling for actual access patterns. It produces an impact-ranked report of recommendations, supports interactive pushback, and can be dropped into CI and PR reviews so every change gets a Cosmos DB expert opinion before it merges.",
+      "timestamp": "00:31:18",
+      "timestampSeconds": 1878,
+      "speakers": [
+        "Justine Cocchi"
+      ],
+      "frames": [
+        "announcement-frames/00-31-18/frame-m05s.jpg",
+        "announcement-frames/00-31-18/frame-m10s.jpg",
+        "announcement-frames/00-31-18/frame-p05s.jpg",
+        "announcement-frames/00-31-18/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Per-partition automatic failover (generally available)",
+      "category": "feature",
+      "shortDescription": "Enables single-writer active-active failover at the partition level for five-nines availability with zero downtime, data loss, and touch",
+      "longDescription": "Per-partition automatic failover is now generally available. It allows failover at the individual partition level rather than waiting for an entire region to become unavailable, letting the system react in a more agile way (a brownout versus a blackout). Healthy regions or partitions continue reading and writing from the primary write region while any partition experiencing issues fails over seamlessly, giving the active-active pattern with five-nines of availability without multiple writers. This delivers zero downtime, zero data loss, and zero touch because the SDK does the heavy lifting.",
+      "timestamp": "00:35:44",
+      "timestampSeconds": 2144,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-35-44/frame-m05s.jpg",
+        "announcement-frames/00-35-44/frame-m10s.jpg",
+        "announcement-frames/00-35-44/frame-p05s.jpg",
+        "announcement-frames/00-35-44/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Distributed transactions (public preview)",
+      "category": "feature",
+      "shortDescription": "Atomic execution of writes across partitions and containers, so multi-container operations succeed or fail together",
+      "longDescription": "Distributed transactions in Cosmos DB are now in public preview, providing atomic execution of multiple requests. Whereas previously a transaction was limited to a single partition key, you can now get atomic transactions across partitions or even across containers. In the booking use case this means updating the trips container status, storing memory, and emitting a booking event to the events container can all either succeed or fail together, giving consistency at the container level and simplifying application error handling.",
+      "timestamp": "00:37:00",
+      "timestampSeconds": 2220,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-37-00/frame-m05s.jpg",
+        "announcement-frames/00-37-00/frame-m10s.jpg",
+        "announcement-frames/00-37-00/frame-p05s.jpg",
+        "announcement-frames/00-37-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Integrated embeddings",
+      "category": "feature",
+      "shortDescription": "Generates embeddings asynchronously at write time via Microsoft Foundry integration, removing brittle synchronous calls to OpenAI",
+      "longDescription": "Integrated embeddings automatically generate embeddings at write time, removing the brittle external synchronous call to OpenAI that could cause rate limiting or error handling issues before the conversation could continue. You write the raw message into Cosmos DB and it is automatically integrated with Microsoft Foundry, with embeddings generated asynchronously. You define your Microsoft Foundry integration and specify the source and target properties for the embeddings, giving full control without needing external pipelines or app-side coordination.",
+      "timestamp": "00:38:25",
+      "timestampSeconds": 2305,
+      "speakers": [
+        "Aayush Kataria"
+      ],
+      "frames": [
+        "announcement-frames/00-38-25/frame-m05s.jpg",
+        "announcement-frames/00-38-25/frame-m10s.jpg",
+        "announcement-frames/00-38-25/frame-p05s.jpg",
+        "announcement-frames/00-38-25/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Global secondary indexes (generally available)",
+      "category": "feature",
+      "shortDescription": "Auto-syncing secondary containers partitioned for different access patterns, converting cross-partition queries into single-partition lookups",
+      "longDescription": "Global secondary indexes are now generally available. They let you create a secondary container partitioned for different access patterns (for example, partitioned on destination) that automatically syncs data from a source container into a copy better suited for your query patterns. This transforms heavy cross-partition queries—like counting all trips to Paris across tenants—into single-partition lookups, increases query efficiency, and isolates heavy workload operations so they don't impact the transactional workload. When defining a GSI you can project only the most important properties, filtering out fields like the days array to match how you query the data.",
+      "timestamp": "00:42:11",
+      "timestampSeconds": 2531,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-42-11/frame-m05s.jpg",
+        "announcement-frames/00-42-11/frame-m10s.jpg",
+        "announcement-frames/00-42-11/frame-p05s.jpg",
+        "announcement-frames/00-42-11/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

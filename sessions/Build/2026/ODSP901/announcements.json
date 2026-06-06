@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "ODSP901",
+  "sessionTitle": "Discover, govern, and scale Azure resources with HashiCorp Terraform",
+  "sessionSpeakers": [
+    "Kerim Satirli"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:29:01.7973695+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Terraform Search via the `terraform query` command",
+      "category": "feature",
+      "shortDescription": "Available in the Terraform CLI since Terraform 1.14 (released November 2025), it inverts the import workflow: instead of writing import blocks by hand, you define a query, run it, and let Terraform discover matching unmanaged resources.",
+      "longDescription": "Terraform Search is a feature available in the Terraform CLI since Terraform 1.14 (released November 2025) that inverts the traditional import workflow. Instead of hand-writing import blocks (which requires already knowing the resource ID and that the resource exists in Azure), you define a search query, run the `terraform query` command, and let Terraform authenticate to Azure and query the remote API for matching unmanaged resources. The process is three steps: define a search query (e.g. all unmanaged MS SQL servers in a subscription's build resource group), run the query command, and generate code.",
+      "timestamp": "00:05:42",
+      "timestampSeconds": 342,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-05-42/frame-m05s.jpg",
+        "announcement-frames/00-05-42/frame-m10s.jpg",
+        "announcement-frames/00-05-42/frame-p05s.jpg",
+        "announcement-frames/00-05-42/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Automatic code generation from discovery",
+      "category": "feature",
+      "shortDescription": "Search generates resource definitions and import blocks into a `.tf` file (the demo's four resources produced roughly 300 lines), eliminating hand-coding and copy/paste errors while keeping output reviewable in a pull request.",
+      "longDescription": "With Terraform Search, code is generated for you instead of being hand-coded, avoiding copy/paste errors or forgotten attributes. The generated resource definitions are stored in a `.tf` file so they can be inspected, peer reviewed in a pull request, and aligned to organizational requirements. This inverts the import question from \"I know what I want, help me write the config\" to \"show me what's there, generate the config from it, and then let me plan the import\" — turning three weeks of inventory work into three commands.",
+      "timestamp": "00:06:58",
+      "timestampSeconds": 418,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-06-58/frame-m05s.jpg",
+        "announcement-frames/00-06-58/frame-m10s.jpg",
+        "announcement-frames/00-06-58/frame-p05s.jpg",
+        "announcement-frames/00-06-58/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "HashiCorp Terraform agent skills",
+      "category": "tool",
+      "shortDescription": "The discovery-to-import workflow can be set up programmatically through agentic loops.",
+      "longDescription": "The discovery-to-import workflow can be set up in an almost programmatic way by bringing in the HashiCorp Terraform agent skills and using agentic loops. In the demo, four discovered resources generated about 300 lines of import statements and resource definitions, each with an import block below it to import the currently unmanaged resource into Terraform state via a single plan and apply cycle (also usable with HCP Terraform). After importing, the next step is applying organizational policies — such as a HashiCorp Sentinel policy — to eliminate drift and enforce tags, naming conventions, and SKUs.",
+      "timestamp": "00:13:14",
+      "timestampSeconds": 794,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-13-14/frame-m05s.jpg",
+        "announcement-frames/00-13-14/frame-m10s.jpg",
+        "announcement-frames/00-13-14/frame-p05s.jpg",
+        "announcement-frames/00-13-14/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

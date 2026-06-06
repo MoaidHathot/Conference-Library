@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD806",
+  "sessionTitle": ".NET 11 in depth: Runtime, libraries, and SDK for the AI era",
+  "sessionSpeakers": [],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:33:28.1531799+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "`dotnet run` gains first-class device deployment for .NET MAUI",
+      "category": "feature",
+      "shortDescription": "The MAUI team contributed enhancements so `run` can pick a target framework, select a valid device, build the installation payload, and launch it on a simulator, via an extensible protocol usable by frameworks like Uno or Avalonia",
+      "longDescription": "Starting in .NET 11, the .NET MAUI team contributed enhancements to `dotnet run` to make device flows a first-class citizen, expanding the .NET MAUI targets so that `run` handles device deployment. The flow lets `dotnet run` pick the target framework to deploy to, select a valid device for that framework, upload the device payload, and launch it on a simulator. `run` also now understands how to query the devices available, and this entire protocol is extensible, working not just for MAUI but extendable to UI frameworks like Uno or Avalonia.",
+      "timestamp": "00:02:44",
+      "timestampSeconds": 164,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-02-44/frame-m05s.jpg",
+        "announcement-frames/00-02-44/frame-m10s.jpg",
+        "announcement-frames/00-02-44/frame-p05s.jpg",
+        "announcement-frames/00-02-44/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agent-aware .NET CLI",
+      "category": "feature",
+      "shortDescription": "The CLI now heuristically detects when it runs under an agent and adjusts output rendering, such as disabling the terminal logger's token-inefficient live update in an LLM context",
+      "longDescription": "The dotnet CLI now uses a heuristic-based approach to detect when it is being run under an agent context. This knowledge lets the CLI change how it renders output to available output streams and understand more about who is driving it and their usage patterns to adjust internal behavior. For example, the terminal logger (the default build display in .NET 10) has a dynamic, constantly-updating portion that LLMs interpret as a token-inefficient stream of constant changes, so the CLI now disables that live update when run in an LLM context.",
+      "timestamp": "00:03:51",
+      "timestampSeconds": 231,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-03-51/frame-m05s.jpg",
+        "announcement-frames/00-03-51/frame-m10s.jpg",
+        "announcement-frames/00-03-51/frame-p05s.jpg",
+        "announcement-frames/00-03-51/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Native AOT journey for the .NET CLI",
+      "category": "tool",
+      "shortDescription": "Bundled tools (user-secrets, dev-certs, user-jwts) are native AOT as of Preview 6, with `dotnet user-secrets` averaging ~54ms (only ~14ms application code); the entire CLI is on track for AOT",
+      "longDescription": "The team is starting a journey to make the dotnet CLI a Native AOT application. As of two weeks before the talk, several standalone but bundled tools in the CLI—User Secrets, dev certs, and JSON Web token services—are Native AOT, available starting in Preview 6. The net result is improved performance, and over time more commands (such as solution management, template-related, and tool management commands) will move into the native space.",
+      "timestamp": "00:05:37",
+      "timestampSeconds": 337,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-05-37/frame-m05s.jpg",
+        "announcement-frames/00-05-37/frame-m10s.jpg",
+        "announcement-frames/00-05-37/frame-p05s.jpg",
+        "announcement-frames/00-05-37/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "MSBuild multi-threaded mode",
+      "category": "feature",
+      "shortDescription": "Threads, not just processes, will be supported by the time .NET 11 launches, reducing IPC and JIT-loading overheads; task authors can learn about adoption at the linked resource",
+      "longDescription": "In .NET 11, MSBuild is embracing threads, not just processes. Today's MSBuild uses a multi-process architecture that is great for isolation and safety but has high overheads in inter-process communication costs and things like CoreCLR JIT loading. This multi-threaded mode has been in development for a while and is not ready to use today, but it will be ready by the time .NET 11 launches. Task authors can follow the linked resource to learn about the changes needed to adopt this ecosystem.",
+      "timestamp": "00:11:06",
+      "timestampSeconds": 666,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-11-06/frame-m05s.jpg",
+        "announcement-frames/00-11-06/frame-m10s.jpg",
+        "announcement-frames/00-11-06/frame-p05s.jpg",
+        "announcement-frames/00-11-06/frame-p10s.jpg"
+      ],
+      "explicitLinks": [
+        {
+          "kind": "docs",
+          "url": "aka.ms/msbuild/mt-tasks"
+        }
+      ],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "`dotnet up` acquisition tool",
+      "category": "tool",
+      "shortDescription": "A native AOT tool for consistent, admin-free, user-level acquisition and management of .NET tool chains across platforms, with previews coming soon",
+      "longDescription": "`dotnet up` is a Native AOT tool aimed at giving users who work across multiple platforms, or teams whose members work on multiple platforms, a consistent way to acquire and manage their .NET toolchains. It supports nightlies, uses global.json if present, and performs user-level installs of the tooling so no admin is required. Previews of the tool are coming soon, and a dedicated deep-dive recording was made available for Build.",
+      "timestamp": "00:12:14",
+      "timestampSeconds": 734,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-12-14/frame-m05s.jpg",
+        "announcement-frames/00-12-14/frame-m10s.jpg",
+        "announcement-frames/00-12-14/frame-p05s.jpg",
+        "announcement-frames/00-12-14/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "SDK payload size reduction via hard links",
+      "category": "feature",
+      "shortDescription": "Automated deduplication in tarball layouts shaved roughly 80MB across platforms, benefiting downloads and SDK containers",
+      "longDescription": "The team looked at reducing the on-disk size of the SDK, which is downloaded many times for end users and importantly for containers. They discovered that tarballs support hard links—pointers to files sharing identical content referencing one canonical resource—and found a way to inspect SDK layouts when producing tarballs and packages to do automated unification and deduplication. Over the .NET 11 previews so far, this has shaved roughly 80 megabytes across the various platforms from the SDK payloads, yielding faster downloads and less network IO, especially for SDK containers.",
+      "timestamp": "00:13:39",
+      "timestampSeconds": 819,
+      "speakers": [
+        "RICHARD LANDER"
+      ],
+      "frames": [
+        "announcement-frames/00-13-39/frame-m05s.jpg",
+        "announcement-frames/00-13-39/frame-m10s.jpg",
+        "announcement-frames/00-13-39/frame-p05s.jpg",
+        "announcement-frames/00-13-39/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Runtime async (opt-in)",
+      "category": "runtime",
+      "shortDescription": "A compile-time optimization that removes compiler-generated state machines in favor of runtime-managed suspension/resumption; opt in via `Features` `runtime-async=on`, enabled in Preview 4 for the product, likely default in .NET 12",
+      "longDescription": "Runtime Async is a new optimization for async code—not a new model, with no new keywords and no source changes required. It is a fast path decided at compile time when you compile with `dotnet build`, and it is completely compatible: old code can call new code and vice versa with no compatibility break in any direction. The big takeaway is that when you enable Runtime Async, there are no compiler-generated state machines. It is opt-in for .NET 11 and will likely be the default in .NET 12, though there is never a compatibility break.",
+      "timestamp": "00:28:37",
+      "timestampSeconds": 1717,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-28-37/frame-m05s.jpg",
+        "announcement-frames/00-28-37/frame-m10s.jpg",
+        "announcement-frames/00-28-37/frame-p05s.jpg",
+        "announcement-frames/00-28-37/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Memory safety project (preview)",
+      "category": "concept",
+      "shortDescription": "A two-release effort redefining the `unsafe` keyword as a reviewable caller contract and reducing unsafe usage, including in SIMD code",
+      "longDescription": "Memory safety is a massive two-release project spanning .NET 11 and 12, in preview in .NET 11. In this release the team is defining a set of language changes, applying them to System.Private.CoreLib (the bottom-most managed library), and making changes so they and others need to use Unsafe less, including in SIMD code. The key takeaway, detailed in a blog post written about a week prior, is that the Unsafe keyword is being redesigned to mean a reviewable caller contract rather than establishing an unsafe context, with APIs like Unsafe and MemoryMarshal marked with this contract; .NET 12 finishes the work.",
+      "timestamp": "00:37:42",
+      "timestampSeconds": 2262,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-37-42/frame-m05s.jpg",
+        "announcement-frames/00-37-42/frame-m10s.jpg",
+        "announcement-frames/00-37-42/frame-p05s.jpg",
+        "announcement-frames/00-37-42/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

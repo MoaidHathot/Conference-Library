@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD858",
+  "sessionTitle": "Your PC, Your Rules: AI Agents Meet Windows Personalization",
+  "sessionSpeakers": [
+    "Samantha Song"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:25:00.4632599+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Open-source Copilot personalization skill",
+      "category": "tool",
+      "shortDescription": "A skill defined by a `skill.md` contract at a repo root declares available tools and parameters so any agent can interpret intent and call the tooling without an SDK or API service.",
+      "longDescription": "An open-source Copilot skill that streamlines Windows personalization with agents, implemented as a repo with a skill.md at its root that acts as the contract with the agent. The markdown declares what tools are available, what commands to run, and what parameters they accept, so the agent reads it, reasons about the user's intent, and calls the tooling with no SDK to integrate and no API service to design. Skill commands map to real Windows APIs, letting an agent pick wallpaper, accent color, and taskbar color from a single natural-language request.",
+      "timestamp": "00:02:54",
+      "timestampSeconds": 174,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agentic code generation for RGB effects",
+      "category": "feature",
+      "shortDescription": "Agents use the public LampArray APIs with a C# driver and Python render-frame scripts to generate custom per-lamp animations like koi fish, shooting stars, and campfire effects from a prompt.",
+      "longDescription": "Agents use the public LampArray APIs to design and implement per-lamp effects and animations, executed reliably against real OS APIs by the skill's modules. A C# driver discovers all LampArray devices, and Python effect scripts implement a render-frame function mapping time to per-lamp colors. Effects such as koi fish, shooting stars, ocean waves, and falling raindrops are all just math that translates to color.",
+      "timestamp": "00:03:39",
+      "timestampSeconds": 219,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Whole-system theme orchestration",
+      "category": "feature",
+      "shortDescription": "A theme module downloads themed wallpapers, writes accent colors to the Explorer accent registry path, and applies light/dark mode in a single pass, shipping with real Microsoft MSIX package themes.",
+      "longDescription": "The theme module goes beyond RGB lighting: when the user says something like \"ocean theme,\" the skill orchestrates everything in a single pass. It can download themed wallpapers, write accent colors to the Explorer accent registry path, and more. The skill ships with a library of real Microsoft MSIX package themes, treating a single expressed intent as one coherent action executed directly against Windows.",
+      "timestamp": "00:04:13",
+      "timestampSeconds": 253,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Notification watcher",
+      "category": "feature",
+      "shortDescription": "A watcher monitors Windows toast events and flashes the keyboard red on incoming messages, resuming with no state loss to support focus mode.",
+      "longDescription": "A notification watcher that monitors Windows toast events and flashes the keyboard red whenever a message arrives, so a user in deep focus mode without sound won't miss notifications. It resumes with no state loss, allowing the user to see an incoming message, respond, and return to focusing without missing a beat. The user enables it by simply telling the agent to flash the keyboard red whenever a message is received.",
+      "timestamp": "00:08:02",
+      "timestampSeconds": 482,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [
+        {
+          "kind": "github",
+          "url": "github.com/samanthamsong/windows personalization skill"
+        }
+      ],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

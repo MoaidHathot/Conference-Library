@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRKSP94",
+  "sessionTitle": "Orchestrate special agents with NVIDIA Nemotron models on Foundry",
+  "sessionSpeakers": [
+    "Joey Conway",
+    "AYSEN Ilkbahar",
+    "Stephen McCullough"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:32:36.2294733+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Nemotron 3 Ultra, NVIDIA's largest and most capable open model",
+      "category": "model",
+      "shortDescription": "Announced Sunday with 550 billion total / 55 billion active parameters, targeting frontier reasoning and orchestration; general availability stated for Tuesday",
+      "longDescription": "Nemotron 3 Ultra is NVIDIA's largest and most capable open model to date, announced Sunday with broader detail shared in the session and general availability stated for Tuesday. It targets frontier reasoning and orchestration capabilities with 550 billion total parameters and 55 billion active parameters. It is positioned at the top of three Nemotron sizes (nano, super, ultra) and is expected to run on roughly two B200-class data center GPUs. NVIDIA emphasizes fast task completion, quick prefill and turn handling for agentic tasks, lower costs, strong performance across ecosystem agentic harnesses, and a fully open release including datasets and research.",
+      "timestamp": "00:08:07",
+      "timestampSeconds": 487,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Multi-teacher on-policy distillation",
+      "category": "concept",
+      "shortDescription": "Knowledge from multiple task-specialized teacher models is distilled into Nemotron 3 Ultra to consolidate capabilities",
+      "longDescription": "Multi-teacher on-policy distillation is a training technique highlighted as a breakthrough in Nemotron 3 Ultra, building on prior progress from supervised fine-tuning and reinforcement learning. It uses multiple large teacher models, each trained on specific tasks, and distills their knowledge down into Nemotron 3 Ultra. NVIDIA spent significant time ensuring the Ultra model learns well across all the teachers and gains those combined capabilities and skills.",
+      "timestamp": "00:09:11",
+      "timestampSeconds": 551,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-11/frame-m05s.jpg",
+        "announcement-frames/00-09-11/frame-m10s.jpg",
+        "announcement-frames/00-09-11/frame-p05s.jpg",
+        "announcement-frames/00-09-11/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Unified NVFP4 [inferred] checkpoint",
+      "category": "concept",
+      "shortDescription": "A single downloadable checkpoint runs in NVFP4 on Blackwell and falls back to run on Hopper, eliminating separate per-precision files",
+      "longDescription": "Nemotron 3 Ultra introduces a single unified checkpoint rather than separate files for different precision formats. Previously, different hardware required different formats (BF16/FP8 on Hopper, BF16 on Ampere [inferred], NVFP4 on Blackwell). With Ultra, one checkpoint file—for example downloaded from Hugging Face—runs in NVFP4 on Blackwell but can also fall back and run well on Hopper. This reduces the number of options and makes it much easier to select the right checkpoint.",
+      "timestamp": "00:10:00",
+      "timestampSeconds": 600,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-10-00/frame-m05s.jpg",
+        "announcement-frames/00-10-00/frame-m10s.jpg",
+        "announcement-frames/00-10-00/frame-p05s.jpg",
+        "announcement-frames/00-10-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    },
+    {
+      "name": "Roughly 5x faster inference at frontier accuracy",
+      "category": "model",
+      "shortDescription": "Per third-party artificial analysis benchmarks, Nemotron 3 Ultra reaches frontier-level accuracy with about 5x faster inference speed versus the March release",
+      "longDescription": "Using benchmarks from a third party called artificial analysis, which measures both model capabilities and output throughput, Nemotron 3 Ultra is shown to combine frontier-level accuracy with high speed. Plotted against an accuracy index on the Y axis and token generation speed on the X axis, Ultra sits in the upper right relative to the March Nemotron 3 release. NVIDIA states this delivers frontier-level accuracy with about 5x faster inference speed, and they expect to push this further over the next few weeks.",
+      "timestamp": "00:14:05",
+      "timestampSeconds": 845,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-05/frame-m05s.jpg",
+        "announcement-frames/00-14-05/frame-m10s.jpg",
+        "announcement-frames/00-14-05/frame-p05s.jpg",
+        "announcement-frames/00-14-05/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Foundry hosted agents demo",
+      "category": "feature",
+      "shortDescription": "Hermes Agent on Nemotron 3 Super completes a real email-to-pull-request task and retains a learned skill across separate sessions and services",
+      "longDescription": "This demo shows a Foundry hosted agent deployment running Hermes Agent powered by Nemotron 3 Super, with Nemotron Super and Nano models running on Foundry managed compute endpoints. The agent is granted access to external data—GitHub, Teams, and email—through Entra ID [inferred]. In the scenario, the presenter delegates a real feature-request task from a colleague's email about adding chat completions endpoint support to an internal benchmarking repo (LLM Perf Bench); because the hosted agent is connected to Outlook and GitHub through Foundry, it finds the relevant email, makes the code changes, and opens a pull request autonomously without the email being pasted into context.",
+      "timestamp": "00:22:07",
+      "timestampSeconds": 1327,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-22-07/frame-m05s.jpg",
+        "announcement-frames/00-22-07/frame-m10s.jpg",
+        "announcement-frames/00-22-07/frame-p05s.jpg",
+        "announcement-frames/00-22-07/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

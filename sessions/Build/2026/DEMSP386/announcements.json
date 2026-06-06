@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEMSP386",
+  "sessionTitle": "Develop faster on Windows with AI playbooks and local agents",
+  "sessionSpeakers": [
+    "Adrian Macias"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:28:20.8647564+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Lemonade \"launch\" feature for agentic tools",
+      "category": "feature",
+      "shortDescription": "Lemonade can directly launch agentic frameworks such as Codex, Claude, Gaia, or Open Claude and pair them with locally-runnable models.",
+      "longDescription": "Lemonade, AMD's tool within the ROCm [inferred] stack that provides routing and abstraction over the backend (so developers don't need to be ROCm, HIP, GPU, NPU, or CPU experts), gained a new launch feature that plugs into the agentic layer. With it you can ask Lemonade to launch your favorite agentic framework—such as Codex, Claude, Gaia, or Open Claude [inferred]—making these tools interchangeable. Launching pulls up a list of client-centric default models that Lemonade routes to the local processor, choosing GPU for GGUF [inferred] files, NPU for Vitis or fast-flow stack models, and CPU otherwise.",
+      "timestamp": "00:09:01",
+      "timestampSeconds": 541,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-01/frame-m05s.jpg",
+        "announcement-frames/00-09-01/frame-m10s.jpg",
+        "announcement-frames/00-09-01/frame-p05s.jpg",
+        "announcement-frames/00-09-01/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Omni-modal routing in Lemonade",
+      "category": "feature",
+      "shortDescription": "A demo showing Lemonade pulling together collections of models and intelligently routing queries to image generation, speech, or text models based on query context.",
+      "longDescription": "A live playbook demonstrates Omni-modal routing in Lemonade, where the choice of model depends on the use case—routing application inference one way, or routing an image-generation request to a specialized image generation model. Lemonade itself is described as an embeddable DLL that provides the \"tracks and switches\" to build applications, while the UI shown is an open-source sandbox demo built by the community. The community continually adds features (Mac support was added a couple months prior, NVIDIA support the previous week), governed through a bi-weekly maintainers meeting.",
+      "timestamp": "00:14:20",
+      "timestampSeconds": 860,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-20/frame-m05s.jpg",
+        "announcement-frames/00-14-20/frame-m10s.jpg",
+        "announcement-frames/00-14-20/frame-p05s.jpg",
+        "announcement-frames/00-14-20/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "AMD Playbooks",
+      "category": "tool",
+      "shortDescription": "A full-stack, open-source suite of setup recipes (kernel development, ComfyUI image generation, Lemonade integration, a clustering playbook for large models) launched a few weeks prior on client and Radeon GPU platforms.",
+      "longDescription": "AMD built a full-stack suite of open-source playbooks—setup recipes covering optimized ROCm kernel development, ComfyUI image generation, and integrating Lemonade into your own application for cross-platform/cross-vendor hardware abstraction, plus an upcoming clustering playbook for running very large 200–300 billion parameter models. The playbooks are open-sourced on a public GitHub project where unreleased ones are also visible. They went live a few weeks prior, launching primarily on client platforms and Radeon GPU platforms, with expansion planned to the Halo box (launching in June) and later EPYC server, enterprise, and Instinct use cases.",
+      "timestamp": "00:11:52",
+      "timestampSeconds": 712,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-11-52/frame-m05s.jpg",
+        "announcement-frames/00-11-52/frame-m10s.jpg",
+        "announcement-frames/00-11-52/frame-p05s.jpg",
+        "announcement-frames/00-11-52/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Strix Halo \"Halo box\" appliance",
+      "category": "hardware",
+      "shortDescription": "A headless always-on PC using the same processor as the demo laptops, designed to run background agent teams overnight; available to order in June.",
+      "longDescription": "The Halo box is a forthcoming headless appliance PC built around the exact same Strix Halo [inferred] processor found in the demo laptops, positioned as the future of AMD's agentic AI work. In a plug-in, completely headless form factor, it is designed to run always-on teams of agents non-stop overnight—scraping GitHub issues, social media, and the competitive landscape so a Notion dashboard to-do list is ready in the morning. It is not out yet but can be seen at the booth, with a big announcement coming in June.",
+      "timestamp": "00:23:23",
+      "timestampSeconds": 1403,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-23-23/frame-m05s.jpg",
+        "announcement-frames/00-23-23/frame-m10s.jpg",
+        "announcement-frames/00-23-23/frame-p05s.jpg",
+        "announcement-frames/00-23-23/frame-p10s.jpg"
+      ],
+      "explicitLinks": [
+        {
+          "kind": "other",
+          "url": "developer.amd.com"
+        }
+      ],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Semantic filtering with vLLM router",
+      "category": "feature",
+      "shortDescription": "Demonstrated keeping personal data (e.g. a Social Security number query) local while routing trivial or low-value queries off enterprise servers to cut cost.",
+      "longDescription": "The vLLM router offers sophisticated semantic filtering, which can be heavy on the client, so an agentic layer can pass policies and rules into the same routing layer to make decisions based not just on modality but on quality, cost, or token usage. A demo showed entering a Social Security number and asking which state the user was born in; the rules identified it as personal information and kept the inference local on the GPU/NPU (and the local model even recognized it as a fake number). Another highlighted use case is cost, routing low-value or trivial queries to reduce expense, while semantic rules can be configured per use case, agent, or routing policy.",
+      "timestamp": "00:18:44",
+      "timestampSeconds": 1124,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-18-44/frame-m05s.jpg",
+        "announcement-frames/00-18-44/frame-m10s.jpg",
+        "announcement-frames/00-18-44/frame-p05s.jpg",
+        "announcement-frames/00-18-44/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

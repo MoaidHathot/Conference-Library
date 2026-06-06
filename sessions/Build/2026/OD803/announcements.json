@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD803",
+  "sessionTitle": "Taking your AI to the edge with .NET MAUI",
+  "sessionSpeakers": [
+    "Gerald Versluis"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:33:37.1330371+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Copilot-authored merged PRs rose from 7% to 62% in under a year",
+      "category": "concept",
+      "shortDescription": "The team embedded AI end-to-end across reproduction, testing, fixing, MAUI-aware code review, and documentation, with data published per-PR",
+      "longDescription": "The .NET MAUI team embedded AI end-to-end across their open-source engineering pipeline, including a MAUI-aware Copilot code reviewer with domain expertise, Copilot custom agents for verification and learning from merged PRs, and agentic workflows that determine documentation/blog needs and even open issues and draft PRs. With humans still in the loop, this approach took Copilot-authored merged PRs from 7% to 62% in under a year, peaking in April. The per-PR data across the .NET MAUI repositories and supporting Android/iOS tools is published openly on agenticengineers.net.",
+      "timestamp": "00:07:54",
+      "timestampSeconds": 474,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [
+        {
+          "kind": "other",
+          "url": "agenticengineers.net"
+        }
+      ],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "XAML source generation",
+      "category": "feature",
+      "shortDescription": "Opt-in feature compiling XAML to readable, debuggable C# with cited gains of ~1,000% faster inflation, 99% less debug memory, and reduced app memory; default in .NET 11",
+      "longDescription": "XAML source generation is an opt-in feature that uses Roslyn to generate readable, debuggable C# source from XAML, rather than the current XAML-C compilation to intermediate language. It delivers faster debug and release performance by flipping one bit, with cited gains of 1,000% faster inflation, 99% less debug memory, faster release, and less app memory, with the biggest improvement in debug builds. It also eliminates differences between debug and release builds (such as trimmed APIs breaking at runtime). It is opt-in in .NET 10 and will become the default in .NET 11.",
+      "timestamp": "00:18:25",
+      "timestampSeconds": 1105,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Global XAML namespaces and implicit namespaces",
+      "category": "feature",
+      "shortDescription": "Reduce or eliminate XMLNS declarations, with editor/language-service support now available",
+      "longDescription": "As part of a big XAML investment in .NET 10, global namespaces were introduced so developers can reduce or completely eliminate XMLNS declarations in their projects, making XAML documents much less verbose. Implicit namespaces are in preview, and the language service and editor support that was announced as coming at .NET Conf in November is now available. The team encourages developers to try it and report feedback.",
+      "timestamp": "00:16:53",
+      "timestampSeconds": 1013,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Unified SafeArea edges API",
+      "category": "feature",
+      "shortDescription": "A new property (none, soft input, etc.) settable per page or layout to handle notches, dynamic island, and Android camera cutouts on iOS and Android",
+      "longDescription": "The new unified SafeArea edges API handles the varied unusable screen regions across devices, such as the iOS notch, dynamic island, bottom swipe gestures, and Android camera cutouts. The property can be set to values like none or soft input to control whether content draws under these areas or reserves space, and can be applied per content page or per layout. It works on Android and iOS, and pairs well with effects like iOS liquid glass to achieve designer-intended looks.",
+      "timestamp": "00:21:44",
+      "timestampSeconds": 1304,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Android Material 3",
+      "category": "feature",
+      "shortDescription": "Opt-in via `UseMaterial3`, rolling out through .NET 10 service releases with fuller coverage in .NET 11",
+      "longDescription": "Work is underway to implement Material 3 on Android in .NET MAUI, with the first controls already added in .NET MAUI 10 through monthly service releases. It is opt-in via a single line, UseMaterial3, in the CS project, which updates the Android application to Material 3 design where supported. Larger layout changes are coming in .NET 11, where the full Material 3 experience is expected, and developers are encouraged to try it today and provide feedback.",
+      "timestamp": "00:23:41",
+      "timestampSeconds": 1421,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "CoreCLR becomes the default runtime in .NET 11",
+      "category": "runtime",
+      "shortDescription": "Replaces Mono on iOS, Android, and Mac Catalyst, unifying with the broader .NET runtime and enabling tools like dotnet-trace and dotnet-counters",
+      "longDescription": "In .NET 11, CoreCLR becomes the default runtime for .NET MAUI on iOS, Android, and Mac Catalyst, replacing the Mono runtime that was still used on those platforms. This unifies MAUI on a single runtime shared with ASP.NET, Azure services, and other .NET workloads, automatically bringing the broader .NET performance upgrades. It also enables diagnostics and profiling tools such as dotnet-trace and dotnet-counters, with more tools under consideration, and developers can opt out with a one-liner if needed before GA in November.",
+      "timestamp": "00:27:06",
+      "timestampSeconds": 1626,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "`dotnet run` and `dotnet watch` support",
+      "category": "tool",
+      "shortDescription": "Interactive target-framework/device prompts and terminal hot reload, designed to be agent-friendly CLI tooling",
+      "longDescription": "New CLI tooling lets developers simply run `dotnet run` instead of longer build/run commands with target framework flags, with interactive prompts to select the target framework and device (such as switching between Android or iOS emulators). `dotnet watch` adds terminal-based hot reload, starting the app on an emulator or simulator and automatically picking up code changes in the running debug session. These CLI tools are designed to be agent-friendly, being easy for Copilot to invoke and parse, while also serving terminal fans.",
+      "timestamp": "00:29:07",
+      "timestampSeconds": 1747,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Map control enhancements for .NET MAUI 11",
+      "category": "feature",
+      "shortDescription": "Pin clustering, custom image-source pins, map interactions, and Android JSON styling",
+      "longDescription": "The .NET MAUI 11 maps control, which renders to Apple Maps on iOS and Google Maps on Android, gains several enhancements beyond its previous basic functionality. New capabilities include pin clustering with steerable grouping behavior, custom pins specified simply via an image source rather than custom handlers, map interactions such as long press, and Android-specific JSON styling customization. These additions round out previously missing functionality in the control.",
+      "timestamp": "00:31:10",
+      "timestampSeconds": 1870,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "MAUI Labs initiative",
+      "category": "concept",
+      "shortDescription": "A vehicle for faster experimental releases including DevFlow, Essentials.AI, AI extensions, and new Linux/macOS AppKit/WPF backends",
+      "longDescription": "MAUI Labs is a new initiative created as a vehicle to release experimental things faster, acknowledging that not everything will stick but inviting the community to try, contribute ideas, and collaborate. It includes DevFlow, a companion that lets Copilot see and verify the application to work more effectively, and Essentials.AI, which follows the .NET MAUI paradigm to use on-device AI services like Apple Intelligence, Gemini on Android, and Phi Silica on Windows, plus local and remote models. AI extensions exploring new in-app navigation are also part of the effort.",
+      "timestamp": "00:34:31",
+      "timestampSeconds": 2071,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Microsoft.Maui.Essentials.AI",
+      "category": "library",
+      "shortDescription": "Builds on Microsoft.Extensions.AI to add on-device providers Apple Intelligence, Gemini Nano, and Windows Copilot Runtime via Phi Silica [inferred]",
+      "longDescription": "Microsoft.Maui.Essentials.AI is a new library that builds on top of Microsoft.Extensions.AI, the unified API for working with any AI model whether local or remote without changing code. Essentials.AI adds on-device, on-machine AI providers including Apple Intelligence, Gemini Nano, and the Windows Copilot Runtime through Phi Silica, letting developers easily use local models across the platforms .NET MAUI reaches. It also supports switching to cloud providers such as Azure OpenAI and Foundry via interfaces like IChatClient and IEmbeddingGenerator, enabling AI-enabled apps with minimal effort.",
+      "timestamp": "00:39:53",
+      "timestampSeconds": 2393,
+      "speakers": [],
+      "frames": [],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    }
+  ],
+  "errors": []
+}

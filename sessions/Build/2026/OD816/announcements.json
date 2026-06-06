@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD816",
+  "sessionTitle": "Securing, scaling, and sustaining your data estate in Microsoft Fabric",
+  "sessionSpeakers": [
+    "Kim Manis"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:33:36.6960936+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Copilot in the governance report",
+      "category": "feature",
+      "shortDescription": "Admins can ask natural-language questions (e.g. which domain has the most unlabeled items) instead of running reports or exporting to Excel",
+      "longDescription": "In the OneLake catalog's governance report, admins can open Copilot and ask natural-language questions such as which domain has the most unlabeled items, and Copilot answers directly (e.g. the sales domain). This removes the need to run a report or export to Excel and build a pivot table. The governance report itself surfaces three key areas—data estate, security and compliance, and trust and reuse—giving admins a 360-degree view of the tenant.",
+      "timestamp": "00:04:52",
+      "timestampSeconds": 292,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-04-52/frame-m05s.jpg",
+        "announcement-frames/00-04-52/frame-m10s.jpg",
+        "announcement-frames/00-04-52/frame-p05s.jpg",
+        "announcement-frames/00-04-52/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Default sensitivity label policies and tags at the domain level",
+      "category": "feature",
+      "shortDescription": "Newly created items are automatically protected, with delegation so domain owners fine-tune settings for their context",
+      "longDescription": "From the recommended actions in the OneLake catalog, admins can activate a default sensitivity label policy at the domain level so that every new item created in the domain is automatically protected with no user action required. Because settings are delegated, domain owners can fine-tune the labels for their own context (e.g. the sales domain). Admins can also create tags for organization-wide and domain-specific use, letting users apply them to items and workspaces to improve discoverability and trust.",
+      "timestamp": "00:05:23",
+      "timestampSeconds": 323,
+      "speakers": [
+        "Kim Manis"
+      ],
+      "frames": [
+        "announcement-frames/00-05-23/frame-m05s.jpg",
+        "announcement-frames/00-05-23/frame-m10s.jpg",
+        "announcement-frames/00-05-23/frame-p05s.jpg",
+        "announcement-frames/00-05-23/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Capacity surge protection with mission-critical workspaces",
+      "category": "feature",
+      "shortDescription": "Workspace- and capacity-level surge caps, plus marking workspaces mission-critical to exempt them from throttling",
+      "longDescription": "Fabric capacity admins can apply workspace-level surge protection to cap ad hoc reporting workspaces (e.g. at 25% of capacity) and enable capacity-level surge protection that rejects background operations above a threshold to preserve room for interactive reports. Critical workspaces, such as sales during year-end close, can be marked mission-critical so they are exempt from the surge cap and get whatever capacity they need. This provides proactive guardrails that keep priority dashboards responsive while limiting noisy-neighbor workloads.",
+      "timestamp": "00:08:52",
+      "timestampSeconds": 532,
+      "speakers": [
+        "Speaker 1"
+      ],
+      "frames": [
+        "announcement-frames/00-08-52/frame-m05s.jpg",
+        "announcement-frames/00-08-52/frame-m10s.jpg",
+        "announcement-frames/00-08-52/frame-p05s.jpg",
+        "announcement-frames/00-08-52/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Capacity overage and Real-Time Hub capacity events",
+      "category": "feature",
+      "shortDescription": "A 24-hour rolling CU limit for spikes and real-time alerts/triggers (e.g. Teams message when interactive delay hits 90%)",
+      "longDescription": "Capacity overage acts as a safety valve, letting admins set a 24-hour rolling CU limit so workloads can spike above capacity during crunch time without throttling. Paired with this, the Real-Time Hub exposes capacity overview events where admins can set alerts—for example, filtering on when the interactive delay threshold hits 90% and firing a Teams message. Together these give real-time visibility and the ability to set up triggers and actions before problems surface, complemented by capacity metrics and chargeback apps for root-cause analysis.",
+      "timestamp": "00:09:43",
+      "timestampSeconds": 583,
+      "speakers": [
+        "Speaker 1",
+        "Kim Manis"
+      ],
+      "frames": [
+        "announcement-frames/00-09-43/frame-m05s.jpg",
+        "announcement-frames/00-09-43/frame-m10s.jpg",
+        "announcement-frames/00-09-43/frame-p05s.jpg",
+        "announcement-frames/00-09-43/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Workspace-level security, generally available",
+      "category": "feature",
+      "shortDescription": "Outbound access protection, trusted workspace access, Azure Private Link, customer-managed keys, and workspace-level IP firewall rules",
+      "longDescription": "Workspace admins can secure workspaces end-to-end by layering identity, permissions, and network controls: Entra Conditional Access ensures only managed devices reach the workspace, workspace roles define what contributors and viewers can do, and inbound networking can block public access and restrict connections to a corporate IP range via firewall. Outbound access protection blocks all outgoing connections unless explicitly allowed, with trusted rules and managed private endpoints opened only after the resource owner approves. When a user tries to connect a notebook to a personal storage account, Fabric blocks it outright so data never leaves the building.",
+      "timestamp": "00:11:42",
+      "timestampSeconds": 702,
+      "speakers": [
+        "Speaker 1"
+      ],
+      "frames": [
+        "announcement-frames/00-11-42/frame-m05s.jpg",
+        "announcement-frames/00-11-42/frame-m10s.jpg",
+        "announcement-frames/00-11-42/frame-p05s.jpg",
+        "announcement-frames/00-11-42/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Automated provisioning via Terraform Fabric provider and Fabric CLI",
+      "category": "tool",
+      "shortDescription": "A single pipeline run provisions a full medallion-architecture analytics project as code",
+      "longDescription": "A data developer can provision a complete Fabric analytics project with a single parameterized pipeline run covering workspace name, capacity, auth method, and storage. The pipeline runs a Terraform plan that pauses for manual approval, then the Terraform Fabric provider creates 12 resources—workspaces, identity, storage connections, and Git sync—all as code, after which the Fabric CLI patches notebooks, builds the Direct Lake model, and publishes the environment. Copy jobs pull data from ADLS into a Bronze lakehouse, notebooks transform it to Silver, and shortcuts link tables across lakehouses, automating a full medallion architecture with complete lineage.",
+      "timestamp": "00:15:53",
+      "timestampSeconds": 953,
+      "speakers": [
+        "Speaker 2"
+      ],
+      "frames": [
+        "announcement-frames/00-15-53/frame-m05s.jpg",
+        "announcement-frames/00-15-53/frame-m10s.jpg",
+        "announcement-frames/00-15-53/frame-p05s.jpg",
+        "announcement-frames/00-15-53/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "OneLake catalog integrated into 100+ surfaces, public APIs, and MCP",
+      "category": "feature",
+      "shortDescription": "Governance and security travel into Excel, Teams, Copilot Studio, and tools like Visual Studio Code via MCP",
+      "longDescription": "The OneLake catalog is integrated into more than 100 places across Microsoft Fabric and Office, including Microsoft Teams, Excel, and Microsoft Copilot Studio, so users find and analyze data from the tools they already use while governance—access permissions, DLP rules, and OneLake security—travels with the data. The same catalog is also accessible through public APIs and MCP; for example, in Visual Studio Code an LLM-powered app can ask in natural language what sales-related lakehouses Zava has and get results from the same trusted catalog with the same governance and security. Whether a person searches in Excel or an AI agent queries through an API, the same governed truth is discoverable and usable everywhere.",
+      "timestamp": "00:22:54",
+      "timestampSeconds": 1374,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-22-54/frame-m05s.jpg",
+        "announcement-frames/00-22-54/frame-m10s.jpg",
+        "announcement-frames/00-22-54/frame-p05s.jpg",
+        "announcement-frames/00-22-54/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Fabric in Foundry",
+      "category": "feature",
+      "shortDescription": "OneLake catalog is natively integrated into Foundry knowledge so agent developers can discover trusted data, with Fabric governance and role-level security carrying over",
+      "longDescription": "Fabric in Foundry lets AI developers bring together unstructured data (e.g. SharePoint documents, PDFs, Excel files) alongside structured data in a Fabric lakehouse using OneLake shortcuts that virtualize files into place with no copy or data movement, unifying multi-cloud sources like Amazon S3 and Azure Blob Storage. In Microsoft AI Foundry, developers use knowledge to index this context for grounding, and the OneLake catalog is natively integrated into Foundry knowledge. This lets developers search across available data, see what has been endorsed, and use signals like sensitivity labels to identify trusted, ready-to-use data, carrying Fabric governance and security over to agent building.",
+      "timestamp": "00:25:49",
+      "timestampSeconds": 1549,
+      "speakers": [
+        "Kim Manis",
+        "Speaker 3"
+      ],
+      "frames": [
+        "announcement-frames/00-25-49/frame-m05s.jpg",
+        "announcement-frames/00-25-49/frame-m10s.jpg",
+        "announcement-frames/00-25-49/frame-p05s.jpg",
+        "announcement-frames/00-25-49/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

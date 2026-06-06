@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEM304",
+  "sessionTitle": "Union types in C#",
+  "sessionSpeakers": [
+    "Dustin Campbell",
+    "Mads Torgersen"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:27:48.0177971+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Union types are coming to C# 15, shipping November",
+      "category": "feature",
+      "shortDescription": "the feature is already available in preview for developers to try.",
+      "longDescription": "Mads Torgersen (lead designer of C#) and Dustin Campbell announce that Union Types are being added to C# 15, which is coming out in November. They note the feature is already available in preview, with details on how to try it promised at the end of the session. They describe C#'s unions as their own \"Goldilocks\" / compromise version, distinct from unions in TypeScript or functional languages' discriminated unions.",
+      "timestamp": "00:00:30",
+      "timestampSeconds": 30,
+      "speakers": [
+        "Mads Torgersen",
+        "Dustin Campbell"
+      ],
+      "frames": [
+        "announcement-frames/00-00-30/frame-m05s.jpg",
+        "announcement-frames/00-00-30/frame-m10s.jpg",
+        "announcement-frames/00-00-30/frame-p05s.jpg",
+        "announcement-frames/00-00-30/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Unions enforce exhaustiveness in switch expressions",
+      "category": "feature",
+      "shortDescription": "once a value is typed as a union, the compiler warns when not all case types (including null where applicable) are handled.",
+      "longDescription": "Once a value is typed as a union (e.g. a union of pets), the compiler can prove whether a switch expression is exhaustive, removing the earlier warning once all case types are covered. Commenting out one of the case types brings the warning back, demonstrating that the compiler ensures all cases—and nothing but the cases—are handled. The system is smart enough that if the union includes a nullable case (e.g. a nullable bird), null must also be handled for the switch to be exhaustive.",
+      "timestamp": "00:04:58",
+      "timestampSeconds": 298,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-04-58/frame-m05s.jpg",
+        "announcement-frames/00-04-58/frame-m10s.jpg",
+        "announcement-frames/00-04-58/frame-p05s.jpg",
+        "announcement-frames/00-04-58/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Implicit conversions from case types to the union",
+      "category": "feature",
+      "shortDescription": "case types convert automatically to the union type, while non-member types (e.g. a shark added to a list of pets) produce a compile error.",
+      "longDescription": "Union types are created by typing `union` and listing the member types that make up the set (e.g. a union of pets). Case types can be implicitly converted to the union type, while non-member types produce a compile error—for example adding a shark to a list of pets yields \"cannot implicitly convert type shark to pet.\" This provides type safety both when constructing a list and when switching over its values, which was not possible before with treating everything as object.",
+      "timestamp": "00:03:18",
+      "timestampSeconds": 198,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-03-18/frame-m05s.jpg",
+        "announcement-frames/00-03-18/frame-m10s.jpg",
+        "announcement-frames/00-03-18/frame-p05s.jpg",
+        "announcement-frames/00-03-18/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Unions can be generic and carry function members",
+      "category": "feature",
+      "shortDescription": "a `result<T>` union can wrap `success<T>` and `error`, and unions may declare computed properties and methods, though additional instance state is disallowed.",
+      "longDescription": "Unions can be generic, demonstrated with a `result<T>` union that brings together a `success<T>` (carrying a generic data payload) and an `error` record, gluing existing records together so the compiler knows they are related. A method can return `result<T>` and return either of the two cases, and because the cases are records, the data can be deconstructed directly out of them in a switch. The demo models reading values off the wire as a queue of results, dequeuing and switching on success or error.",
+      "timestamp": "00:09:55",
+      "timestampSeconds": 595,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-55/frame-m05s.jpg",
+        "announcement-frames/00-09-55/frame-m10s.jpg",
+        "announcement-frames/00-09-55/frame-p05s.jpg",
+        "announcement-frames/00-09-55/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "A `[Union]` attribute and `IUnion` interface ship in .NET 11 Preview 4",
+      "category": "feature",
+      "shortDescription": "developers can hand-author union types for custom, non-boxing implementations or retrofit existing hand-rolled union classes.",
+      "longDescription": "Under the hood, compiler-generated unions are opinionated structs, but developers can hand-author their own union types by applying a union attribute, which is already available in .NET 11 Preview 4. The attribute lets you tell the compiler that a struct or class is meant to be a union, after which the compiler enforces requirements via errors—for example a union must have a public instance `value` property of type object (backed by an auto property with an object field), and it must have at least one union creation member such as a constructor that takes a case type. This enables custom, non-boxing implementations or retrofitting existing hand-rolled union classes.",
+      "timestamp": "00:15:08",
+      "timestampSeconds": 908,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-15-08/frame-m05s.jpg",
+        "announcement-frames/00-15-08/frame-m10s.jpg",
+        "announcement-frames/00-15-08/frame-p05s.jpg",
+        "announcement-frames/00-15-08/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

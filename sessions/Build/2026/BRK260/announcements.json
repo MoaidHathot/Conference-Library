@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK260",
+  "sessionTitle": "Build Apps w/ Local AI for Unmetered Intelligence on every Windows PC",
+  "sessionSpeakers": [
+    "Jordi Janer",
+    "Aditi Narvekar",
+    "Anastasiya Tarnouskaya",
+    "Tucker Burns"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:27:30.3842198+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Windows AI APIs expanded beyond NPUs to CPUs and GPUs",
+      "category": "feature",
+      "shortDescription": "Many of the task-specific APIs now run across a broader hardware spectrum in response to customer feedback, reaching non-Copilot+ devices.",
+      "longDescription": "In response to extensive customer feedback, Microsoft is expanding support for many of the Windows AI APIs to run on CPUs and GPUs, not just NPUs. When the AI APIs first launched they targeted the NPU and ran best on Copilot+ PCs, but the broadened hardware support lets developers reach a wider set of devices and customers, including non-Copilot+ devices. This was demonstrated with a drive-through application using the new speech recognition API to convert spoken orders to text.",
+      "timestamp": "00:08:15",
+      "timestampSeconds": 495,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-15/frame-m05s.jpg",
+        "announcement-frames/00-08-15/frame-m10s.jpg",
+        "announcement-frames/00-08-15/frame-p05s.jpg",
+        "announcement-frames/00-08-15/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Phi Silica running on GPU",
+      "category": "model",
+      "shortDescription": "The small language model now runs on GPU and already powers production features such as Outlook's summarize capability.",
+      "longDescription": "Phi Silica, Microsoft's small language model, is newly running on the GPU. In the demo it was used to take unstructured order text sitting in a barista queue and extract the relevant information, structuring its output as JSON via a new API for structuring Phi Silica output. The task manager showed a GPU spike confirming the model ran locally on the GPU, returning the drink, size, modifiers, and quantities. The AI APIs use a similar calling pattern: checking the model ready state with a get ready state function, calling ensure ready async to install if needed, initializing with create async, and then generating a response.",
+      "timestamp": "00:08:36",
+      "timestampSeconds": 516,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-36/frame-m05s.jpg",
+        "announcement-frames/00-08-36/frame-m10s.jpg",
+        "announcement-frames/00-08-36/frame-p05s.jpg",
+        "announcement-frames/00-08-36/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Ion [inferred] as successor to Phi Silica",
+      "category": "model",
+      "shortDescription": "A next-generation in-box model promising larger context windows, better quality, and faster tokens per second, already powering the Prompt API in Edge Canary.",
+      "longDescription": "Ion, mentioned by Cynthia [inferred] in the keynote, will be the successor to Phi Silica and will be available via the AI APIs. It already powers the Prompt API in the Edge browser, which can be tried today by toggling a few flags in Edge Canary. Ion delivers bigger improvements in model quality, larger context window, and faster tokens per second, leveling up the language model experience of the AI APIs. Like the other APIs, Ion will be in-box, so Windows handles all distribution for developers.",
+      "timestamp": "00:14:38",
+      "timestampSeconds": 878,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-38/frame-m05s.jpg",
+        "announcement-frames/00-14-38/frame-m10s.jpg",
+        "announcement-frames/00-14-38/frame-p05s.jpg",
+        "announcement-frames/00-14-38/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    },
+    {
+      "name": "Foundry Local reaches general availability",
+      "category": "service",
+      "shortDescription": "Running common open-source models locally across CPU, GPU, and NPU, with new catalog additions including a Qwen 3.5 vision-language model and new speech models.",
+      "longDescription": "Foundry Local, the local counterpart to Microsoft Foundry on Azure, enables developers to run common open-source models locally on CPUs, GPUs, and NPUs, and is now generally available. It was demonstrated powering an inventory management application for a coffee shop, uploading an image of dropped-off product and identifying items in the back end. This used the Qwen 3.5 vision-language model [inferred], which is brand new to the Foundry Local catalog and classifies and describes everything in an image. The recommended way to get started is the GitHub repo, which has many samples.",
+      "timestamp": "00:16:18",
+      "timestampSeconds": 978,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-16-18/frame-m05s.jpg",
+        "announcement-frames/00-16-18/frame-m10s.jpg",
+        "announcement-frames/00-16-18/frame-p05s.jpg",
+        "announcement-frames/00-16-18/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Windows ML CLI in preview",
+      "category": "tool",
+      "shortDescription": "A one-stop toolchain for model conversion, optimization, and benchmarking, with agent skills, available at ak.ms/winmlcli.",
+      "longDescription": "Microsoft announced the brand new Windows ML CLI, now available in preview on GitHub, intended to cater to all model optimization needs. It provides a one-stop tool chain and set of agent skills so developers can take a model through conversion, optimization, and benchmarking in one flow, with the flexibility to run each stage manually via primitive commands or run the whole pipeline end to end using a prebuilt config. It is built to integrate with AI workflows and agents, for example using GitHub Copilot, and developers preferring UI can use the Foundry Toolkit extension in VS Code. It is available at aka.ms/winmlcli.",
+      "timestamp": "00:21:31",
+      "timestampSeconds": 1291,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-21-31/frame-m05s.jpg",
+        "announcement-frames/00-21-31/frame-m10s.jpg",
+        "announcement-frames/00-21-31/frame-p05s.jpg",
+        "announcement-frames/00-21-31/frame-p10s.jpg"
+      ],
+      "explicitLinks": [
+        {
+          "kind": "docs",
+          "url": "AK.Ms/winMLCLI"
+        }
+      ],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Windows ML 2.0 in preview",
+      "category": "runtime",
+      "shortDescription": "Includes ONNX Runtime improvements, new hardware-vendor plug-in execution providers, and up to 2.6x throughput for generative AI workloads.",
+      "longDescription": "Windows ML 2.0 has shipped and is currently available in preview, including ONNX Runtime improvements and support for new hardware-vendor plug-in execution providers, which together mean support for new models, fundamentals improvements, and improved compatibility between releases. Generative AI experiences using LLMs or other generative workflows can see up to 2.6x throughput depending on the model, and the default CPU execution provider also gains performance speed-ups. Apps built using Windows ML benefit from innovation across the silicon ecosystem—AMD, Intel, NVIDIA, and Qualcomm—including support for newest devices like AMD Ryzen AI 400 series processors, Intel Core Ultra Series 3 processors, upcoming NVIDIA RTX Spark and DGX Station devices, and Qualcomm Snapdragon X2 Elite processors.",
+      "timestamp": "00:39:07",
+      "timestampSeconds": 2347,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-39-07/frame-m05s.jpg",
+        "announcement-frames/00-39-07/frame-m10s.jpg",
+        "announcement-frames/00-39-07/frame-p05s.jpg",
+        "announcement-frames/00-39-07/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "WebNN in preview",
+      "category": "feature",
+      "shortDescription": "Brings native Windows ML hardware acceleration to web apps in Chromium-based browsers via experimental flags.",
+      "longDescription": "WebNN is available in preview with a few experimental flags in any Chromium-based browser such as Edge or Chrome, bringing native Windows ML hardware acceleration to web apps. It sits as a layer on top of native ML APIs like Windows ML, providing near-native access to GPUs, NPUs, and CPUs through framework APIs, so even websites can benefit from hardware acceleration without racking up token costs or sending sensitive enterprise data to the cloud. In the demo, a sentiment analyzer web app used the ONNX Runtime web APIs, which under the hood use WebNN working with Windows ML, and passed in models previously optimized through the Windows ML CLI.",
+      "timestamp": "00:29:52",
+      "timestampSeconds": 1792,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-29-52/frame-m05s.jpg",
+        "announcement-frames/00-29-52/frame-m10s.jpg",
+        "announcement-frames/00-29-52/frame-p05s.jpg",
+        "announcement-frames/00-29-52/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

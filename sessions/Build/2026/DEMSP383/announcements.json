@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEMSP383",
+  "sessionTitle": "Move AI workflows from test to production on Microsoft Foundry",
+  "sessionSpeakers": [
+    "Vignesh Sridhar"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:33:03.1175359+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Fireworks AI as a first-party Azure/Foundry provider",
+      "category": "service",
+      "shortDescription": "Open-source models are accessible day-zero on Foundry with optimized, workload-aware inference served through the Fireworks stack",
+      "longDescription": "Fireworks AI is presented as a high-performance open-source inference provider with a first-party Azure integration, offering day-zero support for major open-source models (from Kimi to GLM 5.1) on Microsoft Foundry. Built by a founding team from PyTorch at Meta and Vertex at GCP, it serves around 30 trillion tokens per day and 180,000 requests per second. The Fireworks serving stack uses workload-aware optimization—adaptive caching, quantization, its own inference engine (Fire retention [inferred, likely FireAttention]), and hardware selection—to tune for ultra-low latency or high throughput. Users can access it via Azure and also bring their own models or fine-tuned weights to Foundry for serving.",
+      "timestamp": "00:01:08",
+      "timestampSeconds": 68,
+      "speakers": [
+        "Vignesh Sridhar"
+      ],
+      "frames": [
+        "announcement-frames/00-01-08/frame-m05s.jpg",
+        "announcement-frames/00-01-08/frame-m10s.jpg",
+        "announcement-frames/00-01-08/frame-p05s.jpg",
+        "announcement-frames/00-01-08/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Multi-tenant serverless and dedicated deployment tiers",
+      "category": "feature",
+      "shortDescription": "Data Zone Standard offers a shared serverless endpoint for testing, while Global/Data Zone Provisioned Throughput provides single-tenant deployments sized via a PTU calculator",
+      "longDescription": "Foundry offers different deployment types for Fireworks models. Data Zone Standard is a multi-tenant serverless endpoint shared across multiple users, where token-per-minute rate limits can be set per account, suited for testing and running evals rather than massive production workloads. Once benchmarks and evaluations look good, users can move to a more dedicated single-tenant deployment via Global Provisioned Throughput or Data Zone Provisioned Throughput. These provisioned options include a PTU calculator that estimates how many provisioned throughput units are needed based on input/output token counts and requests per minute.",
+      "timestamp": "00:04:43",
+      "timestampSeconds": 283,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-04-43/frame-m05s.jpg",
+        "announcement-frames/00-04-43/frame-m10s.jpg",
+        "announcement-frames/00-04-43/frame-p05s.jpg",
+        "announcement-frames/00-04-43/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Model comparison playground",
+      "category": "feature",
+      "shortDescription": "Two models can be run side-by-side on identical input to weigh latency, quality, and token count before saving the winner as an agent",
+      "longDescription": "The Foundry playground lets users chat with a deployed model to see how it performs for a specific use case, such as a code review agent catching SQL injections or hard-coded secrets. Through the compare models UI, two models can be run side-by-side on the same input so output is generated simultaneously across both—demonstrated by comparing a minimax model against a Kimi 2.6 model. Users can weigh latency, response quality, and the number of tokens generated, then pick the preferred model and click 'Save as agent' to persist it.",
+      "timestamp": "00:07:34",
+      "timestampSeconds": 454,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-07-34/frame-m05s.jpg",
+        "announcement-frames/00-07-34/frame-m10s.jpg",
+        "announcement-frames/00-07-34/frame-p05s.jpg",
+        "announcement-frames/00-07-34/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agent evaluation harness",
+      "category": "feature",
+      "shortDescription": "Saved agents can be evaluated against custom datasets or open-source benchmarks across metrics like relevance, groundedness, coherence, and task completion, using a judge model",
+      "longDescription": "Inside the Foundry playground a metrics configurator [inferred, transcript says 'matrix Configurator'] lets users evaluate saved agents against their own custom evaluation datasets or pre-uploaded open-source benchmarks. Metrics include intent/resolution, coherence, fluency, and relevance, and the full evaluation can be run against the entire agent harness—including multiple tool calls and detailed system prompts—rather than just the model. The demo uploads a 50-row code review eval dataset with ground truth for comparison, uses automated field mapping, and selects a GPT-4o Mini [inferred, transcript says 'GPD Photo Mini'] as the judge model.",
+      "timestamp": "00:08:55",
+      "timestampSeconds": 535,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-55/frame-m05s.jpg",
+        "announcement-frames/00-08-55/frame-m10s.jpg",
+        "announcement-frames/00-08-55/frame-p05s.jpg",
+        "announcement-frames/00-08-55/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Bring your own weights",
+      "category": "feature",
+      "shortDescription": "Post-trained or fine-tuned custom models can be registered in Foundry and served through the Fireworks serving stack",
+      "longDescription": "When out-of-the-box open-source models aren't satisfactory, the bring-your-own-weights workflow lets users do post-training or fine-tuning. A base model can be tuned with any fine-tuning framework outside of or on Foundry, and the Fireworks AI native platform also supports fine-tuning via its SFT or RFT frameworks. The tuned weights can then be uploaded and served for inference through the same Foundry deployment workflow using the Fireworks tech stack. Earlier in the window, the speaker also notes agents can be published through Foundry and called in code via a project endpoint and API key for use in Python workflows outside the Azure Foundry UI.",
+      "timestamp": "00:12:56",
+      "timestampSeconds": 776,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-12-56/frame-m05s.jpg",
+        "announcement-frames/00-12-56/frame-m10s.jpg",
+        "announcement-frames/00-12-56/frame-p05s.jpg",
+        "announcement-frames/00-12-56/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

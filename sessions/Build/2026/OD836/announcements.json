@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "OD836",
+  "sessionTitle": "From Test Kitchen to Table: A Demo-driven Tour of Foundry Portal for AI Developers",
+  "sessionSpeakers": [
+    "Carlotta Castelluccio​",
+    "Nitya Narasimhan"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:33:51.2731061+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Foundry portal as a low-code agent test kitchen",
+      "category": "platform",
+      "shortDescription": "The portal lets developers experiment with models, tools, and instructions for a single agent in a browser-based playground before writing any code",
+      "longDescription": "The Microsoft Foundry portal is presented as a low-code 'test kitchen' where developers can experiment with models, tools, and instructions for a single agent in a browser-based playground before writing a single line of code. It offers built-in support for observability—including traces, evaluations, and monitoring—to accelerate inner/outer loop iteration and to deploy comparable versions in real time. Developers can then move seamlessly to code-first environments to build multi-agent solutions or more complex frameworks and workflows. The portal is structured to mimic the three main phases of the AI development journey, providing the relevant features and tools at each step.",
+      "timestamp": "00:06:46",
+      "timestampSeconds": 406,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-06-46/frame-m05s.jpg",
+        "announcement-frames/00-06-46/frame-m10s.jpg",
+        "announcement-frames/00-06-46/frame-p05s.jpg",
+        "announcement-frames/00-06-46/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agent versioning and side-by-side comparison",
+      "category": "feature",
+      "shortDescription": "Agents can be saved as versions (v1, v2, etc.) and compared in real time against the same prompt to detect improvements or regressions",
+      "longDescription": "The portal lets developers save different versions of an agent (e.g., v1, v2) after editing its instructions, with a new version created on save. A 'Compare Versions' option opens a playground where two versions can be run against the same prompt to understand which performs better. In the demo, the instructions were customized to make a friendly Zava Retail assistant that asks about the user's DIY project timing and city to advise on weather; comparing v1 and v2 showed the generic v1 response versus the customized v2 that asks the intended follow-up questions.",
+      "timestamp": "00:26:03",
+      "timestampSeconds": 1563,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-26-03/frame-m05s.jpg",
+        "announcement-frames/00-26-03/frame-m10s.jpg",
+        "announcement-frames/00-26-03/frame-p05s.jpg",
+        "announcement-frames/00-26-03/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Model leaderboard and trade-off charts",
+      "category": "feature",
+      "shortDescription": "A catalog of 11,000+ models can be ranked on quality, safety, throughput, and cost, with a trade-off chart for choosing the best model for the job",
+      "longDescription": "From the 'Discover' tab, developers can access a model catalog of 11,000+ models. The Microsoft Foundry leaderboard is a feature that runs benchmarks across catalog models and presents charts ranking them on criteria such as quality, safety, throughput, and benchmark costs. The demo used this to assess how the default GPT-4.1 model stacks up against others, motivating selection of a cheaper model for simpler tasks rather than an expensive feature-rich model for everything.",
+      "timestamp": "00:33:45",
+      "timestampSeconds": 2025,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-33-45/frame-m05s.jpg",
+        "announcement-frames/00-33-45/frame-m10s.jpg",
+        "announcement-frames/00-33-45/frame-p05s.jpg",
+        "announcement-frames/00-33-45/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Model Router",
+      "category": "model",
+      "shortDescription": "An intelligent router that automatically selects the appropriate backend model based on prompt complexity, routing simple queries to cheaper models and complex tasks to higher-performance ones",
+      "longDescription": "Model Router is described as a distinct Azure Foundry model that acts as an intelligent router, so developers don't have to worry about which underlying model to use. It looks and feels like any other model: you send a prompt and it figures out the right backend model to route it to. In the demo it is deployed from the 'Discover' > 'Models' area, where deploying it opens the model playground and can be saved as a new agent (an 'auto routing agent').",
+      "timestamp": "00:41:24",
+      "timestampSeconds": 2484,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-41-24/frame-m05s.jpg",
+        "announcement-frames/00-41-24/frame-m10s.jpg",
+        "announcement-frames/00-41-24/frame-p05s.jpg",
+        "announcement-frames/00-41-24/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Built-in tracing and AI-assisted evaluation",
+      "category": "feature",
+      "shortDescription": "Connecting an Application Insights resource enables trace inspection plus per-response scoring on quality and safety metrics such as coherence, relevance, task adherence, and intent resolution",
+      "longDescription": "To debug an agent, developers can inspect its traces to see what happens behind the scenes in cases of issues, errors, or hallucination. Collecting traces requires connecting an Application Insights resource; the demo creates a new Application Insights and Log Analytics workspace within the resource group via a 'Connect' button and 'Create a New Resource' flow. Once connected, traces of prior conversations are retained and viewable—including user input, output, and the metadata of input and output messages—in the Microsoft Foundry portal.",
+      "timestamp": "00:19:11",
+      "timestampSeconds": 1151,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-19-11/frame-m05s.jpg",
+        "announcement-frames/00-19-11/frame-m10s.jpg",
+        "announcement-frames/00-19-11/frame-p05s.jpg",
+        "announcement-frames/00-19-11/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Custom evaluators (prompt-based and code-based)",
+      "category": "feature",
+      "shortDescription": "Developers can build LLM-as-a-judge evaluators (e.g., a friendliness evaluator) or deterministic code-based evaluators (e.g., conciseness)",
+      "longDescription": "Foundry provides a catalog of many built-in evaluators across four categories: quality (e.g., coherence, fluency, response quality, formats), safety (e.g., violence, hate), business, and agentic evaluators (e.g., intent resolution, task adherence, response completion). Beyond the built-ins, developers can create a custom evaluator for an agent; the demo begins adding a friendliness evaluator that rates the agent's friendliness based on criteria the developer provides. This supports tasting and ranking responses against acceptance criteria, following the test kitchen analogy.",
+      "timestamp": "00:54:36",
+      "timestampSeconds": 3276,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-54-36/frame-m05s.jpg",
+        "announcement-frames/00-54-36/frame-m10s.jpg",
+        "announcement-frames/00-54-36/frame-p05s.jpg",
+        "announcement-frames/00-54-36/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Synthetic data generation for batch evaluation",
+      "category": "feature",
+      "shortDescription": "The portal can generate synthetic test prompts to run batch and continuous evaluations against an agent",
+      "longDescription": "Because a new agent in the test kitchen has no real user prompts to test against, the Foundry portal can generate synthetic data to use for evaluation. The demo sets up a batch evaluation targeting a specific agent version and generates a small synthetic dataset (e.g., 10 test prompts), optionally also generating candidate responses, using a chosen model. The prompts are described broadly—customer support queries for a DIY home-improvement retailer covering single and multi-turn conversations and edge cases like out-of-stock or returns. Batch evaluations can be run manually or in continuous evaluation form against a large dataset.",
+      "timestamp": "01:00:08",
+      "timestampSeconds": 3608,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/01-00-08/frame-m05s.jpg",
+        "announcement-frames/01-00-08/frame-m10s.jpg",
+        "announcement-frames/01-00-08/frame-p05s.jpg",
+        "announcement-frames/01-00-08/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Red teaming scans",
+      "category": "feature",
+      "shortDescription": "An adversarial evaluation feature that simulates malicious users using attack strategies like flip and tense attacks to probe agent vulnerabilities",
+      "longDescription": "Red teaming is part of the Foundry evaluation suite and is used to assess how protected an agent is against malicious users. A red teaming run uses an adversarial agent that pretends to be a malicious user and attacks the target agent with prompts designed to trigger harmful behavior. Developers can configure the run by selecting attack types and risk categories—in the demo, the presenter assesses risks such as violence and task adherence on the retail agent. Results can be reviewed later to understand the agent's vulnerabilities.",
+      "timestamp": "01:04:13",
+      "timestampSeconds": 3853,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/01-04-13/frame-m05s.jpg",
+        "announcement-frames/01-04-13/frame-m10s.jpg",
+        "announcement-frames/01-04-13/frame-p05s.jpg",
+        "announcement-frames/01-04-13/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Ask AI / agent helper",
+      "category": "feature",
+      "shortDescription": "An in-portal assistant that explains metrics and project state with links to documentation",
+      "longDescription": "Ask AI, also referred to as the agent helper, is an in-portal assistant in Foundry for when developers get stuck and need more information. In the demo it is used to ask what a metric like coherence means and what a rating of four out of five implies. It looks at the developer's project and state, then returns explanatory information along with links to the documentation, acting like an expert chef in the test kitchen.",
+      "timestamp": "00:48:52",
+      "timestampSeconds": 2932,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-48-52/frame-m05s.jpg",
+        "announcement-frames/00-48-52/frame-m10s.jpg",
+        "announcement-frames/00-48-52/frame-p05s.jpg",
+        "announcement-frames/00-48-52/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK221",
+  "sessionTitle": "Idea to production-ready agent in seconds on AI-native runtime",
+  "sessionSpeakers": [
+    "Simon Jakesch",
+    "Devanshi Joshi",
+    "Gopi Prashanth"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:31:47.4775405+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Sub-second cold start and resume",
+      "category": "feature",
+      "shortDescription": "Sandboxes wake from sleep in roughly a second or two, retaining running scripts and context to avoid the environment setup tax",
+      "longDescription": "ACA Sandboxes support a fast resume capability where a sleeping sandbox wakes in roughly a second or two while retaining its memory and disk state. In the demo, a sandbox running a behind-the-scenes script was left to sleep for about 20-25 minutes, then woken up to continue running the script exactly as it was before sleeping. Sandboxes can be configured to capture either disk and memory or just disk when they go to sleep.",
+      "timestamp": "00:17:38",
+      "timestampSeconds": 1058,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-17-38/frame-m05s.jpg",
+        "announcement-frames/00-17-38/frame-m10s.jpg",
+        "announcement-frames/00-17-38/frame-p05s.jpg",
+        "announcement-frames/00-17-38/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Sandbox groups with inherited connectors, volumes, snapshots, and disk images",
+      "category": "feature",
+      "shortDescription": "Settings such as credentials and connectors propagate automatically to sandboxes created within a group",
+      "longDescription": "A sandbox group is a container that holds a set of entities such as connectors, volumes, snapshots, and disk images. Sandboxes created and run inside a sandbox group inherit the settings of that group, including credentials and connectors. This is part of the new ACA Sandboxes offering being launched into public preview as an agent-first platform.",
+      "timestamp": "00:16:54",
+      "timestampSeconds": 1014,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-16-54/frame-m05s.jpg",
+        "announcement-frames/00-16-54/frame-m10s.jpg",
+        "announcement-frames/00-16-54/frame-p05s.jpg",
+        "announcement-frames/00-16-54/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Layer 7 firewall and network isolation per sandbox",
+      "category": "feature",
+      "shortDescription": "Operators can control which hosts and routes are allowed or denied for each agent",
+      "longDescription": "Sandboxes are a controlled entity providing not just process isolation but also network isolation. Each sandbox includes a Layer 7 firewall that lets operators isolate all traffic and control exactly which hosts are allowed and which routes on which hosts are denied. In the demo, the agent Nova also inherited connectors for calendar, email, and Teams access from its sandbox group.",
+      "timestamp": "00:20:21",
+      "timestampSeconds": 1221,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-20-21/frame-m05s.jpg",
+        "announcement-frames/00-20-21/frame-m10s.jpg",
+        "announcement-frames/00-20-21/frame-p05s.jpg",
+        "announcement-frames/00-20-21/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Snapshotting and instant restore",
+      "category": "feature",
+      "shortDescription": "An entire sandbox disk can be snapshotted and used to spin up an exact new instance",
+      "longDescription": "Because agents do work that constantly has to be undone and redone, the platform allows snapshotting of an entire sandbox disk to replay it or use it as a reference point to move forward from. In the demo, a snapshot was created trivially and then used to spin up a new sandbox instance. The resulting new sandbox was an exact copy of the original agent (Aria) including its sessions.",
+      "timestamp": "00:22:22",
+      "timestampSeconds": 1342,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-22-22/frame-m05s.jpg",
+        "announcement-frames/00-22-22/frame-m10s.jpg",
+        "announcement-frames/00-22-22/frame-p05s.jpg",
+        "announcement-frames/00-22-22/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Serverless GPUs for custom model inference",
+      "category": "service",
+      "shortDescription": "T4 and A100 GPUs scale to zero across 15 regions, used in the demo to run speech-to-text and text-to-speech models",
+      "longDescription": "Azure Container Apps' serverless GPU offering is presented as the easiest way to run custom models from sources like Hugging Face via Llama [inferred] or any other model hosting container. It offers T4 GPUs and a series of A100s available across 15 different regions, billed only while the application runs with a scale-to-zero event when idle. In the demo, separate applications ran the speech-to-text (STT) and text-to-speech (TTS) services.",
+      "timestamp": "00:14:42",
+      "timestampSeconds": 882,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-42/frame-m05s.jpg",
+        "announcement-frames/00-14-42/frame-m10s.jpg",
+        "announcement-frames/00-14-42/frame-p05s.jpg",
+        "announcement-frames/00-14-42/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

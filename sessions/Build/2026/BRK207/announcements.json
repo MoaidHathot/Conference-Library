@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK207",
+  "sessionTitle": "GitHub Copilot in Visual Studio: Agents That Debug, Profile, and Test",
+  "sessionSpeakers": [
+    "Nik Karpinsky",
+    "Mads Kristensen",
+    "Anisha Pindoria"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:27:18.0324327+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Migration to the GitHub Copilot CLI SDK",
+      "category": "SDK",
+      "shortDescription": "Starting next week in Visual Studio Insiders, Visual Studio moves onto the same Copilot CLI SDK shared with VS Code and the CLI, so features arrive at the same time across tools while still using Visual Studio's warm MSBuild and Roslyn for builds.",
+      "longDescription": "Starting next week in Visual Studio Insiders, Visual Studio will move onto the GitHub Copilot CLI SDK, replacing its own implementation that talked to the Copilot API and back-end service directly. Because VS Code, the CLI, and Visual Studio will all share the exact same SDK base, features will arrive at the same time across the tools, even though each implements them differently. In Visual Studio's case, when the agent kicks off a build it still uses Visual Studio's already-warm MSBuild and Roslyn, making builds faster than running them on the command line.",
+      "timestamp": "00:39:50",
+      "timestampSeconds": 2390,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-39-50/frame-m05s.jpg",
+        "announcement-frames/00-39-50/frame-m10s.jpg",
+        "announcement-frames/00-39-50/frame-p05s.jpg",
+        "announcement-frames/00-39-50/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Bring any model, including local and on-prem",
+      "category": "feature",
+      "shortDescription": "Soon any model can be used in Visual Studio whether running locally, on-prem, or in any cloud, with an organizational security layer to mandate or restrict which models are allowed.",
+      "longDescription": "Starting very soon, Visual Studio will let developers use any model—whether running locally, on-prem, or in any cloud—beyond the existing built-in list (Opus, Sonnet, GPTs) and bring-your-own-key providers like xAI and Gemini. This is aimed especially at enterprises with strict security requirements that cannot send code to the cloud, allowing models to run on a local machine or private server room. A security/management layer lets organizations lock down and mandate or restrict which models are allowed. It is expected to be available next week in the Insiders build of Visual Studio 2026.",
+      "timestamp": "00:41:30",
+      "timestampSeconds": 2490,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-41-30/frame-m05s.jpg",
+        "announcement-frames/00-41-30/frame-m10s.jpg",
+        "announcement-frames/00-41-30/frame-p05s.jpg",
+        "announcement-frames/00-41-30/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Web Forms to Blazor app modernization",
+      "category": "feature",
+      "shortDescription": "A modernization agent can convert legacy Web Forms apps, including user controls and server controls, into Blazor, optionally layering in Aspire and cloud readiness.",
+      "longDescription": "Recent breakthroughs in app modernization allow a modernization agent to convert legacy Web Forms applications—including user controls and server controls components—into Blazor [inferred]. This lets old apps, such as ones running on older .NET versions, be moved completely onto a modern stack. Optionally, Aspire can be layered on and the app can be upscaled to run in the cloud, all handled by the modernization agent.",
+      "timestamp": "00:34:07",
+      "timestampSeconds": 2047,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-34-07/frame-m05s.jpg",
+        "announcement-frames/00-34-07/frame-m10s.jpg",
+        "announcement-frames/00-34-07/frame-p05s.jpg",
+        "announcement-frames/00-34-07/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Automatically applied agent skills",
+      "category": "feature",
+      "shortDescription": "Visual Studio detects project type and auto-includes trusted, team-authored skills (e.g., from the WinForms and Azure teams) into agent context.",
+      "longDescription": "Agent skills are markdown files that make agent workflows more powerful, but they are scattered across plugin and marketplace repositories, making them hard to discover for a given scenario. Visual Studio will automatically detect what type of project you are working on and include relevant team-authored skills into the agent context—for example skills written by the WinForms team or Azure team. These skills are open source, accept community contributions, and are trusted, so they are applied automatically to make the agent more capable.",
+      "timestamp": "00:34:46",
+      "timestampSeconds": 2086,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-34-46/frame-m05s.jpg",
+        "announcement-frames/00-34-46/frame-m10s.jpg",
+        "announcement-frames/00-34-46/frame-p05s.jpg",
+        "announcement-frames/00-34-46/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "AI-assisted merge conflict resolution",
+      "category": "feature",
+      "shortDescription": "A forthcoming button lets the agent analyze and resolve merge conflicts, escalating only the conflicts that genuinely need human input.",
+      "longDescription": "Launching soon, a button will let the AI agent look at and help resolve merge conflicts, which developers report causing fear, anxiety, and frustration. Testing showed the agent resolves conflicts almost the same way a capable human would. When multiple conflicts exist, it escalates only the one (or sometimes none) that genuinely requires human input, taking the heartache out of the process.",
+      "timestamp": "00:37:53",
+      "timestampSeconds": 2273,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-37-53/frame-m05s.jpg",
+        "announcement-frames/00-37-53/frame-m10s.jpg",
+        "announcement-frames/00-37-53/frame-p05s.jpg",
+        "announcement-frames/00-37-53/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Build-speed optimization",
+      "category": "feature",
+      "shortDescription": "Agents will inspect the error list and other indicators before kicking off a build, avoiding wasted multi-minute builds destined to fail.",
+      "longDescription": "When agents run, they frequently need to do a build, but they sometimes kick off a build that takes around two minutes only to fail on errors that were already visible in the error list. One of the first optimizations coming will have the agent inspect the error list and other indicators before starting a build, deciding whether to build now or do more work first. This is one of many performance optimizations coming to the chat window experience.",
+      "timestamp": "00:36:14",
+      "timestampSeconds": 2174,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-36-14/frame-m05s.jpg",
+        "announcement-frames/00-36-14/frame-m10s.jpg",
+        "announcement-frames/00-36-14/frame-p05s.jpg",
+        "announcement-frames/00-36-14/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Git worktree and submodule support",
+      "category": "feature",
+      "shortDescription": "Full worktree and git submodule support is shipping next week in Visual Studio.",
+      "longDescription": "Worktree support is coming next week in Visual Studio, along with full support for git submodules. These were mentioned as nice additions shipping in the same timeframe.",
+      "timestamp": "00:33:09",
+      "timestampSeconds": 1989,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-33-09/frame-m05s.jpg",
+        "announcement-frames/00-33-09/frame-m10s.jpg",
+        "announcement-frames/00-33-09/frame-p05s.jpg",
+        "announcement-frames/00-33-09/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

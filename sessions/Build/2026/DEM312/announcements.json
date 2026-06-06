@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEM312",
+  "sessionTitle": "Multi-agents in action with 3 AI agents, 3 frameworks, tools & models",
+  "sessionSpeakers": [
+    "Jan Kalis",
+    "Vini Soto"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:27:46.9685603+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Azure Container Apps Sandboxes (private preview)",
+      "category": "service",
+      "shortDescription": "Fast, isolated, and stateful on-demand infrastructure for securely executing agent-generated code, available to try at sandboxes.azure.com.",
+      "longDescription": "Azure Container Apps Sandboxes is announced as a private preview of fast, isolated, and stateful infrastructure on demand for securely executing AI-generated/untrusted code separate from your applications. It executes code securely, resumes instantly, supports snapshots for both disk and memory, and can burst to hyperscale, available at sandboxes.azure.com. Internal Microsoft customers already use it, including Microsoft Foundry hosting its hosted agents on ACA sandboxes and GitHub Sandboxes built on the same technology.",
+      "timestamp": "00:02:49",
+      "timestampSeconds": 169,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-02-49/frame-m05s.jpg",
+        "announcement-frames/00-02-49/frame-m10s.jpg",
+        "announcement-frames/00-02-49/frame-p05s.jpg",
+        "announcement-frames/00-02-49/frame-p10s.jpg"
+      ],
+      "explicitLinks": [
+        {
+          "kind": "other",
+          "url": "sandboxes.azure.com"
+        }
+      ],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Memory and disk snapshots with sub-second resume",
+      "category": "feature",
+      "shortDescription": "Idle sandboxes are snapshotted (file system and memory), stop incurring compute cost, and resume in under a second.",
+      "longDescription": "Sandboxes support snapshots not just for disk but also for memory, allowing idle sandboxes to be preserved and restored to a previous point. This is useful for long running tasks where you want to preserve state, and the infrastructure resumes instantly so agents don't wait on cold starts. The capability enables bursting to hyperscale while maintaining state across tool calls.",
+      "timestamp": "00:03:15",
+      "timestampSeconds": 195,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-03-15/frame-m05s.jpg",
+        "announcement-frames/00-03-15/frame-m10s.jpg",
+        "announcement-frames/00-03-15/frame-p05s.jpg",
+        "announcement-frames/00-03-15/frame-p10s.jpg"
+      ],
+      "explicitLinks": [
+        {
+          "kind": "other",
+          "url": "sandboxes.azure.com"
+        }
+      ],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Egress policies including transform",
+      "category": "feature",
+      "shortDescription": "A platform-level egress gateway outside the sandbox can allow/deny destinations and inject secrets (such as an API key header) into outbound calls, so agent code never holds the secret.",
+      "longDescription": "The sandbox includes an egress policy feature, with one type called transform, where a platform-level egress gateway that lives outside the sandbox has the final say on outbound calls. The code running in the sandbox has no access to secrets; instead, a secret (such as an Azure AI/OpenAI API key) is defined for the sandbox and the egress policy is configured to inject that key as a header on any outgoing calls to a particular endpoint. This means the agent-generated code never holds the API key, yet calls to external services still succeed because the gateway intercepts and modifies the request.",
+      "timestamp": "00:15:51",
+      "timestampSeconds": 951,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-15-51/frame-m05s.jpg",
+        "announcement-frames/00-15-51/frame-m10s.jpg",
+        "announcement-frames/00-15-51/frame-p05s.jpg",
+        "announcement-frames/00-15-51/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Azure Container Apps Express",
+      "category": "service",
+      "shortDescription": "An agent-first technology that provisions in seconds and scales from zero to one in about a second.",
+      "longDescription": "Azure Container Apps Express is described as an agent-first technology introduced recently that underpins the sandbox capabilities. It allows you to provision in a couple of seconds and scale from zero to one in around a second, addressing the cold-start problem where agents shouldn't wait a minute for infrastructure when making tool calls or swarming to other agents.",
+      "timestamp": "00:03:43",
+      "timestampSeconds": 223,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-03-43/frame-m05s.jpg",
+        "announcement-frames/00-03-43/frame-m10s.jpg",
+        "announcement-frames/00-03-43/frame-p05s.jpg",
+        "announcement-frames/00-03-43/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Foundry registration and management for heterogeneous agents",
+      "category": "feature",
+      "shortDescription": "Agents built on different frameworks can be registered, observed, and continuously evaluated in Microsoft Foundry as long as they share an agent-to-agent contract.",
+      "longDescription": "In AI Foundry you can register agents built on different frameworks and technologies, as long as they talk agent-to-agent (A2A) or share some contract between them. Once registered, you can manage them, run continuous evaluations, and observe insights. This works alongside OpenTelemetry instrumentation that streams telemetry via an OTel collector into Application Insights, visible in both the Azure portal and Foundry.",
+      "timestamp": "00:19:12",
+      "timestampSeconds": 1152,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-19-12/frame-m05s.jpg",
+        "announcement-frames/00-19-12/frame-m10s.jpg",
+        "announcement-frames/00-19-12/frame-p05s.jpg",
+        "announcement-frames/00-19-12/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

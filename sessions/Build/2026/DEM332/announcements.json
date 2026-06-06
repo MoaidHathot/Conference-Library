@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEM332",
+  "sessionTitle": "From zero to teammate in 25 minutes: Build a Teams agent live",
+  "sessionSpeakers": [
+    "Aamir Jawaid",
+    "Umang Sehgal"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:28:02.7221504+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Teams SDK consolidation",
+      "category": "SDK",
+      "shortDescription": "The previously separate Teams AI Library and tooling are unified into a single streamlined Teams SDK developer experience.",
+      "longDescription": "Following last year's release of the Teams AI Library in TypeScript and C#, this year the team is introducing the Teams SDK, which consolidates all the libraries and tools developers use into one streamlined developer experience. It also adds many new group UX features to make agents shine within a group, building on prior one-on-one agentic features such as streaming, feedback loops, follow-up citations, and starter prompts. The team has been working with partners including Cursor, Linear, Perplexity, Datadog, and Atlassian, who are building on the Teams SDK to benefit from 320 million daily active users.",
+      "timestamp": "00:01:18",
+      "timestampSeconds": 78,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-01-18/frame-m05s.jpg",
+        "announcement-frames/00-01-18/frame-m10s.jpg",
+        "announcement-frames/00-01-18/frame-p05s.jpg",
+        "announcement-frames/00-01-18/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "New Teams CLI",
+      "category": "tool",
+      "shortDescription": "A command-line tool built from the ground up for both humans and coding agents, handling app registration, bot creation, secrets, and gluing the pieces together via `teams app create`.",
+      "longDescription": "The Teams CLI has been built from the ground up for both humans and agents. For humans it is interactable—you can type something like `teams app` and use arrow keys to select actions such as create app, get app details, update app, download the package, manage secrets, and manage permissions. Behind the scenes the create command performs multiple steps including creating an Entra application, creating a bot, creating secrets, and gluing all of those pieces together to produce an installation link.",
+      "timestamp": "00:07:47",
+      "timestampSeconds": 467,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-07-47/frame-m05s.jpg",
+        "announcement-frames/00-07-47/frame-m10s.jpg",
+        "announcement-frames/00-07-47/frame-p05s.jpg",
+        "announcement-frames/00-07-47/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Teams dev agent skill for GitHub Copilot",
+      "category": "tool",
+      "shortDescription": "A Copilot skill that can call the Teams CLI and read the Teams docs to integrate an existing app into Teams from a single prompt.",
+      "longDescription": "Instead of manually downloading the Teams SDK packages and reading the docs to integrate an app, the presenter runs Copilot in YOLO mode in a session scaffolded with the Teams dev agent skill, giving it the simple prompt to integrate the application into Microsoft Teams and return the installation link. The skill can do two things: talk to the Teams CLI and read the Teams docs. Copilot picks up the skill automatically and uses it to complete the integration.",
+      "timestamp": "00:06:54",
+      "timestampSeconds": 414,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-06-54/frame-m05s.jpg",
+        "announcement-frames/00-06-54/frame-m10s.jpg",
+        "announcement-frames/00-06-54/frame-p05s.jpg",
+        "announcement-frames/00-06-54/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Progressive disclosure in the CLI",
+      "category": "feature",
+      "shortDescription": "Subcommands are revealed incrementally so an agent only loads context relevant to its current goal.",
+      "longDescription": "When designing the Teams CLI for agents, the team employed progressive disclosure. Using the help command (e.g. `teams h`) reveals top-level commands such as `teams app` and `teams project`, and rather than exposing all subcommands at once, the CLI surfaces commands progressively based on the agent's goal—for example `teams app h` then `teams app update h` to reach the full list of flags. This ensures the agent only fills its context with information relevant to its current goal rather than unneeded details.",
+      "timestamp": "00:09:16",
+      "timestampSeconds": 556,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-16/frame-m05s.jpg",
+        "announcement-frames/00-09-16/frame-m10s.jpg",
+        "announcement-frames/00-09-16/frame-p05s.jpg",
+        "announcement-frames/00-09-16/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "JSON mode",
+      "category": "feature",
+      "shortDescription": "A `--json` flag returns structured output for scripting and agent parsing instead of human-formatted text.",
+      "longDescription": "JSON mode is a CLI capability that returns structured output instead of human-formatted text. Commands like `teams app list` or get the app ID normally produce a nicely formatted, legible output for humans, but adding `--json` returns the same information in a structured format. This is powerful because the structured output can be used inside more complex scripts, letting agents pull values directly without having to parse human-readable text.",
+      "timestamp": "00:10:34",
+      "timestampSeconds": 634,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-10-34/frame-m05s.jpg",
+        "announcement-frames/00-10-34/frame-m10s.jpg",
+        "announcement-frames/00-10-34/frame-p05s.jpg",
+        "announcement-frames/00-10-34/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Group chat capabilities",
+      "category": "feature",
+      "shortDescription": "Emoji reactions, targeted/private messages, slash commands, quoted replies, suggested actions, markdown support, and source citations are coming to agents in group chats (dedicated session the following day at 11:50).",
+      "longDescription": "As a sneak peek ahead of a dedicated session the following day at 11:50, the team previews new capabilities for agents brought into group chats. These include emoji reactions so the agent can respond with emojis, targeted messages and slash commands enabling private messaging between the user and agent within a group chat, and quoted replies that let the agent quote a past message—useful for long-running tasks in busy group chats. Additional capabilities include suggested actions, markdown support, and source citations.",
+      "timestamp": "00:14:19",
+      "timestampSeconds": 859,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-19/frame-m05s.jpg",
+        "announcement-frames/00-14-19/frame-m10s.jpg",
+        "announcement-frames/00-14-19/frame-p05s.jpg",
+        "announcement-frames/00-14-19/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agents 365 teammate identity",
+      "category": "platform",
+      "shortDescription": "Agents can be given an agentic identity with their own alias and email, allowing them to live across Outlook, Word, Excel, PowerPoint, Teams, meetings, and group chats with added IT visibility, observability, permissions, and control.",
+      "longDescription": "Much like M365 for humans, Agents 365 enables you to take your agent and make it into a teammate by giving it an agentic identity—its own alias and email—so it can live across the tools and apps where you work, including Outlook, Word, PowerPoint, Excel, Teams, meetings, and group chats. In turn, IT gains more visibility, observability, permissions, and control to understand the impact the agent has. An agent like the project management agent built earlier can serve as a blueprint to create many project-manager personas that carry context throughout the ecosystem, each with its own identity.",
+      "timestamp": "00:16:02",
+      "timestampSeconds": 962,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-16-02/frame-m05s.jpg",
+        "announcement-frames/00-16-02/frame-m10s.jpg",
+        "announcement-frames/00-16-02/frame-p05s.jpg",
+        "announcement-frames/00-16-02/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

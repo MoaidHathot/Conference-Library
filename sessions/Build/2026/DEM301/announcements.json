@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEM301",
+  "sessionTitle": "Rethinking CI: Actions, AI Agents, and the End of Commit-Fail-Commit",
+  "sessionSpeakers": [
+    "Salil Subbakrishna",
+    "Denizhan Yigitbas"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:27:35.2982506+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Agentic workflows entering public preview",
+      "category": "feature",
+      "shortDescription": "Markdown-authored workflows that infuse agent logic into Actions will be generally available in public preview the week following the talk.",
+      "longDescription": "Agentic workflows, which let you author Actions workflows by infusing agent logic, are going into public preview the week following the talk. The presenters note you can search for GitHub agentic workflows online to find the preview site, which includes a quick start using the CLI and many examples covering use cases such as issue management, continuous documentation, and continuous improvement. The team is also working on multi-repository support to help coordinate different repositories.",
+      "timestamp": "00:20:35",
+      "timestampSeconds": 1235,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-20-35/frame-m05s.jpg",
+        "announcement-frames/00-20-35/frame-m10s.jpg",
+        "announcement-frames/00-20-35/frame-p05s.jpg",
+        "announcement-frames/00-20-35/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "CI Doctor / CI Failure Doctor template",
+      "category": "tool",
+      "shortDescription": "A prebuilt agentic workflow that auto-triggers when a target workflow fails, analyzes the failure, and files an issue with root-cause analysis and suggested fixes.",
+      "longDescription": "The CI Doctor is a special prebuilt agentic workflow that helps users resolve and diagnose Actions issues more quickly, addressing the commit-fail-commit cycle. In the demo it is applied to a standard Actions workflow running a Python script that reads key-value pair files and sums them, helping diagnose and debug a failure. It is presented as an agent-based solution using agentic workflows to let AI diagnose problems when they arise.",
+      "timestamp": "00:01:47",
+      "timestampSeconds": 107,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-01-47/frame-m05s.jpg",
+        "announcement-frames/00-01-47/frame-m10s.jpg",
+        "announcement-frames/00-01-47/frame-p05s.jpg",
+        "announcement-frames/00-01-47/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Actions debugger sneak peek",
+      "category": "tool",
+      "shortDescription": "An unreleased internal tool that connects an IDE directly to a live Actions runner using the Debug Adapter Protocol, allowing inspection of variables, contexts, and secrets (redacted) and running commands on the runner.",
+      "longDescription": "The Actions debugger is presented as a sneak peek of a tool that lets you dig inside the Actions runner itself to troubleshoot and debug issues as they come up. It functions as a real debugger for runners, working within the context of any DAP-accepting client, allowing stepping over steps, returning variables, and running commands directly on the runner. It remains an internal project with no release date, since direct runner access raises security and abuse concerns the team is still addressing.",
+      "timestamp": "00:02:00",
+      "timestampSeconds": 120,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-02-00/frame-m05s.jpg",
+        "announcement-frames/00-02-00/frame-m10s.jpg",
+        "announcement-frames/00-02-00/frame-p05s.jpg",
+        "announcement-frames/00-02-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "GitHub AW CLI extension",
+      "category": "tool",
+      "shortDescription": "A GitHub CLI extension (`gh aw compile`) compiles Markdown agentic workflow files into a `.lock.yml` Actions YAML file.",
+      "longDescription": "The GitHub AW (agentic workflows) extension is installed inside the GitHub CLI and is used to compile Markdown agentic workflow files placed in a repository. Running the `gh aw compile` command turns the Markdown file into an Actions YAML file, emitting warnings such as suggesting the workflow be restricted to the main branch. The output is saved as a `.lock.yml` file to differentiate it from non-agentic workflows, and you recompile and commit it whenever the Markdown file changes.",
+      "timestamp": "00:06:05",
+      "timestampSeconds": 365,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-06-05/frame-m05s.jpg",
+        "announcement-frames/00-06-05/frame-m10s.jpg",
+        "announcement-frames/00-06-05/frame-p05s.jpg",
+        "announcement-frames/00-06-05/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [
+        {
+          "language": "bash",
+          "code": "GitHub AW compile",
+          "timestamp": "00:06:18"
+        }
+      ],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

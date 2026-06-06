@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK202",
+  "sessionTitle": "Azure DevOps meets GitHub, the path to AI powered SDLC",
+  "sessionSpeakers": [
+    "Dave Burnison",
+    "Dan Hellem",
+    "Lan Kaim"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:34:50.2453463+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Azure DevOps remote MCP server",
+      "category": "service",
+      "shortDescription": "Two MCP servers (local and remote) now expose work items, repos, wiki, test plans, and pipelines; the remote server supports service principals, managed identities, and Microsoft Foundry agent creation, with Copilot Studio integration in progress",
+      "longDescription": "Azure DevOps now offers two MCP servers—a local and a remote one—both exposing the same tools for work items, repos, wiki, and test plans. The local server gives a top-tier experience when driven from VS Code with GitHub Copilot, while the remote server has consolidated tools and adds support for service principals, managed identities, and creating an agent in Foundry (it is part of that catalog). Copilot Studio integration has been in progress for several months and is hoped to arrive in the coming weeks. Two servers are kept because the remote server is built on Entra [inferred], whose restrictions currently prevent other clients like Claude, Cursor, or Codex from working with it.",
+      "timestamp": "00:17:48",
+      "timestampSeconds": 1068,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-17-48/frame-m05s.jpg",
+        "announcement-frames/00-17-48/frame-m10s.jpg",
+        "announcement-frames/00-17-48/frame-p05s.jpg",
+        "announcement-frames/00-17-48/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Model selection for the Copilot cloud agent",
+      "category": "feature",
+      "shortDescription": "Rolling out the ability to pick the model used by the work-item-assigned coding agent, with the choice persisted (\"sticky\") per repository",
+      "longDescription": "Building on the work-item integration with the Copilot cloud agent, users can now pick the model used by the agent. This is being rolled out as the speaker presents, letting teams choose which model works best since certain models perform better in certain repos depending on the agent, the instructions, and cost considerations. The selection is sticky, so once chosen it persists for subsequent runs.",
+      "timestamp": "00:21:31",
+      "timestampSeconds": 1291,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-21-31/frame-m05s.jpg",
+        "announcement-frames/00-21-31/frame-m10s.jpg",
+        "announcement-frames/00-21-31/frame-p05s.jpg",
+        "announcement-frames/00-21-31/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Enterprise Live Migrator (ELM)",
+      "category": "tool",
+      "shortDescription": "A public-preview, full-fidelity migration tool that moves Azure Repos to GitHub—including history, pull requests, and commits—with roughly 30 minutes of downtime and automatic reconnection of pipelines and boards",
+      "longDescription": "The Enterprise Live Migrator is a public-preview tool for moving repos from Azure Repos to GitHub with full fidelity, bringing over the entire history, pull requests, and commits in a seamless cutover. Unlike the GitHub Enterprise Importer, which has caused four-to-five-day downtimes for very large repos, ELM does the migration with roughly 30 minutes of downtime. It also automatically connects up your pipelines and boards after the repo moves, removing those extra steps.",
+      "timestamp": "00:22:18",
+      "timestampSeconds": 1338,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-22-18/frame-m05s.jpg",
+        "announcement-frames/00-22-18/frame-m10s.jpg",
+        "announcement-frames/00-22-18/frame-p05s.jpg",
+        "announcement-frames/00-22-18/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Copilot code review for Azure Repos",
+      "category": "feature",
+      "shortDescription": "Brings GitHub Copilot code reviews to Azure Git repos without requiring a Copilot license or GitHub account, billed to the user's Azure subscription via a dynamic background pipeline",
+      "longDescription": "Announced in a blog post, this brings the power of GitHub Copilot code reviews to Azure Repos. It does not require a Copilot license or even a GitHub account—it works on the back end, provided the code is in Azure Git repos (it does not work with TFVC, with no plans to support it). Usage is billed to the user's Azure subscription, and the feature can be enabled per repo from the repo settings.",
+      "timestamp": "00:28:17",
+      "timestampSeconds": 1697,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-28-17/frame-m05s.jpg",
+        "announcement-frames/00-28-17/frame-m10s.jpg",
+        "announcement-frames/00-28-17/frame-p05s.jpg",
+        "announcement-frames/00-28-17/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Copilot Auto-fix for GitHub Advanced Security (Azure DevOps)",
+      "category": "feature",
+      "shortDescription": "Generates fixes for CodeQL alerts and opens a pull request automatically, with plans to expand to all alert types, third-party tools, and security campaigns",
+      "longDescription": "Copilot Auto-fix for GitHub Advanced Security (GHAS) is being brought to Azure DevOps, allowing GHAS users to automatically fix issues that pop up. In the demo, CodeQL scans run on a repo and surface issues such as SQL injection, showing severity, a description, and a recommendation, with Copilot able to generate fixes. Like the related code-review feature, usage is billed to the user's Azure subscription as part of the preview, and the speaker suggests starting slowly with a few repos to understand the cost.",
+      "timestamp": "00:34:34",
+      "timestampSeconds": 2074,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-34-34/frame-m05s.jpg",
+        "announcement-frames/00-34-34/frame-m10s.jpg",
+        "announcement-frames/00-34-34/frame-p05s.jpg",
+        "announcement-frames/00-34-34/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Scale improvements",
+      "category": "feature",
+      "shortDescription": "Repos connectable per project per connection increased from 500 to 2,000, addressing customers wanting to connect tens of thousands of repos",
+      "longDescription": "Investment in the integration between GitHub repos and Azure DevOps boards, pipelines, and test plans includes scale improvements to the number of repos connectable per project. The limit was originally about 500 repos connected to a project per connection and has now been raised to 2,000. This was driven by larger organizations moving repos into GitHub—examples cited include customers wanting to connect 30,000 and even 80,000 repos to a single project—and the team plans to keep improving it over time.",
+      "timestamp": "00:19:55",
+      "timestampSeconds": 1195,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-19-55/frame-m05s.jpg",
+        "announcement-frames/00-19-55/frame-m10s.jpg",
+        "announcement-frames/00-19-55/frame-p05s.jpg",
+        "announcement-frames/00-19-55/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Apple Mac / pay-per-minute hosted agents",
+      "category": "service",
+      "shortDescription": "Microsoft-hosted agents in Azure Pipelines with pay-per-minute billing are available for preview sign-up",
+      "longDescription": "One of the new releases noted in the blog post is the ability to use Apple Macs with pay-per-minute billing, available for preview sign-up. This delivers a capability customers have been waiting for: Microsoft-hosted agents in Azure Pipelines billed on a pay-per-minute basis.",
+      "timestamp": "00:43:46",
+      "timestampSeconds": 2626,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-43-46/frame-m05s.jpg",
+        "announcement-frames/00-43-46/frame-m10s.jpg",
+        "announcement-frames/00-43-46/frame-p05s.jpg",
+        "announcement-frames/00-43-46/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

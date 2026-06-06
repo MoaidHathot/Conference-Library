@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEMSP387",
+  "sessionTitle": "Secure agent workflows in GitHub Copilot with NVIDIA OpenShell",
+  "sessionSpeakers": [
+    "Ali Golshan",
+    "Alex Watson"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:33:12.1777475+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "OpenShell, an open-source agent-native runtime (Apache 2.0)",
+      "category": "runtime",
+      "shortDescription": "A project begun roughly eight months ago on 20% time, with roadmap, architecture, and code published on its GitHub repository",
+      "longDescription": "OpenShell is an open-source, agent-native software stack that Alex and Ali started at NVIDIA on roughly 20% time about eight months ago. Its core thesis is that an agent world needs a different, stateful, long-running environment built for machine speed, rather than reusing existing stacks designed for human-paced work. The central goal is a trusted, secure-by-design runtime that gives people the confidence to run agents, models, and harnesses inside it, including the ability to approve large numbers of agent actions without depending on constant human input.",
+      "timestamp": "00:00:14",
+      "timestampSeconds": 14,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-00-14/frame-m05s.jpg",
+        "announcement-frames/00-00-14/frame-m10s.jpg",
+        "announcement-frames/00-00-14/frame-p05s.jpg",
+        "announcement-frames/00-00-14/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Policy Prover for formally verified policy",
+      "category": "feature",
+      "shortDescription": "Policies written in OPA/Rego (or YAML) are translated into formal logic so an SMT-style solver can mathematically prove what an agent can still do, catching exfiltration paths a reviewing agent or human could be fooled into missing",
+      "longDescription": "The Policy Prover is a unique OpenShell offering that not only enforces policies but can answer the question of what an agent can still do once a policy is applied. Policies written in standard languages like OPA and Rego (or YAML) are described in formal logic, drawing on technology that originally came from Microsoft, so that formal verification and SMT-style solvers can reason about them. In OpenShell's architecture the agent itself runs inside a sandbox where every input and output is enforced, allowing one policy language to work across any agent and catching exfiltration paths that a reviewing human or agent could miss.",
+      "timestamp": "00:04:22",
+      "timestampSeconds": 262,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-04-22/frame-m05s.jpg",
+        "announcement-frames/00-04-22/frame-m10s.jpg",
+        "announcement-frames/00-04-22/frame-p05s.jpg",
+        "announcement-frames/00-04-22/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Sub-millisecond proving performance",
+      "category": "feature",
+      "shortDescription": "The prover runs in single-digit milliseconds, avoiding the doubled token cost and latency of using a second agent to review every action",
+      "longDescription": "Rather than relying only on an if-statement check, the prover creates a mathematical proof of what an agent can do, such as whether it can access the Internet or write to a repository. Unlike using a second trusted agent to review each sandbox change—an approach OpenAI and Anthropic [inferred] are starting to discuss—the prover cannot be fooled (assuming the policy logic is described correctly) and will flag, for example, a newly opened hole that lets an agent write to a new GitHub repo. It can run in single-digit milliseconds, avoiding the doubled token cost and latency of having another agent review every call, so the second-level review is often not even required.",
+      "timestamp": "00:07:11",
+      "timestampSeconds": 431,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-07-11/frame-m05s.jpg",
+        "announcement-frames/00-07-11/frame-m10s.jpg",
+        "announcement-frames/00-07-11/frame-p05s.jpg",
+        "announcement-frames/00-07-11/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Privacy Router",
+      "category": "feature",
+      "shortDescription": "Inspects queries for PII and routes them to a local model, out to a frontier model, or rewrites them using differentially private techniques (low-epsilon DP) to preserve utility while keeping PII local",
+      "longDescription": "The Privacy Router extends OpenShell's isolation beyond system, file, network, and memory to isolation around agentic behavior, borrowing heavily from the synthetic-data work Alex and Ali did at their company Gretel and from work Microsoft itself did. When an agent submits a query, the router inspects it for PII: if PII is present it routes the query to a local model for inference, and if there is no PII it lets the query route out to a frontier model for multi-turn orchestration, tasking, and reasoning. A third scenario combines the first two approaches to preserve utility while keeping PII local.",
+      "timestamp": "00:07:37",
+      "timestampSeconds": 457,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-07-37/frame-m05s.jpg",
+        "announcement-frames/00-07-37/frame-m10s.jpg",
+        "announcement-frames/00-07-37/frame-p05s.jpg",
+        "announcement-frames/00-07-37/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Partner availability",
+      "category": "platform",
+      "shortDescription": "Announced (per a Microsoft announcement \"yesterday\") as embedded in Windows native WSL, Azure, and GitHub, and available via Canonical on Ubuntu, Red Hat OpenShift, and Docker",
+      "longDescription": "OpenShell is being taken to market through an ecosystem of partners, and per a Microsoft announcement the prior day it is embedded into Windows native WSL, Azure, and GitHub. It is also available via Canonical on Ubuntu, Red Hat on OpenShift, and Docker. Partners including SAP, Workday, and ServiceNow are running their agents inside OpenShell for trust, with the goal of embedding it as a trust layer that everyone can build on top of.",
+      "timestamp": "00:18:30",
+      "timestampSeconds": 1110,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-18-30/frame-m05s.jpg",
+        "announcement-frames/00-18-30/frame-m10s.jpg",
+        "announcement-frames/00-18-30/frame-p05s.jpg",
+        "announcement-frames/00-18-30/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Drivers for pluggable sandboxing",
+      "category": "feature",
+      "shortDescription": "Users can select the underlying isolation primitive (Firecracker, hardened containers, trusted computing, or gVisor/Kubernetes sandboxing) while OpenShell enforces the runtime on top",
+      "longDescription": "OpenShell introduces a concept called drivers that lets users pick the underlying sandboxing perimeter when launching it. Options include Firecracker, hardened containers, trusted computing, or SIG primitive sandboxing from Kubernetes [inferred: gVisor]. OpenShell relies on whatever isolation technology is chosen under the hood and enforces its runtime on top of it.",
+      "timestamp": "00:19:28",
+      "timestampSeconds": 1168,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-19-28/frame-m05s.jpg",
+        "announcement-frames/00-19-28/frame-m10s.jpg",
+        "announcement-frames/00-19-28/frame-p05s.jpg",
+        "announcement-frames/00-19-28/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Beta timeline",
+      "category": "concept",
+      "shortDescription": "Currently alpha (released at GTC in San Jose in March); beta targeted for the next couple of months, with potential donation to CNCF or the Linux Foundation",
+      "longDescription": "OpenShell is still in alpha, having only been released at GTC in San Jose about three months earlier in March, and is now being matured across several areas. The team is targeting roughly the next couple of months for a beta version and hopes the community will pick it up and push it forward while NVIDIA drives it. Longer term, under its Apache 2.0 license, the team is considering donating it to the CNCF or the Linux Foundation.",
+      "timestamp": "00:19:11",
+      "timestampSeconds": 1151,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-19-11/frame-m05s.jpg",
+        "announcement-frames/00-19-11/frame-m10s.jpg",
+        "announcement-frames/00-19-11/frame-p05s.jpg",
+        "announcement-frames/00-19-11/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

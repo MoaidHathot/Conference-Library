@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "ODSP928",
+  "sessionTitle": "Run AI SREs without burning token budgets",
+  "sessionSpeakers": [
+    "Natan Yellin"
+  ],
+  "durationMinutes": 0,
+  "extractedAt": "2026-06-06T09:29:26.7903459+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "The \"naive\" cost of AI SREs is roughly $730,000/year for a typical Fortune 500",
+      "category": "concept",
+      "shortDescription": "At ~1,000 alerts per day and ~$2 per investigation (a midpoint within a $180k–$1.8M range), the cost often exceeds that of human triage and becomes a non-starter.",
+      "longDescription": "Natan Yellin explains that a typical Fortune 500 sees at least a thousand alerts per day across teams, and running an AI SRE naively on all of them is too expensive. At roughly $2 per investigation and a thousand alerts per day, the cost rapidly reaches about $730,000 a year, a figure that matches what they see enterprise after enterprise. This is usually more expensive than having humans triage alerts manually, making it a non-starter.",
+      "timestamp": "00:00:43",
+      "timestampSeconds": 43,
+      "speakers": [
+        "Natan Yellin"
+      ],
+      "frames": [
+        "announcement-frames/00-00-43/frame-m05s.jpg",
+        "announcement-frames/00-00-43/frame-m10s.jpg",
+        "announcement-frames/00-00-43/frame-p05s.jpg",
+        "announcement-frames/00-00-43/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Underlying investigation cost runs 50 cents to $5, driven almost entirely by input tokens",
+      "category": "concept",
+      "shortDescription": "Agents ingest large volumes of logs, metrics, and observability data, while output token costs remain minimal; observability vendors typically mark this up to around $25 per investigation.",
+      "longDescription": "Yellin notes that the underlying cost of an SRE agent investigation is in the 50-cent to $5 range across the industry, depending on how complex the alert is, with simple investigations pulling little data costing 50 cents and complex ones reaching $5. This cost is driven almost entirely by input tokens, since the agent pulls large volumes of logs, metrics, and observability data, while output token costs remain minimal. Observability vendors typically charge a markup, around $25 per investigation. Taking the two ranges yields a 180k to 1.8 million span, with a $2 midpoint giving $730k.",
+      "timestamp": "00:01:42",
+      "timestampSeconds": 102,
+      "speakers": [
+        "Natan Yellin"
+      ],
+      "frames": [
+        "announcement-frames/00-01-42/frame-m05s.jpg",
+        "announcement-frames/00-01-42/frame-m10s.jpg",
+        "announcement-frames/00-01-42/frame-p05s.jpg",
+        "announcement-frames/00-01-42/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Cheaper models help less than expected",
+      "category": "model",
+      "shortDescription": "Models such as DeepSeek V4 are roughly three times cheaper than Opus but less accurate, and often pull more (and wrong) data, eroding the per-token savings.",
+      "longDescription": "Yellin explains that switching to cheaper models is a first optimization but helps less than people think. The baseline assumes Opus 4.7 (or 4.6), and Chinese models like DeepSeek V4 are nearly three times cheaper but less accurate on complex problems. Counterintuitively, the overall price often doesn't drop proportionally because cheaper models tend to pull more data and pull the wrong logs first, then retry, ending up using more tokens. For this reason they run almost exclusively Opus family models with customers and reduce cost in other ways.",
+      "timestamp": "00:03:26",
+      "timestampSeconds": 206,
+      "speakers": [
+        "Natan Yellin"
+      ],
+      "frames": [
+        "announcement-frames/00-03-26/frame-m05s.jpg",
+        "announcement-frames/00-03-26/frame-m10s.jpg",
+        "announcement-frames/00-03-26/frame-p05s.jpg",
+        "announcement-frames/00-03-26/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Context and runbooks cut cost 20–30%",
+      "category": "concept",
+      "shortDescription": "Supplying or auto-learning environment context, memories, and skills spares the agent from rediscovering the customer's observability setup on every alert.",
+      "longDescription": "Yellin describes that in a simple architecture with no memory or cross-investigation learning, the agent must rediscover the customer environment, observability data, and how to query their tools on every alert, including what data lives in which time series databases. By either giving the agent context directly or having it auto-learn context, generate memories, or auto-build skills, the cost can be reduced by roughly 20 to 30%. The savings come from the agent not having to relearn everything in each investigation.",
+      "timestamp": "00:04:47",
+      "timestampSeconds": 287,
+      "speakers": [
+        "Natan Yellin"
+      ],
+      "frames": [
+        "announcement-frames/00-04-47/frame-m05s.jpg",
+        "announcement-frames/00-04-47/frame-m10s.jpg",
+        "announcement-frames/00-04-47/frame-p05s.jpg",
+        "announcement-frames/00-04-47/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "LLM-native alert grouping delivers the largest savings",
+      "category": "concept",
+      "shortDescription": "Since most alerts during an outage are duplicates of one root cause, letting the LLM generate and persist grouping rules avoids linear per-alert cost while avoiding the pitfalls of deterministic rules.",
+      "longDescription": "Yellin identifies the biggest optimization as the fact that most alerts are duplicates; in a big production outage, the 500 incoming alerts are mostly duplicates of the same cause, so investigating each one naively incurs a linear cost. Grouping dramatically reduces this, but it must be LLM-native rather than using old-school deterministic rules, which either group too aggressively (merging different root causes) or not aggressively enough (missing alerts with different names from different systems). Their approach lets the LLM generate the grouping rules, persist them for a period, and control the policy on what triggers reinvestigations.",
+      "timestamp": "00:05:56",
+      "timestampSeconds": 356,
+      "speakers": [
+        "Natan Yellin"
+      ],
+      "frames": [
+        "announcement-frames/00-05-56/frame-m05s.jpg",
+        "announcement-frames/00-05-56/frame-m10s.jpg",
+        "announcement-frames/00-05-56/frame-p05s.jpg",
+        "announcement-frames/00-05-56/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Hot context-window reuse leverages Anthropic's cache",
+      "category": "concept",
+      "shortDescription": "Maintaining one context window per root cause lets retriggered investigations reuse a still-cached window (Anthropic's five-minute cache), making them far cheaper than a clean window.",
+      "longDescription": "Yellin explains that with LLM-native grouping you effectively maintain one context window per root cause, so when new information arrives on a different alert and retriggers an investigation, you can reuse the previous context window. If that window is still hot—meaning still in Anthropic's five-minute cache hierarchy—reusing it is far cheaper than starting a clean context window. Applying these optimizations brings the per-investigation cost into a reasonable range, enabling teams to run AI SRE investigations on every single alert and have the agent automatically escalate important issues to humans.",
+      "timestamp": "00:07:25",
+      "timestampSeconds": 445,
+      "speakers": [
+        "Natan Yellin"
+      ],
+      "frames": [
+        "announcement-frames/00-07-25/frame-m05s.jpg",
+        "announcement-frames/00-07-25/frame-m10s.jpg",
+        "announcement-frames/00-07-25/frame-p05s.jpg",
+        "announcement-frames/00-07-25/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

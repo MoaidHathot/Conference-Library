@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEM361",
+  "sessionTitle": "Understand and fix Agent Framework apps with observability and evals",
+  "sessionSpeakers": [
+    "Jim Bennett"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:28:07.6057596+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Live demo of a procurement evaluator agent built in ~11 lines",
+      "category": "framework",
+      "shortDescription": "A line-of-business agent built on Microsoft Foundry with an OpenAI model, instructions, and tools that approves or denies purchase requests, illustrating how little code Agent Framework requires.",
+      "longDescription": "Jim Bennett demonstrates an agent defined in roughly 11 lines of code consisting of an LLM, instructions, and tools — the components the speaker says literally make an agent. It uses an OpenAI model running on Microsoft Foundry, with instructions making it a procurement system evaluator that reads purchase requests, gathers relevant policy, vendor, and budget data, and approves or denies them. Tools include a check-policy tool and a tool to look up vendors and budgets. With Agent Framework, the developer interacts with the agent via a single line of code (agent run with inputs), and the framework handles the rest, though the speaker stresses it behaves as a black box.",
+      "timestamp": "00:01:00",
+      "timestampSeconds": 60,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-01-00/frame-m05s.jpg",
+        "announcement-frames/00-01-00/frame-m10s.jpg",
+        "announcement-frames/00-01-00/frame-p05s.jpg",
+        "announcement-frames/00-01-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "OpenInference as the observability standard for agents",
+      "category": "spec",
+      "shortDescription": "An open-standard extension to OpenTelemetry aligned with AI semantic conventions, noted as the standard used for Microsoft's new assert framework and agent control specification described in Sarah Bird's prior session.",
+      "longDescription": "OpenInference is described as an open-standard extension for OpenTelemetry that works with the semantic conventions for AI, effectively making AI work with OpenTelemetry. It has been around for a few years and is used for gathering telemetry data from LLMs, while a separate GenAI standard remains in committee. The speaker notes that, per Sarah Bird's session the previous day, OpenInference is the standard being used for Microsoft's new assert framework and agent control specification. Adding this telemetry requires only a couple of lines of code to trace and send data to a backend.",
+      "timestamp": "00:04:00",
+      "timestampSeconds": 240,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-04-00/frame-m05s.jpg",
+        "announcement-frames/00-04-00/frame-m10s.jpg",
+        "announcement-frames/00-04-00/frame-p05s.jpg",
+        "announcement-frames/00-04-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Tracing visualized in Phoenix",
+      "category": "tool",
+      "shortDescription": "The free, open-source telemetry backend from Arise [inferred] renders OpenInference data as a trace tree showing system/user prompts, tool calls, token counts, and every decision the agent framework makes.",
+      "longDescription": "Phoenix is a free, open-source backend for telemetry data made by Arize [inferred], who invented OpenInference, and is the standard default out-of-the-box way of rendering OpenInference data. It provides a complete breakdown of what the agent is doing, presenting a tree diagram starting from a top-level process run down through each LLM call and tool call. The developer can see the system prompt, user prompt, the request to do tool calls, token counts in and out, and the inputs and outputs of every part of the system. This gives granular visibility into everything the Agent Framework decides to do, such as calling the check-policy tool and receiving its response.",
+      "timestamp": "00:05:19",
+      "timestampSeconds": 319,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-05-19/frame-m05s.jpg",
+        "announcement-frames/00-05-19/frame-m10s.jpg",
+        "announcement-frames/00-05-19/frame-p05s.jpg",
+        "announcement-frames/00-05-19/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    },
+    {
+      "name": "LLM-as-a-judge evals to test non-deterministic output",
+      "category": "concept",
+      "shortDescription": "A scored rubric prompt converts non-deterministic agent output into a deterministic supported/unsupported verdict, revealing the demo agent passed only ~50% of cases.",
+      "longDescription": "Evals are described as the AI term for testing — using an AI to judge whether the system is working, since AI can run at scale and doesn't get bored like human reviewers. The speaker writes a prompt that audits the automated procurement evaluator, showing each purchase request and deciding whether the recommendation is supported by the tool evidence alone, scored with a rubric (approve, reject, flag for review) and filling in the original request, the tool evidence, and the agent's reasoning. The prompt returns a single word — supported or unsupported — converting the non-deterministic AI output into a deterministic test result. This is run by downloading the telemetry data from Phoenix, pulling out the tool outputs, and passing them through the eval prompt.",
+      "timestamp": "00:10:08",
+      "timestampSeconds": 608,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-10-08/frame-m05s.jpg",
+        "announcement-frames/00-10-08/frame-m10s.jpg",
+        "announcement-frames/00-10-08/frame-p05s.jpg",
+        "announcement-frames/00-10-08/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Model swap raising effectiveness from ~50% to ~90%",
+      "category": "model",
+      "shortDescription": "Changing only the model from GPT-4.1 to GPT-5.4 [inferred] raised the same agent's eval pass rate to roughly 90% with no other code changes.",
+      "longDescription": "Using the dataset and evals as a continuous testing loop, the speaker demonstrates model selection as a classic example of iteration. The exact same application and agent, with nothing changed except running against GPT-5.4 instead of GPT-4.1 [inferred], jumps to 90% effective. No application changes were made beyond swapping the model, and the eval-driven testing loop makes it possible to score the change and tell when things are working or broken.",
+      "timestamp": "00:14:21",
+      "timestampSeconds": 861,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-21/frame-m05s.jpg",
+        "announcement-frames/00-14-21/frame-m10s.jpg",
+        "announcement-frames/00-14-21/frame-p05s.jpg",
+        "announcement-frames/00-14-21/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": true
+    },
+    {
+      "name": "Self-improving loop via coding agents",
+      "category": "concept",
+      "shortDescription": "GitHub Copilot CLI or Claude can use skills to access the dataset and evals, spin up the app in a sandbox, run inputs, and iteratively tweak prompts, models, and tool descriptions to converge on ~90% effectiveness.",
+      "longDescription": "Building on the dataset and evaluator, the speaker describes a self-improving software loop using coding agents such as GitHub Copilot CLI or Claude, which can have skills that access this data. Given the code (via a GitHub repo), the inputs, and the evaluations, the coding agent can spin up the application in a sandboxed environment, pump in inputs, run evaluations, look at results, and then tweak the prompt, change the model, or adjust tool descriptions before running again. Over roughly 4–6 cycles it converges on a much better solution, working toward about 90% effectiveness, since agents (like humans) will never be 100%.",
+      "timestamp": "00:15:00",
+      "timestampSeconds": 900,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-15-00/frame-m05s.jpg",
+        "announcement-frames/00-15-00/frame-m10s.jpg",
+        "announcement-frames/00-15-00/frame-p05s.jpg",
+        "announcement-frames/00-15-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK245",
+  "sessionTitle": "Build the thing that builds the thing",
+  "sessionSpeakers": [
+    "Peter Steinberger"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:27:38.8818723+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Clause Reaper, an automated issue/PR triage system",
+      "category": "tool",
+      "shortDescription": "Spins up a Codex session via GitHub Action on every issue or pull request, guided by a `vision.md` file, to comment on or close items; credited with closing roughly 15,000 issues.",
+      "longDescription": "Clause Reaper [inferred] is an automated triage system that starts a Codex session in the cloud via a GitHub Action whenever someone opens an issue or pull request. A standard prompt points the agent at a `vision.md` file describing what the project does and does not want, and based on those rules the agent either comments on or closes the item. The speaker says this approach let him close around 15,000 issues, operating under the assumption of effectively infinite tokens.",
+      "timestamp": "00:05:54",
+      "timestampSeconds": 354,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-05-54/frame-m05s.jpg",
+        "announcement-frames/00-05-54/frame-m10s.jpg",
+        "announcement-frames/00-05-54/frame-p05s.jpg",
+        "announcement-frames/00-05-54/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Weekly re-runs of triage across all issues",
+      "category": "feature",
+      "shortDescription": "Re-evaluates every open issue and PR at least weekly, notifying original reporters via Discord when their problem was already fixed on main.",
+      "longDescription": "Because triage is not a static process and a fix landing on main can resolve issues that were never read among many thousands of open ones, Clause Reaper [inferred] is re-run on every issue and pull request at least once a week (and could be run daily depending on token budget). A Discord integration then reports when an old issue has been closed, and the person who originally wrote the issue gets a response telling them it was fixed on main. The speaker emphasizes this is fully automated so he does not have to deal with it manually.",
+      "timestamp": "00:07:20",
+      "timestampSeconds": 440,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-07-20/frame-m05s.jpg",
+        "announcement-frames/00-07-20/frame-m10s.jpg",
+        "announcement-frames/00-07-20/frame-p05s.jpg",
+        "announcement-frames/00-07-20/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "A Discord crawler (\"disk crawl\") feeding a maintainer dashboard",
+      "category": "tool",
+      "shortDescription": "Aggregates GitHub and Discord activity, serializing the data into GitHub as a backup/distribution channel so maintainers without a bot token can access it.",
+      "longDescription": "To judge maintainer contributions beyond pushed code, the speaker built a Discord crawler [inferred \"disk crawl\"] that pulls in all Discord discussion data alongside GitHub issues for a non-public maintainer dashboard. Getting the data was framed as just another prompt-away problem, with the emphasis that building such tools is easy while maintaining them is the hard part. The integrated data feeds reports showing maintainer activity across both GitHub and Discord.",
+      "timestamp": "00:08:52",
+      "timestampSeconds": 532,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-08-52/frame-m05s.jpg",
+        "announcement-frames/00-08-52/frame-m10s.jpg",
+        "announcement-frames/00-08-52/frame-p05s.jpg",
+        "announcement-frames/00-08-52/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Release Bar dashboard",
+      "category": "tool",
+      "shortDescription": "Tracks days since last release across many projects to flag which need a new release or attention.",
+      "longDescription": "Release Bar is a dashboard for maintainers juggling many open source projects, letting the speaker filter specifically on how many days have passed since the last release. It helps decide when another release is needed and which projects need attention, since software that isn't constantly gardened effectively dies as dependencies and systems change. Like his other helper tools, it isn't system-critical, so he vibe-codes it without reading the code and iterates only if it proves useful.",
+      "timestamp": "00:15:42",
+      "timestampSeconds": 942,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-15-42/frame-m05s.jpg",
+        "announcement-frames/00-15-42/frame-m10s.jpg",
+        "announcement-frames/00-15-42/frame-p05s.jpg",
+        "announcement-frames/00-15-42/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Octopus, a GitHub token proxy",
+      "category": "tool",
+      "shortDescription": "Routes read-only, non-mutating calls through a GitHub App (raising the rate limit from 5,000 to 15,000 requests/hour) via Cloudflare, reserving the personal token for mutating actions.",
+      "longDescription": "Octopus is a GitHub token proxy the speaker built after repeatedly running out of API tokens while agents searched for related issues. An individual gets 5,000 API requests per hour, but a GitHub App gets 15,000, so Octopus intercepts `gh` calls and routes non-mutating, read-only actions on public repositories through a Cloudflare worker that uses the GitHub App's token instead of his personal one. Only mutating actions or calls that don't match fall back to his personal token, effectively raising his rate limit.",
+      "timestamp": "00:17:49",
+      "timestampSeconds": 1069,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-17-49/frame-m05s.jpg",
+        "announcement-frames/00-17-49/frame-m10s.jpg",
+        "announcement-frames/00-17-49/frame-p05s.jpg",
+        "announcement-frames/00-17-49/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Crab Box, a cloud test-sandbox wrapper",
+      "category": "tool",
+      "shortDescription": "rsyncs changes to beefy cloud VMs to run heavy or parallel tests, with fallback across ~20 providers; later extended with cross-platform OS testing, VNC, and screenshot/click/type computer-vision automation.",
+      "longDescription": "Crab Box was created after a third-party test-box service (\"Blacksmith\" [inferred]) became too unreliable, going down for hours a day while the team depended on it; it wraps such sandboxes with alternative providers. It spins up a beefy cloud VM, rsyncs the user's changes into an already-checked-out repo, and runs intensive or parallelized tests there instead of melting local machines. It gained automatic fallback (main provider, then AWS, then Azure [inferred]) growing to roughly 20 providers via pull requests, and was later extended with cross-platform OS testing, VNC, and screenshot/click/type computer-vision automation.",
+      "timestamp": "00:22:00",
+      "timestampSeconds": 1320,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-22-00/frame-m05s.jpg",
+        "announcement-frames/00-22-00/frame-m10s.jpg",
+        "announcement-frames/00-22-00/frame-p05s.jpg",
+        "announcement-frames/00-22-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Mantis, visual PR verification",
+      "category": "tool",
+      "shortDescription": "Spins up boxes to record video of a bug and its fix, verifying the change so the maintainer only watches the video and merges.",
+      "longDescription": "Mantis is an agent the speaker can ping on a pull request that spins up Crab Box instances to make a video of the bug, fix it, make a video of the fix, and actually look at the videos to verify the change. It builds on earlier work adding VNC and screenshot/click/type computer automation to Crab Box so the agent can drive a UI itself. The end-to-end flow lets him ping Clause Reaper [inferred] to create the PR, have Mantis do the visual verification, and then simply watch the video and merge.",
+      "timestamp": "00:25:43",
+      "timestampSeconds": 1543,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-25-43/frame-m05s.jpg",
+        "announcement-frames/00-25-43/frame-m10s.jpg",
+        "announcement-frames/00-25-43/frame-p05s.jpg",
+        "announcement-frames/00-25-43/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Auto Review",
+      "category": "tool",
+      "shortDescription": "Has the agent recursively call itself with fresh context to run multiple automated review rounds before committing or landing a PR, driven by one line in `agents.md`.",
+      "longDescription": "Auto Review automates the tedious manual loop of repeatedly running `/review`, fixing the found issues, and reviewing again, which the speaker once did ten times in a day. Rather than needing hooks or a forked Codex, it relies on agents being good at following instructions: a single line in his `agents.md` tells the agent to run auto review before it commits or lands a PR. It works by having the agent call its own CLI (Codex calling Codex) to get a fresh context, running many reliable rounds of review; an early recursion bug where Codex kept calling Codex was fixed.",
+      "timestamp": "00:27:45",
+      "timestampSeconds": 1665,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-27-45/frame-m05s.jpg",
+        "announcement-frames/00-27-45/frame-m10s.jpg",
+        "announcement-frames/00-27-45/frame-p05s.jpg",
+        "announcement-frames/00-27-45/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Core Patch",
+      "category": "tool",
+      "shortDescription": "Splits a large codebase into ~50 sections for separate agent review, useful for cleaning up legacy code.",
+      "longDescription": "Core Patch [inferred] addresses the fact that there is no `/review` for a project with a million lines of code because it is too much for an agent's context. The principle is simple: take a big project apart into roughly 50 subsections by feature or other division and have the agent review each separately. The speaker says you can download and run it on your project to find many interesting things, and that it is especially good at cleaning up legacy code bases, though it is not as perfect as it could be without scaling to thousands of Codex sessions.",
+      "timestamp": "00:34:56",
+      "timestampSeconds": 2096,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-34-56/frame-m05s.jpg",
+        "announcement-frames/00-34-56/frame-m10s.jpg",
+        "announcement-frames/00-34-56/frame-p05s.jpg",
+        "announcement-frames/00-34-56/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Crab Fleet, multiplayer Codex",
+      "category": "tool",
+      "shortDescription": "Runs Codex inside Crab Box so maintainers can view, talk to, and take over a shared agent session.",
+      "longDescription": "Crab Fleet [inferred] grew from the realization that since Crab Box already runs tests in a cloud box, Codex itself could run in there too, which it can. This produces \"multiplayer Codex\": when the speaker wants a second opinion he can send a link to a maintainer who can view the session, talk to it, and take over the session. He describes it as multiplayer clanking, built to remove the awkward intermediary of passing agent output back and forth through chat.",
+      "timestamp": "00:36:35",
+      "timestampSeconds": 2195,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-36-35/frame-m05s.jpg",
+        "announcement-frames/00-36-35/frame-m10s.jpg",
+        "announcement-frames/00-36-35/frame-p05s.jpg",
+        "announcement-frames/00-36-35/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Prompt-attachment contributor skill",
+      "category": "tool",
+      "shortDescription": "Asks contributors' agents to attach a privacy-filtered transcript to PRs, giving maintainers a signal of effort invested.",
+      "longDescription": "This is a skill for the project (\"open claw\" [inferred]) that solves the problem of not knowing how much effort went into a PR, since a one-line prompt can generate pages of content. Earlier contributor guidelines asking people to send their prompts failed because there was no good system, so now when a contributor's agent sends a pull request it offers to attach a privacy-filtered version of the prompt in exchange for a faster review. If the user agrees, the agent finds its own transcript on disk, cuts it to the interesting parts, and adds it to the PR, giving the maintainer a much better signal of effort invested.",
+      "timestamp": "00:32:27",
+      "timestampSeconds": 1947,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-32-27/frame-m05s.jpg",
+        "announcement-frames/00-32-27/frame-m10s.jpg",
+        "announcement-frames/00-32-27/frame-p05s.jpg",
+        "announcement-frames/00-32-27/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

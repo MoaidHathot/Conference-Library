@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "DEM362-R1",
+  "sessionTitle": "Building a Multi-Agent Workflow in Microsoft Fabric",
+  "sessionSpeakers": [
+    "Alexander Wachtel"
+  ],
+  "durationMinutes": 25,
+  "extractedAt": "2026-06-06T09:32:53.2810686+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Fabric IQ ontologies on top of semantic models",
+      "category": "feature",
+      "shortDescription": "Introduced around Ignite, ontologies add nodes, properties, and named relationships so agents understand data context beyond raw one-to-many SQL table relations",
+      "longDescription": "At Ignite, Microsoft introduced Fabric IQ, which adds ontologies alongside semantic models. Unlike raw SQL tables that only express one-to-many relations, ontologies provide nodes, properties, and named relationships so an agent or AI system can understand the actual meaning of the relationship between entities rather than just seeing 'one-to-N' cardinality. This mirrors how chat bots were built ten years ago using graphs and ontologies as a knowledge base, and aligns with Microsoft's medallion (bronze-to-silver-to-gold) data ingestion practice in Fabric.",
+      "timestamp": "00:12:19",
+      "timestampSeconds": 739,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-12-19/frame-m05s.jpg",
+        "announcement-frames/00-12-19/frame-m10s.jpg",
+        "announcement-frames/00-12-19/frame-p05s.jpg",
+        "announcement-frames/00-12-19/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Work IQ exposed as MCP servers",
+      "category": "service",
+      "shortDescription": "Specialized Work IQ endpoints (mail, Teams, calendar, Word, Copilot) wake up based on the user's natural-language query, callable from Copilot, Foundry, and Copilot Studio",
+      "longDescription": "Work IQ is exposed as MCP servers, with different specialized endpoints for Copilot, Teams, calendar, mail, Word, and so on. Depending on the user's natural-language query, the relevant Work IQ MCP wakes up—for example, asking to send or summarize an email activates the Work IQ Mail MCP, which then returns the information. The presenter demonstrates calling it from Copilot and from Foundry, where an IQ agent uses Work IQ Mail as a tool and a human-in-the-loop approval prompt appears because the Foundry agent is treated as external to the company's identity.",
+      "timestamp": "00:06:11",
+      "timestampSeconds": 371,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-06-11/frame-m05s.jpg",
+        "announcement-frames/00-06-11/frame-m10s.jpg",
+        "announcement-frames/00-06-11/frame-p05s.jpg",
+        "announcement-frames/00-06-11/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Foundry IQ as a permission-aware knowledge layer",
+      "category": "platform",
+      "shortDescription": "A single identity/knowledge layer where queries are checked against permissions, labels, and policies before returning data",
+      "longDescription": "Foundry IQ is described as a single identical (identity) knowledge layer that is part of Microsoft IQ alongside Work IQ and Fabric IQ. When a user queries knowledge through Foundry IQ, the request is checked against permissions, labels, and policies to determine whether that person is allowed to access the data. It governs access via context, permissions, and policies on top of the knowledge base.",
+      "timestamp": "00:02:28",
+      "timestampSeconds": 148,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-02-28/frame-m05s.jpg",
+        "announcement-frames/00-02-28/frame-m10s.jpg",
+        "announcement-frames/00-02-28/frame-p05s.jpg",
+        "announcement-frames/00-02-28/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Fabric data agent publishing to Foundry and Microsoft 365 Copilot",
+      "category": "feature",
+      "shortDescription": "Agents publish via workspace ID and data agent (artifact) ID, then connect as a tool in Foundry or appear directly in M365 Copilot",
+      "longDescription": "A Fabric data agent queries the lakehouse (or now an ontology created from a semantic model with one click) using SQL-like queries and returns results. When you publish the data agent, you can use it in Foundry by supplying two things—the workspace ID and the data agent (artifact) ID—or you can surface it directly in Microsoft 365 Copilot, where it appears as a usable agent. In Copilot it starts a new session via the data agent MCP, retrieves the data, and can even visualize results, with the data agent coding against the matplotlib library to provide dataframes and information.",
+      "timestamp": "00:14:47",
+      "timestampSeconds": 887,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-14-47/frame-m05s.jpg",
+        "announcement-frames/00-14-47/frame-m10s.jpg",
+        "announcement-frames/00-14-47/frame-p05s.jpg",
+        "announcement-frames/00-14-47/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Data Agent SDK with evaluation",
+      "category": "SDK",
+      "shortDescription": "The SDK enables configuration and evaluation runs (inline questions or CSV datasets against expected answers) that the portal alone cannot provide",
+      "longDescription": "The Data Agent SDK lets you select, configure, and run data agents beyond what the portal allows—the portal only supports creating the agent, adding instructions, and publishing, leaving wrong answers as a black box. The SDK's main advantage is the ability to run evaluation against an Azure OpenAI endpoint: you provide a base URL and a test token created earlier from an app registration, set up a client with the API version, and then query the data agent with questions and expected answers. This enables systematic evaluation of agent responses that the portal alone cannot provide.",
+      "timestamp": "00:19:37",
+      "timestampSeconds": 1177,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-19-37/frame-m05s.jpg",
+        "announcement-frames/00-19-37/frame-m10s.jpg",
+        "announcement-frames/00-19-37/frame-p05s.jpg",
+        "announcement-frames/00-19-37/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Agent 365 governance view",
+      "category": "feature",
+      "shortDescription": "A consolidated console showing all agents (here, 202) regardless of origin, with Purview activity explorer surfacing queries, sensitive-data access, and AI instructions over time",
+      "longDescription": "Agent 365 provides a consolidated governance view showing all agents regardless of where they originate—Foundry, Copilot Studio, Microsoft 365, or Fabric. In the demo it lists 202 agents (IQ and web agents from Foundry, a SaaS agent from Copilot Studio, data agents from Fabric), and shows which groups or users each agent is available to and which security mechanisms like Purview apply. Using the Purview activity explorer, the governance owner can go back in time (e.g., one month) to see queries, AI instructions, and where users accessed sensitive data, independent of the data's origin.",
+      "timestamp": "00:23:55",
+      "timestampSeconds": 1435,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-23-55/frame-m05s.jpg",
+        "announcement-frames/00-23-55/frame-m10s.jpg",
+        "announcement-frames/00-23-55/frame-p05s.jpg",
+        "announcement-frames/00-23-55/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}

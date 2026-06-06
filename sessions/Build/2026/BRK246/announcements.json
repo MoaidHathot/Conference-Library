@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "sessionCode": "BRK246",
+  "sessionTitle": "Foundry IQ: Fuel agents with enterprise knowledge and agentic retrieval",
+  "sessionSpeakers": [
+    "Pablo Castro",
+    "Allison Sparrow"
+  ],
+  "durationMinutes": 45,
+  "extractedAt": "2026-06-06T09:32:29.9328001+00:00",
+  "model": "claude-opus-4.8",
+  "windowSeconds": 90,
+  "announcements": [
+    {
+      "name": "Serverless Foundry IQ (public preview)",
+      "category": "service",
+      "shortDescription": "A no-friction tier that provisions in 10–20 seconds, scales to zero, charges only for storage and usage, and is production-ready for dynamic workloads including agents that create and delete services on the fly",
+      "longDescription": "Pablo Castro announced the public preview of a serverless version of Foundry IQ, which builds on the same state-of-the-art technology as the existing Foundry IQ stack but removes provisioning friction. The service takes 10-20 seconds to create, costs nothing until used, scales to zero when idle, and charges only for the storage the index consumes. It is production-ready and well-suited for dynamic workloads such as agents creating services, developer workflows, unit tests, and applications that create and delete services on the fly. This complements the existing dedicated capacity option, which remains better for steady, highly predictable workloads with isolated capacity.",
+      "timestamp": "00:09:00",
+      "timestampSeconds": 540,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-09-00/frame-m05s.jpg",
+        "announcement-frames/00-09-00/frame-m10s.jpg",
+        "announcement-frames/00-09-00/frame-p05s.jpg",
+        "announcement-frames/00-09-00/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Every knowledge base is exposed as an MCP server out of the box",
+      "category": "feature",
+      "shortDescription": "Created knowledge bases are immediately consumable via an MCP endpoint (`/MCP`) or API with no extra setup",
+      "longDescription": "The speaker demonstrated that after creating a knowledge base in a Foundry IQ instance (here named \"Demo 3\"), it can be consumed via APIs or, out-of-the-box, as an MCP server with no extra setup required to stand up or run it. He connected the knowledge base to a GitHub Copilot session as an agent by adding a new MCP server, using an MCP proxy pointing to the Foundry IQ instance backed by Azure Search (search.windows.net), referencing knowledge bases and appending \"/MCP\" to the API entry point. Like all the APIs, the MCP endpoint is versioned with the API version shipped that day.",
+      "timestamp": "00:03:16",
+      "timestampSeconds": 196,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-03-16/frame-m05s.jpg",
+        "announcement-frames/00-03-16/frame-m10s.jpg",
+        "announcement-frames/00-03-16/frame-p05s.jpg",
+        "announcement-frames/00-03-16/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Second-generation agentic retrieval",
+      "category": "feature",
+      "shortDescription": "The retrieval stack was revamped to exploit newer language models' tool-calling, showing material gains in recall, answer correctness, and completeness over BM25, hybrid search, and minimal mode",
+      "longDescription": "Foundry IQ includes a built-in agentic retrieval pipeline that performs query planning—deciding which data sources to look at and how to decompose the query—then runs searches, evaluates results, and iterates based on the configured retrieval effort before producing a final result for the agent. The team is now on the second generation of agentic retrieval, having significantly revamped the stack to take advantage of newer language models' improved tool-calling capabilities since around October of the prior year. Charts showed material improvements across a composition of metrics including recall, answer correctness, completeness, and reduced false \"don't know\" responses, compared against lexical (BM25) indexes, hybrid (vector plus lexical) search, and a minimal mode with agentic retrieval off. The trade-off is latency, since agentic retrieval can take several seconds compared to instantaneous search indexes.",
+      "timestamp": "00:32:08",
+      "timestampSeconds": 1928,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-32-08/frame-m05s.jpg",
+        "announcement-frames/00-32-08/frame-m10s.jpg",
+        "announcement-frames/00-32-08/frame-p05s.jpg",
+        "announcement-frames/00-32-08/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "New semantic ranker model",
+      "category": "model",
+      "shortDescription": "A newly trained ranker continues the team's multi-year ranking work, contributing to improved relevance",
+      "longDescription": "The speaker explained that improvements over prior iterations came from a mix of factors, including a newly trained semantic mode and semantic ranker. The team has been training rankers for a while and continues to push the boundary on ranking quality. Additional gains came from updating the retrieval workflow to fit current models, improving answer synthesis, and model-specific prompt tuning for tasks like MCP parameter binding. The science team behind this publishes detailed write-ups for those interested in information retrieval and evaluation methodology.",
+      "timestamp": "00:34:08",
+      "timestampSeconds": 2048,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-34-08/frame-m05s.jpg",
+        "announcement-frames/00-34-08/frame-m10s.jpg",
+        "announcement-frames/00-34-08/frame-p05s.jpg",
+        "announcement-frames/00-34-08/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Web IQ",
+      "category": "service",
+      "shortDescription": "Announced the prior day, providing web search grounding that can be added to a knowledge base as an MCP knowledge source",
+      "longDescription": "To enable agents to access the web, the speaker referenced Web IQ, which had been announced the prior day, as part of the broader IQ platform that also includes Work IQ (for M365 tenant data) and Fabric IQ (for analytics data such as data lakes and warehouses). Each IQ component works fine in isolation, so if data lives in a single place, that one component can be used directly. Foundry IQ supports integrating and connecting to the entire spectrum of the IQ platform out-of-the-box, making it easy to combine an agent's own application data with M365 content, analytics data, and web access.",
+      "timestamp": "00:20:55",
+      "timestampSeconds": 1255,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-20-55/frame-m05s.jpg",
+        "announcement-frames/00-20-55/frame-m10s.jpg",
+        "announcement-frames/00-20-55/frame-p05s.jpg",
+        "announcement-frames/00-20-55/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    },
+    {
+      "name": "Azure Content Understanding integration",
+      "category": "service",
+      "shortDescription": "Powers OCR, document layout, reading-order preservation, table extraction, and image verbalization during ingestion",
+      "longDescription": "Foundry IQ has been integrated with Azure Content Understanding to process files (such as PDFs) during ingestion and understand what is inside them before presenting content to agents. It provides high-end components for optical character recognition (OCR) and document layout, including preserving complex reading order and handling difficult tables that span pages or are sparse. This yields high-quality extraction from content that is then used to index and feed the models. The speaker demonstrated configuring a BLOB storage knowledge source with a system identity and selecting the \"standard\" content extraction option, which uses the full content understanding capability, alongside automatic chunking and vectorization.",
+      "timestamp": "00:16:50",
+      "timestampSeconds": 1010,
+      "speakers": [],
+      "frames": [
+        "announcement-frames/00-16-50/frame-m05s.jpg",
+        "announcement-frames/00-16-50/frame-m10s.jpg",
+        "announcement-frames/00-16-50/frame-p05s.jpg",
+        "announcement-frames/00-16-50/frame-p10s.jpg"
+      ],
+      "explicitLinks": [],
+      "codeSnippets": [],
+      "isInferred": false
+    }
+  ],
+  "errors": []
+}
