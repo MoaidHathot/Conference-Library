@@ -1156,12 +1156,16 @@ if ($annEnabled) {
                     $srcLabel = switch ($l.source) {
                         'manual'     { 'manual' }
                         'transcript' { 'transcript' }
+                        'search'     { 'search-suggested' }
                         'model'      { 'model-suggested' }
                         default      { $l.source }
                     }
                     $srcDetail = ''
                     if ($l.source -eq 'transcript' -and $l.sourceSession) {
                         $srcDetail = " <span class=`"source-detail`">via <a href=`"../sessions/$(HtmlEncode $l.sourceSession).html`">$(HtmlEncode $l.sourceSession)</a>$(if ($l.sourceTime) { ' @ ' + (HtmlEncode $l.sourceTime) } else { '' })</span>"
+                    }
+                    elseif ($l.source -eq 'search' -and $l.sourceProvider) {
+                        $srcDetail = " <span class=`"source-detail`">via $(HtmlEncode $l.sourceProvider)$(if ($l.sourceConfidence) { ' &middot; ' + (HtmlEncode $l.sourceConfidence) + ' confidence' } else { '' })</span>"
                     }
                     [void]$sectionsHtml.AppendLine(
                         '<li><span class="link-kind">' + (HtmlEncode $kg.Name) + '</span>' +
