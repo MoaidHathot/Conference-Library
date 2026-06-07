@@ -26,6 +26,7 @@
     const sortSel      = $('#spk-filter-sort');
     const tagPills     = $('#spk-filter-tag-pills');
     const bucketPills  = document.querySelectorAll('#spk-filter-activity [data-bucket]');
+    const recordedBtn  = $('#spk-recorded-toggle');
     const noResults    = $('#spk-no-results');
 
     function escapeAttr(s) { return String(s == null ? '' : s).replace(/[&"<>]/g, c => ({'&':'&amp;','"':'&quot;','<':'&lt;','>':'&gt;'}[c])); }
@@ -106,10 +107,19 @@
         const v = (k) => u.searchParams.get(k);
         const splitCsv = (s) => (s == null || s === '') ? [] : s.split(',').filter(Boolean);
         return {
-            search:  v('q')    ?? '',
-            sortBy:  v('sort') ?? 'sessions',
-            buckets: new Set(splitCsv(v('bucket'))),
-            tags:    new Set(splitCsv(v('tag')))
+            search:   v('q')        ?? '',
+            sortBy:   v('sort')     ?? 'sessions',
+            buckets:  new Set(splitCsv(v('bucket'))),
+            tags:     new Set(splitCsv(v('tag'))),
+            // Default OFF on the speakers index (mirrors the demo-repo
+            // toggle on the sessions catalog rather than the sessions
+            // "Recorded only" toggle, which is default-on). Reason: the
+            // speakers index isn't dominated by table talks / labs in the
+            // same way the sessions catalog is - most speakers do have at
+            // least one recorded session - so on-by-default would offer
+            // little value while hiding a slice of the catalog from
+            // first-time visitors. Off-by-default keeps it a sharp opt-in.
+            recorded: v('recorded') === '1'
         };
     }
     function writeUrlState() {
@@ -118,10 +128,11 @@
             if (val == null || val === '' || val === false) u.searchParams.delete(k);
             else u.searchParams.set(k, val);
         };
-        set('q',      state.search.trim());
-        set('sort',   state.sortBy === 'sessions' ? '' : state.sortBy); // omit default
-        set('bucket', state.buckets.size ? Array.from(state.buckets).join(',') : '');
-        set('tag',    state.tags.size    ? Array.from(state.tags).join(',')    : '');
+        set('q',        state.search.trim());
+        set('sort',     state.sortBy === 'sessions' ? '' : state.sortBy); // omit default
+        set('bucket',   state.buckets.size ? Array.from(state.buckets).join(',') : '');
+        set('tag',      state.tags.size    ? Array.from(state.tags).join(',')    : '');
+        set('recorded', state.recorded ? '1' : ''); // omit when default-off
         window.history.replaceState(null, '', u.toString());
     }
 
@@ -167,6 +178,25 @@
         });
     });
 
+    // ---- recorded-only toggle ----
+    // Older speakers-catalog.json files (built before this field existed)
+    // won't have hasRecordedSession; hide the pill rather than break the
+    // page in that case.
+    const anyRecorded = speakers.some(s => s.hasRecordedSession === true);
+    if (recordedBtn) {
+        if (!anyRecorded) {
+            recordedBtn.hidden = true;
+            state.recorded = false;
+        } else {
+            recordedBtn.classList.toggle('is-on', state.recorded);
+            recordedBtn.addEventListener('click', () => {
+                state.recorded = !state.recorded;
+                recordedBtn.classList.toggle('is-on', state.recorded);
+                render();
+            });
+        }
+    }
+
     // ---- search + sort ----
     let searchDebounce;
     search.addEventListener('input', () => {
@@ -181,6 +211,7 @@
         const searchSet = runSearch(state.search);
         let rows = speakers.filter(s => {
             if (searchSet && !searchSet.has(s.id)) return false;
+            if (state.recorded && s.hasRecordedSession !== true) return false;
             if (state.buckets.size > 0) {
                 if (!state.buckets.has(bucketOf(s.sessionCount))) return false;
             }

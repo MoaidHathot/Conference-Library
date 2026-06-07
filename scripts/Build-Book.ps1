@@ -934,7 +934,12 @@ foreach ($dir in $sessionDirs) {
             # Prefer the raw (session-spoken) name over the canonical entity
             # name; chapters are about what the speaker said in the moment.
             $label = if ($mn.rawName) { $mn.rawName } else { $mn.shortDescription }
-            "<li><button type=`"button`" class=`"ts-play chapter-jump`" data-ts=`"$(HtmlEncode $mn.timestamp)`" title=`"Watch from $(HtmlEncode $mn.timestamp) (-5s)`"><span class=`"chapter-ts`">$(HtmlEncode $mn.timestamp)</span><span class=`"chapter-title`">$(HtmlEncode $label)</span></button></li>"
+            # title= carries both the seek hint AND the full label, so a
+            # long mention name that overflows the 2-line CSS clamp on
+            # desktop (or wraps awkwardly on mobile) can still be read in
+            # the native hover tooltip without leaving the chapters strip.
+            $tooltip = "Watch from $($mn.timestamp) (-5s): $label"
+            "<li><button type=`"button`" class=`"ts-play chapter-jump`" data-ts=`"$(HtmlEncode $mn.timestamp)`" title=`"$(HtmlEncode $tooltip)`"><span class=`"chapter-ts`">$(HtmlEncode $mn.timestamp)</span><span class=`"chapter-title`">$(HtmlEncode $label)</span></button></li>"
         }
         if ($chapterItems) {
             $chaptersHtml = @"
@@ -1272,6 +1277,19 @@ $($chips -join "`n")
     # the JSON scalar "Tag" - the page-side app.js expects an array.
     $tagsArr   = @(if ($m.tags)   { $m.tags   | ForEach-Object { "$_" } | Where-Object { $_ } })
     $topicsArr = @(if ($m.topics) { $m.topics | ForEach-Object { "$_" } | Where-Object { $_ } })
+    # Themes attached to this session by Resolve-Themes (1-3 names per
+    # session). Surfaces in the catalog so app.js can render a Themes pill
+    # group and let users filter the catalog without leaving for the
+    # per-theme landings.
+    $themesArr = @(if ($themesEnabled -and $themesBySession.ContainsKey($code)) {
+                       $themesBySession[$code] | ForEach-Object { "$($_.name)" }
+                   })
+    # Demo-repo signal: drives the "Repo" badge on the session card and
+    # (eventually) a "Has demo repo" filter pill. demoRepoUrl is null when
+    # the session isn't in the curated microsoft/build26-next-steps list.
+    $sessionDemoRepoUrl = if ($demoReposEnabled -and $demoRepoBySession.ContainsKey($code)) {
+                              $demoRepoBySession[$code].url
+                          } else { $null }
 
     $indexCatalog.Add([pscustomobject]@{
         code          = $code
@@ -1280,6 +1298,7 @@ $($chips -join "`n")
         speakerNames  = $m.speakerNames
         tags          = $tagsArr
         topics        = $topicsArr
+        themes        = $themesArr
         startDateTime = $startIso
         endDateTime   = $endIso
         durationMins  = $m.durationMinutes
@@ -1289,6 +1308,8 @@ $($chips -join "`n")
         # which hides ~233 by-design unrecorded sessions (Table Talks, Labs,
         # Lightning Talks) from the default view.
         hasVideo      = [bool]($hasAnyVideo -or $hasTranscript -or $framesArr.Count -gt 0)
+        hasDemoRepo   = [bool]$sessionDemoRepoUrl
+        demoRepoUrl   = $sessionDemoRepoUrl
         # Cover thumbnail for the index card; null when the session has no
         # frames (Table Talks, Labs, sessions still missing duration). The
         # path is relative to docs/<Conference>/<EventId>/index.html.
@@ -1930,14 +1951,26 @@ if ($speakersEnabled) {
 
     # ---- slim per-speaker catalog (drives speakers/index.html) ----
     $speakerCatalogItems = foreach ($sp in $speakersData) {
+        # Count how many of this speaker's sessions have a real video URL.
+        # Drives the "Recorded only" toggle on the speakers index, which
+        # hides ~150 speakers whose every session is a by-design unrecorded
+        # Table Talk / Lab / Lightning Talk and surfaces the ones with at
+        # least one watchable session. Mirrors the same toggle on the
+        # sessions catalog. Uses the stricter Resolve-Speakers.ps1 hasVideo
+        # (URL-only) rather than the catalog version (which also counts a
+        # transcript or sampled frames) - if you can't press play, it
+        # shouldn't count as "recorded" here.
+        $recordedCount = @($sp.sessions | Where-Object { $_.hasVideo }).Count
         [pscustomobject][ordered]@{
-            id            = $sp.id
-            name          = $sp.name
-            slug          = $sp.slug
-            sessionCount  = $sp.sessionCount
-            tags          = $sp.tags
-            topics        = $sp.topics
-            nameVariants  = $sp.nameVariants
+            id                   = $sp.id
+            name                 = $sp.name
+            slug                 = $sp.slug
+            sessionCount         = $sp.sessionCount
+            recordedSessionCount = $recordedCount
+            hasRecordedSession   = [bool]($recordedCount -gt 0)
+            tags                 = $sp.tags
+            topics               = $sp.topics
+            nameVariants         = $sp.nameVariants
         }
     }
     $speakerCatalogDoc = [pscustomobject]@{

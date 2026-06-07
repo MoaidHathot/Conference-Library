@@ -22,10 +22,12 @@
     const meta        = $('#results-meta');
     const search      = $('#filter-search');
     const filterTy    = $('#filter-type');
+    const themePills  = $('#filter-theme-pills');
     const topicPills  = $('#filter-topic-pills');
     const tagPills    = $('#filter-tag-pills');
     const statusBtns  = document.querySelectorAll('#filter-status [data-status]');
     const recordedBtn = $('#recorded-toggle');
+    const demoRepoBtn = $('#demo-repo-toggle');
     const noResults   = $('#no-results');
 
     // ---- helpers ----
@@ -81,8 +83,10 @@
     //   type=...  sessionType (single value)
     //   topic=...,...   chosenTopics (comma-separated)
     //   tag=...,...     chosenTags
+    //   theme=...,...   chosenThemes
     //   status=...      statusFilter ('all'|'upcoming'|'live'|'ended')
     //   recorded=0|1    recordedOnly (default 1)
+    //   repo=1          hasDemoRepoOnly (default 0)
     function parseUrlState() {
         const u = new URL(window.location.href);
         const v = (k) => u.searchParams.get(k);
@@ -92,8 +96,10 @@
             type:     v('type')     ?? '',
             topics:   splitCsv(v('topic')),
             tags:     splitCsv(v('tag')),
+            themes:   splitCsv(v('theme')),
             status:   v('status')   ?? 'all',
-            recorded: v('recorded') !== '0' // default on
+            recorded: v('recorded') !== '0', // default on
+            demoRepo: v('repo')     === '1'  // default off
         };
     }
     function writeUrlState() {
@@ -106,8 +112,10 @@
         set('type',   filterTy.value);
         set('topic',  chosenTopics.size ? Array.from(chosenTopics).join(',') : '');
         set('tag',    chosenTags.size   ? Array.from(chosenTags).join(',')   : '');
+        set('theme',  chosenThemes.size ? Array.from(chosenThemes).join(',') : '');
         set('status', statusFilter === 'all' ? '' : statusFilter);
         set('recorded', recordedOnly ? '' : '0'); // omit when default
+        set('repo',     demoRepoOnly ? '1' : ''); // omit when default
         // replaceState avoids polluting browser history with every keystroke;
         // back-button still works to leave the page.
         window.history.replaceState(null, '', u.toString());
@@ -227,6 +235,17 @@
 
     const chosenTopics = new Set(initial.topics);
     const chosenTags   = new Set(initial.tags);
+    const chosenThemes = new Set(initial.themes);
+    // Themes pill group is only emitted when at least one session in the
+    // catalog has a non-empty themes array. Events without the themes
+    // pipeline (Resolve-Themes hasn't been run) silently get no pill bar
+    // instead of an empty "Themes" label with zero pills.
+    const allThemes = unique(catalog.sessions.map(s => s.themes));
+    let updateThemeCounts = () => {};
+    if (themePills && allThemes.length > 0) {
+        updateThemeCounts = buildPills(themePills, 'Themes',
+            allThemes, s => s.themes, chosenThemes, () => update());
+    }
     const updateTopicCounts = buildPills(topicPills, 'Topics',
         unique(catalog.sessions.map(s => s.topics)), s => s.topics, chosenTopics, () => update());
     const updateTagCounts = buildPills(tagPills, 'Tags',
@@ -259,6 +278,27 @@
         });
     }
 
+    // "Has repo" toggle - defaults off. Filters down to the ~60 sessions
+    // that have a curated demo / lab repo from microsoft/build26-next-steps.
+    // The toggle is hidden when no session in the catalog carries a
+    // demoRepoUrl, so events without the demo-repos pipeline don't show
+    // a dead button.
+    let demoRepoOnly = initial.demoRepo;
+    const anyDemoRepos = catalog.sessions.some(s => s.hasDemoRepo === true);
+    if (demoRepoBtn) {
+        if (!anyDemoRepos) {
+            demoRepoBtn.hidden = true;
+            demoRepoOnly = false;
+        } else {
+            demoRepoBtn.classList.toggle('is-on', demoRepoOnly);
+            demoRepoBtn.addEventListener('click', () => {
+                demoRepoOnly = !demoRepoOnly;
+                demoRepoBtn.classList.toggle('is-on', demoRepoOnly);
+                update();
+            });
+        }
+    }
+
     // ---- filtering + render ----
     function applyFilters(sessions) {
         const now = new Date();
@@ -268,6 +308,7 @@
             // so the index doesn't bury keynotes/breakouts under ~233
             // metadata-only Table Talks / Labs / Lightning Talks.
             if (recordedOnly && s.hasVideo === false) return false;
+            if (demoRepoOnly && s.hasDemoRepo !== true) return false;
             if (filterTy.value && s.sessionType !== filterTy.value) return false;
             if (chosenTopics.size > 0) {
                 const topics = toArray(s.topics);
@@ -276,6 +317,10 @@
             if (chosenTags.size > 0) {
                 const tags = toArray(s.tags);
                 for (const t of chosenTags) { if (!tags.includes(t)) return false; }
+            }
+            if (chosenThemes.size > 0) {
+                const themes = toArray(s.themes);
+                for (const t of chosenThemes) { if (!themes.includes(t)) return false; }
             }
             if (statusFilter !== 'all') {
                 const st = sessionStatus(s, now);
@@ -318,6 +363,14 @@
             const badgeHtml = st.label
                 ? `<span class="status-badge ${badgeCls}">${escapeText(st.label)}</span>`
                 : '';
+            // Demo-repo badge: links straight to the curated repo so visitors
+            // can jump to lab code without opening the session page. Sits
+            // beside the status badge; .stopPropagation isn't needed because
+            // the wrapping <a> uses the card-thumb-link selector, not the
+            // entire <li>. Empty string when the session has no curated repo.
+            const repoBadgeHtml = s.hasDemoRepo && s.demoRepoUrl
+                ? `<a class="status-badge is-demo-repo" href="${escapeAttr(s.demoRepoUrl)}" target="_blank" rel="noopener" title="Open the session demo / lab repository on GitHub">Repo</a>`
+                : '';
             // Time-and-duration line: prefer the precise wall-clock start
             // when the session has a real schedule, fall back to the
             // duration on its own for ad-hoc on-demand uploads.
@@ -346,6 +399,7 @@
                 <div class="card-body">
                   <div class="card-row-top">
                     <span class="code">${escapeText(s.code)} &middot; ${escapeText(s.sessionType ?? '')}</span>
+                    ${repoBadgeHtml}
                     ${badgeHtml}
                   </div>
                   <h3><a href="sessions/${encodeURIComponent(s.code)}.html">${escapeText(s.title)}</a></h3>
@@ -383,6 +437,7 @@
         render(filtered);
         updateTopicCounts(filtered);
         updateTagCounts(filtered);
+        updateThemeCounts(filtered);
         // Persist the current filter state into the URL so a refresh or
         // shared link reproduces the same view.
         writeUrlState();

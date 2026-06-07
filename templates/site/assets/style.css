@@ -645,6 +645,11 @@ details.transcript .transcript-body {
 .status-badge.is-upcoming { background: #fff3cd; color: #7a5b00; }
 .status-badge.is-live     { background: #d4edda; color: #155724; animation: pulse 1.6s ease-in-out infinite; }
 .status-badge.is-ended    { background: #e2e3e5; color: #383d41; }
+/* Demo-repo badge sits beside the status badge on the session card.
+   Light blue tint distinguishes it from the live/upcoming/ended trio,
+   and the <a> hover lifts it to full accent so it reads as clickable. */
+.status-badge.is-demo-repo { background: #ddeaff; color: #1a4f9c; text-decoration: none; }
+.status-badge.is-demo-repo:hover { background: #1a4f9c; color: #fff; text-decoration: none; }
 .status-detail { color: var(--c-text-muted); }
 @keyframes pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(40,167,69,0.4); }
@@ -1716,9 +1721,18 @@ details.transcript .transcript-body {
 }
 .chapter-list .chapter-title {
     flex: 1 1 auto;
+    /* Allow up to two lines on desktop instead of hard-truncating with a
+       single-line ellipsis: 38% of mention labels are >40 chars and ~6%
+       are >60 chars, so a single line was clipping a lot of signal. The
+       chapter-jump button (.chapter-list .chapter-jump) is the parent
+       flex container and already has height:auto, so the row grows to
+       fit the second line cleanly. Mobile keeps full wrap (rule below
+       in the @media (max-width: 720px) block). */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    word-break: break-word;
 }
 
 /* ============================================================
@@ -1787,6 +1801,8 @@ details.transcript .transcript-body {
     .status-badge.is-upcoming { background: #4a3b00; color: #ffe28a; }
     .status-badge.is-live     { background: #134221; color: #a0e0b0; }
     .status-badge.is-ended    { background: #303338; color: #b0b3b8; }
+    .status-badge.is-demo-repo       { background: #13345e; color: #a7c7ff; }
+    .status-badge.is-demo-repo:hover { background: #a7c7ff; color: #0d2748; }
 
     /* Entity category chips are already small + pastel; their light
        backgrounds read as "blown-out" on dark, so dim them. */
@@ -1811,6 +1827,27 @@ details.transcript .transcript-body {
     .hub-card-announcements:hover .hub-card-stat,
     .hub-card-announcements:hover .hub-card-cta,
     .hub-result-badge-announcement              { color: #d6a86b; background: #3a2a10; }
+
+    /* Theme palette (teal) was tuned for light surfaces too. Invert the
+       fill to a deep teal and lift the text to a soft mint so the per-
+       session theme chips, the themes entity-cat chip on each /themes/
+       page, and the themes hub card hover all stay legible on dark. */
+    .tag-theme,
+    .entity-cat-theme,
+    .hub-result-badge-theme        { background: #103a28; color: #8fd4b3; }
+    .tag-theme:hover               { background: #8fd4b3; color: #0c2e1f; }
+    .hub-card-themes:hover         { border-color: #8fd4b3; }
+    .hub-card-themes:hover .hub-card-stat,
+    .hub-card-themes:hover .hub-card-cta          { color: #8fd4b3; }
+
+    /* Speakers palette (blue-violet) needs the same treatment so the
+       per-event view-switcher Speakers tab + the speakers hub card +
+       the speaker entity-cat chip read clearly on dark. */
+    .entity-cat-speaker,
+    .hub-result-badge-speaker      { background: #1f1f4a; color: #c5c5ff; }
+    .hub-card-speakers:hover       { border-color: #b7b7ff; }
+    .hub-card-speakers:hover .hub-card-stat,
+    .hub-card-speakers:hover .hub-card-cta        { color: #b7b7ff; }
 
     /* Lightbox / dialog overlay backdrop stays dark — no change needed. */
     /* Primary button keeps the accent fill; just darken the hover. */
