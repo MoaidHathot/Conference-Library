@@ -89,6 +89,44 @@ $themeBody       = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'theme.b
     Get-Content -Raw -LiteralPath (Join-Path $templatesRoot 'theme.body.html')
 } else { $null }
 
+# Cache-bust asset references in every template by appending a short
+# content hash as a query string (e.g. assets/style.css?v=fb29bf53). The
+# hash only changes when the underlying asset file actually changes, so
+# the browser can cache aggressively until a real update lands. This
+# avoids the classic "deploy looks broken until I hard-refresh" problem
+# where index.html updates but the cached style.css doesn't.
+$assetsDir = Join-Path $templatesRoot 'assets'
+$assetVersions = @{}
+if (Test-Path -LiteralPath $assetsDir) {
+    foreach ($a in Get-ChildItem -LiteralPath $assetsDir -File) {
+        $assetVersions[$a.Name] = (Get-FileHash -LiteralPath $a.FullName -Algorithm SHA256).Hash.Substring(0, 8).ToLower()
+    }
+}
+function Add-AssetCacheBusters {
+    param([string]$tpl)
+    if ([string]::IsNullOrEmpty($tpl)) { return $tpl }
+    foreach ($assetName in $assetVersions.Keys) {
+        $version = $assetVersions[$assetName]
+        # Match "assets/<name>" not already followed by ? (idempotent).
+        # Use a non-regex string replace pair to dodge any special chars
+        # in filenames (lunr.min.js etc.).
+        $needle  = "assets/$assetName"
+        $replace = "assets/$assetName`?v=$version"
+        $tpl = $tpl.Replace($needle, $replace)
+    }
+    return $tpl
+}
+$layoutTpl         = Add-AssetCacheBusters $layoutTpl
+$indexBody         = Add-AssetCacheBusters $indexBody
+$sessionBody       = Add-AssetCacheBusters $sessionBody
+$annLandingBody    = Add-AssetCacheBusters $annLandingBody
+$entityBody        = Add-AssetCacheBusters $entityBody
+$eventHubBody      = Add-AssetCacheBusters $eventHubBody
+$speakersIndexBody = Add-AssetCacheBusters $speakersIndexBody
+$speakerBody       = Add-AssetCacheBusters $speakerBody
+$themesIndexBody   = Add-AssetCacheBusters $themesIndexBody
+$themeBody         = Add-AssetCacheBusters $themeBody
+
 # ---- helpers ----
 
 function HtmlEncode {
@@ -1198,7 +1236,8 @@ $($chips -join "`n")
     # finishes loading.
     $extraBodyScripts = ''
     if (-not $m.downloadVideoUrl -and $m.hlsUrl) {
-        $extraBodyScripts = '<script defer src="../assets/hls.min.js"></script>'
+        $hlsVersion = if ($assetVersions['hls.min.js']) { "?v=$($assetVersions['hls.min.js'])" } else { '' }
+        $extraBodyScripts = "<script defer src=`"../assets/hls.min.js$hlsVersion`"></script>"
     }
 
     # OG/Twitter meta values. Title = code + title; description trimmed from
