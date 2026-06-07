@@ -63,6 +63,9 @@ $annLandingBody  = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'announc
 $entityBody      = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'entity.body.html')) {
     Get-Content -Raw -LiteralPath (Join-Path $templatesRoot 'entity.body.html')
 } else { $null }
+$eventHubBody    = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'event-hub.body.html')) {
+    Get-Content -Raw -LiteralPath (Join-Path $templatesRoot 'event-hub.body.html')
+} else { $null }
 
 # ---- helpers ----
 
@@ -919,13 +922,19 @@ $($chips -join "`n")
     $pageHtml = Render-Template $layoutTpl @{
         TITLE             = (HtmlEncode "$code - $($m.title)")
         ASSETS_PREFIX     = '../'
+        # After the hub redesign the per-event root is the hub, and the
+        # sessions catalog lives at sessions/index.html alongside the
+        # per-session pages. Breadcrumb adds a Sessions level so visitors
+        # can step back to either the catalog or the hub.
         BREADCRUMB        = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
                             "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
                             "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; " +
+                            "<a href=`"index.html`">Sessions</a> &raquo; " +
                             "$(HtmlEncode $code)</nav>"
         HEADER_TITLE      = "$(HtmlEncode $code) &mdash; $(HtmlEncode $m.title)"
-        NAV_HTML          = '<nav><a href="../index.html">All sessions in ' + (HtmlEncode "$Conference $EventId") + '</a>' +
+        NAV_HTML          = '<nav><a href="index.html">All sessions</a>' +
                             $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
+                            '<a href="../index.html">Event hub</a>' +
                             '</nav>'
         SOURCE_NOTE       = " from <code>sessions/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/&lt;CODE&gt;/rich-manifest.json</code>"
         EXTRA_HEAD        = ''
@@ -1019,8 +1028,15 @@ $($chips -join "`n")
 }
 
 # --------------------------------------------------------------------------
-# Index page + search index.
+# Sessions catalog (the page that lists every session card, with filter
+# pills + Lunr-powered search). After the hub redesign this lives at
+# /Build/2026/sessions/index.html alongside the per-session pages, NOT at
+# /Build/2026/index.html - the per-event root is now the hub (see further
+# below).
 # --------------------------------------------------------------------------
+
+$sessionsCatalogDir = Join-Path $OutputRoot 'sessions'
+New-Item -ItemType Directory -Path $sessionsCatalogDir -Force | Out-Null
 
 $catalogJson = [pscustomobject]@{
     schemaVersion = 1
@@ -1029,28 +1045,171 @@ $catalogJson = [pscustomobject]@{
     total         = $indexCatalog.Count
     sessions      = @($indexCatalog | Sort-Object code)
 }
-$catalogJson | ConvertTo-Json -Depth 6 -Compress | Set-Content -LiteralPath (Join-Path $OutputRoot 'catalog.json') -Encoding utf8
+$catalogJson | ConvertTo-Json -Depth 6 -Compress | Set-Content -LiteralPath (Join-Path $sessionsCatalogDir 'catalog.json') -Encoding utf8
 
-Build-LunrIndex -Documents $lunrDocs.ToArray() -OutputPath (Join-Path $OutputRoot 'search-index.json')
+Build-LunrIndex -Documents $lunrDocs.ToArray() -OutputPath (Join-Path $sessionsCatalogDir 'search-index.json')
 
-$indexPageBody = Render-Template $indexBody @{
-    HERO_HEADING = (HtmlEncode "$Conference $EventId sessions")
-    TOTAL_COUNT  = if ($indexCatalog.Count -eq 1) { '1 session' } else { "$($indexCatalog.Count) sessions" }
+# View-switcher: shared tab strip emitted at the top of both catalog
+# landings (sessions/index.html and announcements/index.html). Active tab
+# highlighted; the other navigates with one click. The hub link returns
+# to the per-event root.
+$annCount = if ($annEnabled) { $annEntities.Count } else { 0 }
+function Render-ViewSwitcher {
+    param([string]$Active)   # 'sessions' or 'announcements'
+    $sCount = $script:indexCatalog.Count
+    $aCount = $script:annCount
+    $sActive = if ($Active -eq 'sessions')      { ' is-active' } else { '' }
+    $aActive = if ($Active -eq 'announcements') { ' is-active' } else { '' }
+    $aTab = if ($script:annEnabled) {
+        "<a href=`"../announcements/index.html`" class=`"view-switcher-tab$aActive`">Announcements <span class=`"view-switcher-count`">$aCount</span></a>"
+    } else { '' }
+    return @"
+<nav class="view-switcher" aria-label="Browse mode">
+    <a href="../index.html" class="view-switcher-home">&larr; Event hub</a>
+    <a href="../sessions/index.html" class="view-switcher-tab$sActive">Sessions <span class="view-switcher-count">$sCount</span></a>
+    $aTab
+</nav>
+"@
 }
-$indexHtml = Render-Template $layoutTpl @{
-    TITLE          = "$Conference $EventId - Conference Library"
-    ASSETS_PREFIX  = ''
-    BREADCRUMB     = '<nav class="breadcrumb"><a href="../../index.html">Conference Library</a> &raquo; ' +
-                     "<a href=`"../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
-                     "$(HtmlEncode $EventId)</nav>"
-    HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId)"
-    NAV_HTML       = if ($annEnabled) { '<nav><a href="announcements/index.html">Announcements</a></nav>' } else { '' }
+
+$sessionsIndexBody = Render-Template $indexBody @{
+    HERO_HEADING        = (HtmlEncode "$Conference $EventId sessions")
+    TOTAL_COUNT         = if ($indexCatalog.Count -eq 1) { '1 session' } else { "$($indexCatalog.Count) sessions" }
+    VIEW_SWITCHER_HTML  = Render-ViewSwitcher -Active 'sessions'
+}
+$sessionsIndexHtml = Render-Template $layoutTpl @{
+    TITLE          = "Sessions - $Conference $EventId - Conference Library"
+    ASSETS_PREFIX  = '../'
+    BREADCRUMB     = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
+                     "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
+                     "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; Sessions</nav>"
+    HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId) &mdash; Sessions"
+    NAV_HTML       = '<nav>' + $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
+                     '<a href="../index.html">Event hub</a></nav>'
     SOURCE_NOTE    = " from <code>sessions/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/&lt;CODE&gt;/rich-manifest.json</code>"
     EXTRA_HEAD     = ''
-    BODY           = $indexPageBody
+    BODY           = $sessionsIndexBody
     GENERATED_AT   = HtmlEncode $generatedAt
 }
-Set-Content -LiteralPath (Join-Path $OutputRoot 'index.html') -Value $indexHtml -Encoding utf8
+Set-Content -LiteralPath (Join-Path $sessionsCatalogDir 'index.html') -Value $sessionsIndexHtml -Encoding utf8
+
+# --------------------------------------------------------------------------
+# Per-event HUB page at /<Conf>/<Event>/index.html. Two co-equal entry
+# points (Sessions, Announcements) plus a federated search box that
+# queries a slim merged catalog (hub-catalog.json) of all sessions +
+# all canonical entities. The hub-catalog is generated below from the
+# in-memory $indexCatalog + $annEntities, so it always reflects the
+# current event state without a separate pass.
+# --------------------------------------------------------------------------
+
+if ($eventHubBody) {
+    # Build a slim merged catalog for the hub-level federated search. We
+    # include the minimal fields needed to render a result card and a
+    # flattened searchableText blob the JS can substring-filter against.
+    $hubItems = New-Object 'System.Collections.Generic.List[object]'
+
+    foreach ($s in ($indexCatalog | Sort-Object code)) {
+        $tagsStr   = if ($s.tags)   { (@($s.tags)   -join ' ') } else { '' }
+        $topicsStr = if ($s.topics) { (@($s.topics) -join ' ') } else { '' }
+        $hubItems.Add([pscustomobject][ordered]@{
+            id             = "session:$($s.code)"
+            type           = 'session'
+            url            = "sessions/$($s.code).html"
+            title          = "$($s.code) - $($s.title)"
+            subtitle       = if ($s.speakerNames) { "$($s.speakerNames)" } else { '' }
+            searchableText = "$($s.code) $($s.title) $($s.speakerNames) $tagsStr $topicsStr $($s.sessionType)"
+        }) | Out-Null
+    }
+
+    if ($annEnabled) {
+        foreach ($e in $annEntities) {
+            $slug = EntitySlug $e.id
+            $aliasesStr = if ($e.aliases) { (@($e.aliases) -join ' ') } else { '' }
+            $hubItems.Add([pscustomobject][ordered]@{
+                id             = $e.id
+                type           = 'announcement'
+                url            = "announcements/$slug.html"
+                title          = "$($e.canonicalName)"
+                subtitle       = "$(CategoryLabel $e.category) &middot; $($e.mentionCount) mention$(if ($e.mentionCount -eq 1) { '' } else { 's' })"
+                searchableText = "$($e.canonicalName) $aliasesStr $($e.category) $($e.tagline)"
+            }) | Out-Null
+        }
+    }
+
+    $hubCatalogDoc = [pscustomobject]@{
+        schemaVersion = 1
+        conference    = $Conference
+        eventId       = $EventId
+        generatedAt   = $generatedAt
+        sessionCount  = $indexCatalog.Count
+        annCount      = $annCount
+        items         = $hubItems.ToArray()
+    }
+    $hubCatalogDoc | ConvertTo-Json -Depth 6 -Compress |
+        Set-Content -LiteralPath (Join-Path $OutputRoot 'hub-catalog.json') -Encoding utf8
+
+    # Hero context paragraph: tweak the wording here without re-rendering
+    # the entire template every time.
+    $hubContext = "A community-maintained reference of $(HtmlEncode $Conference) $(HtmlEncode $EventId): full transcripts, AI-generated summaries, sampled frames, click-to-seek video for every session, and a cross-session catalog of every product / SDK / framework / service / model announced, with curated GitHub, learn.microsoft.com, NuGet, and blog links. Two views into the same source data &mdash; browse session-by-session, or by announcement."
+
+    # Card descriptions + feature lists (HTML, rendered into the body).
+    $sessionFeatures = @(
+        'Full transcripts (cleaned, speaker-attributed)',
+        'AI summaries in a strict 8-section format',
+        'Five sampled frames per session as a visual TOC',
+        'Click-to-seek video player; jump to any timestamp',
+        'Filter by type, status, tags, topics; Lunr full-text search'
+    ) | ForEach-Object { '<li>' + (HtmlEncode $_) + '</li>' }
+    $announcementFeatures = @(
+        'Every product / SDK / framework / service / model announced',
+        '12-bucket fixed taxonomy with category chips',
+        'Search by name, alias, tagline, or description',
+        'Filter by has-GitHub / has-NuGet / has-Docs',
+        'Each entity links back to its source sessions with deep-link timestamps'
+    ) | ForEach-Object { '<li>' + (HtmlEncode $_) + '</li>' }
+
+    $sessionWith    = ($annMentionsBySession.Keys | Measure-Object).Count
+    $sessionDesc    = "Every $Conference $EventId session, indexed end-to-end. Browse $($indexCatalog.Count) sessions, of which $sessionWith have at least one extracted key announcement. Each session page links to its canonical source on $Conference.microsoft.com."
+    $announcementDesc = if ($annEnabled) {
+        "Every standalone announcement extracted from the $sessionWith sessions that surfaced product/SDK/service news. $annCount canonical entities (after alias-folding $($annEntities.Count) raw entries) with curated external links, source-session deep-links, and category filters."
+    } else {
+        "The announcements pipeline hasn't been run for this event yet."
+    }
+
+    $hubBody = Render-Template $eventHubBody @{
+        HERO_HEADING            = (HtmlEncode "$Conference $EventId")
+        HUB_CONTEXT_HTML        = $hubContext
+        HUB_SEARCH_PLACEHOLDER  = (HtmlEncode "Search $($indexCatalog.Count) sessions and $annCount announcements...")
+        SESSION_COUNT           = "$($indexCatalog.Count)"
+        SESSION_CARD_DESC       = (HtmlEncode $sessionDesc)
+        SESSION_CARD_FEATURES   = ($sessionFeatures -join "`n")
+        ANNOUNCEMENT_COUNT      = "$annCount"
+        ANNOUNCEMENT_CARD_DESC  = (HtmlEncode $announcementDesc)
+        ANNOUNCEMENT_CARD_FEATURES = ($announcementFeatures -join "`n")
+    }
+
+    $hubHtml = Render-Template $layoutTpl @{
+        TITLE          = "$Conference $EventId - Conference Library"
+        ASSETS_PREFIX  = ''
+        BREADCRUMB     = '<nav class="breadcrumb"><a href="../../index.html">Conference Library</a> &raquo; ' +
+                         "<a href=`"../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
+                         "$(HtmlEncode $EventId)</nav>"
+        HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId)"
+        NAV_HTML       = '<nav><a href="sessions/index.html">Sessions</a>' +
+                         $(if ($annEnabled) { '<a href="announcements/index.html">Announcements</a>' } else { '' }) +
+                         '</nav>'
+        SOURCE_NOTE    = ''
+        EXTRA_HEAD     = ''
+        BODY           = $hubBody
+        GENERATED_AT   = HtmlEncode $generatedAt
+    }
+    Set-Content -LiteralPath (Join-Path $OutputRoot 'index.html') -Value $hubHtml -Encoding utf8
+} else {
+    # Hub template missing - fall back to the old behaviour: per-event root
+    # IS the sessions catalog. Keeps the renderer functional during partial
+    # template upgrades.
+    Copy-Item -LiteralPath (Join-Path $sessionsCatalogDir 'index.html') -Destination (Join-Path $OutputRoot 'index.html') -Force
+}
 
 # --------------------------------------------------------------------------
 # Announcements view: landing page + one page per canonical entity +
@@ -1129,9 +1288,10 @@ if ($annEnabled) {
     # ---- landing page ----
     $annSessionsCovered = ($annMentions | Select-Object -ExpandProperty sessionCode -Unique).Count
     $annLandingHtml = Render-Template $annLandingBody @{
-        HERO_HEADING  = (HtmlEncode "$Conference $EventId announcements")
-        TOTAL_COUNT   = if ($annEntities.Count -eq 1) { '1 announcement' } else { "$($annEntities.Count) announcements" }
-        SESSION_COUNT = $annSessionsCovered
+        HERO_HEADING        = (HtmlEncode "$Conference $EventId announcements")
+        TOTAL_COUNT         = if ($annEntities.Count -eq 1) { '1 announcement' } else { "$($annEntities.Count) announcements" }
+        SESSION_COUNT       = $annSessionsCovered
+        VIEW_SWITCHER_HTML  = Render-ViewSwitcher -Active 'announcements'
     }
     $annLandingPage = Render-Template $layoutTpl @{
         TITLE          = "Announcements - $Conference $EventId"
@@ -1140,7 +1300,7 @@ if ($annEnabled) {
                          "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
                          "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; Announcements</nav>"
         HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId) &mdash; Announcements"
-        NAV_HTML       = '<nav><a href="../index.html">All sessions in ' + (HtmlEncode "$Conference $EventId") + '</a></nav>'
+        NAV_HTML       = '<nav><a href="../sessions/index.html">Sessions</a><a href="../index.html">Event hub</a></nav>'
         SOURCE_NOTE    = " from <code>catalog/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/announcements/entities-enriched.json</code>"
         EXTRA_HEAD     = ''
         BODY           = $annLandingHtml
@@ -1308,7 +1468,7 @@ if ($annEnabled) {
                              "<a href=`"index.html`">Announcements</a> &raquo; " +
                              (HtmlEncode $e.canonicalName) + "</nav>"
             HEADER_TITLE   = (HtmlEncode $e.canonicalName)
-            NAV_HTML       = '<nav><a href="index.html">All announcements</a><a href="../index.html">All sessions</a></nav>'
+            NAV_HTML       = '<nav><a href="index.html">All announcements</a><a href="../sessions/index.html">All sessions</a><a href="../index.html">Event hub</a></nav>'
             SOURCE_NOTE    = " from <code>catalog/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/announcements/entities-enriched.json</code>"
             EXTRA_HEAD     = ''
             BODY           = $entityPageBody
@@ -1335,13 +1495,24 @@ if ($annEnabled) {
 
 $years = Get-ChildItem -LiteralPath $conferenceRoot -Directory -ErrorAction SilentlyContinue |
     Where-Object {
+        # After the hub redesign the catalog.json file lives in the
+        # sessions/ subfolder, not at the year root. The year root holds
+        # the new hub page (index.html). Treat a year folder as valid
+        # whenever the hub is present AND either the new sessions catalog
+        # OR the legacy /catalog.json is on disk (backward-compatible).
         (Test-Path -LiteralPath (Join-Path $_.FullName 'index.html')) -and
-        (Test-Path -LiteralPath (Join-Path $_.FullName 'catalog.json'))
+        ((Test-Path -LiteralPath (Join-Path $_.FullName 'sessions\catalog.json')) -or
+         (Test-Path -LiteralPath (Join-Path $_.FullName 'catalog.json')))
     } |
     Sort-Object Name -Descending
 
 $yearCards = foreach ($yd in $years) {
-    $cat = try { Get-Content -Raw -LiteralPath (Join-Path $yd.FullName 'catalog.json') | ConvertFrom-Json } catch { $null }
+    # Prefer the new location; fall back to the legacy one.
+    $catPath = Join-Path $yd.FullName 'sessions\catalog.json'
+    if (-not (Test-Path -LiteralPath $catPath)) {
+        $catPath = Join-Path $yd.FullName 'catalog.json'
+    }
+    $cat = try { Get-Content -Raw -LiteralPath $catPath | ConvertFrom-Json } catch { $null }
     $count = if ($cat -and $cat.total) { $cat.total } else { '?' }
     $genAtRaw = if ($cat -and $cat.generatedAt) { $cat.generatedAt } else { $null }
     $genAt = if ($genAtRaw -is [datetime]) {
@@ -1398,10 +1569,15 @@ $confDirs = Get-ChildItem -LiteralPath $docsRoot -Directory -ErrorAction Silentl
 
 $confCards = foreach ($cd in $confDirs) {
     $confYears = Get-ChildItem -LiteralPath $cd.FullName -Directory -ErrorAction SilentlyContinue |
-        Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName 'catalog.json') }
+        Where-Object {
+            (Test-Path -LiteralPath (Join-Path $_.FullName 'sessions\catalog.json')) -or
+            (Test-Path -LiteralPath (Join-Path $_.FullName 'catalog.json'))
+        }
     $totalSessions = 0
     foreach ($yd in $confYears) {
-        $cat = try { Get-Content -Raw -LiteralPath (Join-Path $yd.FullName 'catalog.json') | ConvertFrom-Json } catch { $null }
+        $cp = Join-Path $yd.FullName 'sessions\catalog.json'
+        if (-not (Test-Path -LiteralPath $cp)) { $cp = Join-Path $yd.FullName 'catalog.json' }
+        $cat = try { Get-Content -Raw -LiteralPath $cp | ConvertFrom-Json } catch { $null }
         if ($cat -and $cat.total) { $totalSessions += [int]$cat.total }
     }
     $yearsLabel = if ($confYears.Count -eq 1) {
@@ -1421,7 +1597,7 @@ $confCards = foreach ($cd in $confDirs) {
 $rootBody = @"
 <section class="hero">
     <h2>Conference Library</h2>
-    <p>A community-maintained reference of conference sessions: transcripts, AI summaries, sampled frames, and speakers. Pick a conference to browse.</p>
+    <p>A community-maintained reference of conference sessions: full transcripts, AI-generated summaries, sampled frames, click-to-seek video, and a cross-session catalog of every product, SDK, framework, service, and model announced &mdash; with curated GitHub, docs, and NuGet links. Built from public catalogs; all rights remain with the original speakers and conferences. Pick a conference to browse.</p>
 </section>
 
 <ul class="year-list">
@@ -1452,8 +1628,10 @@ Set-Content -LiteralPath (Join-Path $docsRoot 'index.html') -Value $rootHtml -En
 
 Write-Host ''
 Write-Host "Rendered $rendered session page(s) (skipped $skipped without rich-manifest.json)." -ForegroundColor Green
-Write-Host "  per-event index:    $(Join-Path $OutputRoot 'index.html')"
-Write-Host "  search-index.json:  $(Join-Path $OutputRoot 'search-index.json')"
+Write-Host "  per-event hub:      $(Join-Path $OutputRoot 'index.html')"
+Write-Host "  sessions catalog:   $(Join-Path $OutputRoot 'sessions\index.html')"
+Write-Host "  sessions catalog json+index: $(Join-Path $OutputRoot 'sessions')\{catalog,search-index}.json"
+Write-Host "  hub-catalog.json:   $(Join-Path $OutputRoot 'hub-catalog.json')"
 Write-Host "  per-session pages:  $(Join-Path $OutputRoot 'sessions')"
 Write-Host "  conference landing: $(Join-Path $conferenceRoot 'index.html') ($($years.Count) year(s) listed)"
 Write-Host "  library root:       $(Join-Path $docsRoot 'index.html') ($($confDirs.Count) conference(s) listed)"

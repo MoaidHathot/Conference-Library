@@ -1,0 +1,49 @@
+<!-- Body slot for layout.html, populated by Build-Book.ps1 for the per-event
+     hub page (docs/<Conf>/<Event>/index.html). Two co-equal entry points
+     into the per-event reference: Sessions and Announcements, with a
+     federated search across both for users who already know what they're
+     looking for. -->
+
+<section class="hub-hero">
+    <h2>{{HERO_HEADING}}</h2>
+    <p class="hub-context">{{HUB_CONTEXT_HTML}}</p>
+
+    <div class="hub-search-wrap">
+        <input id="hub-search" type="search" class="hub-search-input"
+               placeholder="{{HUB_SEARCH_PLACEHOLDER}}" autocomplete="off"
+               aria-label="Search sessions and announcements">
+        <div id="hub-search-results" class="hub-search-results" hidden></div>
+    </div>
+</section>
+
+<ul class="hub-card-grid">
+    <li class="hub-card hub-card-sessions">
+        <a href="sessions/index.html">
+            <div class="hub-card-head">
+                <span class="hub-card-label">Sessions</span>
+                <span class="hub-card-stat">{{SESSION_COUNT}}</span>
+            </div>
+            <p class="hub-card-desc">{{SESSION_CARD_DESC}}</p>
+            <ul class="hub-card-features">
+                {{SESSION_CARD_FEATURES}}
+            </ul>
+            <span class="hub-card-cta">Browse all sessions &rarr;</span>
+        </a>
+    </li>
+
+    <li class="hub-card hub-card-announcements">
+        <a href="announcements/index.html">
+            <div class="hub-card-head">
+                <span class="hub-card-label">Announcements</span>
+                <span class="hub-card-stat">{{ANNOUNCEMENT_COUNT}}</span>
+            </div>
+            <p class="hub-card-desc">{{ANNOUNCEMENT_CARD_DESC}}</p>
+            <ul class="hub-card-features">
+                {{ANNOUNCEMENT_CARD_FEATURES}}
+            </ul>
+            <span class="hub-card-cta">Browse all announcements &rarr;</span>
+        </a>
+    </li>
+</ul>
+
+<script src="assets/hub.js"></script>

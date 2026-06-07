@@ -13,56 +13,75 @@
     <div class="page">
         <nav class="breadcrumb"><a href="../../index.html">Conference Library</a> &raquo; <a href="../index.html">Build</a> &raquo; 2026</nav>
         <h1>Build 2026</h1>
-        <nav><a href="announcements/index.html">Announcements</a></nav>
+        <nav><a href="sessions/index.html">Sessions</a><a href="announcements/index.html">Announcements</a></nav>
     </div>
 </header>
 
 <main class="page">
-<!-- Body slot for layout.html -->
+<!-- Body slot for layout.html, populated by Build-Book.ps1 for the per-event
+     hub page (docs/<Conf>/<Event>/index.html). Two co-equal entry points
+     into the per-event reference: Sessions and Announcements, with a
+     federated search across both for users who already know what they're
+     looking for. -->
 
-<section class="hero">
-    <h2>Build 2026 sessions</h2>
-    <p><strong id="session-count-text">443 sessions</strong>, searchable across titles, speakers, tags, topics, and summary text. Each session links through to its transcript, generated summary, sampled frames, and the canonical source page.</p>
+<section class="hub-hero">
+    <h2>Build 2026</h2>
+    <p class="hub-context">A community-maintained reference of Build 2026: full transcripts, AI-generated summaries, sampled frames, click-to-seek video for every session, and a cross-session catalog of every product / SDK / framework / service / model announced, with curated GitHub, learn.microsoft.com, NuGet, and blog links. Two views into the same source data &mdash; browse session-by-session, or by announcement.</p>
+
+    <div class="hub-search-wrap">
+        <input id="hub-search" type="search" class="hub-search-input"
+               placeholder="Search 443 sessions and 583 announcements..." autocomplete="off"
+               aria-label="Search sessions and announcements">
+        <div id="hub-search-results" class="hub-search-results" hidden></div>
+    </div>
 </section>
 
-<form class="filters" onsubmit="return false">
-    <input id="filter-search" type="search" placeholder="Search title, speaker, summary…" autocomplete="off">
-    <select id="filter-type"></select>
-    <div id="filter-recorded" class="filters-pills" style="gap: var(--s-1); margin: 0">
-        <button type="button" id="recorded-toggle" class="filter-pill is-on"
-                title="Hide sessions Microsoft does not record (Table Talks, Labs, Lightning Talks)">
-            <span class="pill-icon">&#x2713;</span> Recorded only
-        </button>
-    </div>
-    <div id="filter-status" class="filters-pills" style="gap: var(--s-1); margin: 0">
-        <span class="pill-label">Status</span>
-        <button type="button" class="filter-pill" data-status="all">All</button>
-        <button type="button" class="filter-pill" data-status="upcoming">Upcoming</button>
-        <button type="button" class="filter-pill" data-status="live">Live</button>
-        <button type="button" class="filter-pill" data-status="ended">Ended</button>
-    </div>
-</form>
+<ul class="hub-card-grid">
+    <li class="hub-card hub-card-sessions">
+        <a href="sessions/index.html">
+            <div class="hub-card-head">
+                <span class="hub-card-label">Sessions</span>
+                <span class="hub-card-stat">443</span>
+            </div>
+            <p class="hub-card-desc">Every Build 2026 session, indexed end-to-end. Browse 443 sessions, of which 109 have at least one extracted key announcement. Each session page links to its canonical source on Build.microsoft.com.</p>
+            <ul class="hub-card-features">
+                <li>Full transcripts (cleaned, speaker-attributed)</li>
+<li>AI summaries in a strict 8-section format</li>
+<li>Five sampled frames per session as a visual TOC</li>
+<li>Click-to-seek video player; jump to any timestamp</li>
+<li>Filter by type, status, tags, topics; Lunr full-text search</li>
+            </ul>
+            <span class="hub-card-cta">Browse all sessions &rarr;</span>
+        </a>
+    </li>
 
-<div id="filter-topic-pills" class="filters-pills"></div>
-<div id="filter-tag-pills"   class="filters-pills"></div>
+    <li class="hub-card hub-card-announcements">
+        <a href="announcements/index.html">
+            <div class="hub-card-head">
+                <span class="hub-card-label">Announcements</span>
+                <span class="hub-card-stat">583</span>
+            </div>
+            <p class="hub-card-desc">Every standalone announcement extracted from the 109 sessions that surfaced product/SDK/service news. 583 canonical entities (after alias-folding 583 raw entries) with curated external links, source-session deep-links, and category filters.</p>
+            <ul class="hub-card-features">
+                <li>Every product / SDK / framework / service / model announced</li>
+<li>12-bucket fixed taxonomy with category chips</li>
+<li>Search by name, alias, tagline, or description</li>
+<li>Filter by has-GitHub / has-NuGet / has-Docs</li>
+<li>Each entity links back to its source sessions with deep-link timestamps</li>
+            </ul>
+            <span class="hub-card-cta">Browse all announcements &rarr;</span>
+        </a>
+    </li>
+</ul>
 
-<div class="results-meta">
-    <span id="results-meta"></span>
-</div>
-
-<ul id="session-list" class="session-list"></ul>
-
-<div id="no-results" class="no-results" hidden>No sessions match the current filters. Clear them or broaden your search.</div>
-
-<script src="assets/lunr.min.js"></script>
-<script src="assets/app.js"></script>
+<script src="assets/hub.js"></script>
 
 </main>
 
 <footer class="site-footer">
     <div class="page">
         <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
-        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>sessions/Build/2026/&lt;CODE&gt;/rich-manifest.json</code>. Built at 2026-06-06T20:44:04.2821048Z.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code>. Built at 2026-06-07T09:10:22.3656950Z.</p>
         <p>Mediastream caption and frame ingestion is powered by <a href="https://github.com/MoaidHathot/Zakira.Replay">Zakira.Replay</a>.</p>
         <p>Search-suggested external links on announcement pages are discovered by <a href="https://github.com/MoaidHathot/Zakira.Recall">Zakira.Recall</a> (also on <a href="https://www.nuget.org/packages/Zakira.Recall">NuGet</a>) &mdash; a local CLI + MCP server for Playwright-backed web search.</p>
     </div>
