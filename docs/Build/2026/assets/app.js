@@ -73,6 +73,47 @@
     const fallbackDocs = isFallback ? indexJson.documents : null;
     const byCode       = new Map(catalog.sessions.map(s => [s.code, s]));
 
+    // ---- URL state helpers ----
+    // Read filter state from the page's URL query string on load, write it
+    // back via history.replaceState() on every filter change. Keys are
+    // intentionally short for shareable URLs:
+    //   q=...   search text
+    //   type=...  sessionType (single value)
+    //   topic=...,...   chosenTopics (comma-separated)
+    //   tag=...,...     chosenTags
+    //   status=...      statusFilter ('all'|'upcoming'|'live'|'ended')
+    //   recorded=0|1    recordedOnly (default 1)
+    function parseUrlState() {
+        const u = new URL(window.location.href);
+        const v = (k) => u.searchParams.get(k);
+        const splitCsv = (s) => (s == null || s === '') ? [] : s.split(',').filter(Boolean);
+        return {
+            q:        v('q')        ?? '',
+            type:     v('type')     ?? '',
+            topics:   splitCsv(v('topic')),
+            tags:     splitCsv(v('tag')),
+            status:   v('status')   ?? 'all',
+            recorded: v('recorded') !== '0' // default on
+        };
+    }
+    function writeUrlState() {
+        const u = new URL(window.location.href);
+        const set = (k, v) => {
+            if (v == null || v === '' || v === false) u.searchParams.delete(k);
+            else u.searchParams.set(k, v);
+        };
+        set('q',      search.value.trim());
+        set('type',   filterTy.value);
+        set('topic',  chosenTopics.size ? Array.from(chosenTopics).join(',') : '');
+        set('tag',    chosenTags.size   ? Array.from(chosenTags).join(',')   : '');
+        set('status', statusFilter === 'all' ? '' : statusFilter);
+        set('recorded', recordedOnly ? '' : '0'); // omit when default
+        // replaceState avoids polluting browser history with every keystroke;
+        // back-button still works to leave the page.
+        window.history.replaceState(null, '', u.toString());
+    }
+    const initial = parseUrlState();
+
     // ---- populate filters ----
     function unique(values) {
         return [...new Set(values.flatMap(v => toArray(v)))].sort();
@@ -84,6 +125,11 @@
             values.map(v => `<option value="${escapeAttr(v)}">${escapeText(v)}</option>`).join('');
     }
     fillSelect(filterTy, unique(catalog.sessions.map(s => s.sessionType)), 'types');
+    // Hydrate the simple controls from the URL so a shared link lands the
+    // visitor on the same filtered view. Pill sets are hydrated below where
+    // they're constructed.
+    search.value   = initial.q;
+    filterTy.value = initial.type;
 
     // Multi-select pill renderer used for both topic + tag filters. Each pill
     // toggles via click; selection set is held in `chosen` (Set<string>).
@@ -114,6 +160,9 @@
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'filter-pill';
+            // Reflect pre-selected state (e.g. hydrated from URL params) so
+            // visitors see their selection highlighted on first render.
+            if (chosen.has(v)) btn.classList.add('is-on');
             btn.dataset.value = v;
             btn.dataset.rank  = i;
             btn.innerHTML = `${escapeText(v)} <span class="pill-count"></span>`;
@@ -176,15 +225,15 @@
         };
     }
 
-    const chosenTopics = new Set();
-    const chosenTags   = new Set();
+    const chosenTopics = new Set(initial.topics);
+    const chosenTags   = new Set(initial.tags);
     const updateTopicCounts = buildPills(topicPills, 'Topics',
         unique(catalog.sessions.map(s => s.topics)), s => s.topics, chosenTopics, () => update());
     const updateTagCounts = buildPills(tagPills, 'Tags',
         unique(catalog.sessions.map(s => s.tags)),   s => s.tags,   chosenTags,   () => update(),
         { collapseAfter: 15 });
 
-    let statusFilter = 'all';
+    let statusFilter = initial.status;
     statusBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             statusFilter = btn.dataset.status;
@@ -192,15 +241,17 @@
             update();
         });
     });
-    // Default "All" selected.
-    statusBtns.forEach(b => { if (b.dataset.status === 'all') b.classList.add('is-on'); });
+    // Highlight the status button matching the hydrated state (defaults to 'all').
+    statusBtns.forEach(b => { if (b.dataset.status === statusFilter) b.classList.add('is-on'); });
 
     // "Recorded only" toggle - defaults on so the index shows only sessions
     // with playable artifacts (~210 of 443 on Build 2026). Clicking it off
     // surfaces the ~233 by-design unrecorded sessions (Table Talks, Labs,
     // Lightning Talks) for visitors who want to browse the full catalog.
-    let recordedOnly = true;
+    let recordedOnly = initial.recorded;
     if (recordedBtn) {
+        // Reflect hydrated state on the toggle button.
+        recordedBtn.classList.toggle('is-on', recordedOnly);
         recordedBtn.addEventListener('click', () => {
             recordedOnly = !recordedOnly;
             recordedBtn.classList.toggle('is-on', recordedOnly);
@@ -332,6 +383,9 @@
         render(filtered);
         updateTopicCounts(filtered);
         updateTagCounts(filtered);
+        // Persist the current filter state into the URL so a refresh or
+        // shared link reproduces the same view.
+        writeUrlState();
     }
 
     [search, filterTy].forEach(el => el.addEventListener('input', update));

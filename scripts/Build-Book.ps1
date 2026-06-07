@@ -35,6 +35,12 @@ param(
     # session pages will 404 on frame images but build much faster).
     [Parameter()][switch]$NoFrames,
 
+    # Absolute base URL of the deployed site. Used to build canonical
+    # og:url and og:image attributes (social sharing previews need absolute
+    # URLs; relative paths don't render in Twitter / Slack / Discord cards).
+    # Override for staging deployments or custom domains.
+    [Parameter()][string]$SiteBaseUrl = 'https://moaidhathot.github.io/Conference-Library',
+
     [Parameter()][string]$RepoRoot = (Split-Path -Parent $PSScriptRoot)
 )
 
@@ -88,6 +94,60 @@ function Render-Template {
     # Then strip any unmatched tokens so the page doesn't show "{{FOO}}".
     $rendered = [regex]::Replace($rendered, '\{\{[A-Z_]+\}\}', '')
     return $rendered
+}
+
+function Build-HeadMeta {
+    # Produce the <meta> block of OpenGraph + Twitter card tags. All four
+    # values (Title, Description, Url, ImageUrl) are mandatory; Type defaults
+    # to 'website' for landing pages and 'article' for content pages.
+    # Returns a single rendered HTML string suitable for layout.html's
+    # {{HEAD_META_HTML}} slot.
+    param(
+        [string]$Title,
+        [string]$Description,
+        [string]$Url,
+        [string]$ImageUrl,
+        [string]$Type = 'website',
+        [string]$SiteName = 'Conference Library'
+    )
+    # Trim and clamp the description so card renderers don't truncate
+    # mid-word. ~200 chars is the safe sweet spot for X, Slack, Discord, FB.
+    if ($Description -and $Description.Length -gt 200) {
+        $cut = $Description.Substring(0, 197)
+        $lastSpace = $cut.LastIndexOf(' ')
+        if ($lastSpace -gt 150) { $cut = $cut.Substring(0, $lastSpace) }
+        $Description = $cut.Trim() + '...'
+    }
+    $t = HtmlEncode $Title
+    $d = HtmlEncode $Description
+    $u = HtmlEncode $Url
+    $i = HtmlEncode $ImageUrl
+    $s = HtmlEncode $SiteName
+    $ty = HtmlEncode $Type
+    return @"
+    <meta name="description" content="$d">
+    <meta property="og:type" content="$ty">
+    <meta property="og:site_name" content="$s">
+    <meta property="og:title" content="$t">
+    <meta property="og:description" content="$d">
+    <meta property="og:url" content="$u">
+    <meta property="og:image" content="$i">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="$t">
+    <meta name="twitter:description" content="$d">
+    <meta name="twitter:image" content="$i">
+"@
+}
+
+function Make-AbsoluteUrl {
+    # Join the base URL with a forward-slash path inside docs/. Idempotent
+    # on trailing slashes; tolerant of either leading-slash or no-slash
+    # input paths.
+    param([string]$BaseUrl, [string]$RelPath)
+    $b = $BaseUrl.TrimEnd('/')
+    $r = $RelPath -replace '\\', '/'
+    if ($r.StartsWith('/')) { return "$b$r" }
+    return "$b/$r"
 }
 
 function Tag-Cloud {
@@ -481,6 +541,20 @@ $indexCatalog = New-Object System.Collections.Generic.List[object]
 $lunrDocs     = New-Object System.Collections.Generic.List[object]
 $generatedAt  = (Get-Date).ToUniversalTime().ToString('o')
 
+# Site-level default og:image URL used when a page doesn't have a more
+# specific image to surface. We point at the keynote's first sampled
+# frame; KEY01 reliably has frames for every Build event and is the most
+# visually-identifiable shot in the catalog. Falls back to an empty
+# string if the file doesn't exist - social cards then render text-only.
+$keynoteCoverPath = Join-Path $sessionsRoot 'KEY01\frames'
+$siteDefaultOgImage = ''
+if (Test-Path -LiteralPath $keynoteCoverPath) {
+    $firstFrame = Get-ChildItem -LiteralPath $keynoteCoverPath -Filter '*.jpg' -ErrorAction SilentlyContinue | Sort-Object Name | Select-Object -First 1
+    if ($firstFrame) {
+        $siteDefaultOgImage = Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/frames/KEY01/$($firstFrame.Name)"
+    }
+}
+
 $rendered = 0
 $skipped  = 0
 foreach ($dir in $sessionDirs) {
@@ -671,6 +745,37 @@ foreach ($dir in $sessionDirs) {
             sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
 </section>
 "@
+    }
+
+    # Chapter strip rendered right below the player. Cross-origin <track>
+    # files would never load (video hosted on medius.microsoft.com, page on
+    # github.io; Medius doesn't send the CORS headers needed for HTML5
+    # text-track loading). Instead we emit a custom clickable strip that
+    # reuses the .ts-play button class - session.js already wires those to
+    # seek the embedded video to the timestamp. Works for both the MP4 and
+    # HLS player paths; degrades to a static list when no <video> is in
+    # the page (iframe-only sessions still get the list as a jump-to-
+    # canonical-player aid).
+    $chaptersHtml = ''
+    if ($annEnabled -and $annMentionsBySession.ContainsKey($code) -and $playerHtml) {
+        $sessionMentions = $annMentionsBySession[$code].ToArray() |
+            Sort-Object @{ Expression = { [int]$_.timestampSeconds } }
+        $chapterItems = foreach ($mn in $sessionMentions) {
+            # Prefer the raw (session-spoken) name over the canonical entity
+            # name; chapters are about what the speaker said in the moment.
+            $label = if ($mn.rawName) { $mn.rawName } else { $mn.shortDescription }
+            "<li><button type=`"button`" class=`"ts-play chapter-jump`" data-ts=`"$(HtmlEncode $mn.timestamp)`" title=`"Watch from $(HtmlEncode $mn.timestamp) (-5s)`"><span class=`"chapter-ts`">$(HtmlEncode $mn.timestamp)</span><span class=`"chapter-title`">$(HtmlEncode $label)</span></button></li>"
+        }
+        if ($chapterItems) {
+            $chaptersHtml = @"
+<section class="chapters" aria-label="Chapter markers">
+    <h3>Chapters</h3>
+    <ol class="chapter-list">
+$($chapterItems -join "`n")
+    </ol>
+</section>
+"@
+        }
     }
 
     # Summary: prefer summary.md (Copilot-generated), fall back to ai-description.html (Microsoft's).
@@ -899,6 +1004,7 @@ $($chips -join "`n")
         NOTICE_HTML      = $noticeHtml
         COVER_HTML       = $coverHtml
         PLAYER_HTML      = $playerHtml
+        CHAPTERS_HTML    = $chaptersHtml
         ACTIONS_HTML     = $actionsHtml
         DESCRIPTION_HTML = $descriptionHtml
         SUMMARY_HTML     = $summaryHtml
@@ -919,9 +1025,24 @@ $($chips -join "`n")
         $extraBodyScripts = '<script defer src="../assets/hls.min.js"></script>'
     }
 
+    # OG/Twitter meta values. Title = code + title; description trimmed from
+    # the upstream catalog description (best signal we have without re-
+    # parsing the summary); image = cover frame if any, else site default;
+    # url = absolute deployed URL of this very page.
+    $sessionOgUrl   = Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/sessions/$code.html"
+    $sessionOgImage = if ($coverName) {
+        Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/frames/$code/$coverName"
+    } else { $siteDefaultOgImage }
+    $sessionOgDesc = if ($m.description) {
+        ($m.description -replace '\s+', ' ').Trim()
+    } else {
+        "$Conference $EventId session $code"
+    }
+
     $pageHtml = Render-Template $layoutTpl @{
         TITLE             = (HtmlEncode "$code - $($m.title)")
         ASSETS_PREFIX     = '../'
+        HEAD_META_HTML    = Build-HeadMeta -Title "$code - $($m.title)" -Description $sessionOgDesc -Url $sessionOgUrl -ImageUrl $sessionOgImage -Type 'article'
         # After the hub redesign the per-event root is the hub, and the
         # sessions catalog lives at sessions/index.html alongside the
         # per-session pages. Breadcrumb adds a Sessions level so visitors
@@ -1080,6 +1201,11 @@ $sessionsIndexBody = Render-Template $indexBody @{
 $sessionsIndexHtml = Render-Template $layoutTpl @{
     TITLE          = "Sessions - $Conference $EventId - Conference Library"
     ASSETS_PREFIX  = '../'
+    HEAD_META_HTML = Build-HeadMeta `
+        -Title "Sessions - $Conference $EventId" `
+        -Description "All $($indexCatalog.Count) $Conference $EventId sessions with full transcripts, AI summaries, sampled frames, and click-to-seek video. Filter by type, status, tags, topics. Lunr full-text search." `
+        -Url (Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/sessions/") `
+        -ImageUrl $siteDefaultOgImage
     BREADCRUMB     = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
                      "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
                      "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; Sessions</nav>"
@@ -1191,6 +1317,11 @@ if ($eventHubBody) {
     $hubHtml = Render-Template $layoutTpl @{
         TITLE          = "$Conference $EventId - Conference Library"
         ASSETS_PREFIX  = ''
+        HEAD_META_HTML = Build-HeadMeta `
+            -Title "$Conference $EventId" `
+            -Description "$($indexCatalog.Count) sessions + $annCount announcements from $Conference $EventId. Full transcripts, AI summaries, sampled frames, click-to-seek video, and a cross-session catalog of every product, SDK, framework, service, and model announced with curated GitHub, docs, and NuGet links." `
+            -Url (Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/") `
+            -ImageUrl $siteDefaultOgImage
         BREADCRUMB     = '<nav class="breadcrumb"><a href="../../index.html">Conference Library</a> &raquo; ' +
                          "<a href=`"../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
                          "$(HtmlEncode $EventId)</nav>"
@@ -1296,6 +1427,11 @@ if ($annEnabled) {
     $annLandingPage = Render-Template $layoutTpl @{
         TITLE          = "Announcements - $Conference $EventId"
         ASSETS_PREFIX  = '../'
+        HEAD_META_HTML = Build-HeadMeta `
+            -Title "Announcements - $Conference $EventId" `
+            -Description "$annCount canonical announcements (products, services, SDKs, frameworks, models, hardware, tools, runtimes, features, platforms, and concepts) extracted from $annSessionsCovered $Conference $EventId sessions. Filter by category, search by name, find official GitHub / docs / NuGet links." `
+            -Url (Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/announcements/") `
+            -ImageUrl $siteDefaultOgImage
         BREADCRUMB     = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
                          "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
                          "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; Announcements</nav>"
@@ -1459,9 +1595,30 @@ if ($annEnabled) {
             ALIASES_HTML        = $aliasesHtml
             SECTIONS_HTML       = $sectionsHtml.ToString()
         }
+        # OG/Twitter image: first announcement-frame from the first
+        # session that mentioned this entity. Falls back to the site
+        # default keynote frame when the entity has no frames anywhere.
+        $entityOgImage = $siteDefaultOgImage
+        if ($annMentionsByEntity.ContainsKey($e.id)) {
+            $firstMn = $annMentionsByEntity[$e.id].ToArray() |
+                Sort-Object @{ Expression = { [int]$_.timestampSeconds } } |
+                Where-Object { $_.frames -and @($_.frames).Count -gt 0 } |
+                Select-Object -First 1
+            if ($firstMn) {
+                $framePath = (@($firstMn.frames)[0] -replace '\\', '/')
+                $entityOgImage = Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/frames/$($firstMn.sessionCode)/$framePath"
+            }
+        }
+
         $entityPageHtml = Render-Template $layoutTpl @{
             TITLE          = (HtmlEncode "$($e.canonicalName) - $Conference $EventId announcements")
             ASSETS_PREFIX  = '../'
+            HEAD_META_HTML = Build-HeadMeta `
+                -Title "$($e.canonicalName) - $Conference $EventId" `
+                -Description ("$($e.tagline)") `
+                -Url (Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/announcements/$slug.html") `
+                -ImageUrl $entityOgImage `
+                -Type 'article'
             BREADCRUMB     = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
                              "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
                              "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; " +
@@ -1544,6 +1701,11 @@ $conferenceHtml = Render-Template $layoutTpl @{
     TITLE          = "$Conference - Conference Library"
     # Reuse the newest year's assets (vendored Lunr/CSS/JS are identical).
     ASSETS_PREFIX  = if ($years.Count -gt 0) { "$($years[0].Name)/" } else { "$EventId/" }
+    HEAD_META_HTML = Build-HeadMeta `
+        -Title "$Conference - Conference Library" `
+        -Description "$Conference conference sessions: full transcripts, AI summaries, sampled frames, click-to-seek video, and a cross-session catalog of announced products, SDKs, frameworks, services, and models. Pick a year to browse." `
+        -Url (Make-AbsoluteUrl $SiteBaseUrl "$Conference/") `
+        -ImageUrl $siteDefaultOgImage
     BREADCRUMB     = '<nav class="breadcrumb"><a href="../index.html">Conference Library</a> &raquo; ' +
                      "$(HtmlEncode $Conference)</nav>"
     HEADER_TITLE   = "$(HtmlEncode $Conference)"
@@ -1612,6 +1774,11 @@ $rootHtml = Render-Template $layoutTpl @{
                          # pick whatever per-event assets folder is most recent.
                          "$($confDirs[0].Name)/$($years[0].Name)/"
                      } else { "$Conference/$EventId/" }
+    HEAD_META_HTML = Build-HeadMeta `
+        -Title 'Conference Library' `
+        -Description 'A community-maintained reference of conference sessions: full transcripts, AI-generated summaries, sampled frames, click-to-seek video, and a cross-session catalog of every product, SDK, framework, service, and model announced - with curated GitHub, docs, and NuGet links.' `
+        -Url $SiteBaseUrl `
+        -ImageUrl $siteDefaultOgImage
     BREADCRUMB     = ''
     HEADER_TITLE   = 'Conference Library'
     NAV_HTML       = ''
@@ -1621,6 +1788,54 @@ $rootHtml = Render-Template $layoutTpl @{
     GENERATED_AT   = HtmlEncode $generatedAt
 }
 Set-Content -LiteralPath (Join-Path $docsRoot 'index.html') -Value $rootHtml -Encoding utf8
+
+# --------------------------------------------------------------------------
+# Sitemap.xml + robots.txt at the docs/ root. The sitemap aggregates every
+# .html under docs/ across all conferences and events (Build-Book runs
+# per-event but the sitemap reflects the current cross-event state of the
+# docs/ tree). robots.txt points crawlers at the sitemap. Both files live
+# at the GitHub Pages root URL, which is what Google + Bing expect.
+# --------------------------------------------------------------------------
+
+$sitemapPath = Join-Path $docsRoot 'sitemap.xml'
+$robotsPath  = Join-Path $docsRoot 'robots.txt'
+
+$siteBase = $SiteBaseUrl.TrimEnd('/')
+$sitemapSb = [System.Text.StringBuilder]::new()
+[void]$sitemapSb.AppendLine('<?xml version="1.0" encoding="UTF-8"?>')
+[void]$sitemapSb.AppendLine('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+
+# Walk every .html under docs/, skip nothing - include the root, conference
+# landings, event hubs, sessions catalog, per-session pages, announcements
+# landing, per-entity pages.
+$htmlFiles = Get-ChildItem -LiteralPath $docsRoot -Recurse -Filter '*.html' -ErrorAction SilentlyContinue
+foreach ($f in ($htmlFiles | Sort-Object FullName)) {
+    $rel = [System.IO.Path]::GetRelativePath($docsRoot, $f.FullName) -replace '\\', '/'
+    # Index pages: prefer the directory URL form (cleaner for sharing) -
+    # 'sessions/' instead of 'sessions/index.html'.
+    if ($rel -eq 'index.html') {
+        $loc = "$siteBase/"
+    } elseif ($rel.EndsWith('/index.html')) {
+        $loc = "$siteBase/$($rel.Substring(0, $rel.Length - 'index.html'.Length))"
+    } else {
+        $loc = "$siteBase/$rel"
+    }
+    $lastmod = $f.LastWriteTimeUtc.ToString('yyyy-MM-ddTHH:mm:ssZ')
+    [void]$sitemapSb.AppendLine('  <url>')
+    [void]$sitemapSb.AppendLine("    <loc>$([System.Net.WebUtility]::HtmlEncode($loc))</loc>")
+    [void]$sitemapSb.AppendLine("    <lastmod>$lastmod</lastmod>")
+    [void]$sitemapSb.AppendLine('  </url>')
+}
+[void]$sitemapSb.AppendLine('</urlset>')
+Set-Content -LiteralPath $sitemapPath -Value $sitemapSb.ToString() -Encoding utf8
+
+$robotsBody = @"
+User-agent: *
+Allow: /
+
+Sitemap: $siteBase/sitemap.xml
+"@
+Set-Content -LiteralPath $robotsPath -Value $robotsBody -Encoding utf8
 
 # --------------------------------------------------------------------------
 # Done.
@@ -1635,6 +1850,8 @@ Write-Host "  hub-catalog.json:   $(Join-Path $OutputRoot 'hub-catalog.json')"
 Write-Host "  per-session pages:  $(Join-Path $OutputRoot 'sessions')"
 Write-Host "  conference landing: $(Join-Path $conferenceRoot 'index.html') ($($years.Count) year(s) listed)"
 Write-Host "  library root:       $(Join-Path $docsRoot 'index.html') ($($confDirs.Count) conference(s) listed)"
+Write-Host "  sitemap.xml:        $sitemapPath ($($htmlFiles.Count) URL(s))"
+Write-Host "  robots.txt:         $robotsPath"
 Write-Host ''
 Write-Host "To preview locally:" -ForegroundColor Cyan
 Write-Host "  python -m http.server 8080 -d `"$docsRoot`""

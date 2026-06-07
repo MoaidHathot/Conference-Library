@@ -1601,3 +1601,178 @@ details.transcript .transcript-body {
     color: var(--c-text-muted);
     font-weight: 500;
 }
+
+/* ============================================================
+   Chapter strip — list of key announcements as quick-jump
+   timestamps under the session player. Each row is a single
+   <button class="ts-play chapter-jump"> so session.js's existing
+   click handler (data-ts -> video.currentTime - 5; play) works
+   without any new wiring; the .chapter-jump modifier here just
+   undoes the tiny 1.2em-square sizing inherited from .ts-play
+   and lays out the timestamp + title inline.
+   ============================================================ */
+.chapters {
+    margin: var(--s-3) 0 var(--s-5);
+    padding: var(--s-3) var(--s-4);
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+}
+.chapters h3 {
+    margin: 0 0 var(--s-2);
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.chapter-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.chapter-list li { margin: 0; }
+/* Override the inherited .ts-play box sizing: chapters use a full-width
+   row with a monospaced timestamp pill on the left and the label text
+   on the right. Hover and focus colours match the existing accent
+   treatment so the row reads as part of the same vocabulary. */
+.chapter-list .chapter-jump {
+    width: 100%;
+    height: auto;
+    padding: var(--s-1) var(--s-2);
+    margin: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--c-text);
+    font-size: var(--fs-sm);
+    line-height: 1.4;
+    text-align: left;
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-3);
+    cursor: pointer;
+    transition: background 100ms ease, border-color 100ms ease;
+}
+.chapter-list .chapter-jump:hover,
+.chapter-list .chapter-jump:focus-visible {
+    background: var(--c-accent-soft);
+    border-color: var(--c-accent);
+    color: var(--c-accent);
+    outline: none;
+}
+.chapter-list .chapter-ts {
+    flex: 0 0 auto;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+    min-width: 6ch;
+}
+.chapter-list .chapter-jump:hover .chapter-ts,
+.chapter-list .chapter-jump:focus-visible .chapter-ts {
+    color: var(--c-accent);
+}
+.chapter-list .chapter-title {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ============================================================
+   Mobile refinements — narrow viewports (≤ 720px).
+   The catalog/hub grids already collapse to a single column via
+   their own min-width queries; these rules tighten typography,
+   page padding, and pill-row sizing so the hero / header / filter
+   bar feel appropriately sized on phones. Long URLs in
+   announcement card snippets get overflow-wrap so they don't
+   force horizontal scroll.
+   ============================================================ */
+@media (max-width: 720px) {
+    .page                  { padding: var(--s-4) var(--s-3); }
+    .hero h2               { font-size: var(--fs-xl); }
+    .session-hero h1       { font-size: var(--fs-2xl); }
+    .hub-hero h2           { font-size: var(--fs-xl); }
+    .site-header h1        { font-size: var(--fs-md); }
+    .site-header nav       { gap: var(--s-3); }
+    .site-header .page     { padding-block: var(--s-3); }
+    .filters               { padding: var(--s-3); }
+    .filters-pills         { max-height: 11em; }
+    .view-switcher         { gap: var(--s-2); }
+    .session-actions       { padding: var(--s-3); }
+    .section               { padding: var(--s-4); }
+    /* Long URLs in entity-link cards / mention-card actions / session
+       resources should break inside the card instead of forcing
+       horizontal scroll on a 360px viewport. */
+    .entity-snippet,
+    .entity-snippet pre,
+    .mention-card a,
+    .session-actions a,
+    .link-group a {
+        overflow-wrap: anywhere;
+    }
+    /* Chapter row trims the title with ellipsis on a narrow screen
+       only when needed - allow wrap on small viewports instead so
+       longer announcement names stay readable. */
+    .chapter-list .chapter-title { white-space: normal; }
+}
+
+/* ============================================================
+   Dark mode — opt-in via OS-level `prefers-color-scheme: dark`.
+   The whole site reads from the same eight palette tokens in
+   :root, so a single redefinition under this query flips every
+   page. Component-specific accent colours (status badges, entity
+   category chips, link-badges) keep their hue but get nudged
+   lightness so they pop on a dark surface.
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --c-bg:           #14161a;
+        --c-surface:      #1c1f24;
+        --c-surface-alt:  #262a31;
+        --c-border:       #353a44;
+        --c-text:         #e6e8eb;
+        --c-text-muted:   #a3aab5;
+        --c-accent:       #5aa3ff;
+        --c-accent-soft:  #1c3b66;
+
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    /* Status badges: existing pastel fills look washed-out on dark; swap
+       to inverted variants that retain semantic hue (yellow/green/grey). */
+    .status-badge.is-upcoming { background: #4a3b00; color: #ffe28a; }
+    .status-badge.is-live     { background: #134221; color: #a0e0b0; }
+    .status-badge.is-ended    { background: #303338; color: #b0b3b8; }
+
+    /* Entity category chips are already small + pastel; their light
+       backgrounds read as "blown-out" on dark, so dim them. */
+    .entity-cat-model,
+    .entity-cat-service,
+    .entity-cat-SDK,
+    .entity-cat-framework,
+    .entity-cat-library,
+    .entity-cat-tool,
+    .entity-cat-runtime,
+    .entity-cat-hardware,
+    .entity-cat-spec,
+    .entity-cat-feature,
+    .entity-cat-platform,
+    .entity-cat-concept {
+        filter: brightness(0.55) saturate(0.85);
+    }
+
+    /* Hub announcement card hue (orange) was tuned for light surfaces;
+       make the hover border + accent text shift to a softer amber. */
+    .hub-card-announcements:hover               { border-color: #d6a86b; }
+    .hub-card-announcements:hover .hub-card-stat,
+    .hub-card-announcements:hover .hub-card-cta,
+    .hub-result-badge-announcement              { color: #d6a86b; background: #3a2a10; }
+
+    /* Lightbox / dialog overlay backdrop stays dark — no change needed. */
+    /* Primary button keeps the accent fill; just darken the hover. */
+    .session-actions a.primary:hover { background: #3b87e6; }
+}

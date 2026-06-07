@@ -111,13 +111,46 @@
             .map(e => e.id));
     }
 
+    // ---- URL state helpers ----
+    // Read filter state from the URL on load, write it back via
+    // history.replaceState() on every render. Keys are intentionally short
+    // for shareable URLs:
+    //   q=...    search text
+    //   sort=... sort key ('mentions'|'name'|'firstSeen'|'category')
+    //   cat=...  selected category slugs (comma-separated)
+    //   link=... selected has-link kinds (comma-separated: github,nuget,docs,any)
+    function parseUrlState() {
+        const u = new URL(window.location.href);
+        const v = (k) => u.searchParams.get(k);
+        const splitCsv = (s) => (s == null || s === '') ? [] : s.split(',').filter(Boolean);
+        return {
+            search: v('q')    ?? '',
+            sortBy: v('sort') ?? 'mentions',
+            cats:   new Set(splitCsv(v('cat'))),
+            links:  new Set(splitCsv(v('link')))
+        };
+    }
+    function writeUrlState() {
+        const u = new URL(window.location.href);
+        const set = (k, v) => {
+            if (v == null || v === '' || v === false) u.searchParams.delete(k);
+            else u.searchParams.set(k, v);
+        };
+        set('q',    state.search.trim());
+        set('sort', state.sortBy === 'mentions' ? '' : state.sortBy); // omit default
+        set('cat',  state.cats.size  ? Array.from(state.cats).join(',')  : '');
+        set('link', state.links.size ? Array.from(state.links).join(',') : '');
+        // replaceState so typing in the search box doesn't pollute history.
+        window.history.replaceState(null, '', u.toString());
+    }
+
     // ---- state ----
-    const state = {
-        search: '',
-        sortBy: 'mentions',
-        cats:   new Set(),  // selected categories (empty = all)
-        links:  new Set()   // selected has-link kinds: 'github','nuget','docs','any'
-    };
+    const state = parseUrlState();
+    // Hydrate the simple controls from the URL so a shared link lands the
+    // visitor on the same filtered view. Pills are hydrated below where
+    // they're constructed.
+    search.value  = state.search;
+    sortSel.value = state.sortBy;
 
     // ---- category chips ----
     const cats = Array.from(new Set(entities.map(e => e.category))).filter(Boolean);
@@ -147,11 +180,18 @@
         });
         render();
     });
-    // Initial "All" highlight.
-    catPills.querySelector('[data-cat=""]').classList.add('is-on');
+    // Reflect hydrated category selection on the pills. When the URL
+    // selected nothing, the "All" pill (data-cat="") lights up.
+    catPills.querySelectorAll('[data-cat]').forEach(b => {
+        const v = b.dataset.cat;
+        const on = v === '' ? state.cats.size === 0 : state.cats.has(v);
+        b.classList.toggle('is-on', on);
+    });
 
     // ---- has-link pills ----
     linkPills.forEach(btn => {
+        // Reflect hydrated link-kind selection on the pills.
+        if (state.links.has(btn.dataset.haslink)) btn.classList.add('is-on');
         btn.addEventListener('click', () => {
             const k = btn.dataset.haslink;
             if (state.links.has(k)) state.links.delete(k);
@@ -171,6 +211,9 @@
 
     // ---- render ----
     function render() {
+        // Persist the current filter state into the URL so a refresh or
+        // shared link reproduces the same view.
+        writeUrlState();
         const searchSet = runSearch(state.search);
         let rows = entities.filter(e => {
             if (searchSet && !searchSet.has(e.id)) return false;
