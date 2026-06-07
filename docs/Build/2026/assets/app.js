@@ -389,20 +389,26 @@
             }
             // Thumbnail: lazy-loaded so 443 cards don't request 443 JPGs up
             // front. Placeholder block keeps the grid aligned when missing.
+            // catalog.json's coverFrame is "frames/<code>/<file>.jpg"
+            // relative to the event root; this page lives at
+            // sessions/index.html so prefix "../" to climb out before
+            // joining. Same applies to the per-session HTML link below.
             const thumb = s.coverFrame
-                ? `<img class="card-thumb" loading="lazy" src="${escapeAttr(s.coverFrame)}" alt="">`
+                ? `<img class="card-thumb" loading="lazy" src="../${escapeAttr(s.coverFrame)}" alt="">`
                 : `<div class="card-thumb card-thumb-empty" aria-hidden="true"></div>`;
 
             return `
               <li class="session-card">
-                <a class="card-thumb-link" href="sessions/${encodeURIComponent(s.code)}.html">${thumb}</a>
+                <a class="card-thumb-link" href="${encodeURIComponent(s.code)}.html">${thumb}</a>
                 <div class="card-body">
                   <div class="card-row-top">
                     <span class="code">${escapeText(s.code)} &middot; ${escapeText(s.sessionType ?? '')}</span>
-                    ${repoBadgeHtml}
-                    ${badgeHtml}
+                    <span class="card-badges">
+                      ${repoBadgeHtml}
+                      ${badgeHtml}
+                    </span>
                   </div>
-                  <h3><a href="sessions/${encodeURIComponent(s.code)}.html">${escapeText(s.title)}</a></h3>
+                  <h3><a href="${encodeURIComponent(s.code)}.html">${escapeText(s.title)}</a></h3>
                   <div class="speakers">${escapeText(speakers)}</div>
                   <div class="when">${whenHtml}</div>
                   <div class="card-tags">${tags}</div>

@@ -256,12 +256,30 @@ pre {
     align-items: center;
     justify-content: space-between;
     gap: var(--s-2);
+    flex-wrap: wrap;
+}
+/* Right-side badges (Repo + status) sit in a single inline-flex group so
+   they wrap to a new line together when the code+type text takes the
+   full first line. Without this, "Ended" overflowed the card on narrow
+   cards where the code text was already wide and the Repo badge ate
+   the remaining horizontal space. */
+.session-card .card-badges {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-1);
+    flex-shrink: 0;
 }
 .session-card .code {
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
     color: var(--c-text-muted);
     letter-spacing: 0.04em;
+    /* min-width:0 lets the .code shrink inside the flex row so the badges
+       stay visible. Without it, .code would push the badges off. */
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .session-card h3 {
     margin: 0;
