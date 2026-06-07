@@ -566,6 +566,41 @@ if ((Test-Path -LiteralPath $themesJsonPath) -and (Test-Path -LiteralPath $theme
     Write-Host "Themes view disabled (missing themes.json/theme-assignments.json/templates)." -ForegroundColor DarkGray
 }
 
+# --------------------------------------------------------------------------
+# Demo repos: load Resolve-DemoRepos.ps1 output. Optional - per-session
+# pages gain a "Session repo" button in their actions row when present.
+# The data is keyed by session code; we filter out aka.ms entries that
+# bounced through bing.com (Microsoft's shortlink fallthrough for unset
+# aka.ms keys) since those aren't real demo repos.
+# --------------------------------------------------------------------------
+
+$demoReposJsonPath = Join-Path $RepoRoot "catalog\$Conference\$EventId\demo-repos\demo-repos.json"
+$demoRepoBySession = @{}
+$demoReposEnabled  = $false
+if (Test-Path -LiteralPath $demoReposJsonPath) {
+    try {
+        $demoRepos = @((Get-Content -Raw -LiteralPath $demoReposJsonPath | ConvertFrom-Json -Depth 10).repos)
+        foreach ($d in $demoRepos) {
+            $url = if ($d.finalUrl) { $d.finalUrl } else { $d.akaUrl }
+            # Skip bing.com fallthroughs (aka.ms shortlinks that aren't set)
+            if ($url -match '://www\.bing\.com/?(?:\?|$)') { continue }
+            $demoRepoBySession[$d.code] = [pscustomobject]@{
+                url         = $url
+                akaUrl      = $d.akaUrl
+                title       = $d.title
+                sourceTopic = $d.sourceTopic
+            }
+        }
+        $demoReposEnabled = ($demoRepoBySession.Count -gt 0)
+        Write-Host "Demo-repos enabled: $($demoRepoBySession.Count) session(s) with a curated repo link." -ForegroundColor DarkGray
+    } catch {
+        Write-Warning "Failed to load demo-repos artifacts ($_); skipping demo-repo links."
+        $demoReposEnabled = $false
+    }
+} else {
+    Write-Host "Demo-repos disabled (missing demo-repos.json; run scripts/Resolve-DemoRepos.ps1)." -ForegroundColor DarkGray
+}
+
 # CategorySlug: the fixed taxonomy uses lowercase except for 'SDK'. The CSS
 # selector .entity-cat-<slug> matches this exact form.
 function CategorySlug { param([string]$c) if ($c -eq 'SDK') { 'SDK' } else { ($c ?? '').ToLowerInvariant() } }
@@ -722,6 +757,13 @@ foreach ($dir in $sessionDirs) {
 
     $actions = @()
     if ($m.sessionUrl)       { $actions += "<a href=`"$(HtmlEncode $m.sessionUrl)`" class=`"primary`" target=`"_blank`" rel=`"noopener`">Open on build.microsoft.com</a>" }
+    if ($demoReposEnabled -and $demoRepoBySession.ContainsKey($code)) {
+        # Surface the curated demo repo from microsoft/build26-next-steps as
+        # a prominent action button. Goes second so it sits between the
+        # canonical session link and the player/transcript actions.
+        $repo = $demoRepoBySession[$code]
+        $actions += "<a href=`"$(HtmlEncode $repo.url)`" class=`"primary`" target=`"_blank`" rel=`"noopener`" title=`"Demo / lab repo curated by Microsoft (aka.ms/build26/$(HtmlEncode $code))`">Session repo</a>"
+    }
     if ($m.onDemandUrl)      { $actions += "<a href=`"$(HtmlEncode $m.onDemandUrl)`" target=`"_blank`" rel=`"noopener`">Medius player</a>" }
     if ($m.downloadVideoUrl) { $actions += "<a href=`"$(HtmlEncode $m.downloadVideoUrl)`" target=`"_blank`" rel=`"noopener`">Download MP4</a>" }
     if ($m.slideDeckUrl)     { $actions += "<a href=`"$(HtmlEncode $m.slideDeckUrl)`" target=`"_blank`" rel=`"noopener`">Slide deck</a>" }
