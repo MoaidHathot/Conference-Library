@@ -80,6 +80,14 @@ $speakersIndexBody = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'speak
 $speakerBody       = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'speaker.body.html')) {
     Get-Content -Raw -LiteralPath (Join-Path $templatesRoot 'speaker.body.html')
 } else { $null }
+# Themes view templates (optional, mirrors the speakers shape; Resolve-
+# Themes.ps1 generates the data, opt-in per event).
+$themesIndexBody = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'themes-index.body.html')) {
+    Get-Content -Raw -LiteralPath (Join-Path $templatesRoot 'themes-index.body.html')
+} else { $null }
+$themeBody       = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'theme.body.html')) {
+    Get-Content -Raw -LiteralPath (Join-Path $templatesRoot 'theme.body.html')
+} else { $null }
 
 # ---- helpers ----
 
@@ -512,6 +520,52 @@ if ((Test-Path -LiteralPath $speakersJsonPath) -and $speakersIndexBody -and $spe
     Write-Host "Speakers view disabled (missing speakers.json/templates)." -ForegroundColor DarkGray
 }
 
+# --------------------------------------------------------------------------
+# Themes: load Resolve-Themes.ps1 output. Optional - if missing, the themes
+# landing + per-theme pages are silently skipped and per-session pages render
+# without a Themes chip line. When present, each session shows its 1-3 theme
+# chips linking to the per-theme page.
+# --------------------------------------------------------------------------
+
+$themesJsonPath        = Join-Path $RepoRoot "catalog\$Conference\$EventId\themes\themes.json"
+$themeAssignmentsPath  = Join-Path $RepoRoot "catalog\$Conference\$EventId\themes\theme-assignments.json"
+$themesData            = @()
+$themeBySlug           = @{}
+$themesBySession       = @{}   # sessionCode -> List[{slug, name}]
+$sessionsByTheme       = @{}   # themeSlug   -> List[{code, title, sessionType, ...}]
+$themesEnabled         = $false
+if ((Test-Path -LiteralPath $themesJsonPath) -and (Test-Path -LiteralPath $themeAssignmentsPath) -and
+    $themesIndexBody -and $themeBody) {
+    try {
+        $themesData = @((Get-Content -Raw -LiteralPath $themesJsonPath | ConvertFrom-Json -Depth 10).themes)
+        foreach ($t in $themesData) { $themeBySlug[$t.slug] = $t }
+
+        $assignments = @((Get-Content -Raw -LiteralPath $themeAssignmentsPath | ConvertFrom-Json -Depth 10).assignments)
+        foreach ($a in $assignments) {
+            $perSession = New-Object 'System.Collections.Generic.List[object]'
+            foreach ($slug in @($a.themes)) {
+                $th = $themeBySlug[$slug]
+                if (-not $th) { continue }
+                $perSession.Add([pscustomobject]@{ slug = $slug; name = $th.name }) | Out-Null
+
+                if (-not $sessionsByTheme.ContainsKey($slug)) {
+                    $sessionsByTheme[$slug] = New-Object 'System.Collections.Generic.List[string]'
+                }
+                $sessionsByTheme[$slug].Add($a.code) | Out-Null
+            }
+            $themesBySession[$a.code] = $perSession
+        }
+        $themesEnabled = ($themesData.Count -gt 0)
+        $attribSessionCount = ($themesBySession.Keys | Measure-Object).Count
+        Write-Host "Themes view enabled: $($themesData.Count) theme(s) across $attribSessionCount attributed session(s)." -ForegroundColor DarkGray
+    } catch {
+        Write-Warning "Failed to load themes artifacts ($_); skipping themes view."
+        $themesEnabled = $false
+    }
+} else {
+    Write-Host "Themes view disabled (missing themes.json/theme-assignments.json/templates)." -ForegroundColor DarkGray
+}
+
 # CategorySlug: the fixed taxonomy uses lowercase except for 'SDK'. The CSS
 # selector .entity-cat-<slug> matches this exact form.
 function CategorySlug { param([string]$c) if ($c -eq 'SDK') { 'SDK' } else { ($c ?? '').ToLowerInvariant() } }
@@ -626,6 +680,21 @@ foreach ($dir in $sessionDirs) {
     }
     else {
         $speakers = if ($m.speakerNames) { HtmlEncode $m.speakerNames } else { '' }
+    }
+
+    # Theme chips: 1-3 theme tags rendered as accent pills, each linking to
+    # the per-theme page. Empty <div> emitted when the themes view is on
+    # but the session got no assignment (rare; the C# sanity check warns
+    # about these). When the themes view is off, the whole block is empty
+    # so the template slot collapses without a stray border or margin.
+    $themesHtml = ''
+    if ($themesEnabled -and $themesBySession.ContainsKey($code)) {
+        $themeChips = foreach ($th in $themesBySession[$code]) {
+            '<a class="tag tag-theme" href="../themes/' + (HtmlEncode $th.slug) + '.html">' + (HtmlEncode $th.name) + '</a>'
+        }
+        if ($themeChips.Count -gt 0) {
+            $themesHtml = '<div class="session-themes"><span class="session-themes-label">Themes:</span> ' + ($themeChips -join ' ') + '</div>'
+        }
     }
 
     $metaParts = @()
@@ -1060,6 +1129,7 @@ $($chips -join "`n")
         START_DT_ISO     = HtmlEncode $startIso
         END_DT_ISO       = HtmlEncode $endIso
         TAGS_HTML        = $tagsHtml
+        THEMES_HTML      = $themesHtml
         NOTICE_HTML      = $noticeHtml
         COVER_HTML       = $coverHtml
         PLAYER_HTML      = $playerHtml
@@ -1115,6 +1185,7 @@ $($chips -join "`n")
         NAV_HTML          = '<nav><a href="index.html">All sessions</a>' +
                             $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
                             $(if ($speakersEnabled) { '<a href="../speakers/index.html">Speakers</a>' } else { '' }) +
+                            $(if ($themesEnabled) { '<a href="../themes/index.html">Themes</a>' } else { '' }) +
                             '<a href="../index.html">Event hub</a>' +
                             '</nav>'
         SOURCE_NOTE       = " from <code>sessions/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/&lt;CODE&gt;/rich-manifest.json</code>"
@@ -1236,19 +1307,25 @@ Build-LunrIndex -Documents $lunrDocs.ToArray() -OutputPath (Join-Path $sessionsC
 # to the per-event root.
 $annCount = if ($annEnabled) { $annEntities.Count } else { 0 }
 $speakersCount = if ($speakersEnabled) { $speakersData.Count } else { 0 }
+$themesCount = if ($themesEnabled) { $themesData.Count } else { 0 }
 function Render-ViewSwitcher {
-    param([string]$Active)   # 'sessions' | 'announcements' | 'speakers'
+    param([string]$Active)   # 'sessions' | 'announcements' | 'speakers' | 'themes'
     $sCount = $script:indexCatalog.Count
     $aCount = $script:annCount
     $pCount = $script:speakersCount
+    $tCount = $script:themesCount
     $sActive = if ($Active -eq 'sessions')      { ' is-active' } else { '' }
     $aActive = if ($Active -eq 'announcements') { ' is-active' } else { '' }
     $pActive = if ($Active -eq 'speakers')      { ' is-active' } else { '' }
+    $tActive = if ($Active -eq 'themes')        { ' is-active' } else { '' }
     $aTab = if ($script:annEnabled) {
         "<a href=`"../announcements/index.html`" class=`"view-switcher-tab$aActive`">Announcements <span class=`"view-switcher-count`">$aCount</span></a>"
     } else { '' }
     $pTab = if ($script:speakersEnabled) {
         "<a href=`"../speakers/index.html`" class=`"view-switcher-tab$pActive`">Speakers <span class=`"view-switcher-count`">$pCount</span></a>"
+    } else { '' }
+    $tTab = if ($script:themesEnabled) {
+        "<a href=`"../themes/index.html`" class=`"view-switcher-tab$tActive`">Themes <span class=`"view-switcher-count`">$tCount</span></a>"
     } else { '' }
     return @"
 <nav class="view-switcher" aria-label="Browse mode">
@@ -1256,6 +1333,7 @@ function Render-ViewSwitcher {
     <a href="../sessions/index.html" class="view-switcher-tab$sActive">Sessions <span class="view-switcher-count">$sCount</span></a>
     $aTab
     $pTab
+    $tTab
 </nav>
 "@
 }
@@ -1279,6 +1357,7 @@ $sessionsIndexHtml = Render-Template $layoutTpl @{
     HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId) &mdash; Sessions"
     NAV_HTML       = '<nav>' + $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
                      $(if ($speakersEnabled) { '<a href="../speakers/index.html">Speakers</a>' } else { '' }) +
+                     $(if ($themesEnabled) { '<a href="../themes/index.html">Themes</a>' } else { '' }) +
                      '<a href="../index.html">Event hub</a></nav>'
     SOURCE_NOTE    = " from <code>sessions/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/&lt;CODE&gt;/rich-manifest.json</code>"
     EXTRA_HEAD     = ''
@@ -1342,6 +1421,20 @@ if ($eventHubBody) {
                 title          = "$($sp.name)"
                 subtitle       = "Speaker &middot; $($sp.sessionCount) session$sessionsPlural"
                 searchableText = "$($sp.name) $variantsStr $tagsStr"
+            }) | Out-Null
+        }
+    }
+
+    if ($themesEnabled) {
+        foreach ($t in $themesData) {
+            $themePlural = if ($t.sessionCount -eq 1) { '' } else { 's' }
+            $hubItems.Add([pscustomobject][ordered]@{
+                id             = "theme:$($t.slug)"
+                type           = 'theme'
+                url            = "themes/$($t.slug).html"
+                title          = "$($t.name)"
+                subtitle       = "Theme &middot; $($t.sessionCount) session$themePlural"
+                searchableText = "$($t.name) $($t.description)"
             }) | Out-Null
         }
     }
@@ -1417,12 +1510,42 @@ $($speakerFeatures -join "`n")
 "@
     }
 
+    # Themes card HTML: only emitted when themes have been resolved. Like
+    # the speakers card, this is an opt-in entry into the hub-card-grid.
+    $themeCardHtml = ''
+    if ($themesEnabled) {
+        $themeCardDesc = "Cross-cutting topics discovered by Claude Opus in a two-pass aggregation over every session's AI summary. $($themesData.Count) themes spanning $($indexCatalog.Count) sessions, with each session assigned to 1-3 themes by content."
+        $themeFeatures = @(
+            'Topical (not format-based) - groups sessions by what they''re about',
+            'Discovered and assigned in two Copilot passes (discover + assign)',
+            'Each theme page lists its sessions in tier order (KEY / BRK / DEM / ...)',
+            'Per-session pages show their themes as chips next to the tag row',
+            'Filter the index by name or description'
+        ) | ForEach-Object { '<li>' + (HtmlEncode $_) + '</li>' }
+        $themeCardHtml = @"
+<li class="hub-card hub-card-themes">
+    <a href="themes/index.html">
+        <div class="hub-card-head">
+            <span class="hub-card-label">Themes</span>
+            <span class="hub-card-stat">$($themesData.Count)</span>
+        </div>
+        <p class="hub-card-desc">$(HtmlEncode $themeCardDesc)</p>
+        <ul class="hub-card-features">
+$($themeFeatures -join "`n")
+        </ul>
+        <span class="hub-card-cta">Browse all themes &rarr;</span>
+    </a>
+</li>
+"@
+    }
+
     # Build the hub search placeholder dynamically based on which views
     # are enabled, so an event without one or more of {announcements,
-    # speakers} doesn't read awkwardly ("Search ... and 0 speakers...").
+    # speakers, themes} doesn't read awkwardly ("Search ... and 0 X...").
     $hubSearchParts = @("$($indexCatalog.Count) sessions")
     if ($annEnabled)      { $hubSearchParts += "$annCount announcements" }
     if ($speakersEnabled) { $hubSearchParts += "$($speakersData.Count) speakers" }
+    if ($themesEnabled)   { $hubSearchParts += "$($themesData.Count) themes" }
     $hubSearchPlaceholder = if ($hubSearchParts.Count -gt 1) {
         $last = $hubSearchParts[-1]
         $rest = $hubSearchParts[0..($hubSearchParts.Count - 2)] -join ', '
@@ -1442,6 +1565,7 @@ $($speakerFeatures -join "`n")
         ANNOUNCEMENT_CARD_DESC  = (HtmlEncode $announcementDesc)
         ANNOUNCEMENT_CARD_FEATURES = ($announcementFeatures -join "`n")
         SPEAKER_CARD_HTML       = $speakerCardHtml
+        THEME_CARD_HTML         = $themeCardHtml
     }
 
     $hubHtml = Render-Template $layoutTpl @{
@@ -1459,6 +1583,7 @@ $($speakerFeatures -join "`n")
         NAV_HTML       = '<nav><a href="sessions/index.html">Sessions</a>' +
                          $(if ($annEnabled) { '<a href="announcements/index.html">Announcements</a>' } else { '' }) +
                          $(if ($speakersEnabled) { '<a href="speakers/index.html">Speakers</a>' } else { '' }) +
+                         $(if ($themesEnabled) { '<a href="themes/index.html">Themes</a>' } else { '' }) +
                          '</nav>'
         SOURCE_NOTE    = ''
         EXTRA_HEAD     = ''
@@ -1569,6 +1694,7 @@ if ($annEnabled) {
         HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId) &mdash; Announcements"
         NAV_HTML       = '<nav><a href="../sessions/index.html">Sessions</a>' +
                          $(if ($speakersEnabled) { '<a href="../speakers/index.html">Speakers</a>' } else { '' }) +
+                         $(if ($themesEnabled) { '<a href="../themes/index.html">Themes</a>' } else { '' }) +
                          '<a href="../index.html">Event hub</a></nav>'
         SOURCE_NOTE    = " from <code>catalog/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/announcements/entities-enriched.json</code>"
         EXTRA_HEAD     = ''
@@ -1760,6 +1886,7 @@ if ($annEnabled) {
             HEADER_TITLE   = (HtmlEncode $e.canonicalName)
             NAV_HTML       = '<nav><a href="index.html">All announcements</a><a href="../sessions/index.html">All sessions</a>' +
                              $(if ($speakersEnabled) { '<a href="../speakers/index.html">Speakers</a>' } else { '' }) +
+                             $(if ($themesEnabled) { '<a href="../themes/index.html">Themes</a>' } else { '' }) +
                              '<a href="../index.html">Event hub</a></nav>'
             SOURCE_NOTE    = " from <code>catalog/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/announcements/entities-enriched.json</code>"
             EXTRA_HEAD     = ''
@@ -1840,6 +1967,7 @@ if ($speakersEnabled) {
     }
     $speakersLandingNav = '<nav><a href="../sessions/index.html">Sessions</a>' +
                           $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
+                          $(if ($themesEnabled) { '<a href="../themes/index.html">Themes</a>' } else { '' }) +
                           '<a href="../index.html">Event hub</a></nav>'
     $speakersIndexHtml = Render-Template $layoutTpl @{
         TITLE          = "Speakers - $Conference $EventId - Conference Library"
@@ -1865,6 +1993,7 @@ if ($speakersEnabled) {
     # Per-speaker NAV is shared across the whole render loop.
     $speakerPageNav = '<nav><a href="index.html">All speakers</a><a href="../sessions/index.html">All sessions</a>' +
                       $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
+                      $(if ($themesEnabled) { '<a href="../themes/index.html">Themes</a>' } else { '' }) +
                       '<a href="../index.html">Event hub</a></nav>'
 
     foreach ($sp in $speakersData) {
@@ -2004,6 +2133,178 @@ if ($speakersEnabled) {
     Write-Host "  speakers:    $($speakersData.Count) under $speakersRoot\<slug>.html"
     Write-Host "  catalog:     $(Join-Path $OutputRoot 'speakers-catalog.json')"
     Write-Host "  search idx:  $(Join-Path $OutputRoot 'speakers-search-index.json')"
+}
+
+# --------------------------------------------------------------------------
+# Themes view: landing page + one page per theme + themes-catalog.json +
+# Lunr search index. Same shape as the speakers section. Skipped silently
+# when Resolve-Themes.ps1 hasn't been run.
+# --------------------------------------------------------------------------
+
+if ($themesEnabled) {
+    $themesRoot = Join-Path $OutputRoot 'themes'
+    New-Item -ItemType Directory -Path $themesRoot -Force | Out-Null
+
+    # ---- slim per-theme catalog (drives themes/index.html) ----
+    $themeCatalogItems = foreach ($t in $themesData) {
+        [pscustomobject][ordered]@{
+            slug         = $t.slug
+            name         = $t.name
+            description  = $t.description
+            sessionCount = $t.sessionCount
+        }
+    }
+    $themeCatalogDoc = [pscustomobject]@{
+        schemaVersion = 1
+        generatedAt   = $generatedAt
+        conference    = $Conference
+        eventId       = $EventId
+        totalThemes   = $themesData.Count
+        themes        = @($themeCatalogItems)
+    }
+    $themeCatalogDoc | ConvertTo-Json -Depth 5 -Compress |
+        Set-Content -LiteralPath (Join-Path $OutputRoot 'themes-catalog.json') -Encoding utf8
+
+    # ---- Lunr index over name + description ----
+    $themeLunrDocs = New-Object 'System.Collections.Generic.List[object]'
+    foreach ($t in $themesData) {
+        $themeLunrDocs.Add([pscustomobject]@{
+            ref         = $t.slug
+            name        = $t.name
+            description = $t.description
+        }) | Out-Null
+    }
+    Build-LunrIndex `
+        -Documents $themeLunrDocs.ToArray() `
+        -OutputPath (Join-Path $OutputRoot 'themes-search-index.json') `
+        -Fields ([ordered]@{ name = 12; description = 4 })
+
+    # ---- landing page (themes/index.html) ----
+    $themesIndexPage = Render-Template $themesIndexBody @{
+        HERO_HEADING       = (HtmlEncode "$Conference $EventId themes")
+        TOTAL_COUNT        = "$($themesData.Count)"
+        SESSION_COUNT      = "$($indexCatalog.Count)"
+        VIEW_SWITCHER_HTML = Render-ViewSwitcher -Active 'themes'
+    }
+    $themesLandingNav = '<nav><a href="../sessions/index.html">Sessions</a>' +
+                        $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
+                        $(if ($speakersEnabled) { '<a href="../speakers/index.html">Speakers</a>' } else { '' }) +
+                        '<a href="../index.html">Event hub</a></nav>'
+    $themesIndexHtml = Render-Template $layoutTpl @{
+        TITLE          = "Themes - $Conference $EventId - Conference Library"
+        ASSETS_PREFIX  = '../'
+        HEAD_META_HTML = Build-HeadMeta `
+            -Title "Themes - $Conference $EventId" `
+            -Description "$($themesData.Count) cross-cutting themes across $($indexCatalog.Count) $Conference $EventId sessions. Topical organisation discovered by Claude Opus in a two-pass aggregation over every session's AI-generated summary." `
+            -Url (Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/themes/") `
+            -ImageUrl $siteDefaultOgImage
+        BREADCRUMB     = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
+                         "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
+                         "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; Themes</nav>"
+        HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId) &mdash; Themes"
+        NAV_HTML       = $themesLandingNav
+        SOURCE_NOTE    = " from <code>catalog/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/themes/themes.json</code>"
+        EXTRA_HEAD     = ''
+        BODY           = $themesIndexPage
+        GENERATED_AT   = HtmlEncode $generatedAt
+    }
+    Set-Content -LiteralPath (Join-Path $themesRoot 'index.html') -Value $themesIndexHtml -Encoding utf8
+
+    # ---- per-theme pages ----
+    # NAV shared across the loop.
+    $themePageNav = '<nav><a href="index.html">All themes</a><a href="../sessions/index.html">All sessions</a>' +
+                    $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
+                    $(if ($speakersEnabled) { '<a href="../speakers/index.html">Speakers</a>' } else { '' }) +
+                    '<a href="../index.html">Event hub</a></nav>'
+
+    # Build a lookup for the slim per-session shape we already collected
+    # in $indexCatalog so the per-theme render can show title + speakers +
+    # session type without re-reading each rich-manifest.
+    $sessionByCode = @{}
+    foreach ($s in $indexCatalog) { $sessionByCode[$s.code] = $s }
+
+    foreach ($t in $themesData) {
+        $codes = if ($sessionsByTheme.ContainsKey($t.slug)) { $sessionsByTheme[$t.slug].ToArray() } else { @() }
+        $sectionsSb = [System.Text.StringBuilder]::new()
+        [void]$sectionsSb.AppendLine('<section class="entity-section"><h2>Sessions in this theme (' + $codes.Count + ')</h2><ul class="mention-list">')
+
+        # Sort sessions by tier (keynotes first, then breakouts, demos,
+        # live, lightning talks, labs, others), then by code within each
+        # tier. Puts the headline content at the top of the list.
+        $tierOf = {
+            param($c)
+            if ($c -like 'KEY*')   { 0 }
+            elseif ($c -like 'BRK*')   { 1 }
+            elseif ($c -like 'DEM*')   { 2 }
+            elseif ($c -like 'LIVE*')  { 3 }
+            elseif ($c -like 'LTG*')   { 4 }
+            elseif ($c -like 'LAB*')   { 5 }
+            else { 6 }
+        }
+        $sortedCodes = $codes | Sort-Object @{Expression = { & $tierOf $_ }}, @{Expression = { $_ }}
+
+        foreach ($c in $sortedCodes) {
+            $s = $sessionByCode[$c]
+            if (-not $s) { continue }
+            $sessSpeakers = if ($speakersEnabled -and $speakersBySession.ContainsKey($c)) {
+                ($speakersBySession[$c].ToArray() | ForEach-Object { '<a href="../speakers/' + (HtmlEncode $_.slug) + '.html">' + (HtmlEncode $_.name) + '</a>' }) -join ', '
+            } else {
+                HtmlEncode ($s.speakerNames ?? '')
+            }
+            $smallParts = @()
+            if ($s.sessionType)  { $smallParts += (HtmlEncode $s.sessionType) }
+            if ($s.durationMins) { $smallParts += "$($s.durationMins) min" }
+            $smallLine = if ($smallParts.Count -gt 0) { '<small>' + ($smallParts -join ' &middot; ') + '</small>' } else { '' }
+
+            [void]$sectionsSb.AppendLine(
+                '<li class="mention-card">' +
+                  '<div class="mention-card-head"><strong><a href="../sessions/' + (HtmlEncode $c) + '.html">' + (HtmlEncode $c) + ' &mdash; ' + (HtmlEncode $s.title) + '</a></strong></div>' +
+                  '<div class="mention-speakers">' + $sessSpeakers + '</div>' +
+                  $smallLine +
+                '</li>')
+        }
+        [void]$sectionsSb.AppendLine('</ul></section>')
+
+        $sessionPlural = if ($t.sessionCount -eq 1) { '' } else { 's' }
+        $statsHtml     = '<span><strong>' + $t.sessionCount + '</strong> session' + $sessionPlural + '</span>'
+
+        $themePageBody = Render-Template $themeBody @{
+            CATEGORY_SLUG       = 'theme'
+            CATEGORY            = 'Theme'
+            THEME_NAME          = HtmlEncode $t.name
+            DESCRIPTION_HTML    = HtmlEncode $t.description
+            STATS_HTML          = $statsHtml
+            HEADER_BADGES_HTML  = ''
+            SECTIONS_HTML       = $sectionsSb.ToString()
+        }
+        $themePageHtml = Render-Template $layoutTpl @{
+            TITLE          = "$($t.name) - $Conference $EventId themes"
+            ASSETS_PREFIX  = '../'
+            HEAD_META_HTML = Build-HeadMeta `
+                -Title "$($t.name) - $Conference $EventId themes" `
+                -Description "$($t.description) $($t.sessionCount) $Conference $EventId session$sessionPlural under this theme." `
+                -Url (Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/themes/$($t.slug).html") `
+                -ImageUrl $siteDefaultOgImage
+            BREADCRUMB     = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
+                             "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
+                             "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; " +
+                             "<a href=`"index.html`">Themes</a> &raquo; " +
+                             (HtmlEncode $t.name) + "</nav>"
+            HEADER_TITLE   = (HtmlEncode $t.name)
+            NAV_HTML       = $themePageNav
+            SOURCE_NOTE    = " from <code>catalog/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/themes/themes.json</code>"
+            EXTRA_HEAD     = ''
+            BODY           = $themePageBody
+            GENERATED_AT   = HtmlEncode $generatedAt
+        }
+        Set-Content -LiteralPath (Join-Path $themesRoot ($t.slug + '.html')) -Value $themePageHtml -Encoding utf8
+    }
+
+    Write-Host "Wrote themes view:" -ForegroundColor Cyan
+    Write-Host "  landing:     $(Join-Path $themesRoot 'index.html')"
+    Write-Host "  themes:      $($themesData.Count) under $themesRoot\<slug>.html"
+    Write-Host "  catalog:     $(Join-Path $OutputRoot 'themes-catalog.json')"
+    Write-Host "  search idx:  $(Join-Path $OutputRoot 'themes-search-index.json')"
 }
 
 # --------------------------------------------------------------------------

@@ -1,0 +1,18 @@
+<!-- Body slot for layout.html. Populated by Build-Book.ps1 for one per-theme
+     page (docs/<Conf>/<Event>/themes/<slug>.html). Server-rendered: the
+     sessions list and the tag rollup are all assembled in PowerShell so
+     this template stays trivial. -->
+
+<section class="entity-hero">
+    <div class="entity-hero-meta">
+        <span class="entity-cat entity-cat-theme">Theme</span>
+        {{HEADER_BADGES_HTML}}
+    </div>
+    <h1>{{THEME_NAME}}</h1>
+    <p class="entity-tagline">{{DESCRIPTION_HTML}}</p>
+    <div class="entity-stats">
+        {{STATS_HTML}}
+    </div>
+</section>
+
+{{SECTIONS_HTML}}

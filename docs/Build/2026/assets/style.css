@@ -1235,6 +1235,7 @@ details.transcript .transcript-body {
 .entity-cat-platform  { background: #ecdcff; color: #4d2680; }
 .entity-cat-concept   { background: #f1f1f3; color: #555a63; }
 .entity-cat-speaker   { background: #e6e6ff; color: #2b2b8a; }
+.entity-cat-theme     { background: #d6efe6; color: #0c5e3f; }
 
 .link-badge {
     display: inline-block;
@@ -1450,6 +1451,7 @@ details.transcript .transcript-body {
 .hub-result-badge-session      { background: var(--c-accent-soft); color: var(--c-accent); }
 .hub-result-badge-announcement { background: #fff1d6;              color: #8a5a00; }
 .hub-result-badge-speaker      { background: #e6e6ff;              color: #2b2b8a; }
+.hub-result-badge-theme        { background: #d6efe6;              color: #0c5e3f; }
 
 /* Two-card grid */
 .hub-card-grid {
@@ -1461,14 +1463,17 @@ details.transcript .transcript-body {
     gap: var(--s-5);
 }
 /* Two-up on tablets, three-up on wide screens when the speakers card is
-   present. The third card is opt-in (Build-Book only emits it when the
-   speakers view is enabled), so on events without speakers the grid
-   simply stays 2-up at 720px. */
+   present, four-up when themes is also enabled. The card slots are
+   opt-in (Build-Book only emits them when the underlying view is
+   enabled), so the grid degrades gracefully at every config. */
 @media (min-width: 720px) {
     .hub-card-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (min-width: 1080px) {
     .hub-card-grid:has(.hub-card-speakers) { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (min-width: 1280px) {
+    .hub-card-grid:has(.hub-card-themes)   { grid-template-columns: 1fr 1fr 1fr 1fr; }
 }
 
 .hub-card {
@@ -1559,6 +1564,42 @@ details.transcript .transcript-body {
 .hub-card-speakers:hover .hub-card-stat { color: #4d2680; }
 .hub-card-speakers:hover .hub-card-cta  { color: #4d2680; }
 .hub-card-speakers:hover .hub-card-features li::before { color: #4d2680; }
+/* Themes card: teal accent, completing the four-card colour rotation. */
+.hub-card-themes:hover { border-color: #0c5e3f; }
+.hub-card-themes:hover .hub-card-stat { color: #0c5e3f; }
+.hub-card-themes:hover .hub-card-cta  { color: #0c5e3f; }
+.hub-card-themes:hover .hub-card-features li::before { color: #0c5e3f; }
+
+/* Per-session theme chip row. Sits just under the meta row in the hero,
+   chips themselves are .tag.tag-theme to reuse the tag pill geometry. */
+.session-themes {
+    margin-top: var(--s-3);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-1) var(--s-2);
+    font-size: var(--fs-sm);
+}
+.session-themes-label {
+    color: var(--c-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+}
+.tag-theme {
+    background: #d6efe6;
+    color: #0c5e3f;
+    border-radius: 999px;
+    padding: 2px var(--s-2);
+    font-size: var(--fs-xs);
+    text-decoration: none;
+}
+.tag-theme:hover {
+    background: #0c5e3f;
+    color: #fff;
+    text-decoration: none;
+}
 
 /* ============================================================
    View-switcher tab strip on both catalog landings

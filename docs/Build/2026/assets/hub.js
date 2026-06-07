@@ -83,9 +83,9 @@
 
     function runQuery(q) {
         const tokens = tokenize(q);
-        if (tokens.length === 0) return { all: [], byType: { session: 0, announcement: 0, speaker: 0 } };
+        if (tokens.length === 0) return { all: [], byType: { session: 0, announcement: 0, speaker: 0, theme: 0 } };
         const scored = [];
-        let nSession = 0, nAnnouncement = 0, nSpeaker = 0;
+        let nSession = 0, nAnnouncement = 0, nSpeaker = 0, nTheme = 0;
         for (const it of items) {
             const s = score(it, tokens);
             if (s <= 0) continue;
@@ -93,9 +93,10 @@
             if (it.type === 'session')           nSession++;
             else if (it.type === 'announcement') nAnnouncement++;
             else if (it.type === 'speaker')      nSpeaker++;
+            else if (it.type === 'theme')        nTheme++;
         }
         scored.sort((a, b) => b.score - a.score || a.item.title.localeCompare(b.item.title));
-        return { all: scored, byType: { session: nSession, announcement: nAnnouncement, speaker: nSpeaker } };
+        return { all: scored, byType: { session: nSession, announcement: nAnnouncement, speaker: nSpeaker, theme: nTheme } };
     }
 
     function renderResults(q) {
@@ -117,15 +118,18 @@
         const top = all.slice(0, MAX_RESULTS);
         const itemsHtml = top.map(s => {
             const it = s.item;
-            // Three-type badge: session (blue), announcement (amber), speaker (violet).
-            // Drives the .hub-result-badge-* CSS variants.
+            // Four-type badge: session (blue), announcement (amber),
+            // speaker (violet), theme (teal). Drives the
+            // .hub-result-badge-* CSS variants.
             const badge = it.type === 'session'      ? 'Session'
                         : it.type === 'announcement' ? 'Announcement'
                         : it.type === 'speaker'      ? 'Speaker'
+                        : it.type === 'theme'        ? 'Theme'
                                                      : '';
             const badgeClass = it.type === 'session'      ? 'hub-result-badge-session'
                              : it.type === 'announcement' ? 'hub-result-badge-announcement'
                              : it.type === 'speaker'      ? 'hub-result-badge-speaker'
+                             : it.type === 'theme'        ? 'hub-result-badge-theme'
                                                           : '';
             const subtitle = it.subtitle ? '<small>' + escapeText(it.subtitle) + '</small>' : '';
             return `
@@ -147,6 +151,9 @@
         }
         if (byType.speaker > 0) {
             footerLinks.push('<a href="speakers/index.html">See all ' + byType.speaker + ' speaker match' + (byType.speaker === 1 ? '' : 'es') + ' &rarr;</a>');
+        }
+        if (byType.theme > 0) {
+            footerLinks.push('<a href="themes/index.html">See all ' + byType.theme + ' theme match' + (byType.theme === 1 ? '' : 'es') + ' &rarr;</a>');
         }
         const footer = footerLinks.length > 0
             ? '<div class="hub-search-footer">' + footerLinks.join(' &middot; ') + '</div>'
