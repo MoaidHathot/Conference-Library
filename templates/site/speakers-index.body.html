@@ -1,0 +1,52 @@
+<!-- Body slot for layout.html, populated by Build-Book.ps1 for the per-event
+     speakers landing page (docs/<Conf>/<Event>/speakers/index.html). Renders
+     the searchable, filterable card grid of every unique speaker resolved
+     from each session's rich-manifest.json. -->
+
+{{VIEW_SWITCHER_HTML}}
+
+<section class="hero">
+    <h2>{{HERO_HEADING}}</h2>
+    <p>
+        <strong id="spk-count-text">{{TOTAL_COUNT}}</strong> unique speakers
+        across <strong>{{SESSION_COUNT}} session(s)</strong>: every Build
+        presenter resolved by the catalog's opaque speaker id (so spelling
+        drift between sessions still folds into one entry). Search by name,
+        sort by activity, and click any card to see the full per-speaker
+        list of sessions with co-presenters.
+    </p>
+</section>
+
+<form class="filters" onsubmit="return false">
+    <input id="spk-filter-search" type="search"
+           placeholder="Search speaker name&hellip;" autocomplete="off">
+
+    <select id="spk-filter-sort">
+        <option value="sessions">Sort: most sessions</option>
+        <option value="name">Sort: name (A&ndash;Z)</option>
+        <option value="nameDesc">Sort: name (Z&ndash;A)</option>
+    </select>
+
+    <div id="spk-filter-activity" class="filters-pills" style="gap: var(--s-1); margin: 0">
+        <span class="pill-label">Sessions</span>
+        <button type="button" class="filter-pill" data-bucket="5">5+</button>
+        <button type="button" class="filter-pill" data-bucket="3">3&ndash;4</button>
+        <button type="button" class="filter-pill" data-bucket="2">2</button>
+        <button type="button" class="filter-pill" data-bucket="1">1</button>
+    </div>
+</form>
+
+<div id="spk-filter-tag-pills" class="filters-pills"></div>
+
+<div class="results-meta">
+    <span id="spk-results-meta"></span>
+</div>
+
+<ul id="spk-list" class="entity-list"></ul>
+
+<div id="spk-no-results" class="no-results" hidden>
+    No speakers match the current filters. Clear them or broaden your search.
+</div>
+
+<script src="../assets/lunr.min.js"></script>
+<script src="../assets/speakers.js"></script>

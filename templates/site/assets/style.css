@@ -1234,6 +1234,7 @@ details.transcript .transcript-body {
 .entity-cat-feature   { background: #e6f0fc; color: #0066d8; }
 .entity-cat-platform  { background: #ecdcff; color: #4d2680; }
 .entity-cat-concept   { background: #f1f1f3; color: #555a63; }
+.entity-cat-speaker   { background: #e6e6ff; color: #2b2b8a; }
 
 .link-badge {
     display: inline-block;
@@ -1448,6 +1449,7 @@ details.transcript .transcript-body {
 }
 .hub-result-badge-session      { background: var(--c-accent-soft); color: var(--c-accent); }
 .hub-result-badge-announcement { background: #fff1d6;              color: #8a5a00; }
+.hub-result-badge-speaker      { background: #e6e6ff;              color: #2b2b8a; }
 
 /* Two-card grid */
 .hub-card-grid {
@@ -1458,8 +1460,15 @@ details.transcript .transcript-body {
     grid-template-columns: 1fr;
     gap: var(--s-5);
 }
+/* Two-up on tablets, three-up on wide screens when the speakers card is
+   present. The third card is opt-in (Build-Book only emits it when the
+   speakers view is enabled), so on events without speakers the grid
+   simply stays 2-up at 720px. */
 @media (min-width: 720px) {
     .hub-card-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1080px) {
+    .hub-card-grid:has(.hub-card-speakers) { grid-template-columns: 1fr 1fr 1fr; }
 }
 
 .hub-card {
@@ -1544,6 +1553,12 @@ details.transcript .transcript-body {
 .hub-card-announcements:hover .hub-card-stat { color: #8a5a00; }
 .hub-card-announcements:hover .hub-card-cta  { color: #8a5a00; }
 .hub-card-announcements:hover .hub-card-features li::before { color: #8a5a00; }
+/* Speakers card uses the same accent vocabulary - blue-violet to
+   distinguish from the sessions (blue) and announcements (amber). */
+.hub-card-speakers:hover { border-color: #4d2680; }
+.hub-card-speakers:hover .hub-card-stat { color: #4d2680; }
+.hub-card-speakers:hover .hub-card-cta  { color: #4d2680; }
+.hub-card-speakers:hover .hub-card-features li::before { color: #4d2680; }
 
 /* ============================================================
    View-switcher tab strip on both catalog landings

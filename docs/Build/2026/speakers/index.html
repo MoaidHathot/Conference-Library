@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Speakers - Build 2026 - Conference Library</title>
+    <link rel="stylesheet" href="../assets/style.css">
+        <meta name="description" content="440 speakers across 443 Build 2026 sessions. Search by name, filter by activity (1, 2, 3-4, 5+ sessions) or by tag. Each card links to a per-speaker page with the full session list and a...">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Conference Library">
+    <meta property="og:title" content="Speakers - Build 2026">
+    <meta property="og:description" content="440 speakers across 443 Build 2026 sessions. Search by name, filter by activity (1, 2, 3-4, 5+ sessions) or by tag. Each card links to a per-speaker page with the full session list and a...">
+    <meta property="og:url" content="https://moaidhathot.github.io/Conference-Library/Build/2026/speakers/">
+    <meta property="og:image" content="https://moaidhathot.github.io/Conference-Library/Build/2026/frames/KEY01/frame-001-09-22.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Speakers - Build 2026">
+    <meta name="twitter:description" content="440 speakers across 443 Build 2026 sessions. Search by name, filter by activity (1, 2, 3-4, 5+ sessions) or by tag. Each card links to a per-speaker page with the full session list and a...">
+    <meta name="twitter:image" content="https://moaidhathot.github.io/Conference-Library/Build/2026/frames/KEY01/frame-001-09-22.jpg">
+    
+</head>
+<body>
+
+<header class="site-header">
+    <div class="page">
+        <nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; <a href="../../index.html">Build</a> &raquo; <a href="../index.html">2026</a> &raquo; Speakers</nav>
+        <h1>Build 2026 &mdash; Speakers</h1>
+        <nav><a href="../sessions/index.html">Sessions</a><a href="../announcements/index.html">Announcements</a><a href="../index.html">Event hub</a></nav>
+    </div>
+</header>
+
+<main class="page">
+<!-- Body slot for layout.html, populated by Build-Book.ps1 for the per-event
+     speakers landing page (docs/<Conf>/<Event>/speakers/index.html). Renders
+     the searchable, filterable card grid of every unique speaker resolved
+     from each session's rich-manifest.json. -->
+
+<nav class="view-switcher" aria-label="Browse mode">
+    <a href="../index.html" class="view-switcher-home">&larr; Event hub</a>
+    <a href="../sessions/index.html" class="view-switcher-tab">Sessions <span class="view-switcher-count">443</span></a>
+    <a href="../announcements/index.html" class="view-switcher-tab">Announcements <span class="view-switcher-count">583</span></a>
+    <a href="../speakers/index.html" class="view-switcher-tab is-active">Speakers <span class="view-switcher-count">440</span></a>
+</nav>
+
+<section class="hero">
+    <h2>Build 2026 speakers</h2>
+    <p>
+        <strong id="spk-count-text">440</strong> unique speakers
+        across <strong>443 session(s)</strong>: every Build
+        presenter resolved by the catalog's opaque speaker id (so spelling
+        drift between sessions still folds into one entry). Search by name,
+        sort by activity, and click any card to see the full per-speaker
+        list of sessions with co-presenters.
+    </p>
+</section>
+
+<form class="filters" onsubmit="return false">
+    <input id="spk-filter-search" type="search"
+           placeholder="Search speaker name&hellip;" autocomplete="off">
+
+    <select id="spk-filter-sort">
+        <option value="sessions">Sort: most sessions</option>
+        <option value="name">Sort: name (A&ndash;Z)</option>
+        <option value="nameDesc">Sort: name (Z&ndash;A)</option>
+    </select>
+
+    <div id="spk-filter-activity" class="filters-pills" style="gap: var(--s-1); margin: 0">
+        <span class="pill-label">Sessions</span>
+        <button type="button" class="filter-pill" data-bucket="5">5+</button>
+        <button type="button" class="filter-pill" data-bucket="3">3&ndash;4</button>
+        <button type="button" class="filter-pill" data-bucket="2">2</button>
+        <button type="button" class="filter-pill" data-bucket="1">1</button>
+    </div>
+</form>
+
+<div id="spk-filter-tag-pills" class="filters-pills"></div>
+
+<div class="results-meta">
+    <span id="spk-results-meta"></span>
+</div>
+
+<ul id="spk-list" class="entity-list"></ul>
+
+<div id="spk-no-results" class="no-results" hidden>
+    No speakers match the current filters. Clear them or broaden your search.
+</div>
+
+<script src="../assets/lunr.min.js"></script>
+<script src="../assets/speakers.js"></script>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page">
+        <p>Community-maintained reference. Session transcripts, frames, and metadata are sourced from the public Microsoft Build session catalog and the Medius video service; all rights to the original content remain with Microsoft. Per-session pages link to the canonical session URL on <code>build.microsoft.com</code>.</p>
+        <p>Generated by <code>scripts/Build-Book.ps1</code> from <code>catalog/Build/2026/speakers/speakers.json</code>. Built at 2026-06-07T17:19:29.8926657Z.</p>
+        <p>Mediastream caption and frame ingestion is powered by <a href="https://github.com/MoaidHathot/Zakira.Replay">Zakira.Replay</a>.</p>
+        <p>Search-suggested external links on announcement pages are discovered by <a href="https://github.com/MoaidHathot/Zakira.Recall">Zakira.Recall</a> (also on <a href="https://www.nuget.org/packages/Zakira.Recall">NuGet</a>) &mdash; a local CLI + MCP server for Playwright-backed web search.</p>
+    </div>
+</footer>
+
+<script src="../assets/session.js"></script>
+
+</body>
+</html>
+

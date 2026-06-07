@@ -72,6 +72,14 @@ $entityBody      = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'entity.
 $eventHubBody    = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'event-hub.body.html')) {
     Get-Content -Raw -LiteralPath (Join-Path $templatesRoot 'event-hub.body.html')
 } else { $null }
+# Speakers view templates (optional - silently skipped when missing, the
+# Resolve-Speakers.ps1 step is a sibling-of-announcements opt-in).
+$speakersIndexBody = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'speakers-index.body.html')) {
+    Get-Content -Raw -LiteralPath (Join-Path $templatesRoot 'speakers-index.body.html')
+} else { $null }
+$speakerBody       = if (Test-Path -LiteralPath (Join-Path $templatesRoot 'speaker.body.html')) {
+    Get-Content -Raw -LiteralPath (Join-Path $templatesRoot 'speaker.body.html')
+} else { $null }
 
 # ---- helpers ----
 
@@ -466,6 +474,44 @@ if ((Test-Path -LiteralPath $entitiesEnrichedPath) -and
     Write-Host "Announcements view disabled (missing entities-enriched.json/mentions.json/templates)." -ForegroundColor DarkGray
 }
 
+# --------------------------------------------------------------------------
+# Speakers: load Resolve-Speakers.ps1 output. Optional - if missing, the
+# speakers landing page + per-speaker pages are silently skipped and per-
+# session speaker names render as plain text (the legacy path). When
+# present, per-session speaker names become links to their speaker page.
+# --------------------------------------------------------------------------
+
+$speakersJsonPath = Join-Path $RepoRoot "catalog\$Conference\$EventId\speakers\speakers.json"
+$speakersData       = @()
+$speakerById        = @{}
+$speakersBySession  = @{}  # sessionCode -> List[{id, name, slug}]
+$speakersEnabled    = $false
+if ((Test-Path -LiteralPath $speakersJsonPath) -and $speakersIndexBody -and $speakerBody) {
+    try {
+        $speakersData = @((Get-Content -Raw -LiteralPath $speakersJsonPath | ConvertFrom-Json -Depth 20).speakers)
+        foreach ($sp in $speakersData) {
+            $speakerById[$sp.id] = $sp
+            foreach ($sess in @($sp.sessions)) {
+                if (-not $speakersBySession.ContainsKey($sess.code)) {
+                    $speakersBySession[$sess.code] = New-Object 'System.Collections.Generic.List[object]'
+                }
+                $speakersBySession[$sess.code].Add([pscustomobject]@{
+                    id   = $sp.id
+                    name = $sp.name
+                    slug = $sp.slug
+                }) | Out-Null
+            }
+        }
+        $speakersEnabled = ($speakersData.Count -gt 0)
+        Write-Host "Speakers view enabled: $($speakersData.Count) speaker(s) across $(($speakersBySession.Keys | Measure-Object).Count) attributed session(s)." -ForegroundColor DarkGray
+    } catch {
+        Write-Warning "Failed to load speakers artifacts ($_); skipping speakers view."
+        $speakersEnabled = $false
+    }
+} else {
+    Write-Host "Speakers view disabled (missing speakers.json/templates)." -ForegroundColor DarkGray
+}
+
 # CategorySlug: the fixed taxonomy uses lowercase except for 'SDK'. The CSS
 # selector .entity-cat-<slug> matches this exact form.
 function CategorySlug { param([string]$c) if ($c -eq 'SDK') { 'SDK' } else { ($c ?? '').ToLowerInvariant() } }
@@ -567,7 +613,20 @@ foreach ($dir in $sessionDirs) {
     $code = $m.code
 
     # ---- per-session HTML ----
-    $speakers = if ($m.speakerNames) { HtmlEncode $m.speakerNames } else { '' }
+    # Speakers list: when the speakers view is enabled, link each speaker
+    # name to its per-speaker page. Order matches the rich-manifest
+    # speakerNames left-to-right; unknown names (no matching id) fall
+    # through to plain text so the surface degrades gracefully.
+    if ($speakersEnabled -and $speakersBySession.ContainsKey($code)) {
+        $sessSpeakerObjs = $speakersBySession[$code]
+        $speakerParts = foreach ($sp in $sessSpeakerObjs) {
+            '<a href="../speakers/' + (HtmlEncode $sp.slug) + '.html">' + (HtmlEncode $sp.name) + '</a>'
+        }
+        $speakers = $speakerParts -join ', '
+    }
+    else {
+        $speakers = if ($m.speakerNames) { HtmlEncode $m.speakerNames } else { '' }
+    }
 
     $metaParts = @()
     if ($m.durationMinutes)   { $metaParts += "<span>{0} min</span>" -f ([int]$m.durationMinutes) }
@@ -1055,6 +1114,7 @@ $($chips -join "`n")
         HEADER_TITLE      = "$(HtmlEncode $code) &mdash; $(HtmlEncode $m.title)"
         NAV_HTML          = '<nav><a href="index.html">All sessions</a>' +
                             $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
+                            $(if ($speakersEnabled) { '<a href="../speakers/index.html">Speakers</a>' } else { '' }) +
                             '<a href="../index.html">Event hub</a>' +
                             '</nav>'
         SOURCE_NOTE       = " from <code>sessions/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/&lt;CODE&gt;/rich-manifest.json</code>"
@@ -1175,20 +1235,27 @@ Build-LunrIndex -Documents $lunrDocs.ToArray() -OutputPath (Join-Path $sessionsC
 # highlighted; the other navigates with one click. The hub link returns
 # to the per-event root.
 $annCount = if ($annEnabled) { $annEntities.Count } else { 0 }
+$speakersCount = if ($speakersEnabled) { $speakersData.Count } else { 0 }
 function Render-ViewSwitcher {
-    param([string]$Active)   # 'sessions' or 'announcements'
+    param([string]$Active)   # 'sessions' | 'announcements' | 'speakers'
     $sCount = $script:indexCatalog.Count
     $aCount = $script:annCount
+    $pCount = $script:speakersCount
     $sActive = if ($Active -eq 'sessions')      { ' is-active' } else { '' }
     $aActive = if ($Active -eq 'announcements') { ' is-active' } else { '' }
+    $pActive = if ($Active -eq 'speakers')      { ' is-active' } else { '' }
     $aTab = if ($script:annEnabled) {
         "<a href=`"../announcements/index.html`" class=`"view-switcher-tab$aActive`">Announcements <span class=`"view-switcher-count`">$aCount</span></a>"
+    } else { '' }
+    $pTab = if ($script:speakersEnabled) {
+        "<a href=`"../speakers/index.html`" class=`"view-switcher-tab$pActive`">Speakers <span class=`"view-switcher-count`">$pCount</span></a>"
     } else { '' }
     return @"
 <nav class="view-switcher" aria-label="Browse mode">
     <a href="../index.html" class="view-switcher-home">&larr; Event hub</a>
     <a href="../sessions/index.html" class="view-switcher-tab$sActive">Sessions <span class="view-switcher-count">$sCount</span></a>
     $aTab
+    $pTab
 </nav>
 "@
 }
@@ -1211,6 +1278,7 @@ $sessionsIndexHtml = Render-Template $layoutTpl @{
                      "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; Sessions</nav>"
     HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId) &mdash; Sessions"
     NAV_HTML       = '<nav>' + $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
+                     $(if ($speakersEnabled) { '<a href="../speakers/index.html">Speakers</a>' } else { '' }) +
                      '<a href="../index.html">Event hub</a></nav>'
     SOURCE_NOTE    = " from <code>sessions/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/&lt;CODE&gt;/rich-manifest.json</code>"
     EXTRA_HEAD     = ''
@@ -1262,6 +1330,22 @@ if ($eventHubBody) {
         }
     }
 
+    if ($speakersEnabled) {
+        foreach ($sp in $speakersData) {
+            $variantsStr = if ($sp.nameVariants) { (@($sp.nameVariants) -join ' ') } else { '' }
+            $tagsStr     = if ($sp.tags)         { (@($sp.tags)         -join ' ') } else { '' }
+            $sessionsPlural = if ($sp.sessionCount -eq 1) { '' } else { 's' }
+            $hubItems.Add([pscustomobject][ordered]@{
+                id             = $sp.id
+                type           = 'speaker'
+                url            = "speakers/$($sp.slug).html"
+                title          = "$($sp.name)"
+                subtitle       = "Speaker &middot; $($sp.sessionCount) session$sessionsPlural"
+                searchableText = "$($sp.name) $variantsStr $tagsStr"
+            }) | Out-Null
+        }
+    }
+
     $hubCatalogDoc = [pscustomobject]@{
         schemaVersion = 1
         conference    = $Conference
@@ -1302,16 +1386,62 @@ if ($eventHubBody) {
         "The announcements pipeline hasn't been run for this event yet."
     }
 
+    # Speakers card HTML: only emitted when the speakers view is enabled,
+    # so the hub-card-grid stays clean (no empty slot) on events that
+    # haven't been resolved yet.
+    $speakerCardHtml = ''
+    if ($speakersEnabled) {
+        $speakerAttribSessionCount = ($speakersBySession.Keys | Measure-Object).Count
+        $speakerCardDesc = "Every $Conference $EventId speaker resolved by the catalog's opaque speaker id. $($speakersData.Count) unique speakers across $speakerAttribSessionCount attributed sessions, with per-speaker session lists and a co-presenter graph."
+        $speakerFeatures = @(
+            'One entry per unique presenter (id-keyed; name-spelling drift folded)',
+            'Per-speaker page lists every session with co-presenter links',
+            'Co-presenters block ranks frequent collaborators by joint-session count',
+            'Filter by activity bucket (1, 2, 3-4, 5+ sessions) or by tag',
+            'Search by name plus alternate spellings'
+        ) | ForEach-Object { '<li>' + (HtmlEncode $_) + '</li>' }
+        $speakerCardHtml = @"
+<li class="hub-card hub-card-speakers">
+    <a href="speakers/index.html">
+        <div class="hub-card-head">
+            <span class="hub-card-label">Speakers</span>
+            <span class="hub-card-stat">$($speakersData.Count)</span>
+        </div>
+        <p class="hub-card-desc">$(HtmlEncode $speakerCardDesc)</p>
+        <ul class="hub-card-features">
+$($speakerFeatures -join "`n")
+        </ul>
+        <span class="hub-card-cta">Browse all speakers &rarr;</span>
+    </a>
+</li>
+"@
+    }
+
+    # Build the hub search placeholder dynamically based on which views
+    # are enabled, so an event without one or more of {announcements,
+    # speakers} doesn't read awkwardly ("Search ... and 0 speakers...").
+    $hubSearchParts = @("$($indexCatalog.Count) sessions")
+    if ($annEnabled)      { $hubSearchParts += "$annCount announcements" }
+    if ($speakersEnabled) { $hubSearchParts += "$($speakersData.Count) speakers" }
+    $hubSearchPlaceholder = if ($hubSearchParts.Count -gt 1) {
+        $last = $hubSearchParts[-1]
+        $rest = $hubSearchParts[0..($hubSearchParts.Count - 2)] -join ', '
+        "Search $rest, and $last..."
+    } else {
+        "Search $($hubSearchParts[0])..."
+    }
+
     $hubBody = Render-Template $eventHubBody @{
         HERO_HEADING            = (HtmlEncode "$Conference $EventId")
         HUB_CONTEXT_HTML        = $hubContext
-        HUB_SEARCH_PLACEHOLDER  = (HtmlEncode "Search $($indexCatalog.Count) sessions and $annCount announcements...")
+        HUB_SEARCH_PLACEHOLDER  = (HtmlEncode $hubSearchPlaceholder)
         SESSION_COUNT           = "$($indexCatalog.Count)"
         SESSION_CARD_DESC       = (HtmlEncode $sessionDesc)
         SESSION_CARD_FEATURES   = ($sessionFeatures -join "`n")
         ANNOUNCEMENT_COUNT      = "$annCount"
         ANNOUNCEMENT_CARD_DESC  = (HtmlEncode $announcementDesc)
         ANNOUNCEMENT_CARD_FEATURES = ($announcementFeatures -join "`n")
+        SPEAKER_CARD_HTML       = $speakerCardHtml
     }
 
     $hubHtml = Render-Template $layoutTpl @{
@@ -1328,6 +1458,7 @@ if ($eventHubBody) {
         HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId)"
         NAV_HTML       = '<nav><a href="sessions/index.html">Sessions</a>' +
                          $(if ($annEnabled) { '<a href="announcements/index.html">Announcements</a>' } else { '' }) +
+                         $(if ($speakersEnabled) { '<a href="speakers/index.html">Speakers</a>' } else { '' }) +
                          '</nav>'
         SOURCE_NOTE    = ''
         EXTRA_HEAD     = ''
@@ -1436,7 +1567,9 @@ if ($annEnabled) {
                          "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
                          "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; Announcements</nav>"
         HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId) &mdash; Announcements"
-        NAV_HTML       = '<nav><a href="../sessions/index.html">Sessions</a><a href="../index.html">Event hub</a></nav>'
+        NAV_HTML       = '<nav><a href="../sessions/index.html">Sessions</a>' +
+                         $(if ($speakersEnabled) { '<a href="../speakers/index.html">Speakers</a>' } else { '' }) +
+                         '<a href="../index.html">Event hub</a></nav>'
         SOURCE_NOTE    = " from <code>catalog/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/announcements/entities-enriched.json</code>"
         EXTRA_HEAD     = ''
         BODY           = $annLandingHtml
@@ -1625,7 +1758,9 @@ if ($annEnabled) {
                              "<a href=`"index.html`">Announcements</a> &raquo; " +
                              (HtmlEncode $e.canonicalName) + "</nav>"
             HEADER_TITLE   = (HtmlEncode $e.canonicalName)
-            NAV_HTML       = '<nav><a href="index.html">All announcements</a><a href="../sessions/index.html">All sessions</a><a href="../index.html">Event hub</a></nav>'
+            NAV_HTML       = '<nav><a href="index.html">All announcements</a><a href="../sessions/index.html">All sessions</a>' +
+                             $(if ($speakersEnabled) { '<a href="../speakers/index.html">Speakers</a>' } else { '' }) +
+                             '<a href="../index.html">Event hub</a></nav>'
             SOURCE_NOTE    = " from <code>catalog/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/announcements/entities-enriched.json</code>"
             EXTRA_HEAD     = ''
             BODY           = $entityPageBody
@@ -1639,6 +1774,236 @@ if ($annEnabled) {
     Write-Host "  entities:    $($annEntities.Count) under $annRoot\<slug>.html"
     Write-Host "  catalog:     $(Join-Path $OutputRoot 'announcement-catalog.json')"
     Write-Host "  search idx:  $(Join-Path $OutputRoot 'announcement-search-index.json')"
+}
+
+# --------------------------------------------------------------------------
+# Speakers view: landing page + one page per resolved speaker +
+# speakers-catalog.json + Lunr search index. Mirrors the announcements
+# section pattern (slim catalog feeds the index; per-entity render loop
+# writes one HTML per speaker). Skipped silently when the Resolve-
+# Speakers.ps1 step hasn't been run (see speakersEnabled guard near
+# the top).
+# --------------------------------------------------------------------------
+
+if ($speakersEnabled) {
+    $speakersRoot = Join-Path $OutputRoot 'speakers'
+    New-Item -ItemType Directory -Path $speakersRoot -Force | Out-Null
+
+    # ---- slim per-speaker catalog (drives speakers/index.html) ----
+    $speakerCatalogItems = foreach ($sp in $speakersData) {
+        [pscustomobject][ordered]@{
+            id            = $sp.id
+            name          = $sp.name
+            slug          = $sp.slug
+            sessionCount  = $sp.sessionCount
+            tags          = $sp.tags
+            topics        = $sp.topics
+            nameVariants  = $sp.nameVariants
+        }
+    }
+    $speakerCatalogDoc = [pscustomobject]@{
+        schemaVersion = 1
+        generatedAt   = $generatedAt
+        conference    = $Conference
+        eventId       = $EventId
+        totalSpeakers = $speakersData.Count
+        speakers      = @($speakerCatalogItems)
+    }
+    $speakerCatalogDoc | ConvertTo-Json -Depth 6 -Compress |
+        Set-Content -LiteralPath (Join-Path $OutputRoot 'speakers-catalog.json') -Encoding utf8
+
+    # ---- Lunr index over name + name variants + tags ----
+    $speakerLunrDocs = New-Object 'System.Collections.Generic.List[object]'
+    foreach ($sp in $speakersData) {
+        $variantsStr = if ($sp.nameVariants) { (@($sp.nameVariants) -join ' ') } else { '' }
+        $tagsStr     = if ($sp.tags)         { (@($sp.tags)         -join ' ') } else { '' }
+        $topicsStr   = if ($sp.topics)       { (@($sp.topics)       -join ' ') } else { '' }
+        $speakerLunrDocs.Add([pscustomobject]@{
+            ref      = $sp.id
+            name     = $sp.name
+            variants = $variantsStr
+            tags     = $tagsStr
+            topics   = $topicsStr
+        }) | Out-Null
+    }
+    Build-LunrIndex `
+        -Documents $speakerLunrDocs.ToArray() `
+        -OutputPath (Join-Path $OutputRoot 'speakers-search-index.json') `
+        -Fields ([ordered]@{ name = 12; variants = 8; tags = 4; topics = 4 })
+
+    # ---- landing page (speakers/index.html) ----
+    $speakersIndexPage = Render-Template $speakersIndexBody @{
+        HERO_HEADING       = (HtmlEncode "$Conference $EventId speakers")
+        TOTAL_COUNT        = "$($speakersData.Count)"
+        SESSION_COUNT      = "$($indexCatalog.Count)"
+        VIEW_SWITCHER_HTML = Render-ViewSwitcher -Active 'speakers'
+    }
+    $speakersLandingNav = '<nav><a href="../sessions/index.html">Sessions</a>' +
+                          $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
+                          '<a href="../index.html">Event hub</a></nav>'
+    $speakersIndexHtml = Render-Template $layoutTpl @{
+        TITLE          = "Speakers - $Conference $EventId - Conference Library"
+        ASSETS_PREFIX  = '../'
+        HEAD_META_HTML = Build-HeadMeta `
+            -Title "Speakers - $Conference $EventId" `
+            -Description "$($speakersData.Count) speakers across $($indexCatalog.Count) $Conference $EventId sessions. Search by name, filter by activity (1, 2, 3-4, 5+ sessions) or by tag. Each card links to a per-speaker page with the full session list and a co-presenter graph." `
+            -Url (Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/speakers/") `
+            -ImageUrl $siteDefaultOgImage
+        BREADCRUMB     = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
+                         "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
+                         "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; Speakers</nav>"
+        HEADER_TITLE   = "$(HtmlEncode $Conference) $(HtmlEncode $EventId) &mdash; Speakers"
+        NAV_HTML       = $speakersLandingNav
+        SOURCE_NOTE    = " from <code>catalog/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/speakers/speakers.json</code>"
+        EXTRA_HEAD     = ''
+        BODY           = $speakersIndexPage
+        GENERATED_AT   = HtmlEncode $generatedAt
+    }
+    Set-Content -LiteralPath (Join-Path $speakersRoot 'index.html') -Value $speakersIndexHtml -Encoding utf8
+
+    # ---- per-speaker pages ----
+    # Per-speaker NAV is shared across the whole render loop.
+    $speakerPageNav = '<nav><a href="index.html">All speakers</a><a href="../sessions/index.html">All sessions</a>' +
+                      $(if ($annEnabled) { '<a href="../announcements/index.html">Announcements</a>' } else { '' }) +
+                      '<a href="../index.html">Event hub</a></nav>'
+
+    foreach ($sp in $speakersData) {
+        # Compose the page sections (sessions list with co-presenters,
+        # frequent co-presenters block, tag/topic rollup) into a single
+        # SECTIONS_HTML blob. The template itself stays trivial - all
+        # variability lives here so we can iterate the page shape without
+        # touching speaker.body.html.
+        $sectionsSb = [System.Text.StringBuilder]::new()
+
+        # Sessions section: server-rendered card list with per-session
+        # co-presenter links inline. Each session links to the per-session
+        # page; each co-presenter links to their own per-speaker page.
+        # NB: coSpeakers in speakers.json carries {id, name} only -
+        # resolve the slug through the in-memory $speakerById registry so
+        # the link target is always correct even when a co-presenter has
+        # a slug-collision suffix.
+        [void]$sectionsSb.AppendLine('<section class="entity-section"><h2>Sessions (' + $sp.sessionCount + ')</h2><ul class="mention-list">')
+        foreach ($sess in @($sp.sessions)) {
+            $coLinks = @(@($sess.coSpeakers) | ForEach-Object {
+                $coSp = $speakerById[$_.id]
+                $coSlug = if ($coSp) { $coSp.slug } else { '' }
+                if ($coSlug) {
+                    '<a href="' + (HtmlEncode $coSlug) + '.html">' + (HtmlEncode $_.name) + '</a>'
+                } else {
+                    HtmlEncode $_.name
+                }
+            })
+            $coLine = if ($coLinks.Count -gt 0) { 'with ' + ($coLinks -join ', ') } else { 'solo' }
+            $whenStr = ''
+            if ($sess.startDateTime) {
+                try { $whenStr = ([datetime]$sess.startDateTime).ToString('ddd MMM d, HH:mm') } catch { $whenStr = '' }
+            }
+            $smallParts = @()
+            if ($whenStr) { $smallParts += (HtmlEncode $whenStr) }
+            if ($sess.sessionType) { $smallParts += (HtmlEncode $sess.sessionType) }
+            if ($sess.durationMinutes) { $smallParts += "$($sess.durationMinutes) min" }
+            $smallLine = if ($smallParts.Count -gt 0) { '<small>' + ($smallParts -join ' &middot; ') + '</small>' } else { '' }
+
+            [void]$sectionsSb.AppendLine(
+                '<li class="mention-card">' +
+                  '<div class="mention-card-head"><strong><a href="../sessions/' + (HtmlEncode $sess.code) + '.html">' + (HtmlEncode $sess.code) + ' &mdash; ' + (HtmlEncode $sess.title) + '</a></strong></div>' +
+                  '<div class="mention-speakers">' + $coLine + '</div>' +
+                  $smallLine +
+                '</li>')
+        }
+        [void]$sectionsSb.AppendLine('</ul></section>')
+
+        # Frequent co-presenters section. ConvertFrom-Json turns the
+        # coSpeakerCounts hashtable into a PSCustomObject whose properties
+        # carry the per-coId tallies; iterate via PSObject.Properties.
+        $coCountsObj = $sp.coSpeakerCounts
+        if ($coCountsObj) {
+            $coRows = foreach ($p in $coCountsObj.PSObject.Properties) {
+                if ($speakerById.ContainsKey($p.Name)) {
+                    [pscustomobject]@{ co = $speakerById[$p.Name]; count = [int]$p.Value }
+                }
+            }
+            $coRows = @($coRows) | Sort-Object @{Expression='count'; Descending=$true}, @{Expression={ $_.co.name }}
+            if ($coRows.Count -gt 0) {
+                [void]$sectionsSb.AppendLine('<section class="entity-section"><h2>Co-presenters (' + $coRows.Count + ')</h2><ul class="link-group">')
+                foreach ($r in $coRows) {
+                    $countLbl = if ($r.count -eq 1) { '1 joint session' } else { "$($r.count) joint sessions" }
+                    [void]$sectionsSb.AppendLine(
+                        '<li><span class="link-kind">co</span><a href="' + (HtmlEncode $r.co.slug) + '.html">' + (HtmlEncode $r.co.name) + '</a><span class="source-badge">' + (HtmlEncode $countLbl) + '</span></li>')
+                }
+                [void]$sectionsSb.AppendLine('</ul></section>')
+            }
+        }
+
+        # Tag and topic rollup (just labels - the per-speaker page is not
+        # itself filterable, but the rollup gives a quick sense of focus).
+        $tagsArr   = @($sp.tags)
+        $topicsArr = @($sp.topics)
+        if ($tagsArr.Count -gt 0 -or $topicsArr.Count -gt 0) {
+            [void]$sectionsSb.AppendLine('<section class="entity-section"><h2>Tags &amp; topics</h2>')
+            if ($tagsArr.Count -gt 0) {
+                $tagPills = ($tagsArr | ForEach-Object { '<span class="tag">' + (HtmlEncode $_) + '</span>' }) -join ' '
+                [void]$sectionsSb.AppendLine('<p><strong>Tags:</strong> ' + $tagPills + '</p>')
+            }
+            if ($topicsArr.Count -gt 0) {
+                $topicPills = ($topicsArr | ForEach-Object { '<span class="tag">' + (HtmlEncode $_) + '</span>' }) -join ' '
+                [void]$sectionsSb.AppendLine('<p><strong>Topics:</strong> ' + $topicPills + '</p>')
+            }
+            [void]$sectionsSb.AppendLine('</section>')
+        }
+
+        # Header bits: name variants paragraph (only when 2+ spellings)
+        # and the stats line above the tagline.
+        $variantsArr = @($sp.nameVariants)
+        $variantsHtml = ''
+        if ($variantsArr.Count -gt 1) {
+            $others = @($variantsArr | Where-Object { $_ -ne $sp.name } | ForEach-Object { HtmlEncode $_ })
+            if ($others.Count -gt 0) {
+                $variantsHtml = '<p class="entity-aliases"><strong>Also seen as:</strong> ' + ($others -join ', ') + '</p>'
+            }
+        }
+        $sessionPlural = if ($sp.sessionCount -eq 1) { '' } else { 's' }
+        $statsHtml   = '<span><strong>' + $sp.sessionCount + '</strong> session' + $sessionPlural + '</span>'
+        $taglineText = "Presented at $($sp.sessionCount) $Conference $EventId session$sessionPlural."
+
+        $speakerPageBody = Render-Template $speakerBody @{
+            CATEGORY_SLUG       = 'speaker'
+            CATEGORY            = 'Speaker'
+            SPEAKER_NAME        = HtmlEncode $sp.name
+            TAGLINE_HTML        = HtmlEncode $taglineText
+            STATS_HTML          = $statsHtml
+            HEADER_BADGES_HTML  = ''
+            NAME_VARIANTS_HTML  = $variantsHtml
+            SECTIONS_HTML       = $sectionsSb.ToString()
+        }
+        $speakerPageHtml = Render-Template $layoutTpl @{
+            TITLE          = "$($sp.name) - $Conference $EventId - Conference Library"
+            ASSETS_PREFIX  = '../'
+            HEAD_META_HTML = Build-HeadMeta `
+                -Title "$($sp.name) - $Conference $EventId" `
+                -Description "$($sp.name) presented at $($sp.sessionCount) $Conference $EventId session(s). Click any session to watch with full transcript, AI summary, and click-to-seek video." `
+                -Url (Make-AbsoluteUrl $SiteBaseUrl "$Conference/$EventId/speakers/$($sp.slug).html") `
+                -ImageUrl $siteDefaultOgImage
+            BREADCRUMB     = '<nav class="breadcrumb"><a href="../../../index.html">Conference Library</a> &raquo; ' +
+                             "<a href=`"../../index.html`">$(HtmlEncode $Conference)</a> &raquo; " +
+                             "<a href=`"../index.html`">$(HtmlEncode $EventId)</a> &raquo; " +
+                             "<a href=`"index.html`">Speakers</a> &raquo; " +
+                             (HtmlEncode $sp.name) + "</nav>"
+            HEADER_TITLE   = (HtmlEncode $sp.name)
+            NAV_HTML       = $speakerPageNav
+            SOURCE_NOTE    = " from <code>catalog/$(HtmlEncode $Conference)/$(HtmlEncode $EventId)/speakers/speakers.json</code>"
+            EXTRA_HEAD     = ''
+            BODY           = $speakerPageBody
+            GENERATED_AT   = HtmlEncode $generatedAt
+        }
+        Set-Content -LiteralPath (Join-Path $speakersRoot ($sp.slug + '.html')) -Value $speakerPageHtml -Encoding utf8
+    }
+
+    Write-Host "Wrote speakers view:" -ForegroundColor Cyan
+    Write-Host "  landing:     $(Join-Path $speakersRoot 'index.html')"
+    Write-Host "  speakers:    $($speakersData.Count) under $speakersRoot\<slug>.html"
+    Write-Host "  catalog:     $(Join-Path $OutputRoot 'speakers-catalog.json')"
+    Write-Host "  search idx:  $(Join-Path $OutputRoot 'speakers-search-index.json')"
 }
 
 # --------------------------------------------------------------------------

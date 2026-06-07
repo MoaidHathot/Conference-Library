@@ -83,18 +83,19 @@
 
     function runQuery(q) {
         const tokens = tokenize(q);
-        if (tokens.length === 0) return { all: [], byType: { session: 0, announcement: 0 } };
+        if (tokens.length === 0) return { all: [], byType: { session: 0, announcement: 0, speaker: 0 } };
         const scored = [];
-        let nSession = 0, nAnnouncement = 0;
+        let nSession = 0, nAnnouncement = 0, nSpeaker = 0;
         for (const it of items) {
             const s = score(it, tokens);
             if (s <= 0) continue;
             scored.push({ item: it, score: s });
-            if (it.type === 'session')      nSession++;
+            if (it.type === 'session')           nSession++;
             else if (it.type === 'announcement') nAnnouncement++;
+            else if (it.type === 'speaker')      nSpeaker++;
         }
         scored.sort((a, b) => b.score - a.score || a.item.title.localeCompare(b.item.title));
-        return { all: scored, byType: { session: nSession, announcement: nAnnouncement } };
+        return { all: scored, byType: { session: nSession, announcement: nAnnouncement, speaker: nSpeaker } };
     }
 
     function renderResults(q) {
@@ -108,15 +109,24 @@
             resultsBox.hidden = false;
             resultsBox.innerHTML =
                 '<div class="hub-search-empty">No matches for <strong>' + escapeText(q) + '</strong>. ' +
-                'Try the dedicated <a href="sessions/index.html">Sessions search</a> or ' +
-                '<a href="announcements/index.html">Announcements search</a> &rarr;.</div>';
+                'Try the dedicated <a href="sessions/index.html">Sessions search</a>, ' +
+                '<a href="announcements/index.html">Announcements search</a>, or ' +
+                '<a href="speakers/index.html">Speakers search</a> &rarr;.</div>';
             return;
         }
         const top = all.slice(0, MAX_RESULTS);
         const itemsHtml = top.map(s => {
             const it = s.item;
-            const badge = it.type === 'session' ? 'Session' : 'Announcement';
-            const badgeClass = it.type === 'session' ? 'hub-result-badge-session' : 'hub-result-badge-announcement';
+            // Three-type badge: session (blue), announcement (amber), speaker (violet).
+            // Drives the .hub-result-badge-* CSS variants.
+            const badge = it.type === 'session'      ? 'Session'
+                        : it.type === 'announcement' ? 'Announcement'
+                        : it.type === 'speaker'      ? 'Speaker'
+                                                     : '';
+            const badgeClass = it.type === 'session'      ? 'hub-result-badge-session'
+                             : it.type === 'announcement' ? 'hub-result-badge-announcement'
+                             : it.type === 'speaker'      ? 'hub-result-badge-speaker'
+                                                          : '';
             const subtitle = it.subtitle ? '<small>' + escapeText(it.subtitle) + '</small>' : '';
             return `
 <li class="hub-result">
@@ -134,6 +144,9 @@
         }
         if (byType.announcement > 0) {
             footerLinks.push('<a href="announcements/index.html">See all ' + byType.announcement + ' announcement match' + (byType.announcement === 1 ? '' : 'es') + ' &rarr;</a>');
+        }
+        if (byType.speaker > 0) {
+            footerLinks.push('<a href="speakers/index.html">See all ' + byType.speaker + ' speaker match' + (byType.speaker === 1 ? '' : 'es') + ' &rarr;</a>');
         }
         const footer = footerLinks.length > 0
             ? '<div class="hub-search-footer">' + footerLinks.join(' &middot; ') + '</div>'
