@@ -1535,40 +1535,38 @@ if ($eventHubBody) {
     }
 
     # Speakers card HTML: only emitted when the speakers view is enabled,
-    # so the hub-card-grid stays clean (no empty slot) on events that
-    # haven't been resolved yet.
+    # so the hub-card-grid-secondary stays clean (no empty slot) on events
+    # that haven't been resolved yet. The card carries the hub-card-secondary
+    # modifier so it picks up the compact horizontal layout + muted treatment
+    # defined in style.css; no description paragraph (the muted compact
+    # tile only carries label + stat + arrow CTA).
     $speakerCardHtml = ''
     if ($speakersEnabled) {
-        $speakerAttribSessionCount = ($speakersBySession.Keys | Measure-Object).Count
-        $speakerCardDesc = "Every $Conference $EventId speaker resolved by the catalog's opaque speaker id. $($speakersData.Count) unique speakers across $speakerAttribSessionCount attributed sessions, with per-speaker session lists and a co-presenter graph."
         $speakerCardHtml = @"
-<li class="hub-card hub-card-speakers">
+<li class="hub-card hub-card-secondary hub-card-speakers">
     <a href="speakers/index.html">
         <div class="hub-card-head">
             <span class="hub-card-label">Speakers</span>
             <span class="hub-card-stat">$($speakersData.Count)</span>
         </div>
-        <p class="hub-card-desc">$(HtmlEncode $speakerCardDesc)</p>
-        <span class="hub-card-cta">Browse all speakers &rarr;</span>
+        <span class="hub-card-cta">Browse &rarr;</span>
     </a>
 </li>
 "@
     }
 
-    # Themes card HTML: only emitted when themes have been resolved. Like
-    # the speakers card, this is an opt-in entry into the hub-card-grid.
+    # Themes card HTML: only emitted when themes have been resolved. Same
+    # secondary-tile treatment as speakers above.
     $themeCardHtml = ''
     if ($themesEnabled) {
-        $themeCardDesc = "Cross-cutting topics discovered by Claude Opus in a two-pass aggregation over every session's AI summary. $($themesData.Count) themes spanning $($indexCatalog.Count) sessions, with each session assigned to 1-3 themes by content."
         $themeCardHtml = @"
-<li class="hub-card hub-card-themes">
+<li class="hub-card hub-card-secondary hub-card-themes">
     <a href="themes/index.html">
         <div class="hub-card-head">
             <span class="hub-card-label">Themes</span>
             <span class="hub-card-stat">$($themesData.Count)</span>
         </div>
-        <p class="hub-card-desc">$(HtmlEncode $themeCardDesc)</p>
-        <span class="hub-card-cta">Browse all themes &rarr;</span>
+        <span class="hub-card-cta">Browse &rarr;</span>
     </a>
 </li>
 "@

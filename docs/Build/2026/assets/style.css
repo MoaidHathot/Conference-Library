@@ -1467,22 +1467,31 @@ details.transcript .transcript-body {
     grid-template-columns: 1fr;
     gap: var(--s-5);
 }
-/* Two-up on tablets, three-up on wide screens when the speakers card is
-   present, four-up only on real desktop monitors when themes is also
-   enabled. The 4-up breakpoint is intentionally 1500px (not 1280px) so
-   common 1366x768 / 1440x900 laptops keep the comfortable 3-up layout
-   and let the 4th card wrap full-width to a second row instead of
-   squeezing all four into ~310px columns. The card slots are opt-in
-   (Build-Book only emits them when the underlying view is enabled),
-   so the grid degrades gracefully at every config. */
+/* Hub card grids — split into two tiers.
+   Primary (Sessions + Announcements): full-size cards with description
+   paragraph + accent CTA. Always 2-up at >=720px so the two co-equal
+   entry points sit side by side. Below 720px stacks vertically.
+   Secondary (Speakers + Themes): compact horizontal tiles below the
+   primary row, conveying that they are derived views built on top of
+   the primaries rather than top-level entry points. The secondary <ul>
+   collapses to display:none when empty (events without either pipeline),
+   so the layout stays clean across configs. */
+.hub-card-grid-primary {
+    grid-template-columns: 1fr;
+}
+.hub-card-grid-secondary {
+    list-style: none;
+    margin: var(--s-4) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-3);
+}
+.hub-card-grid-secondary:empty { display: none; }
+
 @media (min-width: 720px) {
-    .hub-card-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (min-width: 1080px) {
-    .hub-card-grid:has(.hub-card-speakers) { grid-template-columns: 1fr 1fr 1fr; }
-}
-@media (min-width: 1500px) {
-    .hub-card-grid:has(.hub-card-themes)   { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    .hub-card-grid-primary   { grid-template-columns: 1fr 1fr; }
+    .hub-card-grid-secondary { grid-template-columns: 1fr 1fr; }
 }
 
 .hub-card {
@@ -1543,21 +1552,60 @@ details.transcript .transcript-body {
     border-top: 1px solid var(--c-border);
 }
 
-/* Accent the two cards distinctly so they're visually distinguishable
-   at a glance even before reading the label. */
+/* Accent the two primary cards distinctly so they're visually
+   distinguishable at a glance even before reading the label. Sessions
+   uses the brand accent (blue); announcements uses amber. The two
+   secondary cards (speakers + themes) deliberately do NOT carry a
+   per-card hover accent - their demotion comes from layout + muted
+   tone, not from a color rotation. */
 .hub-card-sessions:hover      { border-color: var(--c-accent); }
 .hub-card-announcements:hover { border-color: #8a5a00; }
 .hub-card-announcements:hover .hub-card-stat { color: #8a5a00; }
 .hub-card-announcements:hover .hub-card-cta  { color: #8a5a00; }
-/* Speakers card uses the same accent vocabulary - blue-violet to
-   distinguish from the sessions (blue) and announcements (amber). */
-.hub-card-speakers:hover { border-color: #4d2680; }
-.hub-card-speakers:hover .hub-card-stat { color: #4d2680; }
-.hub-card-speakers:hover .hub-card-cta  { color: #4d2680; }
-/* Themes card: teal accent, completing the four-card colour rotation. */
-.hub-card-themes:hover { border-color: #0c5e3f; }
-.hub-card-themes:hover .hub-card-stat { color: #0c5e3f; }
-.hub-card-themes:hover .hub-card-cta  { color: #0c5e3f; }
+
+/* Secondary card variant: compact horizontal tile, muted background,
+   no shadow, smaller fonts. Applied to speakers + themes cards by
+   Build-Book.ps1 (it adds the .hub-card-secondary class to each <li>).
+   Rendered inside .hub-card-grid-secondary below the primary row. */
+.hub-card-secondary {
+    background: var(--c-surface-alt);
+    box-shadow: none;
+}
+.hub-card-secondary a {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-3);
+    padding: var(--s-3) var(--s-4);
+}
+.hub-card-secondary .hub-card-head {
+    border-bottom: none;
+    padding-bottom: 0;
+    flex: 1 1 auto;
+}
+.hub-card-secondary .hub-card-label {
+    font-size: var(--fs-md);
+}
+.hub-card-secondary .hub-card-stat {
+    font-size: var(--fs-xl);
+    color: var(--c-text-muted);
+}
+.hub-card-secondary .hub-card-cta {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+}
+.hub-card-secondary:hover {
+    background: var(--c-surface);
+    border-color: var(--c-text-muted);
+    transform: none;
+}
+.hub-card-secondary:hover .hub-card-stat,
+.hub-card-secondary:hover .hub-card-cta {
+    color: var(--c-text);
+}
 
 /* Per-session theme chip row. Sits just under the meta row in the hero,
    chips themselves are .tag.tag-theme to reuse the tag pill geometry. */
@@ -1831,23 +1879,28 @@ details.transcript .transcript-body {
     /* Theme palette (teal) was tuned for light surfaces too. Invert the
        fill to a deep teal and lift the text to a soft mint so the per-
        session theme chips, the themes entity-cat chip on each /themes/
-       page, and the themes hub card hover all stay legible on dark. */
+       page, and the themes federated-search badge all stay legible on
+       dark. The hub-card-themes:hover accent block from the four-up
+       layout was dropped along with the per-card color rotation when
+       the hub moved to a two-tier primary/secondary design. */
     .tag-theme,
     .entity-cat-theme,
     .hub-result-badge-theme        { background: #103a28; color: #8fd4b3; }
     .tag-theme:hover               { background: #8fd4b3; color: #0c2e1f; }
-    .hub-card-themes:hover         { border-color: #8fd4b3; }
-    .hub-card-themes:hover .hub-card-stat,
-    .hub-card-themes:hover .hub-card-cta          { color: #8fd4b3; }
 
     /* Speakers palette (blue-violet) needs the same treatment so the
-       per-event view-switcher Speakers tab + the speakers hub card +
-       the speaker entity-cat chip read clearly on dark. */
+       per-event view-switcher Speakers tab + the speaker entity-cat chip
+       + the federated-search speaker badge read clearly on dark. */
     .entity-cat-speaker,
     .hub-result-badge-speaker      { background: #1f1f4a; color: #c5c5ff; }
-    .hub-card-speakers:hover       { border-color: #b7b7ff; }
-    .hub-card-speakers:hover .hub-card-stat,
-    .hub-card-speakers:hover .hub-card-cta        { color: #b7b7ff; }
+
+    /* Hub two-tier: in dark mode --c-surface-alt is slightly LIGHTER
+       than --c-surface (subtle raise) so the secondary tiles wouldn't
+       feel demoted. Swap to --c-bg (the page background) so the
+       secondaries instead feel like they sit IN the page surface
+       rather than raised cards - preserving the "demoted" intent. */
+    .hub-card-secondary       { background: var(--c-bg); }
+    .hub-card-secondary:hover { background: var(--c-surface); }
 
     /* Lightbox / dialog overlay backdrop stays dark — no change needed. */
     /* Primary button keeps the accent fill; just darken the hover. */

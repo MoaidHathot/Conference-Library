@@ -16,7 +16,10 @@
     </div>
 </section>
 
-<ul class="hub-card-grid">
+<!-- Primary row: the two co-equal entry points into the per-event
+     reference — Sessions and Announcements. These cards stay at full
+     size with their description paragraph and accent CTA. -->
+<ul class="hub-card-grid hub-card-grid-primary">
     <li class="hub-card hub-card-sessions">
         <a href="sessions/index.html">
             <div class="hub-card-head">
@@ -38,7 +41,15 @@
             <span class="hub-card-cta">Browse all announcements &rarr;</span>
         </a>
     </li>
+</ul>
 
+<!-- Secondary row: derived views (speakers + themes) that are computed
+     from the same per-session source data. Rendered as compact horizontal
+     tiles below the primary row to underscore their secondary role.
+     Build-Book.ps1 emits each card only when the underlying view is
+     enabled, so events without either pipeline get an empty <ul> which
+     the .hub-card-grid-secondary:empty rule in style.css hides. -->
+<ul class="hub-card-grid hub-card-grid-secondary">
     {{SPEAKER_CARD_HTML}}
 
     {{THEME_CARD_HTML}}
