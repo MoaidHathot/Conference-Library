@@ -1497,21 +1497,13 @@ if ($eventHubBody) {
     # the entire template every time.
     $hubContext = "A community-maintained reference of $(HtmlEncode $Conference) $(HtmlEncode $EventId): full transcripts, AI-generated summaries, sampled frames, click-to-seek video for every session, and a cross-session catalog of every product / SDK / framework / service / model announced, with curated GitHub, learn.microsoft.com, NuGet, and blog links. Two views into the same source data &mdash; browse session-by-session, or by announcement."
 
-    # Card descriptions + feature lists (HTML, rendered into the body).
-    $sessionFeatures = @(
-        'Full transcripts (cleaned, speaker-attributed)',
-        'AI summaries in a strict 8-section format',
-        'Five sampled frames per session as a visual TOC',
-        'Click-to-seek video player; jump to any timestamp',
-        'Filter by type, status, tags, topics; Lunr full-text search'
-    ) | ForEach-Object { '<li>' + (HtmlEncode $_) + '</li>' }
-    $announcementFeatures = @(
-        'Every product / SDK / framework / service / model announced',
-        '12-bucket fixed taxonomy with category chips',
-        'Search by name, alias, tagline, or description',
-        'Filter by has-GitHub / has-NuGet / has-Docs',
-        'Each entity links back to its source sessions with deep-link timestamps'
-    ) | ForEach-Object { '<li>' + (HtmlEncode $_) + '</li>' }
+    # Card descriptions (HTML, rendered into the body). The hub cards used
+    # to also carry a 5-bullet feature list per card, but on medium-small
+    # laptops (~1280-1440px) the 4-up grid + tall feature list made each
+    # card narrow and visually squeezed. The description paragraph already
+    # explains what each landing contains, so we just emit `label + stat +
+    # desc + CTA` and let the breakpoint changes in style.css keep the
+    # 4th card on its own full-width row below 1500px.
 
     $sessionWith    = ($annMentionsBySession.Keys | Measure-Object).Count
     $sessionDesc    = "Every $Conference $EventId session, indexed end-to-end. Browse $($indexCatalog.Count) sessions, of which $sessionWith have at least one extracted key announcement. Each session page links to its canonical source on $Conference.microsoft.com."
@@ -1528,13 +1520,6 @@ if ($eventHubBody) {
     if ($speakersEnabled) {
         $speakerAttribSessionCount = ($speakersBySession.Keys | Measure-Object).Count
         $speakerCardDesc = "Every $Conference $EventId speaker resolved by the catalog's opaque speaker id. $($speakersData.Count) unique speakers across $speakerAttribSessionCount attributed sessions, with per-speaker session lists and a co-presenter graph."
-        $speakerFeatures = @(
-            'One entry per unique presenter (id-keyed; name-spelling drift folded)',
-            'Per-speaker page lists every session with co-presenter links',
-            'Co-presenters block ranks frequent collaborators by joint-session count',
-            'Filter by activity bucket (1, 2, 3-4, 5+ sessions) or by tag',
-            'Search by name plus alternate spellings'
-        ) | ForEach-Object { '<li>' + (HtmlEncode $_) + '</li>' }
         $speakerCardHtml = @"
 <li class="hub-card hub-card-speakers">
     <a href="speakers/index.html">
@@ -1543,9 +1528,6 @@ if ($eventHubBody) {
             <span class="hub-card-stat">$($speakersData.Count)</span>
         </div>
         <p class="hub-card-desc">$(HtmlEncode $speakerCardDesc)</p>
-        <ul class="hub-card-features">
-$($speakerFeatures -join "`n")
-        </ul>
         <span class="hub-card-cta">Browse all speakers &rarr;</span>
     </a>
 </li>
@@ -1557,13 +1539,6 @@ $($speakerFeatures -join "`n")
     $themeCardHtml = ''
     if ($themesEnabled) {
         $themeCardDesc = "Cross-cutting topics discovered by Claude Opus in a two-pass aggregation over every session's AI summary. $($themesData.Count) themes spanning $($indexCatalog.Count) sessions, with each session assigned to 1-3 themes by content."
-        $themeFeatures = @(
-            'Topical (not format-based) - groups sessions by what they''re about',
-            'Discovered and assigned in two Copilot passes (discover + assign)',
-            'Each theme page lists its sessions in tier order (KEY / BRK / DEM / ...)',
-            'Per-session pages show their themes as chips next to the tag row',
-            'Filter the index by name or description'
-        ) | ForEach-Object { '<li>' + (HtmlEncode $_) + '</li>' }
         $themeCardHtml = @"
 <li class="hub-card hub-card-themes">
     <a href="themes/index.html">
@@ -1572,9 +1547,6 @@ $($speakerFeatures -join "`n")
             <span class="hub-card-stat">$($themesData.Count)</span>
         </div>
         <p class="hub-card-desc">$(HtmlEncode $themeCardDesc)</p>
-        <ul class="hub-card-features">
-$($themeFeatures -join "`n")
-        </ul>
         <span class="hub-card-cta">Browse all themes &rarr;</span>
     </a>
 </li>
@@ -1602,10 +1574,8 @@ $($themeFeatures -join "`n")
         HUB_SEARCH_PLACEHOLDER  = (HtmlEncode $hubSearchPlaceholder)
         SESSION_COUNT           = "$($indexCatalog.Count)"
         SESSION_CARD_DESC       = (HtmlEncode $sessionDesc)
-        SESSION_CARD_FEATURES   = ($sessionFeatures -join "`n")
         ANNOUNCEMENT_COUNT      = "$annCount"
         ANNOUNCEMENT_CARD_DESC  = (HtmlEncode $announcementDesc)
-        ANNOUNCEMENT_CARD_FEATURES = ($announcementFeatures -join "`n")
         SPEAKER_CARD_HTML       = $speakerCardHtml
         THEME_CARD_HTML         = $themeCardHtml
     }

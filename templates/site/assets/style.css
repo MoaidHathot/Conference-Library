@@ -1463,16 +1463,20 @@ details.transcript .transcript-body {
     gap: var(--s-5);
 }
 /* Two-up on tablets, three-up on wide screens when the speakers card is
-   present, four-up when themes is also enabled. The card slots are
-   opt-in (Build-Book only emits them when the underlying view is
-   enabled), so the grid degrades gracefully at every config. */
+   present, four-up only on real desktop monitors when themes is also
+   enabled. The 4-up breakpoint is intentionally 1500px (not 1280px) so
+   common 1366x768 / 1440x900 laptops keep the comfortable 3-up layout
+   and let the 4th card wrap full-width to a second row instead of
+   squeezing all four into ~310px columns. The card slots are opt-in
+   (Build-Book only emits them when the underlying view is enabled),
+   so the grid degrades gracefully at every config. */
 @media (min-width: 720px) {
     .hub-card-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (min-width: 1080px) {
     .hub-card-grid:has(.hub-card-speakers) { grid-template-columns: 1fr 1fr 1fr; }
 }
-@media (min-width: 1280px) {
+@media (min-width: 1500px) {
     .hub-card-grid:has(.hub-card-themes)   { grid-template-columns: 1fr 1fr 1fr 1fr; }
 }
 
@@ -1526,23 +1530,6 @@ details.transcript .transcript-body {
     line-height: 1.55;
     margin: 0;
 }
-.hub-card-features {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    color: var(--c-text-muted);
-    font-size: var(--fs-sm);
-}
-.hub-card-features li {
-    padding: var(--s-1) 0;
-    border-bottom: 1px dashed var(--c-border);
-}
-.hub-card-features li:last-child { border-bottom: none; }
-.hub-card-features li::before {
-    content: '\2713  ';
-    color: var(--c-accent);
-    font-weight: 600;
-}
 .hub-card-cta {
     margin-top: auto;
     color: var(--c-accent);
@@ -1557,18 +1544,15 @@ details.transcript .transcript-body {
 .hub-card-announcements:hover { border-color: #8a5a00; }
 .hub-card-announcements:hover .hub-card-stat { color: #8a5a00; }
 .hub-card-announcements:hover .hub-card-cta  { color: #8a5a00; }
-.hub-card-announcements:hover .hub-card-features li::before { color: #8a5a00; }
 /* Speakers card uses the same accent vocabulary - blue-violet to
    distinguish from the sessions (blue) and announcements (amber). */
 .hub-card-speakers:hover { border-color: #4d2680; }
 .hub-card-speakers:hover .hub-card-stat { color: #4d2680; }
 .hub-card-speakers:hover .hub-card-cta  { color: #4d2680; }
-.hub-card-speakers:hover .hub-card-features li::before { color: #4d2680; }
 /* Themes card: teal accent, completing the four-card colour rotation. */
 .hub-card-themes:hover { border-color: #0c5e3f; }
 .hub-card-themes:hover .hub-card-stat { color: #0c5e3f; }
 .hub-card-themes:hover .hub-card-cta  { color: #0c5e3f; }
-.hub-card-themes:hover .hub-card-features li::before { color: #0c5e3f; }
 
 /* Per-session theme chip row. Sits just under the meta row in the hero,
    chips themselves are .tag.tag-theme to reuse the tag pill geometry. */
